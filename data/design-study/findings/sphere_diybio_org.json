@@ -1,0 +1,825 @@
+{
+  "site": "sphere.diybio.org",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-05.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "imagesViewedNote": "content-1440-full.png, content-1440-tile-01.png and content-375-tile-01.png are byte-identical to index-1440-full.png, index-1440-tile-01.png and index-375-tile-01.png respectively (matching sha256 in the manifest, and both passes captured the same URL), so viewing the index files is viewing them. index-1440-tile-02.png / index-1440-tile-03.png are likewise identical to content-1440-tile-02.png / content-1440-tile-03.png. Twelve distinct images were opened, covering all twenty-six capture files by digest except index-375-tile-02/03/04 and content-375-scroll-00.png (identical to index-375-tile-01.png).",
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "A full-bleed photographic carousel is unambiguously first in the hierarchy, taking about 45% of the desktop first screen.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Photographic panels run edge to edge from roughly y=65 to y=465 of a 900 px viewport, with display type set over the images and a filled button per slide; no other photograph appears anywhere on the page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The publisher's own promotional panel sits inside the record carousel in the same slot, at the same size and with the same photographic treatment as the lab entries, and nothing labels it as the publisher's own.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The centre slide reads 'DIYbiosphere / An open source project to connect DIYbio initiatives worldwide' with an ADD YOUR ENTRY button, flanked by 'Hackuarium — Lab at UniverCite in Renens, Switzerland' and 'SoundBio Lab — Lab in Seattle, United States' in identical panels. The only cues that it is not a record are indirect: it omits the type-and-place line every record carries, and it repeats the site name in the header logo. No mark, badge or wording says it is the publisher speaking.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "Second in the hierarchy is 'Browse by Collection'. The section heading does carry a larger type scale; what lacks a size difference is the category name against its own description inside the grid.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "A centred heading roughly 26 px tall sits about 130 px below the carousel, above an eight-item two-column grid in which the uppercase bold category name and its regular-weight description render at effectively the same size, all in one monospaced face.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "The newsletter block is the only element given a colour-filled container, so it out-ranks the map section above it and the delivered visual order inverts the page's stated subject.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "A pale blue rounded panel spanning the content width holds 'Get the Monthly Newsletter', an email field and a filled Subscribe button. The map section itself has no container and no fill; its legend is a small bordered, faintly filled box at the left, which is component chrome rather than a section container.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "hierarchy",
+      "claim": "The carousel's heading structure is flat and does not match the visual hierarchy: every slide title is an h1, with h3 for its location line and h3 again for its description.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The headingOutline sample lists 40 entries of a recorded headingCount of 44, and every one is h1 (15) or h3 (25) carousel content; 'DIYbiosphere' is one h1 among many. The four headings outside the sample are not identified, so the three visible section headings ('Browse by Collection', 'Community Labs by Location', 'Get the Monthly Newsletter') cannot be assigned a level here and no claim is made that the page contains no h2 at all.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "At desktop the eye lands on the green ADD YOUR ENTRY button in the centre of the carousel — chrome, a call to contribute, not content.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "It is the only saturated green on the page against a desaturated photograph, horizontally centred at roughly x=718, y=381 in the 1440x900 view, with the largest button padding on screen; every other control uses the site's blue.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "The desktop search field is the lowest-contrast interactive element on the first screen despite the site being a lookup directory.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "'Search DIYbio initiatives' renders as grey placeholder text on white with no border and no fill, with only a small magnifier glyph at its right edge. Its type is set larger than the BROWSE / ABOUT / CONTRIBUTE / NEWSLETTER nav items, but at markedly lower contrast and with no bounding shape, so it reads as a label rather than as a control.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "At mobile the eye still lands on the green button, but search is given a better position than at desktop — its own full-width row above the hero.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The 375 px header wraps to two rows: logo, BROWSE and a hamburger on row one; a full-width 'Search DIYbio initiatives' field with a magnifier icon on row two, directly above the carousel whose green ADD YOUR ENTRY button still dominates.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "information-design",
+      "claim": "The search field carries an autocomplete combobox role and the site's search is credited to a hosted index; there is no keyboard-shortcut palette.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "searchAffordances records a descriptor 'input[role=combobox] Search DIYbio initiatives'; the footer visibly credits 'Search by Algolia'. kbdTexts and ariaKeyshortcuts are both empty, so no command-palette claim is made. No capture shows the field in use, so whether it drops a suggestion list or navigates to a results page is not observable from this set.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "kbdTexts",
+        "ariaKeyshortcuts"
+      ]
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "Density is very low for a directory: the desktop first screen shows four record panels plus one publisher panel, each reduced to four fields, above four of the eight category items.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "One carousel row of five panels (three clipped by the viewport edges), the centre one being the publisher's, above the first two rows of the eight-item collection grid — LABS, STARTUPS, PROJECTS, INCUBATORS — filling the whole 900 px view.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "The carousel clips its outer panels mid-word, so two of the five visible records cannot be read as records.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Left edge shows '…pace / …rooklyn, / States' with a half 'Class' button; right edge shows 'BioHac… / Lab in / Ecua…' with a 'Learn…' button sliced by the viewport boundary.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "information-design",
+      "claim": "The taxonomy is defined in plain sentences on the page, including an explicitly named residual category and an admission that the scheme may change.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "LABS 'Dedicated physical spaces, static or mobile, with materials and equipment'; OTHERS 'Umbrella term for the rest of misfit entries. New collections may arise'; eight categories each with one definition line.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "density",
+      "claim": "No list, no table and no count appears anywhere in the captures; the page never states the size of the corpus it indexes.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The eight category rows carry a name and a description and nothing numeric; the full-page captures at both viewports contain no tabular block and no figure.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "density",
+      "claim": "Mobile density collapses rather than reflows: the same eight categories stretch across roughly 1,900 px of scroll with the icon centred above left-aligned text.",
+      "captures": [
+        "index-375-full.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "At 375 px each category occupies about 200 px of the 812 px viewport, with a centred blue icon breaking the left alignment of the name and description beneath it; the 50% scroll view holds only INCUBATORS, GROUPS and NETWORKS.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent between sections rather than inside them, so the category grid reads as one block.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Roughly 130 px separates the bottom of the carousel from 'Browse by Collection' (about 70 px from the previous/next controls), and a comparable band sits above the newsletter card, while icon-to-text and row-to-row spacing inside the grid stays tight and uniform.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "whitespace",
+      "claim": "The largest area of white on the page is not designed whitespace but the failed map: roughly 760 px of the 2,638 px desktop page, about 29% of its height, is blank under a heading, with only the legend surviving.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-50.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "'Community Labs by Location' sits at about y=1200 of the full-page capture and nothing paints below it until the legend box at about y=1860. That is roughly 570 px of blank inside tile-02, continuing about 190 px into tile-03, where the legend floats alone at the top left with no map behind it. canvasCount is 1, consistent with a canvas map that initialised but painted nothing.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F17",
+      "topic": "whitespace",
+      "claim": "At mobile the same region is absent rather than blank — no heading, no legend, only an ordinary section margin.",
+      "captures": [
+        "content-375-scroll-90.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The 90% scroll view runs from the OTHERS category straight to the newsletter card with no 'Community Labs by Location' heading anywhere between them, and the full-page mobile capture shows no map section at all.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "Nothing persists through the scroll: no sticky header, no contents rail, no progress indicator, no back-to-top control.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "At scrollY 869 and 1564 the header (logo, BROWSE, search, ABOUT, CONTRIBUTE, NEWSLETTER) is entirely gone from the top edge; stickyOrFixedCount is 0 and stickyOrFixed is empty.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "stickyOrFixedCount"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds for one section then stops entirely: the middle of the page is a viewport largely containing nothing.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The 50% scroll view shows four category items in two rows across its top 215 px, the 'Community Labs by Location' heading at y=330, and roughly 570 px of empty white below it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "The end of the page winds down in three stages — newsletter card, infrastructure credits at large scale, then legal links and a licence line set in the palest type on the page.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-375-tile-05.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "'Deployed on Netlify / Shared on GitHub / Search by Algolia / Supported by DIYbio' render as large mid-grey wordmarks; beneath them 'Terms of Use | Contributor Terms | Code of Conduct | FAQ' and a CC0 badge with 'Except where otherwise noted, content on this site is dedicated to the public domain' in a lighter grey than the logos above it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "Photographs appear only as carousel backgrounds and carry no entry-specific information.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Each slide sets type over a desaturated, dimmed lab photograph — a bench, a workshop, a pipetting hand — interchangeable between entries; imgCount is 19 across logos and slides.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ]
+    },
+    {
+      "id": "F22",
+      "topic": "imagery",
+      "claim": "Setting type over a pale photograph costs legibility on the centre slide, worst in the title rather than in the body text.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'DIYbiosphere' is set in white with a drop shadow directly over a pale grey petri-dish photograph and is the weakest contrast on the first screen at both viewports; the dark line beneath it, 'An open source project to connect DIYbio initiatives worldwide', holds better but its strokes still break against the dish outlines. The adjacent white-on-dark Hackuarium and SoundBio slides stay clean.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "Category icons are decorative scan anchors that restate their labels, and at mobile they break the column alignment without adding meaning.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-full.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Flask, rocket, briefcase, leaf, people, share-nodes, calendar and umbrella, all one blue and one weight, each next to the word it depicts; at 375 px each icon is centred above left-aligned text. Inferred as FontAwesome injected as SVG from htmlAttributes.class 'fontawesome-i2svg-active fontawesome-i2svg-complete' and svgCount 77.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "htmlAttributes",
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F24",
+      "topic": "imagery",
+      "claim": "The one graphic that would have carried real meaning is the one that is not there; the page degrades to a heading and a floating key.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The world map of community labs did not paint in the desktop capture, leaving 'Community Labs by Location' above blank white with the active/inactive legend box alone at the left.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F25",
+      "topic": "imagery",
+      "claim": "The largest and most confident imagery at the end of the page belongs to other companies.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-375-tile-05.png"
+      ],
+      "evidence": "The Netlify, GitHub, Algolia and DIYbio wordmarks are set larger than the legal links beneath them and larger than most body text on the page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "defers-or-competes",
+      "claim": "The carousel competes with the content decisively — it is the largest element, holds the publisher's pitch among the records, clips its neighbours and carries its own controls.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Previous/next circular buttons sit centred below the panel row. The heading sample shows seven panels per loop (six labs plus the publisher's), 15 h1s within the first 40 headings, and a recorded headingCount of 44 — enough for about two and a bit copies of the loop rather than three. Either way the first screen is about the browsing mechanism rather than about anything browsed.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F27",
+      "topic": "defers-or-competes",
+      "claim": "The sign-up form is the only visually promoted block on the page, so in a directory the newsletter ends up looking more designed than any record.",
+      "captures": [
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "The newsletter is the sole colour-filled, rounded, content-width container; every record and category row sits on bare white, and the only other bounded element on the page is the small bordered map legend.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "defers-or-competes",
+      "claim": "The design defers well in two of the places doing the careful work — the category grid and the footer legal row. The map legend does careful work too, but it is not the least decorated element on the page.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The grid and the footer row are plain text at plain weight with no container, shadow or accent. The legend is a bordered, faintly filled, rounded box with a dividing rule holding two dots, two labels and a checkbox — small and quiet, but the second most contained element on the page after the newsletter card.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "defers-or-competes",
+      "claim": "The single monospaced face used throughout is the page's one stylistic gesture and it is neutral enough not to compete.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Headings, category names, descriptions, legend and footer all render in the same monospaced family, giving a plain-text, community-edited look rather than a magazine one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "An entry's visible record shape is four fields, and the type-and-place line uses one fixed grammar reused across entries so it is comparable at a glance.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Name ('Genspace', 'Hackuarium', 'BioHack UIO'); type-and-place ('Lab in Brooklyn, United States', 'Lab at UniverCite in Renens, Switzerland', 'Lab in Quito, Ecuador'); a one-sentence self-description; and one action button ('Take a Class', 'Join our Open Meetups'). headingOutline confirms the same three-part pattern for every slide.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "No record-level metadata of any kind appears: no date, version, contributor, licence, identifier, count, tag or source line.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "Nothing on any slide or category row carries an added/updated/last-verified stamp, a DOI or registry number, a contributor handle, or a badge; the only dated thing on the page is the promise of a monthly newsletter.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "The single uncertainty signal on the page is the map legend, and it is half right: it gives uncertainty a recessive grey and makes seeing the uncertain remainder an explicit opt-in with the default stated in plain words — but it merges 'inactive' and 'unknown' into one grey state behind one control.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "A blue dot labelled 'Active labs', a single grey dot labelled 'Inactive / unknown labs', a horizontal rule, then an unchecked checkbox 'Show inactive/unknown labs too'. Two different reasons a lab may be missing — known closed, and never established or never checked — share one dot, one label and one toggle, so a reader cannot separate them or filter for one without the other; only the slash in the label records that there are two.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "That uncertainty vocabulary is confined to one component and is absent entirely at mobile; no carousel entry or category row carries an activity state.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-375-scroll-90.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The slides show name, place, description and action with no state mark, so a reader cannot tell whether a listed lab still exists; at 375 px the legend does not render at all.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "information-design",
+      "claim": "There are no verification marks anywhere: no verified badge, reviewed-by line, peer or moderator mark, confidence indicator, sample or replication count, 'self-reported' label or last-checked date.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "No slide, category row, footer line or legend carries any such mark. What the captures show is the page's silence about who wrote each description; they do not show that each description is self-reported, so that authorship is not asserted here.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "information-design",
+      "claim": "The only provenance boundary the page marks is at corpus level, not record level: nothing distinguishes a contributed entry from editorial text as a matter of source.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The one signal is the carousel line 'To contribute all you need is a GitHub account!', which describes the whole dataset rather than any entry. The two kinds of text are not typographically identical — the editorial category definitions are small dark-grey type on white, the contributed descriptions are larger white type over photographs — but neither carries any mark of who wrote it, which is the part that matters.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "information-design",
+      "claim": "Provenance is stated completely but only at site level, and it is set in the palest type at the very bottom.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-375-tile-05.png"
+      ],
+      "evidence": "'Shared on GitHub', 'Deployed on Netlify', 'Search by Algolia', 'Supported by DIYbio', a CC0 badge, and links to Terms of Use, Contributor Terms and Code of Conduct — one governance statement covering every fact on the site, in lighter grey than the vendor logos above it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "information-design",
+      "claim": "What this gives a reader that a trial registry cannot: geography, openness with a time attached, and an entry-specific next action — at the price of nothing being verified, dated or graded.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "'Come visit on OpenHackuarium night every Wednesday, from 7:30-10:30'; 'hands-on STEAM workshops and open lab access for ages 12 through adult'; buttons reading 'Join our Open Meetups' and 'Take a Class' rather than a generic contact link; plus a map section intended to place every entry geographically.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "information-design",
+      "claim": "The site is not longevity-relevant and should be read only as a study of how a volunteer-maintained directory presents uncertain, self-reported organisational records.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Its eight categories are labs, projects, groups, events, startups, incubators, networks and others; nothing in any capture concerns ageing, lifespan, compounds, doses, model organisms or trial evidence.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "absence",
+      "claim": "At desktop an empty field renders as a heading over nothing: no message, no placeholder, no fallback, and a legend that implies content which is not there.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-50.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "'Community Labs by Location' is centred over roughly a full viewport of blank white; the only survivor is the active/inactive legend box at the left, with no 'map unavailable' line and no textual list of locations.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "absence",
+      "claim": "At mobile the map section is absent rather than blank. What the captures show is a difference between viewports; they do not show that the omission is empty-state handling.",
+      "captures": [
+        "content-375-scroll-90.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Between the OTHERS category and the newsletter card there is no heading, no legend and no gap beyond an ordinary section margin, at every mobile scroll position and in the full-page mobile capture. The desktop blank is a graphic that failed to paint; nothing in the set shows the mobile page reacting to missing data, so the two cannot be read as one design's two branches.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "absence",
+      "claim": "Field-level absence handling cannot be assessed, because no record page was captured and every visible entry has all four fields filled.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Both manifest URLs point at the home page and the index/content digests match, so there is no entry detail view in this set; no slide is missing a name, place, description or action.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "baseline",
+      "claim": "Light only, with no theme control visible.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "bodyBackgroundColor rgb(255,255,255), bodyColor rgba(0,0,0,0.87), htmlAttributes.dataTheme null, prefersColorScheme.found false; 4 of 8 stylesheets were unreadable so this is a fair reading rather than a proof, and no toggle appears in the header or footer captures.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "bodyBackgroundColor",
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F43",
+      "topic": "baseline",
+      "claim": "2.2% visible text to delivered HTML, measured from the DOM, against the 8.3% recorded elsewhere in this study for RNAWiki.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "textToHtmlRatio 0.0222 with innerTextLength 3,960 against outerHtmlLength 178,671; imgCount 19, svgCount 77, headingCount 44 for seven carousel panels repeated about twice over. The ratio and the repetition are DOM measurements, not anything a capture shows; what the captures show is that the visible content is one carousel, eight category rows, a failed map and a form. The 8.3% comparator is a figure recorded elsewhere in this study, not measured here.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio",
+        "outerHtmlLength",
+        "innerTextLength",
+        "imgCount",
+        "svgCount",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F44",
+      "topic": "baseline",
+      "claim": "No consent or cookie banner stands in any capture, so nothing in these images should be read as an overlay hiding the design.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "bannerActions records 'no consent UI found' for index-1440, index-375, content-1440 and content-375.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "borrow",
+      "claim": "Borrow only the honest half of the legend for the browse/filter surface: a recessive grey for uncertainty, an explicit opt-in to see the uncertain remainder, and the default stated in plain words. Do not borrow its merged state.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The legend puts 'inactive' and 'unknown' behind one grey dot and one checkbox, which is exactly what boundary 6 of the project briefing forbids: UNKNOWN, NOT_MEASURED, CONTRADICTED, MIXED and CONFIRMED must stay distinct in reader-facing copy, so RNAWiki needs a separate mark and a separate filter per state. What transfers is the opt-in mechanism and the plainly worded default, not the collapsing.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "borrow",
+      "claim": "Borrow one fixed grammar for the summary line of a browse result row, as generated markup rather than page prose.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Lab in Brooklyn, United States' and 'Lab at UniverCite in Renens, Switzerland' repeat the same two-fact pattern across every entry, making a column of them scannable; the uniqueness constraint requires such a repeated line be markup, never counted as prose.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F47",
+      "topic": "borrow",
+      "claim": "Borrow the on-page taxonomy definitions, including a named residual and an admission that the scheme may change, for the reference/definitions surface.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "'Umbrella term for the rest of misfit entries. New collections may arise' is the tone a definitions page needs, stated beside the seven categories it is the leftover of.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F49",
+      "topic": "borrow",
+      "claim": "Borrow the completeness of the footer provenance chain for the reference/definitions surface — licence, contributor terms, code of conduct and the repository the data lives in.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-375-tile-05.png"
+      ],
+      "evidence": "Terms of Use, Contributor Terms, Code of Conduct, FAQ, a CC0 badge and 'Shared on GitHub' together say how the whole dataset is governed, licensed and edited.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F50",
+      "topic": "avoid",
+      "claim": "Avoid any hero carousel near the home search bar — this page is the clearest demonstration of the failure the frozen-search-bar constraint exists to prevent.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "A 400 px photographic carousel with a saturated green button takes the eye before a borderless grey search field does, at both 1440 and 375.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F51",
+      "topic": "avoid",
+      "claim": "Avoid a borderless, unfilled search field; RNAWiki's bar must keep looking like a field.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Search DIYbio initiatives' as grey placeholder text with no border and no fill reads weaker than the plain nav links beside it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F52",
+      "topic": "avoid",
+      "claim": "Avoid rendering a heading above content that may not appear — the concrete failure case for the citation evolution map surface.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Community Labs by Location' with a legend and no map is what a load-bearing graphic looks like when it fails; the Phase 2 rule for that surface is that the text carries the meaning and the graphic carries none.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F53",
+      "topic": "avoid",
+      "claim": "Avoid setting the licence and provenance statement as the palest text on the page.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "index-375-tile-05.png"
+      ],
+      "evidence": "'Except where otherwise noted, content on this site is dedicated to the public domain' renders lighter than the vendor logos above it, against RNAWiki's requirement of adequate contrast and its treatment of provenance as evidence rather than fine print.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F54",
+      "topic": "avoid",
+      "claim": "Avoid records with no date and no state; for a dossier this would be disqualifying.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "No entry carries a last-checked date or activity mark, and the only staleness signal in the whole design lives inside a map legend.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F55",
+      "topic": "avoid",
+      "claim": "Avoid a scroll with nothing persistent; this site is evidence for the dossier contents rail, not against it.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "With stickyOrFixedCount 0, a reader at 50% or 90% has no header, no search and no contents without scrolling back to the top — the exact deficit the still-unassigned rail surface would fill.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "stickyOrFixedCount"
+      ]
+    },
+    {
+      "id": "F56",
+      "topic": "avoid",
+      "claim": "Avoid letting a contribution or sign-up block be the most designed thing on a page of evidence.",
+      "captures": [
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "The newsletter is the only tinted container on the page and therefore out-ranks every record and the map section.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "hierarchy",
+      "claim": "At 375 px the carousel shows exactly one panel and it is the publisher's own promotional slide, so the mobile first screen contains no record at all.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The 812 px mobile first screen holds a logo/BROWSE/hamburger row, a full-width search row, and one full-width slide reading 'DIYbiosphere / An open source project to connect DIYbio initiatives worldwide' with the green ADD YOUR ENTRY button, then the previous/next arrows and 'Browse by Collection'. The full-page mobile capture shows the carousel never presenting more than one panel, so the arrows are the only route from the first screen to a record.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "No entry name is presented as a link, and the only link-coloured text inside the carousel belongs to the publisher; each record offers one action button and no visible route to a record page.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Entry titles ('Hackuarium', 'SoundBio Lab', 'BioHac...') render as plain white display type with no underline, no colour change and no chevron, while 'GitHub account!' on the publisher panel is set in the site's blue. The buttons read 'Take a Class', 'Join our Open Meetups' and 'Learn...' — entry actions rather than a way into the record. For a browse row on RNAWiki the record name itself must be the link.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "information-design",
+      "claim": "The eight 'Browse by Collection' rows carry no visible interactive affordance — no link colour, underline, chevron, count or button — so the page's named browse mechanism reads as a glossary rather than as navigation.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "LABS, PROJECTS, GROUPS, EVENTS, STARTUPS, INCUBATORS, NETWORKS and OTHERS are set as plain black uppercase names over plain grey definitions with a blue icon beside them. Blue marks links and buttons everywhere else on this page — 'GitHub account!', Subscribe, 'Powered by Buttondown.' — but not here, and no row shows a count or a chevron, so nothing indicates that a collection can be opened or how large it is.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "sphere.diybio.org appears nowhere in the Phase 2 table, which assigns Apple subtraction to home (search bar frozen), awwwards.com to browse/filter, smashingmagazine.com with linear.app/method to the dossier reading column, leaves the contents rail unassigned with stripe.com/docs proposed, stripe.com/docs to structured data blocks, pudding.cool to the citation evolution map, vercel.com/docs to the global search overlay and quantamagazine.org to reference/definitions. It is an A2 community site studied for information design, not a Phase 1 measured reference, so there is nothing here to strengthen or overturn. It should not be given a governing surface: it measures 2.2% text-to-HTML against the 8.3% RNAWiki must improve on, which is the same measure that removed atlasobscura.com from the table (F43); it has a single monospaced face at near-uniform weight and no measurable reading column, since no capture contains a paragraph of running prose (F3, F12, F29); and its first screen is the exact inverse of the frozen-search-bar constraint (F50). What it argues for is narrower than the viewer recorded, and partly cautionary. Its legend is the one place on the page that puts an uncertainty state into the interface at all, and its opt-in mechanism — default to what is believed current, offer the uncertain remainder behind a plainly worded checkbox — is transferable. But the legend does not keep two kinds of not-known apart: ‘Inactive / unknown labs’ is one grey dot behind one toggle (F32), which is the collapse boundary 6 exists to prevent. Recommendation: keep awwwards.com governing browse/filter and record sphere.diybio.org’s legend as a partial component precedent — borrow the recessive grey, the opt-in and the plainly stated default, and cite the merged state as the anti-pattern in the same entry — with no claim on its typography, spacing or layout.",
+    "componentPrecedentProposed": {
+      "surface": "browse/filter",
+      "component": "opt-in to reveal the uncertain remainder in a list, with the default stated in plain words (partial precedent: its merged inactive/unknown state is the anti-pattern half)",
+      "findings": [
+        "F32",
+        "F45"
+      ]
+    }
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Only the honest half of the three-state legend — a recessive grey for the uncertain state and an opt-in to see the uncertain remainder with the default stated in plain words. Do NOT borrow its merged 'Inactive / unknown' state: one dot and one toggle for two different kinds of not-known is what boundary 6 forbids, so RNAWiki needs a separate mark and filter per state. Browse/filter surface, vocabulary reused on structured data blocks. [F32, F45; content-1440-tile-03.png]",
+      "One fixed grammar for a result row's summary line (kind + place, here kind + population + phase), generated as markup so it does not count as page prose. Browse/filter. [F30, F46; index-1440-tile-01.png]",
+      "Taxonomy defined on the page in one sentence per term, including a named residual category and an admission the scheme may change. Reference/definitions. [F12, F47; content-1440-tile-02.png]",
+      "Mobile renders no heading for the map section that has nothing to show — worth citing against an empty-state box, but only as an observed end state, not as demonstrated empty-state handling: no capture shows the page reacting to missing data. Every surface. [F17, F40; content-375-scroll-90.png]",
+      "A complete site-level provenance chain in the footer: licence, contributor terms, code of conduct, and the repository the data lives in. Reference/definitions. [F36, F49; content-1440-tile-03.png]"
+    ],
+    "avoid": [
+      "A hero carousel, or anything of that visual weight, anywhere near the home search bar — the frozen bar loses to a green button here at both viewports. Home. [F6, F50; index-1440-tile-01.png, index-375-tile-01.png]",
+      "A borderless, unfilled search field that reads as a label rather than a control. Home, global search overlay. [F7, F51; index-1440-tile-01.png]",
+      "Rendering a section heading above content that may not appear, with a legend for a graphic that is not there. Citation evolution map. [F39, F52; content-1440-tile-02.png, content-1440-scroll-50.png]",
+      "Setting the licence and provenance statement as the palest text on the page. Reference/definitions, dossier footer. [F20, F53; content-1440-tile-03.png, index-375-tile-05.png]",
+      "Records carrying no date and no state, with the only staleness signal hidden in one component's legend. Browse/filter, dossier reading column, structured data blocks. [F31, F33, F54; index-1440-tile-01.png]",
+      "A long scroll with nothing persistent — no header, no rail, no progress. Dossier contents rail (this is evidence for the rail, not against it). [F18, F55; content-1440-scroll-50.png, content-1440-scroll-90.png]",
+      "Letting a contribution or sign-up block be the only tinted, most-designed element on a page of evidence. Dossier reading column. [F27, F56; content-1440-tile-03.png]",
+      "A flat heading outline where every record title is an h1 and no h2 exists — RNAWiki's public pages must keep logical heading order. Every surface. [F5; index-1440-tile-01.png]",
+      "A browse row whose record name is not the link, and a browse grid whose rows carry no link colour, count or chevron — here the only link-coloured text in the carousel is the publisher's own. Browse/filter. [V2, V3; index-1440-tile-01.png, content-1440-tile-02.png]",
+      "A mobile first screen that shows the publisher's own panel and no record at all. Home, browse/filter. [V1; index-375-tile-01.png]"
+    ]
+  },
+  "notLongevityRelevant": true,
+  "bannersStanding": [],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "verifiedBy": "independent verifier, capture-only re-read",
+    "confirmed": 35,
+    "qualified": 20,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Method: re-opened index-1440-full, index-1440-tile-01 (= content-1440-tile-01 = content-1440-scroll-00 by sha256, verified with shasum), content-1440-tile-02, content-1440-tile-03, content-1440-scroll-50, content-1440-scroll-90, index-375-full, index-375-tile-01 (= content-375-tile-01 = content-375-scroll-00), index-375-tile-05, content-375-scroll-50, content-375-scroll-90. All cited captures were seen.",
+      "F48 REFUTED and removed: it recommended borrowing 'mobile's absence behaviour' as implemented empty-state handling. The captures show the map section missing at 375 px at all times and a desktop graphic that failed to paint; nothing shows the page omitting a heading because its data was absent. The honest observation survives in F17 and the rewritten F40.",
+      "F32 QUALIFIED (most important): the legend does not keep 'inactive' and 'unknown' distinct — one grey dot, one label and one checkbox cover both. The viewer read it as refusing to collapse two kinds of not-known; content-1440-tile-03.png shows the opposite.",
+      "F45 QUALIFIED: the borrow rested on that misreading. Rewritten to borrow the recessive grey, the opt-in and the plainly worded default only, and to name the merged state as the part boundary 6 forbids. phase2.argument and forRnawiki.borrow[0] rewritten to match.",
+      "F2 QUALIFIED: the publisher panel does differ from a record — it carries no type-and-place line and repeats the site name — so 'a reader cannot tell' is overstated; what is true is that nothing labels it.",
+      "F3 QUALIFIED: 'Browse by Collection' is set at a visibly larger type scale than everything below it; the missing size difference is between a category name and its own description.",
+      "F4 QUALIFIED: the map legend is a bordered, faintly filled box, so 'the map section has no container, no border and no fill' is wrong. The newsletter is the only colour-filled container.",
+      "F5 QUALIFIED: headingOutline holds 40 entries against a recorded headingCount of 44, so four headings — including the three visible section headings — are outside the sample and cannot be assigned a level. No page-wide 'no h2' claim is supportable.",
+      "F7 QUALIFIED: the search placeholder is set larger than the nav items, not smaller, and a magnifier glyph does sit in the field. The finding survives as lowest contrast and no bounding shape.",
+      "F9 QUALIFIED: role=combobox and the Algolia credit are real, but 'rather than a form navigating to a results page' is not observable in any capture.",
+      "F10 QUALIFIED: four record panels plus one publisher panel, and four category items in two rows — not five entries and four category rows.",
+      "F15 QUALIFIED: the gap from the carousel controls to the heading measures about 70 px; the ~130 px figure is carousel bottom to heading.",
+      "F16 QUALIFIED: the blank inside tile-02 is about 570 px, not 900. Restated as the measurable total — about 760 px of the 2,638 px page.",
+      "F19 QUALIFIED: four category items in two rows across the top 215 px, about 570 px blank below.",
+      "F22 QUALIFIED: the weakest contrast is the white 'DIYbiosphere' title over the pale petri photograph, not only the dark body line beneath it.",
+      "F26 QUALIFIED: headingCount 44 with a 40-entry sample supports about two and a bit loop copies, and seven panels per loop (six labs plus the publisher), not six slides tripled.",
+      "F27 QUALIFIED: 'every record, category and legend sits on bare white' is wrong for the legend; the claim survives as the newsletter being the only colour-filled container.",
+      "F28 QUALIFIED: the legend is the second most contained element on the page, not the least decorated one.",
+      "F34 QUALIFIED: 'every description is in substance self-reported' is not visible in any capture; the observable fact is that nothing on screen says who wrote them.",
+      "F35 QUALIFIED: editorial and contributed text are not typographically identical — small dark grey on white versus large white over photographs. What is true is that neither carries a provenance mark.",
+      "F40 QUALIFIED: the mobile omission is an observed end state, not demonstrated absence handling.",
+      "F43 QUALIFIED: the ratio and the DOM repetition are measurements, not things a capture shows, and the 8.3% RNAWiki comparator is a figure recorded elsewhere in this study rather than observed here.",
+      "Added V1 (mobile first screen shows the publisher panel and no record), V2 (no record name is a link; the only link-coloured carousel text is the publisher's), V3 (the browse grid carries no interactive affordance) — all three bear on RNAWiki's browse/filter surface."
+    ]
+  }
+}

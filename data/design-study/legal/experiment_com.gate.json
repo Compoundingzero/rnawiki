@@ -1,0 +1,60 @@
+{
+  "key": "experiment.com",
+  "track": "A2",
+  "dir": "experiment_com",
+  "checkedAt": "2026-09-03T14:41:01.208Z",
+  "indexUrl": "https://experiment.com/",
+  "contentUrl": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+  "contentNote": "Selected from the public listing page https://experiment.com/discover: first project anchor in the server-rendered markup (link text \"You're a backer!\"). No API documentation URL was discoverable, so a listing page was used.",
+  "reachable": true,
+  "robots": {
+    "url": "https://experiment.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/experiment_com.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [
+      "User-agent: * -> Allow: /"
+    ],
+    "crawlDelay": null,
+    "sitemaps": [
+      "http://sitemap.experiment.com/index.xml.gz"
+    ],
+    "note": ""
+  },
+  "terms": {
+    "url": null,
+    "httpStatus": null,
+    "savedTo": null,
+    "textSavedTo": null,
+    "textChars": 0,
+    "candidatesTried": [
+      {
+        "url": "https://experiment.com/terms",
+        "status": 404
+      },
+      {
+        "url": "https://experiment.com/legal/terms",
+        "status": 404
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "no documented API URL was discoverable from the terms or index page already fetched; not probed"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /projects/algorithms-and-news-trust-why-independents-may-be-left-behind; no terms clause matched a prohibition pattern across 0 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i."
+  ]
+}

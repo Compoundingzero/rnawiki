@@ -1,18 +1,12 @@
 import type { Metadata } from 'next'
 import { AppShell } from '@/components/AppShell'
 import { HomeView } from '@/components/HomeView'
-import {
-  countDrugs,
-  countProgrammeEvidence,
-  getFeaturedDrug,
-  getPopularDrugs,
-} from '@/lib/queries/drugs'
-import { getProgrammeEvidenceByMedicineSlug } from '@/lib/queries/programme-evidence'
+import { countDrugs, countProgrammeEvidence, getPopularDrugs } from '@/lib/queries/drugs'
 import { listHomepageContributorSpotlight } from '@/lib/queries/homepage-contributor-spotlight'
-import { homeFeaturedMedicineAnswer } from '@/lib/home-featured-medicine'
 import { serialiseJsonLd, siteJsonLdGraph } from '@/lib/json-ld'
 import { configuredPublicUrl } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
+import '@/lib/corpus/tokens.css'
 
 // Railway's build container cannot resolve `postgres.railway.internal` — that hostname exists only
 // at runtime, inside the deployed network. A DB-backed route with no dynamic segment is a
@@ -27,22 +21,13 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [user, featured, popular, total, programmeCounts, contributorSpotlight] = await Promise.all(
-    [
-      getCurrentUser(),
-      getFeaturedDrug(),
-      getPopularDrugs(POPULAR_LIMIT),
-      countDrugs(),
-      countProgrammeEvidence(),
-      listHomepageContributorSpotlight(),
-    ],
-  )
-  const featuredAnswer = featured
-    ? homeFeaturedMedicineAnswer(
-        featured,
-        await getProgrammeEvidenceByMedicineSlug(featured.id, null),
-      )
-    : null
+  const [user, popular, total, programmeCounts, contributorSpotlight] = await Promise.all([
+    getCurrentUser(),
+    getPopularDrugs(POPULAR_LIMIT),
+    countDrugs(),
+    countProgrammeEvidence(),
+    listHomepageContributorSpotlight(),
+  ])
   const jsonLd = siteJsonLdGraph({ siteUrl })
 
   return (
@@ -53,8 +38,6 @@ export default async function HomePage() {
       />
       <AppShell initialUser={user}>
         <HomeView
-          featured={featured}
-          featuredAnswer={featuredAnswer}
           contributorSpotlight={contributorSpotlight}
           popular={popular}
           corpusStats={{

@@ -1,0 +1,439 @@
+{
+  "at": "2026-09-03T14:47:41.357Z",
+  "rows": [
+    {
+      "host": "about.zenodo.org",
+      "path": "/terms/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "api.osf.io",
+      "path": "/v2/",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "api.osf.io",
+      "path": "/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "api.osf.io",
+      "path": "/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published&embed=license",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "diybio.org",
+      "path": "/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "en.longevitywiki.org",
+      "path": "/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "experiment.com",
+      "path": "/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "experiment.com",
+      "path": "/discover",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "experiment.com",
+      "path": "/legal/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "experiment.com",
+      "path": "/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "forum.quantifiedself.com",
+      "path": "/about.json",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "forum.quantifiedself.com",
+      "path": "/tos",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "github.com",
+      "path": "/CenterForOpenScience/cos.io/blob/master/TERMS_OF_USE.md",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "linear.app",
+      "path": "/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "longevitywiki.org",
+      "path": "/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "pudding.cool",
+      "path": "/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "pudding.cool",
+      "path": "/about/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "pudding.cool",
+      "path": "/terms/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "sphere.diybio.org",
+      "path": "/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no group applies to our user agent or to *; nothing is disallowed"
+    },
+    {
+      "host": "sphere.diybio.org",
+      "path": "/about/terms-of-use",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no group applies to our user agent or to *; nothing is disallowed"
+    },
+    {
+      "host": "sphere.diybio.org",
+      "path": "/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no group applies to our user agent or to *; nothing is disallowed"
+    },
+    {
+      "host": "stripe.com",
+      "path": "/legal/consumer",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "vercel.com",
+      "path": "/legal/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/api.php?action=query&list=allpages&aplimit=20&apnamespace=0&apfilterredir=nonredirects&format=json",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/index.php?title=Biohack.me_Wiki:Copyrights",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/index.php?title=Biohack.me_Wiki:General_disclaimer",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "wiki.biohack.me",
+      "path": "/index.php?title=Magnets",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.atlasobscura.com",
+      "path": "/",
+      "robotsStatus": 403,
+      "allowed": null,
+      "matched": [],
+      "note": "robots.txt unreadable (HTTP 403)"
+    },
+    {
+      "host": "www.atlasobscura.com",
+      "path": "/terms",
+      "robotsStatus": 403,
+      "allowed": null,
+      "matched": [],
+      "note": "robots.txt unreadable (HTTP 403)"
+    },
+    {
+      "host": "www.atlasobscura.com",
+      "path": "/terms-of-use",
+      "robotsStatus": 403,
+      "allowed": null,
+      "matched": [],
+      "note": "robots.txt unreadable (HTTP 403)"
+    },
+    {
+      "host": "www.awwwards.com",
+      "path": "/terms-of-use/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.awwwards.com",
+      "path": "/terms/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.longecity.org",
+      "path": "/forum/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.longecity.org",
+      "path": "/forum/page/terms",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.longecity.org",
+      "path": "/forum/terms/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.openhumans.org",
+      "path": "/api-docs/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.openhumans.org",
+      "path": "/terms/",
+      "robotsStatus": 404,
+      "allowed": true,
+      "matched": [],
+      "note": "no robots.txt is served by this host, so no rule disallows this path"
+    },
+    {
+      "host": "www.quantamagazine.org",
+      "path": "/terms-conditions/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.smashingmagazine.com",
+      "path": "/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.smashingmagazine.com",
+      "path": "/privacy-policy/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.smashingmagazine.com",
+      "path": "/terms-of-use/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.voxmedia.com",
+      "path": "/legal/terms-of-use",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [],
+      "note": "no rule in the applicable group matches this path"
+    },
+    {
+      "host": "www.wikiwand.com",
+      "path": "/",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "www.wikiwand.com",
+      "path": "/en/terms-of-service",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "www.wikiwand.com",
+      "path": "/terms",
+      "robotsStatus": 200,
+      "allowed": true,
+      "matched": [
+        "User-agent: * -> Allow: /"
+      ],
+      "note": ""
+    },
+    {
+      "host": "zenodo.org",
+      "path": "/api/",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /api"
+      ],
+      "note": ""
+    },
+    {
+      "host": "zenodo.org",
+      "path": "/api/records?q=longevity&size=5&sort=mostrecent",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /api"
+      ],
+      "note": ""
+    },
+    {
+      "host": "zenodo.org",
+      "path": "/api/records?size=1",
+      "robotsStatus": 200,
+      "allowed": false,
+      "matched": [
+        "User-agent: * -> Disallow: /api"
+      ],
+      "note": ""
+    }
+  ],
+  "violations": [
+    "api.osf.io/v2/ — disallowed by that host's robots.txt: User-agent: * -> Disallow: /",
+    "api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published — disallowed by that host's robots.txt: User-agent: * -> Disallow: /",
+    "api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published&embed=license — disallowed by that host's robots.txt: User-agent: * -> Disallow: /",
+    "zenodo.org/api/ — disallowed by that host's robots.txt: User-agent: * -> Disallow: /api",
+    "zenodo.org/api/records?q=longevity&size=5&sort=mostrecent — disallowed by that host's robots.txt: User-agent: * -> Disallow: /api",
+    "zenodo.org/api/records?size=1 — disallowed by that host's robots.txt: User-agent: * -> Disallow: /api"
+  ]
+}

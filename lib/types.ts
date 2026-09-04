@@ -271,6 +271,123 @@ export interface TrialRegistrationsView {
   shownLimit: number
 }
 
+/**
+ * A value the registry holds for one outcome measure, transcribed exactly as posted. `value` is
+ * kept as the registry's own string so a posted `0.0` or `<0.1` is never reformatted into a number.
+ */
+export interface TrialResultValue {
+  /** Sub-stratum titles when the measure reports more than one row; null for a single value. */
+  classTitle: string | null
+  categoryTitle: string | null
+  /** The arm this value belongs to, resolved through the same module's own group list. */
+  groupTitle: string | null
+  value: string
+  /** Dispersion as posted, read together with the measure's `dispersionType`. */
+  spread: string | null
+  lowerLimit: string | null
+  upperLimit: string | null
+}
+
+/**
+ * A between-group difference the registry itself states. Carried across verbatim with the
+ * submitter's own description. Nothing here is calculated by RNAWiki, and no comparison the
+ * registry does not state is ever constructed.
+ */
+export interface TrialStatedComparison {
+  groupTitles: (string | null)[]
+  groupDescription: string | null
+  paramType: string | null
+  paramValue: string | null
+  dispersionType: string | null
+  dispersionValue: string | null
+  ciPctValue: string | null
+  ciLowerLimit: string | null
+  ciUpperLimit: string | null
+  pValue: string | null
+  pValueComment: string | null
+  statisticalMethod: string | null
+  statisticalComment: string | null
+  estimateComment: string | null
+  nonInferiorityType: string | null
+  nonInferiorityComment: string | null
+}
+
+export interface TrialResultOutcome {
+  /** `PRIMARY` or `SECONDARY`, kept as the registry code and translated at the component. */
+  type: string
+  title: string
+  description: string | null
+  timeFrame: string | null
+  unitOfMeasure: string | null
+  paramType: string | null
+  dispersionType: string | null
+  denominators: { groupTitle: string | null; value: number | null; units: string | null }[]
+  values: TrialResultValue[]
+  statedComparisons: TrialStatedComparison[]
+}
+
+/** One study's posted results, transcribed. Absent fields were absent at the registry. */
+export interface TrialResultRecord {
+  nctId: string
+  briefTitle: string | null
+  phases: string[]
+  studyType: string | null
+  allocation: string | null
+  masking: string | null
+  primaryPurpose: string | null
+  armCount: number
+  overallStatus: string | null
+  enrolment: {
+    count: number | null
+    type: string | null
+    perArm: { groupTitle: string | null; started: number | null; completed: number | null }[]
+  }
+  primaryCompletion: string | null
+  resultsFirstPosted: string | null
+  delayedPosting: boolean
+  outcomes: TrialResultOutcome[]
+  primaryOutcomeCount: number
+  secondaryOutcomeCount: number
+  secondaryOutcomesShown: number
+  adverseEvents: {
+    frequencyThreshold: string | null
+    timeFrame: string | null
+    perArm: {
+      groupTitle: string | null
+      seriousAffected: number | null
+      seriousAtRisk: number | null
+      otherAffected: number | null
+      otherAtRisk: number | null
+      deathsAffected: number | null
+      deathsAtRisk: number | null
+    }[]
+  }
+  publications: { pmid: string; type: string | null; citation: string | null }[]
+}
+
+/**
+ * Posted results for the studies this record reaches. Present whenever the registry pass matched
+ * anything, including when nothing qualified: the page states that outcome plainly rather than
+ * omitting the block.
+ */
+export interface TrialResultsView {
+  sourceIdentifier: string
+  /** ISO date (YYYY-MM-DD) the results fetch ran. */
+  fetchedOn: string | null
+  fetchedAt: string
+  /** Studies that met the bar: a primary outcome with a reported value, and an enrolment count. */
+  totalQualifying: number
+  /** Matched studies whose registry entry carried a results section at all. */
+  withResultsSection: number
+  /** Had a results section but no primary outcome value, or no enrolment count. */
+  failedQualifyingBar: number
+  /** How the shown studies were ordered, stated on the page. */
+  rankingRule: string
+  shown: TrialResultRecord[]
+  shownLimit: number
+  secondaryShownLimit: number
+}
+
 export interface DrugDossier {
   id: string
   name: string
@@ -306,6 +423,12 @@ export interface DrugDossier {
    * completion assessment already states that outcome, so absence here adds no claim.
    */
   trialRegistrations?: TrialRegistrationsView
+  /**
+   * Posted results transcribed for the studies this record reaches. Absent when the registry pass
+   * matched nothing at all; present with zero qualifying studies when it matched but none posted a
+   * usable result, because that is a fact the page states rather than hides.
+   */
+  trialResults?: TrialResultsView
   substitutes?: DrugSubstitutes
   molecularSchema?: MolecularSchema
   auditPointsCount: {

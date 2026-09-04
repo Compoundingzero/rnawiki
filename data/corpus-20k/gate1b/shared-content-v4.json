@@ -1,0 +1,23 @@
+{
+ "above_0_2": {
+  "pages": 4210,
+  "markupLinesMean": 0.3817,
+  "proseLinesMean": 0.2129,
+  "spanningLineBreaksMean": 0.4054,
+  "medianPresentFields": 3,
+  "medianWordCount": 368
+ },
+ "above_0_3": {
+  "pages": 2795,
+  "markupLinesMean": 0.3467,
+  "proseLinesMean": 0.2308,
+  "spanningLineBreaksMean": 0.4225,
+  "medianPresentFields": 3,
+  "medianWordCount": 292
+ },
+ "indexedSet": {
+  "pages": 5858,
+  "medianPresentFields": 5,
+  "medianWordCount": 500
+ }
+}

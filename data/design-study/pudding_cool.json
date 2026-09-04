@@ -1,0 +1,1146 @@
+{
+  "site": "pudding.cool",
+  "fetchedAt": "2026-09-03T09:35:23Z",
+  "pages": [
+    {
+      "url": "https://pudding.cool/",
+      "status": "fetched",
+      "bytes": 144074,
+      "visibleTextChars": 3502,
+      "textToHtmlRatio": 0.0243,
+      "notes": "Server-rendered SvelteKit index. 67446 of 144074 bytes are <script> (SvelteKit hydration payload) and 37321 bytes are inline <svg> (wordmark + icons), so the low text:HTML ratio reflects markup weight, not an empty shell. Measured."
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://pudding.cool/_app/immutable/assets/0.C2Vp5USR.css",
+      "bytes": 26423
+    },
+    {
+      "url": "https://pudding.cool/_app/immutable/assets/Story.C1ahabKR.css",
+      "bytes": 3544
+    },
+    {
+      "url": "https://pudding.cool/_app/immutable/assets/2.DkyQtU2H.css",
+      "bytes": 3115
+    },
+    {
+      "url": "https://pudding.cool/_app/immutable/assets/Filters.DX9ElI68.css",
+      "bytes": 2439
+    },
+    {
+      "url": "https://pudding.cool/_app/immutable/assets/Stories.E6MWasA7.css",
+      "bytes": 8377
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "declaration": "var(--sans) = \"Atlas Grotesk\", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+        "uses": 18,
+        "basis": "measured"
+      },
+      {
+        "declaration": "var(--mono) = \"Atlas Typewriter\", Menlo, Consolas, Monaco, monospace",
+        "uses": 7,
+        "basis": "measured"
+      },
+      {
+        "declaration": "var(--serif) = \"Gooper SemiCondensed\", Iowan Old Style, Times New Roman, Times, serif",
+        "uses": 4,
+        "basis": "measured"
+      },
+      {
+        "declaration": "monospace,monospace (UA reset for code/kbd/samp/pre)",
+        "uses": 2,
+        "basis": "measured"
+      }
+    ],
+    "fontStacksNote": "Three self-hosted families behind --sans / --serif / --mono. body uses --font-body which resolves to --serif; UI chrome (sticky bar, filters, kickers) uses --mono; headings inside .column-regular switch to --sans. All measured from @font-face + var() declarations.",
+    "fontSizes": [
+      {
+        "value": "var(--font-size-xsmall)  = clamp(12px, 1vw, .8rem)",
+        "count": 6,
+        "unit": "clamp"
+      },
+      {
+        "value": "var(--14px) = .875rem",
+        "count": 6,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--28px, 28px) = 1.75rem",
+        "count": 3,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--font-size-medium) = clamp(1rem, 1.75vw, 1.5rem)",
+        "count": 3,
+        "unit": "clamp"
+      },
+      {
+        "value": "inherit",
+        "count": 3,
+        "unit": "keyword"
+      },
+      {
+        "value": "var(--16px, 16px) = 1rem",
+        "count": 3,
+        "unit": "rem token"
+      },
+      {
+        "value": "16px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "var(--20px, 20px) = 1.25rem",
+        "count": 2,
+        "unit": "rem token"
+      },
+      {
+        "value": "1em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "var(--48px, 48px) = 3rem",
+        "count": 1,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--36px, 36px) = 2.25rem",
+        "count": 1,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--24px, 24px) = 1.5rem",
+        "count": 1,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--22px, 22px) = 1.375rem",
+        "count": 1,
+        "unit": "rem token"
+      },
+      {
+        "value": "var(--font-size-small) = clamp(15px, 1.25vw, 1rem)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(var(--24px), 6vw, var(--28px))",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(var(--20px), 6vw, var(--24px))",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(var(--16px), 4vw, var(--20px))",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(var(--24px), 2.75vw, var(--32px))",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "2em / 80% / 75% / 100% / 1rem",
+        "count": 5,
+        "unit": "UA-reset leftovers"
+      }
+    ],
+    "fontSizeSystem": {
+      "basis": "measured",
+      "note": "A px-named rem ladder is declared once on :root and everything else references it: --12px .75rem, --14px .875rem, --16px 1rem, --18px 1.125rem, --20px 1.25rem, --22px 1.375rem, --24px 1.5rem, --28px 1.75rem, --32px 2rem, --36px 2.25rem, --40px 2.5rem, --44px 2.75rem, --48px 3rem, --56px 3.5rem, --64px 4rem, --80px 5rem, --96px 6rem, --112px 7rem, --128px 8rem. Five fluid roles sit on top: --font-size-giant clamp(3rem,4vw,5rem), --font-size-large clamp(1.5rem,2.5vw,2.5rem), --font-size-medium clamp(1rem,1.75vw,1.5rem), --font-size-small clamp(15px,1.25vw,1rem), --font-size-xsmall clamp(12px,1vw,.8rem)."
+    },
+    "lineHeights": [
+      {
+        "value": "1",
+        "count": 4
+      },
+      {
+        "value": "1.15",
+        "count": 2
+      },
+      {
+        "value": "1.2",
+        "count": 2
+      },
+      {
+        "value": "1.4",
+        "count": 1,
+        "note": "body"
+      },
+      {
+        "value": "1.325",
+        "count": 1
+      },
+      {
+        "value": "normal",
+        "count": 1
+      },
+      {
+        "value": "0",
+        "count": 1
+      }
+    ],
+    "headingScale": {
+      "h1": "var(--48px) = 3rem / 48px",
+      "h2": "var(--36px) = 2.25rem / 36px",
+      "h3": "var(--28px) = 1.75rem / 28px",
+      "h4": "var(--24px) = 1.5rem / 24px",
+      "h5": "var(--22px) = 1.375rem / 22px",
+      "h6": "var(--20px) = 1.25rem / 20px",
+      "ratio": null,
+      "ratioNote": "Not a constant-ratio scale. Measured steps: 48/36 = 1.333, 36/28 = 1.286, 28/24 = 1.167, 24/22 = 1.091, 22/20 = 1.100. The scale is hand-picked off the px token ladder and compresses sharply at the small end. All six elements share font-weight:500 and margin:16px 0; .column-regular h2 overrides family to --sans and weight to 900.",
+      "selectorEvidence": "h1{font-size:var(--48px,48px)} … h6{font-size:var(--20px,20px)}; h1,h2,h3,h4,h5,h6{font-weight:500}; h1,h2,h3,h4,h5,h6,p{margin:16px 0} in 0.C2Vp5USR.css",
+      "basis": "measured"
+    },
+    "bodyCandidates": {
+      "fontSize": "16px / 1rem",
+      "fontSizeBasis": "inferred: no font-size is declared on html, :root or body anywhere in the five stylesheets, so the UA default 16px stands and every rem token resolves against it. --16px = 1rem confirms the intended base.",
+      "lineHeight": "1.4",
+      "lineHeightBasis": "measured",
+      "selectorEvidence": "body{background-color:var(--color-bg,white);color:var(--color-fg,black);line-height:1.4;font-family:var(--font-body,serif);font-feature-settings:\"kern\" 1,\"onum\" 0,\"liga\" 0,\"tnum\" 1;text-rendering:optimizeLegibility;word-wrap:break-word}"
+    },
+    "fluidType": true,
+    "fluidTypeEvidence": "measured: 13 clamp() occurrences and 17 vw lengths across the five stylesheets; five named --font-size-* roles and --padding are all clamp()-based."
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": "16px",
+        "count": 15
+      },
+      {
+        "value": "8px",
+        "count": 15
+      },
+      {
+        "value": "24px",
+        "count": 7
+      },
+      {
+        "value": "12px",
+        "count": 7
+      },
+      {
+        "value": "32px",
+        "count": 7
+      },
+      {
+        "value": "4px",
+        "count": 5
+      },
+      {
+        "value": "48px",
+        "count": 5
+      },
+      {
+        "value": "64px",
+        "count": 4
+      },
+      {
+        "value": "10px",
+        "count": 2
+      },
+      {
+        "value": "-8px",
+        "count": 2
+      },
+      {
+        "value": "-4px",
+        "count": 2
+      },
+      {
+        "value": "36px",
+        "count": 2
+      },
+      {
+        "value": ".67em",
+        "count": 1
+      },
+      {
+        "value": ".35em",
+        "count": 1
+      },
+      {
+        "value": ".75em",
+        "count": 1
+      },
+      {
+        "value": ".625em",
+        "count": 1
+      },
+      {
+        "value": "60px",
+        "count": 1
+      },
+      {
+        "value": "100px",
+        "count": 1
+      },
+      {
+        "value": "0px",
+        "count": 1
+      },
+      {
+        "value": "18px",
+        "count": 1
+      },
+      {
+        "value": "7px",
+        "count": 1
+      },
+      {
+        "value": "1px",
+        "count": 1
+      }
+    ],
+    "inferredBaseUnitPx": 4,
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      36,
+      48,
+      64,
+      100
+    ],
+    "evidence": "measured from margin/padding/gap declarations. 16px (15x) and 8px (15x) dominate, then 24px/12px/32px (7x each), 4px/48px (5x), 64px (4x). Every high-frequency value is a multiple of 4 and most are multiples of 8; the only off-grid values are 10px (2x), 18px (1x) and 7px (1x), all in one-off component rules. --margin is declared as 16px and used as the standard gutter (.column-wide/.column-regular padding:0 16px). Vertical rhythm is 16px between block elements (h1-h6,p{margin:16px 0}) and 64px above section headings (.column-regular h2{margin-top:64px}).",
+    "fluidPaddingToken": "--padding: clamp(16px, 12vw, 36px) (measured; declared but referenced by only one rule in the fetched sheets)"
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--color-black",
+        "value": "#000000"
+      },
+      {
+        "name": "--color-white",
+        "value": "#ffffff"
+      },
+      {
+        "name": "--color-gray-50",
+        "value": "rgb(247, 247, 247)"
+      },
+      {
+        "name": "--color-gray-100",
+        "value": "rgb(239, 239, 239)"
+      },
+      {
+        "name": "--color-gray-200",
+        "value": "rgb(223, 223, 223)"
+      },
+      {
+        "name": "--color-gray-300",
+        "value": "rgb(202, 202, 202)"
+      },
+      {
+        "name": "--color-gray-400",
+        "value": "rgb(168, 168, 168)"
+      },
+      {
+        "name": "--color-gray-500",
+        "value": "rgb(135, 135, 135)"
+      },
+      {
+        "name": "--color-gray-600",
+        "value": "rgb(109, 109, 109)"
+      },
+      {
+        "name": "--color-gray-700",
+        "value": "rgb(78, 78, 78)"
+      },
+      {
+        "name": "--color-gray-800",
+        "value": "rgb(55, 55, 55)"
+      },
+      {
+        "name": "--color-gray-900",
+        "value": "rgb(38, 38, 38)"
+      },
+      {
+        "name": "--color-gray-1000",
+        "value": "rgb(25, 25, 25)"
+      },
+      {
+        "name": "--color-purple",
+        "value": "#a239ca"
+      },
+      {
+        "name": "--color-electric-green",
+        "value": "#3AE660"
+      },
+      {
+        "name": "--color-blue",
+        "value": "#4717f6"
+      },
+      {
+        "name": "--color-green",
+        "value": "#3AE660"
+      },
+      {
+        "name": "--color-red",
+        "value": "#ff533d"
+      },
+      {
+        "name": "--color-yellow",
+        "value": "#e5e338"
+      },
+      {
+        "name": "--color-bg",
+        "value": "var(--color-white)"
+      },
+      {
+        "name": "--color-fg",
+        "value": "var(--color-gray-900)"
+      },
+      {
+        "name": "--color-primary",
+        "value": "var(--color-black)"
+      },
+      {
+        "name": "--color-link",
+        "value": "var(--color-black)"
+      },
+      {
+        "name": "--color-secondary-gray",
+        "value": "var(--color-gray-600)"
+      },
+      {
+        "name": "--color-link-hover",
+        "value": "var(--color-gray-600)"
+      },
+      {
+        "name": "--color-focus",
+        "value": "var(--color-electric-green)"
+      },
+      {
+        "name": "--color-mark",
+        "value": "var(--color-yellow)"
+      },
+      {
+        "name": "--color-selection",
+        "value": "var(--color-gray-300)"
+      },
+      {
+        "name": "--color-border",
+        "value": "var(--color-gray-300)"
+      },
+      {
+        "name": "--color-button-bg",
+        "value": "var(--color-gray-900)"
+      },
+      {
+        "name": "--color-button-fg",
+        "value": "var(--color-gray-100)"
+      },
+      {
+        "name": "--color-button-hover",
+        "value": "var(--color-gray-700)"
+      },
+      {
+        "name": "--color-input-bg",
+        "value": "var(--color-gray-50)"
+      },
+      {
+        "name": "--color-input-fg",
+        "value": "var(--color-gray-900)"
+      },
+      {
+        "name": "--color-placeholder",
+        "value": "var(--color-gray-500)"
+      },
+      {
+        "name": "--color-default-story-bg",
+        "value": "var(--color-gray-100)"
+      },
+      {
+        "name": "--fade",
+        "value": "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .8) 30%, rgba(255, 255, 255, 1) 50%)"
+      },
+      {
+        "name": "--12px",
+        "value": ".75rem"
+      },
+      {
+        "name": "--14px",
+        "value": ".875rem"
+      },
+      {
+        "name": "--16px",
+        "value": "1rem"
+      },
+      {
+        "name": "--18px",
+        "value": "1.125rem"
+      },
+      {
+        "name": "--20px",
+        "value": "1.25rem"
+      },
+      {
+        "name": "--22px",
+        "value": "1.375rem"
+      },
+      {
+        "name": "--24px",
+        "value": "1.5rem"
+      },
+      {
+        "name": "--28px",
+        "value": "1.75rem"
+      },
+      {
+        "name": "--32px",
+        "value": "2rem"
+      },
+      {
+        "name": "--36px",
+        "value": "2.25rem"
+      },
+      {
+        "name": "--40px",
+        "value": "2.5rem"
+      },
+      {
+        "name": "--44px",
+        "value": "2.75rem"
+      },
+      {
+        "name": "--48px",
+        "value": "3rem"
+      },
+      {
+        "name": "--56px",
+        "value": "3.5rem"
+      },
+      {
+        "name": "--64px",
+        "value": "4rem"
+      },
+      {
+        "name": "--80px",
+        "value": "5rem"
+      },
+      {
+        "name": "--96px",
+        "value": "6rem"
+      },
+      {
+        "name": "--112px",
+        "value": "7rem"
+      },
+      {
+        "name": "--128px",
+        "value": "8rem"
+      },
+      {
+        "name": "--stroke-width",
+        "value": "1px"
+      },
+      {
+        "name": "--stroke-width-n",
+        "value": "calc(var(--stroke-width) * -1)"
+      },
+      {
+        "name": "--sans",
+        "value": "\"Atlas Grotesk\", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+      },
+      {
+        "name": "--serif",
+        "value": "\"Gooper SemiCondensed\", Iowan Old Style, Times New Roman, Times, serif"
+      },
+      {
+        "name": "--mono",
+        "value": "\"Atlas Typewriter\", Menlo, Consolas, Monaco, monospace"
+      },
+      {
+        "name": "--z-bottom",
+        "value": "-100"
+      },
+      {
+        "name": "--z-middle",
+        "value": "0"
+      },
+      {
+        "name": "--z-top",
+        "value": "100"
+      },
+      {
+        "name": "--z-overlay",
+        "value": "1000"
+      },
+      {
+        "name": "--border-radius",
+        "value": "3px"
+      },
+      {
+        "name": "--font-body",
+        "value": "var(--serif)"
+      },
+      {
+        "name": "--font-form",
+        "value": "var(--mono)"
+      },
+      {
+        "name": "--font-size-giant",
+        "value": "clamp(3rem, 4vw, 5rem)"
+      },
+      {
+        "name": "--font-size-large",
+        "value": "clamp(1.5rem, 2.5vw, 2.5rem)"
+      },
+      {
+        "name": "--font-size-medium",
+        "value": "clamp(1rem, 1.75vw, 1.5rem)"
+      },
+      {
+        "name": "--font-size-small",
+        "value": "clamp(15px, 1.25vw, 1rem)"
+      },
+      {
+        "name": "--font-size-xsmall",
+        "value": "clamp(12px, 1vw, .8rem)"
+      },
+      {
+        "name": "--font-weight-bold",
+        "value": "900"
+      },
+      {
+        "name": "--font-weight-normal",
+        "value": "400"
+      },
+      {
+        "name": "--font-weight-thin",
+        "value": "100"
+      },
+      {
+        "name": "--margin",
+        "value": "16px"
+      },
+      {
+        "name": "--width-column-wide",
+        "value": "1280px"
+      },
+      {
+        "name": "--width-column-regular",
+        "value": "720px"
+      },
+      {
+        "name": "--width-padded",
+        "value": "80vw"
+      }
+    ],
+    "customPropertiesNote": "93 custom properties were found on :root; the 80 recorded here are colour-like first, then the remaining scale/layout tokens. Full set is in raw/pudding_cool/css/0.C2Vp5USR.css.",
+    "palette": {
+      "greyRamp": "11 steps: gray-50 rgb(247,247,247) → gray-1000 rgb(25,25,25), plus #000000/#ffffff. Measured.",
+      "accents": "--color-purple #a239ca, --color-blue #4717f6, --color-green/--color-electric-green #3AE660, --color-red #ff533d, --color-yellow #e5e338. Measured.",
+      "note": "Accents are declared but the chrome is achromatic: --color-primary and --color-link both resolve to black in light mode. Green is reserved for --color-focus and yellow for --color-mark (<mark> highlight)."
+    },
+    "bodyTextColorCandidate": "var(--color-fg) → var(--color-gray-900) → rgb(38, 38, 38)",
+    "backgroundCandidate": "var(--color-bg) → var(--color-white) → #ffffff",
+    "contrastRatioCandidate": 15.13,
+    "contrastRatioBasis": "computed WCAG 2.x ratio for rgb(38,38,38) on #ffffff, both resolved from plain values through the token chain. Passes AAA.",
+    "darkModeContrastRatio": 15.29,
+    "darkModeContrastBasis": "computed for rgb(239,239,239) (gray-100) on rgb(25,25,25) (gray-1000), the dark-mode --color-fg/--color-bg. Passes AAA.",
+    "darkModeMechanism": "prefers-color-scheme",
+    "darkModeEvidence": "measured: @media screen and (prefers-color-scheme:dark){:root{…}} in 0.C2Vp5USR.css re-points 17 semantic tokens (--color-bg, --color-fg, --color-primary, --color-link, --color-link-hover, --color-secondary-gray, --color-border, --color-button-*, --color-input-*, --color-placeholder, --color-default-story-bg, --fade) at different steps of the same grey ramp. No class or data-attribute toggle and no theme-switch control exist in the markup, so dark mode follows the OS only and cannot be overridden by the reader. Two component sheets add their own prefers-color-scheme:dark blocks for form inputs.",
+    "focusColor": "--color-focus: var(--color-electric-green) #3AE660, used as outline:2px solid with outline-offset:2px on button/a/input/select (measured)"
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 960,
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 400,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 600,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 720,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 960,
+        "kind": "max",
+        "count": 1
+      }
+    ],
+    "breakpointNote": "measured. Mobile-first: 8 of 9 width queries are min-width. 960px is the primary desktop switch (4 min + 1 max); 400/600/720 handle card-grid density. 720px and 960px also appear as content widths (--width-column-regular / --width-column-wide), so the breakpoints are the column widths themselves.",
+    "nonWidthQueries": [
+      {
+        "query": "(hover: hover) and (pointer: fine)",
+        "count": 1,
+        "note": "hover affordances gated to real pointers"
+      },
+      {
+        "query": "screen and (prefers-reduced-motion: no-preference)",
+        "count": 1,
+        "note": "motion is opt-in, not opt-out"
+      },
+      {
+        "query": "screen and (prefers-color-scheme: dark)",
+        "count": 3
+      }
+    ],
+    "contentWidthCandidates": [
+      {
+        "value": "1280px",
+        "selectorEvidence": "main{max-width:var(--width-column-wide);margin:0 auto;padding:0} and .column-wide{max-width:var(--width-column-wide);padding:0 16px}",
+        "basis": "measured"
+      },
+      {
+        "value": "720px",
+        "selectorEvidence": ".column-regular{max-width:var(--width-column-regular);padding:0 16px} — the reading measure for prose",
+        "basis": "measured"
+      },
+      {
+        "value": "calc(1280px - 32px) = 1248px",
+        "selectorEvidence": ".c{max-width:calc(var(--width-column-wide,1280px) - var(--margin,16px)*2);padding:16px;margin:32px auto 100px} — footer inner",
+        "basis": "measured"
+      },
+      {
+        "value": "900px",
+        "selectorEvidence": ".text{max-width:900px}",
+        "basis": "measured"
+      },
+      {
+        "value": "360px",
+        "selectorEvidence": "nav{max-width:360px} — off-canvas menu panel",
+        "basis": "measured"
+      }
+    ],
+    "contentWidthNote": "Two-tier measure: a 1280px wide container for the story grid and a 720px regular column for prose, both padded 16px. --width-padded 80vw / --margin-left 10vw and --width-padded-mobile 90vw / --margin-left-mobile 5vw are declared for story-page layouts but unused in the index sheets.",
+    "gridUsage": {
+      "cssGrid": false,
+      "flex": true,
+      "evidence": "measured: 29 display:flex declarations (each paired with a -webkit-box fallback) and zero display:grid or grid-template-* declarations across all five stylesheets and zero inline display:grid in the markup. The story index is a flex-wrap layout with an autoprefixer-era -webkit-box fallback, not CSS Grid."
+    }
+  },
+  "navigation": {
+    "persistentElements": [
+      {
+        "selector": ".ui",
+        "description": "sticky top bar, flex space-between, padding 16px, --mono uppercase, font-size --14px, weight 700, background --color-bg, z-index --z-overlay (1000)",
+        "basis": "measured"
+      },
+      {
+        "selector": "header.column-wide",
+        "description": "in-flow masthead: story counter (.stories), large inline-SVG wordmark linking to ./, and the menu button",
+        "basis": "measured"
+      },
+      {
+        "selector": "footer",
+        "description": "single footer element with .c inner container capped at 1248px",
+        "basis": "measured"
+      }
+    ],
+    "stickyOrFixedSelectors": [
+      {
+        "selector": ".ui.svelte-js6qnc",
+        "position": "sticky",
+        "offsets": "top:0;left:0",
+        "zIndex": "var(--z-overlay) = 1000",
+        "basis": "measured"
+      },
+      {
+        "selector": "nav#nav-menu.svelte-1elx88z",
+        "position": "fixed",
+        "offsets": "top:0;right:0",
+        "size": "max-width:360px;height:100svh",
+        "zIndex": "calc(var(--z-overlay) + 1) = 1001",
+        "basis": "measured"
+      }
+    ],
+    "tocPresent": false,
+    "tocEvidence": "measured on the fetched page only: no table-of-contents element, no in-page anchor list, and no h1/h2 in the markup (27 h3 story-card titles, 2 h4 menu-section kickers). The index is a card grid, so a ToC would have nothing to index. This says nothing about individual story pages, which were not fetched.",
+    "revealedOnDemand": [
+      {
+        "name": "off-canvas menu panel",
+        "trigger": "<button aria-label=\"open menu\" aria-controls=\"nav-content\"> in the header",
+        "target": "<nav id=\"nav-menu\" aria-hidden=\"true\">",
+        "mechanism": "visibility:hidden + transform:translate(100%) → slides in over 0.2s (--transition-medium); closed by a matching <button aria-label=\"close menu\"> with a lucide circle-x icon",
+        "basis": "measured"
+      },
+      {
+        "name": "mobile filter selects",
+        "trigger": ".filters--mobile",
+        "mechanism": "display:none / display:flex swap at a width breakpoint; the desktop filter row is replaced by <select> controls capped at max-width:120px",
+        "basis": "measured"
+      },
+      {
+        "name": "skip-to-main link",
+        "trigger": ".skip-to-main:focus",
+        "mechanism": "visually hidden until focused, then width:auto with gray-900 background and white text",
+        "basis": "measured"
+      }
+    ],
+    "evidence": "Structure counts from the saved markup: 1 nav, 1 header, 1 main, 1 footer, 0 aside. aria-label, aria-controls and aria-hidden are present (15 aria-* attributes); no role= attributes. 27 of 59 images carry loading=\"lazy\"; none use srcset. Focus is styled explicitly (outline:2px solid --color-focus, offset 2px) with a :focus:not(:focus-visible) suppression for mouse users."
+  },
+  "behaviours": [
+    {
+      "name": "off-canvas navigation drawer",
+      "basis": "inferred",
+      "evidence": "DOM: <nav id=\"nav-menu\" aria-hidden=\"true\"> paired with <button aria-label=\"open menu\" aria-controls=\"nav-content\">; CSS: position:fixed, visibility:hidden, transform:translate(100%), transition:transform var(--transition-medium). The aria-hidden flip and class toggle are done by the SvelteKit bundle at runtime."
+    },
+    {
+      "name": "filter / faceted browsing",
+      "basis": "inferred",
+      "evidence": "A dedicated Filters.DX9ElI68.css component sheet with .filters--mobile select rules, plus 1 <select> and 5 <input> elements and 9 <button> elements in the markup. Client-side filtering of the story grid is implied by the component split, but the filtering code itself is in the JS bundle and was not fetched."
+    },
+    {
+      "name": "email subscribe form",
+      "basis": "inferred",
+      "evidence": "input.email-input rules in Stories.E6MWasA7.css including prefers-color-scheme:dark placeholder overrides; subscribe sticker links in the nav."
+    },
+    {
+      "name": "hover-tilt sticker interaction",
+      "basis": "inferred",
+      "evidence": "34 :hover rule blocks and 24 transform:rotate() declarations, with --left-tilt -2deg / --right-tilt 2deg / --left-tilt-double -4deg / --right-tilt-double 4deg tokens. .sticker-set:hover rotates and scales its children. Gated by @media (hover: hover) and (pointer: fine)."
+    },
+    {
+      "name": "motion respects reduced-motion",
+      "basis": "inferred",
+      "evidence": "@media screen and (prefers-reduced-motion: no-preference) wraps motion, and --1s is redefined as 1ms so every calc(var(--1s) * .25) transition (72 declarations) collapses to near-zero when motion is suppressed. This is an opt-in pattern: animation only runs when the reader has expressed no preference."
+    },
+    {
+      "name": "lazy image loading",
+      "basis": "inferred",
+      "evidence": "27 of 59 <img> elements carry loading=\"lazy\"; no srcset or <picture>, so responsive art direction is not used on the index."
+    },
+    {
+      "name": "privacy-light analytics",
+      "basis": "inferred",
+      "evidence": "Single external script src=\"//gc.zgo.at/count.js\" (GoatCounter). No tag manager, no consent banner markup, no cookie dialog in the fetched HTML."
+    },
+    {
+      "name": "scroll-driven explanation",
+      "basis": "inferred",
+      "evidence": "NOT OBSERVED on the fetched page. The index carries no IntersectionObserver, scrollama, requestAnimationFrame, scroll listener, scroll-snap, scroll-behavior or @keyframes reference in its HTML or its five stylesheets, and there is no <canvas>. A Story.C1ahabKR.css component sheet exists and individual story pages were not fetched, so the site's scrollytelling lives there and is unmeasured here."
+    },
+    {
+      "name": "command palette",
+      "basis": "inferred",
+      "evidence": "Not present. No dialog element, no keydown/hotkey hint, no palette markup."
+    },
+    {
+      "name": "copy button",
+      "basis": "inferred",
+      "evidence": "Not present. No navigator.clipboard reference in the fetched HTML."
+    }
+  ],
+  "measurement": {
+    "status": "partial",
+    "notes": "Single page fetched: https://pudding.cool/ returned HTTP 200, 43832 bytes on the wire, 144074 bytes decompressed, saved to raw/pudding_cool/index.html. No bot challenge, no JS gate — the SvelteKit app is server-rendered and 3502 characters of visible text arrived in the HTML. Zero inline <style> blocks; all five <link rel=stylesheet> hrefs were resolved against https://pudding.cool/ and fetched at HTTP 200 (43898 bytes of CSS total). No @import in any sheet, so the stylesheet graph is complete. Every typographic, spacing, colour and layout value above is read from those files or from the saved markup; nothing is from a rendered browser. LIMITS: (1) no computed styles, so cascade winners at a given viewport and the resolved value of every clamp() are not verified; (2) only the index was fetched, so the scroll-driven story template that makes this site a reference is represented only by the presence of Story.C1ahabKR.css and is explicitly not measured; (3) --width-padded, --margin-left, --font-size-giant, --font-size-large and --padding are declared on :root but barely referenced in the index sheets, which suggests they belong to the unfetched story template; (4) font files were not downloaded, so Atlas Grotesk / Gooper SemiCondensed / Atlas Typewriter metrics are unknown; (5) the 27 h3 elements are story-card titles and the page has no h1, which is a real heading-order observation for the index but may not hold on story pages.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. Index is a project grid; the reading column was measured on a scrollytelling story. Library detection is limited by external bundles — d3/scrollama/gsap/IntersectionObserver recorded as unknown, not absent."
+    },
+    "partialReason": "Layout, typography, colour, contrast, chrome, sticky stages and step counts are fully measured at both widths. Library attribution is not: both scripts are external bundles and no globals are exposed, so d3, scrollama, gsap and IntersectionObserver are recorded as unknown rather than absent."
+  },
+  "measured": {
+    "status": "partial",
+    "pagesMeasured": [
+      "https://pudding.cool/ (assigned URL — a project index)",
+      "https://pudding.cool/2026/07/essential-words (a scrollytelling story, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles.",
+    "homePage": {
+      "url": "/",
+      "scheme": "dark",
+      "bodyBackground": "rgb(25, 25, 25)",
+      "cardText": {
+        "containerClass": "text-wrapper svelte-147lxqr",
+        "widthPx": 365.34,
+        "fontSizePx": "16px",
+        "lineHeight": "22.4px",
+        "lineHeightRatio": 1.4,
+        "family": "Atlas Grotesk",
+        "color": "rgb(239, 239, 239)",
+        "contrast": 15.29,
+        "charactersPerLine": 48,
+        "paragraphMarginBottom": "16px"
+      },
+      "h3": {
+        "fontSize": "32px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "letterSpacing": "-0.8px",
+        "family": "Gooper SemiCondensed",
+        "color": "rgb(239, 239, 239)"
+      },
+      "h1AndH2": null,
+      "h1AndH2Reason": "The index renders no non-empty h1 or h2; project cards are h3.",
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "static",
+        "headerHeightPx": 120,
+        "sticky": [
+          "nav 360x900 fixed at top:0, z 1001 — an off-canvas panel",
+          "div.ui.column-wide 1280x80 sticky at top:0, z 1000"
+        ]
+      },
+      "search": {
+        "present": false
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 6764,
+        "screensOfScroll": 7.52,
+        "innerTextLength": 3592,
+        "htmlLength": 145929,
+        "textToHtmlRatio": 0.02
+      },
+      "note": "The index is dark and set in a grotesk; the story is cream and set in a serif. The two surfaces share no typeface and invert the scheme."
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "story",
+        "containerTag": "div",
+        "containerClass": "content-container story-prose",
+        "containerWidthPx": 650,
+        "containerMaxWidth": "650px",
+        "maxWidthNote": "The only reference in this set that declares its measure directly as max-width: 650px on the prose container, rather than letting a grid decide it.",
+        "paragraphContentWidthPx": 650,
+        "paragraphCount": 5,
+        "totalCharsInColumn": 1634,
+        "fontSizePx": "20px",
+        "lineHeight": "31px",
+        "lineHeightRatio": 1.55,
+        "fontFamily": "Tiempos Text",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(87, 87, 87)",
+        "backgroundColor": "rgb(255, 255, 241)",
+        "backgroundFrom": "body",
+        "avgGlyphWidthPx": 9.5,
+        "charactersPerLine": 68,
+        "paragraphMarginBottom": "32px",
+        "note": "68 characters per line, inside the 45-75 range. The background is a warm cream rather than white, and the text is a mid grey rather than black."
+      },
+      "contrast": {
+        "bodyTextVsBackground": 7.17,
+        "pair": "rgb(87, 87, 87) on rgb(255, 255, 241)",
+        "passesAA": true,
+        "passesAAA": true,
+        "note": "7.17:1 clears AAA by 0.17 — the narrowest AAA margin measured in this set, and the deliberate result of grey-on-cream rather than black-on-white."
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "48px",
+          "fontWeight": "500",
+          "lineHeight": "69.6px",
+          "family": "Tiempos Text",
+          "color": "rgb(87, 87, 87)",
+          "marginTop": "0px",
+          "marginBottom": "0px"
+        },
+        "h2": {
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "lineHeight": "38.4px",
+          "letterSpacing": "3%",
+          "family": "Tiempos Text",
+          "color": "rgb(87, 87, 87)",
+          "marginTop": "80px",
+          "marginBottom": "20px"
+        },
+        "h3": {
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "lineHeight": "33.6px",
+          "family": "Tiempos Text",
+          "color": "rgb(87, 87, 87)"
+        },
+        "ratio_h1_body": 2.4,
+        "ratio_h2_body": 1.6,
+        "oneTypefaceRule": "Every heading level and the body text are the same face (Tiempos Text) in the same colour (rgb(87,87,87)) at weights 400-500. The hierarchy is carried entirely by size and space, with no colour, weight-jump or face change.",
+        "h1LineHeightNote": "h1 line-height 69.6px on a 48px face is a ratio of 1.45 — looser than the body's 1.55 would predict for display type, and unusually airy for a title.",
+        "spaceNote": "h2 margin-top 80px is four times its margin-bottom (20px): sections are separated by a very large gap and the heading sits close to what follows."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "relative",
+        "headerHeightPx": 132.26,
+        "stickyOrFixedCount": 2,
+        "stickyStages": [
+          {
+            "class": "intro-stage",
+            "widthPx": 1440,
+            "heightPx": 900,
+            "position": "sticky",
+            "top": "0px",
+            "note": "A full-viewport sticky stage — the graphic pins while the reader scrolls past it."
+          },
+          {
+            "class": "semantics-stage chart-overlay",
+            "widthPx": 980,
+            "heightPx": 900,
+            "position": "sticky",
+            "top": "90px",
+            "zIndex": "1"
+          }
+        ],
+        "documentScrolls": true,
+        "note": "There is no persistent header or nav over the story. The only sticky boxes are the graphic stages themselves — chrome is spent on the visualisation, not on navigation."
+      },
+      "scrollytelling": {
+        "stepLikeElements": 31,
+        "svgElements": 9,
+        "canvasElements": 0,
+        "figureElements": 0,
+        "mechanism": "position: sticky stages plus 31 step elements. Measured, not inferred: both the sticky stages and the step count were read from computed style and the DOM.",
+        "note": "Zero <canvas>: the graphics are SVG, so they stay in the DOM and in the accessibility tree."
+      },
+      "toc": null,
+      "search": {
+        "present": false,
+        "note": "No search input on either the index or the story, and no <kbd> hint."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 33581,
+        "screensOfScroll": 37.31,
+        "innerTextLength": 18131,
+        "htmlLength": 906359,
+        "textToHtmlRatio": 0.02,
+        "note": "37.31 screens is by far the longest page measured here — five times a typical article — because the scroll distance is the interaction, not just the text length."
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "story",
+      "readingColumn": {
+        "containerWidthPx": 343,
+        "containerMaxWidth": "343px",
+        "maxWidthNote": "The declared max-width changes from 650px to 343px — an explicit breakpoint value, not a percentage.",
+        "paragraphContentWidthPx": 343,
+        "fontSizePx": "18px",
+        "lineHeight": "27.9px",
+        "lineHeightRatio": 1.55,
+        "avgGlyphWidthPx": 8.55,
+        "charactersPerLine": 40,
+        "color": "rgb(70, 70, 70)",
+        "backgroundColor": "rgb(255, 255, 241)",
+        "paragraphMarginBottom": "32px",
+        "colorCaveat": "The matched paragraph at this width computes rgb(70,70,70) where the desktop match computed rgb(87,87,87). Both are recorded as read; the story uses more than one grey for prose."
+      },
+      "typeScaleChangesAtMobile": true,
+      "bodyStepsDown": "20px/31px becomes 18px/27.9px — the size drops but the 1.55 ratio is held exactly, and the 32px paragraph gap does not move.",
+      "h1": {
+        "fontSize": "48px",
+        "fontWeight": "500",
+        "lineHeight": "69.6px",
+        "unchangedFromDesktop": true,
+        "note": "The title does not shrink at all: 48px on a 375px screen."
+      },
+      "h2": {
+        "fontSize": "32px",
+        "fontWeight": "400",
+        "lineHeight": "38.4px",
+        "unchangedFromDesktop": true
+      },
+      "header": {
+        "position": "relative",
+        "heightPx": 125.43
+      },
+      "menuControls": "None found at this width.",
+      "toc": null,
+      "scrollytelling": {
+        "stickyCount": 3,
+        "separateMobileStage": true,
+        "evidence": "A 343x748 sticky div classed 'intro-mobile-stage' appears at 375px in place of the desktop 'intro-stage'. The story ships a distinct mobile stage component rather than reflowing the desktop one.",
+        "stickyStages": [
+          {
+            "class": "intro-mobile-stage",
+            "widthPx": 343,
+            "heightPx": 748,
+            "top": "32px"
+          },
+          {
+            "class": "semantics-stage chart-overlay",
+            "widthPx": 375,
+            "heightPx": 812,
+            "top": "81.2px"
+          },
+          {
+            "class": "chart-overlay-stage scope",
+            "widthPx": 375,
+            "heightPx": 42.84,
+            "top": "40.6px"
+          }
+        ],
+        "stepLikeElements": 31
+      },
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 35398
+    },
+    "inferred": {
+      "svelte": true,
+      "svelteEvidence": "Scoped class suffixes on live elements: 'text-wrapper svelte-147lxqr', 'intro-stage svelte-18aw0nf', 'svelte-1elx88z'. This is a compiled Svelte component tree, not a runtime framework signature.",
+      "react": false,
+      "nextData": false,
+      "jquery": false,
+      "d3": null,
+      "scrollama": null,
+      "gsap": null,
+      "intersectionObserver": null,
+      "libraryDetectionLimit": "The story ships two scripts, both external bundles, and exposes no library globals (window.d3, window.scrollama, window.gsap all undefined). The name scan only covers script URLs and inline script text, so a bundled and minified d3 or scrollama would not appear. These four are recorded as unknown, not absent. What IS measured: the pinning is CSS position:sticky and there are 31 step elements and 9 SVG nodes.",
+      "hoverPreviewMarkerElements": 0,
+      "detailsElements": 0,
+      "canvasElements": 0,
+      "svgElementsIndex": 7,
+      "imgElementsIndex": 60,
+      "cssCustomPropertiesOnRoot": {
+        "index": 90,
+        "story": 108
+      },
+      "colorSchemeDeclared": "normal",
+      "colorSchemeNote": "No declaration; the index is dark and the story is light by authored choice, not by preference query.",
+      "stylesheetCount": {
+        "index": 7,
+        "story": 2
+      },
+      "scriptCount": {
+        "index": 2,
+        "story": 2
+      },
+      "weightNote": "Two scripts on a 37-screen interactive story is the lightest script count in this set alongside the index."
+    },
+    "partialReason": "Layout, typography, colour, contrast, chrome, sticky stages and step counts are fully measured at both widths. Library attribution is not: both scripts are external bundles and no globals are exposed, so d3, scrollama, gsap and IntersectionObserver are recorded as unknown rather than absent."
+  }
+}

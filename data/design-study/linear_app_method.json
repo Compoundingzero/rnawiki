@@ -1,0 +1,1864 @@
+{
+  "site": "linear.app/method",
+  "fetchedAt": "2026-09-03T09:27:25.157Z",
+  "pages": [
+    {
+      "url": "https://linear.app/method",
+      "status": "fetched",
+      "bytes": 390786,
+      "visibleTextChars": 1045,
+      "textToHtmlRatio": 0.0027
+    },
+    {
+      "url": "https://linear.app/method/introduction",
+      "status": "fetched",
+      "bytes": 455525,
+      "visibleTextChars": 5961,
+      "textToHtmlRatio": 0.0131
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://static.linear.app/web/_next/static/css/index.A3R_Thg4.css",
+      "bytes": 51447
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Header.52ZtgjCi.css",
+      "bytes": 20300
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Header.D8jOAph5.css",
+      "bytes": 18870
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/VideoPlayer.BfQ8S5zm.css",
+      "bytes": 17664
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/DefaultRenderer.BeWyRZTT.css",
+      "bytes": 15313
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Note.4CaDvCAO.css",
+      "bytes": 8538
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Prose.DBLOnC2O.css",
+      "bytes": 8110
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Badge.D-vofXRr.css",
+      "bytes": 7336
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Button.dcAi4KbO.css",
+      "bytes": 6379
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/utils.CVEX6qwi.css",
+      "bytes": 5891
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/CommandMenu.DVY7V9_S.css",
+      "bytes": 4664
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/charts.4GgBWSKg.css",
+      "bytes": 4432
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/StatusPage.BYDaMjMd.css",
+      "bytes": 3734
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Sidenote.DB5A15fN.css",
+      "bytes": 3572
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Layout.tvkMFESE.css",
+      "bytes": 3284
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Collapsibles.CKjyh1cv.css",
+      "bytes": 3088
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Flex.BEZjGLsi.css",
+      "bytes": 2688
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Author.BmRR-9Eh.css",
+      "bytes": 2572
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Providers.qSrgnk7B.css",
+      "bytes": 2309
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/tweet-media-video.B6_B0Mi2.css",
+      "bytes": 2220
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Tabs.BmCvljV0.css",
+      "bytes": 2014
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Stats.B54k2VBO.css",
+      "bytes": 1858
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Dialog.CwVvSJva.css",
+      "bytes": 1793
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Link.Tpxbzi3N.css",
+      "bytes": 1570
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Pagination.VDZTuqmH.css",
+      "bytes": 1475
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/KBD.ByHmXOx_.css",
+      "bytes": 1455
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/ChangelogButton.H0U2fYSl.css",
+      "bytes": 1236
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Tooltip.mgHd0F-S.css",
+      "bytes": 1086
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Image.BUY_OmUN.css",
+      "bytes": 932
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Grid.Cds8fjKR.css",
+      "bytes": 921
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/VennIllustration.BYljLSAF.css",
+      "bytes": 913
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/LinkAnchor.DtA2msdz.css",
+      "bytes": 839
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/ThemeToggle._YM9yPbG.css",
+      "bytes": 757
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/LayoutContent.D8YYVbao.css",
+      "bytes": 752
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Separator.RnTSqYU1.css",
+      "bytes": 726
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Toast.pcGZUK31.css",
+      "bytes": 716
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/page.DrsRTbwK.css",
+      "bytes": 679
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Zoom.krMPHN5w.css",
+      "bytes": 618
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/CopyButton.BluMS353.css",
+      "bytes": 533
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Icon.B18TDZc7.css",
+      "bytes": 399
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/layout.me_tBAbq.css",
+      "bytes": 398
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/quoted-tweet-container.D5XuHHV2.css",
+      "bytes": 390
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Spacer.mYgpGelO.css",
+      "bytes": 288
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/color.C-dCEHFh.css",
+      "bytes": 257
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/tweet-info-created-at.BzmfwmBu.css",
+      "bytes": 257
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Bleed.CbcodEv9.css",
+      "bytes": 148
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/Icon.Bl8l9ltc.css",
+      "bytes": 143
+    },
+    {
+      "url": "https://static.linear.app/web/_next/static/css/IconButton.3p32EmO1.css",
+      "bytes": 89
+    },
+    {
+      "url": "inline <style> block on https://linear.app/method",
+      "bytes": 3655
+    },
+    {
+      "url": "inline <style> block on https://linear.app/method/introduction",
+      "bytes": 3471
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "\"Inter Variable\", \"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "token": "--font-regular",
+        "role": "body and headings; the default for html/body and every prose and title token",
+        "source": "measured",
+        "evidence": "index.A3R_Thg4.css_ :root{--font-regular:…}; @font-face family \"Inter Variable\" (weight 100-900, font-display:swap); <link rel=preload as=font href=https://static.linear.app/fonts/InterVariable.woff2?v=4.1>; html,body{--font-settings:\"cv01\",\"ss03\";font-feature-settings:var(--font-settings);--font-variations:\"opsz\" auto}"
+      },
+      {
+        "value": "\"Berkeley Mono\", ui-monospace, \"SF Mono\", \"Menlo\", monospace",
+        "token": "--font-monospace",
+        "role": "code, keyboard keys, technical labels",
+        "source": "measured",
+        "evidence": "12 font-family:var(--font-monospace) declarations; @font-face family \"Berkeley Mono\"; inline prose rule code{font-family:var(--font-monospace);font-size:0.9em;background:none;padding:0}"
+      },
+      {
+        "value": "\"Tiempos Headline\", ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
+        "token": "--font-serif-display",
+        "role": "serif display accent",
+        "source": "measured",
+        "evidence": "2 font-family:var(--font-serif-display) declarations in the per-page styled-components block; @font-face src …/tiempos-headline-regular.woff2, font-display:block"
+      },
+      {
+        "value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+        "token": "--tweet-font-family",
+        "role": "vendored react-tweet embed only; not part of the site type system",
+        "source": "measured",
+        "evidence": "DefaultRenderer.BeWyRZTT.css_ and the quoted-tweet stylesheets"
+      }
+    ],
+    "fontSizes": [
+      {
+        "value": "13px",
+        "count": 9,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "0.6em",
+        "count": 9,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "em"
+      },
+      {
+        "value": "0.9em",
+        "count": 9,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "em"
+      },
+      {
+        "value": "var(--text-small-size)",
+        "count": 8,
+        "resolvedTo": ".875rem",
+        "px": 14,
+        "unit": "rem"
+      },
+      {
+        "value": "14px",
+        "count": 7,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-mini-size)",
+        "count": 6,
+        "resolvedTo": ".8125rem",
+        "px": 13,
+        "unit": "rem"
+      },
+      {
+        "value": "12px",
+        "count": 5,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-regular-size)",
+        "count": 4,
+        "resolvedTo": ".9375rem",
+        "px": 15,
+        "unit": "rem"
+      },
+      {
+        "value": ".9375rem",
+        "count": 4,
+        "resolvedTo": null,
+        "px": 15,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--title-3-size)",
+        "count": 4,
+        "resolvedTo": "1.5rem",
+        "px": 24,
+        "unit": "rem"
+      },
+      {
+        "value": "10px",
+        "count": 3,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": ".8em",
+        "count": 2,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "em"
+      },
+      {
+        "value": "15px",
+        "count": 2,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--tweet-header-font-size)",
+        "count": 2,
+        "resolvedTo": ".9375rem",
+        "px": 15,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--p-size)",
+        "count": 2,
+        "resolvedTo": ".875rem",
+        "px": 14,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--h1-size)",
+        "count": 2,
+        "resolvedTo": "2.5rem",
+        "px": 40,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--h2-size)",
+        "count": 2,
+        "resolvedTo": "1.5rem",
+        "px": 24,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--h3-size)",
+        "count": 2,
+        "resolvedTo": "20px",
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--h4-size)",
+        "count": 2,
+        "resolvedTo": "1.0625rem",
+        "px": 17,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--text-micro-size)",
+        "count": 2,
+        "resolvedTo": ".75rem",
+        "px": 12,
+        "unit": "rem"
+      },
+      {
+        "value": "inherit",
+        "count": 2,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "other"
+      },
+      {
+        "value": ".8125rem",
+        "count": 2,
+        "resolvedTo": null,
+        "px": 13,
+        "unit": "rem"
+      },
+      {
+        "value": ".75rem",
+        "count": 2,
+        "resolvedTo": null,
+        "px": 12,
+        "unit": "rem"
+      },
+      {
+        "value": "1.125rem",
+        "count": 2,
+        "resolvedTo": null,
+        "px": 18,
+        "unit": "rem"
+      },
+      {
+        "value": "8px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "24px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--button-font-size)",
+        "count": 1,
+        "resolvedTo": "12px",
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "11px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--font-size-small)",
+        "count": 1,
+        "resolvedTo": ".8125rem",
+        "px": 13,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--tweet-body-font-size)",
+        "count": 1,
+        "resolvedTo": "1.25rem",
+        "px": 20,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--tweet-quoted-body-font-size)",
+        "count": 1,
+        "resolvedTo": ".938rem",
+        "px": 15.01,
+        "unit": "rem"
+      },
+      {
+        "value": "40px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "32px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(16px,2cqw,48px)",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "clamp"
+      },
+      {
+        "value": "100%",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "percent"
+      },
+      {
+        "value": "1rem",
+        "count": 1,
+        "resolvedTo": null,
+        "px": 16,
+        "unit": "rem"
+      },
+      {
+        "value": ".875em",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "em"
+      },
+      {
+        "value": "7px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "2.25rem",
+        "count": 1,
+        "resolvedTo": null,
+        "px": 36,
+        "unit": "rem"
+      },
+      {
+        "value": "1.25rem",
+        "count": 1,
+        "resolvedTo": null,
+        "px": 20,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--font-size-micro, .6875rem)",
+        "count": 1,
+        "resolvedTo": ".6875rem",
+        "px": 11,
+        "unit": "rem"
+      },
+      {
+        "value": "1.5rem",
+        "count": 1,
+        "resolvedTo": null,
+        "px": 24,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--font-size-microPlus, .6875rem)",
+        "count": 1,
+        "resolvedTo": ".6875rem",
+        "px": 11,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--x-fontSize)",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "other"
+      },
+      {
+        "value": "var(--text-large-size)",
+        "count": 1,
+        "resolvedTo": "1.0625rem",
+        "px": 17,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--title-9-size)",
+        "count": 1,
+        "resolvedTo": "4.5rem",
+        "px": 72,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--title-6-size)",
+        "count": 1,
+        "resolvedTo": "3rem",
+        "px": 48,
+        "unit": "rem"
+      },
+      {
+        "value": "128px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "48px",
+        "count": 1,
+        "resolvedTo": null,
+        "px": null,
+        "unit": "px"
+      },
+      {
+        "value": "var(--tweet-info-font-size)",
+        "count": 1,
+        "resolvedTo": ".9375rem",
+        "px": 15,
+        "unit": "rem"
+      },
+      {
+        "value": ".875rem",
+        "count": 1,
+        "resolvedTo": null,
+        "px": 14,
+        "unit": "rem"
+      }
+    ],
+    "fontSizeTokens": {
+      "note": "measured. The scale lives in custom properties on :root, not in literal font-size declarations. html{font-size:100%} so 1rem = 16px.",
+      "text": [
+        {
+          "token": "--text-tiny-size",
+          "value": ".625rem",
+          "px": 10,
+          "lineHeight": "1.5",
+          "letterSpacing": "-.015em"
+        },
+        {
+          "token": "--text-micro-size",
+          "value": ".75rem",
+          "px": 12,
+          "lineHeight": "1.4",
+          "letterSpacing": "0"
+        },
+        {
+          "token": "--text-mini-size",
+          "value": ".8125rem",
+          "px": 13,
+          "lineHeight": "1.5",
+          "letterSpacing": "-.01em"
+        },
+        {
+          "token": "--text-small-size",
+          "value": ".875rem",
+          "px": 14,
+          "lineHeight": "calc(21 / 14)",
+          "letterSpacing": "-.013em"
+        },
+        {
+          "token": "--text-regular-size",
+          "value": ".9375rem",
+          "px": 15,
+          "lineHeight": "1.6",
+          "letterSpacing": "-.011em"
+        },
+        {
+          "token": "--text-large-size",
+          "value": "1.0625rem",
+          "px": 17,
+          "lineHeight": "1.6",
+          "letterSpacing": "0"
+        }
+      ],
+      "title": [
+        {
+          "token": "--title-1-size",
+          "value": "1.0625rem",
+          "px": 17,
+          "lineHeight": "1.4",
+          "letterSpacing": "-.012em"
+        },
+        {
+          "token": "--title-2-size",
+          "value": "1.25rem",
+          "px": 20,
+          "lineHeight": "1.33",
+          "letterSpacing": "-.012em"
+        },
+        {
+          "token": "--title-3-size",
+          "value": "1.5rem",
+          "px": 24,
+          "lineHeight": "1.33",
+          "letterSpacing": "-.012em"
+        },
+        {
+          "token": "--title-4-size",
+          "value": "2rem",
+          "px": 32,
+          "lineHeight": "1.125",
+          "letterSpacing": "-.022em"
+        },
+        {
+          "token": "--title-5-size",
+          "value": "2.5rem",
+          "px": 40,
+          "lineHeight": "1.1",
+          "letterSpacing": "-.022em"
+        },
+        {
+          "token": "--title-6-size",
+          "value": "3rem",
+          "px": 48,
+          "lineHeight": "1",
+          "letterSpacing": "-.022em"
+        },
+        {
+          "token": "--title-7-size",
+          "value": "3.5rem",
+          "px": 56,
+          "lineHeight": "1.1",
+          "letterSpacing": "-.022em"
+        },
+        {
+          "token": "--title-8-size",
+          "value": "4rem",
+          "px": 64,
+          "lineHeight": "1.06",
+          "letterSpacing": "-.022em"
+        },
+        {
+          "token": "--title-9-size",
+          "value": "4.5rem",
+          "px": 72,
+          "lineHeight": "1",
+          "letterSpacing": "-.022em"
+        }
+      ],
+      "weights": {
+        "--font-weight-light": 300,
+        "--font-weight-normal": 400,
+        "--font-weight-medium": 510,
+        "--font-weight-semibold": 590,
+        "--font-weight-bold": 680
+      },
+      "weightNote": "measured. Non-integer-looking weights (510, 590, 680) are variable-font axis values, not the usual 500/600/700 - the hierarchy is tuned in small weight steps rather than snapped to static cuts."
+    },
+    "lineHeights": [
+      {
+        "value": "normal",
+        "count": 7,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--text-small-line-height)",
+        "count": 7,
+        "resolvedTo": "calc(21 / 14)"
+      },
+      {
+        "value": "var(--text-mini-line-height)",
+        "count": 6,
+        "resolvedTo": "1.5"
+      },
+      {
+        "value": "1",
+        "count": 4,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--text-regular-line-height)",
+        "count": 4,
+        "resolvedTo": "1.6"
+      },
+      {
+        "value": "var(--title-3-line-height)",
+        "count": 4,
+        "resolvedTo": "1.33"
+      },
+      {
+        "value": "19px",
+        "count": 4,
+        "resolvedTo": null
+      },
+      {
+        "value": "0",
+        "count": 2,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--tweet-header-line-height)",
+        "count": 2,
+        "resolvedTo": "1.25rem"
+      },
+      {
+        "value": "1.25rem",
+        "count": 2,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--p-line-height)",
+        "count": 2,
+        "resolvedTo": "calc(21 / 14)"
+      },
+      {
+        "value": "var(--h1-line-height)",
+        "count": 2,
+        "resolvedTo": "1.1"
+      },
+      {
+        "value": "var(--h2-line-height)",
+        "count": 2,
+        "resolvedTo": "1.33"
+      },
+      {
+        "value": "var(--h3-line-height)",
+        "count": 2,
+        "resolvedTo": "1.6"
+      },
+      {
+        "value": "var(--h4-line-height)",
+        "count": 2,
+        "resolvedTo": "1.4"
+      },
+      {
+        "value": "var(--text-micro-line-height)",
+        "count": 2,
+        "resolvedTo": "1.4"
+      },
+      {
+        "value": "inherit",
+        "count": 2,
+        "resolvedTo": null
+      },
+      {
+        "value": "1.5",
+        "count": 2,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--button-height)",
+        "count": 1,
+        "resolvedTo": "24px"
+      },
+      {
+        "value": "1.2",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--tweet-body-line-height)",
+        "count": 1,
+        "resolvedTo": "1.5rem"
+      },
+      {
+        "value": "var(--tweet-quoted-body-line-height)",
+        "count": 1,
+        "resolvedTo": "1.25rem"
+      },
+      {
+        "value": "32px",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "44px",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "36px",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "17px",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "1.4",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "1.3",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "1.4375rem",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "2.875rem",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "2rem",
+        "count": 1,
+        "resolvedTo": null
+      },
+      {
+        "value": "var(--text-large-line-height)",
+        "count": 1,
+        "resolvedTo": "1.6"
+      },
+      {
+        "value": "var(--title-9-line-height)",
+        "count": 1,
+        "resolvedTo": "1"
+      },
+      {
+        "value": "var(--title-6-line-height)",
+        "count": 1,
+        "resolvedTo": "1"
+      },
+      {
+        "value": "var(--tweet-info-line-height)",
+        "count": 1,
+        "resolvedTo": "1.25rem"
+      },
+      {
+        "value": "1rem",
+        "count": 1,
+        "resolvedTo": null
+      }
+    ],
+    "headingScale": {
+      "source": "measured",
+      "selectorEvidence": "Prose.DBLOnC2O.css: .VAt0ja_prose>h1..h4{font-size:var(--hN-size);line-height:var(--hN-line-height);letter-spacing:var(--hN-letter-spacing)}; --hN-* are set on .VAt0ja_size-defaults and .VAt0ja_size-large, both of which appear on the served /method/introduction markup.",
+      "desktop": {
+        "h1": {
+          "token": "--title-5-size",
+          "px": 40,
+          "lineHeight": 1.1,
+          "letterSpacing": "-.022em"
+        },
+        "h2": {
+          "token": "--title-3-size",
+          "px": 24,
+          "lineHeight": 1.33,
+          "letterSpacing": "-.012em"
+        },
+        "h3": {
+          "literal": "20px",
+          "px": 20,
+          "lineHeight": 1.6,
+          "letterSpacing": "0"
+        },
+        "h4": {
+          "token": "--title-1-size",
+          "px": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": "-.012em"
+        }
+      },
+      "mobileMax768": {
+        "h1": {
+          "token": "--title-4-size",
+          "px": 32,
+          "lineHeight": 1.125
+        },
+        "h2": {
+          "token": "--title-2-size",
+          "px": 20,
+          "lineHeight": 1.33
+        },
+        "h3": {
+          "token": "--title-1-size",
+          "px": 17,
+          "lineHeight": 1.4
+        },
+        "h4": {
+          "token": "--text-regular-size",
+          "px": 15,
+          "lineHeight": 1.6
+        }
+      },
+      "ratio": null,
+      "ratioNote": "No single modular ratio. Desktop steps are 40 -> 24 -> 20 -> 17 px (1.67, 1.20, 1.18). The underlying nine-step title scale (17,20,24,32,40,48,56,64,72) runs 1.176, 1.200, 1.333, 1.250, 1.200, 1.167, 1.143, 1.125 - hand-tuned, tightening as the sizes grow. h3 at 20px/1.6 sits deliberately close to the 17px body: section headings read as labels, and separation is carried by 56px of space above plus a weight and colour change, not by size.",
+      "headingSpacing": {
+        "h2 margin-top": "56px",
+        "h3 margin-top": "56px (32px in the >*+h3 rule; 24px directly after an h2)",
+        "h4 margin-top": "56px (28px directly after a paragraph)",
+        "h2 to following p": "12px",
+        "h3 to following p": "6px",
+        "h4 to following p": "10px"
+      }
+    },
+    "bodyCandidates": {
+      "fontSize": "1.0625rem (17px) on desktop; 0.9375rem (15px) at max-width 768px",
+      "lineHeight": "1.6",
+      "color": "#d0d6e0 (--color-text-secondary under [data-theme=dark]) - running prose is one step down from the #f7f8f8 html/body colour",
+      "letterSpacing": "0 (--text-large-letter-spacing)",
+      "measure": "736px column (--prose-max-width overridden by the /method route layout); roughly 78-82 characters at 17px Inter",
+      "selectorEvidence": ".VAt0ja_prose{font-size:var(--p-size);line-height:var(--p-line-height);letter-spacing:var(--p-letter-spacing);color:var(--color-text-secondary)} + .VAt0ja_size-large{--p-size:var(--text-large-size);--p-line-height:var(--text-large-line-height)} + :root{--text-large-size:1.0625rem;--text-large-line-height:1.6} + @media (max-width:768px){.VAt0ja_size-large{--p-size:var(--text-regular-size)}}. Document default is html,body{line-height:1.5}; an earlier body{line-height:1} reset is overridden by it.",
+      "paragraphRhythm": "--block-spacing:20px between prose blocks (14px in size-small, 16px in size-regular); --block-spacing-small:8px; --list-inset:24px; p followed by a list gets 12px"
+    },
+    "fluidType": false,
+    "fluidTypeEvidence": "measured: 4 clamp() uses across all 50 stylesheets - --underline-offset:clamp(2px,.175em,4px), --underline-thickness:clamp(1px,.0625em,3px), a border-radius:clamp(4px,1cqw,8px) and one font-size:clamp(16px,2cqw,48px) inside VideoPlayer (container-query units, video overlay text only). No vw unit appears in any font-size declaration. The document type scale is fixed-step and swaps values at breakpoints instead."
+  },
+  "spacing": {
+    "distinctValues": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      10,
+      12,
+      13,
+      14,
+      16,
+      18,
+      20,
+      24,
+      26,
+      28,
+      32,
+      40,
+      48,
+      50,
+      52,
+      56,
+      58,
+      62,
+      64,
+      80
+    ],
+    "inferredBaseUnitPx": 4,
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      40,
+      48,
+      52,
+      56,
+      64,
+      80
+    ],
+    "nonMultiplesOf4": [
+      1,
+      2,
+      3,
+      6,
+      10,
+      13,
+      14,
+      18,
+      26,
+      50,
+      58,
+      62
+    ],
+    "evidence": "measured from every margin/padding/gap declaration across the 50 saved stylesheets (288 length occurrences, 26 distinct positive values). 74% of occurrences and 14 of 26 distinct values are multiples of 4; 96% of occurrences are multiples of 2, so 2px works as a sub-step. Frequency order: 8 (39), 16 (36), 12 (31), 24 (29), 4 (20), 10 (18), 6 (17), 14 (11), 20 (11), 56 (11), 2 (10), 28 (10), 32 (8). Off-grid values are mostly hairlines, icon insets and optical nudges. Named layout tokens: --page-padding-inline 24px, --page-padding-block 64px, --page-inset 32px, --page-padding-y 48px, --header-height 72px (64px at max-width 640px), --grid-gap 32px, --homepage-outer-padding 46 -> 28 -> 16 -> 10px, prose --block-spacing 20px, heading margin-top 56px, figure margins 20/32/48px.",
+    "largeStepsForLongText": [
+      20,
+      28,
+      32,
+      48,
+      56,
+      64,
+      80
+    ]
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--header-bg",
+        "value": "#0b0b0bcc"
+      },
+      {
+        "name": "--header-border",
+        "value": "#ffffff14"
+      },
+      {
+        "name": "--color-bg-primary",
+        "value": "#08090a"
+      },
+      {
+        "name": "--color-bg-secondary",
+        "value": "#1c1c1f"
+      },
+      {
+        "name": "--color-bg-tertiary",
+        "value": "#232326"
+      },
+      {
+        "name": "--color-bg-quaternary",
+        "value": "#28282c"
+      },
+      {
+        "name": "--color-bg-marketing",
+        "value": "#010102"
+      },
+      {
+        "name": "--color-bg-translucent",
+        "value": "#ffffff0d"
+      },
+      {
+        "name": "--color-bg-quinary",
+        "value": "#282828"
+      },
+      {
+        "name": "--color-bg-panel",
+        "value": "#0f1011"
+      },
+      {
+        "name": "--color-border-primary",
+        "value": "#23252a"
+      },
+      {
+        "name": "--color-border-secondary",
+        "value": "#34343a"
+      },
+      {
+        "name": "--color-border-tertiary",
+        "value": "#3e3e44"
+      },
+      {
+        "name": "--color-border-translucent",
+        "value": "#ffffff0d"
+      },
+      {
+        "name": "--color-border-translucent-strong",
+        "value": "#ffffff14"
+      },
+      {
+        "name": "--color-text-primary",
+        "value": "#f7f8f8"
+      },
+      {
+        "name": "--color-text-secondary",
+        "value": "#d0d6e0"
+      },
+      {
+        "name": "--color-text-tertiary",
+        "value": "#8a8f98"
+      },
+      {
+        "name": "--color-text-quaternary",
+        "value": "#62666d"
+      },
+      {
+        "name": "--color-link-primary",
+        "value": "#828fff"
+      },
+      {
+        "name": "--color-link-hover",
+        "value": "#fff"
+      },
+      {
+        "name": "--color-brand-bg",
+        "value": "#5e6ad2"
+      },
+      {
+        "name": "--color-brand-text",
+        "value": "#fff"
+      },
+      {
+        "name": "--color-button-invert-bg",
+        "value": "#e5e5e6"
+      },
+      {
+        "name": "--color-button-invert-bg-hover",
+        "value": "#fff"
+      },
+      {
+        "name": "--color-selection-bg",
+        "value": "color-mix(in lch, var(--color-brand-bg), black 10%)"
+      },
+      {
+        "name": "--color-selection-dim",
+        "value": "color-mix(in lch, var(--color-brand-bg), transparent 80%)"
+      },
+      {
+        "name": "--color-overlay-primary",
+        "value": "#000000d9"
+      },
+      {
+        "name": "--color-bg-level-0",
+        "value": "#08090a"
+      },
+      {
+        "name": "--color-bg-level-1",
+        "value": "#0f1011"
+      },
+      {
+        "name": "--color-bg-level-2",
+        "value": "#141516"
+      },
+      {
+        "name": "--color-bg-level-3",
+        "value": "#191a1b"
+      },
+      {
+        "name": "--color-bg-tint",
+        "value": "#141516"
+      },
+      {
+        "name": "--color-line-primary",
+        "value": "#37393a"
+      },
+      {
+        "name": "--color-line-secondary",
+        "value": "#202122"
+      },
+      {
+        "name": "--color-line-tertiary",
+        "value": "#18191a"
+      },
+      {
+        "name": "--color-line-quaternary",
+        "value": "#141515"
+      },
+      {
+        "name": "--color-line-tint",
+        "value": "#141516"
+      },
+      {
+        "name": "--color-fg-primary",
+        "value": "#f7f8f8"
+      },
+      {
+        "name": "--color-fg-secondary",
+        "value": "#d0d6e0"
+      },
+      {
+        "name": "--color-fg-tertiary",
+        "value": "#8a8f98"
+      },
+      {
+        "name": "--color-fg-quaternary",
+        "value": "#62666d"
+      },
+      {
+        "name": "--color-accent",
+        "value": "#7170ff"
+      },
+      {
+        "name": "--color-accent-hover",
+        "value": "#828fff"
+      },
+      {
+        "name": "--color-accent-tint",
+        "value": "#18182f"
+      },
+      {
+        "name": "--mask-ease",
+        "value": "#0003"
+      },
+      {
+        "name": "--transparent",
+        "value": "#fff0"
+      },
+      {
+        "name": "--scrollbar-color",
+        "value": "#ffffff1a"
+      },
+      {
+        "name": "--scrollbar-color-hover",
+        "value": "#fff3"
+      },
+      {
+        "name": "--scrollbar-color-active",
+        "value": "#fff6"
+      },
+      {
+        "name": "--color-white",
+        "value": "#fff"
+      },
+      {
+        "name": "--color-black",
+        "value": "#000"
+      },
+      {
+        "name": "--color-red",
+        "value": "#eb5757"
+      },
+      {
+        "name": "--color-green",
+        "value": "#27a644"
+      },
+      {
+        "name": "--color-orange",
+        "value": "#fc7840"
+      },
+      {
+        "name": "--color-yellow",
+        "value": "#f0bf00"
+      },
+      {
+        "name": "--color-indigo",
+        "value": "#5e6ad2"
+      },
+      {
+        "name": "--color-teal",
+        "value": "#00b8cc"
+      },
+      {
+        "name": "--color-linear-plan",
+        "value": "#68cc58"
+      },
+      {
+        "name": "--color-linear-build",
+        "value": "#d4b144"
+      },
+      {
+        "name": "--color-linear-security",
+        "value": "#7a7fad"
+      }
+    ],
+    "customPropertyNote": "measured. 45 colour-valued tokens from the [data-theme=dark] block (the theme the pages ship with) followed by 16 colour-valued tokens from :root, 61 in total, under the 80 cap. [data-theme=light] defines 45 colour-valued tokens and [data-theme=glass] a further set. 536 custom properties exist in total across the stylesheets; only colour-valued ones are listed.",
+    "bodyTextColorCandidate": "#f7f8f8",
+    "backgroundCandidate": "#08090a",
+    "contrastRatioCandidate": 18.73,
+    "contrastLadder": [
+      {
+        "token": "--color-text-primary",
+        "value": "#f7f8f8",
+        "onBackground": "#08090a",
+        "ratio": 18.73,
+        "use": "html/body default, headings, blockquotes"
+      },
+      {
+        "token": "--color-text-secondary",
+        "value": "#d0d6e0",
+        "onBackground": "#08090a",
+        "ratio": 13.64,
+        "use": "long-form running text (.VAt0ja_prose)"
+      },
+      {
+        "token": "--color-text-tertiary",
+        "value": "#8a8f98",
+        "onBackground": "#08090a",
+        "ratio": 6.13,
+        "use": "figure captions, blockquote attribution, eyebrow labels"
+      },
+      {
+        "token": "--color-text-quaternary",
+        "value": "#62666d",
+        "onBackground": "#08090a",
+        "ratio": 3.45,
+        "use": "link underline colour and the most recessive metadata; below WCAG AA 4.5:1 for normal text"
+      },
+      {
+        "token": "--color-link-primary",
+        "value": "#828fff",
+        "onBackground": "#08090a",
+        "ratio": 6.95,
+        "use": "inline links"
+      },
+      {
+        "token": "--color-accent",
+        "value": "#7170ff",
+        "onBackground": "#08090a",
+        "ratio": 5.18,
+        "use": "accent"
+      },
+      {
+        "token": "--color-border-primary",
+        "value": "#23252a",
+        "onBackground": "#08090a",
+        "ratio": 1.3,
+        "use": "hairlines - decorative, not text"
+      }
+    ],
+    "surfaceLadder": [
+      {
+        "token": "--color-bg-level-0",
+        "value": "#08090a"
+      },
+      {
+        "token": "--color-bg-level-1",
+        "value": "#0f1011"
+      },
+      {
+        "token": "--color-bg-level-2",
+        "value": "#141516"
+      },
+      {
+        "token": "--color-bg-level-3",
+        "value": "#191a1b"
+      }
+    ],
+    "darkModeMechanism": "class/attribute",
+    "darkModeEvidence": "measured: <html lang=\"en\" data-theme=\"dark\"> is served on both pages, and index.A3R_Thg4.css_ carries three complete token blocks - [data-theme=dark] (57 properties), [data-theme=light] (67) and [data-theme=glass] (37). Dark is the shipped default, not a preference-derived state: no prefers-color-scheme rule governs the site palette (the single @media (prefers-color-scheme:dark) in the CSS belongs to the vendored react-tweet embed). ThemeToggle._YM9yPbG.css_ and a footer .Jmh1Wq_themeSwitcher element flip the attribute at runtime; 9 component stylesheets carry [data-theme=light] overrides.",
+    "lightThemeSample": {
+      "--color-text-primary": "#282a30",
+      "--color-bg-primary": "#fff",
+      "ratio": 14.34
+    }
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 640,
+        "kind": "max",
+        "count": 32
+      },
+      {
+        "px": 641,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 42
+      },
+      {
+        "px": 769,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1024,
+        "kind": "max",
+        "count": 22
+      },
+      {
+        "px": 1025,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1280,
+        "kind": "max",
+        "count": 6
+      },
+      {
+        "px": 1281,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1536,
+        "kind": "min",
+        "count": 2
+      }
+    ],
+    "breakpointNote": "measured from @media rules across all saved stylesheets. Desktop-first: max-width 640 / 768 / 1024 / 1280 carry the work (32 / 42 / 22 / 6 rules), each with a single min-width+1 companion. 768px is the main long-text reflow point - body drops 17 -> 15px and every heading steps down one rung there.",
+    "contentWidthCandidates": [
+      {
+        "value": "736px",
+        "selectorEvidence": "layout.me_tBAbq.css_ .-fwaFq_layout .-fwaFq_container{--prose-max-width:736px;max-width:736px} - the /method route layout; .-fwaFq_container is present in both saved pages. This is the effective reading measure."
+      },
+      {
+        "value": "624px",
+        "selectorEvidence": "index.A3R_Thg4.css_ :root{--prose-max-width:624px} - the site-wide prose default, widened above on /method"
+      },
+      {
+        "value": "1024px",
+        "selectorEvidence": "index.A3R_Thg4.css_ :root{--page-max-width:1024px}; LayoutContent.D8YYVbao.css_ ._7bwwmq_root{max-width:var(--page-max-width);padding-left:var(--page-padding-left);padding-right:var(--page-padding-right);margin-inline:auto} - the page shell around the reading column"
+      },
+      {
+        "value": "calc(1344px + 2 x --homepage-outer-padding)",
+        "selectorEvidence": "index.A3R_Thg4.css_ :root{--homepage-max-width:…}; used by the footer wrapper and marketing rows"
+      },
+      {
+        "value": "448 / 688 / 880 / 1136 px",
+        "selectorEvidence": "LayoutContent.D8YYVbao.css_ ._7bwwmq_size-1 … ._7bwwmq_size-4 - discrete opt-in container widths"
+      },
+      {
+        "value": "--wide-inset = calc(--page-max-width - page paddings - --prose-max-width)",
+        "selectorEvidence": "Prose.DBLOnC2O.css - the bleed a figure gets when it steps outside the reading column via [data-wide=true]; .VAt0ja_center>:not([data-wide=true]){max-width:var(--prose-max-width);margin-inline:auto}"
+      },
+      {
+        "value": "--page-padding-inline 24px, resolved as max(env(safe-area-inset-left/right), 24px)",
+        "selectorEvidence": "index.A3R_Thg4.css_ :root - the gutter that keeps the column off the 320px edge"
+      }
+    ],
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "cssGridDeclarations": 18,
+      "flexDeclarations": 129,
+      "note": "measured. Flex dominates component internals (129 declarations); grid carries page structure (18). Grid.Cds8fjKR.css_ defines a named-area system - ._9PBFba_root{--grid-columns:12;--grid-gap:32px;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));grid-template-areas:var(--grid-areas-default)} - stepping to 8 columns at tablet and 4 at mobile with grid-template-areas swapped per tier. The footer is a separate 6 -> 4 -> 2 column grid with 48px row-gap and 16px column-gap. The reading column itself is not a grid: it is a single centred max-width flow."
+    }
+  },
+  "navigation": {
+    "persistentElements": [
+      "fixed top header .TZTsQG_header at --header-height 72px (64px below 640px), backdrop-filter blur(--header-blur 20px), z-index --layer-header 100, with a :before top-edge gradient scrim from --color-bg-primary to transparent",
+      "primary nav <nav aria-label=\"Main\"> inside the header (Radix navigation-menu: data-orientation, data-state, data-radix-collection-item); 9 links and 3 buttons in the header",
+      "skip link <a class=\"LSqk9q_root\" href=\"#skip-nav\">, position:fixed, revealed on focus",
+      "site footer .Jmh1Wq_footer with 42 links across a 6 -> 4 -> 2 column grid, plus a status row and a theme switcher",
+      "toast live region <section aria-label=\"Notifications alt+T\" tabindex=\"-1\" aria-live=\"polite\" aria-relevant=\"additions text\">",
+      "breadcrumb trail <ol aria-label=\"Breadcrumbs\" class=\"WY_epa_root\"> on the article page only"
+    ],
+    "stickyOrFixedSelectors": [
+      ".wOrUyW_dialog {position:fixed}",
+      ".wOrUyW_overlay {position:fixed}",
+      ".PSAPAG_content {position:fixed}",
+      ".PSAPAG_overlay {position:fixed}",
+      ".TZTsQG_header {position:fixed}",
+      ".TZTsQG_mobileMenuContent {position:fixed}",
+      ".TZTsQG_viewportPosition {position:fixed}",
+      ".TZTsQG_header {position:fixed}",
+      ".TZTsQG_mobileMenuContent {position:fixed}",
+      ".TZTsQG_viewportPosition {position:fixed}",
+      ".LSqk9q_root {position:fixed}",
+      "._5pslva_root {position:fixed}",
+      "._5pslva_cursorLine {position:fixed}",
+      "._5pslva_middleLine {position:fixed}",
+      "._5pslva_viewport {position:fixed}",
+      ".LSqk9q_root {position:fixed}",
+      ".TBAOqq_toastWrapper {position:fixed}",
+      ".o2aWCW_overlay {position:fixed}",
+      ".o2aWCW_lightbox {position:fixed}",
+      ".sx-ixxii4 {position:fixed}"
+    ],
+    "stickyNote": "measured: there is no position:sticky anywhere in the 50 stylesheets. Every pinned element is position:fixed. The header is the only one that persists during normal reading; the rest are overlays, dialogs, toasts and a decorative grid layer.",
+    "tocPresent": false,
+    "tocEvidence": "measured: no table of contents in the served markup of either page. /method/introduction has no <aside>, exactly one <nav> (aria-label=\"Main\"), and all 22 of its in-page # anchors carry aria-label=\"Link to this section\" - per-heading permalinks, not a contents list. The 23rd # anchor is the skip link. Orientation is carried instead by a breadcrumb <ol>, a prev/next Pagination component, and 26 h3-level section headings inside one 736px column.",
+    "revealedOnDemand": [
+      "mobile menu overlay: .TZTsQG_mobileMenuTrigger[data-state=open]; .TZTsQG_mobileMenuContent{position:fixed;top:calc(var(--header-height) + 1px);height:calc(100 * var(--dvh) - var(--header-height) - 1px);background:var(--header-bg);backdrop-filter:blur(var(--header-blur))}; the trigger bars rotate 45/-45deg into a close icon",
+      "command menu dialog: .wOrUyW_dialog and .wOrUyW_overlay{position:fixed}, with .wOrUyW_input and .wOrUyW_shortcut",
+      "image lightbox: .o2aWCW_overlay and .o2aWCW_lightbox{position:fixed} (Zoom.krMPHN5w.css_)",
+      "collapsible sections (Collapsibles.CKjyh1cv.css_, 3 references in the /method/introduction markup)",
+      "tabbed panels (Tabs.BmCvljV0.css_)",
+      "tooltips (Tooltip.mgHd0F-S.css_, 7 references)",
+      "sidenotes / margin notes (Sidenote.DB5A15fN.css_, 3 references)",
+      "heading permalink anchors, one per section heading"
+    ],
+    "evidence": "Element and aria-label inventory read directly from the two saved HTML files; positions, heights and blur read from Header.52ZtgjCi.css_, Layout.tvkMFESE.css_, LayoutContent.D8YYVbao.css_, CommandMenu.DVY7V9_S.css_ and Zoom.krMPHN5w.css_. /method: 1 h1, 6 h3, 1 p, 63 a, 3 button, 10 inline svg, 0 img. /method/introduction: 1 h1, 2 h2, 26 h3, 21 p, 76 a, 3 button, 30 inline svg, 0 img."
+  },
+  "behaviours": [
+    {
+      "name": "command palette",
+      "basis": "inferred",
+      "evidence": "CommandMenu.DVY7V9_S.css_ is loaded on both pages and defines .wOrUyW_dialog{position:fixed}, .wOrUyW_input, .wOrUyW_shortcut, --input-height and a kbd rule; KBD.ByHmXOx_.css_ ships alongside. No palette markup is server-rendered, so the trigger and its shortcut key could not be measured."
+    },
+    {
+      "name": "scroll-driven",
+      "basis": "inferred",
+      "evidence": "Header.52ZtgjCi.css_: html[data-scrolled] [data-transparent-header][data-header] .TZTsQG_header{--header-border:#ffffff14;--header-bg:var(--color-bg-primary)} and a light-theme twin. data-scrolled is absent from the served HTML, so a script sets it on <html> during scroll: the header starts transparent over the hero and gains a background plus a hairline once the reader leaves the top."
+    },
+    {
+      "name": "theme toggle (dark / light / glass)",
+      "basis": "inferred",
+      "evidence": "ThemeToggle._YM9yPbG.css_ loaded; footer element .Jmh1Wq_themeSwitcher in the markup; three complete [data-theme=…] token blocks; served default data-theme=\"dark\"."
+    },
+    {
+      "name": "copy button",
+      "basis": "inferred",
+      "evidence": "CopyButton.BluMS353.css_ is loaded and referenced 3 times on /method/introduction and not at all on /method - copy-to-clipboard on code or quotable blocks."
+    },
+    {
+      "name": "heading permalink",
+      "basis": "inferred",
+      "evidence": "22 anchors with aria-label=\"Link to this section\" and href=\"#…\" in the /method/introduction markup, one per section heading; LinkAnchor.DtA2msdz.css_ loaded. The anchors are measured in markup; the reveal-on-hover and copy behaviour is inferred."
+    },
+    {
+      "name": "hover preview",
+      "basis": "inferred",
+      "evidence": "Tooltip.mgHd0F-S.css_ loaded with 7 references, and hover-gated blocks @media (any-hover:hover) and (any-pointer:fine) across the stylesheets, with (any-hover:none) / (hover:none) fallbacks - hover affordances exist and are deliberately withheld from touch."
+    },
+    {
+      "name": "image lightbox / zoom",
+      "basis": "inferred",
+      "evidence": "Zoom.krMPHN5w.css_ defines .o2aWCW_overlay and .o2aWCW_lightbox{position:fixed}; Image.BUY_OmUN.css_ loaded alongside it."
+    },
+    {
+      "name": "container-scaled video overlay",
+      "basis": "inferred",
+      "evidence": "VideoPlayer.BfQ8S5zm.css_ uses font-size:clamp(16px,2cqw,48px) and border-radius:clamp(4px,1cqw,8px) - container query units, so overlay text scales with the player box rather than the viewport."
+    },
+    {
+      "name": "collapsible sections",
+      "basis": "inferred",
+      "evidence": "Collapsibles.CKjyh1cv.css_ (3.0 KB) loaded and referenced 3 times in the /method/introduction markup."
+    },
+    {
+      "name": "tabbed content",
+      "basis": "inferred",
+      "evidence": "Tabs.BmCvljV0.css_ (2.0 KB) loaded and referenced in the /method/introduction markup."
+    },
+    {
+      "name": "sidenotes / margin notes",
+      "basis": "inferred",
+      "evidence": "Sidenote.DB5A15fN.css_ (3.6 KB) loaded and referenced 3 times; Prose defines --wide-inset so material can sit beside the 736px reading column instead of interrupting it."
+    },
+    {
+      "name": "prev / next pagination",
+      "basis": "inferred",
+      "evidence": "Pagination.VDZTuqmH.css_ loaded and referenced 3 times on /method/introduction - sequential chapter navigation standing in for a contents sidebar."
+    },
+    {
+      "name": "reduced-motion respect",
+      "basis": "inferred",
+      "evidence": "prefers-reduced-motion queries in 9 stylesheets (index x3, Header x2, Badge, Image, VideoPlayer, charts, utils, DefaultRenderer)."
+    },
+    {
+      "name": "toast notifications",
+      "basis": "inferred",
+      "evidence": "Toast.pcGZUK31.css_ with .TBAOqq_toastWrapper{position:fixed}; the live region is server-rendered as <section aria-label=\"Notifications alt+T\" aria-live=\"polite\">."
+    },
+    {
+      "name": "decorative fixed grid overlay",
+      "basis": "inferred",
+      "evidence": "Providers.qSrgnk7B.css_ defines ._5pslva_root, ._5pslva_grid, ._5pslva_cursorLine, ._5pslva_middleLine and ._5pslva_viewport all position:fixed, plus a _5pslva_fadeIn animation - a full-viewport guide/cursor grid layer."
+    },
+    {
+      "name": "icon sprite sheet",
+      "basis": "inferred",
+      "evidence": "data-sprite-set attribute in the served markup, with 10 (/method) and 30 (/method/introduction) inline <svg> elements and zero <img> tags on either page."
+    },
+    {
+      "name": "embedded tweets",
+      "basis": "inferred",
+      "evidence": "vendored react-tweet stylesheets (DefaultRenderer, quoted-tweet-container, tweet-info-created-at, tweet-media-video) with their own --tweet-* token set and the only prefers-color-scheme rule on the site."
+    },
+    {
+      "name": "custom scrollbar",
+      "basis": "inferred",
+      "evidence": "[data-custom-scrollbar]::-webkit-scrollbar-thumb:hover / :active rules in index.A3R_Thg4.css_ with --scrollbar-color #ffffff1a / hover #fff3 / active #fff6."
+    }
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": [
+      "Both pages returned HTTP 200 with server-rendered semantic markup - one <main>, plus <header>, <nav>, <footer>, and <article> on the introduction page. No bot challenge, no JS-only shell, no retries needed. Nothing was rendered or executed: no computed styles, no layout measurements, no screenshots.",
+      "/method has a low text-to-HTML ratio (1045 visible characters over 382 KB) because it is a short index page whose weight is the RSC payload inlined across 131 <script> tags; /method/introduction carries 5961 visible characters across 163 script tags. Both ratios are depressed by that inlined payload and should not be read as thin content.",
+      "48 external stylesheets (47 fetched on the first pass, 1 on a second single request; all HTTP 200, 215653 bytes / 211 KB of CSS) plus 2 inline <style> blocks, one per page, holding styled-components runtime output (7126 bytes). No @import anywhere. Raw HTML and CSS live under data/design-study/raw/linear_app_method/ and are gitignored.",
+      "Token resolution: values shown as resolvedTo were expanded by substituting the first definition of each custom property found in file order. That is reliable for the type and colour scales, which are defined once on :root, but it picks the wrong branch for properties redefined per component or per breakpoint. --p-size and --h3-size are the two cases that matter; both were resolved by hand against the classes actually present in the served markup and are reported correctly in headingScale and bodyCandidates. The raw resolvedTo values in fontSizes/lineHeights should not be trusted for those two.",
+      "The reading colour is not the body colour. html,body carries --color-text-primary (#f7f8f8, 18.73:1) but running prose is set to --color-text-secondary (#d0d6e0, 13.64:1) and captions to --color-text-tertiary (#8a8f98, 6.13:1). On a #08090a ground the hierarchy is built from four text greys at 18.7 / 13.6 / 6.1 / 3.5:1 as much as from size or weight. --color-text-quaternary at 3.45:1 fails WCAG AA for normal text and is used for underline colour and the most recessive metadata.",
+      "contrastRatioCandidate is computed from plain hex pairs under [data-theme=dark], the theme the pages ship with. Tokens using color-mix() or 8-digit alpha hex (for example --header-bg #0b0b0bcc, --color-bg-translucent #ffffff0d) were not composited and carry no ratio.",
+      "headingScale.ratio is null because no single modular ratio fits: the nine-step title scale is hand-tuned and tightens as sizes grow. See ratioNote.",
+      "Everything responsive here is read from @media rules, not observed: both pages were fetched once, at no particular viewport, with no device emulation."
+    ],
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 2
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. /method is a chapter index; the reading column was measured on /method/introduction and labelled."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://linear.app/method (assigned URL — a chapter index, 939 characters of body text)",
+      "https://linear.app/method/introduction (chapter prose, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles.",
+    "assignedUrlIsAnIndex": {
+      "url": "https://linear.app/method",
+      "bodyTextLength": 939,
+      "docScrollHeightPx": 2701,
+      "h1": {
+        "fontSize": "128px",
+        "fontWeight": "400",
+        "lineHeight": "128px",
+        "letterSpacing": "normal",
+        "family": "Tiempos Headline",
+        "color": "rgb(247, 248, 248)"
+      },
+      "h1RatioToBody": 7.53,
+      "indexBodyText": {
+        "fontSizePx": "17px",
+        "lineHeight": "27.2px",
+        "color": "rgb(138, 143, 152)",
+        "contrast": 6.13,
+        "passesAAA": false,
+        "note": "The index sets its standfirst in a dimmer grey than chapter prose — 6.13:1, AA but not AAA."
+      },
+      "note": "The index carries one paragraph over 40 characters. Reading-column values below come from /method/introduction."
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 2
+      },
+      "readingColumn": {
+        "measuredOn": "/method/introduction",
+        "containerTag": "div",
+        "containerClass": "prose center size-l",
+        "containerWidthPx": 688,
+        "paragraphContentWidthPx": 688,
+        "containerMaxWidth": "none",
+        "paragraphCount": 20,
+        "totalCharsInColumn": 4758,
+        "fontSizePx": "17px",
+        "lineHeight": "27.2px",
+        "lineHeightRatio": 1.6,
+        "fontFamily": "Inter Variable",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(208, 214, 224)",
+        "backgroundColor": "rgb(8, 9, 10)",
+        "backgroundFrom": "div (first ancestor with a non-transparent background)",
+        "avgGlyphWidthPx": 7.98,
+        "charactersPerLine": 86,
+        "note": "The column is a named, centred prose container ('prose center size-l') at a fixed 688px, not a fraction of the viewport. 86 characters per line is above the 45-75 reading range, largely because 17px Inter is narrow for its size."
+      },
+      "contrast": {
+        "bodyTextVsBackground": 13.64,
+        "pair": "rgb(208, 214, 224) on rgb(8, 9, 10)",
+        "passesAA": true,
+        "passesAAA": true,
+        "note": "Chapter prose is a soft off-white, not pure white: the page steps down from heading white rgb(247,248,248) to body rgb(208,214,224), keeping 13.64:1."
+      },
+      "headings": {
+        "measuredOn": "/method/introduction",
+        "h1": {
+          "fontSize": "72px",
+          "fontWeight": "400",
+          "lineHeight": "72px",
+          "letterSpacing": "-1.584px",
+          "family": "Tiempos Headline",
+          "color": "rgb(247, 248, 248)"
+        },
+        "h2": {
+          "fontSize": "24px",
+          "fontWeight": "590",
+          "lineHeight": "31.92px",
+          "letterSpacing": "-0.288px",
+          "family": "Inter Variable",
+          "color": "rgb(247, 248, 248)",
+          "marginTop": "56px",
+          "marginBottom": "0px"
+        },
+        "h3": {
+          "fontSize": "24px",
+          "fontWeight": "590",
+          "lineHeight": "31.92px",
+          "letterSpacing": "-0.288px",
+          "family": "Inter Variable",
+          "marginTop": "24px"
+        },
+        "ratio_h1_body": 4.24,
+        "ratio_h2_body": 1.41,
+        "twoTypefaceRule": "h1 is a serif display face (Tiempos Headline, weight 400, line-height equal to font-size); every other level and all body text is Inter Variable. h2 and h3 are the same size and weight, distinguished only by margin-top (56px vs 24px).",
+        "weightNote": "590 and 510 are variable-font weights, not the 500/600 static steps."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "fixed",
+        "headerTop": 0,
+        "headerHeightPx": 73,
+        "headerBackground": "rgba(0, 0, 0, 0)",
+        "headerBackgroundNote": "The header element paints nothing; whatever contrast it has comes from a layer behind it.",
+        "stickyOrFixedCount": 1,
+        "stickyOrFixedNote": "The header is the only fixed or sticky box on the page. No sticky sidebar, no sticky progress element.",
+        "nav": {
+          "ariaLabel": "Main",
+          "widthPx": 1440,
+          "heightPx": 72,
+          "links": 9,
+          "position": "static"
+        },
+        "documentScrolls": true
+      },
+      "toc": null,
+      "tocReason": "No sticky or fixed element 80-480px wide with four or more links, and no element labelled contents/chapter/outline/on-this-page. A Linear Method chapter offers no in-page navigation; the chapter list lives on /method and in prev/next links.",
+      "search": {
+        "inputPresentAtLoad": false,
+        "triggers": 0,
+        "kbdHints": [],
+        "note": "No search input, no control whose aria-label, id or leading text contains 'search', and no <kbd> element on either page."
+      },
+      "pageWeight": {
+        "chapter": {
+          "docScrollHeightPx": 5103,
+          "screensOfScroll": 5.67,
+          "innerTextLength": 5873,
+          "htmlLength": 470233,
+          "textToHtmlRatio": 0.01
+        },
+        "index": {
+          "docScrollHeightPx": 2701,
+          "screensOfScroll": 3,
+          "innerTextLength": 939,
+          "htmlLength": 405430,
+          "textToHtmlRatio": 0
+        }
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "/method/introduction",
+      "readingColumn": {
+        "containerWidthPx": 327,
+        "paragraphContentWidthPx": 327,
+        "fontSizePx": "15px",
+        "lineHeight": "24px",
+        "lineHeightRatio": 1.6,
+        "avgGlyphWidthPx": 6.94,
+        "charactersPerLine": 47,
+        "color": "rgb(208, 214, 224)"
+      },
+      "typeScaleChangesAtMobile": true,
+      "bodyStepsDown": "17px/27.2px at 1440px becomes 15px/24px at 375px. The 1.6 line-height ratio is held at both widths.",
+      "h1": {
+        "fontSize": "48px",
+        "fontWeight": "400",
+        "lineHeight": "48px",
+        "letterSpacing": "-1.056px",
+        "desktopWas": "72px/72px"
+      },
+      "h2": {
+        "fontSize": "24px",
+        "fontWeight": "590",
+        "lineHeight": "31.92px",
+        "unchangedFromDesktop": true
+      },
+      "header": {
+        "position": "fixed",
+        "top": 0,
+        "heightPx": 65,
+        "desktopWas": 73
+      },
+      "menuControl": {
+        "class": "mobileMenuTrigger",
+        "widthPx": 64,
+        "heightPx": 64,
+        "y": 0,
+        "ariaLabel": null,
+        "note": "A 64x64 trigger with no aria-label — the only navigation control at this width."
+      },
+      "toc": null,
+      "stickyOrFixed": [
+        "header only (375x65, fixed, top 0)"
+      ],
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 6419
+    },
+    "inferred": {
+      "react": true,
+      "reactEvidence": "A __react* key is present on document.body.",
+      "nextData": false,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollama": false,
+      "gsap": false,
+      "framerMotion": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "intersectionObserverNote": "Not found in the 165 script sources or scanned inline text. With one fixed header and no scroll-linked panel, the page shows no evidence of scroll observation.",
+      "hoverPreviewMarkerElements": 0,
+      "detailsElements": 0,
+      "dialogElements": 0,
+      "videoElements": 0,
+      "canvasElements": 0,
+      "cssCustomPropertiesOnRoot": 413,
+      "colorSchemeDeclared": "dark",
+      "colorSchemeEvidence": "html carries data-theme=\"dark\", class=\"enhanced js\" and style=\"color-scheme: dark\" — a server-set theme attribute, not a media query result.",
+      "fontsLoaded": [
+        "Inter Variable 100 900 (loaded)",
+        "Tiempos Headline 400 (loaded)",
+        "Berkeley Mono 100 900 (declared but unloaded on this page)"
+      ],
+      "stylesheetCount": 47,
+      "scriptCount": 165,
+      "cssModules": "Class names are hashed CSS-module atoms with readable suffixes (TZTsQG_header, VAt0ja_prose, VAt0ja_size-l) — authored component styles, not utility classes."
+    }
+  }
+}

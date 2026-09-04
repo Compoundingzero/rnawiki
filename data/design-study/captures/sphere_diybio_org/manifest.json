@@ -1,0 +1,631 @@
+{
+  "site": "sphere.diybio.org",
+  "track": "A2",
+  "urls": {
+    "index": "https://sphere.diybio.org/",
+    "content": "https://sphere.diybio.org/"
+  },
+  "capturedAt": "2026-09-03T15:21:19.486Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: no consent UI found",
+    "index-375: no consent UI found",
+    "content-1440: no consent UI found",
+    "content-375: no consent UI found"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://sphere.diybio.org/",
+    "collectedAt": "2026-09-03T15:21:05.690Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0222,
+    "title": "DIYbiosphere",
+    "innerTextLength": 3960,
+    "outerHtmlLength": 178671,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Baltimore Underground Science Space (BUGSS)"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Baltimore, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "BUGSS is Baltimore’s community science lab, offering seminars, courses, and an o"
+      },
+      {
+        "tag": "h1",
+        "text": "Counter Culture Labs"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab at Omni Commons in Oakland, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "A community hackerspace for DIY biology and citizen science in Oakland — come ti"
+      },
+      {
+        "tag": "h1",
+        "text": "Genspace"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Brooklyn, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "Genspace instructors come from top institutions around the New York City area to"
+      },
+      {
+        "tag": "h1",
+        "text": "Hackuarium"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab at UniverCite in Renens, Switzerland"
+      },
+      {
+        "tag": "h3",
+        "text": "Come visit on OpenHackuarium night every Wednesday, from 7:30-10:30"
+      },
+      {
+        "tag": "h1",
+        "text": "DIYbiosphere"
+      },
+      {
+        "tag": "h1",
+        "text": "SoundBio Lab"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Seattle, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "SoundBio Lab is Seattle’s biology makerspace — hands-on STEAM workshops and open"
+      },
+      {
+        "tag": "h1",
+        "text": "BioHack UIO"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Quito, Ecuador"
+      },
+      {
+        "tag": "h3",
+        "text": "Hands-on microbiology course series—private certification and lab work."
+      },
+      {
+        "tag": "h1",
+        "text": "Baltimore Underground Science Space (BUGSS)"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Baltimore, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "BUGSS is Baltimore’s community science lab, offering seminars, courses, and an o"
+      },
+      {
+        "tag": "h1",
+        "text": "Counter Culture Labs"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab at Omni Commons in Oakland, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "A community hackerspace for DIY biology and citizen science in Oakland — come ti"
+      },
+      {
+        "tag": "h1",
+        "text": "Genspace"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Brooklyn, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "Genspace instructors come from top institutions around the New York City area to"
+      },
+      {
+        "tag": "h1",
+        "text": "Hackuarium"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab at UniverCite in Renens, Switzerland"
+      },
+      {
+        "tag": "h3",
+        "text": "Come visit on OpenHackuarium night every Wednesday, from 7:30-10:30"
+      },
+      {
+        "tag": "h1",
+        "text": "DIYbiosphere"
+      },
+      {
+        "tag": "h1",
+        "text": "SoundBio Lab"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Seattle, United States"
+      },
+      {
+        "tag": "h3",
+        "text": "SoundBio Lab is Seattle’s biology makerspace — hands-on STEAM workshops and open"
+      },
+      {
+        "tag": "h1",
+        "text": "BioHack UIO"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Quito, Ecuador"
+      },
+      {
+        "tag": "h3",
+        "text": "Hands-on microbiology course series—private certification and lab work."
+      },
+      {
+        "tag": "h1",
+        "text": "Baltimore Underground Science Space (BUGSS)"
+      },
+      {
+        "tag": "h3",
+        "text": "Lab in Baltimore, United States"
+      }
+    ],
+    "headingCount": 44,
+    "stickyOrFixedCount": 0,
+    "stickyOrFixed": [],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 5,
+    "scriptsUnreadable": 8,
+    "searchAffordances": {
+      "count": 5,
+      "firstDescriptors": [
+        "input",
+        "input[role=combobox] Search DIYbio initiatives",
+        "input"
+      ]
+    },
+    "imgCount": 19,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "fontawesome-i2svg-active fontawesome-i2svg-complete",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 4,
+      "totalSheets": 8
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 255)",
+    "bodyColor": "rgba(0, 0, 0, 0.87)",
+    "canvasCount": 1,
+    "svgCount": 77
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1453,
+      "heightPx": 2638,
+      "sha256": "0ed0d88a3d305e9bdca76a3b9ecd9535b8e1a4acf0ee3e79ed10be065a3d6f60",
+      "capturedAt": "2026-09-03T15:20:54.666Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "74a55f30911c15f2de60c92a4b490dcc751a430fd9d9d887bc813f57239ef374",
+      "capturedAt": "2026-09-03T15:20:54.928Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ec35ea43ba6c89fd522539b46bc51950463fcf0ef64262e2af669f6e3945ea13",
+      "capturedAt": "2026-09-03T15:20:55.039Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 838,
+      "sha256": "0469cf580df1988f697afd9b67494019f106a10504c626e5e8b48efad3cb09b2",
+      "capturedAt": "2026-09-03T15:20:55.139Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 402,
+      "heightPx": 3750,
+      "sha256": "7b3165a0ae5ae5ac906bd6cd78a2da259b2bc6f2f8090fa5d7c619953420856e",
+      "capturedAt": "2026-09-03T15:20:59.883Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c883dbd23bc338ecb05bf111d65fa22aec546c9f2a044bff97b2cdab38369850",
+      "capturedAt": "2026-09-03T15:20:59.983Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "56e9d716365accfa479ec270c6d1d0c869cc235f5cae0217261bc6c3df45afe9",
+      "capturedAt": "2026-09-03T15:21:00.059Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a24c0e16a8848f2c9f0aed386c6d4b8b24ac608d9642060dfdecd5ad02f4f58f",
+      "capturedAt": "2026-09-03T15:21:00.128Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4d6128c132c8c3b9c60b09d87f9e5f2fb105ea057bb9cdfd687b04345d73980a",
+      "capturedAt": "2026-09-03T15:21:00.205Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 502,
+      "sha256": "77b3b19cb83ccbf60665d83b639c49fa789ddfe5571b1f8f37d84854bc5dda87",
+      "capturedAt": "2026-09-03T15:21:00.270Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1453,
+      "heightPx": 2638,
+      "sha256": "0ed0d88a3d305e9bdca76a3b9ecd9535b8e1a4acf0ee3e79ed10be065a3d6f60",
+      "capturedAt": "2026-09-03T15:21:04.047Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "74a55f30911c15f2de60c92a4b490dcc751a430fd9d9d887bc813f57239ef374",
+      "capturedAt": "2026-09-03T15:21:04.342Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ec35ea43ba6c89fd522539b46bc51950463fcf0ef64262e2af669f6e3945ea13",
+      "capturedAt": "2026-09-03T15:21:04.439Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 838,
+      "sha256": "0469cf580df1988f697afd9b67494019f106a10504c626e5e8b48efad3cb09b2",
+      "capturedAt": "2026-09-03T15:21:04.539Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "74a55f30911c15f2de60c92a4b490dcc751a430fd9d9d887bc813f57239ef374",
+      "capturedAt": "2026-09-03T15:21:07.444Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 869,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c773aeb5410e6573b00b7bb31b2ac282ac9d89ff0a4ab7dbbcdf3c8f5c8261dc",
+      "capturedAt": "2026-09-03T15:21:09.005Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 1564,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2d86ff0f5a9f98e58d91ea40eb37bff7084298541fb08b9ada6eb05b2b3d0f50",
+      "capturedAt": "2026-09-03T15:21:10.582Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 402,
+      "heightPx": 3750,
+      "sha256": "7b3165a0ae5ae5ac906bd6cd78a2da259b2bc6f2f8090fa5d7c619953420856e",
+      "capturedAt": "2026-09-03T15:21:14.318Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c883dbd23bc338ecb05bf111d65fa22aec546c9f2a044bff97b2cdab38369850",
+      "capturedAt": "2026-09-03T15:21:14.431Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "56e9d716365accfa479ec270c6d1d0c869cc235f5cae0217261bc6c3df45afe9",
+      "capturedAt": "2026-09-03T15:21:14.529Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a24c0e16a8848f2c9f0aed386c6d4b8b24ac608d9642060dfdecd5ad02f4f58f",
+      "capturedAt": "2026-09-03T15:21:14.604Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4d6128c132c8c3b9c60b09d87f9e5f2fb105ea057bb9cdfd687b04345d73980a",
+      "capturedAt": "2026-09-03T15:21:14.674Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 502,
+      "sha256": "77b3b19cb83ccbf60665d83b639c49fa789ddfe5571b1f8f37d84854bc5dda87",
+      "capturedAt": "2026-09-03T15:21:14.742Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c883dbd23bc338ecb05bf111d65fa22aec546c9f2a044bff97b2cdab38369850",
+      "capturedAt": "2026-09-03T15:21:16.348Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 1469,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "719fe05fde12403cb853df157c507050f47d3ae4e2bfbaca703218bc5e2ddaed",
+      "capturedAt": "2026-09-03T15:21:17.902Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://sphere.diybio.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 2644,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eb4294412be09ad4b7535cda428ae2e85254813a11bdf596caabaccda67585bd",
+      "capturedAt": "2026-09-03T15:21:19.486Z"
+    }
+  ]
+}

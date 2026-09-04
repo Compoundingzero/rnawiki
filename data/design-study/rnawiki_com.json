@@ -1,0 +1,2036 @@
+{
+  "site": "rnawiki.com",
+  "fetchedAt": "2026-09-03T14:43:18.273Z",
+  "method": "Real-browser pass. Playwright launchPersistentContext with Google Chrome (channel \"chrome\"), headful, automation flags suppressed, locale en-US. Every number below is a Chromium computed style, a getBoundingClientRect measurement, a canvas measureText result or a readable CSSOM rule. Nothing is estimated: a field this method cannot reach is null with the reason in a sibling *Note field.",
+  "pages": [
+    {
+      "url": "https://rnawiki.com/",
+      "role": "index",
+      "status": "measured",
+      "httpStatus": 200,
+      "bytes": 34962,
+      "visibleTextChars": 1316,
+      "textToHtmlRatio": 0.0376,
+      "title": "Medicine Evidence & Clinical Trial Results, Explained | RNAWiki",
+      "note": null
+    },
+    {
+      "url": "https://rnawiki.com/d/metformin",
+      "role": "content",
+      "status": "measured",
+      "httpStatus": 200,
+      "bytes": 2816103,
+      "visibleTextChars": 1970,
+      "textToHtmlRatio": 0.0007,
+      "title": "Metformin — evidence record | RNAWiki",
+      "note": null
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://rnawiki.com/_next/static/css/959cc95dcd48f8eb.css",
+      "readable": true,
+      "ruleCount": 139,
+      "cssTextChars": 103907,
+      "bytes": null,
+      "bytesNote": "Transferred bytes were not measured: Phase 1 read fetched stylesheet files, this pass reads the CSSOM. cssTextChars is the serialized rule text length, which is not the transferred size.",
+      "readableNote": null,
+      "inline": false
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+        "family": "-apple-system",
+        "role": "body and running prose; the prose paragraph measured for the reading column; first-level heading; second-level heading; third-level heading; buttons and interface controls",
+        "source": "measured",
+        "evidence": "computed font-family on body.bg-[#F5F5F7].text-[#1D1D1F].antialiased (selector body)"
+      },
+      {
+        "value": "\"JetBrains Mono\", \"JetBrains Mono Fallback\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+        "family": "JetBrains Mono",
+        "role": "code and preformatted text",
+        "source": "measured",
+        "evidence": "computed font-family on pre.mt-2.max-h-64.overflow-auto.whitespace-pre-wrap (selector code, pre, kbd, samp)"
+      }
+    ],
+    "fontSizes": [
+      {
+        "value": "inherit",
+        "count": 3
+      },
+      {
+        "value": "var(--text-2xl)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-3xl)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-4xl)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-base)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-lg)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-sm)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-xl)",
+        "count": 2
+      },
+      {
+        "value": "var(--text-xs)",
+        "count": 2
+      },
+      {
+        "value": "1em",
+        "count": 1
+      },
+      {
+        "value": "80%",
+        "count": 1
+      },
+      {
+        "value": "75%",
+        "count": 1
+      },
+      {
+        "value": "8px",
+        "count": 1
+      },
+      {
+        "value": "9px",
+        "count": 1
+      },
+      {
+        "value": "10px",
+        "count": 1
+      },
+      {
+        "value": "11px",
+        "count": 1
+      },
+      {
+        "value": "12px",
+        "count": 1
+      },
+      {
+        "value": "13px",
+        "count": 1
+      },
+      {
+        "value": "15px",
+        "count": 1
+      },
+      {
+        "value": "var(--text-5xl)",
+        "count": 1
+      },
+      {
+        "value": "28px",
+        "count": 1
+      },
+      {
+        "value": "32px",
+        "count": 1
+      },
+      {
+        "value": "56px",
+        "count": 1
+      }
+    ],
+    "fontSizesNote": "Literal font-size declarations counted across the readable CSSOM. 0 cross-origin sheet(s) contributed nothing.",
+    "lineHeights": [
+      {
+        "value": "inherit",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-2xl--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-3xl--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-4xl--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-base--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-lg--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-sm--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-xl--line-height))",
+        "count": 2
+      },
+      {
+        "value": "var(--tw-leading,var(--text-xs--line-height))",
+        "count": 2
+      },
+      {
+        "value": "calc(var(--spacing) * 8)",
+        "count": 2
+      },
+      {
+        "value": "1.5",
+        "count": 1
+      },
+      {
+        "value": "0",
+        "count": 1
+      },
+      {
+        "value": "1",
+        "count": 1
+      },
+      {
+        "value": "calc(var(--spacing) * 4)",
+        "count": 1
+      },
+      {
+        "value": "calc(var(--spacing) * 5)",
+        "count": 1
+      },
+      {
+        "value": "calc(var(--spacing) * 6)",
+        "count": 1
+      },
+      {
+        "value": "calc(var(--spacing) * 7)",
+        "count": 1
+      },
+      {
+        "value": "1.02",
+        "count": 1
+      },
+      {
+        "value": "var(--leading-relaxed)",
+        "count": 1
+      },
+      {
+        "value": "var(--leading-snug)",
+        "count": 1
+      },
+      {
+        "value": "var(--leading-tight)",
+        "count": 1
+      },
+      {
+        "value": "var(--tw-leading,var(--text-5xl--line-height))",
+        "count": 1
+      }
+    ],
+    "lineHeightsNote": "Literal line-height declarations counted across the readable CSSOM.",
+    "fontFaces": [
+      "Plus Jakarta Sans",
+      "Plus Jakarta Sans Fallback",
+      "JetBrains Mono",
+      "JetBrains Mono Fallback"
+    ],
+    "fontFacesNote": "@font-face families declared in the readable CSSOM.",
+    "headingScale": {
+      "source": "measured (computed style at each viewport)",
+      "desktop": {
+        "h1": {
+          "fontSize": "56px",
+          "fontWeight": "700",
+          "lineHeight": "57.12px",
+          "letterSpacing": "-2.52px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(29, 29, 31)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Metformin",
+          "count": 1
+        },
+        "h2": {
+          "fontSize": "12px",
+          "fontWeight": "700",
+          "lineHeight": "20px",
+          "letterSpacing": "1.44px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(10, 102, 216)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "In 10 seconds",
+          "count": 5
+        },
+        "h3": {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(23, 77, 122)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Plain-language help for terms in this view",
+          "count": 27
+        }
+      },
+      "mobile": {
+        "h1": {
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.72px",
+          "letterSpacing": "-1.62px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(29, 29, 31)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Metformin",
+          "count": 1
+        },
+        "h2": {
+          "fontSize": "12px",
+          "fontWeight": "700",
+          "lineHeight": "20px",
+          "letterSpacing": "1.44px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(10, 102, 216)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "In 10 seconds",
+          "count": 5
+        },
+        "h3": {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(23, 77, 122)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Plain-language help for terms in this view",
+          "count": 27
+        }
+      },
+      "mobileNote": null,
+      "ratio_h1_body": 3.5,
+      "ratio_h2_body": 0.75,
+      "ratio_h3_body": 0.88,
+      "ratioBasis": "Ratios are computed heading font-size over the measured prose font-size, as in Phase 1."
+    },
+    "bodyCandidates": {
+      "fontSize": "16px",
+      "lineHeight": "28px",
+      "lineHeightRatio": 1.75,
+      "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "color": "rgb(81, 81, 84)",
+      "measure": "672px paragraph content width; 93 characters per line",
+      "selectorEvidence": "computed style on the longest paragraph inside div.max-w-3xl.space-y-1.5"
+    },
+    "bodyCandidatesNote": null,
+    "fluidType": null,
+    "fluidTypeNote": "Not measured here. Phase 1 read clamp() occurrences from fetched stylesheet text; the CSSOM reports resolved values, so a fluid declaration cannot be distinguished from a fixed one at a single viewport. Compare the desktop and mobile font sizes below instead: a fractional size that changes with width is fluid.",
+    "fluidTypeObserved": "Body type does not move between 1440px and 375px (16px at both)."
+  },
+  "spacing": {
+    "inferredBaseUnitPx": 4,
+    "inferredBaseUnitShare": 0.906,
+    "inferredBaseUnitNote": "Largest unit dividing the majority of spacing occurrences, weighted by occurrence: 4px covers 90.6% of 5713 computed margin/padding/gap values over 8111 visible elements. Candidates tried, largest first: 16, 12, 10, 8, 6, 5, 4, 3, 2, 1px.",
+    "method": "Every non-zero px margin, padding, row-gap and column-gap on every visible element, read from computed style (not from declarations, which are mostly in utility-compiled or unreadable rules), tallied by value and weighted by occurrence.",
+    "occurrences": 5713,
+    "distinctValueCount": 22,
+    "distinctValues": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      24,
+      28,
+      32,
+      40,
+      48,
+      80,
+      95.96,
+      98,
+      130,
+      244.37,
+      336,
+      372,
+      394.48
+    ],
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      40,
+      48,
+      80,
+      336,
+      372
+    ],
+    "nonMultiplesOf4": [
+      2,
+      6,
+      10,
+      14,
+      95.96,
+      98,
+      130,
+      244.37,
+      394.48
+    ],
+    "topValues": [
+      {
+        "px": 4,
+        "count": 2110
+      },
+      {
+        "px": 12,
+        "count": 951
+      },
+      {
+        "px": 8,
+        "count": 883
+      },
+      {
+        "px": 16,
+        "count": 710
+      },
+      {
+        "px": 20,
+        "count": 296
+      },
+      {
+        "px": 2,
+        "count": 290
+      },
+      {
+        "px": 10,
+        "count": 119
+      },
+      {
+        "px": 6,
+        "count": 112
+      },
+      {
+        "px": 24,
+        "count": 104
+      },
+      {
+        "px": 28,
+        "count": 89
+      },
+      {
+        "px": 40,
+        "count": 19
+      },
+      {
+        "px": 32,
+        "count": 8
+      }
+    ],
+    "largeStepsForLongText": [
+      16,
+      20,
+      24,
+      28,
+      32,
+      40,
+      48,
+      80,
+      95.96
+    ]
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--animate-spin",
+        "value": "spin 1s linear infinite"
+      },
+      {
+        "name": "--blur-md",
+        "value": "12px"
+      },
+      {
+        "name": "--blur-sm",
+        "value": "8px"
+      },
+      {
+        "name": "--blur-xl",
+        "value": "24px"
+      },
+      {
+        "name": "--color-amber-200",
+        "value": "oklch(92.4% .12 95.746)"
+      },
+      {
+        "name": "--color-amber-400",
+        "value": "oklch(82.8% .189 84.429)"
+      },
+      {
+        "name": "--color-amber-50",
+        "value": "oklch(98.7% .022 95.277)"
+      },
+      {
+        "name": "--color-amber-500",
+        "value": "oklch(76.9% .188 70.08)"
+      },
+      {
+        "name": "--color-amber-600",
+        "value": "oklch(66.6% .179 58.318)"
+      },
+      {
+        "name": "--color-amber-700",
+        "value": "oklch(55.5% .163 48.998)"
+      },
+      {
+        "name": "--color-amber-800",
+        "value": "oklch(47.3% .137 46.201)"
+      },
+      {
+        "name": "--color-amber-900",
+        "value": "oklch(41.4% .112 45.904)"
+      },
+      {
+        "name": "--color-amber-950",
+        "value": "oklch(27.9% .077 45.635)"
+      },
+      {
+        "name": "--color-black",
+        "value": "#000"
+      },
+      {
+        "name": "--color-blue-200",
+        "value": "oklch(88.2% .059 254.128)"
+      },
+      {
+        "name": "--color-blue-300",
+        "value": "oklch(80.9% .105 251.813)"
+      },
+      {
+        "name": "--color-blue-50",
+        "value": "oklch(97% .014 254.604)"
+      },
+      {
+        "name": "--color-blue-600",
+        "value": "oklch(54.6% .245 262.881)"
+      },
+      {
+        "name": "--color-blue-800",
+        "value": "oklch(42.4% .199 265.638)"
+      },
+      {
+        "name": "--color-blue-900",
+        "value": "oklch(37.9% .146 265.522)"
+      },
+      {
+        "name": "--color-blue-950",
+        "value": "oklch(28.2% .091 267.935)"
+      },
+      {
+        "name": "--color-emerald-200",
+        "value": "oklch(90.5% .093 164.15)"
+      },
+      {
+        "name": "--color-emerald-400",
+        "value": "oklch(76.5% .177 163.223)"
+      },
+      {
+        "name": "--color-emerald-50",
+        "value": "oklch(97.9% .021 166.113)"
+      },
+      {
+        "name": "--color-emerald-500",
+        "value": "oklch(69.6% .17 162.48)"
+      },
+      {
+        "name": "--color-emerald-600",
+        "value": "oklch(59.6% .145 163.225)"
+      },
+      {
+        "name": "--color-emerald-700",
+        "value": "oklch(50.8% .118 165.612)"
+      },
+      {
+        "name": "--color-emerald-800",
+        "value": "oklch(43.2% .095 166.913)"
+      },
+      {
+        "name": "--color-emerald-900",
+        "value": "oklch(37.8% .077 168.94)"
+      },
+      {
+        "name": "--color-emerald-950",
+        "value": "oklch(26.2% .051 172.552)"
+      },
+      {
+        "name": "--color-red-50",
+        "value": "oklch(97.1% .013 17.38)"
+      },
+      {
+        "name": "--color-red-600",
+        "value": "oklch(57.7% .245 27.325)"
+      },
+      {
+        "name": "--color-red-900",
+        "value": "oklch(39.6% .141 25.723)"
+      },
+      {
+        "name": "--color-rose-200",
+        "value": "oklch(89.2% .058 10.001)"
+      },
+      {
+        "name": "--color-rose-400",
+        "value": "oklch(71.2% .194 13.428)"
+      },
+      {
+        "name": "--color-rose-50",
+        "value": "oklch(96.9% .015 12.422)"
+      },
+      {
+        "name": "--color-rose-500",
+        "value": "oklch(64.5% .246 16.439)"
+      },
+      {
+        "name": "--color-rose-600",
+        "value": "oklch(58.6% .253 17.585)"
+      },
+      {
+        "name": "--color-rose-700",
+        "value": "oklch(51.4% .222 16.935)"
+      },
+      {
+        "name": "--color-rose-800",
+        "value": "oklch(45.5% .188 13.697)"
+      },
+      {
+        "name": "--color-rose-900",
+        "value": "oklch(41% .159 10.272)"
+      },
+      {
+        "name": "--color-rose-950",
+        "value": "oklch(27.1% .105 12.094)"
+      },
+      {
+        "name": "--color-sky-50",
+        "value": "oklch(97.7% .013 236.62)"
+      },
+      {
+        "name": "--color-sky-500",
+        "value": "oklch(68.5% .169 237.323)"
+      },
+      {
+        "name": "--color-sky-800",
+        "value": "oklch(44.3% .11 240.79)"
+      },
+      {
+        "name": "--color-slate-100",
+        "value": "oklch(96.8% .007 247.896)"
+      },
+      {
+        "name": "--color-slate-200",
+        "value": "oklch(92.9% .013 255.508)"
+      },
+      {
+        "name": "--color-slate-300",
+        "value": "oklch(86.9% .022 252.894)"
+      },
+      {
+        "name": "--color-slate-50",
+        "value": "oklch(98.4% .003 247.858)"
+      },
+      {
+        "name": "--color-slate-700",
+        "value": "oklch(37.2% .044 257.287)"
+      },
+      {
+        "name": "--color-slate-900",
+        "value": "oklch(20.8% .042 265.755)"
+      },
+      {
+        "name": "--color-stone-300",
+        "value": "oklch(86.9% .005 56.366)"
+      },
+      {
+        "name": "--color-stone-400",
+        "value": "oklch(70.9% .01 56.259)"
+      },
+      {
+        "name": "--color-violet-200",
+        "value": "oklch(89.4% .057 293.283)"
+      },
+      {
+        "name": "--color-violet-50",
+        "value": "oklch(96.9% .016 293.756)"
+      },
+      {
+        "name": "--color-violet-500",
+        "value": "oklch(60.6% .25 292.717)"
+      },
+      {
+        "name": "--color-violet-700",
+        "value": "oklch(49.1% .27 292.581)"
+      },
+      {
+        "name": "--color-violet-800",
+        "value": "oklch(43.2% .232 292.759)"
+      },
+      {
+        "name": "--color-white",
+        "value": "#fff"
+      },
+      {
+        "name": "--container-2xl",
+        "value": "42rem"
+      },
+      {
+        "name": "--container-3xl",
+        "value": "48rem"
+      },
+      {
+        "name": "--container-4xl",
+        "value": "56rem"
+      },
+      {
+        "name": "--container-5xl",
+        "value": "64rem"
+      },
+      {
+        "name": "--container-7xl",
+        "value": "80rem"
+      },
+      {
+        "name": "--container-lg",
+        "value": "32rem"
+      },
+      {
+        "name": "--container-md",
+        "value": "28rem"
+      },
+      {
+        "name": "--container-sm",
+        "value": "24rem"
+      },
+      {
+        "name": "--container-xl",
+        "value": "36rem"
+      },
+      {
+        "name": "--container-xs",
+        "value": "20rem"
+      },
+      {
+        "name": "--default-font-family",
+        "value": "var(--font-sans)"
+      },
+      {
+        "name": "--default-mono-font-family",
+        "value": "var(--font-mono)"
+      },
+      {
+        "name": "--default-transition-duration",
+        "value": ".15s"
+      },
+      {
+        "name": "--default-transition-timing-function",
+        "value": "cubic-bezier(.4,0,.2,1)"
+      },
+      {
+        "name": "--font-mono",
+        "value": "var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace"
+      },
+      {
+        "name": "--font-sans",
+        "value": "-apple-system,BlinkMacSystemFont,\"SF Pro Display\",\"SF Pro Text\",var(--font-plus-jakarta),\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif"
+      },
+      {
+        "name": "--font-serif",
+        "value": "ui-serif,Georgia,Cambria,\"Times New Roman\",Times,serif"
+      },
+      {
+        "name": "--font-weight-black",
+        "value": "900"
+      },
+      {
+        "name": "--font-weight-bold",
+        "value": "700"
+      },
+      {
+        "name": "--font-weight-extrabold",
+        "value": "800"
+      },
+      {
+        "name": "--font-weight-medium",
+        "value": "500"
+      },
+      {
+        "name": "--font-weight-normal",
+        "value": "400"
+      },
+      {
+        "name": "--font-weight-semibold",
+        "value": "600"
+      },
+      {
+        "name": "--leading-relaxed",
+        "value": "1.625"
+      },
+      {
+        "name": "--leading-snug",
+        "value": "1.375"
+      },
+      {
+        "name": "--leading-tight",
+        "value": "1.25"
+      },
+      {
+        "name": "--radius-2xl",
+        "value": "1rem"
+      },
+      {
+        "name": "--radius-3xl",
+        "value": "1.5rem"
+      },
+      {
+        "name": "--radius-lg",
+        "value": ".5rem"
+      },
+      {
+        "name": "--radius-md",
+        "value": ".375rem"
+      },
+      {
+        "name": "--radius-xl",
+        "value": ".75rem"
+      },
+      {
+        "name": "--spacing",
+        "value": ".25rem"
+      },
+      {
+        "name": "--text-2xl",
+        "value": "1.5rem"
+      },
+      {
+        "name": "--text-2xl--line-height",
+        "value": "calc(2 / 1.5)"
+      },
+      {
+        "name": "--text-3xl",
+        "value": "1.875rem"
+      },
+      {
+        "name": "--text-3xl--line-height",
+        "value": "calc(2.25 / 1.875)"
+      },
+      {
+        "name": "--text-4xl",
+        "value": "2.25rem"
+      },
+      {
+        "name": "--text-4xl--line-height",
+        "value": "calc(2.5 / 2.25)"
+      },
+      {
+        "name": "--text-5xl",
+        "value": "3rem"
+      },
+      {
+        "name": "--text-5xl--line-height",
+        "value": "1"
+      },
+      {
+        "name": "--text-base",
+        "value": "1rem"
+      },
+      {
+        "name": "--text-base--line-height",
+        "value": "calc(1.5 / 1)"
+      },
+      {
+        "name": "--text-lg",
+        "value": "1.125rem"
+      },
+      {
+        "name": "--text-lg--line-height",
+        "value": "calc(1.75 / 1.125)"
+      },
+      {
+        "name": "--text-sm",
+        "value": ".875rem"
+      },
+      {
+        "name": "--text-sm--line-height",
+        "value": "calc(1.25 / .875)"
+      },
+      {
+        "name": "--text-xl",
+        "value": "1.25rem"
+      },
+      {
+        "name": "--text-xl--line-height",
+        "value": "calc(1.75 / 1.25)"
+      },
+      {
+        "name": "--text-xs",
+        "value": ".75rem"
+      },
+      {
+        "name": "--text-xs--line-height",
+        "value": "calc(1 / .75)"
+      },
+      {
+        "name": "--tracking-tight",
+        "value": "-.025em"
+      },
+      {
+        "name": "--tracking-wide",
+        "value": ".025em"
+      },
+      {
+        "name": "--tracking-wider",
+        "value": ".05em"
+      },
+      {
+        "name": "--tracking-widest",
+        "value": ".1em"
+      }
+    ],
+    "customPropertyCount": 113,
+    "customPropertySource": "readable :root/html rules in the CSSOM",
+    "customPropertyNote": null,
+    "bodyTextColorCandidate": "rgb(29, 29, 31)",
+    "backgroundCandidate": "rgb(245, 245, 247)",
+    "backgroundCandidateFrom": "body",
+    "backgroundCandidateNote": null,
+    "contrastRatioCandidate": 15.46,
+    "contrastLadder": [
+      {
+        "value": "rgb(0, 102, 204)",
+        "elementsWithOwnText": 1376,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 5.11,
+        "passesAA": true,
+        "passesAAA": false
+      },
+      {
+        "value": "rgb(110, 110, 115)",
+        "elementsWithOwnText": 919,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 4.66,
+        "passesAA": true,
+        "passesAAA": false
+      },
+      {
+        "value": "rgb(81, 81, 84)",
+        "elementsWithOwnText": 601,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 7.26,
+        "passesAA": true,
+        "passesAAA": true
+      },
+      {
+        "value": "rgb(29, 29, 31)",
+        "elementsWithOwnText": 413,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 15.46,
+        "passesAA": true,
+        "passesAAA": true
+      },
+      {
+        "value": "rgb(66, 66, 69)",
+        "elementsWithOwnText": 243,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 9.2,
+        "passesAA": true,
+        "passesAAA": true
+      },
+      {
+        "value": "rgb(22, 118, 74)",
+        "elementsWithOwnText": 22,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 5.18,
+        "passesAA": true,
+        "passesAAA": false
+      },
+      {
+        "value": "rgb(23, 77, 122)",
+        "elementsWithOwnText": 15,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 8.11,
+        "passesAA": true,
+        "passesAAA": true
+      },
+      {
+        "value": "rgb(138, 75, 0)",
+        "elementsWithOwnText": 8,
+        "onBackground": "rgb(245, 245, 247)",
+        "ratio": 6.25,
+        "passesAA": true,
+        "passesAAA": false
+      }
+    ],
+    "contrastLadderNote": "The distinct computed text colours on the page, ranked by how many visible elements carry their own text node in that colour; ratios are against the page background above.",
+    "darkModeMechanism": "none",
+    "darkModeEvidence": "No prefers-color-scheme block in 1 readable stylesheet(s), no theme attribute or theme class on html/body, and no control labelled theme/dark mode/appearance."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 640,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1024,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1280,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 420,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 460,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1536,
+        "kind": "min",
+        "count": 1
+      }
+    ],
+    "breakpointCount": 7,
+    "breakpointNote": "Read from 15 @media conditions in the readable CSSOM. em/rem widths were converted at the 16px root size. 0 of 1 stylesheets refused cssRules (cross-origin) and contributed nothing.",
+    "unreadableSheets": 0,
+    "totalSheets": 1,
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "gridElements": 61,
+      "flexElements": 1216,
+      "note": "Counted from computed display on every visible element, not from declarations, because most declarations sit in unreadable or utility-compiled rules."
+    },
+    "contentWidthCandidates": [
+      {
+        "value": "1180px",
+        "selector": "div.max-w-[1180px].sm:px-8.mx-auto.px-4",
+        "renderedWidthPx": 1180
+      },
+      {
+        "value": "448px",
+        "selector": "div.hidden.z-50.min-w-0.flex-1",
+        "renderedWidthPx": 448
+      },
+      {
+        "value": "1180px",
+        "selector": "article.mx-auto.w-full.max-w-[1180px].space-y-6",
+        "renderedWidthPx": 1180
+      },
+      {
+        "value": "896px",
+        "selector": "div.min-w-0.max-w-4xl",
+        "renderedWidthPx": 896
+      },
+      {
+        "value": "768px",
+        "selector": "p.mt-2.max-w-3xl.[overflow-wrap:anywhere].text-base",
+        "renderedWidthPx": 768
+      },
+      {
+        "value": "768px",
+        "selector": "p.mt-3.max-w-3xl.[overflow-wrap:anywhere].text-base",
+        "renderedWidthPx": 768
+      },
+      {
+        "value": "768px",
+        "selector": "p.mt-1.max-w-3xl.text-sm.leading-6",
+        "renderedWidthPx": 768
+      },
+      {
+        "value": "768px",
+        "selector": "p.max-w-3xl.[overflow-wrap:anywhere].text-base.font-medium",
+        "renderedWidthPx": 768
+      },
+      {
+        "value": "896px",
+        "selector": "dd.mt-2.max-w-4xl.[overflow-wrap:anywhere].text-lg",
+        "renderedWidthPx": 896
+      },
+      {
+        "value": "768px",
+        "selector": "dd.mt-1.5.max-w-3xl.[overflow-wrap:anywhere].text-base",
+        "renderedWidthPx": 768
+      }
+    ]
+  },
+  "navigation": {
+    "persistentElements": [
+      "header.sticky.top-0.z-40.w-full at sticky, 65px tall, top 0px",
+      "nav.flex.flex-wrap.items-center.gap-x-5 aria-label=\"Related RNAWiki pages\" with 3 links, position static",
+      "header.sticky.top-0.z-40.w-full {position:sticky; top:0px}",
+      "div.pointer-events-none.fixed.inset-x-0.bottom-0 {position:fixed; top:832px}",
+      "section.fixed.inset-x-3.bottom-3.z-[110] {position:fixed; top:754px}"
+    ],
+    "stickyOrFixedSelectors": [
+      "header.sticky.top-0.z-40.w-full {position:sticky}",
+      "div.pointer-events-none.fixed.inset-x-0.bottom-0 {position:fixed}",
+      "section.fixed.inset-x-3.bottom-3.z-[110] {position:fixed}"
+    ],
+    "stickyDeclarationsInReadableCss": 2,
+    "tocPresent": false,
+    "toc": null,
+    "tocEvidence": "No table of contents: no visible element 80-480px wide holding three or more in-page (#) links, and none labelled contents/outline/on-this-page.",
+    "revealedOnDemand": [
+      {
+        "selector": "input.w-full.bg-transparent.text-xs.text-[#1D1D1F]",
+        "ariaExpanded": "false",
+        "ariaControls": "drug-search-listbox-_R_mav5ubtb_",
+        "label": "Search by medicine, condition, gene, or protein",
+        "widthPx": 402,
+        "heightPx": 16
+      },
+      {
+        "selector": "button.inline-flex.h-11.w-11.items-center",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "label": "Search medicines",
+        "widthPx": 0,
+        "heightPx": 0
+      },
+      {
+        "selector": "summary.mx-auto.mt-6.w-fit.cursor-pointer",
+        "ariaExpanded": "false",
+        "ariaControls": "advanced-evidence-content",
+        "label": "See how we knowStudies, exact numbers, sources, an",
+        "widthPx": 391.04,
+        "heightPx": 84
+      },
+      {
+        "selector": "input.peer.sr-only",
+        "ariaExpanded": null,
+        "ariaControls": "_R_3956av5ubtb_-projection-panel",
+        "label": null,
+        "widthPx": 1,
+        "heightPx": 1
+      },
+      {
+        "selector": "input.peer.sr-only",
+        "ariaExpanded": null,
+        "ariaControls": "_R_3956av5ubtb_-projection-panel",
+        "label": null,
+        "widthPx": 1,
+        "heightPx": 1
+      },
+      {
+        "selector": "input.peer.sr-only",
+        "ariaExpanded": null,
+        "ariaControls": "_R_3956av5ubtb_-projection-panel",
+        "label": null,
+        "widthPx": 1,
+        "heightPx": 1
+      },
+      {
+        "selector": "input.peer.sr-only",
+        "ariaExpanded": null,
+        "ariaControls": "_R_3956av5ubtb_-projection-panel",
+        "label": null,
+        "widthPx": 1,
+        "heightPx": 1
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Population",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Uncertainty",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Boxed warning",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Contraindication",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Source drift",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Stale",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Source binding",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Canonical field",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Observed",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Derived",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Freshness",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Source version",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Source effective date",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-11.cursor-pointer.list-none",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Snapshot hash",
+        "widthPx": 534,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.flex.min-h-12.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Read the full research wording",
+        "widthPx": 1138,
+        "heightPx": 48
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      },
+      {
+        "selector": "summary.inline-flex.min-h-11.cursor-pointer.items-center",
+        "ariaExpanded": null,
+        "ariaControls": null,
+        "label": "Technical evidence details",
+        "widthPx": 177.26,
+        "heightPx": 44
+      }
+    ],
+    "evidence": "Landmarks, aria attributes and link counts read from the rendered DOM; positions and heights from computed style and getBoundingClientRect at this viewport."
+  },
+  "behaviours": [
+    {
+      "name": "copy buttons",
+      "basis": "observed",
+      "evidence": "2 control(s) labelled copy/clipboard, first button.inline-flex.min-h-11.items-center.gap-1.5"
+    },
+    {
+      "name": "scroll-driven graphics",
+      "basis": "inferred",
+      "evidence": "1 visible position:sticky box(es): header.sticky.top-0.z-40.w-full; 15 external scripts were not fetched, so a bundled observer would not be seen"
+    }
+  ],
+  "behavioursNotFound": [
+    "command palette (⌘K): no <kbd> containing ⌘/cmd/ctrl/K, no aria-keyshortcuts, and no metaKey reference in 1772215 characters of inline script; 15 external scripts were not fetched",
+    "theme toggle: no control whose text, aria-label, title, id or name mentions theme, dark mode, light mode, appearance or colour scheme",
+    "search overlay: search is a real input present at load, not a dialog; no dialog or [role=dialog] holding an input was found"
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": [
+      "Both viewports were measured in one real Chrome profile (/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/design-study/chrome-profile-measure), headful, with automation flags suppressed. No page was scrolled before measuring, so every rect is the at-load position.",
+      "One identity function, globalThis.__name, is injected before each page load: the collector is compiled by esbuild with keep-names, which references that helper. It changes no style, no layout and no measured field.",
+      "A consent banner was still on the content page after the decline pass: {\"selector\":\"section.fixed.inset-x-3.bottom-3.z-[110]\",\"widthPx\":672,\"heightPx\":126,\"yPx\":754,\"zIndex\":\"110\",\"position\":\"fixed\",\"openingText\":\"Analytics choicesAllow Google Analytics to count page visits and scrolls. Medicine searches, form entries, account details and URL query values are excluded.Not\",\"note\":\"Still on the page after the decline pass. Nothing was accepted.\"}",
+      "Consent handling: content @1440: 1 control(s) sit inside a consent or privacy notice and offered: \"Not now\" | content @1440: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted | content @375: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\" | content @375: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted | index @1440: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\" | index @1440: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted | index @375: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\" | index @375: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted. Only /reject all|decline|deny|only necessary|dismiss/i controls are ever clicked; nothing matching /accept|agree|allow|consent|got it|ok/i is touched.",
+      "typography.fluidType is null on purpose: the CSSOM reports resolved values, so clamp() cannot be seen at a single viewport. The desktop/mobile font sizes in `measured` answer the same question by observation.",
+      "Stylesheet transferred bytes are null: this pass reads the CSSOM rather than fetching each sheet. cssTextChars is the serialized rule length and is not the transferred size."
+    ],
+    "browserPass": {
+      "tool": "Playwright real Chrome (channel chrome), computed styles via page.evaluate",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Content page /d/metformin carries the reading column; index page / is measured separately below. Profile: /Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/design-study/chrome-profile-measure (its own directory so this can run beside the capture tool)."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://rnawiki.com/ (index)",
+      "https://rnawiki.com/d/metformin (content page — the reading column is measured here)"
+    ],
+    "method": "Chromium computed styles via Playwright page.evaluate in real Chrome. Desktop 1440x900 then mobile 375x812, each a fresh page load in the same persistent profile.",
+    "indexPage": {
+      "url": "https://rnawiki.com/",
+      "longestProseBlock": {
+        "containerSelector": "div.space-y-2.border-t.border-black/[0.06].px-4",
+        "widthPx": 494,
+        "fontSizePx": "11px",
+        "lineHeight": "20px",
+        "lineHeightRatio": 1.82,
+        "family": "-apple-system",
+        "color": "rgb(110, 110, 115)",
+        "charactersPerLine": 92,
+        "paragraphCount": 2,
+        "totalChars": 421,
+        "contrast": 5.07,
+        "passesAAA": false
+      },
+      "longestProseBlockNote": null,
+      "headings": {
+        "h1": {
+          "fontSize": "48px",
+          "fontWeight": "800",
+          "lineHeight": "60px",
+          "letterSpacing": "-1.2px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(29, 29, 31)",
+          "marginTop": "0px",
+          "marginBottom": "12px",
+          "textSample": "Understand any drug in 10 seconds.",
+          "count": 1
+        },
+        "h2": {
+          "fontSize": "30px",
+          "fontWeight": "800",
+          "lineHeight": "36px",
+          "letterSpacing": "-0.75px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(0, 113, 227)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Inclisiran (Leqvio)",
+          "count": 2
+        },
+        "h3": null
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerSelector": "header.sticky.top-0.z-40.w-full",
+        "headerPosition": "sticky",
+        "headerTop": "0px",
+        "headerHeightPx": 65,
+        "headerBackground": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+        "headerNote": null,
+        "stickyOrFixedCount": 3,
+        "stickyOrFixedElements": [
+          {
+            "selector": "header.sticky.top-0.z-40.w-full",
+            "position": "sticky",
+            "top": "0px",
+            "zIndex": "40",
+            "widthPx": 1440,
+            "heightPx": 65,
+            "visible": true
+          },
+          {
+            "selector": "button.fixed.bottom-4.right-4.sm:bottom-6",
+            "position": "fixed",
+            "top": "843.336px",
+            "zIndex": "40",
+            "widthPx": 103.16,
+            "heightPx": 32.66,
+            "visible": true
+          },
+          {
+            "selector": "section.fixed.inset-x-3.bottom-3.z-[110]",
+            "position": "fixed",
+            "top": "754px",
+            "zIndex": "110",
+            "widthPx": 672,
+            "heightPx": 126,
+            "visible": true
+          }
+        ],
+        "stickyOrFixedNote": null,
+        "elementsInDocument": 168,
+        "elementsScanned": 168,
+        "elementScanNote": "All 168 elements in the document were scanned.",
+        "documentScrolls": true,
+        "mainOwnsScroll": false,
+        "scrollOwnerNote": "The document scrolls; no <main> overflow container was found.",
+        "mainCount": 1,
+        "nav": {
+          "selector": "nav.flex.flex-wrap.items-center.justify-center",
+          "ariaLabel": "Footer",
+          "position": "static",
+          "widthPx": 736,
+          "heightPx": 14.66,
+          "links": 5
+        },
+        "navCount": 1,
+        "landmarkCounts": {
+          "header": 1,
+          "nav": 1,
+          "main": 1,
+          "aside": 0,
+          "footer": 1,
+          "section": 4,
+          "form": 0,
+          "h1": 1,
+          "h2": 3,
+          "h3": 0
+        }
+      },
+      "search": {
+        "inputPresentAtLoad": true,
+        "inputCount": 1,
+        "input": {
+          "selector": "input.flex-1.min-w-0.bg-transparent.text-sm",
+          "placeholder": "Search medicine, condition, gene, or protein...",
+          "ariaLabel": "Search by medicine, condition, gene, or protein",
+          "widthPx": 371.77,
+          "heightPx": 36,
+          "fontSize": "16px",
+          "type": "text"
+        },
+        "triggers": 1,
+        "triggersWithZeroBox": 0,
+        "triggersNote": null,
+        "trigger": {
+          "selector": "button.flex.items-center.gap-1.bg-[#0071E3]",
+          "tag": "button",
+          "label": "Search",
+          "widthPx": 98.23
+        },
+        "kbdHints": [],
+        "ariaKeyshortcuts": [],
+        "note": null
+      },
+      "toc": null,
+      "tocReason": "No table of contents: no visible element 80-480px wide holding three or more in-page (#) links, and none labelled contents/outline/on-this-page.",
+      "pageWeight": {
+        "docScrollHeightPx": 1569,
+        "screensOfScroll": 1.74,
+        "innerTextLength": 1316,
+        "htmlLength": 34962,
+        "textToHtmlRatio": 0.0376
+      },
+      "mobile": {
+        "horizontalOverflow": false,
+        "documentScrollWidth": 375,
+        "docScrollHeightPx": 1519,
+        "header": {
+          "position": "sticky",
+          "heightPx": 57,
+          "desktopWas": 65
+        },
+        "search": {
+          "inputPresentAtLoad": true,
+          "inputCount": 1,
+          "input": {
+            "selector": "input.flex-1.min-w-0.bg-transparent.text-sm",
+            "placeholder": "Search medicine, condition, gene, or protein...",
+            "ariaLabel": "Search by medicine, condition, gene, or protein",
+            "widthPx": 188.89,
+            "heightPx": 32,
+            "fontSize": "14px",
+            "type": "text"
+          },
+          "triggers": 1,
+          "triggersWithZeroBox": 0,
+          "triggersNote": null,
+          "trigger": {
+            "selector": "button.flex.items-center.gap-1.bg-[#0071E3]",
+            "tag": "button",
+            "label": "Search",
+            "widthPx": 92.11
+          },
+          "kbdHints": [],
+          "ariaKeyshortcuts": [],
+          "note": null
+        },
+        "menuControl": null,
+        "longestProseBlock": {
+          "widthPx": 309,
+          "fontSizePx": "11px",
+          "charactersPerLine": 58
+        }
+      },
+      "mobileNote": null
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "/d/metformin",
+        "containerTag": "div",
+        "containerClass": "max-w-3xl space-y-1.5",
+        "containerSelector": "div.max-w-3xl.space-y-1.5",
+        "containerWidthPx": 768,
+        "containerMaxWidth": "768px",
+        "paragraphContentWidthPx": 672,
+        "paragraphCount": 2,
+        "totalCharsInColumn": 900,
+        "fontSizePx": "16px",
+        "lineHeight": "28px",
+        "lineHeightRatio": 1.75,
+        "fontFamily": "-apple-system",
+        "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(81, 81, 84)",
+        "backgroundColor": "rgb(245, 245, 247)",
+        "backgroundImage": null,
+        "backgroundFrom": "div.min-h-screen.min-w-0.bg-[#F5F5F7].px-4 (first ancestor that paints a background)",
+        "backgroundNote": "",
+        "avgGlyphWidthPx": 7.24,
+        "avgGlyphWidthNote": "canvas measureText of the 635-character paragraph in font \"16px -apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif\"",
+        "charactersPerLine": 93,
+        "paragraphMarginBottom": "6px",
+        "longestParagraphChars": 635
+      },
+      "contrast": {
+        "bodyTextVsBackground": 7.26,
+        "pair": "rgb(81, 81, 84) on rgb(245, 245, 247)",
+        "passesAA": true,
+        "passesAAA": true
+      },
+      "headings": {
+        "measuredOn": "/d/metformin",
+        "scope": "main",
+        "h1": {
+          "fontSize": "56px",
+          "fontWeight": "700",
+          "lineHeight": "57.12px",
+          "letterSpacing": "-2.52px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(29, 29, 31)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Metformin",
+          "count": 1
+        },
+        "h2": {
+          "fontSize": "12px",
+          "fontWeight": "700",
+          "lineHeight": "20px",
+          "letterSpacing": "1.44px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(10, 102, 216)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "In 10 seconds",
+          "count": 5
+        },
+        "h3": {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(23, 77, 122)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Plain-language help for terms in this view",
+          "count": 27
+        },
+        "h1Note": null,
+        "h2Note": null,
+        "h3Note": null,
+        "bodyFontSizePx": 16,
+        "proseFontSizePx": 16,
+        "ratio_h1_body": 3.5,
+        "ratio_h2_body": 0.75,
+        "ratio_h3_body": 0.88,
+        "ratio_h1_documentBody": 3.5,
+        "ratioBasis": "Ratios are computed heading font-size over the measured prose font-size, as in Phase 1."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerSelector": "header.sticky.top-0.z-40.w-full",
+        "headerPosition": "sticky",
+        "headerTop": "0px",
+        "headerHeightPx": 65,
+        "headerBackground": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+        "headerNote": null,
+        "stickyOrFixedCount": 3,
+        "stickyOrFixedElements": [
+          {
+            "selector": "header.sticky.top-0.z-40.w-full",
+            "position": "sticky",
+            "top": "0px",
+            "zIndex": "40",
+            "widthPx": 1440,
+            "heightPx": 65,
+            "visible": true
+          },
+          {
+            "selector": "div.pointer-events-none.fixed.inset-x-0.bottom-0",
+            "position": "fixed",
+            "top": "832px",
+            "zIndex": "40",
+            "widthPx": 179.41,
+            "heightPx": 44,
+            "visible": true
+          },
+          {
+            "selector": "section.fixed.inset-x-3.bottom-3.z-[110]",
+            "position": "fixed",
+            "top": "754px",
+            "zIndex": "110",
+            "widthPx": 672,
+            "heightPx": 126,
+            "visible": true
+          }
+        ],
+        "stickyOrFixedNote": null,
+        "elementsInDocument": 8860,
+        "elementsScanned": 8860,
+        "elementScanNote": "All 8860 elements in the document were scanned.",
+        "documentScrolls": true,
+        "mainOwnsScroll": false,
+        "scrollOwnerNote": "The document scrolls; no <main> overflow container was found.",
+        "mainCount": 1,
+        "nav": {
+          "selector": "nav.flex.flex-wrap.items-center.gap-x-5",
+          "ariaLabel": "Related RNAWiki pages",
+          "position": "static",
+          "widthPx": 1180,
+          "heightPx": 69,
+          "links": 3
+        },
+        "navCount": 2,
+        "landmarkCounts": {
+          "header": 10,
+          "nav": 2,
+          "main": 1,
+          "aside": 0,
+          "footer": 1,
+          "section": 35,
+          "form": 1,
+          "h1": 1,
+          "h2": 6,
+          "h3": 27
+        }
+      },
+      "toc": null,
+      "tocReason": "No table of contents: no visible element 80-480px wide holding three or more in-page (#) links, and none labelled contents/outline/on-this-page.",
+      "search": {
+        "inputPresentAtLoad": true,
+        "inputCount": 1,
+        "input": {
+          "selector": "input.w-full.bg-transparent.text-xs.text-[#1D1D1F]",
+          "placeholder": "Search medicines, conditions, trials...",
+          "ariaLabel": "Search by medicine, condition, gene, or protein",
+          "widthPx": 402,
+          "heightPx": 16,
+          "fontSize": "12px",
+          "type": "text"
+        },
+        "triggers": 0,
+        "triggersWithZeroBox": 1,
+        "triggersNote": "1 further search-labelled control(s) compute to a zero-size box at this viewport and are not counted as visible triggers.",
+        "trigger": null,
+        "kbdHints": [],
+        "ariaKeyshortcuts": [],
+        "note": null
+      },
+      "spacing": {
+        "inferredBaseUnitPx": 4,
+        "inferredBaseUnitNote": "Largest unit dividing the majority of spacing occurrences, weighted by occurrence: 4px covers 90.6% of 5713 computed margin/padding/gap values over 8111 visible elements. Candidates tried, largest first: 16, 12, 10, 8, 6, 5, 4, 3, 2, 1px."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 1843,
+        "screensOfScroll": 2.05,
+        "innerTextLength": 1970,
+        "htmlLength": 2816103,
+        "textToHtmlRatio": 0.0007
+      },
+      "consentBanner": {
+        "selector": "section.fixed.inset-x-3.bottom-3.z-[110]",
+        "widthPx": 672,
+        "heightPx": 126,
+        "yPx": 754,
+        "zIndex": "110",
+        "position": "fixed",
+        "openingText": "Analytics choicesAllow Google Analytics to count page visits and scrolls. Medicine searches, form entries, account details and URL query values are excluded.Not",
+        "note": "Still on the page after the decline pass. Nothing was accepted."
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "/d/metformin",
+      "readingColumn": {
+        "measuredOn": "/d/metformin",
+        "containerTag": "div",
+        "containerClass": "max-w-3xl space-y-1.5",
+        "containerSelector": "div.max-w-3xl.space-y-1.5",
+        "containerWidthPx": 343,
+        "containerMaxWidth": "768px",
+        "paragraphContentWidthPx": 343,
+        "paragraphCount": 2,
+        "totalCharsInColumn": 900,
+        "fontSizePx": "16px",
+        "lineHeight": "28px",
+        "lineHeightRatio": 1.75,
+        "fontFamily": "-apple-system",
+        "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(81, 81, 84)",
+        "backgroundColor": "rgb(245, 245, 247)",
+        "backgroundImage": null,
+        "backgroundFrom": "div.min-h-screen.min-w-0.bg-[#F5F5F7].px-4 (first ancestor that paints a background)",
+        "backgroundNote": "",
+        "avgGlyphWidthPx": 7.24,
+        "avgGlyphWidthNote": "canvas measureText of the 635-character paragraph in font \"16px -apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif\"",
+        "charactersPerLine": 47,
+        "paragraphMarginBottom": "6px",
+        "longestParagraphChars": 635
+      },
+      "contrast": {
+        "bodyTextVsBackground": 7.26,
+        "pair": "rgb(81, 81, 84) on rgb(245, 245, 247)",
+        "passesAA": true,
+        "passesAAA": true
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.72px",
+          "letterSpacing": "-1.62px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(29, 29, 31)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Metformin",
+          "count": 1
+        },
+        "h2": {
+          "fontSize": "12px",
+          "fontWeight": "700",
+          "lineHeight": "20px",
+          "letterSpacing": "1.44px",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(10, 102, 216)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "In 10 seconds",
+          "count": 5
+        },
+        "h3": {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "-apple-system",
+          "fullStack": "-apple-system, \"system-ui\", \"SF Pro Display\", \"SF Pro Text\", \"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+          "color": "rgb(23, 77, 122)",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "textSample": "Plain-language help for terms in this view",
+          "count": 27
+        }
+      },
+      "bodyStepsDown": "Body type does not move: 16px/28px at 1440px and 16px/28px at 375px.",
+      "typeScaleChangesAtMobile": false,
+      "header": {
+        "position": "sticky",
+        "top": "0px",
+        "heightPx": 57,
+        "desktopWas": 65
+      },
+      "menuControl": {
+        "selector": "button.inline-flex.h-11.w-11.items-center",
+        "ariaLabel": "Search medicines",
+        "ariaExpanded": "false",
+        "widthPx": 44,
+        "heightPx": 44,
+        "y": 6,
+        "note": null
+      },
+      "navigationCollapse": "The <nav> keeps all 3 links at 375px (343px wide) rather than collapsing behind a control.",
+      "search": {
+        "inputPresentAtLoad": false,
+        "inputCount": 0,
+        "input": null,
+        "triggers": 1,
+        "triggersWithZeroBox": 0,
+        "triggersNote": null,
+        "trigger": {
+          "selector": "button.inline-flex.h-11.w-11.items-center",
+          "tag": "button",
+          "label": "Search medicines",
+          "widthPx": 44
+        },
+        "kbdHints": [],
+        "ariaKeyshortcuts": [],
+        "note": null
+      },
+      "toc": null,
+      "tocReason": "No table of contents: no visible element 80-480px wide holding three or more in-page (#) links, and none labelled contents/outline/on-this-page.",
+      "stickyOrFixed": [
+        {
+          "selector": "header.sticky.top-0.z-40.w-full",
+          "position": "sticky",
+          "top": "0px",
+          "zIndex": "40",
+          "widthPx": 375,
+          "heightPx": 57,
+          "visible": true
+        },
+        {
+          "selector": "div.pointer-events-none.fixed.inset-x-0.bottom-0",
+          "position": "fixed",
+          "top": "744px",
+          "zIndex": "40",
+          "widthPx": 375,
+          "heightPx": 68,
+          "visible": true
+        },
+        {
+          "selector": "section.fixed.inset-x-3.bottom-3.z-[110]",
+          "position": "fixed",
+          "top": "626px",
+          "zIndex": "110",
+          "widthPx": 351,
+          "heightPx": 174,
+          "visible": true
+        }
+      ],
+      "stickyOrFixedCount": 3,
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 2258,
+      "consentBanner": {
+        "selector": "section.fixed.inset-x-3.bottom-3.z-[110]",
+        "widthPx": 351,
+        "heightPx": 174,
+        "yPx": 626,
+        "zIndex": "110",
+        "position": "fixed",
+        "openingText": "Analytics choicesAllow Google Analytics to count page visits and scrolls. Medicine searches, form entries, account details and URL query values are excluded.Not",
+        "note": "Still on the page after the decline pass. Nothing was accepted."
+      }
+    },
+    "inferred": {
+      "react": true,
+      "reactEvidence": "A __react* key is present on document.body.",
+      "nextData": false,
+      "nextEvidence": "Script sources under /_next/ are present.",
+      "jquery": false,
+      "intersectionObserverInInlineScripts": false,
+      "intersectionObserverNote": "Only inline script text (1772215 characters) was searched. 15 external scripts were not fetched, so a bundled observer would not be seen.",
+      "detailsElements": 455,
+      "dialogElements": 0,
+      "tableElements": 0,
+      "figureElements": 0,
+      "imgElements": 0,
+      "lazyImgElements": 0,
+      "svgElements": 529,
+      "videoElements": 0,
+      "canvasElements": 0,
+      "hoverPreviewMarkerElements": 0,
+      "cssCustomPropertiesOnRoot": 113,
+      "colorSchemeDeclared": "normal",
+      "colorSchemeEvidence": "computed color-scheme on <html>; html attributes: lang=\"en\" class=\"__variable_b6296e __variable_e896d9\"",
+      "fontsLoaded": [
+        "Plus Jakarta Sans 300 (unloaded)",
+        "Plus Jakarta Sans 400 (unloaded)",
+        "Plus Jakarta Sans 500 (unloaded)",
+        "Plus Jakarta Sans 600 (unloaded)",
+        "Plus Jakarta Sans 700 (unloaded)",
+        "Plus Jakarta Sans 800 (unloaded)",
+        "Plus Jakarta Sans Fallback normal (unloaded)",
+        "JetBrains Mono 400 (unloaded)",
+        "JetBrains Mono 400 (loaded)",
+        "JetBrains Mono 500 (unloaded)",
+        "JetBrains Mono 600 (unloaded)",
+        "JetBrains Mono 600 (loaded)",
+        "JetBrains Mono Fallback normal (loaded)"
+      ],
+      "fontFaceFamiliesInReadableCss": [
+        "Plus Jakarta Sans",
+        "Plus Jakarta Sans Fallback",
+        "JetBrains Mono",
+        "JetBrains Mono Fallback"
+      ],
+      "stylesheetCount": 1,
+      "unreadableStylesheetCount": 0,
+      "readableCssRuleCount": 1178,
+      "scriptCount": 613,
+      "externalScriptCount": 15
+    },
+    "bannerActions": [
+      "content @1440: 1 control(s) sit inside a consent or privacy notice and offered: \"Not now\"",
+      "content @1440: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted",
+      "content @375: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\"",
+      "content @375: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted",
+      "index @1440: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\"",
+      "index @1440: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted",
+      "index @375: 2 control(s) sit inside a consent or privacy notice and offered: \"Not now\", \"Allow analytics\"",
+      "index @375: none of those matched /reject all|decline|deny|only necessary|dismiss/i, so nothing was clicked and nothing was accepted"
+    ]
+  }
+}

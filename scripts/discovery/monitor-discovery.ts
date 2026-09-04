@@ -18,6 +18,7 @@ import { fileURLToPath } from 'node:url'
 import {
   apiUrlForDossierUrl,
   classifyDiscoveryObservation,
+  parseSitemapLocations,
   sitemapDossierUrls,
   type DiscoveryBlockerCode,
   type DiscoveryObservation,
@@ -30,6 +31,16 @@ const DEFAULT_DELAY_MS = 250
 const DEFAULT_TIMEOUT_MS = 15_000
 const DEFAULT_OUT_DIR = 'docs/audits/discovery'
 const MAX_BODY_CHARACTERS = 2_000_000
+
+/**
+ * The browse spec puts every indexed record within three clicks of home
+ * (home \u2192 facet index \u2192 facet page \u2192 record), and allows one four-click path when a
+ * facet value splits by letter and then paginates. The walk therefore expands navigation pages to
+ * depth three, which is far enough to see a record at four clicks and call it too deep.
+ */
+const MAX_CLICK_DEPTH = 4
+const DEFAULT_CLICK_DEPTH_BUDGET = 600
+const MAX_DEEP_RECORDS_LISTED = 200
 
 export interface MonitorOptions {
   origin: URL
@@ -44,6 +55,10 @@ export interface MonitorOptions {
   resume: boolean
   json: boolean
   help: boolean
+  /** Walk the site from home and report how many clicks each indexed record is away. */
+  clickDepth: boolean
+  /** Most navigation pages the walk may fetch. A walk that runs out says so. */
+  clickDepthBudget: number
 }
 
 export interface MonitorRecord {
@@ -86,12 +101,19 @@ export function parseMonitorArguments(args: string[]): MonitorOptions {
   let resume = false
   let json = false
   let help = false
+  let clickDepth = true
+  let clickDepthBudget = DEFAULT_CLICK_DEPTH_BUDGET
 
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index] ?? ''
     if (argument === '--json') json = true
     else if (argument === '--resume') resume = true
-    else if (argument === '--help' || argument === '-h') help = true
+    else if (argument === '--no-click-depth') clickDepth = false
+    else if (argument === '--click-depth-budget' || argument.startsWith('--click-depth-budget=')) {
+      const [value, consumed] = optionValue(args, index, '--click-depth-budget')
+      clickDepthBudget = boundedInteger(value, '--click-depth-budget', 1, 20_000)
+      index = consumed
+    } else if (argument === '--help' || argument === '-h') help = true
     else if (argument === '--origin' || argument.startsWith('--origin=')) {
       const [value, consumed] = optionValue(args, index, '--origin')
       originValue = value
@@ -139,7 +161,20 @@ export function parseMonitorArguments(args: string[]): MonitorOptions {
     throw new Error('--origin must contain only a scheme and host, without a path, query or hash.')
   }
 
-  return { origin, input, concurrency, delayMs, timeoutMs, outDir, limit, resume, json, help }
+  return {
+    origin,
+    input,
+    concurrency,
+    delayMs,
+    timeoutMs,
+    outDir,
+    limit,
+    resume,
+    json,
+    help,
+    clickDepth,
+    clickDepthBudget,
+  }
 }
 
 function attribute(tag: string, name: string): string | null {
@@ -300,6 +335,12 @@ export interface MonitorSummary {
   notDiscoveryReady: number
   apiAvailable: number
   blockerCounts: Record<string, number>
+  /** Sitemap documents read, and the children an index named. */
+  sitemapDocumentsRead: number
+  sitemapChildren: string[]
+  unreadableSitemapChildren: Array<{ url: string; reason: string }>
+  /** Absent when the walk was turned off with --no-click-depth. */
+  clickDepth?: ClickDepthReport
   /** Named so nobody reads readiness as proof of indexing. */
   note: string
 }
@@ -312,6 +353,11 @@ export function summarizeMonitorRecords(
     finishedAt: string
     sitemapDossierUrls: number
     resumedFromCheckpoint: number
+    /** Optional so a caller that read one plain sitemap need not restate the obvious. */
+    sitemapDocumentsRead?: number
+    sitemapChildren?: string[]
+    unreadableSitemapChildren?: Array<{ url: string; reason: string }>
+    clickDepth?: ClickDepthReport
   },
 ): MonitorSummary {
   const blockerCounts: Record<string, number> = {}
@@ -332,6 +378,10 @@ export function summarizeMonitorRecords(
     notDiscoveryReady: records.length - discoveryReady,
     apiAvailable: records.filter((record) => record.api.status === 200).length,
     blockerCounts,
+    sitemapDocumentsRead: context.sitemapDocumentsRead ?? 1,
+    sitemapChildren: context.sitemapChildren ?? [],
+    unreadableSitemapChildren: context.unreadableSitemapChildren ?? [],
+    ...(context.clickDepth ? { clickDepth: context.clickDepth } : {}),
     note: 'DISCOVERY_READY describes what this origin served. It is not a record of crawling, indexing or citation.',
   }
 }
@@ -347,6 +397,226 @@ async function loadSitemapXml(
     return response.text()
   }
   return readFile(resolve(source), 'utf8')
+}
+
+/** A `<sitemapindex>` lists other sitemaps; a `<urlset>` lists pages. */
+export function isSitemapIndex(xml: string): boolean {
+  return /<sitemapindex[\s>]/i.test(xml)
+}
+
+/** Same-origin child sitemaps named by an index document, deduplicated, in document order. */
+export function sitemapIndexChildren(xml: string, origin: string): string[] {
+  if (!isSitemapIndex(xml)) return []
+  const seen = new Set<string>()
+  for (const location of parseSitemapLocations(xml)) {
+    let url: URL
+    try {
+      url = new URL(location)
+    } catch {
+      continue
+    }
+    if (url.origin !== origin) continue
+    seen.add(url.toString())
+  }
+  return [...seen]
+}
+
+export interface SitemapReadResult {
+  /** Every canonical dossier URL the sitemap, or its children, listed. */
+  urls: string[]
+  /** The child sitemaps an index named, in the order it named them. */
+  children: string[]
+  /** How many sitemap documents were read, the index itself included. */
+  documentsRead: number
+  /** A child an index named that could not be read, with the reason. */
+  unreadableChildren: Array<{ url: string; reason: string }>
+}
+
+/**
+ * Read the dossier URLs out of a sitemap, following a sitemap index into its children first.
+ *
+ * The site serves `/sitemap.xml` as an index over `/sitemaps/tier-1.xml` and its siblings
+ * (docs/specs/browse.md), so reading the index alone would find no `/d/` URL at all and report an
+ * empty corpus. Only same-origin children are followed, and a child that does not answer is
+ * recorded rather than passed over silently.
+ */
+export async function readSitemapDossierUrls(
+  xml: string,
+  options: MonitorOptions,
+  fetchImpl: FetchImplementation,
+): Promise<SitemapReadResult> {
+  const origin = options.origin.origin
+  if (!isSitemapIndex(xml)) {
+    return {
+      urls: sitemapDossierUrls(xml, origin),
+      children: [],
+      documentsRead: 1,
+      unreadableChildren: [],
+    }
+  }
+
+  const children = sitemapIndexChildren(xml, origin)
+  const seen = new Set<string>()
+  const unreadableChildren: Array<{ url: string; reason: string }> = []
+  let documentsRead = 1
+
+  for (const child of children) {
+    try {
+      const response = await fetchImpl(child, { headers: { accept: 'application/xml' } })
+      if (!response.ok) {
+        unreadableChildren.push({ url: child, reason: `HTTP ${response.status}` })
+        continue
+      }
+      const body = await response.text()
+      documentsRead += 1
+      for (const url of sitemapDossierUrls(body, origin)) seen.add(url)
+    } catch (error) {
+      unreadableChildren.push({ url: child, reason: errorName(error) })
+    }
+    await sleep(options.delayMs)
+  }
+
+  return { urls: [...seen], children, documentsRead, unreadableChildren }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Click depth (docs/specs/browse.md, R12)                                                       */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface ClickDepthReport {
+  /** Navigation pages fetched, and the ceiling that stopped the walk if it was reached. */
+  pagesWalked: number
+  budget: number
+  budgetExhausted: boolean
+  /** Indexed records found, by the number of clicks from the home page. */
+  distribution: Record<string, number>
+  /** Indexed records the walk never reached within four clicks. */
+  unreachable: number
+  /** Indexed records reached in more than three clicks, which the browse spec does not allow. */
+  deeperThanThree: string[]
+  deeperThanThreeTotal: number
+  note: string
+}
+
+/** Same-origin hrefs in served HTML, absolute, without a fragment. */
+export function pageLinks(html: string, pageUrl: string, origin: string): string[] {
+  const found = new Set<string>()
+  for (const tag of html.matchAll(/<a\b[^>]*>/gi)) {
+    const href = attribute(tag[0], 'href')
+    if (href === null || href.length === 0 || href.startsWith('#')) continue
+    let url: URL
+    try {
+      url = new URL(href, pageUrl)
+    } catch {
+      continue
+    }
+    if (url.origin !== origin) continue
+    url.hash = ''
+    found.add(url.toString())
+  }
+  return [...found]
+}
+
+function isDossierUrl(url: string): boolean {
+  try {
+    return new URL(url).pathname.startsWith('/d/')
+  } catch {
+    return false
+  }
+}
+
+/** Pages the walk will not expand: machine surfaces and anything that is not a page to click. */
+function isWalkable(url: string): boolean {
+  const path = new URL(url).pathname
+  if (path.startsWith('/api/') || path.startsWith('/sitemaps/')) return false
+  if (path === '/healthz' || path === '/sitemap.xml' || path === '/robots.txt') return false
+  return !/\.(?:xml|json|txt|png|jpg|jpeg|svg|webp|ico|css|js)$/i.test(path)
+}
+
+/**
+ * Walk the site from the home page and record how many clicks each dossier URL is away.
+ *
+ * This is the orphan half of the audit: the sitemap says which records are meant to be indexed,
+ * and this walk says which of them a reader (or a crawler with no sitemap) can actually reach by
+ * following links. A record the walk never reaches is reported as unreachable rather than as
+ * "deep", because the two are different failures and the budget may explain the first.
+ */
+export async function measureClickDepth(
+  indexedUrls: readonly string[],
+  options: MonitorOptions,
+  fetchImpl: FetchImplementation,
+): Promise<ClickDepthReport> {
+  const origin = options.origin.origin
+  const home = `${origin}/`
+  const depthByRecord = new Map<string, number>()
+  const visited = new Set<string>([home])
+  let frontier: string[] = [home]
+  let pagesWalked = 0
+  let budgetExhausted = false
+
+  for (let depth = 0; depth < MAX_CLICK_DEPTH && frontier.length > 0; depth += 1) {
+    const next = new Set<string>()
+    for (const pageUrl of frontier) {
+      if (pagesWalked >= options.clickDepthBudget) {
+        budgetExhausted = true
+        break
+      }
+      pagesWalked += 1
+      let html: string
+      try {
+        const response = await fetchImpl(pageUrl, {
+          redirect: 'follow',
+          headers: { accept: 'text/html' },
+        })
+        if (!response.ok) continue
+        html = (await response.text()).slice(0, MAX_BODY_CHARACTERS)
+      } catch {
+        continue
+      } finally {
+        await sleep(options.delayMs)
+      }
+
+      for (const link of pageLinks(html, pageUrl, origin)) {
+        if (isDossierUrl(link)) {
+          if (!depthByRecord.has(link)) depthByRecord.set(link, depth + 1)
+          continue
+        }
+        if (visited.has(link) || !isWalkable(link)) continue
+        visited.add(link)
+        if (depth + 1 < MAX_CLICK_DEPTH) next.add(link)
+      }
+    }
+    if (budgetExhausted) break
+    frontier = [...next]
+  }
+
+  const distribution: Record<string, number> = {}
+  const deep: string[] = []
+  let unreachable = 0
+  for (const url of indexedUrls) {
+    const depth = depthByRecord.get(url)
+    if (depth === undefined) {
+      unreachable += 1
+      continue
+    }
+    const bucket = String(depth)
+    distribution[bucket] = (distribution[bucket] ?? 0) + 1
+    if (depth > 3) deep.push(url)
+  }
+  deep.sort()
+
+  return {
+    pagesWalked,
+    budget: options.clickDepthBudget,
+    budgetExhausted,
+    distribution,
+    unreachable,
+    deeperThanThree: deep.slice(0, MAX_DEEP_RECORDS_LISTED),
+    deeperThanThreeTotal: deep.length,
+    note: budgetExhausted
+      ? 'The walk stopped at its page budget, so an unreachable record here may simply not have been walked to. Re-run with a larger --click-depth-budget before treating one as an orphan.'
+      : 'Click depth counts links followed from the home page. A record counted as unreachable was not linked from any page the walk reached within four clicks.',
+  }
 }
 
 function checkpointPath(options: MonitorOptions): string {
@@ -384,7 +654,8 @@ export async function runMonitor(
 ): Promise<MonitorSummary> {
   const startedAt = new Date().toISOString()
   const xml = await loadSitemapXml(options, fetchImpl)
-  const allUrls = sitemapDossierUrls(xml, options.origin.origin)
+  const sitemap = await readSitemapDossierUrls(xml, options, fetchImpl)
+  const allUrls = sitemap.urls
 
   const checkpoint = checkpointPath(options)
   const previous = options.resume ? await readCheckpoint(checkpoint) : []
@@ -399,11 +670,19 @@ export async function runMonitor(
     return record
   })
 
+  const clickDepth = options.clickDepth
+    ? await measureClickDepth(allUrls, options, fetchImpl)
+    : undefined
+
   const summary = summarizeMonitorRecords(options.origin.origin, [...previous, ...fresh], {
     startedAt,
     finishedAt: new Date().toISOString(),
     sitemapDossierUrls: allUrls.length,
     resumedFromCheckpoint: previous.length,
+    sitemapDocumentsRead: sitemap.documentsRead,
+    sitemapChildren: sitemap.children,
+    unreadableSitemapChildren: sitemap.unreadableChildren,
+    ...(clickDepth ? { clickDepth } : {}),
   })
   await writeFile(summaryPath(options), `${JSON.stringify(summary, null, 2)}\n`, 'utf8')
   return summary
@@ -422,6 +701,8 @@ function usage(): string {
     '  --limit <n>           Check at most n URLs this run (default: every URL)',
     '  --resume              Skip URLs already present in the checkpoint file',
     `  --out-dir <path>      Where the checkpoint and summary are written (default: ${DEFAULT_OUT_DIR})`,
+    '  --no-click-depth      Skip the home-to-record click-depth walk',
+    `  --click-depth-budget <n>  Navigation pages the walk may fetch (default: ${DEFAULT_CLICK_DEPTH_BUDGET})`,
     '  --json                Print the summary as JSON',
     '  --help                Show this help',
     '',
@@ -448,6 +729,29 @@ async function runCli(): Promise<void> {
         `Checked this run and earlier: ${summary.checked} (resumed ${summary.resumedFromCheckpoint})`,
         `DISCOVERY_READY: ${summary.discoveryReady}; not ready: ${summary.notDiscoveryReady}`,
         `Machine record answered: ${summary.apiAvailable}`,
+        `Sitemap documents read: ${summary.sitemapDocumentsRead}` +
+          (summary.sitemapChildren.length > 0
+            ? ` (index with ${summary.sitemapChildren.length} children)`
+            : ''),
+        ...(summary.unreadableSitemapChildren.length > 0
+          ? [
+              `Child sitemaps that did not answer: ${summary.unreadableSitemapChildren
+                .map((child) => `${child.url} (${child.reason})`)
+                .join(', ')}`,
+            ]
+          : []),
+        ...(summary.clickDepth
+          ? [
+              `Click depth (walked ${summary.clickDepth.pagesWalked} pages): ` +
+                Object.entries(summary.clickDepth.distribution)
+                  .sort(([left], [right]) => Number(left) - Number(right))
+                  .map(([depth, count]) => `${depth} click${depth === '1' ? '' : 's'}: ${count}`)
+                  .join(', '),
+              `Deeper than three clicks: ${summary.clickDepth.deeperThanThreeTotal}; not reached: ${summary.clickDepth.unreachable}`,
+              ...summary.clickDepth.deeperThanThree.map((url) => `  too deep: ${url}`),
+              summary.clickDepth.note,
+            ]
+          : []),
         summary.note,
       ].join('\n'),
     )

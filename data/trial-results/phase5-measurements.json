@@ -1,0 +1,109 @@
+{
+  "measuredAt": "2026-09-03T08:09:51.245Z",
+  "affected": {
+    "pages": 324,
+    "pagesThatGainedText": 324,
+    "medianWordsAdded": 1513.5,
+    "medianWordsBefore": 8707.5,
+    "pairs": 52326,
+    "semanticPages": 150,
+    "before": {
+      "lexical": 0.532860824742268,
+      "positional": 0.5768670636420075,
+      "semantic": null
+    },
+    "after": {
+      "lexical": 0.5,
+      "positional": 0.5241106085103033,
+      "semantic": null
+    },
+    "controlOther": {
+      "lexical": 0.4634076052576088,
+      "positional": 0.5370042375349944,
+      "semantic": null
+    },
+    "controlSelf": {
+      "lexical": 0.532860824742268,
+      "positional": 0.5667549655134093,
+      "semantic": null
+    },
+    "controlShuffled": {
+      "lexical": 0.44948351988943824,
+      "positional": 0.46387470495266214,
+      "semantic": null
+    },
+    "semantic": {
+      "before": 0.8835673686004104,
+      "after": 0.8823370889349564,
+      "controlOther": 0.9022964479652825,
+      "controlSelf": 0.874051021703396
+    },
+    "nearestNeighbour": {
+      "before": 0.7348280630161643,
+      "after": 0.7143437527576075,
+      "controlOther": 0.719332613806053,
+      "controlSelf": 0.7282219728342929
+    }
+  },
+  "corpus": {
+    "pages": 324,
+    "pagesThatGainedText": 115,
+    "medianWordsAdded": 956,
+    "medianWordsBefore": 5031,
+    "pairs": 52326,
+    "semanticPages": 150,
+    "before": {
+      "lexical": 0.6252302025782689,
+      "positional": 0.6721337848387028,
+      "semantic": null
+    },
+    "after": {
+      "lexical": 0.6120093039624698,
+      "positional": 0.6708256004325361,
+      "semantic": null
+    },
+    "controlOther": {
+      "lexical": 0.6140273042855586,
+      "positional": 0.6940964787128661,
+      "semantic": null
+    },
+    "controlSelf": {
+      "lexical": 0.6252302025782689,
+      "positional": 0.6717896174863388,
+      "semantic": null
+    },
+    "controlShuffled": {
+      "lexical": 0.6076066790352505,
+      "positional": 0.6683390583591186,
+      "semantic": null
+    },
+    "semantic": {
+      "before": 0.9137799831617757,
+      "after": 0.9112260002469176,
+      "controlOther": 0.9167689792371435,
+      "controlSelf": 0.9096825317032161
+    },
+    "nearestNeighbour": {
+      "before": 0.8673969503003305,
+      "after": 0.8678668377707914,
+      "controlOther": 0.8703504150702426,
+      "controlSelf": 0.8673969503003305
+    }
+  },
+  "allAffected": {
+    "pages": 2431,
+    "pagesThatGainedText": 2431,
+    "method": "five-gram containment, 1-in-4 deterministic sketch, nearest neighbour among all 2431",
+    "medianNearestNeighbour": {
+      "before": 0.7672090112640801,
+      "after": 0.7384066587395958,
+      "control": 0.7402173913043478
+    },
+    "belowSeventyBefore": 102,
+    "belowSeventyAfter": 355,
+    "belowSeventyControl": 214,
+    "unmoved": 0,
+    "medianFall": 0.0286339084676297,
+    "medianFallControl": 0.02922062904717848
+  }
+}

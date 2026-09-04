@@ -1,0 +1,414 @@
+{
+  "site": "longecity.org",
+  "track": "A2",
+  "urls": {
+    "index": "https://www.longecity.org/forum/",
+    "content": "https://www.longecity.org/forum/forum/3-supplements/"
+  },
+  "capturedAt": "2026-09-03T15:19:15.703Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: closed the consent container via '×' in #anonymous_element_4",
+    "index-375: closed the consent container via '×' in #anonymous_element_4",
+    "content-1440: left: no permitted refusal control in #user_navigation (controls: Log In with Google, Sign In, Create Account); banner stands in the captures",
+    "content-375: left: no permitted refusal control in #user_navigation (controls: Log In with Google, Sign In, Create Account); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://www.longecity.org/forum/forum/3-supplements/",
+    "collectedAt": "2026-09-03T15:19:00.528Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0044,
+    "title": "Error - LONGECITY",
+    "innerTextLength": 758,
+    "outerHtmlLength": 172652,
+    "headingOutline": [
+      {
+        "tag": "h3",
+        "text": "Google Sign in options"
+      },
+      {
+        "tag": "h1",
+        "text": "Sorry, we couldn't find that!"
+      },
+      {
+        "tag": "h3",
+        "text": "Ad Notice"
+      }
+    ],
+    "headingCount": 3,
+    "stickyOrFixedCount": 1,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "",
+        "position": "fixed",
+        "top": 0,
+        "height": 900
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 1,
+      "firstLabels": [
+        "Menu's powered by ProMenu Plus Copyright (c) 2013, Michael S"
+      ]
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 64,
+    "scriptsUnreadable": 4,
+    "searchAffordances": {
+      "count": 0,
+      "firstDescriptors": []
+    },
+    "imgCount": 66,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 1,
+      "totalSheets": 47
+    },
+    "bodyBackgroundColor": "rgb(216, 221, 232)",
+    "bodyColor": "rgb(90, 90, 90)",
+    "canvasCount": 0,
+    "svgCount": 0
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1443,
+      "heightPx": 3522,
+      "sha256": "d077b7537e4acfa5676f1330fe9632a511ebf4fac96ba76c172028094c52cab3",
+      "capturedAt": "2026-09-03T15:18:39.549Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "776f035e49da72f8d138d63e9bc779f20179ac24c9ce2123536186a5b34637d6",
+      "capturedAt": "2026-09-03T15:18:39.663Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f9ab555777bfeea2fc88e40b2877a48ac67ad90d4b04dafb8a88a65f4c2cc363",
+      "capturedAt": "2026-09-03T15:18:39.767Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "934d7429cddb2b33b53ddc1d207fb9a680edd726542ea82d06f3d6c19a3313cf",
+      "capturedAt": "2026-09-03T15:18:39.820Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 822,
+      "sha256": "2a073262062594f7b4263cce1b4d0a2674855a447854e0ac63f2b58bde0bcdce",
+      "capturedAt": "2026-09-03T15:18:39.879Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 879,
+      "heightPx": 3581,
+      "sha256": "938dfce21276c113a455ff04731497e6ad886ab204d3e09bf7b5c0be8b75e4de",
+      "capturedAt": "2026-09-03T15:18:50.353Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "2aab9a6f90e610f6c9faed825ceed0cd4808e68f6caa3e1c0f26daa36b9c0a49",
+      "capturedAt": "2026-09-03T15:18:50.405Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8754fe2baf156b4a8be486f134bbca5816845abd8ecb47b19b68909195326bed",
+      "capturedAt": "2026-09-03T15:18:50.473Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "459b60142b4faa175e27a5ab0f1a308368eb61bdb2fffad2d6add0a85b60dd58",
+      "capturedAt": "2026-09-03T15:18:50.528Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e94210585c769a7e9d673fc4ccc410653399b431b5942a0ccc0a55433fc34dbc",
+      "capturedAt": "2026-09-03T15:18:50.561Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://www.longecity.org/forum/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 333,
+      "sha256": "c962c6cc11a1d0bda03ce376a60f70feddbb52cde0a7c9c7ecebae30416cfc64",
+      "capturedAt": "2026-09-03T15:18:50.593Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1443,
+      "heightPx": 900,
+      "sha256": "1418de4cc237c9e1b5a3455bf8b10a035f7f11c1e714556c34b77fcae26edc95",
+      "capturedAt": "2026-09-03T15:18:58.663Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "165a0bc040a8a312bc5d6ce82fb775a506c17a21bf4ed622c8697365a2f0611a",
+      "capturedAt": "2026-09-03T15:18:58.726Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1c527a0ad2d689e90d988cbc21c5e4a5eca5d1041b96814aef27f37f48ba2bef",
+      "capturedAt": "2026-09-03T15:19:02.106Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1359bc5350c21610e51a17ae922e0ddd6ba6c0825875d74bab6434df78a3a1fa",
+      "capturedAt": "2026-09-03T15:19:03.678Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b941e005270c312df8ca3d69afde4d23cb39e617c6d48445139a69aa380d485e",
+      "capturedAt": "2026-09-03T15:19:05.258Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 879,
+      "heightPx": 812,
+      "sha256": "ddff1dd0eb8f7cf3d58003e89e631e211531d1ed96ae6172716baf892338fd5f",
+      "capturedAt": "2026-09-03T15:19:10.991Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "25fc92cc287518380c9060a9ca5f73859fb75f6f2290a219d7a8c819d674ea6a",
+      "capturedAt": "2026-09-03T15:19:11.043Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4456a0531ef569aa60fc7dbd41dc4447c8bc3fd3df6049272a384a41c3125c87",
+      "capturedAt": "2026-09-03T15:19:12.601Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4456a0531ef569aa60fc7dbd41dc4447c8bc3fd3df6049272a384a41c3125c87",
+      "capturedAt": "2026-09-03T15:19:14.143Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://www.longecity.org/forum/forum/3-supplements/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4456a0531ef569aa60fc7dbd41dc4447c8bc3fd3df6049272a384a41c3125c87",
+      "capturedAt": "2026-09-03T15:19:15.703Z"
+    }
+  ]
+}

@@ -224,6 +224,21 @@ export function dossierNavigatorSections(
       : []),
 
     /*
+     * Offered whenever a results fetch has run for the record, including when nothing qualified:
+     * the section renders in that case too and states the absence plainly.
+     */
+    ...(dossier.trialResults
+      ? [
+          {
+            id: 'trial-results',
+            label: 'Results posted for these trials',
+            present: dossier.trialResults.shown.length > 0,
+            count: dossier.trialResults.totalQualifying,
+          },
+        ]
+      : []),
+
+    /*
      * Offered only when the record carries a completion assessment, because the anchor exists only
      * then. `answered` means every applicable section reached an explicit state; an incomplete
      * assessment takes the ordinary absence state, since some section still has no state to read.

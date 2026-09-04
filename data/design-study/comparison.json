@@ -1,0 +1,778 @@
+{
+  "schema_version": 1,
+  "generated": "2026-09-03",
+  "purpose": "Phase 1 cross-site comparison. One row per reference site, drawn only from the per-site JSONs in this directory. Every value is measured from fetched markup, fetched CSS or Chromium computed styles, or it is null with a stated reason. Nothing is estimated.",
+  "viewport": {
+    "desktop": "1440x900 (atlasobscura measured at 379x821 on mobile because the tab would not hold 375x812)",
+    "mobile": "375x812"
+  },
+  "method": "Values were read out of data/design-study/<site>.json, which record the fetch and browser passes. No new fetch was made to build this file.",
+  "columnDefinitions": {
+    "fontStackShort": "Body face plus any distinct display or interface face, from computed font-family on the measured page.",
+    "body": "Computed font-size and line-height on the measured prose paragraph. staticCandidate* is filled only when the measured value is null.",
+    "charactersPerLine": "Paragraph content width divided by measured average glyph width. The commonly cited comfortable range is 45-75.",
+    "h1BodyRatio": "Computed h1 font-size divided by computed body font-size on the same page.",
+    "baseSpacingUnit": "Largest unit that divides the majority of margin/padding/gap declarations, weighted by occurrence.",
+    "breakpointsPx": "Width thresholds from @media rules; em/rem converted at the declared 16px root. loadBearing = thresholds carrying the layout by rule count.",
+    "readingColumnWidthPx": "Rendered width of the prose paragraph, not of its wrapper.",
+    "navPattern": "persistent = site navigation is visible without an action; on-demand = it must be opened. Classified from computed position, rendered height and the presence of an opener control.",
+    "darkModeMechanism": "How a dark palette is selected: prefers-color-scheme, class/attribute, or none.",
+    "bodyContrastRatio": "WCAG contrast of computed body text colour against the first ancestor that paints a background.",
+    "textToHtmlRatio": "innerText length divided by outerHTML length on the measured page.",
+    "flag": "measured = every column in the row came from markup, CSS or computed style. measured (partial) = all columns here are measured, but a named field elsewhere in the site JSON is unknown. blocked = nothing was measured."
+  },
+  "rangesAcrossTheSet": {
+    "charactersPerLine": {
+      "min": 68,
+      "max": 218,
+      "proseOnlyMin": 68,
+      "proseOnlyMax": 112,
+      "insideForty5ToSeventy5": [
+        "quantamagazine.org (73)",
+        "theverge.com (71)",
+        "pudding.cool (68)"
+      ]
+    },
+    "bodyFontSizePx": {
+      "min": 14,
+      "max": 20.41
+    },
+    "lineHeightRatio": {
+      "min": 1.5,
+      "max": 1.88
+    },
+    "h1BodyRatio": {
+      "min": 1,
+      "max": 4.24
+    },
+    "bodyContrastRatio": {
+      "min": 7.17,
+      "max": 18.58
+    },
+    "textToHtmlRatio": {
+      "min": 0.0017,
+      "max": 0.085,
+      "note": "atlasobscura.com low, smashingmagazine.com high"
+    },
+    "baseSpacingUnit": {
+      "fourPx": 7,
+      "tenPx": 1,
+      "emRelative": 1,
+      "unavailable": 1
+    },
+    "darkModeMechanism": {
+      "classOrAttribute": 4,
+      "prefersColorScheme": 1,
+      "none": 4,
+      "unavailable": 1
+    },
+    "navPattern": {
+      "persistent": 6,
+      "onDemand": 2,
+      "persistentNonSticky": 1,
+      "unavailable": 1
+    }
+  },
+  "rows": [
+    {
+      "site": "wikiwand.com",
+      "sourceFile": "wikiwand_com.json",
+      "pageMeasured": null,
+      "flag": "blocked",
+      "fontStackShort": null,
+      "fontStackNote": "No Wikiwand CSS or DOM was ever delivered; the only styling in the saved bytes belongs to the Cloudflare interstitial and is deliberately not recorded.",
+      "body": {
+        "measuredFontSizePx": null,
+        "measuredLineHeightPx": null,
+        "ratio": null,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "unavailable"
+      },
+      "charactersPerLine": null,
+      "h1BodyRatio": null,
+      "baseSpacingUnit": {
+        "px": null,
+        "declared": null,
+        "provenance": "unavailable"
+      },
+      "breakpointsPx": null,
+      "readingColumnWidthPx": null,
+      "navPattern": {
+        "classification": null,
+        "evidence": "Article DOM never rendered.",
+        "provenance": "unavailable"
+      },
+      "darkModeMechanism": {
+        "value": null,
+        "provenance": "unavailable"
+      },
+      "bodyContrastRatio": {
+        "value": null,
+        "pair": null,
+        "provenance": "unavailable"
+      },
+      "textToHtmlRatio": {
+        "value": null,
+        "textChars": null,
+        "htmlChars": null,
+        "provenance": "unavailable",
+        "note": "The 0.0096 ratio in the saved responses measures the Cloudflare challenge page, not Wikiwand."
+      },
+      "nullReason": "HTTP 403 Cloudflare JavaScript/cookie challenge on both the static fetch and the browser pass. Two article loads and one root probe returned the same 5.7-6.0 KB interstitial. Not bypassed."
+    },
+    {
+      "site": "stripe.com/docs",
+      "sourceFile": "stripe_com_docs.json",
+      "pageMeasured": "https://docs.stripe.com/api/charges",
+      "flag": "measured",
+      "fontStackShort": "system sans (-apple-system, system-ui, Segoe UI, Roboto); Source Code Pro for code",
+      "body": {
+        "measuredFontSizePx": 14,
+        "measuredLineHeightPx": 22.4,
+        "ratio": 1.6,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 77,
+      "h1BodyRatio": 1.71,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": "--sail-spacing-0/2/4/8/12/16/20/24/32/48/64/80",
+        "provenance": "measured"
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          1000
+        ],
+        "secondary": [
+          480,
+          562,
+          600,
+          650,
+          750,
+          800,
+          850,
+          1024
+        ],
+        "distinctThresholds": 32,
+        "note": "1000px carries 30 of 111 queries and is where the one-column layout becomes two; everything else is component-local. Mostly max-width.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 503,
+        "basis": "paragraph content width; the prose column sits inside a 1160px <main> beside a paired code panel",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "Static 56px header, a 280px left endpoint list that scrolls in its own pane (clientHeight 762, scrollHeight 4760), and a 6-tab product bar. On-demand layer: 29-34 sidebar branch chevrons and 61 collapsed parameter rows. No search input at load — one <kbd>/</kbd> hint whose target was not determined.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "none (page level)",
+        "evidence": "2 prefers-color-scheme blocks in 529 KB, both component-scoped opt-ins; no [data-theme] selector, no theme class on <html>, no toggle control. The reference page's dark palette is the authored default, not a preference-derived state (colorScheme computes to 'normal').",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 15.44,
+        "pair": "rgb(236,238,241) on rgb(20,23,29)",
+        "passesAAA": true,
+        "provenance": "measured"
+      },
+      "textToHtmlRatio": {
+        "value": 0.0072,
+        "textChars": 16113,
+        "htmlChars": 2224658,
+        "provenance": "measured",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "vercel.com/docs",
+      "sourceFile": "vercel_com_docs.json",
+      "pageMeasured": "https://vercel.com/docs/deployments (prose); /docs is a card index",
+      "flag": "measured",
+      "fontStackShort": "GeistSans; Geist Mono for code",
+      "body": {
+        "measuredFontSizePx": 16,
+        "measuredLineHeightPx": 27.2,
+        "ratio": 1.7,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 112,
+      "h1BodyRatio": 3.5,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": "named scale 2x=8 3x=12 4x=16 6x=24 8x=32 10x=40 16x=64 24x=96 32x=128 48x=192 64x=256",
+        "provenance": "measured",
+        "note": "84.5% of weighted literal lengths resolve to 4px multiples."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          601,
+          961,
+          1024
+        ],
+        "secondary": [
+          401,
+          640,
+          768,
+          951,
+          1200,
+          1280,
+          1400
+        ],
+        "distinctThresholds": 39,
+        "note": "Two overlapping systems: a Geist set at 401/601/951/961/1200/1400 and a Tailwind set at 640/768/1024/1280. 601/600 is the most used pair; the docs shell switches panes at 1024.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 824,
+        "basis": "set by a three-pane grid (288px nav + article + 240px TOC), not by a max-width on the prose",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "64px sticky header (top:0, z-index 75) + 288px left nav with 81 links sticky at top:64px + 240px right TOC sticky at top:88px with 13 in-page links. On-demand layer: a 264px 'Search Docs ⌘ K' button opening a dialog; the input does not exist until it opens.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "class/attribute",
+        "evidence": "Tokens redefined under `.dark, .dark-theme, .invert-theme` and `[data-theme=dark]` (12 data-theme selectors, 38 .dark selectors); 1 prefers-color-scheme block only.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 17.94,
+        "pair": "rgb(237,237,237) on rgb(0,0,0)",
+        "passesAAA": true,
+        "provenance": "measured"
+      },
+      "textToHtmlRatio": {
+        "value": 0.008,
+        "textChars": 8045,
+        "htmlChars": 1006861,
+        "provenance": "measured",
+        "note": "Index page: 7450 / 847194, also 0.01.",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "linear.app/method",
+      "sourceFile": "linear_app_method.json",
+      "pageMeasured": "https://linear.app/method/introduction (prose); /method is a chapter index",
+      "flag": "measured",
+      "fontStackShort": "Inter Variable body; Tiempos Headline serif for h1 only",
+      "body": {
+        "measuredFontSizePx": 17,
+        "measuredLineHeightPx": 27.2,
+        "ratio": 1.6,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 86,
+      "h1BodyRatio": 4.24,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": null,
+        "provenance": "measured",
+        "note": "74% of 288 length occurrences and 14 of 26 distinct values are 4px multiples."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          640,
+          768,
+          1024,
+          1280
+        ],
+        "secondary": [
+          1536
+        ],
+        "distinctThresholds": 9,
+        "note": "Desktop-first: max-width 640/768/1024/1280 carry 32/42/22/6 rules, each with one min-width+1 companion. 768px is the long-text reflow point (body 17 -> 15px).",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 688,
+        "basis": "named centred container `prose center size-l` at a fixed width, not a fraction of the viewport",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "One fixed 73px header with a 9-link <nav aria-label='Main'> is the page's only fixed or sticky box (stickyOrFixedCount 1). No TOC, no sticky sidebar, no progress element, no search input and no <kbd> anywhere. On-demand layer: a mobile menu overlay at calc(100dvh - header).",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "class/attribute",
+        "evidence": "<html data-theme='dark'> served on both pages; three complete token blocks [data-theme=dark] (57 properties), [data-theme=light] (67), [data-theme=glass] (37). No prefers-color-scheme rule governs the palette.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 13.64,
+        "pair": "rgb(208,214,224) on rgb(8,9,10)",
+        "passesAAA": true,
+        "provenance": "measured"
+      },
+      "textToHtmlRatio": {
+        "value": 0.0125,
+        "textChars": 5873,
+        "htmlChars": 470233,
+        "provenance": "measured",
+        "note": "Index page: 939 / 405430 = 0.00.",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "quantamagazine.org",
+      "sourceFile": "quantamagazine_org.json",
+      "pageMeasured": "one dated feature article, plus the home page",
+      "flag": "measured",
+      "fontStackShort": "Merriweather, Georgia, serif body; Noe Display h1; Pangram sans labels",
+      "body": {
+        "measuredFontSizePx": 16,
+        "measuredLineHeightPx": 30,
+        "ratio": 1.88,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 73,
+      "h1BodyRatio": 2.5,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": null,
+        "provenance": "measured",
+        "note": "Two parallel systems: an em-relative typographic rhythm on a 0.25em step, and a px track whose values are 4px multiples."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          544,
+          800,
+          1056
+        ],
+        "secondary": [
+          320,
+          704,
+          768,
+          1040,
+          1200,
+          1360
+        ],
+        "distinctThresholds": 22,
+        "note": "Declared in em (34em / 50em / 66em) and converted at 16px; 34em and 66em carry 100 and 103 blocks.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 560,
+        "basis": "paragraph content width in `post__content wysiwyg`; narrowest pixel column in the set and the only one inside 45-75 characters",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "on-demand",
+        "evidence": "The <header> element computes to zero height; site navigation is a fixed full-viewport 'mega' overlay held out of view until opened. Only 2 fixed boxes on the article, one of which is the consent banner. No sticky header, no progress bar, no TOC, no sticky share rail. Search is the exception: a real 280px input with a visible placeholder and an orange submit button.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "none",
+        "evidence": "0 prefers-color-scheme occurrences across all 18 fetched CSS files; no data-theme on <html> or <body>; --theme-background is only ever declared white. The 8 `.dark` rules are a link-underline variant.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 17.4,
+        "pair": "rgb(26,26,26) on rgb(255,255,255)",
+        "passesAAA": true,
+        "provenance": "measured"
+      },
+      "textToHtmlRatio": {
+        "value": 0.0724,
+        "textChars": 20777,
+        "htmlChars": 286923,
+        "provenance": "measured",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "theverge.com",
+      "sourceFile": "theverge_com.json",
+      "pageMeasured": "one news article, plus the home page (home page carries no running text)",
+      "flag": "measured (partial)",
+      "flagReason": "Layout, typography, colour, contrast, chrome and page weight are fully measured. The behaviour scan timed out, so IntersectionObserver use is untested and recorded as unknown rather than absent.",
+      "fontStackShort": "FK Roman Standard, Georgia, serif body; polySans headings and interface",
+      "body": {
+        "measuredFontSizePx": 18,
+        "measuredLineHeightPx": 28.8,
+        "ratio": 1.6,
+        "letterSpacingPx": -0.18,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 71,
+      "h1BodyRatio": 2.44,
+      "baseSpacingUnit": {
+        "px": 10,
+        "declared": null,
+        "provenance": "measured",
+        "confidence": "moderate",
+        "note": "From 833 px-valued declarations: 20px (142), 10px (101), 16px (82), 40px (60). Multiples of 5 cover 57.3%. A secondary 4px track (4/6/8/12/16/24/48) runs alongside it."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          768,
+          1180
+        ],
+        "secondary": [
+          901,
+          1024,
+          1200,
+          1300
+        ],
+        "distinctThresholds": 15,
+        "note": "min-width:768 (76 blocks) and min-width:1180 (45) carry the design; min-width blocks outnumber max-width roughly 8:1.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 600,
+        "basis": "paragraph content width in `duet--article--article-body-component`",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "Sticky masthead <nav aria-label='Top Navigation'> at top:10px (top:20px from 768px), z-index 10900, plus a skip-to-content link as the first focusable element. On-demand layer: a 450px fixed drawer at z-index 12000 with per-section collapse controls. The article page renders no <header> element; 11 fixed or sticky boxes include three full-viewport bx-slab overlays at the maximum 32-bit z-index. No TOC.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "class/attribute",
+        "evidence": "0 prefers-color-scheme blocks in 351 KB of CSS. Three sibling class scopes each redefine ~1,867 custom properties, selected by a body class alongside data-duet-theme='vergeLight'. A user control exists (aria-label='Color theme'); the OS setting alone does not switch the site.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 18.58,
+        "pair": "rgb(255,255,255) on rgb(19,19,19)",
+        "passesAAA": true,
+        "provenance": "measured"
+      },
+      "textToHtmlRatio": {
+        "value": 0.0064,
+        "textChars": 4736,
+        "htmlChars": 740827,
+        "provenance": "measured",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "smashingmagazine.com",
+      "sourceFile": "smashingmagazine_com.json",
+      "pageMeasured": "one long article, plus the home page",
+      "flag": "measured",
+      "fontStackShort": "Elena serif body; Mija display for h1",
+      "body": {
+        "measuredFontSizePx": 20.4086,
+        "measuredLineHeightPx": 33.4929,
+        "ratio": 1.64,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured",
+        "note": "Fluid: the non-integer values are identical on the home page, so the scale is computed from a clamp/vw expression. Resolves to 18px/27.75px (ratio 1.54) at 375px."
+      },
+      "charactersPerLine": 82,
+      "h1BodyRatio": 2.4,
+      "baseSpacingUnit": {
+        "px": null,
+        "declared": "0.25em",
+        "provenance": "measured",
+        "note": "Not determinable as a px constant: the spacing system is em-relative, so its rendered px value changes with each element's font-size and with the fluid body ramp (18px to 26px). 1091 of 1286 em tokens (85%) land on the 0.25em ladder."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          640,
+          1024
+        ],
+        "secondary": [
+          480,
+          768,
+          800,
+          1025,
+          1100
+        ],
+        "distinctThresholds": 95,
+        "note": "A long tail of component-local queries rather than a shared scale. Highest traffic: max-1024 (82), max-640 (62), min-1024 (48), min-1025 (35), min-768 (33).",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 700,
+        "basis": "paragraph content width (699.99px). The wrapper spans 1356.8px, so a container-width reading would be wrong by a factor of two: the measure is set on the paragraph.",
+        "containerMaxWidth": null,
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent (non-sticky)",
+        "evidence": "A 103.43px relative masthead with main nav, secondary nav and subnav, and zero sticky and zero fixed elements on both pages — the only reference in this set with no persistent chrome that follows the reader. On-demand layer: a primary-nav overflow button (aria-haspopup, aria-expanded). Search is a rendered 350px input at 21.85px. No consent banner.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "none",
+        "evidence": "0 occurrences of prefers-color-scheme and 0 of the color-scheme property across main.css, print.css and both inline critical stylesheets.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 11.53,
+        "valueRange": [
+          11.53,
+          12.62
+        ],
+        "pair": "rgb(229,229,229) on linear-gradient(-45deg, rgb(22,44,53) 70%, rgb(12,37,47) 100%)",
+        "passesAAA": true,
+        "provenance": "measured",
+        "note": "Reported against both gradient stops because <article> paints a gradient over a white <main>; reading backgroundColor alone returns white and a false 1.26:1. A second body colour rgb(255,255,255) measures 14.52-15.89. The inline link rgb(249,73,98) measures 4.26:1, under AA for normal text."
+      },
+      "textToHtmlRatio": {
+        "value": 0.085,
+        "textChars": 22375,
+        "htmlChars": 263109,
+        "provenance": "measured",
+        "note": "Highest in the set.",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "pudding.cool",
+      "sourceFile": "pudding_cool.json",
+      "pageMeasured": "one scrollytelling story, plus the index",
+      "flag": "measured (partial)",
+      "flagReason": "Layout, typography, colour, contrast, chrome, sticky stages and step counts are measured. Both scripts are external bundles exposing no globals, so d3, scrollama, gsap and IntersectionObserver are recorded as unknown rather than absent.",
+      "fontStackShort": "Tiempos Text only (story); index uses Atlas Grotesk + Gooper and shares no face with it",
+      "body": {
+        "measuredFontSizePx": 20,
+        "measuredLineHeightPx": 31,
+        "ratio": 1.55,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured"
+      },
+      "charactersPerLine": 68,
+      "h1BodyRatio": 2.4,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": null,
+        "provenance": "measured",
+        "note": "16px (15x) and 8px (15x) dominate, then 24/12/32 (7x each). Every high-frequency value is a 4px multiple."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          960
+        ],
+        "secondary": [
+          400,
+          600,
+          720
+        ],
+        "distinctThresholds": 5,
+        "note": "Mobile-first: 8 of 9 width queries are min-width. 720px and 960px are also the declared content widths (--width-column-regular / --width-column-wide), so the breakpoints are the column widths.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 650,
+        "basis": "declared directly as max-width:650px on the prose container — the only reference in this set that states its measure rather than letting a grid decide it. 343px at 375px viewport.",
+        "containerMaxWidth": "650px",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "on-demand",
+        "evidence": "No persistent header or nav over the story. The only 2 sticky boxes are the graphic stages themselves (a full-viewport intro-stage at top:0 and a 980px chart overlay at top:90px) across 31 step elements and 9 SVG nodes, zero <canvas>, over 37.31 screens of scroll. On-demand layer: an off-canvas <nav id='nav-menu' aria-hidden='true'> behind a labelled open-menu button. No search input on either page and no <kbd>.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "prefers-color-scheme",
+        "evidence": "@media screen and (prefers-color-scheme:dark){:root{…}} re-points 17 semantic tokens at different steps of the same grey ramp. No class or attribute toggle.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 7.17,
+        "pair": "rgb(87,87,87) on rgb(255,255,241)",
+        "passesAAA": true,
+        "provenance": "measured",
+        "note": "Clears AAA by 0.17 — the narrowest margin in the set, and the result of grey on cream rather than black on white."
+      },
+      "textToHtmlRatio": {
+        "value": 0.02,
+        "textChars": 18131,
+        "htmlChars": 906359,
+        "provenance": "measured",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "atlasobscura.com",
+      "sourceFile": "atlasobscura_com.json",
+      "pageMeasured": "one article, plus the index",
+      "flag": "measured",
+      "fontStackShort": "Freight Pro serif at weight 300 for body; Platform Web sans for every heading",
+      "body": {
+        "measuredFontSizePx": 19,
+        "measuredLineHeightPx": 28.5,
+        "ratio": 1.5,
+        "fontWeight": 300,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured",
+        "note": "The only reference here running prose lighter than regular."
+      },
+      "charactersPerLine": 82,
+      "h1BodyRatio": 3.16,
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": "Tailwind spacing utilities present in the markup, resolved through the stylesheet",
+        "provenance": "measured",
+        "note": "Top values 1rem/16px (161), .5rem/8px (153), .75rem/12px (97), 1.5rem/24px."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          640,
+          768,
+          1024,
+          1280,
+          1536
+        ],
+        "secondary": [
+          960
+        ],
+        "distinctThresholds": 16,
+        "note": "Tailwind screens sm/md/lg/xl/2xl plus a custom 960px 'mdplus'. The odd values (540, 605, 824, 1048, 1059, 1139, 1140) are one-off component queries.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": 648.67,
+        "basis": "paragraph content width inside a 745.33px ArticleBody section",
+        "containerMaxWidth": "none",
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "One <nav id='navbar-component'> bar, 55px on mobile and 75px from 768px up, z-index 9999, with Places/Foods/Stories/Newsletters. On-demand layer: hover-revealed popdown menus bound to mouseover/mouseleave, and a full-screen search layer. All four fixed boxes on the article are third-party (OneTrust, Taboola, reCAPTCHA, Nolt) — none is site navigation. No TOC.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "none",
+        "evidence": "0 prefers-color-scheme queries and 0 .dark selectors in either stylesheet; the root block declares color-scheme:light. The six [data-theme] selectors are tooltip themes, not a page theme switch.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 13.65,
+        "pair": "rgb(56,44,20) on the white browser canvas",
+        "passesAAA": true,
+        "provenance": "measured",
+        "caveat": "No ancestor paints a background — <body> and <html> both compute to rgba(0,0,0,0) — so the ratio is computed against the browser canvas and does not hold if that canvas is not white."
+      },
+      "textToHtmlRatio": {
+        "value": 0.0017,
+        "textChars": 4073,
+        "htmlChars": 2439245,
+        "provenance": "measured",
+        "note": "0.0017 unrounded — the heaviest markup-to-text ratio in the set.",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    },
+    {
+      "site": "awwwards.com/websites",
+      "sourceFile": "awwwards_com.json",
+      "pageMeasured": "https://www.awwwards.com/websites/",
+      "flag": "measured",
+      "fontStackShort": "Inter Tight only; no second face and no display type",
+      "body": {
+        "measuredFontSizePx": 14,
+        "measuredLineHeightPx": 21,
+        "ratio": 1.5,
+        "fontWeight": 300,
+        "staticCandidateFontSizePx": null,
+        "staticCandidateLineHeightPx": null,
+        "provenance": "measured",
+        "note": "Interface text, not prose: this page has no reading column. Its largest paragraph is a 149-character filter description."
+      },
+      "charactersPerLine": 218,
+      "charactersPerLineNote": "Measured on interface text spread across the full 1336px content width, not on a prose column.",
+      "h1BodyRatio": 1,
+      "h1BodyRatioNote": "h1 is 14px — the same size as interface copy and 1px smaller than the h3 at 15px. The whole document runs between 14px and 15px.",
+      "baseSpacingUnit": {
+        "px": 4,
+        "declared": null,
+        "provenance": "measured",
+        "note": "A 4px unit covers 74.3% of weighted occurrences: 8px (60), 20px (51), 12px (50), 16px (35), 30px (21)."
+      },
+      "breakpointsPx": {
+        "loadBearing": [
+          576,
+          768,
+          1024,
+          1270
+        ],
+        "secondary": [
+          1000,
+          1280,
+          1400,
+          1600
+        ],
+        "distinctThresholds": 26,
+        "note": "All in px, no rem/em queries. Only four are load-bearing (max 576 x18, max 1024 x12, max 768 x8, max 1270 x5); the other 22 fire once or twice at arbitrary widths up to 2291.",
+        "provenance": "measured"
+      },
+      "readingColumnWidthPx": {
+        "value": null,
+        "basis": "This page has no reading column. The measured layout is a 1336px content width (52px gutters at 1440) holding a 3x432px card grid with a 30px/20px gap, a 5x248px/24px secondary grid, and a 305px + 1031px shell.",
+        "containerMaxWidth": null,
+        "provenance": "measured"
+      },
+      "navPattern": {
+        "classification": "persistent",
+        "evidence": "A 54px header at position:relative at 1440px — it scrolls away — plus a 1336px nav-filters bar and a footer; the header becomes sticky at 375px, having been relative at desktop. On-demand layer: a primary-menu dropdown closed by a fixed overlay, a search panel opened on focus, and a mobile menu. Search is a 449px inline input, the widest in the set.",
+        "provenance": "measured"
+      },
+      "darkModeMechanism": {
+        "value": "class/attribute",
+        "evidence": "0 prefers-color-scheme at-rules. Dark is a body class: body.dark{--color-primary:#eee; --bg-primary:#121212}. Neither fetched page carried it, so the site ships light and dark is opt-in or section-scoped.",
+        "provenance": "measured"
+      },
+      "bodyContrastRatio": {
+        "value": 14.98,
+        "pair": "rgb(34,34,34) on rgb(248,248,248)",
+        "passesAAA": true,
+        "provenance": "measured",
+        "note": "Interface text, not prose."
+      },
+      "textToHtmlRatio": {
+        "value": 0.0034,
+        "textChars": 2090,
+        "htmlChars": 609044,
+        "provenance": "measured",
+        "note": "0.0034 unrounded — the page is images and interface, essentially not text.",
+        "rounding": "4 decimal places; textChars/htmlChars are the source figures"
+      },
+      "nullReason": null
+    }
+  ],
+  "blocked": [
+    {
+      "site": "wikiwand.com",
+      "reason": "HTTP 403 Cloudflare JavaScript/cookie challenge on every request. The static fetch (two attempts, second with full sec-ch-ua and Sec-Fetch-* headers) and the Chromium browser pass both received the same 5.7-6.0 KB interstitial: document.title 'Just a moment...', one <p>, 58-264 characters of body text, and no Wikiwand markup. The app shell was never served, so there are no stylesheet URLs to resolve and no computed styles to read. Solving the bot check was out of scope and not attempted.",
+      "consequence": "Every typography, spacing, colour, layout and navigation field for this site is null. Wikiwand's reading-page tokens are unmeasured, not estimated. Getting them needs an approach that clears the challenge as a normal browser session would."
+    }
+  ],
+  "renderedAs": "docs/worklogs/design-system.md, section \"Phase 1 — measurements\". The table there carries the same values in short form; this file is the record."
+}

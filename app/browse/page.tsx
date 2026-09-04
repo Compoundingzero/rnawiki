@@ -22,6 +22,8 @@ import {
 import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
+
+import { FacetNav } from './facet-view'
 import {
   APPROVAL_STATUSES,
   DRUG_MODALITIES,
@@ -323,6 +325,10 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             specific use and group of people.
           </p>
         </header>
+
+        {/* The corpus facet indexes. Five entry points, so every indexed record is a few clicks
+            from here rather than only from a page of this list. */}
+        <FacetNav />
 
         {/* Filters. Links, not buttons — so each one is a URL, and so they work without
             JavaScript. Choosing a filter always returns to page 1. */}

@@ -1,0 +1,551 @@
+{
+  "site": "stripe.com/docs",
+  "track": "A1",
+  "urls": {
+    "index": "https://docs.stripe.com/payments",
+    "content": "https://docs.stripe.com/api/charges"
+  },
+  "capturedAt": "2026-09-03T18:21:24.150Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in div.⚙ (controls: Overview, Accept a payment, Upgrade your integration, Find your use case, Use Payment Links, Build a payments page); banner stands in the captures",
+    "index-375: left: no permitted refusal control in div.Shell-container (controls: Copy for LLM, View as Markdown, Install tools, Find your use case, Most popular, Online); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in #navigation (controls: Introduction, Authentication, Errors, Expanding Responses, Idempotent requests, Include-dependent response values (API v2)); banner stands in the captures",
+    "content-375: no consent UI found"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://docs.stripe.com/api/charges",
+    "collectedAt": "2026-09-03T18:21:00.539Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0083,
+    "title": "Charges | Stripe API Reference",
+    "innerTextLength": 18516,
+    "outerHtmlLength": 2222467,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Charges"
+      },
+      {
+        "tag": "h1",
+        "text": "The Charge object"
+      },
+      {
+        "tag": "h3",
+        "text": "Attributes"
+      },
+      {
+        "tag": "h3",
+        "text": "More attributes Expand all"
+      },
+      {
+        "tag": "h1",
+        "text": "Create a charge Deprecated"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "More parameters Expand all"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      },
+      {
+        "tag": "h1",
+        "text": "Update a charge"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "More parameters Expand all"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      },
+      {
+        "tag": "h1",
+        "text": "Retrieve a charge"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      },
+      {
+        "tag": "h1",
+        "text": "List all charges"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "More parameters Expand all"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      },
+      {
+        "tag": "h1",
+        "text": "Capture a charge"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "More parameters Expand all"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      },
+      {
+        "tag": "h1",
+        "text": "Search charges"
+      },
+      {
+        "tag": "h3",
+        "text": "Parameters"
+      },
+      {
+        "tag": "h3",
+        "text": "Returns"
+      }
+    ],
+    "headingCount": 26,
+    "stickyOrFixedCount": 13,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-6k as-6l a",
+        "position": "sticky",
+        "top": 139,
+        "height": 374
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 638,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 4389.6,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 6812.6,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 8075.6,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 8964.6,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 9902,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "ApiSection-Aside ⚙ as-9 as-b as-6h as-6i as-6j as-l7 as-l8 a",
+        "position": "sticky",
+        "top": 11347.4,
+        "height": 764
+      },
+      {
+        "tag": "div",
+        "class": "CookieBanner",
+        "position": "fixed",
+        "top": 900,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "wb ⚙ rs-3 as-fl as-fm as-fn as-fo as-fp as-fq as-fr as-fs as",
+        "position": "fixed",
+        "top": 899,
+        "height": 1
+      },
+      {
+        "tag": "div",
+        "class": "⚙ rs-2 as-jr as-ij as-io as-6p as-t as-5x as-u as-bn as-c2 a",
+        "position": "fixed",
+        "top": 852,
+        "height": 48
+      },
+      {
+        "tag": "iframe",
+        "class": "",
+        "position": "fixed",
+        "top": 900,
+        "height": 1
+      },
+      {
+        "tag": "iframe",
+        "class": "",
+        "position": "fixed",
+        "top": 900,
+        "height": 1
+      }
+    ],
+    "kbdTexts": [
+      "/"
+    ],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 8,
+      "firstLabels": [
+        "Copy for LLM",
+        "Copy for LLM",
+        "Copy for LLM",
+        "Copy for LLM",
+        "Copy for LLM"
+      ]
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 1,
+    "scriptsUnreadable": 16,
+    "searchAffordances": {
+      "count": 0,
+      "firstDescriptors": []
+    },
+    "imgCount": 0,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": true,
+      "matchedSheets": 1,
+      "unreadableSheets": 2,
+      "totalSheets": 14
+    },
+    "bodyBackgroundColor": "rgb(244, 247, 250)",
+    "bodyColor": "rgb(60, 66, 87)",
+    "canvasCount": 0,
+    "svgCount": 291
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f53cafe576a82f1a56c6e4989fac48ace28ea837f5e502bb2f4e9b860e39fed9",
+      "capturedAt": "2026-09-03T18:20:32.610Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f53cafe576a82f1a56c6e4989fac48ace28ea837f5e502bb2f4e9b860e39fed9",
+      "capturedAt": "2026-09-03T18:20:32.690Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 3911,
+      "sha256": "96ccc92e88654ae89a4e163a15c62bda2476b6e23653caaa163245dd14e8f132",
+      "capturedAt": "2026-09-03T18:20:45.983Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "be2c1aafa55acf43620bdc3f81be35e114209a8d637c3bbd63d67d5927cdc57c",
+      "capturedAt": "2026-09-03T18:20:46.035Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "2ce9504b89dfd741a5155f58bd60af840b42c1f64b75c51f8b5132bf906c8391",
+      "capturedAt": "2026-09-03T18:20:46.084Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "27cada8a2838773c5e5c3a17d91fcf90b0a56d95e8cf77c18be9e6f02828dfb9",
+      "capturedAt": "2026-09-03T18:20:46.135Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "45abcea261234ad3f9e6647955a1a9ece9ee7d2e33601b0fa5220555aa646dde",
+      "capturedAt": "2026-09-03T18:20:46.183Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://docs.stripe.com/payments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 663,
+      "sha256": "218548d90cff1fd72613414d3835b7971f65bec29a0a65b166d7ddb3db5da9db",
+      "capturedAt": "2026-09-03T18:20:46.232Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "838be048d6ee20a272563aee09589b81a5b9bdbd70dad29084c6cbad970d7bb1",
+      "capturedAt": "2026-09-03T18:21:00.432Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "838be048d6ee20a272563aee09589b81a5b9bdbd70dad29084c6cbad970d7bb1",
+      "capturedAt": "2026-09-03T18:21:00.507Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "838be048d6ee20a272563aee09589b81a5b9bdbd70dad29084c6cbad970d7bb1",
+      "capturedAt": "2026-09-03T18:21:02.124Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "838be048d6ee20a272563aee09589b81a5b9bdbd70dad29084c6cbad970d7bb1",
+      "capturedAt": "2026-09-03T18:21:03.711Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "838be048d6ee20a272563aee09589b81a5b9bdbd70dad29084c6cbad970d7bb1",
+      "capturedAt": "2026-09-03T18:21:05.310Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c08c8fa1f553051816fce4d12673e7f8e1d6ea877a41605ffc62821c4068397e",
+      "capturedAt": "2026-09-03T18:21:19.386Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c08c8fa1f553051816fce4d12673e7f8e1d6ea877a41605ffc62821c4068397e",
+      "capturedAt": "2026-09-03T18:21:19.435Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c08c8fa1f553051816fce4d12673e7f8e1d6ea877a41605ffc62821c4068397e",
+      "capturedAt": "2026-09-03T18:21:20.996Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c08c8fa1f553051816fce4d12673e7f8e1d6ea877a41605ffc62821c4068397e",
+      "capturedAt": "2026-09-03T18:21:22.564Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://docs.stripe.com/api/charges",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c08c8fa1f553051816fce4d12673e7f8e1d6ea877a41605ffc62821c4068397e",
+      "capturedAt": "2026-09-03T18:21:24.149Z"
+    }
+  ]
+}

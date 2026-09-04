@@ -1,0 +1,134 @@
+{
+  "pages": 324,
+  "medianTokens": 557,
+  "medianShingles": 503,
+  "full": {
+    "label": "full-corpus",
+    "pages": 324,
+    "positional": {
+      "count": 324,
+      "median": 0.276786,
+      "mean": 0.312069,
+      "p90": 0.494118,
+      "max": 0.959366,
+      "above_0_20": 270,
+      "above_0_30": 144
+    },
+    "lexical": {
+      "count": 324,
+      "median": 0.462916,
+      "mean": 0.476208,
+      "p90": 0.601626,
+      "max": 0.985423,
+      "above_0_20": 324,
+      "above_0_30": 311
+    },
+    "mode": "exhaustive"
+  },
+  "matched": [],
+  "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.229916,
+    "p90": 0.298873,
+    "byTier": {
+      "tier1": 0.210627,
+      "tier2": 0.237586
+    }
+  },
+  "aboveTarget": {
+    "targetPositional": 0.2,
+    "targetLexical": 0.4,
+    "positional": 270,
+    "lexical": 234,
+    "file": "above-target.ndjson"
+  },
+  "controls": [
+    {
+      "label": "control:other",
+      "pages": 324,
+      "positional": {
+        "count": 324,
+        "median": 0.577946,
+        "mean": 0.611232,
+        "p90": 0.769337,
+        "max": 0.906335,
+        "above_0_20": 324,
+        "above_0_30": 324
+      },
+      "lexical": {
+        "count": 324,
+        "median": 0.472906,
+        "mean": 0.482164,
+        "p90": 0.61809,
+        "max": 0.757732,
+        "above_0_20": 324,
+        "above_0_30": 316
+      },
+      "medianTokens": 1115
+    },
+    {
+      "label": "control:self",
+      "pages": 324,
+      "positional": {
+        "count": 324,
+        "median": 0.271148,
+        "mean": 0.303968,
+        "p90": 0.47191,
+        "max": 0.958539,
+        "above_0_20": 268,
+        "above_0_30": 129
+      },
+      "lexical": {
+        "count": 324,
+        "median": 0.462916,
+        "mean": 0.476208,
+        "p90": 0.601626,
+        "max": 0.985423,
+        "above_0_20": 324,
+        "above_0_30": 311
+      },
+      "medianTokens": 1115
+    }
+  ],
+  "nullModel": {
+    "randomPairPositional": {
+      "count": 20000,
+      "median": 0.087302,
+      "mean": 0.095806,
+      "p90": 0.166667,
+      "max": 0.833703,
+      "above_0_20": 1144,
+      "above_0_30": 297
+    },
+    "randomPairLexical": {
+      "count": 20000,
+      "median": 0.214647,
+      "mean": 0.222538,
+      "p90": 0.354094,
+      "max": 0.949495,
+      "above_0_20": 11168,
+      "above_0_30": 4146
+    },
+    "expectedNearestNeighbour": {
+      "full": {
+        "pages": 324,
+        "positional": 0.435954,
+        "lexical": 0.60215
+      },
+      "matched": [
+        {
+          "pages": 324,
+          "positional": 0.435954,
+          "lexical": 0.60215
+        },
+        {
+          "pages": 803,
+          "positional": 0.496978,
+          "lexical": 0.675089
+        }
+      ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+  },
+  "missedMergeSweep": null
+}

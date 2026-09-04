@@ -1,0 +1,411 @@
+{
+  "asOf": "2026-09-04",
+  "generatedAt": "2026-09-04T17:46:13.968456+00:00",
+  "indexes": {
+    "enzymeNodes": 47,
+    "enzymeRows": 4491,
+    "targetNodes": 2298,
+    "targetRows": 8836
+  },
+  "inputs": {
+    "assignments": {
+      "path": "data/corpus-20k/suppression/assignments.ndjson",
+      "records": 28832,
+      "suppressed": 19268
+    },
+    "fields": {
+      "directory": "data/corpus-20k/fields",
+      "files": 117,
+      "pages": 28832
+    },
+    "registry": {
+      "aggregatePages": 8663,
+      "capabilities": [
+        "latestCompletionDate",
+        "perTrialEnrolments",
+        "registryAggregates"
+      ],
+      "directory": "data/corpus-20k/registry",
+      "files": 70,
+      "matchRecords": 8663,
+      "publications": 0,
+      "trials": 0
+    }
+  },
+  "minFires": 40,
+  "seeds": {
+    "1": {
+      "computable": true,
+      "discarded": true,
+      "file": "seed-01-bioavailability-gap.ndjson",
+      "fires": 0,
+      "models": [
+        "CLINICAL",
+        "LONGEVITY"
+      ],
+      "name": "Bioavailability gap",
+      "pagesConsidered": 4379,
+      "reason": "discarded: fires on 0 of the 4379 pages in this seed's models, below the 40-page floor",
+      "sample": [],
+      "suppressedPagesSkipped": 19268,
+      "suppression": "absolute: suppressed pages are absent from this file"
+    },
+    "10": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-10-source-contradiction.ndjson",
+      "fires": 191,
+      "models": [
+        "CLINICAL",
+        "LONGEVITY"
+      ],
+      "name": "Source contradiction",
+      "pagesConsidered": 6196,
+      "reason": "computed over 6196 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:hydroxyethyl starch 130 0 4",
+        "COMBO:{K1:DIQ16UC154,K1:HB75CIT999}",
+        "COMBO:{K1:O9S4K2S25E,K1:S2F83W92TK}",
+        "HOLD:existing:cisapride",
+        "K1:03A5ORL08Q",
+        "K1:04079A1RDZ",
+        "K1:05V02F2KDG",
+        "K1:09ERP08I3W",
+        "K1:0Y70779M1F",
+        "K1:129FW80TG4"
+      ]
+    },
+    "11": {
+      "computable": true,
+      "discarded": true,
+      "file": "seed-11-animal-only-ceiling.ndjson",
+      "fires": 0,
+      "models": [
+        "LONGEVITY"
+      ],
+      "name": "Animal-only ceiling",
+      "pagesConsidered": 1109,
+      "reason": "discarded: fires on 0 of the 1109 pages in this seed's models, below the 40-page floor",
+      "sample": []
+    },
+    "12": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-12-registry-to-publication-gap.ndjson",
+      "fires": 6086,
+      "models": "any",
+      "name": "Registry-to-publication gap",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:hydroxyethyl starch 130 0 4",
+        "COMBO:NAME:influenza a virus a singapore gp20238 2024 ivr 277 antigen",
+        "COMBO:NAME:influenza a virus a switzerland 6849 2025 ivr 278 antigen",
+        "COMBO:NAME:influenza b virus b michigan 01 2021 antigen",
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:NAME:rubella virus strain wistar ra 27 3 live antigen",
+        "COMBO:NAME:sennosides a and b",
+        "COMBO:NAME:varicella zoster virus strain oka merck live antigen"
+      ]
+    },
+    "13": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-13-same-target-lineage.ndjson",
+      "fires": 2164,
+      "models": [
+        "CLINICAL",
+        "DEVELOPMENT"
+      ],
+      "name": "Same-target lineage",
+      "pagesConsidered": 27723,
+      "reason": "computed over 27723 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
+        "COMBO:{K1:23OW28RS7P,K1:R9M4FJE48E}",
+        "COMBO:{K1:3N2N8OOR7X,K1:9DLQ4CIU6V}",
+        "COMBO:{K1:7673326042,K1:P7V86EYZ5L}",
+        "COMBO:{K1:AN164J8Y0X,K1:JE42381TNV}",
+        "K1:000705ZASD",
+        "K1:00ALI1GAY2",
+        "K1:00OLE78529",
+        "K1:00X1DX441H",
+        "K1:00X6I56YXR"
+      ]
+    },
+    "14": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-14-spontaneous-report-disproportion.ndjson",
+      "fires": 969,
+      "models": "any",
+      "name": "Spontaneous-report disproportion",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:{K1:63937KV33D,K1:65R938S4DV}",
+        "COMBO:{K1:6HG8UB2MUY,K1:6L8OF9XRDC}",
+        "COMBO:{K1:8GTS82S83M,K1:GE2UA340FM}",
+        "COMBO:{K1:J50OIX95QV,K1:TE0865N2ET}",
+        "HOLD:existing:anhydrous-citric-acid",
+        "HOLD:existing:beclomethasone",
+        "HOLD:existing:ceftobiprole-medocaril",
+        "HOLD:existing:fludarabine",
+        "HOLD:existing:fludrocortisone",
+        "HOLD:existing:fluphenazine"
+      ]
+    },
+    "15": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-15-evidence-age.ndjson",
+      "fires": 7257,
+      "models": "any",
+      "name": "Evidence age",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+        "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:hydroxyethyl starch 130 0 4",
+        "COMBO:NAME:influenza a virus a singapore gp20238 2024 ivr 277 antigen",
+        "COMBO:NAME:influenza a virus a switzerland 6849 2025 ivr 278 antigen",
+        "COMBO:NAME:influenza b virus b michigan 01 2021 antigen",
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:NAME:rubella virus strain wistar ra 27 3 live antigen",
+        "COMBO:NAME:sennosides a and b"
+      ]
+    },
+    "16": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-16-trial-size-ceiling.ndjson",
+      "fires": 8615,
+      "models": "any",
+      "name": "Trial size ceiling",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+        "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:hydroxyethyl starch 130 0 4",
+        "COMBO:NAME:influenza a virus a singapore gp20238 2024 ivr 277 antigen",
+        "COMBO:NAME:influenza a virus a switzerland 6849 2025 ivr 278 antigen",
+        "COMBO:NAME:influenza b virus b michigan 01 2021 antigen",
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:NAME:rubella virus strain wistar ra 27 3 live antigen",
+        "COMBO:NAME:sennosides a and b"
+      ]
+    },
+    "17": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-17-jurisdiction-divergence.ndjson",
+      "fires": 182,
+      "models": "any",
+      "name": "Jurisdiction divergence",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "K1:0462Z4S4OZ",
+        "K1:05V02F2KDG",
+        "K1:07BH0IKF2I",
+        "K1:09ERP08I3W",
+        "K1:0B4FDL9I6P",
+        "K1:0LVY784C09",
+        "K1:0QTW8Z7MCR",
+        "K1:0RBV727H71",
+        "K1:0Y70779M1F",
+        "K1:10A5O25ILE"
+      ]
+    },
+    "2": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-02-n-of-1-designability.ndjson",
+      "fires": 600,
+      "models": [
+        "LONGEVITY"
+      ],
+      "name": "N-of-1 designability",
+      "pagesConsidered": 671,
+      "reason": "computed over 671 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+        "COMBO:{K1:0RBV727H71,K1:2K2DJ01BB7,K1:78YC2MAX4O,K1:7S686LQT6T,K1:9KJL21T0QJ,K1:AAN7QOV9EA,K1:HR3EZB17BI,K1:NS3OZT14QT,K1:ZAD9OKH9JC}",
+        "COMBO:{K1:17ERJ0MKGI,K1:80M03YXJ7I}",
+        "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+        "COMBO:{K1:4071IF7E93,K1:OP0UW79H66}",
+        "COMBO:{K1:4G9EDB6V73,K1:R7EZ772VG2}",
+        "COMBO:{K1:4TI98Z838E,K1:5B2546MB5Z,K1:T18F433X4S}",
+        "COMBO:{K1:6C282481IP,K1:SZB83O1W42}"
+      ],
+      "suppressedPagesSkipped": 19268,
+      "suppression": "absolute: suppressed pages are absent from this file"
+    },
+    "3": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-03-failure-autopsy.ndjson",
+      "fires": 2771,
+      "models": "any",
+      "name": "Failure autopsy",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:hydroxyethyl starch 130 0 4",
+        "COMBO:NAME:influenza a virus a singapore gp20238 2024 ivr 277 antigen",
+        "COMBO:NAME:influenza a virus a switzerland 6849 2025 ivr 278 antigen",
+        "COMBO:NAME:influenza b virus b michigan 01 2021 antigen",
+        "COMBO:NAME:sennosides a and b",
+        "COMBO:NAME:varicella zoster virus strain oka merck live antigen",
+        "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+        "COMBO:{K1:17ERJ0MKGI,K1:80M03YXJ7I}",
+        "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}"
+      ]
+    },
+    "4": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-04-endpoint-mismatch.ndjson",
+      "fires": 1054,
+      "models": [
+        "LONGEVITY"
+      ],
+      "name": "Endpoint mismatch",
+      "pagesConsidered": 1109,
+      "reason": "computed over 1109 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:follitropin alfa beta",
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+        "COMBO:{K1:0RBV727H71,K1:2K2DJ01BB7,K1:78YC2MAX4O,K1:7S686LQT6T,K1:9KJL21T0QJ,K1:AAN7QOV9EA,K1:HR3EZB17BI,K1:NS3OZT14QT,K1:ZAD9OKH9JC}",
+        "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+        "COMBO:{K1:17ERJ0MKGI,K1:80M03YXJ7I}",
+        "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+        "COMBO:{K1:4071IF7E93,K1:OP0UW79H66}",
+        "COMBO:{K1:4G9EDB6V73,K1:R7EZ772VG2}",
+        "COMBO:{K1:4TI98Z838E,K1:5B2546MB5Z,K1:T18F433X4S}"
+      ]
+    },
+    "5": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-05-stack-interaction-graph.ndjson",
+      "fires": 575,
+      "models": "any",
+      "name": "Stack interaction graph",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:{K1:3QN8BYN5QF,K1:DIQ16UC154}",
+        "COMBO:{K1:63937KV33D,K1:65R938S4DV}",
+        "COMBO:{K1:6DC9Q167V3,K1:YO603Y8113}",
+        "COMBO:{K1:6HG8UB2MUY,K1:6L8OF9XRDC}",
+        "COMBO:{K1:6HG8UB2MUY,K1:8FG9H9D31J}",
+        "HOLD:existing:arimoclomol",
+        "HOLD:existing:beclomethasone",
+        "HOLD:existing:ceftobiprole-medocaril",
+        "HOLD:existing:vincristine",
+        "K1:003N66TS6T"
+      ]
+    },
+    "6": {
+      "computable": true,
+      "discarded": true,
+      "file": "seed-06-time-to-signal.ndjson",
+      "fires": 2,
+      "models": [
+        "LONGEVITY"
+      ],
+      "name": "Time-to-signal",
+      "pagesConsidered": 671,
+      "reason": "discarded: fires on 2 of the 671 pages in this seed's models, below the 40-page floor",
+      "sample": [
+        "K1:2ZD004190S",
+        "K1:SG6FYY47DD"
+      ],
+      "suppressedPagesSkipped": 19268,
+      "suppression": "absolute: suppressed pages are absent from this file"
+    },
+    "7": {
+      "computable": true,
+      "discarded": true,
+      "file": "seed-07-sex-specific-divergence.ndjson",
+      "fires": 36,
+      "models": [
+        "LONGEVITY"
+      ],
+      "name": "Sex-specific divergence",
+      "pagesConsidered": 1109,
+      "reason": "discarded: fires on 36 of the 1109 pages in this seed's models, below the 40-page floor",
+      "sample": [
+        "K1:08W5N2C97Q",
+        "K1:184SNS8VUH",
+        "K1:2S58538ZG2",
+        "K1:2ZD004190S",
+        "K1:3L5TQ84570",
+        "K1:452VLY9402",
+        "K1:4L6452S749",
+        "K1:4TI98Z838E",
+        "K1:5R97F5H93P",
+        "K1:6S49DGR869"
+      ]
+    },
+    "8": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-08-evidence-provenance-timeline.ndjson",
+      "fires": 2574,
+      "models": "any",
+      "name": "Evidence provenance timeline",
+      "pagesConsidered": 28832,
+      "reason": "computed over 28832 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+        "COMBO:NAME:rubella virus strain wistar ra 27 3 live antigen",
+        "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}",
+        "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+        "COMBO:{K1:1EJ6Z6Q368,K1:EOR26LQQ24}",
+        "COMBO:{K1:1J444QC288,K1:80M03YXJ7I}",
+        "COMBO:{K1:1L4806J2QF,K1:W9WZN9A0GM}",
+        "COMBO:{K1:1ULL0QJ8UC,K1:8I7IO46IVQ}",
+        "COMBO:{K1:1ULL0QJ8UC,K1:9100L32L2N}",
+        "COMBO:{K1:2T8Q726O95,K1:DKO1W9H7M1,K1:WR2TIP26VS}"
+      ]
+    },
+    "9": {
+      "computable": true,
+      "discarded": false,
+      "file": "seed-09-what-would-change-this.ndjson",
+      "fires": 890,
+      "models": [
+        "CLINICAL",
+        "LONGEVITY"
+      ],
+      "name": "What would change this",
+      "pagesConsidered": 6196,
+      "reason": "computed over 6196 pages in this seed's models",
+      "sample": [
+        "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
+        "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+        "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+        "COMBO:{K1:4071IF7E93,K1:OP0UW79H66}",
+        "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
+        "COMBO:{K1:6DC9Q167V3,K1:A0JWA85V8F}",
+        "COMBO:{K1:6HG8UB2MUY,K1:8FG9H9D31J}",
+        "HOLD:existing:fludarabine",
+        "HOLD:existing:fludrocortisone",
+        "HOLD:existing:iobenguane-i-131"
+      ]
+    }
+  },
+  "spec": "docs/specs/derived-content.md"
+}

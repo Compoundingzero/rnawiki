@@ -1,0 +1,2661 @@
+{
+  "site": "vercel.com/docs",
+  "fetchedAt": "2026-09-03T09:29:40.859Z",
+  "pages": [
+    {
+      "url": "https://vercel.com/docs",
+      "status": 200,
+      "bytes": 833429,
+      "visibleTextChars": 10276,
+      "textToHtmlRatio": 0.0123,
+      "savedAs": "raw/vercel_com_docs/docs_index.html"
+    },
+    {
+      "url": "https://vercel.com/docs/functions",
+      "status": 200,
+      "bytes": 1218009,
+      "visibleTextChars": 37261,
+      "textToHtmlRatio": 0.0306,
+      "savedAs": "raw/vercel_com_docs/docs_functions.html"
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/3s8lo7fs9202b.css",
+      "bytes": 452789,
+      "savedAs": "raw/vercel_com_docs/css/3s8lo7fs9202b.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/3wdylq1osx9cj.css",
+      "bytes": 2505,
+      "savedAs": "raw/vercel_com_docs/css/3wdylq1osx9cj.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/1mi4xo6dv8l25.css",
+      "bytes": 20051,
+      "savedAs": "raw/vercel_com_docs/css/1mi4xo6dv8l25.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/3u82rwmj_1n8p.css",
+      "bytes": 7374,
+      "savedAs": "raw/vercel_com_docs/css/3u82rwmj_1n8p.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/2qto1k9xxrb3r.css",
+      "bytes": 51555,
+      "savedAs": "raw/vercel_com_docs/css/2qto1k9xxrb3r.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/2l9uqb-mptias.css",
+      "bytes": 6366,
+      "savedAs": "raw/vercel_com_docs/css/2l9uqb-mptias.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/0ecvurds4722y.css",
+      "bytes": 53678,
+      "savedAs": "raw/vercel_com_docs/css/0ecvurds4722y.css"
+    },
+    {
+      "url": "https://vercel.com/vc-ap-vercel-docs/_next/static/immutable/chunks/3tkv5nipxn8ua.css",
+      "bytes": 98484,
+      "savedAs": "raw/vercel_com_docs/css/3tkv5nipxn8ua.css"
+    },
+    {
+      "url": "inline <style> block",
+      "bytes": 173,
+      "savedAs": "raw/vercel_com_docs/css/inline-0.css"
+    },
+    {
+      "url": "inline <style> block",
+      "bytes": 173,
+      "savedAs": "raw/vercel_com_docs/css/inline-1.css"
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "var(--font-geist-sans)",
+        "count": 121
+      },
+      {
+        "value": "var(--font-mono)",
+        "count": 33
+      },
+      {
+        "value": "Geist Mono",
+        "count": 6
+      },
+      {
+        "value": "inherit",
+        "count": 3
+      },
+      {
+        "value": "var(--font-sans)",
+        "count": 3
+      },
+      {
+        "value": "var(--font-sans,var(--font-sans-fallback))",
+        "count": 2
+      },
+      {
+        "value": "var(--default-font-family,ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\")",
+        "count": 2
+      },
+      {
+        "value": "var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace)",
+        "count": 2
+      },
+      {
+        "value": "\"Roboto Mono\", var(--font-mono)",
+        "count": 1
+      },
+      {
+        "value": "var(--font-geist-pixel-line)",
+        "count": 1
+      },
+      {
+        "value": "var(--font-geist-pixel-square)",
+        "count": 1
+      },
+      {
+        "value": "Geist Mono,ui-monospace,SFMono-Regular,Menlo,Monaco,Liberation Mono,DejaVu Sans Mono,Courier New,monospace,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
+        "count": 1
+      },
+      {
+        "value": "GeistSans",
+        "count": 1
+      },
+      {
+        "value": "GeistSans Fallback",
+        "count": 1
+      },
+      {
+        "value": "GeistSans,GeistSans Fallback",
+        "count": 1
+      }
+    ],
+    "fontVariableDefinitions": [
+      {
+        "name": "--font-sans-fallback",
+        "values": [
+          "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neu"
+        ]
+      },
+      {
+        "name": "--font-mono-fallback",
+        "values": [
+          "Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace"
+        ]
+      },
+      {
+        "name": "--font-sans",
+        "values": [
+          "var(--font-geist-sans)"
+        ]
+      },
+      {
+        "name": "--font-mono",
+        "values": [
+          "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace, Apple Color Emoji, Seg"
+        ]
+      },
+      {
+        "name": "--font-geist-sans",
+        "values": [
+          "\"GeistSans\", \"GeistSans Fallback\""
+        ]
+      }
+    ],
+    "fontSizes": [
+      {
+        "value": "14px",
+        "count": 34,
+        "unit": "px"
+      },
+      {
+        "value": "16px",
+        "count": 24,
+        "unit": "px"
+      },
+      {
+        "value": "13px",
+        "count": 23,
+        "unit": "px"
+      },
+      {
+        "value": "24px",
+        "count": 15,
+        "unit": "px"
+      },
+      {
+        "value": "20px",
+        "count": 14,
+        "unit": "px"
+      },
+      {
+        "value": "12px",
+        "count": 13,
+        "unit": "px"
+      },
+      {
+        "value": "32px",
+        "count": 13,
+        "unit": "px"
+      },
+      {
+        "value": "18px",
+        "count": 12,
+        "unit": "px"
+      },
+      {
+        "value": ".875rem",
+        "count": 10,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--text-sm)",
+        "count": 10,
+        "unit": "var"
+      },
+      {
+        "value": "1rem",
+        "count": 9,
+        "unit": "rem"
+      },
+      {
+        "value": "40px",
+        "count": 8,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-base)",
+        "count": 8,
+        "unit": "var"
+      },
+      {
+        "value": "48px",
+        "count": 7,
+        "unit": "px"
+      },
+      {
+        "value": "56px",
+        "count": 6,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-xs)",
+        "count": 6,
+        "unit": "var"
+      },
+      {
+        "value": "72px",
+        "count": 6,
+        "unit": "px"
+      },
+      {
+        "value": "var(--font-size-small)",
+        "count": 5,
+        "unit": "var"
+      },
+      {
+        "value": "64px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "var(--font-size-primary)",
+        "count": 4,
+        "unit": "var"
+      },
+      {
+        "value": "28px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "1.5rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": ".9em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "1em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "inherit",
+        "count": 3,
+        "unit": "keyword/other"
+      },
+      {
+        "value": "11px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-lg)",
+        "count": 3,
+        "unit": "var"
+      },
+      {
+        "value": "var(--text-xl)",
+        "count": 3,
+        "unit": "var"
+      },
+      {
+        "value": "90%",
+        "count": 3,
+        "unit": "%"
+      },
+      {
+        "value": "100%",
+        "count": 2,
+        "unit": "%"
+      },
+      {
+        "value": "3rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "2.25rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "1.25rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "2.5rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "10px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "80%",
+        "count": 2,
+        "unit": "%"
+      },
+      {
+        "value": "75%",
+        "count": 2,
+        "unit": "%"
+      },
+      {
+        "value": "var(--text-2xl)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": "var(--text-3xl)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": "var(--geist-form-font)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": ".6em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "80px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-4xl)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": "0",
+        "count": 1,
+        "unit": "keyword/other"
+      },
+      {
+        "value": "calc((var(--container-width) / var(--normalized-character-count)) * var(--scale-factor))",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": "clamp(24px, var(--computed-font-size), 72px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(24px, var(--computed-font-size), 64px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(16px, var(--computed-font-size), 48px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(12px, var(--computed-font-size), 32px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "var(--font-size)",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": "clamp(1rem,4vw,1.2rem)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "1.3em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "var(--text-base,1rem)",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": ".8rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": "1.1em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "clamp(16px,4vw,24px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(12px,3vw,16px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "1.3rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": "var(--text-5xl)",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": "var(--geist-form-large-font)",
+        "count": 1,
+        "unit": "var"
+      }
+    ],
+    "lineHeights": [
+      {
+        "value": "20px",
+        "count": 32
+      },
+      {
+        "value": "24px",
+        "count": 19
+      },
+      {
+        "value": "1.5",
+        "count": 13
+      },
+      {
+        "value": "40px",
+        "count": 13
+      },
+      {
+        "value": "56px",
+        "count": 13
+      },
+      {
+        "value": "32px",
+        "count": 12
+      },
+      {
+        "value": "16px",
+        "count": 12
+      },
+      {
+        "value": "28px",
+        "count": 10
+      },
+      {
+        "value": "var(--tw-leading,var(--text-sm--line-height))",
+        "count": 10
+      },
+      {
+        "value": "1",
+        "count": 9
+      },
+      {
+        "value": "26px",
+        "count": 9
+      },
+      {
+        "value": "1.6",
+        "count": 8
+      },
+      {
+        "value": "48px",
+        "count": 8
+      },
+      {
+        "value": "var(--tw-leading,var(--text-base--line-height))",
+        "count": 8
+      },
+      {
+        "value": "18px",
+        "count": 7
+      },
+      {
+        "value": "1.1",
+        "count": 7
+      },
+      {
+        "value": "var(--line-height-primary)",
+        "count": 6
+      },
+      {
+        "value": "36px",
+        "count": 6
+      },
+      {
+        "value": "var(--tw-leading,var(--text-xs--line-height))",
+        "count": 6
+      },
+      {
+        "value": "var(--line-height-small)",
+        "count": 5
+      },
+      {
+        "value": "72px",
+        "count": 5
+      },
+      {
+        "value": "1.5rem",
+        "count": 4
+      },
+      {
+        "value": "1.25rem",
+        "count": 4
+      },
+      {
+        "value": "64px",
+        "count": 4
+      },
+      {
+        "value": "1.7",
+        "count": 4
+      },
+      {
+        "value": "160%",
+        "count": 4
+      },
+      {
+        "value": "0",
+        "count": 3
+      },
+      {
+        "value": "1.4",
+        "count": 3
+      },
+      {
+        "value": "var(--tw-leading,var(--text-lg--line-height))",
+        "count": 3
+      },
+      {
+        "value": "var(--tw-leading,var(--text-xl--line-height))",
+        "count": 3
+      },
+      {
+        "value": "var(--leading-normal)",
+        "count": 3
+      },
+      {
+        "value": "inherit",
+        "count": 3
+      },
+      {
+        "value": ".875rem",
+        "count": 2
+      },
+      {
+        "value": "normal",
+        "count": 2
+      },
+      {
+        "value": "12px",
+        "count": 2
+      },
+      {
+        "value": "calc(1 / .75)",
+        "count": 2
+      },
+      {
+        "value": "calc(1.25 / .875)",
+        "count": 2
+      },
+      {
+        "value": "calc(1.5 / 1)",
+        "count": 2
+      },
+      {
+        "value": "calc(1.75 / 1.125)",
+        "count": 2
+      },
+      {
+        "value": "calc(1.75 / 1.25)",
+        "count": 2
+      }
+    ],
+    "headingScale": {
+      "note": "measured — no bare h1/h2/h3/h4 element rule sets a size; sizes are applied through the named .text-heading-N utility scale and per-component rules, so tag-to-size mapping is not determinable from CSS alone",
+      "namedHeadingSteps": [
+        {
+          "token": "text-heading-14",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "letterSpacing": "-.28px"
+        },
+        {
+          "token": "text-heading-16",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "letterSpacing": "-.32px"
+        },
+        {
+          "token": "text-heading-20",
+          "fontSize": "20px",
+          "lineHeight": "26px",
+          "letterSpacing": "-.4px"
+        },
+        {
+          "token": "text-heading-24",
+          "fontSize": "24px",
+          "lineHeight": "32px",
+          "letterSpacing": "-.96px"
+        },
+        {
+          "token": "text-heading-32",
+          "fontSize": "32px",
+          "lineHeight": "40px",
+          "letterSpacing": "-1.28px"
+        },
+        {
+          "token": "text-heading-40",
+          "fontSize": "40px",
+          "lineHeight": "48px",
+          "letterSpacing": "-2.4px"
+        },
+        {
+          "token": "text-heading-48",
+          "fontSize": "48px",
+          "lineHeight": "56px",
+          "letterSpacing": "-2.88px"
+        },
+        {
+          "token": "text-heading-56",
+          "fontSize": "56px",
+          "lineHeight": "56px",
+          "letterSpacing": "-3.36px"
+        },
+        {
+          "token": "text-heading-64",
+          "fontSize": "64px",
+          "lineHeight": "64px",
+          "letterSpacing": "-3.84px"
+        }
+      ],
+      "stepRatiosBetweenAdjacentHeadingSteps": [
+        {
+          "from": 14,
+          "to": 16,
+          "ratio": 1.143
+        },
+        {
+          "from": 16,
+          "to": 20,
+          "ratio": 1.25
+        },
+        {
+          "from": 20,
+          "to": 24,
+          "ratio": 1.2
+        },
+        {
+          "from": 24,
+          "to": 32,
+          "ratio": 1.333
+        },
+        {
+          "from": 32,
+          "to": 40,
+          "ratio": 1.25
+        },
+        {
+          "from": 40,
+          "to": 48,
+          "ratio": 1.2
+        },
+        {
+          "from": 48,
+          "to": 56,
+          "ratio": 1.167
+        },
+        {
+          "from": 56,
+          "to": 64,
+          "ratio": 1.143
+        }
+      ],
+      "ratioIsConstant": false,
+      "h1": [
+        {
+          "value": "inherit",
+          "count": 2,
+          "selectorEvidence": [
+            "h1,h2,h3,h4,h5,h6",
+            "h1,h2,h3,h4,h5,h6"
+          ]
+        },
+        {
+          "value": "2.5rem",
+          "count": 1,
+          "selectorEvidence": [
+            ".section-header-wrapper h1"
+          ]
+        }
+      ],
+      "h2": [
+        {
+          "value": "inherit",
+          "count": 2,
+          "selectorEvidence": [
+            "h1,h2,h3,h4,h5,h6",
+            "h1,h2,h3,h4,h5,h6"
+          ]
+        },
+        {
+          "value": "90%",
+          "count": 2,
+          "selectorEvidence": [
+            ":where(:is(h1,h2,h3,h4,h5,h6)) .in-\\[\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)\\]\\:text-\\[90\\%\\]\\!",
+            ".\\[\\&_\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)_code\\]\\:text-\\[90\\%\\]\\! :is(h1,h2,h3,h4,h5,h6) code"
+          ]
+        },
+        {
+          "value": "1.3em",
+          "count": 1,
+          "selectorEvidence": [
+            ".djIg-q_step :where(h1,h2,h3,h4,h5,h6) a+span"
+          ]
+        },
+        {
+          "value": "2.5rem",
+          "count": 1,
+          "selectorEvidence": [
+            ".rvMliW_title h2"
+          ]
+        },
+        {
+          "value": "32px",
+          "count": 1,
+          "selectorEvidence": [
+            ".\\[\\&_h2\\]\\:text-heading-32 h2"
+          ]
+        }
+      ],
+      "h3": [
+        {
+          "value": "inherit",
+          "count": 2,
+          "selectorEvidence": [
+            "h1,h2,h3,h4,h5,h6",
+            "h1,h2,h3,h4,h5,h6"
+          ]
+        },
+        {
+          "value": "90%",
+          "count": 2,
+          "selectorEvidence": [
+            ":where(:is(h1,h2,h3,h4,h5,h6)) .in-\\[\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)\\]\\:text-\\[90\\%\\]\\!",
+            ".\\[\\&_\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)_code\\]\\:text-\\[90\\%\\]\\! :is(h1,h2,h3,h4,h5,h6) code"
+          ]
+        },
+        {
+          "value": "clamp(1rem,4vw,1.2rem)",
+          "count": 1,
+          "selectorEvidence": [
+            ".djIg-q_step h3"
+          ]
+        },
+        {
+          "value": "1.3em",
+          "count": 1,
+          "selectorEvidence": [
+            ".djIg-q_step :where(h1,h2,h3,h4,h5,h6) a+span"
+          ]
+        },
+        {
+          "value": "var(--text-base,1rem)",
+          "count": 1,
+          "selectorEvidence": [
+            ".djIg-q_step h3:before"
+          ]
+        },
+        {
+          "value": "1.5rem",
+          "count": 1,
+          "selectorEvidence": [
+            ".rvMliW_title h3"
+          ]
+        }
+      ],
+      "h4": [
+        {
+          "value": "var(--font-size-primary)",
+          "count": 2,
+          "selectorEvidence": [
+            ".qZ9JJG_card h4",
+            "._-7sPq_card h4"
+          ]
+        },
+        {
+          "value": "inherit",
+          "count": 2,
+          "selectorEvidence": [
+            "h1,h2,h3,h4,h5,h6",
+            "h1,h2,h3,h4,h5,h6"
+          ]
+        },
+        {
+          "value": "90%",
+          "count": 2,
+          "selectorEvidence": [
+            ":where(:is(h1,h2,h3,h4,h5,h6)) .in-\\[\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)\\]\\:text-\\[90\\%\\]\\!",
+            ".\\[\\&_\\:is\\(h1\\,h2\\,h3\\,h4\\,h5\\,h6\\)_code\\]\\:text-\\[90\\%\\]\\! :is(h1,h2,h3,h4,h5,h6) code"
+          ]
+        },
+        {
+          "value": "1.3em",
+          "count": 1,
+          "selectorEvidence": [
+            ".djIg-q_step :where(h1,h2,h3,h4,h5,h6) a+span"
+          ]
+        },
+        {
+          "value": "16px",
+          "count": 1,
+          "selectorEvidence": [
+            ".\\[\\&_h4\\]\\:text-heading-16 h4"
+          ]
+        }
+      ]
+    },
+    "bodyCandidates": {
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "selectorEvidence": [
+        "measured — .text-copy-14 { font-size:14px; line-height:20px; font-weight:var(--font-weight-normal); font-family:var(--font-geist-sans) }",
+        "measured — 14px is the single most-declared font-size across all fetched stylesheets (34 declarations); 20px is the most-declared line-height (32 declarations)",
+        "measured — root sizing: `:root,:host { font-size:16px; line-height:1.5rem }` and `body { font-size:100% }` (Tailwind preflight); `footer { font-size:14px }` in page markup",
+        "measured — .text-copy-16 { font-size:16px; line-height:24px } is the next step and is used for larger prose"
+      ],
+      "caveat": "the exact size applied to docs prose paragraphs cannot be confirmed statically because the utility class is chosen per element; 14/20 is the dominant declared pairing, 16/24 the second"
+    },
+    "fluidType": {
+      "present": true,
+      "evidence": "measured — clamp() appears in font-size declarations, e.g. `--font-size: clamp(12px, var(--computed-font-size), 32px)` (and 16/48, 24/64, 24/72 variants) and `.djIg-q_step h3 { font-size: clamp(1rem,4vw,1.2rem) }`",
+      "scope": "confined to a few display/marketing components; the docs type scale itself is fixed-px, not fluid"
+    },
+    "namedTypeScale": {
+      "source": "measured — compiled Tailwind utility classes .text-heading-N / .text-copy-N / .text-label-N in the fetched stylesheets",
+      "tokens": {
+        "text-copy-13": {
+          "role": "copy",
+          "fontSize": "13px",
+          "lineHeight": "18px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-copy-14": {
+          "role": "copy",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-copy-16": {
+          "role": "copy",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-copy-18": {
+          "role": "copy",
+          "fontSize": "18px",
+          "lineHeight": "28px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-copy-20": {
+          "role": "copy",
+          "fontSize": "20px",
+          "lineHeight": "36px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-copy-24": {
+          "role": "copy",
+          "fontSize": "24px",
+          "lineHeight": "36px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-14": {
+          "role": "heading",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-.28px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-16": {
+          "role": "heading",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-.32px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-20": {
+          "role": "heading",
+          "fontSize": "20px",
+          "lineHeight": "26px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-.4px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-24": {
+          "role": "heading",
+          "fontSize": "24px",
+          "lineHeight": "32px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-.96px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-32": {
+          "role": "heading",
+          "fontSize": "32px",
+          "lineHeight": "40px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-1.28px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-40": {
+          "role": "heading",
+          "fontSize": "40px",
+          "lineHeight": "48px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-2.4px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-48": {
+          "role": "heading",
+          "fontSize": "48px",
+          "lineHeight": "56px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-2.88px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-56": {
+          "role": "heading",
+          "fontSize": "56px",
+          "lineHeight": "56px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-3.36px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-heading-64": {
+          "role": "heading",
+          "fontSize": "64px",
+          "lineHeight": "64px",
+          "fontWeight": "var(--font-weight-semibold)",
+          "letterSpacing": "-3.84px",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-label-12": {
+          "role": "label",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-label-13": {
+          "role": "label",
+          "fontSize": "13px",
+          "lineHeight": "16px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-label-14": {
+          "role": "label",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-label-16": {
+          "role": "label",
+          "fontSize": "16px",
+          "lineHeight": "20px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        },
+        "text-label-20": {
+          "role": "label",
+          "fontSize": "20px",
+          "lineHeight": "32px",
+          "fontWeight": "var(--font-weight-normal)",
+          "fontFamily": "var(--font-geist-sans)"
+        }
+      }
+    },
+    "fontWeightTokens": [
+      "black:900",
+      "bold:700",
+      "extrabold:800",
+      "medium:500",
+      "normal:400",
+      "semibold:450",
+      "semibold:600"
+    ]
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": ".5rem",
+        "px": 8,
+        "count": 66
+      },
+      {
+        "value": "1rem",
+        "px": 16,
+        "count": 62
+      },
+      {
+        "value": "1.5rem",
+        "px": 24,
+        "count": 53
+      },
+      {
+        "value": ".25rem",
+        "px": 4,
+        "count": 41
+      },
+      {
+        "value": "8px",
+        "px": 8,
+        "count": 38
+      },
+      {
+        "value": ".75rem",
+        "px": 12,
+        "count": 37
+      },
+      {
+        "value": "2.5rem",
+        "px": 40,
+        "count": 34
+      },
+      {
+        "value": "24px",
+        "px": 24,
+        "count": 30
+      },
+      {
+        "value": "1.25rem",
+        "px": 20,
+        "count": 29
+      },
+      {
+        "value": "16px",
+        "px": 16,
+        "count": 28
+      },
+      {
+        "value": "2rem",
+        "px": 32,
+        "count": 27
+      },
+      {
+        "value": "3rem",
+        "px": 48,
+        "count": 25
+      },
+      {
+        "value": "1px",
+        "px": 1,
+        "count": 24
+      },
+      {
+        "value": ".375rem",
+        "px": 6,
+        "count": 17
+      },
+      {
+        "value": "12px",
+        "px": 12,
+        "count": 15
+      },
+      {
+        "value": "4px",
+        "px": 4,
+        "count": 15
+      },
+      {
+        "value": "4rem",
+        "px": 64,
+        "count": 15
+      },
+      {
+        "value": ".125rem",
+        "px": 2,
+        "count": 15
+      },
+      {
+        "value": ".625rem",
+        "px": 10,
+        "count": 14
+      },
+      {
+        "value": "6rem",
+        "px": 96,
+        "count": 13
+      },
+      {
+        "value": "10px",
+        "px": 10,
+        "count": 12
+      },
+      {
+        "value": "5rem",
+        "px": 80,
+        "count": 11
+      },
+      {
+        "value": "20px",
+        "px": 20,
+        "count": 8
+      },
+      {
+        "value": "5px",
+        "px": 5,
+        "count": 7
+      },
+      {
+        "value": "1.75rem",
+        "px": 28,
+        "count": 7
+      },
+      {
+        "value": "4.5rem",
+        "px": 72,
+        "count": 7
+      },
+      {
+        "value": "7.5rem",
+        "px": 120,
+        "count": 7
+      },
+      {
+        "value": ".875rem",
+        "px": 14,
+        "count": 6
+      },
+      {
+        "value": "2.25rem",
+        "px": 36,
+        "count": 5
+      },
+      {
+        "value": "2.75rem",
+        "px": 44,
+        "count": 5
+      },
+      {
+        "value": "1em",
+        "px": 16,
+        "count": 5
+      },
+      {
+        "value": "23px",
+        "px": 23,
+        "count": 4
+      },
+      {
+        "value": "40px",
+        "px": 40,
+        "count": 4
+      },
+      {
+        "value": "6px",
+        "px": 6,
+        "count": 4
+      },
+      {
+        "value": "9px",
+        "px": 9,
+        "count": 4
+      },
+      {
+        "value": "9rem",
+        "px": 144,
+        "count": 4
+      },
+      {
+        "value": ".75em",
+        "px": 12,
+        "count": 4
+      },
+      {
+        "value": "48px",
+        "px": 48,
+        "count": 3
+      },
+      {
+        "value": "15px",
+        "px": 15,
+        "count": 3
+      },
+      {
+        "value": "32px",
+        "px": 32,
+        "count": 3
+      }
+    ],
+    "inferredBaseUnitPx": 4,
+    "baseUnitDivisibilityScores": {
+      "2": 0.941,
+      "4": 0.845,
+      "8": 0.612
+    },
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      64,
+      72,
+      80,
+      96,
+      120,
+      144
+    ],
+    "evidence": "measured — literal lengths in margin/padding/gap/inset declarations across all 8 fetched stylesheets plus the 2 inline blocks; rem converted at the declared 16px root. 84.5% of weighted literal lengths are multiples of 4px; 61.2% are multiples of 8px, so 4px is the base and 8px the common step. 1px and 2px occur only as hairline borders/offsets.",
+    "baseUnitBasis": "measured — declared tokens `--geist-space: 4px` and Tailwind `--spacing: .25rem` (=4px)",
+    "namedSpacingScale": [
+      "2x = 8px",
+      "3x = 12px",
+      "4x = 16px",
+      "6x = 24px",
+      "8x = 32px",
+      "10x = 40px",
+      "16x = 64px",
+      "24x = 96px",
+      "32x = 128px",
+      "48x = 192px",
+      "64x = 256px"
+    ],
+    "pageGutter": {
+      "token": "--geist-page-margin",
+      "value": "var(--geist-space-gap)",
+      "resolved": "24px"
+    },
+    "radiusToken": {
+      "token": "--geist-radius",
+      "value": "6px"
+    }
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--ds-gray-100",
+        "light": "#f2f2f2",
+        "dark": "#1a1a1a"
+      },
+      {
+        "name": "--ds-gray-200",
+        "light": "#ebebeb",
+        "dark": "#1f1f1f"
+      },
+      {
+        "name": "--ds-gray-300",
+        "light": "#e6e6e6",
+        "dark": "#292929"
+      },
+      {
+        "name": "--ds-gray-400",
+        "light": "#eaeaea",
+        "dark": "#2e2e2e"
+      },
+      {
+        "name": "--ds-gray-500",
+        "light": "#c9c9c9",
+        "dark": "#454545"
+      },
+      {
+        "name": "--ds-gray-600",
+        "light": "#a8a8a8",
+        "dark": "#878787"
+      },
+      {
+        "name": "--ds-gray-700",
+        "light": "#8f8f8f",
+        "dark": "#8f8f8f"
+      },
+      {
+        "name": "--ds-gray-800",
+        "light": "#7d7d7d",
+        "dark": "#7d7d7d"
+      },
+      {
+        "name": "--ds-gray-900",
+        "light": "#4d4d4d",
+        "dark": "#a0a0a0"
+      },
+      {
+        "name": "--ds-gray-1000",
+        "light": "#171717",
+        "dark": "#ededed"
+      },
+      {
+        "name": "--ds-background-100",
+        "light": "#fff",
+        "dark": "#000"
+      },
+      {
+        "name": "--ds-background-200",
+        "light": "#fafafa",
+        "dark": "#000"
+      },
+      {
+        "name": "--ds-gray-alpha-100",
+        "light": "#0000000d",
+        "dark": "#ffffff0f"
+      },
+      {
+        "name": "--ds-gray-alpha-200",
+        "light": "#00000014",
+        "dark": "#ffffff17"
+      },
+      {
+        "name": "--ds-gray-alpha-300",
+        "light": "#0000001a",
+        "dark": "#ffffff21"
+      },
+      {
+        "name": "--ds-gray-alpha-400",
+        "light": "#00000014",
+        "dark": "#ffffff24"
+      },
+      {
+        "name": "--ds-gray-alpha-500",
+        "light": "#00000036",
+        "dark": "#ffffff3d"
+      },
+      {
+        "name": "--ds-gray-alpha-600",
+        "light": "#00000057",
+        "dark": "#ffffff82"
+      },
+      {
+        "name": "--ds-gray-alpha-700",
+        "light": "#00000070",
+        "dark": "#ffffff8a"
+      },
+      {
+        "name": "--ds-gray-alpha-800",
+        "light": "#00000082",
+        "dark": "#ffffff78"
+      },
+      {
+        "name": "--ds-gray-alpha-900",
+        "light": "#000000b3",
+        "dark": "#ffffff9c"
+      },
+      {
+        "name": "--ds-gray-alpha-1000",
+        "light": "#000000e8",
+        "dark": "#ffffffeb"
+      },
+      {
+        "name": "--ds-amber-100",
+        "light": "#fff6e1",
+        "dark": "#291800"
+      },
+      {
+        "name": "--ds-blue-100",
+        "light": "#f0f7ff",
+        "dark": "#06193a"
+      },
+      {
+        "name": "--ds-green-100",
+        "light": "#ecfdec",
+        "dark": "#00250a"
+      },
+      {
+        "name": "--ds-pink-100",
+        "light": "#ffeaf5",
+        "dark": "#310d1e"
+      },
+      {
+        "name": "--ds-purple-100",
+        "light": "#f9f0ff",
+        "dark": "#290c33"
+      },
+      {
+        "name": "--ds-red-100",
+        "light": "#ffeef0",
+        "dark": "#330a11"
+      },
+      {
+        "name": "--ds-teal-100",
+        "light": "#dffffb",
+        "dark": "#00211b"
+      },
+      {
+        "name": "--ds-amber-200",
+        "light": "#fff4d4",
+        "dark": "#331b00"
+      },
+      {
+        "name": "--ds-blue-200",
+        "light": "#eaf4ff",
+        "dark": "#022248"
+      },
+      {
+        "name": "--ds-green-200",
+        "light": "#e5fce7",
+        "dark": "#003110"
+      },
+      {
+        "name": "--ds-pink-200",
+        "light": "#ffeaf2",
+        "dark": "#420c25"
+      },
+      {
+        "name": "--ds-purple-200",
+        "light": "#f9f1ff",
+        "dark": "#341142"
+      },
+      {
+        "name": "--ds-red-200",
+        "light": "#ffe9ea",
+        "dark": "#440d13"
+      },
+      {
+        "name": "--ds-teal-200",
+        "light": "#ddfef6",
+        "dark": "#002922"
+      },
+      {
+        "name": "--ds-amber-300",
+        "light": "#fff1c8",
+        "dark": "#4f2900"
+      },
+      {
+        "name": "--ds-blue-300",
+        "light": "#e0efff",
+        "dark": "#002f62"
+      },
+      {
+        "name": "--ds-green-300",
+        "light": "#d3fad1",
+        "dark": "#003814"
+      },
+      {
+        "name": "--ds-pink-300",
+        "light": "#ffe0eb",
+        "dark": "#571032"
+      },
+      {
+        "name": "--ds-purple-300",
+        "light": "#f5e8ff",
+        "dark": "#47185e"
+      },
+      {
+        "name": "--ds-red-300",
+        "light": "#ffe4e5",
+        "dark": "#5d0e17"
+      },
+      {
+        "name": "--ds-teal-300",
+        "light": "#ccf9f1",
+        "dark": "#003b33"
+      },
+      {
+        "name": "--ds-amber-400",
+        "light": "#ffdd84",
+        "dark": "#573200"
+      },
+      {
+        "name": "--ds-blue-400",
+        "light": "#cce7ff",
+        "dark": "#003771"
+      },
+      {
+        "name": "--ds-green-400",
+        "light": "#b9f5bc",
+        "dark": "#004616"
+      },
+      {
+        "name": "--ds-pink-400",
+        "light": "#ffd5e1",
+        "dark": "#5d0c34"
+      },
+      {
+        "name": "--ds-purple-400",
+        "light": "#f1d9ff",
+        "dark": "#541a76"
+      },
+      {
+        "name": "--ds-red-400",
+        "light": "#ffd8d7",
+        "dark": "#6f101b"
+      },
+      {
+        "name": "--ds-teal-400",
+        "light": "#b1f7ec",
+        "dark": "#003f35"
+      },
+      {
+        "name": "--ds-amber-500",
+        "light": "#ffc85e",
+        "dark": "#6c4100"
+      },
+      {
+        "name": "--ds-blue-500",
+        "light": "#97ccff",
+        "dark": "#004287"
+      },
+      {
+        "name": "--ds-green-500",
+        "light": "#82eb8d",
+        "dark": "#00661d"
+      },
+      {
+        "name": "--ds-pink-500",
+        "light": "#fdb3cc",
+        "dark": "#76063f"
+      },
+      {
+        "name": "--ds-purple-500",
+        "light": "#dda9ff",
+        "dark": "#642290"
+      },
+      {
+        "name": "--ds-red-500",
+        "light": "#ffb5b6",
+        "dark": "#88151f"
+      },
+      {
+        "name": "--ds-teal-500",
+        "light": "#52f0db",
+        "dark": "#005f53"
+      },
+      {
+        "name": "--ds-amber-600",
+        "light": "#fa0",
+        "dark": "#e99c00"
+      },
+      {
+        "name": "--ds-blue-600",
+        "light": "#51aeff",
+        "dark": "#0090ff"
+      },
+      {
+        "name": "--ds-green-600",
+        "light": "#4ce15e",
+        "dark": "#009431"
+      },
+      {
+        "name": "--ds-pink-600",
+        "light": "#f97ea7",
+        "dark": "#b90056"
+      },
+      {
+        "name": "--ds-purple-600",
+        "light": "#c77dff",
+        "dark": "#9440d5"
+      },
+      {
+        "name": "--ds-red-600",
+        "light": "#ff6a6e",
+        "dark": "#f32e40"
+      },
+      {
+        "name": "--ds-teal-600",
+        "light": "#00e2c4",
+        "dark": "#009885"
+      },
+      {
+        "name": "--ds-amber-700",
+        "light": "#ffb200",
+        "dark": "#ffb200"
+      },
+      {
+        "name": "--ds-blue-700",
+        "light": "#0070f7",
+        "dark": "#0071f6"
+      },
+      {
+        "name": "--ds-green-700",
+        "light": "#28a948",
+        "dark": "#00ab3e"
+      },
+      {
+        "name": "--ds-pink-700",
+        "light": "#f22782",
+        "dark": "#f12b82"
+      },
+      {
+        "name": "--ds-purple-700",
+        "light": "#9f00f4",
+        "dark": "#9440d5"
+      },
+      {
+        "name": "--ds-red-700",
+        "light": "#fc0035",
+        "dark": "#f13242"
+      },
+      {
+        "name": "--ds-teal-700",
+        "light": "#00a694",
+        "dark": "#00a794"
+      },
+      {
+        "name": "--ds-amber-800",
+        "light": "#f90",
+        "dark": "#f90"
+      },
+      {
+        "name": "--ds-blue-800",
+        "light": "#005edc",
+        "dark": "#005fd8"
+      },
+      {
+        "name": "--ds-green-800",
+        "light": "#279141",
+        "dark": "#009335"
+      },
+      {
+        "name": "--ds-pink-800",
+        "light": "#e4106e",
+        "dark": "#e6006e"
+      },
+      {
+        "name": "--ds-purple-800",
+        "light": "#8400cd",
+        "dark": "#7d2bba"
+      },
+      {
+        "name": "--ds-red-800",
+        "light": "#e70022",
+        "dark": "#e2162a"
+      },
+      {
+        "name": "--ds-teal-800",
+        "light": "#008d7d",
+        "dark": "#008d7d"
+      },
+      {
+        "name": "--ds-amber-900",
+        "light": "#a64f00",
+        "dark": "#f90"
+      },
+      {
+        "name": "--ds-blue-900",
+        "light": "#0064e2",
+        "dark": "#50a8ff"
+      }
+    ],
+    "customPropertyTotal": 660,
+    "colourLikePropertyTotal": 219,
+    "bodyTextColorCandidate": {
+      "declaration": "body { color: var(--ds-gray-1000) }",
+      "light": "#171717",
+      "dark": "#ededed",
+      "secondaryTextToken": {
+        "name": "--ds-gray-900",
+        "light": "#4d4d4d",
+        "dark": "#a0a0a0",
+        "usedBy": ".text-heading-* utilities set color:var(--ds-gray-900)"
+      },
+      "evidence": [
+        "measured — body sets color: var(--ds-gray-1000)",
+        "measured — light: `:root,.light-theme,.dark .invert-theme,.dark-theme .invert-theme` { --ds-gray-1000: #171717 }",
+        "measured — dark: `.dark,.dark-theme,.invert-theme` { --ds-gray-1000: #ededed }"
+      ]
+    },
+    "backgroundCandidate": {
+      "declaration": "body { background: var(--geist-background) }; surfaces use var(--ds-background-100)",
+      "light": "#fff",
+      "dark": "#000",
+      "evidence": [
+        "measured — --geist-background: #fff (light) / #000 (dark)",
+        "measured — light: `:root,.light-theme,.dark .invert-theme,.dark-theme .invert-theme` { --ds-background-100: #fff }",
+        "measured — dark: `.dark,.dark-theme,.invert-theme` { --ds-background-100: #000 }"
+      ]
+    },
+    "contrastRatioCandidate": {
+      "light": {
+        "fg": "#171717",
+        "bg": "#fff",
+        "ratio": 17.93,
+        "wcag": "AAA (normal text)"
+      },
+      "dark": {
+        "fg": "#ededed",
+        "bg": "#000",
+        "ratio": 17.94,
+        "wcag": "AAA (normal text)"
+      },
+      "secondaryLight": {
+        "fg": "#4d4d4d",
+        "bg": "#fff",
+        "ratio": 8.45,
+        "wcag": "AAA (normal text)"
+      },
+      "secondaryDark": {
+        "fg": "#a0a0a0",
+        "bg": "#000",
+        "ratio": 8.03,
+        "wcag": "AAA (normal text)"
+      },
+      "method": "WCAG 2.x relative-luminance ratio computed from the resolved plain hex token values; the sRGB branch is used (the site also restates these in lab() under @media (color-gamut:p3), which was not used for the ratio)"
+    },
+    "darkModeMechanism": "class/attribute",
+    "darkModeEvidence": {
+      "primary": "measured — theme tokens are redefined under the selector list `.dark, .dark-theme, .invert-theme` and `[data-theme=dark]`; light values sit on `:root, .light-theme, .dark .invert-theme, .dark-theme .invert-theme`",
+      "dataThemeSelectorCount": 12,
+      "dotDarkSelectorCount": 38,
+      "prefersColorSchemeDarkBlocks": 1,
+      "prefersColorSchemeRole": "measured — the single @media (prefers-color-scheme:dark) block only carries compiled Tailwind `dark:` utility variants, not the token definitions; it is a secondary path, not the mechanism",
+      "serverRenderedRootClass": "measured — the delivered <html> element carries font/variable classes and `tailwind tailwind-preflight`, but no dark/light class, so the theme class is applied client-side (localStorage referenced twice in the payload)",
+      "p3Widening": "measured — 4 @media (color-gamut:p3) blocks redefine tokens in lab() for wide-gamut displays"
+    },
+    "tokenNaming": "measured — two coexisting families: legacy `--geist-*` and current `--ds-*` (e.g. --ds-gray-100…1000, --ds-background-100/200, --ds-gray-alpha-*), a 100–1000 numeric ramp rather than named shades",
+    "customPropertySelection": "measured — the 80 shown are plain-colour tokens resolved per theme, ordered gray ramp, background ramp, gray-alpha ramp, hue ramps, then legacy --geist-*. 168 plain-colour tokens were found in total, out of 660 custom properties overall; shadow, gradient and non-colour tokens are excluded from this list.",
+    "plainColourTokenTotal": 168,
+    "rampShape": "measured — the neutral ramp is --ds-gray-100 … --ds-gray-1000 plus --ds-gray-alpha-100 … --ds-gray-alpha-1000 (translucent twins for overlaying), with surfaces on --ds-background-100/200. Light and dark are mirrored rather than merely inverted: --ds-gray-1000 is #171717 on #fff (17.93:1) and #ededed on #000 (17.94:1), so the two themes carry the same contrast budget."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 601,
+        "kind": "min",
+        "count": 28
+      },
+      {
+        "px": 600,
+        "kind": "max",
+        "count": 16
+      },
+      {
+        "px": 961,
+        "kind": "min",
+        "count": 14
+      },
+      {
+        "px": 401,
+        "kind": "min",
+        "count": 12
+      },
+      {
+        "px": 951,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 640,
+        "kind": "min",
+        "count": 6
+      },
+      {
+        "px": 960,
+        "kind": "max",
+        "count": 5
+      },
+      {
+        "px": 1200,
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 960,
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 1400,
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 1280,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 2300,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 400,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 450,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 640,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 950,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1150,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1151,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 300,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 370,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 420,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 456,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 500,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 540,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 600,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 650,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 700,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 750,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 769,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 880,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 992,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1201,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1280,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1300,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1440,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1496,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1600,
+        "kind": "min",
+        "count": 1
+      }
+    ],
+    "contentWidthCandidates": [
+      {
+        "value": "1400px",
+        "token": "--ds-page-width",
+        "selectorEvidence": [
+          "measured — --ds-page-width: 1400px; --ds-page-width-with-margin: calc(var(--ds-page-width) + 2 * var(--geist-page-margin)) = 1448px"
+        ],
+        "role": "outer page frame"
+      },
+      {
+        "value": "var(--ds-page-width-with-margin)",
+        "selectorEvidence": [
+          ".FPY_ma_wrapper { max-width: var(--ds-page-width-with-margin); margin: 0 auto }",
+          "footer max-w-[var(--ds-page-width-with-margin)] mx-auto px-[var(--geist-page-margin)]"
+        ],
+        "role": "docs shell + footer"
+      },
+      {
+        "value": "300px",
+        "selectorEvidence": [
+          "aside … lg:w-[300px]",
+          ".lg\\:grid-cols-\\[300px_1fr\\]"
+        ],
+        "role": "left documentation sidebar"
+      },
+      {
+        "value": "240px",
+        "selectorEvidence": [
+          "aside … w-[240px] max-w-[240px] sticky top-[var(--docs-content-sticky-top)] hidden lg:block"
+        ],
+        "role": "right on-this-page rail"
+      },
+      {
+        "value": "961px",
+        "selectorEvidence": [
+          ".container",
+          ".max-w-screen-lg"
+        ],
+        "role": "generic container step"
+      },
+      {
+        "value": "1200px",
+        "selectorEvidence": [
+          ".container",
+          ".max-w-\\[1200px\\]"
+        ],
+        "role": "generic container step"
+      },
+      {
+        "value": "1080px",
+        "selectorEvidence": [
+          ".AMTIxG_gridSystem",
+          ".max-w-\\[1080px\\]"
+        ],
+        "role": "marketing grid"
+      },
+      {
+        "value": "800px",
+        "selectorEvidence": [
+          ".max-w-\\[800px\\]",
+          ".l_LQOW_caption"
+        ],
+        "role": "narrow prose/caption"
+      },
+      {
+        "value": "601px",
+        "selectorEvidence": [
+          ".container",
+          ".max-w-md"
+        ],
+        "role": "generic container step"
+      }
+    ],
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "gridDeclarations": 20,
+      "flexDeclarations": 137,
+      "note": "measured — flex dominates (137 display:flex declarations vs 20 display:grid). Grid is used for the docs shell columns (grid-cols-[300px_1fr]) and card decks (repeat(N,minmax(0,1fr)), repeat(auto-fit,minmax(300px,1fr)))."
+    },
+    "derivedProseColumn": {
+      "value": null,
+      "note": "measured inputs, not a measured value — the reading column is the 1448px frame minus a 300px left sidebar and a 240px right rail plus gutters (~24px each). No single max-width rule governs it, so the rendered prose width is not determinable statically; it would need a computed-style read at a known viewport."
+    },
+    "layoutVariables": [
+      {
+        "name": "--header-height",
+        "value": "64px"
+      },
+      {
+        "name": "--header-zindex",
+        "value": "75"
+      },
+      {
+        "name": "--docs-content-sticky-top",
+        "value": "calc(var(--header-height) + var(--docs-content-padding-top))"
+      },
+      {
+        "name": "--geist-page-margin",
+        "value": "var(--geist-space-gap) = 24px"
+      },
+      {
+        "name": "--ds-page-width",
+        "value": "1400px"
+      }
+    ],
+    "primaryBreakpointFamily": "measured — the site runs two overlapping systems: a Geist set at 401 / 601 / 951 / 961 / 1200 / 1400 px and a Tailwind set at 640 / 768 / 1024 / 1280 px; 601/600 is by far the most used pair (28 min + 16 max), then 961/960, then 401. The docs shell itself switches at Tailwind `lg` (1024px) for the sidebar and rail, and at 880px for the top nav."
+  },
+  "navigation": {
+    "persistentElements": [
+      {
+        "element": "header",
+        "detail": "one <header>, sticky top-0, height var(--header-height)=64px, z-index var(--header-zindex)=75",
+        "evidence": "measured — class=\"peer sticky top-0 z-(--header-zindex) h-(--header-height) w-full bg-transparent data-[scrolled]:bg-background-200 data-[scrolled]:shadow-[0_1px_0_0_var(--ds-gray-alpha-400)]\""
+      },
+      {
+        "element": "nav (Main navigation)",
+        "detail": "primary top nav, hidden below 880px",
+        "evidence": "measured — <nav aria-label=\"Main navigation\" class=\"flex h-full items-center max-[880px]:hidden [[data-mobile-open]_&]:!hidden\">"
+      },
+      {
+        "element": "aside (left docs sidebar)",
+        "detail": "300px, sticky under the header, own scroll container; hidden below lg and opened as a disclosure",
+        "evidence": "measured — <aside class=\"lg:relative pr-3 h-full flex-col lg:flex lg:w-[300px] hidden [&[open]]:block\"> wrapping <nav data-sidebar-nav=\"true\" class=\"… overflow-auto docs-sidebar-scroll\">; parent uses lg:grid-cols-[300px] lg:sticky lg:top-(--header-height) lg:h-[calc(100svh-var(--header-height))]"
+      },
+      {
+        "element": "aside (right on-this-page rail)",
+        "detail": "240px, sticky at calc(header-height + content padding), shown only at lg and up",
+        "evidence": "measured — <aside class=\"h-[calc(100vh-var(--header-height))] w-[240px] max-w-[240px] shrink-0 mr-4 sticky top-[var(--docs-content-sticky-top)] hidden lg:block\">"
+      },
+      {
+        "element": "main",
+        "detail": "exactly one <main> per page",
+        "evidence": "measured — 1 <main> element on both pages"
+      },
+      {
+        "element": "footer",
+        "detail": "one <footer>, constrained to the page frame, 14px text",
+        "evidence": "measured — class=\"max-w-[var(--ds-page-width-with-margin)] mx-auto px-[var(--geist-page-margin)] py-10 text-[14px]\""
+      },
+      {
+        "element": "skip link",
+        "detail": "present on both pages",
+        "evidence": "measured — a \"skip to content\" link is in the delivered markup"
+      }
+    ],
+    "stickyOrFixedSelectors": [
+      {
+        "position": "fixed",
+        "count": 21,
+        "sampleSelectors": [
+          ".geist-overlay",
+          ".geist-overlay-backdrop",
+          "#nprogress .bar",
+          "#nprogress:after",
+          "dialog.geist-dialog",
+          "dialog.geist-dialog::backdrop,dialog.geist-dialog+.backdrop",
+          "div.geist-dialog",
+          ".disV0a_logoutScreen",
+          ".fixed",
+          ".geist-overlay",
+          ".geist-overlay-backdrop",
+          "#nprogress .bar"
+        ]
+      },
+      {
+        "position": "sticky",
+        "count": 13,
+        "sampleSelectors": [
+          ".YYtNQG_wrapper",
+          ".DYXkHa_wrapper:not(.DYXkHa_overflow).DYXkHa_sticky .DYXkHa_table tr th",
+          ".DYXkHa_wrapper:not(.DYXkHa_overflow).DYXkHa_sticky:before",
+          ".\\!sticky",
+          ".sticky",
+          ".max-sm\\:sticky",
+          ".lg\\:sticky",
+          ".\\@lg\\:sticky",
+          ".\\@xl\\:sticky",
+          ".sticky .\\[\\.sticky_\\&\\]\\:sticky",
+          ".sticky",
+          ".lg\\:sticky"
+        ]
+      }
+    ],
+    "stickyInMarkup": [
+      "header: sticky top-0 z-(--header-zindex) h-(--header-height) data-[scrolled]:bg-background-200",
+      "docs shell column: lg:sticky lg:top-(--header-height) lg:h-[calc(100svh-var(--header-height))]",
+      "right rail: sticky top-[var(--docs-content-sticky-top)]",
+      "right drawer: sticky h-screen top-0 right-0 z-[100] w-0 overflow-hidden transition-[width] duration-250"
+    ],
+    "tocPresent": true,
+    "tocEvidence": "measured — the string \"On this page\" appears once in /docs/functions markup alongside the 240px sticky right <aside>; it is absent from the /docs landing page, which has no right rail (2 <aside> elements vs 3)",
+    "revealedOnDemand": [
+      {
+        "thing": "command palette / docs search",
+        "evidence": "measured — <button aria-label=\"Search Docs\"> containing <kbd data-geist-kbd><span>⌘ K</span></kbd>; the RSC payload names a client component \"BrowserClientOnlyCommandMenu\"; 1 role=\"dialog\" + 1 aria-modal on each page"
+      },
+      {
+        "thing": "mobile sidebar",
+        "evidence": "measured — the left <aside> is `hidden [&[open]]:block` below lg, and the top nav is hidden by `[[data-mobile-open]_&]:!hidden`, so a data-mobile-open state toggles them"
+      },
+      {
+        "thing": "right drawer panel",
+        "evidence": "measured — <aside … w-0 overflow-hidden transition-[width] duration-250> animates from zero width"
+      },
+      {
+        "thing": "collapsible sidebar sections",
+        "evidence": "measured — 3 <details>/<summary> elements and 19 aria-expanded / 16 aria-controls attributes on the functions page (6 / 8 on the landing page)"
+      },
+      {
+        "thing": "dropdown menus",
+        "evidence": "measured — 9 aria-haspopup attributes on the functions page, 3 on the landing page; Radix primitives referenced (2 and 17 hits)"
+      }
+    ],
+    "activeStateSignalling": "measured — 34 aria-current attributes on /docs/functions vs 1 on /docs: the sidebar and the on-this-page rail mark the current item, and the rail is populated for the deep page only",
+    "evidence": {
+      "docs_functions": {
+        "header": 1,
+        "nav": 3,
+        "aside": 3,
+        "main": 1,
+        "footer": 1,
+        "dialogEl": 0,
+        "detailsEl": 3,
+        "ariaExpanded": 19,
+        "ariaHaspopup": 9,
+        "roleDialog": 1,
+        "ariaModal": 1,
+        "skipLink": true,
+        "onThisPage": true,
+        "searchRole": 0,
+        "cmdk": true,
+        "kbdEl": 1,
+        "copyBtn": true,
+        "themeToggle": true,
+        "intersectionObs": false,
+        "scrollListener": true,
+        "breadcrumb": 0,
+        "feedbackWidget": true
+      },
+      "docs_index": {
+        "header": 1,
+        "nav": 3,
+        "aside": 2,
+        "main": 1,
+        "footer": 1,
+        "dialogEl": 0,
+        "detailsEl": 3,
+        "ariaExpanded": 6,
+        "ariaHaspopup": 3,
+        "roleDialog": 1,
+        "ariaModal": 1,
+        "skipLink": true,
+        "onThisPage": false,
+        "searchRole": 0,
+        "cmdk": true,
+        "kbdEl": 1,
+        "copyBtn": true,
+        "themeToggle": true,
+        "intersectionObs": false,
+        "scrollListener": true,
+        "breadcrumb": 0,
+        "feedbackWidget": true
+      }
+    }
+  },
+  "behaviours": [
+    {
+      "name": "command palette",
+      "basis": "inferred",
+      "evidence": "measured DOM: <button aria-label=\"Search Docs\"> with a <kbd>⌘ K</kbd> hint, 1 role=\"dialog\" + 1 aria-modal container, and a client component named \"BrowserClientOnlyCommandMenu\" in the RSC payload. Static fetch cannot confirm the keystroke handler runs."
+    },
+    {
+      "name": "scroll-driven header state",
+      "basis": "inferred",
+      "evidence": "measured DOM: the sticky header carries data-[scrolled]:bg-background-200 and data-[scrolled]:shadow-[0_1px_0_0_var(--ds-gray-alpha-400)] — a data-scrolled attribute is set by script, so the header is transparent at rest and grows a surface + hairline once scrolled."
+    },
+    {
+      "name": "copy button (code blocks)",
+      "basis": "inferred",
+      "evidence": "measured DOM: 13 clipboard/copy references on /docs/functions vs 3 on /docs; code blocks are labelled <div aria-label=\"Code block - app/api/hello/route.ts\">."
+    },
+    {
+      "name": "copy page as markdown",
+      "basis": "inferred",
+      "evidence": "measured DOM: a <button aria-label=\"Copy page\"> in the page header, plus 8 llms.txt / markdown references — a whole-page copy affordance for feeding docs to a model."
+    },
+    {
+      "name": "route progress bar",
+      "basis": "inferred",
+      "evidence": "measured CSS + DOM: #nprogress .bar and #nprogress:after are position:fixed; 6 nprogress references in markup."
+    },
+    {
+      "name": "link prefetching",
+      "basis": "inferred",
+      "evidence": "measured DOM: 240 prefetch references per page (Next.js Link prefetch)."
+    },
+    {
+      "name": "theme switching",
+      "basis": "inferred",
+      "evidence": "measured: token sets under .dark / .dark-theme / [data-theme=dark], no theme class on the server-rendered <html>, and 2 localStorage references — the class is applied client-side from a stored preference."
+    },
+    {
+      "name": "hover-only affordances",
+      "basis": "inferred",
+      "evidence": "measured CSS: 47 @media (hover:hover) blocks and 6 @media (hover:hover) and (pointer:fine) blocks — hover styling is gated so it never fires on touch."
+    },
+    {
+      "name": "reduced-motion respect",
+      "basis": "inferred",
+      "evidence": "measured CSS: 9 @media (prefers-reduced-motion:no-preference) and 3 @media (prefers-reduced-motion:reduce) blocks — animation is opt-in on motion preference."
+    },
+    {
+      "name": "forced-colors / high-contrast support",
+      "basis": "inferred",
+      "evidence": "measured CSS: 3 @media (forced-colors:active) blocks."
+    },
+    {
+      "name": "wide-gamut colour",
+      "basis": "inferred",
+      "evidence": "measured CSS: 4 @media (color-gamut:p3) blocks restate the token ramp in lab()."
+    },
+    {
+      "name": "page feedback widget",
+      "basis": "inferred",
+      "evidence": "measured DOM: a \"Was this helpful\" string on both pages."
+    },
+    {
+      "name": "sticky table headers",
+      "basis": "inferred",
+      "evidence": "measured CSS: .DYXkHa_wrapper…​.DYXkHa_sticky .DYXkHa_table tr th { position: sticky }."
+    },
+    {
+      "name": "scroll-spy on the on-this-page rail",
+      "basis": "inferred",
+      "evidence": "weak — 34 aria-current attributes and a sticky 240px rail imply a highlighted current section, but no IntersectionObserver string is present in the delivered markup, so the mechanism is not confirmed."
+    }
+  ],
+  "scriptFilenames": [
+    "32iphbgoegjht.js",
+    "38-76u2bsz_0u.js",
+    "3xwpfjvtscfym.js",
+    "3jj8u4yoaxlmn.js",
+    "1mb15qmf5lo21.js",
+    "turbopack-43mzqvq0zs5z1.js",
+    "2_mjbguyu3id-.js",
+    "32i13pckroi_o.js",
+    "0pir876xxn2ng.js",
+    "26o07iv4kwzxh.js",
+    "3bdxr6-onwc3d.js",
+    "0v2r5a53y1b7a.js",
+    "0x37q390z956-.js",
+    "3oorv03l0ptoa.js",
+    "2a9f8q4d9h8o6.js",
+    "1s_ikqplycmq7.js",
+    "3saq_emc_4n7p.js",
+    "3_2peoepro48g.js",
+    "2-b4wu-9dzinh.js",
+    "119d-wqny5z9r.js",
+    "13tceeqkw-x__.js",
+    "05ya3y8h9ki8c.js",
+    "3ffwtv2jsc63z.js",
+    "2o1mqi9fbdeci.js",
+    "2abdg66xex4pf.js",
+    "3kd8_f6uht_8z.js",
+    "3psy1zvc91up9.js",
+    "0y22gnzz794k9.js",
+    "1ovbwvax8kmx3.js",
+    "3e307_cmpvxyw.js",
+    "1nu38pw1f6ke1.js",
+    "021qv_uq6n5u2.js",
+    "1p6n0ewwq9j3x.js",
+    "3rix8_zui770s.js",
+    "3p-t2-wfwps4_.js",
+    "1cwir838ad55l.js",
+    "2ume4iebdzufm.js",
+    "21ubcl1nij6cc.js",
+    "10fz-wk6bsemb.js",
+    "25ifsu62mwo5l.js"
+  ],
+  "measurement": {
+    "status": "measured",
+    "method": "curl with a desktop Chrome user-agent, --compressed, -L, 20s timeout; both pages returned HTTP 200 on the first attempt with no challenge. 8 linked stylesheets fetched (all 200) plus 2 inline <style> blocks extracted. All figures derived with node/grep over the saved files.",
+    "notes": [
+      "Not blocked and not a JS-only shell: /docs/functions delivers 37,261 characters of visible text server-side and /docs delivers 10,276 — well above the 500-character threshold, so the docs prose is in the HTML.",
+      "Text-to-HTML ratio is very low (1.2% and 3.1%) because the pages are Next.js App Router RSC payloads: most bytes are serialized flight data and Tailwind class strings, not markup overhead.",
+      "Every value above is measured from delivered markup or fetched CSS, or explicitly labelled inferred (DOM/script presence). No computed styles were read and no browser was run, so anything requiring layout — the rendered prose column width, which utility class lands on a given paragraph, whether a handler actually fires — is recorded as null or caveated rather than guessed.",
+      "Font files were not fetched. GeistSans / Geist Mono are named in --font-geist-sans and --font-mono with declared fallback stacks.",
+      "Stylesheet byte counts are the decompressed sizes on disk; the wire transfer was smaller (e.g. the 452,789-byte main chunk transferred as 75,077 bytes gzipped).",
+      "Nothing was copied into the repository: raw HTML and CSS live only under data/design-study/raw/vercel_com_docs/ which is gitignored."
+    ],
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 2
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. The assigned /docs URL is a card index; the reading column and headings were measured on /docs/deployments and labelled."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://vercel.com/docs (assigned URL — an index of cards, not prose)",
+      "https://vercel.com/docs/deployments (prose article, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles.",
+    "assignedUrlIsNotAReadingPage": {
+      "url": "https://vercel.com/docs",
+      "finding": "The docs landing page holds one paragraph over 40 characters (713 characters of card blurb in a container with class 'relative overflow-hidden max-h-12' — a line-clamped card description). Its 990px width and 154 characters per line describe a card grid, not a reading measure.",
+      "action": "Chrome, search and page-shell values below are from this page. The reading-column and heading values are from /docs/deployments, a real prose article, and are labelled as such."
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 2
+      },
+      "readingColumn": {
+        "measuredOn": "/docs/deployments",
+        "containerTag": "div",
+        "containerWidthPx": 824,
+        "paragraphContentWidthPx": 824,
+        "containerMaxWidth": "none",
+        "paragraphCount": 25,
+        "totalCharsInColumn": 3345,
+        "fontSizePx": "16px",
+        "lineHeight": "27.2px",
+        "lineHeightRatio": 1.7,
+        "fontFamily": "GeistSans, \"GeistSans Fallback\"",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(237, 237, 237)",
+        "backgroundColor": "rgb(0, 0, 0)",
+        "backgroundFrom": "body (first ancestor with a non-transparent background)",
+        "avgGlyphWidthPx": 7.37,
+        "charactersPerLine": 112,
+        "paragraphMarginBottom": "0px",
+        "note": "112 characters per line is far above the 45-75 reading range; the 824px column is set by a three-pane grid (288px nav + article + 240px TOC), not by a max-width on the prose."
+      },
+      "contrast": {
+        "articleBodyVsBackground": 17.94,
+        "articlePair": "rgb(237, 237, 237) on rgb(0, 0, 0)",
+        "passesAA": true,
+        "passesAAA": true,
+        "landingCardBlurb": {
+          "ratio": 7.66,
+          "pair": "rgb(161, 161, 161) on rgb(10, 10, 10)",
+          "note": "Secondary text on the /docs index; still above AAA for normal text."
+        }
+      },
+      "headings": {
+        "measuredOn": "/docs/deployments",
+        "h1": {
+          "fontSize": "56px",
+          "fontWeight": "600",
+          "lineHeight": "56px",
+          "letterSpacing": "-3.36px",
+          "color": "rgb(237, 237, 237)",
+          "family": "GeistSans"
+        },
+        "h2": {
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "lineHeight": "32px",
+          "letterSpacing": "-0.96px",
+          "color": "rgb(237, 237, 237)"
+        },
+        "h3": {
+          "fontSize": "16px",
+          "fontWeight": "600",
+          "lineHeight": "24px",
+          "letterSpacing": "-0.32px",
+          "color": "rgb(237, 237, 237)"
+        },
+        "ratio_h1_body": 3.5,
+        "ratio_h2_body": 1.5,
+        "ratio_h3_body": 1,
+        "note": "h1 line-height equals its font-size (56px/56px) and letter-spacing is -6% — display setting. h3 is the same size and colour as body text and is separated by weight alone.",
+        "onIndexPage": {
+          "h1": "56px/600",
+          "h2": "24px/600",
+          "h3": "16px/600, rgb(255,255,255)",
+          "ratio_h1_body": 4
+        }
+      },
+      "code": {
+        "fontFamily": "Geist Mono",
+        "fontSizePx": "16px",
+        "lineHeight": "24px",
+        "backgroundColor": "rgb(10, 10, 10)",
+        "color": "rgb(237, 237, 237)",
+        "note": "Code is set at the same 16px as body text, not stepped down."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "sticky",
+        "headerTop": 0,
+        "headerHeightPx": 64,
+        "headerBackground": "rgba(0, 0, 0, 0)",
+        "headerBackgroundNote": "The header's own background is fully transparent; the bar reads as solid because of a backdrop layer beneath it, not a painted background on the header element.",
+        "headerHeightToken": "--header-height (used in calc() on both side panes)",
+        "documentScrolls": true,
+        "stickyOrFixedCount": 8,
+        "threePaneGrid": {
+          "leftNav": {
+            "widthPx": 288,
+            "x": 0,
+            "links": 81,
+            "stickyWrapperWidthPx": 300,
+            "stickyTop": "64px",
+            "heightPx": 836
+          },
+          "article": {
+            "widthPx": 824
+          },
+          "rightToc": {
+            "widthPx": 240,
+            "x": 1184,
+            "position": "sticky",
+            "top": "88px",
+            "heightPx": 836,
+            "heightFormula": "calc(100vh - var(--header-height))"
+          }
+        }
+      },
+      "toc": {
+        "present": true,
+        "measuredOn": "/docs/deployments",
+        "tag": "aside",
+        "side": "right",
+        "widthPx": 240,
+        "xPx": 1184,
+        "position": "sticky",
+        "top": "88px",
+        "inPageLinks": 13,
+        "linkFontSize": "14px",
+        "linkColor": "rgb(237, 237, 237)",
+        "overflowY": "visible",
+        "note": "Absent on the /docs index page, which has no in-page sections to list."
+      },
+      "search": {
+        "inputPresentAtLoad": false,
+        "trigger": {
+          "tag": "button",
+          "ariaLabel": "Search Docs",
+          "visibleText": "Search Docs ⌘ K",
+          "widthPx": 264,
+          "heightPx": 36,
+          "y": 76
+        },
+        "shortcutHint": "⌘ K",
+        "note": "A 264px labelled button that carries its own shortcut hint sits in the docs bar under the 64px header; the input itself only exists once the dialog opens, which was not triggered."
+      },
+      "pageWeight": {
+        "index": {
+          "docScrollHeightPx": 4512,
+          "screensOfScroll": 5.01,
+          "innerTextLength": 7450,
+          "htmlLength": 847194,
+          "textToHtmlRatio": 0.01
+        },
+        "article": {
+          "docScrollHeightPx": 6866,
+          "screensOfScroll": 7.63,
+          "innerTextLength": 8045,
+          "htmlLength": 1006861
+        }
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "/docs/deployments",
+      "readingColumn": {
+        "containerWidthPx": 327,
+        "paragraphContentWidthPx": 327,
+        "fontSizePx": "16px",
+        "lineHeight": "27.2px",
+        "lineHeightRatio": 1.7,
+        "avgGlyphWidthPx": 7.37,
+        "charactersPerLine": 44,
+        "color": "rgb(237, 237, 237)"
+      },
+      "typeScaleChangesAtMobile": true,
+      "h1": {
+        "fontSize": "48px",
+        "fontWeight": "600",
+        "lineHeight": "56px",
+        "desktopWas": "56px/56px"
+      },
+      "h2": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "26px",
+        "desktopWas": "24px/32px"
+      },
+      "bodyUnchanged": "16px/27.2px at both widths; only the headings step down.",
+      "header": {
+        "position": "sticky",
+        "top": 0,
+        "heightPx": 64,
+        "unchangedFromDesktop": true
+      },
+      "toc": {
+        "renderedAsPane": false,
+        "widthPx": 0,
+        "heightPx": 0,
+        "display": "contents",
+        "note": "The right-hand TOC aside no longer lays out a box at 375px (width 0, height 0, display: contents). It is replaced by a 32x32 header control labelled 'Open docs menu'; the sidebar navigation collapses behind the same control."
+      },
+      "menuControls": [
+        {
+          "ariaLabel": "Open docs menu",
+          "widthPx": 32,
+          "heightPx": 32,
+          "y": 16
+        },
+        {
+          "ariaLabel": "Open menu",
+          "widthPx": 44,
+          "heightPx": 44,
+          "y": 10
+        }
+      ],
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 8923,
+      "consentBanner": {
+        "present": true,
+        "class": "fides-banner",
+        "position": "fixed",
+        "widthPx": 343,
+        "heightPx": 139,
+        "yPx": 657,
+        "note": "A fixed bottom consent banner appears at mobile. It was not interacted with: no consent was granted and no option was clicked. It does not overlap the reading column, so no measurement above is affected."
+      }
+    },
+    "inferred": {
+      "react": true,
+      "reactEvidence": "A __react* key is present on document.body.",
+      "nextData": false,
+      "nextDataNote": "No window.__NEXT_DATA__ and no #__NEXT_DATA__ script; the App Router streams RSC payloads instead, so its absence is not evidence against Next.js.",
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "algoliaNote": "No algolia/docsearch string in the 91 script sources or scanned inline script text; the ⌘K search is not a DocSearch drop-in.",
+      "scrollama": false,
+      "gsap": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "hoverPreviewMarkerElements": 1,
+      "detailsElements": 3,
+      "dialogElements": 0,
+      "cssCustomPropertiesOnRoot": 505,
+      "colorSchemeDeclared": "dark",
+      "colorSchemeEvidence": "html carries style=\"color-scheme: dark\" and data-user-display=\"logged-out\"; the dark rendering is the shipped default for a signed-out reader, not an emulated preference.",
+      "tailwind": true,
+      "tailwindEvidence": "Class strings are Tailwind utilities including arbitrary-value and variant syntax: 'lg:grid-cols-[300px]', 'h-[calc(100vh-var(--header-height))]', 'max-[880px]:data-...', '[&_[data-slot=note]_p]:my-0'.",
+      "stylesheetCount": 10,
+      "scriptCount": 91,
+      "htmlAttributes": [
+        "class",
+        "lang=en",
+        "data-user-display=logged-out",
+        "style=color-scheme: dark",
+        "data-docs-hydrated=1"
+      ]
+    }
+  }
+}

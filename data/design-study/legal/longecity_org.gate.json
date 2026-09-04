@@ -1,0 +1,55 @@
+{
+  "key": "longecity.org",
+  "track": "A2",
+  "dir": "longecity_org",
+  "checkedAt": "2026-09-03T14:35:37.712Z",
+  "indexUrl": "https://www.longecity.org/forum/",
+  "contentUrl": "https://www.longecity.org/forum/forum/3-supplements/",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.longecity.org/robots.txt",
+    "httpStatus": 404,
+    "savedTo": null,
+    "indexPath": "/forum/",
+    "contentPath": "/forum/forum/3-supplements/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "robots.txt returned HTTP 404; no rules exist, so nothing is disallowed / robots.txt returned HTTP 404; no rules exist, so nothing is disallowed"
+  },
+  "terms": {
+    "url": null,
+    "httpStatus": null,
+    "savedTo": null,
+    "textSavedTo": null,
+    "textChars": 0,
+    "candidatesTried": [
+      {
+        "url": "https://www.longecity.org/forum/terms/",
+        "status": 404
+      },
+      {
+        "url": "https://www.longecity.org/forum/page/terms",
+        "status": 404
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: no permitted API probe for this host; forum, screenshot-only study, extract nothing"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows /forum/ and /forum/forum/3-supplements/; no terms clause matched a prohibition pattern across 0 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i."
+  ]
+}

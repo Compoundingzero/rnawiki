@@ -1,0 +1,172 @@
+{
+  "schema": "rnawiki-corpus-20k-clinical-fields/v1",
+  "spec": "docs/specs/field-models.md",
+  "model": "CLINICAL",
+  "pages": 5044,
+  "batches": 21,
+  "presentByField": {
+    "indication": 2385,
+    "withdrawal": 507,
+    "regulatory": 3769,
+    "faers": 1785,
+    "trialHistory": 3503,
+    "trialFailures": 1802,
+    "labelKinetics": 1217,
+    "interactions": 697,
+    "adverseEvents": 1417
+  },
+  "stateByField": {
+    "indication": {
+      "present": 2385,
+      "absent": 2057,
+      "not-applicable": 602
+    },
+    "labelKinetics": {
+      "absent": 3225,
+      "not-applicable": 602,
+      "present": 1217
+    },
+    "interactions": {
+      "absent": 3745,
+      "not-applicable": 602,
+      "present": 697
+    },
+    "adverseEvents": {
+      "absent": 3025,
+      "not-applicable": 602,
+      "present": 1417
+    },
+    "faers": {
+      "absent": 3259,
+      "present": 1785
+    },
+    "trialHistory": {
+      "absent": 1541,
+      "present": 3503
+    },
+    "trialFailures": {
+      "absent": 3242,
+      "present": 1802
+    },
+    "regulatory": {
+      "absent": 1275,
+      "present": 3769
+    },
+    "withdrawal": {
+      "present": 507,
+      "absent": 4537
+    }
+  },
+  "labelMatches": 2278,
+  "labelBodiesRead": 2087,
+  "requests": 0,
+  "lastVerified": "2026-09-04",
+  "files": [
+    {
+      "batch": 1,
+      "path": "data/corpus-20k/fields/clinical/batch-0001.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 2,
+      "path": "data/corpus-20k/fields/clinical/batch-0002.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 3,
+      "path": "data/corpus-20k/fields/clinical/batch-0003.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 4,
+      "path": "data/corpus-20k/fields/clinical/batch-0004.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 5,
+      "path": "data/corpus-20k/fields/clinical/batch-0005.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 6,
+      "path": "data/corpus-20k/fields/clinical/batch-0006.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 7,
+      "path": "data/corpus-20k/fields/clinical/batch-0007.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 8,
+      "path": "data/corpus-20k/fields/clinical/batch-0008.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 9,
+      "path": "data/corpus-20k/fields/clinical/batch-0009.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 10,
+      "path": "data/corpus-20k/fields/clinical/batch-0010.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 11,
+      "path": "data/corpus-20k/fields/clinical/batch-0011.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 12,
+      "path": "data/corpus-20k/fields/clinical/batch-0012.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 13,
+      "path": "data/corpus-20k/fields/clinical/batch-0013.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 14,
+      "path": "data/corpus-20k/fields/clinical/batch-0014.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 15,
+      "path": "data/corpus-20k/fields/clinical/batch-0015.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 16,
+      "path": "data/corpus-20k/fields/clinical/batch-0016.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 17,
+      "path": "data/corpus-20k/fields/clinical/batch-0017.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 18,
+      "path": "data/corpus-20k/fields/clinical/batch-0018.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 19,
+      "path": "data/corpus-20k/fields/clinical/batch-0019.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 20,
+      "path": "data/corpus-20k/fields/clinical/batch-0020.ndjson",
+      "records": 250
+    },
+    {
+      "batch": 21,
+      "path": "data/corpus-20k/fields/clinical/batch-0021.ndjson",
+      "records": 44
+    }
+  ],
+  "issues": []
+}

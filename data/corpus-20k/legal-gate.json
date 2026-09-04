@@ -1,0 +1,335 @@
+{
+  "sources": {
+    "chembl": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://ftp.ebi.ac.uk/robots.txt",
+      "robotsVerdict": "ALLOW — 'User-agent: *' with no Disallow (26 bytes); www.ebi.ac.uk/robots.txt disallows only search/tool paths, not /chembl/api/data/ or the FTP tree",
+      "termsUrl": "https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/README",
+      "licence": "CC BY-SA 3.0 Unported (README + LICENSE + REQUIRED.ATTRIBUTION)",
+      "licenceVerdict": "CLEAR_WITH_SHARE_ALIKE",
+      "notes": [
+        "Attribution must name the ChEMBL URL and the release (chembl_37).",
+        "ChEMBL IDs must be preserved and the release number displayed where integrated.",
+        "Share-alike propagates to any derived database we redistribute; keep ChEMBL-derived fields separable from CC0/public-domain fields so the site-wide licence is not forced to SA."
+      ]
+    },
+    "pubchem": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://ftp.ncbi.nlm.nih.gov/robots.txt",
+      "robotsVerdict": "ALLOW — 'User-agent: *' no Disallow. pubchem.ncbi.nlm.nih.gov/robots.txt disallows UI/search paths (/#query, /compound/*#, etc.), not /rest/pug/ or /pcfe/docs/",
+      "termsUrl": "https://pubchem.ncbi.nlm.nih.gov/pcfe/docs/markdown/downloads.md",
+      "licence": "Free to use; most data downloadable without restriction. Per-depositor exceptions exist and are flagged per source record.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "Usage policy: no more than 5 requests/second; no API keys or allowlists are offered.",
+        "30 s server-side time limit per PUG-REST request; HTTP 503 on throttle; repeated overrun causes a temporary block.",
+        "X-Throttling-Control response header reports green/yellow/red/black load state — must be honoured by our client.",
+        "Depositor-specific licences must be checked per source before republishing a depositor-contributed field."
+      ]
+    },
+    "clinicaltrials_gov": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://clinicaltrials.gov/robots.txt",
+      "robotsVerdict": "CONFLICT — robots.txt has 'Disallow: /api/' for User-agent: *, with Crawl-delay: 1. The same site publishes /api/v2 as a documented public API. Treat robots.txt as governing crawlers of the web UI, record the conflict, keep to 1 req/s, and do not crawl /search? or /expert-search?.",
+      "termsUrl": "https://clinicaltrials.gov/data-api/about-api",
+      "licence": "US Government work; NLM places the register in the public domain.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "The about-api and terms pages are a single-page app: 94,295-byte shell with no server-rendered text. Licence text could not be read in this survey; the public-domain status is asserted from US Government authorship, not from a fetched licence page.",
+        "Measured, not documented: pageSize is capped at 1000 (a request for 5000 returned exactly 1000).",
+        "Measured: filter.ids accepted 600 ids in one GET; 1000 ids returned nginx 414 Request-URI Too Large. The ceiling is URL length, not a documented id count. Use 500 ids per request with margin.",
+        "Live apiVersion 2.0.5, dataTimestamp 2026-09-03T09:00:05."
+      ]
+    },
+    "rxnorm_umls": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://uts.nlm.nih.gov/robots.txt",
+      "robotsVerdict": "present (56 bytes); the full-release download sits behind an authenticated UTS account, so robots is moot",
+      "termsUrl": "https://www.nlm.nih.gov/research/umls/rxnorm/docs/termsofservice.html",
+      "licence": "RxNorm full monthly/weekly release requires a free UMLS Metathesaurus Licence and a UTS account. Not an open download.",
+      "licenceVerdict": "NOT_CLEAR_WITHOUT_ACCOUNT",
+      "notes": [
+        "A UMLS licence is free but is an account and an agreement; it is not a public bulk file, so it is out of scope for an unattended bulk-first plan."
+      ]
+    },
+    "rxnav": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://rxnav.nlm.nih.gov/robots.txt",
+      "robotsVerdict": "404 — no robots.txt served on the API host",
+      "termsUrl": "https://lhncbc.nlm.nih.gov/RxNav/TermsofService.html",
+      "licence": "RxNorm content served through RxNav is non-proprietary NLM content and free to use. RxClass additionally carries SNOMED CT, which is subject to the SNOMED CT Affiliate licence.",
+      "licenceVerdict": "CLEAR_FOR_RXNORM_ONLY",
+      "notes": [
+        "Documented limit: no more than 20 requests per second per IP address across RxNorm, RxTerms, Prescribable RxNorm and RxClass.",
+        "NLM points heavy users at RxNav-in-a-Box (local install) instead of high-volume API use.",
+        "Do not ingest RxClass/SNOMED-derived classes; take RxCUI and name/synonym data only.",
+        "A US government funding-lapse banner was present on the NLM page on 2026-09-04; NLM warns data may not be current."
+      ]
+    },
+    "who_inn": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.who.int/robots.txt",
+      "robotsVerdict": "ALLOW for /teams/ paths (18,983-byte robots; extranet.who.int returns 404 for robots.txt)",
+      "termsUrl": "https://www.who.int/about/policies/publishing/copyright",
+      "licence": "WHO publications default to CC BY-NC-SA 3.0 IGO (non-commercial, share-alike).",
+      "licenceVerdict": "NOT_CLEAR",
+      "notes": [
+        "Recommended and Proposed INN lists are published as PDF notices, not as machine-readable tables. Nothing on the public page is a downloadable dataset.",
+        "The searchable INN database is behind MedNet / School of INN, which requires a requested account.",
+        "INN names as facts are not copyrightable and may be recorded; the WHO list documents themselves must not be redistributed under our licence rule."
+      ]
+    },
+    "open_targets": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://platform.opentargets.org/robots.txt",
+      "robotsVerdict": "ALLOW (109 bytes); ftp.ebi.ac.uk robots has no Disallow",
+      "termsUrl": "https://platform-docs.opentargets.org/licence.md",
+      "licence": "Data: CC0 1.0 (public domain dedication). Code: Apache 2.0.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "Open Targets docs explicitly discourage repeated per-entity GraphQL querying and direct users to the bulk downloads; no numeric GraphQL rate limit is published.",
+        "Open Targets drug tables are ChEMBL-derived but redistributed under CC0, which is the cleanest way to take mechanism/phase/withdrawal facts without inheriting ChEMBL's share-alike on that slice. Attribution to ChEMBL is still owed as a matter of provenance."
+      ]
+    },
+    "dailymed": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://dailymed.nlm.nih.gov/robots.txt",
+      "robotsVerdict": "present (75,120 bytes; an explicit per-path list)",
+      "termsUrl": "https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm",
+      "licence": "US Government work; SPL labels are public.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "Full human Rx release is 6 zips: 5 x 3.00 GB + 1.65 GB = 16.65 GB, 54,843 label files. Human OTC is 11 further parts (~3 GB each).",
+        "The single-file dm_spl_release_human_rx.zip and _otc.zip no longer exist; only the split parts.",
+        "Not needed: our on-disk openFDA drug/label archive (14 zips, 1.86 GB, 262,595 records) already carries the same SPL content in parsed JSON."
+      ]
+    },
+    "orange_book": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.fda.gov/robots.txt",
+      "robotsVerdict": "ALLOW for /drugs/ paths (2,505 bytes)",
+      "termsUrl": "https://www.fda.gov/drugs/drug-approvals-and-databases/approved-drug-products-therapeutic-equivalence-evaluations-orange-book",
+      "licence": "US Government work; public domain.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "The page links 'Orange Book Data Files (compressed .zip file)' without publishing a byte size.",
+        "Already on disk as openFDA drug-orangebook-0001-of-0001.json, 41.2 MB, 48,664 records."
+      ]
+    },
+    "openfda": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://open.fda.gov/robots.txt",
+      "robotsVerdict": "403 from the S3 origin — robots.txt is not served. api.fda.gov/robots.txt returns 404. Neither host publishes crawl rules; the API is documented for programmatic use.",
+      "termsUrl": "https://open.fda.gov/terms/",
+      "licence": "Public domain, CC0 1.0 Universal dedication (FDA waives all rights worldwide).",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "Documented rate limits, read from the authentication page: no key = 240 requests/minute per IP and 1,000 requests/day per IP; with a key = 240 requests/minute per key and 120,000 requests/day per key.",
+        "One carve-out in the terms: GMDN Content is licensed from The GMDN Agency and may not be extracted for commercial services, alternative ontologies or AI training. GMDN appears in device data, not in the drug endpoints we use.",
+        "Bulk index read from https://api.fda.gov/download.json on 2026-09-04."
+      ]
+    },
+    "drugsfda_bulk": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.fda.gov/robots.txt",
+      "robotsVerdict": "ALLOW for /drugs/",
+      "termsUrl": "https://www.fda.gov/drugs/drug-approvals-and-databases/drugsfda-data-files",
+      "licence": "US Government work; public domain.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "The page's own link label reads '(ZIP - 5.91KB)', which is almost certainly a stale label rather than the real archive size; do not plan against it. The equivalent openFDA drugsfda JSON is 9 MB for 29,312 records and is already on disk at 124.9 MB uncompressed.",
+        "Data last updated 2026-09-02; refreshed each weekday morning."
+      ]
+    },
+    "ema": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.ema.europa.eu/robots.txt",
+      "robotsVerdict": "ALLOW for /en/medicines/ (2,082 bytes)",
+      "termsUrl": "https://www.ema.europa.eu/en/about-us/about-website/legal-notice",
+      "licence": "Reproduction and distribution permitted, in whole or in part, in any format, for non-commercial AND commercial purposes, provided EMA is always acknowledged as the source.",
+      "licenceVerdict": "CLEAR_WITH_ATTRIBUTION",
+      "notes": [
+        "Third-party content within EMA documents is excluded from that permission and needs the rightsholder's consent.",
+        "The medicines data table is published as XLS, 717.5 KB. EMA also states its entire website is available in JSON for automated use, with data identical to the tables."
+      ]
+    },
+    "health_canada_dpd": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.canada.ca/robots.txt",
+      "robotsVerdict": "ALLOW for the DPD pages (2,730 bytes)",
+      "termsUrl": "https://open.canada.ca/en/open-government-licence-canada",
+      "licence": "Open Government Licence - Canada 2.0: worldwide, royalty-free, perpetual, non-exclusive, including commercial use, with attribution.",
+      "licenceVerdict": "CLEAR_WITH_ATTRIBUTION",
+      "notes": [
+        "Required attribution string: 'Contains information licensed under the Open Government Licence - Canada.'",
+        "Extracts are zips: allfiles.zip (marketed), allfiles_ia.zip (inactive), allfiles_ap.zip (approved), allfiles_dr.zip (dormant), plus per-table zips. The index page publishes no byte sizes; check Content-Length with a HEAD before downloading."
+      ]
+    },
+    "tga": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.tga.gov.au/robots.txt",
+      "robotsVerdict": "NOT RETRIEVABLE — two plain GETs with our User-Agent failed at the transport layer (HTTP/2 INTERNAL_ERROR, then a reset over HTTP/1.1); https://www.tga.gov.au/resources/artg also failed. The host appears to reject our client.",
+      "termsUrl": null,
+      "licence": "Unknown — no terms page could be read.",
+      "licenceVerdict": "NOT_CLEAR",
+      "notes": [
+        "Because robots.txt could not be read, the legal gate cannot be passed. No TGA fetch may be attempted in later phases until a human resolves access.",
+        "Australian regulatory status can be left UNKNOWN rather than guessed; R14/R11 allow that."
+      ]
+    },
+    "pmda": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.pmda.go.jp/robots.txt",
+      "robotsVerdict": "404 (the 404 body is a full 70 KB page); the English section was retrievable",
+      "termsUrl": "https://www.pmda.go.jp/english/review-services/reviews/approved-information/drugs/0002.html",
+      "licence": "No licence statement was located in this survey.",
+      "licenceVerdict": "NOT_CLEAR",
+      "notes": [
+        "English content is a set of per-product PDF review reports and package inserts, not a machine-readable register. There is no English bulk file and no documented API.",
+        "Japanese regulatory status should stay UNKNOWN rather than be scraped from PDFs."
+      ]
+    },
+    "nia_itp": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.nia.nih.gov/robots.txt",
+      "robotsVerdict": "BLOCKED — the host answers robots.txt with HTTP 405 and a 'Human Verification' interstitial; automated access is refused at the edge.",
+      "termsUrl": null,
+      "licence": "Unknown for nia.nih.gov.",
+      "licenceVerdict": "NOT_CLEAR_USE_MPD_INSTEAD",
+      "notes": [
+        "The ITP's actual results are published through the JAX Mouse Phenome Database, which is retrievable and is the source we should use."
+      ]
+    },
+    "jax_mpd_itp": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://phenome.jax.org/robots.txt",
+      "robotsVerdict": "404 — no robots.txt served",
+      "termsUrl": "https://phenome.jax.org/about/termsofuse",
+      "licence": "MPD data contributors waive copyright and related rights; users may freely build upon, enhance and reuse the data for any purpose.",
+      "licenceVerdict": "CLEAR",
+      "notes": [
+        "ITP results are machine-readable: project ITP1 ('Effects of various treatments on lifespan and related phenotypes in genetically heterogeneous mice (UM-HET3), 2004-2026') publishes per-cohort .xlsx supplementary files — ITP_C2004_Lifespan.xlsx through ITP_C2021_Lifespan.xlsx (with separate 'w error' variants for 2015 and 2020), plus C2020_pheno_bw.xlsx, C2021_pheno_bw.xlsx and cohort_2013_fatpads.xlsx.",
+        "A cookie banner is rendered on the page; a plain GET returns the content without interacting with it and nothing was accepted.",
+        "Pages: https://phenome.jax.org/projects/ITP1 (index of cohort downloads)."
+      ]
+    },
+    "openalex": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://api.openalex.org/robots.txt",
+      "robotsVerdict": "ALLOW — 'User-agent: * / Allow: /' (23 bytes)",
+      "termsUrl": null,
+      "licence": "Not verified. openalex.org/terms returns a Cloudflare challenge (403) to our client, and docs.openalex.org is a JavaScript app that returns the same 19,226-byte shell for every path including .md variants.",
+      "licenceVerdict": "NOT_VERIFIED",
+      "notes": [
+        "The API root responds: {'version':'0.1','documentation_url':'/docs','msg':\"Don't panic\"}.",
+        "The 2026 freemium terms, the documented per-day/per-second limits and the snapshot size could NOT be read in this survey. Do not plan against remembered numbers. Either resolve the terms with a human before any OpenAlex ingestion, or drop OpenAlex from the plan.",
+        "The full snapshot is in any case far larger than 29 GB of free disk and is excluded on that ground alone."
+      ]
+    },
+    "europe_pmc": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.ebi.ac.uk/robots.txt",
+      "robotsVerdict": "ALLOW for the Europe PMC REST paths",
+      "termsUrl": "https://europepmc.org/Copyright",
+      "licence": "Article metadata is freely searchable and reusable. Full text carries per-article copyright: the open-access subset is CC or similar per article, everything else is standard copyright.",
+      "licenceVerdict": "CLEAR_FOR_METADATA_ONLY",
+      "notes": [
+        "No numeric rate limit or page-size cap could be extracted from https://europepmc.org/RestfulWebService in this survey; the page's parameter tables are script-rendered. Plan conservatively at <=3 requests/second and confirm before any large run.",
+        "Take citations, identifiers and abstracts; never store or render full text without checking that article's licence."
+      ]
+    },
+    "pubmed_eutilities": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://eutils.ncbi.nlm.nih.gov/robots.txt",
+      "robotsVerdict": "present (178 bytes)",
+      "termsUrl": "https://www.ncbi.nlm.nih.gov/books/NBK25497/",
+      "licence": "US Government work; PubMed records are public. Individual abstracts remain publisher copyright.",
+      "licenceVerdict": "CLEAR_FOR_METADATA_ONLY",
+      "notes": [
+        "NCBI's stated policy: 3 requests/second without an API key, 10 requests/second with one; large jobs on weekends or outside 21:00-05:00 US Eastern.",
+        "Batch esummary/efetch by UID list rather than one call per record."
+      ]
+    },
+    "drugbank": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://go.drugbank.com/robots.txt",
+      "robotsVerdict": "present (2,199 bytes); the terms-of-use page itself returned 403 to our client (Cloudflare)",
+      "termsUrl": "https://go.drugbank.com/releases/latest",
+      "licence": "Two tiers on one page. Open Data: CC0 1.0, explicitly usable commercially. Everything else (full database, structures, external links, target/drug sequences, protein identifiers): CC BY-NC 4.0.",
+      "licenceVerdict": "OPEN_DATA_CLEAR_REST_NOT_CLEAR",
+      "notes": [
+        "DrugBank Open Data is exactly two files: DrugBank Vocabulary (1.12 MB, CSV — DrugBank identifiers, names and synonyms for linking) and DrugBank Structures (5.16 MB, SDF — structures, names and synonyms). Nothing else.",
+        "The non-commercial tier includes all-full-database (204 MB XML), all-structures (11 MB SDF), all-3d-structures (13.9 MB), approved-structures (3.63 MB), experimental (4.69 MB), nutraceutical (183 KB), illicit (131 KB), withdrawn, and the drug/target sequence sets. Those are the fields we would actually want (targets, interactions, pharmacology) and they are the ones we cannot use.",
+        "No price is published on the downloads page. The academic tier is credential-gated (curl -u EMAIL:PASSWORD); the commercial tier is 'Contact Sales'. Do not quote a figure we have not read.",
+        "Every download on the page was marked 'Temporarily unavailable' on 2026-09-04, and the footer states that use or redistribution of DrugBank content requires a licence and citation."
+      ]
+    },
+    "fda_withdrawn_lists": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.fda.gov/robots.txt",
+      "robotsVerdict": "ALLOW for /drugs/",
+      "termsUrl": null,
+      "licence": "US Government work; public domain where the page exists.",
+      "licenceVerdict": "CLEAR_BUT_PAGE_NOT_FOUND",
+      "notes": [
+        "Three plausible URLs for 'Drug Products Withdrawn or Removed from the Market for Reasons of Safety or Effectiveness' all returned 404 (under /drug-approvals-and-databases/, /development-approval-process-drugs/ and /drug-safety-and-availability/). The list was not located in this survey; do not assume a URL.",
+        "Machine-readable substitutes that ARE reachable: openFDA drug/enforcement (17,899 records, 4 MB), Drugs@FDA marketing status, the Orange Book discontinued products, and Open Targets drug_warning.parquet (249 KB), which carries withdrawal warnings with year, country and reason."
+      ]
+    },
+    "who_banned_withdrawn_list": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://www.who.int/robots.txt",
+      "robotsVerdict": "ALLOW for /publications/",
+      "termsUrl": null,
+      "licence": "WHO default CC BY-NC-SA 3.0 IGO.",
+      "licenceVerdict": "NOT_CLEAR",
+      "notes": [
+        "The Consolidated List of banned/withdrawn/severely restricted products was not located: the guessed /publications/i/item/ URL returned 404. No URL should be asserted without one that resolved.",
+        "Non-commercial licence would bar redistribution in any case; use it, if at all, as a pointer for human verification only."
+      ]
+    },
+    "google_patents": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://patents.google.com/robots.txt",
+      "robotsVerdict": "RESTRICTIVE — 'User-agent: * / Disallow: /* / Allow: /$ / Allow: /advanced$ / Allow: /patent/ / Allow: /sitemap/'. Individual /patent/ pages are crawlable; search and everything else is not.",
+      "termsUrl": "https://policies.google.com/terms",
+      "licence": "Google Terms of Service. No data licence is granted for redistribution of Google Patents content.",
+      "licenceVerdict": "NOT_CLEAR",
+      "notes": [
+        "Google's terms prohibit 'using automated means to access content from any of our services in violation of the machine-readable instructions on our web pages'. robots.txt disallows everything except individual patent pages, so any crawl that walks search results is a terms violation.",
+        "There is no rate limit to plan against because there is no API offered to us. Patent status must come from a source that grants us a licence (USPTO or EPO OPS) or stay UNKNOWN.",
+        "PubChem's CID-Patent.gz (4.4 GB) links CIDs to patent identifiers under PubChem's terms and is the reachable substitute for association, though not for legal status."
+      ]
+    },
+    "examine_com": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://examine.com/robots.txt",
+      "robotsVerdict": "NOT RETRIEVABLE — GET with our User-Agent returned HTTP 429 and a 32,183-byte 'Vercel Security Checkpoint' interstitial instead of a robots file. No crawl rules could be read.",
+      "termsUrl": null,
+      "licence": "Unknown — no terms page was fetched, because the robots check could not be passed first.",
+      "licenceVerdict": "NOT_CLEAR",
+      "decision": "SKIP — gate not passed. No examine.com page, including compound reference lists, may be fetched in Phase 1 or later until a human resolves access.",
+      "notes": [
+        "Checked during Phase 1 recovery as a possible reference-list source for compounds absent from registry sources.",
+        "Only the reference list (PMIDs/DOIs) would ever have been read; no prose. That is moot while the gate is unpassed.",
+        "Saved response: data/corpus-20k/legal/robots/examine.com.txt.err"
+      ]
+    },
+    "precision_fda_uniisearch": {
+      "checkedAt": "2026-09-04",
+      "robotsUrl": "https://precision.fda.gov/robots.txt",
+      "robotsVerdict": "NO RULES — the host is a single-page app and answers /robots.txt with HTTP 200 and the 3,258-byte application shell, not a robots file. No Disallow directives are published; no crawl of the UI was performed, only two direct archive downloads.",
+      "termsUrl": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "licence": "US Government work. FDA website policy, read 2026-09-04: FDA content 'both text and graphics — are not copyrighted. They are in the public domain and may be republished, reprinted and otherwise used freely by anyone without the need to obtain permission from FDA.'",
+      "licenceVerdict": "CLEAR",
+      "decision": "CLEARED — fetch the UNII archives only",
+      "notes": [
+        "precisionFDA is an FDA-operated site; the UNII archive path https://precision.fda.gov/uniisearch/archive/latest/ serves static zips.",
+        "Two files taken: UNIIs.zip (20.3 MB — UNII_Names) and UNII_Data.zip (14.5 MB — UNII_Records, the identity table with RN, RXCUI, PUBCHEM, INCHIKEY, SMILES, NCIT, INN_ID, USAN_ID, SUBSTANCE_TYPE).",
+        "The FDA GSRS page on fda.gov was also read; it publishes no separate data licence.",
+        "One INN caveat carried in the FDA README: the INN_ID column is an adaptation not created by WHO; WHO is not responsible for its accuracy and the original WHO edition is the binding one.",
+        "No consent banner was present and none was accepted. Two 502 responses were returned for guessed filenames (UNIIs_Data.zip, UNII_Records.zip) and no retry storm followed."
+      ]
+    }
+  }
+}

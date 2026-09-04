@@ -1,0 +1,48 @@
+{
+  "key": "longevity wiki (url to verify)",
+  "track": "A2",
+  "dir": "longevity_wiki",
+  "checkedAt": "2026-09-03T14:43:15.757Z",
+  "indexUrl": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+  "contentUrl": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+  "contentNote": "Host verified by the legal gate: https://en.longevitywiki.org/wiki/Longevity_Wiki returned HTTP 200 with <title> \"Longevity Wiki\". Index and content point at the verified host; a content article is chosen by the capture pass only if the gate allows capture.",
+  "reachable": true,
+  "robots": {
+    "url": "https://en.longevitywiki.org/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/longevity_wiki.robots.txt",
+    "indexPath": "/wiki/Longevity_Wiki",
+    "contentPath": "/wiki/Longevity_Wiki",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": null,
+    "httpStatus": null,
+    "savedTo": null,
+    "textSavedTo": null,
+    "textChars": 0,
+    "candidatesTried": [],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": true,
+    "url": "https://en.longevitywiki.org/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json",
+    "licence": "Creative Commons Attribution-ShareAlike",
+    "note": "API root (MediaWiki siteinfo + rightsinfo): HTTP 200, 1939 bytes (JSON); saved excerpt to legal/longevity_wiki.api.txt"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows /wiki/Longevity_Wiki and /wiki/Longevity_Wiki; no terms clause matched a prohibition pattern across 0 relevant excerpts."
+  },
+  "notes": [
+    "Host verification: https://longevitywiki.org/ -> https://en.longevitywiki.org/wiki/Longevity_Wiki HTTP 200, <title> \"Longevity Wiki\".",
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i."
+  ]
+}

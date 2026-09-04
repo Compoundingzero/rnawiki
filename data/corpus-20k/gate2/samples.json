@@ -1,0 +1,91 @@
+{
+  "schema": "rnawiki-corpus-20k-gate2-samples/v1",
+  "generated": "2026-09-05",
+  "spec": "docs/specs/deployment-plan.md",
+  "note": "The pages carried through every Gate 2 render, browser and live check, one per role so a regression in any one role is visible. Keys and tiers are the corpus's own; presentFields counts the fields whose state is present in data/corpus-20k/fields/, questions counts the derived blocks in data/corpus-20k/questions/, and indexedAtThreshold11 says whether the key appears in gate2/lists-v2/indexed-t11.tsv. Tier 3 pages carry noindex by design, so they are absent from that list.",
+  "withdrawnSlotChange": "Phase 5a tightened the withdrawn rule to require that no cleared register still records an active application for the moiety. Amlodipine no longer qualifies, so the withdrawn-arc role moves to rofecoxib, which is withdrawn under the final rule (ChEMBL drug_warning Withdrawn, Worldwide, 2004, reason cardiotoxicity) and is indexable at the deployed threshold of 11. Amlodipine stays in the list as a control: a page that the earlier rule called withdrawn and the final rule does not, so a regression that reintroduces the loose rule shows up as a withdrawal block on this page.",
+  "samples": [
+    {
+      "role": "data-rich Tier 1",
+      "slug": "metformin",
+      "key": "K1:9100L32L2N",
+      "tier": "tier1",
+      "model": "LONGEVITY",
+      "presentFields": 15,
+      "questions": 17,
+      "indexedAtThreshold11": true
+    },
+    {
+      "role": "mid Tier 1 (median)",
+      "slug": "cysteamine",
+      "key": "K1:5UX2SD1KE2",
+      "tier": "tier1",
+      "model": "LONGEVITY",
+      "presentFields": 10,
+      "questions": 14,
+      "indexedAtThreshold11": true
+    },
+    {
+      "role": "withdrawn arc",
+      "slug": "rofecoxib",
+      "key": "K1:0QTW8Z7MCR",
+      "tier": "tier1",
+      "model": "LONGEVITY",
+      "presentFields": 11,
+      "questions": 11,
+      "indexedAtThreshold11": true,
+      "withdrawnReasonSource": "ChEMBL drug_warning Withdrawn (Worldwide; 2004), reason cardiotoxicity, CHEMBL122"
+    },
+    {
+      "role": "suppression class (S1/S3/S4/S6)",
+      "slug": "sirolimus",
+      "key": "K1:W36ZG6FT64",
+      "tier": "tier1",
+      "model": "LONGEVITY",
+      "presentFields": 15,
+      "questions": 18,
+      "indexedAtThreshold11": true
+    },
+    {
+      "role": "Tier 2 standard",
+      "slug": "carbidopa-levodopa",
+      "key": "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
+      "tier": "tier2",
+      "model": "CLINICAL",
+      "presentFields": 3,
+      "questions": 8,
+      "indexedAtThreshold11": false
+    },
+    {
+      "role": "Tier 3 experimental",
+      "slug": "cdx-3379",
+      "key": "K1:00X6I56YXR",
+      "tier": "tier3",
+      "model": "DEVELOPMENT",
+      "presentFields": 7,
+      "questions": 6,
+      "indexedAtThreshold11": false
+    },
+    {
+      "role": "Tier 3 near-empty stub",
+      "slug": "1-2-distearoyl-sn-glycero-3-phosphocholine",
+      "key": "K1:043IPI2M0K",
+      "tier": "tier3",
+      "model": "DEVELOPMENT",
+      "presentFields": 1,
+      "questions": 0,
+      "indexedAtThreshold11": false
+    },
+    {
+      "role": "formerly withdrawn (control)",
+      "slug": "amlodipine",
+      "key": "K1:1J444QC288",
+      "tier": "tier1",
+      "model": "LONGEVITY",
+      "presentFields": 13,
+      "questions": 16,
+      "indexedAtThreshold11": true,
+      "control": "Withdrawn under the pre-Phase-5a rule, not withdrawn under the final rule. Its page must carry no withdrawal statement."
+    }
+  ]
+}

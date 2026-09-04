@@ -4625,3 +4625,395 @@ export const resultDebuggerCorrections = pgTable(
     ),
   ],
 )
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Corpus pages (docs/specs/corpus-schema.md).                                                      */
+/*                                                                                                  */
+/* One row per canonical R1 key, plus its synonyms, model fields, derived seeds, derived questions, */
+/* relations, sources and registry study links. Nothing here is a reviewed programme conclusion:     */
+/* every row is a recorded fact with the source and dates it came from, or an explicit absence.      */
+/* The legacy `drugs` row stays where one exists and is linked by `legacy_drug_id`; the programme    */
+/* tables are untouched.                                                                             */
+/*                                                                                                  */
+/* Written only by scripts/corpus-20k/load/materialise.ts, tier by tier, in batches of 250.          */
+/* ---------------------------------------------------------------------------------------------- */
+
+export const corpusPageModelEnum = pgEnum('corpus_page_model', [
+  'LONGEVITY',
+  'CLINICAL',
+  'DEVELOPMENT',
+])
+
+export const corpusPageTypeEnum = pgEnum('corpus_page_type', [
+  'longevity',
+  'clinical',
+  'withdrawn',
+  'development',
+  'stub',
+])
+
+export const corpusFieldStateEnum = pgEnum('corpus_field_state', [
+  'present',
+  'absent',
+  'not-applicable',
+])
+
+export const corpusSynonymKindEnum = pgEnum('corpus_synonym_kind', [
+  'inn',
+  'usan',
+  'ban',
+  'jan',
+  'brand',
+  'salt',
+  'code',
+  'fragment',
+  'common',
+  'display',
+])
+
+export const corpusRelationKindEnum = pgEnum('corpus_relation_kind', [
+  'ester-of',
+  'prodrug-of',
+  'stereoisomer-of',
+  'racemate-of',
+  'biosimilar-of',
+  'contains',
+  'isotopologue-of',
+  'same-target',
+  'shares-enzyme',
+])
+
+export const corpusPages = pgTable(
+  'corpus_pages',
+  {
+    /** The R1 canonical key, e.g. `K1:X49C572YQO`. Longest observed in the 28,966-page corpus: 133. */
+    key: varchar('key', { length: 200 }).primaryKey(),
+    /** The existing slug where reconciliation said KEEP or RETAIN, else derived from the name. */
+    slug: varchar('slug', { length: 128 }).notNull(),
+    displayName: text('display_name').notNull(),
+    model: corpusPageModelEnum('model').notNull(),
+    /** Deployment and indexing grouping (R6/R13), from docs/specs/... tiers/promotion-rule.md. */
+    tier: integer('tier').notNull(),
+    pageType: corpusPageTypeEnum('page_type').notNull(),
+    /** tier in (1,2) and page_type <> 'stub' and present_field_count >= the Gate 1b threshold. */
+    indexable: boolean('indexable').notNull().default(false),
+    suppressed: boolean('suppressed').notNull().default(false),
+    suppressionClasses: text('suppression_classes')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /** Register-stated withdrawal (R11). Promotes a page to Tier 1 whatever its model. */
+    withdrawn: boolean('withdrawn').notNull().default(false),
+    presentFieldCount: integer('present_field_count').notNull().default(0),
+    /** Coverage denominator: fields of this page's model that are not `not-applicable`. */
+    applicableFieldCount: integer('applicable_field_count').notNull().default(0),
+    /**
+     * ATC codes ChEMBL records for this molecule, verbatim (e.g. `C02CA01`). The browse class
+     * facet reads their first level. ChEMBL content is CC BY-SA 3.0, which `licence_notes`
+     * carries as "ChEMBL ATC CC BY-SA" whenever this array is not empty.
+     */
+    atcCodes: text('atc_codes')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /**
+     * The corpus's own entity class (`APPROVED_MEDICINE`, `SUPPLEMENT_INGREDIENT`, …) where the
+     * database recorded one for the legacy record, else the ChEMBL molecule type verbatim
+     * (`Small molecule`, `Antibody`, …). Null where neither source states one.
+     */
+    entityClass: text('entity_class'),
+    /**
+     * The badge triplet the dossier header and every browse row carry (docs/specs/dossier-template.md).
+     * `top_rung` is the highest organism a recorded finding used; `human_data` is whether a human
+     * study or human rung is on file, and is null where nothing bears on the question; and
+     * `evidence_tier` is the LONGEVITY ladder's kind where the ladder has one, else what the
+     * registry records. All three are written by the loader so every model carries the same triplet.
+     */
+    topRung: text('top_rung'),
+    humanData: boolean('human_data'),
+    evidenceTier: text('evidence_tier'),
+    structureInchikey: varchar('structure_inchikey', { length: 27 }),
+    unii: varchar('unii', { length: 20 }),
+    chemblId: varchar('chembl_id', { length: 24 }),
+    pubchemCid: varchar('pubchem_cid', { length: 24 }),
+    cas: varchar('cas', { length: 32 }),
+    rxcui: varchar('rxcui', { length: 24 }),
+    legacyDrugId: varchar('legacy_drug_id', { length: 96 }).references(() => drugs.id, {
+      onDelete: 'set null',
+    }),
+    /** R1 key rank (K1…K4, COMBO, HOLD, NONE) and the rule that decided it. */
+    identityRank: varchar('identity_rank', { length: 16 }).notNull(),
+    identityRule: varchar('identity_rule', { length: 40 }).notNull(),
+    /** Per-source licence statements this page must carry, e.g. "ChEMBL fields CC BY-SA 3.0". */
+    licenceNotes: text('licence_notes')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /** sha256 over this page's ordered page_fields rows; the export/agents chain reads it. */
+    corpusDigest: varchar('corpus_digest', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('corpus_pages_slug_key').on(table.slug),
+    // The sitemap index and every browse facet start here: 30,000 rows, only a fifth indexable.
+    index('corpus_pages_indexable_tier_idx').on(table.indexable, table.tier),
+    index('corpus_pages_sitemap_idx')
+      .on(table.tier, table.updatedAt)
+      .where(sql`${table.indexable}`),
+    index('corpus_pages_tier_model_idx').on(table.tier, table.model),
+    index('corpus_pages_page_type_idx').on(table.pageType, table.tier),
+    index('corpus_pages_withdrawn_idx')
+      .on(table.tier)
+      .where(sql`${table.withdrawn}`),
+    index('corpus_pages_suppressed_idx')
+      .on(table.tier)
+      .where(sql`${table.suppressed}`),
+    // Identifier lookups. Partial, because most pages hold only one or two of these keys.
+    index('corpus_pages_unii_idx')
+      .on(table.unii)
+      .where(sql`${table.unii} is not null`),
+    index('corpus_pages_chembl_idx')
+      .on(table.chemblId)
+      .where(sql`${table.chemblId} is not null`),
+    index('corpus_pages_pubchem_idx')
+      .on(table.pubchemCid)
+      .where(sql`${table.pubchemCid} is not null`),
+    index('corpus_pages_cas_idx')
+      .on(table.cas)
+      .where(sql`${table.cas} is not null`),
+    index('corpus_pages_rxcui_idx')
+      .on(table.rxcui)
+      .where(sql`${table.rxcui} is not null`),
+    index('corpus_pages_inchikey_idx')
+      .on(table.structureInchikey)
+      .where(sql`${table.structureInchikey} is not null`),
+    index('corpus_pages_legacy_drug_idx')
+      .on(table.legacyDrugId)
+      .where(sql`${table.legacyDrugId} is not null`),
+    index('corpus_pages_display_name_idx').on(sql`lower(${table.displayName})`),
+    check('corpus_pages_tier_range', sql`${table.tier} between 1 and 3`),
+    check('corpus_pages_slug_shape', sql`${table.slug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+    check('corpus_pages_digest', sql`${table.corpusDigest} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'corpus_pages_display_name_nonempty',
+      sql`nullif(btrim(${table.displayName}), '') is not null`,
+    ),
+    check(
+      'corpus_pages_field_counts',
+      sql`${table.presentFieldCount} >= 0 and ${table.applicableFieldCount} >= 0 and ${table.presentFieldCount} <= ${table.applicableFieldCount}`,
+    ),
+    check(
+      'corpus_pages_stub_not_indexable',
+      sql`not (${table.indexable} and (${table.pageType} = 'stub' or ${table.tier} = 3))`,
+    ),
+  ],
+)
+
+export const pageSynonyms = pgTable(
+  'page_synonyms',
+  {
+    /** sha256 of key | kind | lower(name), so re-running the load rewrites the same row. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** Stored whole. Some botanical and biologic names run past 2,000 characters. */
+    name: text('name').notNull(),
+    kind: corpusSynonymKindEnum('kind').notNull(),
+    source: varchar('source', { length: 64 }).notNull(),
+  },
+  (table) => [
+    index('page_synonyms_key_idx').on(table.key),
+    // Prefix expression: a btree entry over the whole name would exceed the 2,704-byte page limit.
+    index('page_synonyms_name_idx').on(sql`lower(left(${table.name}, 120))`),
+    check('page_synonyms_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_synonyms_name_nonempty', sql`nullif(btrim(${table.name}), '') is not null`),
+  ],
+)
+
+export const pageFields = pgTable(
+  'page_fields',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** The model field id, e.g. `organismLadder`, `labelKinetics`, `highestPhase`. */
+    field: varchar('field', { length: 64 }).notNull(),
+    /** 0 for a single-valued field; a field that records several rows numbers them from 0. */
+    ordinal: integer('ordinal').notNull().default(0),
+    state: corpusFieldStateEnum('state').notNull(),
+    /** The recorded value, verbatim from the source. Null for absent and not-applicable. */
+    value: jsonb('value'),
+    sourceKind: varchar('source_kind', { length: 64 }),
+    sourceId: varchar('source_id', { length: 200 }),
+    sourceUrl: text('source_url'),
+    /** YYYY, YYYY-MM or YYYY-MM-DD, as the source states it (R9). */
+    sourceDate: varchar('source_date', { length: 32 }),
+    lastVerified: varchar('last_verified', { length: 32 }),
+    verbatim: boolean('verbatim').notNull().default(false),
+    /** What the extractor consulted and did not find. Kept so an absence stays explainable. */
+    note: text('note'),
+  },
+  (table) => [
+    primaryKey({ columns: [table.key, table.field, table.ordinal] }),
+    index('page_fields_field_state_idx').on(table.field, table.state),
+    index('page_fields_present_idx')
+      .on(table.key)
+      .where(sql`${table.state} = 'present'`),
+    index('page_fields_freshness_idx').on(table.sourceKind, table.sourceDate),
+    check(
+      'page_fields_value_state',
+      sql`(${table.state} = 'present') or ${table.sourceKind} is null`,
+    ),
+    check(
+      'page_fields_source_date_shape',
+      sql`${table.sourceDate} is null or ${table.sourceDate} ~ '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'`,
+    ),
+    check(
+      'page_fields_last_verified_shape',
+      sql`${table.lastVerified} is null or ${table.lastVerified} ~ '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'`,
+    ),
+    check('page_fields_ordinal', sql`${table.ordinal} >= 0`),
+  ],
+)
+
+export const pageSeeds = pgTable(
+  'page_seeds',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** Seed number from docs/specs/derived-content.md; 1-17 are kept, 18-21 were rejected. */
+    seed: integer('seed').notNull(),
+    values: jsonb('values')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    sources: jsonb('sources')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    computedAt: timestamp('computed_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.key, table.seed] }),
+    index('page_seeds_seed_idx').on(table.seed),
+    check('page_seeds_seed_range', sql`${table.seed} between 1 and 17`),
+  ],
+)
+
+export const pageQuestions = pgTable(
+  'page_questions',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** Render order on the page; the Q1…Qn badge numbering restarts per page. */
+    ordinal: integer('ordinal').notNull(),
+    block: varchar('block', { length: 48 }).notNull(),
+    template: varchar('template', { length: 64 }).notNull(),
+    text: text('text').notNull(),
+    paragraph1: text('paragraph_1'),
+    paragraph2: text('paragraph_2'),
+    /** [{ paragraph, source_kind, source_id, source_date }] — one anchor per paragraph. */
+    anchors: jsonb('anchors')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** The technical rows revealed under the answer. */
+    revealed: jsonb('revealed')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+  },
+  (table) => [
+    primaryKey({ columns: [table.key, table.ordinal] }),
+    index('page_questions_block_idx').on(table.block),
+    index('page_questions_template_idx').on(table.template),
+    check('page_questions_ordinal', sql`${table.ordinal} >= 0`),
+    check('page_questions_text_nonempty', sql`nullif(btrim(${table.text}), '') is not null`),
+  ],
+)
+
+export const pageRelations = pgTable(
+  'page_relations',
+  {
+    /** sha256 of key | relation | target_key. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    relation: corpusRelationKindEnum('relation').notNull(),
+    /**
+     * The other page's R1 key. Deliberately NOT a foreign key: tiers load one at a time, so a
+     * relation routinely points at a page that lands in a later tier.
+     */
+    targetKey: varchar('target_key', { length: 200 }).notNull(),
+    label: text('label'),
+    source: varchar('source', { length: 64 }).notNull(),
+  },
+  (table) => [
+    uniqueIndex('page_relations_unique').on(table.key, table.relation, table.targetKey),
+    index('page_relations_target_idx').on(table.targetKey),
+    index('page_relations_relation_idx').on(table.relation),
+    check('page_relations_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_relations_not_self', sql`${table.key} <> ${table.targetKey}`),
+  ],
+)
+
+export const pageSources = pgTable(
+  'page_sources',
+  {
+    /** sha256 of key | source_kind | source_id | source_url. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    sourceKind: varchar('source_kind', { length: 64 }).notNull(),
+    sourceId: varchar('source_id', { length: 200 }).notNull(),
+    sourceUrl: text('source_url'),
+    sourceDate: varchar('source_date', { length: 32 }),
+    title: text('title'),
+    /** The licence this source's fields carry, where the source survey states one. */
+    licence: text('licence'),
+  },
+  (table) => [
+    index('page_sources_key_idx').on(table.key),
+    index('page_sources_kind_idx').on(table.sourceKind, table.sourceId),
+    check('page_sources_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'page_sources_source_date_shape',
+      sql`${table.sourceDate} is null or ${table.sourceDate} ~ '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'`,
+    ),
+  ],
+)
+
+export const pageRegistryStudies = pgTable(
+  'page_registry_studies',
+  {
+    /** sha256 of key | nct | role | matched_name. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    nct: varchar('nct', { length: 16 }).notNull(),
+    /** How the page matched the record: intervention, otherName, stored. */
+    role: varchar('role', { length: 32 }).notNull(),
+    /** The registry string that matched, verbatim. Aggregates are computed at read time. */
+    matchedName: text('matched_name'),
+  },
+  (table) => [
+    index('page_registry_studies_key_idx').on(table.key),
+    index('page_registry_studies_nct_idx').on(table.nct),
+    check('page_registry_studies_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_registry_studies_nct_shape', sql`${table.nct} ~ '^NCT[0-9]{8}$'`),
+  ],
+)
+
+export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
+  legacyDrug: one(drugs, { fields: [corpusPages.legacyDrugId], references: [drugs.id] }),
+  synonyms: many(pageSynonyms),
+  fields: many(pageFields),
+  seeds: many(pageSeeds),
+  questions: many(pageQuestions),
+  pageRelations: many(pageRelations),
+  sources: many(pageSources),
+  registryStudies: many(pageRegistryStudies),
+}))

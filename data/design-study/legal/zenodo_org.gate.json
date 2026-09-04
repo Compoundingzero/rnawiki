@@ -1,0 +1,55 @@
+{
+  "key": "zenodo.org",
+  "track": "A2",
+  "dir": "zenodo_org",
+  "checkedAt": "2026-09-03T14:41:06.815Z",
+  "indexUrl": "https://zenodo.org/",
+  "contentUrl": "https://zenodo.org/records/22273492",
+  "contentNote": "Selected through the Zenodo REST API (https://zenodo.org/api/records?q=longevity&size=5&sort=mostrecent): the most recent open record matching \"longevity\", id 22273492, titled \"Interactive Effects of Health Expenditure and Income Inequality on Under-five Mortality in Sub-Saharan Africa\", record licence cc-by-4.0.",
+  "reachable": true,
+  "robots": {
+    "url": "https://zenodo.org/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/zenodo_org.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/records/22273492",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": "10",
+    "sitemaps": [],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://about.zenodo.org/terms/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/zenodo_org.terms.html",
+    "textSavedTo": "data/design-study/legal/zenodo_org.terms.txt",
+    "textChars": 3765,
+    "candidatesTried": [
+      {
+        "url": "https://about.zenodo.org/terms/",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Use of Zenodo, both the uploading and downloading of data, denotes agreement with the following terms:",
+      "Users of content (“Users”) shall respect applicable license conditions.",
+      "Download and use of content from Zenodo does not transfer any intellectual property rights in the content to the User.",
+      "Users are exclusively responsible for their use of content, and shall indemnify and hold CERN free and harmless in connection with their download and/or use."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": true,
+    "url": "https://zenodo.org/api/records?size=1",
+    "licence": null,
+    "note": "API root (Zenodo REST): HTTP 200, 14424 bytes (JSON); saved excerpt to legal/zenodo_org.api.txt"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /records/22273492; no terms clause matched a prohibition pattern across 4 relevant excerpts."
+  },
+  "notes": []
+}

@@ -1,0 +1,13 @@
+{
+  "studies": 101831,
+  "withResultsSection": 30560,
+  "qualified": 29240,
+  "failedBar": 72591,
+  "failureReasons": {
+    "no primary outcome carries a reported value": 1320,
+    "no results section": 71271
+  },
+  "withStatedComparison": 11260,
+  "withSeriousAdverseEvents": 30428,
+  "withPublication": 41947
+}

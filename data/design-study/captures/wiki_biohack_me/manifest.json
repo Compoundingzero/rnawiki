@@ -1,0 +1,354 @@
+{
+  "site": "wiki.biohack.me",
+  "track": "A2",
+  "urls": {
+    "index": "https://wiki.biohack.me/",
+    "content": "https://wiki.biohack.me/doku.php?id=biology",
+    "contentNote": "Registry candidate https://wiki.biohack.me/index.php?title=Magnets redirects to the wiki start page, so that article does not exist, and this wiki serves no MediaWiki API (api.php returned HTTP 404). Replaced with the first article link on a page already fetched (link text \"Biology\"): https://wiki.biohack.me/doku.php?id=biology."
+  },
+  "capturedAt": "2026-09-03T15:16:52.654Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: no consent UI found",
+    "index-375: no consent UI found",
+    "content-1440: no consent UI found",
+    "content-375: no consent UI found"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://wiki.biohack.me/doku.php?id=biology",
+    "collectedAt": "2026-09-03T15:16:38.983Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0141,
+    "title": "biology [HumanAug Wiki]",
+    "innerTextLength": 611,
+    "outerHtmlLength": 43481,
+    "headingOutline": [
+      {
+        "tag": "h3",
+        "text": "Biology"
+      }
+    ],
+    "headingCount": 1,
+    "stickyOrFixedCount": 4,
+    "stickyOrFixed": [
+      {
+        "tag": "nav",
+        "class": "navbar navbar-fixed-top navbar-default",
+        "position": "fixed",
+        "top": 0,
+        "height": 51.5
+      },
+      {
+        "tag": "div",
+        "class": "tools panel panel-default affix-top",
+        "position": "fixed",
+        "top": 150,
+        "height": 105.9
+      },
+      {
+        "tag": "div",
+        "class": "help modal fade",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "a",
+        "class": "back-to-top hidden-print btn btn-default",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": false,
+      "scrollama": false,
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 3,
+    "scriptsUnreadable": 0,
+    "searchAffordances": {
+      "count": 2,
+      "firstDescriptors": [
+        "form[role=search]",
+        "input Search"
+      ]
+    },
+    "imgCount": 12,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "js",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 6
+    },
+    "bodyBackgroundColor": "rgb(254, 254, 254)",
+    "bodyColor": "rgb(51, 51, 51)",
+    "canvasCount": 0,
+    "svgCount": 40
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://wiki.biohack.me/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c8194bcc3100165e398bbf8eab9f4272a7245364d4ad4d04441fdba05edf14ac",
+      "capturedAt": "2026-09-03T15:16:31.538Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://wiki.biohack.me/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c8194bcc3100165e398bbf8eab9f4272a7245364d4ad4d04441fdba05edf14ac",
+      "capturedAt": "2026-09-03T15:16:31.618Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://wiki.biohack.me/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 1302,
+      "sha256": "43db9236f9ea43e3c8a84b497be31522e2d65aa12ab14e0fd9e5ff9e0f4eff13",
+      "capturedAt": "2026-09-03T15:16:35.141Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://wiki.biohack.me/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f785ede0289146965e623cd2dc9667381d407bf379f5933dacd22e46a062c01a",
+      "capturedAt": "2026-09-03T15:16:35.195Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://wiki.biohack.me/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 490,
+      "sha256": "8c83a55681c2ebccb6c7e08b873c07a2d017d23322e9cd8f0b8516cc04ffe920",
+      "capturedAt": "2026-09-03T15:16:35.240Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e7be8a690a16079cadc8263b6703a1ad0283ed57add40d7a3fbc20d08318e1a7",
+      "capturedAt": "2026-09-03T15:16:38.862Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e7be8a690a16079cadc8263b6703a1ad0283ed57add40d7a3fbc20d08318e1a7",
+      "capturedAt": "2026-09-03T15:16:38.926Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e7be8a690a16079cadc8263b6703a1ad0283ed57add40d7a3fbc20d08318e1a7",
+      "capturedAt": "2026-09-03T15:16:40.569Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e7be8a690a16079cadc8263b6703a1ad0283ed57add40d7a3fbc20d08318e1a7",
+      "capturedAt": "2026-09-03T15:16:42.156Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e7be8a690a16079cadc8263b6703a1ad0283ed57add40d7a3fbc20d08318e1a7",
+      "capturedAt": "2026-09-03T15:16:43.740Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 911,
+      "sha256": "b35f8b2f8bbaec6e87423f9749ab4b4dac45d9164cdf06cd644a1682cbc39ad8",
+      "capturedAt": "2026-09-03T15:16:47.850Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "632d93845a3fb5b18ef5a75f37986285080eaa6084604a53a34d802a39edfc5a",
+      "capturedAt": "2026-09-03T15:16:47.893Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 99,
+      "sha256": "9cb9ed43deaf6677e058e23d1c1adfe0f311f0bf5ff5beb800eae0df28aac79a",
+      "capturedAt": "2026-09-03T15:16:47.933Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "632d93845a3fb5b18ef5a75f37986285080eaa6084604a53a34d802a39edfc5a",
+      "capturedAt": "2026-09-03T15:16:49.504Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 50,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "df987556eddea6cf53e5e45d6a78b58c481c29c8726cdcecdfa1628b7658f325",
+      "capturedAt": "2026-09-03T15:16:51.070Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://wiki.biohack.me/doku.php?id=biology",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 89,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "d888b6073acbd2ea3443a7946f768ce6f17f21969965adcc0a1a3c7f87b721f5",
+      "capturedAt": "2026-09-03T15:16:52.654Z"
+    }
+  ]
+}

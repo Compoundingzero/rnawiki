@@ -1,0 +1,3023 @@
+{
+ "schema": "rnawiki-corpus-20k-suppression/v1",
+ "spec": "docs/specs/suppression-classes.md",
+ "input": "data/corpus-20k/identity/canonical.ndjson",
+ "totalRecords": 28943,
+ "distinctSuppressed": 19335,
+ "unknown": 17621,
+ "cleared": 9608,
+ "byTest": {
+  "S1": {
+   "matched": 817,
+   "examples": [
+    "Fludarabine",
+    "Plicamycin",
+    "Vincristine",
+    "Xenon Xe-127",
+    "Amsacrine",
+    "Sermorelin Acetate",
+    "Veliparib",
+    "Gold (198au) colloidal",
+    "Thyrotrophin",
+    "Floxuridine",
+    "Cytarabine",
+    "Pemetrexed",
+    "Glofitamab",
+    "Glofitamab-Gxbm",
+    "Talimogene laherparepvec",
+    "Guselkumab",
+    "Repotrectinib",
+    "Alpelisib",
+    "Bimekizumab",
+    "Bimekizumab-Bkzx",
+    "ETHER",
+    "Pozelimab",
+    "Amivantamab",
+    "Amivantamab and Hyaluronidase-Lpuj",
+    "Amivantamab-Vmjw"
+   ]
+  },
+  "S2": {
+   "matched": 40,
+   "examples": [
+    "DEXTROAMPHETAMINE SACCHARATE",
+    "Benzhydrocodone",
+    "Dextroamphetamine Saccharate",
+    "Methylphenidate",
+    "Alfentanil",
+    "Levorphanol",
+    "Nabilone",
+    "Oxybate",
+    "Opium",
+    "Difenoxin",
+    "Metamfetamine",
+    "Hydrocodone",
+    "Diphenoxylate",
+    "Morphine",
+    "Dronabinol",
+    "Tapentadol",
+    "Pethidine",
+    "Oxymorphone",
+    "Sufentanil",
+    "Oxycodone",
+    "Amfetamine",
+    "Amobarbital",
+    "Lisdexamfetamine",
+    "Tapentadol",
+    "Pentobarbital"
+   ]
+  },
+  "S3": {
+   "matched": 516,
+   "examples": [
+    "DICLOFENAC EPOLAMINE",
+    "Amlodipine / Valsartan",
+    "FINGOLIMOD LAURYL SULFATE",
+    "Atorvastatin Calcium Propylene Glycol Solvate",
+    "Arimoclomol",
+    "Dexrazoxane",
+    "Pemetrexed",
+    "Glofitamab",
+    "Glofitamab-Gxbm",
+    "Follitropin",
+    "Repotrectinib",
+    "Alpelisib",
+    "Tamoxifen",
+    "Misoprostol",
+    "Goserelin",
+    "Mavorixafor",
+    "Chenodeoxycholic acid",
+    "Topiramate",
+    "Amivantamab",
+    "Amivantamab and Hyaluronidase-Lpuj",
+    "Amivantamab-Vmjw",
+    "Tislelizumab",
+    "Tislelizumab-Jsgr",
+    "Sotatercept",
+    "Sotatercept-Csrk"
+   ]
+  },
+  "S4": {
+   "matched": 454,
+   "examples": [
+    "Fludarabine",
+    "Plicamycin",
+    "Vincristine",
+    "Amsacrine",
+    "Veliparib",
+    "Floxuridine",
+    "Cytarabine",
+    "Pemetrexed",
+    "Glofitamab",
+    "Glofitamab-Gxbm",
+    "Talimogene laherparepvec",
+    "Repotrectinib",
+    "Alpelisib",
+    "Amivantamab",
+    "Amivantamab and Hyaluronidase-Lpuj",
+    "Amivantamab-Vmjw",
+    "Tislelizumab",
+    "Tislelizumab-Jsgr",
+    "Edrecolomab",
+    "Ciltacabtagene Autoleucel",
+    "Nadofaragene firadenovec",
+    "Sonidegib",
+    "Nimustine",
+    "Olutasidenib",
+    "Glucose Oxidase"
+   ]
+  },
+  "S5": {
+   "matched": 78,
+   "examples": [
+    "Tramadol",
+    "Elotuzumab",
+    "Tolvaptan",
+    "Levorphanol",
+    "Fenfluramine",
+    "Mitapivat",
+    "Etonogestrel",
+    "Oxybate",
+    "Mifepristone",
+    "Alemtuzumab",
+    "Natalizumab",
+    "Natalizumab-Sztn",
+    "Buprenorphine",
+    "Talquetamab",
+    "Talquetamab-Tgvs",
+    "Daratumumab",
+    "Daratumumab and Hyaluronidase-Fihj",
+    "Thalidomide",
+    "Esketamine",
+    "Teclistamab",
+    "Teclistamab-Cqyv",
+    "Pexidartinib",
+    "Hydrocodone",
+    "Brodalumab",
+    "Morphine"
+   ]
+  },
+  "S6": {
+   "matched": 546,
+   "examples": [
+    "Conjugated Estrogens/Medroxyprogesterone",
+    "DICLOFENAC EPOLAMINE",
+    "Amlodipine / Valsartan",
+    "Metformin Hydrochloride, Sitagliptin",
+    "Fluphenazine",
+    "Methylphenidate",
+    "Vincristine",
+    "Gadoteridol",
+    "Fluoxetine",
+    "Bupropion",
+    "Floxuridine",
+    "Cytarabine",
+    "Glofitamab",
+    "Glofitamab-Gxbm",
+    "Rasburicase",
+    "Tamoxifen",
+    "Deuruxolitinib",
+    "Citalopram",
+    "Pozelimab",
+    "Pozelimab-Bbfg",
+    "Ciltacabtagene Autoleucel",
+    "Tramadol",
+    "Sonidegib",
+    "Olutasidenib",
+    "Lapatinib"
+   ]
+  },
+  "S7": {
+   "matched": 175,
+   "examples": [
+    "Human Botulinum Neurotoxin A/B Immune Globulin",
+    "Glofitamab-Gxbm",
+    "PRABOTULINUMTOXIN A",
+    "Prabotulinumtoxina-Xvfs",
+    "Tislelizumab",
+    "Tislelizumab-Jsgr",
+    "Ciltacabtagene Autoleucel",
+    "Fazadinium",
+    "Botulinum Toxin Type B",
+    "Fludeoxyglucose F-18",
+    "Aflibercept-Abzv",
+    "Aflibercept-Ayyh",
+    "Aflibercept-Boav",
+    "Aflibercept-Jbvf",
+    "Aflibercept-Mrbb",
+    "Aflibercept-Yszy",
+    "Donanemab-Azbt",
+    "STANNOUS CHLORIDE",
+    "PLASMINOGEN",
+    "Pipecuronium",
+    "Denileukin Diftitox-Cxdl",
+    "Lovotibeglogene autotemcel",
+    "Retifanlimab-Dlwr",
+    "Natalizumab-Sztn",
+    "Emapalumab-Lzsg"
+   ]
+  },
+  "S8": {
+   "matched": 316,
+   "examples": [
+    "HYDROXYETHYL STARCH 130/0.4",
+    "BUTAMBEN PICRATE",
+    "ERYTHROMYCIN ESTOLATE",
+    "PROPOXYPHENE NAPSYLATE",
+    "Cisapride",
+    "Minaprine",
+    "Aminophenazone",
+    "Remoxipride",
+    "Zopiclone",
+    "Obeticholic acid",
+    "Endomycin",
+    "Rosiglitazone",
+    "Muzolimine",
+    "Berberine",
+    "Cyclobarbital",
+    "Rofecoxib",
+    "Chlormadinone Acetate",
+    "Tolrestat",
+    "Ketorolac",
+    "Hexestrol",
+    "TRICHLOROETHANE",
+    "Naftazone",
+    "Sulfaguanidine",
+    "Podophyllum Resin",
+    "Novobiocin"
+   ]
+  },
+  "S9": {
+   "matched": 32,
+   "examples": [
+    "Desoxycorticosterone",
+    "Insulin human",
+    "Dexamethasone Phosphate",
+    "Insulin glargine",
+    "Insulin Glargine-Yfgn",
+    "Insulin Detemir",
+    "Pipotiazine Palmitate",
+    "Semaglutide",
+    "Insulin degludec",
+    "Insulin Beef",
+    "INSULIN PURIFIED BEEF",
+    "Desoxycorticosterone Acetate",
+    "Lixisenatide",
+    "Insulin glulisine",
+    "Aripiprazole",
+    "Paliperidone",
+    "Liraglutide",
+    "Haloperidol Decanoate",
+    "INSULIN PURIFIED PORK",
+    "Insulin Pork",
+    "Insulin aspart",
+    "Insulin lispro",
+    "Insulin Lispro-Aabc",
+    "Dexamethasone Acetate Anhydrous",
+    "Risperidone"
+   ]
+  },
+  "S10": {
+   "matched": 17621,
+   "examples": [
+    "SVN53-67/M57-KLH PEPTIDE VACCINE",
+    "GLUSOFERRON",
+    "DEXISOMETHEPTENE MUCATE",
+    "OMEGA-3-PENTAENOIC ACIDS",
+    "CHEMBL3039597",
+    "METESIND GLUCURONATE",
+    "AMINOPHENAZONE CYCLAMATE",
+    "BERBERINE URSODEOXYCHOLATE",
+    "CO-ZIDOCAPT",
+    "MAGNESIUM PYRIDOXAL 5-PHOSPHATE GLUTAMATE",
+    "PIPERAZINE EDETATE CALCIUM",
+    "AMBROXOL ACEFYLLINATE",
+    "CHLORAL BETAINE",
+    "DICHLORALPHENAZONE",
+    "AMXT-1501 DICAPRATE",
+    "PRETHCAMIDE",
+    "ARAMCHOL MEGLUMINE",
+    "BEVIRIMAT DIMEGLUMINE",
+    "TETRAZOLAST MEGLUMINE",
+    "IRINOTECAN SUCROSOFATE",
+    "ETANAUTINE",
+    "CRELOSIDENIB GENTISATE",
+    "NILOTINIB LAURYLSULFATE",
+    "ISOMETHEPTENE MUCATE",
+    "PROMETHAZINE TEOCLATE"
+   ]
+  },
+  "S11": {
+   "matched": 9608,
+   "examples": [
+    "Astragalus Exscapus Whole Flowering/Fruiting",
+    "Bordetella Pertussis Fimbriae 2/3 Antigen",
+    "Cairina Moschata Heart/Liver Autolysate",
+    "Caprylic/Capric Triglyceride",
+    "Comocladia Dentata Bark/Leaf",
+    "Euonymus Atropurpureus Branch Bark/Root Bark",
+    "Ferment Complex 6/Pf",
+    "Follitropin Alfa/Beta",
+    "Grindelia Camporum Flower/Leaf",
+    "Hamamelis Virginiana Root Bark/Stem Bark",
+    "Hawthorn Leaf with Flower",
+    "Influenza A Virus A/Croatia/10136rv/2023 X-425a Antigen",
+    "Influenza A Virus A/Darwin/6/2021 Whole",
+    "Influenza A Virus A/Darwin/9/2021 Ivr-228 Antigen",
+    "Influenza A Virus A/Darwin/9/2021 Ivr-228 Hemagglutinin Antigen",
+    "Influenza A Virus A/Guangdong-Maonan/Swl1536/2019 Cnic-1909 Antigen",
+    "Influenza A Virus A/Hong Kong/2671/2019 Ivr-208 Antigen",
+    "Influenza A Virus A/Michigan/105/2025 San-049a Antigen",
+    "Influenza A Virus A/North Carolina/04/2016 Whole",
+    "Influenza A Virus A/Singapore/Gp1908/2015 Ivr-180 Whole",
+    "Influenza A Virus A/Singapore/Gp20238/2024 Ivr-277 Antigen",
+    "Influenza A Virus A/Switzerland/6849/2025 Ivr-278 Antigen",
+    "Influenza A Virus A/Tasmania/503/2020 Ivr-221 Antigen",
+    "Influenza A Virus A/Thailand/8/2022 Ivr-237 Antigen",
+    "Influenza A Virus A/Thailand/8/2022 Ivr-237 Hemagglutinin Antigen"
+   ]
+  }
+ },
+ "sourceLimits": {
+  "S2": "Only the DEA schedule is available (openFDA NDC dea_schedule, single-ingredient products). MHRA Misuse of Drugs and HSA Misuse of Drugs Act schedules were not fetched, so UK and Singapore control status contributes nothing to S2.",
+  "S4": "The NIOSH hazardous-drug list was not fetched (no cleared bulk source). S4 rests on WHO ATC L01 and on openFDA label text containing \"cytotoxic\".",
+  "S5": "There is no cleared bulk FDA REMS list. S5 rests on openFDA label text mentioning \"REMS\" or \"Risk Evaluation and Mitigation\", so it cannot distinguish a medication-guide-only REMS from a restricted-distribution REMS and will over-match.",
+  "S8": "EMA Medicine.csv records a status but no reason, so only Suspended and Revoked are read as safety actions. The reasoned withdrawal signal comes from ChEMBL and Open Targets drug_warning (warningType \"Withdrawn\", carrying a toxicity class) and from the ChEMBL molecule withdrawn_flag. Health Canada DPD records CANCELLED POST MARKET without a reason and is not used for S8.",
+  "openTargets": "Open Targets 26.06 drug_molecule carries no blackBoxWarning or hasBeenWithdrawn column; those facts are read from Open Targets drug_warning and the ChEMBL molecule black_box_warning field.",
+  "S10": "S10 fires only when no S1-S9 source returned any observation for the key. A key where a source answered and no test matched is cleared under S11."
+ },
+ "diagnostics": {
+  "keysWithAnyObservation": 11322,
+  "keysWithLabel": 3645,
+  "keysWithAtc": 4078,
+  "keysWithBoxedWarning": 852,
+  "keysWithDeaSchedule": 124,
+  "keysWithRoutes": 6907,
+  "unknownWithChemblId": 17621,
+  "unknownWithExistingSlug": 0
+ },
+ "sourcesRead": {
+  "chemblMolecules": 17,
+  "chemblWarningFiles": 3,
+  "openTargetsDrugWarningRows": 2304,
+  "emaHumanRows": 2339,
+  "openfdaNdcMatchedProducts": 132666,
+  "openfdaLabelsRead": 80444,
+  "openfdaLabelsJoined": 79761,
+  "databaseEntityClasses": 9859
+ },
+ "longevityBroad803": {
+  "sliceSize": 803,
+  "suppressedCount": 303,
+  "suppressed": [
+   {
+    "slug": "abatacept",
+    "key": "K1:7D0YB67S97",
+    "displayName": "Abatacept",
+    "classes": [
+     "S1",
+     "S4"
+    ]
+   },
+   {
+    "slug": "abemaciclib",
+    "key": "K1:60UAB198HK",
+    "displayName": "Abemaciclib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "abiraterone",
+    "key": "K1:EM5OCB9YJ6",
+    "displayName": "Abiraterone Acetate",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "acalabrutinib",
+    "key": "K1:I42748ELQW",
+    "displayName": "Acalabrutinib",
+    "classes": [
+     "S1",
+     "S4"
+    ]
+   },
+   {
+    "slug": "acetyl-l-tyrosine",
+    "key": "K1:DA8G610ZO5",
+    "displayName": "Acetyl-L-Tyrosine",
+    "classes": [
+     "S7"
+    ]
+   },
+   {
+    "slug": "adalimumab",
+    "key": "K1:FYS6T7F842",
+    "displayName": "Adalimumab",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "afamitresgene-autoleucel",
+    "key": "K1:CUY18BJ7BP",
+    "displayName": "Afamitresgene Autoleucel",
+    "classes": [
+     "S7"
+    ]
+   },
+   {
+    "slug": "aldesleukin",
+    "key": "K1:M89N0Q7EQR",
+    "displayName": "Aldesleukin",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "aliskiren",
+    "key": "K1:502FWN4Q32",
+    "displayName": "Aliskiren",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "alpelisib",
+    "key": "K1:08W5N2C97Q",
+    "displayName": "Alpelisib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "amitriptyline",
+    "key": "K1:1806D8D52K",
+    "displayName": "Amitriptyline",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "amphetamine",
+    "key": "K1:TZ47U051FI",
+    "displayName": "Dexamfetamine",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "anakinra",
+    "key": "K1:9013DUQ28K",
+    "displayName": "Anakinra",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "anastrozole",
+    "key": "K1:2Z07MYW1AZ",
+    "displayName": "Anastrozole",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "anhydrous-dextrose",
+    "key": "K1:IY9XDZ35W2",
+    "displayName": "DEXTROSE, Unspecified Form",
+    "classes": [
+     "S4"
+    ]
+   },
+   {
+    "slug": "apalutamide",
+    "key": "K1:4T36H88UA7",
+    "displayName": "Apalutamide",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "aprocitentan",
+    "key": "K1:MZI81HV01P",
+    "displayName": "Aprocitentan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "atezolizumab",
+    "key": "K1:52CMI0WC3Y",
+    "displayName": "Atezolizumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "atomoxetine",
+    "key": "K1:ASW034S0B8",
+    "displayName": "Atomoxetine",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "atorvastatin",
+    "key": "K1:A0JWA85V8F",
+    "displayName": "Atorvastatin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "auranofin",
+    "key": "K1:3H04W2810V",
+    "displayName": "Auranofin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "avelumab",
+    "key": "K1:KXG2PJ551I",
+    "displayName": "Avelumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "azilsartan-kamedoxomil",
+    "key": "K1:LL0G25K7I2",
+    "displayName": "Azilsartan medoxomil",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "baricitinib",
+    "key": "K1:ISP4442I3Y",
+    "displayName": "Baricitinib",
+    "classes": [
+     "S1",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "basiliximab",
+    "key": "K1:9927MT646M",
+    "displayName": "Basiliximab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "belatacept",
+    "key": "K1:E3B2GI648A",
+    "displayName": "Belatacept",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "benazepril",
+    "key": "K1:DPB8FH5AXT",
+    "displayName": "(1R,3S)-BENAZEPRIL",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "berberine",
+    "key": "K1:0I8Y3P32UF",
+    "displayName": "Berberine",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "bexarotene",
+    "key": "K1:A61RXM4375",
+    "displayName": "Bexarotene",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "bimekizumab",
+    "key": "K1:09495UIM6V",
+    "displayName": "Bimekizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "brexpiprazole",
+    "key": "K1:2J3YBM1K8C",
+    "displayName": "Brexpiprazole",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "brodalumab",
+    "key": "K1:6ZA31Y954Z",
+    "displayName": "Brodalumab",
+    "classes": [
+     "S1",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "bromfenac",
+    "key": "K1:864P0921DW",
+    "displayName": "Bromfenac",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "cabozantinib-s-malate",
+    "key": "K1:1C39JW444G",
+    "displayName": "Cabozantinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "calcium-oxybate",
+    "key": "K1:30IW36W5B2",
+    "displayName": "Oxybate",
+    "classes": [
+     "S1",
+     "S2",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "canakinumab",
+    "key": "K1:37CQ2C7X93",
+    "displayName": "Canakinumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "candesartan-cilexetil",
+    "key": "K1:R85M2X0D68",
+    "displayName": "Candesartan Cilexetil",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "capivasertib",
+    "key": "K1:WFR23M21IE",
+    "displayName": "Capivasertib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "captopril",
+    "key": "K1:9G64RSX1XD",
+    "displayName": "Captopril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "celecoxib",
+    "key": "K1:JCX84Q7J1L",
+    "displayName": "Celecoxib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "cemiplimab",
+    "key": "K1:6QVL057INT",
+    "displayName": "Cemiplimab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "certolizumab-pegol",
+    "key": "K1:UMD07X179E",
+    "displayName": "Certolizumab pegol",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "clonazepam",
+    "key": "K1:5PE9FDE8GB",
+    "displayName": "Clonazepam",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "cocaine",
+    "key": "K1:I5Y540LHVR",
+    "displayName": "Cocaine",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "corticotropin",
+    "key": "K1:K0U68Q2TXA",
+    "displayName": "Corticotropin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "cosibelimab",
+    "key": "K1:PNW7GBB44P",
+    "displayName": "Cosibelimab",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "crovalimab",
+    "key": "K1:H9KH1GP3UU",
+    "displayName": "Crovalimab",
+    "classes": [
+     "S1",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "cyclosporine",
+    "key": "K1:83HN0GTJ6D",
+    "displayName": "Ciclosporin",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "danazol",
+    "key": "K1:N29QWW3BUO",
+    "displayName": "Danazol",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "darolutamide",
+    "key": "K1:X05U0N2RCO",
+    "displayName": "Darolutamide",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "degarelix",
+    "key": "K1:SX0XJI3A11",
+    "displayName": "Degarelix",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "denileukin-diftitox",
+    "key": "K1:25E79B5CTM",
+    "displayName": "Denileukin diftitox",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "denosumab",
+    "key": "K1:4EQZ6YO2HI",
+    "displayName": "Denosumab",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "desipramine",
+    "key": "K1:TG537D343B",
+    "displayName": "Desipramine",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "desmopressin",
+    "key": "K1:ENR1LLB0FP",
+    "displayName": "Desmopressin",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "deuruxolitinib",
+    "key": "K1:0CA0VSF91Y",
+    "displayName": "Deuruxolitinib",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "dexamethasone",
+    "key": "K1:7S5I7G3JQL",
+    "displayName": "Dexamethasone",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "dexmethylphenidate",
+    "key": "K1:M32RH9MFGP",
+    "displayName": "Dexmethylphenidate",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "dextran-40",
+    "key": "K1:K3R6ZDH4DU",
+    "displayName": "Dextran 40",
+    "classes": [
+     "S7"
+    ]
+   },
+   {
+    "slug": "dextroamphetamine-saccharate",
+    "key": "HOLD:existing:dextroamphetamine-saccharate",
+    "displayName": "Dextroamphetamine Saccharate",
+    "classes": [
+     "S2"
+    ]
+   },
+   {
+    "slug": "dhea",
+    "key": "K1:459AG36T1B",
+    "displayName": "Prasterone",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "diclofenac",
+    "key": "K1:144O8QL0L1",
+    "displayName": "Diclofenac",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "diclofenac-epolamine",
+    "key": "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+    "displayName": "DICLOFENAC EPOLAMINE",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "diethylpropion",
+    "key": "K1:I535TOV6LY",
+    "displayName": "Diethylpropion",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "diflunisal",
+    "key": "K1:7C546U4DEN",
+    "displayName": "Diflunisal",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "dimethyl",
+    "key": "K1:FO2303MNI2",
+    "displayName": "DIMETHYL FUMARATE",
+    "classes": [
+     "S1",
+     "S8"
+    ]
+   },
+   {
+    "slug": "dinutuximab",
+    "key": "K1:7SQY4ZUD30",
+    "displayName": "Dinutuximab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "diroximel",
+    "key": "K1:K0N0Z40J3W",
+    "displayName": "Diroximel fumarate",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "donanemab",
+    "key": "K1:1ADB65P1KK",
+    "displayName": "Donanemab",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "dostarlimab",
+    "key": "K1:P0GVQ9A4S5",
+    "displayName": "Dostarlimab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "doxepin",
+    "key": "K1:3U9A0FE9N5",
+    "displayName": "Doxepin Hydrochloride",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "dronabinol",
+    "key": "K1:7J8897W37S",
+    "displayName": "Dronabinol",
+    "classes": [
+     "S2"
+    ]
+   },
+   {
+    "slug": "durvalumab",
+    "key": "K1:28X28X9OKV",
+    "displayName": "Durvalumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "dutasteride",
+    "key": "K1:O0J6XJN02I",
+    "displayName": "Dutasteride",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "efalizumab",
+    "key": "K1:XX2MN88N5D",
+    "displayName": "Efalizumab",
+    "classes": [
+     "S1",
+     "S8"
+    ]
+   },
+   {
+    "slug": "elacestrant",
+    "key": "K1:FM6A2627A8",
+    "displayName": "Elacestrant",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "elranatamab",
+    "key": "K1:L0HR9A577V",
+    "displayName": "Elranatamab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "enalapril",
+    "key": "K1:69PN84IO1A",
+    "displayName": "Enalapril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "enalaprilat",
+    "key": "K1:Q508Q118JM",
+    "displayName": "Enalaprilat Anhydrous",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "enzalutamide",
+    "key": "K1:93T0T9GKNU",
+    "displayName": "Enzalutamide",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "epcoritamab",
+    "key": "K1:D6OMY2L0WA",
+    "displayName": "Epcoritamab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "escitalopram",
+    "key": "K1:4O4S742ANY",
+    "displayName": "Escitalopram",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "estazolam",
+    "key": "K1:36S3EQV54C",
+    "displayName": "Estazolam",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "estradiol",
+    "key": "K1:4TI98Z838E",
+    "displayName": "Estradiol",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "estradiol-cypionate",
+    "key": "K1:7E1DV054LO",
+    "displayName": "Estradiol Cypionate",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "estrogens-conjugated",
+    "key": "K1:IU5QR144QX",
+    "displayName": "Estrogens, Conjugated",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "eszopiclone",
+    "key": "K1:UZX80K71OE",
+    "displayName": "Eszopiclone",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "etanercept",
+    "key": "K1:OP401G7OJC",
+    "displayName": "Etanercept",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "etodolac",
+    "key": "K1:2M36281008",
+    "displayName": "Etodolac",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "etonogestrel",
+    "key": "K1:304GTH6RNH",
+    "displayName": "Etonogestrel",
+    "classes": [
+     "S5"
+    ]
+   },
+   {
+    "slug": "etrasimod-arginine",
+    "key": "K1:6WH8495MMH",
+    "displayName": "Etrasimod",
+    "classes": [
+     "S1",
+     "S3"
+    ]
+   },
+   {
+    "slug": "everolimus",
+    "key": "K1:9HW64Q8G6G",
+    "displayName": "Everolimus",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "exemestane",
+    "key": "K1:NY22HMQ4BX",
+    "displayName": "Exemestane",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "fentanyl",
+    "key": "K1:UF599785JZ",
+    "displayName": "Fentanyl",
+    "classes": [
+     "S1",
+     "S2",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "fezolinetant",
+    "key": "K1:83VNE45KXX",
+    "displayName": "Fezolinetant",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "finasteride",
+    "key": "K1:57GNO57U7G",
+    "displayName": "Finasteride",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "fluorouracil",
+    "key": "K1:U3P01618RT",
+    "displayName": "Fluorouracil",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "flurazepam",
+    "key": "K1:IHP475989U",
+    "displayName": "Flurazepam",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "flurbiprofen",
+    "key": "K1:5GRO578KLP",
+    "displayName": "Flurbiprofen",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "flutamide",
+    "key": "K1:76W6J0943E",
+    "displayName": "Flutamide",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "fluvastatin",
+    "key": "K1:PYF7O1FV7F",
+    "displayName": "Fluvastatin Sodium",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "follitropin",
+    "key": "K1:076WHW89TW",
+    "displayName": "Follitropin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "fosinopril",
+    "key": "K1:R43D2573WO",
+    "displayName": "Fosinopril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "fostamatinib",
+    "key": "K1:SQ8A3S5101",
+    "displayName": "Fostamatinib",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "fulvestrant",
+    "key": "K1:22X328QOC4",
+    "displayName": "Fulvestrant",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "ginkgo-biloba-leaf",
+    "key": "K1:19FUJ2C58T",
+    "displayName": "Ginkgo",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "glofitamab",
+    "key": "K1:06P3KLK2J8",
+    "displayName": "Glofitamab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "golimumab",
+    "key": "K1:91X1KLU43E",
+    "displayName": "Golimumab",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "goserelin",
+    "key": "K1:0F65R8P09N",
+    "displayName": "Goserelin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "guselkumab",
+    "key": "K1:089658A12D",
+    "displayName": "Guselkumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "human-growth-hormone",
+    "key": "K1:NQX9KB6PCL",
+    "displayName": "Somatropin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "hydroxyprogesterone-caproate",
+    "key": "K1:276F2O42F5",
+    "displayName": "Hydroxyprogesterone caproate",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "iberdomide",
+    "key": "K1:8V66F27X44",
+    "displayName": "Iberdomide",
+    "classes": [
+     "S3",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ibrutinib",
+    "key": "K1:1X70OSD4VX",
+    "displayName": "Ibrutinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "ibuprofen",
+    "key": "K1:WK2XYI10QM",
+    "displayName": "Ibuprofen",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "idecabtagene-vicleucel",
+    "key": "K1:8PX1X7UG4D",
+    "displayName": "Idecabtagene vicleucel",
+    "classes": [
+     "S1",
+     "S4",
+     "S6",
+     "S7"
+    ]
+   },
+   {
+    "slug": "imetelstat",
+    "key": "K1:F60NE4XB53",
+    "displayName": "Imetelstat",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "imlunestrant",
+    "key": "K1:9CXQ3PF69U",
+    "displayName": "Imlunestrant",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "inavolisib",
+    "key": "K1:L4C1UY2NYH",
+    "displayName": "Inavolisib",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "indomethacin",
+    "key": "K1:XXE1CET956",
+    "displayName": "Indometacin",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "infliximab",
+    "key": "K1:B72HH48FLU",
+    "displayName": "Infliximab",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "insulin",
+    "key": "K1:2ZM8CX04RZ",
+    "displayName": "Insulin glargine",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-aspart",
+    "key": "K1:D933668QVX",
+    "displayName": "Insulin aspart",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-degludec",
+    "key": "K1:54Q18076QB",
+    "displayName": "Insulin degludec",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-detemir",
+    "key": "K1:4FT78T86XV",
+    "displayName": "Insulin Detemir",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-glulisine",
+    "key": "K1:7XIY785AZD",
+    "displayName": "Insulin glulisine",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-human",
+    "key": "K1:1Y17CTI5SR",
+    "displayName": "Insulin human",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-icodec",
+    "key": "K1:P7YU3ED05N",
+    "displayName": "Insulin icodec",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "insulin-lispro",
+    "key": "K1:GFX7QIS1II",
+    "displayName": "Insulin lispro",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "irbesartan",
+    "key": "K1:J0E2756Z7N",
+    "displayName": "Irbesartan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ixekizumab",
+    "key": "K1:BTY153760O",
+    "displayName": "Ixekizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "ketoprofen",
+    "key": "K1:90Y4QC304K",
+    "displayName": "Ketoprofen",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ketorolac",
+    "key": "K1:10A5O25ILE",
+    "displayName": "Ketorolac",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "l-tryptophan",
+    "key": "K1:8DUH1N11BX",
+    "displayName": "Tryptophan",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "lanreotide",
+    "key": "K2:PUDHBTGHUJUUFI-SCTWWAJVSA-N",
+    "displayName": "Lanreotide",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "laronidase",
+    "key": "K1:WP58SVM6R4",
+    "displayName": "Laronidase",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "leflunomide",
+    "key": "K1:G162GK9U4W",
+    "displayName": "Leflunomide",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "lenvatinib",
+    "key": "K1:EE083865G2",
+    "displayName": "Lenvatinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "letrozole",
+    "key": "K1:7LKK855W8I",
+    "displayName": "Letrozole",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "leuprolide",
+    "key": "K1:EFY6W0M8TG",
+    "displayName": "Leuprorelin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "levoketoconazole",
+    "key": "K1:2DJ8R0NT7K",
+    "displayName": "Levoketoconazole",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "linaclotide",
+    "key": "K1:N0TXR0XR5X",
+    "displayName": "Linaclotide",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "liraglutide",
+    "key": "K1:839I73S42A",
+    "displayName": "Liraglutide",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "lisdexamfetamine",
+    "key": "K1:H645GUL8KJ",
+    "displayName": "Lisdexamfetamine",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "lisinopril",
+    "key": "K1:7Q3P4BS2FD",
+    "displayName": "Lisinopril Anhydrous",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "lixisenatide",
+    "key": "K1:74O62BB01U",
+    "displayName": "Lixisenatide",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "lomitapide",
+    "key": "K1:82KUB0583F",
+    "displayName": "Lomitapide",
+    "classes": [
+     "S3",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "lonapegsomatropin",
+    "key": "K1:OP35X9610Y",
+    "displayName": "Lonapegsomatropin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "loperamide",
+    "key": "K1:6X9OC3H4II",
+    "displayName": "Loperamide",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "lorcaserin",
+    "key": "K1:637E494O0Z",
+    "displayName": "Lorcaserin",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "losartan",
+    "key": "K1:JMS50MPO89",
+    "displayName": "Losartan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "lovastatin",
+    "key": "K1:9LHU78OQFD",
+    "displayName": "Lovastatin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "lutetium-lu-177-vipivotide-tetraxetan",
+    "key": "K1:4YM1W0EGQ5",
+    "displayName": "Vipivotide tetraxetan",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "macitentan",
+    "key": "K1:Z9K9Y9WMVL",
+    "displayName": "Macitentan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "mecasermin",
+    "key": "K1:7GR9I2683O",
+    "displayName": "Mecasermin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "meclofenamate",
+    "key": "K1:48I5LU4ZWD",
+    "displayName": "Meclofenamic acid",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "medroxyprogesterone",
+    "key": "K1:C2QI4IOI2G",
+    "displayName": "Medroxyprogesterone Acetate",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "mefenamic-acid",
+    "key": "K1:367589PJ2C",
+    "displayName": "Mefenamic acid",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "meloxicam",
+    "key": "K1:VG2QF83CGL",
+    "displayName": "Meloxicam",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "metformin",
+    "key": "K1:9100L32L2N",
+    "displayName": "Metformin",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "methamphetamine",
+    "key": "K1:44RAL3456C",
+    "displayName": "Metamfetamine",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "methotrexate",
+    "key": "K1:YL5FZ2Y5U1",
+    "displayName": "Methotrexate",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "methylene-blue",
+    "key": "K1:ZMZ79891ZH",
+    "displayName": "Methylene Blue Cation",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "methylphenidate",
+    "key": "HOLD:existing:methylphenidate",
+    "displayName": "Methylphenidate",
+    "classes": [
+     "S2",
+     "S6"
+    ]
+   },
+   {
+    "slug": "methyltestosterone",
+    "key": "K1:V9EFU16ZIF",
+    "displayName": "Methyltestosterone",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "metreleptin",
+    "key": "K1:TL60C27RLH",
+    "displayName": "Metreleptin",
+    "classes": [
+     "S3",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "mifepristone",
+    "key": "K1:320T6RNW1F",
+    "displayName": "Mifepristone",
+    "classes": [
+     "S1",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "mirikizumab",
+    "key": "K1:Z7HVY03PHP",
+    "displayName": "Mirikizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "misoprostol",
+    "key": "K1:0E43V0BB57",
+    "displayName": "Misoprostol",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "mitapivat",
+    "key": "K1:2WTV10SIKH",
+    "displayName": "Mitapivat",
+    "classes": [
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "mitotane",
+    "key": "K1:78E4J5IB5J",
+    "displayName": "Mitotane",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "moexipril",
+    "key": "K1:WT87C52TJZ",
+    "displayName": "Moexipril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "momelotinib",
+    "key": "K1:6O01GMS00P",
+    "displayName": "Momelotinib",
+    "classes": [
+     "S1",
+     "S4"
+    ]
+   },
+   {
+    "slug": "motixafortide",
+    "key": "K1:3ZPX60DV8A",
+    "displayName": "Motixafortide Acetate",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "nabilone",
+    "key": "K1:2N4O9L084N",
+    "displayName": "Nabilone",
+    "classes": [
+     "S2"
+    ]
+   },
+   {
+    "slug": "nabumetone",
+    "key": "K1:LW0TIW155Z",
+    "displayName": "Nabumetone",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "naproxen",
+    "key": "K1:57Y76R9ATQ",
+    "displayName": "Naproxen",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "natalizumab",
+    "key": "K1:3JB47N2Q2P",
+    "displayName": "Natalizumab",
+    "classes": [
+     "S1",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "nilutamide",
+    "key": "K1:51G6I8B902",
+    "displayName": "Nilutamide",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "nimodipine",
+    "key": "K1:57WA9QZ5WH",
+    "displayName": "Nimodipine",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "nitrous-oxide",
+    "key": "K1:K50XQU1029",
+    "displayName": "Nitrous Oxide",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "nivolumab",
+    "key": "K1:31YO63LBSN",
+    "displayName": "Nivolumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "nortriptyline",
+    "key": "K1:BL03SY4LXB",
+    "displayName": "Nortriptyline",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "novobiocin",
+    "key": "K1:17EC19951N",
+    "displayName": "Novobiocin",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "obeticholic-acid",
+    "key": "K1:0462Z4S4OZ",
+    "displayName": "Obeticholic acid",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "ocrelizumab",
+    "key": "K1:A10SJL62JY",
+    "displayName": "Ocrelizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "octreotide",
+    "key": "K1:RWM8CCW8GP",
+    "displayName": "Octreotide",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "orlistat",
+    "key": "K1:95M8R751W8",
+    "displayName": "Orlistat",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "ospemifene",
+    "key": "K1:B0P231ILBK",
+    "displayName": "Ospemifene",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "oxaprozin",
+    "key": "K1:MHJ80W9LRB",
+    "displayName": "Oxaprozin",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ozanimod",
+    "key": "K1:Z80293URPV",
+    "displayName": "Ozanimod",
+    "classes": [
+     "S1",
+     "S3"
+    ]
+   },
+   {
+    "slug": "pacritinib",
+    "key": "K1:G22N65IL3O",
+    "displayName": "Pacritinib",
+    "classes": [
+     "S1",
+     "S4"
+    ]
+   },
+   {
+    "slug": "palbociclib",
+    "key": "K1:G9ZF61LE7G",
+    "displayName": "Palbociclib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "paroxetine",
+    "key": "K1:58SBH37T77",
+    "displayName": "Paroxetine",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "pasireotide",
+    "key": "K1:98H1T17066",
+    "displayName": "Pasireotide",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "peginesatide",
+    "key": "K1:JX56W9N61Q",
+    "displayName": "Peginesatide",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "peginterferon-alfa-2a",
+    "key": "K1:Q46947FE7K",
+    "displayName": "Peginterferon alfa-2a",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "pegvisomant",
+    "key": "K1:N824AOU5XV",
+    "displayName": "Pegvisomant",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "pembrolizumab",
+    "key": "K1:DPT0O3T46P",
+    "displayName": "Pembrolizumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "penicillamine",
+    "key": "K1:GNN1DV99GX",
+    "displayName": "Penicillamine",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "penpulimab",
+    "key": "K1:IBS1BZ4E4I",
+    "displayName": "Penpulimab",
+    "classes": [
+     "S3",
+     "S7"
+    ]
+   },
+   {
+    "slug": "pentobarbital",
+    "key": "K1:U7D0E1VOAM",
+    "displayName": "PENTOBARBITAL, (S)-",
+    "classes": [
+     "S2",
+     "S8"
+    ]
+   },
+   {
+    "slug": "perindopril-erbumine",
+    "key": "K1:Y5GMK36KGY",
+    "displayName": "Perindopril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "phendimetrazine",
+    "key": "K1:AB2794W8KV",
+    "displayName": "Phendimetrazine",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "phenol",
+    "key": "K1:339NCG44TV",
+    "displayName": "Phenol",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "phentermine",
+    "key": "K1:C045TQL4WP",
+    "displayName": "Phentermine",
+    "classes": [
+     "S3",
+     "S8"
+    ]
+   },
+   {
+    "slug": "pimavanserin",
+    "key": "K1:JZ963P0DIK",
+    "displayName": "Pimavanserin",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "piroxicam",
+    "key": "K1:13T4O6VMAM",
+    "displayName": "Piroxicam",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "pirtobrutinib",
+    "key": "K1:JNA39I7ZVB",
+    "displayName": "Pirtobrutinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "pivekimab-sunirine",
+    "key": "K1:L15LO3W1XX",
+    "displayName": "Pivekimab sunirine",
+    "classes": [
+     "S3",
+     "S4",
+     "S6",
+     "S7"
+    ]
+   },
+   {
+    "slug": "plecanatide",
+    "key": "K1:7IK8Z952OK",
+    "displayName": "Plecanatide",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "pralsetinib",
+    "key": "K1:1WPE73O1WV",
+    "displayName": "Pralsetinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "pravastatin",
+    "key": "K1:KXO2KT9N0G",
+    "displayName": "Pravastatin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "prednisolone",
+    "key": "K1:9PHQ9Y1OLM",
+    "displayName": "Prednisolone",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "prednisone",
+    "key": "K1:VB0R961HZT",
+    "displayName": "Prednisone",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "probucol",
+    "key": "K1:P3CTH044XJ",
+    "displayName": "Probucol",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "progesterone",
+    "key": "K1:4G7DS2Q64Y",
+    "displayName": "Progesterone",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "promethazine",
+    "key": "K1:FF28EJQ494",
+    "displayName": "Promethazine",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "propylthiouracil",
+    "key": "K1:721M9407IY",
+    "displayName": "Propylthiouracil",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "quazepam",
+    "key": "K1:JF8V0828ZI",
+    "displayName": "Quazepam",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "raloxifene",
+    "key": "K1:YX9162EO3I",
+    "displayName": "Raloxifene",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ramipril",
+    "key": "K1:L35JN3I7SJ",
+    "displayName": "Ramipril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "relacorilant",
+    "key": "K1:2158753C7E",
+    "displayName": "Relacorilant",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "relugolix",
+    "key": "K1:P76B05O5V6",
+    "displayName": "Relugolix",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "retifanlimab",
+    "key": "K1:2Y3T5IF01Z",
+    "displayName": "Retifanlimab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "ribociclib",
+    "key": "K1:TK8ERE8P56",
+    "displayName": "Ribociclib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "rilonacept",
+    "key": "K1:8K80YB5GMG",
+    "displayName": "Rilonacept",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "rimonabant",
+    "key": "K1:RML78EN3XE",
+    "displayName": "Rimonabant",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "riociguat",
+    "key": "K1:RU3FE2Y4XI",
+    "displayName": "Riociguat",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "risankizumab",
+    "key": "K1:90ZX3Q3FR7",
+    "displayName": "Risankizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "ritlecitinib",
+    "key": "K1:2OYE00PC25",
+    "displayName": "Ritlecitinib",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "rituximab",
+    "key": "K1:4F4X42SYQ6",
+    "displayName": "Rituximab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "rofecoxib",
+    "key": "K1:0QTW8Z7MCR",
+    "displayName": "Rofecoxib",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "rosiglitazone",
+    "key": "K1:3U8PBH2BON",
+    "displayName": "Rosiglitazone",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "rucaparib",
+    "key": "K1:8237F3U7EH",
+    "displayName": "Rucaparib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "ruxolitinib",
+    "key": "K1:82S8X8XX8H",
+    "displayName": "Ruxolitinib",
+    "classes": [
+     "S1",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "salsalate",
+    "key": "K1:V9MO595C9I",
+    "displayName": "Salsalate",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "salt",
+    "key": "K1:451W47IQ8X",
+    "displayName": "Compound solution of sodium chloride",
+    "classes": [
+     "S4"
+    ]
+   },
+   {
+    "slug": "sarilumab",
+    "key": "K1:NU90V55F8I",
+    "displayName": "Sarilumab",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "satralizumab",
+    "key": "K1:YB18NF020M",
+    "displayName": "Satralizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "secukinumab",
+    "key": "K1:DLG4EML025",
+    "displayName": "Secukinumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "selpercatinib",
+    "key": "K1:CEGM9YBNGD",
+    "displayName": "Selpercatinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "semaglutide",
+    "key": "K1:53AXN4NNHX",
+    "displayName": "Semaglutide",
+    "classes": [
+     "S9"
+    ]
+   },
+   {
+    "slug": "sibutramine",
+    "key": "K1:2K5E83H3LL",
+    "displayName": "Sibutramine",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "siltuximab",
+    "key": "K1:T4H8FMA7IM",
+    "displayName": "Siltuximab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "simvastatin",
+    "key": "K1:AGG2FN16EV",
+    "displayName": "Simvastatin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "sirolimus",
+    "key": "K1:W36ZG6FT64",
+    "displayName": "Sirolimus",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "sitagliptin-metformin",
+    "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}",
+    "displayName": "Metformin Hydrochloride, Sitagliptin",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "sodium-nitrite",
+    "key": "K1:M0KG633D4F",
+    "displayName": "Sodium Nitrite",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "somapacitan",
+    "key": "K2:NAKSIOUBFDBTSW-ITMZJIMRSA-N",
+    "displayName": "Somapacitan",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "somatrogon",
+    "key": "K1:6D848RA61B",
+    "displayName": "Somatrogon",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "sorafenib",
+    "key": "K1:9ZOQ3TZI87",
+    "displayName": "Sorafenib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "sotatercept-csrk",
+    "key": "K1:0QI90BTJ37#csrk",
+    "displayName": "Sotatercept-Csrk",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "soybean-oil",
+    "key": "K1:241ATL177A",
+    "displayName": "Soybean Oil",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "spesolimab",
+    "key": "K1:5IB2J79MCX",
+    "displayName": "Spesolimab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "sulindac",
+    "key": "K1:184SNS8VUH",
+    "displayName": "Sulindac",
+    "classes": [
+     "S1",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tacrolimus",
+    "key": "K1:Y5L2157C4J",
+    "displayName": "Tacrolimus Anhydrous",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tamoxifen",
+    "key": "K1:094ZI81Y45",
+    "displayName": "Tamoxifen",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tapentadol",
+    "key": "K1:9BK3JK3ETK",
+    "displayName": "Tapentadol",
+    "classes": [
+     "S2",
+     "S5",
+     "S6"
+    ]
+   },
+   {
+    "slug": "telmisartan",
+    "key": "K1:U5SYW473RQ",
+    "displayName": "Telmisartan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "temazepam",
+    "key": "K1:CHB1QD2QSS",
+    "displayName": "Temazepam",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tepotinib",
+    "key": "K1:1IJV77EI07",
+    "displayName": "Tepotinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "teprotumumab",
+    "key": "K1:Y64GQ0KC0A",
+    "displayName": "Teprotumumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "teriflunomide",
+    "key": "K1:1C058IKG3B",
+    "displayName": "Teriflunomide",
+    "classes": [
+     "S1",
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "terlipressin",
+    "key": "K1:7Z5X49W53P",
+    "displayName": "Terlipressin",
+    "classes": [
+     "S3",
+     "S6",
+     "S7"
+    ]
+   },
+   {
+    "slug": "tesamorelin",
+    "key": "K1:MQG94M5EEO",
+    "displayName": "Tesamorelin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "testosterone",
+    "key": "K1:3XMK78S47O",
+    "displayName": "Testosterone",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "testosterone-cypionate",
+    "key": "K1:M0XW1UBI14",
+    "displayName": "Testosterone Cypionate",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "testosterone-undecanoate",
+    "key": "K1:H16A5VCT9C",
+    "displayName": "Testosterone Undecanoate",
+    "classes": [
+     "S5"
+    ]
+   },
+   {
+    "slug": "thalidomide",
+    "key": "K1:4Z8R6ORS6L",
+    "displayName": "Thalidomide",
+    "classes": [
+     "S1",
+     "S3",
+     "S5",
+     "S6",
+     "S8"
+    ]
+   },
+   {
+    "slug": "thyrotropin",
+    "key": "K1:02KSI6Z9AK",
+    "displayName": "Thyrotrophin",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "tildrakizumab",
+    "key": "K1:DEW6X41BEK",
+    "displayName": "Tildrakizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "tislelizumab",
+    "key": "K1:0KVO411B3N",
+    "displayName": "Tislelizumab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S7"
+    ]
+   },
+   {
+    "slug": "tocilizumab",
+    "key": "K1:I031V2H011",
+    "displayName": "Tocilizumab",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tofacitinib",
+    "key": "K1:87LA6FU830",
+    "displayName": "Tofacitinib",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "tolmetin",
+    "key": "K1:D8K2JPN18B",
+    "displayName": "Tolmetin",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "topiramate",
+    "key": "K1:0H73WJJ391",
+    "displayName": "Topiramate",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "toripalimab",
+    "key": "K1:8JXN261VVA",
+    "displayName": "Toripalimab",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "trandolapril",
+    "key": "K1:1T0N3G9CRC",
+    "displayName": "Trandolapril",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "trazodone",
+    "key": "K1:YBK48BXK30",
+    "displayName": "Trazodone",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "triamcinolone-acetonide",
+    "key": "K1:F446C597KA",
+    "displayName": "Triamcinolone Acetonide",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "triazolam",
+    "key": "K1:1HM943223R",
+    "displayName": "Triazolam",
+    "classes": [
+     "S3",
+     "S6",
+     "S8"
+    ]
+   },
+   {
+    "slug": "trifluridine",
+    "key": "K1:RMW9V5RW38",
+    "displayName": "Trifluridine",
+    "classes": [
+     "S1",
+     "S4"
+    ]
+   },
+   {
+    "slug": "triptorelin",
+    "key": "K1:9081Y98W2V",
+    "displayName": "Triptorelin",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "ulipristal",
+    "key": "K1:6J5J15Q2X8",
+    "displayName": "Ulipristal",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "upadacitinib",
+    "key": "K1:4RA0KN46E0",
+    "displayName": "Upadacitinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "ustekinumab",
+    "key": "K1:FU77B4U5Z0",
+    "displayName": "Ustekinumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "valdecoxib",
+    "key": "K1:2919279Q3W",
+    "displayName": "Valdecoxib",
+    "classes": [
+     "S8"
+    ]
+   },
+   {
+    "slug": "valproic-acid",
+    "key": "K1:614OI1Z5WI",
+    "displayName": "Valproic acid",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "valsartan",
+    "key": "K1:80M03YXJ7I",
+    "displayName": "Valsartan",
+    "classes": [
+     "S3",
+     "S6"
+    ]
+   },
+   {
+    "slug": "vandetanib",
+    "key": "K1:YO460OQ37K",
+    "displayName": "Vandetanib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4",
+     "S6"
+    ]
+   },
+   {
+    "slug": "vasopressin",
+    "key": "K1:Y4907O6MFD",
+    "displayName": "Vasopressin",
+    "classes": [
+     "S7"
+    ]
+   },
+   {
+    "slug": "vedolizumab",
+    "key": "K1:9RV78Q2002",
+    "displayName": "Vedolizumab",
+    "classes": [
+     "S1"
+    ]
+   },
+   {
+    "slug": "veligrotug",
+    "key": "K1:Z9U2SS9ZC8",
+    "displayName": "Veligrotug",
+    "classes": [
+     "S7"
+    ]
+   },
+   {
+    "slug": "vepdegestrant",
+    "key": "K1:WC1U3R1YMI",
+    "displayName": "Vepdegestrant",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "vilobelimab",
+    "key": "K1:F5T0RF9ZJA",
+    "displayName": "Vilobelimab",
+    "classes": [
+     "S1",
+     "S7"
+    ]
+   },
+   {
+    "slug": "viloxazine",
+    "key": "K1:HP6E97INCN",
+    "displayName": "Viloxazine",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "vitamin-k",
+    "key": "K1:A034SE7857",
+    "displayName": "Phytonadione",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "voclosporin",
+    "key": "K1:2PN063X6B1",
+    "displayName": "Voclosporin",
+    "classes": [
+     "S1",
+     "S6"
+    ]
+   },
+   {
+    "slug": "voriconazole",
+    "key": "K1:JFU09I87TR",
+    "displayName": "Voriconazole",
+    "classes": [
+     "S3"
+    ]
+   },
+   {
+    "slug": "zaleplon",
+    "key": "K1:S62U433RMH",
+    "displayName": "Zaleplon",
+    "classes": [
+     "S6"
+    ]
+   },
+   {
+    "slug": "zanubrutinib",
+    "key": "K1:AG9MHG098Z",
+    "displayName": "Zanubrutinib",
+    "classes": [
+     "S1",
+     "S3",
+     "S4"
+    ]
+   },
+   {
+    "slug": "zolpidem",
+    "key": "K1:7K383OQI23",
+    "displayName": "Zolpidem",
+    "classes": [
+     "S6"
+    ]
+   }
+  ]
+ }
+}

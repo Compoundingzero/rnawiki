@@ -1,0 +1,57 @@
+{
+  "key": "wikiwand.com",
+  "track": "A1",
+  "dir": "wikiwand_com",
+  "checkedAt": "2026-09-03T14:34:49.120Z",
+  "indexUrl": "https://www.wikiwand.com/",
+  "contentUrl": "https://www.wikiwand.com/en/articles/Metformin",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.wikiwand.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/wikiwand_com.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/en/articles/Metformin",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [
+      "User-agent: * -> Allow: /"
+    ],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": ""
+  },
+  "terms": {
+    "url": null,
+    "httpStatus": null,
+    "savedTo": null,
+    "textSavedTo": null,
+    "textChars": 0,
+    "candidatesTried": [
+      {
+        "url": "https://www.wikiwand.com/terms",
+        "status": 403
+      },
+      {
+        "url": "https://www.wikiwand.com/en/terms-of-service",
+        "status": 403
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /en/articles/Metformin; no terms clause matched a prohibition pattern across 0 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i."
+  ]
+}

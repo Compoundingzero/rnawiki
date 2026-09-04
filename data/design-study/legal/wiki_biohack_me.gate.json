@@ -1,0 +1,65 @@
+{
+  "key": "wiki.biohack.me",
+  "track": "A2",
+  "dir": "wiki_biohack_me",
+  "checkedAt": "2026-09-03T14:40:53.995Z",
+  "indexUrl": "https://wiki.biohack.me/",
+  "contentUrl": "https://wiki.biohack.me/doku.php?id=biology",
+  "contentNote": "Registry candidate https://wiki.biohack.me/index.php?title=Magnets redirects to the wiki start page, so that article does not exist, and this wiki serves no MediaWiki API (api.php returned HTTP 404). Replaced with the first article link on a page already fetched (link text \"Biology\"): https://wiki.biohack.me/doku.php?id=biology.",
+  "reachable": true,
+  "robots": {
+    "url": "https://wiki.biohack.me/robots.txt",
+    "httpStatus": 404,
+    "savedTo": null,
+    "indexPath": "/",
+    "contentPath": "/doku.php?id=biology",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "robots.txt returned HTTP 404; no rules exist, so nothing is disallowed / robots.txt returned HTTP 404; no rules exist, so nothing is disallowed"
+  },
+  "terms": {
+    "url": "https://wiki.biohack.me/doku.php?id=start",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/wiki_biohack_me.terms.html",
+    "textSavedTo": "data/design-study/legal/wiki_biohack_me.terms.txt",
+    "textChars": 1841,
+    "candidatesTried": [
+      {
+        "url": "https://wiki.biohack.me/index.php?title=Biohack.me_Wiki:General_disclaimer",
+        "status": 200,
+        "note": "HTTP 200 (redirected to https://wiki.biohack.me/doku.php?id=start) but neither the URL nor the <title> \"start [HumanAug Wiki]\" identifies it as a terms, conditions, legal, copyright or disclaimer document; kept looking and held it only as a fallback"
+      },
+      {
+        "url": "https://wiki.biohack.me/index.php?title=Biohack.me_Wiki:Copyrights",
+        "status": 200,
+        "note": "HTTP 200 (redirected to https://wiki.biohack.me/doku.php?id=start) but neither the URL nor the <title> \"start [HumanAug Wiki]\" identifies it as a terms, conditions, legal, copyright or disclaimer document; kept looking and held it only as a fallback"
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Except where otherwise noted, content on this wiki is licensed under the following license:",
+      "CC Attribution-Noncommercial-Share Alike 4.0 International"
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": false,
+    "url": "https://wiki.biohack.me/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json",
+    "licence": null,
+    "note": "every permitted API probe failed: https://wiki.biohack.me/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /doku.php?id=biology; no terms clause matched a prohibition pattern across 2 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i.",
+    "No terms-of-service document was reached. The closest page kept as a fallback is https://wiki.biohack.me/doku.php?id=start; it is not a terms document, and its text is what the excerpts below come from.",
+    "API probe https://wiki.biohack.me/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json -> 404.",
+    "Candidate article https://wiki.biohack.me/index.php?title=Magnets -> HTTP 200 but redirected to https://wiki.biohack.me/doku.php?id=start, so that article does not exist; picking another article.",
+    "MediaWiki allpages -> HTTP 404; no MediaWiki API exists here."
+  ]
+}

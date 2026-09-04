@@ -169,6 +169,20 @@
       "when": 1788333751141,
       "tag": "0023_semantic_reading_units",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1788510117442,
+      "tag": "0024_corpus_pages",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1788527298311,
+      "tag": "0025_corpus_page_facets",
+      "breakpoints": true
     }
   ]
 }

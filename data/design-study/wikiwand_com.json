@@ -1,0 +1,107 @@
+{
+  "site": "wikiwand.com",
+  "fetchedAt": "2026-09-03",
+  "status": "blocked",
+  "pages": [
+    {
+      "url": "https://www.wikiwand.com/en/articles/Metformin",
+      "status": "blocked",
+      "httpStatus": 403,
+      "bytes": 6011,
+      "visibleTextChars": 58,
+      "textToHtmlRatio": 0.0096,
+      "savedAs": "data/design-study/raw/wikiwand_com/metformin-attempt2.html",
+      "evidence": "Cloudflare interstitial. <title>Just a moment...</title>; visible text is exactly \"Just a moment... Enable JavaScript and cookies to continue\"; markup contains __cf_chl (3x), cf_chl_opt (7x) and challenges.cloudflare.com (5x); CSP header limits script-src to challenges.cloudflare.com. No Wikiwand markup returned."
+    },
+    {
+      "url": "https://www.wikiwand.com/en/articles/Metformin",
+      "status": "blocked",
+      "httpStatus": 403,
+      "bytes": 5798,
+      "visibleTextChars": 58,
+      "textToHtmlRatio": 0.01,
+      "savedAs": "data/design-study/raw/wikiwand_com/metformin.html",
+      "evidence": "First attempt, plain desktop Chrome User-Agent + Accept/Accept-Language. Same Cloudflare interstitial."
+    },
+    {
+      "url": "https://www.wikiwand.com/",
+      "status": "blocked",
+      "httpStatus": 403,
+      "bytes": 5670,
+      "visibleTextChars": 58,
+      "textToHtmlRatio": 0.0102,
+      "savedAs": "data/design-study/raw/wikiwand_com/home.html",
+      "evidence": "Single probe of the site root to establish that the block is site-wide rather than article-specific. Same interstitial."
+    }
+  ],
+  "stylesheets": [],
+  "typography": {
+    "fontStacks": [],
+    "fontSizes": [],
+    "lineHeights": [],
+    "headingScale": {
+      "h1": null,
+      "h2": null,
+      "h3": null,
+      "h4": null,
+      "ratio": null
+    },
+    "bodyCandidates": {
+      "fontSize": null,
+      "lineHeight": null,
+      "selectorEvidence": null
+    },
+    "fluidType": null,
+    "unavailableReason": "No Wikiwand CSS was ever delivered. The saved responses contain zero <link rel=\"stylesheet\"> elements, zero @import rules, and exactly one inline <style> block (1197 chars) that belongs to the Cloudflare challenge page, not to Wikiwand. Deriving type tokens from the interstitial's own reset would be a measurement of Cloudflare, so nothing is recorded."
+  },
+  "spacing": {
+    "distinctValues": [],
+    "inferredBaseUnitPx": null,
+    "multiplesUsed": [],
+    "evidence": "No Wikiwand CSS delivered; see typography.unavailableReason."
+  },
+  "color": {
+    "customProperties": [],
+    "bodyTextColorCandidate": null,
+    "backgroundCandidate": null,
+    "contrastRatioCandidate": null,
+    "darkModeMechanism": null,
+    "evidence": "No Wikiwand CSS delivered. The only colour declarations in the saved bytes (#313131 text, system-ui stack) are Cloudflare interstitial styling and are deliberately not recorded as site tokens."
+  },
+  "layout": {
+    "breakpoints": [],
+    "contentWidthCandidates": [],
+    "gridUsage": {
+      "cssGrid": null,
+      "flex": null
+    },
+    "evidence": "No Wikiwand CSS or DOM delivered."
+  },
+  "navigation": {
+    "persistentElements": [],
+    "stickyOrFixedSelectors": [],
+    "tocPresent": null,
+    "revealedOnDemand": [],
+    "evidence": "The article DOM was never returned, so the sticky contents rail and header structure that make this site a reference could not be observed. The brief's description of them is not evidence and is not recorded here."
+  },
+  "behaviours": [],
+  "measurement": {
+    "status": "blocked",
+    "method": "curl, desktop Chrome UA, --compressed, -L, 20 s timeout. Attempt 1: UA + Accept + Accept-Language. Attempt 2: added sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform, Sec-Fetch-* and Upgrade-Insecure-Requests. Two attempts on the article URL, one probe of the site root. No further retries; no attempt to solve or bypass the challenge.",
+    "notes": "wikiwand.com sits behind a Cloudflare JavaScript/cookie challenge that returns HTTP 403 with a 5.7-6.0 KB interstitial to every plain HTTP client. This is not a js-rendered shell of the real page: the app shell was never served, so there is no Wikiwand markup, no stylesheet URLs to resolve, and no inline app CSS to parse. Every derived field above is null or empty by design rather than estimated. To get real numbers this site needs a rendered-browser pass (headless Chrome or the browser tooling) that executes the challenge as a normal browser would; a static fetch cannot produce them. Raw responses are saved under data/design-study/raw/wikiwand_com/ (gitignored); raw/wikiwand_com/css/inline-1.css holds the interstitial's own inline block, retained only as evidence of the block and used for nothing.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": null,
+      "mobileViewport": null,
+      "date": "2026-09-03",
+      "notes": "Cloudflare bot interstitial served to the automated browser; article DOM never rendered."
+    }
+  },
+  "measured": {
+    "status": "blocked",
+    "desktop": null,
+    "mobile": null,
+    "blockedReason": "Cloudflare interstitial. Two loads of https://www.wikiwand.com/en/articles/Metformin in the Browser pane returned document.title 'Just a moment...', a single <p>, 264 characters of body text and no article DOM. The article never rendered, so no computed value could be read. Not bypassed: solving the bot check is out of scope.",
+    "note": "Every typography, spacing, colour, layout and navigation field in this file stays null. Wikiwand's reading-page tokens are unmeasured, not estimated."
+  }
+}

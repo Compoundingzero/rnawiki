@@ -1,14 +1,14 @@
 {
   "schema": "four-audience-evidence-coverage/v1",
   "contractSchema": "four-audience-evidence-contract/v1",
-  "measurementDigest": "5d4d9e92e72a34ac4407048790fb3b3f6ced0df3cbb1b9aa6eb22caef6845ccb",
+  "measurementDigest": "eab85d76e4fe0b0ab5f3f357f32d5eadbdbf779f81884968f5d73b2a5991791d",
   "generatedFrom": {
-    "snapshotGeneratedAt": "2026-09-02T08:11:10.093Z",
+    "snapshotGeneratedAt": "2026-09-03T05:18:41.972Z",
     "inputs": {
       "data/drugs.csv": "e53e401693b92ae6295bc10ebf922c161baed758ddd81ea0e577aa0fd6044bf2",
-      "data/drugs/*.ndjson": "09ae22a3920408f18e31970c0bd6e8e5aa1b0b99421b5c8b7d875df7021f45b6",
-      "data/manifest.json": "95aa80f25b8c9c6f63cca753efb183fd44ec22d8f97e3ec366a8487380ed3148",
-      "data/recorded-background.ndjson": "7d7b03a4e46f7d27ac3b7c271607e457e792674b116eecd1d1d1171a9d707ec7",
+      "data/drugs/*.ndjson": "aa5e3d5dcf7589713fbb53ff03b7760a23fedadf110f3c779ab0b77c3a43d518",
+      "data/manifest.json": "8c49fe4c156795831d0ae549395e17ff4a87a3a75db8edf0d75b814de18171ca",
+      "data/recorded-background.ndjson": "80f2135c6ecb0ca0f99675e378513216f31ab18e3d77c7bfb4088adba6c2fb75",
       "data/source-consensus.ndjson": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9",
       "docs/product/four-audience-evidence-contract.json": "d3496d980db3d4e9ca2474cdf95684743ad5c550bea571aabffec3ec668a7e73"
     }
@@ -21,7 +21,7 @@
   "registryBoundary": {
     "ordinaryQuestions": 6,
     "fixedRegistryPairs": 59130,
-    "observedSourceBoundEligiblePairs": 4579,
+    "observedSourceBoundEligiblePairs": 4733,
     "note": "A fixed question entry can be an explicit non-answer. Registry pairs are never counted as clinical answers."
   },
   "ordinaryQuestions": [
@@ -31,9 +31,9 @@
       "questionIntents": ["purpose"],
       "eligibilityRule": "source_bound_recorded_use_or_source_bound_reviewed_scope",
       "measurementState": "exact_for_checked_in_snapshot",
-      "observedEligibleRecords": 2879,
-      "notEligibleRecords": 6976,
-      "shareOfRecordedBackgroundCorpus": 0.292136
+      "observedEligibleRecords": 2982,
+      "notEligibleRecords": 6873,
+      "shareOfRecordedBackgroundCorpus": 0.302588
     },
     {
       "id": "people-result",
@@ -61,9 +61,9 @@
       "questionIntents": ["harms", "meaning-limitations"],
       "eligibilityRule": "source_bound_serious_harm_or_source_bound_reviewed_limitation",
       "measurementState": "exact_for_checked_in_snapshot",
-      "observedEligibleRecords": 1642,
-      "notEligibleRecords": 8213,
-      "shareOfRecordedBackgroundCorpus": 0.166616
+      "observedEligibleRecords": 1693,
+      "notEligibleRecords": 8162,
+      "shareOfRecordedBackgroundCorpus": 0.171791
     },
     {
       "id": "applicability",
@@ -101,7 +101,7 @@
     "shareOfRecordedBackgroundCorpus": 0.43724
   },
   "biotechResearchCoverage": {
-    "sourceBoundRecordedUseRecords": 2879,
+    "sourceBoundRecordedUseRecords": 2982,
     "sourceBoundMechanismRecords": 1766,
     "sourceBoundPivotalResultRecords": 18,
     "sourceBoundApplicabilityRecords": 22,
@@ -136,8 +136,8 @@
     "note": "The checked-in public snapshot does not export the runtime driftedSources projection. Absence is not reported as zero."
   },
   "sourceRead": {
-    "recordsWithQualifyingSourceExcerpt": 3099,
-    "noSourceExcerptRead": 6756,
+    "recordsWithQualifyingSourceExcerpt": 3107,
+    "noSourceExcerptRead": 6748,
     "recordsWithQualifyingSourceRecorded": 9855,
     "noQualifyingSourceRecorded": 0,
     "note": "A qualifying source object without a quotable excerpt remains provenance, but it is not counted as a clinical source read."

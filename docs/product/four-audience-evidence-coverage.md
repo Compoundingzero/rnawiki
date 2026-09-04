@@ -3,23 +3,23 @@
 Generated deterministically from the checked-in public snapshot by
 `scripts/audit/four-audience-evidence-coverage.ts`.
 
-**Snapshot generated:** 2026-09-02T08:11:10.093Z
+**Snapshot generated:** 2026-09-03T05:18:41.972Z
 
-**Measurement digest:** `5d4d9e92e72a34ac4407048790fb3b3f6ced0df3cbb1b9aa6eb22caef6845ccb`
+**Measurement digest:** `eab85d76e4fe0b0ab5f3f357f32d5eadbdbf779f81884968f5d73b2a5991791d`
 
 This is a source-bound evidence eligibility report. It is not an answer-rate claim. The fixed six
 questions produce 59,130 registry pairs over 9,855 records,
-but a registry pair may be an explicit non-answer. Only 4,579 observed pairs meet
+but a registry pair may be an explicit non-answer. Only 4,733 observed pairs meet
 the conservative source-bound rules below.
 
 ## Ordinary-reader questions
 
 | Question                                             | Canonical intent               | Eligible records | Share | Measurement        |
 | ---------------------------------------------------- | ------------------------------ | ---------------: | ----: | ------------------ |
-| What is this medicine used or studied for?           | `purpose`                      |            2,879 | 29.2% | Exact for snapshot |
+| What is this medicine used or studied for?           | `purpose`                      |            2,982 | 30.3% | Exact for snapshot |
 | What happened to people in the cited study or label? | `bottom-line`, `measurement`   |               18 |  0.2% | Exact for snapshot |
 | How large was the measured result?                   | `results-magnitude`            |               18 |  0.2% | Exact for snapshot |
-| What important harm or limitation was recorded?      | `harms`, `meaning-limitations` |            1,642 | 16.7% | Exact for snapshot |
+| What important harm or limitation was recorded?      | `harms`, `meaning-limitations` |            1,693 | 17.2% | Exact for snapshot |
 | Who might this evidence not apply to?                | `applicability`                |               22 |  0.2% | Exact for snapshot |
 | What is unknown, conflicting or stale?               | `unknowns`                     |                0 |  0.0% | Lower bound        |
 
@@ -42,7 +42,7 @@ chemical structure.
 
 | Source-bound field set             |   Records |
 | ---------------------------------- | --------: |
-| Recorded use or studied purpose    |     2,879 |
+| Recorded use or studied purpose    |     2,982 |
 | Recorded mechanism statement       |     1,766 |
 | Pivotal endpoint and result        |        18 |
 | Study applicability and population |        22 |
@@ -89,8 +89,8 @@ The checked-in public snapshot does not export the runtime driftedSources projec
 
 | Measure                                        |   Records |
 | ---------------------------------------------- | --------: |
-| At least one qualifying source excerpt         |     3,099 |
-| **No source excerpt read**                     | **6,756** |
+| At least one qualifying source excerpt         |     3,107 |
+| **No source excerpt read**                     | **6,748** |
 | At least one qualifying source object recorded |     9,855 |
 | **No qualifying source recorded**              |     **0** |
 

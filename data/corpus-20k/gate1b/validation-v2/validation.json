@@ -1,0 +1,103 @@
+{
+  "validationCorpus": "rendered-indexed-803 (re-measure)",
+  "pages": 803,
+  "fitRule": "unfit above 0.02 median delta",
+  "fit": true,
+  "delta": {
+    "positional": {
+      "median": 0.0,
+      "mean": 0.008833,
+      "p90": 0.036088,
+      "max": 0.127216,
+      "pagesExact": 613
+    },
+    "lexical": {
+      "median": 0.0,
+      "mean": 0.002822,
+      "p90": 0.009513,
+      "max": 0.06801,
+      "pagesExact": 656
+    },
+    "samePartner": {
+      "positional": 613,
+      "lexical": 656
+    }
+  },
+  "exhaustive": {
+    "positional": {
+      "count": 803,
+      "median": 0.246696,
+      "mean": 0.285342,
+      "p90": 0.415385,
+      "max": 0.966393,
+      "above_0_20": 691,
+      "above_0_30": 186
+    },
+    "lexical": {
+      "count": 803,
+      "median": 0.465409,
+      "mean": 0.473767,
+      "p90": 0.619213,
+      "max": 0.983294,
+      "above_0_20": 803,
+      "above_0_30": 747
+    },
+    "pairsScored": 322003,
+    "seconds": 3.706
+  },
+  "lsh": {
+    "positional": {
+      "count": 803,
+      "median": 0.231884,
+      "mean": 0.276508,
+      "p90": 0.415385,
+      "max": 0.966393,
+      "above_0_20": 592,
+      "above_0_30": 184
+    },
+    "lexical": {
+      "count": 803,
+      "median": 0.462687,
+      "mean": 0.470945,
+      "p90": 0.619213,
+      "max": 0.983294,
+      "above_0_20": 803,
+      "above_0_30": 746
+    },
+    "pairsScored": 51925,
+    "candidatesConsidered": 325172,
+    "largestBucket": 5,
+    "seconds": 0.997,
+    "bands": 32,
+    "rows": 4,
+    "analyticThreshold": 0.4204,
+    "specDefault": true,
+    "cascade": true,
+    "structures": [
+      [
+        32,
+        4
+      ],
+      [
+        64,
+        2
+      ],
+      [
+        128,
+        1
+      ]
+    ],
+    "backfilledPages": 803
+  },
+  "work": {
+    "tokens": 780882,
+    "vocabulary": 43937
+  },
+  "timings": {
+    "buildSeconds": 0.824,
+    "totalSeconds": 5.642,
+    "pagesPerSecondLsh": 440.97,
+    "pagesPerSecondExhaustive": 177.23
+  },
+  "peakRssMb": 241.7
+}

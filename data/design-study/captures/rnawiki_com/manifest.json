@@ -1,0 +1,528 @@
+{
+  "site": "rnawiki.com",
+  "track": "baseline",
+  "urls": {
+    "index": "https://rnawiki.com/",
+    "content": "https://rnawiki.com/d/metformin"
+  },
+  "capturedAt": "2026-09-03T15:10:14.890Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: clicked 'Not now' in div.mt-3 (main document)",
+    "index-1440: banner still visible after the refusal click (div.max-w-3xl); left alone",
+    "index-375: left: no permitted refusal control in div.max-w-3xl (controls: Browse all medicines, Public datasets, How this works, Editorial policy, Review queue, Analytics choices); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in div.max-w-3xl (controls: Browse all medicines, Public datasets, How this works, Editorial policy, Review queue, Analytics choices); banner stands in the captures",
+    "content-375: left: no permitted refusal control in div.max-w-3xl (controls: Browse all medicines, Public datasets, How this works, Editorial policy, Review queue, Analytics choices); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://rnawiki.com/d/metformin",
+    "collectedAt": "2026-09-03T15:09:57.932Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0006,
+    "title": "Metformin — evidence record | RNAWiki",
+    "innerTextLength": 1784,
+    "outerHtmlLength": 2795781,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Metformin"
+      },
+      {
+        "tag": "h2",
+        "text": "IN 10 SECONDS"
+      },
+      {
+        "tag": "h2",
+        "text": "Ordinary reader"
+      },
+      {
+        "tag": "h3",
+        "text": "Plain-language help for terms in this view"
+      },
+      {
+        "tag": "h3",
+        "text": "1. What is this medicine used or studied for?"
+      },
+      {
+        "tag": "h3",
+        "text": "2. What happened to people in the cited study or label?"
+      },
+      {
+        "tag": "h3",
+        "text": "3. How large was the measured result?"
+      },
+      {
+        "tag": "h3",
+        "text": "4. What important harm or limitation was recorded?"
+      },
+      {
+        "tag": "h3",
+        "text": "5. Who might this evidence not apply to?"
+      },
+      {
+        "tag": "h3",
+        "text": "6. What is unknown, conflicting or stale?"
+      },
+      {
+        "tag": "h2",
+        "text": "What this research summary covers"
+      },
+      {
+        "tag": "h3",
+        "text": "Everyday explanation"
+      },
+      {
+        "tag": "h3",
+        "text": "How far does the evidence reach?"
+      },
+      {
+        "tag": "h3",
+        "text": "General research findings"
+      },
+      {
+        "tag": "h3",
+        "text": "What did the studies measure?"
+      },
+      {
+        "tag": "h3",
+        "text": "What the research reports"
+      },
+      {
+        "tag": "h3",
+        "text": "Studies included in this summary"
+      },
+      {
+        "tag": "h3",
+        "text": "What each study reports"
+      },
+      {
+        "tag": "h3",
+        "text": "How the medicine is expected to work"
+      },
+      {
+        "tag": "h3",
+        "text": "Questions this record can answer"
+      },
+      {
+        "tag": "h3",
+        "text": "Registered clinical trials"
+      },
+      {
+        "tag": "h3",
+        "text": "How complete this record is"
+      },
+      {
+        "tag": "h3",
+        "text": "Where did this answer come from?"
+      },
+      {
+        "tag": "h2",
+        "text": "General background about this medicine"
+      },
+      {
+        "tag": "h3",
+        "text": "How it is given"
+      },
+      {
+        "tag": "h3",
+        "text": "Important safety information"
+      },
+      {
+        "tag": "h3",
+        "text": "Technical delivery name"
+      },
+      {
+        "tag": "h3",
+        "text": "Empagliflozin (Jardiance)"
+      },
+      {
+        "tag": "h3",
+        "text": "Glimepiride (generic sulfonylurea)"
+      },
+      {
+        "tag": "h3",
+        "text": "Sitagliptin (Januvia)"
+      },
+      {
+        "tag": "h3",
+        "text": "Berberine (Coptis chinensis, Berberis species)"
+      },
+      {
+        "tag": "h2",
+        "text": "Contribute to this medicine page"
+      },
+      {
+        "tag": "h3",
+        "text": "Found a name that is wrong?"
+      }
+    ],
+    "headingCount": 33,
+    "stickyOrFixedCount": 2,
+    "stickyOrFixed": [
+      {
+        "tag": "header",
+        "class": "sticky top-0 z-40 w-full backdrop-blur-xl bg-white/90 border",
+        "position": "sticky",
+        "top": 0,
+        "height": 65
+      },
+      {
+        "tag": "div",
+        "class": "pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justi",
+        "position": "fixed",
+        "top": 832,
+        "height": 44
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": true,
+      "scrollama": false,
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 598,
+    "scriptsUnreadable": 0,
+    "searchAffordances": {
+      "count": 2,
+      "firstDescriptors": [
+        "input Search by medicine, condition, gene, or",
+        "button Search medicines"
+      ]
+    },
+    "imgCount": 0,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "__variable_b6296e __variable_e896d9",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 1
+    },
+    "bodyBackgroundColor": "rgb(245, 245, 247)",
+    "bodyColor": "rgb(29, 29, 31)",
+    "canvasCount": 0,
+    "svgCount": 529
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 1569,
+      "sha256": "db2dc9e8e05ccc56c3f372384cf1862060a86409ae0893e9c6d36eff9327a3e3",
+      "capturedAt": "2026-09-03T15:09:49.927Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0d3fded7e89b25965e00b5b0ff83f7208f92ba0296df3a5ed8504a5bb3208c67",
+      "capturedAt": "2026-09-03T15:09:50.000Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 669,
+      "sha256": "f76877da1b4fb861fd249fb3f3b6b6430ea43a4e104cd31ca4431e85c29ba530",
+      "capturedAt": "2026-09-03T15:09:50.058Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 1519,
+      "sha256": "252195c87e1113de2b157c74ec9971f1ee75612f44473f4729d2bc6a9c3277db",
+      "capturedAt": "2026-09-03T15:09:53.247Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "052c54af41445c4ad56f526080d37a1d3187369d44b944c39ebf8d7efd368bd3",
+      "capturedAt": "2026-09-03T15:09:53.302Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://rnawiki.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 707,
+      "sha256": "f2f374f458928427bf517bd19072bbbbfbf59b28abb256ff86d28074d4ea28a6",
+      "capturedAt": "2026-09-03T15:09:53.347Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 1844,
+      "sha256": "d9e9afab90c23fc10670c5d976c62b1958a9446099b28563a6083300c17a3a3a",
+      "capturedAt": "2026-09-03T15:09:57.563Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1f4a508b1bd02f536c8adfa6337e62a6fb2e40b3487e74a34746c39d103f567c",
+      "capturedAt": "2026-09-03T15:09:57.632Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "517c8a8119b9ee363805ba2552edec84f503bcb931ed79c456c024fe84db4722",
+      "capturedAt": "2026-09-03T15:09:57.695Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 44,
+      "sha256": "32d3a1617f4b7325b21d3c53bdf8c622de96524c1014528d300f08a52901512f",
+      "capturedAt": "2026-09-03T15:09:57.738Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1f4a508b1bd02f536c8adfa6337e62a6fb2e40b3487e74a34746c39d103f567c",
+      "capturedAt": "2026-09-03T15:09:59.529Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 472,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "bc5d4598a73c38a91719085e75fa3ca2757d743a9e8eddaa7c1f7acad9e1b506",
+      "capturedAt": "2026-09-03T15:10:01.666Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 850,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b4806b322d94aab0a671d840919f9e675dedbcc08e3715f80cbb0edef17914bf",
+      "capturedAt": "2026-09-03T15:10:03.731Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 2258,
+      "sha256": "d0e0085eb6f96817f7bb65fabdc110d0f0aeda256e9c974c334676f89b9aa459",
+      "capturedAt": "2026-09-03T15:10:08.005Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9f5c2e81bbc82aa214f902a019e37f3947aced016d0d5f1a59d09b7e65c2fe78",
+      "capturedAt": "2026-09-03T15:10:08.065Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "2c9bbf3ca0dd6c39cecb98baa7bab4d6caf85b9350847eb13f1e27a874d77909",
+      "capturedAt": "2026-09-03T15:10:08.116Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 634,
+      "sha256": "e1587a562f93882eab2683df3be7c9aceeb4aabed12382f325752a5d25367b38",
+      "capturedAt": "2026-09-03T15:10:08.162Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eba00f3027163f50cb54acc9996f5a3621fad51f40872721af463000e37f2179",
+      "capturedAt": "2026-09-03T15:10:10.476Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 723,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f85c7b3d9e422771987fe3ff6d7d5b1dc199380db471268d08f506cbd9ec2804",
+      "capturedAt": "2026-09-03T15:10:12.707Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://rnawiki.com/d/metformin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 1301,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "6c71b6f25f66831017d2f9cc5315c3af49d05b5ec6f1687c8167fd72f5b935a3",
+      "capturedAt": "2026-09-03T15:10:14.890Z"
+    }
+  ]
+}

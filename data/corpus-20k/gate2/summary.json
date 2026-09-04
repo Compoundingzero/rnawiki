@@ -1,0 +1,985 @@
+{
+ "gate": 2,
+ "date": "2026-09-05",
+ "stage": "Gate 2 \u2014 the seven samples through the real template, measured on the rendered HTML, with a like-for-like baseline read from the live site",
+ "method": {
+  "database": "a disposable local PostgreSQL database created for this run, migrated 0001-0025, seeded with the legacy drugs/inventory_resolutions/medicine_slug_redirects rows copied from the working database so slug assignment matches what Phase 5 will meet, dropped at the end",
+  "load": "scripts/corpus-20k/load/materialise.ts, --indexable-threshold 11 from data/corpus-20k/gate1b/summary-v3.json; all of Tier 1 and Tier 2 plus Tier 3 batch 1 (which carries both Tier 3 samples); markers under data/corpus-20k/gate2/load-markers; --no-checkpoint, because this is a measurement load into a disposable database and not the Phase 5 load the state file records",
+  "build": "an isolated copy of the worktree with its own .next (the Phase 4 builder's method), next build then next start on port 3111",
+  "extractor": "scripts/corpus-20k/gate2/extract.py \u2014 one extractor for our HTML and the live site's: the visible text of <main>, with every <nav> (the contents rail included), the <footer>, the details.cd-contents control that replaces the rail below 1024 px and the definitions link removed as declared markup",
+  "harness": "scripts/corpus-20k/overlap/measure.py unchanged (seed 20260904, 128 permutations, 5-gram shingles), exhaustive on every set; size-matched folds by scripts/corpus-20k/gate2/folds.py reusing gate1b_v3.fold_membership",
+  "draws": "the same seeded 803 and 324 draws Gate 1b used, read from data/corpus-20k/render/v3/pages-indexed-{803,324}.ndjson"
+ },
+ "load": {
+  "pages": 6472,
+  "tier1": {
+   "pages": 1498,
+   "seconds": 21.043
+  },
+  "tier2": {
+   "pages": 4724,
+   "seconds": 32.506
+  },
+  "tier3Batch1": {
+   "pages": 250,
+   "seconds": 5.108
+  },
+  "seconds": 58.657,
+  "pagesPerSecond": 110.34,
+  "note": "the deployment plan blocks a deploy below 1 page/second; this is 110x that"
+ },
+ "indexable": {
+  "threshold": 11,
+  "pages": 521,
+  "byTier": {
+   "1": 521,
+   "2": 0,
+   "3": 0
+  },
+  "gate1bExpected": 638,
+  "note": "Gate 1b derived the threshold on the page-text renderer's present-field count; the loader counts only the entries inside the fields record, so 521 pages clear 11 where Gate 1b counted 638. The cause is recorded under issues."
+ },
+ "samples": [
+  {
+   "slug": "metformin",
+   "role": "data-rich Tier 1",
+   "rule": "the joint-highest present-field count in Tier 1 (15 of 15), alphabetically first of the two",
+   "url": "http://localhost:3111/d/metformin"
+  },
+  {
+   "slug": "cysteamine",
+   "role": "mid Tier 1",
+   "rule": "at the LONGEVITY median of 10 present fields; the median-count page carrying the most question blocks, ties broken alphabetically",
+   "url": "http://localhost:3111/d/cysteamine"
+  },
+  {
+   "slug": "amlodipine",
+   "role": "withdrawn arc",
+   "rule": "the highest present-field count among withdrawn pages that are not suppressed, so the dated arc leads the page",
+   "url": "http://localhost:3111/d/amlodipine"
+  },
+  {
+   "slug": "sirolimus",
+   "role": "suppression class S1-S9",
+   "rule": "classes S1, S3, S4, S6; the supervision block is ordinal 0",
+   "url": "http://localhost:3111/d/sirolimus"
+  },
+  {
+   "slug": "carbidopa-levodopa",
+   "role": "Tier 2 standard",
+   "rule": "at the Tier 2 median of 3 present fields; the median-count page carrying the most question blocks",
+   "url": "http://localhost:3111/d/carbidopa-levodopa"
+  },
+  {
+   "slug": "cdx-3379",
+   "role": "Tier 3 experimental",
+   "rule": "the highest present-field count (7) among the loaded Tier 3 development pages, ties broken alphabetically",
+   "url": "http://localhost:3111/d/cdx-3379"
+  },
+  {
+   "slug": "1-2-distearoyl-sn-glycero-3-phosphocholine",
+   "role": "Tier 3 near-empty stub",
+   "rule": "the lowest present-field count (1) among the loaded Tier 3 stubs, ties broken alphabetically",
+   "url": "http://localhost:3111/d/1-2-distearoyl-sn-glycero-3-phosphocholine"
+  }
+ ],
+ "positional": {
+  "indexedSizeMatched": 0.191189,
+  "indexedAllPairs": 0.195958,
+  "matched803": 0.300971,
+  "matched324": 0.276786,
+  "liveHtml803": 0.798649,
+  "liveHtml324": 0.785569,
+  "newHtmlOnTheLive803Subset": 0.278689,
+  "newHtmlOnTheLive324Subset": 0.265252,
+  "indexedProseOnly": 0.121495
+ },
+ "distributions": {
+  "gate2-indexed": {
+   "pages": 521,
+   "positional": {
+    "count": 521,
+    "median": 0.195958,
+    "mean": 0.277908,
+    "p90": 0.675456,
+    "max": 0.916888,
+    "above_0_20": 233,
+    "above_0_30": 91
+   },
+   "lexical": {
+    "count": 521,
+    "median": 0.364042,
+    "mean": 0.415644,
+    "p90": 0.687396,
+    "max": 0.922031,
+    "above_0_20": 521,
+    "above_0_30": 504
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.442578,
+    "p90": 0.50765,
+    "byTier": {
+     "1": 0.442578
+    }
+   },
+   "medianTokens": 2177,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.103929,
+     "mean": 0.107046,
+     "p90": 0.139476,
+     "max": 0.822004,
+     "above_0_20": 41,
+     "above_0_30": 14
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.26062,
+     "mean": 0.263175,
+     "p90": 0.299781,
+     "max": 0.876543,
+     "above_0_20": 19900,
+     "above_0_30": 1968
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 521,
+      "positional": 0.292647,
+      "lexical": 0.429149
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.264737,
+       "lexical": 0.412767
+      },
+      {
+       "pages": 803,
+       "positional": 0.331308,
+       "lexical": 0.450358
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-indexed-prose": {
+   "pages": 521,
+   "positional": {
+    "count": 521,
+    "median": 0.121495,
+    "mean": 0.19723,
+    "p90": 0.509031,
+    "max": 0.906306,
+    "above_0_20": 101,
+    "above_0_30": 81
+   },
+   "lexical": {
+    "count": 521,
+    "median": 0.433428,
+    "mean": 0.477186,
+    "p90": 0.657895,
+    "max": 0.938053,
+    "above_0_20": 521,
+    "above_0_30": 521
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.388889,
+    "p90": 0.425819,
+    "byTier": {
+     "1": 0.388889
+    }
+   },
+   "medianTokens": 580,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.045369,
+     "mean": 0.047458,
+     "p90": 0.069597,
+     "max": 0.708333,
+     "above_0_20": 14,
+     "above_0_30": 8
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.316348,
+     "mean": 0.318241,
+     "p90": 0.364868,
+     "max": 0.85283,
+     "above_0_20": 19998,
+     "above_0_30": 13677
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 521,
+      "positional": 0.203192,
+      "lexical": 0.493399
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.181587,
+       "lexical": 0.480328
+      },
+      {
+       "pages": 803,
+       "positional": 0.235008,
+       "lexical": 0.51071
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-803": {
+   "pages": 803,
+   "positional": {
+    "count": 803,
+    "median": 0.300971,
+    "mean": 0.333697,
+    "p90": 0.483607,
+    "max": 0.980876,
+    "above_0_20": 738,
+    "above_0_30": 405
+   },
+   "lexical": {
+    "count": 803,
+    "median": 0.489637,
+    "mean": 0.508282,
+    "p90": 0.679456,
+    "max": 0.990859,
+    "above_0_20": 803,
+    "above_0_30": 785
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.231533,
+    "p90": 0.302511,
+    "byTier": {
+     "tier1": 0.213199,
+     "tier2": 0.241197
+    }
+   },
+   "medianTokens": 548,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.088056,
+     "mean": 0.097505,
+     "p90": 0.17284,
+     "max": 0.964859,
+     "above_0_20": 1246,
+     "above_0_30": 339
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.206469,
+     "mean": 0.219395,
+     "p90": 0.355431,
+     "max": 0.976676,
+     "above_0_20": 10513,
+     "above_0_30": 4063
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 803,
+      "positional": 0.508676,
+      "lexical": 0.679187
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.443724,
+       "lexical": 0.618003
+      },
+      {
+       "pages": 803,
+       "positional": 0.508676,
+       "lexical": 0.679187
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-324": {
+   "pages": 324,
+   "positional": {
+    "count": 324,
+    "median": 0.276786,
+    "mean": 0.312069,
+    "p90": 0.494118,
+    "max": 0.959366,
+    "above_0_20": 270,
+    "above_0_30": 144
+   },
+   "lexical": {
+    "count": 324,
+    "median": 0.462916,
+    "mean": 0.476208,
+    "p90": 0.601626,
+    "max": 0.985423,
+    "above_0_20": 324,
+    "above_0_30": 311
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.229916,
+    "p90": 0.298873,
+    "byTier": {
+     "tier1": 0.210627,
+     "tier2": 0.237586
+    }
+   },
+   "medianTokens": 557,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.087302,
+     "mean": 0.095806,
+     "p90": 0.166667,
+     "max": 0.833703,
+     "above_0_20": 1144,
+     "above_0_30": 297
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.214647,
+     "mean": 0.222538,
+     "p90": 0.354094,
+     "max": 0.949495,
+     "above_0_20": 11168,
+     "above_0_30": 4146
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 324,
+      "positional": 0.435954,
+      "lexical": 0.60215
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.435954,
+       "lexical": 0.60215
+      },
+      {
+       "pages": 803,
+       "positional": 0.496978,
+       "lexical": 0.675089
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-live-803": {
+   "pages": 604,
+   "positional": {
+    "count": 604,
+    "median": 0.798649,
+    "mean": 0.798697,
+    "p90": 0.894887,
+    "max": 0.984725,
+    "above_0_20": 604,
+    "above_0_30": 604
+   },
+   "lexical": {
+    "count": 604,
+    "median": 0.69655,
+    "mean": 0.698614,
+    "p90": 0.852405,
+    "max": 0.984901,
+    "above_0_20": 604,
+    "above_0_30": 604
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.795912,
+    "p90": 0.901773,
+    "byTier": {
+     "tier1": 0.737748,
+     "tier2": 0.815733
+    }
+   },
+   "medianTokens": 6800,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.615052,
+     "mean": 0.619558,
+     "p90": 0.7274,
+     "max": 0.938603,
+     "above_0_20": 20000,
+     "above_0_30": 19990
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.517576,
+     "mean": 0.513773,
+     "p90": 0.646128,
+     "max": 0.908367,
+     "above_0_20": 20000,
+     "above_0_30": 19405
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 604,
+      "positional": 0.88975,
+      "lexical": 0.836423
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.876042,
+       "lexical": 0.819812
+      },
+      {
+       "pages": 803,
+       "positional": 0.895214,
+       "lexical": 0.844592
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-live-324": {
+   "pages": 252,
+   "positional": {
+    "count": 252,
+    "median": 0.785569,
+    "mean": 0.78514,
+    "p90": 0.877304,
+    "max": 0.972687,
+    "above_0_20": 252,
+    "above_0_30": 252
+   },
+   "lexical": {
+    "count": 252,
+    "median": 0.679825,
+    "mean": 0.677829,
+    "p90": 0.834462,
+    "max": 0.969231,
+    "above_0_20": 252,
+    "above_0_30": 251
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.785672,
+    "p90": 0.891536,
+    "byTier": {
+     "tier1": 0.736991,
+     "tier2": 0.813145
+    }
+   },
+   "medianTokens": 7174,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.607496,
+     "mean": 0.609084,
+     "p90": 0.711073,
+     "max": 0.972687,
+     "above_0_20": 20000,
+     "above_0_30": 19994
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.513659,
+     "mean": 0.506288,
+     "p90": 0.635307,
+     "max": 0.969231,
+     "above_0_20": 19953,
+     "above_0_30": 19104
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 252,
+      "positional": 0.864066,
+      "lexical": 0.805108
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.870441,
+       "lexical": 0.813069
+      },
+      {
+       "pages": 803,
+       "positional": 0.890356,
+       "lexical": 0.83608
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-new-803-matched": {
+   "pages": 604,
+   "positional": {
+    "count": 604,
+    "median": 0.278689,
+    "mean": 0.32016,
+    "p90": 0.46776,
+    "max": 0.980876,
+    "above_0_20": 542,
+    "above_0_30": 262
+   },
+   "lexical": {
+    "count": 604,
+    "median": 0.469567,
+    "mean": 0.495346,
+    "p90": 0.674556,
+    "max": 0.990859,
+    "above_0_20": 604,
+    "above_0_30": 587
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.235684,
+    "p90": 0.321422,
+    "byTier": {
+     "tier1": 0.204909,
+     "tier2": 0.25
+    }
+   },
+   "medianTokens": 611,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.090909,
+     "mean": 0.098753,
+     "p90": 0.170886,
+     "max": 0.698905,
+     "above_0_20": 1226,
+     "above_0_30": 357
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.20499,
+     "mean": 0.217907,
+     "p90": 0.355267,
+     "max": 0.863309,
+     "above_0_20": 10395,
+     "above_0_30": 4020
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 604,
+      "positional": 0.456093,
+      "lexical": 0.650293
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.425713,
+       "lexical": 0.62444
+      },
+      {
+       "pages": 803,
+       "positional": 0.467735,
+       "lexical": 0.664671
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  },
+  "gate2-new-324-matched": {
+   "pages": 252,
+   "positional": {
+    "count": 252,
+    "median": 0.265252,
+    "mean": 0.298289,
+    "p90": 0.493402,
+    "max": 0.959366,
+    "above_0_20": 195,
+    "above_0_30": 94
+   },
+   "lexical": {
+    "count": 252,
+    "median": 0.445575,
+    "mean": 0.46883,
+    "p90": 0.604914,
+    "max": 0.985423,
+    "above_0_20": 252,
+    "above_0_30": 241
+   },
+   "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.224218,
+    "p90": 0.315621,
+    "byTier": {
+     "tier1": 0.190683,
+     "tier2": 0.237477
+    }
+   },
+   "medianTokens": 634,
+   "nullModel": {
+    "randomPairPositional": {
+     "count": 20000,
+     "median": 0.089385,
+     "mean": 0.094748,
+     "p90": 0.160237,
+     "max": 0.959366,
+     "above_0_20": 883,
+     "above_0_30": 228
+    },
+    "randomPairLexical": {
+     "count": 20000,
+     "median": 0.211512,
+     "mean": 0.218729,
+     "p90": 0.349846,
+     "max": 0.985423,
+     "above_0_20": 10923,
+     "above_0_30": 3938
+    },
+    "expectedNearestNeighbour": {
+     "full": {
+      "pages": 252,
+      "positional": 0.405343,
+      "lexical": 0.574366
+     },
+     "matched": [
+      {
+       "pages": 324,
+       "positional": 0.425364,
+       "lexical": 0.58474
+      },
+      {
+       "pages": 803,
+       "positional": 0.49528,
+       "lexical": 0.649381
+      }
+     ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+   }
+  }
+ },
+ "sizeMatchedFolds": {
+  "label": "gate2: indexable pages scored inside seeded 324-page folds",
+  "pages": 521,
+  "foldSize": 324,
+  "folds": [
+   324,
+   324
+  ],
+  "owners": [
+   324,
+   197
+  ],
+  "positional": {
+   "count": 521,
+   "median": 0.191189,
+   "mean": 0.259894,
+   "p90": 0.504509,
+   "max": 0.916888,
+   "above_0_20": 185,
+   "above_0_30": 77
+  },
+  "lexical": {
+   "count": 521,
+   "median": 0.354558,
+   "mean": 0.399887,
+   "p90": 0.569942,
+   "max": 0.922031,
+   "above_0_20": 521,
+   "above_0_30": 497
+  }
+ },
+ "lexical": {
+  "indexedSizeMatched": 0.354558,
+  "indexedAllPairs": 0.364042,
+  "liveHtml803": 0.69655,
+  "newHtmlOnTheLive803Subset": 0.469567,
+  "target": 0.4
+ },
+ "sharedWordShare": {
+  "indexed": 0.442578,
+  "indexedProseOnly": 0.388889,
+  "matched803": 0.231533,
+  "liveHtml803": 0.795912,
+  "newHtmlOnTheLive803Subset": 0.235684,
+  "decomposition": {
+   "definition": "the share of a page's word occurrences whose word appears on more than 90% of the other pages in the same set; it rises as a set gets smaller and more uniform in subject",
+   "indexedDistinctSharedWords": 183,
+   "indexedProseDistinctSharedWords": 72,
+   "indexedOrdinaryFunctionWords": 0.1458,
+   "indexedBareNumbersAndDateParts": 0.1114,
+   "indexedRemainder": 0.1813,
+   "remainderWords": [
+    "recorded",
+    "human",
+    "evidence",
+    "show",
+    "last",
+    "trial",
+    "checked",
+    "clinicaltrials",
+    "trials",
+    "study",
+    "terminated",
+    "gov"
+   ],
+   "note": "the 521 indexable pages are one page type on one subject, so the figure is dominated by English function words, the ISO dates every provenance anchor prints and the vocabulary of clinical evidence. On the like-for-like 604-page comparison the same statistic falls from 0.796 (live) to 0.236 (new)."
+  }
+ },
+ "questions": {
+  "indexedPages": 521,
+  "questionRows": 7163,
+  "distinctStrings": 7098,
+  "mostRepeatedPages": 2,
+  "mostRepeatedShare": 0.00384,
+  "mostRepeatedExample": "53 of Oxytocin's trials stopped: safety, accrual/recruitment, funding/business, other?",
+  "limit": 0.3,
+  "highestTemplateShare": {
+   "template": "human-data / trial-size",
+   "share": 1.0,
+   "note": "R7 binds strings, not templates; reported for information as Gate 1b did"
+  },
+  "repeatedStringCause": "the 65 repeated strings are name collisions between two pages carrying the same display name (data/corpus-20k/identity/slug-collisions-pass2.json), not a template repeating itself"
+ },
+ "textToHtml": {
+  "definition": {
+   "crawl": "visible characters of the whole server document / HTML bytes",
+   "live": "document.body.innerText / document.documentElement.outerHTML in Chromium after hydration"
+  },
+  "baselines": {
+   "crawl": 0.083,
+   "live": 0.0007
+  },
+  "crawl": {
+   "metformin": 0.12965,
+   "cysteamine": 0.10605,
+   "amlodipine": 0.11695,
+   "sirolimus": 0.13576,
+   "carbidopa-levodopa": 0.08418,
+   "cdx-3379": 0.06506,
+   "1-2-distearoyl-sn-glycero-3-phosphocholine": 0.04903
+  },
+  "crawlReadingColumnOnly": {
+   "metformin": 0.11675,
+   "cysteamine": 0.08607,
+   "amlodipine": 0.10233,
+   "sirolimus": 0.123,
+   "carbidopa-levodopa": 0.06178,
+   "cdx-3379": 0.04913,
+   "1-2-distearoyl-sn-glycero-3-phosphocholine": 0.03521
+  },
+  "live": {
+   "metformin": 0.039,
+   "cysteamine": 0.055,
+   "amlodipine": 0.045,
+   "sirolimus": 0.04,
+   "carbidopa-levodopa": 0.055,
+   "cdx-3379": 0.044,
+   "1-2-distearoyl-sn-glycero-3-phosphocholine": 0.032
+  },
+  "crawlIndexedSet": {
+   "median": 0.11155,
+   "min": 0.04903,
+   "max": 0.14199
+  }
+ },
+ "rscBytes": {
+  "metformin": 144278,
+  "cysteamine": 79393,
+  "amlodipine": 119929,
+  "sirolimus": 152071,
+  "carbidopa-levodopa": 44414,
+  "cdx-3379": 38250,
+  "1-2-distearoyl-sn-glycero-3-phosphocholine": 16644
+ },
+ "rscShareOfHtml": {
+  "metformin": 0.6313,
+  "cysteamine": 0.6265,
+  "amlodipine": 0.6331,
+  "sirolimus": 0.6291,
+  "carbidopa-levodopa": 0.6182,
+  "cdx-3379": 0.6216,
+  "1-2-distearoyl-sn-glycero-3-phosphocholine": 0.5901
+ },
+ "questionCounts": {
+  "metformin": 17,
+  "cysteamine": 14,
+  "amlodipine": 16,
+  "sirolimus": 18,
+  "carbidopa-levodopa": 8,
+  "cdx-3379": 6,
+  "1-2-distearoyl-sn-glycero-3-phosphocholine": 0
+ },
+ "browserChecks": {
+  "headingOrder": "h1 -> h2 (questions) -> h3 (revealed groups) on all seven samples at 1440 px and 320 px; exactly one h1 per page; no level skipped",
+  "contrastBodyMin": 16.145,
+  "contrastGreyMin": 4.865,
+  "contrastTargets": {
+   "body": 7.0,
+   "greyRows": 4.5
+  },
+  "keyboard": "every <details> summary, contents-rail link and provenance anchor took focus with a visible ring on all seven samples at both widths; 0 required targets without a ring",
+  "badgeInFlowAt320": true,
+  "horizontalOverflowAt320": [
+   "sirolimus",
+   "carbidopa-levodopa"
+  ],
+  "overflowCause": {
+   "carbidopa-levodopa": ".cd-row-label (a long unbroken revealed-row label)",
+   "sirolimus": "a <dd> in the synonyms list (a long unbroken recorded name)"
+  },
+  "emptyElements": 0,
+  "placeholderPhrases": 0,
+  "placeholderRegexHits": [
+   "null (verbatim: 'robust null epigenetic findings')",
+   "null (verbatim: 'PKA-null cells')",
+   "tbd (verbatim: 'Telomere Biology Disorders (TBD)')"
+  ],
+  "vendorHosts": 0,
+  "externalHosts": [
+   "europepmc.org",
+   "clinicaltrials.gov",
+   "platform.opentargets.org",
+   "open.fda.gov",
+   "precision.fda.gov",
+   "www.ebi.ac.uk",
+   "mor.nlm.nih.gov",
+   "pubchem.ncbi.nlm.nih.gov",
+   "phenome.jax.org",
+   "api.fda.gov"
+  ]
+ },
+ "suppression": {
+  "suppressedPagesRenderingASeed126Block": 0,
+  "suppressedPagesHoldingASeed126Row": 0,
+  "sampleSupervisionFirst": true,
+  "sampleClasses": [
+   "S1",
+   "S3",
+   "S4",
+   "S6"
+  ],
+  "auditedPagesWhoseFirstBlockIsSupervision": 233,
+  "note": "the two time-to-signal blocks in the whole load sit on two unsuppressed pages (threonine, threonine-2); the 281 audited pages carrying an n-of-1 block are all unsuppressed"
+ },
+ "frozenHomeSearchBar": {
+  "match": true,
+  "widths": {
+   "1440": {
+    "measured": {
+     "bar": {
+      "x": 456,
+      "y": 369,
+      "width": 528,
+      "height": 60
+     },
+     "input": {
+      "x": 498,
+      "y": 381,
+      "width": 371.77,
+      "height": 36
+     },
+     "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+    },
+    "baseline": {
+     "bar": {
+      "x": 456,
+      "y": 369,
+      "width": 528,
+      "height": 60
+     },
+     "input": {
+      "x": 498,
+      "y": 381,
+      "width": 371.77,
+      "height": 36
+     }
+    },
+    "maxAbsoluteDifferencePx": 0.0
+   },
+   "375": {
+    "measured": {
+     "bar": {
+      "x": 16,
+      "y": 269.5,
+      "width": 343,
+      "height": 52
+     },
+     "input": {
+      "x": 64,
+      "y": 279.5,
+      "width": 188.89,
+      "height": 32
+     },
+     "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+    },
+    "baseline": {
+     "bar": {
+      "x": 16,
+      "y": 269.5,
+      "width": 343,
+      "height": 52
+     },
+     "input": {
+      "x": 64,
+      "y": 279.5,
+      "width": 188.89,
+      "height": 32
+     }
+    },
+    "maxAbsoluteDifferencePx": 0.0
+   },
+   "320": {
+    "measured": {
+     "bar": {
+      "x": 16,
+      "y": 292.25,
+      "width": 288,
+      "height": 52
+     },
+     "input": {
+      "x": 64,
+      "y": 302.25,
+      "width": 133.89,
+      "height": 32
+     },
+     "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+    },
+    "baseline": {
+     "bar": {
+      "x": 16,
+      "y": 292.25,
+      "width": 288,
+      "height": 52
+     },
+     "input": {
+      "x": 64,
+      "y": 302.25,
+      "width": 133.89,
+      "height": 32
+     }
+    },
+    "maxAbsoluteDifferencePx": 0.0
+   }
+  },
+  "domPath": {
+   "baselineAsRecorded": "body>div[3]>main>div>section>div[1]>div>input[1]",
+   "measuredWithEveryIndex": "body[1]>div[2]>main[1]>div[1]>section[1]>div[2]>div[1]>input[1]",
+   "reading": "the bar's own markup is unmodified in this worktree (app/page.tsx has no diff; the HomeSearch wrapper, bar div and input JSX have no diff \u2014 only the hook and the dropdown list below the bar changed), and every measured box is identical to the hundredth of a pixel at all three widths, so this is a difference in the recorded path notation and in two ancestor indices, not a change to the frozen bar. Reported, not treated as a STOP."
+  }
+ },
+ "verdict": {
+  "rule": "proceed without asking at indexed positional <= 0.20; diagnose, fix once and re-measure between 0.20 and 0.30; stop above 0.30 or if suppression failed",
+  "indexedPositional": 0.191189,
+  "indexedPositionalAllPairs": 0.195958,
+  "lexical": 0.354558,
+  "mostRepeatedQuestionShare": 0.00384,
+  "suppressionHeld": true,
+  "decision": "PROCEED",
+  "qualification": "the uniqueness gate clears on the first measurement, so no fix was applied and nothing was re-measured. Three defects found on the way must be fixed before the Phase 5 load; they are listed under issues and none of them is an overlap problem."
+ }
+}

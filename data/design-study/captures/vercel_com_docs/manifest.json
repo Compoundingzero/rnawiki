@@ -1,0 +1,1060 @@
+{
+  "site": "vercel.com/docs",
+  "track": "A1",
+  "urls": {
+    "index": "https://vercel.com/docs",
+    "content": "https://vercel.com/docs/deployments"
+  },
+  "capturedAt": "2026-09-03T18:16:43.301Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: only accept-type controls found in div",
+    "index-375: left: only accept-type controls found in div",
+    "content-1440: left: only accept-type controls found in div",
+    "content-375: left: only accept-type controls found in div"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://vercel.com/docs/deployments",
+    "collectedAt": "2026-09-03T18:16:28.442Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.009,
+    "title": "Deploying to Vercel",
+    "innerTextLength": 7975,
+    "outerHtmlLength": 889177,
+    "headingOutline": [
+      {
+        "tag": "h3",
+        "text": "Build with AI"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy & scale"
+      },
+      {
+        "tag": "h3",
+        "text": "Operate & protect"
+      },
+      {
+        "tag": "h3",
+        "text": "Resources"
+      },
+      {
+        "tag": "h1",
+        "text": "Deploy and verify applications on Vercel"
+      },
+      {
+        "tag": "h2",
+        "text": "Deployment Methods"
+      },
+      {
+        "tag": "h3",
+        "text": "Git"
+      },
+      {
+        "tag": "h3",
+        "text": "Vercel Drop"
+      },
+      {
+        "tag": "h3",
+        "text": "Vercel CLI"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy Hooks"
+      },
+      {
+        "tag": "h3",
+        "text": "Vercel REST API"
+      },
+      {
+        "tag": "h2",
+        "text": "Accessing Deployments"
+      },
+      {
+        "tag": "h2",
+        "text": "Using the Dashboard"
+      },
+      {
+        "tag": "h3",
+        "text": "Resources Tab and Deployment Summary"
+      },
+      {
+        "tag": "h3",
+        "text": "Project Overview"
+      },
+      {
+        "tag": "h3",
+        "text": "Managing Deployments"
+      },
+      {
+        "tag": "h2",
+        "text": "CLI workflows"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore deployments"
+      },
+      {
+        "tag": "h3",
+        "text": "Vercel Drop"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy from Git"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy with the CLI"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy Hooks"
+      },
+      {
+        "tag": "h3",
+        "text": "Vercel REST API"
+      },
+      {
+        "tag": "h3",
+        "text": "Environments"
+      },
+      {
+        "tag": "h3",
+        "text": "Managing deployments"
+      },
+      {
+        "tag": "h3",
+        "text": "Rolling back a production deployment"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploy from the CLI"
+      },
+      {
+        "tag": "h2",
+        "text": "Cross-link map: Deploying to Vercel (/docs/deployments)"
+      },
+      {
+        "tag": "h3",
+        "text": "Semantically closest pages"
+      },
+      {
+        "tag": "h3",
+        "text": "This page links to (17)"
+      },
+      {
+        "tag": "h3",
+        "text": "Pages that link here (32)"
+      },
+      {
+        "tag": "h2",
+        "text": "On this page"
+      },
+      {
+        "tag": "h2",
+        "text": "Agent Stack"
+      },
+      {
+        "tag": "h2",
+        "text": "Core Platform"
+      },
+      {
+        "tag": "h2",
+        "text": "Security"
+      },
+      {
+        "tag": "h2",
+        "text": "Tools"
+      },
+      {
+        "tag": "h2",
+        "text": "Frameworks"
+      },
+      {
+        "tag": "h2",
+        "text": "SDKs"
+      },
+      {
+        "tag": "h2",
+        "text": "Build"
+      },
+      {
+        "tag": "h2",
+        "text": "Learn"
+      }
+    ],
+    "headingCount": 44,
+    "stickyOrFixedCount": 11,
+    "stickyOrFixed": [
+      {
+        "tag": "a",
+        "class": "fixed -m-px overflow-hidden whitespace-nowrap border-0 top-1",
+        "position": "fixed",
+        "top": 63,
+        "height": 24
+      },
+      {
+        "tag": "header",
+        "class": "peer sticky top-0 z-(--header-zindex) h-(--header-height) w-",
+        "position": "sticky",
+        "top": 0,
+        "height": 64
+      },
+      {
+        "tag": "div",
+        "class": "m-0 w-[325px] max-w-[calc(100vw-32px)] rounded-xl border bor",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "invisible data-[open]:visible fixed inset-x-0 top-(--header-",
+        "position": "fixed",
+        "top": 64,
+        "height": 341
+      },
+      {
+        "tag": "div",
+        "class": "invisible data-[open]:visible fixed inset-x-0 top-(--header-",
+        "position": "fixed",
+        "top": 64,
+        "height": 245
+      },
+      {
+        "tag": "div",
+        "class": "invisible opacity-0 max-[880px]:data-[open]:!visible max-[88",
+        "position": "fixed",
+        "top": 64,
+        "height": 836
+      },
+      {
+        "tag": "div",
+        "class": "pointer-events-none fixed inset-x-0 bottom-0 top-(--header-h",
+        "position": "fixed",
+        "top": 64,
+        "height": 836
+      },
+      {
+        "tag": "div",
+        "class": "lg:grid-cols-[300px] relative md:grid lg:sticky lg:top-(--he",
+        "position": "sticky",
+        "top": 64,
+        "height": 836
+      },
+      {
+        "tag": "aside",
+        "class": "h-[calc(100vh-var(--header-height))] w-[240px] max-w-[240px]",
+        "position": "sticky",
+        "top": 88,
+        "height": 836
+      },
+      {
+        "tag": "aside",
+        "class": "shrink-0 z-[100] sticky h-screen top-0 right-0 transition-tr",
+        "position": "sticky",
+        "top": 0,
+        "height": 900
+      },
+      {
+        "tag": "div",
+        "class": "w-full h-full inset-0 fixed pointer-events-none z-[100000]",
+        "position": "fixed",
+        "top": 0,
+        "height": 900
+      }
+    ],
+    "kbdTexts": [
+      "⌘ K"
+    ],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 25,
+      "firstLabels": [
+        "Copy Wordmark Copy Wordmark",
+        "Copy Logo Copy Logo",
+        "Copy page Copy pageCopy page",
+        "Copy page Copy page",
+        "Copy to clipboard"
+      ]
+    },
+    "scriptTokens": {
+      "IntersectionObserver": true,
+      "scrollama": false,
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 30,
+    "scriptsUnreadable": 0,
+    "searchAffordances": {
+      "count": 1,
+      "firstDescriptors": [
+        "button Search Docs"
+      ]
+    },
+    "imgCount": 7,
+    "imgLazyCount": 4,
+    "htmlAttributes": {
+      "class": "VEU71W_className DvLUnG_className VEU71W_variable DvLUnG_variable uncontained tailwind tailwind-preflight light-theme",
+      "dataTheme": null,
+      "style": "color-scheme: light; --ai-chat-panel-width: 0px; background-color: rgb(250, 250, 250);"
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 9
+    },
+    "bodyBackgroundColor": "rgb(250, 250, 250)",
+    "bodyColor": "rgb(23, 23, 23)",
+    "canvasCount": 0,
+    "svgCount": 125
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 5122,
+      "sha256": "b264d4f9308317ee34c4b52a35720f16ec2c92f0c04594bc433d103d24d9d4eb",
+      "capturedAt": "2026-09-03T18:16:15.146Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2905822c57e791143f92e59731e2c61ebc3659c4f4daa0f7a0f15a37703c8742",
+      "capturedAt": "2026-09-03T18:16:15.228Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "682cf3d451c92517badac42c4935aaf0a8bafe31c9f9ba9b3ee8aaec71d2d1b3",
+      "capturedAt": "2026-09-03T18:16:15.305Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2389dd1d379e9de85f83c6fb6f19dc9651aa526018d0195afb75048bf2105c65",
+      "capturedAt": "2026-09-03T18:16:15.389Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "812702f9a9fa8499d9ab7fe4aef87d20f9d87c8e5b816328ba9afeb060578f30",
+      "capturedAt": "2026-09-03T18:16:15.469Z"
+    },
+    {
+      "file": "index-1440-tile-05.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f44d2dde17b39a204659148ab96ed36877a96b53c173899273098e1cb06f5f60",
+      "capturedAt": "2026-09-03T18:16:15.551Z"
+    },
+    {
+      "file": "index-1440-tile-06.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 622,
+      "sha256": "b9442e79f5c07e7120621cde8d3ab2afd9a2d78e331b8d452e28d3a9ecf94539",
+      "capturedAt": "2026-09-03T18:16:15.603Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 9664,
+      "sha256": "9ae5da1033b8c430b12ee87050f6a0d1db84091590eaf63e36d0cf56492a291e",
+      "capturedAt": "2026-09-03T18:16:20.346Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b01e9fd2e5876c2630f43c13bf2285f40a5068fd085f47595fe7bd3723d736b1",
+      "capturedAt": "2026-09-03T18:16:20.389Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "41c78212d3bc590e3c167c011240fae2226a5f1306b38f2fb922f47740184438",
+      "capturedAt": "2026-09-03T18:16:20.440Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f25a2bbd78e830872569083643a0a36bd6932d1e1ab5649014ec004e26bf668a",
+      "capturedAt": "2026-09-03T18:16:20.489Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c5b49b77906a94c558dbed8663fbc48b4fd945d22b8e0d07d975bb3728e863ac",
+      "capturedAt": "2026-09-03T18:16:20.546Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "457c18439cc3bd9ba543e4cfbc816a480129582c49dd8e0adb4d19a6b9b69316",
+      "capturedAt": "2026-09-03T18:16:20.589Z"
+    },
+    {
+      "file": "index-375-tile-06.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a6e707eb0b23f300a55050e1b4b08a14b59cb72cbefd27bd20970bbbc4c5e9f3",
+      "capturedAt": "2026-09-03T18:16:20.622Z"
+    },
+    {
+      "file": "index-375-tile-07.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9a455b315d17e62da893031b406ccd96724139ccc4e6a08fab0ee91f00350937",
+      "capturedAt": "2026-09-03T18:16:20.672Z"
+    },
+    {
+      "file": "index-375-tile-08.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b4c37178b85d0f52e90815bfddb54a3182e15e6d2b43f62e885a02f82994ddd6",
+      "capturedAt": "2026-09-03T18:16:20.722Z"
+    },
+    {
+      "file": "index-375-tile-09.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "1c3ca7ba94a1f64cc8f5ae7812ae4e3664ac4d7e223b34b0f7bce3cb0457c43e",
+      "capturedAt": "2026-09-03T18:16:20.773Z"
+    },
+    {
+      "file": "index-375-tile-10.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "171b334199b8deffec1c2462230b189c016d76179b42323fc82bacc1d50829ba",
+      "capturedAt": "2026-09-03T18:16:20.822Z"
+    },
+    {
+      "file": "index-375-tile-11.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a0a69e3467ca6fe1667a7c74efe57255a5bd86ac3dad83684d60bf5d4920531b",
+      "capturedAt": "2026-09-03T18:16:20.857Z"
+    },
+    {
+      "file": "index-375-tile-12.png",
+      "url": "https://vercel.com/docs",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 732,
+      "sha256": "0f2a83b26a033fdd78cc3da20acec6c6a96f1cb0786279e8cf112bce7c2d2740",
+      "capturedAt": "2026-09-03T18:16:20.901Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 7561,
+      "sha256": "1f85006e40fb90ece119ca9bda5c7b162b05f6e36cfe2cb05f4e0cf85b7fa40a",
+      "capturedAt": "2026-09-03T18:16:27.664Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2e5b603aed6905f67127c39ce0e2d2d7ac83774c152f45d9f138b51bc96ed3f1",
+      "capturedAt": "2026-09-03T18:16:27.743Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "8613b1b1f382181e6686890cb215ec806869adc4319645715a0b630c70611982",
+      "capturedAt": "2026-09-03T18:16:27.819Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "075feca86bc7e4aab1ea44cc4d61c75cfc36c6d5c94b06f8e3b9f093c14ff390",
+      "capturedAt": "2026-09-03T18:16:27.905Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ecf6dcd458187a6c2342570feb230ca94297cd3068a91a875696c74e28bf50d0",
+      "capturedAt": "2026-09-03T18:16:27.987Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e2bfedf4a3df52d44d595944abd97a7bd0c20c9e4ab2a79e047ec21b393ad8e0",
+      "capturedAt": "2026-09-03T18:16:28.068Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "068187ec0bef23fece4717e2956844a38720a4cbbd9daa98f26e6312133024a9",
+      "capturedAt": "2026-09-03T18:16:28.134Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "734baf5aafd84da471383c8535da1ebef8e008311ffba34d2d12991afcb94295",
+      "capturedAt": "2026-09-03T18:16:28.201Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2d7338ce8222d059264418b232a05d9e253583c9f6eb052f874b06d2bb9f2fce",
+      "capturedAt": "2026-09-03T18:16:28.259Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 361,
+      "sha256": "82b9115949427d7e478ef453ac19c7aeafc978cb605e57a6f20944d9e84024a2",
+      "capturedAt": "2026-09-03T18:16:28.317Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2e5b603aed6905f67127c39ce0e2d2d7ac83774c152f45d9f138b51bc96ed3f1",
+      "capturedAt": "2026-09-03T18:16:30.028Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 3331,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "17b894fcfa66968cb7d3b8f236ea8e5869a0e82a4235e7e408f50a9dab39c034",
+      "capturedAt": "2026-09-03T18:16:31.632Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 5995,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "6b618871077f6b7fd7a35b0876171e3a8e23df1c53989824e563da253bc43eca",
+      "capturedAt": "2026-09-03T18:16:33.227Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 9609,
+      "sha256": "fd82e9db2c87d4b1507182368e61c3d4296166baf65628c5a92ede91e63f341c",
+      "capturedAt": "2026-09-03T18:16:38.024Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eb228aa80b8b39a02c2018fdcbea988d60b32b2c70228af1ace888a6df50352d",
+      "capturedAt": "2026-09-03T18:16:38.055Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "570a1527281df24d6e673b8ae19126e7a57da126d72714dbf8fc857c69be3da4",
+      "capturedAt": "2026-09-03T18:16:38.110Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7e06162a99186a81e1f5c73cab7a4dd2a3e8c8830ac63faf5d6e5e1cef456a7c",
+      "capturedAt": "2026-09-03T18:16:38.175Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3d1481c470ed8af13a2202cda6bf446b7fa7ff349ac808e07aa499c52b3ce9e2",
+      "capturedAt": "2026-09-03T18:16:38.224Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5b0341af91d8f2dea6ed6d56e103054a5f680e1a0546088c5eba4fc458da4d8e",
+      "capturedAt": "2026-09-03T18:16:38.275Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "25d7b748fdcbfb7af1fcea194a4d905353d5da127e642227a4218b2585ca0868",
+      "capturedAt": "2026-09-03T18:16:38.325Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "917cd9c4770612e61d990d8ab1fb2cbb592a670f14c58256bb7423b16a58ab30",
+      "capturedAt": "2026-09-03T18:16:38.374Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "d878eb12006b439d4213c8b22284cd6f70243b0e842987681956bfad310aab69",
+      "capturedAt": "2026-09-03T18:16:38.425Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c9ecec721d9142ade3f805776b072cf092e00b3ad027abd555bb2b67216a4412",
+      "capturedAt": "2026-09-03T18:16:38.473Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5341440ca60924d4dcd9d64d1ddaa10617bf12eef698b61bd13c11f06faa2336",
+      "capturedAt": "2026-09-03T18:16:38.506Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "27cae98b28ad0927142c5bc96232f78855202ed23f2651e16bb3b59bdde71fe8",
+      "capturedAt": "2026-09-03T18:16:38.540Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 677,
+      "sha256": "b5cde20fbfb18bcebb09b0e0adb107ce38ff0016c01cc1d709fde1c608829b74",
+      "capturedAt": "2026-09-03T18:16:38.585Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "cc0024706f25d0469c5283e77987dbaa2ac6bbed85be31ccb6def96b9d37b937",
+      "capturedAt": "2026-09-03T18:16:40.171Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 4399,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f8a87a2740b2db62c3a94d84de2618a7500104d4bb4064f45046fbaf95bc2231",
+      "capturedAt": "2026-09-03T18:16:41.739Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://vercel.com/docs/deployments",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 7917,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "6613172a1a27da06555848c6739d064792ef058a6107c7ce6fdf6da2ef9bda7b",
+      "capturedAt": "2026-09-03T18:16:43.301Z"
+    }
+  ]
+}

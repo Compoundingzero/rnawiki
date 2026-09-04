@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "phase": "2-reported",
+  "cursor": {},
+  "counts": {
+    "phase1": {
+      "population": 9852,
+      "signals": {
+        "humanStudy": 5719,
+        "routeSelfUse": 4760,
+        "routeRecorded": 6213,
+        "category": 989,
+        "availableNoRx": 7060,
+        "publication": 5369
+      },
+      "exclusions": {
+        "imagingDiagnostic": 160,
+        "biosimilar": 194,
+        "chemotherapy": 45,
+        "anaesthetic": 29,
+        "vaccine": 19,
+        "noLabelNoStoredSearchHit": 1397,
+        "anyExclusion": 1778
+      },
+      "thresholds": {
+        "strict": 166,
+        "moderate": 619,
+        "broad": 803,
+        "excludedForAnyReason": 1778
+      },
+      "routeCoverage": {
+        "recordedSelfUse": 4760,
+        "recordedOtherOnly": 1453,
+        "unrecorded": 3639
+      },
+      "diagnostics": {
+        "moderateBlockedOnlyByRouteFallback": {
+          "all": 94,
+          "WITHDRAWN_MEDICINE": 12,
+          "seedSlugs": 35,
+          "CONTROLLED_NO_APPROVED_USE": 16,
+          "APPROVED_MEDICINE": 30,
+          "APPROVED_BIOLOGIC": 20,
+          "INVESTIGATIONAL_MEDICINE": 9,
+          "COMBINATION_PRODUCT": 3,
+          "MARKETED_PRODUCT_INGREDIENT": 4
+        },
+        "moderateAdmittedByRouteFallback": {
+          "all": 82,
+          "SUPPLEMENT_INGREDIENT": 75,
+          "BOTANICAL_OR_ORGANISM_PREPARATION": 7
+        },
+        "seedSlugs": {
+          "all": 74,
+          "broad": 54,
+          "moderate": 18,
+          "strict": 5
+        },
+        "seedSlugsExcludedByPharmacologicClass": {
+          "all": 1,
+          "ketamine": 1
+        },
+        "homeopathicMarketingCategory": {
+          "all": 3435,
+          "strict": 117,
+          "moderate": 126,
+          "broad": 128
+        },
+        "soleHomeopathicMarketingCategory": {
+          "all": 2312,
+          "strict": 22,
+          "moderate": 22,
+          "broad": 23
+        },
+        "categoryOnlyFromHomeopathicLabelText": {
+          "all": 254,
+          "wouldBeStrict": 80,
+          "wouldBeModerate": 88,
+          "wouldBeBroad": 92
+        },
+        "oncologyIndicationText": {
+          "all": 355,
+          "moderate": 68,
+          "broad": 92,
+          "strict": 8
+        },
+        "suffixedBiologicWithoutStemRecord": {
+          "all": 23,
+          "broad": 5
+        },
+        "queryHostileName": {
+          "all": 42,
+          "withoutSearchHit": 24,
+          "excludedAsNoLabelNoStoredSearchHit": 11
+        },
+        "imagingShareBelowStudyFloor": {
+          "all": 31,
+          "keptInScope": 16
+        },
+        "prescriptionOnlyLabelConflict": {
+          "vetoed": 30,
+          "remainingWithAvailableNoRx": 60
+        },
+        "categoryPopulation": {
+          "all": 989,
+          "withoutHumanStudy": 132,
+          "excluded": 140
+        }
+      }
+    },
+    "phase2": {
+      "records": 9852,
+      "median_count_of_eight": 1,
+      "coverage": {
+        "evidenceTier": 5717,
+        "humanDoseStudied": 2073,
+        "trialFailures": 2136,
+        "outcomeMeasures": 3543,
+        "kinetics": 1405,
+        "interactionPathways": 757,
+        "evidenceCeiling": 3563,
+        "regulatoryDivergence": 0
+      },
+      "report_rebuilt_at": "2026-09-03T10:56:16.904Z",
+      "median_count_of_eight_by_threshold": {
+        "strict": 5,
+        "moderate": 6,
+        "broad": 5
+      },
+      "slice_sizes": {
+        "strict": 166,
+        "moderate": 619,
+        "broad": 803
+      }
+    },
+    "headline": {
+      "population": 9852,
+      "thresholds": {
+        "strict": 166,
+        "moderate": 619,
+        "broad": 803,
+        "excludedForAnyReason": 1778
+      },
+      "medianCountOfEight": {
+        "all": 1,
+        "strict": 5,
+        "moderate": 6,
+        "broad": 5
+      },
+      "meanCountOfEight": {
+        "all": 1.948,
+        "strict": 4.464,
+        "moderate": 5.334,
+        "broad": 5.133
+      },
+      "maximumCountReachedByAnyRecord": 7,
+      "dataTypesNoRecordHas": [
+        "regulatoryDivergence"
+      ],
+      "categoryPopulation": 989,
+      "stoppingRules": {
+        "phase1ModerateBand": {
+          "rule": "moderate under 150 or over 2000",
+          "measured": 619,
+          "trips": false
+        },
+        "phase2MedianOfEight": {
+          "rule": "median compound holds 3 or fewer of the 8 data types",
+          "measuredAllRecords": 1,
+          "tripsOnAllRecords": true,
+          "measuredStrict": 5,
+          "measuredModerate": 6,
+          "measuredBroad": 5,
+          "tripsOnAnyCandidateSlice": false
+        }
+      }
+    }
+  },
+  "decisions": [
+    {
+      "at": "2026-09-03T10:53:19.944Z",
+      "phase": "1",
+      "decision": "threshold definitions",
+      "detail": "strict = humanStudy AND routeSelfUse AND category AND availableNoRx AND publication; moderate = humanStudy AND category AND (routeSelfUse OR (no route recorded AND entity class SUPPLEMENT_INGREDIENT or BOTANICAL_OR_ORGANISM_PREPARATION)); broad = category AND (humanStudy OR publication). All three additionally require that no exclusion fired (imagingDiagnostic, biosimilar, chemotherapy, anaesthetic, vaccine, noLabelNoStoredSearchHit). The three are audience-fit filters and not a confidence ladder: strict is narrower on availability and route, and measures LOWER on stored evidence depth than moderate."
+    },
+    {
+      "at": "2026-09-03T10:53:19.944Z",
+      "phase": "1",
+      "decision": "category matching is a whole-word keyword screen with three narrowing rules",
+      "detail": "Terms match only when neither neighbouring character is a letter or digit, so \"sleep\" does not match \"asleep\". Registry conditions count only when they recur in at least 2 of a record's stored studies and in at least 5% of them, with no small-record exemption. A handful of terms are restricted to named fields because they are audience vocabulary in an indication and artefact in mechanism prose (mitochondria, mitochondrial, mtor, rapamycin, senescence, senescent, longevity). On a record whose only marketing category is UNAPPROVED HOMEOPATHIC, the indication, patient-friendly indication and recorded-use fields do not set a category. Route is never inferred from entity class; unrecorded stays unrecorded."
+    },
+    {
+      "at": "2026-09-03T10:53:19.944Z",
+      "phase": "1",
+      "decision": "seed-file membership sets a category, not availability",
+      "detail": "The three hand-curated seed files are lists of this audience by name, so membership sets that file's category (performance-recovery, psychoactive-mood, peptides). It no longer sets availableNoRx: counting it there had made every CONTROLLED_NO_APPROVED_USE record available without a prescription and was the sole availability evidence for ten strict records. psychoactive-mood is in scope and deliberately carries no keyword lexicon."
+    },
+    {
+      "at": "2026-09-03T10:53:19.944Z",
+      "phase": "1",
+      "decision": "exclusion rules corrected after measurement",
+      "detail": "chemotherapy fires on FDA pharmacologic class only; oncology words in an indication are recorded and counted instead, because prose cannot establish a drug class. The anaesthetic indication branch first removes setting/risk/reversal phrasings and takes the same seed-slug and self-obtainable exemption. The imaging diagnostic-share branch needs at least 5 stored studies and a radiopharmaceutical/contrast name branch was added. The biosimilar name pattern is case-insensitive and now requires the unsuffixed stem to exist as its own canonical record. noLabelNoHumanStudy was renamed noLabelNoStoredSearchHit."
+    },
+    {
+      "at": "2026-09-03T11:00:19.013Z",
+      "phase": "2",
+      "decision": "phase 1 and phase 2 reported to the worklog; no phase 3 work starts until a slice is chosen",
+      "detail": "docs/worklogs/biohacker-pivot.md now carries \"Phase 1 \u2014 classification (2026-09-03)\" and \"Phase 2 \u2014 inventory (2026-09-03)\". Stopping rule 1 (moderate 150-2000) does not trip at 619. Stopping rule 2 (median of 8 at or below 3) trips on all 9,852 canonical records where the median is 1, and does not trip on any candidate slice where the median is 5 (strict), 6 (moderate) or 5 (broad); both readings are reported and neither is presented as the answer. regulatoryDivergence has zero records corpus-wide because every stored jurisdiction value is US_FDA, so the practical ceiling is 7 of 8 data types."
+    },
+    {
+      "at": "2026-09-03",
+      "what": "Threshold choice deferred to Felix; 20 of 74 hand-curated audience compounds reach no slice (18 via noLabelNoStoredSearchHit), recorded as a method blind spot, not fixed by widening rules."
+    }
+  ],
+  "awaiting": "Felix: choose strict/moderate/broad",
+  "updated_at": "2026-09-03T11:00:19.013Z"
+}

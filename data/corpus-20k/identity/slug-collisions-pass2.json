@@ -1,0 +1,3982 @@
+[
+ {
+  "slug": "mometasone",
+  "page": "K1:04201GDN4R",
+  "pageName": "Mometasone Furoate",
+  "legacyNames": [
+   "Mometasone"
+  ],
+  "matches": [
+   {
+    "key": "K1:8HR4QJ6DW8",
+    "displayName": "MOMETASONE",
+    "names": [
+     "Mometasone"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ropivacaine",
+  "page": "K1:0494L275Q6",
+  "pageName": "ROPIVACAINE, (R)-",
+  "legacyNames": [
+   "Ropivacaine",
+   "Ropivacaine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:7IO5LYA57N",
+    "displayName": "Ropivacaine",
+    "names": [
+     "Ropivacaine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "radium",
+  "page": "K1:05456MVL7T",
+  "pageName": "Radium Cation",
+  "legacyNames": [
+   "Radium",
+   "Radium Bromide"
+  ],
+  "matches": [
+   {
+    "key": "K1:R74O7T8569",
+    "displayName": "Radium Bromide",
+    "names": [
+     "Radium Bromide"
+    ]
+   },
+   {
+    "key": "K1:W90AYD6R3Q",
+    "displayName": "RADIUM",
+    "names": [
+     "Radium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "phenethylamine",
+  "page": "K1:05780F90V3",
+  "pageName": "1-PHENETHYLAMINE, (-)-",
+  "legacyNames": [
+   "Phenethylamine",
+   "Phenethylamine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:327C7L2BXQ",
+    "displayName": "Phenethylamine",
+    "names": [
+     "Phenethylamine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "carbon-monoxide",
+  "page": "K1:07BH0IKF2I",
+  "pageName": "Carbon Monoxide C-11",
+  "legacyNames": [
+   "Carbon Monoxide"
+  ],
+  "matches": [
+   {
+    "key": "K1:7U1EE4V452",
+    "displayName": "Carbon Monoxide",
+    "names": [
+     "Carbon Monoxide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "segesterone",
+  "page": "K1:09Q5UV3747",
+  "pageName": "Segesterone",
+  "legacyNames": [
+   "Segesterone Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:9AMX4Q13CC",
+    "displayName": "SEGESTERONE ACETATE",
+    "names": [
+     "Segesterone Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "glycolic-acid",
+  "page": "K1:0DQI268449",
+  "pageName": "Vanillylmandelic Acid",
+  "legacyNames": [
+   "Glycolic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:0WT12SX38S",
+    "displayName": "GLYCOLIC ACID",
+    "names": [
+     "Glycolic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "magnesium-acetate",
+  "page": "K1:0E95JZY48K",
+  "pageName": "Magnesium Acetate",
+  "legacyNames": [
+   "Magnesium Acetate Tetrahydrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:I01G0EJC3B",
+    "displayName": "MAGNESIUM ACETATE TETRAHYDRATE",
+    "names": [
+     "Magnesium Acetate Tetrahydrate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "eplontersen",
+  "page": "K1:0GRZ0F5XJ6",
+  "pageName": "Eplontersen",
+  "legacyNames": [
+   "Eplontersen Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:WSP2DHR2BD",
+    "displayName": "EPLONTERSEN SODIUM",
+    "names": [
+     "Eplontersen Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "serdexmethylphenidate",
+  "page": "K1:0H8KZ470DW",
+  "pageName": "Serdexmethylphenidate",
+  "legacyNames": [
+   "Serdexmethylphenidate Chloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:FN54BT298Y",
+    "displayName": "Serdexmethylphenidate Chloride",
+    "names": [
+     "Serdexmethylphenidate Chloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "inotersen",
+  "page": "K1:0IEO0F56LV",
+  "pageName": "Inotersen",
+  "legacyNames": [
+   "Inotersen Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:950736UC77",
+    "displayName": "INOTERSEN SODIUM",
+    "names": [
+     "Inotersen Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cytidine",
+  "page": "K1:0JD5QG20W5",
+  "pageName": "5'-DEOXY-5-FLUORO-N4-(2-METHYL-1-BUTYLOXYCARBONYL)CYTIDINE",
+  "legacyNames": [
+   "Cytidine"
+  ],
+  "matches": [
+   {
+    "key": "K1:5CSZ8459RP",
+    "displayName": "CYTIDINE",
+    "names": [
+     "Cytidine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "methylnaltrexone",
+  "page": "K1:0RK7M7IABE",
+  "pageName": "Methylnaltrexone",
+  "legacyNames": [
+   "Methylnaltrexone Bromide"
+  ],
+  "matches": [
+   {
+    "key": "K2:JVLBPIPGETUEET-GAAHOAFPSA-O",
+    "displayName": "Methylnaltrexone bromide",
+    "names": [
+     "Methylnaltrexone Bromide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "erythromycin-ethylsuccinate",
+  "page": "K1:1014KSJ86F",
+  "pageName": "Erythromycin Ethylsuccinate",
+  "legacyNames": [
+   "ERYTHROMYCIN"
+  ],
+  "matches": [
+   {
+    "key": "K1:63937KV33D",
+    "displayName": "Erythromycin",
+    "names": [
+     "ERYTHROMYCIN"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "polyestradiol",
+  "page": "K1:125DP6010H",
+  "pageName": "Polyestradiol",
+  "legacyNames": [
+   "Polyestradiol Phosphate"
+  ],
+  "matches": [
+   {
+    "key": "K1:P14877CDX2",
+    "displayName": "Polyestradiol phosphate",
+    "names": [
+     "Polyestradiol Phosphate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "polymyxin-b",
+  "page": "K1:19371312D4",
+  "pageName": "Polymyxin B Sulfate",
+  "legacyNames": [
+   "Polymyxin B"
+  ],
+  "matches": [
+   {
+    "key": "K1:J2VZ07J96K",
+    "displayName": "Polymyxin b",
+    "names": [
+     "Polymyxin B"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gadoterate",
+  "page": "K1:1HTE449DGZ",
+  "pageName": "Tetraxetan",
+  "legacyNames": [
+   "Gadoterate Meglumine"
+  ],
+  "matches": [
+   {
+    "key": "K1:L0ND3981AG",
+    "displayName": "GADOTERATE MEGLUMINE",
+    "names": [
+     "Gadoterate Meglumine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "triamcinolone",
+  "page": "K1:1ZK20VI6TY",
+  "pageName": "Triamcinolone",
+  "legacyNames": [
+   "Triamcinolone Diacetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:A73MM2Q32P",
+    "displayName": "TRIAMCINOLONE DIACETATE",
+    "names": [
+     "Triamcinolone Diacetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lysine-aspartate",
+  "page": "K1:23227F83U0",
+  "pageName": "Lysine Aspartate",
+  "legacyNames": [
+   "Lysine",
+   "Lysine Acetate",
+   "Lysine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:K3Z4F929H6",
+    "displayName": "Lysine",
+    "names": [
+     "Lysine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pulsatilla-montana-whole",
+  "page": "K1:24K790T39B",
+  "pageName": "Pulsatilla Montana Whole",
+  "legacyNames": [
+   "PULSATILLA"
+  ],
+  "matches": [
+   {
+    "key": "K4:pulsatilla",
+    "displayName": "Pulsatilla",
+    "names": [
+     "PULSATILLA"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "zeaxanthin",
+  "page": "K1:24X948V9F7",
+  "pageName": "ZEAXANTHIN, (15Z)-",
+  "legacyNames": [
+   "Zeaxanthin"
+  ],
+  "matches": [
+   {
+    "key": "K1:CV0IB81ORO",
+    "displayName": "ZEAXANTHIN",
+    "names": [
+     "Zeaxanthin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-acetate",
+  "page": "K1:2577AQ9262",
+  "pageName": "2,4-D",
+  "legacyNames": [
+   "Potassium Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:M911911U02",
+    "displayName": "POTASSIUM ACETATE",
+    "names": [
+     "Potassium Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "heparin",
+  "page": "K1:26GW6E5M72",
+  "pageName": "Heparin (PORCINE; 7000 MW)",
+  "legacyNames": [
+   "Heparin",
+   "Heparin Calcium",
+   "Heparin Sodium 25,000 Units in Dextrose 5% in Plastic Container",
+   "Heparin Sodium 25,000 Units in Sodium Chloride 0.45% in Plastic Container",
+   "Heparin Sodium Preservative Free",
+   "Heparin Sodium and Dextrose",
+   "Heparin Sodium in Sodium Chloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:M4F288ZCTR",
+    "displayName": "HEPARIN CALCIUM",
+    "names": [
+     "Heparin Calcium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "tannic-acid",
+  "page": "K1:2711I21VE5",
+  "pageName": "Tannic Acid (QUERCUS Infectoria NUTGALL)",
+  "legacyNames": [
+   "Tannic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K2:LRBQNJMCXXYXIU-PPKXGCFTSA-N",
+    "displayName": "TANNIC ACID",
+    "names": [
+     "Tannic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "vutrisiran",
+  "page": "K1:28O0WP6Z1P",
+  "pageName": "Vutrisiran Sodium",
+  "legacyNames": [
+   "Vutrisiran"
+  ],
+  "matches": [
+   {
+    "key": "K1:GB4I2JI8UI",
+    "displayName": "Vutrisiran",
+    "names": [
+     "Vutrisiran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-cation",
+  "page": "K1:295O53K152",
+  "pageName": "Potassium Cation",
+  "legacyNames": [
+   "POTASSIUM CHLORIDE"
+  ],
+  "matches": [
+   {
+    "key": "K1:660YQ98I10",
+    "displayName": "Potassium Chloride",
+    "names": [
+     "POTASSIUM CHLORIDE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ether",
+  "page": "K1:29I4YB3S89",
+  "pageName": "TERT-BUTYL Methyl Ether",
+  "legacyNames": [
+   "Ether"
+  ],
+  "matches": [
+   {
+    "key": "K1:0F5N573A2Y",
+    "displayName": "ETHER",
+    "names": [
+     "Ether"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-permanganate",
+  "page": "K1:2BL953CCZ2",
+  "pageName": "Permanganate Ion",
+  "legacyNames": [
+   "Potassium Permanganate"
+  ],
+  "matches": [
+   {
+    "key": "K1:00OT1QX5U4",
+    "displayName": "POTASSIUM PERMANGANATE",
+    "names": [
+     "Potassium Permanganate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pyruvic-acid",
+  "page": "K1:2GIJ84D9UB",
+  "pageName": "Pyruvic Acid 1-C-13",
+  "legacyNames": [
+   "Pyruvic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:8558G7RUTR",
+    "displayName": "Pyruvic Acid",
+    "names": [
+     "Pyruvic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pegaptanib",
+  "page": "K1:2H1PA8H1EN",
+  "pageName": "Pegaptanib",
+  "legacyNames": [
+   "Pegaptanib Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:3HP012Q0FH",
+    "displayName": "PEGAPTANIB SODIUM",
+    "names": [
+     "Pegaptanib Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sodium-phenylacetate",
+  "page": "K1:355G9R500Y",
+  "pageName": "Phenyl Acetate",
+  "legacyNames": [
+   "Sodium Phenylacetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:48N6U1781G",
+    "displayName": "SODIUM PHENYLACETATE",
+    "names": [
+     "Sodium Phenylacetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ferric",
+  "page": "K1:35C9R2N24F",
+  "pageName": "Enterobactin",
+  "legacyNames": [
+   "Ferric",
+   "Ferric Bromide",
+   "Ferric Chloride",
+   "Ferric Citrate",
+   "Ferric Phosphate",
+   "Ferric Sulfate"
+  ],
+  "matches": [
+   {
+    "key": "K1:3HWS7HF5XD",
+    "displayName": "FERRIC SULFATE",
+    "names": [
+     "Ferric Sulfate"
+    ]
+   },
+   {
+    "key": "K1:63G354M39Z",
+    "displayName": "Ferric Citrate",
+    "names": [
+     "Ferric Citrate"
+    ]
+   },
+   {
+    "key": "K1:9RDO128EH7",
+    "displayName": "Ferric Bromide",
+    "names": [
+     "Ferric Bromide"
+    ]
+   },
+   {
+    "key": "K1:N6BAA189V1",
+    "displayName": "Ferric Phosphate",
+    "names": [
+     "Ferric Phosphate"
+    ]
+   },
+   {
+    "key": "K1:U38V3ZVV3V",
+    "displayName": "Ferric Chloride",
+    "names": [
+     "Ferric Chloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gadoxetate",
+  "page": "K1:385H9E7854",
+  "pageName": "N-((2S)-2-(BIS(CARBOXYMETHYL)AMINO)-3-(4-ETHOXYPHENYL)PROPYL)-N-(2-(BIS(CARBOXYMETHYL)AMINO)ETHYL)GLYCINE",
+  "legacyNames": [
+   "Caloxetic acid",
+   "Gadoxetate Disodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:HOY74VZE0M",
+    "displayName": "GADOXETATE DISODIUM",
+    "names": [
+     "Gadoxetate Disodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "geraniol",
+  "page": "K1:38G5P53250",
+  "pageName": "Nerol",
+  "legacyNames": [
+   "Geraniol"
+  ],
+  "matches": [
+   {
+    "key": "K1:L837108USY",
+    "displayName": "GERANIOL",
+    "names": [
+     "Geraniol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ferric-maltol",
+  "page": "K1:3A9RD92BS4",
+  "pageName": "Maltol",
+  "legacyNames": [
+   "Ferric Maltol"
+  ],
+  "matches": [
+   {
+    "key": "K1:MA10QYF1Z0",
+    "displayName": "Ferric maltol",
+    "names": [
+     "Ferric Maltol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "aluminum-chloride",
+  "page": "K1:3CYT62D3GA",
+  "pageName": "Aluminum Chloride",
+  "legacyNames": [
+   "ALUMINUM CHLORIDE 25%",
+   "Aluminum Chloride Anhydrous",
+   "Duradry Sweat Minimizing Gel",
+   "Gibson Healthcare Buffered Hemostatic Solution",
+   "Gingi-Aid Solution",
+   "SPRAY ANTIPERSPIRANT ODABAN"
+  ],
+  "matches": [
+   {
+    "key": "K1:LIF1N9568Y",
+    "displayName": "ALUMINUM CHLORIDE ANHYDROUS",
+    "names": [
+     "Aluminum Chloride Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "natalizumab",
+  "page": "K1:3JB47N2Q2P",
+  "pageName": "Natalizumab",
+  "legacyNames": [
+   "NATALIZUMAB-SZTN"
+  ],
+  "matches": [
+   {
+    "key": "K1:3JB47N2Q2P#sztn",
+    "displayName": "Natalizumab-Sztn",
+    "names": [
+     "NATALIZUMAB-SZTN"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pyridoxal",
+  "page": "K1:3THM379K8A",
+  "pageName": "Pyridoxal",
+  "legacyNames": [
+   "Pyridoxal Phosphate Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:F06SGE49M6",
+    "displayName": "Pyridoxal Phosphate Anhydrous",
+    "names": [
+     "Pyridoxal Phosphate Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "testosterone",
+  "page": "K1:3XMK78S47O",
+  "pageName": "Testosterone",
+  "legacyNames": [
+   "Natesto nasal gel",
+   "Testosterone Gel, 1%",
+   "Testosterone Propionate"
+  ],
+  "matches": [
+   {
+    "key": "K1:WI93Z9138A",
+    "displayName": "TESTOSTERONE PROPIONATE",
+    "names": [
+     "Testosterone Propionate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "motixafortide",
+  "page": "K1:3ZPX60DV8A",
+  "pageName": "Motixafortide Acetate",
+  "legacyNames": [
+   "Motixafortide"
+  ],
+  "matches": [
+   {
+    "key": "K2:JJVZSYKFCOBILL-DPNRMINZSA-N",
+    "displayName": "Motixafortide",
+    "names": [
+     "Motixafortide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cobalamin",
+  "page": "K1:4071IF7E93",
+  "pageName": "Descobalt Cobalamin",
+  "legacyNames": [
+   "Cobalamin"
+  ],
+  "matches": [
+   {
+    "key": "K1:8406EY2OQA",
+    "displayName": "COBALAMIN",
+    "names": [
+     "Cobalamin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "carbinoxamine",
+  "page": "K1:40R0UN508P",
+  "pageName": "CARBINOXAMINE, (R)-",
+  "legacyNames": [
+   "Carbinoxamine",
+   "Carbinoxamine Maleate",
+   "Carbinoxamine Maleate Extended-Release Oral Suspension"
+  ],
+  "matches": [
+   {
+    "key": "K1:982A7M02H5",
+    "displayName": "Carbinoxamine",
+    "names": [
+     "Carbinoxamine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "defibrotide",
+  "page": "K1:438HCF2X0M",
+  "pageName": "Defibrotide (BOVINE)",
+  "legacyNames": [
+   "Defibrotide",
+   "Defibrotide Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:L7CHH2B2J0",
+    "displayName": "DEFIBROTIDE SODIUM",
+    "names": [
+     "Defibrotide Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ixazomib",
+  "page": "K1:46CWK97Z3K",
+  "pageName": "Ixazomib Citrate",
+  "legacyNames": [
+   "Ixazomib"
+  ],
+  "matches": [
+   {
+    "key": "K1:71050168A2",
+    "displayName": "Ixazomib",
+    "names": [
+     "Ixazomib"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "chlorphenesin",
+  "page": "K1:471UZB51YK",
+  "pageName": "CHLORPHENESIN, (R)-",
+  "legacyNames": [
+   "Chlorphenesin"
+  ],
+  "matches": [
+   {
+    "key": "K1:I670DAL4SZ",
+    "displayName": "Chlorphenesin",
+    "names": [
+     "Chlorphenesin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "oleic-acid",
+  "page": "K1:4837010H8C",
+  "pageName": "Elaidic Acid",
+  "legacyNames": [
+   "Oleic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:2UMI9U37CP",
+    "displayName": "OLEIC ACID",
+    "names": [
+     "Oleic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fluvoxamine",
+  "page": "K1:4E72PH61HL",
+  "pageName": "FLUVOXAMINE, (Z)-",
+  "legacyNames": [
+   "Fluvoxamine",
+   "Fluvoxamine Maleate",
+   "Fluvoxamine Maleate Extended-Release"
+  ],
+  "matches": [
+   {
+    "key": "K1:O4L1XPO44W",
+    "displayName": "Fluvoxamine",
+    "names": [
+     "Fluvoxamine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "vinpocetine",
+  "page": "K1:4J56J6P1BO",
+  "pageName": "Vinpocetine C-11",
+  "legacyNames": [
+   "Vinpocetine"
+  ],
+  "matches": [
+   {
+    "key": "K1:543512OBTC",
+    "displayName": "Vinpocetine",
+    "names": [
+     "Vinpocetine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "histidine",
+  "page": "K1:4JE5HRM5CH",
+  "pageName": "HISTIDINE, D-",
+  "legacyNames": [
+   "Histidine",
+   "Histidine Monohydrochloride",
+   "L-HISTIDINE HIGH"
+  ],
+  "matches": [
+   {
+    "key": "K1:4QD397987E",
+    "displayName": "Histidine",
+    "names": [
+     "Histidine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "mepenzolate",
+  "page": "K1:4SK9J86AXT",
+  "pageName": "MEPENZOLATE, (R)-",
+  "legacyNames": [
+   "Mepenzolate",
+   "Mepenzolate Bromide"
+  ],
+  "matches": [
+   {
+    "key": "K1:ONW3LB39P7",
+    "displayName": "Mepenzolate",
+    "names": [
+     "Mepenzolate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "tartaric-acid",
+  "page": "K1:511BQ884F7",
+  "pageName": "Piscidic Acid",
+  "legacyNames": [
+   "Tartaric Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:W4888I119H",
+    "displayName": "TARTARIC ACID",
+    "names": [
+     "Tartaric Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ammonia",
+  "page": "K1:5138Q19F1X",
+  "pageName": "Ammonia",
+  "legacyNames": [
+   "AMMONIA 15% SMELLING SALTS",
+   "AMMONIA INHALANT",
+   "AMMONIA INHALANT, SMELLING SALTS",
+   "Ammonium Benzoate",
+   "Ammonium Bromide",
+   "Ammonium Chloride",
+   "Ammonium Lactate",
+   "INHALANT"
+  ],
+  "matches": [
+   {
+    "key": "K1:01Q9PC255D",
+    "displayName": "Ammonium Chloride",
+    "names": [
+     "Ammonium Chloride"
+    ]
+   },
+   {
+    "key": "K1:67M901L9NQ",
+    "displayName": "Ammonium Lactate",
+    "names": [
+     "Ammonium Lactate"
+    ]
+   },
+   {
+    "key": "K1:AC80WD7GPF",
+    "displayName": "Ammonium Benzoate",
+    "names": [
+     "Ammonium Benzoate"
+    ]
+   },
+   {
+    "key": "K1:R0JB3224WS",
+    "displayName": "Ammonium Bromide",
+    "names": [
+     "Ammonium Bromide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "semaglutide",
+  "page": "K1:53AXN4NNHX",
+  "pageName": "Semaglutide",
+  "legacyNames": [
+   "GLP-1"
+  ],
+  "matches": [
+   {
+    "key": "K2:UCZDWGAJSOUHOU-VDBPWWIZSA-N",
+    "displayName": "GLP-1",
+    "names": [
+     "GLP-1"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "phenoxyethanol",
+  "page": "K1:540REY4Q17",
+  "pageName": "3-NITRO-4-AMINOPHENOXYETHANOL",
+  "legacyNames": [
+   "Phenoxyethanol"
+  ],
+  "matches": [
+   {
+    "key": "K1:HIE492ZZ3T",
+    "displayName": "PHENOXYETHANOL",
+    "names": [
+     "Phenoxyethanol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "phenylpropanolamine-polistirex",
+  "page": "K1:57B9YG5Y1E",
+  "pageName": "PHENYLPROPANOLAMINE, (-)-",
+  "legacyNames": [
+   "Phenylpropanolamine Polistirex"
+  ],
+  "matches": [
+   {
+    "key": "K1:33RU150WUN",
+    "displayName": "PHENYLPROPANOLAMINE POLISTIREX",
+    "names": [
+     "Phenylpropanolamine Polistirex"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "chlorphenesin-carbamate",
+  "page": "K1:57U5YI11WP",
+  "pageName": "Chlorphenesin Carbamate",
+  "legacyNames": [
+   "Chlorphenesin"
+  ],
+  "matches": [
+   {
+    "key": "K1:I670DAL4SZ",
+    "displayName": "Chlorphenesin",
+    "names": [
+     "Chlorphenesin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "agrimonia-eupatoria-flower",
+  "page": "K1:5811MI029U",
+  "pageName": "Agrimonia Eupatoria Flower",
+  "legacyNames": [
+   "AGRIMONIA EUPATORIA",
+   "AGRIMONIA EUPATORIA, FLOS (AGRIMONY)"
+  ],
+  "matches": [
+   {
+    "key": "K1:EBU0U94820",
+    "displayName": "Agrimonia Eupatoria",
+    "names": [
+     "AGRIMONIA EUPATORIA"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ziprasidone",
+  "page": "K1:59D8RAT1F9",
+  "pageName": "3-(1-PIPERAZINYL)-1,2-BENZISOTHIAZOLE",
+  "legacyNames": [
+   "ZIPRASIDONE HCL",
+   "Ziprasidone",
+   "Ziprasidone Hydrochloride",
+   "Ziprasidone Mesylate"
+  ],
+  "matches": [
+   {
+    "key": "K1:6UKA5VEJ6X",
+    "displayName": "Ziprasidone",
+    "names": [
+     "Ziprasidone"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "indium-in-111-oxyquinoline",
+  "page": "K1:5UTX5635HP",
+  "pageName": "Oxyquinoline",
+  "legacyNames": [
+   "Indium In-111 Oxyquinoline",
+   "Oxyquinoline Sulfate"
+  ],
+  "matches": [
+   {
+    "key": "K1:LGX9OL562T",
+    "displayName": "INDIUM IN 111 OXYQUINOLINE",
+    "names": [
+     "Indium In-111 Oxyquinoline"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "succinic-acid",
+  "page": "K1:5YDT22B64Y",
+  "pageName": "4-METHYLBENZYLSUCCINIC Acid",
+  "legacyNames": [
+   "Succinic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:AB6MNQ6J6L",
+    "displayName": "Succinic Acid",
+    "names": [
+     "Succinic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lithium",
+  "page": "K1:5Z6E9K79YV",
+  "pageName": "Lithium Citrate",
+  "legacyNames": [
+   "Lithium"
+  ],
+  "matches": [
+   {
+    "key": "K1:9FN79X2M3F",
+    "displayName": "LITHIUM",
+    "names": [
+     "Lithium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "nusinersen",
+  "page": "K1:5Z9SP3X666",
+  "pageName": "Nusinersen",
+  "legacyNames": [
+   "Nusinersen Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:4CHB7QQU1Q",
+    "displayName": "NUSINERSEN SODIUM",
+    "names": [
+     "Nusinersen Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "rubidium",
+  "page": "K1:62RD8M6ZMX",
+  "pageName": "Rubidium Cation RB-85",
+  "legacyNames": [
+   "Rubidium"
+  ],
+  "matches": [
+   {
+    "key": "K1:MLT4718TJW",
+    "displayName": "RUBIDIUM",
+    "names": [
+     "Rubidium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bismuth-subgallate",
+  "page": "K1:632XD903SP",
+  "pageName": "Gallic Acid",
+  "legacyNames": [
+   "Bismuth Subgallate",
+   "Gallic Acid Monohydrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:YIW503MI7V",
+    "displayName": "BISMUTH SUBGALLATE",
+    "names": [
+     "Bismuth Subgallate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "palmitoleic-acid",
+  "page": "K1:65DJ825A3Z",
+  "pageName": "Palmitelaidic Acid",
+  "legacyNames": [
+   "Palmitoleic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:209B6YPZ4I",
+    "displayName": "PALMITOLEIC ACID",
+    "names": [
+     "Palmitoleic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lumasiran",
+  "page": "K1:67P6XH37HD",
+  "pageName": "Lumasiran Sodium",
+  "legacyNames": [
+   "Lumasiran"
+  ],
+  "matches": [
+   {
+    "key": "K1:RZT8C352O1",
+    "displayName": "Lumasiran",
+    "names": [
+     "Lumasiran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pulsatilla-alpina-whole",
+  "page": "K1:6J43Y8MXF0",
+  "pageName": "Pulsatilla Alpina Whole",
+  "legacyNames": [
+   "PULSATILLA"
+  ],
+  "matches": [
+   {
+    "key": "K4:pulsatilla",
+    "displayName": "Pulsatilla",
+    "names": [
+     "PULSATILLA"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "magnesium-stearate",
+  "page": "K1:70097M6I30",
+  "pageName": "Magnesium Stearate",
+  "legacyNames": [
+   "Magnesium",
+   "Magnesium Chloride",
+   "Magnesium Citrate",
+   "Magnesium Gluconate",
+   "Magnesium Iodide",
+   "Magnesium Sulfate",
+   "Magnesium Sulfate in Dextrose 5% in Plastic Container",
+   "Magnesium Sulfate in Plastic Container"
+  ],
+  "matches": [
+   {
+    "key": "K1:02F3473H9O",
+    "displayName": "Magnesium Chloride",
+    "names": [
+     "Magnesium Chloride"
+    ]
+   },
+   {
+    "key": "K1:I38ZP9992A",
+    "displayName": "Magnesium",
+    "names": [
+     "Magnesium"
+    ]
+   },
+   {
+    "key": "K1:RHO26O1T9V",
+    "displayName": "Magnesium Citrate",
+    "names": [
+     "Magnesium Citrate"
+    ]
+   },
+   {
+    "key": "K1:T42NAD2KHC",
+    "displayName": "Magnesium Gluconate",
+    "names": [
+     "Magnesium Gluconate"
+    ]
+   },
+   {
+    "key": "K1:W74QE3H320",
+    "displayName": "Magnesium Iodide",
+    "names": [
+     "Magnesium Iodide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "oxidronate",
+  "page": "K1:71MR4V32TI",
+  "pageName": "Oxidronic acid",
+  "legacyNames": [
+   "Oxidronate Disodium",
+   "TECHNETIUM TC 99M OXIDRONATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:MG4KI49HHJ",
+    "displayName": "TECHNETIUM TC 99M OXIDRONATE",
+    "names": [
+     "TECHNETIUM TC 99M OXIDRONATE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "articaine",
+  "page": "K1:73HW87WZKH",
+  "pageName": "ARTICAINE, (R)-",
+  "legacyNames": [
+   "Articaine",
+   "Articaine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:D3SQ406G9X",
+    "displayName": "Articaine",
+    "names": [
+     "Articaine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "chlorprothixene",
+  "page": "K1:73V29V2M54",
+  "pageName": "CHLORPROTHIXENE, (E)-",
+  "legacyNames": [
+   "Chlorprothixene"
+  ],
+  "matches": [
+   {
+    "key": "K1:9S7OD60EWP",
+    "displayName": "Chlorprothixene",
+    "names": [
+     "Chlorprothixene"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "doxacurium",
+  "page": "K1:7560511IZ6",
+  "pageName": "Doxacurium",
+  "legacyNames": [
+   "Doxacurium Chloride"
+  ],
+  "matches": [
+   {
+    "key": "K2:GBLRQXKSCRCLBZ-UHFFFAOYSA-N",
+    "displayName": "Doxacurium chloride",
+    "names": [
+     "Doxacurium Chloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "glucagon",
+  "page": "K1:76LA80IG2G",
+  "pageName": "Glucagon",
+  "legacyNames": [
+   "GLUCAGON INJECTION",
+   "GLUCAGON INJECTION, SOLUTION",
+   "Glucagon Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:1H87NVF4DB",
+    "displayName": "GLUCAGON HYDROCHLORIDE",
+    "names": [
+     "Glucagon Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "mivacurium",
+  "page": "K1:77D66S9Q93",
+  "pageName": "Mivacurium",
+  "legacyNames": [
+   "Mivacurium Chloride"
+  ],
+  "matches": [
+   {
+    "key": "K2:ILVYCEVXHALBSC-OTBYEXOQSA-N",
+    "displayName": "Mivacurium chloride",
+    "names": [
+     "Mivacurium Chloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bleomycin",
+  "page": "K1:7DP3NTV15T",
+  "pageName": "Bleomycin Sulfate",
+  "legacyNames": [
+   "Bleomycin"
+  ],
+  "matches": [
+   {
+    "key": "K1:40S1VHN69B",
+    "displayName": "Bleomycin",
+    "names": [
+     "Bleomycin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "beta-alanine",
+  "page": "K1:7GB7U7M282",
+  "pageName": "Hypoglycine A",
+  "legacyNames": [
+   "Beta-alanine"
+  ],
+  "matches": [
+   {
+    "key": "K1:11P2JDE17B",
+    "displayName": "BETA-ALANINE",
+    "names": [
+     "Beta-alanine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ziconotide",
+  "page": "K1:7I64C51O16",
+  "pageName": "Ziconotide",
+  "legacyNames": [
+   "Ziconotide Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:T2I226K69M",
+    "displayName": "ZICONOTIDE ACETATE",
+    "names": [
+     "Ziconotide Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "docosapentaenoic-acid",
+  "page": "K1:7S686LQT6T",
+  "pageName": "Osbond Acid",
+  "legacyNames": [
+   "Docosapentaenoic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:NS3OZT14QT",
+    "displayName": "DOCOSAPENTAENOIC ACID",
+    "names": [
+     "Docosapentaenoic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cefepime",
+  "page": "K1:807PW4VQE3",
+  "pageName": "Cefepime",
+  "legacyNames": [
+   "CEFEPIME HYDROCHLORIDE AND DEXTROSE",
+   "Cefepime Hydrochloride",
+   "Cefepime Hydrochloride in Plastic Container"
+  ],
+  "matches": [
+   {
+    "key": "K2:HVFLCNVBZFFHBT-ZKDACBOMSA-O",
+    "displayName": "CEFEPIME HYDROCHLORIDE",
+    "names": [
+     "Cefepime Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "paliperidone",
+  "page": "K1:838F01T721",
+  "pageName": "Paliperidone",
+  "legacyNames": [
+   "Paliperidone Palmitate"
+  ],
+  "matches": [
+   {
+    "key": "K1:R8P8USM8FR",
+    "displayName": "PALIPERIDONE PALMITATE",
+    "names": [
+     "Paliperidone Palmitate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sermorelin",
+  "page": "K1:89243S03TE",
+  "pageName": "Sermorelin",
+  "legacyNames": [
+   "Sermorelin Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:00IBG87IQW",
+    "displayName": "Sermorelin Acetate",
+    "names": [
+     "Sermorelin Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "zinc-sulfate",
+  "page": "K1:89DS0H96TB",
+  "pageName": "Zinc Sulfate",
+  "legacyNames": [
+   "ZINC SULFATE INJECTION,",
+   "Zinc Sulfate Anhydrous",
+   "Zinc Sulfate Heptahydrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:0J6Z13X3WO",
+    "displayName": "Zinc Sulfate Anhydrous",
+    "names": [
+     "Zinc Sulfate Anhydrous"
+    ]
+   },
+   {
+    "key": "K1:N57JI2K7WP",
+    "displayName": "Zinc Sulfate Heptahydrate",
+    "names": [
+     "Zinc Sulfate Heptahydrate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sodium-alginate",
+  "page": "K1:8C3Z4148WZ",
+  "pageName": "Alginic Acid",
+  "legacyNames": [
+   "Sodium Alginate"
+  ],
+  "matches": [
+   {
+    "key": "K1:C269C4G2ZQ",
+    "displayName": "SODIUM ALGINATE",
+    "names": [
+     "Sodium Alginate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lime",
+  "page": "K1:8CZS546954",
+  "pageName": "Lime (CITRUS)",
+  "legacyNames": [
+   "Lime"
+  ],
+  "matches": [
+   {
+    "key": "K1:C7X2M0VVNH",
+    "displayName": "LIME",
+    "names": [
+     "Lime"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cysteine",
+  "page": "K1:8KK1UTR6IF",
+  "pageName": "2-(((2R)-2-AMINO-2-CARBOXYETHYL)THIO)BUTANEDIOIC Acid 2-METHYL Ester",
+  "legacyNames": [
+   "Cysteine",
+   "Cysteine Hydrochloride",
+   "L-CYSTEINE"
+  ],
+  "matches": [
+   {
+    "key": "K1:K848JZ4886",
+    "displayName": "Cysteine",
+    "names": [
+     "Cysteine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "astaxanthin",
+  "page": "K1:8L22ANN83S",
+  "pageName": "ASTAXANTHIN, (R,R)-",
+  "legacyNames": [
+   "Astaxanthin"
+  ],
+  "matches": [
+   {
+    "key": "K1:8XPW32PR7I",
+    "displayName": "ASTAXANTHIN",
+    "names": [
+     "Astaxanthin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "berotralstat",
+  "page": "K1:8YE5ABM3A9",
+  "pageName": "BEROTRALSTAT, (S)-",
+  "legacyNames": [
+   "Berotralstat",
+   "Berotralstat Dihydrochloride",
+   "Berotralstat Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:XZA0KB1BDQ",
+    "displayName": "Berotralstat",
+    "names": [
+     "Berotralstat"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "butylphthalide",
+  "page": "K1:9465GZ4W47",
+  "pageName": "BUTYLPHTHALIDE, (R)-",
+  "legacyNames": [
+   "Butylphthalide"
+  ],
+  "matches": [
+   {
+    "key": "K1:822Q956KGM",
+    "displayName": "Butylphthalide",
+    "names": [
+     "Butylphthalide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "betamethasone",
+  "page": "K1:9842X06Q6M",
+  "pageName": "Betamethasone",
+  "legacyNames": [
+   "BETAMETHASONE ACETATE AND BETAMETHASONE SODIUM PHOSPHATE",
+   "Betamethasone Acetate",
+   "Betamethasone Benzoate",
+   "Betamethasone Sodium Phosphate and Betamethasone Acetate",
+   "Betamethasone Valerate"
+  ],
+  "matches": [
+   {
+    "key": "K1:877K0XW47A",
+    "displayName": "BETAMETHASONE BENZOATE",
+    "names": [
+     "Betamethasone Benzoate"
+    ]
+   },
+   {
+    "key": "K1:9IFA5XM7R2",
+    "displayName": "BETAMETHASONE VALERATE",
+    "names": [
+     "Betamethasone Valerate"
+    ]
+   },
+   {
+    "key": "K1:TI05AO53L7",
+    "displayName": "BETAMETHASONE ACETATE",
+    "names": [
+     "Betamethasone Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bisoprolol",
+  "page": "K1:9B44647H2S",
+  "pageName": "O-(DESISOPROPYL) Bisoprolol Acid",
+  "legacyNames": [
+   "Bisoprolol",
+   "Bisoprolol Fumarate"
+  ],
+  "matches": [
+   {
+    "key": "K1:Y41JS2NL6U",
+    "displayName": "Bisoprolol",
+    "names": [
+     "Bisoprolol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "glutamic-acid",
+  "page": "K1:9BKY99A8HJ",
+  "pageName": "N-(P-AMINOBENZOYL)GLUTAMIC Acid",
+  "legacyNames": [
+   "Glutamic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:3KX376GY7L",
+    "displayName": "Glutamic acid",
+    "names": [
+     "Glutamic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cuprous",
+  "page": "K1:9U3N93LMZB",
+  "pageName": "Cuprous Acetate",
+  "legacyNames": [
+   "Cuprous",
+   "Cuprous Iodide"
+  ],
+  "matches": [
+   {
+    "key": "K1:7DE9CA6IL2",
+    "displayName": "Cuprous Iodide",
+    "names": [
+     "Cuprous Iodide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "vitamin-e",
+  "page": "K1:9U6A490501",
+  "pageName": ".BETA.-TOCOPHEROL",
+  "legacyNames": [
+   "Tocopherol Acetate",
+   "Vitamin E"
+  ],
+  "matches": [
+   {
+    "key": "K2:ZAKOWWREFLAJOT-ADUHFSDSSA-N",
+    "displayName": "TOCOPHEROL ACETATE",
+    "names": [
+     "Tocopherol Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "magnesium-phosphate-dibasic",
+  "page": "K1:A1Y870209Z",
+  "pageName": "Magnesium Phosphate, Dibasic",
+  "legacyNames": [
+   "MAGNESIUM PHOSPHATE",
+   "MAGNESIUM PHOSPHORICUM",
+   "MAGNESIUM PHOSPHORICUM ICING SUGAR",
+   "Magnesium Phosphate, Dibasic Trihydrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:HF539G9L3Q",
+    "displayName": "Magnesium PHOSPHATE, Dibasic Trihydrate",
+    "names": [
+     "Magnesium Phosphate, Dibasic Trihydrate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "adenosine",
+  "page": "K1:AB2MK88Y6D",
+  "pageName": "PIA, (S)-",
+  "legacyNames": [
+   "ADENOSINE INJECTION, SOLUTION",
+   "Adenosine",
+   "ReOrganic Womans Inner Care Essence Gel"
+  ],
+  "matches": [
+   {
+    "key": "K1:K72T3FS567",
+    "displayName": "ADENOSINE",
+    "names": [
+     "Adenosine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "dasiglucagon",
+  "page": "K1:AD4J2O47FQ",
+  "pageName": "Dasiglucagon",
+  "legacyNames": [
+   "Dasiglucagon Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:YQX12245A9",
+    "displayName": "DASIGLUCAGON HYDROCHLORIDE",
+    "names": [
+     "Dasiglucagon Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sunitinib",
+  "page": "K1:AVT2TW6522",
+  "pageName": "(E)-SUNITINIB",
+  "legacyNames": [
+   "Sunitinib",
+   "Sunitinib Malate"
+  ],
+  "matches": [
+   {
+    "key": "K1:V99T50803M",
+    "displayName": "Sunitinib",
+    "names": [
+     "Sunitinib"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "white-petrolatum",
+  "page": "K1:B6E5W8RQJ4",
+  "pageName": "White Petrolatum",
+  "legacyNames": [
+   "BABY PETROLEUM JELLY",
+   "Crash Cream",
+   "LIP BALM SKIN PROTECTANT",
+   "PETROLATUM",
+   "SKIN PROTECTANT LIP BALM",
+   "WHITE PETROLATUM 93.4%",
+   "WHITE PETROLATUM JELLY"
+  ],
+  "matches": [
+   {
+    "key": "K1:4T6H12BN9U",
+    "displayName": "Petrolatum",
+    "names": [
+     "PETROLATUM"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "olodaterol",
+  "page": "K1:B6QJ6CAW2G",
+  "pageName": "OLODATEROL, (S)-",
+  "legacyNames": [
+   "OLODATEROL RESPIMAT INHALATION SPRAY",
+   "Olodaterol",
+   "Olodaterol Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:VD2YSN1AFD",
+    "displayName": "Olodaterol",
+    "names": [
+     "Olodaterol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "danaparoid",
+  "page": "K1:BI6GY4U9CW",
+  "pageName": "Danaparoid",
+  "legacyNames": [
+   "Danaparoid Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:5004UU3156",
+    "displayName": "Danaparoid sodium",
+    "names": [
+     "Danaparoid Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "solifenacin",
+  "page": "K1:C6P2J8CQ79",
+  "pageName": "SOLIFENACIN, (1R,3'R)-",
+  "legacyNames": [
+   "SOLIFENACIN SUCCIATE",
+   "Solifenacin",
+   "Solifenacin Succinate"
+  ],
+  "matches": [
+   {
+    "key": "K1:A8910SQJ1U",
+    "displayName": "Solifenacin",
+    "names": [
+     "Solifenacin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "eflornithine",
+  "page": "K1:C780YUS9YI",
+  "pageName": "EFLORNITHINE, (S)-",
+  "legacyNames": [
+   "Eflornithine",
+   "Eflornithine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:ZQN1G5V6SR",
+    "displayName": "Eflornithine",
+    "names": [
+     "Eflornithine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-phosphate",
+  "page": "K1:CI71S98N1Z",
+  "pageName": "Dibasic Potassium Phosphate",
+  "legacyNames": [
+   "KALI PHOS, NAT PHOS, NAT SULPH.",
+   "KALI PHOSPHORICUM",
+   "Potassium Phosphate",
+   "SODIUM PHOSPHATE, DIBASIC",
+   "SODIUM SULFATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:0YPR65R21J",
+    "displayName": "SODIUM SULFATE",
+    "names": [
+     "SODIUM SULFATE"
+    ]
+   },
+   {
+    "key": "K1:22ADO53M6F",
+    "displayName": "Sodium Phosphate, Dibasic",
+    "names": [
+     "SODIUM PHOSPHATE, DIBASIC"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ferrosoferric-oxide",
+  "page": "K1:CLH5FT6412",
+  "pageName": "Ferumoxytol NON-STOICHIOMETRIC Magnetite",
+  "legacyNames": [
+   "FERUMOXYTOL",
+   "Ferrosoferric Oxide"
+  ],
+  "matches": [
+   {
+    "key": "K1:R8DG7T2D3A",
+    "displayName": "Ferumoxytol",
+    "names": [
+     "FERUMOXYTOL"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ornithogalum-umbellatum-flowering-top",
+  "page": "K1:CZD6M4PY4B",
+  "pageName": "Ornithogalum Umbellatum Flowering Top",
+  "legacyNames": [
+   "ORNITHOGALLUM UMBELLATUM, FLOS",
+   "ORNITHOGALUM UMBELLATUM"
+  ],
+  "matches": [
+   {
+    "key": "K1:9NS3M2Y78S",
+    "displayName": "Ornithogalum Umbellatum",
+    "names": [
+     "ORNITHOGALUM UMBELLATUM"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bendamustine",
+  "page": "K1:D5NNC1X8FP",
+  "pageName": ".GAMMA.-HYDROXY Bendamustine",
+  "legacyNames": [
+   "BENDAMUSTINE HCL",
+   "Bendamustine",
+   "Bendamustine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:9266D9P3PQ",
+    "displayName": "Bendamustine",
+    "names": [
+     "Bendamustine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "mcpa",
+  "page": "K1:D888C394VO",
+  "pageName": "Mcpa",
+  "legacyNames": [
+   "Sodium Acetate Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:NVG71ZZ7P0",
+    "displayName": "Sodium Acetate Anhydrous",
+    "names": [
+     "Sodium Acetate Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gonadorelin",
+  "page": "K1:DB7AK6G4U9",
+  "pageName": "(10-GLYCINE)GONADORELIN",
+  "legacyNames": [
+   "Gonadorelin",
+   "Gonadorelin Acetate",
+   "Gonadorelin Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K2:XLXSAKCOAKORKW-AQJXLSMYSA-N",
+    "displayName": "Gonadorelin",
+    "names": [
+     "Gonadorelin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "benazepril",
+  "page": "K1:DPB8FH5AXT",
+  "pageName": "(1R,3S)-BENAZEPRIL",
+  "legacyNames": [
+   "Benazepril",
+   "Benazepril Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:UDM7Q7QWP8",
+    "displayName": "Benazepril",
+    "names": [
+     "Benazepril"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "nedosiran",
+  "page": "K1:EGR9KYM536",
+  "pageName": "Nedosiran Sodium",
+  "legacyNames": [
+   "Nedosiran"
+  ],
+  "matches": [
+   {
+    "key": "K1:13U9R5J3WL",
+    "displayName": "NEDOSIRAN",
+    "names": [
+     "Nedosiran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "clindamycin",
+  "page": "K1:EH6D7113I8",
+  "pageName": "Clindamycin Phosphate",
+  "legacyNames": [
+   "CLINDAMYCIN IN PERCENT DEXTROSE",
+   "CLINDAMYCIN PHOSPHATE 1%",
+   "CLINDAMYCIN PHOSPHATE GEL USP, 1%",
+   "CLINDAMYCIN PHOSPHATE TOPICAL",
+   "CLINDAMYCIN PHOSPHATE TOPICAL SOLUTION USP, 1%",
+   "CLINDAMYCIN PHOSPHATE TOPICAL USP, 1%",
+   "CLINDAMYCIN PHOSPHATE USP, 1%",
+   "Cleocin Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:3U02EL437C",
+    "displayName": "Clindamycin",
+    "names": [
+     "Clindamycin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "abiraterone",
+  "page": "K1:EM5OCB9YJ6",
+  "pageName": "Abiraterone Acetate",
+  "legacyNames": [
+   "Abiraterone"
+  ],
+  "matches": [
+   {
+    "key": "K1:G819A456D0",
+    "displayName": "Abiraterone",
+    "names": [
+     "Abiraterone"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "milnacipran",
+  "page": "K1:ES1O38J3C4",
+  "pageName": "Dextromilnacipran",
+  "legacyNames": [
+   "Milnacipran",
+   "Milnacipran Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K2:GJJFMKBJSRMPLA-UHFFFAOYSA-N",
+    "displayName": "Milnacipran",
+    "names": [
+     "Milnacipran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "chlorpheniramine",
+  "page": "K1:EY9131E63D",
+  "pageName": "CHLORPHENIRAMINE, (-)-",
+  "legacyNames": [
+   "Chlorphenamine",
+   "Chlorpheniramine Maleate",
+   "Chlorpheniramine Maleate 4 mg",
+   "Chlorpheniramine maleate 4mg"
+  ],
+  "matches": [
+   {
+    "key": "K1:3U6IO1965U",
+    "displayName": "Chlorphenamine",
+    "names": [
+     "Chlorphenamine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "rubidium-chloride-rb-82",
+  "page": "K1:F0Z746KRKQ",
+  "pageName": "Rubidium Chloride Rb-82",
+  "legacyNames": [
+   "RUBIDIUM RB 82"
+  ],
+  "matches": [
+   {
+    "key": "K1:9K730EL8KU",
+    "displayName": "RUBIDIUM RB-82",
+    "names": [
+     "RUBIDIUM RB 82"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pentosan-polysulfate",
+  "page": "K1:F59P8B75R4",
+  "pageName": "Pentosan Polysulfate",
+  "legacyNames": [
+   "Pentosan Polysulfate Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:914032762Y",
+    "displayName": "Pentosan polysulfate sodium",
+    "names": [
+     "Pentosan Polysulfate Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sodium-selenite",
+  "page": "K1:F6A27P4Q4R",
+  "pageName": "Selenious Acid",
+  "legacyNames": [
+   "Sodium Selenite"
+  ],
+  "matches": [
+   {
+    "key": "K1:HIW548RQ3W",
+    "displayName": "SODIUM SELENITE",
+    "names": [
+     "Sodium Selenite"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "elvitegravir",
+  "page": "K1:F7LG22FZCH",
+  "pageName": "Elvitegravir Acyl Glucuronide",
+  "legacyNames": [
+   "Elvitegravir"
+  ],
+  "matches": [
+   {
+    "key": "K1:4GDQ854U53",
+    "displayName": "Elvitegravir",
+    "names": [
+     "Elvitegravir"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "estriol",
+  "page": "K1:FB33469R8E",
+  "pageName": "Estriol",
+  "legacyNames": [
+   "Dvo Estriol Cream",
+   "ESTRIOL0.2%",
+   "ESTROGEN",
+   "Estriol 5.0 Cream",
+   "Estriol succinate",
+   "LEMOTO BIOIDENTICAL ESTROGEN VAGINAL Cream",
+   "Lmnoop Feminine Cream",
+   "MICRONIZED ESTRIOL 0.1 WOMEN ESTRIOL"
+  ],
+  "matches": [
+   {
+    "key": "K2:GJUHUIXJLZINMA-MJCUULBUSA-N",
+    "displayName": "ESTROGEN",
+    "names": [
+     "ESTROGEN"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "glycol",
+  "page": "K1:FC72KVT52F",
+  "pageName": "Glycol",
+  "legacyNames": [
+   "Glycol Salicylate"
+  ],
+  "matches": [
+   {
+    "key": "K1:3I1VBB7AXH",
+    "displayName": "Glycol Salicylate",
+    "names": [
+     "Glycol Salicylate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pemetrexed",
+  "page": "K1:FG8Q47888S",
+  "pageName": "PEMETREXED, (R)-",
+  "legacyNames": [
+   "Pemetrexed",
+   "Pemetrexed Dipotassium",
+   "Pemetrexed Disodium",
+   "Pemetrexed Disodium Heptahydrate",
+   "Pemetrexed For Injection",
+   "Pemetrexed Monohydrate",
+   "Pemetrexed Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:04Q9AIZ7NO",
+    "displayName": "Pemetrexed",
+    "names": [
+     "Pemetrexed"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "zinc-acetate",
+  "page": "K1:FM5526K07A",
+  "pageName": "Zinc Acetate",
+  "legacyNames": [
+   "Zinc Acetate Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:H2ZEY72PME",
+    "displayName": "ZINC ACETATE ANHYDROUS",
+    "names": [
+     "Zinc Acetate Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "vitamin-a",
+  "page": "K1:G2SH0XKK91",
+  "pageName": "Retinol",
+  "legacyNames": [
+   "Chanvida Broad Spectrum Bb Cream",
+   "Vitamin A Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:3LE3D9D6OY",
+    "displayName": "Vitamin A Acetate",
+    "names": [
+     "Vitamin A Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ferrous",
+  "page": "K1:GW89581OWR",
+  "pageName": "Ferrous Cation",
+  "legacyNames": [
+   "Ferrous",
+   "Ferrous Fumarate",
+   "Ferrous Gluconate",
+   "Ferrous Iodide",
+   "Ferrous Phosphate",
+   "Ferrous Sulfate"
+  ],
+  "matches": [
+   {
+    "key": "K1:39R4TAN1VT",
+    "displayName": "Ferrous Sulfate",
+    "names": [
+     "Ferrous Sulfate"
+    ]
+   },
+   {
+    "key": "K1:D07L04MRWI",
+    "displayName": "Ferrous Phosphate",
+    "names": [
+     "Ferrous Phosphate"
+    ]
+   },
+   {
+    "key": "K1:F5452U54PN",
+    "displayName": "Ferrous Iodide",
+    "names": [
+     "Ferrous Iodide"
+    ]
+   },
+   {
+    "key": "K1:R5L488RY0Q",
+    "displayName": "Ferrous Fumarate",
+    "names": [
+     "Ferrous Fumarate"
+    ]
+   },
+   {
+    "key": "K1:U1B11I423Z",
+    "displayName": "Ferrous Gluconate",
+    "names": [
+     "Ferrous Gluconate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "urea",
+  "page": "K1:H3LE856W64",
+  "pageName": "(2,4-DIMETHYLPENTAN-3-YLIDENEAMINO)UREA",
+  "legacyNames": [
+   "CRACKED SKIN CREAM",
+   "UREA 20% FUNGAL NAIL CARE DUO SET (DAY)",
+   "UREA 40.5 CREAM",
+   "Urea",
+   "Urea 39% Cream",
+   "Urea Cream 40 Percent",
+   "Urea Cream 40%",
+   "Urea Cream 41%"
+  ],
+  "matches": [
+   {
+    "key": "K1:8W8T17847W",
+    "displayName": "Urea",
+    "names": [
+     "Urea"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "selenious-acid",
+  "page": "K1:H6241UJ22B",
+  "pageName": "Selenium",
+  "legacyNames": [
+   "Selenious Acid",
+   "Sold as L-selenomethionine, sodium selenite, sodium selenate or selenium-enriched yeast"
+  ],
+  "matches": [
+   {
+    "key": "K1:F6A27P4Q4R",
+    "displayName": "Selenious Acid",
+    "names": [
+     "Selenious Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "coenzyme-a",
+  "page": "K1:HBW774Y7U5",
+  "pageName": "CYCLOHEXANECARBOXYL-COENZYME A",
+  "legacyNames": [
+   "Coenzyme A"
+  ],
+  "matches": [
+   {
+    "key": "K1:SAA04E81UX",
+    "displayName": "COENZYME_A",
+    "names": [
+     "Coenzyme A"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "magnesium-phosphate",
+  "page": "K1:HF539G9L3Q",
+  "pageName": "Magnesium PHOSPHATE, Dibasic Trihydrate",
+  "legacyNames": [
+   "Magnesium Phosphate",
+   "Magnesium Phosphate Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:XMK14ETW2D",
+    "displayName": "Magnesium Phosphate Anhydrous",
+    "names": [
+     "Magnesium Phosphate Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bismuth-subcitrate",
+  "page": "K1:HS813P8QPX",
+  "pageName": "Bismuth Subcitrate",
+  "legacyNames": [
+   "Bismuth Subcitrate Potassium",
+   "Bismuth Subcitrate Potassium, Metronidazole, Tetracycline Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:R3O80H60KX",
+    "displayName": "BISMUTH SUBCITRATE POTASSIUM",
+    "names": [
+     "Bismuth Subcitrate Potassium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "anhydrous-dextrose",
+  "page": "K1:IY9XDZ35W2",
+  "pageName": "DEXTROSE, Unspecified Form",
+  "legacyNames": [
+   "Anhydrous Dextrose",
+   "DEXTROSE MONOHYDRATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:5SL0G7R0OK",
+    "displayName": "Anhydrous Dextrose",
+    "names": [
+     "Anhydrous Dextrose"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "magnesium-sulfate",
+  "page": "K1:IZ05287FTB",
+  "pageName": "Magnesium Lauryl Hydroxypropyl Sulfonate",
+  "legacyNames": [
+   "Magnesium Sulfate",
+   "Magnesium Sulfate Anhydrous",
+   "Magnesium Sulfate Heptahydrate",
+   "Magnesium Sulfate in Dextrose 5% in Plastic Container",
+   "Magnesium Sulfate in Plastic Container"
+  ],
+  "matches": [
+   {
+    "key": "K1:ML30MJ2U7I",
+    "displayName": "Magnesium Sulfate Anhydrous",
+    "names": [
+     "Magnesium Sulfate Anhydrous"
+    ]
+   },
+   {
+    "key": "K1:SK47B8698T",
+    "displayName": "Magnesium Sulfate Heptahydrate",
+    "names": [
+     "Magnesium Sulfate Heptahydrate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "propionic-acid",
+  "page": "K1:J7YV2RKO6Q",
+  "pageName": "Dichlorprop",
+  "legacyNames": [
+   "Propionic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:JHU490RVYR",
+    "displayName": "PROPIONIC ACID",
+    "names": [
+     "Propionic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "micafungin",
+  "page": "K1:J95YY85R52",
+  "pageName": "O-DESULFO Micafungin",
+  "legacyNames": [
+   "Micafungin",
+   "Micafungin Sodium",
+   "Micafungin in Sodium Chloride",
+   "Micafungin in Sodium Chloride 0.9%"
+  ],
+  "matches": [
+   {
+    "key": "K1:R10H71BSWG",
+    "displayName": "Micafungin",
+    "names": [
+     "Micafungin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "methane",
+  "page": "K1:JHJ6BAP8SZ",
+  "pageName": "P,P'-DIMETHOXYDIBENZOYLMETHANE",
+  "legacyNames": [
+   "Methane"
+  ],
+  "matches": [
+   {
+    "key": "K1:OP0UW79H66",
+    "displayName": "METHANE",
+    "names": [
+     "Methane"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "peginesatide",
+  "page": "K1:JX56W9N61Q",
+  "pageName": "Peginesatide",
+  "legacyNames": [
+   "Peginesatide Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:44STI720CW",
+    "displayName": "PEGINESATIDE ACETATE",
+    "names": [
+     "Peginesatide Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ambrosia-artemisiifolia-pollen",
+  "page": "K1:K20Y81ACO3",
+  "pageName": "Ambrosia Artemisiifolia Pollen",
+  "legacyNames": [
+   "AMBROSIA ARTEMISIIFOLIA"
+  ],
+  "matches": [
+   {
+    "key": "K1:9W34L2CQ9A",
+    "displayName": "Ambrosia Artemisiifolia",
+    "names": [
+     "AMBROSIA ARTEMISIIFOLIA"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "colestipol",
+  "page": "K1:K50N755924",
+  "pageName": "Colestipol",
+  "legacyNames": [
+   "Colestipol Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:X7D10K905G",
+    "displayName": "Colestipol Hydrochloride",
+    "names": [
+     "Colestipol Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "avacincaptad-pegol",
+  "page": "K1:K86ENL12I5",
+  "pageName": "Avacincaptad Pegol Sodium",
+  "legacyNames": [
+   "Avacincaptad pegol"
+  ],
+  "matches": [
+   {
+    "key": "K1:TT0V5JLG5B",
+    "displayName": "AVACINCAPTAD PEGOL",
+    "names": [
+     "Avacincaptad pegol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "proline",
+  "page": "K1:L01Q4LGZ5L",
+  "pageName": "D-PROLINE",
+  "legacyNames": [
+   "Proline"
+  ],
+  "matches": [
+   {
+    "key": "K1:9DLQ4CIU6V",
+    "displayName": "Proline",
+    "names": [
+     "Proline"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "dimethyl",
+  "page": "K1:L99N5N533T",
+  "pageName": "Ethane",
+  "legacyNames": [
+   "DIMETHYL FUMARATE KIT",
+   "Dimethyl",
+   "Dimethyl Fumarate"
+  ],
+  "matches": [
+   {
+    "key": "K1:FO2303MNI2",
+    "displayName": "DIMETHYL FUMARATE",
+    "names": [
+     "Dimethyl Fumarate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bulevirtide",
+  "page": "K1:LLM855Y3S3",
+  "pageName": "Bulevirtide Acetate",
+  "legacyNames": [
+   "Bulevirtide"
+  ],
+  "matches": [
+   {
+    "key": "K1:WKM56H3TLB",
+    "displayName": "Bulevirtide",
+    "names": [
+     "Bulevirtide"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "arginine-aspartate",
+  "page": "K1:LZB1G2I725",
+  "pageName": "Arginine Aspartate",
+  "legacyNames": [
+   "Arginine",
+   "Arginine Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:94ZLA3W45F",
+    "displayName": "Arginine",
+    "names": [
+     "Arginine"
+    ]
+   },
+   {
+    "key": "K1:F7LTH1E20Y",
+    "displayName": "ARGININE HYDROCHLORIDE",
+    "names": [
+     "Arginine Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "porfimer",
+  "page": "K1:M15H03K69B",
+  "pageName": "Porfimer",
+  "legacyNames": [
+   "Porfimer Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:Y3834SIK5F",
+    "displayName": "Porfimer sodium",
+    "names": [
+     "Porfimer Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sodium-glycerophosphate",
+  "page": "K1:MG976Z29OM",
+  "pageName": "Glyceryl Phosphate",
+  "legacyNames": [
+   "Sodium Glycerophosphate",
+   "Sodium Glycerophosphate Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:RCS9EQ01V4",
+    "displayName": "SODIUM GLYCEROPHOSPHATE",
+    "names": [
+     "Sodium Glycerophosphate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium",
+  "page": "K1:MHS8C5BAUZ",
+  "pageName": "2,4,6-TRICHLOROPHENOL",
+  "legacyNames": [
+   "Potassium"
+  ],
+  "matches": [
+   {
+    "key": "K1:RWP5GA015D",
+    "displayName": "POTASSIUM",
+    "names": [
+     "Potassium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "tesamorelin",
+  "page": "K1:MQG94M5EEO",
+  "pageName": "Tesamorelin",
+  "legacyNames": [
+   "Tesamorelin Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:LGW5H38VE3",
+    "displayName": "TESAMORELIN ACETATE",
+    "names": [
+     "Tesamorelin Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "phytol",
+  "page": "K1:MZQ4XE15TP",
+  "pageName": "PHYTOL, (E)-",
+  "legacyNames": [
+   "Phytol"
+  ],
+  "matches": [
+   {
+    "key": "K2:VNYGDSNUPVEJKI-IWBCJCCCSA-N",
+    "displayName": "PHYTOL",
+    "names": [
+     "Phytol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "choline",
+  "page": "K1:N91BDP6H0X",
+  "pageName": "Choline",
+  "legacyNames": [
+   "Choline Salicylate"
+  ],
+  "matches": [
+   {
+    "key": "K1:KD510K1IQW",
+    "displayName": "Choline salicylate",
+    "names": [
+     "Choline Salicylate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "alpha-tocopherol-acetate-d",
+  "page": "K1:N9PR3490H9",
+  "pageName": ".ALPHA.-TOCOPHEROL, D-",
+  "legacyNames": [
+   "Alpha-Tocopherol Acetate, D"
+  ],
+  "matches": [
+   {
+    "key": "K1:A7E6112E4N",
+    "displayName": ".ALPHA.-TOCOPHEROL ACETATE, D-",
+    "names": [
+     "Alpha-Tocopherol Acetate, D"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gingerol",
+  "page": "K1:ND6ZLI4J0V",
+  "pageName": "(10)-GINGEROL",
+  "legacyNames": [
+   "Gingerol"
+  ],
+  "matches": [
+   {
+    "key": "K1:925QK2Z900",
+    "displayName": "GINGEROL",
+    "names": [
+     "Gingerol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-bitartrate",
+  "page": "K1:NPT6P8P3UU",
+  "pageName": "Potassium Bitartrate",
+  "legacyNames": [
+   "LAXATIVE",
+   "SODIUM BICARBONATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:8MDF5V39QO",
+    "displayName": "Sodium Bicarbonate",
+    "names": [
+     "SODIUM BICARBONATE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "adenosine-triphosphate",
+  "page": "K1:NYX13NT29D",
+  "pageName": "(.ALPHA.,.BETA.-METHYLENE)ADENOSINE 5'-TRIPHOSPHATE",
+  "legacyNames": [
+   "Adenosine Triphosphate",
+   "Adenosine Triphosphate Disodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:8L70Q75FXE",
+    "displayName": "ADENOSINE TRIPHOSPHATE",
+    "names": [
+     "Adenosine Triphosphate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "linoleic-acid",
+  "page": "K1:O1EFF5CCC2",
+  "pageName": "Linoleic ACID, (9E,12Z)-",
+  "legacyNames": [
+   "Linoleic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:9KJL21T0QJ",
+    "displayName": "LINOLEIC ACID",
+    "names": [
+     "Linoleic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cefuroxime",
+  "page": "K1:O1R9FJ93ED",
+  "pageName": "Cefuroxime",
+  "legacyNames": [
+   "Cefuroxime Axetil",
+   "Cefuroxime Sodium in Plastic Container"
+  ],
+  "matches": [
+   {
+    "key": "K1:Z49QDT0J8Z",
+    "displayName": "CEFUROXIME AXETIL",
+    "names": [
+     "Cefuroxime Axetil"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fluticasone",
+  "page": "K1:O2GMZ0LF5W",
+  "pageName": "Fluticasone Propionate",
+  "legacyNames": [
+   "Fluticasone"
+  ],
+  "matches": [
+   {
+    "key": "K1:CUT2W21N7U",
+    "displayName": "Fluticasone",
+    "names": [
+     "Fluticasone"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "colesevelam",
+  "page": "K1:P4SG24WI5Q",
+  "pageName": "Colesevelam Hydrochloride",
+  "legacyNames": [
+   "Colesevelam"
+  ],
+  "matches": [
+   {
+    "key": "K1:1XU104G55N",
+    "displayName": "Colesevelam",
+    "names": [
+     "Colesevelam"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "technetium-tc-99m-sodium-pertechnetate",
+  "page": "K1:PPP8783IQ1",
+  "pageName": "Technetium TC-99M Pertechnetate",
+  "legacyNames": [
+   "Sodium Pertechnetate Tc 99m",
+   "TECHNETIUM TC-99M",
+   "TECHNETIUM TC99M GENERATOR",
+   "Technetium Tc-99m Sodium Pertechnetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:6EW75241VU",
+    "displayName": "Technetium TC-99M",
+    "names": [
+     "TECHNETIUM TC-99M"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sunvozertinib",
+  "page": "K1:PRS2K479R5",
+  "pageName": "SUNVOZERTINIB, (S)-",
+  "legacyNames": [
+   "Sunvozertinib"
+  ],
+  "matches": [
+   {
+    "key": "K1:L1Q2K5JYO8",
+    "displayName": "SUNVOZERTINIB",
+    "names": [
+     "Sunvozertinib"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "carboplatin",
+  "page": "K1:PV866VZU2U",
+  "pageName": "1,1-CYCLOBUTANEDICARBOXYLIC Acid",
+  "legacyNames": [
+   "Carboplatin"
+  ],
+  "matches": [
+   {
+    "key": "K1:BG3F62OND5",
+    "displayName": "Carboplatin",
+    "names": [
+     "Carboplatin"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "tetraferric-tricitrate-decahydrate",
+  "page": "K1:Q91187K011",
+  "pageName": "Tetraferric Tricitrate Decahydrate",
+  "legacyNames": [
+   "FERRIC CITRATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:63G354M39Z",
+    "displayName": "Ferric Citrate",
+    "names": [
+     "FERRIC CITRATE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ferric-pyrophosphate",
+  "page": "K1:QK8899250F",
+  "pageName": "Ferric Pyrophosphate",
+  "legacyNames": [
+   "FERR PHOS",
+   "Ferric Pyrophosphate Citrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:UBY79OCO9G",
+    "displayName": "FERRIC PYROPHOSPHATE CITRATE",
+    "names": [
+     "Ferric Pyrophosphate Citrate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cryptenamine",
+  "page": "K1:QVO4N8484O",
+  "pageName": "Cryptenamine",
+  "legacyNames": [
+   "Cryptenamine Tannates"
+  ],
+  "matches": [
+   {
+    "key": "K1:98881NCP5R",
+    "displayName": "CRYPTENAMINE TANNATES",
+    "names": [
+     "Cryptenamine Tannates"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fomivirsen",
+  "page": "K1:QX5LK7YCHV",
+  "pageName": "Fomivirsen",
+  "legacyNames": [
+   "Fomivirsen Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:3Z6W3S36X5",
+    "displayName": "FOMIVIRSEN SODIUM",
+    "names": [
+     "Fomivirsen Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "chromium-picolinate",
+  "page": "K1:QZV2W997JQ",
+  "pageName": "Picolinic Acid",
+  "legacyNames": [
+   "Chromium Picolinate"
+  ],
+  "matches": [
+   {
+    "key": "K1:S71T8B8Z6P",
+    "displayName": "CHROMIUM PICOLINATE",
+    "names": [
+     "Chromium Picolinate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "frovatriptan",
+  "page": "K1:R4QX3D7GUF",
+  "pageName": "FROVATRIPTAN, (S)-",
+  "legacyNames": [
+   "Frovatriptan",
+   "Frovatriptan Succinate"
+  ],
+  "matches": [
+   {
+    "key": "K1:H82Q2D5WA7",
+    "displayName": "Frovatriptan",
+    "names": [
+     "Frovatriptan"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "calcium-gluconate",
+  "page": "K1:R4R8J0Q44B",
+  "pageName": "Gluconic Acid",
+  "legacyNames": [
+   "Calcium Gluconate",
+   "Calcium Gluconate Monohydrate",
+   "Calcium Gluconate in Sodium Chloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:SQE6VB453K",
+    "displayName": "CALCIUM GLUCONATE",
+    "names": [
+     "Calcium Gluconate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "hypromellose-2910",
+  "page": "K1:RN3152OP35",
+  "pageName": "Hypromellose 2910 (4000 MPA.S)",
+  "legacyNames": [
+   "EYE DROPS",
+   "HYPROMELLOSE",
+   "Hypromellose 2910"
+  ],
+  "matches": [
+   {
+    "key": "K1:3NXW29V3WO",
+    "displayName": "Hypromellose",
+    "names": [
+     "HYPROMELLOSE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "givosiran",
+  "page": "K1:ROV204583W",
+  "pageName": "Givosiran",
+  "legacyNames": [
+   "Givosiran Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:5XE21E41RT",
+    "displayName": "GIVOSIRAN SODIUM",
+    "names": [
+     "Givosiran Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lactobacillus-crispatus",
+  "page": "K1:RP8X0ZB061",
+  "pageName": "Lactobacillus Crispatus Strain CTV-05",
+  "legacyNames": [
+   "ADENOSINE",
+   "Lactobacillus Crispatus"
+  ],
+  "matches": [
+   {
+    "key": "K1:K72T3FS567",
+    "displayName": "ADENOSINE",
+    "names": [
+     "ADENOSINE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cupric-chloride",
+  "page": "K1:S2QG84156O",
+  "pageName": "Cupric Chloride",
+  "legacyNames": [
+   "Cupric Chloride Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:P484053J2Y",
+    "displayName": "CUPRIC CHLORIDE ANHYDROUS",
+    "names": [
+     "Cupric Chloride Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "olezarsen",
+  "page": "K1:S3RS2SA30L",
+  "pageName": "Olezarsen",
+  "legacyNames": [
+   "Olezarsen Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:NSY2BY6PSB",
+    "displayName": "OLEZARSEN SODIUM",
+    "names": [
+     "Olezarsen Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "aniline",
+  "page": "K1:S4YM38H4U6",
+  "pageName": "3-ANILINOPROPIONITRILE",
+  "legacyNames": [
+   "Aniline"
+  ],
+  "matches": [
+   {
+    "key": "K1:SIR7XX2F1K",
+    "displayName": "ANILINE",
+    "names": [
+     "Aniline"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "eslicarbazepine",
+  "page": "K1:S5VXA428R4",
+  "pageName": "Eslicarbazepine",
+  "legacyNames": [
+   "Eslicarbazepine Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:BEA68ZVB2K",
+    "displayName": "ESLICARBAZEPINE ACETATE",
+    "names": [
+     "Eslicarbazepine Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "dalteparin",
+  "page": "K1:S79O08V79F",
+  "pageName": "Dalteparin",
+  "legacyNames": [
+   "Dalteparin Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:12M44VTJ7B",
+    "displayName": "Dalteparin sodium",
+    "names": [
+     "Dalteparin Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "threonine",
+  "page": "K1:SG6FYY47DD",
+  "pageName": "THREONINE, D-",
+  "legacyNames": [
+   "L-THREONINE HIGH",
+   "Threonine"
+  ],
+  "matches": [
+   {
+    "key": "K1:2ZD004190S",
+    "displayName": "Threonine",
+    "names": [
+     "Threonine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gadobutrol",
+  "page": "K1:SMG09YI7I8",
+  "pageName": "Butrol",
+  "legacyNames": [
+   "Gadobutrol"
+  ],
+  "matches": [
+   {
+    "key": "K1:1BJ477IO2L",
+    "displayName": "Gadobutrol",
+    "names": [
+     "Gadobutrol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fluorometholone",
+  "page": "K1:SV0CSG527L",
+  "pageName": "Fluorometholone",
+  "legacyNames": [
+   "Fluorometholone Acetate",
+   "Fluorometholone Ophthalmic Suspension"
+  ],
+  "matches": [
+   {
+    "key": "K1:9I50C3I3OK",
+    "displayName": "FLUOROMETHOLONE ACETATE",
+    "names": [
+     "Fluorometholone Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "cefiderocol",
+  "page": "K1:SZ34OMG6E8",
+  "pageName": "Cefiderocol",
+  "legacyNames": [
+   "Cefiderocol Sulfate Tosylate"
+  ],
+  "matches": [
+   {
+    "key": "K1:TTP8LBP45D",
+    "displayName": "CEFIDEROCOL SULFATE TOSYLATE",
+    "names": [
+     "Cefiderocol Sulfate Tosylate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "juniper-berry-oil",
+  "page": "K1:SZH16H44UY",
+  "pageName": "Juniper Berry Oil",
+  "legacyNames": [
+   "CALENDULA"
+  ],
+  "matches": [
+   {
+    "key": "K2:AJBZENLMTKDAEK-UHFFFAOYSA-N",
+    "displayName": "Calendula",
+    "names": [
+     "CALENDULA"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "formaldehyde-solution",
+  "page": "K1:T0H3L6C7I5",
+  "pageName": "Formaldehyde Solution",
+  "legacyNames": [
+   "FORMALDEHYDE"
+  ],
+  "matches": [
+   {
+    "key": "K1:1HG84L3525",
+    "displayName": "Formaldehyde",
+    "names": [
+     "FORMALDEHYDE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fosnetupitant",
+  "page": "K1:T672P80L2S",
+  "pageName": "Fosnetupitant",
+  "legacyNames": [
+   "Fosnetupitant Chloride Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:ZR36MFA9P8",
+    "displayName": "FOSNETUPITANT CHLORIDE HYDROCHLORIDE",
+    "names": [
+     "Fosnetupitant Chloride Hydrochloride"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pegulicianine",
+  "page": "K1:T6HE85WN0Q",
+  "pageName": "Pegulicianine",
+  "legacyNames": [
+   "Pegulicianine Acetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:F3F6208UMT",
+    "displayName": "PEGULICIANINE ACETATE",
+    "names": [
+     "Pegulicianine Acetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "fluorescein",
+  "page": "K1:TPY09G7XIR",
+  "pageName": "Fluorescein",
+  "legacyNames": [
+   "C20H10Na2O5 Fluorescein Sodium Ophthalmic Strips",
+   "Fluorescein Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:93X55PE38X",
+    "displayName": "FLUORESCEIN SODIUM",
+    "names": [
+     "Fluorescein Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "bismuth",
+  "page": "K1:U015TT5I8H",
+  "pageName": "Bismuth",
+  "legacyNames": [
+   "BISMUTH SUBSALICYLATE"
+  ],
+  "matches": [
+   {
+    "key": "K1:62TEY51RR1",
+    "displayName": "Bismuth Subsalicylate",
+    "names": [
+     "BISMUTH SUBSALICYLATE"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "toluene",
+  "page": "K1:U6Z9ZSG4XG",
+  "pageName": "(((3Z)-3-HEXENYLOXY)METHYL)BENZENE",
+  "legacyNames": [
+   "Toluene"
+  ],
+  "matches": [
+   {
+    "key": "K1:3FPU23BG52",
+    "displayName": "TOLUENE",
+    "names": [
+     "Toluene"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "pentobarbital",
+  "page": "K1:U7D0E1VOAM",
+  "pageName": "PENTOBARBITAL, (S)-",
+  "legacyNames": [
+   "Nembutal Sodium",
+   "Pentobarbital",
+   "Pentobarbital Sodium",
+   "Sodium Pentobarbital"
+  ],
+  "matches": [
+   {
+    "key": "K1:I4744080IR",
+    "displayName": "Pentobarbital",
+    "names": [
+     "Pentobarbital"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "digitalis-purpurea-whole",
+  "page": "K1:UD4O8TY7RW",
+  "pageName": "Digitalis Purpurea Whole",
+  "legacyNames": [
+   "DIGITALIS"
+  ],
+  "matches": [
+   {
+    "key": "K1:F1T8QT9U8B",
+    "displayName": "Digitalis",
+    "names": [
+     "DIGITALIS"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "shogaol",
+  "page": "K1:UP39BHE708",
+  "pageName": "(10)-SHOGAOL",
+  "legacyNames": [
+   "Shogaol"
+  ],
+  "matches": [
+   {
+    "key": "K1:83DNB5FIRF",
+    "displayName": "SHOGAOL",
+    "names": [
+     "Shogaol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "inclisiran",
+  "page": "K1:UPC6BTX7PY",
+  "pageName": "Inclisiran Sodium",
+  "legacyNames": [
+   "Inclisiran"
+  ],
+  "matches": [
+   {
+    "key": "K1:UOW2C71PG5",
+    "displayName": "Inclisiran",
+    "names": [
+     "Inclisiran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "imciromab",
+  "page": "K1:UT2BA2O3KN",
+  "pageName": "Imciromab",
+  "legacyNames": [
+   "Imciromab Pentetate"
+  ],
+  "matches": [
+   {
+    "key": "K1:3U979E1001",
+    "displayName": "Imciromab Pentetate",
+    "names": [
+     "Imciromab Pentetate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "calcium",
+  "page": "K1:UV63W89SJM",
+  "pageName": "(ACETATO-O)(DODECANOATO-O)CALCIUM",
+  "legacyNames": [
+   "7030 Calcium Gold",
+   "7030 Calcium Premium",
+   "Calcium",
+   "Great Calcium",
+   "Korea Calcium King",
+   "OSTREAE CONCHA"
+  ],
+  "matches": [
+   {
+    "key": "K1:SY7Q814VUP",
+    "displayName": "CALCIUM",
+    "names": [
+     "Calcium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "capsicum-oleoresin",
+  "page": "K1:UW86K581WY",
+  "pageName": "Capsicum Oleoresin",
+  "legacyNames": [
+   "CAPSAICIN",
+   "CAPSAICIN 0.025%",
+   "CAPSAICIN 0.05%",
+   "CAPSAICIN 0.1%",
+   "Capsaicin 0.025% Cream",
+   "Capsaicin 0.05% Cream",
+   "Capsaicin 0.1% Cream",
+   "Dermacinrx Penetral Cream"
+  ],
+  "matches": [
+   {
+    "key": "K1:S07O44R1ZM",
+    "displayName": "Capsaicin",
+    "names": [
+     "CAPSAICIN"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "samarium-sm-153-lexidronam-pentasodium",
+  "page": "K1:V4CP8RSX7V",
+  "pageName": "Lexidronam",
+  "legacyNames": [
+   "Samarium Sm-153 Lexidronam Pentasodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:7389YR3OOV",
+    "displayName": "SAMARIUM SM 153 LEXIDRONAM PENTASODIUM",
+    "names": [
+     "Samarium Sm-153 Lexidronam Pentasodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "potassium-perchlorate",
+  "page": "K1:V561V90BG2",
+  "pageName": "Perchloric Acid",
+  "legacyNames": [
+   "Potassium Perchlorate"
+  ],
+  "matches": [
+   {
+    "key": "K1:42255P5X4D",
+    "displayName": "POTASSIUM PERCHLORATE",
+    "names": [
+     "Potassium Perchlorate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "gadopentetate-dimeglumine",
+  "page": "K1:V7OK6J19HQ",
+  "pageName": "Gadopentetate",
+  "legacyNames": [
+   "Gadopentetate Dimeglumine"
+  ],
+  "matches": [
+   {
+    "key": "K1:RH248G8V27",
+    "displayName": "Gadopentetate Dimeglumine",
+    "names": [
+     "Gadopentetate Dimeglumine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ardeparin",
+  "page": "K1:VL0L558GCB",
+  "pageName": "Ardeparin",
+  "legacyNames": [
+   "Ardeparin Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:N3927D01PB",
+    "displayName": "Ardeparin sodium",
+    "names": [
+     "Ardeparin Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "lycopene",
+  "page": "K1:VTJ88XVZ9N",
+  "pageName": "(13Z)-LYCOPENE",
+  "legacyNames": [
+   "Lycopene"
+  ],
+  "matches": [
+   {
+    "key": "K1:SB0N2N0WV6",
+    "displayName": "LYCOPENE",
+    "names": [
+     "Lycopene"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "mazindol",
+  "page": "K1:VYJ123WTU1",
+  "pageName": "MAZINDOL, (R)-",
+  "legacyNames": [
+   "Mazindol"
+  ],
+  "matches": [
+   {
+    "key": "K1:C56709M5NH",
+    "displayName": "Mazindol",
+    "names": [
+     "Mazindol"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "molindone",
+  "page": "K1:W3XP4529RW",
+  "pageName": "MOLINDONE, (R)-",
+  "legacyNames": [
+   "Molindone",
+   "Molindone Hydrochloride"
+  ],
+  "matches": [
+   {
+    "key": "K1:RT3Y3QMF8N",
+    "displayName": "Molindone",
+    "names": [
+     "Molindone"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "calcium-sulfate",
+  "page": "K1:WAT0DDB505",
+  "pageName": "Calcium Sulfate",
+  "legacyNames": [
+   "Calcium Sulfate Anhydrous",
+   "Calcium Sulfate Dihydrate"
+  ],
+  "matches": [
+   {
+    "key": "K1:E934B3V59H",
+    "displayName": "Calcium Sulfate Anhydrous",
+    "names": [
+     "Calcium Sulfate Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "patisiran",
+  "page": "K1:WO0YM16LKG",
+  "pageName": "Patisiran Sodium",
+  "legacyNames": [
+   "Patisiran"
+  ],
+  "matches": [
+   {
+    "key": "K1:50FKX8CB2Y",
+    "displayName": "Patisiran",
+    "names": [
+     "Patisiran"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "stavudine",
+  "page": "K1:X4PT8NAI8E",
+  "pageName": "Stavudine Glucuronide",
+  "legacyNames": [
+   "Stavudine"
+  ],
+  "matches": [
+   {
+    "key": "K1:BO9LE4QFZF",
+    "displayName": "Stavudine",
+    "names": [
+     "Stavudine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "docetaxel",
+  "page": "K1:X9N27M888C",
+  "pageName": "2'-EPI Docetaxel",
+  "legacyNames": [
+   "Docetaxel",
+   "Docetaxel Anhydrous"
+  ],
+  "matches": [
+   {
+    "key": "K1:699121PHCA",
+    "displayName": "Docetaxel Anhydrous",
+    "names": [
+     "Docetaxel Anhydrous"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "plozasiran",
+  "page": "K1:XG9ARL6P25",
+  "pageName": "Plozasiran",
+  "legacyNames": [
+   "Plozasiran Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:U93HYZ4QU8",
+    "displayName": "PLOZASIRAN SODIUM",
+    "names": [
+     "Plozasiran Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "turpentine",
+  "page": "K1:XJ6RUH0O4G",
+  "pageName": "Turpentine",
+  "legacyNames": [
+   "TURPENTINE OIL"
+  ],
+  "matches": [
+   {
+    "key": "K1:C5H0QJ6V7F",
+    "displayName": "Turpentine Oil",
+    "names": [
+     "TURPENTINE OIL"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "formic-acid",
+  "page": "K1:XU8S3M2QRZ",
+  "pageName": "2-CHLORO-2-OXOACETIC Acid",
+  "legacyNames": [
+   "Formic Acid"
+  ],
+  "matches": [
+   {
+    "key": "K1:0YIW783RG1",
+    "displayName": "Formic Acid",
+    "names": [
+     "Formic Acid"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "donidalorsen",
+  "page": "K1:Y30VEG5PH1",
+  "pageName": "Donidalorsen Sodium",
+  "legacyNames": [
+   "Donidalorsen"
+  ],
+  "matches": [
+   {
+    "key": "K1:ZD4D8M32TL",
+    "displayName": "DONIDALORSEN",
+    "names": [
+     "Donidalorsen"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "vasopressin",
+  "page": "K1:Y4907O6MFD",
+  "pageName": "Vasopressin",
+  "legacyNames": [
+   "Vasopressin Tannate",
+   "Vasopressin in 0.9% Sodium Chloride",
+   "Vasopressin in Sodium Chloride 0.9%"
+  ],
+  "matches": [
+   {
+    "key": "K1:4R069M4O1P",
+    "displayName": "Vasopressin Tannate",
+    "names": [
+     "Vasopressin Tannate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "zilucoplan",
+  "page": "K1:YG391PK0CC",
+  "pageName": "Zilucoplan",
+  "legacyNames": [
+   "Zilucoplan Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:10R1YC115A",
+    "displayName": "ZILUCOPLAN SODIUM",
+    "names": [
+     "Zilucoplan Sodium"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "octodrine",
+  "page": "K1:YK5PJX58LQ",
+  "pageName": "OCTODRINE, (R)-",
+  "legacyNames": [
+   "Octodrine"
+  ],
+  "matches": [
+   {
+    "key": "K1:3GQ9E911BI",
+    "displayName": "Octodrine",
+    "names": [
+     "Octodrine"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ethylene",
+  "page": "K1:YQQ2QQ3URK",
+  "pageName": "(1,1,2,2-TETRAFLUOROETHOXY)ETHYLENE",
+  "legacyNames": [
+   "Ethylene"
+  ],
+  "matches": [
+   {
+    "key": "K1:91GW059KN7",
+    "displayName": "ETHYLENE",
+    "names": [
+     "Ethylene"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "colistin",
+  "page": "K1:Z67X93HJG1",
+  "pageName": "Colistin",
+  "legacyNames": [
+   "Colistin Sulfate"
+  ],
+  "matches": [
+   {
+    "key": "K1:WP15DXU577",
+    "displayName": "COLISTIN SULFATE",
+    "names": [
+     "Colistin Sulfate"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "treprostinil",
+  "page": "K1:ZGK8DW84SK",
+  "pageName": "(3R)-TREPROSTINIL",
+  "legacyNames": [
+   "Treprostinil",
+   "Treprostinil Sodium"
+  ],
+  "matches": [
+   {
+    "key": "K1:RUM6K67ESG",
+    "displayName": "Treprostinil",
+    "names": [
+     "Treprostinil"
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "strontium",
+  "page": "K1:ZZG3847S6Y",
+  "pageName": "Strontium Monocitrate",
+  "legacyNames": [
+   "Strontium"
+  ],
+  "matches": [
+   {
+    "key": "K1:YZS2RPE8LE",
+    "displayName": "STRONTIUM",
+    "names": [
+     "Strontium"
+    ]
+   }
+  ]
+ }
+]

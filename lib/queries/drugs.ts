@@ -32,6 +32,7 @@ import {
   programmeTrials,
   programmeVerdictScopeSnapshots,
 } from '@/db/schema'
+import { corpusSlugForLegacyDrugId } from '@/lib/corpus/redirects'
 import { rowToDossier, type DrugRow } from '@/lib/dossier'
 import { currentBackgroundDriftSummaries } from '@/lib/background/source-freshness'
 import {
@@ -48,6 +49,7 @@ import {
   getCompletionAssessmentForDrug,
   getInventoryResolutionForDrug,
   getTrialRegistrationsForDrug,
+  getTrialResultsForDrug,
 } from './dossier-completion'
 import { listNotesForDrug } from './notes'
 
@@ -156,24 +158,32 @@ export async function getDrugBySlug(
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
 
-  const [notes, driftedSources, completionAssessment, inventoryResolution, trialRegistrations] =
-    await Promise.all([
-      listNotesForDrug(row.id, viewerUserId),
-      currentBackgroundDriftSummaries({
-        drugId: row.id,
-        slug: row.slug,
-        background: row.recordedBackground,
-      }),
-      getCompletionAssessmentForDrug(row.id),
-      getInventoryResolutionForDrug(row.id),
-      getTrialRegistrationsForDrug(row.id),
-    ])
+  const [
+    notes,
+    driftedSources,
+    completionAssessment,
+    inventoryResolution,
+    trialRegistrations,
+    trialResults,
+  ] = await Promise.all([
+    listNotesForDrug(row.id, viewerUserId),
+    currentBackgroundDriftSummaries({
+      drugId: row.id,
+      slug: row.slug,
+      background: row.recordedBackground,
+    }),
+    getCompletionAssessmentForDrug(row.id),
+    getInventoryResolutionForDrug(row.id),
+    getTrialRegistrationsForDrug(row.id),
+    getTrialResultsForDrug(row.id),
+  ])
   return rowToDossier(row, {
     notes,
     driftedSources,
     completionAssessment: completionAssessment ?? undefined,
     inventoryResolution: inventoryResolution ?? undefined,
     trialRegistrations: trialRegistrations ?? undefined,
+    trialResults: trialResults ?? undefined,
   })
 }
 
@@ -194,22 +204,29 @@ async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
 export async function getPublicDrugBySlug(slug: string): Promise<DrugDossier | null> {
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
-  const [driftedSources, completionAssessment, inventoryResolution, trialRegistrations] =
-    await Promise.all([
-      currentBackgroundDriftSummaries({
-        drugId: row.id,
-        slug: row.slug,
-        background: row.recordedBackground,
-      }),
-      getCompletionAssessmentForDrug(row.id),
-      getInventoryResolutionForDrug(row.id),
-      getTrialRegistrationsForDrug(row.id),
-    ])
+  const [
+    driftedSources,
+    completionAssessment,
+    inventoryResolution,
+    trialRegistrations,
+    trialResults,
+  ] = await Promise.all([
+    currentBackgroundDriftSummaries({
+      drugId: row.id,
+      slug: row.slug,
+      background: row.recordedBackground,
+    }),
+    getCompletionAssessmentForDrug(row.id),
+    getInventoryResolutionForDrug(row.id),
+    getTrialRegistrationsForDrug(row.id),
+    getTrialResultsForDrug(row.id),
+  ])
   return rowToDossier(row, {
     driftedSources,
     completionAssessment: completionAssessment ?? undefined,
     inventoryResolution: inventoryResolution ?? undefined,
     trialRegistrations: trialRegistrations ?? undefined,
+    trialResults: trialResults ?? undefined,
   })
 }
 
@@ -254,7 +271,17 @@ async function resolveDirectMedicineRoute(
       .where(and(publicMedicineFilter, eq(drugs.id, historicalTargetId)))
       .limit(1)
     const historical = targetRows[0]?.canonicalSlug
-    if (!historical) return { kind: 'invalid' }
+    if (!historical) {
+      // The ledger row is good but its target is no longer a public legacy record. Where the
+      // corpus holds that record, the old URL still has one exact destination, so it redirects
+      // rather than 404ing (lib/corpus/redirects.ts, R8).
+      const corpusSlug = await corpusSlugForLegacyDrugId(historicalTargetId)
+      if (!corpusSlug || corpusSlug === normalized) return { kind: 'invalid' }
+      return {
+        kind: 'resolved',
+        resolution: { canonicalSlug: corpusSlug, matchedBy: 'historical' },
+      }
+    }
     if (historical === normalized) return { kind: 'invalid' }
     const chainedRows = await db
       .select({ oldSlug: medicineSlugRedirects.oldSlug })

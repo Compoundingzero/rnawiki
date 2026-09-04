@@ -1,0 +1,41 @@
+{
+  "label": "gate2 gate2-new-324-matched",
+  "pagesFile": "data/corpus-20k/gate2/pages/gate2-new-324-matched.ndjson",
+  "sampleFile": null,
+  "pages": 252,
+  "mode": "exhaustive",
+  "parameters": {
+    "shingle": 5,
+    "permutations": 128,
+    "batch": 250,
+    "neighbourBands": 32,
+    "neighbourRows": 4,
+    "neighbourAnalyticThreshold": 0.4204,
+    "neighbourBandsAreSpecDefault": true,
+    "sweepBands": 16,
+    "sweepRows": 8,
+    "sweepAnalyticThreshold": 0.7071,
+    "cascade": true,
+    "candidateStructures": [],
+    "backfilledPages": 0,
+    "minCandidates": 32,
+    "maxBucket": 512,
+    "rerank": 64,
+    "cachePages": 2000,
+    "seed": 20260904
+  },
+  "timings": {
+    "buildSeconds": 0.622,
+    "neighbourSeconds": 0.572,
+    "totalSeconds": 3.947,
+    "pagesPerSecond": 63.85
+  },
+  "work": {
+    "tokens": 215025,
+    "vocabulary": 16740,
+    "candidatesConsidered": 63252,
+    "pairsScoredExactly": 31626,
+    "largestBucket": null
+  },
+  "peakRssMb": 213.6
+}

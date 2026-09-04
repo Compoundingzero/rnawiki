@@ -1,0 +1,1798 @@
+{
+  "site": "awwwards.com",
+  "fetchedAt": "2026-09-03T09:42:51.949Z",
+  "pages": [
+    {
+      "url": "https://www.awwwards.com/",
+      "status": "fetched",
+      "bytes": 337681,
+      "visibleTextChars": 4796,
+      "textToHtmlRatio": 0.0142
+    },
+    {
+      "url": "https://www.awwwards.com/websites/",
+      "status": "fetched",
+      "bytes": 604045,
+      "visibleTextChars": 8016,
+      "textToHtmlRatio": 0.0133
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-0.css",
+      "bytes": 159301
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-1.css",
+      "bytes": 2333
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-2.css",
+      "bytes": 161
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-3.css",
+      "bytes": 1891
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-4.css",
+      "bytes": 159301
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-5.css",
+      "bytes": 15392
+    },
+    {
+      "url": "inline:<style> block saved as raw/awwwards_com/css/inline-6.css",
+      "bytes": 1891
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "var(--font-1)",
+        "resolvesTo": "Inter Tight",
+        "declarations": 2,
+        "appliedTo": "body; input,select,textarea,button",
+        "basis": "measured"
+      },
+      {
+        "value": "\"Inter Tight\"",
+        "declarations": 1,
+        "appliedTo": "@font-face only",
+        "basis": "measured"
+      }
+    ],
+    "fontStacksNote": "Measured: exactly one typeface family is declared site-wide. The @font-face has NO fallback list at all - src is a single self-hosted variable TTF (assets.awwwards.com/assets/fonts/inter-tight/InterTight-VariableFont_wght.ttf, font-weight:100 900), preloaded via <link rel=preload as=font crossorigin>. font-family:var(--font-1) resolves to the bare token \"Inter Tight\" with no generic fallback, so a font failure falls through to the UA default.",
+    "fontSizes": [
+      {
+        "value": "18px",
+        "count": 34,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(18px,16.5915492958px + 0.2816901408vw,22px)",
+        "count": 23,
+        "unit": "clamp"
+      },
+      {
+        "value": "var(--text-size-primary)",
+        "count": 19,
+        "unit": "var"
+      },
+      {
+        "value": "12px",
+        "count": 16,
+        "unit": "px"
+      },
+      {
+        "value": "14px",
+        "count": 14,
+        "unit": "px"
+      },
+      {
+        "value": "10px",
+        "count": 11,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-size-small)",
+        "count": 8,
+        "unit": "var"
+      },
+      {
+        "value": "16px",
+        "count": 8,
+        "unit": "px"
+      },
+      {
+        "value": "15px",
+        "count": 8,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-size-large)",
+        "count": 8,
+        "unit": "var"
+      },
+      {
+        "value": "clamp(18px,17.2957746479px + 0.1408450704vw,20px)",
+        "count": 6,
+        "unit": "clamp"
+      },
+      {
+        "value": "1em",
+        "count": 6,
+        "unit": "em"
+      },
+      {
+        "value": ".8em",
+        "count": 6,
+        "unit": "em"
+      },
+      {
+        "value": "1rem",
+        "count": 5,
+        "unit": "rem"
+      },
+      {
+        "value": "13px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "var(--text-size-medium)",
+        "count": 4,
+        "unit": "var"
+      },
+      {
+        "value": "9px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "20px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "24px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "32px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(14px,13.2957746479px + 0.1408450704vw,16px)",
+        "count": 3,
+        "unit": "clamp"
+      },
+      {
+        "value": "30px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": ".95rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "11px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "42px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "26px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(26px,17.5492957746px + 1.6901408451vw,50px)",
+        "count": 2,
+        "unit": "clamp"
+      },
+      {
+        "value": "22px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(10px,7.8873239437px + 0.4225352113vw,16px)",
+        "count": 2,
+        "unit": "clamp"
+      },
+      {
+        "value": ".6em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "1.3em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "2em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "8px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(16px,14.5915492958px + 0.2816901408vw,20px)",
+        "count": 2,
+        "unit": "clamp"
+      },
+      {
+        "value": "28px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(30px,3.9436619718px + 5.2112676056vw,104px)",
+        "count": 2,
+        "unit": "clamp"
+      },
+      {
+        "value": "var(--text-primary)",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": "var(--hm-text)",
+        "count": 1,
+        "unit": "var"
+      },
+      {
+        "value": "1.25em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "clamp(42px,-3.0704225352px + 9.014084507vw,170px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(42px,5.3802816901px + 7.323943662vw,146px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "36px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "clamp(36px,15.5774647887px + 4.0845070423vw,94px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(32px,17.2112676056px + 2.9577464789vw,74px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(22px,13.5492957746px + 1.6901408451vw,46px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(22px,19.8873239437px + 0.4225352113vw,28px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(16px,16px + 0vw,16px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "clamp(8px,2vw,16px)",
+        "count": 1,
+        "unit": "clamp"
+      },
+      {
+        "value": "3em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".7em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".5em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "Arial",
+        "count": 1,
+        "unit": "other"
+      },
+      {
+        "value": "Arial,sans-serif",
+        "count": 1,
+        "unit": "other"
+      },
+      {
+        "value": "35px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "1.65em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".9em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "34px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "40px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": ".666em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "clamp(20px,10.8450704225px + 1.8309859155vw,46px)",
+        "count": 1,
+        "unit": "clamp"
+      }
+    ],
+    "fontSizesNote": "html{font-size:var(--text-size-primary)} = 14px, so 1rem = 14px on this site, not 16px. px dominates absolute sizing; clamp() carries every responsive step.",
+    "lineHeights": [
+      {
+        "value": "100%",
+        "count": 42
+      },
+      {
+        "value": "120%",
+        "count": 32
+      },
+      {
+        "value": "150%",
+        "count": 13
+      },
+      {
+        "value": "140%",
+        "count": 13
+      },
+      {
+        "value": "normal",
+        "count": 11
+      },
+      {
+        "value": "130%",
+        "count": 9
+      },
+      {
+        "value": "10px",
+        "count": 3
+      },
+      {
+        "value": "170%",
+        "count": 3
+      },
+      {
+        "value": "1.2",
+        "count": 3
+      },
+      {
+        "value": "var(--bf-line-height)",
+        "count": 2
+      },
+      {
+        "value": "var(--button-height)",
+        "count": 2
+      },
+      {
+        "value": "1",
+        "count": 2
+      },
+      {
+        "value": "14px",
+        "count": 2
+      },
+      {
+        "value": "200%",
+        "count": 1
+      },
+      {
+        "value": "42px",
+        "count": 1
+      },
+      {
+        "value": "32px",
+        "count": 1
+      },
+      {
+        "value": "18px",
+        "count": 1
+      },
+      {
+        "value": "17px",
+        "count": 1
+      },
+      {
+        "value": "16px",
+        "count": 1
+      },
+      {
+        "value": "var(--budget-height)",
+        "count": 1
+      },
+      {
+        "value": "90%",
+        "count": 1
+      },
+      {
+        "value": "22px",
+        "count": 1
+      },
+      {
+        "value": "110%",
+        "count": 1
+      },
+      {
+        "value": "1.4",
+        "count": 1
+      },
+      {
+        "value": "160%",
+        "count": 1
+      },
+      {
+        "value": "60%",
+        "count": 1
+      },
+      {
+        "value": "1em",
+        "count": 1
+      },
+      {
+        "value": "3em",
+        "count": 1
+      },
+      {
+        "value": "2.8em",
+        "count": 1
+      },
+      {
+        "value": "2.5em",
+        "count": 1
+      }
+    ],
+    "lineHeightsNote": "Percentages dominate (100% x42, 120% x32, 150% x13, 140% x13, 130% x9). Display type is set solid (100%); reading text sits at 140-150%.",
+    "headingScale": {
+      "basis": "measured - numbered utility classes .heading-1 ... .heading-6; no h1/h2 element selectors carry font-size",
+      "h1": {
+        "selector": ".heading-1",
+        "min": "42px",
+        "max": "170px",
+        "declaration": "clamp(42px, -3.0704225352px + 9.014084507vw, 170px)",
+        "lineHeight": "100%"
+      },
+      "h2": {
+        "selector": ".heading-2",
+        "min": "42px",
+        "max": "146px",
+        "declaration": "clamp(42px, 5.3802816901px + 7.323943662vw, 146px)",
+        "lineHeight": "100%"
+      },
+      "h3": {
+        "selector": ".heading-3",
+        "min": "36px",
+        "max": "94px",
+        "declaration": "clamp(36px, 15.5774647887px + 4.0845070423vw, 94px)",
+        "lineHeight": "100%"
+      },
+      "h4": {
+        "selector": ".heading-4",
+        "min": "32px",
+        "max": "74px",
+        "declaration": "clamp(32px, 17.2112676056px + 2.9577464789vw, 74px)",
+        "lineHeight": "100%"
+      },
+      "h5": {
+        "selector": ".heading-5",
+        "min": "26px",
+        "max": "50px",
+        "declaration": "clamp(26px, 17.5492957746px + 1.6901408451vw, 50px)",
+        "lineHeight": "120%"
+      },
+      "h6": {
+        "selector": ".heading-6",
+        "min": "22px",
+        "max": "46px",
+        "declaration": "clamp(22px, 13.5492957746px + 1.6901408451vw, 46px)",
+        "lineHeight": "130%",
+        "fontWeight": 300
+      },
+      "ratioAtMinViewport": {
+        "sequence": [
+          42,
+          42,
+          36,
+          32,
+          26,
+          22
+        ],
+        "steps": [
+          "1→2: 1.00",
+          "2→3: 1.17",
+          "3→4: 1.13",
+          "4→5: 1.23",
+          "5→6: 1.18"
+        ],
+        "note": "Not a constant modular ratio; approximately 1.13-1.23 per step below the top, with .heading-1 and .heading-2 identical at the small end."
+      },
+      "ratioAtMaxViewport": {
+        "sequence": [
+          170,
+          146,
+          94,
+          74,
+          50,
+          46
+        ],
+        "steps": [
+          "1→2: 1.16",
+          "2→3: 1.55",
+          "3→4: 1.27",
+          "4→5: 1.48",
+          "5→6: 1.09"
+        ],
+        "note": "The scale expands far more at the top than the bottom - the gap between display and sub-head widens with viewport."
+      },
+      "documentHeadings": "Measured in markup: home h1x1 h2x11 h3x41; websites h1x1 h2x0 h3x31. Card titles are h3, so the websites grid jumps h1 → h3 with no h2 between."
+    },
+    "bodyCandidates": {
+      "fontSize": "14px (var(--text-size-primary), set on both html and body)",
+      "lineHeight": "200% (28px) on body, overridden by every component - the effective reading leading is 140-150%",
+      "fontWeight": "300",
+      "selectorEvidence": "body{margin:auto;font-family:var(--font-1);font-size:var(--text-size-primary);font-weight:300;background:var(--bg-primary);color:var(--color-primary);line-height:200%;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility} and html{scroll-behavior:smooth;font-size:var(--text-size-primary)}",
+      "sizeTokens": {
+        "--text-size-small": "11px",
+        "--text-size-primary": "14px",
+        "--text-size-medium": "18px",
+        "--text-size-large": "22px"
+      },
+      "note": "The 14px body token is a UI-chrome size. The most-declared single size in the sheet is 18px (34 declarations) and the most-declared fluid step is clamp(18px,...,22px) (23 declarations) - that pair is the real content-reading size."
+    },
+    "fluidType": true,
+    "fluidTypeEvidence": "187 clamp() calls in the sheet; 57 font-size declarations contain vw. Every heading step and the two body-text steps are clamp(min, px + vw, max). No rem-based fluid math and no font-size:vw without a clamp."
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": "8px",
+        "count": 60
+      },
+      {
+        "value": "20px",
+        "count": 51
+      },
+      {
+        "value": "12px",
+        "count": 50
+      },
+      {
+        "value": "16px",
+        "count": 35
+      },
+      {
+        "value": "1em",
+        "count": 26
+      },
+      {
+        "value": "30px",
+        "count": 21
+      },
+      {
+        "value": ".5em",
+        "count": 19
+      },
+      {
+        "value": "6px",
+        "count": 18
+      },
+      {
+        "value": "10px",
+        "count": 18
+      },
+      {
+        "value": "4px",
+        "count": 17
+      },
+      {
+        "value": "2px",
+        "count": 12
+      },
+      {
+        "value": "2em",
+        "count": 11
+      },
+      {
+        "value": "40px",
+        "count": 10
+      },
+      {
+        "value": ".4em",
+        "count": 8
+      },
+      {
+        "value": "24px",
+        "count": 8
+      },
+      {
+        "value": "1.5em",
+        "count": 5
+      },
+      {
+        "value": ".2em",
+        "count": 5
+      },
+      {
+        "value": "5px",
+        "count": 4
+      },
+      {
+        "value": "32px",
+        "count": 4
+      },
+      {
+        "value": "28px",
+        "count": 4
+      },
+      {
+        "value": "-6px",
+        "count": 4
+      },
+      {
+        "value": "1.6em",
+        "count": 4
+      },
+      {
+        "value": ".3em",
+        "count": 3
+      },
+      {
+        "value": "50px",
+        "count": 3
+      },
+      {
+        "value": "36px",
+        "count": 3
+      },
+      {
+        "value": "2rem",
+        "count": 3
+      },
+      {
+        "value": "60px",
+        "count": 3
+      },
+      {
+        "value": ".6em",
+        "count": 3
+      },
+      {
+        "value": "3em",
+        "count": 3
+      },
+      {
+        "value": "25px",
+        "count": 3
+      },
+      {
+        "value": "100px",
+        "count": 3
+      },
+      {
+        "value": ".8em",
+        "count": 3
+      },
+      {
+        "value": ".1em",
+        "count": 3
+      },
+      {
+        "value": "15px",
+        "count": 3
+      },
+      {
+        "value": "-0.7em",
+        "count": 2
+      },
+      {
+        "value": ".05em",
+        "count": 2
+      },
+      {
+        "value": "1.4em",
+        "count": 2
+      },
+      {
+        "value": "-1em",
+        "count": 2
+      },
+      {
+        "value": "-4px",
+        "count": 2
+      },
+      {
+        "value": "1rem",
+        "count": 2
+      },
+      {
+        "value": "1px",
+        "count": 2
+      },
+      {
+        "value": ".5rem",
+        "count": 2
+      },
+      {
+        "value": "14px",
+        "count": 2
+      },
+      {
+        "value": "1.5rem",
+        "count": 1
+      },
+      {
+        "value": "-71px",
+        "count": 1
+      },
+      {
+        "value": "-10px",
+        "count": 1
+      },
+      {
+        "value": "-15px",
+        "count": 1
+      },
+      {
+        "value": "4em",
+        "count": 1
+      },
+      {
+        "value": "0px",
+        "count": 1
+      },
+      {
+        "value": "-1px",
+        "count": 1
+      },
+      {
+        "value": "48px",
+        "count": 1
+      },
+      {
+        "value": "120px",
+        "count": 1
+      },
+      {
+        "value": "200px",
+        "count": 1
+      },
+      {
+        "value": "-0.9em",
+        "count": 1
+      },
+      {
+        "value": "-0.1em",
+        "count": 1
+      },
+      {
+        "value": "-2px",
+        "count": 1
+      },
+      {
+        "value": "424px",
+        "count": 1
+      },
+      {
+        "value": "65px",
+        "count": 1
+      },
+      {
+        "value": "1.2em",
+        "count": 1
+      },
+      {
+        "value": ".7em",
+        "count": 1
+      }
+    ],
+    "inferredBaseUnitPx": 4,
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      48,
+      60,
+      100,
+      120,
+      200
+    ],
+    "evidence": "Counted over margin/padding/gap declarations. A 4px unit covers 74.3% of weighted occurrences (top ten: 8px x60, 20px x51, 12px x50, 16px x35, 30px x21, 6px x18, 10px x18, 4px x17, 2px x12, 40px x10). A 2px unit would cover 96.2% but is too fine to be a design step; 8px covers only 35.7%, so 8 is not the unit. The off-grid residue is 2px, 6px, 10px, 30px, 50px and 25px - i.e. a 4px grid with a deliberate half-step and a 30px block rhythm (--gutter:20px, grid row gap 30px).",
+    "layoutTokens": {
+      "--gutter": "20px",
+      "--pad-inner": "52px (1280px:40px, 1023px:24px, 576px:16px)",
+      "--pad-content": "32px",
+      "--pad-modal": "30px",
+      "--pad-modal-box": "clamp(24px, 3vw, 48px)",
+      "--pad-box": "clamp(20px, 6vw, 30px)",
+      "--card-pad-x": "clamp(20px, 3vw, 30px)",
+      "--card-pad-y": "clamp(15px, 3vw, 26px)",
+      "--si-gap": "16px",
+      "--header-height": "71px (.c-header-main: 54px)",
+      "--button-height": "48px",
+      "--height-input": "48px",
+      "--rounded-small": "4px",
+      "--rounded-normal": "8px",
+      "--rounded-large": "1rem (= 14px here)"
+    },
+    "tokensNote": "Padding is fluid as well as spaced: the page gutter --pad-inner steps down 52 → 40 → 24 → 16px across breakpoints, and card/modal padding uses clamp() rather than breakpoint overrides."
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--nf-bg-1",
+        "value": "#ededed"
+      },
+      {
+        "name": "--nf-bg-2",
+        "value": "#f8f8f8"
+      },
+      {
+        "name": "--nf-bg-3",
+        "value": "#fff"
+      },
+      {
+        "name": "--nf-bg-count",
+        "value": "#FF9667"
+      },
+      {
+        "name": "--color-primary",
+        "value": "#222"
+      },
+      {
+        "name": "--color-primary-rgb",
+        "value": "255, 255, 255"
+      },
+      {
+        "name": "--color-link",
+        "value": "#222"
+      },
+      {
+        "name": "--color-white",
+        "value": "#fff"
+      },
+      {
+        "name": "--color-white-rgb",
+        "value": "255, 255, 255"
+      },
+      {
+        "name": "--color-orange",
+        "value": "#FA5D29"
+      },
+      {
+        "name": "--color-errors",
+        "value": "#FA5D29"
+      },
+      {
+        "name": "--color-blue",
+        "value": "#49B3FC"
+      },
+      {
+        "name": "--color-featured",
+        "value": "#f8f0ee"
+      },
+      {
+        "name": "--color-red",
+        "value": "#FA5D29"
+      },
+      {
+        "name": "--color-underlined",
+        "value": "250, 93, 41"
+      },
+      {
+        "name": "--color-connect",
+        "value": "#FF602C"
+      },
+      {
+        "name": "--color-connect-2",
+        "value": "#FFAE94"
+      },
+      {
+        "name": "--color-connect-3",
+        "value": "#FFC5B1"
+      },
+      {
+        "name": "--color-inspire",
+        "value": "#AAEEC4"
+      },
+      {
+        "name": "--color-inspire-2",
+        "value": "#C8E4D3"
+      },
+      {
+        "name": "--color-inspire-3",
+        "value": "#E2F4E9"
+      },
+      {
+        "name": "--color-awards",
+        "value": "#502bd8"
+      },
+      {
+        "name": "--color-awards-2",
+        "value": "#6749d1"
+      },
+      {
+        "name": "--color-awards-3",
+        "value": "#917eda"
+      },
+      {
+        "name": "--color-read",
+        "value": "#c0ab3c"
+      },
+      {
+        "name": "--color-read-2",
+        "value": "#CDC38B"
+      },
+      {
+        "name": "--color-read-3",
+        "value": "#DBD6C0"
+      },
+      {
+        "name": "--color-learn",
+        "value": "#FFF083"
+      },
+      {
+        "name": "--color-learn-2",
+        "value": "#FFF9D0"
+      },
+      {
+        "name": "--color-learn-3",
+        "value": "#fffbe2"
+      },
+      {
+        "name": "--color-jobs",
+        "value": "#74bcff"
+      },
+      {
+        "name": "--color-jobs-2",
+        "value": "#99ccfc"
+      },
+      {
+        "name": "--color-jobs-3",
+        "value": "#b4d7f8"
+      },
+      {
+        "name": "--border-gray",
+        "value": "#ededed"
+      },
+      {
+        "name": "--color-dotteds-rgb",
+        "value": "34, 34, 34"
+      },
+      {
+        "name": "--bg-primary",
+        "value": "var(--bg-secondary)"
+      },
+      {
+        "name": "--bg-primary-rgb",
+        "value": "248, 248, 248"
+      },
+      {
+        "name": "--bg-secondary",
+        "value": "#222"
+      },
+      {
+        "name": "--bg-3rd",
+        "value": "#ededed"
+      },
+      {
+        "name": "--bg-4rd",
+        "value": "#f8f8f8"
+      },
+      {
+        "name": "--bg-white",
+        "value": "white"
+      },
+      {
+        "name": "--color-odd-rows",
+        "value": "#f8f8f8"
+      },
+      {
+        "name": "--avatar-bg",
+        "value": "var(--card-bg)"
+      },
+      {
+        "name": "--border-table",
+        "value": "#222"
+      },
+      {
+        "name": "--border-thin",
+        "value": "0.5px"
+      },
+      {
+        "name": "--alert-green",
+        "value": "#e0f4d9"
+      },
+      {
+        "name": "--alert-green-rgb",
+        "value": "224, 244, 217"
+      },
+      {
+        "name": "--alert-yellow",
+        "value": "#FFF083"
+      },
+      {
+        "name": "--alert-yellow-rgb",
+        "value": "255, 240, 131"
+      },
+      {
+        "name": "--sf-bg",
+        "value": "var(--nf-bg-3)"
+      },
+      {
+        "name": "--button-bg",
+        "value": "transparent"
+      },
+      {
+        "name": "--button-color",
+        "value": "var(--color-primary)"
+      },
+      {
+        "name": "--color-1",
+        "value": "#ec6237"
+      },
+      {
+        "name": "--color-2",
+        "value": "#e5d8ca"
+      },
+      {
+        "name": "--color-3",
+        "value": "#AAEEC4"
+      },
+      {
+        "name": "--color-4",
+        "value": "#502BD8"
+      },
+      {
+        "name": "--color-5",
+        "value": "#222"
+      },
+      {
+        "name": "--color-6",
+        "value": "#502BD8"
+      },
+      {
+        "name": "--color-7",
+        "value": "#FCB6F2"
+      },
+      {
+        "name": "--hf-bg",
+        "value": "var(--bg-primary)"
+      },
+      {
+        "name": "--hm-color",
+        "value": "#222"
+      },
+      {
+        "name": "--button-border",
+        "value": "var(--hm-color)"
+      },
+      {
+        "name": "--ch-bg",
+        "value": "var(--bg-primary)"
+      },
+      {
+        "name": "--hm-active-bg",
+        "value": "#ededed"
+      },
+      {
+        "name": "--hm-active-bg-2",
+        "value": "var(--bg-primary)"
+      },
+      {
+        "name": "--hm-active-color",
+        "value": "var(--color-primary)"
+      },
+      {
+        "name": "--hm-active-2-color",
+        "value": "var(--color-primary)"
+      },
+      {
+        "name": "--hm-active-3-color",
+        "value": "rgba(0,0,0,0.13)"
+      },
+      {
+        "name": "--hm-border-alpha",
+        "value": "0.3"
+      },
+      {
+        "name": "--color-hover",
+        "value": "rgba(255,255,255, 0.1)"
+      },
+      {
+        "name": "--bg-input",
+        "value": "#fff"
+      },
+      {
+        "name": "--bg-input-hover",
+        "value": "#f8f8f8"
+      },
+      {
+        "name": "--color-input",
+        "value": "#222"
+      },
+      {
+        "name": "--border-input",
+        "value": "#ededed"
+      },
+      {
+        "name": "--check-toggle-color-ball",
+        "value": "#fff"
+      },
+      {
+        "name": "--check-toggle-color-bg",
+        "value": "#dedede"
+      },
+      {
+        "name": "--check-toggle-color-bg-checked",
+        "value": "#222"
+      },
+      {
+        "name": "--spinner-bg",
+        "value": "#ededed"
+      },
+      {
+        "name": "--spinner-color",
+        "value": "#222"
+      },
+      {
+        "name": "--button-border-color",
+        "value": "#fff"
+      }
+    ],
+    "rootResolved": {
+      "--color-primary": "#222",
+      "--bg-primary": "#F8F8F8",
+      "--bg-secondary": "#222",
+      "--bg-3rd": "#ededed",
+      "--bg-4rd": "#f8f8f8",
+      "--color-link": "#222",
+      "--border-gray": "#ededed",
+      "--color-orange / --color-red / --color-errors": "#FA5D29",
+      "--color-blue": "#49B3FC"
+    },
+    "rootResolvedNote": "The flat \"most frequent value\" scan is misleading for --bg-primary and --color-primary because both are redefined per scope. Traced definitions: :root{--bg-primary:#F8F8F8; --color-primary:#222}; body.dark{--bg-primary:#121212; --color-primary:#eee}; body.header-dark #header{--bg-primary:#222; --color-primary:#fff}.",
+    "bodyTextColorCandidate": "#222 (var(--color-primary) at :root, applied by body{color:var(--color-primary)})",
+    "backgroundCandidate": "#F8F8F8 (var(--bg-primary) at :root, applied by body{background:var(--bg-primary)})",
+    "contrastRatioCandidate": {
+      "light": 14.98,
+      "dark": 16.15,
+      "method": "WCAG 2.x relative luminance, computed from the plain hex values #222 on #F8F8F8 (light) and #eee on #121212 (body.dark)",
+      "passes": "Both exceed AAA (7:1) for normal text.",
+      "caveat": "Measured on the token pair only. The accent #FA5D29 on #F8F8F8 computes to 2.97:1, which fails AA for normal text; it is used for counts, alerts and the active menu background rather than body copy, but that placement was not verified from a rendered page."
+    },
+    "darkModeMechanism": "class/attribute",
+    "darkModeEvidence": "Zero prefers-color-scheme at-rules in the sheet. Dark is a class on the body element: body.dark{--color-primary:#eee; --bg-primary:#121212}. Neither fetched page carried that class (home body class=\"has-header-above has-content-header\", websites body class=\"\"), so the site ships light by default and dark appears to be opt-in or section-scoped. Separately, body.header-dark and .l-news--dark / .card-banner--dark / .modal__box--dark invert the same two tokens for individual regions, so \"dark\" here is a component-level token swap, not only a page theme.",
+    "semanticPalette": {
+      "note": "Each site section owns a hue triple, used for tags and section chrome.",
+      "connect": [
+        "#FF602C",
+        "#FFAE94",
+        "#FFC5B1"
+      ],
+      "inspire": [
+        "#AAEEC4",
+        "#C8E4D3",
+        "#E2F4E9"
+      ],
+      "awards": [
+        "#502bd8",
+        "#6749d1",
+        "#917eda"
+      ],
+      "read": [
+        "#c0ab3c",
+        "#CDC38B",
+        "#DBD6C0"
+      ],
+      "learn": [
+        "#FFF083",
+        "#FFF9D0",
+        "#fffbe2"
+      ],
+      "jobs": [
+        "#74bcff",
+        "#99ccfc",
+        "#b4d7f8"
+      ]
+    }
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 576,
+        "kind": "max",
+        "count": 18
+      },
+      {
+        "px": 1024,
+        "kind": "max",
+        "count": 12
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 8
+      },
+      {
+        "px": 1270,
+        "kind": "max",
+        "count": 5
+      },
+      {
+        "px": 1023,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 1270,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1000,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1280,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1400,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1600,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 700,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1100,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1168,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1184,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1279,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1351,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1360,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1380,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1490,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1556,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1578,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1600,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1780,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1925,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 2291,
+        "kind": "max",
+        "count": 1
+      }
+    ],
+    "breakpointsNote": "26 distinct width conditions, all in px (no rem/em media queries). Only four are load-bearing - max 576 (x18), max 1024 (x12), max 768 (x8), max 1270 (x5). The remaining 22 fire once or twice each at arbitrary widths (1168, 1184, 1279, 1351, 1360, 1380, 1400, 1490, 1556, 1578, 1780, 1925, 2291), i.e. per-component tuning rather than a shared scale. Max-width queries outnumber min-width 21 to 5, so the sheet is desktop-first.",
+    "contentWidthCandidates": [
+      {
+        "value": "1816px",
+        "selectorEvidence": ":root{--innerWidth:1816px} consumed by .inner{inline-size:min(100% - var(--pad-inner)*2, var(--innerWidth)); margin-inline:auto}"
+      },
+      {
+        "value": "1834px",
+        "selectorEvidence": ".inner--xxxl{--innerWidth:1834px}"
+      },
+      {
+        "value": "1650px",
+        "selectorEvidence": ".inner--xxl{--innerWidth:1650px}"
+      },
+      {
+        "value": "1386px",
+        "selectorEvidence": ".inner--xl{--innerWidth:1386px}"
+      },
+      {
+        "value": "1216px",
+        "selectorEvidence": ".inner--lg{--innerWidth:1216px}"
+      },
+      {
+        "value": "931px",
+        "selectorEvidence": ".inner--sm{--innerWidth:931px}"
+      },
+      {
+        "value": "auto (no max)",
+        "selectorEvidence": "#header .inner{inline-size:auto; margin-inline:0} - the header deliberately opts out of the container and spans full width"
+      }
+    ],
+    "contentWidthNote": "One container primitive, six width variants selected by modifier class, and the gutter is subtracted inside the min() rather than applied as padding. Both fetched pages use the bare .inner (1816px). This is a wide, image-grid container, not a reading measure - no ch-based or prose max-width exists in the sheet.",
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "cssGridDeclarations": 25,
+      "flexDeclarations": 337,
+      "gridTemplateColumnsDeclarations": 29
+    },
+    "gridUsageNote": "Flex carries component internals (337 declarations); CSS Grid carries the card collections (25). The reference pattern for a filterable card wall is .grid-sites{--minthumb:350px; display:grid; grid-template-columns:repeat(auto-fill, minmax(var(--minthumb),1fr)); grid-auto-flow:row dense; grid-gap:30px var(--gutter); padding-bottom:30px} with density switched purely by rewriting the token (.grid-sites--3cols and .is-large set --minthumb:440px; @media(max-width:576px) sets 150px). Other collections do the same with their own minthumb: .grid-awwwards 250px, .grid-collections 440px, .grid-cards 350px with [data-cols=\"2\"]=594px and [data-cols=\"3\"]=444px. No subgrid. 1 @container rule and 26 aspect-ratio declarations."
+  },
+  "navigation": {
+    "persistentElements": [
+      "#header (one per page, position:sticky top:0)",
+      "nav.nav-header-main (primary menu, also the search target)",
+      "header-marquee promo strip above the header on /websites/",
+      "footer#footer",
+      "nav.nav-filters (the filter bar, only on /websites/)",
+      "nav.search-inspiration__nav (only on /websites/)"
+    ],
+    "stickyOrFixedSelectors": [
+      "sticky :: #header",
+      "sticky :: body.has-header-sticky #header",
+      "sticky :: .header-fixed #header",
+      "sticky :: .grid-filters-sites__aside",
+      "sticky :: .heading-section.sticky",
+      "sticky :: .modal .header-floating",
+      "fixed :: .header-floating",
+      "fixed :: .header-main__overlay",
+      "fixed :: .nav-filters__overlay",
+      "fixed :: .nav-filters__item.is-open + .nav-filters__dropdown",
+      "fixed :: .menu-float",
+      "fixed :: .c-box-float-more",
+      "fixed :: .modal",
+      "fixed :: .modal .bt-nav",
+      "fixed :: .snackbar",
+      "fixed :: .cookies-popup",
+      "fixed :: .loading--fixed"
+    ],
+    "tocPresent": false,
+    "tocEvidence": "No in-page table of contents on either page: no nav element scoped to headings, no anchor links to same-page fragments in the content region, and no sticky aside on the two fetched pages (.grid-filters-sites__aside exists in CSS but is a filter rail, not a TOC).",
+    "revealedOnDemand": [
+      "Primary menu dropdown - nav-header-main__dropdown, opened by click->search#toggleDropdown, closed via a fixed .header-main__overlay",
+      "Search panel - focus->search#show and keyup->search#search on the header input; click->search#doToogleTab switches result type; click->search#close dismisses",
+      "Mobile menu - click->search#toggleMobile",
+      "Each of the 7 filter facets - click->grid#toggleFilter opens .nav-filters__dropdown behind a fixed .nav-filters__overlay, with body:has(.nav-filters__item.is-open){overflow-y:hidden} locking the page scroll",
+      "Type-to-search inside each filter dropdown - input.js-input-filter-search, keyup->searchable-filter#searchEvent",
+      "Login / register modal - click->login#open and click->login#register",
+      "Site preview - click->preview#preview on each card, driven by data-preview-url-value",
+      "Cookie banner .cookies-popup and .snackbar toasts"
+    ],
+    "evidence": "Filter bar measured on /websites/: 7 facets - Awards, Category, Tag, Technology, Country, Font, Color - plus a \"0 Reset filters\" control whose .nav-filters__count badge carries the active-filter count. 401 .nav-filters__subitem options are rendered server-side into the dropdowns (393 distinct labels), and Color is 27 swatches rather than a list. Filter width is capped at .nav-filters__item{max-width:220px} and the dropdown at max-width:calc(100vw - 48px). Landmarks: exactly one <header> and one <footer> per page, 2 <nav> on home and 3 on /websites/, and ZERO <main> elements on either page - measured, and a real accessibility gap. Also measured: aria-label x78, but aria-expanded x0, aria-live x0, role= x0 on both pages, and the stylesheet has 10 :focus rules and 0 :focus-visible."
+  },
+  "behaviours": [
+    {
+      "name": "multi-tag filtering",
+      "basis": "inferred",
+      "evidence": "data-controller=\"grid\" with click->grid#toggleFilter on each of 7 facets, click->grid#closeFilters, data-grid-target=\"filterItem\"; .nav-filters__count badge reads \"0\" server-side, implying a live count of applied tags; body:has(.nav-filters__item.is-open){overflow-y:hidden}. Whether filters combine client-side or via navigation was not determined statically - the subitems are plain <a href=\"/websites/<tag>/\"> links, which suggests URL-driven filtering with a JS-enhanced panel."
+    },
+    {
+      "name": "type-to-search within a filter facet",
+      "basis": "inferred",
+      "evidence": "data-controller=\"searchable-filter\" x6 per page, each wrapping input.js-input-filter-search placeholder=\"Search ...\" with keyup->searchable-filter#searchEvent and click->searchable-filter#doSearch. This is how a 393-option tag vocabulary stays usable."
+    },
+    {
+      "name": "grid density switch",
+      "basis": "inferred",
+      "evidence": "click->grid#switchGrid, paired with the --minthumb token pattern (.grid-sites--3cols / .is-large rewrite --minthumb from 350px to 440px) and .grid-cards[data-cols=\"2\"|\"3\"]."
+    },
+    {
+      "name": "site preview overlay",
+      "basis": "inferred",
+      "evidence": "data-controller=\"preview\" x31-35 per page with click->preview#preview and 31 data-preview-url-value attributes; CSS has position:fixed .modal with .modal .header-floating and .modal .bt-nav (prev/next inside the overlay)."
+    },
+    {
+      "name": "header type-ahead search",
+      "basis": "inferred",
+      "evidence": "#header data-controller=\"search\" data-search-url-value=\"tv_search_websites\" data-search-selected-type-value=\"submission\"; focus->search#show, keyup->search#search, click->search#doToogleTab (tabbed result types)."
+    },
+    {
+      "name": "command palette",
+      "basis": "inferred",
+      "evidence": "NOT present. Searched both pages for keydown handlers, accesskey, aria-keyshortcuts and cmd/ctrl/⌘ hint text - zero matches. Search is pointer/focus-driven only."
+    },
+    {
+      "name": "save-to-collection",
+      "basis": "inferred",
+      "evidence": "data-controller=\"collectable\" x40 (home) / x31 (websites) with click->collectable#collect; CSS .c-collect__title, --gray-collect, .palette-* modal tokens."
+    },
+    {
+      "name": "custom lazy loading",
+      "basis": "inferred",
+      "evidence": "data-controller=\"lazyload-image\" x64 (home) / x32 (websites), plus lazyload-video and lazyload-iframe-video. Notably loading=\"lazy\" appears 0 times in the markup, so image deferral is entirely JS-owned - the grid renders nothing without script."
+    },
+    {
+      "name": "hover-to-play video",
+      "basis": "inferred",
+      "evidence": "data-controller=\"video-hover\" on the home page; only 1 <video> element in the served markup, so the media is injected by script."
+    },
+    {
+      "name": "infinite scroll",
+      "basis": "inferred",
+      "evidence": "data-controller=\"infinite-scroll\" x1 on /websites/. No <a rel=\"next\"> and no numbered pager was found in the markup, so pagination appears to be scroll-driven with no static fallback. (The string \"Infinite Scroll\" also appears as a filter tag label - a separate thing.)"
+    },
+    {
+      "name": "carousels",
+      "basis": "inferred",
+      "evidence": "data-controller=\"swiper\" x3 on home; CSS .slider-cards--half-3/--half-4 set --card-width 490px/390px and .slider-assets .swiper-slide."
+    },
+    {
+      "name": "marquee promo strip",
+      "basis": "inferred",
+      "evidence": "data-controller=\"header-marquee\"; CSS --marquee-bg:#222, --marquee-color:#fff. Text captured: \"The Creative Pass Watch all courses for just $12/month\"."
+    },
+    {
+      "name": "outbound click counting",
+      "basis": "inferred",
+      "evidence": "data-controller=\"visit-count\" x31 with click->visit-count#count, and data-controller=\"banner-click\" with click->banner-click#track; body carries data-page-viewed with a JSON event payload."
+    },
+    {
+      "name": "smooth scrolling",
+      "basis": "inferred",
+      "evidence": "html{scroll-behavior:smooth} in the stylesheet. There is no @media (prefers-reduced-motion) anywhere in the sheet, so this is unconditional."
+    },
+    {
+      "name": "scroll-driven animation",
+      "basis": "inferred",
+      "evidence": "NOT present in CSS: 0 animation-timeline declarations, 0 view-transition rules. Any scroll effect would come from the JS bundles, which were not fetched."
+    },
+    {
+      "name": "copy button",
+      "basis": "inferred",
+      "evidence": "NOT present. No clipboard, copy-to or navigator.clipboard hooks in the served markup of either page."
+    }
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": "HTTP 200 on both pages from curl with a desktop Chrome user-agent; no bot challenge, no cookie wall in the response body. Both pages were fully saved. Everything above is read from the saved HTML and from CSS bytes the pages themselves carried - nothing was rendered, no computed style was read, and no JS bundle was fetched or executed. Key caveats: (1) There are ZERO external stylesheets - not one <link rel=\"stylesheet\"> on either page. The entire design system arrives as inline <style>, a 159,301-byte block that is byte-identical on both pages, plus four smaller blocks (15,392 / 2,333 / 1,891 / 161 bytes). The 1,891-byte block is also duplicated across pages. So the full sheet is re-sent on every navigation and counts against every page load; the stylesheets array above lists the saved inline blocks, not remote files. (2) Text-to-HTML ratio is very low - 1.4% and 1.3% - but this is not a JS-rendered shell: 4,796 and 8,016 visible characters were delivered, the 53 site cards and all 401 filter options are in the served markup, and the weight is the inlined CSS plus per-card data attributes. Status is \"fetched\", not \"js-rendered\". (3) The images are not: 0 loading=\"lazy\" and only 1 <img>-bearing <picture>, because thumbnails are injected by the lazyload-image controller. A no-JS visitor gets the text and the filter links but not the grid imagery. (4) Counts of CSS declarations are de-duplicated by block hash (the twice-served 159KB block is counted once), so they describe the sheet, not the transferred bytes. (5) Occurrence counts are declaration counts, not applied-style counts - specificity and cascade were not resolved, so a value declared often is not necessarily the value a reader sees. (6) The two ratio tables under headingScale are derived arithmetic over measured clamp() endpoints, not values read from any element. (7) No font file, image, script or other asset was downloaded; only the two HTML documents live under raw/, which is gitignored.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. The gallery has no reading column; interface, grid and chrome values recorded instead."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pageMeasured": "https://www.awwwards.com/websites/",
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles.",
+    "thisPageHasNoReadingColumn": {
+      "finding": "The gallery holds no running text. Its largest paragraph block is a 149-character filter description in div.breadcrumb-filters__more, laid across the full 1336px content width at 14px — 218 characters per line. There is no prose measure to record.",
+      "consequence": "Typography values below describe interface text and card labels. This reference contributes grid, chrome, filter and card values to the study, not a reading measure."
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "interfaceText": {
+        "containerClass": "breadcrumb-filters__more",
+        "containerWidthPx": 1336,
+        "paragraphContentWidthPx": 1336,
+        "fontSizePx": "14px",
+        "lineHeight": "21px",
+        "lineHeightRatio": 1.5,
+        "fontFamily": "Inter Tight",
+        "fullStack": "\"Inter Tight\"",
+        "fontWeight": "300",
+        "fontWeightNote": "Interface copy is set at weight 300 — light, at 14px.",
+        "letterSpacing": "normal",
+        "color": "rgb(34, 34, 34)",
+        "backgroundColor": "rgb(248, 248, 248)",
+        "backgroundFrom": "body",
+        "avgGlyphWidthPx": 6.14,
+        "charactersPerLine": 218,
+        "paragraphMarginBottom": "14px"
+      },
+      "contrast": {
+        "interfaceTextVsBackground": 14.98,
+        "pair": "rgb(34, 34, 34) on rgb(248, 248, 248)",
+        "passesAA": true,
+        "passesAAA": true,
+        "note": "Near-black on a very light warm-neutral grey rather than pure white — an off-white ground, like Quanta's cream but cooler."
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "18.2px",
+          "family": "Inter Tight",
+          "color": "rgb(34, 34, 34)",
+          "marginTop": "0px",
+          "marginBottom": "0px"
+        },
+        "h2": null,
+        "h3": {
+          "fontSize": "15px",
+          "fontWeight": "600",
+          "lineHeight": "15px",
+          "family": "Inter Tight",
+          "color": "rgb(34, 34, 34)"
+        },
+        "flatScale": "The h1 is 14px — the same size as interface copy, and 1px SMALLER than the h3 (15px). There is no display type on this page at all: the whole document runs between 14px and 15px, and the visual hierarchy is carried by the images, not by type size.",
+        "ratio_h1_body": 1,
+        "noH2": "No rendered non-empty h2 exists on the page."
+      },
+      "grid": {
+        "cardGrid": {
+          "columns": "432px 432px 432px",
+          "gap": "30px 20px",
+          "containerWidthPx": 1336,
+          "note": "Three equal 432px cards with a 20px column gap and a 30px row gap — the row gap is 1.5x the column gap."
+        },
+        "secondaryGrid": {
+          "columns": "248px 248px 248px 248px 248px",
+          "gap": "24px",
+          "containerWidthPx": 1336
+        },
+        "shellGrid": {
+          "columns": "304.891px 1031.11px",
+          "containerWidthPx": 1336,
+          "note": "A two-pane shell: a ~305px rail beside a ~1031px main area."
+        },
+        "contentWidthPx": 1336,
+        "gutterPx": 52,
+        "gutterNote": "1440 viewport minus a 1336px content width leaves 52px per side."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "relative",
+        "headerHeightPx": 54,
+        "headerBackground": "rgba(0, 0, 0, 0)",
+        "filterBar": {
+          "class": "nav-filters",
+          "widthPx": 1336,
+          "heightPx": 54,
+          "y": 122,
+          "wrapperHeightPx": 132
+        },
+        "stickyOrFixedCount": 4,
+        "stickyOrFixed": [
+          "div.header-main__overlay 2880x1800 fixed at z -1 — a double-viewport layer behind everything",
+          "div.nav-filters__overlay 1440x900 fixed at z 3 — the closed filter panel",
+          "div.cookies-popup 400x172 fixed at z 10",
+          "div.grecaptcha-badge 256x60 fixed"
+        ],
+        "documentScrolls": true,
+        "note": "At 1440px the 54px header is position: relative — it scrolls away. Only overlays and the cookie popup are fixed."
+      },
+      "search": {
+        "inputPresentAtLoad": true,
+        "renderedWidthPx": 449.49,
+        "placeholder": "Search by Websites",
+        "kbdHints": [],
+        "note": "A 449px input rendered in the page — the widest search field measured in this set. No keyboard shortcut is advertised."
+      },
+      "toc": null,
+      "pageWeight": {
+        "docScrollHeightPx": 5322,
+        "screensOfScroll": 5.91,
+        "innerTextLength": 2090,
+        "htmlLength": 609044,
+        "textToHtmlRatio": 0,
+        "note": "2,090 characters of text in 609 KB of markup — the page is images and interface, essentially not text."
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "interfaceText": {
+        "containerWidthPx": 343,
+        "paragraphContentWidthPx": 343,
+        "fontSizePx": "14px",
+        "lineHeight": "21px",
+        "lineHeightRatio": 1.5,
+        "fontWeight": "300",
+        "avgGlyphWidthPx": 6.14,
+        "charactersPerLine": 56,
+        "color": "rgb(34, 34, 34)"
+      },
+      "typeScaleChangesAtMobile": false,
+      "typeScaleNote": "Nothing moves: interface copy 14px/21px, h1 14px/18.2px and h3 15px/15px are identical at 1440px and 375px. The flat 14-15px scale is the same at both widths.",
+      "grid": {
+        "cardGrid": {
+          "columns": "343px",
+          "gap": "30px 20px",
+          "note": "Three columns collapse to one full-width 343px card; the declared gap values are unchanged, only the column count differs."
+        },
+        "secondaryGrid": {
+          "columns": "164px 164px",
+          "gap": "15px",
+          "desktopWas": "five 248px columns at 24px",
+          "note": "The secondary grid drops to two columns and tightens its gap from 24px to 15px."
+        },
+        "contentWidthPx": 343,
+        "gutterPx": 16
+      },
+      "chrome": {
+        "header": {
+          "position": "sticky",
+          "top": 0,
+          "heightPx": 54,
+          "desktopWas": "relative",
+          "note": "The header becomes sticky at mobile — the reverse of the usual pattern, where a desktop sticky bar is dropped on small screens. Its 54px height is unchanged."
+        },
+        "filterBar": {
+          "widthPx": 343,
+          "heightPx": 150,
+          "position": "relative",
+          "overflowX": "visible",
+          "desktopWas": "1336x54",
+          "note": "The filter row nearly triples in height (54px to 150px): it wraps onto three lines rather than scrolling horizontally — overflow-x is visible, not auto."
+        },
+        "offCanvasNav": {
+          "class": "nav-header-main",
+          "widthPx": 375,
+          "heightPx": 758,
+          "position": "fixed",
+          "top": "54px",
+          "note": "A full-width fixed nav panel sits under the header, holding three 375x54 full-width links."
+        },
+        "stickyOrFixedCount": 4
+      },
+      "search": {
+        "inputVisible": true,
+        "widthPx": 232.5,
+        "placeholder": "Search by Websites",
+        "note": "The field stays visible at 375px rather than collapsing behind a control."
+      },
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 11613,
+      "docScrollHeightNote": "11,613px at mobile against 5,322px at desktop — the single-column card stack more than doubles the page height."
+    },
+    "consent": {
+      "banner": "div.cookies-popup.is-show — 400x172 fixed at z 10 on desktop, 375x152 at mobile",
+      "controlsFound": [
+        "one link: 'Cookies Policy'"
+      ],
+      "actionTaken": "None. The popup exposes no accept, reject or manage button among its buttons, links and role=button elements — only a policy link — so there was nothing to decline. Nothing was accepted and no control was clicked.",
+      "impactOnMeasurement": "The popup sits at y 1178 on desktop and y 660 at mobile and did not overlap any measured box."
+    },
+    "inferred": {
+      "nextData": false,
+      "react": false,
+      "jquery": false,
+      "svelte": false,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollama": false,
+      "gsap": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "lazyLoadedImages": 0,
+      "lazyLoadNote": "63 <img> elements and zero with loading=\"lazy\" — for an image gallery this means either eager loading or a scripted loader; no native lazy-loading attribute is used.",
+      "hoverPreviewMarkerElements": 162,
+      "hoverPreviewNote": "162 elements match [data-tooltip] or a tooltip/popover class — by far the highest count in this set, consistent with a card grid built around hover states. Presence only; no hover was performed.",
+      "detailsElements": 0,
+      "dialogElements": 0,
+      "imgElements": 63,
+      "videoElements": 0,
+      "canvasElements": 0,
+      "cssCustomPropertiesOnRoot": 98,
+      "colorSchemeDeclared": "normal",
+      "stylesheetCount": 5,
+      "scriptCount": 25,
+      "htmlAttributes": [
+        "lang=en"
+      ],
+      "classNaming": "Readable BEM throughout (nav-filters__container, breadcrumb-filters__more, header-main__overlay, cookies-popup is-show) — authored component CSS, no utility framework and no hashed atoms."
+    }
+  }
+}

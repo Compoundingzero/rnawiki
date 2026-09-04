@@ -1,0 +1,52 @@
+{
+  "pages": 22703,
+  "batches": 91,
+  "presentByField": {
+    "target": 2454,
+    "mechanismClass": 2529,
+    "highestPhase": 11522,
+    "whyStopped": 1817,
+    "sponsor": 4757,
+    "patentStatus": 0,
+    "everDosedInHumans": 22703,
+    "relatedOnTarget": 2169
+  },
+  "stateByField": {
+    "target": {
+      "not-applicable": 3969,
+      "present": 2454,
+      "absent": 16280
+    },
+    "mechanismClass": {
+      "not-applicable": 3969,
+      "present": 2529,
+      "absent": 16205
+    },
+    "highestPhase": {
+      "absent": 11181,
+      "present": 11522
+    },
+    "whyStopped": {
+      "absent": 20886,
+      "present": 1817
+    },
+    "sponsor": {
+      "absent": 17946,
+      "present": 4757
+    },
+    "patentStatus": {
+      "not-applicable": 22670,
+      "absent": 33
+    },
+    "everDosedInHumans": {
+      "present": 22703
+    },
+    "relatedOnTarget": {
+      "not-applicable": 3969,
+      "present": 2169,
+      "absent": 16565
+    }
+  },
+  "requests": 0,
+  "issues": []
+}

@@ -1,0 +1,25 @@
+{
+ "pages": 4558,
+ "positional": {
+  "count": 4558,
+  "median": 0.249326,
+  "mean": 0.293427,
+  "p90": 0.42,
+  "max": 0.983533,
+  "above_0_20": 3927,
+  "above_0_30": 1275
+ },
+ "lexical": {
+  "count": 4558,
+  "median": 0.460357,
+  "mean": 0.474975,
+  "p90": 0.636364,
+  "max": 0.990361,
+  "above_0_20": 4557,
+  "above_0_30": 4266
+ },
+ "sharedWordShareMedian": 0.17319,
+ "lexicalAbove_0_40": 3172,
+ "foldSizes": null,
+ "keptPerFold": null
+}

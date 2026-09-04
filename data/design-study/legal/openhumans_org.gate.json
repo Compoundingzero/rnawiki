@@ -1,0 +1,60 @@
+{
+  "key": "openhumans.org",
+  "track": "A2",
+  "dir": "openhumans_org",
+  "checkedAt": "2026-09-03T14:40:45.314Z",
+  "indexUrl": "https://www.openhumans.org/",
+  "contentUrl": "https://www.openhumans.org/explore-share/",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.openhumans.org/robots.txt",
+    "httpStatus": 404,
+    "savedTo": null,
+    "indexPath": "/",
+    "contentPath": "/explore-share/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "robots.txt returned HTTP 404; no rules exist, so nothing is disallowed / robots.txt returned HTTP 404; no rules exist, so nothing is disallowed"
+  },
+  "terms": {
+    "url": "https://www.openhumans.org/terms/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/openhumans_org.terms.html",
+    "textSavedTo": "data/design-study/legal/openhumans_org.terms.txt",
+    "textChars": 10629,
+    "candidatesTried": [
+      {
+        "url": "https://www.openhumans.org/terms/",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "reproducing, distributing, and creating derivative works of your content.",
+      "any licenses you may have granted to others.",
+      "Our service is protected by copyright, trademark, and other intellectual",
+      "license to use the software we provide for your own personal,",
+      "This license lets you use Open Humans solely as",
+      "For some content, alternative licenses or public domain dedications may",
+      "Open Humans complies with the Digital Millennium Copyright Act.",
+      "(\"AAA\") under the Commercial Arbitration Rules and"
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": false,
+    "url": "https://www.openhumans.org/api-docs/",
+    "licence": "public domain dedications may",
+    "note": "every permitted API probe failed: https://www.openhumans.org/api-docs/"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /explore-share/; no terms clause matched a prohibition pattern across 8 relevant excerpts."
+  },
+  "notes": [
+    "API probe https://www.openhumans.org/api-docs/ -> 404."
+  ]
+}

@@ -1,0 +1,784 @@
+{
+  "site": "experiment.com",
+  "track": "A2",
+  "viewedAt": "2026-09-03T18:35:48.412628Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-09.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-tile-04.png",
+    "content-1440-tile-05.png",
+    "content-1440-tile-06.png",
+    "content-1440-tile-07.png",
+    "content-1440-tile-08.png",
+    "content-1440-tile-09.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-18.png",
+    "content-375-tile-01.png",
+    "content-375-tile-02.png",
+    "content-375-tile-06.png",
+    "content-375-scroll-00.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Below the fold the h2 section headings share one size, one weight and one colour, so a reader cannot tell an evidence section from a personal note; most carry a small grey pictogram, each a different glyph, and About This Project carries none.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png",
+        "content-1440-tile-05.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "About This Project, Ask the Scientists, Budget, Endorsed by, Project Timeline, Meet the Team, Lab Notes and Additional Information all render at one size, weight and colour; all but About This Project carry a small grey pictogram (pie chart, rosette, flag, document, question mark). The DOM outline lists them all as h2, and lists the eight timeline event labels as h2 as well, although those render smaller and lighter than body prose (see V3).",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The home page repeats one three-part unit (teal all-caps eyebrow, serif headline, grey subtitle) at least four times, so it reads as one tier rather than a hierarchy.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "HELPING MAKE IDEAS REAL SINCE 2010, THE EXPERIMENT PROMISE, POWERFUL TOOLS TO HELP YOU GROW and WHAT OUR COMMUNITY SAYS all use the identical eyebrow/headline/subtitle stack.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "eye-lands",
+      "claim": "Desktop home: the eye lands on the display headline, not on content; the search field is small grey-on-dark in the header, inline with the wordmark, and carries far less weight than the headline and the two centred buttons.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "White serif 'Fund curiosity & fuel scientific discovery' centred on a near-black starfield; search input labelled 'Search Projects, Topics & Lab Notes' sits inline with the wordmark at small size in grey on dark; projects are in a carousel below the fold. Where the field falls in a reader's actual order is not something a still capture can settle.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "Mobile home: the search field is absent from the first screen entirely; the header is a hamburger and the wordmark.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "At 375 px the header shows only a three-line menu icon and the experiment wordmark; the headline and the green Start a project button follow. No input field is visible.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "Desktop project page: the title and the money compete and the money wins; $2,320 is the largest, heaviest element on the page, and no methodological prose appears on the first screen at all.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "$2,320 is set larger and heavier than any word of the h1, above a teal progress bar and the 52% Funded / $4,520 Goal / 17 Days Left row. The h1 is itself the research question; the first screen ends at the Overview | Methods | Lab Notes (2) | Discussion (4) row.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "Mobile project page: a decorative hero image lands first and the teal progress bar is the first data the reader meets.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "Stacked order at 375 px is hero photograph, full-bleed progress bar, title, then a compressed row reading $2,320 pledged | 52% funded | 17 days left.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "density",
+      "claim": "The project page is very low density for its length: the right 40 percent of the reading area is empty on most screens.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Page is 7,227 px tall at 1440 px; prose column ends near x=870 and nothing occupies x=870-1440 for About, goals, Endorsed by, Lab Notes or Additional Information. Manifest DOM sample records 8,395 visible characters against 69,067 of markup (0.1215).",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio",
+        "innerTextLength",
+        "outerHtmlLength"
+      ]
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The Budget block is the one dense screen and the most structured, but its two columns are not row-aligned and their item labels differ: prose justification on the left, colour-keyed donut legend with right-aligned amounts on the right, no table rules.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png",
+        "content-375-tile-06.png"
+      ],
+      "evidence": "Legend rows read Prolific participants' reward disbursements $3,000, Prolific Platform Fee $1,000, Experiment platform fee (8%) $320, Payment processing (estimated 5%) $200; the left column's paragraphs are Participant Rewards ($3,000), Prolific Platform Fee ($1,000), Experiment Fees ($320) and Total ($4,520). The two lists neither match in wording nor sit on the same lines, which is how the inconsistency in V1 survives.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "Lists are cards, and the cards are thin: two Lab Notes take a band of their own to carry a title, a date and three counts each, and the backers band carries one row of cartoon avatars - twelve of them, under a heading reading 13 Backers.",
+      "captures": [
+        "content-1440-tile-07.png",
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "Each Lab Note card carries only a title, a date and three counts; the Project Backers band renders twelve cartoon avatars in a single row beneath the count row.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "The home page's summary statistics band is laid over a dark photograph at contrast so low the digits barely resolve; it is not the page's only numeric element, so the low contrast is a choice made for that band alone.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-08.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "'1,400 Projects Funded', '49%', '25,000 Labnotes' set in grey over the starfield image and hard to read in the capture, while the grant carousel further down sets $59,130 Funding Awarded and $51,470 Funding Awarded legibly in white over photographs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent on uniform vertical gaps between sections and on an unused right margin, so it says 'a section ended' but never 'this matters more'; the break is a hairline rule plus roughly 150-170 px of space, not space alone.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "A hairline rule with about 150-170 px of clearance - roughly a sixth of a 900 px viewport, not the third of a screen it feels like - recurs at the same size after About This Project, after the Budget prose, after the endorsement and after Additional Information.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "Small-scale spacing inside blocks is tight and well judged, in contrast to the undifferentiated large scale.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "Endorsement quote sits close to its thin teal left rule; endorser name/role/institution stack with no gaps; timeline date and label are a tight pair with generous space between pairs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "Section identity is carried by a full-width grey background band rather than by space, and only once on the page.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "Meet the Team sits on a light grey band running the full page width; no other body section has a tint.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "Nothing persists on a 7,227 px page: at 50 and 90 percent scroll the header, search, funding panel and primary button are all gone.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Both scrolled views show bare content on white with no chrome at the top edge. The manifest lists four sticky/fixed elements: two zero-height divs, the reCAPTCHA badge and a 1 px iframe.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "The one wayfinding device, a tab row with counts, scrolls away on desktop and does not exist at 375 px.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Desktop shows Overview | Methods | Lab Notes (2) | Discussion (4) under the hero; the 375 px capture goes straight from 'How does this work?' to 'About This Project'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds for the first two-thirds then breaks twice, at Meet the Team and at Lab Notes.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-06.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Heading/prose/gap/hairline repeats until a three-column photo-credentials-biography arrangement appears, then a card grid appears; neither layout recurs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "The end of the page is a sales close, not a summary.",
+      "captures": [
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "A dark slate band headed SEE YOUR SCIENTIFIC IMPACT with a Fund This Project button and a mock academic paper carrying a teal 'YOUR NAME HERE' arrow pointing at the author line, above a four-column dark footer.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "At 375 px the footer's navigation groups collapse to headings with no visible links.",
+      "captures": [
+        "index-375-tile-18.png"
+      ],
+      "evidence": "DISCOVER, START and ABOUT appear as all-caps labels with nothing beneath them, above a newsletter email field and Sign Up button.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "imagery",
+      "claim": "Project images decorate rather than inform, and both Lab Note cards reuse the same hero image so two distinct updates look identical.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Hero is a stock illustration of a donkey and an elephant flanking a flag; the two Lab Note thumbnails are visibly the same image.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "The budget donut is the only data graphic in the body of the record, the funding panel's progress bar aside, and it is largely redundant with the legend beside it; at 375 px the amounts and their justifications separate onto different screens.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-04.png",
+        "content-375-tile-05.png",
+        "content-375-tile-06.png"
+      ],
+      "evidence": "Donut repeats four values already right-aligned in the legend and summed in prose; the funding panel higher up carries a separate progress bar; at 375 px the $3,000 legend row sits on one screen and its justification paragraph on the next.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "imagery",
+      "claim": "The timeline diagram communicates sequence clearly but not duration: the dots sit at a uniform pitch regardless of the interval between dates.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Vertical rule with evenly pitched dots, date in small bold caps, event label in grey beneath, and a Show more events control on the final grey dot; the rendered dates AUG 05, AUG 21, SEP 09, OCT 04 and NOV 04 2026 are 16, 19, 25 and 31 days apart and are drawn at identical spacing.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "Faces are load-bearing for trust rather than information, and a generated cartoon face substitutes where no photograph exists.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "Researcher and endorser portraits, twelve cartoon backer avatars, two executive-director headshots on the home page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "defers-or-competes",
+      "claim": "The design competes with the content, consistently in the direction of the pledge.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "$2,320 outweighs the h1; the teal Back This Project button is the largest saturated element above the fold (the small Psychology and Social Science chips are saturated too) and it repeats at the page foot; the study's actual research question sits in ordinary body text below all of it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "defers-or-competes",
+      "claim": "Where it defers it defers well: the Ask the Scientists section is plain questions answered in unadorned prose, with links anchored on the exact claim phrase rather than gathered into a bare source list.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "Three question headings with body paragraphs and teal inline links reading '28%, a historic low', '45% of Americans now identify as independents', 'algorithmic systems optimized for engagement rather than journalistic norms'. No pull quotes or callouts. Where those links go cannot be checked from a capture; the anchoring is the observable part.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "information-design",
+      "claim": "The timeline gives a scheduled date the same standing as a completed one, so a projection reads as a record.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "AUG 05 2026 IRB Approval, AUG 21 2026 Project Launched, SEP 09 2026 Project fully funded, OCT 04 2026 Data Collection Complete and NOV 04 2026 Data Analysis Complete all carry the same date/label typography and a filled dot; the dots differ only by a decorative green-to-teal gradient down the rule, and the collapsed trailing dot is grey, so the colour tracks position rather than status. The funding panel on the same page reads 52% Funded with 17 Days Left.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "information-design",
+      "claim": "The chip vocabulary mixes institution, geography and discipline at equal standing, none of them an evidence signal, and the whole row is dropped at 375 px.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Grey outline chips 'Liberty University' and 'Omaha, Nebraska' beside filled chips 'Psychology' and 'Social Science' on desktop; no chips at all in the 375 px capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "information-design",
+      "claim": "Evidence quality is signalled by a person rather than by method, with no stated scope, independence or date.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Endorsed by' carries one sentence, 'I am really excited for the research in this project', attributed to a professor at Liberty University, the same institution as the researcher, with a rosette pictogram in the heading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "information-design",
+      "claim": "Methodological facts that would signal quality are present in prose and, apart from a dated IRB Approval timeline row, never surfaced as fields, so no two projects can be compared on them.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "Sample size (1,000 U.S. adults), recruitment platform (Prolific), analysis method (structural equation modeling) and review status (formal defence before a university committee) appear only inside paragraphs. Ethics approval is the one exception, appearing as the dated timeline row 'AUG 05 2026 IRB Approval' - a date and a label, but not a comparable field.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "The metadata rows that exist count engagement and money, not evidence; there is no sample count, replication marker, confidence statement, version, licence, DOI or registry identifier anywhere in the captures.",
+      "captures": [
+        "content-1440-tile-07.png",
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Lab Note cards show comment/like/view triples (1/1/10 and 0/2/15); the backers band shows 13 Backers | 52% Funded | $2,320 Total Donations | $178.46 Average Donation in the same numeric style as the funding panel.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "All content is user-contributed and nothing marks it as such: personal motivation and research argument share one typographic treatment under equally weighted headings.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-07.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Additional Information opens 'As a doctoral candidate, I chose this topic because I noticed a pattern...' and the biography ends 'Much love and thanks!', both set exactly as the methodology prose. No self-reported label, platform annotation or verification mark appears.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "What a reader gets beyond a registry: stated reasoning in the researcher's words, a line-by-line justification of the budget, a named human with a career history, a running log of work done, and a public discussion channel with a count.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-07.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Lab Notes titled 'Survey draft completed.' (September 1, 2026) and 'IRB approved! Moving forward!' (August 29, 2026); Discussion (4) tab; full first-person biography naming degrees and prior roles.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "Two attributed testimonials on the home page end with the same 28-word sentence, word for word: two voices, one text.",
+      "captures": [
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "Quotes credited to Paul Himmelstein (Homeworld Collective) and Daniel Gluesenkamp, PhD (California Institute for Biodiversity) both close with 'Experiment brings a unique mix, supporting innovative, and even outsider science, providing access to a great network beyond the typical gatekeepers, and they truly combine rigor with fun.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "No placeholder or 'not available' line appears anywhere on the page, and a collapsed list states no count of what it hides.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "The endorsement block shows one endorser with no count or 'none other' line; the collapsed timeline tail is a Show more events button rather than a stated number of hidden events, and the DOM outline lists eight timeline events against five rendered, so three are hidden behind a control that never says so. The blank right column is not an empty state but the layout consequence described in F36.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "The one thing the design will not leave empty is a face: missing photographs are filled with generated cartoon avatars, and the row does not hold to its own count.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Twelve coloured cartoon heads, several visibly generated rather than photographic, sit under a heading row reading 13 Backers.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "absence",
+      "claim": "The largest empty region is a layout consequence, not an empty state, and reads as a missing rail.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Once the funding panel ends, the right 40 percent of the viewport stays white for the remainder of the page with no replacement content or margin treatment.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "baseline",
+      "claim": "No consent overlay is visible in any capture despite the manifest recording banners left standing; the listed controls are ordinary navigation and footer links.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png",
+        "content-1440-tile-08.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "bannerActions names controls ABOUT, How It Works, FAQ, Press, Mission, Terms, Privacy Policy, Cookie Policy - all of which appear as normal footer and nav links in the captures. Nothing overlays the page in the images viewed.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "bannerActions"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "The site is not longevity-relevant in subject matter and is useful only as an information-design case for uncertain, community-sourced records.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The captured project is a communication-studies survey about news trust; the home carousel shows mycology, amphibian chytrid fungus, firefly genomics and a waterproofing-materials project.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "baseline",
+      "claim": "The manifest's own capture list for index-375 skips tiles 13 to 16, so roughly 3,250 px of the 14,536 px mobile home page was never captured and is not described here.",
+      "captures": [
+        "index-375-full.png"
+      ],
+      "evidence": "Manifest captures array lists index-375 tiles 01-12 then 17 and 18; the full-page image is 14,536 px tall at 375 px wide.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "borrow",
+      "claim": "Borrow the Budget block's pairing of a value with its written justification for structured data blocks, but bind each value and its justification into one row: as built the two columns are unaligned and use different item labels. Secondary to stripe.com/docs, not a replacement.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "Four budget items each pair an amount with a paragraph naming what it buys and why the sample size requires it; because the columns do not align row for row, a prose figure contradicts the itemization beside it without anything catching it (V1).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "borrow",
+      "claim": "Borrow the plain-question heading pattern for the dossier reading column: ordinary questions as headings, answered in unadorned prose with source links anchored on the exact claim phrase.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "'What is the context of this research?', 'What is the significance of this project?', 'What are the goals of the project?' with body text and inline teal links set on the claim phrase itself, no callouts or pull quotes.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "borrow",
+      "claim": "Borrow counts inside section-navigation labels for the dossier contents rail - Lab Notes (2), Discussion (4) - as markup, not prose. Do not borrow the placement.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Counts sit in the tab labels on desktop; the tab row scrolls away and is absent at 375 px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F43",
+      "topic": "borrow",
+      "claim": "Borrow the confirmation that a page can carry no placeholder or 'not available' line at all and still not look broken.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "No 'no data' or placeholder line appears anywhere in the captures. Whether the page also omits whole sections for lack of data cannot be seen from a capture, so only the first half of this is a borrow.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "avoid",
+      "claim": "Avoid a timeline that does not distinguish a completed event from a scheduled one, and one whose spacing does not represent elapsed time - the strongest negative lesson here, and it maps onto our mechanism stages and trial timelines.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "A project at 52% funded with 17 days left displays 'Project fully funded' on SEP 09 2026 as a dated dot differing from 'Project Launched' only by a step in a decorative gradient, and the five dots are evenly spaced although the intervals are 16, 19, 25 and 31 days.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "avoid",
+      "claim": "Avoid money, popularity or engagement as the heaviest element on an evidence page; no engagement count belongs in a metadata row.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "$2,320 outweighs the h1; comment/like/view triples are the only metadata on a Lab Note record.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Avoid a single flat heading weight across sections of unlike evidentiary status.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Budget, Endorsed by and Additional Information all sit at identical h2 weight with identical grey pictograms.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F47",
+      "topic": "avoid",
+      "claim": "Avoid setting contributor prose identically to editorial or reviewed content with no provenance mark.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "First-person motivation ending 'Much love and thanks!' shares typeface, size, colour and column with the methodology description.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F48",
+      "topic": "avoid",
+      "claim": "Avoid a trust mark whose scope is undefined; if a reviewer is shown, show what exact claim they signed.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Endorsed by' = a rosette pictogram, one enthusiastic sentence and a same-institution portrait, with no scope, date or independence statement.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F49",
+      "topic": "avoid",
+      "claim": "Avoid dropping provenance chips and section navigation at narrow widths; provenance is not decoration to be shed.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Institution and location chips and the Overview/Methods/Lab Notes/Discussion row are present at 1440 px and absent at 375 px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F50",
+      "topic": "avoid",
+      "claim": "Avoid duplicated body text across two attributed records - the exact positional-overlap failure our uniqueness constraint exists to prevent, visible on a live page.",
+      "captures": [
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "Two named endorsers from two organisations share one identical 28-word closing sentence.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F51",
+      "topic": "avoid",
+      "claim": "Avoid reusing one image across every record on a page; if there is no distinct image, show none.",
+      "captures": [
+        "content-1440-tile-07.png"
+      ],
+      "evidence": "Both Lab Note cards carry the same hero thumbnail, making two distinct updates look like a duplicate.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F52",
+      "topic": "avoid",
+      "claim": "Avoid a long page with nothing sticky; this page is the counter-example that justifies our dossier contents rail.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "7,227 px of page with no persistent header, rail, progress indicator or primary action at 50 and 90 percent depth.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F53",
+      "topic": "avoid",
+      "claim": "Avoid anything from this home page near the frozen search bar: it puts a display headline and two buttons above the fold, demotes search into the header, and removes it entirely at 375 px.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Desktop header search is small grey-on-dark inline with the wordmark; the 375 px header shows only a hamburger and wordmark.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "In the Budget block a figure stated in prose contradicts the itemization printed beside it, and nothing in the layout catches it.",
+      "evidence": "The prose reads 'Experiment Fees ($320): Covers Experiment's 8% platform fee and payment processing', while the legend on the same screen itemizes 'Experiment platform fee (8%) $320' and 'Payment processing (estimated 5%) $200' as separate lines; the stated total of $4,520 equals 3,000 + 1,000 + 320 + 200, so the prose sentence understates by $200. The two columns are not row-aligned, so the number and the sentence describing it never appear side by side.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png",
+        "content-375-tile-06.png"
+      ],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The same claims are stated twice at different provenance: the unsourced summary and the sourced answer, with nothing marking which is canonical.",
+      "evidence": "About This Project states 'Trust in U.S. news media has dropped to 28%, while 45% of Americans now identify as independents' and the 1,000-adult survey with no links at all; the first Ask the Scientists answer restates the same figures with inline source links on '28%, a historic low' and '45% of Americans now identify as independents'. A reader meets the same two numbers twice, sourced in one place and unsourced in the other, in identical body type.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "captures": [
+        "content-1440-tile-02.png"
+      ],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V3",
+      "topic": "hierarchy",
+      "claim": "Every timeline event label is marked up as an h2, level with Budget and Meet the Team, but rendered smaller and lighter than body prose - semantic level and visual level point in opposite directions.",
+      "evidence": "The DOM heading outline lists IRB Approval, Project Launched, Project fully funded, Data Collection Complete, Data Analysis Complete, Results Chapter Finalized, Successful Dissertation Defense and Study ready for publication as h2, the same level as Budget and Meet the Team; on screen each is small grey text beside a dot, quieter than the paragraph next to it, and three of the eight are not rendered at all.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png"
+      ],
+      "addedBy": "verifier"
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "experiment.com is an A2 community site and appears in no row of the Phase 2 table, which is correct and should stand. Its manifest DOM sample measures 0.1215 text-to-HTML on the content page, which disqualifies it as a governing reference on the same ground that dropped atlasobscura.com, and its home page (display headline and two buttons above the fold, search demoted into the header at 1440 px and absent at 375 px) is structurally incompatible with the frozen home search bar. It weakens no existing assignment. It makes one positive argument for a surface it does not hold, and verification narrowed it: the structured data blocks row lists stripe.com/docs as governing with no secondary, and the Budget block is a rendered example of the one thing Stripe's field blocks do not show - a value beside its written justification. Verification found that Experiment's own version does not bind them: the columns are not row-aligned, the item labels differ, and a prose figure contradicts the itemization printed beside it (V1). So what is worth recording as a candidate secondary influence is the pairing with a row-binding correction, subject to Felix's decision and without displacing the governing reference. It also supplies the clearest negative constraint yet observed for the citation evolution map and any dossier timeline: F26, a timeline that gives a projection the same mark as a record, compounded by uniform dot spacing that does not represent elapsed time (F22). That should be carried into Phase 3 as a named anti-pattern, not as a reference."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Budget block pairing of a value with its written justification for structured data blocks - but bind each value and its justification into one row; Experiment's own columns are unaligned and a prose figure contradicts the itemization beside it (secondary to stripe.com/docs).",
+      "Plain-question headings answered in unadorned prose with source links anchored on the exact claim phrase, for the dossier reading column.",
+      "Counts inside section-navigation labels (Lab Notes (2), Discussion (4)) as markup for the dossier contents rail - the pattern, not the placement.",
+      "Confirmation that a page can carry no placeholder or 'not available' line at all and still not look broken."
+    ],
+    "avoid": [
+      "A timeline that gives a scheduled date the same mark as a completed event, or whose spacing does not represent elapsed time.",
+      "Money, popularity or engagement counts as the heaviest element or the only metadata row on an evidence record.",
+      "One flat heading weight across sections of unlike evidentiary status.",
+      "Contributor prose set identically to editorial or reviewed content with no provenance mark.",
+      "A trust mark ('Endorsed by') whose scope, independence and date are undefined.",
+      "Dropping provenance chips and section navigation at narrow widths.",
+      "Duplicated body text across two attributed records.",
+      "Reusing one image across every record on a page.",
+      "A 7,000 px page with nothing sticky - no header, rail or progress.",
+      "Anything from this home page pattern near the frozen search bar.",
+      "A value stated in prose that disagrees with the itemization printed beside it, in a layout that never puts them on the same row.",
+      "Stating the same claim twice, sourced in one place and unsourced in the other, with nothing marking which is canonical."
+    ]
+  },
+  "notLongevityRelevant": true,
+  "bannersStanding": [
+    "manifest bannerActions records a banner left standing on index-1440, index-375, content-1440 and content-375, but no consent overlay is visible in any capture viewed; the controls it names (ABOUT, How It Works, FAQ, About, Press, Mission, Terms, Privacy Policy, Cookie Policy) are ordinary navigation and footer links"
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-03T19:00:45.087Z",
+    "confirmed": 31,
+    "qualified": 21,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Verifier viewed the eleven required captures plus index-1440-tile-08.png and content-375-tile-05.png, which two claims needed.",
+      "F1 refuted and removed: content-1440-tile-01.png does not show the three-step hierarchy it describes. $2,320 is larger and heavier than the h1, and 'By Randall Vanadisson' is bold near-black rather than grey. F6, by the same viewer on the same capture, says the opposite; F6 (rewritten) now carries the first screen alone.",
+      "Timeline: the dots are not identical marks. They step through a decorative green-to-teal gradient and the collapsed trailing dot is grey. The gradient tracks position on the rule, not status, so the substance of F26 and F44 holds and the wording was corrected in both.",
+      "Timeline spacing: F22's 'duration at a glance' is refuted in substance and the claim was rewritten. Dot pitch is uniform while the intervals are 16, 19, 25 and 31 days, so the diagram encodes order only. This matters directly for any RNAWiki dossier timeline.",
+      "Backer count: the avatar row renders twelve avatars under a heading reading 13 Backers. F10, F23 and F35 all said thirteen; all three were corrected, and in F35 the mismatch became part of the finding.",
+      "F11's 'only numeric element' is false: index-1440-tile-08.png sets $59,130 and $51,470 legibly. The low-contrast observation survives and was narrowed to the summary statistics band.",
+      "F12's 'roughly a third of a screen' overstates the gap: the section break is a hairline rule plus about 150-170 px, roughly a sixth of a 900 px viewport, and the rule was omitted from the original description.",
+      "Claims resting on what a capture cannot show were narrowed rather than kept: link destinations (F25, F41), reading order ordinals (F4, F6), and sections supposedly omitted for lack of data (F34, F43).",
+      "The Phase 2 argument was amended, not reversed: the Budget block stays a candidate secondary influence for structured data blocks, but only with the row-binding correction that V1 makes necessary."
+    ]
+  }
+}

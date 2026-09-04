@@ -1,0 +1,74 @@
+{
+  "key": "sphere.diybio.org",
+  "track": "A2",
+  "dir": "sphere_diybio_org",
+  "checkedAt": "2026-09-03T14:35:50.178Z",
+  "indexUrl": "https://sphere.diybio.org/",
+  "contentUrl": "https://sphere.diybio.org/",
+  "reachable": true,
+  "robots": {
+    "url": "https://sphere.diybio.org/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/sphere_diybio_org.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://sphere.diybio.org/sitemap.xml"
+    ],
+    "note": "no group applies to our user agent or to *; nothing is disallowed / no group applies to our user agent or to *; nothing is disallowed"
+  },
+  "terms": {
+    "url": "https://sphere.diybio.org/about/terms-of-use/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/sphere_diybio_org.terms.html",
+    "textSavedTo": "data/design-study/legal/sphere_diybio_org.terms.txt",
+    "textChars": 2670,
+    "candidatesTried": [
+      {
+        "url": "https://sphere.diybio.org/terms",
+        "status": 404
+      },
+      {
+        "url": "https://diybio.org/terms",
+        "status": 404
+      },
+      {
+        "url": "https://sphere.diybio.org/about/terms-of-use",
+        "status": 200,
+        "note": "discovered on the index page"
+      }
+    ],
+    "foundViaIndexLink": true,
+    "relevantExcerpts": [
+      "Terms of Use and Copyrights",
+      "However, it is important to note that the DIYbiosphere has two levels of copyright:",
+      "Repository the raw files at: DIYbiosphere/sphere are shared under the MIT License .",
+      "You can: use, modify, sublicense, distribute original or derivative works for ANY purpose; personal, commercial, etc.",
+      "You must: include the copyright and license notice in all copies or substantial uses of the work.",
+      "Website the rendered webpages at: sphere.diybio.org , are dedicated to the Public Domain with CC0 License .",
+      "You can: use, modify, distribute original or derivative works for ANY purpose; personal, commercial, etc.",
+      "You can review the Contributor Terms modeled as a “Contributor License Agreement” to understand in legal terms the authorship rights granted and/or waived from your Contributions.",
+      "Logos follow their own respective Intellectual Property Rights (whether copyrights or trademarks) and cannot be made available to the public domain under the CC0 dedication.",
+      "Except where otherwise noted, content on this site is dedicated to the public domain"
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": "MIT License",
+    "note": "no documented API URL was discoverable from the terms or index page already fetched; not probed"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /; no terms clause matched a prohibition pattern across 10 relevant excerpts."
+  },
+  "notes": [
+    "No terms candidate returned usable text, so the index page was fetched once and the first anchor whose text matches /terms|conditions|legal/i was followed: \"Terms of Use\" -> https://sphere.diybio.org/about/terms-of-use.",
+    "sphere.diybio.org index exposed no project/group anchor in server-rendered markup; content page stays the index."
+  ]
+}

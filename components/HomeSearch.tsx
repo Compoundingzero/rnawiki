@@ -1,20 +1,35 @@
 'use client'
 
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Search, X } from 'lucide-react'
 import { api, searchHitHref, type SearchHit } from '@/lib/api-client'
+import {
+  mergeSearchResults,
+  searchResultFieldCountLabel,
+  searchResultTierLabel,
+  type CorpusSearchResultRow,
+  type SearchResultRow,
+} from '@/lib/corpus/search-results'
 import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 import { useOptionalApp } from './app-context'
 
 const DEBOUNCE_MS = 180
 
+/** What picking a row navigates to. A corpus row carries no programme binding, and says so. */
+export type SearchPickTarget = Pick<SearchHit, 'slug' | 'summaryBinding'>
+
 export interface DrugSearch {
   query: string
   setQuery: (next: string) => void
+  /** Written medicine records, in the order the search returned them. */
   results: SearchHit[]
+  /** Corpus records with no written record. Empty unless the caller asked for them. */
+  corpusResults: CorpusSearchResultRow[]
+  /** The one list a reader sees and arrows through: `results` and `corpusResults`, merged. */
+  rows: SearchResultRow[]
   /** True while a request for the current query is in flight and nothing has come back yet. */
   isSearching: boolean
   isOpen: boolean
@@ -29,10 +44,24 @@ export interface DrugSearch {
   optionId: (index: number) => string
 }
 
+export interface DrugSearchOptions {
+  /**
+   * Include corpus records that have no written record in `rows`. Off by default, so a caller
+   * that renders `results` alone keeps exactly the list, order and keyboard positions it had.
+   */
+  includeCorpusResults?: boolean
+}
+
 /** Shared server-backed combobox behavior for the home page and site header. */
-export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): DrugSearch {
+export function useDrugSearch(
+  onPick: (hit: SearchPickTarget) => void,
+  limit = 10,
+  options: DrugSearchOptions = {},
+): DrugSearch {
+  const includeCorpusResults = options.includeCorpusResults ?? false
   const [query, setQueryState] = useState('')
   const [results, setResults] = useState<SearchHit[]>([])
+  const [corpusResults, setCorpusResults] = useState<CorpusSearchResultRow[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
@@ -52,6 +81,7 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
     const trimmed = query.trim()
     if (trimmed.length === 0) {
       setResults([])
+      setCorpusResults([])
       setIsSearching(false)
       return
     }
@@ -66,12 +96,14 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
         .then((data) => {
           if (controller.signal.aborted) return
           setResults(data.results)
+          setCorpusResults(data.corpusResults ?? [])
           setActiveIndex(-1)
           setIsSearching(false)
         })
         .catch(() => {
           if (controller.signal.aborted) return
           setResults([])
+          setCorpusResults([])
           setIsSearching(false)
         })
     }, DEBOUNCE_MS)
@@ -116,10 +148,18 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
   const reset = useCallback(() => {
     setQueryState('')
     setResults([])
+    setCorpusResults([])
     setIsSearching(false)
     setIsOpen(false)
     setActiveIndex(-1)
   }, [])
+
+  // The rendered list. Keyboard positions, option ids and Enter all read this one array, so a
+  // reader arrows through exactly the rows on screen.
+  const rows = useMemo(
+    () => mergeSearchResults(results, includeCorpusResults ? corpusResults : []),
+    [results, corpusResults, includeCorpusResults],
+  )
 
   const onKeyDown = useCallback(
     (event: ReactKeyboardEvent) => {
@@ -131,7 +171,7 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
       if (event.key === 'ArrowDown') {
         event.preventDefault()
         setIsOpen(true)
-        setActiveIndex(Math.min(activeIndex + 1, results.length - 1))
+        setActiveIndex(Math.min(activeIndex + 1, rows.length - 1))
         return
       }
       if (event.key === 'ArrowUp') {
@@ -142,19 +182,21 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
       if (event.key === 'Enter') {
         // No row highlighted means "open the best match", which is what pressing Enter in a search
         // box is understood to do.
-        const hit = activeIndex >= 0 ? results[activeIndex] : results[0]
-        if (!hit) return
+        const row = activeIndex >= 0 ? rows[activeIndex] : rows[0]
+        if (!row) return
         event.preventDefault()
-        onPickRef.current(hit)
+        onPickRef.current(row.hit)
       }
     },
-    [activeIndex, results],
+    [activeIndex, rows],
   )
 
   return {
     query,
     setQuery,
     results,
+    corpusResults,
+    rows,
     isSearching,
     isOpen,
     open,
@@ -179,10 +221,14 @@ export function HomeSearch({ popular }: HomeSearchProps) {
   const restoredInitialFocusRef = useRef(false)
   const sessionActionLocked = useOptionalApp()?.sessionActionLocked ?? false
 
-  const search = useDrugSearch((hit) => {
-    search.reset()
-    router.push(searchHitHref(hit))
-  })
+  const search = useDrugSearch(
+    (hit) => {
+      search.reset()
+      router.push(searchHitHref(hit))
+    },
+    10,
+    { includeCorpusResults: true },
+  )
 
   const showDropdown = search.isOpen && search.query.trim().length > 0
 
@@ -265,56 +311,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
           aria-label="Search results"
           className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.14)] overflow-hidden divide-y divide-black/[0.04] max-h-80 overflow-y-auto z-50 text-left animate-fade-in animate-slide-down"
         >
-          {search.results.length === 0 ? (
-            <div className="p-6 text-xs sm:text-sm text-[#6E6E73] text-center">
-              {search.isSearching ? (
-                <>Searching…</>
-              ) : (
-                <>No matching medicines found for &quot;{search.query}&quot;.</>
-              )}
-            </div>
-          ) : (
-            search.results.map((drug, index) => (
-              <Link
-                key={drug.slug}
-                href={searchHitHref(drug)}
-                id={search.optionId(index)}
-                role="option"
-                aria-selected={index === search.activeIndex}
-                onMouseEnter={() => search.setActiveIndex(index)}
-                onClick={search.reset}
-                className={`w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2 ${
-                  index === search.activeIndex ? 'bg-[#F5F5F7]' : ''
-                }`}
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0071E3] transition">
-                      {drug.name}
-                    </span>
-                    {drug.tradeName && (
-                      <span className="text-xs text-[#6E6E73]">({drug.tradeName})</span>
-                    )}
-                    <span className="text-[10px] font-semibold bg-blue-50 text-[#0071E3] px-2 py-0.5 rounded-full shrink-0">
-                      {publicMedicineTypeLabel(drug.modality)}
-                    </span>
-                  </div>
-                  {drug.summaryContext && (
-                    <div className="mt-0.5 truncate text-[9px] font-semibold uppercase tracking-wide text-[#6E6E73]">
-                      {drug.summaryContext}
-                    </div>
-                  )}
-                  <div className="mt-0.5 truncate text-xs text-[#6E6E73]">
-                    {drug.patientFriendlyIndication}
-                  </div>
-                </div>
-                <ArrowRight
-                  className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
-                  aria-hidden="true"
-                />
-              </Link>
-            ))
-          )}
+          <HomeSearchResults search={search} />
         </div>
       )}
 
@@ -338,5 +335,145 @@ export function HomeSearch({ popular }: HomeSearchProps) {
         </div>
       )}
     </div>
+  )
+}
+
+/**
+ * The dropdown's result list.
+ *
+ * One list, two kinds of row. A written medicine record prints what it always printed — name,
+ * trade name, kind of medicine, the programme context that supplied its summary, and what it is
+ * used for. A corpus record has no written record behind it, so it prints only what the corpus
+ * recorded: the name, which set of records it belongs to, and, for a Development record, how many
+ * of its fields hold a value. Nothing is filled in for it.
+ */
+export function HomeSearchResults({ search }: { search: DrugSearch }) {
+  if (search.rows.length === 0) {
+    return (
+      <div className="p-6 text-xs sm:text-sm text-[#6E6E73] text-center">
+        {search.isSearching ? (
+          <>Searching…</>
+        ) : (
+          <>No matching medicines found for &quot;{search.query}&quot;.</>
+        )}
+      </div>
+    )
+  }
+
+  return (
+    <>
+      {search.rows.map((row, index) =>
+        row.kind === 'legacy' ? (
+          <HomeSearchMedicineRow
+            key={row.slug}
+            drug={row.hit}
+            row={row}
+            index={index}
+            search={search}
+          />
+        ) : (
+          <HomeSearchCorpusRow key={row.slug} row={row} index={index} search={search} />
+        ),
+      )}
+    </>
+  )
+}
+
+const ROW_CLASS =
+  'w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2'
+
+function TierNote({ row }: { row: SearchResultRow }) {
+  const fields = searchResultFieldCountLabel(row)
+  return (
+    <span className="text-[10px] font-semibold text-[#6E6E73] shrink-0">
+      {searchResultTierLabel(row.tier)}
+      {fields ? ` · ${fields}` : ''}
+    </span>
+  )
+}
+
+function HomeSearchMedicineRow({
+  drug,
+  row,
+  index,
+  search,
+}: {
+  drug: SearchHit
+  row: SearchResultRow
+  index: number
+  search: DrugSearch
+}) {
+  return (
+    <Link
+      href={searchHitHref(drug)}
+      id={search.optionId(index)}
+      role="option"
+      aria-selected={index === search.activeIndex}
+      onMouseEnter={() => search.setActiveIndex(index)}
+      onClick={search.reset}
+      className={`${ROW_CLASS} ${index === search.activeIndex ? 'bg-[#F5F5F7]' : ''}`}
+    >
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0071E3] transition">
+            {drug.name}
+          </span>
+          {drug.tradeName && <span className="text-xs text-[#6E6E73]">({drug.tradeName})</span>}
+          <span className="text-[10px] font-semibold bg-blue-50 text-[#0071E3] px-2 py-0.5 rounded-full shrink-0">
+            {publicMedicineTypeLabel(drug.modality)}
+          </span>
+          <TierNote row={row} />
+        </div>
+        {drug.summaryContext && (
+          <div className="mt-0.5 truncate text-[9px] font-semibold uppercase tracking-wide text-[#6E6E73]">
+            {drug.summaryContext}
+          </div>
+        )}
+        <div className="mt-0.5 truncate text-xs text-[#6E6E73]">
+          {drug.patientFriendlyIndication}
+        </div>
+      </div>
+      <ArrowRight
+        className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
+        aria-hidden="true"
+      />
+    </Link>
+  )
+}
+
+function HomeSearchCorpusRow({
+  row,
+  index,
+  search,
+}: {
+  row: Extract<SearchResultRow, { kind: 'corpus' }>
+  index: number
+  search: DrugSearch
+}) {
+  return (
+    <Link
+      href={`/d/${encodeURIComponent(row.slug)}`}
+      // A Development record is not indexed and keeps few inbound links (R6).
+      rel={row.tier === 3 ? 'nofollow' : undefined}
+      id={search.optionId(index)}
+      role="option"
+      aria-selected={index === search.activeIndex}
+      onMouseEnter={() => search.setActiveIndex(index)}
+      onClick={search.reset}
+      className={`${ROW_CLASS} ${index === search.activeIndex ? 'bg-[#F5F5F7]' : ''}`}
+    >
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0071E3] transition">
+            {row.hit.name}
+          </span>
+          <TierNote row={row} />
+        </div>
+      </div>
+      <ArrowRight
+        className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
+        aria-hidden="true"
+      />
+    </Link>
   )
 }

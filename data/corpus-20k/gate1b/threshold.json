@@ -1,0 +1,12 @@
+{
+ "threshold": 7,
+ "indexed": 2267,
+ "belowByTier": {
+  "1": 449,
+  "2": 1846
+ },
+ "aboveByTier": {
+  "1": 1030,
+  "2": 1237
+ }
+}

@@ -40,7 +40,18 @@ const inclisiran = {
   hasDiscrepancy: false,
 } satisfies DrugDossier
 
-describe('homepage featured medicine answer', () => {
+const root = process.cwd()
+const homePage = readFileSync(join(root, 'app/page.tsx'), 'utf8')
+const homeView = readFileSync(join(root, 'components/HomeView.tsx'), 'utf8')
+const homeSearch = readFileSync(join(root, 'components/HomeSearch.tsx'), 'utf8')
+
+/**
+ * The mapper itself is still the only way a medicine purpose may be built from a dossier, so its
+ * behaviour is tested whether or not a surface currently calls it. The home page stopped rendering
+ * a featured medicine card in the Phase 4 build; the assertions about the page below therefore
+ * describe what home now holds — the frozen search bar, then the corpus entry.
+ */
+describe('featured medicine answer mapper', () => {
   it('passes through the canonical dossier purpose and programme scope without rewriting them', () => {
     const usedFor = 'Used or studied for adults with artery disease and high LDL cholesterol.'
 
@@ -96,18 +107,94 @@ describe('homepage featured medicine answer', () => {
       usedFor: 'Used with diet and exercise to lower LDL, often called “bad” cholesterol.',
     })
   })
+})
 
-  it('loads the default programme through the dossier builder and renders the requested labels', () => {
-    const root = process.cwd()
-    const page = readFileSync(join(root, 'app/page.tsx'), 'utf8')
-    const home = readFileSync(join(root, 'components/HomeView.tsx'), 'utf8')
+describe('the frozen home search bar', () => {
+  it('is the same component, with the same props, in the same place', () => {
+    expect(homeSearch).toContain('export interface HomeSearchProps {\n  popular: SearchHit[]\n}')
+    expect(homeSearch).toContain('export function HomeSearch({ popular }: HomeSearchProps) {')
+    expect(homeView).toContain("import { HomeSearch } from './HomeSearch'")
+    expect(homeView).toContain('<HomeSearch popular={popular} />')
 
-    expect(page).toContain('getProgrammeEvidenceByMedicineSlug(featured.id, null)')
-    expect(page).toContain('homeFeaturedMedicineAnswer')
-    expect(page).not.toContain('getPublicMedicineProjections')
-    expect(home).toContain('featuredAnswer.usedFor')
-    expect(home).toContain('In 10 seconds')
-    expect(home).toContain('What is it for?')
-    expect(home).not.toContain('featuredCard.summary.text')
+    // The bar sits in the headline section, and nothing is inserted between the two.
+    const headline = homeView.indexOf('Understand any drug')
+    const bar = homeView.indexOf('<HomeSearch popular={popular} />')
+    expect(headline).toBeGreaterThan(-1)
+    expect(bar).toBeGreaterThan(headline)
+    expect(homeView.slice(headline, bar)).not.toContain('<section')
+  })
+
+  it('keeps the input element itself unchanged', () => {
+    const start = homeSearch.indexOf('        <input')
+    const end = homeSearch.indexOf('/>', homeSearch.indexOf('aria-activedescendant'))
+    expect(start).toBeGreaterThan(-1)
+    expect(end).toBeGreaterThan(start)
+    const input = homeSearch.slice(start, end + 2)
+
+    for (const line of [
+      'ref={inputRef}',
+      'type="text"',
+      'autoFocus',
+      'placeholder="Search medicine, condition, gene, or protein..."',
+      'value={search.query}',
+      'onChange={(e) => search.setQuery(e.target.value)}',
+      'onFocus={search.open}',
+      'onKeyDown={search.onKeyDown}',
+      'aria-label="Search by medicine, condition, gene, or protein"',
+      'role="combobox"',
+      'aria-expanded={showDropdown}',
+      'aria-controls={search.listboxId}',
+      'aria-autocomplete="list"',
+      'aria-activedescendant={',
+    ]) {
+      expect(input, line).toContain(line)
+    }
+
+    // The popular-search row below the bar is part of the frozen bar and still reads from `popular`.
+    expect(homeSearch).toContain('{popular.length > 0 && (')
+    expect(homeSearch).toContain('popular.slice(0, 4).map')
+  })
+})
+
+describe('the home page below the frozen search bar', () => {
+  it('carries the organism-ladder legend and the five facet indexes, in that order', () => {
+    expect(homeView).toContain(
+      "import { OrganismLadderLegend } from './corpus/OrganismLadderLegend'",
+    )
+    expect(homeView).toContain("import { FacetNav } from '@/app/browse/facet-view'")
+
+    const bar = homeView.indexOf('<HomeSearch popular={popular} />')
+    const ladder = homeView.indexOf('<OrganismLadderLegend')
+    const facets = homeView.indexOf('<FacetNav />')
+    expect(ladder).toBeGreaterThan(bar)
+    expect(facets).toBeGreaterThan(ladder)
+    expect(homeView).toContain('Organism ladder')
+  })
+
+  it('builds no featured medicine card and reads no medicine projection for the home page', () => {
+    for (const forbidden of [
+      'homeFeaturedMedicineAnswer',
+      'homeFeaturedAnswerFromDossier',
+      'getProgrammeEvidenceByMedicineSlug',
+      'getPublicMedicineProjections',
+    ]) {
+      expect(homePage, forbidden).not.toContain(forbidden)
+    }
+    for (const forbidden of [
+      'featuredAnswer',
+      'featuredCard',
+      'toPublicMedicineCardView',
+      'oneSentenceVerdict',
+      'What is it for?',
+    ]) {
+      expect(homeView, forbidden).not.toContain(forbidden)
+    }
+  })
+
+  it('passes the home page only the counts and lists it renders', () => {
+    expect(homePage).toContain('<HomeView')
+    expect(homePage).toContain('popular={popular}')
+    expect(homePage).toContain('corpusStats={{')
+    expect(homePage).toContain('contributorSpotlight={contributorSpotlight}')
   })
 })

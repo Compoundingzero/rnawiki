@@ -425,6 +425,7 @@ export interface MedicineDossierViewModel {
   inventoryResolution?: DrugDossier['inventoryResolution']
   /** Ranked registrations from the stored registry pass; absent when none matched. */
   trialRegistrations?: DrugDossier['trialRegistrations']
+  trialResults?: DrugDossier['trialResults']
 }
 
 export interface PublishedProgrammeViewInput {
@@ -1224,6 +1225,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     completionAssessment: drug.completionAssessment,
     inventoryResolution: drug.inventoryResolution,
     trialRegistrations: drug.trialRegistrations,
+    trialResults: drug.trialResults,
   }
 }
 
@@ -1293,5 +1295,6 @@ export function normalizedMedicineDossierView(
     completionAssessment: drug.completionAssessment,
     inventoryResolution: drug.inventoryResolution,
     trialRegistrations: drug.trialRegistrations,
+    trialResults: drug.trialResults,
   }
 }

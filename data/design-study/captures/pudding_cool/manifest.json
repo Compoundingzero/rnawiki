@@ -1,0 +1,1095 @@
+{
+  "site": "pudding.cool",
+  "track": "A1",
+  "urls": {
+    "index": "https://pudding.cool/",
+    "content": "https://pudding.cool/2026/07/essential-words"
+  },
+  "capturedAt": "2026-09-03T15:33:50.925Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page.",
+    "content page is taller than the 16384 px capture cap (desktop 33581 px, mobile 36047 px); the -full image stops at the cap, and the tiles continue past it but only under the head-and-tail rule recorded on the last tile"
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in div.about (controls: Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy); banner stands in the captures",
+    "index-375: left: no permitted refusal control in div.about (controls: Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in div.about (controls: Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy); banner stands in the captures",
+    "content-375: left: no permitted refusal control in div.about (controls: Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://pudding.cool/2026/07/essential-words",
+    "collectedAt": "2026-09-03T15:33:35.406Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0201,
+    "title": "How the Words We Teach English Language Learners Changed",
+    "innerTextLength": 18131,
+    "outerHtmlLength": 903371,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "From Goat to Despite"
+      },
+      {
+        "tag": "h2",
+        "text": "THE EXPANDING WORLD"
+      },
+      {
+        "tag": "h3",
+        "text": "The New List Devotes More Space to Abstract Concepts, and Less to the Physical W"
+      },
+      {
+        "tag": "h3",
+        "text": "The Vocabulary Moved Outward"
+      },
+      {
+        "tag": "h2",
+        "text": "HARDER TO PICTURE"
+      },
+      {
+        "tag": "h3",
+        "text": "More Abstract Words, Fewer Concrete Ones"
+      },
+      {
+        "tag": "h3",
+        "text": "The Concrete End Hollowed Out. Something Murkier Filled In"
+      },
+      {
+        "tag": "h2",
+        "text": "HOW MUCH, HOW OFTEN, HOW CERTAIN"
+      },
+      {
+        "tag": "h3",
+        "text": "Nouns Still Dominate Both Lists, Verbs Remained Steady, and Adjectives Grew Mode"
+      },
+      {
+        "tag": "h2",
+        "text": "FURTHER"
+      },
+      {
+        "tag": "h2",
+        "text": "Methods & Notes"
+      }
+    ],
+    "headingCount": 11,
+    "stickyOrFixedCount": 9,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "intro-stage svelte-18aw0nf",
+        "position": "sticky",
+        "top": 4.3,
+        "height": 900
+      },
+      {
+        "tag": "div",
+        "class": "intro-legend-container svelte-18aw0nf",
+        "position": "sticky",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "aside",
+        "class": "explorer svelte-19wo2a1",
+        "position": "fixed",
+        "top": 0,
+        "height": 900
+      },
+      {
+        "tag": "button",
+        "class": "explorer-fab svelte-19wo2a1",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "semantics-stage chart-overlay-stage",
+        "position": "sticky",
+        "top": 6946.5,
+        "height": 900
+      },
+      {
+        "tag": "div",
+        "class": "chart-overlay-stage scope-arcs-stage svelte-18nfh01",
+        "position": "sticky",
+        "top": 12722.3,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "scope-arcs-legend-shell svelte-18nfh01",
+        "position": "sticky",
+        "top": 12722.3,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "chart-overlay-stage concr-bands-stage svelte-1xh2snz",
+        "position": "sticky",
+        "top": 22056.1,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "pos-tooltip svelte-1jfx12p",
+        "position": "fixed",
+        "top": 2,
+        "height": 11.2
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 1,
+    "scriptsUnreadable": 1,
+    "searchAffordances": {
+      "count": 0,
+      "firstDescriptors": []
+    },
+    "imgCount": 2,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 2
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 241)",
+    "bodyColor": "rgb(87, 87, 87)",
+    "canvasCount": 0,
+    "svgCount": 9
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 6764,
+      "sha256": "5052c55e89e64b157d95a330fb5b626481ac9cefc14518b30272cd233c7b5d00",
+      "capturedAt": "2026-09-03T15:33:25.208Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "95245e129e050654eefafc9c2a80374c9cf6e110c75bba8498ae9649c1309256",
+      "capturedAt": "2026-09-03T15:33:25.340Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "87b6fb9096b77f13ce2b704d63897bd92a8db77b636b5b782b8a534ce484afc3",
+      "capturedAt": "2026-09-03T15:33:25.464Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "df51bcd740be3d865f106e002c322e1f985c57caac21cafb7b104588aa1011bd",
+      "capturedAt": "2026-09-03T15:33:25.535Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "dd87d52a29c3c1a551da8be4e337be609accd5e9ef6c04835dff496508bd9ac9",
+      "capturedAt": "2026-09-03T15:33:25.608Z"
+    },
+    {
+      "file": "index-1440-tile-05.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3b09b8a93ac9f402fa873c03766ad6c38dc3fd35c149cd25ff38b8efed01e054",
+      "capturedAt": "2026-09-03T15:33:25.693Z"
+    },
+    {
+      "file": "index-1440-tile-06.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c3c4e114675479c7106cd1bb1778d3925de8f2f8fc979399e802fdbc4fcfbe38",
+      "capturedAt": "2026-09-03T15:33:25.766Z"
+    },
+    {
+      "file": "index-1440-tile-07.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "42c11b09a00594c3bc23301a90d1f4bc8b9eb4f78c4c44e17aed3da4a1a7d9b6",
+      "capturedAt": "2026-09-03T15:33:25.822Z"
+    },
+    {
+      "file": "index-1440-tile-08.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 464,
+      "sha256": "b804f7d681ad18b4407b80a145261380b0b84f7d178849c818960ce287818af4",
+      "capturedAt": "2026-09-03T15:33:25.892Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 16384,
+      "sha256": "efc1f16e84443e73a29874fe84644d4737d6891b1aa54cea921b0c3f2e4030a2",
+      "capturedAt": "2026-09-03T15:33:29.362Z",
+      "truncated": true,
+      "note": "document is 17200 px tall; this image is the top 16384 px, the tallest surface this tool asks Chromium to rasterize. The tiles continue below this point."
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "d682bc7f63f97da175a2f5c8bdeeeba1ee41fef119c13a0e563a299f846a09c8",
+      "capturedAt": "2026-09-03T15:33:29.423Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f0ed0baf89402df1954cbd9c514046b313360ed775dd38a7f3e0aa89ed5a9b6d",
+      "capturedAt": "2026-09-03T15:33:29.477Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "37751d66f44b229976d77f119051fd1a1c43050bcff7d6540c90931ad1df19a1",
+      "capturedAt": "2026-09-03T15:33:29.541Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "1063a3da19d847e789bcd7bffa792cc75a4a4e2ec6383c8110253dee325776c7",
+      "capturedAt": "2026-09-03T15:33:29.585Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a9f602d5aa2ff1a7617f0c162f989f4219556e5ab3bc3a4bd621419836702138",
+      "capturedAt": "2026-09-03T15:33:29.642Z"
+    },
+    {
+      "file": "index-375-tile-06.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "12a1a40c98da7c3e8ec5924f23256d1751b84a651f53dcd9222fbbb4bbb25867",
+      "capturedAt": "2026-09-03T15:33:29.686Z"
+    },
+    {
+      "file": "index-375-tile-07.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a5293b3ed83e9e18ff542bf4207e36a8b263073273231d587ce8b375febfbc70",
+      "capturedAt": "2026-09-03T15:33:29.728Z"
+    },
+    {
+      "file": "index-375-tile-08.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "466f3728683ce943a172270c91be5c09044fb082dcf00c3713472cc362407048",
+      "capturedAt": "2026-09-03T15:33:29.775Z"
+    },
+    {
+      "file": "index-375-tile-09.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "aac4b4b64738c3ffbd3c90fe85cbefdea581165797949f3223949cccb44ae93e",
+      "capturedAt": "2026-09-03T15:33:29.810Z"
+    },
+    {
+      "file": "index-375-tile-10.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3e72e89098ed2176afafb3901a24199fe4073262239985f5d9edbace073f5bfa",
+      "capturedAt": "2026-09-03T15:33:29.858Z"
+    },
+    {
+      "file": "index-375-tile-11.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "ab10f72b534f6eb14b5248a74b88a14505a39d3018fc89e0b8ab968217a23bab",
+      "capturedAt": "2026-09-03T15:33:29.895Z"
+    },
+    {
+      "file": "index-375-tile-12.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "992239ce8dffba21a9034dfa85cff9b4f89896eb372e0d97ca86391506ac680a",
+      "capturedAt": "2026-09-03T15:33:29.943Z"
+    },
+    {
+      "file": "index-375-tile-21.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 21,
+      "scrollY": 16240,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7f24c0a6b33e1c27863684a9594a292d7e4ae6cb6cb51d864abfe17b250df6c3",
+      "capturedAt": "2026-09-03T15:33:30.002Z"
+    },
+    {
+      "file": "index-375-tile-22.png",
+      "url": "https://pudding.cool/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 22,
+      "scrollY": 17052,
+      "widthPx": 375,
+      "heightPx": 148,
+      "sha256": "15e34a12b2e97026adb3589e4c3c215a01c7dd776a0143b701a9c320bead65ca",
+      "capturedAt": "2026-09-03T15:33:30.038Z",
+      "note": "8 tiles between 12 and 20 were not captured"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 16384,
+      "sha256": "e8e92757e41ec289ade3b5e279424ee4e707476d1cf31d20f32da8bf04112bb0",
+      "capturedAt": "2026-09-03T15:33:34.040Z",
+      "truncated": true,
+      "note": "document is 33581 px tall; this image is the top 16384 px, the tallest surface this tool asks Chromium to rasterize. The tiles continue below this point."
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7e246248541fd18903ecddfbd15db10aab3afad72207e72036b641c3fc4ab714",
+      "capturedAt": "2026-09-03T15:33:34.205Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3b53c58cb16f35f5abc23da92207ba16ed789f6db73d7f6ea36bb138c35750a2",
+      "capturedAt": "2026-09-03T15:33:34.299Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f82bb77698fa8c69697b15933a50f6a99815f2da79fc624b8274451c4762bb35",
+      "capturedAt": "2026-09-03T15:33:34.380Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f82bb77698fa8c69697b15933a50f6a99815f2da79fc624b8274451c4762bb35",
+      "capturedAt": "2026-09-03T15:33:34.475Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f82bb77698fa8c69697b15933a50f6a99815f2da79fc624b8274451c4762bb35",
+      "capturedAt": "2026-09-03T15:33:34.549Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7ea1f260592d5fba87587de7f6d02e225650e67fe290264d57eb7207c9ef182f",
+      "capturedAt": "2026-09-03T15:33:34.641Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c86e730cfab52473c5e3ec86228096108458d7ba2a851e503ba459b0601c2b1f",
+      "capturedAt": "2026-09-03T15:33:34.751Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "07aad99f70cc21197b83a46c831c632d5b010b2fe1b0939816cb94c8c9947132",
+      "capturedAt": "2026-09-03T15:33:34.852Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f82bb77698fa8c69697b15933a50f6a99815f2da79fc624b8274451c4762bb35",
+      "capturedAt": "2026-09-03T15:33:34.939Z"
+    },
+    {
+      "file": "content-1440-tile-10.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 8100,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b7d53f8af00aa17e6c671d5e4548ef67f93936e3503d224b7a25268c85b40bdc",
+      "capturedAt": "2026-09-03T15:33:35.023Z"
+    },
+    {
+      "file": "content-1440-tile-11.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 9000,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "cd88f11ed49646b7a46053e57a83c9e357a1838d9cb67e0a34b0e07b9bb70af6",
+      "capturedAt": "2026-09-03T15:33:35.107Z"
+    },
+    {
+      "file": "content-1440-tile-12.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 9900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c1ba7cb9fb5111cd022d93cdeb04eb11f42c9a386e4ad340bd2faa5275993bfc",
+      "capturedAt": "2026-09-03T15:33:35.190Z"
+    },
+    {
+      "file": "content-1440-tile-37.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 37,
+      "scrollY": 32400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "feb8f9be8fd47747b3295f4970871ad1bfc134524784f850fedb50b7fa54674d",
+      "capturedAt": "2026-09-03T15:33:35.291Z"
+    },
+    {
+      "file": "content-1440-tile-38.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 38,
+      "scrollY": 33300,
+      "widthPx": 1440,
+      "heightPx": 281,
+      "sha256": "c7d2aeb1b27ccb266abb912faa43737bcf6d285cc8bded2950029c1a6cd3a120",
+      "capturedAt": "2026-09-03T15:33:35.390Z",
+      "note": "24 tiles between 12 and 36 were not captured"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7e246248541fd18903ecddfbd15db10aab3afad72207e72036b641c3fc4ab714",
+      "capturedAt": "2026-09-03T15:33:36.980Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 16341,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ee4023f3f81e6f78234ee922ec27007396ac8e8ae5ab803cdffddb36ba7e3ebb",
+      "capturedAt": "2026-09-03T15:33:38.832Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 29413,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "8cff918fbb2ac08fc41ad37a76369dc058f66dc83590532b4e6ffaf86dcaea07",
+      "capturedAt": "2026-09-03T15:33:40.516Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 16384,
+      "sha256": "36e9e384ba8143c1d1b2d513f80c0c8aa95522f602e4941d9f6d0175d6ee9708",
+      "capturedAt": "2026-09-03T15:33:44.493Z",
+      "truncated": true,
+      "note": "document is 36047 px tall; this image is the top 16384 px, the tallest surface this tool asks Chromium to rasterize. The tiles continue below this point."
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f20e433d11e926b8f009f1d980899e6473b62cad44d2c661babb6a43186ad5e6",
+      "capturedAt": "2026-09-03T15:33:44.614Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "6a9909263f2cd1b2ebdaf651889a424aea1bd55c81ccb1eec75a0768823b6102",
+      "capturedAt": "2026-09-03T15:33:44.694Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "db9b50da88742460637d5f7e5d764efa56a3b06fceefe1dcd4e3d4508dd97242",
+      "capturedAt": "2026-09-03T15:33:44.790Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "35c12a3f2613bce799c2bcfb5dbccd22415e58df87dc0700914874794f330ca7",
+      "capturedAt": "2026-09-03T15:33:44.893Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "57504c90ea95bf66cb54eac08e13bf6a62a8cff83ceec0d89bddb27ad944e525",
+      "capturedAt": "2026-09-03T15:33:45.013Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "6f54fd1a6fde8947c61769865232d223ee7f4200c8df541abe94073888a5e727",
+      "capturedAt": "2026-09-03T15:33:45.113Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "cb0850ee2b2013eb62a1b71456119dceefa423197ac9e942007bfb14a9a4ee3b",
+      "capturedAt": "2026-09-03T15:33:45.212Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "43ecce66f265d170634a682bfe7492e9918cb919a4562510472b771b1962bf81",
+      "capturedAt": "2026-09-03T15:33:45.312Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "db9b50da88742460637d5f7e5d764efa56a3b06fceefe1dcd4e3d4508dd97242",
+      "capturedAt": "2026-09-03T15:33:45.390Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "6fbdde9b27a2fb57dc2ed3e623a3d5bf7a530a67bbb807c921f18d34636d3c5d",
+      "capturedAt": "2026-09-03T15:33:45.511Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5055121b2e3a36fba7be7dc75eb9afdfc978ce5c1b2d3525ea51a2ce9816af9c",
+      "capturedAt": "2026-09-03T15:33:45.610Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "68ed4375a36ea1e8b6dfa10ffec36ea89755c72c7e49a472bb6bcb242128ac50",
+      "capturedAt": "2026-09-03T15:33:45.709Z"
+    },
+    {
+      "file": "content-375-tile-44.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 44,
+      "scrollY": 34916,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "ae6e4bc024b55c455ba635a2ff3718b500a6e82704f3ec962862671af44d1c74",
+      "capturedAt": "2026-09-03T15:33:45.815Z"
+    },
+    {
+      "file": "content-375-tile-45.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 45,
+      "scrollY": 35728,
+      "widthPx": 375,
+      "heightPx": 319,
+      "sha256": "c082e6a4b7060934be0efc1a383d85d8336a5bc87c160d2fbb30a9665706de08",
+      "capturedAt": "2026-09-03T15:33:45.906Z",
+      "note": "31 tiles between 12 and 43 were not captured"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7c548daa2f498fc1a0ddf40a1119f89bbd8cd6df8506ae0a2db801a13a5488fc",
+      "capturedAt": "2026-09-03T15:33:47.476Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 17618,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "ad60ff5bd4d7c0625286f434244796bc81b91bcd7211848bca1b970c854a773a",
+      "capturedAt": "2026-09-03T15:33:49.298Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://pudding.cool/2026/07/essential-words",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 31712,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "06e06542274c71bde2ac30a9e69f6d8836e13e1f03e2da34564e93ee88a8ce14",
+      "capturedAt": "2026-09-03T15:33:50.924Z"
+    }
+  ]
+}

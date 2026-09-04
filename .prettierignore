@@ -26,3 +26,19 @@ scripts/seed-data/enriched-batch-30.ts
 # a reviewer that says nothing about the corpus. The Markdown copy is still scanned by
 # scripts/quality/slop-scan.mjs, which is the check that matters for it.
 docs/audits/semantic/
+# Local pytest artefact, not source and not committed.
+.pytest_cache/
+# Phase measurement and capture output, written wholesale by the corpus-20k, design-study,
+# trial-results and biohacker-pivot scripts: overlap runs, fold summaries, HTML audits, browser
+# checks, identity maps, captured third-party pages and their manifests, and the resume ledgers the
+# state modules rewrite on every batch. Same reason as data/agents/ and data/audits/ above — the
+# bytes are the measurement, a rewrite would land at the next run anyway, and reformatting them puts
+# a diff in front of a reviewer that says nothing about the corpus.
+data/biohacker-pivot/
+data/corpus-20k/
+data/design-study/
+data/trial-results/
+# Running logs, rewritten at the top on every batch and hand-wrapped at 100 columns. Their reader
+# check is scripts/quality/slop-scan.mjs, which reads the prose; realigning their tables would
+# rewrite files that the next batch rewrites again.
+docs/worklogs/

@@ -1,0 +1,702 @@
+{
+ "protocolSection": {
+  "identificationModule": {
+   "nctId": "NCT00001959",
+   "orgStudyIdInfo": {
+    "id": "000042"
+   },
+   "secondaryIdInfos": [
+    {
+     "id": "00-DK-0042"
+    }
+   ],
+   "organization": {
+    "fullName": "National Institutes of Health Clinical Center (CC)",
+    "class": "NIH"
+   },
+   "briefTitle": "Pirfenidone to Treat Kidney Disease (Focal Segmental Glomerulosclerosis)",
+   "officialTitle": "Pirfenidone in Focal Segmental Glomerulosclerosis:Phase II Study"
+  },
+  "statusModule": {
+   "statusVerifiedDate": "2012-04",
+   "overallStatus": "COMPLETED",
+   "expandedAccessInfo": {
+    "hasExpandedAccess": false
+   },
+   "startDateStruct": {
+    "date": "1999-12"
+   },
+   "primaryCompletionDateStruct": {
+    "date": "2008-10",
+    "type": "ACTUAL"
+   },
+   "completionDateStruct": {
+    "date": "2008-10",
+    "type": "ACTUAL"
+   },
+   "studyFirstSubmitDate": "2000-01-18",
+   "studyFirstSubmitQcDate": "2000-01-18",
+   "studyFirstPostDateStruct": {
+    "date": "2000-01-19",
+    "type": "ESTIMATED"
+   },
+   "resultsFirstSubmitDate": "2010-06-16",
+   "resultsFirstSubmitQcDate": "2012-04-25",
+   "resultsFirstPostDateStruct": {
+    "date": "2012-06-01",
+    "type": "ESTIMATED"
+   },
+   "lastUpdateSubmitDate": "2014-05-16",
+   "lastUpdatePostDateStruct": {
+    "date": "2014-05-26",
+    "type": "ESTIMATED"
+   }
+  },
+  "designModule": {
+   "studyType": "INTERVENTIONAL",
+   "phases": [
+    "PHASE2"
+   ],
+   "designInfo": {
+    "allocation": "NA",
+    "interventionModel": "SINGLE_GROUP",
+    "primaryPurpose": "TREATMENT",
+    "maskingInfo": {
+     "masking": "NONE"
+    }
+   },
+   "enrollmentInfo": {
+    "count": 21,
+    "type": "ACTUAL"
+   }
+  },
+  "armsInterventionsModule": {
+   "interventions": [
+    {
+     "type": "DRUG",
+     "name": "Pirfenidone",
+     "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+    }
+   ]
+  },
+  "referencesModule": {
+   "references": [
+    {
+     "pmid": "10203365",
+     "type": "BACKGROUND",
+     "citation": "Abbate M, Zoja C, Rottoli D, Corna D, Perico N, Bertani T, Remuzzi G. Antiproteinuric therapy while preventing the abnormal protein traffic in proximal tubule abrogates protein- and complement-dependent interstitial inflammation in experimental renal disease. J Am Soc Nephrol. 1999 Apr;10(4):804-13. doi: 10.1681/ASN.V104804."
+    },
+    {
+     "pmid": "9150474",
+     "type": "BACKGROUND",
+     "citation": "Bodi I, Kimmel PL, Abraham AA, Svetkey LP, Klotman PE, Kopp JB. Renal TGF-beta in HIV-associated kidney diseases. Kidney Int. 1997 May;51(5):1568-77. doi: 10.1038/ki.1997.215."
+    },
+    {
+     "pmid": "7935686",
+     "type": "BACKGROUND",
+     "citation": "Border WA, Noble NA. Transforming growth factor beta in tissue fibrosis. N Engl J Med. 1994 Nov 10;331(19):1286-92. doi: 10.1056/NEJM199411103311907. No abstract available."
+    }
+   ],
+   "seeAlsoLinks": [
+    {
+     "label": "NIH Clinical Center Detailed Web Page",
+     "url": "http://clinicalstudies.info.nih.gov/detail/B_2000-DK-0042.html"
+    }
+   ]
+  }
+ },
+ "resultsSection": {
+  "participantFlowModule": {
+   "recruitmentDetails": "21 adults patients were enrolled between 2000-2004 at the clinical center of NIH",
+   "groups": [
+    {
+     "id": "FG000",
+     "title": "Pirfenidone",
+     "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+    }
+   ],
+   "periods": [
+    {
+     "title": "Overall Study",
+     "milestones": [
+      {
+       "type": "STARTED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "21"
+        }
+       ]
+      },
+      {
+       "type": "COMPLETED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "18"
+        }
+       ]
+      },
+      {
+       "type": "NOT COMPLETED",
+       "achievements": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "3"
+        }
+       ]
+      }
+     ],
+     "dropWithdraws": [
+      {
+       "type": "newly diagnosed colon cancer",
+       "reasons": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "1"
+        }
+       ]
+      },
+      {
+       "type": "disabling sedation",
+       "reasons": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "1"
+        }
+       ]
+      },
+      {
+       "type": "non-compliance",
+       "reasons": [
+        {
+         "groupId": "FG000",
+         "numSubjects": "1"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "baselineCharacteristicsModule": {
+   "groups": [
+    {
+     "id": "BG000",
+     "title": "Pirfenidone",
+     "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+    }
+   ],
+   "denoms": [
+    {
+     "units": "Participants",
+     "counts": [
+      {
+       "groupId": "BG000",
+       "value": "18"
+      }
+     ]
+    }
+   ],
+   "measures": [
+    {
+     "title": "Age, Continuous",
+     "paramType": "MEAN",
+     "dispersionType": "STANDARD_DEVIATION",
+     "unitOfMeasure": "years",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "47",
+           "spread": "10"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Sex: Female, Male",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "Female",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "7"
+          }
+         ]
+        },
+        {
+         "title": "Male",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "11"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Race (NIH/OMB)",
+     "paramType": "COUNT_OF_PARTICIPANTS",
+     "unitOfMeasure": "Participants",
+     "classes": [
+      {
+       "categories": [
+        {
+         "title": "American Indian or Alaska Native",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Asian",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "2"
+          }
+         ]
+        },
+        {
+         "title": "Native Hawaiian or Other Pacific Islander",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Black or African American",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "8"
+          }
+         ]
+        },
+        {
+         "title": "White",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "8"
+          }
+         ]
+        },
+        {
+         "title": "More than one race",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          }
+         ]
+        },
+        {
+         "title": "Unknown or Not Reported",
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "0"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Region of Enrollment",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "participants",
+     "classes": [
+      {
+       "title": "United States",
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "18"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Baseline GFR",
+     "paramType": "MEAN",
+     "dispersionType": "STANDARD_DEVIATION",
+     "unitOfMeasure": "ml/min/1.73 m^2",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "26.0",
+           "spread": "9.4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Baseline period proteinuria",
+     "paramType": "MEDIAN",
+     "dispersionType": "INTER_QUARTILE_RANGE",
+     "unitOfMeasure": "g/d",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "3.2",
+           "lowerLimit": "1.6",
+           "upperLimit": "4.4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Decrease in GFR during baseline period",
+     "paramType": "MEDIAN",
+     "dispersionType": "INTER_QUARTILE_RANGE",
+     "unitOfMeasure": "ml/min/1.73 m^2",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "-0.61",
+           "lowerLimit": "-1.31",
+           "upperLimit": "-0.41"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Duration of angiotensin antagonist therapy before treatment",
+     "description": "2 patients did not receive angiotensin antagonist therapy during the baseline periods because of angioedema and hypotension.",
+     "paramType": "MEDIAN",
+     "dispersionType": "INTER_QUARTILE_RANGE",
+     "unitOfMeasure": "month",
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "BG000",
+           "value": "15",
+           "lowerLimit": "8.4",
+           "upperLimit": "33"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "outcomeMeasuresModule": {
+   "outcomeMeasures": [
+    {
+     "type": "PRIMARY",
+     "title": "Decrease in GFR During Treatment Period",
+     "populationDescription": "ITT",
+     "reportingStatus": "POSTED",
+     "paramType": "MEAN",
+     "dispersionType": "Inter-Quartile Range",
+     "unitOfMeasure": "ml/min/1.73 m2",
+     "timeFrame": "12 months from baseline",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Pirfenidone",
+       "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "18"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "-0.45",
+           "lowerLimit": "-0.78",
+           "upperLimit": "-0.16"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "analyses": [
+      {
+       "groupIds": [
+        "OG000"
+       ],
+       "groupDescription": "H0: GFR Decrease during baseline period and treatment period are same",
+       "testedNonInferiority": false,
+       "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+       "pValue": "<0.01",
+       "statisticalMethod": "Wilcoxon (Mann-Whitney)",
+       "ciPctValue": "95"
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Proteinuria After Treatment",
+     "reportingStatus": "POSTED",
+     "paramType": "MEDIAN",
+     "dispersionType": "Inter-Quartile Range",
+     "unitOfMeasure": "g/d",
+     "timeFrame": "12 months from baseline",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Pirfenidone",
+       "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "18"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "4.3",
+           "lowerLimit": "1.2",
+           "upperLimit": "6.7"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "analyses": [
+      {
+       "groupIds": [
+        "OG000"
+       ],
+       "groupDescription": "H0: Proteinuria during baseline and treatment periods are same",
+       "testedNonInferiority": false,
+       "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+       "pValue": "0.16",
+       "statisticalMethod": "Kruskal-Wallis",
+       "ciPctValue": "95"
+      }
+     ]
+    },
+    {
+     "type": "SECONDARY",
+     "title": "Proportion of Patients With Positive Change in GFR",
+     "reportingStatus": "POSTED",
+     "paramType": "NUMBER",
+     "unitOfMeasure": "participants",
+     "timeFrame": "12 months from baseline",
+     "groups": [
+      {
+       "id": "OG000",
+       "title": "Pirfenidone",
+       "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d."
+      }
+     ],
+     "denoms": [
+      {
+       "units": "Participants",
+       "counts": [
+        {
+         "groupId": "OG000",
+         "value": "18"
+        }
+       ]
+      }
+     ],
+     "classes": [
+      {
+       "categories": [
+        {
+         "measurements": [
+          {
+           "groupId": "OG000",
+           "value": "13"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "adverseEventsModule": {
+   "frequencyThreshold": "5",
+   "timeFrame": "60 months",
+   "description": "Include all adverse events either judged to be related to the study or unrelated to the study",
+   "eventGroups": [
+    {
+     "id": "EG000",
+     "title": "Pirfenidone",
+     "description": "During the study drug period of 12 months, patients will receive oral pirfenidone daily. For patients whose initial renal function is 50-80 ml/min as assessed by the MDRD equation, the initial pirfenidone dosage will be calculated at 40 mg/kg/d, with a maximum dose of 800 mg TID. For patients whose initial renal function is 30-50 ml/min, the initial dose will be 30 mg/kg/d. For patients whose initial renal function is between 15 and 30 ml/min, the initial dose will be 20 mg/kg/d.",
+     "seriousNumAffected": 3,
+     "seriousNumAtRisk": 21,
+     "otherNumAffected": 16,
+     "otherNumAtRisk": 21
+    }
+   ],
+   "seriousEvents": [
+    {
+     "term": "Death (unrelated to the trial)",
+     "organSystem": "Injury, poisoning and procedural complications",
+     "notes": "traumatic subdural hematoma",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 21
+      }
+     ]
+    },
+    {
+     "term": "Colon cancer (unrelated to the trial)",
+     "organSystem": "Gastrointestinal disorders",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 21
+      }
+     ]
+    },
+    {
+     "term": "elevated liver enzymes (judged possibly related to the trial)",
+     "organSystem": "Hepatobiliary disorders",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 1,
+       "numAffected": 1,
+       "numAtRisk": 21
+      }
+     ]
+    }
+   ],
+   "otherEvents": [
+    {
+     "term": "Gastrointestinal discomfort",
+     "organSystem": "Gastrointestinal disorders",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 8,
+       "numAffected": 8,
+       "numAtRisk": 21
+      }
+     ]
+    },
+    {
+     "term": "Sedation or fatigue",
+     "organSystem": "General disorders",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 6,
+       "numAffected": 6,
+       "numAtRisk": 21
+      }
+     ]
+    },
+    {
+     "term": "photosensitivity dermatitis",
+     "organSystem": "Skin and subcutaneous tissue disorders",
+     "stats": [
+      {
+       "groupId": "EG000",
+       "numEvents": 2,
+       "numAffected": 2,
+       "numAtRisk": 21
+      }
+     ]
+    }
+   ]
+  },
+  "moreInfoModule": {
+   "limitationsAndCaveats": {
+    "description": "No control group, measurement imprecision, results may not applicable to all patients with FSGS, needs histologic evidence to support our findings, Optimal dosage needs to be identified."
+   },
+   "certainAgreement": {
+    "piSponsorEmployee": true
+   },
+   "pointOfContact": {
+    "title": "Jeffrey B Kopp, MD",
+    "organization": "NIDDK, NIH",
+    "email": "jbkopp@nih.gov",
+    "phone": "3015943403"
+   }
+  }
+ },
+ "hasResults": true
+}

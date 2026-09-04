@@ -1,0 +1,532 @@
+{
+  "site": "wikiwand.com",
+  "track": "A1",
+  "viewedAt": "2026-09-04T00:00:00Z",
+  "captureNote": "Eight captures supplied by Felix from his own browser on 2026-09-04; no fetch, no legal gate, no terms question. All eight files are 816x1398 raster px; the manifest's home-2.png dimensions (167772160x536870912) are corrupt and should be corrected to 816x1398. The full desktop nav, a ~70 px page gutter and a 646 px card band indicate downscaled renders of a wider window (a ~1200 px container at ~0.57 scale fits every measurement), so all pixel figures are raster px at 816 wide and the ratios are the safer thing to build from.",
+  "imagesViewed": [
+    "home-1.png",
+    "home-2.png",
+    "home-3.png",
+    "about-4.png",
+    "article-5.png",
+    "article-6.png",
+    "article-7.png",
+    "article-8.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "structure",
+      "claim": "An article body is a flat run of numbered questions with no section headings, no topic titles and no prose between blocks. Seven blocks, Q1 through Q7, numbered continuously with no gaps, no restart, no pagination and no 'load more'.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Q1 and Q2 in article-5; Q2 continuation, Q3 and Q4 in article-6; Q4 continuation, Q5, Q6, Q7 in article-7, after which the body ends with a tilde glyph.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "structure",
+      "claim": "Exact block anatomy, measured on Q5: a 21x22 px rounded-square badge filled rgb(29,31,244) with a white 'Q5' label sitting entirely in the left margin at x213-233 with a 10 px gutter to the text; a bold serif heading, 13 px glyph band on an 18 px pitch; a 1 px hairline rgb(227,227,227) spanning x243-586 = exactly the 344 px measure, 18 px under the heading and 21 px above the body; then exactly two sans paragraphs, 10 px glyph band on a 16 px pitch; then an inline '#' anchor.",
+      "captures": [
+        "article-7.png",
+        "article-5.png",
+        "article-6.png"
+      ],
+      "evidence": "Pixel scan: rule present only at y=174, x 243-586, colour rgb(227,227,227); badge bbox x213-233 y122-143, corner pixel background and pixel+1 filled, so rounded not pill; body line groups at y 195,211,227,243,259,275,291 give a 16 px pitch; heading lines at y126-138 and y144-156 give an 18 px pitch. Q1, Q3, Q5, Q6 and Q7 each carry exactly two paragraphs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "structure",
+      "claim": "The Qn badge is sticky: it pins in the left margin for the life of its block. In article-5 the Q2 badge sits beside the Q2 heading at y~1181; in article-6, a later scroll position of the same page, the Q2 badge is at y~18 beside a continuation paragraph far below where the heading was.",
+      "captures": [
+        "article-5.png",
+        "article-6.png"
+      ],
+      "evidence": "Same page, two scroll positions; the badge appears next to 'They then shaped the hard ivory with flint tools' at the top of article-6, with no heading in view.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "copy",
+      "claim": "Question headings are complete natural-language questions ending in '?', 8-20 words, one to three lines, and several are compound: a fact clause plus a dispute clause joined by an em-dash.",
+      "captures": [
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Q4 'Does the figurine represent a male, a female, a lion, or a human-lion hybrid-and why is this still debated?' (three lines); Q7 'Why do the seven carved grooves on its left arm matter to archaeologists?' (two lines).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "copy",
+      "claim": "Every answer's first sentence answers the question directly by restating its terms; no context sentence precedes the answer.",
+      "captures": [
+        "article-5.png",
+        "article-7.png"
+      ],
+      "evidence": "Q1 opens 'The Lion-man is considered one of the oldest known artworks because radiocarbon dating places...'; Q7 opens 'The seven parallel transverse grooves on the Lion-man's left arm matter because they are deliberate carved marks, not accidental damage.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "copy",
+      "claim": "Uncertainty is written in ordinary words inside the paragraph, in the same face and colour as the assertion, never as a label or badge.",
+      "captures": [
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "'remains unresolved' (Q4); 'cannot by itself establish the figurine's exact purpose' (Q5); 'may support that interpretation, but it cannot prove it' (Q6); 'Their precise meaning remains unknown' (Q7).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "typography",
+      "claim": "Bold marks a value inside a running sentence and never a whole sentence, but it is rare: two spans across seven questions, and one of the two bolds a hedged phrase rather than a bare figure.",
+      "captures": [
+        "article-5.png",
+        "article-6.png"
+      ],
+      "evidence": "'about 35,000-41,000 years old' in Q1 and '311 mm (31.1 cm)' in Q3 are the only bold spans in the captured body.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "colour",
+      "claim": "Inline entity links in the body are underlined in the body colour, not blue. On the whole article surface only two things carry colour: the Qn badge and the '~' glyph.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Aurignacian, Museum Ulm, World War II, Joachim Hahn, Elisabeth Schmid, shamanism, Hohle Fels, burins and therianthropic all render dark and underlined; badge fill rgb(29,31,244) and tilde rgb(55,62,169) are the only sampled chromatic pixels in the reading column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "provenance",
+      "claim": "Provenance attaches to the paragraph, not to the answer and not to the page: of eleven fully visible paragraphs, seven carry a section anchor and four carry none, and the unanchored ones are the interpretive paragraphs.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Unanchored: Q3 p2 (ends 'producing the Lion-man displayed today at Museum Ulm.'), Q5 p2, Q6 p2, Q7 p1. Anchored: Q1 p1, Q1 p2, Q2, Q3 p1, Q4, Q5 p1, Q6 p1, Q7 p2.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "provenance",
+      "claim": "The anchor takes three forms, always a literal '#' glyph followed by an underlined italic section name, and the target is always a section of the same Wikipedia article, never an external citation or reference number.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Trailing bare: '...with flint tools. #History'; '...remains on display at the Museum Ulm. #Manufacture'; '...a major investment of time. #Manufacture'. In prose: '...human-animal hybrid, image. See #Interpretation.' Paired: '...capacities of Aurignacian people. See #Manufacture and #Interpretation.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "provenance",
+      "claim": "The article header line reads, centred under the title: a small W monogram, the underlined link text 'Lion-man', a clock glyph, then '9/2/2026'. No author, reading time, revision id or 'last verified'.",
+      "captures": [
+        "article-5.png"
+      ],
+      "evidence": "Meta line glyph band 9 px at y108-116, one notch below the 10 px body band.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "provenance",
+      "claim": "The related cards repeat the same source+date line but in a different date format from the article header: the article shows the ambiguous '9/2/2026' while every card shows unambiguous DD/MM/YYYY.",
+      "captures": [
+        "article-5.png",
+        "article-8.png"
+      ],
+      "evidence": "Card lines: 'Orion Nebula 29/03/2026', 'Far side of the Moon 11/04/2026', 'PayPal 14/03/2026', 'Corleck Head 18/03/2026', 'Islamic State - Somalia Province 14/03/2026', 'Henry Darger 12/04/2026'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "provenance",
+      "claim": "No date appears anywhere inside a question block. Freshness is a property of the page and of a card, never of an answer or a value.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Every block from Q1 to Q7 carries badge, heading, rule, two paragraphs and optional anchors and nothing else.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "structure",
+      "claim": "Three things precede Q1 and none is editorial: a white rounded header card (x171-629, 458x~125 px) whose two outlined pill buttons 'More top Qs' and 'Share' sit ABOVE the serif title, followed by the source+date line; then a pale lavender promotional strip spanning x155-647 reading 'Wikiwand built these questions from Wikipedia in seconds. Make your own, free.' with a black pill button; then Q1. There is no lede, abstract, summary, key-facts panel or table of contents.",
+      "captures": [
+        "article-5.png"
+      ],
+      "evidence": "Header card left border runs y17-141; title glyph band 24 px at y75-98; promo strip dark-pixel extent x155-647; Q1 badge at y~240.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "structure",
+      "claim": "The article ends in conversion, not in the record: last paragraph, then a centred indigo '~' 13 px wide, then a small-caps grey 'MORE TOP QUESTIONS' eyebrow at x77 in the wide band, then the six-card grid, then a hairline rule broken by a centred logo mark, then 'Get more from every article'. No reference list, source list, revision history or correction route.",
+      "captures": [
+        "article-7.png",
+        "article-8.png"
+      ],
+      "evidence": "Tilde at x394-406 y1212-1228, colour rgb(55,62,169); eyebrow glyph band 7 px at y1283-1289 starting at x77, not the 243 of the reading column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "navigation",
+      "claim": "The article offers no contents rail, no in-page jump list, no sticky section nav, no progress indicator and no sidebar. The only navigation is the top site chrome, the 'More top Qs' pill in the header card, the '#Section' anchors that leave for Wikipedia, inline entity links and the foot card grid. The multi-panel reader UI with a left contents list shown in the home-page product video does not appear in any real article capture.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png",
+        "article-8.png",
+        "home-1.png"
+      ],
+      "evidence": "Left margin is empty across all three article scroll positions apart from the sticky Qn badge; home-1's video still shows a left contents list that no article capture reproduces.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "limits",
+      "claim": "Seven questions at two paragraphs and roughly 90-140 words each make the whole article about 700-1,000 words, which is what makes the absent contents rail affordable at this length.",
+      "captures": [
+        "article-5.png",
+        "article-6.png",
+        "article-7.png"
+      ],
+      "evidence": "Q1 through Q7 with two paragraphs each and no further body content before the tilde.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "images",
+      "claim": "Both article images sit inline between paragraphs, left-aligned to the measure's left edge and narrower than the measure - 307 px against 344 - so they are inset about 37 px from the right and are neither full-bleed nor centred in the column. The small italic grey caption is centred on the image, not on the column.",
+      "captures": [
+        "article-5.png",
+        "article-6.png"
+      ],
+      "evidence": "Both images occupy x243-549; caption 'Lion-man figurine' spans x~360-434 with centre x~397, matching the image centre 396 rather than the measure centre 414; caption glyph band 9 px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "cards",
+      "claim": "Related content is six cards in a 2x3 grid spanning x77-722 (646 px), 1.9x the article's own reading measure. Each card: small centred rounded-square thumbnail (~80 px, not full-width and not gradient), centred serif bold title, source+date line, then exactly two preview questions, each with its Qn badge on its own line left-aligned ABOVE the question text, in small sans grey; the second preview truncates with an ellipsis when it overruns.",
+      "captures": [
+        "article-8.png"
+      ],
+      "evidence": "Card band dark-pixel extent x77-722; Henry Darger card's Q2 preview ends '...attitudes toward children and...'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "typography",
+      "claim": "Serif for every heading and headline, sans for every body paragraph, caption, label and button, consistent across home, about and article.",
+      "captures": [
+        "home-1.png",
+        "about-4.png",
+        "article-5.png"
+      ],
+      "evidence": "Home headline 'Wikipedia, unbiased.' and article title in serif; hero paragraph, About body and every answer paragraph in sans.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "layout",
+      "claim": "The home page alternates full-bleed white rgb(254,254,254) and very light grey rgb(247,247,247) bands whose edges run the full width while content stays in the centre column.",
+      "captures": [
+        "home-1.png",
+        "home-3.png"
+      ],
+      "evidence": "Sampled background rgb(247,247,247) at (30,900) inside the grey band and rgb(254,254,254) at (30,700) above it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "layout",
+      "claim": "The band rhythm is small-caps eyebrow, serif headline of at most three lines, one short sans paragraph, at most one button - but the eyebrow is not reliably coloured: two of four sampled eyebrows are neutral grey, and one band has no eyebrow and no button at all.",
+      "captures": [
+        "home-1.png",
+        "home-2.png",
+        "home-3.png"
+      ],
+      "evidence": "'AI THAT WORKS ONLY FROM WIKIPEDIA' samples indigo rgb(83,99,153) on stroke; 'READING PAST ONE LANGUAGE'S BIAS' samples rose, darkest rgb(159,110,129); 'MADE WITH WIKIWAND' rgb(130,130,130) and 'SET IT UP ONCE' rgb(126,126,126) are grey; the 'General AI chatbots give you an answer.' band has neither eyebrow nor button.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "typography",
+      "claim": "Emphasis at headline scale is carried by colour, not weight: one headline is split into a black clause and an indigo clause - the headline-scale analogue of the bolded figure in the body.",
+      "captures": [
+        "home-1.png"
+      ],
+      "evidence": "'General AI chatbots give you an answer.' in black above 'Wikiwand helps you understand it.' in indigo, sampled rgb(68,102,188).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "components",
+      "claim": "Feature lists are wrapped outlined checkmark pills, not bullets: five pills, four on one row and the fifth centred on a second row, each with a tick glyph before its label.",
+      "captures": [
+        "home-3.png"
+      ],
+      "evidence": "'10 themes', 'Serif or sans', 'Adjustable width & text size', 'Keyboard navigation' on row one; 'Bookmarks & side panels' centred on row two.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "components",
+      "claim": "Capability panels are a 2x2 grid of tinted rounded cards (lavender and pale blue) with a small line icon top-left, a serif bold title and a two-to-three-line sans description; the icon colour keys the card tint.",
+      "captures": [
+        "home-2.png"
+      ],
+      "evidence": "'Ask anything', 'Search in any language', 'Timelines', 'Top Questions' with per-card tints matching their icons.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "components",
+      "claim": "The explore grid is 4x4 dark-gradient image tiles with the subject name in white serif at the foot and, under it, a small dark pill badge naming the TYPE of page rather than a topic category.",
+      "captures": [
+        "home-2.png"
+      ],
+      "evidence": "Badges read 'W ARTICLE', 'TOP QS' and 'TIMELINE' across sixteen tiles (Moon, New York City, Bruce Lee, Colorado River, Mahatma Gandhi, 20th-century Western painting, Plasma (physics), Long Island, Yangtze, Rome, Grizzly bear, Barack Obama, Art of Europe, Jerusalem, David Bowie, Elon Musk).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "components",
+      "claim": "A claims panel pairs left-hand prose plus a black pill button with a right-hand outlined card whose heading is preceded by a small coloured dot and followed by a two-line explanation of what is checked against what.",
+      "captures": [
+        "home-3.png"
+      ],
+      "evidence": "'- Checked against sources / Claims verified against well-sourced reporting, not just other Wikipedia pages.' beside 'See a real fact-check'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "components",
+      "claim": "Social proof is three quote cards (sans quote, then avatar plus name plus handle) followed by a row of five monochrome press wordmarks under a small-caps 'FEATURED IN'.",
+      "captures": [
+        "home-3.png"
+      ],
+      "evidence": "Three named quotes with @handles; wordmarks TC, WIRED, Product Hunt, lifehacker, TNW.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "layout",
+      "claim": "The '~' glyph is the site's only ornament and marks a major block boundary on both a marketing page and an article: centred, indigo, about 13 px wide.",
+      "captures": [
+        "about-4.png",
+        "article-7.png"
+      ],
+      "evidence": "Between 'Using AI' and 'Our Team' on about-4; between Q7 and MORE TOP QUESTIONS on article-7, sampled rgb(55,62,169).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "layout",
+      "claim": "The About page reuses the article's narrow measure for a non-question page: centred serif h1, left-aligned sans body at the same measure, left-aligned serif h2 subheads, one image inset in the column, the '~', then a five-headshot team row with serif name, grey sans role and LinkedIn / X links.",
+      "captures": [
+        "about-4.png"
+      ],
+      "evidence": "'About' centred; 'Supporting Wikipedia' and 'Using AI' as left serif h2; team row Tomer Lerner (CEO), Itay Cohen (COO), Saar Wilf (Chairman), Lior Grossman (Co-founder), Ilan Lewin (Co-founder).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "layout",
+      "claim": "On the home page the first screen's largest object is a product video with a play button, not type. The hero order is headline, paragraph, two buttons, micro proof line, search field, video; the bordered search input reading 'Search Wikiwand' with a Cmd+K chip spans x213-587, the same 374 px slot the article's reading column occupies.",
+      "captures": [
+        "home-1.png"
+      ],
+      "evidence": "Video block spans roughly x40-760 by y352-762, far larger than the 'Wikipedia, unbiased.' headline; micro line reads 'Free to start - No ads when you're signed in - Featured on the Chrome Web Store'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "measurements": {
+    "captureWidthPx": 816,
+    "captureHeightPx": 1398,
+    "articleReadingMeasurePx": 344,
+    "articleReadingMeasureXRange": [
+      243,
+      586
+    ],
+    "ruleWidthPx": 344,
+    "ruleHeightPx": 1,
+    "ruleColour": "rgb(227,227,227)",
+    "badgeWidthPx": 21,
+    "badgeHeightPx": 22,
+    "badgeShape": "rounded square",
+    "badgeFill": "rgb(29,31,244)",
+    "badgeToTextGutterPx": 10,
+    "headingGlyphBandPx": 13,
+    "headingLinePitchPx": 18,
+    "bodyGlyphBandPx": 10,
+    "bodyLinePitchPx": 16,
+    "bodyLeadingRatio": 1.6,
+    "headingToBodySizeRatio": 1.3,
+    "articleTitleGlyphBandPx": 24,
+    "captionGlyphBandPx": 9,
+    "metaGlyphBandPx": 9,
+    "eyebrowGlyphBandPx": 7,
+    "articleImageWidthPx": 307,
+    "headerCardPx": [
+      458,
+      125
+    ],
+    "promoStripWidthPx": 493,
+    "relatedCardBandPx": 646,
+    "relatedCardBandXRange": [
+      77,
+      722
+    ],
+    "pageGutterPx": 70,
+    "bandColours": [
+      "rgb(254,254,254)",
+      "rgb(247,247,247)"
+    ],
+    "accentColours": {
+      "badge": "rgb(29,31,244)",
+      "tilde": "rgb(55,62,169)",
+      "headlineIndigo": "rgb(68,102,188)",
+      "eyebrowRose": "rgb(159,110,129)",
+      "eyebrowGrey": "rgb(130,130,130)"
+    },
+    "derivedIfScaleIsAboutZeroPointFiveSeven": {
+      "note": "flagged as derived, not measured",
+      "readingMeasureCssPx": 600,
+      "bodyCssPx": "17-18 on 28 leading",
+      "blockHeadingCssPx": 23,
+      "articleTitleCssPx": 42,
+      "containerCssPx": 1200
+    }
+  },
+  "phase2": {
+    "surfacesNamed": [
+      "dossier page structure"
+    ],
+    "verdict": "governs",
+    "argument": "The closed decision that wikiwand.com governs the dossier page structure survives verification, and the captures make it buildable rather than merely directional. The governing object is the question block, whose anatomy is now fully measured (F2): badge in the margin, serif question, a 1 px hairline exactly the width of the measure, exactly two sans paragraphs, per-paragraph anchor. Three of Felix's structural readings needed correction before they could be built from, and each correction changes the build. Paragraph count is invariant at two, not the '1-2' he recorded (F2), so the derived-content generator has a fixed target rather than a range. Provenance is per paragraph and four of eleven paragraphs carry none (F9), which means the anchor is a signal of a sourced value rather than page furniture, and an unanchored interpretation paragraph is a designed state, not a gap - the presentational form of 'absent data renders nothing'. And freshness is not attached to the claim (F11, F13): Wikiwand dates the page only, so R9's per-field source date and last-verified date is a place where RNAWiki must go further than its governing reference rather than copy it. Two additions carry more weight than anything on the confirmed list. The sticky Qn badge (F3) is the mechanism that makes a long run of blocks navigable without a rail, which matters precisely because the article has no contents rail, no jump list and no progress indicator at all (F16) - affordable at ~900 words (F17), a defect at RNAWiki's density, so the contents-rail decision already logged to Vercel stands undisturbed and B3 is additive to it, not a substitute. And the article ends in conversion rather than in the record (F15), which is where the borrow stops outright: the dossier's foot is sources, review history and last verified. No responsive claim can be made from this set (all eight files are 816x1398 desktop), so the block's behaviour at 320 px is unresolved and must be designed rather than borrowed."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "B1 - The dossier body is a flat run of numbered question blocks, not sections. Fixed, repeated shape: Qn badge in the left margin (rounded square ~21 px at this scale, single accent fill, white label, 10 px clear of the measure); serif question heading of 8-20 words ending in '?', wrapping to at most three lines; a 1 px hairline the EXACT width of the measure, 18 px under the heading; then the body. Numbering continuous from Q1, no gaps, no restart, no pagination. [F1, F2]",
+      "B2 - Exactly two paragraphs per block, never one and never three. The invariance is what makes a narrow column read as a structure rather than a list; if a question needs a third paragraph it is two questions. [F2]",
+      "B3 - Sticky question badge: pin the Qn badge in the left margin for the life of its block so a scrolling reader always knows which question they are inside. At our density this is the cheapest usable partner to the contents rail. [F3]",
+      "B4 - Per-paragraph provenance anchor in the running text at the end of the paragraph, in all three observed forms (trailing bare; 'See <target>.' as the object of a sentence; 'See <a> and <b>.'). Change the target: ours names the exact saved source snapshot and carries the supports / qualifies / contradicts verb, never a section of our own page. [F10]",
+      "B5 - Not every paragraph gets an anchor. Anchor the paragraph that states a sourced value; leave an interpretation paragraph unanchored and marked as interpretation rather than manufacturing a citation. Four of eleven carry none and the page does not read as broken. [F9]",
+      "B6 - At most one bold span per block, a value inside a sentence, never a whole sentence; observed density is about one span per three blocks. A block with no decisive measured value has no bold. [F7]",
+      "B7 - Header line = source link then date, each preceded by a small glyph, directly under the title. Ours carries the source register and the last-verified date, in ONE date format across the whole site. [F11, F12]",
+      "B8 - Go further than Wikiwand on freshness: they date the page only, R9 requires a per-field source date and last-verified date, so the date pair belongs on the block or the anchored value, not only in the header. [F13]",
+      "B9 - Compound question wording as the compression device: a value clause plus an em-dash dispute clause lets one block carry a fact and its contest. Feed the pattern into the R7 derivation rules; it is how a block absorbs MIXED or CONTRADICTED without spawning a second block. [F4]",
+      "B10 - The answer opens by restating the question's terms and answers in sentence one, and nothing editorial precedes the first question: no lede, abstract, summary or key-facts panel. [F5, F14]",
+      "B11 - Uncertainty in ordinary words, in the body, in the same face and colour as the assertion ('may support that interpretation, but it cannot prove it'). That is how UNKNOWN, MIXED, NOT_MEASURED and CONTRADICTED read to a reader while the enum stays in the labelled technical disclosure. [F6]",
+      "B12 - Images left-aligned to the measure's left edge and narrower than the measure (307 of 344 px), with a small italic grey caption centred on the image, not the column. No full-bleed figures in the reading column. [F18]",
+      "B13 - Related content as a two-column card band that breaks the measure by about 1.9x: thumbnail, centred serif title, source+date line, then two preview questions each with its own Qn badge above the text. Showing the actual questions instead of a description is the browse unit R12 needs and it reuses the dossier's own vocabulary. [F19]",
+      "B14 - Restraint budget, measurable: one accent colour on the reading surface used only for the badge and the block-boundary glyph; body links underlined in the body colour, never blue; heading only ~1.3x body; leading 1.6x; one 1 px hairline per block. Everything else is space. [F2, F8, F29]"
+    ],
+    "avoid": [
+      "V1 - Two buttons above the search field. Wikiwand does it on home and again above its article title; the RNAWiki home search bar is frozen and nothing goes above it. [F31, F14]",
+      "V2 - No contents rail. Affordable at seven questions and ~900 words, a defect at our density; ship the sticky badge AND a real contents affordance. [F16, F17]",
+      "V3 - Ending the page in conversion. Their article ends tilde, related cards, logo rule, 'Get more from every article', with no reference list, source list or revision history. The dossier ends in the record: sources, review history, last verified, correction route. [F15]",
+      "V4 - A promotional strip between the header and the first question. [F14]",
+      "V5 - Anchors that point into the same document's own sections while reading as provenance. A section is not a source; this is the 'never imply a linked source proves a conclusion' boundary. [F10]",
+      "V6 - Mixed date formats: '9/2/2026' on the article against '29/03/2026' on its own cards. [F12]",
+      "V7 - A single page-level date presented as the freshness of every statement on the page. [F13]",
+      "V8 - Product and AI language in eyebrows and headlines ('An AI that reads Wikipedia...', 'Wikiwand's AI organizes and connects it'), barred by our copy rules regardless of the layout it sits in. [home-1.png, home-3.png]",
+      "V9 - Deriving anything from the multi-panel reader UI in the home-page product video; it is marketing footage and no captured article renders it. [F16]"
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00Z",
+    "verifiedBy": "one viewer; all eight supplied captures opened",
+    "confirmed": 11,
+    "qualified": 9,
+    "notSeen": 3,
+    "added": 20,
+    "felixClaims": {
+      "confirmed": [
+        "Article pages are numbered questions, not sections, with Qn badges in the left margin [F1, F2]",
+        "Serif question heading [F2]",
+        "Hairline rule - and it is exactly 1 px, rgb(227,227,227), the exact width of the measure, sitting below the heading [F2]",
+        "Header carries source link AND date [F11]",
+        "Serif headings / sans body [F20]",
+        "Alternating white/grey full-bleed bands [F21]",
+        "Feature lists as wrapped checkmark pills, not bullets [F24]",
+        "Card grids with dark-gradient images and a small type badge [F26]",
+        "'~' glyph between major blocks [F29]",
+        "DO NOT COPY - two buttons above the search field; and the same pattern recurs above the article title, so it is a site habit not a home-page accident [F31, F14]",
+        "LIMIT - Wikiwand is thin per page: seven questions, ~700-1,000 words [F17]"
+      ],
+      "qualified": [
+        "'1-2 sans paragraphs' - the count is not variable: every complete question carries exactly two, never one [F2]",
+        "'Each answer ends with an italic anchor' - not each; anchors attach to paragraphs and 4 of 11 visible paragraphs carry none [F9]",
+        "'Provenance per claim' - per paragraph, and the target is a section of the same Wikipedia article, not a source record [F9, F10]",
+        "'Freshness attached to the claim' - the date is on the page header and on cards; no date appears inside any question block [F11, F13]",
+        "'Bold marks the decisive figure' - the negative half holds exactly, but bold is rarer than implied (two spans in seven questions) and one bolds a hedged phrase, 'about 35,000-41,000 years old' [F7]",
+        "'Images inline with small italic grey captions' - images are narrower than the measure (307 of 344) and left-aligned, and the caption is centred on the image, not the column [F18]",
+        "'Related content as 2-col cards' - thumbnail is a small centred square not a full-width gradient image; preview badges sit above their text on their own line, not in a margin; the band is 646 px, 1.9x the article measure [F19]",
+        "'One narrow centred column' - there are two measures, a 344 px reading column and a 646 px card band, plus a near-full-width hero video [F19, F31]",
+        "'Coloured small-caps eyebrow' - small-caps holds, coloured does not: two of four sampled eyebrows are grey, and one band has no eyebrow and no button [F22]"
+      ],
+      "notSeen": [
+        "Any mobile or narrow-viewport rendering - all eight captures are 816x1398 desktop with the full nav",
+        "Hover preview behaviour - asserted in the site's own copy on home-2.png, never depicted",
+        "The Timelines, Top Qs and Fact Checks surfaces named in the nav"
+      ]
+    },
+    "notes": [
+      "The manifest records home-2.png as 167772160x536870912; sips reports 816x1398, matching the other seven. The manifest dimension pair is corrupt and should be corrected.",
+      "article-5, article-6 and article-7 are three scroll positions of one page (The Lion-man's Ice Age Mysteries) and article-8 is its foot; home-1, home-2 and home-3 are three scroll positions of the home page. Only one article was captured, so 'seven questions' and 'always two paragraphs' are properties of this article, consistent within it and not proven site-wide.",
+      "All pixel figures are raster px at the supplied 816 px width. The full desktop nav, ~70 px gutter and 646 px card band indicate a downscaled render of a wider window; the derived css figures are flagged as derived and the ratios are what should be built from.",
+      "No consent or cookie banner is visible in any capture; nothing was fetched, so no banner action was possible or required."
+    ]
+  }
+}

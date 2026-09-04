@@ -1,0 +1,710 @@
+{
+  "site": "vercel.com/docs",
+  "track": "A1",
+  "viewedAt": "2026-09-03T18:29:30.036Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-06.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-tile-06.png",
+    "content-1440-tile-08.png",
+    "content-1440-tile-09.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-04.png",
+    "index-375-tile-05.png",
+    "index-375-tile-07.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-00.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Hierarchy is a two-step drop with no middle: one very large heading, then everything else at one of two small sizes.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "The h1 'Ship anything with Vercel' at roughly 54px is the only large type on a 5,122px page; the six section headings that follow are all the same modest size as each other.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "In the article the middle of the ladder is carried by space and weight, not size: an h2 at roughly twice body size (~28-32px), an h3 bold at body size (~16px), separated by about 45px of clear space above an h2 and about 15-20px below it.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "'Deployment Methods' sits far above 'Git' and 'Vercel Drop', which are bold at near body size. Measured on content-1440-tile-04: 'Accessing Deployments' has ~48px of blank above and ~20px below; 'Using the Dashboard' ~44px above and ~15px below. The gap above a heading is roughly two to three times the gap below it, not five times, and the h2 is nearer 30px than 24px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The article opens in two columns and collapses to one: a ~380px title block with the h1 wrapped to four lines beside a tabbed terminal card, then a single 824px prose column for the rest of the page.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "'Deploy / and verify / applications / on Vercel' wraps to four lines in a narrow left block; below the button row the prose runs at full column width.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "Colour does almost no hierarchical work: two ink levels in running text, near-black fill reserved for primary buttons, small blue Beta chips, green only inside code.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png",
+        "content-1440-tile-06.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Standfirsts, captions, dates and rail labels are all the same lighter grey; nothing is coloured to mean important. Two corrections to the first reading: each first screen carries two near-black filled buttons, not one - 'Sign Up' in the header plus the in-page primary ('Get started' on the index, 'Deploy from the CLI' on the article) - and there is more than one blue Beta chip: the index rail shows two ('eve', 'Queues') and the article rail one ('Deployment Policies').",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "Desktop index: the eye lands on the content. The h1 is the largest object; the search field is second and reads as frame, with a '⌘ K' chip inside its right end.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Header links, sign-up button and search field are all at 14px chrome scale against a ~54px h1.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "Desktop article: the eye lands on the h1 and there is no visible search anywhere on the first screen.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The header carries Docs/Build/Learn/Getting Started and Ask AI/Log In/Sign Up; the rail's top slot holds a back chevron and 'Deployments'. No magnifier or input is visible, although searchAffordances on this URL records one 'button Search Docs' and kbdTexts records '⌘ K'.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "kbdTexts"
+      ]
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "Mobile: the eye lands on the h1 more decisively than at desktop because chrome shrinks to five marks; no search field is visible at 375 on either page.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "Header holds only the logo, a slash, 'Docs', an ellipsis and a hamburger. The h1 is the largest object on the first screen but does not fill half of it: the article's four-line h1 occupies about 212px of an 812px viewport and the index's two-line h1 about 110px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "The only thing competing for the first look is the tabbed terminal card sitting beside the h1 on both pages.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "A tab strip ('Create a deployment / Verify a preview / Deploy to production') over a bordered terminal block, at similar weight to the standfirst.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "At 1440 the article puts three columns on screen - 300px section rail, 824px prose, 240px contents rail - which consumes 1,364px of 1,440 and leaves only about 50px of gutter between prose and contents rail; about forty link targets against two sentences of prose on the first screen.",
+      "captures": [
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Left rail lists 21 sibling pages, right rail 13 headings, prose shows one paragraph and one lead-in line. The prose column ends at x=1137 and the contents rail begins at x=1184; the '~250px of empty gutter' in the first reading is not in the capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "The index is built almost entirely from card grids: six labelled groups of three-up cards, each an icon, a short title and a one-to-three line grey description, all the same width and near enough the same height within a row.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Build with AI, Build your app, Secure your app, Deploy and operate, Guides and tutorials and the unlabelled 'Set up your coding agent' group all use the identical card; no card is given more weight than another. It is not cards and nothing else, though: the same page also carries the dated 'What's new' hairline list, a collapsed 'Related Vercel documentation' strip, a pager and a feedback pill.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "The one table-shaped block on either page is a date column plus a content column separated by full-width hairlines — no cell borders, no zebra, no header row.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "'What's new' fits four dated rows in about 380px: 'Sep 3, 2026' in grey at chrome scale beside a title and a one-line summary.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "density",
+      "claim": "That dated list reflows honestly at 375: date on its own line above the title, summary clamped to two lines with an ellipsis, hairline between entries; the date is never what gets dropped.",
+      "captures": [
+        "index-375-tile-04.png"
+      ],
+      "evidence": "All four entries keep their date; the Cursor Cloud Agents and Muse Spark summaries end in an ellipsis rather than growing the row.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "density",
+      "claim": "Mobile density is the weak point: the 5,122px desktop index becomes 9,664px at 375 because the three-up grid becomes one column of roughly 135-195px cards, so a whole screen holds four or five records.",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-05.png",
+        "index-375-tile-07.png",
+        "content-375-full.png"
+      ],
+      "evidence": "index-375-tile-05 and -07 each show four cards plus a section heading. Each card still carries an icon, a title and a two-to-four line description, so these screens are not bare titles - they are simply four records deep. The article measures 9,609px at 375 against 7,561px at 1440.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "Space is spent on vertical separation above headings and is the main carrier of structure: about 45px above an h2, about 15-20px below, about 40px above an h3 and about 25px below.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "A 16px bold h3 sits directly above ordinary prose without escalation because the gap has already marked the boundary. Measured on content-1440-tile-04 ('Accessing Deployments', 'Using the Dashboard', 'Resources Tab and Deployment Summary') and content-1440-tile-02.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "Space is not spent inside components: ~22-24px card padding, tight code blocks, ~20px between list items, 16/27px prose with a single line gap between paragraphs.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-tile-04.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Nothing is padded to look generous; the numbered steps and their code cards sit close together. List items measured at a 36px pitch on 16px text in content-1440-tile-04, i.e. about 20px of clear space, not the ~12px in the first reading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "whitespace",
+      "claim": "A large share of the article's whitespace is structural rather than expressive: the contents rail's column is roughly half empty below its last item at every scroll depth, and the ~50px gutter beside the prose is dead.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The rail's thirteen entries end around y=526 in an 836px sticky column, leaving about 310px unused at 0% and about 430px at 90%; nothing occupies the remainder. The '70% empty' and '250px gutter' figures in the first reading overstate it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "whitespace",
+      "claim": "The end of the page is the largest single piece of whitespace on the site and says nothing: a hairline, then roughly 700px of plain background, on both pages.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-tile-09.png",
+        "index-1440-tile-06.png"
+      ],
+      "evidence": "content-1440-tile-09 and index-1440-tile-06 are entirely empty background; no footer renders below the divider in tile-08.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "At 1440 three things persist for the whole article - the 64px header, the 300px left section rail and the 240px contents rail - and near the end of the page both rails shift up rather than staying pinned.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "All three present at 0%, 50% and 90%. Between 0% and 50% both rails are pixel-identical, so nothing scrolls internally over that range. At 90% the left rail's items sit about 36px higher and the whole contents rail about 59px higher, taking its 'On this page' label up behind the header. That is what a sticky column reaching the end of its container looks like; the captures do not show an internal scroll container, and stickyOrFixed records position, top and height only, not overflow.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "The contents rail tracks reading position with a left bar and darker text on the active entry, and it is the only progress signal on the page — no bar, no percentage, no stage indicator.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Deployment Methods' is marked at 0%; 'Resources Tab and Deploym…' is marked at 50%.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "scriptTokens"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "The rhythm breaks at the end: at 90% the visible content is the 'Explore deployments' cards and the pager, but the rail still marks a section two headings behind.",
+      "captures": [
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Resources Tab and Deploym…' remains the marked entry while 'CLI workflows' and 'Explore deployments' have already passed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "long-scroll",
+      "claim": "The rail truncates rather than wraps, so its longest entries are the least identifiable.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Resources Tab and Deploym…' is cut with an ellipsis at 240px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "long-scroll",
+      "claim": "The article ends with a pager then a feedback control, and then nothing: 'Previous / Builds' left, 'Next / Environments' right, a centred 'Was this helpful?' pill with four faces, a hairline, and no footer.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png",
+        "index-1440-tile-06.png"
+      ],
+      "evidence": "No footer content appears below the divider on either page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "long-scroll",
+      "claim": "At 375 nothing persists but the 64px header; the contents control scrolls away and never returns on a 9,609px article.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "A list icon sits in the article's top row beside a copy button and a chevron at scroll 0, and is absent at 50% and 90%.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "imagery",
+      "claim": "Most apparent imagery is 1px line icons at about 20px, one per card, identifying rather than explaining; removing them would lose no meaning.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "A globe for 'Managing deployments', a clock-arrow for 'Rolling back a production deployment', a terminal glyph for 'Deploy from the CLI'; 125 inline SVG marks and no canvas on the article.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "svgCount",
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F25",
+      "topic": "imagery",
+      "claim": "The only load-bearing images are product screenshots handled as figures: bordered rounded frame at column width, grey caption centred beneath, showing the exact state the prose describes.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Example of a deployment resources page with a search applied' sits under a screenshot showing 'chat' typed into a search field with a context menu open.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "absence",
+      "claim": "When an image has not loaded the frame and caption stay: the layout holds, but a caption is left describing something the reader cannot see.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-full.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Both screenshots render as empty bordered rectangles about 420px tall with intact captions in the full-page paint; the same figure is fully rendered in the real scrolled capture. Four of seven images are lazy-loaded.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "imagery",
+      "claim": "Where there is no imagery at all the page does not reach for a decorative break; code cards do the visual work instead.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "Roughly 1,800px of continuous prose, lists and code; code blocks are white cards with a 1px border, some with a labelled header row (prompt glyph plus 'terminal'), some bare.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "defers-or-competes",
+      "claim": "For the length of the article the design defers almost completely: no rules but hairlines, no coloured callouts, no boxes around paragraphs, two ink levels, one measure.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "Tiles 02, 03 and 06 are close to unstyled reading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "defers-or-competes",
+      "claim": "It competes at the top and only on behalf of the product: a filled near-black button plus outlined buttons and a tabbed terminal push the article's first prose sentence about 650px down the page.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Deploy from the CLI' / 'Connect Git' and the terminal card occupy the first screen above the paragraph beginning 'A deployment on Vercel is the result of…'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "defers-or-competes",
+      "claim": "In 'What's new' the date, title and summary all render underlined, making the densest block on the index the noisiest thing on the page.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Every line of all four rows carries an underline, visibly busier than the card grids above and below.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "defers-or-competes",
+      "claim": "The header competes mildly and permanently at desktop: Ask AI, Log In and Sign Up hold the top-right corner at every scroll depth including 90% down a reference article. At 375 they are not there at all.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "The three controls are present in every 1440 scrolled viewport capture. At 375 the header collapses to logo, slash, 'Docs', an ellipsis and a hamburger at every depth, so content-375-scroll-90 does not support the claim and is cited here only as the counter-case.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "absence",
+      "claim": "Nothing on either page renders an empty section, placeholder row, dash or 'not available' line - but absence is not always shortness: at 1440 cards in the same grid row are stretched to a common height and the emptier card carries the slack as internal space.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "In content-1440-scroll-90 'Managing deployments' (two-line description) and 'Rolling back a production deployment' (one-line description) are both 164px tall, the shorter one leaving a visible gap between title and description; the row below, holding only 'Deploy from the CLI', is 138px. Heights vary between rows, not within them. At 375 (content-375-scroll-90) cards are one per row and heights do track content: 145, 165, 188 and 147px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "The largest block of secondary material ships collapsed to one line: a bordered strip reading 'Related Vercel documentation' above the pager, behind which the DOM outline shows a full inbound/outbound citation map.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The strip shows only its label and a closed triangle. domEvidence.headingOutline for this URL lists 'Cross-link map: Deploying to Vercel (/docs/deployments)', 'Semantically closest pages', 'This page links to (17)' and 'Pages that link here (32)'. No capture shows it open, so its internal design cannot be judged.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "The lazy-image case is the one place absence is handled badly: an unloaded figure leaves a large bordered void with a caption asserting what it would have shown.",
+      "captures": [
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "A ~420px empty bordered rectangle above 'Example of an open deployment summary.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "baseline",
+      "claim": "Every capture is light, and dark is applied by class rather than an OS media query, so the captures neither confirm nor deny the mirrored dark ramp.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "htmlAttributes.class carries 'light-theme', the inline style sets color-scheme: light and background rgb(250,250,250), and prefersColorScheme.found is false across all nine stylesheets.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "htmlAttributes",
+        "prefersColorScheme"
+      ]
+    },
+    {
+      "id": "F36",
+      "topic": "information-design",
+      "claim": "Copy is a first-class control at the top of the article - a 'Copy page' button with a chevron in the article's top row at both viewports - while the in-article code cards show no copy control at rest.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-03.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "copyControls records 25 controls including 'Copy page' and 'Copy to clipboard'. The hero terminal card in content-1440-tile-01 carries a visible copy icon; the two code cards in content-1440-tile-03 carry none. A static capture cannot show whether the missing ones appear on hover, so no hover behaviour is claimed here.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F37",
+      "topic": "borrow",
+      "claim": "Borrow the hierarchy-by-space ladder for the dossier reading column: an h2 at roughly twice body size with about 45px above and 15-20px below lets a technical sub-heading follow a lay sentence without escalation.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "Corroborates the Linear-as-secondary reasoning already in Phase 2 from a second measured site. The figures are the corrected measurements from content-1440-tile-04, not the 66/12 pair in the first reading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "borrow",
+      "claim": "Borrow the dated hairline list for source-change and review-history blocks, including its 375 reflow (date above title, summary clamped to two lines).",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-375-tile-04.png"
+      ],
+      "evidence": "A better model for 'what changed on which source, when' than any card grid.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "borrow",
+      "claim": "Borrow the collapsed cross-link map as the default weight for the citation evolution map: an entire link map costing one closed line below the content and above the pager.",
+      "captures": [
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "Available, never competing, never occupying reading space it has not earned.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "borrow",
+      "claim": "Borrow the contents rail with a reading-position marker for the dossier contents rail: 240px, two indent levels, left bar plus darker text on the active entry, sticky beneath the header.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Observed working across three real scrolled captures, which is more rendered evidence than the current Phase 2 proposal for that surface has. Do not borrow 'its own scroll container': the rail is pixel-identical from 0% to 50% and then shifts up near the page end, which is sticky behaviour, not internal scrolling.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "borrow",
+      "claim": "Borrow the caption discipline: a caption that names the exact state shown and claims nothing beyond it.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Example of a deployment resources page with a search applied' matches what is in the frame.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "avoid",
+      "claim": "Avoid a search field that exists on the index and vanishes on the article; RNAWiki's home bar is frozen and primary and search must not disappear once a reader is inside a record.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "No visible search entry point on the article's first screen at 1440, and none at 375 on either page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F43",
+      "topic": "avoid",
+      "claim": "Avoid the marketing block above the first sentence: buttons and a terminal card push the article's first prose about 650px down. Nothing of this shape may sit above or beside the home search bar.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The first screen carries a filled primary button, an outlined button and a tabbed terminal before any prose.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "avoid",
+      "claim": "Avoid a stale reading-position marker; a rail that mis-states where the reader is in an evidence chain is worse than no rail.",
+      "captures": [
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The marker lags two headings behind the visible content at 90%.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "avoid",
+      "claim": "Avoid truncating rail labels to an ellipsis; wrap to two lines instead, because evidence-section names will collide with a 240px rail.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Resources Tab and Deploym…' is the entry least identifiable from its label.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Avoid dropping the contents control at mobile; a long dossier at 375 must keep a route back to its sections.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Only the 64px header persists on a 9,609px article.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F47",
+      "topic": "avoid",
+      "claim": "Avoid a reserved frame with a caption for an image that is not there, and avoid underlining every part of a dated row, and avoid ~700px of empty page after the last content.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "index-1440-tile-02.png",
+        "content-1440-tile-09.png",
+        "index-1440-tile-06.png"
+      ],
+      "evidence": "Three separate defects visible in these captures: an empty captioned frame, a fully underlined dated row, and two entirely blank end-of-page tiles.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "Two different active-state grammars sit on the same screen: the left section rail marks the current page with a filled grey pill, the right contents rail marks the current section with a short left bar and darker text and no fill.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'Overview' is a filled grey pill in the left rail at 0%, 50% and 90%; 'Deployment Methods' (0%) and 'Resources Tab and Deploym...' (50%) are marked only by a bar at the left edge. The two never read as the same kind of state, which is why the page can carry two rails at once without either being mistaken for the other. For a dossier this maps onto 'which programme you are in' versus 'which evidence node you are reading' and should be copied as two distinct marks, not one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The left section rail is a flat list of 21 sibling pages with no counts, no dates and exactly one badge type, so nothing in the rail says what kind of thing a sibling is.",
+      "captures": [
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Overview through Optimize Deployment Storage are typographically identical; only 'Deployment Policies' carries a blue 'Beta' chip. Vercel can afford a flat list because every sibling is the same kind of page. RNAWiki's siblings are not: a programme with a published conclusion and one still at UNKNOWN would be indistinguishable in a rail borrowed at this fidelity, so a per-item state mark has to be designed in rather than assumed to come with the pattern.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "imagery",
+      "claim": "Everything in the article is bound to the same 824px measure, including the ~433px product screenshots, so a full-width application screenshot is scaled down until its own interface text is near-illegible.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The first figure is an 824x433px bordered frame; inside it the rendered file paths ('/_next/static/chunks/app/(chat)/page-b2dac70075beb3a0.js') and column labels sit at roughly 9-10px. Nothing on either page breaks out of the measure. This reference therefore says nothing about placing a wide evidence table or a trial figure, and copying the fixed measure without a break-out rule would make a forest plot or a mechanism diagram unreadable the same way.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Global search overlay"
+    ],
+    "verdict": "weakens",
+    "argument": "Phase 2 names vercel.com/docs as governing for the global search overlay, validated on a ⌘K hint, an aria-label=\"Search Docs\" button and a mirrored grey ramp. The captures weaken that on two counts. No capture shows the overlay at all — the palette is inferred from kbdTexts and searchAffordances and cannot be judged visually from this set, and a governing reference for a surface should be a surface someone has looked at. And the visible entry point is not persistent: it is a bordered field at the top of the index rail (index-1440-tile-01.png) and it is absent from the article's first screen at 1440 (content-1440-scroll-00.png) and from both pages at 375 (index-375-tile-01.png, content-375-scroll-00.png). What survives with confidence is one detail — the ⌘K chip sitting inside the right end of the search field rather than beside it — which is not a governing reference. The Phase 1 contrast measurement (17.9:1 mirrored) is untouched; the design claim is what weakens. Separately these captures argue for adding vercel.com/docs as a measured candidate for the surface Phase 2 left unassigned under the stopping rule, the dossier contents rail: its 240px right rail is observed working at three real scroll depths with two indent levels, an active marker and a defined mobile fallback (verification removed the 'internal scroll container' claim: the rail is pixel-identical at 0% and 50% and then shifts up near the page end, which is ordinary sticky behaviour), and its two failure modes (stale marker at 90%, ellipsis truncation at 240px) are visible and therefore designable around. Hover previews remain unobserved here too, so the stopping rule on previews still stands."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Hierarchy-by-space ladder for the dossier reading column: an h2 at roughly twice body size (~28-32px against 16px body), ~45px above and ~15-20px below (content-1440-tile-04.png, content-1440-tile-02.png).",
+      "Dated hairline list - grey date column, title, one summary line, no cell borders - for source-change and review-history blocks, with its 375 reflow (index-1440-tile-02.png, index-375-tile-04.png).",
+      "Collapsed cross-link map costing one closed line below the content and above the pager, as the default weight for the citation evolution map (content-1440-tile-08.png).",
+      "240px contents rail with two indent levels and a left-bar active marker, sticky beneath the header, for the dossier contents rail - without the 'own scroll container' claim, which the captures do not show (content-1440-scroll-00.png, content-1440-scroll-50.png, content-1440-scroll-90.png).",
+      "Two distinct active-state marks on one screen: a filled pill for 'which page' in the sibling rail, a left bar for 'which section' in the contents rail (content-1440-scroll-00.png).",
+      "Figure captions that name the exact state shown and claim nothing beyond it (content-1440-scroll-50.png).",
+      "No placeholder rows, dashes or 'not available' lines anywhere - absent material is simply not rendered (content-1440-scroll-90.png)."
+    ],
+    "avoid": [
+      "A search field that exists on the index and vanishes on the article; at 375 it is absent from both pages (content-1440-scroll-00.png, content-375-scroll-00.png).",
+      "The marketing block above the first sentence - buttons and a terminal card pushing first prose ~650px down; nothing of this shape may sit above or beside the frozen home search bar (content-1440-tile-01.png).",
+      "A stale reading-position marker that lags two headings behind at 90% (content-1440-scroll-90.png).",
+      "Truncating rail labels to an ellipsis at 240px; wrap to two lines instead (content-1440-scroll-50.png).",
+      "Dropping the contents control at mobile on a 9,609px article (content-375-scroll-50.png, content-375-scroll-90.png).",
+      "A reserved bordered frame plus caption for an image that is not there (content-1440-tile-06.png).",
+      "Underlining the date, title and summary of a dated row, which makes the densest block the noisiest (index-1440-tile-02.png).",
+      "Roughly 700px of empty page after the last content, with no footer (content-1440-tile-09.png, index-1440-tile-06.png).",
+      "Row-equalized card grids at desktop: a card with less to say is stretched to its row-mate's height and the slack reads as design, not as absence (content-1440-scroll-90.png).",
+      "A flat sibling rail with no per-item state mark, where a published conclusion and an UNKNOWN look identical (content-1440-scroll-00.png).",
+      "A single fixed measure with no break-out rule for figures; at 824px an embedded screenshot's own text falls to ~9-10px (content-1440-tile-05.png)."
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [
+    "bannerActions records 'left: only accept-type controls found in div' on all four passes (index-1440, index-375, content-1440, content-375) — the decliner refused to click an accept-only control. No banner, overlay or cookie strip is visible in any of the 23 images viewed, so nothing in these captures should be read as banner chrome."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-03T18:49:44.000Z",
+    "confirmed": 32,
+    "qualified": 15,
+    "refuted": 0,
+    "added": 3,
+    "notes": [
+      "Independently viewed 19 captures: index-1440-full/-tile-01/-tile-02/-tile-06, content-1440-full, content-1440-tile-01/02/03/04/05/06/08/09, content-1440-scroll-00/50/90, index-375-full/-tile-01/-tile-04/-tile-05/-tile-07, content-375-tile-01, content-375-scroll-00/50/90.",
+      "No finding was refuted outright. Fifteen were qualified, mostly for measurements that the captures do not support and for two claims that the cited capture actively contradicts.",
+      "Largest correction: the heading rhythm. Measured on content-1440-tile-04, an h2 has about 45px of clear space above and 15-20px below, a ratio near 2.5:1, not the 66px/12px and 'five times' in F2/F14 - which F37 and the borrow list had turned into a dossier spec.",
+      "Second correction: F32 and the 'absence as shortness' borrow. content-1440-scroll-90 shows the opposite at 1440 - 'Managing deployments' and 'Rolling back a production deployment' are both 164px tall despite different description lengths, and the two cards the finding named are not even in the same row. Shortness-by-content only holds at 375.",
+      "Third correction: the contents rail is not shown to be its own scroll container. It is pixel-identical at 0% and 50% and shifts up ~59px at 90%, taking 'On this page' behind the header - sticky behaviour at the end of a container. Removed from F18 and from the F40/B4 borrow.",
+      "F31 was qualified because content-375-scroll-90 shows no Ask AI / Log In / Sign Up at all; the mobile header carries only logo, 'Docs', an ellipsis and a hamburger.",
+      "F9 and F16 were qualified on arithmetic: 300 + 824 + 240 = 1,364 of 1,440, so the gutter is about 50px, not 250px, and the rail column is about half empty below its last entry, not 70%.",
+      "Banner handling verified as correct: no banner, overlay or cookie strip appears in any capture viewed, and bannerActions is treated as a caveat rather than as design.",
+      "Added V1 (two active-state grammars on one screen), V2 (flat sibling rail with no per-item state mark), V3 (fixed 824px measure makes an embedded screenshot's own text ~9-10px)."
+    ]
+  }
+}

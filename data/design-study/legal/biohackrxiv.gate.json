@@ -1,0 +1,93 @@
+{
+  "key": "biohackrxiv (osf.io)",
+  "track": "A2",
+  "dir": "biohackrxiv",
+  "checkedAt": "2026-09-03T14:40:48.579Z",
+  "indexUrl": "https://osf.io/preprints/biohackrxiv",
+  "contentUrl": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+  "contentNote": "Selected through the OSF API (https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published&embed=license): the most recently published public BiohackrXiv preprint, id 5psfj_v2, titled \"Towards Federated Learning Across Biobanks: Prototype Software from the 2026 Carnegie Mellon University–NVIDIA Hackathon\"; the API states its licence is CC-By Attribution 4.0 International.",
+  "reachable": true,
+  "robots": {
+    "url": "https://osf.io/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/biohackrxiv.robots.txt",
+    "indexPath": "/preprints/biohackrxiv",
+    "contentPath": "/preprints/biohackrxiv/5psfj_v2",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": "10",
+    "sitemaps": [],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://github.com/CenterForOpenScience/cos.io/blob/master/TERMS_OF_USE.md",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/biohackrxiv.terms.html",
+    "textSavedTo": "data/design-study/legal/biohackrxiv.terms.txt",
+    "textChars": 39496,
+    "candidatesTried": [
+      {
+        "url": "https://github.com/CenterForOpenScience/cos.io/blob/master/TERMS_OF_USE.md",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Our mission is to increase the openness, integrity, and reproducibility of scientific research and scholarly communication by creating and operating an open source infrastructure (referred to as \"OSF\") to support the entire research lifecycle from planning, collaborating, conducting, reporting, publishing, archiving and discovery.",
+      "In order to use the Websites and Services made available on the sites, whether by accessing our Websites directly or by using a public application programming interface (\"Public API\") to access our Websites and Services, you must first agree to these Terms of Use.",
+      "An Administrator may create a Project, components of a Project, or Preprint, create and change contributor permissions, identify the legal terms that govern the ownership of the intellectual property in Content deposited into a Project, a Project component, or Preprint or identify the license restrictions governing the use of the intellectual property incorporated into the Project, Project…",
+      "**Proxy.** A Proxy is a person to whom the Administrator has granted the authority to manage a Project or Project component on his or her behalf, which may include setting and modifying user access, privacy settings, license terms, and editing and depositing Content.",
+      "**Public API.** An application program interface is available to the public to facilitate computer communication with the OSF.",
+      "The user maintains ownership of this content, and can grant further rights by applying a license to it.",
+      "The OSF software available on an open-source basis under the Apache 2.0 license.",
+      "Your use of the OSF Software is subject to the terms of such license.",
+      "In addition, the COS grants you a license to use any Content marked \"public,\" subject to patent, copyright and trademark law and these Terms of Use, including the limits described in the section governing Limitations on Use below.",
+      "By \"use\" we mean sublicense, reproduce, store, transmit, distribute, and publicly display the Content for non-commercial and commercial uses.",
+      "If a Project contains links to full-text articles or other content (“Content”), this license does not extend to the linked Content.",
+      "You may download and modify Content, but only in a manner consistent with copyright law and that does not make the data false or misleading.",
+      "If you deposit Content into OSF, you still own the Content, but you grant the COS and its authorized users a license to use it.",
+      "Specifically, by depositing any Content (including data and links, but not the linked content) in an OSF account, you grant the COS a perpetual, irrevocable, worldwide, royalty-free license to store, reproduce, transmit, distribute, publicly perform, and publicly display such Content, subject to the Privacy Settings the Administrator or Proxy selects.",
+      "You grant its users a perpetual, irrevocable, worldwide, royalty-free license to use, publicly display, and publicly perform such Content, subject to the Privacy Settings the Administrator or Proxy selects.",
+      "This limited license continues even after you stop using the COS database.",
+      "You may grant further rights if you apply a license.",
+      "If you contribute software code designed to modify and enhance the OSF, the underlying technology platform upon which all Projects, Registrations, and Preprints are stored, you continue to own the code, but you grant the COS and its authorized users a perpetual, irrevocable, worldwide, royalty-free license to sublicense, reproduce, store, modify, transmit, distribute, publicly perform, and…",
+      "**Public.** Content marked as \"Public\" will be available to the public for viewing and commercial and non-commercial use under the terms of the license identified by the Administrator.",
+      "**Private.** Content marked as \"Private\" may be viewed through the OSF or Public API only by the Administrator(s), a Contributing User of that Project or Component, anyone with a view-only link created by an Administrator, or any designated Proxy.",
+      "**Embargoed.** Content marked as “Embargoed” may be viewed through the OSF or Public API only by the Administrator(s), a Contributing User of that Project or Component, anyone with a view-only link created by an Administrator, or any designated Proxy, until the Embargo date has passed, at which time the content will be made Public automatically.",
+      "If you are an Active User, you may not misrepresent your identity or organizational affiliations in any manner; must ensure that all data you deposit is true and correct at the time of deposit, and if you later discover that any data was not true and correct at the time of deposit, you must correct the data; ensure that the license you grant to the COS and the public to any content, data,…",
+      "You may not upload or transmit any data, content, or material that infringes or misappropriates any person's copyright, patent, trademark, or trade secret, or disclose via the Websites or Services any information the disclosure of which would constitute a violation of any confidentiality obligation on your part.",
+      "You are further prohibited from harvesting addresses, email addresses, or other personal data for commercial purposes and from sending unsolicited or unauthorized advertising, promotional materials, or other unsolicited communications to other users of the Websites or Services.",
+      "Any unauthorized use of the Websites or Services or other breach of these Terms of Use shall automatically terminate the license granted to you by the COS subject to an appeals process.",
+      "The COS makes commercially reasonable efforts to maintain and provide access to its Websites and Services and will endeavor to provide you with advance warning of restrictions to access due to routine website maintenance.",
+      "The COS may temporarily or permanently remove any content on the Websites or Services at any time where the COS, in its sole discretion believes the content is in violation of these Terms of Use or where the COS is acting in compliance with the Digital Millennium Copyright Act.",
+      "The COS uses commercially reasonable, industry-standard measures to protect the security of the COS's Websites and Services.",
+      "Because some sites employ automated search results or otherwise link you to sites containing information that may be deemed inappropriate or offensive, the COS cannot be held responsible for the accuracy, copyright compliance, legality, or decency of material contained in third-party sites or any results that may be obtained from using them.",
+      "To the extent authorized by law, you agree to defend, indemnify, and hold harmless COS, its employees, directors, officers, affiliated companies, agents, vendors, or suppliers from and against any and all claims, damages, costs, and expenses, including reasonable attorneys' fees, that are incurred in connection with any third-party claim arising from or related to your use or misuse of the…",
+      "In turn, COS indemnifies you for any claims purporting to arise from allegations that the OSF Software (but not Content uploaded to it) infringes the patent or copyrights of a third party.",
+      "Termination for any reason shall not terminate any of your warranties or any of your indemnification and other obligations under these Terms of Use, or any licenses that you have or other rights that you may have granted in connection with any of your contributions.",
+      "YOU UNDERSTAND AND AGREE THAT ANY DATA, CONTENT, OR SOFTWARE DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE WEBSITES, SERVICES, OR APPLICATION PROGRAMMING INTERFACES OR ANY THIRD-PARTY PRODUCT ACCESSING THE WEBSITES AND SERVICES IS AT YOUR OWN DISCRETION AND RISK AND THAT YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM(S) OR LOSS OF DATA OR BUSINESS INTERRUPTION…",
+      "If you download code or software tools (the \"Software\") from the Websites or Services, the use of the Software is subject to the license terms in the Software License Agreement that accompanies or is provided with the Software.",
+      "If a Software License Agreement does not accompany or is not provided with the Software and/or the Software is sample or beta code or is provided for evaluation purposes, then you must contact the Project Administrator for the applicable Software License Agreement.",
+      "You may not download or install the Software until you have read and accepted the terms of the applicable Software License Agreement.",
+      "The right to use any COS Mark can only be obtained via a separate trademark license agreement with the COS and your compliance with any applicable COS Mark usage guidelines.",
+      "PROCEDURE FOR MAKING CLAIMS OF COPYRIGHT INFRINGEMENT",
+      "In accordance with the Digital Millennium Copyright Act (17 USC § 512), any notifications of claimed copyright infringement must be sent to our Designated Agent:",
+      "The COS makes no claims that the data or content on its Websites or Services is appropriate or may be downloaded outside of the United States."
+    ],
+    "forbiddingHits": [
+      "You are further prohibited from harvesting addresses, email addresses, or other personal data for commercial purposes and from sending unsolicited or unauthorized advertising, promotional materials, or other unsolicited communications to other users of the Websites or Services."
+    ]
+  },
+  "api": {
+    "exists": true,
+    "url": "https://api.osf.io/v2/",
+    "licence": "CC-By Attribution 4.0 International",
+    "note": "API root (OSF): HTTP 200, 1375 bytes (JSON); saved excerpt to legal/biohackrxiv.api.txt"
+  },
+  "machineProposal": {
+    "decision": "link-only",
+    "reason": "Terms clause matched a prohibition pattern: \"You are further prohibited from harvesting addresses, email addresses, or other personal data for commercial purposes and from sending unsolicited or unauthorized advertising, promotional materials, or other unsolicited communications to ot\""
+  },
+  "notes": []
+}

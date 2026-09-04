@@ -1,0 +1,1711 @@
+{
+ "gate": "1b",
+ "stage": "Phase 2d measurement (after the evidence-age fix, the three CLINICAL templates and the removal of the standing paragraph-2 fallbacks)",
+ "date": "2026-09-05",
+ "supersedes": "data/corpus-20k/gate1b/summary-v2.json (Phase 2c re-measure)",
+ "method": {
+  "harness": "scripts/corpus-20k/overlap/measure.py, unchanged; seed 20260904, 128 permutations, 5-gram shingles, cascade 32x4 -> 64x2 -> 128x1, max bucket 512, rerank 64",
+  "driver": "scripts/corpus-20k/overlap/gate1b_v4.py (build | folds | buckets | shared | runs | validate | summary)",
+  "sets": "the same sets and seeds as Phase 2b: indexed candidates (Tier 1 + Tier 2 with at least one question), the seeded 803 and 324 draws (drawn in that order from one default_rng(20260904) over the sorted indexed key list), the size-matched folds (default_rng(20260904).permutation cut into consecutive 803-page folds), the full corpus.",
+  "derivation": "identical to gate1b_v2.py: matched 803 and 324 draws, size-matched 803-page folds over the sorted indexed key list at seed 20260904, the same bucket rule",
+  "notReRun": "The live baselines (set c) read data/drugs/*.ndjson through build_validation_corpus.py and no drug record changed in Phase 2c, so the v1 figures stand unchanged and are carried forward, not re-measured."
+ },
+ "renderer": {
+  "module": "scripts/corpus-20k/render/page-text.ts",
+  "out": "data/corpus-20k/render/text/batch-NNNN.ndjson (step page-text-v4, 29 batches)",
+  "pages": 28832,
+  "withQuestions": 11313,
+  "withoutQuestions": 17519,
+  "byTier": {
+   "1": 1719,
+   "2": 4477,
+   "3": 22636
+  },
+  "meanWordCount": 259.3,
+  "rowCap": 20
+ },
+ "questions": {
+  "pagesWithQuestions": 11313,
+  "distinctStrings": 58525,
+  "mostRepeatedString": {
+   "text": "What became of the other 61 compounds aimed at TUBB?",
+   "pages": 62,
+   "share": 0.00215
+  },
+  "mostRepeatedTemplate": {
+   "template": "trial-size",
+   "pages": 8615,
+   "share": 0.2988
+  },
+  "fiveGramMeanJaccard": 0.002746,
+  "forbiddenWordViolations": []
+ },
+ "standingSentences": {
+  "rule": "a sentence appearing verbatim in the prose of more than 5% of indexed pages is a standing sentence and fails; a label in a revealed row is markup and is reported beside it, not against the rule",
+  "set": "indexed candidates: Tier 1 or Tier 2 with at least one question",
+  "indexedPages": 5858,
+  "prose": {
+   "distinctSentences": 98518,
+   "overFivePercent": [],
+   "mostRepeated": [
+    {
+     "text": "C.",
+     "pages": 214,
+     "share": 0.036531
+    },
+    {
+     "text": "pharmacokinetics",
+     "pages": 210,
+     "share": 0.035848
+    },
+    {
+     "text": "1 recorded statement; exercise",
+     "pages": 202,
+     "share": 0.034483
+    },
+    {
+     "text": "2 recorded statements; fasting, exercise",
+     "pages": 179,
+     "share": 0.030557
+    },
+    {
+     "text": "1 completed; 0 with posted results",
+     "pages": 171,
+     "share": 0.029191
+    },
+    {
+     "text": "1 term in all",
+     "pages": 144,
+     "share": 0.024582
+    },
+    {
+     "text": "1 recorded statement; fasting",
+     "pages": 120,
+     "share": 0.020485
+    },
+    {
+     "text": "2026-09-04; 2 registers read",
+     "pages": 94,
+     "share": 0.016046
+    },
+    {
+     "text": "— the recorded outcome words.",
+     "pages": 75,
+     "share": 0.012803
+    },
+    {
+     "text": "1 of 1 posted no result",
+     "pages": 71,
+     "share": 0.01212
+    },
+    {
+     "text": "indications and usage; recorded 2025-01-09",
+     "pages": 70,
+     "share": 0.011949
+    },
+    {
+     "text": "EMA_MEDICINE_REGISTER, Drugs@FDA; 1 recorded pair",
+     "pages": 65,
+     "share": 0.011096
+    },
+    {
+     "text": "\"Uses: See symptoms on front panel.",
+     "pages": 64,
+     "share": 0.010925
+    },
+    {
+     "text": "OPEN_TARGETS_DRUG_WARNING, Drugs@FDA; 1 recorded pair",
+     "pages": 57,
+     "share": 0.00973
+    },
+    {
+     "text": "1 completed; 1 with posted results",
+     "pages": 54,
+     "share": 0.009218
+    }
+   ]
+  },
+  "markupRowLabels": {
+   "distinctLabels": 11564,
+   "overFivePercent": [
+    {
+     "text": "US",
+     "pages": 4226,
+     "share": 0.721407
+    },
+    {
+     "text": "CA",
+     "pages": 4166,
+     "share": 0.711164
+    },
+    {
+     "text": "EU",
+     "pages": 4006,
+     "share": 0.683851
+    },
+    {
+     "text": "completed",
+     "pages": 3669,
+     "share": 0.626323
+    },
+    {
+     "text": "Trial",
+     "pages": 3613,
+     "share": 0.616763
+    },
+    {
+     "text": "phase2",
+     "pages": 3105,
+     "share": 0.530044
+    },
+    {
+     "text": "phase3",
+     "pages": 2971,
+     "share": 0.50717
+    },
+    {
+     "text": "phase1",
+     "pages": 2854,
+     "share": 0.487197
+    },
+    {
+     "text": "phase4",
+     "pages": 2482,
+     "share": 0.423694
+    },
+    {
+     "text": "terminated",
+     "pages": 2425,
+     "share": 0.413964
+    },
+    {
+     "text": "na",
+     "pages": 2409,
+     "share": 0.411233
+    },
+    {
+     "text": "unknown",
+     "pages": 2325,
+     "share": 0.396893
+    },
+    {
+     "text": "recruiting",
+     "pages": 2218,
+     "share": 0.378628
+    },
+    {
+     "text": "na or unstated",
+     "pages": 2212,
+     "share": 0.377603
+    },
+    {
+     "text": "human",
+     "pages": 2190,
+     "share": 0.373848
+    },
+    {
+     "text": "withdrawn",
+     "pages": 1921,
+     "share": 0.327928
+    },
+    {
+     "text": "active not recruiting",
+     "pages": 1711,
+     "share": 0.292079
+    },
+    {
+     "text": "not yet recruiting",
+     "pages": 1544,
+     "share": 0.263571
+    },
+    {
+     "text": "early phase1",
+     "pages": 1409,
+     "share": 0.240526
+    },
+    {
+     "text": "half life",
+     "pages": 1328,
+     "share": 0.226699
+    },
+    {
+     "text": "Last recorded human test",
+     "pages": 1017,
+     "share": 0.173609
+    },
+    {
+     "text": "metabolism",
+     "pages": 1016,
+     "share": 0.173438
+    },
+    {
+     "text": "mouse",
+     "pages": 596,
+     "share": 0.101741
+    },
+    {
+     "text": "biomarkers",
+     "pages": 592,
+     "share": 0.101058
+    },
+    {
+     "text": "enrolling by invitation",
+     "pages": 576,
+     "share": 0.098327
+    },
+    {
+     "text": "CYP3A4",
+     "pages": 560,
+     "share": 0.095596
+    },
+    {
+     "text": "humanTrialsAtOrUnder30",
+     "pages": 552,
+     "share": 0.09423
+    },
+    {
+     "text": "smallestHumanTrial",
+     "pages": 552,
+     "share": 0.09423
+    },
+    {
+     "text": "tmax",
+     "pages": 536,
+     "share": 0.091499
+    },
+    {
+     "text": "Interaction statement",
+     "pages": 524,
+     "share": 0.08945
+    },
+    {
+     "text": "mTOR",
+     "pages": 487,
+     "share": 0.083134
+    },
+    {
+     "text": "suspended",
+     "pages": 476,
+     "share": 0.081256
+    },
+    {
+     "text": "autophagy",
+     "pages": 472,
+     "share": 0.080574
+    },
+    {
+     "text": "bioavailability",
+     "pages": 459,
+     "share": 0.078354
+    },
+    {
+     "text": "missing",
+     "pages": 424,
+     "share": 0.07238
+    },
+    {
+     "text": "exercise",
+     "pages": 398,
+     "share": 0.067941
+    },
+    {
+     "text": "AMPK",
+     "pages": 386,
+     "share": 0.065893
+    },
+    {
+     "text": "rat",
+     "pages": 383,
+     "share": 0.065381
+    },
+    {
+     "text": "CYP1A2",
+     "pages": 374,
+     "share": 0.063844
+    },
+    {
+     "text": "CYP2D6",
+     "pages": 355,
+     "share": 0.060601
+    },
+    {
+     "text": "CYP2C9",
+     "pages": 341,
+     "share": 0.058211
+    },
+    {
+     "text": "fasting",
+     "pages": 313,
+     "share": 0.053431
+    },
+    {
+     "text": "drug hypersensitivity",
+     "pages": 302,
+     "share": 0.051553
+    },
+    {
+     "text": "CYP2C19",
+     "pages": 295,
+     "share": 0.050358
+    },
+    {
+     "text": "sirtuin",
+     "pages": 294,
+     "share": 0.050188
+    }
+   ],
+   "mostRepeated": [
+    {
+     "text": "US",
+     "pages": 4226,
+     "share": 0.721407
+    },
+    {
+     "text": "CA",
+     "pages": 4166,
+     "share": 0.711164
+    },
+    {
+     "text": "EU",
+     "pages": 4006,
+     "share": 0.683851
+    },
+    {
+     "text": "completed",
+     "pages": 3669,
+     "share": 0.626323
+    },
+    {
+     "text": "Trial",
+     "pages": 3613,
+     "share": 0.616763
+    },
+    {
+     "text": "phase2",
+     "pages": 3105,
+     "share": 0.530044
+    },
+    {
+     "text": "phase3",
+     "pages": 2971,
+     "share": 0.50717
+    },
+    {
+     "text": "phase1",
+     "pages": 2854,
+     "share": 0.487197
+    },
+    {
+     "text": "phase4",
+     "pages": 2482,
+     "share": 0.423694
+    },
+    {
+     "text": "terminated",
+     "pages": 2425,
+     "share": 0.413964
+    },
+    {
+     "text": "na",
+     "pages": 2409,
+     "share": 0.411233
+    },
+    {
+     "text": "unknown",
+     "pages": 2325,
+     "share": 0.396893
+    },
+    {
+     "text": "recruiting",
+     "pages": 2218,
+     "share": 0.378628
+    },
+    {
+     "text": "na or unstated",
+     "pages": 2212,
+     "share": 0.377603
+    },
+    {
+     "text": "human",
+     "pages": 2190,
+     "share": 0.373848
+    }
+   ]
+  },
+  "fiveGrams": {
+   "rule": "a word five-gram of a page's prose is FIXED on that page when none of its five words is a value there — not a word of the compound's name, not a slot the derivation filled, and not a word carrying a digit. A gram that is fixed on more than 5% of indexed pages is a repeated frame and fails: it is the template speaking, on a twentieth of the corpus, and it is what the sentence-level audit cannot see because the sentence around it differs.",
+   "distinctFiveGrams": 594858,
+   "overFivePercent": [
+    {
+     "text": "approved the registers classification of",
+     "pages": 1292,
+     "share": 0.220553,
+     "fixedPages": 213,
+     "fixedShare": 0.036361
+    },
+    {
+     "text": "first approval 2 dated events",
+     "pages": 1110,
+     "share": 0.189484,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "approval 2 dated events for",
+     "pages": 1110,
+     "share": 0.189484,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "first human trial 2 dated",
+     "pages": 1016,
+     "share": 0.173438,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "human trial 2 dated events",
+     "pages": 1016,
+     "share": 0.173438,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "trial 2 dated events for",
+     "pages": 1016,
+     "share": 0.173438,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "years in its longest measuring",
+     "pages": 1011,
+     "share": 0.172584,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "and ca approved the registers",
+     "pages": 931,
+     "share": 0.158928,
+     "fixedPages": 50,
+     "fixedShare": 0.008535
+    },
+    {
+     "text": "ca approved the registers classification",
+     "pages": 923,
+     "share": 0.157562,
+     "fixedPages": 160,
+     "fixedShare": 0.027313
+    },
+    {
+     "text": "hours which schedules were studied",
+     "pages": 897,
+     "share": 0.153124,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "eu approved emea h c",
+     "pages": 860,
+     "share": 0.146808,
+     "fixedPages": 28,
+     "fixedShare": 0.00478
+    },
+    {
+     "text": "and 7 more reported for",
+     "pages": 787,
+     "share": 0.134346,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "label terms 10 reported and",
+     "pages": 787,
+     "share": 0.134346,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "terms 10 reported and unlisted",
+     "pages": 787,
+     "share": 0.134346,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "approved and ca approved the",
+     "pages": 749,
+     "share": 0.127859,
+     "fixedPages": 49,
+     "fixedShare": 0.008365
+    },
+    {
+     "text": "2026 08 28 ca approved",
+     "pages": 735,
+     "share": 0.125469,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "s trials stopped accrual recruitment",
+     "pages": 692,
+     "share": 0.118129,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "2026 09 04 ca approved",
+     "pages": 616,
+     "share": 0.105155,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "2026 08 28 eu approved",
+     "pages": 577,
+     "share": 0.098498,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "08 28 eu approved emea",
+     "pages": 577,
+     "share": 0.098498,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "28 eu approved emea h",
+     "pages": 577,
+     "share": 0.098498,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "2 label terms 10 reported",
+     "pages": 567,
+     "share": 0.096791,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "indicated for the treatment of",
+     "pages": 562,
+     "share": 0.095937,
+     "fixedPages": 554,
+     "fixedShare": 0.094572
+    },
+    {
+     "text": "accrual recruitment funding business other",
+     "pages": 509,
+     "share": 0.08689,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "futility efficacy accrual recruitment funding",
+     "pages": 450,
+     "share": 0.076818,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "efficacy accrual recruitment funding business",
+     "pages": 450,
+     "share": 0.076818,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "first non human result 2",
+     "pages": 446,
+     "share": 0.076135,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "non human result 2 dated",
+     "pages": 446,
+     "share": 0.076135,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "human result 2 dated events",
+     "pages": 446,
+     "share": 0.076135,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "result 2 dated events for",
+     "pages": 446,
+     "share": 0.076135,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "eu approved and ca approved",
+     "pages": 434,
+     "share": 0.074087,
+     "fixedPages": 30,
+     "fixedShare": 0.005121
+    },
+    {
+     "text": "was tested only in human",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "tested only in human what",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "only in human what did",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "in human what did it",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "human what did it show",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "s recorded interaction sentences 8",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "recorded interaction sentences 8 in",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "interaction sentences 8 in all.",
+     "pages": 406,
+     "share": 0.069307,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "last human test completed 2026",
+     "pages": 405,
+     "share": 0.069136,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "at the largest across 1",
+     "pages": 403,
+     "share": 0.068795,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "the largest across 1 registered",
+     "pages": 403,
+     "share": 0.068795,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "largest across 1 registered trials",
+     "pages": 403,
+     "share": 0.068795,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "across 1 registered trials of",
+     "pages": 403,
+     "share": 0.068795,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "posted no result 0 with",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "no result 0 with a",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "result 0 with a pubmed",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "0 with a pubmed record",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "s trials stopped safety futility",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "trials stopped safety futility efficacy",
+     "pages": 388,
+     "share": 0.066234,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "lead 40 outcome terms across",
+     "pages": 378,
+     "share": 0.064527,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "funding business sponsor decision unspecified",
+     "pages": 376,
+     "share": 0.064186,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "business sponsor decision unspecified other",
+     "pages": 367,
+     "share": 0.062649,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "stopped safety futility efficacy accrual",
+     "pages": 364,
+     "share": 0.062137,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "safety futility efficacy accrual recruitment",
+     "pages": 364,
+     "share": 0.062137,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "accrual recruitment funding business sponsor",
+     "pages": 360,
+     "share": 0.061454,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "recruitment funding business sponsor decision",
+     "pages": 360,
+     "share": 0.061454,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "of 1 posted no result",
+     "pages": 354,
+     "share": 0.06043,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "us approved eu approved and",
+     "pages": 344,
+     "share": 0.058723,
+     "fixedPages": 17,
+     "fixedShare": 0.002902
+    },
+    {
+     "text": "approved eu approved and ca",
+     "pages": 344,
+     "share": 0.058723,
+     "fixedPages": 17,
+     "fixedShare": 0.002902
+    },
+    {
+     "text": "s trials stopped safety accrual",
+     "pages": 341,
+     "share": 0.058211,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "trials stopped safety accrual recruitment",
+     "pages": 341,
+     "share": 0.058211,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "from mouse to human where",
+     "pages": 341,
+     "share": 0.058211,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "mouse to human where has",
+     "pages": 341,
+     "share": 0.058211,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "is indicated for the treatment",
+     "pages": 338,
+     "share": 0.057699,
+     "fixedPages": 335,
+     "fixedShare": 0.057187
+    },
+    {
+     "text": "completed 0 with posted results",
+     "pages": 326,
+     "share": 0.05565,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "recruiting 1 not yet recruiting",
+     "pages": 321,
+     "share": 0.054797,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "us approved and ca approved",
+     "pages": 315,
+     "share": 0.053773,
+     "fixedPages": 25,
+     "fixedShare": 0.004268
+    },
+    {
+     "text": "are open earliest completion 2026",
+     "pages": 312,
+     "share": 0.05326,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "futility efficacy 1 accrual recruitment",
+     "pages": 306,
+     "share": 0.052236,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "recruiting 1 enrolling by invitation",
+     "pages": 299,
+     "share": 0.051041,
+     "fixedPages": 0,
+     "fixedShare": 0
+    },
+    {
+     "text": "s trials stopped futility efficacy",
+     "pages": 296,
+     "share": 0.050529,
+     "fixedPages": 0,
+     "fixedShare": 0
+    }
+   ],
+   "fixedOverFivePercent": [
+    {
+     "text": "indicated for the treatment of",
+     "pages": 554,
+     "share": 0.094572
+    },
+    {
+     "text": "is indicated for the treatment",
+     "pages": 335,
+     "share": 0.057187
+    }
+   ],
+   "mostRepeatedFixed": [
+    {
+     "text": "indicated for the treatment of",
+     "pages": 554,
+     "share": 0.094572
+    },
+    {
+     "text": "is indicated for the treatment",
+     "pages": 335,
+     "share": 0.057187
+    },
+    {
+     "text": "no regulator classification is recorded",
+     "pages": 254,
+     "share": 0.04336
+    },
+    {
+     "text": "regulator classification is recorded for",
+     "pages": 254,
+     "share": 0.04336
+    },
+    {
+     "text": "approved the registers classification of",
+     "pages": 213,
+     "share": 0.036361
+    },
+    {
+     "text": "withdrawal status vs register status",
+     "pages": 191,
+     "share": 0.032605
+    },
+    {
+     "text": "status vs register status for",
+     "pages": 191,
+     "share": 0.032605
+    },
+    {
+     "text": "s label states elimination the",
+     "pages": 187,
+     "share": 0.031922
+    },
+    {
+     "text": "shared nodes drug interactions pharmacokinetics",
+     "pages": 186,
+     "share": 0.031751
+    },
+    {
+     "text": "field molecule.first approval url https",
+     "pages": 164,
+     "share": 0.027996
+    },
+    {
+     "text": "molecule.first approval url https www.ebi.ac.uk",
+     "pages": 164,
+     "share": 0.027996
+    },
+    {
+     "text": "approval url https www.ebi.ac.uk chembl",
+     "pages": 164,
+     "share": 0.027996
+    },
+    {
+     "text": "url https www.ebi.ac.uk chembl explore",
+     "pages": 164,
+     "share": 0.027996
+    },
+    {
+     "text": "https www.ebi.ac.uk chembl explore compound",
+     "pages": 164,
+     "share": 0.027996
+    },
+    {
+     "text": "ca approved the registers classification",
+     "pages": 160,
+     "share": 0.027313
+    }
+   ]
+  }
+ },
+ "harnessFit": {
+  "fit": true,
+  "rule": "unfit above 0.02 median delta",
+  "corpus": "rendered-indexed-803 (v4)",
+  "positionalDeltaMedian": 0.0,
+  "positionalDeltaP90": 0.021641,
+  "positionalDeltaMax": 0.193391,
+  "lexicalDeltaMedian": 0.0
+ },
+ "sets": {
+  "a_indexed_full": {
+   "pages": 5858,
+   "positionalMedian": 0.368421,
+   "positionalP90": 0.635321,
+   "positionalMax": 0.983198,
+   "above_0_20": 5004,
+   "above_0_30": 3698,
+   "lexicalMedian": 0.513967,
+   "sharedWordShareMedian": 0.147086,
+   "mode": "lsh",
+   "note": "Tier 1 + Tier 2 with at least one question, every page scored against all others"
+  },
+  "a_indexed_size_matched_pooled": {
+   "pages": 5858,
+   "positionalMedian": 0.29,
+   "positionalP90": 0.452885,
+   "positionalMax": 0.980711,
+   "above_0_20": 4210,
+   "above_0_30": 2795,
+   "lexicalMedian": 0.448,
+   "lexicalAbove_0_40": 3886,
+   "sharedWordShareMedian": 0.14693,
+   "foldSizes": [
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803
+   ],
+   "keptPerFold": [
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    237
+   ],
+   "note": "The basis Gate 1b uses: each page scored inside a seeded 803-page fold so the candidate count matches the baseline draw."
+  },
+  "b_matched_803": {
+   "pages": 803,
+   "positionalMedian": 0.269737,
+   "positionalP90": 0.448718,
+   "positionalMax": 0.977238,
+   "above_0_20": 484,
+   "above_0_30": 377,
+   "lexicalMedian": 0.449814,
+   "sharedWordShareMedian": 0.150761,
+   "mode": "exhaustive"
+  },
+  "b_matched_324": {
+   "pages": 324,
+   "positionalMedian": 0.29,
+   "positionalP90": 0.421589,
+   "positionalMax": 0.636616,
+   "above_0_20": 238,
+   "above_0_30": 147,
+   "lexicalMedian": 0.425928,
+   "sharedWordShareMedian": 0.144682,
+   "mode": "exhaustive"
+  },
+  "c_baseline_live_803": {
+   "pages": 803,
+   "positionalMedian": 0.6472,
+   "positionalP90": 0.7935,
+   "positionalMax": 0.9147,
+   "above_0_20": 803,
+   "above_0_30": 796,
+   "lexicalMedian": 0.6152,
+   "lexicalP90": 0.767,
+   "lexicalAbove_0_40": null,
+   "sharedWordShareMedian": 0.559024,
+   "note": "Carried forward from Phase 2b unchanged: same source records, same export-flatten text, not re-run."
+  },
+  "c_baseline_live_324": {
+   "pages": 324,
+   "positionalMedian": 0.6107,
+   "positionalP90": 0.8101,
+   "positionalMax": 0.8753,
+   "above_0_20": 324,
+   "above_0_30": 313,
+   "lexicalMedian": 0.5848,
+   "lexicalP90": 0.8034,
+   "lexicalAbove_0_40": null,
+   "sharedWordShareMedian": 0.549864,
+   "note": "Carried forward from Phase 2b unchanged: same source records, same export-flatten text, not re-run."
+  },
+  "d_full_corpus": {
+   "pages": 28832,
+   "positionalMedian": 0.710526,
+   "positionalP90": 0.8,
+   "positionalMax": 1.0,
+   "above_0_20": 27964,
+   "above_0_30": 26313,
+   "lexicalMedian": 0.675,
+   "sharedWordShareMedian": 0.33,
+   "mode": "lsh"
+  },
+  "e_indexed_prose_only": {
+   "pages": 5858,
+   "positionalMedian": 0.355556,
+   "positionalP90": 0.73658,
+   "positionalMax": 1.0,
+   "above_0_20": 4596,
+   "above_0_30": 3565,
+   "lexicalMedian": 0.552239,
+   "sharedWordShareMedian": 0.032609,
+   "mode": "lsh"
+  }
+ },
+ "likeForLike": {
+  "note": "The v4 render scored on exactly the 4,558 pages v2 measured, so the two numbers differ only by what the render changed — not by which pages were measured.",
+  "carriedFromV2": {
+   "pages": 4511,
+   "positionalMedian": 0.26,
+   "lexicalMedian": 0.4216,
+   "v2PositionalMedian": 0.2493
+  },
+  "carriedWithoutAClinicalBlock": {
+   "pages": 1287,
+   "positionalMedian": 0.1809,
+   "reading": "pages the three new CLINICAL templates never touch: the evidence-age fix on its own"
+  },
+  "carriedWithAClinicalBlock": {
+   "pages": 3224,
+   "positionalMedian": 0.2727
+  },
+  "newlyIndexed": {
+   "pages": 1347,
+   "positionalMedian": 0.3816,
+   "medianPresentFields": 2,
+   "medianWordCount": 169,
+   "reading": "CLINICAL pages that fired no question before the three templates were added"
+  }
+ },
+ "nullModel": {
+  "indexed": {
+   "randomPairPositionalMedian": 0.044241,
+   "expectedNearestNeighbour": {
+    "full": {
+     "pages": 5858,
+     "positional": 0.620964,
+     "lexical": 0.821827
+    },
+    "matched": [
+     {
+      "pages": 324,
+      "positional": 0.383791,
+      "lexical": 0.549748
+     },
+     {
+      "pages": 803,
+      "positional": 0.432162,
+      "lexical": 0.607326
+     }
+    ]
+   }
+  },
+  "fullCorpus": {
+   "randomPairPositionalMedian": 0.168923,
+   "expectedNearestNeighbour": {
+    "full": {
+     "pages": 28832,
+     "positional": 0.966667,
+     "lexical": 0.962822
+    },
+    "matched": [
+     {
+      "pages": 324,
+      "positional": 0.882658,
+      "lexical": 0.941348
+     },
+     {
+      "pages": 803,
+      "positional": 0.93474,
+      "lexical": 0.941866
+     }
+    ]
+   }
+  }
+ },
+ "controls": [
+  {
+   "label": "control:other",
+   "pages": 5858,
+   "positional": {
+    "count": 5858,
+    "median": 0.565217,
+    "mean": 0.599674,
+    "p90": 0.777955,
+    "max": 0.955544,
+    "above_0_20": 5836,
+    "above_0_30": 5798
+   },
+   "lexical": {
+    "count": 5858,
+    "median": 0.47925,
+    "mean": 0.482554,
+    "p90": 0.614696,
+    "max": 0.924779,
+    "above_0_20": 5858,
+    "above_0_30": 5675
+   },
+   "medianTokens": 1100
+  },
+  {
+   "label": "control:self",
+   "pages": 5858,
+   "positional": {
+    "count": 5858,
+    "median": 0.354167,
+    "mean": 0.370689,
+    "p90": 0.629545,
+    "max": 0.982724,
+    "above_0_20": 4895,
+    "above_0_30": 3596
+   },
+   "lexical": {
+    "count": 5858,
+    "median": 0.513902,
+    "mean": 0.529108,
+    "p90": 0.733624,
+    "max": 0.99005,
+    "above_0_20": 5857,
+    "above_0_30": 5665
+   },
+   "medianTokens": 1100
+  }
+ ],
+ "sharedWordShare": {
+  "indexed": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.147086,
+   "p90": 0.27907,
+   "byTier": {
+    "tier1": 0.101432,
+    "tier2": 0.163333
+   }
+  },
+  "fullCorpus": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.33,
+   "p90": 0.577778,
+   "byTier": {
+    "tier1": 0.090246,
+    "tier2": 0.141243,
+    "tier3": 0.405797
+   }
+  },
+  "proseOnly": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.032609,
+   "p90": 0.103679,
+   "byTier": {
+    "tier1": 0.022944,
+    "tier2": 0.036891
+   }
+  },
+  "baseline803": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.559024,
+   "p90": 0.690778,
+   "byTier": {
+    "class": 0.551855,
+    "median": 0.568606,
+    "richest": 0.325699,
+    "thinnest": 0.724139,
+    "topup": 0.563885
+   }
+  }
+ },
+ "buckets": {
+  "0": {
+   "n": 8,
+   "posMed": 0.295725,
+   "posP90": 0.3424239,
+   "lexMed": 0.434659,
+   "cumN": 5858,
+   "cumPosMed": 0.29,
+   "cumLexMed": 0.448
+  },
+  "1": {
+   "n": 859,
+   "posMed": 0.403846,
+   "posP90": 0.460526,
+   "lexMed": 0.554217,
+   "cumN": 5850,
+   "cumPosMed": 0.29,
+   "cumLexMed": 0.448
+  },
+  "2": {
+   "n": 889,
+   "posMed": 0.381579,
+   "posP90": 0.460526,
+   "lexMed": 0.539326,
+   "cumN": 4991,
+   "cumPosMed": 0.27,
+   "cumLexMed": 0.43038
+  },
+  "3": {
+   "n": 667,
+   "posMed": 0.37,
+   "posP90": 0.421053,
+   "lexMed": 0.502674,
+   "cumN": 4102,
+   "cumPosMed": 0.25641,
+   "cumLexMed": 0.4107835
+  },
+  "4": {
+   "n": 452,
+   "posMed": 0.322581,
+   "posP90": 0.421053,
+   "lexMed": 0.469143,
+   "cumN": 3435,
+   "cumPosMed": 0.231343,
+   "cumLexMed": 0.395582
+  },
+  "5": {
+   "n": 371,
+   "posMed": 0.315789,
+   "posP90": 0.410256,
+   "lexMed": 0.435811,
+   "cumN": 2983,
+   "cumPosMed": 0.21,
+   "cumLexMed": 0.385714
+  },
+  "6": {
+   "n": 363,
+   "posMed": 0.287879,
+   "posP90": 0.6097668000000003,
+   "lexMed": 0.431111,
+   "cumN": 2612,
+   "cumPosMed": 0.201613,
+   "cumLexMed": 0.3780425
+  },
+  "7": {
+   "n": 339,
+   "posMed": 0.25641,
+   "posP90": 0.5204061999999997,
+   "lexMed": 0.426407,
+   "cumN": 2249,
+   "cumPosMed": 0.191489,
+   "cumLexMed": 0.36919
+  },
+  "8": {
+   "n": 369,
+   "posMed": 0.219081,
+   "posP90": 0.409091,
+   "lexMed": 0.409524,
+   "cumN": 1910,
+   "cumPosMed": 0.184211,
+   "cumLexMed": 0.359601
+  },
+  "9": {
+   "n": 484,
+   "posMed": 0.207144,
+   "posP90": 0.32973420000000003,
+   "lexMed": 0.38708,
+   "cumN": 1541,
+   "cumPosMed": 0.180531,
+   "cumLexMed": 0.345691
+  },
+  "10": {
+   "n": 421,
+   "posMed": 0.1875,
+   "posP90": 0.29,
+   "lexMed": 0.373887,
+   "cumN": 1057,
+   "cumPosMed": 0.173913,
+   "cumLexMed": 0.325874
+  },
+  "11": {
+   "n": 164,
+   "posMed": 0.17202800000000001,
+   "posP90": 0.3276798000000001,
+   "lexMed": 0.323333,
+   "cumN": 636,
+   "cumPosMed": 0.1583955,
+   "cumLexMed": 0.299268
+  },
+  "12": {
+   "n": 159,
+   "posMed": 0.169643,
+   "posP90": 0.31,
+   "lexMed": 0.302564,
+   "cumN": 472,
+   "cumPosMed": 0.151257,
+   "cumLexMed": 0.2932215
+  },
+  "13": {
+   "n": 137,
+   "posMed": 0.150794,
+   "posP90": 0.30002480000000015,
+   "lexMed": 0.296858,
+   "cumN": 313,
+   "cumPosMed": 0.146269,
+   "cumLexMed": 0.287994
+  },
+  "14": {
+   "n": 151,
+   "posMed": 0.143603,
+   "posP90": 0.29,
+   "lexMed": 0.287184,
+   "cumN": 176,
+   "cumPosMed": 0.14348,
+   "cumLexMed": 0.2850055
+  },
+  "15": {
+   "n": 23,
+   "posMed": 0.135417,
+   "posP90": 0.1744682,
+   "lexMed": 0.27139,
+   "cumN": 25,
+   "cumPosMed": 0.135417,
+   "cumLexMed": 0.269813
+  },
+  "16": {
+   "n": 2,
+   "posMed": 0.1333595,
+   "posP90": 0.1543783,
+   "lexMed": 0.2485445,
+   "cumN": 2,
+   "cumPosMed": 0.1333595,
+   "cumLexMed": 0.2485445
+  }
+ },
+ "threshold": {
+  "threshold": 10,
+  "indexed": 1057,
+  "belowByTier": {
+   "1": 986,
+   "2": 3815
+  },
+  "aboveByTier": {
+   "1": 719,
+   "2": 338
+  },
+  "boundaryBucketPositionalMedian": 0.1875,
+  "cumulativePositionalMedian": 0.173913,
+  "cumulativeLexicalMedian": 0.325874,
+  "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose cumulative set (pages at or above it) also keeps median <= 0.20",
+  "cumulativeOnlyThreshold": 7,
+  "readings": {
+   "ruleAsWritten": {
+    "threshold": 10,
+    "indexed": 1057,
+    "bucketPositionalMedian": 0.1875,
+    "cumulativePositionalMedian": 0.173913,
+    "cumulativeLexicalMedian": 0.325874,
+    "aboveByTier": {
+     "1": 719,
+     "2": 338
+    },
+    "belowByTier": {
+     "1": 986,
+     "2": 3815
+    }
+   },
+   "cumulativeOnly": {
+    "threshold": 7,
+    "indexed": 2249,
+    "bucketPositionalMedian": 0.25641,
+    "cumulativePositionalMedian": 0.191489,
+    "cumulativeLexicalMedian": 0.36919,
+    "aboveByTier": {
+     "1": 993,
+     "2": 1256
+    },
+    "belowByTier": {
+     "1": 712,
+     "2": 2897
+    }
+   },
+   "at7": {
+    "threshold": 7,
+    "indexed": 2249,
+    "bucketPositionalMedian": 0.25641,
+    "cumulativePositionalMedian": 0.191489,
+    "cumulativeLexicalMedian": 0.36919,
+    "aboveByTier": {
+     "1": 993,
+     "2": 1256
+    },
+    "belowByTier": {
+     "1": 712,
+     "2": 2897
+    }
+   },
+   "at11": {
+    "threshold": 11,
+    "indexed": 636,
+    "bucketPositionalMedian": 0.17202800000000001,
+    "cumulativePositionalMedian": 0.1583955,
+    "cumulativeLexicalMedian": 0.299268,
+    "aboveByTier": {
+     "1": 610,
+     "2": 26
+    },
+    "belowByTier": {
+     "1": 1095,
+     "2": 4127
+    }
+   }
+  },
+  "basis": "a_indexed_size_matched_pooled"
+ },
+ "sharedContent": {
+  "above_0_2": {
+   "pages": 4210,
+   "markupLinesMean": 0.3817,
+   "proseLinesMean": 0.2129,
+   "spanningLineBreaksMean": 0.4054,
+   "medianPresentFields": 3,
+   "medianWordCount": 368
+  },
+  "above_0_3": {
+   "pages": 2795,
+   "markupLinesMean": 0.3467,
+   "proseLinesMean": 0.2308,
+   "spanningLineBreaksMean": 0.4225,
+   "medianPresentFields": 3,
+   "medianWordCount": 292
+  },
+  "indexedSet": {
+   "pages": 5858,
+   "medianPresentFields": 5,
+   "medianWordCount": 500
+  }
+ },
+ "inputs": {
+  "seed15Fires": 7257,
+  "seed7Fires": 36,
+  "seed7Discarded": true,
+  "suppressed": 19335,
+  "suppressionUnknown": 17621,
+  "cleared": 9608
+ },
+ "verdict": {
+  "clears_0_20": true,
+  "threshold": 10,
+  "indexed": 1057,
+  "boundaryBucketPositionalMedian": 0.1875,
+  "cumulativeLexicalMedian": 0.325874
+ },
+ "crawlTextToHtml": {
+  "status": "deferred to Gate 2",
+  "reason": "text-to-HTML needs rendered HTML. No React template exists yet (Phase 4 builds it), so there is no server HTML to divide by. The baselines to compare against remain crawl 8.3% and live 0.07%."
+ },
+ "diffVsV1AndV2": {
+  "note": "v1 = summary.json (Phase 2b MEASURE); v2 = summary-v2.json (Phase 2c re-measure); v4 = this run. The v2 column's 'none clears' rows are written as null.",
+  "rows": [
+   {
+    "measure": "Pages rendered",
+    "v1": 28966,
+    "v2": 28943,
+    "v4": 28832
+   },
+   {
+    "measure": "Indexed candidates (Tier 1 + 2 with >= 1 question)",
+    "v1": 4562,
+    "v2": 4558,
+    "v4": 5858
+   },
+   {
+    "measure": "Positional median, 324 draw",
+    "v1": 0.192,
+    "v2": 0.2061,
+    "v4": 0.29
+   },
+   {
+    "measure": "Positional median, 803 draw",
+    "v1": 0.205,
+    "v2": 0.2467,
+    "v4": 0.269737
+   },
+   {
+    "measure": "Positional median, size-matched folds",
+    "v1": 0.208,
+    "v2": 0.2493,
+    "v4": 0.29
+   },
+   {
+    "measure": "Positional median, indexed all-pairs",
+    "v1": 0.303,
+    "v2": 0.312,
+    "v4": 0.368421
+   },
+   {
+    "measure": "Positional median, full corpus",
+    "v1": 0.711,
+    "v2": 0.7105,
+    "v4": 0.710526
+   },
+   {
+    "measure": "Lexical median, size-matched folds",
+    "v1": 0.435,
+    "v2": 0.4604,
+    "v4": 0.448
+   },
+   {
+    "measure": "Shared-word share, indexed",
+    "v1": 0.159,
+    "v2": 0.173085,
+    "v4": 0.147086
+   },
+   {
+    "measure": "Shared-word share, prose only",
+    "v1": 0.048,
+    "v2": 0.069635,
+    "v4": 0.032609
+   },
+   {
+    "measure": "Threshold (present fields)",
+    "v1": 7,
+    "v2": null,
+    "v4": 10
+   },
+   {
+    "measure": "Boundary bucket median",
+    "v1": 0.197,
+    "v2": null,
+    "v4": 0.1875
+   },
+   {
+    "measure": "Indexed pages",
+    "v1": 2267,
+    "v2": 0,
+    "v4": 1057
+   },
+   {
+    "measure": "Tier 1 below threshold",
+    "v1": 449,
+    "v2": 1478,
+    "v4": 986
+   },
+   {
+    "measure": "Tier 2 below threshold",
+    "v1": 1846,
+    "v2": 3080,
+    "v4": 3815
+   },
+   {
+    "measure": "Pages with questions, corpus",
+    "v1": 10071,
+    "v2": 10063,
+    "v4": 11313
+   },
+   {
+    "measure": "Distinct question strings",
+    "v1": 43674,
+    "v2": 59101,
+    "v4": 58525
+   },
+   {
+    "measure": "Standing prose sentences over 5% of indexed pages",
+    "v1": null,
+    "v2": 3,
+    "v4": 0
+   }
+  ]
+ }
+}

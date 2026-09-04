@@ -1,0 +1,17 @@
+{
+ "threshold": null,
+ "indexed": 0,
+ "belowByTier": {
+  "1": 1478,
+  "2": 3080
+ },
+ "aboveByTier": {
+  "1": 0,
+  "2": 0
+ },
+ "boundaryBucketPositionalMedian": null,
+ "cumulativePositionalMedian": null,
+ "cumulativeLexicalMedian": null,
+ "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose cumulative set (pages at or above it) also keeps median <= 0.20",
+ "cumulativeOnlyThreshold": null
+}

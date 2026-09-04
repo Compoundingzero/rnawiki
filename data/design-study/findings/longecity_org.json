@@ -1,0 +1,731 @@
+{
+  "site": "longecity.org",
+  "track": "A2",
+  "viewedAt": "2026-09-03T18:36:19Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-03.png",
+    "index-1440-tile-04.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-04.png",
+    "content-1440-tile-01.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png"
+  ],
+  "imagesMissing": [
+    "content-1440-tile-02.png (not on disk and not listed in the manifest; the captured content URL returned a one-viewport error page, so only tile-01 exists)"
+  ],
+  "captureCaveat": "The content URL https://www.longecity.org/forum/forum/3-supplements/ returned the board error page (h1 'Sorry, we couldn't find that!', reference [#10333]; domEvidence.title 'Error - LONGECITY', innerTextLength 758). No topic list, post, reply count or per-post metadata was observed. domEvidence.textToHtmlRatio 0.0044 was measured on that error page and is not a usable content-page figure. Verifier addition: every domEvidence key in this manifest was collected from that same error page (collectedFrom is the /3-supplements/ URL), so no DOM figure in this file describes the index; findings that lean on domEvidence have been scoped accordingly.",
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Hierarchy rests on one device, a full-width saturated blue band with white text, and all three sections use it at identical strength, so there is a first level and then nothing separating one section from another.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Community, Science & Health and Round Table Discussion are the only large filled colour areas in the reading column. Type size does not reinforce the band, it runs against it: the band labels are set smaller than the forum names inside them, and 'Immortality Institute' is set larger than every other forum name in the list.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Second and third levels are carried by colour and indent rather than weight or space, and all three steps fit inside a row about 83 px tall.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Forum name in mid-blue link text; sub-forums one indent below behind an elbow glyph in the same blue at a smaller size; the last-post cell to the right sets its post title as a smaller blue underlined link with author and date beneath it in grey. Row pitch measured between forum-name baselines in index-1440-tile-01 (AgingResearch through Lifestyle) is about 83 px, not 60.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The masthead and its nav bar are persistent chrome rather than the top of the index document: they are absent from the top of the index and painted part-way down the full-page capture, at the height the viewport sat.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "index-1440-tile-01 begins with the dark sign-in strip and the Community panel and carries no LongeCity masthead; the masthead, subtitle and .org/Districts/Media/SupportUs/Collaborate/Contact/Search/Join bar are painted at about y=900 of index-1440-full, ghosted over the Cycloastragenol row, which under the manifest caveat is how a fixed or sticky element renders in a full-page capture. content-1440-tile-01 shows the same masthead sitting normally at that page's document top. No DOM evidence bears on this: domEvidence was collected only on the content error page, so its single class-less fixed div at top 0 of height 900 describes that page, not the index.",
+      "inferred": true,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "The error page has the clearest hierarchy on the site, better organised than the index it belongs to.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "One large light-grey h1, a hairline-bordered box holding one sentence, then a Need Help? sub-head over three links; three levels with generous space and nothing competing.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At desktop the eye lands on chrome and specifically on commercial chrome, not on the forum list.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The three highest-contrast objects on the first screen are the green Sponsor: CrackAging.com panel overhanging the top-right corner, the yellow-green Create Account button, and the Featured Donation Goals block with a yellow progress bar, a pre-filled 5.00 field and a black Donate button; the forum list is blue-on-white and quieter than all three.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "At mobile the sponsor panel overlaps the site header band, so the first object on the page is an advertisement drawn on top of the site's own chrome.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "In index-375-tile-01 the green Sponsor: CrackAging.com image occupies roughly x 270-375 of the 375 px frame and overlaps the dark header band. The Menu button sits at the far left of that band, about 200 px clear of the panel, and is not covered by it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "On the content capture the eye lands on the h1 error line, but that page has no content to compete with, so it says nothing about how the site ranks content against chrome.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The only substantial text on the page is 'Sorry, we couldn't find that!' and one sentence beneath it.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "innerTextLength"
+      ]
+    },
+    {
+      "id": "F8",
+      "topic": "density",
+      "claim": "The record in a forum row's newest-post cell is an avatar plus three text fields - truncated title, author and date - and no reply count, view count, rating or score appears anywhere on the index.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Thirteen of the fourteen forum rows carry an icon, forum name, comma-separated sub-forums and a right-hand cell of the form 'PAI-1 Impacts Telomere Leng... | Michael Lustgarten / 30 Aug 2026' beside a small avatar. The fourteenth, Immortality Institute, carries no newest-post cell at all, and in the LongeCity row the title slot is taken by the access status 'Protected Forum' instead of a post title.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The poll widget is the densest and best-structured data object on the page because it shows count, share and denominator together.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Header '199 member(s) have cast votes', then seven options each with an absolute count, a percentage and a bar: immortality 22 votes [11.06%], (indefinite) life extension 45 votes [22.61%], (super/hyper) longevity 29 votes [14.57%], curing aging 24 votes [12.06%], rejuvenation 34 votes [17.09%], anti-aging 35 votes [17.59%], other 10 votes [5.03%].",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "Lists are bordered rows inside panels; there is no table, no sortable column and no filter anywhere in the captures, and grouping is by editorial topic rather than by evidence.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Three panels (Community, Science & Health, Round Table Discussion) each hold a stack of identical rows; no column headers, sort controls or facets appear.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "whitespace",
+      "claim": "Whitespace inside the content is uniform and therefore silent: space never signals that one thing matters more than another.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Roughly equal padding above a section band, inside a forum row and between rail widgets.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "The page spends its whitespace on a void: both columns run out about 1,770 px into a 3,522 px page and roughly 1,100 px of full-width blank follows before the rail's last two widgets appear near the bottom.",
+      "captures": [
+        "index-1440-tile-03.png",
+        "index-1440-tile-04.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "index-1440-tile-03 is an entirely blank white tile of about 900 px. In index-1440-full the main column ends with the Discover more block at about y=1,765 and the rail ends with the Facebook widget at about y=1,525; nothing is drawn in either column until Refer a Friend at about y=2,875, after which Popular Tags runs to the footer.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "The same void appears at mobile.",
+      "captures": [
+        "index-375-tile-04.png",
+        "index-375-full.png"
+      ],
+      "evidence": "index-375-full shows both columns empty from below the forum panels to about y=2,765, where Refer a Friend and Popular Tags resume near the footer. index-375-tile-04 is 812 px of blank, but only because that tile crops the leftmost 375 px of an 879 px page and the rail's remaining widgets sit outside the crop, so it evidences the clipping as much as the void.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "long-scroll",
+      "claim": "Long-scroll behaviour cannot be judged on the content page at all, because the error page is exactly one viewport tall; the only thing that changes across its three desktop scroll frames is the sponsor advertisement.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "content-1440-full.png is 900 px high, equal to the viewport, so the three desktop scroll captures are the same page state. Their sha256s differ only because the green Sponsor: CrackAging.com panel is in a different animation position in each - fully drawn at scroll-00, slid left and part-cut at scroll-50 and again at scroll-90 - while every other pixel is identical. The three mobile scroll captures do share one sha256 (4456a053...). No persistence, progress indicator or sticky rail behaviour was observable.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "The index's panel rhythm breaks twice, both times for advertising rendered as a row inside a panel rather than as a break between panels.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "A 'Visit Sponsor: CrackAging.com' strip over a 'Cycloastragenol purity 98%' product image is the last row of the Science & Health panel, directly beneath the Supplements row and inside the same border; a 'Discover more' block with 'Schedule Urgent Care' and 'Try Science Kits' chevron rows is the last row of the Round Table Discussion panel.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "The end of the page is a stack of small facts and links rather than a designed close.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "A presence line '3656 users are online (in the past 15 minutes) / 0 members, 3656 guests, 0 anonymous users (See full list)', a crawler line 'Google, Bing, Facebook', a right-aligned 'site rules', then Change Theme / Mark Community Read / Help / advertisers and two sponsor credits including 'crackaging.com - telomerase activation supplements'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "The only theme control anywhere in the captures is a footer 'Change Theme' link, and nothing in the evidence shows the site responding to an operating-system colour preference.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "index-1440-tile-04 shows 'Change Theme' in the footer bar and no theme control appears elsewhere. prefersColorScheme reports found:false with 0 matched sheets across 47 stylesheets and htmlAttributes.dataTheme, class and style are all null - but that snapshot was taken on the content error page, not the index, and the switch's own mechanism was never observed, so no claim is made about how it works.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "No keyboard-shortcut affordance and no copy control is visible in any capture, and the single recorded copy control is a false positive.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "No kbd hint, shortcut legend or copy button appears in any of the sixteen images. In the content error page's DOM snapshot kbdTexts and ariaKeyshortcuts are both empty, so scriptTokens.metaKey/keyCode being true supports no palette claim, and the one copyControls hit has the label 'Menu's powered by ProMenu Plus Copyright (c) 2013, Michael S', a copyright string. Those keys describe the error page only.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "scriptTokens",
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "imagery",
+      "claim": "Images decorate and none carry data; there is no vector diagram, chart or drawn figure anywhere in the captures.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "What is visible is one generic glyph per forum (DNA helix, caduceus, pill capsules, brain profile, human figure), small avatars beside last posts, and advertising art. imgCount 66, imgLazyCount 0, svgCount 0 and canvasCount 0 were measured on the content error page, not the index, so they corroborate nothing about the index's imagery; this claim rests on the images alone.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "imgLazyCount",
+        "svgCount",
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "imagery",
+      "claim": "The poll's bars are the only quantitative graphic and they barely function; the numbers do the work.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Flat blue rectangles a few pixels high sit under wrapped text, so 22 votes versus 45 votes is compared by reading the figures, not by seeing the bars.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "Avatars carry the site's only persistent visual difference between one participant and another.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Contributors with photographs (Michael Lustgarten, Mind, Galaxyshock, netvillage) are visibly distinguished from the default grey silhouette used for the rest.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "defers-or-competes",
+      "claim": "The design competes with the content and the competitor is commerce: two commercial surfaces on the desktop first screen, a third immediately below the fold and two credits at the page end.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png",
+        "index-1440-full.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "First screen: the corner sponsor panel, and the right rail's Featured Donation Goals block with its yellow progress bar, pre-filled 5.00 field, black Donate button and 'planning a fundraiser? get certified!' line. Just below the fold: the inline Cycloastragenol row. At the page end: 'Hosted since 2002 by canaca.com' and 'Global Forum Sponsor 2015/16: crackaging.com - telomerase activation supplements'. The site states the arrangement in its own copy: 'some adverts help to support the work of this non-profit organisation. ->options for advertisers --- to avoid ads join as a Member'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "defers-or-competes",
+      "claim": "A vendor of the class of product under discussion is placed inside the discussion's own frame.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "The inline advertisement is 'Cycloastragenol purity 98%' placed directly above a forum list whose Supplements sub-forums are Regimens, Resveratrol, C60Oil, NAD+ and Senolytics; the global footer sponsor is 'crackaging.com - telomerase activation supplements'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "defers-or-competes",
+      "claim": "The one block that reads as editorial navigation is the paid one, inverting the signal.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "'Discover more' uses a tinted title bar in the house panel style and full-width rows with right chevrons, but its rows are 'Schedule Urgent Care' and 'Try Science Kits'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "information-design",
+      "claim": "Scope limit: the page that would have answered the core A2 question was never served, so no claim is made here about how a LongeCity thread or post presents data.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The Supplements forum URL returned 'We could not find the forum you were attempting to view. [#10333]'; domEvidence.title is 'Error - LONGECITY' with three headings and 758 characters of inner text.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "innerTextLength"
+      ]
+    },
+    {
+      "id": "F26",
+      "topic": "information-design",
+      "claim": "The closest thing to a structured community dataset is the Stacks widget, and each record is exactly three fields: name, author handle and date.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Codex Executor by codexexecutorz 03 May 2025; Happy and healthy by Snozzberry Scientist 27 Apr 2019; Beta Tryptase by tennisfann88 15 Apr 2019; Kitchen Sink, aging/brain improvement by netvillage 04 Jan 2019; Longevity/Neuroprotection Stack by Gayle63 10 Oct 2017. No compound list, dose, duration, outcome, n or evidence tier is shown.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "information-design",
+      "claim": "Dates are the only uncertainty signal available and they are presented without framing, so staleness is not legible.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Four of the five Stacks entries are dated 2017 to 2019, styled in the same grey as the 2025 entry, with no 'last updated', no inactive mark and no distinction between a regimen still followed and one abandoned.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "information-design",
+      "claim": "The site has no visual vocabulary at all for evidence quality or uncertainty.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Across all fifteen images viewed there is no verified mark, no reviewed or peer-status badge, no sample count, no replication indicator, no provenance line, no self-reported label, no confidence marker, no citation, no DOI, no claim-level identifier and no version. The nearest identifier anywhere is the error page's '[#10333]'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "information-design",
+      "claim": "The badge slot that does exist encodes access, not evidence.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Protected Forum' set in italic underline where a post title would be; 'Immortality Institute - Members only section. Click here to join us as a Member'; a grey disabled bar reading 'Guests cannot vote' under the poll.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "Nothing distinguishes editorial from user-contributed material.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "'News & Resources' and 'AgingResearch' sit in the identical row template as 'Other Conversations / Townhall, Archive'; there is no staff mark, moderator flag or sourced-item styling. Combined with F24, the only block that looks editorial is an advertisement.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "The Popular Tags cloud is the page's other quantitative graphic and it shows the hazard: a weight is drawn but the quantity behind it is never named, so the reader is left to read importance into it.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "About fifty tags varying in both type size and grey tint, with no number, legend or count anywhere in the widget, put compounds (rapamycin, resveratrol, nad+, nmn, piracetam, modafinil, c60, oxiracetam, phenibut, alcar), conditions (depression, anxiety, ADHD, brain fog, anhedonia) and forum noise (intro, Hello, new, 07-04-2015, 01-04-2015, ----) into one weighting system.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "What a reader gets here that a trial registry cannot: named people attached to regimens over years, a folk taxonomy of what people actually take, a live measure of attention, and self-reported preference data with a stated denominator - all delivered with no marks that let a reader weigh it.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Stacks gives a followable handle and date per regimen; Popular Tags places senolytics, c60, nmn and piracetam adjacent in a way no registry taxonomy does; '3656 users are online... 0 members, 3656 guests' measures attention; the poll records 199 votes on what the field should be called, split across immortality, (indefinite) life extension, curing aging, rejuvenation and anti-aging.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "Mobile is not a reflow but a clip, so any data field can be the field that falls off the right edge.",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-01.png",
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "index-375-full.png is 879 px wide for a 375 px viewport; index-375-tile-01 cuts the last-post column mid-record and loses the right rail entirely; the error page's single sentence is severed mid-word as 'We could not find the forum you were attempting t...'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "For a record that does not exist the site renders a full, honest page: what failed, a small machine reference kept out of the reading line, and concrete routes forward - and it invents nothing.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "h1 'Sorry, we couldn't find that!'; one sentence 'We could not find the forum you were attempting to view.'; a small right-aligned '[#10333]'; then Need Help? over Click here to log in / Our help documentation / Contact the community administrator.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "For an empty field inside a record it renders a placeholder rather than nothing.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "The default grey silhouette avatar stands wherever a contributor has no photograph, in the last-post cells and in the Stacks list.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "absence",
+      "claim": "For an empty region it renders a titled void.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "'Recent Facebook Activity' is drawn as a full section header with a collapse control over an essentially empty body.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "absence",
+      "claim": "The worst absence behaviour is structural: when both columns run out of content the layout keeps scrolling anyway, so 'nothing left to say' is rendered as a large empty room the reader must cross.",
+      "captures": [
+        "index-1440-tile-03.png",
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "About 1,100 px of full-width blank at desktop between the last panel and the rail's Refer a Friend widget, and a comparable band at mobile; index-1440-tile-03 is 900 px of pure white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "The site is longevity-relevant, not off-topic: its taxonomy is directly the intervention space RNAWiki covers.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Science & Health holds AgingResearch (Aging Theories, Supercentenarians, Biomarkers & Genes, Telomeres), Medicine & Diseases (Stem Cells, Cancer), Supplements (Regimens, Resveratrol, C60Oil, NAD+, Senolytics), Brain Health (Mental Health, Nootropic Stacks, NeuroInterface) and Lifestyle (Nutrition, Calorie Restriction, Dental Health, Exercise, Sex, Ageless Looks).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "baseline",
+      "claim": "A sign-in container was left standing on both content passes and cannot be isolated visually, so the top strip in the content captures is not read as design.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "bannerActions records the consent container closed via its 'x' on both index passes but left on both content passes ('no permitted refusal control in #user_navigation (controls: Log In with Google, Sign In, Create Account)'). The dark strip carrying Sign In / Create Account / ENHANCED BY Google also appears in the index captures where consent was dismissed, so the standing element cannot be separated from site chrome. The green Sponsor: CrackAging.com panel appears in every capture including those index ones, so it is an advertisement and is judged as design.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F40",
+      "topic": "borrow",
+      "claim": "Borrow B1 - the record-absent pattern for the dossier reading column and structured data blocks: one plain sentence saying what was not found, a small dimmed reference id outside the reading line, and two or three concrete next actions. Distinct from our rule that an absent field inside a rendered page renders nothing; this governs a record that does not exist and still needs a page.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The error page pairs a plain-language h1 with one factual sentence, the small right-aligned [#10333], and three named routes forward, and invents no content.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "borrow",
+      "claim": "Borrow B2 - attribution as handle plus date on every community record is the floor for the dossier structured data blocks; RNAWiki should sit above it by adding review state, but never below it.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Both the Stacks widget and every last-post cell carry author and date with no exceptions.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "borrow",
+      "claim": "Borrow B3 - state a permission where the control is, not elsewhere; applies to every RNAWiki control a signed-out or unqualified reader cannot use.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Guests cannot vote' is printed on the disabled control and 'Members only section. Click here to join us as a Member' is printed under the heading, so the reader is told why in the place they were stopped.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F43",
+      "topic": "borrow",
+      "claim": "Borrow B4 - a count always carries its denominator in the same line, for the structured data blocks surface.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The poll states '199 member(s) have cast votes' in its header and then '45 votes [22.61%]' per option, so a share is readable against a stated whole without leaving the line.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "avoid",
+      "claim": "Avoid A1 - any commercial surface near evidence, on every surface; this is the shared constraint's no-vendor rule shown as a lived failure.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "A supplement advertisement runs inline in the list of supplement forums and a 'telomerase activation supplements' vendor is the site-wide footer sponsor, so a reader cannot tell where community judgement ends and sponsor interest begins.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "avoid",
+      "claim": "Avoid A2 - a non-editorial block wearing editorial chrome; no RNAWiki block that is not a reviewed record may use the dossier's section styling.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "The Discover more panel uses the house title bar and chevron rows and is an ad unit.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Avoid A3 - a popularity-weighted tag cloud as a browse mechanism; this strengthens the Phase 2 assignment of awwwards.com to browse/filter, because a declared structured filter is the alternative.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Weight encodes traffic, and compounds sit at the same visual level as 'Hello' and '07-04-2015'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F47",
+      "topic": "avoid",
+      "claim": "Avoid A4 - a document that scrolls past its own content; for the still-unassigned dossier contents rail surface this yields a hard negative rule: the page's scroll length must end at the last piece of content in either column, and a contents rail must not extend it.",
+      "captures": [
+        "index-1440-tile-03.png",
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "In index-1440-full both columns are finished by about y=1,765 of a 3,522 px page, yet roughly 1,100 px of blank follows before the rail's last two widgets resume near the footer; index-375-full shows the same shape. What the captures show is a scroll length exceeding the content in both columns, not a rail holding its own height open beneath the main column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F48",
+      "topic": "avoid",
+      "claim": "Avoid A5 - layout that clips instead of reflowing; RNAWiki's no-horizontal-overflow-at-320-px rule has its illustration here.",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "879 px of page in a 375 px viewport, data columns and the entire rail cut off, and an error sentence severed mid-word.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F49",
+      "topic": "avoid",
+      "claim": "Avoid A6, A7 and A8 - hierarchy by saturated full-width colour band leaves no headroom to mark a row that matters; access marks must not occupy the badge slot that belongs to UNKNOWN, NOT_MEASURED, CONTRADICTED, MIXED and CONFIRMED; and a date on a possibly stale record must make staleness legible without arithmetic.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Every section band shouts at the same volume; Protected Forum, Members only and Guests cannot vote are the site's entire badge vocabulary; four of five Stacks entries are 2017-2019 styled identically to the 2025 one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "defers-or-competes",
+      "claim": "Both advertisements sit in a forum-row slot and share their left-column glyph with the members-only section, so the site's one 'this row is not an ordinary forum' mark covers a paywalled record and two paid placements alike.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "A small grey speech-bubble glyph, visibly different from the large square forum icons and used nowhere else, stands in the icon column of exactly three rows: 'Immortality Institute - Members only section' in the Community panel, the Cycloastragenol sponsor row that closes the Science & Health panel, and the 'Discover more' block that closes the Round Table Discussion panel. All three also drop the newest-post cell that every real forum row carries. For RNAWiki: a glyph that marks a row as exceptional must encode exactly one kind of exception, and a restricted record must never share a mark with a placed one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "In the Stacks widget the two identity fields swap roles between records, so a reader cannot tell from the typography which line is the record and which is the person.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Four entries set the regimen name as the blue link over a grey 'handle - date' line: 'Happy and healthy' / 'Snozzberry Scientist - 27 Apr 2019', 'Beta Tryptase' / 'tennisfann88 - 15 Apr 2019', 'Kitchen Sink, aging/brain improvement' / 'netvillage - 04 Jan 2019', 'Longevity/Neuroprotection Stack' / 'Gayle63 - 10 Oct 2017'. The first entry inverts it: the blue link reads 'codexexecutorz' over the grey line 'Codex Executor - 03 May 2025'. Nothing labels either slot, so which field is which is guessed from the words. For RNAWiki's structured data blocks: field role must be carried by a label or a fixed slot, never by which line happens to be the link.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "absence",
+      "claim": "The content page's heading outline does not match the page a reader sees: its only visible sub-head is not a heading, and both recorded h3s are invisible and belong to sign-in and advertising.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The recorded outline is three headings - h3 'Google Sign in options', h1 'Sorry, we couldn't find that!', h3 'Ad Notice'. Neither h3 text appears anywhere in the 1440 or the 375 capture, and the one visible sub-head, 'Need Help?' above the three recovery links, is not in the outline at all. So the structure offered to a screen reader is led by a sign-in prompt and an ad notice while omitting the page's only real section. For RNAWiki's logical-heading-order rule: the outline must be the visible outline, and no consent, sign-in or notice element may inject a heading above the record's own h1.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "longecity.org holds no surface in the Phase 2 table, which assigns only the ten Track A reference sites; it appears in this worklog solely in the legal gate row (allowed/allowed, no terms document located, action 'capture'). Nothing observed argues for giving it one, and it should stay unassigned: the page that would have had to earn a surface was never served (F25), the layout clips rather than reflows at mobile (F33), hierarchy rests on a single saturated band (F1), and the site has no vocabulary whatsoever for evidence quality or uncertainty (F28) - the exact capability the A2 pass exists to find. It does sharpen two existing rows without changing them. It strengthens awwwards.com on browse/filter by showing what the alternative, a popularity-weighted cloud over unvetted labels, actually looks like (F31, F46). And it supplies the first concrete behavioural rule for the unassigned 'dossier contents rail and previews' row: a page's scroll length must end at the last piece of content in either column, and a contents rail must not extend it (F47) - a constraint on whatever eventually governs that surface, not a candidate to govern it. On the frozen home search bar it argues only by contrast: this site offers no search field in the content area (only a third-party Google box in the top strip and a Search dropdown in the masthead; the searchAffordances count of 0 was measured on the error page, so the captures carry this point rather than the DOM), so its first screen is a directory the reader must read rather than query. Nothing here belongs above or beside our search bar.",
+    "domEvidenceKeys": [
+      "searchAffordances"
+    ]
+  },
+  "forRnawiki": {
+    "borrow": [
+      "The record-absent page pattern: one plain sentence naming what was not found, a small dimmed reference id set outside the reading line, and two or three concrete next actions, inventing nothing (content-1440-tile-01.png) - dossier reading column and structured data blocks.",
+      "Attribution as author handle plus date on every community-contributed record, with no exceptions (index-1440-tile-02.png) - dossier structured data blocks; RNAWiki adds review state on top.",
+      "Permission stated at the control rather than elsewhere: 'Guests cannot vote' on the disabled control, 'Members only section' under the heading (index-1440-tile-01.png) - every contribution, review and challenge control.",
+      "Every count carries its denominator in the same line: '199 member(s) have cast votes' then '45 votes [22.61%]' (index-1440-tile-01.png) - structured data blocks."
+    ],
+    "avoid": [
+      "Any commercial surface near evidence: a supplement ad inline in the supplement forum list and a supplement vendor as site-wide footer sponsor (index-1440-tile-02.png, index-1440-tile-04.png) - every surface.",
+      "A non-editorial block wearing editorial chrome: the 'Discover more' ad unit in house panel styling (index-1440-tile-02.png) - dossier and structured data blocks.",
+      "A popularity-weighted tag cloud as browse, mixing compounds, conditions and forum noise in one weight system (index-1440-tile-04.png) - browse/filter surface.",
+      "A document that scrolls past its own content: both columns end about 1,770 px into a 3,522 px page and ~1,100 px of full-width blank follows before the rail's last widgets resume (index-1440-full.png, index-1440-tile-03.png, index-375-full.png) - dossier contents rail and previews.",
+      "Layout that clips instead of reflowing: 879 px of page in a 375 px viewport, rail and data columns cut off (index-375-full.png, index-375-tile-01.png, content-375-tile-01.png) - every surface.",
+      "Hierarchy by saturated full-width colour band, which leaves no headroom to mark a row that actually matters (index-1440-tile-01.png) - dossier reading column and browse/filter.",
+      "Letting access marks occupy the badge slot that must carry the evidence states (index-1440-tile-01.png) - structured data blocks and dossier reading column.",
+      "A date rendered as neutral metadata on a record six to eight years old with no staleness cue (index-1440-tile-02.png) - structured data blocks and citation evolution map.",
+      "One glyph used for two unrelated exceptions: the same speech-bubble mark stands on the members-only section and on both advertisements (index-1440-full.png) - dossier reading column and structured data blocks.",
+      "A record whose fields are told apart only by which line is a link: Stacks inverts name and handle between entries (index-1440-tile-02.png) - structured data blocks."
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "content-1440: consent/sign-in container in #user_navigation left standing (no permitted refusal control; controls were Log In with Google, Sign In, Create Account) - present in every content-1440 image, overlapping the page",
+    "content-375: same container left standing - present in every content-375 image",
+    "index-1440 and index-375: consent container closed via 'x' in #anonymous_element_4 before capture; no consent banner stands in those images",
+    "Not a banner: the green 'Sponsor: CrackAging.com' panel pinned top-right appears in all four passes including the index passes where consent was dismissed, so it is an advertisement the site serves and is judged as design"
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00Z",
+    "confirmed": 33,
+    "qualified": 16,
+    "refuted": 0,
+    "added": 3,
+    "notes": [
+      "All sixteen images on disk were re-examined; content-1440-tile-02.png genuinely does not exist, as the viewer recorded. Nothing was refuted outright - sixteen findings were narrowed and none removed.",
+      "Provenance correction, the largest one: domEvidence.collectedFrom is the content error page, so every DOM figure in the manifest describes that page and not the index. The viewer flagged this for textToHtmlRatio only. F3, F17, F18 and F19 have been rewritten to say which half of each claim the captures carry and which half the DOM cannot support.",
+      "Cause correction: the big blank band is not a rail effect. In index-1440-full the main column ends about y=1,765 and the rail ends about y=1,525, and nothing is drawn in either column until Refer a Friend at about y=2,875. F12, F13 and F37 were corrected, and the A4 rule (F47) was rewritten from 'a rail must not set the page's height' to 'the document must not scroll past the last content in either column', because the rail is empty through the void too.",
+      "The three desktop content scroll captures are not one identical frame as F14 stated: their sha256s differ because the sponsor advertisement is in a different animation position in each. On a page whose whole content is an error message, the advertisement is the only moving element.",
+      "Measurements corrected: forum rows are about 83 px of pitch, not 60 (F2); the desktop first screen carries two commercial surfaces, not three, with the Cycloastragenol row just below the fold (F22); Popular Tags is about fifty tags varying in size as well as tint, with no quantity stated anywhere (F31); index-375-tile-04 is blank because the 375 px tile crops an 879 px page, not only because the page is empty there (F13).",
+      "F1 was inverted in one respect: the section bands are the loudest device, but type size runs against them - band labels are set smaller than the forum names inside them, and Immortality Institute is set larger than its peers.",
+      "F6 overstated the mobile overlap: the sponsor panel does overlap the dark header band, but the Menu button sits about 200 px clear at the far left and is not beneath it.",
+      "F8 was tightened: the newest-post cell is an avatar plus three text fields, one of the fourteen rows carries no cell at all, and the title slot can be replaced by the access status 'Protected Forum'.",
+      "F15 was sharpened rather than softened: both advertisements are rows inside the panels, not breaks between them, which makes F24 and A2 stronger than stated.",
+      "Verified against the captures and kept as written: F5, F7, F9, F10, F11, F16, F20, F21, F23, F24, F25, F26, F27, F28, F29, F30, F32, F33, F34, F35, F36, F38, F39, F40, F41, F42, F43, F44, F45, F46, F48, F49. 'Guests cannot vote' was confirmed in index-1440-full, below the poll's tail that tile-01 cuts off.",
+      "Added V1 (one glyph for two unrelated exceptions), V2 (Stacks inverts its own field roles), V3 (the content page's heading outline does not match the visible page)."
+    ]
+  }
+}

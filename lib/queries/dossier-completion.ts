@@ -6,13 +6,13 @@ import {
   inventoryResolutions,
   sourceSearchRecords,
 } from '@/db/schema'
-import { buildTrialRegistrationsView } from '@/lib/dossier'
+import { buildTrialRegistrationsView, buildTrialResultsView } from '@/lib/dossier'
 import {
   dossierCompletionAssessmentView,
   type DossierCompletionAssessmentView,
 } from '@/lib/dossier-completion/view'
 import type { InventoryResolutionState } from '@/lib/inventory/types'
-import type { TrialRegistrationsView } from '@/lib/types'
+import type { TrialRegistrationsView, TrialResultsView } from '@/lib/types'
 
 export interface InventoryResolutionView {
   resolutionStatus: InventoryResolutionState
@@ -99,6 +99,43 @@ export const CLINICALTRIALS_SEARCH_KIND = 'CLINICALTRIALS_SNAPSHOT_EXACT_INTERVE
  * Null when no pass has run, the pass failed, or it matched nothing: the completion assessment
  * states each of those outcomes, and this loader never turns one into an empty list on the page.
  */
+/**
+ * The search kind the results fetch writes (scripts/trial-results/phase4-attach.ts). Spelled here
+ * rather than imported, because that module is an operator command with a `main`.
+ */
+export const CLINICALTRIALS_RESULTS_KIND = 'CLINICALTRIALS_RESULTS_V2' as const
+
+/**
+ * Posted results for one record, read from the most recent successful results fetch. Null when no
+ * fetch has run for this record. A fetch that found nothing usable still returns a view carrying
+ * zero, because the page states that outcome rather than hiding it.
+ */
+export async function getTrialResultsForDrug(drugId: string): Promise<TrialResultsView | null> {
+  const rows = await db
+    .select({
+      sourceIdentifier: sourceSearchRecords.sourceIdentifier,
+      requestedAt: sourceSearchRecords.requestedAt,
+      matched: sourceSearchRecords.matched,
+    })
+    .from(sourceSearchRecords)
+    .where(
+      and(
+        eq(sourceSearchRecords.drugId, drugId),
+        eq(sourceSearchRecords.searchKind, CLINICALTRIALS_RESULTS_KIND),
+        eq(sourceSearchRecords.status, 'SUCCEEDED'),
+      ),
+    )
+    .orderBy(desc(sourceSearchRecords.requestedAt))
+    .limit(1)
+  const row = rows[0]
+  if (!row) return null
+  return buildTrialResultsView({
+    sourceIdentifier: row.sourceIdentifier,
+    requestedAt: row.requestedAt,
+    envelope: row.matched[0],
+  })
+}
+
 export async function getTrialRegistrationsForDrug(
   drugId: string,
 ): Promise<TrialRegistrationsView | null> {

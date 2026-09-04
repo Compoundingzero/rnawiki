@@ -1,0 +1,64 @@
+{
+  "key": "awwwards.com",
+  "track": "A1",
+  "dir": "awwwards_com",
+  "checkedAt": "2026-09-03T14:35:16.753Z",
+  "indexUrl": "https://www.awwwards.com/",
+  "contentUrl": "https://www.awwwards.com/websites/",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.awwwards.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/awwwards_com.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/websites/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://www.awwwards.com/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://www.awwwards.com/terms/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/awwwards_com.terms.html",
+    "textSavedTo": "data/design-study/legal/awwwards_com.terms.txt",
+    "textChars": 18747,
+    "candidatesTried": [
+      {
+        "url": "https://www.awwwards.com/terms-of-use/",
+        "status": 404
+      },
+      {
+        "url": "https://www.awwwards.com/terms/",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "All rights are reserved and any unauthorized use or reproduction is strictly prohibited.",
+      "Our content may not be used for commercial purposes unless expressly authorized by Awwwards.",
+      "However, by submitting a site, you agree to its publication on our site and reproduction in other publications produced by Awwwards.",
+      "All content within the Books is protected by intellectual property laws and may not be reproduced, distributed, or modified without prior written consent from Awwwards.",
+      "By subscribing to any of these services, you authorize Awwwards to store your payment method and automatically charge the applicable fee at the start of each billing cycle (e.g., monthly or annually), unless you cancel the subscription before the renewal date.",
+      "By participating in a subscription service, you authorize Awwwards to maintain your account information and to charge your account automatically and on a recurring basis at the time the next recurring purchase is due without any further action on your part.",
+      "If a new billing cycle begins with an outstanding balance (and the subscription has not been canceled), Awwwards may either (i) cancel the subscription, or (ii) allow it to renew automatically while continuing to pursue collection of the unpaid amount.",
+      "Please note that deleting your account does not automatically cancel your subscription or entitle you to a refund."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /websites/; no terms clause matched a prohibition pattern across 8 relevant excerpts."
+  },
+  "notes": []
+}

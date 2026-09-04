@@ -1,0 +1,72 @@
+{
+  "schema": "rnawiki-corpus-20k-model-assignment/v1",
+  "spec": "docs/specs/field-models.md",
+  "totalRecords": 28943,
+  "counts": {
+    "LONGEVITY": 1111,
+    "CLINICAL": 5130,
+    "DEVELOPMENT": 22702
+  },
+  "perReason": {
+    "CLINICAL/chembl-approval": 2678,
+    "CLINICAL/drugsfda": 1997,
+    "CLINICAL/ema": 1013,
+    "CLINICAL/entity-class": 2194,
+    "CLINICAL/health-canada": 2860,
+    "CLINICAL/orange-book": 1670,
+    "CLINICAL/otc-label": 1278,
+    "DEVELOPMENT/no-approval-and-no-longevity-signal": 22702,
+    "LONGEVITY/broad-slice": 765,
+    "LONGEVITY/nia-itp": 51,
+    "LONGEVITY/pathway": 60,
+    "LONGEVITY/registry-ageing-term": 423
+  },
+  "broadSlice": {
+    "records": 803,
+    "mapped": 803,
+    "unmappedSlugs": []
+  },
+  "itp": {
+    "legendCodes": 62,
+    "agentsMapped": 47,
+    "agentsUnmapped": [
+      "16-a-hydroxyestriol",
+      "2-(2-Hydroxyphenyl)benzoxazole",
+      "2BAct",
+      "3-(3-hydroxybenzyl)-5-methylbenzo[d]oxazol-2(3H)-one",
+      "4-OH-a-phenyl-N-tert-butyl nitrone",
+      "4-phenylbutyrate",
+      "INT-767",
+      "PB125",
+      "SG1002",
+      "TM5441",
+      "geranylgeranyl acetone",
+      "medium-chain triglyceride",
+      "nitroflurbiprofen",
+      "protandim",
+      "syringaresinol"
+    ],
+    "cohortArmCodesSeen": 89
+  },
+  "registryAgeingTermPages": 529,
+  "pathwayPages": 60,
+  "withdrawn": {
+    "total": 668,
+    "withStatedReason": 282,
+    "withoutStatedReason": 386,
+    "pagesWithARemainingActiveRegisterEntry": 3712,
+    "rule": "set only when no cleared register still records an active, approved or marketed entry for the moiety and one of them records that it is gone; or a register states a safety withdrawal; or ChEMBL records withdrawn_flag or a drug_warning of type Withdrawn"
+  },
+  "sourceLimits": [
+    "The ITP workbooks label an arm with a code; the agent name comes from the cached JAX MPD ITP project page legend, and codes that legend does not print are reported unmapped.",
+    "Health Canada records a status, not a reason, except where the status text states one.",
+    "EMA Medicine.csv records a status with no reason.",
+    "TGA, PMDA and the WHO consolidated withdrawn list were never cleared, so Australian, Japanese and WHO withdrawal facts contribute nothing.",
+    "A Health Canada CANCELLED PRE MARKET status is recorded as a register fact but does not set the withdrawn flag: the product never reached the market.",
+    "A combination product's withdrawal is never carried onto an ingredient page: the EMA and Health Canada withdrawal flags are set only from rows naming exactly one active substance.",
+    "One cancelled product licence is not the substance's withdrawal, and one register's silence is not another register's answer. A register's 'no remaining entry' reading sets the withdrawn flag only when no cleared register (Drugs@FDA, Orange Book, EMA, Health Canada DPD) still records an active, approved or marketed entry for the moiety. A stated safety cancellation and a ChEMBL withdrawn_flag or drug_warning of type Withdrawn set it on their own, because each states the withdrawal rather than inferring it from an absence.",
+    "Drugs@FDA and the Orange Book record a marketing status but never a withdrawal reason, and neither states a safety withdrawal; the FDA's own withdrawn-or-removed list was unreachable (404 at three URLs), so a US safety withdrawal enters only through ChEMBL or Open Targets drug_warning.",
+    "A Drugs@FDA 'None (Tentative Approval)' product never reached the market: like a Health Canada CANCELLED PRE MARKET status it is neither a remaining entry nor a withdrawal.",
+    "The ageing lexicon is applied exactly as docs/specs/field-models.md words it. The term \"age-related\" therefore pulls in age-related macular degeneration programmes, which are age-related conditions rather than longevity work; every such page records the condition text that matched, so the set can be re-cut without re-running the match."
+  ]
+}

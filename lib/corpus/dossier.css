@@ -1,0 +1,640 @@
+/*
+ * Corpus dossier styling (Phase 4, docs/specs/dossier-template.md).
+ *
+ * Plain CSS on the tokens in `tokens.css`, not utility classes, because the measurements in the
+ * spec are exact: a 22 px badge sticky for the life of its block, a 1 px hairline the width of the
+ * measure, a 240 px rail with a 2 px marker, and a badge that leaves the margin below 480 px.
+ *
+ * Colour budget (B14): one accent, used by the badge and the region glyph and nothing else. Body
+ * links are underlined in the body colour. The supervision block uses a neutral warning tint.
+ */
+
+.cd-root {
+  /* The supervision tint: neutral warning, never red (dossier template, "Colour budget"). */
+  --corpus-supervision: #8a6d1f;
+  --corpus-supervision-soft: rgba(138, 109, 31, 0.35);
+  color: var(--corpus-ink-0);
+  background: var(--corpus-surface-0);
+  font-size: 17px;
+  line-height: 1.65;
+  padding-bottom: 4rem;
+}
+
+.cd-layout {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: calc(var(--corpus-measure) + 240px + 4rem);
+}
+
+.cd-column {
+  max-width: var(--corpus-measure);
+  margin: 0 auto;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .cd-layout {
+    display: grid;
+    grid-template-columns: minmax(0, var(--corpus-measure)) 240px;
+    column-gap: 4rem;
+    align-items: start;
+  }
+
+  .cd-column {
+    margin: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ header */
+
+.cd-header {
+  background: var(--corpus-surface-1);
+  border-bottom: 1px solid var(--corpus-hairline);
+  padding: 2.5rem 0 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.cd-title {
+  font-family: var(--corpus-serif);
+  font-size: 2.1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0;
+  /* A single unbroken chemical name is longer than a 320 px measure: it breaks, never overflows. */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cd-synonyms {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  color: var(--corpus-ink-2);
+}
+
+.cd-synonyms div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.cd-synonyms dt {
+  font-weight: 600;
+  color: var(--corpus-ink-1);
+}
+
+.cd-synonyms dd {
+  margin: 0;
+  /*
+   * Gate 2 measured sirolimus at 320 px: documentElement.scrollWidth was 411 px, and the element
+   * that carried it was a synonyms <dd> holding one unbroken registry synonym. `anywhere` (not
+   * `break-word`) is the value that also shrinks the flex item's min-content size, which is what a
+   * flex row with `min-width: auto` items actually measures.
+   */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cd-synonyms dd::after {
+  content: ',';
+}
+
+.cd-synonyms dd:last-child::after {
+  content: '';
+}
+
+.cd-more-names > summary {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--corpus-ink-2);
+}
+
+.cd-source-line {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+  color: var(--corpus-ink-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cd-badges {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.cd-badges li {
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+  letter-spacing: 0.02em;
+  color: var(--corpus-ink-1);
+  background: var(--corpus-surface-2);
+  border: 1px solid var(--corpus-hairline);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* ------------------------------------------------------------ region glyph */
+
+.cd-glyph {
+  text-align: center;
+  color: var(--corpus-accent);
+  font-size: 1.1rem;
+  line-height: 1;
+  margin: 2.75rem 0;
+  border: 0;
+}
+
+/* ---------------------------------------------------------- question block */
+
+.cd-block {
+  margin: 0 0 2.75rem;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 10px;
+}
+
+@media (min-width: 1024px) {
+  .cd-block {
+    margin-left: -32px;
+  }
+}
+
+.cd-badge-cell {
+  grid-column: 1;
+}
+
+.cd-badge {
+  position: sticky;
+  top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--corpus-accent);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.cd-block-body {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.cd-question {
+  font-family: var(--corpus-serif);
+  font-size: 1.32rem;
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0;
+  scroll-margin-top: 5rem;
+  /* A question carries recorded values verbatim, and a recorded value can be one long token. */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cd-hairline {
+  height: 1px;
+  background: var(--corpus-hairline);
+  border: 0;
+  margin: 18px 0 0;
+}
+
+.cd-paragraph {
+  margin: 1rem 0 0;
+  color: var(--corpus-ink-0);
+  /* Paragraphs quote a source's own words, which include unspaced identifiers and formulae. */
+  overflow-wrap: anywhere;
+}
+
+.cd-paragraph strong {
+  font-weight: 600;
+}
+
+.cd-anchor {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  /* A register name plus a record id plus a date is longer than 320 px: it wraps, never overflows. */
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+  color: var(--corpus-ink-2);
+}
+
+.cd-anchor-glyph {
+  margin-right: 0.25rem;
+  color: var(--corpus-ink-3);
+}
+
+.cd-interpretation {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  /* Small grey text still clears 4.5:1: ink-3 is a hairline colour, not a reading colour. */
+  color: var(--corpus-ink-2);
+  margin-right: 0.4rem;
+}
+
+@media (max-width: 479px) {
+  .cd-block {
+    display: block;
+    margin-left: 0;
+  }
+
+  .cd-badge {
+    position: static;
+    margin-bottom: 0.6rem;
+  }
+}
+
+/* --------------------------------------------------------- revealed layer */
+
+.cd-evidence {
+  margin-top: 1.1rem;
+  border-top: 1px solid var(--corpus-hairline);
+}
+
+.cd-evidence > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  color: var(--corpus-ink-1);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cd-evidence > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cd-evidence > summary::before {
+  content: '▸';
+  color: var(--corpus-ink-2);
+}
+
+.cd-evidence[open] > summary::before {
+  content: '▾';
+}
+
+.cd-group-heading {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--corpus-ink-2);
+  margin: 1rem 0 0;
+  scroll-margin-top: 5rem;
+}
+
+.cd-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cd-row {
+  border-top: 1px solid var(--corpus-hairline);
+  padding: 0.55rem 0;
+  font-size: 0.92rem;
+}
+
+.cd-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.cd-row-label {
+  font-weight: 600;
+  color: var(--corpus-ink-0);
+  /*
+   * The other 320 px overflow Gate 2 found: carbidopa-levodopa's revealed rows are labelled with a
+   * register's own product string, which has no space to break at. Same reasoning as the synonyms
+   * cell — this is a flex item inside `.cd-row-head`.
+   */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cd-row-id {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.78rem;
+  color: var(--corpus-ink-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cd-row-value {
+  color: var(--corpus-ink-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cd-row-dates {
+  margin: 0.6rem 0 0;
+  font-size: 0.78rem;
+  color: var(--corpus-ink-2);
+}
+
+/* ------------------------------------------------------------- supervision */
+
+.cd-supervision .cd-badge {
+  background: var(--corpus-supervision, #8a6d1f);
+}
+
+.cd-supervision .cd-block-body {
+  border-left: 2px solid var(--corpus-supervision-soft, rgba(138, 109, 31, 0.35));
+  padding-left: 0.9rem;
+  margin-left: -0.9rem;
+}
+
+/* ------------------------------------------------------------------ ladder */
+
+.cd-ladder {
+  margin: 0 0 2.75rem;
+}
+
+.cd-ladder-scroll {
+  overflow-x: auto;
+}
+
+.cd-ladder-scroll svg {
+  display: block;
+}
+
+/* ------------------------------------------------------------- dated rows */
+
+.cd-arc {
+  margin: 0 0 2.5rem;
+}
+
+.cd-arc-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  border-top: 1px solid var(--corpus-hairline);
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.cd-arc-date {
+  color: var(--corpus-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.cd-arc-row > :last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 479px) {
+  .cd-arc-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+}
+
+/* ------------------------------------------------------- the exact record */
+
+.cd-record {
+  border: 1px solid var(--corpus-hairline);
+  border-radius: 8px;
+  margin: 2rem 0 0;
+  background: var(--corpus-surface-1);
+}
+
+.cd-record-head {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--corpus-ink-2);
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--corpus-hairline);
+  margin: 0;
+}
+
+.cd-record dl {
+  margin: 0;
+  padding: 0.35rem 1rem 0.9rem;
+}
+
+.cd-record div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+}
+
+.cd-record dt {
+  color: var(--corpus-ink-2);
+  /* 8rem is the alignment target, not a floor: below it the label wraps instead of pushing. */
+  min-width: min(8rem, 100%);
+  overflow-wrap: anywhere;
+}
+
+.cd-record dd {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ---------------------------------------------------------------- sources */
+
+.cd-section-heading {
+  font-family: var(--corpus-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 2.5rem 0 0.75rem;
+  scroll-margin-top: 5rem;
+}
+
+.cd-source-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cd-source-rows li {
+  border-top: 1px solid var(--corpus-hairline);
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+.cd-source-rows a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.cd-licence {
+  margin: 1.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--corpus-ink-2);
+}
+
+.cd-definitions {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+}
+
+.cd-definitions a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------- rail */
+
+.cd-rail {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .cd-rail {
+    display: block;
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    width: 240px;
+    font-size: 0.82rem;
+  }
+}
+
+.cd-rail-heading {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--corpus-ink-2);
+  margin: 0 0 0.6rem;
+}
+
+.cd-rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cd-rail-link {
+  display: block;
+  border-left: 2px solid transparent;
+  padding: 0.28rem 0 0.28rem 0.7rem;
+  color: var(--corpus-ink-2);
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.cd-rail-link:hover {
+  color: var(--corpus-ink-0);
+}
+
+.cd-rail-link[aria-current='true'] {
+  border-left-color: var(--corpus-accent);
+  color: var(--corpus-ink-0);
+}
+
+.cd-rail-sub .cd-rail-link {
+  padding-left: 1.5rem;
+  color: var(--corpus-ink-2);
+}
+
+/* The small-screen contents control: in flow, then sticky once it reaches the top. */
+.cd-contents {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--corpus-surface-0);
+  border-bottom: 1px solid var(--corpus-hairline);
+  margin-bottom: 1.5rem;
+}
+
+.cd-contents > summary {
+  cursor: pointer;
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  color: var(--corpus-ink-1);
+}
+
+.cd-contents ol {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .cd-contents {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------- stub and rails */
+
+.cd-stub-count {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+.cd-supervision-line {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+  color: var(--corpus-ink-1);
+}
+
+.cd-relations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cd-relations li {
+  border-top: 1px solid var(--corpus-hairline);
+  padding: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cd-relations span {
+  color: var(--corpus-ink-2);
+}
+
+.cd-relations a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+:root[data-theme='dark'] .cd-root {
+  --corpus-supervision: #d9bd74;
+  --corpus-supervision-soft: rgba(217, 189, 116, 0.4);
+}
+
+.cd-block {
+  scroll-margin-top: 5rem;
+}

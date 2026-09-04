@@ -1,0 +1,775 @@
+{
+  "site": "atlasobscura.com",
+  "track": "A1",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "recaptured": true,
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-03.png",
+    "index-1440-tile-04.png",
+    "index-1440-tile-05.png",
+    "index-1440-tile-07.png",
+    "index-1440-tile-08.png",
+    "index-1440-tile-10.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-15.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "content-375-full.png",
+    "content-375-tile-01.png",
+    "content-375-tile-03.png",
+    "content-375-tile-19.png",
+    "content-375-scroll-00.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "The content page's three-step hierarchy is built from size and centring alone, with no colour used to rank.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Title 'All 32,223 Places on One Map' at roughly 56px heavy geometric sans; subtitle at about 26px normal weight; byline at about 13px letterspaced small caps. All three near-black brown on white, centred on one axis.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "On the desktop home page the top level of hierarchy is a photograph, not type; the orderly type ladder beside it loses.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Headline 'The World's Hidden Wonders' at about 42px on two lines in the left half; a roughly 755x500px 'Place of the Day' photograph fills the right half and carries the only saturated colour on the screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "Every home-page section uses one repeated device: a small letterspaced kicker above a large two-tone heading whose last word turns tan.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png",
+        "index-1440-tile-07.png"
+      ],
+      "evidence": "'EDITOR'S PICKS' over 'Begin Your Journey'; 'ATLAS OBSCURA COMMUNITY' over 'Featured Members'; 'HIDDEN WONDERS' over 'Explore the Atlas'; 'BOOKS AND BOX SETS' over 'Complete Your Bookshelf'. The final word is tan in each.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "A 10-11px letterspaced category kicker sits tight above every card title and classifies the item before the title is read.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "index-1440-tile-03.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "'ABANDONED', 'CAVES', 'RUINS' above the Keep Exploring card titles; 'POLAND', 'SPAIN', 'JAPAN' above city names in the destinations rail; 'VIDEO' and 'VIDEO - AO DOCS' above mobile video cards.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "On the desktop home page the eye lands on the Place of the Day photograph, not on the headline and not on the search bar; the search bar is a low-contrast outlined pill that reads as subordinate to both.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The photograph occupies about 53 percent of viewport width (754px of 1440) and carries the only saturated colour on the screen; the search bar is a 456px white pill with a thin grey outline, low in the left column, with no fill. The original 'the search bar is the fourth thing seen' is removed: a still capture can show what dominates, not a reading order past the first landing.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "On the mobile home page two filled action pills sit above the headline and the search bar and take the first read.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "'Places near me' (dark filled) and 'Random place' (outlined) sit directly under the header at about y=147; the search bar lands about 465px down an 812px screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "On the mobile content page about 40 percent of the first screen is spent before the article title appears.",
+      "captures": [
+        "content-375-scroll-00.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "An empty band of roughly 66px, a 62px header, a 74px row of the same two action pills, then a wrapped breadcrumb; the h1 starts around y=330 of 812.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "On the desktop content page the title is clearly dominant, but the first screen is not bare: a filled promotional button sits in the share row and the saturated map fills the bottom 200px of the viewport.",
+      "captures": [
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "content-1440-scroll-00 shows a hairline breadcrumb, the centred h1, subtitle and byline, then a share row (SHARE, EMAIL, AUDIO, PRINT) that also carries a dark-brown filled 'ADD ATLAS OBSCURA AS A PREFERRED SOURCE ON GOOGLE' button with a full-colour Google glyph; the interactive map's saturated cyan begins at about y=700 of the 900px viewport.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The reading column is a genuine long-form measure of about 646px at roughly 72-82 characters, but the article inside it is four short paragraphs occupying about 700px of a 4,673px page.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Prose runs x=387 to x=1033 in a 1440px viewport (45 percent of the width), serif at roughly 19-20px with generous leading. Four paragraphs, not five: the drop-cap opener, 'The possibilities are vast...', 'Start exploring...' and 'Hungry for more?...'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "The share of the content page given to recommendation and promotion differs sharply by viewport: about 57 percent of the desktop page's height, and about 85 percent of the mobile page's, where the article is absent from the page's own midpoint.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-full.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Desktop: the article's last line sits at about y=2,010 of a 4,673px page, so the article ends at about 43 percent of the scroll, not 20 percent; the 2,660px after it hold the Read Next card, tag pills, Keep Exploring, an ADVERTISEMENT band, the membership block, a 5x2 sponsored grid and the footer. Mobile: content-375-full is 15,358px tall, the article's last line sits at about y=2,325 (15 percent), and content-375-scroll-50, the exact midpoint, shows six video cards and no article text.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "information-design",
+      "claim": "The destinations rail is the site's best dense list: thumbnail, kicker, name, and a two-cell labelled stat table, separated by hairlines.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Each row shows a 116px square thumbnail, 'SPAIN' over 'Barcelona', then boxed cells 'PLACES' over '74' and 'STORIES' over '2', label in 10px letterspaced grey caps and number bold beneath. Hairlines fall at y=88, 257, 426 and 595 in index-1440-tile-03, so the row pitch is 169px and four rows occupy about 675px, not the 570px first reported.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "information-design",
+      "claim": "The Top Countries / Top Cities link table is the most efficient region of either page and the only place browsing is offered as plain text links rather than image cards.",
+      "captures": [
+        "index-1440-tile-07.png"
+      ],
+      "evidence": "Two blocks on a pale blue-grey ground, each a tan heading over a hairline rule then plain text links: 2 columns of 6 countries, 4 columns of 6 cities. Thirty-six targets in about 300px of height, no thumbnails or counts. The destinations rail (F11) is also a list, so 'the only list' is too strong; it is the only thumbnail-free one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "information-design",
+      "claim": "The member stat pair puts a bold number and a regular label on one line, fitting six people legibly across 1,310px.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Under each handle: '107 places added' and '556 places been to' with the numeral bold and the label regular, two lines per person.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "The content page spends more than half its width on empty margins to hold an 80-character measure; that is its best decision.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Roughly 390px empty left and 400px empty right flanking the prose, and about 120px of clear air between breadcrumb and h1.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "Section rhythm is consistent: loose before a kicker, tight between kicker and heading, so the heading reads as belonging to what follows.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Roughly 90-120px of white before a kicker, about 30px kicker to heading, about 60px heading to first card, repeated across four sections.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "whitespace",
+      "claim": "At least three hairline-bounded strips of about 110px each, labelled ADVERTISEMENT, are held open on the desktop home page - roughly 330px of reserved empty space that announces itself.",
+      "captures": [
+        "index-1440-tile-02",
+        "index-1440-tile-03",
+        "index-1440-tile-05",
+        "index-1440-full"
+      ],
+      "evidence": "Labelled strips at about y=1,280-1,390 (index-1440-tile-02), y=2,450-2,565 (index-1440-tile-03) and y=4,170-4,280 (index-1440-tile-05), each with 'ADVERTISEMENT' in 10px grey caps centred; a fourth appears in index-1440-full below tile-05. The unlabelled ~245px band above the header is dropped from this finding: manifest bannerActions records a banner left standing on all four passes, so an empty container of unknown identity is exactly what would appear there and it cannot be attributed to the site's design.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "whitespace",
+      "claim": "At 375px the article's side margins collapse to about 10px, giving prose less breathing room than the cards below it.",
+      "captures": [
+        "content-375-tile-03.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Body text runs from x=10 to about x=360; the video cards below keep about 12px gutters plus internal padding.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "Desktop scroll replaces the full navigation with a slim ~48px strip carrying the mark and the article title; there is no contents rail and no progress indicator.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Identical bar at 50 and 90 percent depth: logo mark, 'All Places in the Atlas on One Map' in about 16px bold, four icons right. No rail, no progress, no section markers anywhere in either view.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "defers-or-competes",
+      "claim": "Three of the persistent bar's four share icons are brand-coloured filled tiles and are the most saturated pixels on screen at both scroll depths.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Facebook blue, Twitter blue and Reddit orange render as filled brand-coloured tiles at the right of the white bar; the fourth, a mail glyph, is a plain dark outline and is not brand-coloured. The page's palette is otherwise near-black brown, tan and white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "On mobile nothing persists during a 15,358px scroll; there is no indication of what page you are on.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Both views show card content flush to the top edge with no header, no title and no share bar.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "long-scroll",
+      "claim": "The reading rhythm breaks one paragraph in, where a newsletter form is placed inside the reading column at prose width.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-375-tile-03.png"
+      ],
+      "evidence": "A grey-filled panel about 650px wide with its own heading, tan sub-line, email input and black Subscribe button, sitting between paragraph one and paragraph two; same position at 375px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "long-scroll",
+      "claim": "The page ends with ten sponsored links under a heading identical in size and weight to the editorial section above it; the cards share the editorial photo-over-title-over-source shape but are set in a different typeface and carry call-to-action buttons.",
+      "captures": [
+        "content-1440-scroll-90",
+        "content-1440-tile-04",
+        "content-1440-full",
+        "index-1440-tile-10"
+      ],
+      "evidence": "'From Around the Web' matches 'Keep Exploring' in size, weight and left alignment (content-1440-tile-04). The sponsored cards use serif titles with the advertiser in small caps below and 'Learn More' / 'Click Here' / 'Read More' buttons; the Keep Exploring cards use bold sans titles with a category kicker above and no button. So 'distinguished only by the Taboola line' is wrong - they are distinguishable, just not labelled. The only explicit disclosure is 'Sponsored Links by Taboola' in small grey serif at the grid's top-right. The last element is a cream strip reading 'Questions or Feedback? Contact Us'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "The map is the only image on either page that carries meaning: its numbered cluster pins are the article's evidence, placed between the claim and the prose that explains it.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Full-bleed 1440px interactive map with dark-green pins reading '2863', '1204', '1097', '497', '158'; the title claims 32,223 places and the prose beneath says 'we've plotted each and every one of them on this interactive map.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "imagery",
+      "claim": "The card image box is the same size and position whether the photograph has arrived or not, so nothing reflows; the grey itself is a capture artefact, not a design decision.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The four Keep Exploring cards show flat grey rectangles in the tile pass and photographs in rectangles of identical size and position in the scroll pass; the Read Next thumbnail behaves the same way.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "defers-or-competes",
+      "claim": "The type system defers - two families, no gradients, no visible motion - but 'three colours' describes the chrome only: photography, the map and the brand-coloured share icons all sit outside that palette.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "One geometric sans for headings and chrome, one serif for prose. Chrome and prose use near-black brown, tan and white, plus a pale blue-grey and a near-black section ground. Outside it: every card photograph, the map's saturated cyan and green, the full-colour Google glyph in the byline row, tan/brown filled buttons, and a soft drop shadow on the Read Next card in content-1440-tile-03.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "defers-or-competes",
+      "claim": "The page composition competes: four paragraphs of article are followed by six separate asks, with a seventh already inside the byline row.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Newsletter panel inside the prose, Read Next card, 'Become an Atlas Obscura Member' block with a filled tan button, Taboola grid, app download, footer newsletter form - plus the filled 'ADD ATLAS OBSCURA AS A PREFERRED SOURCE ON GOOGLE' button in the share row above the map.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "defers-or-competes",
+      "claim": "Editorial and paid provenance are visually interchangeable: 'BY ATLAS OBSCURA' and 'SPONSORED BY VISIT SUN VALLEY' occupy the same slot in the same type.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Both sit under the headline in the home page's right rail in 10px letterspaced grey caps at the same width, with no rule, tint or icon separating them.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "absence",
+      "claim": "A browse control renders with no results and no message: about 80px of blank ground under 'Explore the Atlas' and its two filter pills before the section ends.",
+      "captures": [
+        "index-1440-tile-04.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "In index-1440-tile-04 the heading, a 'View all Places' link and the FEATURED / MOST RECENT pills render at y=0-130, then empty white to the ground change at y=212; the next section's first text is a further 165px down inside its own top padding. No cards, no empty-state line, no spinner. The originally reported ~200px conflated the section's own blank with the next section's top padding.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "absence",
+      "claim": "Missing avatars render as six flat grey circles while every adjacent text field stays complete.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Six blank circles above intact handles and stat pairs ('@Lana Velkov', '107 places added', '556 places been to').",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "absence",
+      "claim": "A benefits grid leaves an empty cell rather than reflowing: five items in a three-column grid whose first row occupies columns two and three.",
+      "captures": [
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "'Member Only Trip Ideas' and 'Monthly Members-Only Newsletter' fill the first row's second and third columns, leaving the top-left cell blank; 'Virtual Events + Recordings', 'VIP Access to Our New Products' and 'Posts' fill the second row. About 180px of blank sits between the first row's description and the second row's label. That this space is reserved for a missing icon is not visible in the capture and has been removed from the claim.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "absence",
+      "claim": "The site's only explicit 'nothing here' line is spent on advertising, not on data.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "'ADVERTISEMENT' in 10px grey centred in a hairline-bounded band of about 120px, holding the space where nothing loaded.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "absence",
+      "claim": "The mobile footer's alt-text fallback is unstyled and overlaps its neighbour - but this is a capture-time load failure, not a design decision.",
+      "captures": [
+        "content-375-tile-19",
+        "index-375-tile-15"
+      ],
+      "evidence": "In content-375-tile-19 the Google Play badge renders as a broken-image glyph followed by blue 'Get it on Google Play' text overlapping the App Store badge. The same badge loads correctly in index-375-tile-15, so by the reasoning the viewer applied to the grey card boxes in F25 the failure is transient. What is reportable is only the fallback's own styling, not that the site ships a broken badge.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "information-design",
+      "claim": "The only observed progressive-disclosure control is the mobile footer accordion, applied to navigation rather than to evidence.",
+      "captures": [
+        "index-375-tile-15.png",
+        "content-375-tile-19.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "PLACES, EDITORIAL, TRIPS, COMMUNITY, COMPANY as five closed rows with chevrons, about 59px each with hairlines between; the same content is an open five-column table at 1440px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "baseline",
+      "claim": "Inferred: the map supports keyboard panning and zooming; no command palette is claimed anywhere.",
+      "captures": [
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "A 'Keyboard shortcuts' control is visible in the map's bottom bar; domEvidence kbdTexts contains exactly the four arrow glyphs plus '+', '-', 'Home', 'End', 'Page Up', 'Page Down', and ariaKeyshortcuts is empty.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts"
+      ]
+    },
+    {
+      "id": "F36",
+      "topic": "baseline",
+      "claim": "Inferred: exactly one copy control exists on the content page, presumably inside the SHARE menu; there is no per-block or per-field copy affordance.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "domEvidence copyControls reports count 1 with label 'Copy Link Copy Link'; nothing so labelled is visible in any capture, and the byline row shows only SHARE, EMAIL, AUDIO, PRINT.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F37",
+      "topic": "baseline",
+      "claim": "Inferred: the recorded fixed layer is almost entirely dormant, and the visible 48px article bar cannot be identified in it.",
+      "captures": [
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "domEvidence stickyOrFixedCount is 23; 20 measure height 0 at rest (AdBlockModal, lightbox-modal, subscription-ask-modal, onetrust panels, and the single position:sticky entry). The three non-zero entries are a grecaptcha-badge at 60px, a nolt-modal at the full 900px viewport height and its 32px close button - none of which paints in any capture. So the original 'the visible strip is the only one that paints' is wrong twice: the strip is not matchable to any recorded entry, and a full-height recorded entry paints nothing.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "Inferred: light-only. The dark bands on the home page are section grounds, not a dark theme.",
+      "captures": [
+        "index-1440-tile-07.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "domEvidence prefersColorScheme.found is false across 54 stylesheets (5 unreadable), htmlAttributes.dataTheme and class are null, and no theme control appears in any capture.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F39",
+      "topic": "baseline",
+      "claim": "Inferred: search is a real inline input, not a command palette.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "domEvidence searchAffordances lists 'input Search destinations and more…' and 'button Search'; the visible bar reads 'Search the Atlas' with a magnifier at its right edge and no keyboard hint chip.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "B1",
+      "topic": "borrow",
+      "claim": "Borrow the labelled stat cell for structured data blocks: a 10px letterspaced grey label above a bold numeral, hairline-boxed, rows ruled.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "'PLACES 47 / STORIES 3' pattern in the destinations rail reads as a table without being one and stays legible at four rows per 675px (169px row pitch, corrected from 570px); a programme with three counted fields would produce a visibly shorter block than one with six.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "B2",
+      "topic": "borrow",
+      "claim": "Borrow the plain columned link table for browse/filter: heading, hairline rule, text links in columns, no thumbnails.",
+      "captures": [
+        "index-1440-tile-07.png"
+      ],
+      "evidence": "Top Countries / Top Cities fits 36 navigation targets in about 310px of height and is the only region of either page whose markup would raise a text-to-HTML ratio rather than sink it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "B3",
+      "topic": "borrow",
+      "claim": "Borrow the classifying kicker so a model organism or evidence tier is read before the claim and cannot be mistaken for it.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "A 10-11px letterspaced category word sits tight above every title at every level of both pages and consistently classifies before the title is read.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "B4",
+      "topic": "borrow",
+      "claim": "Borrow the scroll strip that names the page: a 48px bar carrying only the mark and the current page title.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Identical at 50 and 90 percent depth; it answers 'what am I reading' eleven screens down. It is not a contents rail and does not substitute for the unassigned rail surface.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "B5",
+      "topic": "borrow",
+      "claim": "Borrow the mobile footer accordion for collapsing repeated navigation markup without deleting it.",
+      "captures": [
+        "index-375-tile-15.png"
+      ],
+      "evidence": "Five closed chevron rows at 375px where desktop shows an open five-column table.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "B6",
+      "topic": "borrow",
+      "claim": "Borrow the reserved image box so a card does not reflow when its picture arrives.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The Keep Exploring boxes are identical in size and position with and without the photograph.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A1",
+      "topic": "avoid",
+      "claim": "Avoid putting a photograph beside the search bar: this is the exact failure the frozen home constraint exists to prevent.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "A 754x500px image in the right half carries the only saturated colour on the screen and takes the first read; the search field is a 456px outlined pill with no fill. 'The search field is fourth' is removed - a still capture cannot establish reading order past the first landing.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A2",
+      "topic": "avoid",
+      "claim": "Avoid action pills above the primary action; Atlas puts two above both its search bar and its article title.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "'Places near me' and 'Random place' are the only filled shapes on the mobile first screen and push the content title to about 40 percent down.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A3",
+      "topic": "avoid",
+      "claim": "Avoid signalling provenance by one word in identical type; for a health-evidence site this is disqualifying.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "'BY ATLAS OBSCURA' and 'SPONSORED BY VISIT SUN VALLEY' share slot, size, colour and letterspacing.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A4",
+      "topic": "avoid",
+      "claim": "Avoid rendering a filter control with a silent empty result; either omit the control or say what it found.",
+      "captures": [
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "'Explore the Atlas' with a 'View all Places' link and FEATURED / MOST RECENT pills, followed by about 80px of blank ground to the section's end and no message anywhere. (Corrected from ~200px.)",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A5",
+      "topic": "avoid",
+      "claim": "Avoid a form inside the reading column; on a dossier that position belongs to evidence.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-375-tile-03.png"
+      ],
+      "evidence": "The newsletter panel sits at prose width in prose position, one paragraph into a five-paragraph article, at both widths.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A6",
+      "topic": "avoid",
+      "claim": "Avoid recommendation grids as the bulk of the page - about 57 percent of the desktop content page's height and about 85 percent of the mobile page's, with the mobile midpoint holding no article text.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-375-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The article's last line sits at about y=2,010 of a 4,673px desktop page (43 percent, not the 20 percent first reported) and about y=2,325 of a 15,358px mobile page (15 percent); content-375-scroll-50, the exact midpoint, shows six video cards and no article text. The eager-image and ratio figures that accompany this (imgCount 513, imgLazyCount 0, textToHtmlRatio 0.0015) are domEvidence, not visual observations, and are now declared as such.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "imgCount",
+        "imgLazyCount",
+        "textToHtmlRatio"
+      ]
+    },
+    {
+      "id": "A7",
+      "topic": "avoid",
+      "claim": "Avoid coloured chrome as the loudest thing in a long scroll; a sticky strip's icons should take the text colour.",
+      "captures": [
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Three brand-coloured filled share tiles (Facebook, Twitter, Reddit) plus a plain dark mail glyph in the persistent bar, on a page whose palette is otherwise brown, tan and white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A8",
+      "topic": "avoid",
+      "claim": "Avoid 10px side margins for prose at 375px while cards below keep their gutters.",
+      "captures": [
+        "content-375-tile-03.png"
+      ],
+      "evidence": "Body text runs edge to edge from x=10 while the video cards keep about 12px gutters and internal padding.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "A9",
+      "topic": "avoid",
+      "claim": "Avoid reserved empty advertising space as a layout element.",
+      "captures": [
+        "index-1440-tile-02",
+        "index-1440-tile-03",
+        "index-1440-tile-05"
+      ],
+      "evidence": "At least three labelled ADVERTISEMENT strips of about 110px each on the desktop home page, roughly 330px of held-open blank. The 245px unlabelled band above the header is excluded: manifest bannerActions records a banner left standing on all four passes, so that band cannot be read as design.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "The page states its central count three different ways and dates none of them: the h1 says 32,223 places, the opening paragraph says 'more than 32,100', and the map renders its own cluster totals.",
+      "captures": [
+        "content-1440-tile-01",
+        "content-1440-tile-02"
+      ],
+      "evidence": "h1 'All 32,223 Places on One Map' (content-1440-tile-01); first paragraph 'There are now more than 32,100 incredible hidden wonders listed in the Atlas' (content-1440-tile-02); the map's visible cluster pins read 2863, 1204, 1097, 497, 158 and so on. No 'as of' date appears anywhere. For an RNAWiki dossier that states counted facts - trials, sources, claims, reviewers - the number must be derived once from the published record and carry the date it was computed, or the page contradicts itself in public and the reader cannot tell which figure is current.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "Atlas has a counted and an uncounted browse idiom on the same site and gives the counted one to marketing: fourteen flat category pills follow the article, while the destinations rail gives every entry a labelled count.",
+      "captures": [
+        "content-1440-tile-03",
+        "index-1440-tile-03"
+      ],
+      "evidence": "Fourteen identical outlined pills - LIST, INVENTIONS, MEMENTO MORI, MAPS, GHOST TOWNS, CATACOMBS AND CRYPTS, NATURAL WONDERS, COLLECTIONS, MONUMENTS, ABANDONED, NATURE, ARCHITECTURAL ODDITIES, ANIMALS, ARCHITECTURE - all one weight, in no visible order, with no counts, wrapping over four rows below the article (content-1440-tile-03). The home-page rail gives every destination 'PLACES 74 / STORIES 2' in hairline-boxed cells (index-1440-tile-03). RNAWiki's indication and tag chips should carry the count in the rail's cell, so a chip leading to two programmes is visibly not a chip leading to forty, and an empty facet is visible before it is clicked.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "long-scroll",
+      "claim": "The scope path exists only on the first screen: the breadcrumb naming where the article sits is 11px grey caps above the h1, and the 48px scroll strip that replaces it carries the title without the path.",
+      "captures": [
+        "content-1440-tile-01",
+        "content-1440-scroll-50"
+      ],
+      "evidence": "content-1440-tile-01 shows 'HOME > STORIES > FEATURE > ALL PLACES IN THE ATLAS ON ONE MAP' in about 11px letterspaced grey caps at y=362, directly above the h1; content-1440-scroll-50 and -scroll-90 show the persistent strip carrying only the mark and 'All Places in the Atlas on One Map'. Ten screens down, nothing says which section the page belongs to. On RNAWiki a reviewed conclusion belongs inside one programme scope - indication, population, dose, trial set - so that scope line must travel with the title in the persistent strip, not appear once above it and disappear.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "browse/filter"
+    ],
+    "verdict": "strengthens",
+    "argument": "Phase 2 names atlasobscura.com only in the browse/filter row, marked 'half overturned: Atlas Obscura dropped', on the number 0.17 percent text-to-HTML against a corpus target that must rise from 8.3 percent. Looking at it strengthens that drop and adds three reasons the number could not give. First, the visible form of the ratio is not merely heavy markup: on mobile the article ends at about 15 percent of a 15,358px scroll and content-375-scroll-50, the exact midpoint, contains six video thumbnails and no article text (F10, A6). Verification corrected the desktop half of this - the article there ends at about 43 percent, not 20 - so the imbalance is a mobile finding, not a uniform one. Second, the one browse surface Atlas actually renders is empty: 'Explore the Atlas' shows its FEATURED / MOST RECENT pills over about 80px of blank ground with no message (F29). A site that cannot show its own filter results cannot govern our filter surface. Third, Atlas makes editorial and paid provenance visually identical, same slot and same 10px letterspaced caps (F28) - a governing-reference-level defect for a health-evidence site, not a detail. It earns no surface and should not be assigned to one it does not hold. The drop should not be total, though: two detail patterns survive under other sites' governance - the labelled stat cell for structured data blocks (B1, under stripe.com/docs) and the plain columned link table for browse (B2, under awwwards.com). Both are the same idea, and it is the idea Atlas is worst at overall: say it in text in a table, not in a photograph in a card."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Labelled stat cell: 10px letterspaced grey label over a bold numeral, hairline-boxed, rows ruled (index-1440-tile-03) - structured data blocks, inside Stripe's governance.",
+      "Plain columned link table with a heading over a hairline rule, no thumbnails, 36 targets in ~310px (index-1440-tile-07) - browse/filter, corroborating awwwards.",
+      "Classifying kicker tight above every title, so model organism or evidence tier is read before the claim (content-1440-scroll-50, index-1440-tile-03) - dossier reading column and browse.",
+      "48px scroll strip carrying only the mark and the current page title (content-1440-scroll-50/90) - minimum long-scroll orientation; not a substitute for the unassigned contents rail.",
+      "Mobile footer accordion: five closed chevron rows replacing an open five-column table (index-375-tile-15) - reference/definitions page at mobile.",
+      "Reserved image box that does not reflow when the picture arrives (content-1440-tile-03 vs content-1440-scroll-50) - any card grid."
+    ],
+    "avoid": [
+      "A photograph beside the search bar taking the first read (index-1440-tile-01) - home, frozen.",
+      "Action pills above the primary action and above the page title (index-375-tile-01, content-375-scroll-00) - home and dossier reading column.",
+      "Provenance signalled by one word in identical type (index-1440-tile-03) - reading column, data blocks, citation map.",
+      "A filter control rendering a silent empty result (index-1440-tile-04) - browse/filter.",
+      "A form inside the reading column one paragraph in (content-1440-tile-02, content-375-tile-03) - dossier reading column.",
+      "Recommendation grids as ~57 percent of the desktop page and ~85 percent of the mobile page (content-375-scroll-50, content-375-full) - all surfaces.",
+      "Brand-coloured chrome as the loudest thing in a long scroll (content-1440-scroll-90) - contents rail.",
+      "10px prose margins at 375px while cards keep gutters (content-375-tile-03) - dossier reading column.",
+      "Labelled empty advertising bands as a layout element, ~330px on the home page (index-1440-tile-02/03/05) - all surfaces.",
+      "A count stated three different ways on one page with no computed-on date (content-1440-tile-01/02) - dossier header and data blocks.",
+      "Uncounted, unordered category chips as the article's browse control (content-1440-tile-03) - browse/filter.",
+      "A scope path that appears once above the title and does not survive the scroll (content-1440-tile-01, content-1440-scroll-50) - dossier contents rail."
+    ]
+  },
+  "notLongevityRelevant": true,
+  "bannersStanding": [
+    "manifest bannerActions records a banner left standing on all four passes (index-1440, index-375, content-1440, content-375) because no permitted refusal control was found; NO consent banner content is visible in any capture. The hairline-bounded strips labelled ADVERTISEMENT are the site's own reserved slots and are judged as design. VERIFIER CORRECTION: the unlabelled empty band at the top of every capture (~245px desktop, ~50-70px mobile) is NOT judged as design - an unpopulated container of unknown identity is exactly what a standing banner would produce, so it has been removed from F16 and A9."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "verifiedBy": "independent verifier (all 8 required desktop captures, all 3 required mobile captures, plus index-1440-tile-02/05/07/10, index-375-full/tile-15, content-1440-tile-04/05, content-375-tile-03/19/scroll-90, content-375-full viewed directly)",
+    "confirmed": 32,
+    "qualified": 21,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "REFUTED F24 ('every other image decorates or baits... the visible form of the site's 0.0015 text-to-HTML ratio'). Two grounds: the load counts and the ratio are Phase-1/domEvidence numbers presented as a visual observation with inferred:false and no domEvidenceKeys; and 'every other image' is contradicted by the destination-rail thumbnails and the Read Next thumbnail, which identify what they link to. The verifiable half - content-375-full is a near-continuous photographic column - is retained in the corrected A6, which now declares its DOM keys.",
+      "Largest numeric correction: the desktop content page's article ends at about y=2,010 of 4,673px (43 percent), not 20 percent, so recommendation and promotion is about 57 percent of desktop height, not 80. The 80/20 shape is real only at 375px (article ends at about y=2,325 of 15,358px, 15 percent). F10, A6 and the phase2 argument were rewritten; the mobile-midpoint evidence is unaffected and stands.",
+      "Method correction affecting F16 and A9: the unlabelled ~245px band above the header was counted as reserved advertising space and as design. manifest bannerActions records a banner left standing on all four passes, so an empty container of unknown identity is exactly what would appear there. The band is removed from both findings; the hairline-bounded strips actually labelled ADVERTISEMENT stay, and there are at least three of them on the desktop home page (index-1440-tile-02, -03, -05), not two, so the labelled reserved space is about 330px.",
+      "F22 overstated the sponsored/editorial resemblance. The heading match is real ('From Around the Web' equals 'Keep Exploring' in size, weight and alignment) but the Taboola cards use serif titles, the advertiser in small caps below, and 'Learn More'/'Click Here'/'Read More' buttons, while the Keep Exploring cards use bold sans titles with a category kicker above and no button. They are distinguishable, just not disclosed. The site's genuine provenance failure is F28 on the home-page rail, which is CONFIRMED exactly as written and is the finding RNAWiki should carry.",
+      "F33 was treated as a design finding; the same Google Play badge loads correctly in index-375-tile-15, so it is a capture-time failure, exactly the artefact the viewer correctly excluded at F25. Rewritten to report only the fallback's styling.",
+      "F37's 'the visible strip is the only one that paints' does not hold: the single position:sticky entry is recorded at height 0, so the painting 48px bar is not matchable to any of the 23 recorded elements, and the one full-viewport-height entry (nolt-modal, 900px) paints nothing in any capture.",
+      "F31's 'reserves about 90px above each label for an icon that is not there' is an inferred cause with nothing visible and no domEvidence key; removed. The empty top-left cell it also reports is confirmed exactly.",
+      "Ordinal reading-order claims ('the search bar is the fourth thing seen', F5 and A1) were reduced to what a still capture supports: the photograph dominates by area and saturation and the search bar is an unfilled outlined pill.",
+      "Corrected measurements: destinations-rail row pitch is 169px so four rows occupy about 675px, not 570 (F11, B1); the blank under 'Explore the Atlas' is about 80px to the section's end, not 200 (F29, A4); the article is four paragraphs, not five (F9, F27); three of the four persistent-bar share icons are brand-coloured, the mail glyph is not (F19, A7).",
+      "Verified unchanged and exact: F28 (BY ATLAS OBSCURA and SPONSORED BY VISIT SUN VALLEY in the same slot and the same 10px letterspaced grey caps), F25 (the Keep Exploring boxes sit at identical page coordinates with and without photographs - tile-03 y=690 at scrollY 1800 equals scroll-50 y=603 at scrollY 1887), F30, F32, F34, F13, F12's 36 targets in about 300px, and the four declared-inferred baseline findings F35/F36/F38/F39.",
+      "Added V1 (one count stated three ways, undated), V2 (fourteen uncounted category pills against the rail's counted stat cells), V3 (the scope path does not survive the scroll)."
+    ]
+  }
+}

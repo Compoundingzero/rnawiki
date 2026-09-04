@@ -1,0 +1,2003 @@
+{
+  "site": "atlasobscura.com",
+  "fetchedAt": "2026-09-03T09:43:02.230Z",
+  "pages": [
+    {
+      "url": "https://www.atlasobscura.com/",
+      "status": "fetched",
+      "bytes": 529962,
+      "visibleTextChars": 9937,
+      "textToHtmlRatio": 0.0188,
+      "httpStatus": 200,
+      "note": "Server-rendered Rails/Turbo HTML; full navigation, hero, section headings and card copy present in the static response."
+    },
+    {
+      "url": "https://www.atlasobscura.com/places",
+      "status": "blocked",
+      "bytes": 5842,
+      "visibleTextChars": 759,
+      "textToHtmlRatio": 0.1299,
+      "httpStatus": 403,
+      "note": "Cloudflare interstitial. Saved body title is \"Attention Required! | Cloudflare\" and contains \"Sorry, you have been blocked\". Two attempts (plain, then with home-page referer and cookie jar); no further retries, no attempt to defeat the challenge. All findings below therefore come from the home page only."
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://assets.atlasobscura.com/vite/assets/aon.tailwind-85f5738a.css",
+      "bytes": 316502,
+      "role": "measured: Tailwind build plus Atlas Obscura component layer (.aon-heading-*, .aon-subtitle-*, .aon-body-*, .aon-label-*, .aon-container-*), Tailwind Typography (.prose), Shoelace (--sl-*) and tippy.js tooltip styles"
+    },
+    {
+      "url": "https://assets.atlasobscura.com/vite/assets/aon-cc246122.css",
+      "bytes": 8019,
+      "role": "measured: Swiper carousel stylesheet"
+    }
+  ],
+  "stylesheetDiscovery": {
+    "linkRelStylesheet": 2,
+    "atImport": 0,
+    "inlineStyleBlocks": 0,
+    "inlineStyleAttributes": 64,
+    "note": "measured: the home page ships zero <style> blocks — all CSS is in the two external files above, so css/inline-N.css was not created."
+  },
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "Platform Web,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+        "count": 78
+      },
+      {
+        "value": "Freight Pro,ui-serif,Georgia,Cambria,Times New Roman,Times,serif",
+        "count": 13
+      },
+      {
+        "value": "Platform Web",
+        "count": 4
+      },
+      {
+        "value": "Freight Pro",
+        "count": 4
+      },
+      {
+        "value": "inherit",
+        "count": 3
+      },
+      {
+        "value": "ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+        "count": 2
+      },
+      {
+        "value": "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
+        "count": 2
+      },
+      {
+        "value": "Sharp Grotesk",
+        "count": 2
+      },
+      {
+        "value": "atlasobscura",
+        "count": 2
+      },
+      {
+        "value": "var(--sl-font-sans)",
+        "count": 2
+      },
+      {
+        "value": "Quotes Script",
+        "count": 1
+      },
+      {
+        "value": "sans-serif",
+        "count": 1
+      }
+    ],
+    "fontFaces": {
+      "families": [
+        "Platform Web (4 faces: 400 italic, 500, 600, 600 italic)",
+        "Freight Pro (4 faces: 500, 500 italic, 700, 700 italic)",
+        "Sharp Grotesk (1 face: 700)",
+        "Quotes Script (1 face)",
+        "atlasobscura (icon font, 1 face)"
+      ],
+      "totalFontFaceRules": 11,
+      "preloadedAsFont": 5,
+      "basis": "measured from @font-face rules and <link as=\"font\"> tags"
+    },
+    "fontSizes": [
+      {
+        "value": "1rem",
+        "count": 45,
+        "unit": "rem"
+      },
+      {
+        "value": "1.25rem",
+        "count": 27,
+        "unit": "rem"
+      },
+      {
+        "value": "1.5rem",
+        "count": 25,
+        "unit": "rem"
+      },
+      {
+        "value": ".875rem",
+        "count": 16,
+        "unit": "rem"
+      },
+      {
+        "value": "1.125rem",
+        "count": 13,
+        "unit": "rem"
+      },
+      {
+        "value": "16px",
+        "count": 11,
+        "unit": "px"
+      },
+      {
+        "value": "1.75rem",
+        "count": 10,
+        "unit": "rem"
+      },
+      {
+        "value": "2.25rem",
+        "count": 9,
+        "unit": "rem"
+      },
+      {
+        "value": ".8125rem",
+        "count": 8,
+        "unit": "rem"
+      },
+      {
+        "value": "3.75rem",
+        "count": 8,
+        "unit": "rem"
+      },
+      {
+        "value": ".6875rem",
+        "count": 7,
+        "unit": "rem"
+      },
+      {
+        "value": "2.625rem",
+        "count": 6,
+        "unit": "rem"
+      },
+      {
+        "value": "1.875rem",
+        "count": 6,
+        "unit": "rem"
+      },
+      {
+        "value": ".875em",
+        "count": 6,
+        "unit": "em"
+      },
+      {
+        "value": "4.5rem",
+        "count": 6,
+        "unit": "rem"
+      },
+      {
+        "value": "24px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "1.1875rem",
+        "count": 5,
+        "unit": "rem"
+      },
+      {
+        "value": ".75rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": ".8888889em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "inherit",
+        "count": 3,
+        "unit": "keyword"
+      },
+      {
+        "value": "12px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "22px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "11px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "2rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "3rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "20px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "1.25em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "32px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "42px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "28px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "6rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "1em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "80%",
+        "count": 1,
+        "unit": "percent"
+      },
+      {
+        "value": "75%",
+        "count": 1,
+        "unit": "percent"
+      },
+      {
+        "value": "100%",
+        "count": 1,
+        "unit": "percent"
+      },
+      {
+        "value": "unset",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "14px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "var(--sl-font-size-small)",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "23px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "8px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "2.2rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": ".85rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": ".95rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": "2.25em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "1.5em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".9em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "1.2222222em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "2.6666667em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "1.6666667em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "1.3333333em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".8666667em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "10px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "9px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "13px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "40px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "31px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "45px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "15px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "19px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "186px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "44px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "21px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "17px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "93px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "60px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "103px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "1.313rem",
+        "count": 1,
+        "unit": "rem"
+      },
+      {
+        "value": "72px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "13vw",
+        "count": 1,
+        "unit": "vw"
+      },
+      {
+        "value": "56px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "64px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "30px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "48px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "77px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "36px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "88px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "2vw",
+        "count": 1,
+        "unit": "vw"
+      },
+      {
+        "value": "6vw",
+        "count": 1,
+        "unit": "vw"
+      }
+    ],
+    "lineHeights": [
+      {
+        "value": "1",
+        "count": 45,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.5rem",
+        "count": 43,
+        "type": "length"
+      },
+      {
+        "value": "1.75rem",
+        "count": 41,
+        "type": "length"
+      },
+      {
+        "value": "1.1em",
+        "count": 33,
+        "type": "length"
+      },
+      {
+        "value": "2rem",
+        "count": 29,
+        "type": "length"
+      },
+      {
+        "value": "1.25rem",
+        "count": 19,
+        "type": "length"
+      },
+      {
+        "value": "1rem",
+        "count": 10,
+        "type": "length"
+      },
+      {
+        "value": "2.5rem",
+        "count": 10,
+        "type": "length"
+      },
+      {
+        "value": "1.5",
+        "count": 8,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "14px",
+        "count": 8,
+        "type": "length"
+      },
+      {
+        "value": "2.25rem",
+        "count": 8,
+        "type": "length"
+      },
+      {
+        "value": "1.2em",
+        "count": 7,
+        "type": "length"
+      },
+      {
+        "value": "20px",
+        "count": 7,
+        "type": "length"
+      },
+      {
+        "value": "inherit",
+        "count": 5,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "110.00000000000001%",
+        "count": 4,
+        "type": "percent"
+      },
+      {
+        "value": "1.2",
+        "count": 4,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.25em",
+        "count": 4,
+        "type": "length"
+      },
+      {
+        "value": "1.375",
+        "count": 3,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "0",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.3",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.6",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.3333333",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.7142857",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.75",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.25",
+        "count": 2,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.4",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "var(--sl-line-height-dense)",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.1111111",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.4285714",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.7777778",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.4545455",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.5555556",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "15px",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "1.4em",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "44px",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "110%",
+        "count": 1,
+        "type": "percent"
+      },
+      {
+        "value": "140%",
+        "count": 1,
+        "type": "percent"
+      },
+      {
+        "value": "1.1",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.625",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "21px",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "54px",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "1.15",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "1.35",
+        "count": 1,
+        "type": "unitless-or-keyword"
+      },
+      {
+        "value": "84px",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": ".9em",
+        "count": 1,
+        "type": "length"
+      },
+      {
+        "value": "28px",
+        "count": 1,
+        "type": "length"
+      }
+    ],
+    "headingScale": {
+      "mechanism": "measured: bare h1–h6 are reset by Tailwind preflight (font-size:inherit;font-weight:inherit). Size comes from named component classes in the .aon-heading-* / .aon-subtitle-* layer, or from Tailwind text-* utilities on the element.",
+      "namedScale": {
+        "aon-heading-display": {
+          "fontSize": "4.5rem",
+          "px": 72,
+          "lineHeight": "1",
+          "letterSpacing": "1.8px",
+          "fontWeight": 600
+        },
+        "aon-heading-big": {
+          "fontSize": "3.75rem",
+          "px": 60,
+          "lineHeight": "1",
+          "letterSpacing": "1.8px",
+          "fontWeight": 600
+        },
+        "aon-heading-small": {
+          "fontSize": "2.625rem",
+          "px": 42,
+          "lineHeight": "1",
+          "letterSpacing": "1.26px",
+          "fontWeight": 600
+        },
+        "aon-heading-smaller": {
+          "fontSize": "2.25rem",
+          "px": 36,
+          "lineHeight": "1.1em",
+          "letterSpacing": "1.05px",
+          "fontWeight": 600
+        },
+        "aon-heading-smallest": {
+          "fontSize": "1.75rem",
+          "px": 28,
+          "lineHeight": "1.1em",
+          "letterSpacing": ".84px",
+          "fontWeight": 600
+        },
+        "aon-heading-tiny": {
+          "fontSize": "1.5rem",
+          "px": 24,
+          "lineHeight": "1.1em",
+          "letterSpacing": ".63px",
+          "fontWeight": 600
+        },
+        "aon-heading-tinier": {
+          "fontSize": "1.25rem",
+          "px": 20,
+          "lineHeight": "1.1em",
+          "letterSpacing": ".63px",
+          "fontWeight": 600
+        },
+        "aon-heading-tiniest": {
+          "fontSize": "1rem",
+          "px": 16,
+          "lineHeight": "20px",
+          "letterSpacing": ".2px",
+          "fontWeight": 600
+        },
+        "aon-subtitle-big": {
+          "fontSize": "2.25rem",
+          "px": 36,
+          "lineHeight": "1.1em",
+          "fontWeight": 400
+        },
+        "aon-subtitle-small": {
+          "fontSize": "1.75rem",
+          "px": 28,
+          "lineHeight": "1.1em",
+          "fontWeight": 400
+        },
+        "aon-subtitle-smaller": {
+          "fontSize": "1.25rem",
+          "px": 20,
+          "lineHeight": "1.25em",
+          "fontWeight": 400
+        },
+        "aon-subtitle-smallest": {
+          "fontSize": "1rem",
+          "px": 16,
+          "lineHeight": "1.2em",
+          "fontWeight": 400
+        },
+        "aon-subtitle-micro": {
+          "fontSize": ".875rem",
+          "px": 14,
+          "lineHeight": "1.2em",
+          "fontWeight": 400
+        },
+        "aon-body-big": {
+          "fontSize": "1.5rem",
+          "px": 24,
+          "lineHeight": "2rem",
+          "fontWeight": 400
+        },
+        "aon-body-small": {
+          "fontSize": "1.1875rem",
+          "px": 19,
+          "lineHeight": "1.75rem",
+          "fontWeight": 400
+        },
+        "aon-body-smaller": {
+          "fontSize": "1rem",
+          "px": 16,
+          "lineHeight": "1.5rem",
+          "fontWeight": 400
+        },
+        "aon-label-biggest": {
+          "fontSize": "1.5rem",
+          "px": 24,
+          "lineHeight": "1",
+          "letterSpacing": "1.92px",
+          "fontWeight": 500,
+          "textTransform": "uppercase"
+        },
+        "aon-label-big": {
+          "fontSize": "1rem",
+          "px": 16,
+          "lineHeight": "1",
+          "letterSpacing": "1.92px",
+          "fontWeight": 500,
+          "textTransform": "uppercase"
+        },
+        "aon-label-small": {
+          "fontSize": ".8125rem",
+          "px": 13,
+          "lineHeight": "14px",
+          "letterSpacing": "1.56px",
+          "fontWeight": 500,
+          "textTransform": "uppercase"
+        },
+        "aon-label-smaller": {
+          "fontSize": ".6875rem",
+          "px": 11,
+          "lineHeight": "1",
+          "letterSpacing": "1.32px",
+          "fontWeight": 500,
+          "textTransform": "uppercase"
+        }
+      },
+      "ratio": {
+        "value": null,
+        "note": "measured steps 72 / 60 / 42 / 36 / 28 / 24 / 20 / 16 px give successive ratios 1.20, 1.43, 1.17, 1.29, 1.17, 1.20, 1.25 — no single constant ratio; the scale is hand-tuned, not modular."
+      },
+      "asUsedOnHomePage": {
+        "h1": {
+          "count": 1,
+          "classes": [
+            "aon-heading-tinier",
+            "text-white"
+          ],
+          "resolvedFontSizePx": 20,
+          "note": "measured: the only h1 on the home page is a promotional card heading, not a page title."
+        },
+        "h2": {
+          "count": 47,
+          "dominant": "text-4xl md:text-[42px] leading-[1.1em] font-semibold font-ao-sans",
+          "resolvedFontSizePx": {
+            "base": 36,
+            "md": 42
+          }
+        },
+        "h3": {
+          "count": 36,
+          "dominant": "no size utility (inherits 16px) with font-bold / leading-tight; one lg:text-[2rem] and one text-sm",
+          "resolvedFontSizePx": {
+            "base": 16,
+            "someLg": 32
+          }
+        },
+        "h4": {
+          "count": 1,
+          "classes": [
+            "text-black/70"
+          ],
+          "resolvedFontSizePx": 16
+        }
+      }
+    },
+    "bodyCandidates": {
+      "fontSize": "1rem (16px)",
+      "lineHeight": "1.5rem (24px) — ratio 1.5",
+      "selectorEvidence": "measured: .aon-body-smaller {font-size:1rem;line-height:1.5rem}; Tailwind .text-base {font-size:1rem;line-height:1.5rem} used 35x in the home-page markup; no rule sets a base font-size on html or body, so the root stays at the 16px browser default. Card and teaser copy most often uses .text-lg (1.125rem / 1.75rem line-height, 63 uses) — the largest single body-size count on the page.",
+      "fontFamily": "measured: <body class=\"font-ao-sans\"> resolves to \"Platform Web\", ui-sans-serif, system-ui, -apple-system, … — the sans stack is the default; \"Freight Pro\" serif appears in 13 declarations for editorial display use."
+    },
+    "fluidType": false,
+    "fluidTypeEvidence": "measured: 0 clamp() occurrences anywhere in the CSS or in inline style attributes. Three viewport-unit font-size utilities exist in the bundle (.md\\:text-[13vw], .2xl\\:text-[2vw], .2xl\\:text-[6vw]) but none of the three class names appears in the home-page markup. Responsive type is done with breakpoint-stepped utilities instead (e.g. text-4xl md:text-[42px])."
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": "1rem",
+        "px": 16,
+        "count": 161
+      },
+      {
+        "value": ".5rem",
+        "px": 8,
+        "count": 153
+      },
+      {
+        "value": ".75rem",
+        "px": 12,
+        "count": 97
+      },
+      {
+        "value": "1.5rem",
+        "px": 24,
+        "count": 94
+      },
+      {
+        "value": "2rem",
+        "px": 32,
+        "count": 44
+      },
+      {
+        "value": "1.25rem",
+        "px": 20,
+        "count": 43
+      },
+      {
+        "value": ".25rem",
+        "px": 4,
+        "count": 39
+      },
+      {
+        "value": ".375rem",
+        "px": 6,
+        "count": 37
+      },
+      {
+        "value": "3rem",
+        "px": 48,
+        "count": 26
+      },
+      {
+        "value": "4rem",
+        "px": 64,
+        "count": 23
+      },
+      {
+        "value": "2.5rem",
+        "px": 40,
+        "count": 21
+      },
+      {
+        "value": ".125rem",
+        "px": 2,
+        "count": 7
+      },
+      {
+        "value": ".625rem",
+        "px": 10,
+        "count": 6
+      },
+      {
+        "value": "6rem",
+        "px": 96,
+        "count": 6
+      },
+      {
+        "value": "2px",
+        "px": 2,
+        "count": 4
+      },
+      {
+        "value": "2.25rem",
+        "px": 36,
+        "count": 4
+      },
+      {
+        "value": "-1.25rem",
+        "px": -20,
+        "count": 4
+      },
+      {
+        "value": "1px",
+        "px": 1,
+        "count": 3
+      },
+      {
+        "value": "2.75rem",
+        "px": 44,
+        "count": 3
+      },
+      {
+        "value": "3.5rem",
+        "px": 56,
+        "count": 2
+      },
+      {
+        "value": "18px",
+        "px": 18,
+        "count": 2
+      },
+      {
+        "value": "20px",
+        "px": 20,
+        "count": 1
+      },
+      {
+        "value": "5rem",
+        "px": 80,
+        "count": 1
+      },
+      {
+        "value": "13px",
+        "px": 13,
+        "count": 1
+      }
+    ],
+    "inferredBaseUnitPx": 4,
+    "multiplesUsed": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      24,
+      32,
+      36,
+      40,
+      44,
+      48,
+      56,
+      64,
+      80,
+      96
+    ],
+    "evidence": "measured from the Tailwind spacing utilities actually present in the home-page markup, resolved through the stylesheet. The top values are 1rem/16px (161), .5rem/8px (153), .75rem/12px (97), 1.5rem/24px (94), 2rem/32px (44), 1.25rem/20px (43), .25rem/4px (39). Every value except 1px, 2px, 13px and 18px is a whole multiple of 4px, and the two heaviest are multiples of 8px — Tailwind's default 0.25rem scale, used mostly at even steps. Sample classes: mx-auto sm:p-2 px-1 md:px-2 mdplus:px-5 pt-[2px] mr-px mt-[20px] px-2.5 py-3. Page gutters come from .aon-container-fluid: 1.25rem, then 3rem at 768px, then 4rem at 1280px."
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--primary-color",
+        "value": "#ad8f68"
+      },
+      {
+        "name": "--gastro-yellow",
+        "value": "#f5d547"
+      },
+      {
+        "name": "--secondary-color",
+        "value": "#78726c"
+      },
+      {
+        "name": "--btn-base",
+        "value": "#1c1917"
+      },
+      {
+        "name": "--brand-color",
+        "value": "#a16a3a"
+      },
+      {
+        "name": "--border-color",
+        "value": "#d6d3d1"
+      },
+      {
+        "name": "--obscura-society",
+        "value": "hover{background:#000"
+      },
+      {
+        "name": "--mark-your-map",
+        "value": "hover{background:linear-gradient(180deg,#0c283d,#1d4a6b)"
+      },
+      {
+        "name": "--swiper-theme-color",
+        "value": "#007aff"
+      },
+      {
+        "name": "--swiper-preloader-color",
+        "value": "#fff"
+      },
+      {
+        "name": "--tw-shadow",
+        "value": "0 0 #0000"
+      },
+      {
+        "name": "--tw-ring-offset-color",
+        "value": "#fff"
+      },
+      {
+        "name": "--tw-ring-color",
+        "value": "#2563eb"
+      },
+      {
+        "name": "--tw-shadow-colored",
+        "value": "0 0 #0000"
+      },
+      {
+        "name": "--sl-color-gray-50",
+        "value": "#f9f9f9"
+      },
+      {
+        "name": "--sl-color-gray-100",
+        "value": "#f4f4f5"
+      },
+      {
+        "name": "--sl-color-gray-200",
+        "value": "#e4e4e7"
+      },
+      {
+        "name": "--sl-color-gray-300",
+        "value": "#d4d4d8"
+      },
+      {
+        "name": "--sl-color-gray-400",
+        "value": "#a1a1aa"
+      },
+      {
+        "name": "--sl-color-gray-500",
+        "value": "#71717a"
+      },
+      {
+        "name": "--sl-color-gray-600",
+        "value": "#52525b"
+      },
+      {
+        "name": "--sl-color-gray-700",
+        "value": "#3f3f46"
+      },
+      {
+        "name": "--sl-color-gray-800",
+        "value": "#27272a"
+      },
+      {
+        "name": "--sl-color-gray-900",
+        "value": "#18181b"
+      },
+      {
+        "name": "--sl-color-gray-950",
+        "value": "#131316"
+      },
+      {
+        "name": "--sl-color-red-50",
+        "value": "#fef2f2"
+      },
+      {
+        "name": "--sl-color-red-100",
+        "value": "#fee2e2"
+      },
+      {
+        "name": "--sl-color-red-200",
+        "value": "#fecaca"
+      },
+      {
+        "name": "--sl-color-red-300",
+        "value": "#fca5a5"
+      },
+      {
+        "name": "--sl-color-red-400",
+        "value": "#f87171"
+      },
+      {
+        "name": "--sl-color-red-500",
+        "value": "#ef4444"
+      },
+      {
+        "name": "--sl-color-red-600",
+        "value": "#dc2626"
+      },
+      {
+        "name": "--sl-color-red-700",
+        "value": "#b91c1c"
+      },
+      {
+        "name": "--sl-color-red-800",
+        "value": "#991b1b"
+      },
+      {
+        "name": "--sl-color-red-900",
+        "value": "#7f1d1d"
+      },
+      {
+        "name": "--sl-color-red-950",
+        "value": "#501414"
+      },
+      {
+        "name": "--sl-color-orange-50",
+        "value": "#fff7ed"
+      },
+      {
+        "name": "--sl-color-orange-100",
+        "value": "#ffedd5"
+      },
+      {
+        "name": "--sl-color-orange-200",
+        "value": "#fed7aa"
+      },
+      {
+        "name": "--sl-color-orange-300",
+        "value": "#fdba74"
+      },
+      {
+        "name": "--sl-color-orange-400",
+        "value": "#fb923c"
+      },
+      {
+        "name": "--sl-color-orange-500",
+        "value": "#f97316"
+      },
+      {
+        "name": "--sl-color-orange-600",
+        "value": "#ea580c"
+      },
+      {
+        "name": "--sl-color-orange-700",
+        "value": "#c2410c"
+      },
+      {
+        "name": "--sl-color-orange-800",
+        "value": "#9a3412"
+      },
+      {
+        "name": "--sl-color-orange-900",
+        "value": "#7c2d12"
+      },
+      {
+        "name": "--sl-color-orange-950",
+        "value": "#52200f"
+      },
+      {
+        "name": "--sl-color-amber-50",
+        "value": "#fffbeb"
+      },
+      {
+        "name": "--sl-color-amber-100",
+        "value": "#fef3c7"
+      },
+      {
+        "name": "--sl-color-amber-200",
+        "value": "#fde68a"
+      },
+      {
+        "name": "--sl-color-amber-300",
+        "value": "#fcd34d"
+      },
+      {
+        "name": "--sl-color-amber-400",
+        "value": "#fbbf24"
+      },
+      {
+        "name": "--sl-color-amber-500",
+        "value": "#f59e0b"
+      },
+      {
+        "name": "--sl-color-amber-600",
+        "value": "#d97706"
+      },
+      {
+        "name": "--sl-color-amber-700",
+        "value": "#b45309"
+      },
+      {
+        "name": "--sl-color-amber-800",
+        "value": "#92400e"
+      },
+      {
+        "name": "--sl-color-amber-900",
+        "value": "#78350f"
+      },
+      {
+        "name": "--sl-color-amber-950",
+        "value": "#4a230b"
+      },
+      {
+        "name": "--sl-color-yellow-50",
+        "value": "#fefce8"
+      },
+      {
+        "name": "--sl-color-yellow-100",
+        "value": "#fef9c3"
+      },
+      {
+        "name": "--sl-color-yellow-200",
+        "value": "#fef08a"
+      },
+      {
+        "name": "--sl-color-yellow-300",
+        "value": "#fde047"
+      },
+      {
+        "name": "--sl-color-yellow-400",
+        "value": "#facc15"
+      },
+      {
+        "name": "--sl-color-yellow-500",
+        "value": "#eab308"
+      },
+      {
+        "name": "--sl-color-yellow-600",
+        "value": "#ca8a04"
+      },
+      {
+        "name": "--sl-color-yellow-700",
+        "value": "#a16207"
+      },
+      {
+        "name": "--sl-color-yellow-800",
+        "value": "#854d0e"
+      },
+      {
+        "name": "--sl-color-yellow-900",
+        "value": "#713f12"
+      },
+      {
+        "name": "--sl-color-yellow-950",
+        "value": "#3c260b"
+      },
+      {
+        "name": "--sl-color-lime-50",
+        "value": "#f7fee7"
+      },
+      {
+        "name": "--sl-color-lime-100",
+        "value": "#ecfccb"
+      },
+      {
+        "name": "--sl-color-lime-200",
+        "value": "#d9f99d"
+      },
+      {
+        "name": "--sl-color-lime-300",
+        "value": "#bef264"
+      },
+      {
+        "name": "--sl-color-lime-400",
+        "value": "#a3e635"
+      },
+      {
+        "name": "--sl-color-lime-500",
+        "value": "#84cc16"
+      },
+      {
+        "name": "--sl-color-lime-600",
+        "value": "#65a30d"
+      },
+      {
+        "name": "--sl-color-lime-700",
+        "value": "#4d7c0f"
+      },
+      {
+        "name": "--sl-color-lime-800",
+        "value": "#3f6212"
+      },
+      {
+        "name": "--sl-color-lime-900",
+        "value": "#365314"
+      },
+      {
+        "name": "--sl-color-lime-950",
+        "value": "#26390e"
+      }
+    ],
+    "customPropertyNote": "measured: 503 distinct custom properties in the bundle, 254 of them colour-valued. The list is capped at 80 and ordered brand-first; the bulk of the remainder is the generic Shoelace (--sl-color-*) and Tailwind (--tw-*) ramps, which are library defaults rather than Atlas Obscura decisions. The brand-level roots are --brand-color #a16a3a, --primary-color #ad8f68, --secondary-color #78726c, --btn-base #1c1917, --gastro-yellow #f5d547.",
+    "brandPalette": [
+      {
+        "token": "ao-brown",
+        "hex": "#382c14",
+        "usage": "text-ao-brown used 50x"
+      },
+      {
+        "token": "ao-rust / aon-brown",
+        "hex": "#a16a3a",
+        "usage": "accent and hover colour"
+      },
+      {
+        "token": "aon-brown-medium",
+        "hex": "#ad8f68",
+        "usage": "--primary-color"
+      },
+      {
+        "token": "ao-khaki",
+        "hex": "#ccb48d"
+      },
+      {
+        "token": "ao-tan",
+        "hex": "#efe8dc"
+      },
+      {
+        "token": "aon-tan",
+        "hex": "#f5f4f1"
+      },
+      {
+        "token": "aon-platinum",
+        "hex": "#edece6"
+      },
+      {
+        "token": "ao-green",
+        "hex": "#1b624f"
+      },
+      {
+        "token": "ao-green-secondary",
+        "hex": "#53b19f"
+      },
+      {
+        "token": "ao-blue / aon-story-blue",
+        "hex": "#00527d"
+      },
+      {
+        "token": "ao-orange",
+        "hex": "#d36a55"
+      },
+      {
+        "token": "ao-gastro-yellow / aon-gastro",
+        "hex": "#f3cb00"
+      },
+      {
+        "token": "aon-slate",
+        "hex": "#253030"
+      },
+      {
+        "token": "aon-brown-black",
+        "hex": "#1e1e1e",
+        "usage": "footer background"
+      },
+      {
+        "token": "aon-black",
+        "hex": "#111111"
+      },
+      {
+        "token": "ao-lightgray",
+        "hex": "#d7d4d0",
+        "usage": "nav rules and borders"
+      },
+      {
+        "token": "ao-charcoal",
+        "hex": "#333333",
+        "usage": "search field text"
+      }
+    ],
+    "brandPaletteBasis": "measured: resolved from the .text-/.bg-/.border- utility definitions for the ao-* and aon-* Tailwind theme colours, converted from their rgb() channel values.",
+    "bodyTextColorCandidate": {
+      "value": "#1c1917",
+      "basis": "measured: .text-gray-900 → rgb(28 25 23), the most-applied text colour class on the page (138 uses). No rule sets a colour on html or body, so untyped text falls back to the browser default."
+    },
+    "backgroundCandidate": {
+      "value": "#ffffff",
+      "basis": "measured: no background-color is declared on html or body; .bg-white is applied to the nav and content panels, and the page ground is the browser default white. The recurring panel tint is .bg-gray-100 → rgb(245 244 244) #f5f4f4 (71 uses); the footer is #1e1e1e."
+    },
+    "contrastRatioCandidate": {
+      "bodyOnBackground": 17.49,
+      "pairs": [
+        {
+          "fg": "#1c1917",
+          "bg": "#ffffff",
+          "ratio": 17.49,
+          "note": "primary text on page ground"
+        },
+        {
+          "fg": "#1c1917",
+          "bg": "#f5f4f4",
+          "ratio": 15.93,
+          "note": "primary text on the tinted panel"
+        },
+        {
+          "fg": "#382c14",
+          "bg": "#ffffff",
+          "ratio": 13.65,
+          "note": "ao-brown editorial text"
+        },
+        {
+          "fg": "#78726c",
+          "bg": "#ffffff",
+          "ratio": 4.75,
+          "note": ".text-gray-500 secondary/meta text, 92 uses — passes AA for normal text by a small margin"
+        }
+      ],
+      "method": "WCAG 2.x relative-luminance formula computed from the plain rgb values above."
+    },
+    "darkModeMechanism": "none",
+    "darkModeEvidence": "measured: 0 prefers-color-scheme queries and 0 .dark selectors in either stylesheet. Shoelace's root block declares color-scheme:light. The six [data-theme] selectors are all tippy.js tooltip themes ([data-theme~=aon]), not a page theme switch."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 540,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 605,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 640,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 640,
+        "kind": "min",
+        "count": 18
+      },
+      {
+        "px": 767,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 52
+      },
+      {
+        "px": 824,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 960,
+        "kind": "min",
+        "count": 12
+      },
+      {
+        "px": 1024,
+        "kind": "min",
+        "count": 44
+      },
+      {
+        "px": 1048,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1059,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1139,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1140,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1280,
+        "kind": "min",
+        "count": 25
+      },
+      {
+        "px": 1536,
+        "kind": "min",
+        "count": 29
+      }
+    ],
+    "breakpointNames": {
+      "sm": 640,
+      "md": 768,
+      "mdplus": 960,
+      "lg": 1024,
+      "xl": 1280,
+      "2xl": 1536,
+      "basis": "measured: Tailwind screen prefixes matched to the min-width media block that defines them; 960px (mdplus) is a custom screen added to the default set. The odd values (540, 605, 824, 1048, 1059, 1139, 1140) are one-off component queries, not system steps."
+    },
+    "contentWidthCandidates": [
+      {
+        "value": "full width with 1.25rem / 3rem / 4rem gutters, capped at 1536px from 1536px up",
+        "selectorEvidence": ".aon-container-fluid {margin-inline:auto; padding-inline:1.25rem} with @media 768px → 3rem, 1280px → 4rem, and a nested container cap that reaches max-width:1536px"
+      },
+      {
+        "value": "1536px",
+        "selectorEvidence": ".container / .2xl\\:container final step; page shell class list \"md:mx-12 xl:mx-16 2xl:container 2xl:mx-auto 2xl:px-16\""
+      },
+      {
+        "value": "1024px (64rem)",
+        "selectorEvidence": ".max-w-5xl on a centred intro block (mx-auto max-w-5xl text-center)"
+      },
+      {
+        "value": "896px (56rem)",
+        "selectorEvidence": ".max-w-4xl on a centred content block (mx-auto mt-0 max-w-4xl)"
+      },
+      {
+        "value": "960px",
+        "selectorEvidence": "13 max-width:960px rules; .lg\\:max-w-[960px] used once — the custom mdplus step doubles as a content cap"
+      },
+      {
+        "value": "65ch",
+        "selectorEvidence": ".prose {max-width:65ch} — Tailwind Typography default, present in the bundle for article body copy (the home page itself does not use .prose)"
+      }
+    ],
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "evidence": "measured: 52 display:flex and 9 display:grid declarations in CSS; in the home-page markup .flex appears 182 times against .grid 13 times (plus md:grid 3, lg:grid 2). Flexbox is the default layout tool; grid is reserved for card collections and the footer link columns (e.g. \"grid grid-cols-1 gap-x-1 gap-y-12 md:grid-cols-2\")."
+    }
+  },
+  "navigation": {
+    "persistentElements": [
+      "single <nav id=\"navbar-component\"> bar, 55px tall on mobile and 75px from 768px up, background #ffffff, z-index 9999",
+      "primary sections in the bar: Places, Foods, Stories, Newsletters",
+      "brand mark link with aria-label \"Return to the Atlas Obscura home page\"",
+      "search trigger opening a full-viewport search layer",
+      "account cluster: Sign In / Join, plus a user menu button",
+      "footer at #1e1e1e with a multi-column link grid (grid-cols-1 … md:grid-cols-2)"
+    ],
+    "stickyOrFixedSelectors": [
+      ".fixed.top-0.z-\\[9999\\].h-screen — the search overlay wrapper on [data-controller=\"aon--navbar--search-component\"]"
+    ],
+    "stickyNav": false,
+    "stickyNavEvidence": "measured: the nav carries class \"bg-white relative z-[9999]\" — position:relative, not sticky or fixed. The single `fixed` class on the page belongs to the search overlay. No .sticky utility appears in the markup at all.",
+    "tocPresent": false,
+    "tocEvidence": "measured: no table-of-contents markup on the home page — 0 <aside>, 0 <details>/<summary>, and no nav element other than the top bar. The /places index that would have shown a database-listing pattern returned a Cloudflare 403, so this is a home-page-only observation.",
+    "revealedOnDemand": [
+      "hover-revealed popdown menus: the nav wrapper binds mouseleave->aon--navbar--nav-component#hideAllPopdowns and the brand link binds mouseover->…#hideAllPopdowns; a dedicated aon--navbar--popdown-places-component controls the Places menu",
+      "full-screen search layer: pointer-events-none fixed top-0 h-screen w-full, activated by the search button",
+      "live search results as you type: <input type=\"search\" name=\"q\"> binds debounced:keyup->aon--navbar--search-component#performSearch and keyup->…#closeOnEscape, with a separate aon--navbar--search-results-component",
+      "mobile/desktop split menus: 51 .hidden plus 23 .md\\:hidden / 16 .sm\\:hidden toggles rather than a separate mobile template",
+      "48 aon--toggle-button-component instances and 16 aon--lists-popup-component instances for save-to-list controls on cards",
+      "a dismissible promotional notification bar rendered with style=\"display: none\" and shown by aon--notification-component"
+    ],
+    "evidence": "All of the above is read from the saved home.html markup: element classes, data-controller / data-action attributes and aria-labels. No rendering or interaction was performed."
+  },
+  "behaviours": [
+    {
+      "name": "search overlay with type-ahead results",
+      "basis": "inferred",
+      "evidence": "DOM: data-controller=\"aon--navbar--search-component\" on a fixed full-height layer, input[type=search][name=q] with data-action=\"debounced:keyup->…#performSearch keyup->…#closeOnEscape\", and a sibling aon--navbar--search-results-component. Close-on-Escape and debounced querying are the command-palette pattern, though it is opened by a search button rather than a key chord — no keydown shortcut binding is present in the markup."
+    },
+    {
+      "name": "hover-revealed mega menu",
+      "basis": "inferred",
+      "evidence": "DOM: mouseleave->aon--navbar--nav-component#hideAllPopdowns on the nav wrapper, mouseover->…#hideAllPopdowns on the logo link, and aon--navbar--popdown-places-component for the Places panel."
+    },
+    {
+      "name": "carousel / swipeable rows",
+      "basis": "inferred",
+      "evidence": "DOM + CSS: 4 elements with data-controller=\"aon--carousel-component\"; the second stylesheet is the Swiper library (.swiper, .swiper-slide, scroll-snap-align, --swiper-theme-color)."
+    },
+    {
+      "name": "save-to-list popup on cards",
+      "basis": "inferred",
+      "evidence": "DOM: 16 aon--lists-popup-component and 16 list-buttons controllers, 32 aon--activity-streams--button-component instances alongside 16 activity-streams controllers."
+    },
+    {
+      "name": "progressive/partial page updates",
+      "basis": "inferred",
+      "evidence": "DOM: 4 <turbo-frame> elements and data-turbo attributes on <body>; Hotwire Turbo plus Stimulus controllers is the whole client architecture. The page is server-rendered first — 9,937 characters of visible text arrive in the initial HTML."
+    },
+    {
+      "name": "relative timestamps",
+      "basis": "inferred",
+      "evidence": "DOM: 4 elements with data-controller=\"timeago\"."
+    },
+    {
+      "name": "lazy image loading",
+      "basis": "inferred",
+      "evidence": "DOM: 64 img tags with loading=\"lazy\"; images are served through an on-the-fly resizing proxy (img.atlasobscura.com/…/rt:fill/h:200/q:91/…)."
+    },
+    {
+      "name": "tooltips",
+      "basis": "inferred",
+      "evidence": "CSS: tippy.js theme rules .tippy-box[data-theme~=aon] with arrow variants for all four placements."
+    },
+    {
+      "name": "tab groups",
+      "basis": "inferred",
+      "evidence": "DOM: 2 elements with data-controller=\"tab-group\"."
+    },
+    {
+      "name": "consent banner and analytics",
+      "basis": "inferred",
+      "evidence": "Script tags: OneTrust (cdn.cookielaw.org OtAutoBlock.js + otSDKStub.js), Plausible, Google Tag Manager/gtag, PostHog (3 posthog-track controllers), Klaviyo, reCAPTCHA, Nolt feedback widget, Cloudflare insights beacon."
+    },
+    {
+      "name": "scroll-driven effects",
+      "basis": "inferred",
+      "evidence": "DOM: a \"scroll\" controller is registered on <body> (data-controller=\"analytics icons csrf scroll alert\"). What it does is not determinable from static markup — no scroll-linked CSS (0 animation-timeline, 0 position:sticky in use) supports it."
+    },
+    {
+      "name": "copy button",
+      "basis": "inferred",
+      "evidence": "Not found. No clipboard-related controller, button label or data attribute appears in the saved markup."
+    }
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": "Fetched 2026-09-03 with curl (desktop Chrome UA, -L, 20s timeout). The home page returned HTTP 200 and 529,962 bytes of server-rendered HTML; https://www.atlasobscura.com/places returned HTTP 403 behind a Cloudflare interstitial on both attempts (second attempt added a home-page referer and a cookie jar), so no listing/index page could be studied and every layout, navigation and typography finding here is home-page-only. No browser was run: all values come from the saved HTML and the two saved stylesheets, parsed with node and grep. Nothing is a computed style — a value marked \"measured\" is a literal declaration or an element/class count in those files, and resolved pixel figures assume the 16px root that the stylesheet leaves at the browser default. Utility-class counts are counts of class-name occurrences in the markup, which weight repeated card components heavily and are therefore an indicator of habit, not of visual area. Selector resolution used a flat brace-matching parse, so a declaration nested inside a media query is attributed to its class without its condition unless stated. Raw HTML and CSS were written to data/design-study/raw/atlasobscura_com/ (gitignored) and never held in full in context.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": null,
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900; mobile measured at 379x821 (the tab reported that rather than 375x812). Consent: nothing accepted; Reject All could not be reached."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://www.atlasobscura.com/ (assigned URL — a destination index)",
+      "https://www.atlasobscura.com/articles/all-places-in-the-atlas-on-one-map (an article, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile requested at the 375x812 preset but the tab reported innerWidth 379 / innerHeight 821, and those are the numbers the mobile values below were measured at. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles. Paragraphs inside the consent banner were excluded from the reading-column search by selector after the home-page pass matched the banner itself.",
+    "homePage": {
+      "url": "/",
+      "largestParagraphBlockWasTheConsentBanner": true,
+      "finding": "As on The Verge, the home page's largest run of paragraph text is the cookie banner (154 characters at 13.008px Helvetica in div.otFloatingRounded, 700px wide, 111 characters per line). The index itself carries no prose.",
+      "headings": {
+        "h1": {
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "lineHeight": "22px",
+          "letterSpacing": "0.63px",
+          "family": "Platform Web",
+          "color": "rgb(255, 255, 255)"
+        },
+        "h2": {
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "lineHeight": "26.4px",
+          "letterSpacing": "0.63px",
+          "color": "rgb(255, 255, 255)"
+        },
+        "h3": {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "color": "rgb(0, 0, 0)"
+        }
+      },
+      "h1SmallerThanH2": "On the index the h1 (20px) is smaller than the h2 (24px) — the visual hierarchy and the document outline disagree.",
+      "headerHeightPx": 212.2,
+      "search": {
+        "inputPresent": true,
+        "renderedWidthPx": 0,
+        "placeholder": "Search destinations and more...",
+        "trigger": {
+          "ariaLabel": "Search",
+          "widthPx": 75,
+          "heightPx": 75
+        },
+        "note": "The field exists but lays out at zero width until a 75x75 labelled trigger opens it."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 8549,
+        "screensOfScroll": 9.5,
+        "innerTextLength": 4118,
+        "htmlLength": 835624,
+        "textToHtmlRatio": 0
+      }
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "article",
+        "containerTag": "section",
+        "containerClass": "ArticleBody ArticleBody__feature article",
+        "containerWidthPx": 745.33,
+        "paragraphContentWidthPx": 648.67,
+        "containerMaxWidth": "none",
+        "paragraphCount": 4,
+        "totalCharsInColumn": 853,
+        "fontSizePx": "19px",
+        "lineHeight": "28.5px",
+        "lineHeightRatio": 1.5,
+        "fontFamily": "Freight Pro",
+        "fullStack": "\"Freight Pro\", serif",
+        "fontWeight": "300",
+        "fontWeightNote": "Body text is set at weight 300 — the only reference in this set that runs its prose lighter than regular.",
+        "letterSpacing": "normal",
+        "color": "rgb(56, 44, 20)",
+        "colorNote": "The text colour is a warm dark brown, not a neutral grey or black. R 56 / G 44 / B 20 is measurably warm.",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundFrom": "no ancestor sets an opaque background-color; both <body> and <html> compute to rgba(0,0,0,0), so the white is the browser canvas, not an authored value",
+        "avgGlyphWidthPx": 7.92,
+        "charactersPerLine": 82,
+        "paragraphMarginBottom": "24px"
+      },
+      "contrast": {
+        "bodyTextVsBackground": 13.65,
+        "pair": "rgb(56, 44, 20) on the white canvas",
+        "passesAA": true,
+        "passesAAA": true,
+        "caveat": "Computed against white because no ancestor paints a background. If a reader's browser canvas is not white, this ratio does not hold."
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "60px",
+          "fontWeight": "600",
+          "lineHeight": "60px",
+          "letterSpacing": "1.8px",
+          "family": "Platform Web",
+          "color": "rgb(56, 44, 20)",
+          "marginTop": "0px",
+          "marginBottom": "24px"
+        },
+        "h2": {
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "0.84px",
+          "family": "Platform Web",
+          "color": "rgb(56, 44, 20)",
+          "marginBottom": "24px"
+        },
+        "h3": {
+          "fontSize": "24px",
+          "fontWeight": "700",
+          "lineHeight": "28.8px",
+          "letterSpacing": "0.4px",
+          "family": "Platform Web",
+          "color": "rgb(0, 0, 0)"
+        },
+        "ratio_h1_body": 3.16,
+        "ratio_h2_body": 1.47,
+        "twoTypefaceRule": "Platform Web (sans) for every heading level; Freight Pro (serif, weight 300) for body. The two never mix inside a level.",
+        "trackingNote": "Headings are tracked OUT, not in: +1.8px on the 60px h1 (+3%), +0.84px on h2, +0.4px on h3. This is the opposite of the Vercel/Verge convention of negative tracking on display sizes.",
+        "lineHeightNote": "h1 and h2 both set line-height equal to font-size (60/60, 28/28)."
+      },
+      "figcaption": {
+        "fontSize": "14px",
+        "lineHeight": "16px",
+        "family": "Platform Web",
+        "color": "rgb(255, 255, 255)",
+        "note": "Captions are the sans face at 14px in white — they sit over imagery, not on the page background."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "static",
+        "headerHeightPx": 76,
+        "headerHeightNote": "76px on the article versus 212.2px on the index — the masthead is much taller on the home page.",
+        "stickyOrFixedCount": 4,
+        "stickyOrFixed": [
+          "div.nolt-modal 1440x900 fixed at z 2147483647 (maximum 32-bit) — a closed feedback widget",
+          "section.trc_related_container 1440x900 fixed at z 2147483647 — a third-party recommendation unit",
+          "div.otFloatingRounded 700x154.63 fixed at z 2147483645 — the consent banner",
+          "div.grecaptcha-badge 256x60 fixed"
+        ],
+        "stickyNote": "All four persistent boxes are third-party or utility layers; none is site navigation. Nothing of the site's own chrome follows the reader.",
+        "documentScrolls": true
+      },
+      "toc": null,
+      "tocReason": "No element 80-460px wide with three or more in-page anchors.",
+      "pageWeight": {
+        "docScrollHeightPx": 4793,
+        "screensOfScroll": 5.33,
+        "innerTextLength": 4073,
+        "htmlLength": 2439245,
+        "textToHtmlRatio": 0,
+        "note": "2.44 MB of HTML for 4,073 characters of text — the heaviest markup-to-text ratio measured in this set."
+      }
+    },
+    "mobile": {
+      "viewportRequested": {
+        "w": 375,
+        "h": 812
+      },
+      "viewportMeasured": {
+        "w": 379,
+        "h": 821
+      },
+      "viewportNote": "The tab reported 379x821 rather than the requested 375x812. All mobile figures here are at the measured size.",
+      "measuredOn": "article",
+      "readingColumn": {
+        "containerWidthPx": 359,
+        "paragraphContentWidthPx": 359,
+        "fontSizePx": "19px",
+        "lineHeight": "28.5px",
+        "lineHeightRatio": 1.5,
+        "fontWeight": "300",
+        "avgGlyphWidthPx": 7.92,
+        "charactersPerLine": 45,
+        "color": "rgb(56, 44, 20)",
+        "paragraphMarginBottom": "24px"
+      },
+      "bodyUnchangedAtMobile": "19px/28.5px at weight 300 and a 24px paragraph gap at both widths — body type does not move. 45 characters per line sits exactly on the lower bound of the readable range.",
+      "typeScaleChangesAtMobile": true,
+      "h1": {
+        "fontSize": "35px",
+        "fontWeight": "600",
+        "lineHeight": "35px",
+        "letterSpacing": "1.05px",
+        "desktopWas": "60px/60px at 1.8px",
+        "note": "Size, line-height and tracking all scale by the same 0.583 factor (60→35, 1.8→1.05) — the heading is scaled proportionally, tracking included."
+      },
+      "h2": {
+        "fontSize": "21px",
+        "fontWeight": "400",
+        "lineHeight": "21px",
+        "letterSpacing": "0.63px",
+        "desktopWas": "28px/28px at 0.84px",
+        "sameFactor": 0.75
+      },
+      "header": {
+        "position": "static",
+        "heightPx": 149,
+        "desktopArticleWas": 76,
+        "note": "The header doubles in height at mobile rather than collapsing."
+      },
+      "search": {
+        "inputVisible": true,
+        "widthPx": 256,
+        "placeholder": "Search destinations and more…",
+        "trigger": {
+          "ariaLabel": "Open Site Search Form",
+          "widthPx": 46,
+          "heightPx": 55.08
+        },
+        "note": "Unlike desktop, the field renders at 256px at this width, alongside a labelled 46x55 opener."
+      },
+      "toc": null,
+      "horizontalOverflow": false,
+      "documentScrollWidth": 379,
+      "docScrollHeightPx": 15719,
+      "docScrollHeightNote": "15,719px at mobile against 4,793px at desktop — the same article is more than three times taller, so the mobile layout stacks a great deal that desktop places side by side.",
+      "stickyOrFixed": [
+        "nolt-modal 379x821 fixed",
+        "trc_related_container 379x821 fixed",
+        "otFloatingRounded 379x211.74 fixed — the consent banner now covers 26% of the viewport height",
+        "grecaptcha-badge 256x60 fixed"
+      ]
+    },
+    "consent": {
+      "vendor": "OneTrust",
+      "bannerControlsOffered": [
+        "Allow Cookies",
+        "Manage Preferences",
+        "View Cookie Policy",
+        "an unlabelled 44x44 close button"
+      ],
+      "actionTaken": "Nothing was accepted. 'Manage Preferences' was clicked to reach the 'Reject All' control, but the preference centre did not open (#onetrust-pc-sdk stayed display:none and its 'Reject All' button stayed 0x0 and unclickable), so the decline could not be completed from the automated browser. The banner was left in place; no consent was granted by any click.",
+      "impactOnMeasurement": "The banner is the largest paragraph block on the index, so the reading-column search was restricted to exclude .otFloatingRounded and #onetrust-banner-sdk before the article was measured. All reported boxes come from getBoundingClientRect on the elements themselves and are unaffected by the overlay."
+    },
+    "inferred": {
+      "nextData": false,
+      "react": false,
+      "jquery": false,
+      "svelte": false,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollama": false,
+      "gsap": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "hoverPreviewMarkerElements": 48,
+      "detailsElements": 0,
+      "dialogElements": 0,
+      "imgElements": 89,
+      "svgElements": 14,
+      "videoElements": 0,
+      "cssCustomPropertiesOnRoot": 462,
+      "colorSchemeDeclared": "light",
+      "colorSchemeNote": "The only reference measured that declares color-scheme: light explicitly — it opts out of dark rendering rather than leaving it undeclared.",
+      "stylesheetCount": 13,
+      "scriptCount": 114,
+      "scriptCountNote": "114 scripts on the index, and four of the page's persistent fixed layers are third-party (OneTrust, Taboola, reCAPTCHA, Nolt). The third-party surface is larger than the site's own chrome.",
+      "htmlAttributes": [
+        "class=h-full fontawesome-i...",
+        "lang=en"
+      ],
+      "tailwindHint": "The html class begins 'h-full', a Tailwind utility, alongside a FontAwesome marker."
+    }
+  }
+}

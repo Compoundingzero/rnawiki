@@ -46,3 +46,80 @@ data/registries/*
 !data/registries/source-material.json
 !data/registries/name-family.json
 !data/registries/curated-gap-extraction.json
+
+# Trial-results ingestion working files. The cursor, the retry queue and the audited API contract
+# are committed; the fetched payloads are not — they are large, reproducible from the queue, and
+# the raw registry snapshot is not ours to redistribute.
+data/trial-results/raw/
+data/trial-results/phase0-union-sample.json
+data/trial-results/extracted/
+
+# Design study: fetched third-party markup and stylesheets stay on disk, not in the repository.
+data/design-study/raw/
+
+# Longevity model: fetched payloads stay on disk, not in the repository.
+data/longevity/raw/*
+!data/longevity/raw/.gitkeep
+
+# Design study Phase 3: third-party screenshots, the dedicated Chrome profile and fetched legal
+# texts stay on disk; the manifests and findings that cite them are committed.
+data/design-study/captures/**/*.png
+data/design-study/chrome-profile/
+data/design-study/legal/*.txt
+data/design-study/legal/*.html
+data/design-study/chrome-profile*/
+!data/design-study/legal/requests.log
+!data/design-study/legal/*.robots.txt
+data/design-study/capture-run.log
+data/corpus-20k/legal/robots/
+data/corpus-20k/legal/terms/
+data/corpus-20k/raw/
+!data/corpus-20k/legal/requests.log
+.venv-corpus/
+data/corpus-20k/render/
+
+# Corpus 20k: corpus data and measurement caches stay on the workstation; full history on the local
+# branch archive/corpus-20k-full-history and in rnawiki-backups/corpus-20k-data-2026-09-05/.
+# Production is loaded by scripts/corpus-20k/load/materialise.ts reading these local files, and
+# scripts/export/dataset.ts never reads data/corpus-20k, so none of it needs to be on GitHub.
+# What stays tracked: the summaries, reports, thresholds and decision records that the worklog and
+# the specs cite. See data/corpus-20k/README.md for how each directory is regenerated.
+data/corpus-20k/**/*.duckdb
+data/corpus-20k/gate1b/runs/
+data/corpus-20k/gate1b/runs-*/
+data/corpus-20k/gate2/html-text/
+data/corpus-20k/gate2/lists/
+data/corpus-20k/gate2/lists-*/
+data/corpus-20k/gate2/pages/
+data/corpus-20k/gate2/pages-*/
+!data/corpus-20k/gate2/pages/gate2-324.ndjson
+!data/corpus-20k/gate2/pages/gate2-803.ndjson
+!data/corpus-20k/gate2/pages/gate2-indexed-prose.ndjson
+!data/corpus-20k/gate2/pages/gate2-new-324-matched.ndjson
+!data/corpus-20k/gate2/pages/gate2-new-803-matched.ndjson
+!data/corpus-20k/gate2/pages-v2/gate2v2-indexed-t11-prose.ndjson
+data/corpus-20k/registry/
+data/corpus-20k/fields/*
+!data/corpus-20k/fields/coverage-summary.json
+!data/corpus-20k/fields/coverage-report.md
+!data/corpus-20k/fields/longevity-summary.json
+!data/corpus-20k/fields/clinical-summary.json
+!data/corpus-20k/fields/development-summary.json
+data/corpus-20k/derived/*
+!data/corpus-20k/derived/fire-counts.json
+data/corpus-20k/questions/*
+!data/corpus-20k/questions/metrics.json
+data/corpus-20k/identity/canonical.ndjson
+data/corpus-20k/identity/stages/
+data/corpus-20k/reconciliation/*.ndjson
+!data/corpus-20k/reconciliation/dispositions.ndjson
+data/corpus-20k/suppression/assignments.ndjson
+data/corpus-20k/tiers/model-assignment.ndjson
+data/corpus-20k/recovery/attempts.ndjson
+data/corpus-20k/pass*-pre/
+data/corpus-20k/phase5a-pre/
+data/corpus-20k/load/
+data/corpus-20k/legal/counts/
+__pycache__/
+*.pyc
+.pytest_cache/

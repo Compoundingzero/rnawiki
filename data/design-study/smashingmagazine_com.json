@@ -1,0 +1,1861 @@
+{
+  "site": "smashingmagazine.com",
+  "fetchedAt": "2026-09-03T09:35:29.868Z",
+  "pages": [
+    {
+      "url": "https://www.smashingmagazine.com/",
+      "status": "fetched",
+      "bytes": 294902,
+      "visibleTextChars": 8797,
+      "textToHtmlRatio": 0.0298
+    },
+    {
+      "url": "https://www.smashingmagazine.com/articles/",
+      "status": "fetched",
+      "bytes": 258311,
+      "visibleTextChars": 5112,
+      "textToHtmlRatio": 0.0198
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://www.smashingmagazine.com/css/main.css",
+      "bytes": 402103
+    },
+    {
+      "url": "https://www.smashingmagazine.com/css/print.css",
+      "bytes": 17145
+    },
+    {
+      "url": "inline <style> #1 (home) — @font-face only",
+      "bytes": 1118
+    },
+    {
+      "url": "inline <style> #2 (home) — critical CSS",
+      "bytes": 50329
+    },
+    {
+      "url": "inline <style> #3 (articles) — @font-face only",
+      "bytes": 1118
+    },
+    {
+      "url": "inline <style> #4 (articles) — critical CSS",
+      "bytes": 34471
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "Mija",
+        "count": 105
+      },
+      {
+        "value": "-apple-system,Arial,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,Ubuntu,Cantarell,Georgia,serif",
+        "count": 92
+      },
+      {
+        "value": "Elena",
+        "count": 39
+      },
+      {
+        "value": "-apple-system,Arial,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,Ubuntu,Cantarell,sans-serif",
+        "count": 38
+      },
+      {
+        "value": "Arial,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,Ubuntu,Cantarell,Georgia,serif",
+        "count": 11
+      },
+      {
+        "value": "monospace",
+        "count": 3
+      },
+      {
+        "value": "-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,Ubuntu,Cantarell,Arial,sans-serif",
+        "count": 2
+      },
+      {
+        "value": "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,system-ui,\"Open Sans\",\"Helvetica Neue\",Arial,sans-serif",
+        "count": 1
+      },
+      {
+        "value": "monospace,monospace",
+        "count": 1
+      },
+      {
+        "value": "Fira Code,Menlo,Consolas,Monaco,\"Andale Mono\",\"Ubuntu Mono\",monospace",
+        "count": 1
+      },
+      {
+        "value": "Fira Code,Menlo,Courier new,Consolas,monospace",
+        "count": 1
+      },
+      {
+        "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "count": 1
+      }
+    ],
+    "webfontsSelfHosted": {
+      "families": [
+        {
+          "name": "Elena",
+          "role": "measured: applied to .article__content body copy and serif headings; 4 faces (regular, italic, bold, bold-italic)",
+          "files": "/fonts/ElenaWeb*/…woff2 + .woff"
+        },
+        {
+          "name": "Mija",
+          "role": "measured: 98 font-family:Mija declarations — display/UI face; 2 faces (regular, bold)",
+          "files": "/fonts/Mija{Regular,Bold}/…woff2 + .woff"
+        },
+        {
+          "name": "DinMedium",
+          "role": "measured: 1 declaration, single @font-face in main.css",
+          "files": null
+        }
+      ],
+      "loading": "measured: @font-face declared in an inline <style> in <head>; woff2 subsets preloaded with fetchpriority=high and media=\"(prefers-reduced-data: no-preference)\"; no font-display declared",
+      "evidence": "raw/smashingmagazine_com/css/inline-1.css and <link rel=preload as=font> tags in home.html"
+    },
+    "fontSizes": [
+      {
+        "value": ".9em",
+        "count": 78,
+        "unit": "em"
+      },
+      {
+        "value": "1em",
+        "count": 51,
+        "unit": "em"
+      },
+      {
+        "value": ".8em",
+        "count": 32,
+        "unit": "em"
+      },
+      {
+        "value": ".75em",
+        "count": 22,
+        "unit": "em"
+      },
+      {
+        "value": ".85em",
+        "count": 20,
+        "unit": "em"
+      },
+      {
+        "value": ".7em",
+        "count": 17,
+        "unit": "em"
+      },
+      {
+        "value": "1.1em",
+        "count": 15,
+        "unit": "em"
+      },
+      {
+        "value": "1.5em",
+        "count": 11,
+        "unit": "em"
+      },
+      {
+        "value": "1.2em",
+        "count": 10,
+        "unit": "em"
+      },
+      {
+        "value": "1.15em",
+        "count": 9,
+        "unit": "em"
+      },
+      {
+        "value": "1.3em",
+        "count": 8,
+        "unit": "em"
+      },
+      {
+        "value": ".95em",
+        "count": 7,
+        "unit": "em"
+      },
+      {
+        "value": "calc(.9em + .1vw)",
+        "count": 7,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "inherit",
+        "count": 6,
+        "unit": "keyword"
+      },
+      {
+        "value": ".5em",
+        "count": 6,
+        "unit": "em"
+      },
+      {
+        "value": "calc(1.625rem + 1.6vw)",
+        "count": 5,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(1em + .1vw)",
+        "count": 5,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "1.05em",
+        "count": 5,
+        "unit": "em"
+      },
+      {
+        "value": ".6em",
+        "count": 5,
+        "unit": "em"
+      },
+      {
+        "value": ".8em!important",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "1rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "calc(1.375rem + 1.6vw)",
+        "count": 4,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": ".35em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "calc(1em + .25vw)",
+        "count": 4,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "1.6em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": ".65em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "1.125em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "calc(.75em + .1vw)",
+        "count": 3,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(.8em + .2vw)",
+        "count": 3,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(1.125rem + .25vw)",
+        "count": 3,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "2.13894em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "2.14857em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "1.15rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "1.4rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "30px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "14px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "1.4em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "calc(18px + 1vw)",
+        "count": 3,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "80%",
+        "count": 2,
+        "unit": "percent"
+      },
+      {
+        "value": "75%",
+        "count": 2,
+        "unit": "percent"
+      },
+      {
+        "value": ".7em!important",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "1.2em!important",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "1.625em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "calc(1rem + .25vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": ".3em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "1.25em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "calc(.975em + .2vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "1.125rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "calc(.8em + .1vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "32px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "24px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": ".55em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "calc(.7em + .1vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(.9em + .5vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(.8em + .25vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "13px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "3em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "calc(18px + 1.1vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(1.625rem + 1.3vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(.95em + .1vw)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      }
+    ],
+    "lineHeights": [
+      {
+        "value": "1",
+        "count": 18,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.2",
+        "count": 14,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.5em",
+        "count": 14,
+        "unit": "em"
+      },
+      {
+        "value": "1.5",
+        "count": 12,
+        "unit": "keyword"
+      },
+      {
+        "value": "0",
+        "count": 11,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.4",
+        "count": 8,
+        "unit": "keyword"
+      },
+      {
+        "value": "calc(1.5em + .2vw)",
+        "count": 5,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "1.3em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "1.15",
+        "count": 3,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.6em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "1.4em",
+        "count": 3,
+        "unit": "em"
+      },
+      {
+        "value": "1.3",
+        "count": 3,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.55em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "calc(1.5em + .2vw)!important",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "1.6",
+        "count": 2,
+        "unit": "keyword"
+      },
+      {
+        "value": "15px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "calc(1.3em + .2 * (100vw - 21em)/14)",
+        "count": 2,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(1.3em + .2 * (100vw - 21em)/ 14)",
+        "count": 1,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "calc(1.65em + .2vw)!important",
+        "count": 1,
+        "unit": "calc+vw (fluid)"
+      },
+      {
+        "value": "inherit",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "normal",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.15em",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": ".6",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.7",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "28px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "22.4px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "150%!important",
+        "count": 1,
+        "unit": "percent"
+      },
+      {
+        "value": "1.8",
+        "count": 1,
+        "unit": "keyword"
+      },
+      {
+        "value": "1.1em!important",
+        "count": 1,
+        "unit": "em"
+      },
+      {
+        "value": "1.45",
+        "count": 1,
+        "unit": "keyword"
+      }
+    ],
+    "headingScale": {
+      "h1": {
+        "base": "calc(1.625rem + 1.6vw)",
+        "above1550px": "2.13894em",
+        "selectorEvidence": ".h1,h1 / @media all and (min-width:1550px) .h1,h1"
+      },
+      "h2": {
+        "base": "calc(1.375rem + 1.6vw)",
+        "above1550px": "2.14857em",
+        "selectorEvidence": ".h2,h2 / @media all and (min-width:1550px) .h2,h2"
+      },
+      "h3": {
+        "base": "calc(1.5rem + .25vw)",
+        "above1550px": null,
+        "selectorEvidence": ".h3,h3"
+      },
+      "h4": {
+        "base": "calc(1.125rem + .25vw)",
+        "above1550px": null,
+        "selectorEvidence": ".h4,h4"
+      },
+      "resolvedAt1440pxViewport": {
+        "h1": "48.6px",
+        "h2": "44.6px",
+        "h3": "27.6px",
+        "h4": "21.6px",
+        "note": "measured arithmetic on the declared calc() with root font-size = browser default 16px (no author rule sets html{font-size} at document scope)"
+      },
+      "ratio": null,
+      "ratioNote": "not a single modular ratio. Measured at 1440px the steps are h1/h2 = 1.09, h2/h3 = 1.62, h3/h4 = 1.28, and the ratios change with viewport because h1/h2 carry 1.6vw while h3/h4 carry 0.25vw. The scale is fluid-per-level, not a fixed multiplier.",
+      "headingFontFamily": "-apple-system,Arial,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,Ubuntu,Cantarell,Georgia,serif (measured on .h1,h1 and .h2,h2)",
+      "h4Treatment": "measured: text-transform:uppercase; letter-spacing:1px; margin-top:2em; margin-bottom:1em",
+      "h3Treatment": "measured: text-transform:capitalize; margin:2em 0 .75em"
+    },
+    "bodyCandidates": {
+      "fontSize": "1.125em (= 18px against the browser-default 16px root)",
+      "fluidRamp": [
+        {
+          "from": "0px",
+          "value": "1.125em",
+          "selectorEvidence": "body{font-size:1.125em}"
+        },
+        {
+          "from": "768px (48em)",
+          "value": "calc(.3584229391vw + .9529569892em)",
+          "selectorEvidence": "@media screen and (min-width:48em){body{…}}",
+          "resolved": "18.0px at 768px, 20.4px at 1440px"
+        },
+        {
+          "from": "3000px (187.5em)",
+          "value": "1.625em (= 26px)",
+          "selectorEvidence": "@media screen and (min-width:187.5em){body{font-size:1.625em}}"
+        }
+      ],
+      "lineHeight": "calc(1.5em + .2vw)",
+      "lineHeightSelectorEvidence": "body .form__field__label,body blockquote,body dl,body dt,body figcaption,body li,body p,body textarea",
+      "headingLineHeights": {
+        "h1h2h3": "1.2 (body h1,body h2,body h3)",
+        "h4h5h6": "calc(1.3em + .2 * (100vw - 21em)/ 14) (body h4,body h5,body h6)"
+      },
+      "leadParagraph": "measured: @media all and (min-width:1500px){.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}}",
+      "rootFontSize": "not set at document scope — the only html{font-size:62.5%} in main.css is scoped to .cart-wrapper html (an embedded cart widget), so rem resolves against the 16px browser default",
+      "selectorEvidence": "body / body p,li,blockquote,dl,dt,figcaption / html{font-size:62.5%} only under .cart-wrapper",
+      "renderingHints": "measured on body: font-feature-settings:\"onum\" 1 (oldstyle numerals); text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased"
+    },
+    "fluidType": true,
+    "fluidTypeMechanism": "measured: calc() with vw terms, not clamp(). 85 font-size declarations contain a vw term; 0 use clamp() anywhere in the fetched CSS. Upper bounds are set by media-query overrides (e.g. body caps at 1.625em above 187.5em) rather than by clamp()."
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": "1em",
+        "count": 317
+      },
+      {
+        "value": ".5em",
+        "count": 174
+      },
+      {
+        "value": "2em",
+        "count": 165
+      },
+      {
+        "value": "1.5em",
+        "count": 99
+      },
+      {
+        "value": ".75em",
+        "count": 76
+      },
+      {
+        "value": "3em",
+        "count": 58
+      },
+      {
+        "value": ".25em",
+        "count": 54
+      },
+      {
+        "value": "2.5em",
+        "count": 44
+      },
+      {
+        "value": "10px",
+        "count": 39
+      },
+      {
+        "value": "1rem",
+        "count": 38
+      },
+      {
+        "value": ".35em",
+        "count": 30
+      },
+      {
+        "value": "1.25em",
+        "count": 29
+      },
+      {
+        "value": ".4em",
+        "count": 28
+      },
+      {
+        "value": ".8em",
+        "count": 23
+      },
+      {
+        "value": ".2em",
+        "count": 23
+      },
+      {
+        "value": "4em",
+        "count": 22
+      },
+      {
+        "value": ".6em",
+        "count": 19
+      },
+      {
+        "value": ".15em",
+        "count": 14
+      },
+      {
+        "value": "20px",
+        "count": 14
+      },
+      {
+        "value": ".1em",
+        "count": 14
+      },
+      {
+        "value": "2rem",
+        "count": 12
+      },
+      {
+        "value": "5em",
+        "count": 12
+      },
+      {
+        "value": "5px",
+        "count": 11
+      },
+      {
+        "value": ".3em",
+        "count": 11
+      },
+      {
+        "value": ".5rem",
+        "count": 10
+      },
+      {
+        "value": "-2px",
+        "count": 9
+      },
+      {
+        "value": ".85em",
+        "count": 9
+      },
+      {
+        "value": "1.25rem",
+        "count": 9
+      },
+      {
+        "value": "3rem",
+        "count": 8
+      },
+      {
+        "value": "14px",
+        "count": 8
+      },
+      {
+        "value": "2.25em",
+        "count": 8
+      },
+      {
+        "value": "3.5em",
+        "count": 8
+      },
+      {
+        "value": ".45em",
+        "count": 8
+      },
+      {
+        "value": "-1em",
+        "count": 8
+      },
+      {
+        "value": "50px",
+        "count": 7
+      },
+      {
+        "value": "-.5em",
+        "count": 7
+      },
+      {
+        "value": "2px",
+        "count": 6
+      },
+      {
+        "value": "-1rem",
+        "count": 6
+      },
+      {
+        "value": "9px",
+        "count": 6
+      },
+      {
+        "value": ".9em",
+        "count": 6
+      },
+      {
+        "value": ".625em",
+        "count": 5
+      },
+      {
+        "value": "1.75em",
+        "count": 5
+      },
+      {
+        "value": "15px",
+        "count": 5
+      },
+      {
+        "value": ".7em",
+        "count": 5
+      },
+      {
+        "value": "4.5em",
+        "count": 5
+      },
+      {
+        "value": "125px",
+        "count": 5
+      },
+      {
+        "value": "30px",
+        "count": 5
+      },
+      {
+        "value": "4rem",
+        "count": 4
+      },
+      {
+        "value": ".25rem",
+        "count": 4
+      },
+      {
+        "value": "40px",
+        "count": 4
+      }
+    ],
+    "inferredBaseUnitPx": null,
+    "inferredBaseUnitNote": "not determinable as a px constant: the spacing system is em-relative, so its rendered px value changes with each element’s own font-size and with the fluid body ramp (18px→26px). The measured step is 0.25em.",
+    "inferredBaseUnit": "0.25em",
+    "multiplesUsed": [
+      "0.25em",
+      "0.5em",
+      "0.75em",
+      "1em",
+      "1.25em",
+      "1.5em",
+      "1.75em",
+      "2em",
+      "2.25em",
+      "2.5em",
+      "3em",
+      "3.5em",
+      "4em",
+      "4.5em",
+      "5em",
+      "(negatives: -0.5em, -1em)"
+    ],
+    "evidence": "1286 em-unit margin/padding/gap tokens measured; 1091 of them (85%) land exactly on a 0.25em ladder. Secondary ladders: 91 rem tokens (1rem x38, 2rem x12, .5rem x10, 1.25rem x9, 3rem x8, 4rem, .25rem) and 119 px tokens dominated by 10px x39, 20px x14, 5px x11 (a 5px sub-ladder used for chrome, not prose). A fluid rhythm also appears: calc(1em + .5vw) and calc(.5em + 1vw) for article grid row gaps and block margins."
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--promo-background",
+        "value": "#d33a2c"
+      },
+      {
+        "name": "--promo-text",
+        "value": "white"
+      },
+      {
+        "name": "--promo-highlight",
+        "value": "#b13125"
+      },
+      {
+        "name": "--promo-highlight-text",
+        "value": "white"
+      },
+      {
+        "name": "--promo-highlight--hover",
+        "value": "#87251c"
+      },
+      {
+        "name": "--promo-shadow",
+        "value": "#350f0b"
+      },
+      {
+        "name": "--bio-image-border-color",
+        "value": "#fff"
+      },
+      {
+        "name": "--format-type",
+        "value": "linear-gradient(#3ea2f1, #006fc6)"
+      },
+      {
+        "name": "--box-yellow",
+        "value": "#fff9e6"
+      },
+      {
+        "name": "--box-blue",
+        "value": "#f0f9fc"
+      },
+      {
+        "name": "--box-green",
+        "value": "#f2faf3"
+      },
+      {
+        "name": "--box-orange",
+        "value": "#fef6f1"
+      },
+      {
+        "name": "--box-background",
+        "value": "var(--box-yellow)"
+      },
+      {
+        "name": "--bg-color",
+        "value": "rgba(222, 222, 222, 0.2)"
+      },
+      {
+        "name": "--text-color",
+        "value": "rgba(255, 255, 255, 0.8)"
+      },
+      {
+        "name": "--card-color",
+        "value": "#31a1bd"
+      },
+      {
+        "name": "--author-bio-border-width",
+        "value": "8px"
+      },
+      {
+        "name": "--bio-image-border-width",
+        "value": "5px"
+      },
+      {
+        "name": "--stack-margin",
+        "value": "1rem"
+      },
+      {
+        "name": "--gap",
+        "value": "1.5em"
+      }
+    ],
+    "customPropertiesNote": "measured: only 20 custom properties in the whole fetched CSS, and none are declared on :root — every one is scoped to a component (.promo-box, .pricing__card, .nl-box). The palette is hard-coded hex, not tokenised.",
+    "bodyTextColorCandidate": "#333",
+    "backgroundCandidate": "#fff",
+    "contrastRatioCandidate": 12.63,
+    "contrastNote": "WCAG 2.x ratio computed from body{color:#333} over body{background-color:#fff}; passes AAA for body text.",
+    "brandAccent": "#d33a2c (measured: --promo-background, and .subnav-more-item__button color)",
+    "darkModeMechanism": "none",
+    "darkModeEvidence": "measured: 0 occurrences of prefers-color-scheme and 0 of the color-scheme property across main.css, print.css and both inline critical stylesheets."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 1024,
+        "kind": "max",
+        "count": 82
+      },
+      {
+        "px": 640,
+        "kind": "max",
+        "count": 62
+      },
+      {
+        "px": 1024,
+        "kind": "min",
+        "count": 48
+      },
+      {
+        "px": 1025,
+        "kind": "min",
+        "count": 35
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 33
+      },
+      {
+        "px": 480,
+        "kind": "max",
+        "count": 26
+      },
+      {
+        "px": 640,
+        "kind": "min",
+        "count": 25
+      },
+      {
+        "px": 800,
+        "kind": "min",
+        "count": 18
+      },
+      {
+        "px": 1025,
+        "kind": "max",
+        "count": 17
+      },
+      {
+        "px": 550,
+        "kind": "min",
+        "count": 15
+      },
+      {
+        "px": 1100,
+        "kind": "min",
+        "count": 13
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 12
+      },
+      {
+        "px": 650,
+        "kind": "min",
+        "count": 12
+      },
+      {
+        "px": 700,
+        "kind": "min",
+        "count": 11
+      },
+      {
+        "px": 750,
+        "kind": "min",
+        "count": 11
+      },
+      {
+        "px": 740,
+        "kind": "min",
+        "count": 9
+      },
+      {
+        "px": 500,
+        "kind": "min",
+        "count": 9
+      },
+      {
+        "px": 1200,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 480,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 1450,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 500,
+        "kind": "max",
+        "count": 7
+      },
+      {
+        "px": 850,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 687,
+        "kind": "min",
+        "count": 6
+      },
+      {
+        "px": 650,
+        "kind": "max",
+        "count": 6
+      },
+      {
+        "px": 600,
+        "kind": "max",
+        "count": 6
+      },
+      {
+        "px": 1500,
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 1280,
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 380,
+        "kind": "max",
+        "count": 5
+      },
+      {
+        "px": 1000,
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 980,
+        "kind": "max",
+        "count": 5
+      },
+      {
+        "px": 840,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 550,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 1099,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 900,
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 300,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 3000,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1550,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 840,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 905,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1120,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1245,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1670,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1815,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1930,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 2185,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 2875,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 450,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 600,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 400,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 1150,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 641,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 740,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 800,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1600,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 700,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 920,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 420,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 767,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1101,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1100,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 1300,
+        "kind": "max",
+        "count": 2
+      },
+      {
+        "px": 680,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 2560,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 901,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 780,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1264,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 750,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 900,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1170,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 370,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 350,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1919,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1920,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1200,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1000,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1600,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 779,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1350,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 680,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 850,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 930,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 930,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 770,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 450,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 520,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1400,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 375,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 560,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 481,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 319,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 802,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 502,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 610,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1023,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 1250,
+        "kind": "min",
+        "count": 1
+      }
+    ],
+    "breakpointsNote": "95 distinct width thresholds measured — a long tail of component-local queries rather than a shared scale. Highest-traffic thresholds: max-1024 (82), max-640 (62), min-1024 (48), min-1025 (35), min-768 (33), max-480 (26), min-640 (25). em-declared queries converted at 16px (48em→768, 64em→1024, 80em→1280, 100em→1600, 160em→2560, 187.5em→3000).",
+    "contentWidthCandidates": [
+      {
+        "value": "1440px",
+        "selectorEvidence": ".container"
+      },
+      {
+        "value": "1635px",
+        "selectorEvidence": ".homepage .container"
+      },
+      {
+        "value": "1640px / 1850px",
+        "selectorEvidence": ".articlepage .container (two breakpoint steps)"
+      },
+      {
+        "value": "50em",
+        "selectorEvidence": ".d-garfield-the-cat>.break-out{grid-column:1/15;max-width:50em;margin-left:auto;margin-right:auto} — the widest measure allowed for full-bleed article blocks"
+      },
+      {
+        "value": "80ch",
+        "selectorEvidence": ".jobs__header .jobs__description"
+      },
+      {
+        "value": "65ch",
+        "selectorEvidence": "@media (max-width:64em){.job__details p}"
+      },
+      {
+        "value": "120ch",
+        "selectorEvidence": "@media screen and (min-width:1100px){.events}"
+      },
+      {
+        "value": "750px",
+        "selectorEvidence": ".enhanced .overlay__content"
+      }
+    ],
+    "readingColumnMechanism": {
+      "description": "measured: the article body is a named 14-track CSS grid with fixed side rails; prose sits in tracks 2/14 and only designated blocks break out.",
+      "declarations": [
+        ".c-garfield-the-cat,.d-garfield-the-cat{display:grid;grid-template-columns:16rem repeat(12,minmax(0,1fr)) 16rem}",
+        "@media screen and (min-width:64em){.d-garfield-the-cat{grid-template-columns:12.5rem repeat(12,minmax(0,1fr)) 12.5rem;grid-column-gap:.5rem;grid-row-gap:calc(1em + .5vw)}}",
+        "@media screen and (min-width:80em){… 17rem rails …}",
+        "@media screen and (min-width:100em){… 18.5rem rails; grid-column-gap:1.75rem}",
+        "@media screen and (min-width:160em){… 20rem rails; grid-column-gap:2.25rem}",
+        "@media all and (min-width:1100px){.d-garfield-the-cat>*{grid-column:2/14}}"
+      ],
+      "note": "the rails widen (16→17→18.5→20rem) as the viewport grows, so extra width goes to margin, not to line length."
+    },
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "gridDeclarationCount": 17,
+      "flexDeclarationCount": 182,
+      "note": "measured: flexbox carries most component layout; CSS grid is reserved for the header shell, the article reading grid and a few card sets (repeat(auto-fit,minmax(35ch,1fr)))."
+    },
+    "horizontalScrollPattern": "measured: .subnav__primary{display:flex;overflow-x:auto;scroll-snap-type:x;scroll-padding:1rem;scrollbar-width:none} — the topic subnav is a snap-scrolling strip rather than a wrap."
+  },
+  "navigation": {
+    "persistentElements": [
+      "header.global-header.header (masthead: logo, search form, primary nav)",
+      "nav.main-nav[aria-label=main] (.main-nav__primary — top-level topic links)",
+      "nav.secondary-nav[aria-label=mobile-only] (.main-nav__secondary — overflow tier)",
+      "nav.subnav[role=navigation][aria-label=secondary] (.subnav__primary — horizontally scrollable topic strip, header#all-topics)",
+      "main#main",
+      "footer.main-footer",
+      "div.back-to-top-wrapper#back_top (position:fixed; bottom:20px; right:20px; z-index:9; display:none until enhanced)"
+    ],
+    "stickyOrFixedSelectors": [
+      ".sticky {position:fixed;left:0;top:0;right:0;z-index:10;box-shadow:0 5px 10px rgba(0,0,0,.2)} — a JS-applied class, not a default on the header",
+      ".featured-articles__teaser.sticky {position:fixed;top:50px;z-index:11}",
+      ".back-to-top-wrapper {position:fixed;bottom:20px;right:20px;z-index:9}",
+      ".cookie-banner {position:fixed}",
+      ".cookies {position:fixed}",
+      ".enhanced .overlay {position:fixed}",
+      ".cart,.cart-trigger {position:fixed}",
+      ".zoom-overlay {position:fixed}",
+      ".comment-form__sticky {position:fixed}",
+      ".job-posting .content-tabs--job-posting {position:sticky}",
+      ".job-posting .job-posting--preview form {position:sticky}"
+    ],
+    "headerIsStickyByDefault": false,
+    "headerStickyEvidence": "measured: no position:sticky or position:fixed declaration on .global-header or .header in the fetched CSS. Stickiness is only available via the separate .sticky utility class.",
+    "tocPresent": false,
+    "tocEvidence": "measured: no element with a toc class/id and no \"table of contents\" string in either fetched page. Both fetched URLs are index pages (home, article listing), not article bodies, so this is evidence about these two pages only — an article page was not fetched.",
+    "revealedOnDemand": [
+      "primary-nav overflow: button.main-nav-more-item__button[type=button][aria-haspopup=true][aria-expanded=false] toggles .js-show-secondary on .main-nav and .secondary-nav",
+      "site search: input#js-search-input[type=search][aria-label=\"Search articles\"] adds .searchFocused to .global-header on focus; results render into .header__search-results{max-width:calc(900px + 15vw)}",
+      "subnav overflow: .subnav-more-item__button",
+      "cookie consent: .cookie-banner / .cookies (position:fixed)",
+      "auth and membership: .auth-modal-wrapper (max-width 600px; 800px for checkout), .membership-popup",
+      "cart drawer: .cart / .cart-trigger (position:fixed, transform-based enter)",
+      "image zoom: .zoom-overlay"
+    ],
+    "keyboardModel": "measured in /js/nav-v2.js: the two nav tiers are a roving-tabindex menubar. Secondary .nav-item-link elements get tabIndex=\"-1\"; ArrowLeft/ArrowRight (37/39) wrap through the primary tier, ArrowDown (40) opens the secondary tier and moves focus into it, ArrowUp (38) closes it, and a document click outside the button collapses it and resets aria-expanded.",
+    "evidence": "raw/smashingmagazine_com/home.html landmark tags; raw/smashingmagazine_com/js-nav-v2.js; positioning rules in raw/smashingmagazine_com/css/main.css"
+  },
+  "behaviours": [
+    {
+      "name": "progressive enhancement gate",
+      "basis": "inferred",
+      "evidence": "nav-v2.js ends with document.body.classList.add(\"enhanced\"); main.css contains .enhanced-prefixed rules (.enhanced .overlay, html:not(.enhanced) .overlay[aria-hidden=true]{max-width:600px}) — the no-JS state is styled deliberately rather than hidden."
+    },
+    {
+      "name": "roving-focus menubar with disclosure",
+      "basis": "inferred",
+      "evidence": "nav-v2.js arrow-key handlers (keyCodes 37/38/39/40) over .main-nav__primary and .main-nav__secondary; aria-expanded kept in sync on .main-nav-more-item__button."
+    },
+    {
+      "name": "inline search with focus-state chrome",
+      "basis": "inferred",
+      "evidence": "nav-v2.js focus/blur listeners on #js-search-input toggling .searchFocused on .global-header; .header__search-results panel styled in main.css."
+    },
+    {
+      "name": "back-to-top affordance",
+      "basis": "inferred",
+      "evidence": "<a href=#top data-scroll=#top class=back-to-top> inside a position:fixed wrapper that is display:none by default; main.css sets will-change:transform and opacity states."
+    },
+    {
+      "name": "scroll-snap topic strip",
+      "basis": "inferred",
+      "evidence": ".subnav__primary{scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none} with .subnav-more-item__button overflow control."
+    },
+    {
+      "name": "deferred script loading",
+      "basis": "inferred",
+      "evidence": "<script delay=/js/app.js defer fetchpriority=low> and <script class=js-additional fetchpriority=low delay=/js/ga.js defer> — a custom delay attribute rather than a src, so a loader swaps it in later; only /js/nav-v2.js loads at fetchpriority=high."
+    },
+    {
+      "name": "native lazy images",
+      "basis": "inferred",
+      "evidence": "6 loading=lazy attributes in home.html alongside loading=eager + fetchpriority=high on above-the-fold author images and the logo; decoding=async throughout; explicit width/height on images."
+    },
+    {
+      "name": "reduced-data font strategy",
+      "basis": "inferred",
+      "evidence": "font preloads carry media=\"(prefers-reduced-data: no-preference)\"; the italic face additionally carries media=\"(min-width: 800px)\" — webfonts are treated as optional payload."
+    },
+    {
+      "name": "client-side state persistence",
+      "basis": "inferred",
+      "evidence": "18 localStorage references in /js/app.js (jQuery-based bundle, 503 KB)."
+    },
+    {
+      "name": "zoomable figures",
+      "basis": "inferred",
+      "evidence": ".zoom-overlay{position:fixed} in main.css."
+    }
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": "Both pages returned HTTP 200 with real server-rendered content (8797 and 5112 visible chars), so neither is blocked or JS-rendered. Method: curl with a desktop Chrome UA, redirects followed, 20 s timeout; two external stylesheets (/css/main.css 402 KB, /css/print.css 17 KB) plus four inline <style> blocks extracted. Note that <link href=/css/main.css media=print onload=\"this.media='all'\"> is the deferred-CSS pattern — main.css is the real sheet, loaded async. Typography, spacing, colour and layout figures were derived from main.css + the two inline critical blocks (print.css excluded so print rules do not skew the counts). All px resolutions of calc()/em values are arithmetic on declared values, not computed style from a browser: no rendering engine was run, so cascade winners and inherited em chains are unverified. Nothing in the analysis relies on the two JS bundles beyond the behaviour hints, which are labelled inferred. No article page was fetched, so the .c-garfield-the-cat reading grid and TOC findings are read from CSS and from index pages only.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. Home page is an article river; the reading column was measured on a long article. Background is a gradient on <article>, not a background-color."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://www.smashingmagazine.com/ (assigned URL — an article river with excerpt paragraphs)",
+      "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/ (a long article, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles. The background could not be read from backgroundColor alone (see gradientCorrection) and was resolved from background-image.",
+    "gradientCorrection": {
+      "problem": "The first background walk-up returned rgb(255,255,255) from <main> and a nonsense 1.26:1 ratio against rgb(229,229,229) body text.",
+      "cause": "The article's real background is a background-image, not a background-color: <article class=\"block article\"> and <body> both carry linear-gradient(-45deg, rgb(22, 44, 53) 70%, rgb(12, 37, 47) 100%), while the <main> underneath it is white.",
+      "fix": "Contrast is reported against both gradient stops. Any measurement method that reads only backgroundColor gets this site wrong."
+    },
+    "homePage": {
+      "url": "/",
+      "excerptParagraph": {
+        "containerWidthPx": 884,
+        "fontSizePx": "20.4086px",
+        "lineHeight": "33.4929px",
+        "lineHeightRatio": 1.64,
+        "family": "Elena",
+        "color": "rgb(51, 51, 51)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "contrast": 12.63,
+        "charactersPerLine": 104,
+        "paragraphMarginBottom": "27.6086px"
+      },
+      "note": "The home page is light (dark grey on white) while an article page is dark (near-white on a blue-green gradient) — the two surfaces use inverted schemes.",
+      "headings": {
+        "h1": null,
+        "h2": {
+          "fontSize": "44.72px",
+          "fontWeight": "700",
+          "lineHeight": "53.664px",
+          "family": "Mija",
+          "color": "rgb(51, 51, 51)"
+        },
+        "h3": {
+          "fontSize": "27.6px",
+          "fontWeight": "700",
+          "lineHeight": "33.12px",
+          "family": "Mija",
+          "color": "rgb(211, 58, 44)"
+        }
+      },
+      "headerBackground": "rgb(211, 58, 44)",
+      "headerBackgroundNote": "The home page header is the brand red; the article header is the dark blue-green rgb(12, 37, 47). The header colour changes with the section.",
+      "pageWeight": {
+        "docScrollHeightPx": 8463,
+        "screensOfScroll": 9.4,
+        "innerTextLength": 7474,
+        "htmlLength": 296886,
+        "textToHtmlRatio": 0.03
+      }
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "article",
+        "containerTag": "div",
+        "containerClass": "c-garfield-the-cat",
+        "containerWidthPx": 1356.8,
+        "paragraphContentWidthPx": 699.99,
+        "columnNote": "The wrapper spans 1356.8px but each paragraph is constrained to 700px — the measure is set on the paragraph, not the container, so a container-width reading would be wrong by a factor of two.",
+        "paragraphCount": 51,
+        "totalCharsInColumn": 17169,
+        "fontSizePx": "20.4086px",
+        "lineHeight": "33.4929px",
+        "lineHeightRatio": 1.64,
+        "fontFamily": "Elena",
+        "fullStack": "Elena, -apple-system, system-ui, Roboto, roboto slab, droid serif, segoe ...",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(229, 229, 229)",
+        "background": "linear-gradient(-45deg, rgb(22, 44, 53) 70%, rgb(12, 37, 47) 100%)",
+        "avgGlyphWidthPx": 8.52,
+        "charactersPerLine": 82,
+        "paragraphMarginBottom": "28.5721px",
+        "fluidTypeEvidence": "20.4086px, 33.4929px and 28.5721px are all non-integer and identical to the home page's excerpt values — the whole scale is computed from a fluid (clamp/vw) expression, not fixed steps."
+      },
+      "contrast": {
+        "bodyTextVsGradientStop1": 11.53,
+        "bodyTextVsGradientStop2": 12.62,
+        "pair": "rgb(229, 229, 229) on linear-gradient(-45deg, rgb(22,44,53) 70%, rgb(12,37,47) 100%)",
+        "passesAA": true,
+        "passesAAA": true,
+        "secondBodyColour": {
+          "value": "rgb(255, 255, 255)",
+          "contrastStop1": 14.52,
+          "contrastStop2": 15.89,
+          "note": "Some article paragraphs are pure white and some are rgb(229,229,229); both were measured on the same page."
+        },
+        "inlineLink": {
+          "color": "rgb(249, 73, 98)",
+          "contrastOnStop1": 4.26,
+          "passesAA_normal": false,
+          "note": "The inline link colour falls just under the 4.5:1 AA threshold for normal text against the lighter gradient stop. Measured, not adjusted."
+        }
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "49.04px",
+          "fontWeight": "700",
+          "lineHeight": "58.848px",
+          "family": "Mija",
+          "color": "rgb(229, 229, 229)",
+          "marginTop": "0px",
+          "marginBottom": "0px"
+        },
+        "h2": {
+          "fontSize": "27.6px",
+          "fontWeight": "700",
+          "lineHeight": "41.4px",
+          "family": "Elena",
+          "color": "rgb(255, 255, 255)",
+          "marginTop": "41.4px",
+          "marginBottom": "27.6px"
+        },
+        "h3": {
+          "fontSize": "21.6px",
+          "fontWeight": "700",
+          "lineHeight": "32.4px",
+          "letterSpacing": "1px",
+          "family": "Elena",
+          "color": "rgb(255, 255, 255)",
+          "marginTop": "32.4px",
+          "marginBottom": "14.04px"
+        },
+        "ratio_h1_body": 2.4,
+        "ratio_h2_body": 1.35,
+        "twoTypefaceRule": "Mija (a slab/display face) for the article title and home-page cards; Elena (serif) for body, h2 and h3. The title is the only place the display face appears inside an article.",
+        "rhythmNote": "h2 margin-top 41.4px equals its own line-height, and margin-bottom 27.6px is two-thirds of it — the heading is pushed away from the text above and held close to the text below. h3 repeats the pattern at 32.4/14.04."
+      },
+      "figcaption": {
+        "fontSize": "19.3882px",
+        "lineHeight": "29.0823px",
+        "family": "Elena",
+        "color": "rgb(229, 229, 229)",
+        "note": "Captions are set only 1px smaller than body text (19.39 vs 20.41) and in the same face and colour."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "relative",
+        "headerHeightPx": 103.43,
+        "headerBackground": "rgb(12, 37, 47)",
+        "stickyOrFixedCount": 0,
+        "stickyOrFixedNote": "Zero sticky and zero fixed elements on both the home page and the article — the only reference in this set with no persistent chrome whatsoever. Nothing follows the reader, and there is no consent banner.",
+        "documentScrolls": true
+      },
+      "toc": null,
+      "tocReason": "No element with three or more in-page anchors and a width over 80px. A 16.7-screen article carries no in-page navigation.",
+      "search": {
+        "inputPresentAtLoad": true,
+        "placeholder": "Search articles...",
+        "ariaLabel": "Search articles",
+        "widthPx": 350,
+        "fontSize": "21.8486px",
+        "kbdHints": [],
+        "note": "A real 350px input rendered in the page at a 21.85px type size — larger than most sites set their body text. No keyboard shortcut is advertised."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 15062,
+        "screensOfScroll": 16.74,
+        "innerTextLength": 22375,
+        "htmlLength": 263109,
+        "textToHtmlRatio": 0.09,
+        "note": "0.09 is the highest text-to-HTML ratio measured in this set: 22,375 characters of text inside 263 KB of markup."
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "article",
+      "readingColumn": {
+        "containerWidthPx": 366,
+        "paragraphContentWidthPx": 330,
+        "fontSizePx": "18px",
+        "lineHeight": "27.75px",
+        "lineHeightRatio": 1.54,
+        "avgGlyphWidthPx": 7.51,
+        "charactersPerLine": 44,
+        "color": "rgb(229, 229, 229)",
+        "paragraphMarginBottom": "0px",
+        "marginCaveat": "Reported 0px at this width where desktop reported 28.57px; the matched paragraph differs, so treat the desktop figure as the confirmed one."
+      },
+      "typeScaleChangesAtMobile": true,
+      "bodyStepsDown": "20.41px/33.49px (ratio 1.64) at 1440px becomes an integer 18px/27.75px (ratio 1.54) at 375px — both the size and the line-height ratio tighten, and the fluid fractional values resolve to round numbers.",
+      "contrast": {
+        "bodyVsStop1": 11.53,
+        "bodyVsStop2": 12.62,
+        "unchangedFromDesktop": true
+      },
+      "h1": {
+        "fontSize": "32px",
+        "fontWeight": "700",
+        "lineHeight": "38.4px",
+        "family": "Mija",
+        "desktopWas": "49.04px/58.848px"
+      },
+      "h2": {
+        "fontSize": "24.9375px",
+        "fontWeight": "700",
+        "lineHeight": "37.4062px",
+        "family": "Elena",
+        "desktopWas": "27.6px/41.4px"
+      },
+      "header": {
+        "position": "relative",
+        "heightPx": 154.8,
+        "background": "rgb(12, 37, 47)",
+        "note": "The header grows taller at mobile (154.8px vs 103.43px) rather than collapsing — it wraps instead of hiding."
+      },
+      "menuControls": "Three nav-item-link elements match the pattern but all compute to 0x0; no laid-out hamburger or menu button was found at this width.",
+      "search": {
+        "inputPresent": true,
+        "visible": true,
+        "widthPx": 346.2,
+        "placeholder": "Search articles...",
+        "note": "The search field stays visible and nearly full-width at 375px instead of collapsing behind a control."
+      },
+      "toc": null,
+      "stickyOrFixed": [],
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 20771
+    },
+    "inferred": {
+      "nextData": false,
+      "nuxt": false,
+      "react": false,
+      "jquery": false,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollama": false,
+      "gsap": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "hoverPreviewMarkerElements": 0,
+      "detailsElements": 0,
+      "dialogElements": 0,
+      "imgElements": 25,
+      "svgElements": 2,
+      "videoElements": 0,
+      "cssCustomPropertiesOnRoot": 0,
+      "cssCustomPropertiesNote": "Zero custom properties resolve on :root — the only reference measured here with no runtime CSS variable layer at all. The fluid scale is baked into the stylesheet.",
+      "colorSchemeDeclared": "normal",
+      "stylesheetCount": 4,
+      "scriptCount": 8,
+      "scriptCountNote": "Eight scripts and four stylesheets — an order of magnitude lighter than the JavaScript-framework references in this set (Vercel 91, Linear 165, The Verge 85).",
+      "htmlAttributes": [
+        "lang=en",
+        "class=enhanced js wf-loaded-stage2"
+      ],
+      "progressiveEnhancement": "The html element carries 'enhanced js wf-loaded-stage2' — a class set by script once fonts reach a named loading stage, i.e. the page is authored to render before its webfonts arrive."
+    }
+  }
+}

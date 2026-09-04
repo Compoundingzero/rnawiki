@@ -1,0 +1,680 @@
+{
+  "site": "linear.app/method",
+  "track": "A1",
+  "urls": {
+    "index": "https://linear.app/method",
+    "content": "https://linear.app/method/introduction"
+  },
+  "capturedAt": "2026-09-03T18:17:15.909Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in footer.Jmh1Wq_footer (controls: Intake, Plan, AI, Build, Pricing, Security); banner stands in the captures",
+    "index-375: left: no permitted refusal control in footer.Jmh1Wq_footer (controls: Intake, Plan, AI, Build, Pricing, Security); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in footer.Jmh1Wq_footer (controls: Intake, Plan, AI, Build, Pricing, Security); banner stands in the captures",
+    "content-375: left: no permitted refusal control in footer.Jmh1Wq_footer (controls: Intake, Plan, AI, Build, Pricing, Security); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://linear.app/method/introduction",
+    "collectedAt": "2026-09-03T18:17:00.962Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0119,
+    "title": "Principles & Practices - Linear Method",
+    "innerTextLength": 5873,
+    "outerHtmlLength": 494278,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Principles & Practices"
+      },
+      {
+        "tag": "h2",
+        "text": "Principles"
+      },
+      {
+        "tag": "h3",
+        "text": "Build for the creators"
+      },
+      {
+        "tag": "h3",
+        "text": "Purpose-built"
+      },
+      {
+        "tag": "h3",
+        "text": "Create momentum – don’t sprint"
+      },
+      {
+        "tag": "h3",
+        "text": "Meaningful direction"
+      },
+      {
+        "tag": "h3",
+        "text": "Aim for clarity"
+      },
+      {
+        "tag": "h3",
+        "text": "Say no to busy work"
+      },
+      {
+        "tag": "h3",
+        "text": "Simple first, then powerful"
+      },
+      {
+        "tag": "h3",
+        "text": "Decide and move on"
+      },
+      {
+        "tag": "h2",
+        "text": "Practices"
+      },
+      {
+        "tag": "h3",
+        "text": "Set strategic product initiatives"
+      },
+      {
+        "tag": "h3",
+        "text": "Connect daily work to larger goals with projects"
+      },
+      {
+        "tag": "h3",
+        "text": "Work in n-week cycles"
+      },
+      {
+        "tag": "h3",
+        "text": "Keep a manageable backlog"
+      },
+      {
+        "tag": "h3",
+        "text": "Mix feature and quality work"
+      },
+      {
+        "tag": "h3",
+        "text": "Specify project and issue owners"
+      },
+      {
+        "tag": "h3",
+        "text": "Write project specs"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand your users"
+      },
+      {
+        "tag": "h3",
+        "text": "Scope issues to be as small as possible"
+      },
+      {
+        "tag": "h3",
+        "text": "Measure progress with actual work"
+      },
+      {
+        "tag": "h3",
+        "text": "Run cross-functional teams"
+      },
+      {
+        "tag": "h3",
+        "text": "Write a changelog"
+      },
+      {
+        "tag": "h3",
+        "text": "Product"
+      },
+      {
+        "tag": "h3",
+        "text": "Features"
+      },
+      {
+        "tag": "h3",
+        "text": "Company"
+      },
+      {
+        "tag": "h3",
+        "text": "Resources"
+      },
+      {
+        "tag": "h3",
+        "text": "Connect"
+      },
+      {
+        "tag": "h3",
+        "text": "Legal"
+      }
+    ],
+    "headingCount": 29,
+    "stickyOrFixedCount": 3,
+    "stickyOrFixed": [
+      {
+        "tag": "a",
+        "class": "LSqk9q_root",
+        "position": "fixed",
+        "top": 72,
+        "height": 32
+      },
+      {
+        "tag": "header",
+        "class": "TZTsQG_header TZTsQG_header",
+        "position": "fixed",
+        "top": 0,
+        "height": 73
+      },
+      {
+        "tag": "div",
+        "class": "TZTsQG_viewportPosition hide-mobile",
+        "position": "fixed",
+        "top": 64,
+        "height": 0
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 159,
+    "scriptsUnreadable": 6,
+    "searchAffordances": {
+      "count": 0,
+      "firstDescriptors": []
+    },
+    "imgCount": 0,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "enhanced js",
+      "dataTheme": "dark",
+      "style": "color-scheme: dark;"
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 45,
+      "totalSheets": 83
+    },
+    "bodyBackgroundColor": "rgb(8, 9, 10)",
+    "bodyColor": "rgb(247, 248, 248)",
+    "canvasCount": 0,
+    "svgCount": 30
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 2701,
+      "sha256": "0e408d3d2fd948ee61c7eb5e3fbc76bce704f51eaffb86623b34d0519fe32cfc",
+      "capturedAt": "2026-09-03T18:16:51.257Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "51f649c02cef0f22d6bc853d9217a0d66402173d39f25ab134fa55d468feff50",
+      "capturedAt": "2026-09-03T18:16:51.318Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2cb43587f18db768256e9bb233f6bdc49bc751ef86195f94a58fe46d4206755a",
+      "capturedAt": "2026-09-03T18:16:51.363Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "40383923223fbebd77ac6c67b068bdd8e501daa7ff0ee431e5e42fd81ff3f358",
+      "capturedAt": "2026-09-03T18:16:51.413Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 2644,
+      "sha256": "a878ca2d118ba6ca9572bda63631bf72d0140cf07f06f8719fb77dc60f502cd2",
+      "capturedAt": "2026-09-03T18:16:55.660Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "bb730f7d4cc0a89631e89016165ba705f7bbcdcaf9a67c4ec585207a4fabc0fa",
+      "capturedAt": "2026-09-03T18:16:55.708Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "de48eb41f34575dccb50d3dc4e0c1fdefc3f53205bd8069c81ebb92fd857798e",
+      "capturedAt": "2026-09-03T18:16:55.740Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "174e258d3b82b8020b766b777dd5dd510621c0c0ce0c3ff5214e1b8a5743a5ce",
+      "capturedAt": "2026-09-03T18:16:55.773Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://linear.app/method",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 208,
+      "sha256": "d8a232be68241af904b464f60afb6d843ad24ffd8fb4a8a91ab4ce1cc63c4ae7",
+      "capturedAt": "2026-09-03T18:16:55.801Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 5104,
+      "sha256": "268082affd7194860826ee8b8ebf92ad821657a765bbb0d5fe6ac1fa03137db5",
+      "capturedAt": "2026-09-03T18:17:00.503Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "4a74c9a7e4e49436959868b69cb37340520f65291e904e9379af14bdf247aa0b",
+      "capturedAt": "2026-09-03T18:17:00.571Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f7ada1c1ff71ad28ac8ee29e476f14c4d9c5878db7adbf08e3cabaf899addb17",
+      "capturedAt": "2026-09-03T18:17:00.638Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a4d99ced314105303e0c59073c369f2aac7bb697fa201fd45daea981fe575594",
+      "capturedAt": "2026-09-03T18:17:00.708Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "4f55caff6e0314541d9344a1a07133546b8afe89ca379a2d876da7cc1242e0dd",
+      "capturedAt": "2026-09-03T18:17:00.795Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7b4be7d7e933b6f6dc314e1299177e7e07bd43605a639e27f693f43faddf13d7",
+      "capturedAt": "2026-09-03T18:17:00.877Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 604,
+      "sha256": "d7f1f81c858c85d3f91b94bfc2611e34ef92ef28a07ec5ec3a9ed312b32271da",
+      "capturedAt": "2026-09-03T18:17:00.946Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "4a74c9a7e4e49436959868b69cb37340520f65291e904e9379af14bdf247aa0b",
+      "capturedAt": "2026-09-03T18:17:02.542Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 2102,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ede8ac2c5b35e6efd3a01f89656f00c9d1e6586f619221423d7b9852678531f1",
+      "capturedAt": "2026-09-03T18:17:04.135Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 3784,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "502552225866d3f493fadedf15bd9be71e37b250d96171fe8b10133a116b9ca3",
+      "capturedAt": "2026-09-03T18:17:05.728Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 6419,
+      "sha256": "b9fc60719d9a4c334f90a731ccebfadd378e4773ce661c6687f9cea36db31dd4",
+      "capturedAt": "2026-09-03T18:17:10.831Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "db7df70ada6c1d0263fae6425bedac9a7274640b9414b5c7ef5c63faba665fab",
+      "capturedAt": "2026-09-03T18:17:10.876Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9c4d18866d5d783f42c98da4ac916c1f5f717b143c136786c5fd1cace66ce834",
+      "capturedAt": "2026-09-03T18:17:10.929Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "772498a9d3650d632180b3b741b4848fef709995efa9359ba1734839a4296a15",
+      "capturedAt": "2026-09-03T18:17:10.977Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4bac3712f13e86f45ccdf71ed20971c2e7311eb587e70d7ccbb1a05f6a4d4348",
+      "capturedAt": "2026-09-03T18:17:11.031Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "700c1fc90731e644e1d3e02b42959eb693a2ea04d05d1dbae77f380f68c23e69",
+      "capturedAt": "2026-09-03T18:17:11.079Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4c395f8e567d4f0f26bd90d54f3ce83980db5fac2fd602baa78dbb49977ef692",
+      "capturedAt": "2026-09-03T18:17:11.128Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "903ea7f95796b4c829180e15434241ca4454435ed8e7a86a83b2385b203006c1",
+      "capturedAt": "2026-09-03T18:17:11.175Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 735,
+      "sha256": "5b685ccdf6e3bae8d9b4e96d1965378513c0f6246f9d3a125cad9464ff8b8563",
+      "capturedAt": "2026-09-03T18:17:11.224Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "490c97481b5f586aaf5d1f17dcd2cddb4ba58417a3755b8e31c810287a010346",
+      "capturedAt": "2026-09-03T18:17:12.771Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 2804,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c2c8ca914a48bacd7ce36e9630d61bfdbf066b6725514a250a28ff9a81f7a1be",
+      "capturedAt": "2026-09-03T18:17:14.330Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://linear.app/method/introduction",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 5046,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "81da666059c08b0f28687b36b8f670fe7cd88ccb95eb648f7c749100f8cb5719",
+      "capturedAt": "2026-09-03T18:17:15.909Z"
+    }
+  ]
+}

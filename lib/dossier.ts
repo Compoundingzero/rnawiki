@@ -13,6 +13,8 @@ import type {
   MeasuredVsInferredSummary,
   TrialRegistrationRecord,
   TrialRegistrationsView,
+  TrialResultRecord,
+  TrialResultsView,
 } from '@/lib/types'
 import type { StaleSourceSummary } from '@/lib/dossier-question-issues'
 
@@ -84,6 +86,7 @@ export interface RowToDossierOptions {
   inventoryResolution?: DrugDossier['inventoryResolution']
   /** Ranked registrations from the stored registry pass; undefined when not loaded or none matched. */
   trialRegistrations?: DrugDossier['trialRegistrations']
+  trialResults?: DrugDossier['trialResults']
 }
 
 export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDossier {
@@ -119,6 +122,7 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     completionAssessment: opts?.completionAssessment,
     inventoryResolution: opts?.inventoryResolution,
     trialRegistrations: opts?.trialRegistrations,
+    trialResults: opts?.trialResults,
     substitutes: row.substitutes ?? undefined,
     molecularSchema: row.molecularSchema ?? undefined,
     auditPointsCount: countAuditPoints(row.keyAudits),
@@ -316,6 +320,59 @@ export function buildTrialRegistrationsView(
     withPostedResults,
     shown: ranked.slice(0, TRIAL_REGISTRATIONS_SHOWN_LIMIT),
     shownLimit: TRIAL_REGISTRATIONS_SHOWN_LIMIT,
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Trial results
+// ---------------------------------------------------------------------------
+
+/** How many studies' posted results the page shows per record. Beyond it is counted, not listed. */
+export const TRIAL_RESULTS_SHOWN_LIMIT = 3
+
+/** The ordering rule, in the words the page prints beside the list. */
+export const TRIAL_RESULTS_ORDER_SENTENCE =
+  'Studies are ordered by how many people actually took part, largest first, and then by the most recently posted results.'
+
+export interface TrialResultsInput {
+  sourceIdentifier: string
+  requestedAt: Date | string
+  /** `matched[0]` of the stored results search record, as written by the results fetch. */
+  envelope: unknown
+}
+
+/**
+ * Builds the results view from one stored search record.
+ *
+ * Unlike the registrations view this returns a value even when nothing qualified, because
+ * "registrations matched but no study posted a usable result" is a fact worth printing. It returns
+ * null only when there is no stored envelope to read at all.
+ */
+export function buildTrialResultsView(input: TrialResultsInput): TrialResultsView | null {
+  if (!input.envelope || typeof input.envelope !== 'object') return null
+  const envelope = input.envelope as Record<string, unknown>
+  const studies = Array.isArray(envelope.studies)
+    ? (envelope.studies as TrialResultRecord[]).filter(
+        (study) => study && typeof study === 'object' && NCT_ID.test(String(study.nctId)),
+      )
+    : []
+  const count = (key: string, fallback: number): number =>
+    typeof envelope[key] === 'number' && Number.isFinite(envelope[key] as number)
+      ? (envelope[key] as number)
+      : fallback
+  const requestedAt =
+    input.requestedAt instanceof Date ? input.requestedAt : new Date(input.requestedAt)
+  return {
+    sourceIdentifier: input.sourceIdentifier,
+    fetchedOn: snapshotDateFromIdentifier(input.sourceIdentifier),
+    fetchedAt: requestedAt.toISOString(),
+    totalQualifying: count('totalQualifying', studies.length),
+    withResultsSection: count('withResultsSection', studies.length),
+    failedQualifyingBar: count('failedQualifyingBar', 0),
+    rankingRule: optionalText(envelope.rankingRule) ?? TRIAL_RESULTS_ORDER_SENTENCE,
+    shown: studies.slice(0, TRIAL_RESULTS_SHOWN_LIMIT),
+    shownLimit: count('shownLimit', TRIAL_RESULTS_SHOWN_LIMIT),
+    secondaryShownLimit: count('secondaryShownLimit', 3),
   }
 }
 

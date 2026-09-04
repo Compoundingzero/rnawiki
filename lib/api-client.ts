@@ -10,6 +10,7 @@ import type {
   Revision,
 } from '@/lib/types'
 import type { PublicSearchSummaryBinding } from '@/lib/queries/public-search-hit-projection'
+import type { CorpusSearchResultRow } from '@/lib/corpus/search-results'
 import type {
   DossierAccessMetadata,
   LegacyMedicineEvidenceBoundary,
@@ -27,6 +28,10 @@ export interface SearchHit {
   dossierDepth: 'stub' | 'curated' | 'flagship'
   summaryBinding?: PublicSearchSummaryBinding
   summaryContext?: string | null
+  /** Deployment tier of the corpus record behind this slug, where one is loaded (browse spec). */
+  tier?: number
+  /** Fields of that record's model holding a recorded value. Shown on a Tier 3 row. */
+  presentFieldCount?: number
 }
 
 /** Open the programme that supplied a compact summary instead of losing its scope on click. */
@@ -69,8 +74,12 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  // The route answers with two lists: written records, and corpus records that have no written
+  // record. `lib/corpus/search-results.ts` merges them into the one list a reader sees.
   search: (q: string, limit = 10) =>
-    request<{ results: SearchHit[] }>(`/api/search?q=${encodeURIComponent(q)}&limit=${limit}`),
+    request<{ results: SearchHit[]; corpusResults?: CorpusSearchResultRow[] }>(
+      `/api/search?q=${encodeURIComponent(q)}&limit=${limit}`,
+    ),
 
   getDrug: (slug: string) =>
     request<{

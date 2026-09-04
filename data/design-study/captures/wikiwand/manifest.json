@@ -1,0 +1,63 @@
+{
+  "site": "wikiwand.com",
+  "suppliedBy": "Felix, 2026-09-04 (his own browser; no fetch, no legal gate, no terms question)",
+  "sourceDir": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/data/design-study/captures/wikiwand/",
+  "captures": [
+    {
+      "file": "about-4.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "ee002f68c29af9be73d95eadc2bca29635131dc96c15c5480de7901db497aa76",
+      "bytes": 331961
+    },
+    {
+      "file": "article-5.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "e0ea4e7533921608141130d115139cdcb8550ae9d3947473f78fbf9371088d15",
+      "bytes": 333309
+    },
+    {
+      "file": "article-6.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "f0e1f1ecf59701a1b6ed5d8fcf38220c7b31d2d221a7507dc3623449d7460854",
+      "bytes": 370158
+    },
+    {
+      "file": "article-7.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "7102caf729a52a93a1a8b23e62d6bcaac20808d2c57101a9c0599140490aaf37",
+      "bytes": 346985
+    },
+    {
+      "file": "article-8.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "4d84dbe91a069949cd98f1fabdec8383aaf83d6a3a5bc81ce90e8447b2bb6208",
+      "bytes": 308944
+    },
+    {
+      "file": "home-1.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "18b743281e7b0cb61857a086fd013b4578f97a32c19cc04535db6330ebd1cb25",
+      "bytes": 425828
+    },
+    {
+      "file": "home-2.png",
+      "widthPx": 167772160,
+      "heightPx": 536870912,
+      "sha256": "1bfcac52a14c5a46616ee40993c5984d1e3c430903b4c0ee3784d8a4cd0e1260",
+      "bytes": 118288
+    },
+    {
+      "file": "home-3.png",
+      "widthPx": 816,
+      "heightPx": 1398,
+      "sha256": "88f74c94d1a14ff2c0a9fa82bb0457998fc66364c0888731f76141da236c5665",
+      "bytes": 228436
+    }
+  ]
+}

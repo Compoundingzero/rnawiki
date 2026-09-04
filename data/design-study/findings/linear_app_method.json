@@ -1,0 +1,585 @@
+{
+  "site": "linear.app/method",
+  "track": "A1",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-03.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-04.png",
+    "content-1440-tile-06.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Section headings are separated from prose by weight and tone plus a modest size step, and are grouped with their own paragraph by an asymmetric gap.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Headings sit near-white and semibold against softer grey regular prose at roughly 1.25x the body size (measured on content-1440-tile-01: heading cap-height about 21 px against about 17 px of body cap-height); a large empty band sits above each heading and a small one below it, binding the heading to its own paragraph. The size step is real but small; weight, tone and space carry most of the separation.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "At 1440 the group heading and the member heading are told apart only by the space above them, and the distinction collapses when the page is entered mid-scroll; at 375 the site adds a real size step and the collapse does not occur.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "On content-1440-tile-01 'Principles' (a group of eight) and 'Build for the creators' (a member) are the same weight and the member heading is if anything a hair larger, so only the larger band above the group heading marks the level; on content-1440-tile-02, viewed without the page top, no visible cue says which level any on-screen heading belongs to. On content-375-tile-01 the same pair is clearly stepped, with 'Principles' about 30 percent taller than 'Build for the creators'.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The serif face is used exactly twice, both times as a page-start marker.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The index headline and the chapter h1 are serif; every other character on both pages is sans, so seeing serif means being at the start of something.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "information-design",
+      "claim": "The index builds its hierarchy from alignment and a small uppercase label, with nothing bold, boxed or coloured.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Each row is a title left and a monospaced decimal right; group labels INTRODUCTION / DIRECTION / BUILDING are small, uppercase and brighter than the rows beneath. Dotted rules separate groups rather than closing each one: two rules for three groups, with no rule under the final BUILDING group.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At desktop the index sends the eye to the headline, which is content, not chrome.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "A very large centred serif 'Practices for building' with roughly 130 px of empty page above the kicker and the next element more than 100 px below.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "At desktop the chapter page sends the eye to the chapter title; the breadcrumb above it is deliberately too quiet to catch first.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "73 px header, roughly 70 px of empty ground, a two-line dim-grey breadcrumb, then the serif title.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "At 375 px the 'Sign up' pill is the only filled light shape and it stays on screen throughout reading, so on a scrolled chapter screen it is the highest-contrast object; on the index first screen the serif headline still outweighs it.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-50.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "On index-375-tile-01 the pill is small (about 66 x 30 px) beside 'Log in' and a hamburger, while the two-line serif headline below is several times its area at the same near-white tone; on content-375-scroll-50, where nothing else is filled or serif, the pill is the brightest thing on screen. The viewer's stronger claim that the eye lands on the pill on the index is not supported by index-375-tile-01.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The chapter page has exactly one repeating unit — one h3 plus one paragraph, twenty times, with no exceptions.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-04.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Twenty h3 sections under two h2 group headings (headingOutline: 26 h3 entries less the six footer column headings); no lists, tables, callouts, quotes, code, rules or cards anywhere in the column across tiles 01-05; section length varies only by paragraph length, two lines to seven. The viewer's count of twenty-two counted the two group headings as sections.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "imgCount"
+      ]
+    },
+    {
+      "id": "F10",
+      "topic": "information-design",
+      "claim": "The only list on either page is handled as label-value rows rather than as a drawn table.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Eleven rows in three groups in about 400 px: title left, ordinal right, dotted group separators, no borders, no striping, no column headers.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "whitespace",
+      "claim": "Just under half the desktop screen is intentionally empty margin, and nothing is placed in it.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The text column runs roughly x=376 to x=1064 in a 1440 px viewport, leaving about 376 px blank on each side with no rail, notes, figures or share controls.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "Vertical whitespace is spent asymmetrically around headings and never inside containers.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "A large band above each heading against a small gap below carries the hierarchy; there are no cards, padded boxes or tinted panels in the reading column, so none of the space is container padding.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "Above the footer the index is mostly empty ground; the footer is the densest block on the page.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Bands of several hundred pixels of blank page between standfirst and graphic, and again between graphic and chapter list, across the first 1,620 px of a 2,701 px page carrying eleven chapter rows. Below the hairline the remaining roughly 1,080 px is a five-column footer link grid, so 'most of the page is empty' holds for the reading region, not for the page as a whole.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "long-scroll",
+      "claim": "Exactly one element persists through a 5,104 px scroll — the fixed header — and the reader gets no positional feedback of any kind.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The three scrolled viewport captures show the header and nothing else pinned: no contents rail, progress bar, current-section marker, sticky heading or back-to-top. The manifest lists only three fixed elements: the header, a skip link and a zero-height viewport-position div.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "The persistent header is translucent, and reading matter is visibly smeared under it at depth.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Ghost text from the paragraph beneath is visible inside the header band left of the logo at 90% depth and again at 50%; at scroll 0 the band sits over empty ground and shows nothing. A visible bottom hairline is present once the page has scrolled.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "scriptTokens"
+      ]
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds unbroken because every unit is identical; the single break is the end-of-chapter card.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "A small bordered card reading '2.1 >' over 'Set the product direction', right-aligned in the column — the only bordered box and the only right-aligned element in the reading column. It appears in content-1440-tile-05 and content-1440-scroll-90; it is not in content-1440-tile-06, which the viewer cited.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "The page ends where the text ends: one forward link, then the footer, with no closing pitch or related-reading grid.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-06.png",
+        "index-1440-tile-03.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "After the next-chapter card (content-1440-tile-05) there is an empty band, a hairline, and a footer of roughly three dozen links in five heading columns plus a logo column, on a very slightly lighter ground (content-1440-tile-06); it collapses to two columns at 375 px. No call to action, newsletter block, author line or date. The viewer's count of 42 links and 'six-column' description overstate a 33-link grid in five link columns.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "imagery",
+      "claim": "The chapter page has no imagery at all and substitutes nothing for it.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "Zero images across 5,104 px desktop and 6,419 px mobile; no icons beside headings, no rules, no numbered badges take their place.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "imagery",
+      "claim": "The one graphic in the capture set is decorative and carries no information.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Two large dotted-outline circles with a hatched overlap, unlabelled, no caption, legend, axis or numbers; it does not recur on the chapter page, and at 375 px it is cropped by the viewport with no loss of meaning.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "defers-or-competes",
+      "claim": "On the reading page the design defers almost completely to the text.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "One accent face used twice, a short grey ladder, no borders except the end card, no tints, no images, half the screen empty; everything on screen in content-1440-scroll-50 and content-1440-tile-04 is either a heading or a sentence. The viewer's 'two type sizes' is wrong: the reading page carries at least four (serif h1, h2, h3, body) plus a smaller breadcrumb and card ordinal.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "defers-or-competes",
+      "claim": "It competes in two places: the ever-present sign-up pill on scrolled reading screens, and an index whose first two screens are headline and ornament.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "On content-375-scroll-50 the pill is the highest-contrast object on a document that sells nothing, because nothing else on screen is filled; on the index (index-1440-full) the eleven chapter links, the page's actual purpose, begin about 1,086 px down. The pill does not out-compete the index headline at either width.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "absence",
+      "claim": "An absent pager slot renders nothing — no disabled control, no placeholder — and the layout closes over it.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "At the end of chapter 1.1 only the 'next' card is drawn, pushed to the right of the column where a two-slot pager would place it; the 'previous' half is simply not there, at desktop (content-1440-tile-05, content-1440-scroll-90) and at 375 px (content-375-scroll-90) alike. The card is in tile-05, not tile-06 as cited.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "absence",
+      "claim": "Nothing on either page is a container waiting for content, so the site can only demonstrate the trivial case of absence.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "No labelled fields, no metadata rows, no em-dash values anywhere; a missing item has nowhere to leave a visible mark.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "baseline",
+      "claim": "No consent banner is visible in any capture; the recorded 'banner stands' entry appears to have matched the ordinary site footer.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-06.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "The element named in bannerActions (footer.Jmh1Wq_footer, controls Intake/Plan/AI/Build/Pricing/Security) is plainly the site footer's Product column, visible at the foot of both pages; no overlay obscures any capture, including the four scrolled viewport views.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "baseline",
+      "claim": "The fixed header is painted at capture-time position in the sliced tiles, so header persistence was judged only from the scroll captures.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-375-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The header appears atop content-1440-tile-01 and is absent from tile-02 and from content-375-tile-01, where the mobile chapter top shows an otherwise unexplained empty band.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F26",
+      "topic": "baseline",
+      "claim": "No search field, command palette, keyboard-shortcut hint or copy button is evidenced anywhere in this capture set, and no theme control is legible; whether the site ever honours a reader preference cannot be settled from this evidence.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "The chapter page's recorded DOM evidence has zero search affordances, zero copy controls, no keyboard-shortcut text and no aria-keyshortcuts, and none is visible in any image; script tokens are all 'unknown', so no scroll-driven behaviour can be attributed. The page ships data-theme='dark'. prefersColorScheme.found is false, but 45 of 83 stylesheets were unreadable, so that is an absence of recorded evidence rather than proof the site ignores the reader; and the 375 px hamburger is never opened in any capture, so a control inside that menu cannot be ruled out.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "copyControls",
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "scriptTokens",
+        "htmlAttributes",
+        "prefersColorScheme"
+      ]
+    },
+    {
+      "id": "F27",
+      "topic": "borrow",
+      "claim": "Borrow hierarchy-by-space-and-tone for the dossier reading column, re-derived on a light ground and with the size step Linear itself applies at 375 px carried to every width.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "F1 shows the mechanism working; F2 shows the desktop version failing mid-page, which a dossier entered from a search result or an anchor cannot afford — and shows Linear's own 375 px layout supplying exactly the missing differentiator, a visible size step between group and member heading. Everything seen is a dark-ground grey ladder.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "htmlAttributes",
+        "prefersColorScheme"
+      ]
+    },
+    {
+      "id": "F28",
+      "topic": "borrow",
+      "claim": "Borrow 'absence renders nothing and the layout closes over it' as a demonstrated pattern for the dossier.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "The one-sided pager draws only the slot it has, with no disabled control and no placeholder, at desktop (content-1440-tile-05) and at 375 px (content-375-scroll-90).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "borrow",
+      "claim": "Borrow the label-value contents list for the browse surface's grouped lists and for a dossier section index.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Title left, ordinal right, small bright uppercase group label, dotted rule per group, nothing boxed — eleven items readable at a glance without a table being drawn.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "avoid",
+      "claim": "Avoid the density: borrow the spacing ratios, not the absolute emptiness.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "A measured roughly 165 words per 900 px screen (about 950 words of visible text over a 5,104 px page); the recorded textToHtmlRatio of 0.0119 is a Phase 1 DOM figure, not a visual observation, and the 8.3 percent corpus target it is compared against is carried from the Phase 1 corpus baseline and is not observable in any capture.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio"
+      ]
+    },
+    {
+      "id": "F31",
+      "topic": "avoid",
+      "claim": "Avoid the single repeating unit — it is exactly the page shape the uniqueness constraint forbids.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "Twenty identical heading-plus-paragraph blocks under two group headings; page shape carries no information about what data exists. RNAWiki's shape must be produced by which data exists, not by a fixed rhythm.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F32",
+      "topic": "avoid",
+      "claim": "Avoid a translucent fixed header over reading matter; make any dossier header opaque.",
+      "captures": [
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Ghost text from the paragraph beneath is visible inside the header band at scroll depth, a legibility cost with no benefit.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F33",
+      "topic": "avoid",
+      "claim": "Avoid the decorative diagram; every graphic on a medicine page must carry a stated fact.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "An unlabelled full-screen graphic that can be cropped by a 375 px viewport without losing anything.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F34",
+      "topic": "avoid",
+      "claim": "Avoid a commercial control as the brightest object on a reading page, and never on the home page, where the search bar is frozen as the single primary action.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "On content-375-scroll-50 the sign-up pill is the highest-contrast element on a scrolled mobile reading screen because nothing else is filled. It does not outweigh the index headline (index-375-tile-01), so the objection is about reading screens, not about mobile generally.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "avoid",
+      "claim": "Avoid dark by default; no reader choice is recorded here, though the evidence cannot show that none exists.",
+      "captures": [
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "The page ships data-theme='dark' and prefersColorScheme.found is false, but 45 of 83 stylesheets were unreadable and the mobile menu is never opened, so this is an absence of recorded evidence rather than proof. Light default is already decided for RNAWiki independently.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "htmlAttributes",
+        "prefersColorScheme"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "hierarchy",
+      "claim": "The mobile layout fixes the desktop hierarchy defect: at 375 px the group heading is given a visible size step over its member headings, so the level survives a mid-page entry.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "On content-375-tile-01 the h2 'Principles' is about 30 percent taller than the h3 'Build for the creators' directly below it; on content-1440-tile-01 the same pair is the same size, with the member heading if anything a hair larger. The narrow column forced the differentiator that the wide one leaves to whitespace. For an RNAWiki dossier, whose reader arrives at an anchor as often as at the top, the 375 px treatment is the one to copy at every width.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The ordinal column is set in a monospaced face and right-aligned, so a numeric column reads as a column with no rule, no header and no fill — and it survives 375 px unchanged.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "On index-1440-tile-02 the decimals 1.1, 2.1-2.4 sit flush right in a monospaced face with the digits and points aligning down the page against proportional sans titles on the left; on index-375-full the same rows keep title-left / ordinal-right in a 375 px viewport with no horizontal overflow and no collapse to a stacked card. This is the treatment for a browse row carrying a count, a year or a programme number, and for a dossier section index.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V3",
+      "topic": "long-scroll",
+      "claim": "The forward link states the destination's position before its name: the card puts the ordinal '2.1' above 'Set the product direction'.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "In content-1440-tile-05 and content-375-scroll-90 the bordered card carries a small dim '2.1' with a chevron on its first line and the destination title, brighter, on the second. The reader learns where the link sits in the whole before learning what it is called — the same information a dossier cross-link to a sibling programme needs to carry, and something a bare 'Next' cannot.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "addedBy": "verifier"
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Compound dossier — reading column (secondary, under smashingmagazine.com)"
+    ],
+    "verdict": "strengthens",
+    "argument": "Every element of the Phase 2 justification is visible in the captures: heading hierarchy carried by an asymmetric gap plus a tonal and weight step rather than mainly by size (F1, F12), a fixed centred measure with roughly 376 px of unused margin each side (F11), and a long reading surface on which nothing but headings and sentences appear (F20). For the assigned job — letting a revealed technical block sit under plain prose without shouting — this is the right secondary reference. Three qualifications. First, narrow it: the site has no table, list, field, label-value pair or image on the reading page (F9, F18, F23), so its influence must stop at prose rhythm and must not reach the structured data blocks (Stripe governs those correctly) or evidence-tier presentation. Second, F2 shows the group/member heading distinction collapsing at 1440 when the page is entered mid-scroll, which a dossier reached by anchor or search result cannot afford — but the fix is in the same site: at 375 px Linear gives the group heading a real size step (V1), and that is the version to borrow at every width. Third, an addition and a closure: the /method index is a better grouped-contents pattern (F4, F10, V2) than anything Phase 2 currently holds for a contents list and is worth considering for the browse/filter surface's grouped rows and for a dossier section index — but it does NOT resolve the unassigned 'contents rail and previews' item, because only three fixed elements exist and none is a rail (F14), no table of contents is present in the markup, and no hover preview is evidenced. The stopping rule on that surface stands. Nothing here supports assigning Linear the global search overlay: the page records zero search affordances, zero copy controls and no keyboard-shortcut text (F26); Vercel keeps it. The viewer's density figure has been removed: its 'roughly 60 words per 900 px screen' is contradicted by content-1440-tile-02, which holds five heading-plus-paragraph units and about 165 words."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Hierarchy by asymmetric space plus a tonal and weight step, for the dossier reading column — re-derived on a light ground, and carrying the visible group/member size step that Linear applies only at 375 px to every width, so the level survives a mid-page entry (content-1440-tile-01.png, content-1440-tile-02.png, content-375-tile-01.png)",
+      "Absence renders nothing and the layout closes over it, demonstrated by the one-sided end-of-chapter pager (content-1440-tile-05.png, content-375-scroll-90.png)",
+      "Contents as label-value rows — title left, monospaced ordinal right, small uppercase group label, dotted rules between groups, nothing boxed — holding their shape at 375 px, for browse/filter grouped lists and a dossier section index (index-1440-tile-02.png, index-375-full.png)",
+      "End the page when the text ends: one forward link that names the destination's ordinal before its title, then the footer, no closing pitch or related grid (content-1440-tile-05.png)"
+    ],
+    "avoid": [
+      "The absolute emptiness — a measured roughly 165 words per 900 px screen; borrow the spacing ratios, not the density (content-1440-full.png, content-1440-tile-02.png)",
+      "The single repeating heading-plus-paragraph unit, twenty times over — the exact page shape the uniqueness constraint forbids (content-1440-full.png, content-1440-tile-04.png)",
+      "A translucent fixed header over reading matter; ghost text is visible under the band at depth (content-1440-scroll-90.png)",
+      "A decorative unlabelled graphic that can be cropped without loss (index-1440-full.png, index-375-full.png)",
+      "A commercial control as the brightest object on a scrolled reading screen, and anything of that weight near the frozen home search bar (content-375-scroll-50.png)",
+      "Dark by default with no reader choice recorded, noting that the capture set cannot prove none exists (content-1440-scroll-00.png)"
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [
+    "manifest bannerActions records 'banner stands in the captures' for index-1440, index-375, content-1440 and content-375, but no banner or overlay is visible in any image viewed by either the viewer or the verifier; the element named (footer.Jmh1Wq_footer with controls Intake/Plan/AI/Build/Pricing/Security) is the ordinary site footer, visible as the Product column in index-1440-tile-03.png and content-1440-tile-06.png. Nothing in these captures should be discounted as banner overlay."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "verifier": "independent",
+    "confirmed": 16,
+    "qualified": 18,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "F8 refuted and removed: it claimed roughly 60 words per 900 px screen and 'one screen holds two heading-plus-paragraph units', but its own cited capture content-1440-tile-02 holds five such units and about 165 words. The corrected measurement is carried in F30 and in the avoid list.",
+      "F2 qualified and materially changed: the group/member collapse is a 1440-only defect. content-375-tile-01 shows the h2 about 30 percent taller than the h3 beneath it, so Linear itself supplies the extra differentiator at narrow widths. This changes the borrow instruction (F27, B1) from 'add a differentiator Linear does not have' to 'carry Linear's own 375 px size step to every width'.",
+      "F16, F17, F22 and F28 cited content-1440-tile-06 for the end-of-chapter card. The card is not in tile-06, which shows only the empty band, the hairline and the footer; it is in content-1440-tile-05 and content-1440-scroll-90. Citations corrected.",
+      "F1 qualified: headings are not size-neutral. Measured on content-1440-tile-01 the heading runs about 1.25x body cap-height and is semibold against regular, so weight and tone lead but a real size step is present.",
+      "F9 and F31 qualified: twenty h3 sections, not twenty-two. The viewer counted the two h2 group headings as sections. The 'no exceptions' part holds across tiles 01-05.",
+      "F7, F21 and F34 qualified: the sign-up pill is the highest-contrast object on a scrolled mobile reading screen (content-375-scroll-50) but not on the index first screen, where the two-line serif headline plainly outweighs it (index-375-tile-01). The 'eye lands on a commercial control at 375' claim was overstated.",
+      "F17 qualified on count: the footer is roughly three dozen links (33 plus four legal) in five heading columns plus a logo column, not 42 links in six columns.",
+      "F4 qualified: dotted rules separate groups rather than closing each one — two rules for three groups, none under the final group.",
+      "F13 qualified: the index is mostly empty ground above the hairline, but the footer occupies roughly the bottom 1,080 px of the 2,701 px page and is the densest block on it.",
+      "F20 qualified: 'two type sizes' is wrong; the reading page carries at least four plus a smaller breadcrumb and card ordinal. The deference conclusion is unaffected.",
+      "F26 and F35 qualified: prefersColorScheme.found is false with 45 of 83 stylesheets unreadable, and the 375 px hamburger is never opened in any capture, so the absence of a reader theme choice is unrecorded rather than proven.",
+      "F30 qualified: the 0.0119 ratio is a Phase 1 DOM figure and the 8.3 percent corpus target is a Phase 1 corpus figure; neither is a visual observation, and both are now labelled as such.",
+      "F24 confirmed independently: no banner or overlay is present in any of the eleven-plus captures examined, and footer.Jmh1Wq_footer is plainly the site footer. Nothing in this set should be discounted as banner overlay.",
+      "F15 confirmed by eye: ghost text from the paragraph beneath is legible inside the header band in both content-1440-scroll-50 and content-1440-scroll-90, and absent at scroll-00.",
+      "F3 confirmed after checking the one candidate counter-example: the italicised 'n-week' in the h3 on content-1440-tile-03 is an italic sans, not a third serif use.",
+      "Added V1 (the 375 px group-heading size step), V2 (monospaced right-aligned ordinal column, unchanged at 375 px) and V3 (the forward link carrying the destination's ordinal above its title)."
+    ]
+  }
+}

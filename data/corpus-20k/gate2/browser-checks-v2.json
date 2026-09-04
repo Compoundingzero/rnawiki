@@ -1,0 +1,2162 @@
+{
+ "base": "http://localhost:3111",
+ "samples": {
+  "metformin": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Metformin"
+     },
+     {
+      "level": 2,
+      "text": "Why does Metformin carry a supervision requirement?"
+     },
+     {
+      "level": 3,
+      "text": "CA"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "What did Metformin's largest trial (1499650 people) and its longest (26 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From yeast to human: where has Metformin shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "The NIA ITP gave Metformin at 1000 ppm and Met: 1000, Rapa: 14 from 9 months — did both se"
+     },
+     {
+      "level": 3,
+      "text": "ITP cohort"
+     },
+     {
+      "level": 2,
+      "text": "173 of Metformin's trials stopped: safety, futility/efficacy, accrual/recruitment, funding"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Mouse studies of Metformin used 1000 ppm — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "mouse"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Did Metformin move epigenetic age, and by how much?"
+     },
+     {
+      "level": 3,
+      "text": "Hannum"
+     },
+     {
+      "level": 2,
+      "text": "Metformin's half-life is approximately 6.2 hours — which schedules were studied?"
+     },
+     {
+      "level": 2,
+      "text": "Which of 24 hour blood glucose levels, a1c at month 6 and a1c at week 24 did Metformin's t"
+     },
+     {
+      "level": 2,
+      "text": "Which of Metformin's 191 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Metformin could settle insulin sensitivity?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 559 trials of Metformin posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Metformin's trials enrolled 72.5 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 28218 spontaneous reports say about Metformin — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Was Metformin studied with fasting and exercise?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Metformin and sirtuin?"
+     },
+     {
+      "level": 3,
+      "text": "AMPK"
+     },
+     {
+      "level": 3,
+      "text": "NAD+"
+     },
+     {
+      "level": 3,
+      "text": "sirtuin"
+     },
+     {
+      "level": 2,
+      "text": "How did Metformin get from 1996 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 51,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 490,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 9129,
+    "outerHtmlLength": 241983,
+    "liveTextToHtml": 0.038,
+    "focusTargets": {
+     "details": 18,
+     "railLinks": 60,
+     "anchors": 10
+    },
+    "blocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "kinetics",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "kinetics",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 85,
+     "railLinks": 139,
+     "anchors": 50,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Metformin"
+     },
+     {
+      "level": 2,
+      "text": "Why does Metformin carry a supervision requirement?"
+     },
+     {
+      "level": 3,
+      "text": "CA"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "What did Metformin's largest trial (1499650 people) and its longest (26 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From yeast to human: where has Metformin shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "The NIA ITP gave Metformin at 1000 ppm and Met: 1000, Rapa: 14 from 9 months — did both se"
+     },
+     {
+      "level": 3,
+      "text": "ITP cohort"
+     },
+     {
+      "level": 2,
+      "text": "173 of Metformin's trials stopped: safety, futility/efficacy, accrual/recruitment, funding"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Mouse studies of Metformin used 1000 ppm — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "mouse"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Did Metformin move epigenetic age, and by how much?"
+     },
+     {
+      "level": 3,
+      "text": "Hannum"
+     },
+     {
+      "level": 2,
+      "text": "Metformin's half-life is approximately 6.2 hours — which schedules were studied?"
+     },
+     {
+      "level": 2,
+      "text": "Which of 24 hour blood glucose levels, a1c at month 6 and a1c at week 24 did Metformin's t"
+     },
+     {
+      "level": 2,
+      "text": "Which of Metformin's 191 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Metformin could settle insulin sensitivity?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 559 trials of Metformin posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Metformin's trials enrolled 72.5 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 28218 spontaneous reports say about Metformin — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Was Metformin studied with fasting and exercise?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Metformin and sirtuin?"
+     },
+     {
+      "level": 3,
+      "text": "AMPK"
+     },
+     {
+      "level": 3,
+      "text": "NAD+"
+     },
+     {
+      "level": 3,
+      "text": "sirtuin"
+     },
+     {
+      "level": 2,
+      "text": "How did Metformin get from 1996 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 51,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 490,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 7859,
+    "outerHtmlLength": 241809,
+    "liveTextToHtml": 0.033,
+    "focusTargets": {
+     "details": 18,
+     "railLinks": 60,
+     "anchors": 10
+    },
+    "blocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "kinetics",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "kinetics",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 136,
+     "railLinks": 0,
+     "anchors": 77,
+     "noRing": []
+    }
+   }
+  },
+  "cysteamine": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Mercaptamine"
+     },
+     {
+      "level": 2,
+      "text": "What did Mercaptamine's largest trial (20000 people) and its longest (27 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From C. elegans to human: where has Mercaptamine shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "3 of Mercaptamine's trials stopped: futility/efficacy, accrual/recruitment, funding/busine"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Mercaptamine used Cystagon 150mg capsules — over how long?"
+     },
+     {
+      "level": 2,
+      "text": "Could one person measure Mercaptamine's effect on serious and non serious adverse events?"
+     },
+     {
+      "level": 3,
+      "text": "biomarkers"
+     },
+     {
+      "level": 2,
+      "text": "Which of all cause mortality, days alive and not receiving organ support in icu and elimin"
+     },
+     {
+      "level": 2,
+      "text": "Which of Mercaptamine's 3 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Mercaptamine could settle lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "Which 7 trials of Mercaptamine posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Mercaptamine's trials enrolled 33.5 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 110 spontaneous reports say about Mercaptamine — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Mercaptamine and CYP1A2, CYP2A6 and CYP2B6: shared by which compounds?"
+     },
+     {
+      "level": 2,
+      "text": "Was Mercaptamine studied with fasting?"
+     },
+     {
+      "level": 2,
+      "text": "How did Mercaptamine get from 1979 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 42,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 195,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 7038,
+    "outerHtmlLength": 128694,
+    "liveTextToHtml": 0.055,
+    "focusTargets": {
+     "details": 15,
+     "railLinks": 36,
+     "anchors": 7
+    },
+    "blocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 98,
+     "railLinks": 118,
+     "anchors": 49,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Mercaptamine"
+     },
+     {
+      "level": 2,
+      "text": "What did Mercaptamine's largest trial (20000 people) and its longest (27 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From C. elegans to human: where has Mercaptamine shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "3 of Mercaptamine's trials stopped: futility/efficacy, accrual/recruitment, funding/busine"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Mercaptamine used Cystagon 150mg capsules — over how long?"
+     },
+     {
+      "level": 2,
+      "text": "Could one person measure Mercaptamine's effect on serious and non serious adverse events?"
+     },
+     {
+      "level": 3,
+      "text": "biomarkers"
+     },
+     {
+      "level": 2,
+      "text": "Which of all cause mortality, days alive and not receiving organ support in icu and elimin"
+     },
+     {
+      "level": 2,
+      "text": "Which of Mercaptamine's 3 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Mercaptamine could settle lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "Which 7 trials of Mercaptamine posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Mercaptamine's trials enrolled 33.5 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 110 spontaneous reports say about Mercaptamine — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Mercaptamine and CYP1A2, CYP2A6 and CYP2B6: shared by which compounds?"
+     },
+     {
+      "level": 2,
+      "text": "Was Mercaptamine studied with fasting?"
+     },
+     {
+      "level": 2,
+      "text": "How did Mercaptamine get from 1979 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 42,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 195,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 5980,
+    "outerHtmlLength": 128772,
+    "liveTextToHtml": 0.046,
+    "focusTargets": {
+     "details": 15,
+     "railLinks": 36,
+     "anchors": 7
+    },
+    "blocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 145,
+     "railLinks": 0,
+     "anchors": 69,
+     "noRing": []
+    }
+   }
+  },
+  "amlodipine": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Amlodipine"
+     },
+     {
+      "level": 2,
+      "text": "What did Amlodipine's largest trial (68500 people) and its longest (14 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From mouse to human: where has Amlodipine shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "26 of Amlodipine's trials stopped: safety, futility/efficacy, accrual/recruitment, funding"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Amlodipine used Amlodipine 10 mg — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Amlodipine's half-life is about 30 to 50 hours — which schedules were studied?"
+     },
+     {
+      "level": 2,
+      "text": "Could one person measure Amlodipine's effect on blood pressure?"
+     },
+     {
+      "level": 3,
+      "text": "biomarkers"
+     },
+     {
+      "level": 2,
+      "text": "Which of 50 reduction in uae from the baseline, achieving blood pressure goals and all cau"
+     },
+     {
+      "level": 2,
+      "text": "Which of Amlodipine's 18 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 131 trials of Amlodipine posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Amlodipine's trials enrolled 128 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 14961 spontaneous reports say about Amlodipine — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Amlodipine and CYP3A5: shared by which compounds?"
+     },
+     {
+      "level": 3,
+      "text": "CYP3A5"
+     },
+     {
+      "level": 2,
+      "text": "Was Amlodipine studied with fasting?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Amlodipine and autophagy?"
+     },
+     {
+      "level": 3,
+      "text": "autophagy"
+     },
+     {
+      "level": 2,
+      "text": "Drug, supplement or controlled: what is Amlodipine in US, EU and CA?"
+     },
+     {
+      "level": 2,
+      "text": "How did Amlodipine get from 1985 to withdrawn?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 49,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 385,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 8124,
+    "outerHtmlLength": 195368,
+    "liveTextToHtml": 0.042,
+    "focusTargets": {
+     "details": 17,
+     "railLinks": 46,
+     "anchors": 9
+    },
+    "blocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "kinetics",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "jurisdiction",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "kinetics",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "jurisdiction",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 96,
+     "railLinks": 115,
+     "anchors": 54,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Amlodipine"
+     },
+     {
+      "level": 2,
+      "text": "What did Amlodipine's largest trial (68500 people) and its longest (14 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From mouse to human: where has Amlodipine shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "26 of Amlodipine's trials stopped: safety, futility/efficacy, accrual/recruitment, funding"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Amlodipine used Amlodipine 10 mg — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Amlodipine's half-life is about 30 to 50 hours — which schedules were studied?"
+     },
+     {
+      "level": 2,
+      "text": "Could one person measure Amlodipine's effect on blood pressure?"
+     },
+     {
+      "level": 3,
+      "text": "biomarkers"
+     },
+     {
+      "level": 2,
+      "text": "Which of 50 reduction in uae from the baseline, achieving blood pressure goals and all cau"
+     },
+     {
+      "level": 2,
+      "text": "Which of Amlodipine's 18 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 131 trials of Amlodipine posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Amlodipine's trials enrolled 128 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 14961 spontaneous reports say about Amlodipine — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Amlodipine and CYP3A5: shared by which compounds?"
+     },
+     {
+      "level": 3,
+      "text": "CYP3A5"
+     },
+     {
+      "level": 2,
+      "text": "Was Amlodipine studied with fasting?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Amlodipine and autophagy?"
+     },
+     {
+      "level": 3,
+      "text": "autophagy"
+     },
+     {
+      "level": 2,
+      "text": "Drug, supplement or controlled: what is Amlodipine in US, EU and CA?"
+     },
+     {
+      "level": 2,
+      "text": "How did Amlodipine get from 1985 to withdrawn?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 49,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 385,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 6942,
+    "outerHtmlLength": 195450,
+    "liveTextToHtml": 0.036,
+    "focusTargets": {
+     "details": 17,
+     "railLinks": 46,
+     "anchors": 9
+    },
+    "blocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "kinetics",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "jurisdiction",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "human-data",
+     "ladder",
+     "stopped",
+     "dose-studied",
+     "kinetics",
+     "n-of-1",
+     "biomarkers",
+     "ongoing",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "jurisdiction",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 136,
+     "railLinks": 0,
+     "anchors": 72,
+     "noRing": []
+    }
+   }
+  },
+  "sirolimus": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Sirolimus"
+     },
+     {
+      "level": 2,
+      "text": "Why does Sirolimus carry a supervision requirement?"
+     },
+     {
+      "level": 3,
+      "text": "CA"
+     },
+     {
+      "level": 3,
+      "text": "EU"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "What did Sirolimus's largest trial (1209 people) and its longest (30 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From C. elegans to human: where has Sirolimus shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "The NIA ITP gave Sirolimus at 14 ppm, 42 ppm, 4.7 ppm, Met: 1000, Rapa: 14 and Rapa: 14.7 "
+     },
+     {
+      "level": 3,
+      "text": "ITP cohort"
+     },
+     {
+      "level": 2,
+      "text": "78 of Sirolimus's trials stopped: safety, futility/efficacy, accrual/recruitment, funding/"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Mouse studies of Sirolimus used 14 ppm — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "mouse"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Did Sirolimus move PhenoAge, and by how much?"
+     },
+     {
+      "level": 2,
+      "text": "More Sirolimus was worse in human: at what point?"
+     },
+     {
+      "level": 3,
+      "text": "hormetic"
+     },
+     {
+      "level": 2,
+      "text": "Which of 6 month overall survival, acute rejection at 6 months and acute rejections in all"
+     },
+     {
+      "level": 2,
+      "text": "Which of Sirolimus's 115 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Sirolimus could settle vo2max?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 148 trials of Sirolimus posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Sirolimus's trials enrolled 37 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 10746 spontaneous reports say about Sirolimus — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Sirolimus and CYP3A4 and P-GP: shared by which compounds?"
+     },
+     {
+      "level": 3,
+      "text": "CYP3A4"
+     },
+     {
+      "level": 2,
+      "text": "Was Sirolimus studied with exercise?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Sirolimus and mTOR?"
+     },
+     {
+      "level": 3,
+      "text": "mTOR"
+     },
+     {
+      "level": 2,
+      "text": "How did Sirolimus get from 1989 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 55,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 502,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 9988,
+    "outerHtmlLength": 254708,
+    "liveTextToHtml": 0.039,
+    "focusTargets": {
+     "details": 19,
+     "railLinks": 62,
+     "anchors": 11
+    },
+    "blocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "dose-shape",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "dose-shape",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 90,
+     "railLinks": 135,
+     "anchors": 55,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Sirolimus"
+     },
+     {
+      "level": 2,
+      "text": "Why does Sirolimus carry a supervision requirement?"
+     },
+     {
+      "level": 3,
+      "text": "CA"
+     },
+     {
+      "level": 3,
+      "text": "EU"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "What did Sirolimus's largest trial (1209 people) and its longest (30 years) measure?"
+     },
+     {
+      "level": 2,
+      "text": "From C. elegans to human: where has Sirolimus shown lifespan?"
+     },
+     {
+      "level": 2,
+      "text": "The NIA ITP gave Sirolimus at 14 ppm, 42 ppm, 4.7 ppm, Met: 1000, Rapa: 14 and Rapa: 14.7 "
+     },
+     {
+      "level": 3,
+      "text": "ITP cohort"
+     },
+     {
+      "level": 2,
+      "text": "78 of Sirolimus's trials stopped: safety, futility/efficacy, accrual/recruitment, funding/"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Mouse studies of Sirolimus used 14 ppm — over how long?"
+     },
+     {
+      "level": 3,
+      "text": "mouse"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Did Sirolimus move PhenoAge, and by how much?"
+     },
+     {
+      "level": 2,
+      "text": "More Sirolimus was worse in human: at what point?"
+     },
+     {
+      "level": 3,
+      "text": "hormetic"
+     },
+     {
+      "level": 2,
+      "text": "Which of 6 month overall survival, acute rejection at 6 months and acute rejections in all"
+     },
+     {
+      "level": 2,
+      "text": "Which of Sirolimus's 115 ongoing trials reports first?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Sirolimus could settle vo2max?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Which 148 trials of Sirolimus posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Sirolimus's trials enrolled 37 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What do 10746 spontaneous reports say about Sirolimus — and not say?"
+     },
+     {
+      "level": 2,
+      "text": "Sirolimus and CYP3A4 and P-GP: shared by which compounds?"
+     },
+     {
+      "level": 3,
+      "text": "CYP3A4"
+     },
+     {
+      "level": 2,
+      "text": "Was Sirolimus studied with exercise?"
+     },
+     {
+      "level": 2,
+      "text": "What is recorded about Sirolimus and mTOR?"
+     },
+     {
+      "level": 3,
+      "text": "mTOR"
+     },
+     {
+      "level": 2,
+      "text": "How did Sirolimus get from 1989 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 55,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 502,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 8650,
+    "outerHtmlLength": 254874,
+    "liveTextToHtml": 0.034,
+    "focusTargets": {
+     "details": 19,
+     "railLinks": 62,
+     "anchors": 11
+    },
+    "blocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "dose-shape",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "supervision",
+     "human-data",
+     "ladder",
+     "itp",
+     "stopped",
+     "dose-studied",
+     "clocks",
+     "dose-shape",
+     "biomarkers",
+     "ongoing",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "faers",
+     "interactions",
+     "fasting-exercise",
+     "pathway",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 138,
+     "railLinks": 0,
+     "anchors": 81,
+     "noRing": []
+    }
+   }
+  },
+  "carbidopa-levodopa": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Carbidopa, Levodopa"
+     },
+     {
+      "level": 2,
+      "text": "29 registered trials of Carbidopa, Levodopa — at which phases?"
+     },
+     {
+      "level": 2,
+      "text": "7 of Carbidopa, Levodopa's trials stopped: accrual/recruitment, funding/business, sponsor "
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Carbidopa, Levodopa used Carbidopa-Levodopa, 25 Mg-100 Mg Oral Tablet — o"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Carbidopa, Levodopa could settle function?"
+     },
+     {
+      "level": 2,
+      "text": "Which 7 trials of Carbidopa, Levodopa posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Carbidopa, Levodopa's trials enrolled 19 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "Where is Carbidopa, Levodopa approved?"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "How did Carbidopa, Levodopa get from 1975 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 24,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 88,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 4121,
+    "outerHtmlLength": 77702,
+    "liveTextToHtml": 0.053,
+    "focusTargets": {
+     "details": 8,
+     "railLinks": 24,
+     "anchors": 3
+    },
+    "blocks": [
+     "trial-history",
+     "stopped",
+     "dose-studied",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "regulatory-only",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "trial-history",
+     "stopped",
+     "dose-studied",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "regulatory-only",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 70,
+     "railLinks": 115,
+     "anchors": 30,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "Carbidopa, Levodopa"
+     },
+     {
+      "level": 2,
+      "text": "29 registered trials of Carbidopa, Levodopa — at which phases?"
+     },
+     {
+      "level": 2,
+      "text": "7 of Carbidopa, Levodopa's trials stopped: accrual/recruitment, funding/business, sponsor "
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "Human studies of Carbidopa, Levodopa used Carbidopa-Levodopa, 25 Mg-100 Mg Oral Tablet — o"
+     },
+     {
+      "level": 3,
+      "text": "human"
+     },
+     {
+      "level": 2,
+      "text": "Which running trial of Carbidopa, Levodopa could settle function?"
+     },
+     {
+      "level": 2,
+      "text": "Which 7 trials of Carbidopa, Levodopa posted no result?"
+     },
+     {
+      "level": 3,
+      "text": "Trial"
+     },
+     {
+      "level": 2,
+      "text": "At the median, Carbidopa, Levodopa's trials enrolled 19 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "Where is Carbidopa, Levodopa approved?"
+     },
+     {
+      "level": 3,
+      "text": "US"
+     },
+     {
+      "level": 2,
+      "text": "How did Carbidopa, Levodopa get from 1975 to approved?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Relations"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 24,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 88,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 3525,
+    "outerHtmlLength": 77560,
+    "liveTextToHtml": 0.045,
+    "focusTargets": {
+     "details": 8,
+     "railLinks": 24,
+     "anchors": 3
+    },
+    "blocks": [
+     "trial-history",
+     "stopped",
+     "dose-studied",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "regulatory-only",
+     "provenance"
+    ],
+    "questionBlocks": [
+     "trial-history",
+     "stopped",
+     "dose-studied",
+     "what-would-settle",
+     "unreported",
+     "trial-size",
+     "regulatory-only",
+     "provenance"
+    ],
+    "keyboard": {
+     "details": 109,
+     "railLinks": 0,
+     "anchors": 41,
+     "noRing": []
+    }
+   }
+  },
+  "cdx-3379": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "CDX-3379"
+     },
+     {
+      "level": 2,
+      "text": "What classification does CDX-3379 carry?"
+     },
+     {
+      "level": 2,
+      "text": "At the median, CDX-3379's trials enrolled 3 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What became of the other 12 compounds aimed at ERBB3?"
+     },
+     {
+      "level": 2,
+      "text": "CDX-3379 on ERBB3: which action is recorded?"
+     },
+     {
+      "level": 2,
+      "text": "Who carried CDX-3379 to phase 2?"
+     },
+     {
+      "level": 2,
+      "text": "Development of CDX-3379 stopped at phase 2 — why?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 18,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 65,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": false,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 2690,
+    "outerHtmlLength": 57719,
+    "liveTextToHtml": 0.047,
+    "focusTargets": {
+     "details": 6,
+     "railLinks": 12,
+     "anchors": 5
+    },
+    "blocks": [
+     "classification",
+     "trial-size",
+     "lineage",
+     "mechanism-action",
+     "sponsor-phase",
+     "development-stop"
+    ],
+    "questionBlocks": [
+     "classification",
+     "trial-size",
+     "lineage",
+     "mechanism-action",
+     "sponsor-phase",
+     "development-stop"
+    ],
+    "keyboard": {
+     "details": 65,
+     "railLinks": 72,
+     "anchors": 65,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "CDX-3379"
+     },
+     {
+      "level": 2,
+      "text": "What classification does CDX-3379 carry?"
+     },
+     {
+      "level": 2,
+      "text": "At the median, CDX-3379's trials enrolled 3 people — anything larger?"
+     },
+     {
+      "level": 2,
+      "text": "What became of the other 12 compounds aimed at ERBB3?"
+     },
+     {
+      "level": 2,
+      "text": "CDX-3379 on ERBB3: which action is recorded?"
+     },
+     {
+      "level": 2,
+      "text": "Who carried CDX-3379 to phase 2?"
+     },
+     {
+      "level": 2,
+      "text": "Development of CDX-3379 stopped at phase 2 — why?"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 18,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 65,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": true,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 2389,
+    "outerHtmlLength": 57730,
+    "liveTextToHtml": 0.041,
+    "focusTargets": {
+     "details": 6,
+     "railLinks": 12,
+     "anchors": 5
+    },
+    "blocks": [
+     "classification",
+     "trial-size",
+     "lineage",
+     "mechanism-action",
+     "sponsor-phase",
+     "development-stop"
+    ],
+    "questionBlocks": [
+     "classification",
+     "trial-size",
+     "lineage",
+     "mechanism-action",
+     "sponsor-phase",
+     "development-stop"
+    ],
+    "keyboard": {
+     "details": 90,
+     "railLinks": 0,
+     "anchors": 75,
+     "noRing": []
+    }
+   }
+  },
+  "1-2-distearoyl-sn-glycero-3-phosphocholine": {
+   "desktop": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "1,2-Distearoyl-Sn-Glycero-3-Phosphocholine"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 1,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 20,
+     "greyUnder45": []
+    },
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": null,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 948,
+    "outerHtmlLength": 28621,
+    "liveTextToHtml": 0.033,
+    "focusTargets": {
+     "details": 1,
+     "railLinks": 0,
+     "anchors": 0
+    },
+    "blocks": [],
+    "questionBlocks": [],
+    "keyboard": {
+     "details": 27,
+     "railLinks": 0,
+     "anchors": 0,
+     "noRing": []
+    }
+   },
+   "w320": {
+    "headings": [
+     {
+      "level": 1,
+      "text": "1,2-Distearoyl-Sn-Glycero-3-Phosphocholine"
+     },
+     {
+      "level": 2,
+      "text": "The exact record"
+     },
+     {
+      "level": 2,
+      "text": "Sources"
+     }
+    ],
+    "h1Count": 1,
+    "headingOrderOk": true,
+    "headingProblems": [],
+    "contrast": {
+     "bodyMin": 16.145,
+     "bodyMeasured": 1,
+     "bodyUnder7": [],
+     "greyMin": 4.865,
+     "greyMeasured": 20,
+     "greyUnder45": []
+    },
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "horizontalOverflow": false,
+    "overflowing": [],
+    "badgeInFlow": null,
+    "emptyElements": [],
+    "placeholderHits": [],
+    "innerTextLength": 940,
+    "outerHtmlLength": 28526,
+    "liveTextToHtml": 0.033,
+    "focusTargets": {
+     "details": 1,
+     "railLinks": 0,
+     "anchors": 0
+    },
+    "blocks": [],
+    "questionBlocks": [],
+    "keyboard": {
+     "details": 27,
+     "railLinks": 0,
+     "anchors": 0,
+     "noRing": []
+    }
+   }
+  }
+ },
+ "homeSearchBar": {
+  "measured": {
+   "320": {
+    "bar": {
+     "x": 16,
+     "y": 292.25,
+     "width": 288,
+     "height": 52
+    },
+    "input": {
+     "x": 64,
+     "y": 302.25,
+     "width": 133.89,
+     "height": 32
+    },
+    "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+   },
+   "375": {
+    "bar": {
+     "x": 16,
+     "y": 269.5,
+     "width": 343,
+     "height": 52
+    },
+    "input": {
+     "x": 64,
+     "y": 279.5,
+     "width": 188.89,
+     "height": 32
+    },
+    "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+   },
+   "1440": {
+    "bar": {
+     "x": 456,
+     "y": 369,
+     "width": 528,
+     "height": 60
+    },
+    "input": {
+     "x": 498,
+     "y": 381,
+     "width": 371.77,
+     "height": 36
+    },
+    "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+   }
+  },
+  "baseline": {
+   "320": {
+    "bar": {
+     "x": 16,
+     "y": 292.25,
+     "width": 288,
+     "height": 52
+    },
+    "input": {
+     "x": 64,
+     "y": 302.25,
+     "width": 133.89,
+     "height": 32
+    }
+   },
+   "375": {
+    "bar": {
+     "x": 16,
+     "y": 269.5,
+     "width": 343,
+     "height": 52
+    },
+    "input": {
+     "x": 64,
+     "y": 279.5,
+     "width": 188.89,
+     "height": 32
+    }
+   },
+   "1440": {
+    "bar": {
+     "x": 456,
+     "y": 369,
+     "width": 528,
+     "height": 60
+    },
+    "input": {
+     "x": 498,
+     "y": 381,
+     "width": 371.77,
+     "height": 36
+    }
+   }
+  },
+  "domPathBaseline": "body>div[3]>main>div>section>div[1]>div>input[1]",
+  "tolerance": 0.5
+ }
+}

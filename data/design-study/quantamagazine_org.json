@@ -1,0 +1,1555 @@
+{
+  "site": "quantamagazine.org",
+  "fetchedAt": "2026-09-03T09:35:10Z",
+  "pages": [
+    {
+      "url": "https://www.quantamagazine.org/",
+      "file": "raw/quantamagazine_org/home.html",
+      "status": "fetched",
+      "httpStatus": 200,
+      "bytes": 241802,
+      "visibleTextChars": 6789,
+      "textToHtmlRatio": 0.0281
+    },
+    {
+      "url": "https://www.quantamagazine.org/biology/",
+      "file": "raw/quantamagazine_org/biology.html",
+      "status": "fetched",
+      "httpStatus": 200,
+      "bytes": 195588,
+      "visibleTextChars": 6014,
+      "textToHtmlRatio": 0.0307
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://www.quantamagazine.org/wp-content/plugins/sf-privacy-consent/css/front.min.css?ver=7.1",
+      "file": "raw/quantamagazine_org/css/sheet-1.css",
+      "bytes": 701,
+      "kind": "link"
+    },
+    {
+      "url": "https://www.quantamagazine.org/wp-content/themes/quanta2024/frontend/css/fonts.css",
+      "file": "raw/quantamagazine_org/css/sheet-2.css",
+      "bytes": 3722,
+      "kind": "link"
+    },
+    {
+      "url": "https://www.quantamagazine.org/wp-content/themes/quanta2024/frontend/dist/main.min.css?ver=1788191982",
+      "file": "raw/quantamagazine_org/css/sheet-3.css",
+      "bytes": 195623,
+      "kind": "link"
+    },
+    {
+      "url": "https://www.quantamagazine.org/wp-content/plugins/quanta-favorites/assets/css/favorites.css?ver=2.3.4",
+      "file": "raw/quantamagazine_org/css/sheet-4.css",
+      "bytes": 8189,
+      "kind": "link"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-1.css",
+      "bytes": 135,
+      "kind": "inline <style>",
+      "note": "from home.html block 1"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-2.css",
+      "bytes": 340,
+      "kind": "inline <style>",
+      "note": "from home.html block 2"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-3.css",
+      "bytes": 4306,
+      "kind": "inline <style>",
+      "note": "from home.html block 3"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-4.css",
+      "bytes": 350,
+      "kind": "inline <style>",
+      "note": "from home.html block 4"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-5.css",
+      "bytes": 194,
+      "kind": "inline <style>",
+      "note": "from home.html block 5"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-6.css",
+      "bytes": 196,
+      "kind": "inline <style>",
+      "note": "from home.html block 6"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-7.css",
+      "bytes": 1112,
+      "kind": "inline <style>",
+      "note": "from home.html block 7"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-8.css",
+      "bytes": 135,
+      "kind": "inline <style>",
+      "note": "from biology.html block 1"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-9.css",
+      "bytes": 340,
+      "kind": "inline <style>",
+      "note": "from biology.html block 2"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-10.css",
+      "bytes": 4306,
+      "kind": "inline <style>",
+      "note": "from biology.html block 3"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-11.css",
+      "bytes": 350,
+      "kind": "inline <style>",
+      "note": "from biology.html block 4"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-12.css",
+      "bytes": 194,
+      "kind": "inline <style>",
+      "note": "from biology.html block 5"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-13.css",
+      "bytes": 196,
+      "kind": "inline <style>",
+      "note": "from biology.html block 6"
+    },
+    {
+      "url": null,
+      "file": "raw/quantamagazine_org/css/inline-14.css",
+      "bytes": 1801,
+      "kind": "inline <style>",
+      "note": "from biology.html block 7"
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "value": "Pangram,Avenir,Helvetica,sans-serif",
+        "count": 19
+      },
+      {
+        "value": "'Pangram'",
+        "count": 7
+      },
+      {
+        "value": "'Merriweather'",
+        "count": 6
+      },
+      {
+        "value": "Merriweather,Georgia,serif",
+        "count": 6
+      },
+      {
+        "value": "Noe Display,Merriweather,Georgia,serif",
+        "count": 6
+      },
+      {
+        "value": "'Noe Display'",
+        "count": 4
+      },
+      {
+        "value": "sans-serif",
+        "count": 3
+      },
+      {
+        "value": "favorites",
+        "count": 3
+      },
+      {
+        "value": "monospace,monospace",
+        "count": 2
+      },
+      {
+        "value": "Georgia",
+        "count": 2
+      },
+      {
+        "value": "Pangram,Helvetica,Arial,sans-serif",
+        "count": 2
+      },
+      {
+        "value": "ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
+        "count": 1
+      },
+      {
+        "value": "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
+        "count": 1
+      },
+      {
+        "value": "inherit",
+        "count": 1
+      },
+      {
+        "value": "monospace",
+        "count": 1
+      },
+      {
+        "value": "Noe Display",
+        "count": 1
+      },
+      {
+        "value": "Pangram",
+        "count": 1
+      },
+      {
+        "value": "NoeDisplay",
+        "count": 1
+      },
+      {
+        "value": "Georgia,Helvetica,Arial,sans-serif",
+        "count": 1
+      }
+    ],
+    "fontFaces": {
+      "families": [
+        "Merriweather (serif, 300/400/700 + italics)",
+        "Pangram (sans, 100/300/400/500/600/800/900)",
+        "Noe Display (display serif, 500/600 + italics)"
+      ],
+      "faceCount": 17,
+      "source": "raw/quantamagazine_org/css/sheet-2.css",
+      "measured": true
+    },
+    "roleAssignment": {
+      "bodyProse": "Merriweather,Georgia,serif (body rule)",
+      "uiAndHeadings": "Pangram,Avenir,Helvetica,sans-serif (h1-h6 default)",
+      "articleProseHeadings": "Merriweather,Georgia,serif (.wysiwyg h1-h6 override)",
+      "displayAccent": "Noe Display,Merriweather,Georgia,serif (opt-in .noe / blurb / topic headings)",
+      "measured": true
+    },
+    "fontSizes": [
+      {
+        "value": "1rem",
+        "count": 14,
+        "unit": "rem"
+      },
+      {
+        "value": "1.375rem",
+        "count": 11,
+        "unit": "rem"
+      },
+      {
+        "value": "1.125rem",
+        "count": 9,
+        "unit": "rem"
+      },
+      {
+        "value": ".8125rem",
+        "count": 9,
+        "unit": "rem"
+      },
+      {
+        "value": ".875rem",
+        "count": 8,
+        "unit": "rem"
+      },
+      {
+        "value": "13px",
+        "count": 8,
+        "unit": "px"
+      },
+      {
+        "value": "1em",
+        "count": 7,
+        "unit": "em"
+      },
+      {
+        "value": "inherit",
+        "count": 7,
+        "unit": "other"
+      },
+      {
+        "value": ".9375rem",
+        "count": 7,
+        "unit": "rem"
+      },
+      {
+        "value": ".625rem",
+        "count": 6,
+        "unit": "rem"
+      },
+      {
+        "value": "18px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "16px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "15px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "1.0625rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "1.5625rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "2.19rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "1.25rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": ".75rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "2.5rem",
+        "count": 4,
+        "unit": "rem"
+      },
+      {
+        "value": "10px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": ".9em",
+        "count": 4,
+        "unit": "em"
+      },
+      {
+        "value": "1.75rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "2.8125rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "1.56rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "1.4rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "24px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "1.5rem",
+        "count": 3,
+        "unit": "rem"
+      },
+      {
+        "value": "14px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "2.625em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": "var(--wp--preset--font-size--normal)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": "var(--wp--preset--font-size--huge)",
+        "count": 2,
+        "unit": "var"
+      },
+      {
+        "value": "1.125em",
+        "count": 2,
+        "unit": "em"
+      },
+      {
+        "value": ".94rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "3.375rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "3.75rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "1.1875rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": ".5625rem",
+        "count": 2,
+        "unit": "rem"
+      },
+      {
+        "value": "100%",
+        "count": 2,
+        "unit": "other"
+      },
+      {
+        "value": "24.96px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "22.4px",
+        "count": 2,
+        "unit": "px"
+      }
+    ],
+    "fontSizesDistinctCount": 101,
+    "lineHeights": [
+      {
+        "value": "1.25rem",
+        "count": 8
+      },
+      {
+        "value": "1",
+        "count": 6
+      },
+      {
+        "value": "1.4",
+        "count": 6
+      },
+      {
+        "value": "inherit",
+        "count": 5
+      },
+      {
+        "value": "1.5rem",
+        "count": 4
+      },
+      {
+        "value": "0",
+        "count": 4
+      },
+      {
+        "value": "1.875rem",
+        "count": 4
+      },
+      {
+        "value": "normal",
+        "count": 3
+      },
+      {
+        "value": "1.5",
+        "count": 3
+      },
+      {
+        "value": ".875rem",
+        "count": 3
+      },
+      {
+        "value": "1rem",
+        "count": 3
+      },
+      {
+        "value": "1.125rem",
+        "count": 3
+      },
+      {
+        "value": "1.625rem",
+        "count": 3
+      },
+      {
+        "value": "1.15",
+        "count": 3
+      },
+      {
+        "value": "1.05",
+        "count": 3
+      },
+      {
+        "value": "1.3",
+        "count": 3
+      },
+      {
+        "value": "1.3em",
+        "count": 3
+      },
+      {
+        "value": "14px",
+        "count": 3
+      },
+      {
+        "value": "1.75rem",
+        "count": 2
+      },
+      {
+        "value": "1.4375rem",
+        "count": 2
+      },
+      {
+        "value": "1.375rem",
+        "count": 2
+      },
+      {
+        "value": "1.57",
+        "count": 2
+      },
+      {
+        "value": "2rem",
+        "count": 2
+      },
+      {
+        "value": "2.25rem",
+        "count": 2
+      },
+      {
+        "value": "1.7",
+        "count": 2
+      },
+      {
+        "value": "1.6",
+        "count": 2
+      },
+      {
+        "value": "1em",
+        "count": 2
+      },
+      {
+        "value": "1.2em",
+        "count": 2
+      },
+      {
+        "value": "1.1875rem",
+        "count": 2
+      },
+      {
+        "value": "16px",
+        "count": 2
+      }
+    ],
+    "lineHeightsDistinctCount": 72,
+    "headingScale": {
+      "base": {
+        "h1": "1.56rem (24.96px)",
+        "h2": "1.125rem (18px)",
+        "h3": "1rem (16px)",
+        "h4": "1rem (16px)",
+        "h5": "0.8125rem (13px)",
+        "h6": "0.625rem (10px)",
+        "selectorEvidence": ".h1,.h1t,.scale1,h1 / .h2,... / .h3,... / .h4,... in sheet-3.css, no media query"
+      },
+      "atMin34em": {
+        "h1": "2.5rem (40px)",
+        "h2": "1.375rem (22px)",
+        "h3": "1.125rem (18px)",
+        "h4": "1rem (16px, unchanged)",
+        "selectorEvidence": "@media (min-width:34em) .h1,.h1t,.scale1,h1{font-size:2.5rem} etc."
+      },
+      "lineHeights": {
+        "h1": 1.15,
+        "h2": 1.4,
+        "h3": 1.4,
+        "h4": 1.3,
+        "selectorEvidence": ".h1,.h1t,h1{line-height:1.15}; .h2,.h2t:not([class*=leading-]),h2{line-height:1.4}; .h3,.h3t,h3{line-height:1.4}; .h4,.h4t,h4{line-height:1.3}"
+      },
+      "ratio": {
+        "atMin34em": {
+          "h1/h2": 1.818,
+          "h2/h3": 1.222,
+          "h3/h4": 1.125
+        },
+        "base": {
+          "h1/h2": 1.387,
+          "h2/h3": 1.125,
+          "h3/h4": 1
+        },
+        "note": "Not a single constant modular ratio. The desktop jump from h2 to h1 (1.82) is far larger than the steps below it (1.22, 1.13): one large display size sits above an almost-flat cluster of subordinate sizes.",
+        "measured": true
+      }
+    },
+    "bodyCandidates": {
+      "fontSize": "100% (16px at UA default; no rem/px override on body)",
+      "lineHeight": "1.7",
+      "fontFamily": "Merriweather,Georgia,serif",
+      "fontWeight": "400",
+      "selectorEvidence": "body{color:#1a1a1a;font-family:Merriweather,Georgia,serif;font-size:100%;line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased} in sheet-3.css",
+      "measured": true
+    },
+    "fluidType": false,
+    "fluidTypeEvidence": "clamp() occurs exactly once in all fetched CSS and it sizes a sidebar width, not type: @media(min-width:66rem) .post__aside--left.post__aside--default{--dynamic-aside-width:clamp(13.75rem,calc(-12.122rem + 39.2vw),18.75rem)}. vw appears 3 times total (that clamp, .breakout{margin:0 calc(50% - 50vw)}, .full-size-interactive{width:100vw}). No font-size uses clamp() or vw. Type scales by discrete media-query steps."
+  },
+  "spacing": {
+    "distinctValues": {
+      "remTopPx": [
+        {
+          "value": "1.25rem",
+          "px": 20,
+          "count": 38
+        },
+        {
+          "value": "1rem",
+          "px": 16,
+          "count": 35
+        },
+        {
+          "value": "2.5rem",
+          "px": 40,
+          "count": 31
+        },
+        {
+          "value": "1.5rem",
+          "px": 24,
+          "count": 29
+        },
+        {
+          "value": "1.875rem",
+          "px": 30,
+          "count": 29
+        },
+        {
+          "value": "4rem",
+          "px": 64,
+          "count": 22
+        },
+        {
+          "value": "2rem",
+          "px": 32,
+          "count": 17
+        },
+        {
+          "value": "0.5rem",
+          "px": 8,
+          "count": 17
+        },
+        {
+          "value": "3.75rem",
+          "px": 60,
+          "count": 16
+        },
+        {
+          "value": "3rem",
+          "px": 48,
+          "count": 12
+        },
+        {
+          "value": "0.75rem",
+          "px": 12,
+          "count": 11
+        },
+        {
+          "value": "0.25rem",
+          "px": 4,
+          "count": 11
+        }
+      ],
+      "emTop": [
+        {
+          "value": "1em",
+          "count": 66
+        },
+        {
+          "value": "2em",
+          "count": 42
+        },
+        {
+          "value": "3em",
+          "count": 33
+        },
+        {
+          "value": "1.5em",
+          "count": 23
+        },
+        {
+          "value": "0.5em",
+          "count": 23
+        },
+        {
+          "value": "0.75em",
+          "count": 19
+        },
+        {
+          "value": "0.25em",
+          "count": 16
+        },
+        {
+          "value": "2.5em",
+          "count": 15
+        },
+        {
+          "value": "4em",
+          "count": 14
+        },
+        {
+          "value": "5em",
+          "count": 9
+        }
+      ],
+      "pxTop": [
+        {
+          "value": "20px",
+          "count": 14
+        },
+        {
+          "value": "15px",
+          "count": 8
+        },
+        {
+          "value": "40px",
+          "count": 8
+        },
+        {
+          "value": "80px",
+          "count": 7
+        },
+        {
+          "value": "14px",
+          "count": 6
+        },
+        {
+          "value": "10px",
+          "count": 6
+        }
+      ],
+      "distinctTokenCount": 196
+    },
+    "inferredBaseUnitPx": 4,
+    "multiplesUsed": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      60,
+      64,
+      80,
+      88,
+      92,
+      96,
+      100,
+      128,
+      140,
+      168
+    ],
+    "evidence": "Tallied every margin/padding/gap value in all 18 fetched CSS files. Two parallel systems. (1) An em-relative typographic rhythm on a 0.25em step (1em x66, 2em x42, 3em x33, 1.5em x23, .5em x23, .75em x19, .25em x16) — 363 weighted declarations, the larger of the two. (2) An absolute rem/px scale — 480 weighted declarations, of which 63.1% land on a 4px grid and 83.5% on a 2px grid (5px: 42.1%, 8px: 40.1%, 10px: 36.5%), which is why 4px is the inferred unit rather than 8px. Off-grid outliers with count>=5 are 30px (x29) and 60px (3.75rem, x16) — a 30px sub-rhythm tied to the 60px mobile header height — plus 15px, 35px, 50px and 1px/2px hairlines."
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--theme-text",
+        "value": "#1a1a1a",
+        "declaredOn": "body (sheet-3.css) and #postBody / body.custom-colors (inline block)"
+      },
+      {
+        "name": "--theme-accent",
+        "value": "#ff8600",
+        "declaredOn": "body (sheet-3.css) and #postBody / body.custom-colors (inline block)"
+      },
+      {
+        "name": "--theme-background",
+        "value": "#ffffff (also written #fff)",
+        "declaredOn": "body (sheet-3.css) and #postBody / body.custom-colors (inline block)"
+      },
+      {
+        "name": "--wp-block-synced-color",
+        "value": "#7a00df",
+        "declaredOn": "WordPress editor inline block (not reader-facing)"
+      },
+      {
+        "name": "--wp-editor-canvas-background",
+        "value": "#ddd",
+        "declaredOn": "WordPress editor inline block (not reader-facing)"
+      },
+      {
+        "name": "--wp-admin-theme-color",
+        "value": "#007cba",
+        "declaredOn": "WordPress editor inline block (not reader-facing)"
+      },
+      {
+        "name": "--wp-admin-theme-color-darker-10",
+        "value": "#006ba1",
+        "declaredOn": "WordPress editor inline block (not reader-facing)"
+      },
+      {
+        "name": "--wp-admin-theme-color-darker-20",
+        "value": "#005a87",
+        "declaredOn": "WordPress editor inline block (not reader-facing)"
+      },
+      {
+        "name": "--tw-ring-color",
+        "value": "rgba(59,130,246,.5)",
+        "declaredOn": "*,:after,:before (Tailwind preflight default, unused default)"
+      },
+      {
+        "name": "--tw-ring-offset-color",
+        "value": "#fff",
+        "declaredOn": "*,:after,:before (Tailwind preflight default)"
+      },
+      {
+        "name": "--tw-shadow",
+        "value": "0 0 #0000 | 0 3.5px 3.5px 0 rgba(0,0,0,.2)",
+        "declaredOn": "*,:after,:before and one shadow utility"
+      },
+      {
+        "name": "--wp--preset--font-size--normal",
+        "value": "16px",
+        "declaredOn": "WordPress preset (non-colour, kept for the type scale)"
+      },
+      {
+        "name": "--wp--preset--font-size--huge",
+        "value": "42px",
+        "declaredOn": "WordPress preset (non-colour, kept for the type scale)"
+      }
+    ],
+    "customPropertiesNote": "Only 75 custom properties are actually declared inside rule blocks across all fetched CSS, and all but three of the reader-facing ones are Tailwind-preflight or WordPress-editor plumbing. The entire public palette rides on three tokens: --theme-text, --theme-accent, --theme-background. Raw hex is used directly far more often than var().",
+    "rawHexFrequency": [
+      {
+        "value": "#fff",
+        "count": 81
+      },
+      {
+        "value": "#1a1a1a",
+        "count": 81
+      },
+      {
+        "value": "#ff8600",
+        "count": 79
+      },
+      {
+        "value": "#efefef",
+        "count": 24
+      },
+      {
+        "value": "#ccc",
+        "count": 21
+      },
+      {
+        "value": "#000",
+        "count": 17
+      },
+      {
+        "value": "#999",
+        "count": 13
+      },
+      {
+        "value": "#6b6b6b",
+        "count": 12
+      },
+      {
+        "value": "#767676",
+        "count": 10
+      },
+      {
+        "value": "#ebebeb",
+        "count": 8
+      },
+      {
+        "value": "#262626",
+        "count": 7
+      },
+      {
+        "value": "#ddd",
+        "count": 4
+      },
+      {
+        "value": "#eee",
+        "count": 4
+      },
+      {
+        "value": "#313131",
+        "count": 4
+      },
+      {
+        "value": "#d5d5d5",
+        "count": 3
+      }
+    ],
+    "bodyTextColorCandidate": "#1a1a1a",
+    "backgroundCandidate": "#ffffff",
+    "accentCandidate": "#ff8600",
+    "contrastRatioCandidate": {
+      "textOnBackground": 17.4,
+      "pair": "#1a1a1a on #ffffff",
+      "wcag": "passes AA and AAA for all text sizes",
+      "computed": true
+    },
+    "accentContrastOnBackground": {
+      "ratio": 2.42,
+      "pair": "#ff8600 on #ffffff",
+      "wcag": "fails AA for text (needs 4.5) and fails AA large text (needs 3.0)",
+      "note": "Measured, not judged. The orange is used for links, rules, hover states and hairline underlines rather than as body-text colour; where it carries link text it is at 2.42:1 against white.",
+      "computed": true
+    },
+    "darkModeMechanism": "none",
+    "darkModeEvidence": "prefers-color-scheme appears 0 times in all 18 fetched CSS files. No data-theme attribute on <html> or <body> on either page (<html lang='en'>; body classes are page/template names only). The 8 `.dark` rules in sheet-3.css are a link/underline style variant (.dark{color:#1a1a1a} on a white ground), not a dark theme. --theme-background is only ever declared as white."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 544,
+        "value": "34em",
+        "kind": "min",
+        "count": 100
+      },
+      {
+        "px": 1056,
+        "value": "66em / 66rem",
+        "kind": "min",
+        "count": 103
+      },
+      {
+        "px": 800,
+        "value": "50em",
+        "kind": "min",
+        "count": 59
+      },
+      {
+        "px": 543.84,
+        "value": "33.99em",
+        "kind": "max",
+        "count": 39
+      },
+      {
+        "px": 704,
+        "value": "44em",
+        "kind": "min",
+        "count": 13
+      },
+      {
+        "px": 1055.84,
+        "value": "65.99em",
+        "kind": "max",
+        "count": 14
+      },
+      {
+        "px": 1040,
+        "value": "65em",
+        "kind": "min",
+        "count": 12
+      },
+      {
+        "px": 768,
+        "value": "48rem / 48em",
+        "kind": "min",
+        "count": 12
+      },
+      {
+        "px": 1025,
+        "value": "64.0625rem",
+        "kind": "min",
+        "count": 6
+      },
+      {
+        "px": 320,
+        "value": "20em",
+        "kind": "min",
+        "count": 6
+      },
+      {
+        "px": 544,
+        "value": "34rem",
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 799.84,
+        "value": "49.99em",
+        "kind": "max",
+        "count": 5
+      },
+      {
+        "px": 736,
+        "value": "46rem",
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 1360,
+        "value": "85rem",
+        "kind": "min",
+        "count": 4
+      },
+      {
+        "px": 1024,
+        "value": "64rem",
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 1200,
+        "value": "75em",
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 1200,
+        "value": "75em",
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 688,
+        "value": "43em / 43rem",
+        "kind": "min",
+        "count": 5
+      },
+      {
+        "px": 543,
+        "value": "33.9375rem",
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 768,
+        "value": "768px",
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1728,
+        "value": "108rem",
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 1920,
+        "value": "120em",
+        "kind": "min",
+        "count": 1
+      }
+    ],
+    "breakpointNote": "424 @media blocks in total. Units are mixed em/rem/px, and the same logical stop is written several ways (34em and 34rem; 66em, 65.99em and 66rem; 48em, 48rem and 768px), so the counts above are per written form. Three stops carry almost all the weight: 34em (544px), 50em (800px) and 66em (1056px). 20em (320px) is an explicit floor.",
+    "primaryBreakpointsPx": [
+      544,
+      800,
+      1056
+    ],
+    "contentWidthCandidates": [
+      {
+        "value": "34rem / 544px",
+        "selectorEvidence": "@media (min-width:34rem) .container{max-width:34rem}"
+      },
+      {
+        "value": "43rem / 688px",
+        "selectorEvidence": "@media (min-width:43rem) .container{max-width:43rem}"
+      },
+      {
+        "value": "46rem / 736px",
+        "selectorEvidence": "@media (min-width:46rem) .container{max-width:46rem}"
+      },
+      {
+        "value": "48rem / 768px",
+        "selectorEvidence": "@media (min-width:48rem) .container{max-width:48rem}"
+      },
+      {
+        "value": "64.0625rem / 1025px",
+        "selectorEvidence": "@media (min-width:64.0625rem) .container{max-width:64.0625rem}"
+      },
+      {
+        "value": "66rem / 1056px",
+        "selectorEvidence": "@media (min-width:66rem) .container{max-width:66rem}"
+      },
+      {
+        "value": "85rem / 1360px",
+        "selectorEvidence": "@media (min-width:85rem) .container{max-width:85rem}"
+      },
+      {
+        "value": "108rem / 1728px",
+        "selectorEvidence": "@media (min-width:108rem) .container{max-width:108rem}"
+      },
+      {
+        "value": "35rem / 560px",
+        "selectorEvidence": ".max-w-mod-inline{max-width:35rem} — the narrowest named module width, the in-column reading measure"
+      },
+      {
+        "value": "46.25rem / 740px",
+        "selectorEvidence": ".max-w-mod-small{max-width:46.25rem}"
+      },
+      {
+        "value": "57.5rem / 920px",
+        "selectorEvidence": ".max-w-mod-regular{max-width:57.5rem}"
+      },
+      {
+        "value": "72.5rem / 1160px",
+        "selectorEvidence": ".max-w-mod-medium{max-width:72.5rem} — also .container--m{max-width:1160px}"
+      },
+      {
+        "value": "81.25rem / 1300px",
+        "selectorEvidence": ".max-w-mod-large{max-width:81.25rem} — also .container--ml{max-width:1300px}"
+      },
+      {
+        "value": "960px",
+        "selectorEvidence": ".container--sm{max-width:960px}"
+      },
+      {
+        "value": "1400px",
+        "selectorEvidence": ".container--l{max-width:1400px}"
+      },
+      {
+        "value": "1229px / 76.8125rem",
+        "selectorEvidence": ".max-w-nav-container{max-width:76.8125rem} — the header bar measure"
+      },
+      {
+        "value": "615px + gutter",
+        "selectorEvidence": ".post__content--legacy{max-width:calc(615px + 2.5rem)} then calc(615px + 5rem); .post__content--legacy .container--xs{max-width:615px} — the legacy article reading measure"
+      }
+    ],
+    "contentWidthNote": "Two overlapping systems coexist: a Tailwind-style responsive `.container` that steps 544 -> 688 -> 736 -> 768 -> 1025 -> 1056 -> 1360 -> 1728px, and a named editorial module scale (mod-inline 560, mod-small 740, mod-regular 920, mod-medium 1160, mod-large 1300) that widths images and callouts independently of the text column. The prose measure itself is the narrow end: 560px for inline modules, 615px for legacy article content — roughly 60-70 characters at 16px Merriweather. That gap between a ~600px text column and a 1360-1728px outer container is where the whitespace comes from.",
+    "gridUsage": {
+      "cssGrid": true,
+      "cssGridRuleCount": 9,
+      "flex": true,
+      "flexRuleCount": 46,
+      "evidence": "display:grid appears in 9 rules (.grid utility, .mega__other.grid, author lists, .post__aside--right .abstractions.insights, a 1fr/35rem/1fr image-meta track at min-width:66em, and responsive .mini-a\\:grid / .l-\\:grid utilities). display:flex appears in 46 rules and is the dominant layout mode; display:inline-flex is never used. Layout is flex-first with grid reserved for a few explicit multi-track cases."
+    },
+    "measured": true
+  },
+  "navigation": {
+    "persistentElements": [
+      "<header class='nav fixed fit-t fit-l fit-r z9'> — one per page, pinned to the top on every breakpoint",
+      ".header__inner — 60px tall at base, 80px with a 0 2px 5px rgba(0,0,0,.2) shadow at min-width:34em, white background",
+      "body{padding-top:60px} at base to clear the fixed bar; @media(min-width:34em) body{padding:0} so the taller desktop bar is cleared by the page shell instead",
+      "<main> — exactly one per page, no role attribute needed",
+      "<footer class='footer'> with a nested <nav class='footer__nav'>",
+      "A site-search trigger in the header (.header__search) present on both pages"
+    ],
+    "stickyOrFixedSelectors": [
+      ".fixed{position:fixed} + .z9{z-index:900} — the utility pair the header composes from",
+      ".disclosure-notification{position:fixed;top:0;left:0;height:8rem} — sponsor/disclosure strip",
+      ".modal{position:fixed;inset:0;opacity:0;transition:opacity .5s} — dialog shell",
+      ".all-topics .alpha-numeric-list.sticky{position:fixed;top:3.75rem;right:1.25rem} then top:5rem at 34rem-65.9375rem and top:0 at min-width:66rem — an A-Z index rail on the topics page",
+      ".simplefavorites-modal-backdrop / .simplefavorites-modal-content{position:fixed}",
+      ".putz{position:fixed;z-index:9999}",
+      "@media(max-width:33.99em) .modal--lightbox .modal__close{position:sticky}",
+      "position:sticky is used twice in 222KB of CSS; position:fixed 11 times"
+    ],
+    "tocPresent": false,
+    "tocEvidence": "No table-of-contents markup on either page. Grepping for `toc` returns only autocorrect/autocapitalize/autocomplete attributes and one article slug. No .toc, #toc, [data-toc] or aria-labelledby pointing at a contents list.",
+    "revealedOnDemand": [
+      "Mega menu — <nav class=\"mega__main mega__group h2 orange fill-h\"> and <nav class=\"mega__secondary ...\">, driven by a .mega-is-active state class that translates the header row out (transform:translateY(-100%);opacity:0) and swaps icon colours",
+      "Full-screen search overlay — <nav class='nav-search h-screen fit-x z0 bg-black hidden'> shipped in the HTML with the `hidden` class; .search-is-active mirrors the mega-menu state transitions; .nav-search__inner is height:calc(100vh - 80px) at min-width:44em",
+      "Hamburger toggle — .hamburger{height:100%;width:15px} with .hamburger.is-active{width:20px} and hover rules that spread the bars 8px apart",
+      "Popular-search suggestions inside the overlay — .nav-search__popular-list, revealed with the overlay rather than on the page",
+      "Hover tooltips — 14 .q-tooltip components per page, all shipped with class `hidden`, plus 63 data-toggle-hover attributes",
+      "Modal / lightbox — .modal shell with .modal--lightbox variant and .modal__close",
+      "Favorites (save-for-later) modal — .simplefavorites-modal-backdrop / -content, hidden at top:-200%"
+    ],
+    "ariaEvidence": "role=\"menu\" (1) and role=\"menuitem\" (13) on the mega menu; aria-expanded (11), aria-haspopup (6), aria-labelledby (3), aria-hidden (3), aria-label (1). Disclosure state is announced, so the reveal is a real disclosure pattern rather than CSS-only hover.",
+    "landmarkCounts": {
+      "home": {
+        "header": 1,
+        "nav": 5,
+        "main": 1,
+        "footer": 1,
+        "aside": 2,
+        "form": 8,
+        "section": 24,
+        "h1": 1,
+        "h2": 6,
+        "h3": 21
+      },
+      "biology": {
+        "header": 1,
+        "nav": 6,
+        "main": 1,
+        "footer": 1,
+        "aside": 1,
+        "form": 7,
+        "section": 19,
+        "h1": 1,
+        "h2": 4,
+        "h3": 10
+      }
+    },
+    "evidence": "Counted from the saved HTML with grep; CSS quoted from the fetched stylesheets. Both pages have exactly one <h1> and one <main>."
+  },
+  "behaviours": [
+    {
+      "name": "disclosure mega menu",
+      "basis": "inferred",
+      "evidence": "DOM: role=\"menu\"/role=\"menuitem\", aria-expanded, aria-haspopup. CSS: .mega-is-active state class on .nav__container drives transform/opacity on .header__main, .header__logo, .header__divider, .header__icon."
+    },
+    {
+      "name": "full-screen search overlay",
+      "basis": "inferred",
+      "evidence": "DOM: <nav class='nav-search h-screen fit-x z0 bg-black hidden'> present in server HTML. CSS: .search-is-active mirrors the mega-menu transitions; .nav-search__inner{height:calc(100vh - 80px);min-height:860px} at min-width:44em, min-height:415px at min-width:65em."
+    },
+    {
+      "name": "hover preview / tooltip",
+      "basis": "inferred",
+      "evidence": "DOM: 14 elements per page with class \"q-tooltip hidden ...\"; 63 data-toggle-hover attributes. CSS: .q-tooltip{pointer-events:none;margin-top:14px} plus .q-tooltip-inner/-content/-arrow parts and placement variants."
+    },
+    {
+      "name": "modal / lightbox dialog",
+      "basis": "inferred",
+      "evidence": "CSS: .modal{display:none;position:fixed;inset:0;opacity:0;transition:opacity .5s cubic-bezier(...)} with .modal--lightbox and .modal__close variants; \"modal\" occurs 90 times across the two pages."
+    },
+    {
+      "name": "save-for-later (favorites)",
+      "basis": "inferred",
+      "evidence": "Script: quanta-favorites/assets/js/favorites.min.js. CSS: 23 .simplefavorites-* rules including a fixed backdrop and modal content panel; sheet-4.css is a dedicated 8,189-byte favorites stylesheet declaring font-family:favorites (icon font)."
+    },
+    {
+      "name": "cookie / consent bar",
+      "basis": "inferred",
+      "evidence": "Script: sf-privacy-consent/js/front.min.js. DOM: data-function=\"sf-set-consent\". CSS: 7 .sf-fixed-bar rules in sheet-1.css."
+    },
+    {
+      "name": "math typesetting",
+      "basis": "inferred",
+      "evidence": "Script: MathJax.js on both pages. CSS: #MathJax_Message rule in sheet-3.css."
+    },
+    {
+      "name": "media progress control",
+      "basis": "inferred",
+      "evidence": "CSS: 21 rules matching /progress/, e.g. .video__hero .podcast__progress input[type=range][data-role=podcast-progress-bar]. Audio/video scrubber, not a reading-progress bar."
+    },
+    {
+      "name": "responsive images via srcset",
+      "basis": "inferred",
+      "evidence": "23 srcset attributes on the home page, 33 <img> elements. No loading=\"lazy\" and no data-src on either page, so images are eagerly loaded at the browser-chosen density."
+    },
+    {
+      "name": "external comment counts",
+      "basis": "inferred",
+      "evidence": "Scripts comment_count.js and comment_embed.js; 21 data-disqus-identifier attributes on the home page."
+    },
+    {
+      "name": "command palette",
+      "basis": "inferred",
+      "evidence": "ABSENT. No dialog/combobox role, no keydown-bound palette markup, no aria-controls listbox in either page. The search overlay is a plain form, not a palette."
+    },
+    {
+      "name": "copy button",
+      "basis": "inferred",
+      "evidence": "ABSENT. No \"clipboard\" or \"copy-link\" token in either page and no matching CSS class."
+    },
+    {
+      "name": "scroll-driven effects",
+      "basis": "inferred",
+      "evidence": "ABSENT from static evidence. No IntersectionObserver string in the served HTML, no .is-scrolled / hide-on-scroll state class in any fetched stylesheet, no scroll-timeline or animation-timeline. The header does not change on scroll by CSS. Note: main.min.js was NOT fetched, so a JS-only scroll effect could not be ruled out."
+    },
+    {
+      "name": "reduced-motion respect",
+      "basis": "inferred",
+      "evidence": "ABSENT. prefers-reduced-motion appears 0 times in all 18 fetched stylesheets, while transition/transform are used throughout the nav and modal states."
+    }
+  ],
+  "measurement": {
+    "status": "measured",
+    "notes": [
+      "Method: curl with a desktop Chrome user-agent, -L, --max-time 20. Both pages returned HTTP 200 on the first attempt; no bot challenge, no retries needed.",
+      "Both pages are genuinely server-rendered, not a JS shell: home.html carries 6,789 characters of visible text with 1 h1, 6 h2, 21 h3 and 33 img; biology.html carries 6,014 characters with 1 h1, 4 h2, 10 h3. Status is \"fetched\", not \"js-rendered\".",
+      "The 2.8-3.1% text-to-HTML ratio is not evidence of emptiness. It reflects 61-76 inline <svg> icons, 23 srcset attributes with many candidates each, and long Tailwind-style utility class strings on nearly every element.",
+      "All 4 linked stylesheets fetched successfully (208,235 bytes total) plus 14 inline <style> blocks (13,955 bytes of CSS). No @import in any page or stylesheet, so the CSS graph is complete.",
+      "Every value here is measured from the saved markup or CSS, or explicitly labelled inferred. Nothing is from rendering: no computed styles, no layout boxes, no actual rendered text measure, no screenshots.",
+      "Because there is no computed-style pass, cascade winners are not resolved. Where a property is declared several times (font-size on h1, background on body) the media-query context is quoted so the reader can see which declaration applies at which width.",
+      "JavaScript bundles (main.min.js, edin.js, jQuery) were deliberately NOT fetched. Every behaviour is inferred from DOM structure, state-class names in CSS, and script filenames only. Absences marked ABSENT are absences of static evidence, not proof the behaviour does not exist.",
+      "body background is never set with an explicit background-color declaration; #ffffff comes from --theme-background on body and body.custom-colors. Recorded as a candidate, not a computed value.",
+      "Raw HTML and CSS live under data/design-study/raw/quantamagazine_org/ (gitignored). No stylesheet, asset, illustration, font file or page text was copied into the repository; this JSON records measurements in our own vocabulary only."
+    ],
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. Home page is an index; the reading column was measured on a dated feature article. Cookie banner declined with Reject All before the desktop pass."
+    }
+  },
+  "measured": {
+    "status": "measured",
+    "pagesMeasured": [
+      "https://www.quantamagazine.org/ (assigned URL — a news index)",
+      "https://www.quantamagazine.org/genome-duplication-is-a-radical-evolutionary-gamble-20260902/ (a dated feature article, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles. The cookie banner was declined with 'Reject All' before the desktop article measurement; nothing was accepted.",
+    "homePage": {
+      "url": "/",
+      "longestProseBlock": {
+        "containerClass": "home__about__content wysiwyg",
+        "widthPx": 360,
+        "fontSizePx": "16px",
+        "lineHeight": "30px",
+        "lineHeightRatio": 1.88,
+        "family": "Pangram",
+        "color": "rgb(107, 107, 107)",
+        "contrast": 5.33,
+        "passesAAA": false,
+        "charactersPerLine": 47,
+        "paragraphCount": 1,
+        "totalChars": 388
+      },
+      "note": "The home page is an index: its only paragraph over 40 characters is a 360px about-block set in the UI face, not the reading face. Reading values come from the article.",
+      "headings": {
+        "h1": "40px/700 Pangram, line-height 46px",
+        "h2": "22px/700 Pangram, line-height 30.8px",
+        "h3": "45px/700 Noe Display, line-height 47.25px"
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 6369,
+        "screensOfScroll": 7.08,
+        "innerTextLength": 5687,
+        "htmlLength": 282443,
+        "textToHtmlRatio": 0.02
+      }
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "article",
+        "containerTag": "div",
+        "containerClass": "post__content wysiwyg p theme__anchors--",
+        "containerWidthPx": 560,
+        "paragraphContentWidthPx": 560,
+        "containerMaxWidth": "none",
+        "paragraphCount": 16,
+        "totalCharsInColumn": 7367,
+        "fontSizePx": "16px",
+        "lineHeight": "30px",
+        "lineHeightRatio": 1.88,
+        "fontFamily": "Merriweather",
+        "fullStack": "Merriweather, Georgia, serif",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "color": "rgb(26, 26, 26)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "backgroundFrom": "div.theme__background-background",
+        "avgGlyphWidthPx": 7.71,
+        "charactersPerLine": 73,
+        "paragraphMarginBottom": "30px",
+        "verticalRhythm": "Paragraph margin-bottom (30px) is exactly the line-height (30px): one blank line between paragraphs, so the baseline grid survives across the whole article.",
+        "note": "560px at 16px serif gives 73 characters per line — the only measured site in this set that lands inside the 45-75 range. The column is narrower in pixels than every other reference here, and the widest in characters is not the widest in pixels."
+      },
+      "contrast": {
+        "bodyTextVsBackground": 17.4,
+        "pair": "rgb(26, 26, 26) on rgb(255, 255, 255)",
+        "passesAA": true,
+        "passesAAA": true,
+        "note": "Near-black on pure white; the only light-scheme reference measured so far."
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "40px",
+          "fontWeight": "700",
+          "lineHeight": "46px",
+          "family": "Noe Display",
+          "color": "rgb(26, 26, 26)",
+          "marginTop": "10px",
+          "marginBottom": "20px"
+        },
+        "h2": {
+          "fontSize": "22px",
+          "fontWeight": "700",
+          "lineHeight": "30.8px",
+          "family": "Merriweather",
+          "marginTop": "38.5px",
+          "marginBottom": "19.25px"
+        },
+        "h3": {
+          "fontSize": "13px",
+          "fontWeight": "400",
+          "lineHeight": "21.45px",
+          "family": "Pangram",
+          "marginTop": "0px",
+          "marginBottom": "3.25px"
+        },
+        "ratio_h1_body": 2.5,
+        "ratio_h2_body": 1.38,
+        "threeTypefaceRule": "Noe Display (serif display) for the article title, Merriweather (serif text) for body and section headings, Pangram (sans) for labels, kickers and interface. h3 here is smaller than body text — it is a metadata label, not a third prose level.",
+        "note": "h2 margin-top 38.5px is 1.75 line-heights above and 19.25px (0.64) below — an asymmetric space that binds a heading to the text under it."
+      },
+      "figcaption": {
+        "fontSize": "16px",
+        "family": "Merriweather",
+        "color": "rgb(26, 26, 26)",
+        "lineHeight": "0px",
+        "lineHeightNote": "Computed line-height of 0px on the figure element measured; the caption's own text node may inherit a different value, so this figure is reported as read and not interpreted."
+      },
+      "chrome": {
+        "headerPresent": true,
+        "headerPosition": "fixed",
+        "headerHeightPx": 0,
+        "headerHeightNote": "The <header> element itself computes to zero height. Site navigation lives in a fixed full-viewport 'mega' overlay (1440x900, z-index 0) that is out of view until opened — there is no persistent visible top bar over the article.",
+        "stickyOrFixedCount": 2,
+        "stickyOrFixedElements": [
+          "div.mega.fixed (1440x900, z 0) — the closed navigation overlay",
+          "div.cky-consent-container (1440x131, z 9999999) — the consent banner, declined"
+        ],
+        "documentScrolls": true,
+        "note": "Nothing follows the reader down the page: no sticky header, no progress bar, no sticky share rail."
+      },
+      "toc": null,
+      "tocReason": "No element 80-460px wide holding three or more in-page anchors. A Quanta feature has no in-page navigation.",
+      "search": {
+        "inputPresentAtLoad": true,
+        "placeholder": "Search …",
+        "widthPx": 280,
+        "fontSize": "18px",
+        "submitButton": {
+          "widthPx": 50,
+          "heightPx": 54.89,
+          "class": "search-submit orange"
+        },
+        "kbdHints": [],
+        "note": "A real input with a visible placeholder and an orange submit button, not a dialog trigger; no keyboard shortcut is advertised."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 15452,
+        "screensOfScroll": 17.17,
+        "innerTextLength": 20777,
+        "htmlLength": 286923,
+        "textToHtmlRatio": 0.07,
+        "note": "0.07 text-to-HTML is the highest ratio measured in this set — the markup is mostly the article."
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "article",
+      "readingColumn": {
+        "containerWidthPx": 335,
+        "paragraphContentWidthPx": 335,
+        "fontSizePx": "16px",
+        "lineHeight": "30px",
+        "lineHeightRatio": 1.88,
+        "avgGlyphWidthPx": 7.71,
+        "charactersPerLine": 43,
+        "color": "rgb(26, 26, 26)",
+        "paragraphMarginBottom": "0px",
+        "marginCaveat": "The longest-paragraph match at this width reported margin-bottom 0px where desktop reported 30px. Recorded as measured; the discrepancy was not chased, so treat the 30px rhythm as confirmed for desktop only."
+      },
+      "bodyUnchangedAtMobile": "16px/30px at both 1440px and 375px — body type does not move at all.",
+      "h1": {
+        "fontSize": "24.96px",
+        "fontWeight": "700",
+        "lineHeight": "28.704px",
+        "family": "Noe Display",
+        "desktopWas": "40px/46px",
+        "fractionalSizeNote": "24.96px and 28.704px are non-integer, so the article title is fluid (a vw or clamp expression), not a fixed breakpoint step."
+      },
+      "h2": {
+        "fontSize": "18px",
+        "fontWeight": "700",
+        "lineHeight": "25.2px",
+        "desktopWas": "22px/30.8px"
+      },
+      "header": {
+        "position": "fixed",
+        "heightPx": 0
+      },
+      "menuControl": {
+        "ariaLabel": "open the menu",
+        "class": "hamburger",
+        "widthPx": 15,
+        "heightPx": 35,
+        "y": 12.5
+      },
+      "search": {
+        "inputPresent": true,
+        "visible": true,
+        "note": "The search input still renders at 375px rather than collapsing behind the menu control."
+      },
+      "toc": null,
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 22989,
+      "consentBanner": {
+        "reappeared": true,
+        "heightPx": 359.75,
+        "widthPx": 375,
+        "yPx": 452.25,
+        "zIndex": 9999999,
+        "note": "The banner returned after the viewport switch (a new device profile, so the earlier 'Reject All' did not carry). It was not clicked again and nothing was accepted. It covers 44% of the mobile viewport height but does not change any measured box, since all values come from getBoundingClientRect on the elements themselves."
+      }
+    },
+    "inferred": {
+      "jquery": true,
+      "jqueryEvidence": "window.jQuery is defined.",
+      "react": false,
+      "nextData": false,
+      "nuxt": false,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollama": false,
+      "gsap": false,
+      "d3": false,
+      "lottie": false,
+      "intersectionObserverInScannedScripts": false,
+      "intersectionObserverNote": "Not found in the 39 script sources or scanned inline text. Consistent with a page that has no scroll-linked chrome.",
+      "hoverPreviewMarkerElements": 50,
+      "detailsElements": 0,
+      "figureElements": 10,
+      "imgElements": 19,
+      "svgElements": 79,
+      "videoElements": 0,
+      "cssCustomPropertiesOnRoot": 65,
+      "colorSchemeDeclared": "normal",
+      "colorSchemeNote": "No color-scheme declaration and no data-theme attribute: the light rendering is the only rendering; there is no dark mode to detect.",
+      "fontsDeclared": [
+        "Merriweather 300/400/700, roman and italic (roman + italic loaded)",
+        "Pangram 100-900 (declared; the weights sampled were unloaded on the article)",
+        "Noe Display (used for the title)"
+      ],
+      "stylesheetCount": 16,
+      "scriptCount": 39,
+      "classNaming": "Readable BEM-ish plus utility atoms in the same string ('post__content wysiwyg p theme__anchors--', 'mega fixed fit-x z0 bg-black') — a WordPress-era authored stylesheet, not a compiled utility framework."
+    }
+  }
+}

@@ -1,0 +1,493 @@
+{
+  "site": "openhumans.org",
+  "track": "A2",
+  "urls": {
+    "index": "https://www.openhumans.org/",
+    "content": "https://www.openhumans.org/explore-share/"
+  },
+  "capturedAt": "2026-09-03T15:15:34.570Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: no consent UI found",
+    "index-375: no consent UI found",
+    "content-1440: left: no permitted refusal control in div.panel-body (controls: Learn more); banner stands in the captures",
+    "content-375: left: no permitted refusal control in div.panel-body (controls: Learn more); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://www.openhumans.org/explore-share/",
+    "collectedAt": "2026-09-03T15:15:20.430Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0995,
+    "title": "Home - Open Humans",
+    "innerTextLength": 4540,
+    "outerHtmlLength": 45632,
+    "headingOutline": [
+      {
+        "tag": "h3",
+        "text": "Explore and share your data"
+      }
+    ],
+    "headingCount": 1,
+    "stickyOrFixedCount": 3,
+    "stickyOrFixed": [
+      {
+        "tag": "nav",
+        "class": "navbar navbar-default navbar-fixed-top",
+        "position": "fixed",
+        "top": 0,
+        "height": 54
+      },
+      {
+        "tag": "div",
+        "class": "modal fade",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "modal fade",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 0,
+    "scriptsUnreadable": 6,
+    "searchAffordances": {
+      "count": 0,
+      "firstDescriptors": []
+    },
+    "imgCount": 28,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 3,
+      "totalSheets": 6
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 255)",
+    "bodyColor": "rgb(51, 51, 51)",
+    "canvasCount": 0,
+    "svgCount": 0
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 1384,
+      "sha256": "b97051bdd5c35660425d01eafcd5f23fe97b78fbf1f913f149ef50aa67395e30",
+      "capturedAt": "2026-09-03T15:15:08.913Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "bdf4c56a6a0e60d4636f40df779bdab2203ba896db33e2aa25bbc6cd11daebf9",
+      "capturedAt": "2026-09-03T15:15:09.001Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 483,
+      "sha256": "2eef0e70f9f12ddfc301235f99e125a3cab118179f0a72dbf57cf57196ca9a20",
+      "capturedAt": "2026-09-03T15:15:09.060Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 2295,
+      "sha256": "78744749072f3d73aca379bd85e89aa01b8a15cf868446494fce95d2eaa822df",
+      "capturedAt": "2026-09-03T15:15:13.417Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "66f46eab71d6d14d2627d369aac6a830234d291299289d43e34611d848dc7bea",
+      "capturedAt": "2026-09-03T15:15:13.466Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "45a7df38d3b69ea11c923ebb6abcc8604e66fe4554b5518b880ee8751cb1e79b",
+      "capturedAt": "2026-09-03T15:15:13.516Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://www.openhumans.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 671,
+      "sha256": "2e52374a44411fd2543ff658956562fbbc94700c6c52d40704bab60c9cef18dd",
+      "capturedAt": "2026-09-03T15:15:13.561Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 2264,
+      "sha256": "48ec96d196d26dd9d1ac7789e284f9e49cbba2627b1be8216ebcb3cabd4f11ef",
+      "capturedAt": "2026-09-03T15:15:20.131Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "641dc47daf9fbba95620626ee3bdf83029edede291124d967e9e145c30113038",
+      "capturedAt": "2026-09-03T15:15:20.233Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a4b77b59d8aa23cbc4815c93b2aed76a8fc74ac5af13f15dd8a24687e06878c6",
+      "capturedAt": "2026-09-03T15:15:20.334Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 464,
+      "sha256": "90621510c02a44c49cbac79f044916a6156836c5cbf03b65cd23b1cb4b91688d",
+      "capturedAt": "2026-09-03T15:15:20.405Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "641dc47daf9fbba95620626ee3bdf83029edede291124d967e9e145c30113038",
+      "capturedAt": "2026-09-03T15:15:22.046Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 682,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "09002e7f7401ae9bc64332b938e0807d98a99da696af0d7a8e466020ad2fa140",
+      "capturedAt": "2026-09-03T15:15:23.646Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 1228,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1ade0599b62be3512f5072b5d4ba3981090013e57c97102315668beeb21ea6c9",
+      "capturedAt": "2026-09-03T15:15:25.242Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 5999,
+      "sha256": "ea1c8defacd9ff8fce69da35b134e22f504099861e8261528737387e73accd2b",
+      "capturedAt": "2026-09-03T15:15:29.547Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e88d6d22fdd4e41de82598aeca7b0bbbab26c41ee7f88073c5d9dc7af7e2740c",
+      "capturedAt": "2026-09-03T15:15:29.610Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c6c9dc4d312e0d6fb216ee565a7d827c1a64e7dd4bf10699ca020753aaa211bf",
+      "capturedAt": "2026-09-03T15:15:29.661Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "afde612391d2f93d2ef483e2dfb718719beece38501a703f04deea409ab95889",
+      "capturedAt": "2026-09-03T15:15:29.703Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b1b65feb527d4300fd1fab1ad123667ab6ca928761d09823213f2bcf6c32727e",
+      "capturedAt": "2026-09-03T15:15:29.745Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "284102073c3a1c31ca0e54bf26991d6384a8f712a0280bb73adbac3dfe13aa29",
+      "capturedAt": "2026-09-03T15:15:29.786Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9d721766e5f3fd1b2efbac4bd50118491823fa9ab6c2107b899159d2c477baf4",
+      "capturedAt": "2026-09-03T15:15:29.828Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "44c302e07745da0d2cbbb7610bc4da2c3d178d9b8f36c2690be1c5fe2a3d5134",
+      "capturedAt": "2026-09-03T15:15:29.872Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 315,
+      "sha256": "778a6063b6c7afa695356636be267082eb4e930118202af35eb797135554c371",
+      "capturedAt": "2026-09-03T15:15:29.902Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "405cccd3a7b2422e636e67d60994b128e5094d5ca6dcbb15fc756d534237f198",
+      "capturedAt": "2026-09-03T15:15:31.451Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 2594,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "549279d32ccb45f16a2d61d0d3ec88a960535d008bd002cfc6855458036a2a5e",
+      "capturedAt": "2026-09-03T15:15:33.024Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://www.openhumans.org/explore-share/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 4668,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4c4b83f24b9bbdeb9360ed52a5128a08d989d4e339966cc206ea6496a94b60fd",
+      "capturedAt": "2026-09-03T15:15:34.570Z"
+    }
+  ]
+}

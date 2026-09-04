@@ -1,0 +1,72 @@
+{
+  "key": "smashingmagazine.com",
+  "track": "A1",
+  "dir": "smashingmagazine_com",
+  "checkedAt": "2026-09-03T14:40:41.110Z",
+  "indexUrl": "https://www.smashingmagazine.com/",
+  "contentUrl": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.smashingmagazine.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/smashingmagazine_com.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://www.smashingmagazine.com/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://www.smashingmagazine.com/privacy-policy/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/smashingmagazine_com.terms.html",
+    "textSavedTo": "data/design-study/legal/smashingmagazine_com.terms.txt",
+    "textChars": 54279,
+    "candidatesTried": [
+      {
+        "url": "https://www.smashingmagazine.com/terms-of-use/",
+        "status": 404
+      },
+      {
+        "url": "https://www.smashingmagazine.com/privacy-policy/",
+        "status": 200,
+        "note": "HTTP 200 but neither the URL nor the <title> \"Privacy Notice — Smashing Magazine\" identifies it as a terms, conditions, legal, copyright or disclaimer document; kept looking and held it only as a fallback"
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Rights in relation to automated decision-making and profiling.",
+      "Automated individual decision-making and profiling",
+      "You will have the right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning you or similarly significantly affects you.",
+      "We automatically receive information from your web browser or mobile device.",
+      "A cookie is a small piece of data or a text file that is downloaded to your computer or mobile device when you access certain websites.",
+      "We use our commercially reasonable efforts to make sure your credit card number is kept strictly confidential by using only third-party billing services that use industry-standard encryption technology to protect your credit card number from unauthorized use.",
+      "Copyright © Orion Systems.",
+      "a license from https://www.DisclaimerTemplate.com",
+      "Rechte in Bezug auf automatisierte Entscheidungsfindung und Profiling.",
+      "Automatisierte individuelle Entscheidungsfindung und Profilerstellung",
+      "Sie haben das Recht, keine Entscheidung zu treffen, die ausschließlich auf der automatisierten Verarbeitung, einschließlich der Profilerstellung, beruht, die für Sie rechtliche Auswirkungen oder ähnliche Auswirkungen auf Sie hat.",
+      "Wir erhalten automatisch Informationen von Ihrem Webbrowser oder Mobilgerät."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /2026/08/rethinking-data-visualisation-ux-approach-dashboards/; no terms clause matched a prohibition pattern across 12 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i.",
+    "No terms-of-service document was reached. The closest page kept as a fallback is https://www.smashingmagazine.com/privacy-policy/; it is not a terms document, and its text is what the excerpts below come from."
+  ]
+}
