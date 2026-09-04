@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "phase": "5c-release",
+  "phase": "5d-fix-and-tiers",
   "next": {
-    "step": "Phase 5c: workflow corpus-20k-phase5c (release branch → PR → merge → deploy → verify → Tier 1 → 2 → 3 → measure)",
-    "command": "when it lands: read data/corpus-20k/final/summary.json; write the final report; deliver"
+    "step": "Phase 5d: workflow corpus-20k-phase5d",
+    "command": "when it lands: read data/corpus-20k/final/summary.json; write the final report into docs/worklogs/corpus-20k.md; deliver"
   },
   "completed": [
     "drugbank-open",
@@ -12888,6 +12888,11 @@
       "at": "2026-09-04",
       "what": "The pushed release carries code, specs, worklogs and small evidence files only; corpus data and measurement caches (3.56 GB tracked on local main, ten files over GitHub's 100 MiB limit) stay on the workstation, kept in the local branch archive/corpus-20k-full-history and a tarball under rnawiki-backups/corpus-20k-data-2026-09-05; production is loaded from local files and the export chain never reads them. After the merge the worktree's main is reset to origin/main with the data restored untracked.",
       "why": "GitHub refused the push (GH001, proven with a 101 MB probe); Git LFS is not installed; rewriting 66 commits was declined by the agent as Felix's record — the archive branch preserves it"
+    },
+    {
+      "at": "2026-09-04",
+      "what": "Tier 1 is live (PR #16, deployment 3ef6829f, migrations 26; 1,719 pages, 610 indexable, 215 redirects). Before Tier 2: (1) corpus pages emit JSON-LD built only from recorded identity and the first question's paragraph 1 — no invented fields; (2) IndexNow becomes corpus-aware: it submits exactly the URLs of a tier's sitemap child, with --tier; (3) R12 spec change: the facet index lists each value's letter sub-pages and page numbers inline so every indexed record is within three clicks; (4) discovery:monitor streams sitemap children with bounded memory and scopes by tier; (5) load markers record the target database identity so a disposable-run marker never counts for production; (6) verify-live waits for the 15-minute sitemap cache after a load.",
+      "why": "Tier 1 stage findings on production, 2026-09-05"
     }
   ],
   "gates": {
@@ -12967,5 +12972,5 @@
     }
   },
   "awaiting": null,
-  "updated_at": "2026-09-04T22:18:33.619Z"
+  "updated_at": "2026-09-04T23:03:28.524Z"
 }
