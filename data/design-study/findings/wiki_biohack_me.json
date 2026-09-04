@@ -1,0 +1,470 @@
+{
+  "site": "wiki.biohack.me",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-02.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "missingFiles": [
+    "content-1440-tile-02.png"
+  ],
+  "notes": "content-1440-tile-02.png does not exist: the desktop content page is exactly one 900px viewport tall. content-1440-full/tile-01/scroll-00/scroll-50/scroll-90 all share sha256 e7be8a69..., so content-1440-scroll-00.png and content-1440-scroll-50.png were not opened separately; content-1440-scroll-90.png was viewed and confirms the page never scrolls at 1440.",
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Hierarchy on the content page is carried by size and position alone: the h1 is the only large type, and the sub-labels below it are one size step down. They read as list labels rather than sections because every row - label or link - sits on the same uniform ~30px interval, so there is no space step.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "'Biology' is roughly 26px dark grey over a full-width rule; 'Genes', 'Body' and 'Gender & Sex' are visibly larger and heavier than the links beneath them (about 18px semi-bold against 15px links), so 'near body size' understates the type difference. What flattens them is spacing: 'Genes' y=215, 'Body' 245, 'Neuro' 275, 'Cell and Tissue Culture' 305, 'Gender & Sex' 336, 'DIY HRT' 365 - six rows on an even 30px pitch, nothing separating a group from its members.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The strongest colour on either desktop first screen belongs to chrome, not content.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The green Register button in the fixed top bar is the only saturated fill; the blue '[[ start ]]' / '[[ biology ]]' identifier badge above the card is the second. The h1 wins on size, the chrome on colour.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The left rail groups by thin rules and ranks nothing inside a group: eight topic links at identical weight, no counts, no icons, no indentation - and no current-page marker of any kind.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Two horizontal rules (not three) cut the rail into three blocks: Home / 'Biohacking - Human Augmentation'; the eight topic links plus 'About the Wiki'; and 'Contributing'. The two plain dark entries are the same two entries on both pages captured - on content-1440-full.png the current page 'Biology' is still an ordinary blue link - so dark text marks non-link labels, not the page you are on. The rail gives no 'you are here' signal.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "eye-lands",
+      "claim": "At 1440 the only saturated colour on the first screen sits in the fixed top bar above the h1, so account chrome competes with the article title rather than deferring to it.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "A full-width fixed 51.5px bar runs above an h1 that begins around y=165, and a blue identifier badge is pinned to the right edge between them. Only Register is a filled button - Log In is an outlined white button - so 'the only two filled buttons' overstates it, and a still cannot settle whether the eye reaches the small green button before the 36px h1. What the capture does show is that the strongest colour is above the title, not in it.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At 375 the eye lands on the content, achieved by removing chrome rather than by ordering it: the search box is dropped from the first screen entirely.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The mobile bar shows only the avatar, wordmark and a hamburger; the three-line wrapped 'Human Augmentation Wiki' h1 is the heaviest element on screen.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F6",
+      "topic": "density",
+      "claim": "The content page is close to empty: one screen holds an h1, three bold labels, four links and a metadata line, with roughly the bottom third of the card blank.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Last text sits at about y=365 inside a card running from y=100 to y=511, so about 135px of the card's 411px is empty - a third, not 'roughly the lower half'. The DOM record separately gives 611 characters of visible text against 43,481 of markup (1.41% text-to-HTML). Why the card stays open at that height is not visible in the capture.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "innerTextLength",
+        "outerHtmlLength",
+        "textToHtmlRatio"
+      ]
+    },
+    {
+      "id": "F7",
+      "topic": "density",
+      "claim": "Lists are bare vertical link stacks with bold group labels and no per-row signal at all: no table, column, count, date or description.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'Cell and Tissue Culture' and 'External Link' appear as plain links with nothing to say whether either is a long article or a stub.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "whitespace",
+      "claim": "Whitespace is leftover rather than spent: large blank regions carry no meaning while section intervals are tight and uniform.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The left rail ends at y=418 and roughly 180px of empty column follows before the footer rule near y=600; the earlier figure of 470px counted straight through the footer to the bottom edge of the capture. Inside the card the last text is at y=365 against a card bottom at y=511. No interval anywhere on the page is larger than the uniform 30px row gap, so nothing is separated deliberately while two large voids carry no meaning.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "whitespace",
+      "claim": "The one deliberate use of space is inside the card, and it works better at 375 than at 1440.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Consistent card padding, a rule under the h1 and clear paragraph intervals; the single padded mobile column reads comfortably.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "long-scroll",
+      "claim": "There is no long scroll on this site to judge; the desktop content page fits one 900px viewport.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The manifest gives one sha256 for content-1440-full, tile-01 and all three scroll captures; content-1440-scroll-90.png shows the unscrolled top. At 375 the page is 911px against an 812px viewport, so maximum scroll is 99px (scrollY 50 and 89).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "long-scroll",
+      "claim": "What persists across the small mobile scroll is the fixed top bar, the right-hand four-icon rail, and a back-to-top control that appears once the page has moved; the page ends in a licence-and-badges footer.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png",
+        "index-375-tile-02.png"
+      ],
+      "evidence": "The breadcrumb strip slides under the fixed bar between scroll-00 and scroll-50; a small chevron box appears at the bottom-right corner in both scrolled views. The DOM record lists nav.navbar-fixed-top at 51.5px, div.tools.panel.affix-top at top 150, a hidden modal and a.back-to-top.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F12",
+      "topic": "imagery",
+      "claim": "Every image on the site is an emblem; there is no diagram, photograph or data graphic, and the page makes no gap where one would go.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Site avatar, four Creative Commons glyphs, five technology badges, small globe markers before external links, and icon glyphs in two tool clusters. The DOM record counts 12 images, 40 SVGs, 0 canvases.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "defers-or-competes",
+      "claim": "Chrome is drawn physically on top of the article: the table-of-contents panel is overlaid on the content column and covers part of the rule under the h1.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "A white absolutely positioned TOC box sits at the card's top right over the heading rule; a second four-icon rail overlaps the card's right border just outside it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "defers-or-competes",
+      "claim": "The design does not perform, but it does not step back either: sixteen interactive controls outside the left rail surround a body of three labels and four links.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Wordmark, search field, search button, wrench dropdown, Register and Log In in the top bar; five unlabelled glyphs above the h1; the table-of-contents toggle; four unlabelled glyphs in the fixed right rail. The count of thirteen both omitted the search field, search button, wordmark and TOC toggle and counted the '[[ biology ]]' badge, which is a label rather than a control.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "information-design",
+      "claim": "The site is not longevity-relevant; it is a body-modification, implant and cybernetics community wiki.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The index describes a resource for 'grinders or cyborgs' doing 'functional (sometimes extreme) body modification'; navigation runs Biology / Lifestyle & Chemical / Tech - Wearables & Implants / Skills & Education / Projects / In the Media / People / Resources. The single adjacent entry, 'DIY HRT', is a red link whose page does not exist. No compound record, dose, study or outcome appears anywhere.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "information-design",
+      "claim": "The only structured data on a content page is one provenance line: record identifier, timestamp, contributor handle.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Below the card in small grey type: 'biology.txt', 'Last modified: 2025/04/16 05:57', 'by cyberlass'. No fields, metadata rows, badges, counts, version number, DOI or per-page licence.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "information-design",
+      "claim": "There is no visual signal of evidence quality or uncertainty anywhere in the captures: no verified, reviewed or peer mark, no sample count, no replication note, no self-reported flag, no confidence indicator and no literature citation on either page.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The only outbound references on the index are the community's own Code of Ethics and Code of Conduct, marked solely by a small globe glyph as external. A reader is left with an author handle and a date.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "information-design",
+      "claim": "User-contributed content is not distinguished from editorial because there is no editorial layer; the design does not imply otherwise.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "The index states 'This wiki is a resource for biohackers' and 'Contributing' closes the left rail. Register (filled green) and Log In (outlined white) sit in the desktop bar, but they are not on 'every screen': at 375 both are hidden behind the hamburger.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "information-design",
+      "claim": "What a reader gets here that a trial registry cannot is a per-page author handle and modification date attached to prose, plus a topic taxonomy a registry has no field for — provenance without evaluation.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The last-modified line names a person and a moment; on the biology page the prose it would attach to does not exist.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "absence",
+      "claim": "Absence of a linked record is coded in the link itself and is the site's one strong information-design move: red with a dotted underline means the target page does not exist, blue and solid means it does.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'Neuro' and 'DIY HRT' are red and dotted; 'Cell and Tissue Culture' and 'External Link' are blue and solid. The distinction costs no extra row and survives unchanged at 375.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "absence",
+      "claim": "Absence of a field renders nothing, because there are no fields: no placeholder, no 'not available' line and no empty section appears in any of the four passes.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The content page carries no metadata block beyond the one last-modified line, and no placeholder or empty section appears in any pass. The earlier reading that the visible table of contents (four entries) contradicts the declared outline is withdrawn: the DOM record's headingOutline stops at h3 and DokuWiki builds that table of contents from the page's own headings, so the four entries are evidence that deeper headings exist, not evidence of a mismatch.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "borrow",
+      "claim": "Borrow existence-coded links for the dossier reading column: a named record with no published page should look different inline from one that has a page, with no extra row and no 'not recorded' line.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The red dotted / blue solid pair on the biology page communicates written-versus-only-named at a glance. Use a higher-contrast form than this red on near-white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "borrow",
+      "claim": "Borrow the provenance line placed below and outside the reading card — identifier, timestamp, contributor — as the separation between provenance and evaluation.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Small grey type under the card, identical in shape on both pages captured, never interrupting the prose. RNAWiki must add the evaluation this site never supplies.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "borrow",
+      "claim": "Borrow the discipline of stating licence and shared terms once site-wide in the footer and never per page.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Both pages carry the identical CC BY-NC-SA footer block and neither repeats it in the body — the same rule as 'repeated elements are markup, never prose'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "avoid",
+      "claim": "Avoid a floating contents panel overlaid on the reading column; give the rail its own column and its own space.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The TOC box covers the rule under the h1 at 1440 and a second unlabelled icon rail straddles the card's right border. This is a direct argument for the in-flow Stripe-style rail on the currently unassigned surface.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "avoid",
+      "claim": "Avoid a saturated account button as the only strong colour on the first screen; colour is a weight and nothing may out-weigh the frozen search bar.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The green Register button beats the h1 on colour on every desktop screen it appears in.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "avoid",
+      "claim": "Avoid raw record identifiers and unlabelled glyph clusters in the main view; identifiers belong in a labelled technical disclosure.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The blue '[[ biology ]]' badge sits at the top of the reading area and reads as a status chip without being one; nine unlabelled glyphs across two clusters surround a 611-character page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "avoid",
+      "claim": "Avoid dropping search at the narrow viewport, and avoid the thin-content page shape itself.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The desktop bar has a visible search input (form[role=search], input Search, 2 affordances) and the 375 bar has none. The content page is a bare link list with no per-row signal at 1.41% text-to-HTML — the failure mode the corpus is climbing out of.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F29",
+      "topic": "baseline",
+      "claim": "The site is light-only with no theme control and no keyboard-shortcut or copy affordances, so no palette, palette-toggle or command-palette behaviour can be claimed from it.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Every capture is light on a near-white ground. The DOM record finds no prefers-color-scheme rule across 6 readable sheets, no data-theme attribute, no kbd texts, no aria-keyshortcuts and 0 copy controls. Key handling does exist in script (scriptTokens metaKey and keyCode are both true), so this is an absence of visible affordances, not proof that no key does anything.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes",
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "copyControls"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "whitespace",
+      "claim": "The reading column has no measure limit at 1440: prose runs the full width of the card, about 1,070px and roughly 150 characters a line, while the same prose at 375 wraps at about 45. The card is a container, not a measure.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "On the index at 1440 the paragraph beginning 'This wiki is a resource for biohackers' runs from x=301 to x=1370 in a single line; at 375 the identical sentence occupies four short lines inside the same card padding. This is the concrete reason F9's 'works better at 375' holds - the mobile column is narrow by accident of viewport, not by a set measure. RNAWiki's dossier reading column should set an explicit maximum text width rather than letting the card decide it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "eye-lands",
+      "claim": "At 375 the whole browse surface leaves the first screen, not only search: the eight-item topic rail collapses into one grey bar labelled with the parent page, so a phone reader sees no taxonomy and no search field at all.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The mobile bar holds only avatar, wordmark and hamburger; below the blue identifier badge sits a single grey strip reading 'Biohacking - Human Augmentation' with a list glyph, which is all that remains of the eleven-link rail visible at 1440. F5 and F28 record the lost search box; the lost taxonomy is the larger half, and it matters for RNAWiki's browse and filter surface: at the narrow viewport there is no way to move sideways between topics.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "avoid",
+      "claim": "The floating tool rail never adapts, while the contents panel beside it does - which shows the overlay was avoidable in the same template.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "At 375 the table of contents collapses to a small toggle button and stops covering anything, but the four-icon tool panel keeps its desktop position: it sits on top of the card's right border, about 16px from the viewport edge, in every mobile capture. It is genuinely fixed - its icons hold y=227/254/281/307 across content-375-scroll-00, -50 and -90 while the text moves under them (DOM: div.tools.panel, position fixed, top 150). Strengthens F25: give a contents or tools rail its own column, and treat a control that only fits once collapsed as one that never earned the overlay.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "wiki.biohack.me appears in no row of the Phase 2 table and nothing observed argues for giving it one: no reading column to set against Smashing, no filter grid against Awwwards, no data block against Stripe, and no evidence-quality vocabulary at all. Its contribution is negative and lands on the row currently marked 'unassigned - stopping rule', the dossier contents rail and previews: the overlaid floating TOC that covers the heading rule (F13, F25) is a worked example of what that rail must not be, which strengthens the proposed in-flow Stripe rail without supplying a new candidate. It says nothing about hover previews, which remain unobserved. One transferable pattern survives regardless of surface: existence-coded links (F20, F22)."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Existence-coded links: a named record with no page looks different inline from one that has a page, with no extra row and no placeholder line (F22, dossier reading column).",
+      "A provenance line below and outside the reading card - identifier, timestamp, contributor - keeping provenance separate from evaluation (F23, dossier reading column and structured data blocks).",
+      "Licence and shared terms stated once site-wide in the footer, never repeated per page (F24, reference / definitions page)."
+    ],
+    "avoid": [
+      "A floating contents panel overlaid on the reading column, covering the heading rule (F25, dossier contents rail).",
+      "A saturated account button as the only strong colour on the first screen (F26, home - search bar frozen).",
+      "Raw record identifiers as coloured badges in the main view, and unlabelled glyph clusters around thin content (F27, dossier reading column).",
+      "Dropping search entirely at 375 behind a hamburger (F28, home).",
+      "The thin-content page shape: a bare link list with no per-row signal, at 1.41% text-to-HTML (F28, browse / filter).",
+      "A reading column with no measure: prose set to the full width of its card, about 150 characters a line at 1440 (V1, dossier reading column).",
+      "Collapsing the whole topic taxonomy, not just search, into one unlabelled-scope bar at 375 (V2, browse / filter).",
+      "A fixed tool rail that keeps its desktop position at 375 and lies on top of the card border and the text (V3, dossier contents rail)."
+    ]
+  },
+  "notLongevityRelevant": true,
+  "bannersStanding": [],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "confirmed": 21,
+    "qualified": 8,
+    "refuted": 0,
+    "added": 3,
+    "notes": [
+      "All nine distinct capture files were opened and their sha256 values recomputed on disk; the manifest's five-way identity for content-1440-full/tile-01/scroll-00/-50/-90 is correct, so F10 stands and content-1440-tile-02.png is genuinely absent.",
+      "Nothing was refuted outright. Eight findings were qualified for overstated numbers or for a reading the capture does not support; every qualified finding kept a core that the images do show.",
+      "Most important correction (F3): plain dark text in the left rail does not mark the current page. The same two entries are dark on both pages captured, and on the biology page the current topic 'Biology' is still an ordinary blue link, so the rail carries no current-page state at all.",
+      "F4, F14 and F18 all rested on 'two filled buttons'. Only Register is filled; Log In is an outlined white button, and at 375 neither is on screen.",
+      "F21's outline-mismatch inference was withdrawn: headingOutline in the DOM record stops at h3, and DokuWiki generates the visible table of contents from the page's own headings, so the four TOC entries evidence deeper headings rather than a contradiction.",
+      "F29 exists in the JSON but had no section in the Markdown notes; a short section 10 was added there so the two files agree."
+    ]
+  }
+}

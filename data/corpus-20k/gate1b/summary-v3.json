@@ -1,0 +1,1045 @@
+{
+ "gate": "1b",
+ "stage": "Phase 2d measurement (after the evidence-age fix, the three CLINICAL templates and the removal of the standing paragraph-2 fallbacks)",
+ "date": "2026-09-05",
+ "supersedes": "data/corpus-20k/gate1b/summary-v2.json (Phase 2c re-measure)",
+ "method": {
+  "harness": "scripts/corpus-20k/overlap/measure.py, unchanged; seed 20260904, 128 permutations, 5-gram shingles, cascade 32x4 -> 64x2 -> 128x1, max bucket 512, rerank 64",
+  "driver": "scripts/corpus-20k/overlap/gate1b_v3.py (build | folds | buckets | shared | runs | validate | summary)",
+  "sets": "the same sets and seeds as Phase 2b: indexed candidates (Tier 1 + Tier 2 with at least one question), the seeded 803 and 324 draws (drawn in that order from one default_rng(20260904) over the sorted indexed key list), the size-matched folds (default_rng(20260904).permutation cut into consecutive 803-page folds), the full corpus.",
+  "derivation": "identical to gate1b_v2.py: matched 803 and 324 draws, size-matched 803-page folds over the sorted indexed key list at seed 20260904, the same bucket rule",
+  "notReRun": "The live baselines (set c) read data/drugs/*.ndjson through build_validation_corpus.py and no drug record changed in Phase 2c, so the v1 figures stand unchanged and are carried forward, not re-measured."
+ },
+ "renderer": {
+  "module": "scripts/corpus-20k/render/page-text.ts",
+  "out": "data/corpus-20k/render/text/batch-NNNN.ndjson (step page-text-v3, 29 batches)",
+  "pages": 28943,
+  "withQuestions": 11388,
+  "withoutQuestions": 17555,
+  "byTier": {
+   "1": 1498,
+   "2": 4724,
+   "3": 22721
+  },
+  "meanWordCount": 250.4,
+  "rowCap": 20
+ },
+ "questions": {
+  "pagesWithQuestions": 11388,
+  "distinctStrings": 59040,
+  "mostRepeatedString": {
+   "text": "What became of the other 61 compounds aimed at TUBB?",
+   "pages": 62,
+   "share": 0.002142
+  },
+  "mostRepeatedTemplate": {
+   "template": "trial-size",
+   "pages": 8709,
+   "share": 0.300902
+  },
+  "fiveGramMeanJaccard": 0.004498,
+  "forbiddenWordViolations": []
+ },
+ "standingSentences": {
+  "rule": "a sentence appearing verbatim in the prose of more than 5% of indexed pages is a standing sentence and fails; a label in a revealed row is markup and is reported beside it, not against the rule",
+  "set": "indexed candidates: Tier 1 or Tier 2 with at least one question",
+  "indexedPages": 5883,
+  "prose": {
+   "distinctSentences": 101722,
+   "overFivePercent": [],
+   "mostRepeated": [
+    {
+     "text": "C.",
+     "pages": 214,
+     "share": 0.036376
+    },
+    {
+     "text": "pharmacokinetics",
+     "pages": 210,
+     "share": 0.035696
+    },
+    {
+     "text": "1 recorded statement; exercise",
+     "pages": 203,
+     "share": 0.034506
+    },
+    {
+     "text": "2 recorded statements; fasting, exercise",
+     "pages": 181,
+     "share": 0.030767
+    },
+    {
+     "text": "1 completed; 0 with posted results",
+     "pages": 171,
+     "share": 0.029067
+    },
+    {
+     "text": "1 term in all",
+     "pages": 144,
+     "share": 0.024477
+    },
+    {
+     "text": "1 recorded statement; fasting",
+     "pages": 120,
+     "share": 0.020398
+    },
+    {
+     "text": "2026-09-04; 2 registers read",
+     "pages": 94,
+     "share": 0.015978
+    },
+    {
+     "text": "— the recorded outcome words.",
+     "pages": 77,
+     "share": 0.013089
+    },
+    {
+     "text": "1 of 1 posted no result",
+     "pages": 71,
+     "share": 0.012069
+    },
+    {
+     "text": "indications and usage; recorded 2025-01-09",
+     "pages": 70,
+     "share": 0.011899
+    },
+    {
+     "text": "EMA_MEDICINE_REGISTER, Drugs@FDA; 1 recorded pair",
+     "pages": 67,
+     "share": 0.011389
+    },
+    {
+     "text": "\"Uses: See symptoms on front panel.",
+     "pages": 64,
+     "share": 0.010879
+    },
+    {
+     "text": "OPEN_TARGETS_DRUG_WARNING, Drugs@FDA; 1 recorded pair",
+     "pages": 58,
+     "share": 0.009859
+    },
+    {
+     "text": "1 completed; 1 with posted results",
+     "pages": 54,
+     "share": 0.009179
+    }
+   ]
+  },
+  "markupRowLabels": {
+   "distinctLabels": 11586,
+   "overFivePercent": [
+    {
+     "text": "completed",
+     "pages": 3710,
+     "share": 0.630631
+    },
+    {
+     "text": "Trial",
+     "pages": 3652,
+     "share": 0.620772
+    },
+    {
+     "text": "CA",
+     "pages": 3218,
+     "share": 0.547
+    },
+    {
+     "text": "phase2",
+     "pages": 3145,
+     "share": 0.534591
+    },
+    {
+     "text": "phase3",
+     "pages": 3010,
+     "share": 0.511644
+    },
+    {
+     "text": "phase1",
+     "pages": 2886,
+     "share": 0.490566
+    },
+    {
+     "text": "phase4",
+     "pages": 2508,
+     "share": 0.426313
+    },
+    {
+     "text": "terminated",
+     "pages": 2454,
+     "share": 0.417134
+    },
+    {
+     "text": "na",
+     "pages": 2433,
+     "share": 0.413565
+    },
+    {
+     "text": "US",
+     "pages": 2399,
+     "share": 0.407785
+    },
+    {
+     "text": "unknown",
+     "pages": 2349,
+     "share": 0.399286
+    },
+    {
+     "text": "na or unstated",
+     "pages": 2243,
+     "share": 0.381268
+    },
+    {
+     "text": "recruiting",
+     "pages": 2242,
+     "share": 0.381098
+    },
+    {
+     "text": "human",
+     "pages": 2210,
+     "share": 0.375659
+    },
+    {
+     "text": "withdrawn",
+     "pages": 1938,
+     "share": 0.329424
+    },
+    {
+     "text": "active not recruiting",
+     "pages": 1728,
+     "share": 0.293728
+    },
+    {
+     "text": "not yet recruiting",
+     "pages": 1558,
+     "share": 0.264831
+    },
+    {
+     "text": "early phase1",
+     "pages": 1422,
+     "share": 0.241713
+    },
+    {
+     "text": "half life",
+     "pages": 1333,
+     "share": 0.226585
+    },
+    {
+     "text": "EU",
+     "pages": 1244,
+     "share": 0.211457
+    },
+    {
+     "text": "metabolism",
+     "pages": 1021,
+     "share": 0.173551
+    },
+    {
+     "text": "Last recorded human test",
+     "pages": 1020,
+     "share": 0.173381
+    },
+    {
+     "text": "mouse",
+     "pages": 597,
+     "share": 0.101479
+    },
+    {
+     "text": "biomarkers",
+     "pages": 594,
+     "share": 0.100969
+    },
+    {
+     "text": "enrolling by invitation",
+     "pages": 581,
+     "share": 0.098759
+    },
+    {
+     "text": "CYP3A4",
+     "pages": 564,
+     "share": 0.095869
+    },
+    {
+     "text": "humanTrialsAtOrUnder30",
+     "pages": 554,
+     "share": 0.09417
+    },
+    {
+     "text": "smallestHumanTrial",
+     "pages": 554,
+     "share": 0.09417
+    },
+    {
+     "text": "tmax",
+     "pages": 538,
+     "share": 0.09145
+    },
+    {
+     "text": "Interaction statement",
+     "pages": 530,
+     "share": 0.09009
+    },
+    {
+     "text": "mTOR",
+     "pages": 488,
+     "share": 0.082951
+    },
+    {
+     "text": "suspended",
+     "pages": 478,
+     "share": 0.081251
+    },
+    {
+     "text": "autophagy",
+     "pages": 473,
+     "share": 0.080401
+    },
+    {
+     "text": "bioavailability",
+     "pages": 462,
+     "share": 0.078531
+    },
+    {
+     "text": "missing",
+     "pages": 426,
+     "share": 0.072412
+    },
+    {
+     "text": "exercise",
+     "pages": 401,
+     "share": 0.068163
+    },
+    {
+     "text": "AMPK",
+     "pages": 387,
+     "share": 0.065783
+    },
+    {
+     "text": "rat",
+     "pages": 384,
+     "share": 0.065273
+    },
+    {
+     "text": "CYP1A2",
+     "pages": 377,
+     "share": 0.064083
+    },
+    {
+     "text": "CYP2D6",
+     "pages": 357,
+     "share": 0.060683
+    },
+    {
+     "text": "CYP2C9",
+     "pages": 343,
+     "share": 0.058304
+    },
+    {
+     "text": "fasting",
+     "pages": 315,
+     "share": 0.053544
+    },
+    {
+     "text": "drug hypersensitivity",
+     "pages": 306,
+     "share": 0.052014
+    },
+    {
+     "text": "CYP2C19",
+     "pages": 297,
+     "share": 0.050484
+    }
+   ],
+   "mostRepeated": [
+    {
+     "text": "completed",
+     "pages": 3710,
+     "share": 0.630631
+    },
+    {
+     "text": "Trial",
+     "pages": 3652,
+     "share": 0.620772
+    },
+    {
+     "text": "CA",
+     "pages": 3218,
+     "share": 0.547
+    },
+    {
+     "text": "phase2",
+     "pages": 3145,
+     "share": 0.534591
+    },
+    {
+     "text": "phase3",
+     "pages": 3010,
+     "share": 0.511644
+    },
+    {
+     "text": "phase1",
+     "pages": 2886,
+     "share": 0.490566
+    },
+    {
+     "text": "phase4",
+     "pages": 2508,
+     "share": 0.426313
+    },
+    {
+     "text": "terminated",
+     "pages": 2454,
+     "share": 0.417134
+    },
+    {
+     "text": "na",
+     "pages": 2433,
+     "share": 0.413565
+    },
+    {
+     "text": "US",
+     "pages": 2399,
+     "share": 0.407785
+    },
+    {
+     "text": "unknown",
+     "pages": 2349,
+     "share": 0.399286
+    },
+    {
+     "text": "na or unstated",
+     "pages": 2243,
+     "share": 0.381268
+    },
+    {
+     "text": "recruiting",
+     "pages": 2242,
+     "share": 0.381098
+    },
+    {
+     "text": "human",
+     "pages": 2210,
+     "share": 0.375659
+    },
+    {
+     "text": "withdrawn",
+     "pages": 1938,
+     "share": 0.329424
+    }
+   ]
+  }
+ },
+ "harnessFit": {
+  "fit": true,
+  "rule": "unfit above 0.02 median delta",
+  "corpus": "rendered-indexed-803 (v3)",
+  "positionalDeltaMedian": 0.0,
+  "positionalDeltaP90": 0.049239,
+  "positionalDeltaMax": 0.211266,
+  "lexicalDeltaMedian": 0.0
+ },
+ "sets": {
+  "a_indexed_full": {
+   "pages": 5883,
+   "positionalMedian": 0.356522,
+   "positionalP90": 0.613248,
+   "positionalMax": 0.983215,
+   "above_0_20": 4925,
+   "above_0_30": 3638,
+   "lexicalMedian": 0.53405,
+   "sharedWordShareMedian": 0.180055,
+   "mode": "lsh",
+   "note": "Tier 1 + Tier 2 with at least one question, every page scored against all others"
+  },
+  "a_indexed_size_matched_pooled": {
+   "pages": 5883,
+   "positionalMedian": 0.265432,
+   "positionalP90": 0.447368,
+   "positionalMax": 0.979706,
+   "above_0_20": 4356,
+   "above_0_30": 2454,
+   "lexicalMedian": 0.464286,
+   "lexicalAbove_0_40": 4136,
+   "sharedWordShareMedian": 0.180055,
+   "foldSizes": [
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803
+   ],
+   "keptPerFold": [
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    803,
+    262
+   ],
+   "note": "The basis Gate 1b uses: each page scored inside a seeded 803-page fold so the candidate count matches the baseline draw."
+  },
+  "b_matched_803": {
+   "pages": 803,
+   "positionalMedian": 0.244681,
+   "positionalP90": 0.447368,
+   "positionalMax": 0.982767,
+   "above_0_20": 536,
+   "above_0_30": 308,
+   "lexicalMedian": 0.458647,
+   "sharedWordShareMedian": 0.179752,
+   "mode": "exhaustive"
+  },
+  "b_matched_324": {
+   "pages": 324,
+   "positionalMedian": 0.25,
+   "positionalP90": 0.382022,
+   "positionalMax": 0.96618,
+   "above_0_20": 231,
+   "above_0_30": 96,
+   "lexicalMedian": 0.436791,
+   "sharedWordShareMedian": 0.173949,
+   "mode": "exhaustive"
+  },
+  "c_baseline_live_803": {
+   "pages": 803,
+   "positionalMedian": 0.6472,
+   "positionalP90": 0.7935,
+   "positionalMax": 0.9147,
+   "above_0_20": 803,
+   "above_0_30": 796,
+   "lexicalMedian": 0.6152,
+   "lexicalP90": 0.767,
+   "lexicalAbove_0_40": null,
+   "sharedWordShareMedian": 0.559024,
+   "note": "Carried forward from Phase 2b unchanged: same source records, same export-flatten text, not re-run."
+  },
+  "c_baseline_live_324": {
+   "pages": 324,
+   "positionalMedian": 0.6107,
+   "positionalP90": 0.8101,
+   "positionalMax": 0.8753,
+   "above_0_20": 324,
+   "above_0_30": 313,
+   "lexicalMedian": 0.5848,
+   "lexicalP90": 0.8034,
+   "lexicalAbove_0_40": null,
+   "sharedWordShareMedian": 0.549864,
+   "note": "Carried forward from Phase 2b unchanged: same source records, same export-flatten text, not re-run."
+  },
+  "d_full_corpus": {
+   "pages": 28943,
+   "positionalMedian": 0.710526,
+   "positionalP90": 0.8,
+   "positionalMax": 1.0,
+   "above_0_20": 28026,
+   "above_0_30": 26464,
+   "lexicalMedian": 0.680851,
+   "sharedWordShareMedian": 0.329545,
+   "mode": "lsh"
+  },
+  "e_indexed_prose_only": {
+   "pages": 5883,
+   "positionalMedian": 0.356098,
+   "positionalP90": 0.686047,
+   "positionalMax": 1.0,
+   "above_0_20": 4759,
+   "above_0_30": 3746,
+   "lexicalMedian": 0.569038,
+   "sharedWordShareMedian": 0.045837,
+   "mode": "lsh"
+  }
+ },
+ "likeForLike": {
+  "note": "The v3 render scored on exactly the 4,558 pages v2 measured, so the two numbers differ only by what the render changed — not by which pages were measured.",
+  "carriedFromV2": {
+   "pages": 4558,
+   "positionalMedian": 0.2449,
+   "lexicalMedian": 0.437,
+   "v2PositionalMedian": 0.2493
+  },
+  "carriedWithoutAClinicalBlock": {
+   "pages": 1291,
+   "positionalMedian": 0.1907,
+   "reading": "pages the three new CLINICAL templates never touch: the evidence-age fix on its own"
+  },
+  "carriedWithAClinicalBlock": {
+   "pages": 3267,
+   "positionalMedian": 0.25
+  },
+  "newlyIndexed": {
+   "pages": 1325,
+   "positionalMedian": 0.3774,
+   "medianPresentFields": 2,
+   "medianWordCount": 137,
+   "reading": "CLINICAL pages that fired no question before the three templates were added"
+  }
+ },
+ "nullModel": {
+  "indexed": {
+   "randomPairPositionalMedian": 0.049383,
+   "expectedNearestNeighbour": {
+    "full": {
+     "pages": 5883,
+     "positional": 0.485144,
+     "lexical": 0.78557
+    },
+    "matched": [
+     {
+      "pages": 324,
+      "positional": 0.373992,
+      "lexical": 0.600509
+     },
+     {
+      "pages": 803,
+      "positional": 0.423481,
+      "lexical": 0.646282
+     }
+    ]
+   }
+  },
+  "fullCorpus": {
+   "randomPairPositionalMedian": 0.166667,
+   "expectedNearestNeighbour": {
+    "full": {
+     "pages": 28943,
+     "positional": 0.966667,
+     "lexical": 0.941176
+    },
+    "matched": [
+     {
+      "pages": 324,
+      "positional": 0.868248,
+      "lexical": 0.940765
+     },
+     {
+      "pages": 803,
+      "positional": 0.930894,
+      "lexical": 0.941176
+     }
+    ]
+   }
+  }
+ },
+ "controls": [
+  {
+   "label": "control:other",
+   "pages": 5883,
+   "positional": {
+    "count": 5883,
+    "median": 0.552402,
+    "mean": 0.590108,
+    "p90": 0.773038,
+    "max": 0.990676,
+    "above_0_20": 5863,
+    "above_0_30": 5798
+   },
+   "lexical": {
+    "count": 5883,
+    "median": 0.486413,
+    "mean": 0.487964,
+    "p90": 0.61563,
+    "max": 0.966063,
+    "above_0_20": 5883,
+    "above_0_30": 5731
+   },
+   "medianTokens": 1020
+  },
+  {
+   "label": "control:self",
+   "pages": 5883,
+   "positional": {
+    "count": 5883,
+    "median": 0.344828,
+    "mean": 0.366379,
+    "p90": 0.605647,
+    "max": 0.982741,
+    "above_0_20": 4819,
+    "above_0_30": 3556
+   },
+   "lexical": {
+    "count": 5883,
+    "median": 0.533333,
+    "mean": 0.546538,
+    "p90": 0.747805,
+    "max": 0.990099,
+    "above_0_20": 5882,
+    "above_0_30": 5717
+   },
+   "medianTokens": 1020
+  }
+ ],
+ "sharedWordShare": {
+  "indexed": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.180055,
+   "p90": 0.284483,
+   "byTier": {
+    "tier1": 0.140879,
+    "tier2": 0.200963
+   }
+  },
+  "fullCorpus": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.329545,
+   "p90": 0.577778,
+   "byTier": {
+    "tier1": 0.083307,
+    "tier2": 0.118731,
+    "tier3": 0.405063
+   }
+  },
+  "proseOnly": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.045837,
+   "p90": 0.070866,
+   "byTier": {
+    "tier1": 0.043915,
+    "tier2": 0.046875
+   }
+  },
+  "baseline803": {
+   "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+   "median": 0.559024,
+   "p90": 0.690778,
+   "byTier": {
+    "class": 0.551855,
+    "median": 0.568606,
+    "richest": 0.325699,
+    "thinnest": 0.724139,
+    "topup": 0.563885
+   }
+  }
+ },
+ "buckets": {
+  "0": {
+   "n": 6,
+   "posMed": 0.305478,
+   "posP90": 0.339719,
+   "lexMed": 0.45076700000000003,
+   "cumN": 5883,
+   "cumPosMed": 0.265432,
+   "cumLexMed": 0.464286
+  },
+  "1": {
+   "n": 847,
+   "posMed": 0.4,
+   "posP90": 0.447368,
+   "lexMed": 0.580247,
+   "cumN": 5877,
+   "cumPosMed": 0.265432,
+   "cumLexMed": 0.464455
+  },
+  "2": {
+   "n": 888,
+   "posMed": 0.402062,
+   "posP90": 0.44785160000000007,
+   "lexMed": 0.578947,
+   "cumN": 5030,
+   "cumPosMed": 0.25,
+   "cumLexMed": 0.447925
+  },
+  "3": {
+   "n": 670,
+   "posMed": 0.3468565,
+   "posP90": 0.421687,
+   "lexMed": 0.533657,
+   "cumN": 4142,
+   "cumPosMed": 0.236842,
+   "cumLexMed": 0.4266945
+  },
+  "4": {
+   "n": 457,
+   "posMed": 0.285714,
+   "posP90": 0.407895,
+   "lexMed": 0.488971,
+   "cumN": 3472,
+   "cumPosMed": 0.21519,
+   "cumLexMed": 0.4087515
+  },
+  "5": {
+   "n": 378,
+   "posMed": 0.269231,
+   "posP90": 0.407895,
+   "lexMed": 0.457868,
+   "cumN": 3015,
+   "cumPosMed": 0.210526,
+   "cumLexMed": 0.398821
+  },
+  "6": {
+   "n": 371,
+   "posMed": 0.25,
+   "posP90": 0.678776,
+   "lexMed": 0.452663,
+   "cumN": 2637,
+   "cumPosMed": 0.204819,
+   "cumLexMed": 0.3903
+  },
+  "7": {
+   "n": 348,
+   "posMed": 0.21519,
+   "posP90": 0.47258940000000005,
+   "lexMed": 0.446987,
+   "cumN": 2266,
+   "cumPosMed": 0.199462,
+   "cumLexMed": 0.382314
+  },
+  "8": {
+   "n": 374,
+   "posMed": 0.206186,
+   "posP90": 0.38786869999999996,
+   "lexMed": 0.425395,
+   "cumN": 1918,
+   "cumPosMed": 0.193548,
+   "cumLexMed": 0.369423
+  },
+  "9": {
+   "n": 481,
+   "posMed": 0.202247,
+   "posP90": 0.269663,
+   "lexMed": 0.399103,
+   "cumN": 1544,
+   "cumPosMed": 0.191011,
+   "cumLexMed": 0.3531425
+  },
+  "10": {
+   "n": 425,
+   "posMed": 0.200883,
+   "posP90": 0.25129660000000004,
+   "lexMed": 0.386054,
+   "cumN": 1063,
+   "cumPosMed": 0.182927,
+   "cumLexMed": 0.328918
+  },
+  "11": {
+   "n": 165,
+   "posMed": 0.180851,
+   "posP90": 0.287129,
+   "lexMed": 0.330529,
+   "cumN": 638,
+   "cumPosMed": 0.1729795,
+   "cumLexMed": 0.302752
+  },
+  "12": {
+   "n": 161,
+   "posMed": 0.173469,
+   "posP90": 0.356436,
+   "lexMed": 0.307068,
+   "cumN": 473,
+   "cumPosMed": 0.170213,
+   "cumLexMed": 0.295872
+  },
+  "13": {
+   "n": 136,
+   "posMed": 0.17054950000000002,
+   "posP90": 0.316832,
+   "lexMed": 0.29760149999999996,
+   "cumN": 312,
+   "cumPosMed": 0.1680685,
+   "cumLexMed": 0.2915105
+  },
+  "14": {
+   "n": 152,
+   "posMed": 0.156394,
+   "posP90": 0.287129,
+   "lexMed": 0.2855475,
+   "cumN": 176,
+   "cumPosMed": 0.1570105,
+   "cumLexMed": 0.2855475
+  },
+  "15": {
+   "n": 22,
+   "posMed": 0.16840650000000001,
+   "posP90": 0.287129,
+   "lexMed": 0.28755549999999996,
+   "cumN": 24,
+   "cumPosMed": 0.166308,
+   "cumLexMed": 0.28485499999999997
+  },
+  "16": {
+   "n": 2,
+   "posMed": 0.15633000000000002,
+   "posP90": 0.16318120000000003,
+   "lexMed": 0.265604,
+   "cumN": 2,
+   "cumPosMed": 0.15633000000000002,
+   "cumLexMed": 0.265604
+  }
+ },
+ "threshold": {
+  "threshold": 11,
+  "indexed": 638,
+  "belowByTier": {
+   "1": 870,
+   "2": 4375
+  },
+  "aboveByTier": {
+   "1": 617,
+   "2": 21
+  },
+  "boundaryBucketPositionalMedian": 0.180851,
+  "cumulativePositionalMedian": 0.1729795,
+  "cumulativeLexicalMedian": 0.302752,
+  "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose cumulative set (pages at or above it) also keeps median <= 0.20",
+  "cumulativeOnlyThreshold": 7,
+  "basis": "a_indexed_size_matched_pooled"
+ },
+ "sharedContent": {
+  "above_0_2": {
+   "pages": 4356,
+   "markupLinesMean": 0.3908,
+   "proseLinesMean": 0.2679,
+   "spanningLineBreaksMean": 0.3413,
+   "medianPresentFields": 3,
+   "medianWordCount": 327
+  },
+  "above_0_3": {
+   "pages": 2454,
+   "markupLinesMean": 0.3208,
+   "proseLinesMean": 0.3192,
+   "spanningLineBreaksMean": 0.3599,
+   "medianPresentFields": 2,
+   "medianWordCount": 189
+  },
+  "indexedSet": {
+   "pages": 5883,
+   "medianPresentFields": 5,
+   "medianWordCount": 457
+  }
+ },
+ "inputs": {
+  "seed15Fires": 7332,
+  "seed7Fires": 36,
+  "seed7Discarded": true,
+  "suppressed": 19335,
+  "suppressionUnknown": 17621,
+  "cleared": 9608
+ },
+ "verdict": {
+  "clears_0_20": true,
+  "threshold": 11,
+  "indexed": 638,
+  "boundaryBucketPositionalMedian": 0.180851,
+  "cumulativeLexicalMedian": 0.302752
+ },
+ "crawlTextToHtml": {
+  "status": "deferred to Gate 2",
+  "reason": "text-to-HTML needs rendered HTML. No React template exists yet (Phase 4 builds it), so there is no server HTML to divide by. The baselines to compare against remain crawl 8.3% and live 0.07%."
+ },
+ "diffVsV1AndV2": {
+  "note": "v1 = summary.json (Phase 2b MEASURE); v2 = summary-v2.json (Phase 2c re-measure); v3 = this run. The v2 column's 'none clears' rows are written as null.",
+  "rows": [
+   {
+    "measure": "Pages rendered",
+    "v1": 28966,
+    "v2": 28943,
+    "v3": 28943
+   },
+   {
+    "measure": "Indexed candidates (Tier 1 + 2 with >= 1 question)",
+    "v1": 4562,
+    "v2": 4558,
+    "v3": 5883
+   },
+   {
+    "measure": "Positional median, 324 draw",
+    "v1": 0.192,
+    "v2": 0.2061,
+    "v3": 0.25
+   },
+   {
+    "measure": "Positional median, 803 draw",
+    "v1": 0.205,
+    "v2": 0.2467,
+    "v3": 0.244681
+   },
+   {
+    "measure": "Positional median, size-matched folds",
+    "v1": 0.208,
+    "v2": 0.2493,
+    "v3": 0.265432
+   },
+   {
+    "measure": "Positional median, indexed all-pairs",
+    "v1": 0.303,
+    "v2": 0.312,
+    "v3": 0.356522
+   },
+   {
+    "measure": "Positional median, full corpus",
+    "v1": 0.711,
+    "v2": 0.7105,
+    "v3": 0.710526
+   },
+   {
+    "measure": "Lexical median, size-matched folds",
+    "v1": 0.435,
+    "v2": 0.4604,
+    "v3": 0.464286
+   },
+   {
+    "measure": "Shared-word share, indexed",
+    "v1": 0.159,
+    "v2": 0.173085,
+    "v3": 0.180055
+   },
+   {
+    "measure": "Shared-word share, prose only",
+    "v1": 0.048,
+    "v2": 0.069635,
+    "v3": 0.045837
+   },
+   {
+    "measure": "Threshold (present fields)",
+    "v1": 7,
+    "v2": null,
+    "v3": 11
+   },
+   {
+    "measure": "Boundary bucket median",
+    "v1": 0.197,
+    "v2": null,
+    "v3": 0.180851
+   },
+   {
+    "measure": "Indexed pages",
+    "v1": 2267,
+    "v2": 0,
+    "v3": 638
+   },
+   {
+    "measure": "Tier 1 below threshold",
+    "v1": 449,
+    "v2": 1478,
+    "v3": 870
+   },
+   {
+    "measure": "Tier 2 below threshold",
+    "v1": 1846,
+    "v2": 3080,
+    "v3": 4375
+   },
+   {
+    "measure": "Pages with questions, corpus",
+    "v1": 10071,
+    "v2": 10063,
+    "v3": 11388
+   },
+   {
+    "measure": "Distinct question strings",
+    "v1": 43674,
+    "v2": 59101,
+    "v3": 59040
+   },
+   {
+    "measure": "Standing prose sentences over 5% of indexed pages",
+    "v1": null,
+    "v2": 3,
+    "v3": 0
+   }
+  ]
+ }
+}

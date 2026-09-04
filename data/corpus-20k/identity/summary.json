@@ -1,0 +1,5762 @@
+{
+ "generatedAt": "2026-09-04T05:51:45Z",
+ "spec": "docs/specs/identity-resolution.md",
+ "script": "scripts/corpus-20k/identity/resolve.py",
+ "runtimeSeconds": 265.7,
+ "inputs": {
+  "existing-canonical": 9852,
+  "chembl-molecules": 16784,
+  "open-targets-drug-molecule": 22407,
+  "fda-unii-records": 171912,
+  "fda-unii-names": 1050022,
+  "ema-medicines": 2732,
+  "health-canada-ingredients": 19421,
+  "drugbank-open": 0
+ },
+ "recordUniverse": 34897,
+ "canonical": 28966,
+ "merges": 4307,
+ "splits": 1256,
+ "holds": 55,
+ "byRule": {
+  "CONFLICT-K1-K2": 55,
+  "M-BRAND": 392,
+  "M-CODE": 112,
+  "M-FORMULATION": 1198,
+  "M-NAME-VARIANT": 736,
+  "M-SALT": 1854,
+  "M-STEREO-ACCIDENT": 15,
+  "S-BIOSIMILAR": 208,
+  "S-COMBO": 173,
+  "S-ESTER": 45,
+  "S-ISOTOPE": 133,
+  "S-STEREO": 697
+ },
+ "kRank": {
+  "COMBO": 173,
+  "HOLD": 55,
+  "K1": 20128,
+  "K2": 6374,
+  "K3": 495,
+  "K4": 1738,
+  "NONE": 3
+ },
+ "activeSubstanceNameMatches": {
+  "ema": 1223,
+  "healthCanada": 1742
+ },
+ "noStructure": 8891,
+ "combinations": 173,
+ "combinationsWithoutResolvedComponents": 59,
+ "structurelessRecordsKeyedByNameMatchedUnii": 4294,
+ "biologics": 3451,
+ "existingMergedIntoExisting": {
+  "count": 864,
+  "groups": [
+   {
+    "key": "K1:T2I5UM75DN",
+    "displayName": "Calcium Nitrite",
+    "slugs": [
+     "calcium-nitrite",
+     "potassium-nitrite"
+    ]
+   },
+   {
+    "key": "K1:6Y8XYV2NOF",
+    "displayName": "Bee Propolis",
+    "slugs": [
+     "bee-propolis",
+     "propolis",
+     "propolis-wax"
+    ]
+   },
+   {
+    "key": "K1:TZP1275679",
+    "displayName": "Beta-Hydroxybutyrate",
+    "slugs": [
+     "beta-hydroxybutyrate",
+     "calcium-beta-hydroxybutyrate",
+     "potassium-beta-hydroxybutyrate"
+    ]
+   },
+   {
+    "key": "K1:RGL5YE86CZ",
+    "displayName": "Fluoride",
+    "slugs": [
+     "fluoride",
+     "fluoride-ion",
+     "hydrofluoric-acid"
+    ]
+   },
+   {
+    "key": "K1:F41401512X",
+    "displayName": "Nilotinib",
+    "slugs": [
+     "nilotinib",
+     "nilotinib-d-tartrate"
+    ]
+   },
+   {
+    "key": "K1:60EUX8MN5X",
+    "displayName": "Ursodoxicoltaurine",
+    "slugs": [
+     "tauroursodeoxycholic-acid",
+     "taurursodiol"
+    ]
+   },
+   {
+    "key": "K1:3F752311CD",
+    "displayName": "Calcium Hydroxymethylbutyrate",
+    "slugs": [
+     "calcium-hydroxymethylbutyrate",
+     "hydroxymethylbutyrate"
+    ]
+   },
+   {
+    "key": "K1:7CUC9DDI9F",
+    "displayName": "Pseudoephedrine",
+    "slugs": [
+     "pseudoephedrine",
+     "pseudoephedrine-polistirex"
+    ]
+   },
+   {
+    "key": "K1:WQZ3G9PF0H",
+    "displayName": "Atropa Belladonna",
+    "slugs": [
+     "atropa-belladonna",
+     "belladonna"
+    ]
+   },
+   {
+    "key": "K1:TE7660XO1C",
+    "displayName": "Glycine",
+    "slugs": [
+     "aluminum-zirconium-octachlorohydrex-gly",
+     "aluminum-zirconium-pentachlorohydrex-gly",
+     "aluminum-zirconium-tetrachlorohydrex-gly",
+     "aluminum-zirconium-trichlorohydrex-gly",
+     "ferrous-asparto-glycinate",
+     "ferrous-bisglycinate",
+     "glycine",
+     "magnesium-glycinate",
+     "zinc-glycinate"
+    ]
+   },
+   {
+    "key": "K1:00UK7646FG",
+    "displayName": "Capsicum",
+    "slugs": [
+     "capsicum",
+     "cayenne"
+    ]
+   },
+   {
+    "key": "K1:3OWL53L36A",
+    "displayName": "Cordycepic Acid",
+    "slugs": [
+     "cordycepic-acid",
+     "mannitol"
+    ]
+   },
+   {
+    "key": "K1:WYQ7N0BPYC",
+    "displayName": "Acetylcysteine",
+    "slugs": [
+     "acetylcysteine",
+     "acetylcysteine-lysine",
+     "n-acetyl-cysteine"
+    ]
+   },
+   {
+    "key": "K1:8NT850T0YS",
+    "displayName": "Bisoctrizole",
+    "slugs": [
+     "bisoctrizole",
+     "methylene-bis-benzotriazolyl-tetramethylbutylphenol"
+    ]
+   },
+   {
+    "key": "K1:8GTS82S83M",
+    "displayName": "Diphenhydramine",
+    "slugs": [
+     "diphenhydramine",
+     "diphenhydramine-hcl"
+    ]
+   },
+   {
+    "key": "K1:ZUM06L90GV",
+    "displayName": "Pyrethrins",
+    "slugs": [
+     "pyrethrins",
+     "pyrethrum-extract"
+    ]
+   },
+   {
+    "key": "K1:CK833KGX7E",
+    "displayName": "Amfetamine",
+    "slugs": [
+     "amphetamine-adipate",
+     "amphetamine-aspartate-dextroamphetamine",
+     "amphetamine-dl-aspartate"
+    ]
+   },
+   {
+    "key": "K1:6SO6U10H04",
+    "displayName": "Biotin",
+    "slugs": [
+     "biotin",
+     "vitamin-b7"
+    ]
+   },
+   {
+    "key": "K1:8MYC33932O",
+    "displayName": "Lipase",
+    "slugs": [
+     "lipase",
+     "pancrelipase-lipase"
+    ]
+   },
+   {
+    "key": "K1:MRL3739G66",
+    "displayName": "Copper Cu-64 Dotatate",
+    "slugs": [
+     "copper-cu-64-dotatate",
+     "copper-oxodotreotide-cu-64",
+     "gallium-dotatate-ga-68",
+     "lutetium-lu-177-dotatate",
+     "lutetium-oxodotreotide-lu-177"
+    ]
+   },
+   {
+    "key": "K1:DX1U2629QE",
+    "displayName": "Succimer",
+    "slugs": [
+     "succimer",
+     "technetium-tc-99m-succimer",
+     "technetium-tc-99m-succimer-kit"
+    ]
+   },
+   {
+    "key": "K1:98H1T17066",
+    "displayName": "Pasireotide",
+    "slugs": [
+     "pasireotide",
+     "pasireotide-diaspartate"
+    ]
+   },
+   {
+    "key": "K1:HU9DX48N0T",
+    "displayName": "Mycophenolic acid",
+    "slugs": [
+     "mycophenolate",
+     "mycophenolic-acid"
+    ]
+   },
+   {
+    "key": "K1:50JZ5Z98QY",
+    "displayName": "Maritime Pine",
+    "slugs": [
+     "maritime-pine",
+     "pycnogenol"
+    ]
+   },
+   {
+    "key": "K1:HYD2U48IAS",
+    "displayName": "Bepotastine",
+    "slugs": [
+     "bepotastine",
+     "bepotastine-besilate"
+    ]
+   },
+   {
+    "key": "K1:5B2658E0N2",
+    "displayName": "Aminosalicylate",
+    "slugs": [
+     "aminosalicylate",
+     "aminosalicylic-acid",
+     "potassium-aminosalicylate"
+    ]
+   },
+   {
+    "key": "K1:BGF9MN2HU1",
+    "displayName": "Choline fenofibrate",
+    "slugs": [
+     "choline-fenofibrate",
+     "fenofibric-acid"
+    ]
+   },
+   {
+    "key": "K1:8558G7RUTR",
+    "displayName": "Calcium Pyruvate",
+    "slugs": [
+     "calcium-pyruvate",
+     "pyruvate",
+     "sodium-pyruvate"
+    ]
+   },
+   {
+    "key": "K1:CM1N99QR1M",
+    "displayName": "Sodium metrizoate",
+    "slugs": [
+     "calcium-metrizoate",
+     "meglumine-metrizoate",
+     "metrizoate",
+     "metrizoic-acid"
+    ]
+   },
+   {
+    "key": "K1:9AG41L3AOQ",
+    "displayName": "Gallium (68ga) gozetotide",
+    "slugs": [
+     "gallium-ga-68-gozetotide",
+     "gozetotide"
+    ]
+   },
+   {
+    "key": "K1:QZV2W997JQ",
+    "displayName": "Chromium Picolinate",
+    "slugs": [
+     "chromium-picolinate",
+     "vanadium-picolinate",
+     "zinc-picolinate"
+    ]
+   },
+   {
+    "key": "K1:025P9I542Y",
+    "displayName": "Cyanocobalamin (57co)",
+    "slugs": [
+     "cyanocobalamin-co-57",
+     "vitamin-b12"
+    ]
+   },
+   {
+    "key": "K1:5W7SIA7YZW",
+    "displayName": "Levonorgestrel",
+    "slugs": [
+     "levonorgestrel",
+     "norgestrel"
+    ]
+   },
+   {
+    "key": "K1:61H4T033E5",
+    "displayName": "Orotic acid",
+    "slugs": [
+     "magnesium-orotate",
+     "orotic-acid"
+    ]
+   },
+   {
+    "key": "K1:Q42T66VG0C",
+    "displayName": "Benethamine penicillin",
+    "slugs": [
+     "penicillin-g",
+     "penicillin-g-benzathine"
+    ]
+   },
+   {
+    "key": "K1:6RV024OAUQ",
+    "displayName": "Sus Scrofa Thyroid",
+    "slugs": [
+     "sus-scrofa-thyroid",
+     "thyroid",
+     "thyroid-porcine"
+    ]
+   },
+   {
+    "key": "K1:0I55128JYK",
+    "displayName": "Choline theophyllinate",
+    "slugs": [
+     "aminophylline",
+     "oxtriphylline",
+     "theophylline"
+    ]
+   },
+   {
+    "key": "K1:U71XL721QK",
+    "displayName": "Piperin",
+    "slugs": [
+     "piperin",
+     "piperine",
+     "piperoylpiperidine"
+    ]
+   },
+   {
+    "key": "K1:3M5V3D1X36",
+    "displayName": "Arctostaphylos Uva-Ursi Leaf",
+    "slugs": [
+     "arctostaphylos-uva-ursi-leaf",
+     "uva-ursi"
+    ]
+   },
+   {
+    "key": "K1:OU2YM37K86",
+    "displayName": "Paritaprevir",
+    "slugs": [
+     "ombitasvir-paritaprevir-ritonavir",
+     "paritaprevir"
+    ]
+   },
+   {
+    "key": "K1:30IW36W5B2",
+    "displayName": "Calcium Oxybate",
+    "slugs": [
+     "calcium-oxybate",
+     "ghb",
+     "magnesium-oxybate",
+     "potassium-oxybate",
+     "sodium-oxybate"
+    ]
+   },
+   {
+    "key": "K1:935E97BOY8",
+    "displayName": "Folic acid",
+    "slugs": [
+     "folate",
+     "vitamin-b9"
+    ]
+   },
+   {
+    "key": "K1:04Q9AIZ7NO",
+    "displayName": "Pemetrexed",
+    "slugs": [
+     "pemetrexed-disodium-hemipentahydrate",
+     "pemetrexed-ditromethamine"
+    ]
+   },
+   {
+    "key": "K1:NQX9KB6PCL",
+    "displayName": "Somatropin",
+    "slugs": [
+     "human-growth-hormone",
+     "somatropin",
+     "somatropin-recombinant"
+    ]
+   },
+   {
+    "key": "K1:413KH5ZJ73",
+    "displayName": "Rosuvastatin",
+    "slugs": [
+     "rosuvastatin",
+     "rosuvastatin-zinc"
+    ]
+   },
+   {
+    "key": "K1:CD35PMG570",
+    "displayName": "Oxycodone",
+    "slugs": [
+     "oxycodone",
+     "oxycodone-terephthalate"
+    ]
+   },
+   {
+    "key": "K1:5UTX5635HP",
+    "displayName": "Indium In-111 Oxyquinoline",
+    "slugs": [
+     "indium-in-111-oxyquinoline",
+     "oxyquinoline"
+    ]
+   },
+   {
+    "key": "K1:2ZM8CX04RZ",
+    "displayName": "Insulin glargine",
+    "slugs": [
+     "insulin",
+     "insulin-glargine",
+     "insulin-glargine-recombinant"
+    ]
+   },
+   {
+    "key": "K1:ACH35131L1",
+    "displayName": "Albumin, iodinated (131i) human serum",
+    "slugs": [
+     "albumin-iodinated-i-131-serum",
+     "human-serum-albumin-i-131"
+    ]
+   },
+   {
+    "key": "K1:19F5HK2737",
+    "displayName": "Calcium pantothenate",
+    "slugs": [
+     "calcium-pantothenate",
+     "pantothenic-acid",
+     "vitamin-b5"
+    ]
+   },
+   {
+    "key": "K1:556Q0P6PB1",
+    "displayName": "Technetium Tc-99m Sulfur Colloid",
+    "slugs": [
+     "technetium-tc-99m-sulfur-colloid",
+     "technetium-tc-99m-sulfur-colloid-kit"
+    ]
+   },
+   {
+    "key": "K1:64FS3BFH5W",
+    "displayName": "Epoetin alfa",
+    "slugs": [
+     "epoetin",
+     "epoetin-alfa"
+    ]
+   },
+   {
+    "key": "K1:7PV0B6ED98",
+    "displayName": "Mebrofenin",
+    "slugs": [
+     "mebrofenin",
+     "technetium-tc-99m-mebrofenin-kit"
+    ]
+   },
+   {
+    "key": "K1:7A314HQM0I",
+    "displayName": "Calcium trisodium pentetate",
+    "slugs": [
+     "pentetate-calcium-trisodium",
+     "pentetate-calcium-trisodium-yb-169",
+     "pentetate-zinc-trisodium",
+     "pentetic-acid",
+     "technetium-tc-99m-pentetate-kit"
+    ]
+   },
+   {
+    "key": "K1:PQ6CK8PD0R",
+    "displayName": "Ascorbic acid",
+    "slugs": [
+     "calcium-ascorbate",
+     "chromium-ascorbate",
+     "iron-ascorbate",
+     "magnesium-ascorbate",
+     "manganese-ascorbate",
+     "molybdenum-ascorbate",
+     "potassium-ascorbate",
+     "sodium-ascorbate",
+     "vitamin-c",
+     "zinc-ascorbate"
+    ]
+   },
+   {
+    "key": "K1:LL0G25K7I2",
+    "displayName": "Azilsartan medoxomil",
+    "slugs": [
+     "azilsartan-kamedoxomil",
+     "azilsartan-medoxomil"
+    ]
+   },
+   {
+    "key": "K1:H6241UJ22B",
+    "displayName": "Selenious Acid",
+    "slugs": [
+     "selenious-acid",
+     "selenium"
+    ]
+   },
+   {
+    "key": "K1:D0L9J6I13I",
+    "displayName": "Secretin",
+    "slugs": [
+     "porcine-secretin",
+     "secretin",
+     "secretin-synthetic-porcine"
+    ]
+   },
+   {
+    "key": "K1:YO603Y8113",
+    "displayName": "Darunavir",
+    "slugs": [
+     "darunavir",
+     "darunavir-ethanolate",
+     "darunavir-hydrate"
+    ]
+   },
+   {
+    "key": "K1:Y5GMK36KGY",
+    "displayName": "Perindopril",
+    "slugs": [
+     "perindopril-arginine",
+     "perindopril-erbumine"
+    ]
+   },
+   {
+    "key": "K1:15C2VL427D",
+    "displayName": "Aflibercept",
+    "slugs": [
+     "aflibercept",
+     "ziv-aflibercept"
+    ]
+   },
+   {
+    "key": "K1:X72A60C9MT",
+    "displayName": "Lutein",
+    "slugs": [
+     "lutein",
+     "lutein-zeaxanthin"
+    ]
+   },
+   {
+    "key": "K1:SJ76Y07H5F",
+    "displayName": "Trientine",
+    "slugs": [
+     "trientine",
+     "trientine-tetrahydrochloride"
+    ]
+   },
+   {
+    "key": "K1:6FO62043WK",
+    "displayName": "Ammonium Glycyrrhizinate",
+    "slugs": [
+     "ammonium-glycyrrhizinate",
+     "dipotassium-glycyrrhizate",
+     "glycamil",
+     "glycyrrhizic-acid",
+     "glycyrrhizin"
+    ]
+   },
+   {
+    "key": "K1:673LC5J4LQ",
+    "displayName": "Pentamidine",
+    "slugs": [
+     "pentamidine",
+     "pentamidine-diisethionate"
+    ]
+   },
+   {
+    "key": "K1:3B744AG22N",
+    "displayName": "Technetium Tc-99m Exametazime",
+    "slugs": [
+     "technetium-tc-99m-exametazime",
+     "technetium-tc-99m-exametazime-kit"
+    ]
+   },
+   {
+    "key": "K1:L11K75P92J",
+    "displayName": "Calcium Phosphate",
+    "slugs": [
+     "calcium-phosphate",
+     "calcium-phosphate-dibasic"
+    ]
+   },
+   {
+    "key": "K1:6YKS4Y3WQ7",
+    "displayName": "Hydrocodone",
+    "slugs": [
+     "hydrocodone",
+     "hydrocodone-polistirex"
+    ]
+   },
+   {
+    "key": "K1:A74586SNO7",
+    "displayName": "Clopidogrel",
+    "slugs": [
+     "clopidogrel",
+     "clopidogrel-bisulfate"
+    ]
+   },
+   {
+    "key": "K1:1C39JW444G",
+    "displayName": "Cabozantinib",
+    "slugs": [
+     "cabozantinib",
+     "cabozantinib-s-malate"
+    ]
+   },
+   {
+    "key": "K1:A7V27PHC7A",
+    "displayName": "Quinine Arsenate",
+    "slugs": [
+     "quinine-arsenate",
+     "quinine-arsenite",
+     "quinine-sulphate"
+    ]
+   },
+   {
+    "key": "K1:059QF0KO0R",
+    "displayName": "Aqua",
+    "slugs": [
+     "aqua",
+     "hydroxide-ion",
+     "potassium-hydroxide",
+     "sterile-water-for-injection",
+     "sterile-water-for-irrigation"
+    ]
+   },
+   {
+    "key": "K1:G6HRD2P839",
+    "displayName": "Nintedanib",
+    "slugs": [
+     "nintedanib",
+     "nintedanib-esylate"
+    ]
+   },
+   {
+    "key": "K1:9G34HU7RV0",
+    "displayName": "Dicobalt edetate",
+    "slugs": [
+     "edetate",
+     "edetic-acid",
+     "edta"
+    ]
+   },
+   {
+    "key": "K1:EE92BBP03H",
+    "displayName": "Diltiazem",
+    "slugs": [
+     "diltiazem",
+     "diltiazem-hcl"
+    ]
+   },
+   {
+    "key": "K1:6DC9Q167V3",
+    "displayName": "Propanediol",
+    "slugs": [
+     "propanediol",
+     "propylene-glycol"
+    ]
+   },
+   {
+    "key": "K1:7LP2MPO46S",
+    "displayName": "Ademetionine",
+    "slugs": [
+     "ademetionine",
+     "sam-e"
+    ]
+   },
+   {
+    "key": "K1:KD8QND6427",
+    "displayName": "Ampelopsin",
+    "slugs": [
+     "ampelopsin",
+     "dihydromyricetin"
+    ]
+   },
+   {
+    "key": "K1:884KT10YB7",
+    "displayName": "Ranitidine",
+    "slugs": [
+     "ranitidine",
+     "ranitidine-bismuth"
+    ]
+   },
+   {
+    "key": "K1:ND2M416302",
+    "displayName": "Isopropanol",
+    "slugs": [
+     "isopropanol",
+     "isopropyl",
+     "isopropyl-alcohol"
+    ]
+   },
+   {
+    "key": "K1:JWF5YAW3QW",
+    "displayName": "Valerian",
+    "slugs": [
+     "valerian",
+     "valerian-root"
+    ]
+   },
+   {
+    "key": "K1:X045WJ989B",
+    "displayName": "Potassium Sorbate",
+    "slugs": [
+     "potassium-sorbate",
+     "sorbic-acid"
+    ]
+   },
+   {
+    "key": "K1:E211KPY694",
+    "displayName": "Abobotulinumtoxina",
+    "slugs": [
+     "abobotulinumtoxina",
+     "botulinum-toxin-type-a",
+     "incobotulinumtoxina",
+     "onabotulinumtoxina"
+    ]
+   },
+   {
+    "key": "K1:6326W0DRHY",
+    "displayName": "Sodium tetradecyl sulfate",
+    "slugs": [
+     "sodium-sulfate",
+     "tetradecyl-hydrogen"
+    ]
+   },
+   {
+    "key": "K1:ZAD9OKH9JC",
+    "displayName": "Doconexent",
+    "slugs": [
+     "dha",
+     "doconexent",
+     "docosahexaenoic-acid",
+     "omega-3-epa-dha"
+    ]
+   },
+   {
+    "key": "K1:ULW86O013H",
+    "displayName": "Oxiglutatione",
+    "slugs": [
+     "glutathione-disulfide",
+     "oxiglutatione"
+    ]
+   },
+   {
+    "key": "K1:Z8E46IA45W",
+    "displayName": "Macrosalb (99mtc)",
+    "slugs": [
+     "technetium-tc-99m-albumin-aggregated-kit",
+     "technetium-tc-99m-albumin-colloid-kit"
+    ]
+   },
+   {
+    "key": "K1:8S95DH25XC",
+    "displayName": "Levomefolic acid",
+    "slugs": [
+     "5-methyltetrahydrofolate-glucosamine",
+     "levomefolate",
+     "levomefolate-glucosamine",
+     "levomefolic-acid"
+    ]
+   },
+   {
+    "key": "K1:6GK82EC25D",
+    "displayName": "Pyrithione zinc",
+    "slugs": [
+     "pyrithione-zinc",
+     "zinc-pyrithione"
+    ]
+   },
+   {
+    "key": "K1:7UJQ5OPE7D",
+    "displayName": "Bicarbonate",
+    "slugs": [
+     "bicarbonate",
+     "bicarbonate-ion",
+     "calcium-bicarbonate",
+     "carbonate",
+     "carbonate-ion"
+    ]
+   },
+   {
+    "key": "K1:H192N84N1G",
+    "displayName": "Alseroxylon",
+    "slugs": [
+     "alseroxylon",
+     "rauwolfia-serpentina",
+     "rauwolfia-serpentina-root"
+    ]
+   },
+   {
+    "key": "K1:7C782967RD",
+    "displayName": "Ampicillin",
+    "slugs": [
+     "ampicillin",
+     "ampicillin-ampicillin"
+    ]
+   },
+   {
+    "key": "K1:SZB83O1W42",
+    "displayName": "Pidolic acid",
+    "slugs": [
+     "arginine-pidolate",
+     "arginine-pyroglutamate",
+     "zinc-pca"
+    ]
+   },
+   {
+    "key": "K1:269XH13919",
+    "displayName": "Nux Vomica",
+    "slugs": [
+     "nux-vomica",
+     "strychnos-nux-vomica-seed"
+    ]
+   },
+   {
+    "key": "K1:5C5403N26O",
+    "displayName": "Acacia",
+    "slugs": [
+     "acacia",
+     "gum-arabic"
+    ]
+   },
+   {
+    "key": "K1:2ACZ6IPC6I",
+    "displayName": "Aminobutyric Acid",
+    "slugs": [
+     "aminobutyric-acid",
+     "gaba",
+     "gamma-aminobutyric-acid"
+    ]
+   },
+   {
+    "key": "K1:20ED16GHEB",
+    "displayName": "Choriogonadotropin beta",
+    "slugs": [
+     "chorionic-gonadotropin",
+     "gonadotropin-chorionic",
+     "human-chorionic-gonadotropin"
+    ]
+   },
+   {
+    "key": "K1:4E862E7GRQ",
+    "displayName": "Pyrophosphate",
+    "slugs": [
+     "pyrophosphate",
+     "sodium-pyrophosphate"
+    ]
+   },
+   {
+    "key": "K1:614OI1Z5WI",
+    "displayName": "Valproic acid",
+    "slugs": [
+     "divalproex",
+     "valproate",
+     "valproic-acid"
+    ]
+   },
+   {
+    "key": "K1:9O3K93S3TK",
+    "displayName": "Trolamine",
+    "slugs": [
+     "tea-salicylate",
+     "trolamine"
+    ]
+   },
+   {
+    "key": "K1:0U46U6E8UK",
+    "displayName": "Nadide",
+    "slugs": [
+     "nadide",
+     "nicotinamide-adenine-dinucleotide"
+    ]
+   },
+   {
+    "key": "K1:4VBP01X99F",
+    "displayName": "Cascara Sagrada",
+    "slugs": [
+     "cascara-sagrada",
+     "frangula-purshiana-bark"
+    ]
+   },
+   {
+    "key": "K1:5S29HWU6QB",
+    "displayName": "Ceylon Cinnamon",
+    "slugs": [
+     "ceylon-cinnamon",
+     "cinnamomum",
+     "cinnamon",
+     "cinnamon-bark"
+    ]
+   },
+   {
+    "key": "K1:9H4PO4Z4FT",
+    "displayName": "Dimethyl Sulfone",
+    "slugs": [
+     "dimethyl-sulfone",
+     "methylsulfonylmethane",
+     "msm"
+    ]
+   },
+   {
+    "key": "K1:7IGF0S7R8I",
+    "displayName": "Fytic acid",
+    "slugs": [
+     "calcium-magnesium-phytate",
+     "calcium-phytate",
+     "ip-6"
+    ]
+   },
+   {
+    "key": "K1:75OCL1SPBQ",
+    "displayName": "Gabapentin enacarbil",
+    "slugs": [
+     "gabapentin-enacarbil",
+     "gabapentin-encarbil"
+    ]
+   },
+   {
+    "key": "K1:2R04ONI662",
+    "displayName": "Eucalyptus Globulus Leaf Oil",
+    "slugs": [
+     "eucalyptus-globulus-leaf-oil",
+     "eucalyptus-oil"
+    ]
+   },
+   {
+    "key": "K1:E524N2IXA3",
+    "displayName": "Ornithine",
+    "slugs": [
+     "l-ornithine-l-aspartate",
+     "ornithine"
+    ]
+   },
+   {
+    "key": "K1:6M3C89ZY6R",
+    "displayName": "Nicotine",
+    "slugs": [
+     "nicotine",
+     "nicotine-polacrilex"
+    ]
+   },
+   {
+    "key": "K1:QLZ991V4A2",
+    "displayName": "Calcium saccharate",
+    "slugs": [
+     "calcium-d-glucarate",
+     "potassium-d-glucarate",
+     "potassium-glucarate"
+    ]
+   },
+   {
+    "key": "K1:KV2JZ1BI6Z",
+    "displayName": "Pyridoxine",
+    "slugs": [
+     "pyridoxine",
+     "pyridoxine-hcl",
+     "vitamin-b6"
+    ]
+   },
+   {
+    "key": "K1:Q525PA8JJB",
+    "displayName": "Cefadroxil",
+    "slugs": [
+     "cefadroxil",
+     "cefadroxil-cefadroxil"
+    ]
+   },
+   {
+    "key": "K1:068X84E056",
+    "displayName": "Pramocaine",
+    "slugs": [
+     "pramoxine",
+     "pramoxine-hcl"
+    ]
+   },
+   {
+    "key": "K1:F8VB5M810T",
+    "displayName": "Tetracycline",
+    "slugs": [
+     "tetracycline",
+     "tetracycline-phosphate-complex"
+    ]
+   },
+   {
+    "key": "K1:98PI200987",
+    "displayName": "Lidocaine",
+    "slugs": [
+     "lidocaine",
+     "lidocaine-hcl"
+    ]
+   },
+   {
+    "key": "K1:411VRN1TV4",
+    "displayName": "Nitrate",
+    "slugs": [
+     "nitrate",
+     "nitric-acid",
+     "sodium-nitrate"
+    ]
+   },
+   {
+    "key": "K1:O5CB12L4FN",
+    "displayName": "Diazoxide",
+    "slugs": [
+     "diazoxide",
+     "diazoxide-choline"
+    ]
+   },
+   {
+    "key": "K1:0RBV727H71",
+    "displayName": "Alpha-Linolenic Acid",
+    "slugs": [
+     "alpha-linolenic-acid",
+     "linolenic-acid"
+    ]
+   },
+   {
+    "key": "K1:7355X3ROTS",
+    "displayName": "Dextromethorphan",
+    "slugs": [
+     "dextromethorphan",
+     "dextromethorphan-polistirex"
+    ]
+   },
+   {
+    "key": "K1:FGL3685T2X",
+    "displayName": "Chamomile",
+    "slugs": [
+     "chamomile",
+     "german-chamomile"
+    ]
+   },
+   {
+    "key": "K1:459AG36T1B",
+    "displayName": "Prasterone",
+    "slugs": [
+     "5-androsten-3beta-ol-17-one",
+     "dhea",
+     "prasterone"
+    ]
+   },
+   {
+    "key": "K1:3NXW29V3WO",
+    "displayName": "Hypromellose",
+    "slugs": [
+     "hypromellose-unspecified",
+     "hypromelloses"
+    ]
+   },
+   {
+    "key": "K1:4ABT0J945J",
+    "displayName": "Thiamine",
+    "slugs": [
+     "thiamin",
+     "thiamine",
+     "thiamine-hcl",
+     "thiamine-mononitrate",
+     "vitamin-b1"
+    ]
+   },
+   {
+    "key": "K1:8RW88Y506K",
+    "displayName": "Tezacaftor",
+    "slugs": [
+     "ivacaftor-tezacaftor",
+     "tezacaftor"
+    ]
+   },
+   {
+    "key": "K1:GFX7QIS1II",
+    "displayName": "Insulin lispro",
+    "slugs": [
+     "insulin-lispro",
+     "insulin-lispro-protamine-recombinant",
+     "insulin-lispro-recombinant"
+    ]
+   },
+   {
+    "key": "K1:IBS9D1EU3J",
+    "displayName": "Coumaric Acid",
+    "slugs": [
+     "coumaric-acid",
+     "hydroxycinnamic-acid"
+    ]
+   },
+   {
+    "key": "K1:TZ47U051FI",
+    "displayName": "Dexamfetamine",
+    "slugs": [
+     "amphetamine",
+     "dextroamphetamine",
+     "dextroamphetamine-adipate"
+    ]
+   },
+   {
+    "key": "K1:M2F465ROXU",
+    "displayName": "Etidronic acid",
+    "slugs": [
+     "etidronate",
+     "etidronic-acid",
+     "technetium-tc-99m-etidronate-kit"
+    ]
+   },
+   {
+    "key": "K1:KH7I04HPUU",
+    "displayName": "Sodium Phosphate, Monobasic",
+    "slugs": [
+     "sodium-phosphate-monobasic",
+     "sodium-phosphate-monobasic-unspecified-form"
+    ]
+   },
+   {
+    "key": "K1:2K3X4G63S7",
+    "displayName": "Technetium Tc-99m Sestamibi",
+    "slugs": [
+     "technetium-tc-99m-sestamibi",
+     "technetium-tc-99m-sestamibi-kit",
+     "tetrakis-copper-tetrafluoroborate"
+    ]
+   },
+   {
+    "key": "K1:CUQ3A77YXI",
+    "displayName": "Asian Ginseng",
+    "slugs": [
+     "asian-ginseng",
+     "ginseng",
+     "ginseng-oriental",
+     "ginseng-panax",
+     "ginseng-siberian",
+     "panax-ginseng-root"
+    ]
+   },
+   {
+    "key": "K1:UX6OWY2V7J",
+    "displayName": "Codeine",
+    "slugs": [
+     "codeine",
+     "codeine-polistirex"
+    ]
+   },
+   {
+    "key": "K1:F9S9FFU82N",
+    "displayName": "Lactic Acid",
+    "slugs": [
+     "lactic-acid",
+     "lactic-acid-l"
+    ]
+   },
+   {
+    "key": "K1:RUU8G67GQM",
+    "displayName": "Aescin",
+    "slugs": [
+     "aescin",
+     "escin"
+    ]
+   },
+   {
+    "key": "K1:TZK30RF92W",
+    "displayName": "Nepidermin",
+    "slugs": [
+     "human-epidermal-growth-factor",
+     "rh-oligopeptide-1"
+    ]
+   },
+   {
+    "key": "K1:29VT07BGDA",
+    "displayName": "Citrulline malate",
+    "slugs": [
+     "citrulline-malate",
+     "citrulline-nitrate",
+     "l-citrulline"
+    ]
+   },
+   {
+    "key": "K1:KR87B45RGH",
+    "displayName": "Carbidopa",
+    "slugs": [
+     "carbidopa",
+     "carbidopa-hydrate"
+    ]
+   },
+   {
+    "key": "K1:1ULL0QJ8UC",
+    "displayName": "Dapagliflozin",
+    "slugs": [
+     "dapagliflozin-2-3-butanediol",
+     "dapagliflozin-propanediol"
+    ]
+   },
+   {
+    "key": "K1:076WHW89TW",
+    "displayName": "Follitropin",
+    "slugs": [
+     "follitropin",
+     "menotropins"
+    ]
+   },
+   {
+    "key": "K1:7HU6337315",
+    "displayName": "Astemizole",
+    "slugs": [
+     "astemizole",
+     "kelp"
+    ]
+   },
+   {
+    "key": "K1:5138Q19F1X",
+    "displayName": "Ammonia",
+    "slugs": [
+     "ammonia",
+     "ammonium",
+     "ammonium-cation"
+    ]
+   },
+   {
+    "key": "K1:EL9943AG5J",
+    "displayName": "Tenofovir alafenamide",
+    "slugs": [
+     "bictegravir-emtricitabine-and-tenofovir-alafenamide",
+     "elvitegravir-cobicistat-emtricitabine-and-tenofovir-alafenamide",
+     "tenofovir-alafenamide"
+    ]
+   },
+   {
+    "key": "K1:37515NWH9U",
+    "displayName": "Tilactase",
+    "slugs": [
+     "beta-galactosidase",
+     "lactase"
+    ]
+   },
+   {
+    "key": "K1:740T4C525W",
+    "displayName": "Sulfafurazole",
+    "slugs": [
+     "sulfisoxazole",
+     "sulfisoxazole-diolamine"
+    ]
+   },
+   {
+    "key": "K1:6DH1W9VH8Q",
+    "displayName": "Acetyl-L-Carnitine",
+    "slugs": [
+     "acetyl-l-carnitine",
+     "acetyl-l-carnitine-arginate",
+     "acetylcarnitine"
+    ]
+   },
+   {
+    "key": "K1:0F32U78V2Q",
+    "displayName": "Chloroxylenol",
+    "slugs": [
+     "chloroxylenol",
+     "palm"
+    ]
+   },
+   {
+    "key": "K1:M5DP350VZV",
+    "displayName": "Etacrynic acid",
+    "slugs": [
+     "ethacrynate",
+     "ethacrynic-acid"
+    ]
+   },
+   {
+    "key": "K1:PHA4727WTP",
+    "displayName": "Demannose",
+    "slugs": [
+     "demannose",
+     "mannose-d"
+    ]
+   },
+   {
+    "key": "K1:A0426J905J",
+    "displayName": "Secretin human",
+    "slugs": [
+     "secretin-human",
+     "secretin-synthetic-human"
+    ]
+   },
+   {
+    "key": "K1:KM2Z91756Z",
+    "displayName": "Risedronic acid",
+    "slugs": [
+     "risedronate",
+     "risedronate-sodium-hemi-pentahydrate"
+    ]
+   },
+   {
+    "key": "K1:BQM438CTEL",
+    "displayName": "Egcg",
+    "slugs": [
+     "egcg",
+     "epigallocatechin-gallate"
+    ]
+   },
+   {
+    "key": "K1:B0P231ILBK",
+    "displayName": "Ospemifene",
+    "slugs": [
+     "ospemifene",
+     "toremifene"
+    ]
+   },
+   {
+    "key": "K1:R4KO0DY52L",
+    "displayName": "Chlorhexidine",
+    "slugs": [
+     "chlorhexidine",
+     "chlorhexidine-digluconate"
+    ]
+   },
+   {
+    "key": "K1:YOJ58O116E",
+    "displayName": "Pancrelipase",
+    "slugs": [
+     "pancrelipase",
+     "pancrelipase-amylase"
+    ]
+   },
+   {
+    "key": "K1:ZIF514RVZR",
+    "displayName": "Albumin",
+    "slugs": [
+     "albumin",
+     "albumin-human"
+    ]
+   },
+   {
+    "key": "K1:MU72812GK0",
+    "displayName": "Creatine monohydrate",
+    "slugs": [
+     "creatine-monohydrate",
+     "magnesium-creatine",
+     "tribulus-terrestris"
+    ]
+   },
+   {
+    "key": "K1:95OOS7VE0Y",
+    "displayName": "Oxybenzone",
+    "slugs": [
+     "benzophenone-3",
+     "oxybenzone"
+    ]
+   },
+   {
+    "key": "K1:Q51BO43MG4",
+    "displayName": "Levothyroxine sodium",
+    "slugs": [
+     "levothyroxine",
+     "liotrix"
+    ]
+   },
+   {
+    "key": "K1:5G06TVY3R7",
+    "displayName": "Rutoside",
+    "slugs": [
+     "bioflavonoid",
+     "rutin"
+    ]
+   },
+   {
+    "key": "K1:23521W1S24",
+    "displayName": "Clavulanic acid",
+    "slugs": [
+     "clavulanate",
+     "clavulanic-acid"
+    ]
+   },
+   {
+    "key": "K1:NL053ABE4J",
+    "displayName": "Serrapeptase",
+    "slugs": [
+     "serrapeptase",
+     "serratiopeptidase"
+    ]
+   },
+   {
+    "key": "K1:532B59J990",
+    "displayName": "Polyvinyl Alcohol",
+    "slugs": [
+     "polyvinyl-alcohol",
+     "polyvinyl-alcohol-unspecified"
+    ]
+   },
+   {
+    "key": "K1:451W47IQ8X",
+    "displayName": "Compound solution of sodium chloride",
+    "slugs": [
+     "salt",
+     "sodium-chloride"
+    ]
+   },
+   {
+    "key": "K1:2WP61F175M",
+    "displayName": "Uridine triacetate",
+    "slugs": [
+     "triacetyluridine",
+     "uridine-triacetate"
+    ]
+   },
+   {
+    "key": "K1:IT942ZTH98",
+    "displayName": "Curcuma",
+    "slugs": [
+     "curcuma",
+     "curcumin"
+    ]
+   },
+   {
+    "key": "K1:N762921K75",
+    "displayName": "Nitrogen",
+    "slugs": [
+     "nitrogen",
+     "nitrogen-nf"
+    ]
+   },
+   {
+    "key": "K1:H231GF11BV",
+    "displayName": "Naphazoline",
+    "slugs": [
+     "naphazoline",
+     "naphazoline-hcl"
+    ]
+   },
+   {
+    "key": "K1:WK2XYI10QM",
+    "displayName": "Ibuprofen",
+    "slugs": [
+     "ibuprofen",
+     "ibuprofen-lysine"
+    ]
+   },
+   {
+    "key": "K1:N9PR3490H9",
+    "displayName": "Alpha-Tocopherol Acetate, D",
+    "slugs": [
+     "alpha-tocopherol-acetate-d",
+     "alpha-tocopherol-succinate-d"
+    ]
+   },
+   {
+    "key": "K1:19FUJ2C58T",
+    "displayName": "Ginkgo",
+    "slugs": [
+     "ginkgo",
+     "ginkgo-biloba-leaf"
+    ]
+   },
+   {
+    "key": "K1:ZBP1YXW0H8",
+    "displayName": "Citronella Oil",
+    "slugs": [
+     "citronella-oil",
+     "lavandula-angustifolia-oil",
+     "lavender-oil"
+    ]
+   },
+   {
+    "key": "K1:0YIW783RG1",
+    "displayName": "Calcium Formate",
+    "slugs": [
+     "calcium-formate",
+     "fatty-acid-esters",
+     "unsaturated-fatty-acid"
+    ]
+   },
+   {
+    "key": "K1:SSZ9HQT61Z",
+    "displayName": "3,3'-Diindolylmethane",
+    "slugs": [
+     "3-3-diindolylmethane",
+     "diindolylmethane"
+    ]
+   },
+   {
+    "key": "K1:F91H02EBWT",
+    "displayName": "Arformoterol",
+    "slugs": [
+     "arformoterol",
+     "formoterol"
+    ]
+   },
+   {
+    "key": "K1:7N464URE7E",
+    "displayName": "Flavin Mononucleotide",
+    "slugs": [
+     "flavin-mononucleotide",
+     "riboflavin-5-phosphate"
+    ]
+   },
+   {
+    "key": "K1:PVI5M0M1GW",
+    "displayName": "Filgrastim",
+    "slugs": [
+     "filgrastim",
+     "tbo-filgrastim"
+    ]
+   },
+   {
+    "key": "K1:OVO2KUW8H8",
+    "displayName": "Isoflavone",
+    "slugs": [
+     "isoflavone",
+     "isoflavones"
+    ]
+   },
+   {
+    "key": "K1:S56D65XJ9G",
+    "displayName": "Eltrombopag",
+    "slugs": [
+     "eltrombopag",
+     "eltrombopag-choline"
+    ]
+   },
+   {
+    "key": "K1:743QUY4VD8",
+    "displayName": "Hyaluronidase",
+    "slugs": [
+     "hyaluronidase",
+     "hyaluronidase-recombinant-human"
+    ]
+   },
+   {
+    "key": "K1:S07O44R1ZM",
+    "displayName": "Capsaicin",
+    "slugs": [
+     "capsaicin",
+     "capsaisin"
+    ]
+   },
+   {
+    "key": "K1:RZD65TSM9U",
+    "displayName": "Agalsidase beta",
+    "slugs": [
+     "agalsidase-beta",
+     "alpha-galactosidase"
+    ]
+   },
+   {
+    "key": "K1:990S25980Y",
+    "displayName": "Calcium levofolinate",
+    "slugs": [
+     "leucovorin",
+     "levoleucovorin"
+    ]
+   },
+   {
+    "key": "K1:9YQ9DI1W42",
+    "displayName": "Ensulizole",
+    "slugs": [
+     "ensulizole",
+     "phenylbenzimidazole-sulfonic-acid"
+    ]
+   },
+   {
+    "key": "K1:VS041H42XC",
+    "displayName": "Ergocalciferol",
+    "slugs": [
+     "vitamin-d",
+     "vitamin-d2"
+    ]
+   },
+   {
+    "key": "K1:QTT17582CB",
+    "displayName": "Chloride Ion",
+    "slugs": [
+     "chloride-ion",
+     "hydrochloric-acid"
+    ]
+   },
+   {
+    "key": "K1:8021PR16QO",
+    "displayName": "L-theanine",
+    "slugs": [
+     "l-theanine",
+     "theanine"
+    ]
+   },
+   {
+    "key": "K1:TL2TJE8QTX",
+    "displayName": "Aminobenzoic Acid",
+    "slugs": [
+     "aminobenzoic-acid",
+     "paba"
+    ]
+   },
+   {
+    "key": "K1:9C60Y73166",
+    "displayName": "Plantago Seed",
+    "slugs": [
+     "plantago-seed",
+     "psyllium"
+    ]
+   },
+   {
+    "key": "K1:7GR9I2683O",
+    "displayName": "Mecasermin",
+    "slugs": [
+     "mecasermin",
+     "mecasermin-recombinant"
+    ]
+   },
+   {
+    "key": "K1:40UIR9Q29H",
+    "displayName": "Butyric Acid",
+    "slugs": [
+     "butyric-acid",
+     "sodium-butyrate"
+    ]
+   },
+   {
+    "key": "K1:632XD903SP",
+    "displayName": "Bismuth Subgallate",
+    "slugs": [
+     "bismuth-subgallate",
+     "gallic-acid"
+    ]
+   },
+   {
+    "key": "K1:9X7O8V25IT",
+    "displayName": "Collagenase",
+    "slugs": [
+     "collagenase",
+     "collagenase-clostridium-histolyticum"
+    ]
+   },
+   {
+    "key": "K1:2DJ8R0NT7K",
+    "displayName": "Levoketoconazole",
+    "slugs": [
+     "ketoconazole",
+     "levoketoconazole"
+    ]
+   },
+   {
+    "key": "K1:G63QQF2NOX",
+    "displayName": "Avobenzone",
+    "slugs": [
+     "avobenzone",
+     "butyl-methoxydibenzoylmethane"
+    ]
+   },
+   {
+    "key": "K1:N3PA6559FT",
+    "displayName": "Esomeprazole",
+    "slugs": [
+     "esomeprazole",
+     "esomeprazole-strontium"
+    ]
+   },
+   {
+    "key": "K1:U946SH95EE",
+    "displayName": "Milk Thistle",
+    "slugs": [
+     "milk-thistle",
+     "silybum-marianum-seed"
+    ]
+   },
+   {
+    "key": "K1:73OS0QIN3O",
+    "displayName": "Medronic acid",
+    "slugs": [
+     "medronic-acid",
+     "technetium-tc-99m-medronate"
+    ]
+   },
+   {
+    "key": "K1:PWZ1720CBH",
+    "displayName": "Bemotrizinol",
+    "slugs": [
+     "bemotrizinol",
+     "bis-ethylhexyloxyphenol-methoxyphenyl-triazine"
+    ]
+   },
+   {
+    "key": "K1:71MR4V32TI",
+    "displayName": "Oxidronic acid",
+    "slugs": [
+     "oxidronate",
+     "technetium-tc-99m-oxidronate-kit"
+    ]
+   },
+   {
+    "key": "K1:21AIQ4EV64",
+    "displayName": "Paeonia Moutan",
+    "slugs": [
+     "paeonia-moutan",
+     "paeoniflorin"
+    ]
+   },
+   {
+    "key": "K1:3K9958V90M",
+    "displayName": "Dehydrated Alcohol",
+    "slugs": [
+     "dehydrated-alcohol",
+     "orchid"
+    ]
+   },
+   {
+    "key": "K1:3J0KPB596Q",
+    "displayName": "Tetrofosmin",
+    "slugs": [
+     "technetium-tc-99m-tetrofosmin-kit",
+     "tetrofosmin"
+    ]
+   },
+   {
+    "key": "K1:2679MF687A",
+    "displayName": "Nicotinic acid",
+    "slugs": [
+     "chromium-dinicotinate",
+     "chromium-nicotinate",
+     "niacin",
+     "vitamin-b3"
+    ]
+   },
+   {
+    "key": "K1:G59M7S0WS3",
+    "displayName": "Glyceryl trinitrate",
+    "slugs": [
+     "glyceryl",
+     "nitroglycerin"
+    ]
+   },
+   {
+    "key": "K1:73JWT2K6T3",
+    "displayName": "Dl-Methionine",
+    "slugs": [
+     "dl-methionine",
+     "racemethionine"
+    ]
+   },
+   {
+    "key": "K1:42HK56048U",
+    "displayName": "Tyrosine",
+    "slugs": [
+     "l-tyrosine",
+     "tyrosine"
+    ]
+   },
+   {
+    "key": "K1:R4R8J0Q44B",
+    "displayName": "Calcium Gluconate",
+    "slugs": [
+     "calcium-gluconate",
+     "gluconic-acid",
+     "potassium-gluconate",
+     "sodium-gluconate"
+    ]
+   },
+   {
+    "key": "K1:143NQ3779B",
+    "displayName": "Calcipotriol",
+    "slugs": [
+     "calcipotriene",
+     "calcipotriene-hydrate"
+    ]
+   },
+   {
+    "key": "K1:981TME683S",
+    "displayName": "Ropeginterferon alfa-2b",
+    "slugs": [
+     "ropeginterferon-alfa-2b",
+     "ropeginterferon-alfa-2b-njft"
+    ]
+   },
+   {
+    "key": "K1:415SHH325A",
+    "displayName": "Adenosine phosphate",
+    "slugs": [
+     "adenosine-monophosphate",
+     "adenosine-phosphate"
+    ]
+   },
+   {
+    "key": "K1:TF9HZN9T0M",
+    "displayName": "D-Pinitol",
+    "slugs": [
+     "d-pinitol",
+     "pinitol"
+    ]
+   },
+   {
+    "key": "K1:46627O600J",
+    "displayName": "Levodopa",
+    "slugs": [
+     "l-dopa",
+     "levodopa"
+    ]
+   },
+   {
+    "key": "K1:T18F433X4S",
+    "displayName": "Norethisterone",
+    "slugs": [
+     "elagolix-estradiol-and-norethindrone-acetate-and-elagolix",
+     "heather",
+     "norethindrone"
+    ]
+   },
+   {
+    "key": "K1:50LFG02TXD",
+    "displayName": "Esketamine",
+    "slugs": [
+     "esketamine",
+     "ketamine"
+    ]
+   },
+   {
+    "key": "K1:927AH8112L",
+    "displayName": "Nitrofurantoin",
+    "slugs": [
+     "nitrofurantoin",
+     "nitrofurantoin-macrocrystalline"
+    ]
+   },
+   {
+    "key": "K1:5Q6TZN2HNM",
+    "displayName": "Ecallantide",
+    "slugs": [
+     "ecallantide",
+     "protein"
+    ]
+   },
+   {
+    "key": "K1:C045TQL4WP",
+    "displayName": "Phentermine",
+    "slugs": [
+     "dimethylphenethylamine",
+     "phentermine",
+     "phentermine-resin-complex"
+    ]
+   },
+   {
+    "key": "K1:DA8G610ZO5",
+    "displayName": "Acetyl-L-Tyrosine",
+    "slugs": [
+     "acetyl-l-tyrosine",
+     "n-acetyl-tyrosine"
+    ]
+   },
+   {
+    "key": "K1:FZ56898FLE",
+    "displayName": "Duvoglustat",
+    "slugs": [
+     "1-deoxynojirimycin",
+     "moranoline"
+    ]
+   },
+   {
+    "key": "K1:22ADO53M6F",
+    "displayName": "Sodium Phosphate, Dibasic",
+    "slugs": [
+     "sodium-phosphate-dibasic",
+     "sodium-phosphate-dibasic-unspecified-form"
+    ]
+   },
+   {
+    "key": "K1:8W75VCV53Q",
+    "displayName": "American Ginseng",
+    "slugs": [
+     "american-ginseng",
+     "ginseng-american"
+    ]
+   },
+   {
+    "key": "K1:K3D86KJ24N",
+    "displayName": "Undecylenic Acid",
+    "slugs": [
+     "undecylenic-acid",
+     "zinc-undecylenate"
+    ]
+   },
+   {
+    "key": "K1:T5L8T28FGP",
+    "displayName": "Mineral",
+    "slugs": [
+     "mineral",
+     "mineral-oil"
+    ]
+   },
+   {
+    "key": "K1:33E86K87QN",
+    "displayName": "Trametinib",
+    "slugs": [
+     "trametinib",
+     "trametinib-dimethyl-sulfoxide"
+    ]
+   },
+   {
+    "key": "K1:0N7609K889",
+    "displayName": "Sulfadiazine sodium",
+    "slugs": [
+     "silver-sulfadiazine",
+     "sulfadiazine"
+    ]
+   },
+   {
+    "key": "K1:Q40Q9N063P",
+    "displayName": "Acetic Acid",
+    "slugs": [
+     "acetic-acid",
+     "acetic-acid-glacial"
+    ]
+   },
+   {
+    "key": "K1:7SFC6U2VI5",
+    "displayName": "Calcitonin Salmon",
+    "slugs": [
+     "calcitonin-salmon",
+     "calcitonin-salmon-recombinant"
+    ]
+   },
+   {
+    "key": "K1:I5Y540LHVR",
+    "displayName": "Cocaine",
+    "slugs": [
+     "cocaine",
+     "cola"
+    ]
+   },
+   {
+    "key": "K1:A49OS0F91S",
+    "displayName": "Calcium Picrate",
+    "slugs": [
+     "calcium-picrate",
+     "ferric-picrate",
+     "picric-acid",
+     "zinc-picrate",
+     "zinc-picrate-nonahydrate"
+    ]
+   },
+   {
+    "key": "K1:V95R5KMY2B",
+    "displayName": "Peppermint",
+    "slugs": [
+     "peppermint",
+     "peppermint-oil"
+    ]
+   },
+   {
+    "key": "K1:7797M4CPPA",
+    "displayName": "Dimethylglycine",
+    "slugs": [
+     "dimethylglycine",
+     "dmg",
+     "n-n-dimethylglycine"
+    ]
+   },
+   {
+    "key": "K1:4SR0Q8YD1X",
+    "displayName": "Aspartic Acid",
+    "slugs": [
+     "aspartic-acid",
+     "d-aspartic-acid"
+    ]
+   },
+   {
+    "key": "K1:0G389FZZ9M",
+    "displayName": "Levocarnitine",
+    "slugs": [
+     "l-carnitine",
+     "levocarnitine"
+    ]
+   },
+   {
+    "key": "K1:0Y70779M1F",
+    "displayName": "Botulinum Toxin Type B",
+    "slugs": [
+     "botulinum-toxin-type-b",
+     "rimabotulinumtoxinb"
+    ]
+   },
+   {
+    "key": "K1:142M471B3J",
+    "displayName": "Carbon Dioxide",
+    "slugs": [
+     "carbon-dioxide",
+     "carbon-dioxide-usp"
+    ]
+   },
+   {
+    "key": "K1:811W19E3OL",
+    "displayName": "Flotufolastat F-18",
+    "slugs": [
+     "flotufolastat-f-18",
+     "flotufolastat-f-18-gallium"
+    ]
+   },
+   {
+    "key": "K1:E915HL7K2O",
+    "displayName": "Levacetylleucine",
+    "slugs": [
+     "levacetylleucine",
+     "n-acetyl-leucine"
+    ]
+   },
+   {
+    "key": "K1:5L76I61H2B",
+    "displayName": "Technetium Tc-99m Pyrophosphate",
+    "slugs": [
+     "technetium-tc-99m-pyrophosphate",
+     "technetium-tc-99m-pyrophosphate-kit"
+    ]
+   },
+   {
+    "key": "K1:CI71S98N1Z",
+    "displayName": "Potassium Phosphate",
+    "slugs": [
+     "potassium-phosphate",
+     "potassium-phosphate-dibasic"
+    ]
+   },
+   {
+    "key": "K1:7J8897W37S",
+    "displayName": "Dronabinol",
+    "slugs": [
+     "dronabinol",
+     "tetrahydrocannabinol"
+    ]
+   },
+   {
+    "key": "K1:7QWA1RIO01",
+    "displayName": "Alpha-Tocopherol",
+    "slugs": [
+     "alpha-tocopherol",
+     "alpha-tocopherol-acetate-dl",
+     "alpha-tocopherol-dl"
+    ]
+   },
+   {
+    "key": "K1:IO1WP3918D",
+    "displayName": "Bifidobacteria",
+    "slugs": [
+     "bifidobacteria",
+     "bifidobacterium"
+    ]
+   },
+   {
+    "key": "K1:EJ27X76M46",
+    "displayName": "Ubidecarenone",
+    "slugs": [
+     "coenzyme-q10",
+     "ubiquinone"
+    ]
+   },
+   {
+    "key": "K1:39TG2H631E",
+    "displayName": "Copper Tripeptide-1",
+    "slugs": [
+     "copper-tripeptide-1",
+     "prezatide",
+     "prezatide-copper"
+    ]
+   },
+   {
+    "key": "K1:3THM379K8A",
+    "displayName": "Pyridoxal",
+    "slugs": [
+     "pyridoxal",
+     "pyridoxal-phosphate"
+    ]
+   },
+   {
+    "key": "K1:D5340Y2I9G",
+    "displayName": "Castor",
+    "slugs": [
+     "castor",
+     "castor-oil",
+     "ricinus-communis-seed-oil"
+    ]
+   },
+   {
+    "key": "K1:8HO6PVN24W",
+    "displayName": "Polaprezinc",
+    "slugs": [
+     "carnosine",
+     "zinc-carnosine",
+     "zinc-l-carnosine"
+    ]
+   },
+   {
+    "key": "K1:9E7R5L6H31",
+    "displayName": "Calcium Oxalate",
+    "slugs": [
+     "calcium-oxalate",
+     "oxalic-acid",
+     "potassium-oxalate"
+    ]
+   },
+   {
+    "key": "K1:24GP945V5T",
+    "displayName": "Barium",
+    "slugs": [
+     "barium",
+     "barium-acetate",
+     "barium-citrate"
+    ]
+   },
+   {
+    "key": "K1:660YQ98I10",
+    "displayName": "Chloride",
+    "slugs": [
+     "chloride",
+     "potassium-chloride"
+    ]
+   },
+   {
+    "key": "K1:1Y17CTI5SR",
+    "displayName": "Insulin human",
+    "slugs": [
+     "insulin-human",
+     "insulin-recombinant-human"
+    ]
+   },
+   {
+    "key": "K1:8ID597Z82X",
+    "displayName": "Alpha Ketoglutarate",
+    "slugs": [
+     "alpha-ketoglutarate",
+     "alpha-ketoglutaric-acid",
+     "arginine-alpha-ketoglutarate",
+     "calcium-alpha-ketoglutarate",
+     "magnesium-alpha-ketoglutarate",
+     "oxogluric-acid",
+     "potassium-alpha-ketoglutarate"
+    ]
+   },
+   {
+    "key": "K1:ET3651ZLOU",
+    "displayName": "Bos Taurus Bile",
+    "slugs": [
+     "bos-taurus-bile",
+     "ox-bile"
+    ]
+   },
+   {
+    "key": "K1:726Q6M95ZA",
+    "displayName": "Xenon Xe-129",
+    "slugs": [
+     "xenon-xe-129",
+     "xenon-xe-129-hyperpolarized"
+    ]
+   },
+   {
+    "key": "K1:U0JZ726775",
+    "displayName": "Desirudin",
+    "slugs": [
+     "desirudin",
+     "desirudin-recombinant"
+    ]
+   },
+   {
+    "key": "K1:U194AS08HZ",
+    "displayName": "Edotreotide",
+    "slugs": [
+     "edotreotide-gallium-ga-68",
+     "gallium-ga-68-edotreotide"
+    ]
+   },
+   {
+    "key": "K1:K0U68Q2TXA",
+    "displayName": "Corticotropin",
+    "slugs": [
+     "corticotropin",
+     "repository-corticotropin"
+    ]
+   },
+   {
+    "key": "K1:DTI67O9503",
+    "displayName": "Alglucosidase alfa",
+    "slugs": [
+     "alglucosidase-alfa",
+     "transglucosidase"
+    ]
+   },
+   {
+    "key": "K1:32HRV3E3D5",
+    "displayName": "Griseofulvin",
+    "slugs": [
+     "griseofulvin",
+     "griseofulvin-microcrystalline",
+     "griseofulvin-microsize",
+     "griseofulvin-ultramicrocrystalline",
+     "griseofulvin-ultramicrosize"
+    ]
+   },
+   {
+    "key": "K1:5Z6E9K79YV",
+    "displayName": "Lithium",
+    "slugs": [
+     "lithium",
+     "lithium-citrate"
+    ]
+   },
+   {
+    "key": "K1:69C642I19V",
+    "displayName": "Mebolazine",
+    "slugs": [
+     "dimethazine",
+     "dymethazine"
+    ]
+   },
+   {
+    "key": "K1:62TEY51RR1",
+    "displayName": "Bismuth Subsalicylate",
+    "slugs": [
+     "bismuth-subsalicylate",
+     "stomach"
+    ]
+   },
+   {
+    "key": "K1:99DK7FVK1H",
+    "displayName": "Nevirapine",
+    "slugs": [
+     "lamivudine-nevirapine-and-stavudine",
+     "nevirapine"
+    ]
+   },
+   {
+    "key": "K1:WQ29KQ9POT",
+    "displayName": "Glucono-Delta-Lactone",
+    "slugs": [
+     "glucono-delta-lactone",
+     "gluconolactone"
+    ]
+   },
+   {
+    "key": "K1:SE2KH7T06F",
+    "displayName": "Trastuzumab emtansine",
+    "slugs": [
+     "ado-trastuzumab-emtansine",
+     "trastuzumab-emtansine"
+    ]
+   },
+   {
+    "key": "K1:4GUJ8AH400",
+    "displayName": "Arginine Alpha-Ketoisocaproate",
+    "slugs": [
+     "arginine-alpha-ketoisocaproate",
+     "calcium-alpha-ketoisocaproate",
+     "calcium-arginine-alpha-ketoisocaproate",
+     "potassium-alpha-ketoisocaproate"
+    ]
+   },
+   {
+    "key": "K1:36W3E5TAMG",
+    "displayName": "Glucomannan",
+    "slugs": [
+     "glucomannan",
+     "konjac"
+    ]
+   },
+   {
+    "key": "K1:AAN7QOV9EA",
+    "displayName": "Icosapent",
+    "slugs": [
+     "eicosapentaenoic-acid",
+     "epa",
+     "icosapent"
+    ]
+   },
+   {
+    "key": "K1:536BQ2JVC7",
+    "displayName": "Citicoline",
+    "slugs": [
+     "citicholine",
+     "citicoline"
+    ]
+   },
+   {
+    "key": "K1:W2FH8O2BBE",
+    "displayName": "Caraway",
+    "slugs": [
+     "caraway",
+     "caraway-seed"
+    ]
+   },
+   {
+    "key": "K1:4QBJ98683M",
+    "displayName": "N-Phenylacetyl-L-Prolylglycine Ethyl Ester",
+    "slugs": [
+     "n-phenylacetyl-l-prolylglycine-ethyl-ester",
+     "noopept"
+    ]
+   },
+   {
+    "key": "K1:XM261C37CQ",
+    "displayName": "Piceid",
+    "slugs": [
+     "piceid",
+     "polydatin"
+    ]
+   },
+   {
+    "key": "K1:WS7LR3I1D6",
+    "displayName": "Sulfur Hexafluoride",
+    "slugs": [
+     "sulfur-hexafluoride",
+     "sulfur-hexafluoride-lipid-type-a-microspheres"
+    ]
+   },
+   {
+    "key": "K1:U182GP2CF3",
+    "displayName": "Bromelains",
+    "slugs": [
+     "bromelain",
+     "bromelains"
+    ]
+   },
+   {
+    "key": "K1:K21NZZ5Y0B",
+    "displayName": "Air",
+    "slugs": [
+     "air",
+     "medical-air"
+    ]
+   },
+   {
+    "key": "K1:4Z8Y51M438",
+    "displayName": "Procaine",
+    "slugs": [
+     "gerovital-h3",
+     "procaine"
+    ]
+   },
+   {
+    "key": "K1:4ZUXHGUFHH",
+    "displayName": "Charcoal",
+    "slugs": [
+     "charcoal",
+     "charcoal-powder",
+     "tantalum-carbide",
+     "titanium-carbide"
+    ]
+   },
+   {
+    "key": "K1:7XIY785AZD",
+    "displayName": "Insulin glulisine",
+    "slugs": [
+     "insulin-glulisine",
+     "insulin-glulisine-recombinant"
+    ]
+   },
+   {
+    "key": "K1:HN3OFO5036",
+    "displayName": "Sodium cyclamate",
+    "slugs": [
+     "cyclamic-acid",
+     "sodium-cyclamate"
+    ]
+   },
+   {
+    "key": "K1:D9108TZ9KG",
+    "displayName": "Cacao",
+    "slugs": [
+     "cacao",
+     "chocolate",
+     "cocoa"
+    ]
+   },
+   {
+    "key": "K1:8DUH1N11BX",
+    "displayName": "Tryptophan",
+    "slugs": [
+     "l-tryptophan",
+     "tryptophan"
+    ]
+   },
+   {
+    "key": "K1:ZQH6VH092Z",
+    "displayName": "Eleuthero",
+    "slugs": [
+     "eleuthero",
+     "eleuthero-root"
+    ]
+   },
+   {
+    "key": "K1:5384HK7574",
+    "displayName": "Trastuzumab deruxtecan",
+    "slugs": [
+     "fam-trastuzumab-deruxtecan-nxki",
+     "trastuzumab-deruxtecan"
+    ]
+   },
+   {
+    "key": "K1:VB06AV5US8",
+    "displayName": "Echinacea Angustifolia",
+    "slugs": [
+     "echinacea-angustifolia",
+     "echinacea-angustifolia-whole"
+    ]
+   },
+   {
+    "key": "K1:24WE03BX2T",
+    "displayName": "Levomenol",
+    "slugs": [
+     "bisabolol",
+     "levomenol"
+    ]
+   },
+   {
+    "key": "K1:X49C572YQO",
+    "displayName": "1,3-Dmaa",
+    "slugs": [
+     "1-3-dmaa",
+     "dimethylamylamine"
+    ]
+   },
+   {
+    "key": "K1:U5M72D8OWZ",
+    "displayName": "1-Androstenolone",
+    "slugs": [
+     "1-androstenolone",
+     "1-androsterone",
+     "3beta-hydroxy-5alpha-androst-1-en-17-one"
+    ]
+   },
+   {
+    "key": "K1:2334LJD2E9",
+    "displayName": "3,7-Keto-Dhea",
+    "slugs": [
+     "3-7-keto-dhea",
+     "7-keto-dehydroepiandrosterone",
+     "7-keto-dhea"
+    ]
+   },
+   {
+    "key": "K1:C24W7J5D5R",
+    "displayName": "3-Alpha-Hydroxyetioallocholan-17-One",
+    "slugs": [
+     "3-alpha-hydroxyetioallocholan-17-one",
+     "androsterone"
+    ]
+   },
+   {
+    "key": "K1:HZK34LN80N",
+    "displayName": "4-Terpineol",
+    "slugs": [
+     "4-terpineol",
+     "terpinen-4-ol"
+    ]
+   },
+   {
+    "key": "K1:844KE20WT5",
+    "displayName": "5-Alpha-Hydroxy Laxogenin",
+    "slugs": [
+     "5-alpha-hydroxy-laxogenin",
+     "laxosterone"
+    ]
+   },
+   {
+    "key": "K1:75UOH57984",
+    "displayName": "Acer Saccharum Sap",
+    "slugs": [
+     "acer-saccharum-sap",
+     "maple-syrup"
+    ]
+   },
+   {
+    "key": "K1:L4EL31FWIL",
+    "displayName": "Acetyl Hexapeptide-8",
+    "slugs": [
+     "acetyl-hexapeptide-8",
+     "acetyl-hexapeptide-8-amide"
+    ]
+   },
+   {
+    "key": "K1:2FXJ6SW4PK",
+    "displayName": "Achillea Millefolium",
+    "slugs": [
+     "achillea-millefolium",
+     "achillea-millefolium-whole"
+    ]
+   },
+   {
+    "key": "K1:U0NQ8555JD",
+    "displayName": "Aconite",
+    "slugs": [
+     "aconite",
+     "aconitum-napellus",
+     "aconitum-napellus-whole"
+    ]
+   },
+   {
+    "key": "K1:EX75Q30TX6",
+    "displayName": "Aconitum Lycoctonum",
+    "slugs": [
+     "aconitum-lycoctonum",
+     "aconitum-lycoctonum-whole"
+    ]
+   },
+   {
+    "key": "K1:XY1K7KIQ0F",
+    "displayName": "Acorus Calamus Root",
+    "slugs": [
+     "acorus-calamus-root",
+     "calamus"
+    ]
+   },
+   {
+    "key": "K1:3F36V0451W",
+    "displayName": "Acremonium Strictum",
+    "slugs": [
+     "acremonium-strictum",
+     "sarocladium-strictum"
+    ]
+   },
+   {
+    "key": "K1:3FU86L9OS0",
+    "displayName": "Actaea Spicata",
+    "slugs": [
+     "actaea-spicata",
+     "actaea-spicata-root"
+    ]
+   },
+   {
+    "key": "K1:2P3VWU3H10",
+    "displayName": "Activated Charcoal",
+    "slugs": [
+     "activated-charcoal",
+     "carbon"
+    ]
+   },
+   {
+    "key": "K1:98HPY76U4W",
+    "displayName": "Adeps Bovis",
+    "slugs": [
+     "adeps-bovis",
+     "hard-fat",
+     "tallow"
+    ]
+   },
+   {
+    "key": "K1:SI6O3IW77Z",
+    "displayName": "Adeps Suillus",
+    "slugs": [
+     "adeps-suillus",
+     "lard"
+    ]
+   },
+   {
+    "key": "K1:DX3ZNI25WK",
+    "displayName": "Adonis Vernalis",
+    "slugs": [
+     "adonis-vernalis",
+     "adonis-vernalis-whole"
+    ]
+   },
+   {
+    "key": "K1:31GYU1X0FP",
+    "displayName": "Adzuki Bean",
+    "slugs": [
+     "adzuki-bean",
+     "rice-bean"
+    ]
+   },
+   {
+    "key": "K1:717DPT98VM",
+    "displayName": "Aesculus Carnea Flower",
+    "slugs": [
+     "aesculus-carnea-flower",
+     "aesculus-x-carnea-flower"
+    ]
+   },
+   {
+    "key": "K1:M6936L953C",
+    "displayName": "Aethusa Cynapium",
+    "slugs": [
+     "aethusa-cynapium",
+     "aethusa-cynapium-whole"
+    ]
+   },
+   {
+    "key": "K1:EBU0U94820",
+    "displayName": "Agrimonia Eupatoria",
+    "slugs": [
+     "agrimonia-eupatoria",
+     "agrimonia-eupatoria-whole"
+    ]
+   },
+   {
+    "key": "K1:3E0I92Z2GR",
+    "displayName": "Albumen",
+    "slugs": [
+     "albumen",
+     "egg-white"
+    ]
+   },
+   {
+    "key": "K1:DJO934BRBD",
+    "displayName": "Alfalfa",
+    "slugs": [
+     "alfalfa",
+     "medicago-sativa-whole"
+    ]
+   },
+   {
+    "key": "K1:ZY81Z83H0X",
+    "displayName": "Aloe Barbadensis Leaf",
+    "slugs": [
+     "aloe-barbadensis-leaf",
+     "aloe-barbadensis-leaf-powder",
+     "aloe-vera",
+     "aloe-vera-leaf"
+    ]
+   },
+   {
+    "key": "K1:6B33FPI2OZ",
+    "displayName": "Alpha Hydroxyisocaproic Acid",
+    "slugs": [
+     "alpha-hydroxyisocaproic-acid",
+     "leucic-acid"
+    ]
+   },
+   {
+    "key": "K1:CG6IX3GCMU",
+    "displayName": "Alpine Strawberry",
+    "slugs": [
+     "alpine-strawberry",
+     "fragaria-vesca-fruit"
+    ]
+   },
+   {
+    "key": "K1:LMI26O6933",
+    "displayName": "Alumina",
+    "slugs": [
+     "alumina",
+     "aluminum-oxide"
+    ]
+   },
+   {
+    "key": "K1:481Y8HDW2B",
+    "displayName": "Aluminum Zirconium Octachlorohydrate",
+    "slugs": [
+     "aluminum-zirconium-octachlorohydrate",
+     "aluminum-zirconium-trichlorohydrate"
+    ]
+   },
+   {
+    "key": "K1:9W34L2CQ9A",
+    "displayName": "Ambrosia Artemisiifolia",
+    "slugs": [
+     "ambrosia-artemisiifolia",
+     "ambrosia-artemisiifolia-whole"
+    ]
+   },
+   {
+    "key": "K1:3UN285QN0C",
+    "displayName": "Ammi Visnaga Fruit",
+    "slugs": [
+     "ammi-visnaga-fruit",
+     "visnaga-daucoides-fruit"
+    ]
+   },
+   {
+    "key": "K2:YMXBQIIPWIMAQE-UHFFFAOYSA-N",
+    "displayName": "Amylase",
+    "slugs": [
+     "amylase",
+     "diastase"
+    ]
+   },
+   {
+    "key": "K1:46883LR90E",
+    "displayName": "Anagallis Arvensis",
+    "slugs": [
+     "anagallis-arvensis",
+     "anagallis-arvensis-extract",
+     "anagallis-arvensis-whole",
+     "lysimachia-arvensis-whole"
+    ]
+   },
+   {
+    "key": "K1:4M1169RWJD",
+    "displayName": "Anemone Patens Whole",
+    "slugs": [
+     "anemone-patens-whole",
+     "pulsatilla-patens-whole"
+    ]
+   },
+   {
+    "key": "K1:8E272251DI",
+    "displayName": "Anemone Pratensis",
+    "slugs": [
+     "anemone-pratensis",
+     "pulsatilla-pratensis",
+     "pulsatilla-pratensis-whole"
+    ]
+   },
+   {
+    "key": "K1:I76KB35JEV",
+    "displayName": "Anemone Pulsatilla",
+    "slugs": [
+     "anemone-pulsatilla",
+     "pulsatilla-vulgaris",
+     "pulsatilla-vulgaris-whole"
+    ]
+   },
+   {
+    "key": "K1:B66F4574UG",
+    "displayName": "Angelica Sinensis Root",
+    "slugs": [
+     "angelica-sinensis-root",
+     "dong-quai"
+    ]
+   },
+   {
+    "key": "K1:IY9XDZ35W2",
+    "displayName": "Anhydrous Dextrose",
+    "slugs": [
+     "anhydrous-dextrose",
+     "dextrose",
+     "dextrose-unspecified-form"
+    ]
+   },
+   {
+    "key": "K4:dibasic",
+    "displayName": "Anhydrous Dibasic",
+    "slugs": [
+     "anhydrous-dibasic",
+     "dibasic"
+    ]
+   },
+   {
+    "key": "K1:21C2F5E8RE",
+    "displayName": "Anise",
+    "slugs": [
+     "anise",
+     "anisum"
+    ]
+   },
+   {
+    "key": "K1:D9PP99SH3U",
+    "displayName": "Anthocyanidins",
+    "slugs": [
+     "anthocyanidins",
+     "anthocyanin",
+     "anthocyanins"
+    ]
+   },
+   {
+    "key": "K1:YMW1K70E4Q",
+    "displayName": "Anthoxanthum Odoratum",
+    "slugs": [
+     "anthoxanthum-odoratum",
+     "anthoxanthum-odoratum-whole"
+    ]
+   },
+   {
+    "key": "K1:7S82P3R43Z",
+    "displayName": "Apis Mellifera",
+    "slugs": [
+     "apis-mellifera",
+     "honey-bee"
+    ]
+   },
+   {
+    "key": "K1:SL4SX1O487",
+    "displayName": "Arabinogalactan",
+    "slugs": [
+     "arabinogalactan",
+     "larch-arabinogalactan"
+    ]
+   },
+   {
+    "key": "K1:PQB8MJD4RB",
+    "displayName": "Arachidic Acid",
+    "slugs": [
+     "arachidic-acid",
+     "icosanoic-acid"
+    ]
+   },
+   {
+    "key": "K1:597E9BI3Z3",
+    "displayName": "Arctium Lappa Root",
+    "slugs": [
+     "arctium-lappa-root",
+     "burdock"
+    ]
+   },
+   {
+    "key": "K1:H00Y243SK0",
+    "displayName": "Argentina Anserina Flowering Top",
+    "slugs": [
+     "argentina-anserina-flowering-top",
+     "potentilla-anserina-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:O80TY208ZW",
+    "displayName": "Arnica",
+    "slugs": [
+     "arnica",
+     "arnica-montana",
+     "arnica-montana-whole"
+    ]
+   },
+   {
+    "key": "K1:N7CIZ75ZPN",
+    "displayName": "Arsenic Acid",
+    "slugs": [
+     "arsenic-acid",
+     "calcium-arsenate"
+    ]
+   },
+   {
+    "key": "K1:28M1820ACT",
+    "displayName": "Artemisia Cina Flower",
+    "slugs": [
+     "artemisia-cina-flower",
+     "artemisia-cina-pre-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:W9FZA51AS1",
+    "displayName": "Asafetida",
+    "slugs": [
+     "asafetida",
+     "asafoetida",
+     "ferula-assa-foetida-resin"
+    ]
+   },
+   {
+    "key": "K1:H0876AL67A",
+    "displayName": "Asarum Europaeum",
+    "slugs": [
+     "asarum-europaeum",
+     "asarum-europaeum-whole"
+    ]
+   },
+   {
+    "key": "K1:V038D626IF",
+    "displayName": "Ashwagandha",
+    "slugs": [
+     "ashwagandha",
+     "withania-somnifera-root"
+    ]
+   },
+   {
+    "key": "K1:5Q01F7TPJJ",
+    "displayName": "Aspen",
+    "slugs": [
+     "aspen",
+     "populus-tremula-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:9IOA40ANG6",
+    "displayName": "Aspergillus Niger",
+    "slugs": [
+     "aspergillus-niger",
+     "aspergillus-niger-var-niger"
+    ]
+   },
+   {
+    "key": "K1:922OP8YUPF",
+    "displayName": "Astragalus Mongholicus Root",
+    "slugs": [
+     "astragalus-mongholicus-root",
+     "astragalus-propinquus-root"
+    ]
+   },
+   {
+    "key": "K1:6VNO72PFC1",
+    "displayName": "Avocado Oil",
+    "slugs": [
+     "avocado-oil",
+     "persea-gratissima-oil"
+    ]
+   },
+   {
+    "key": "K1:978D8U419H",
+    "displayName": "Baker's Yeast",
+    "slugs": [
+     "bakers-yeast",
+     "brewers-yeast",
+     "saccharomyces-boulardii",
+     "saccharomyces-cerevisiae"
+    ]
+   },
+   {
+    "key": "K2:SPCXZDDGSGTVAW-GXWLMAPZSA-N",
+    "displayName": "Balsam",
+    "slugs": [
+     "balsam",
+     "resin"
+    ]
+   },
+   {
+    "key": "K1:8P5F881OCY",
+    "displayName": "Balsam of Peru",
+    "slugs": [
+     "balsam-of-peru",
+     "balsam-peru"
+    ]
+   },
+   {
+    "key": "K1:UA63Y8U89U",
+    "displayName": "Balsam Pear",
+    "slugs": [
+     "balsam-pear",
+     "bitter-melon",
+     "momordica-charantia-fruit"
+    ]
+   },
+   {
+    "key": "K1:5K1UO2888Y",
+    "displayName": "Baptisia Tinctoria",
+    "slugs": [
+     "baptisia-tinctoria",
+     "baptisia-tinctoria-whole",
+     "wild-indigo"
+    ]
+   },
+   {
+    "key": "K1:H390488X0A",
+    "displayName": "Behenic Acid",
+    "slugs": [
+     "behenic-acid",
+     "docosanoic-acid"
+    ]
+   },
+   {
+    "key": "K1:2HU33I03UY",
+    "displayName": "Bellis Perennis",
+    "slugs": [
+     "bellis-perennis",
+     "bellis-perennis-whole"
+    ]
+   },
+   {
+    "key": "K1:VZJ9F3C3SB",
+    "displayName": "Berberis Aquifolium Root Bark",
+    "slugs": [
+     "berberis-aquifolium-root-bark",
+     "mahonia-aquifolium-root-bark"
+    ]
+   },
+   {
+    "key": "K1:J4WG1JVR05",
+    "displayName": "Berberis Aquifolium Whole",
+    "slugs": [
+     "berberis-aquifolium-whole",
+     "mahonia-aquifolium-whole"
+    ]
+   },
+   {
+    "key": "K1:39W1PKE3JI",
+    "displayName": "Bergamot",
+    "slugs": [
+     "bergamot",
+     "bergamot-oil"
+    ]
+   },
+   {
+    "key": "K1:2Q8MR21NHK",
+    "displayName": "Bermuda Grass",
+    "slugs": [
+     "bermuda-grass",
+     "cynodon-dactylon-whole"
+    ]
+   },
+   {
+    "key": "K4:glucanase",
+    "displayName": "Beta Glucanase",
+    "slugs": [
+     "beta-glucanase",
+     "glucanase"
+    ]
+   },
+   {
+    "key": "K1:4G174V5051",
+    "displayName": "Beta Vulgaris",
+    "slugs": [
+     "beta-vulgaris",
+     "beta-vulgaris-whole"
+    ]
+   },
+   {
+    "key": "K1:AHW6F0T2X0",
+    "displayName": "Bethroot",
+    "slugs": [
+     "bethroot",
+     "trillium-erectum-root"
+    ]
+   },
+   {
+    "key": "K1:84SOH0O3OO",
+    "displayName": "Betula Alba Leaf",
+    "slugs": [
+     "betula-alba-leaf",
+     "betula-pubescens-leaf"
+    ]
+   },
+   {
+    "key": "K1:086263LQDD",
+    "displayName": "Biancaea Sappan Wood",
+    "slugs": [
+     "biancaea-sappan-wood",
+     "indian-redwood"
+    ]
+   },
+   {
+    "key": "K1:5307V7XW8I",
+    "displayName": "Bifidobacterium Animalis Lactis",
+    "slugs": [
+     "bifidobacterium-animalis-lactis",
+     "lactobacillus"
+    ]
+   },
+   {
+    "key": "K1:9P2U39H18W",
+    "displayName": "Bilberry",
+    "slugs": [
+     "bilberry",
+     "dwarf-bilberry"
+    ]
+   },
+   {
+    "key": "K1:5TXQ46WBCE",
+    "displayName": "Bindweed",
+    "slugs": [
+     "bindweed",
+     "convolvulus-arvensis-whole"
+    ]
+   },
+   {
+    "key": "K1:U015TT5I8H",
+    "displayName": "Bismuth",
+    "slugs": [
+     "bismuth",
+     "bismuth-citrate",
+     "bismuth-phosphate"
+    ]
+   },
+   {
+    "key": "K1:K73E24S6X9",
+    "displayName": "Black Cohosh",
+    "slugs": [
+     "black-cohosh",
+     "cimicifuga-racemosa-root"
+    ]
+   },
+   {
+    "key": "K1:608DGJ6815",
+    "displayName": "Black Hellebore",
+    "slugs": [
+     "black-hellebore",
+     "helleborus-niger-root"
+    ]
+   },
+   {
+    "key": "K1:8LTY55LQ8D",
+    "displayName": "Black Mustard",
+    "slugs": [
+     "black-mustard",
+     "black-mustard-seed"
+    ]
+   },
+   {
+    "key": "K1:KM66971LVF",
+    "displayName": "Black Pepper",
+    "slugs": [
+     "black-pepper",
+     "pepper"
+    ]
+   },
+   {
+    "key": "K4:black seed",
+    "displayName": "Black Seed",
+    "slugs": [
+     "black-seed",
+     "black-seed-oil"
+    ]
+   },
+   {
+    "key": "K1:GH42T47V24",
+    "displayName": "Black Tea",
+    "slugs": [
+     "black-tea",
+     "tea",
+     "tea-leaf"
+    ]
+   },
+   {
+    "key": "K1:535G2ABX9M",
+    "displayName": "Bladderwrack",
+    "slugs": [
+     "bladderwrack",
+     "fucus-vesiculosus"
+    ]
+   },
+   {
+    "key": "K1:UD50RBY30F",
+    "displayName": "Blond Psyllium",
+    "slugs": [
+     "blond-psyllium",
+     "blonde-psyllium"
+    ]
+   },
+   {
+    "key": "K1:N9288CD508",
+    "displayName": "Bloodroot",
+    "slugs": [
+     "bloodroot",
+     "red-root",
+     "sanguinaria-canadensis-root"
+    ]
+   },
+   {
+    "key": "K1:JTJ6HH6YEH",
+    "displayName": "Blue Cohosh",
+    "slugs": [
+     "blue-cohosh",
+     "caulophyllum-thalictroides-root"
+    ]
+   },
+   {
+    "key": "K1:Q4EWM09M3O",
+    "displayName": "Boldo",
+    "slugs": [
+     "boldo",
+     "peumus-boldus-leaf"
+    ]
+   },
+   {
+    "key": "K1:0LMC25OLZY",
+    "displayName": "Boneset",
+    "slugs": [
+     "boneset",
+     "eupatorium-perfoliatum-whole"
+    ]
+   },
+   {
+    "key": "K1:S6G2NLH4Y7",
+    "displayName": "Bos Taurus Hypothalamus",
+    "slugs": [
+     "bos-taurus-hypothalamus",
+     "hypothalamus"
+    ]
+   },
+   {
+    "key": "K1:7JM57I419K",
+    "displayName": "Bos Taurus Pituitary Gland",
+    "slugs": [
+     "bos-taurus-pituitary-gland",
+     "bos-taurus-pituitary-gland-posterior"
+    ]
+   },
+   {
+    "key": "K1:190Q9MB3U3",
+    "displayName": "Bos Taurus Spleen",
+    "slugs": [
+     "bos-taurus-spleen",
+     "spleen"
+    ]
+   },
+   {
+    "key": "K1:PR4RXL6G2H",
+    "displayName": "Bos Taurus Testicle",
+    "slugs": [
+     "bos-taurus-testicle",
+     "orchic"
+    ]
+   },
+   {
+    "key": "K1:4PW41QCO2M",
+    "displayName": "Boswellia Serrata",
+    "slugs": [
+     "boswellia-serrata",
+     "indian-frankincense"
+    ]
+   },
+   {
+    "key": "K1:85Z8OHV3K7",
+    "displayName": "Brassica Rapa Pollen",
+    "slugs": [
+     "brassica-rapa-pollen",
+     "brassica-rapa-subsp-oleifera-pollen"
+    ]
+   },
+   {
+    "key": "K1:SBV4XY874G",
+    "displayName": "Bromine",
+    "slugs": [
+     "bromine",
+     "broom"
+    ]
+   },
+   {
+    "key": "K1:659G217HPG",
+    "displayName": "Brown Rice",
+    "slugs": [
+     "brown-rice",
+     "rice-flour"
+    ]
+   },
+   {
+    "key": "K1:T7J046YI2B",
+    "displayName": "Bryonia",
+    "slugs": [
+     "bryonia",
+     "bryonia-alba-root"
+    ]
+   },
+   {
+    "key": "K1:53UB5FH7CX",
+    "displayName": "Bryonia Cretica Subsp. Dioica Root",
+    "slugs": [
+     "bryonia-cretica-subsp-dioica-root",
+     "bryonia-dioica-root"
+    ]
+   },
+   {
+    "key": "K1:B4R1EZ1R1D",
+    "displayName": "Buckthorn",
+    "slugs": [
+     "buckthorn",
+     "rhamnus-cathartica-fruit"
+    ]
+   },
+   {
+    "key": "K1:1SYA8HK01B",
+    "displayName": "Butterfly Pea",
+    "slugs": [
+     "butterfly-pea",
+     "clitoria-ternatea-flower"
+    ]
+   },
+   {
+    "key": "K1:54C8E6W6JY",
+    "displayName": "Button Mushroom",
+    "slugs": [
+     "button-mushroom",
+     "cultivated-mushroom",
+     "mushroom"
+    ]
+   },
+   {
+    "key": "K1:K49155WL9Y",
+    "displayName": "Butyrospermum Parkii Butter",
+    "slugs": [
+     "butyrospermum-parkii-butter",
+     "shea-butter"
+    ]
+   },
+   {
+    "key": "K1:J3TO6BUQ37",
+    "displayName": "Cajeput",
+    "slugs": [
+     "cajeput",
+     "cajuput-oil"
+    ]
+   },
+   {
+    "key": "K1:B1F50160Z2",
+    "displayName": "Calcium Gluceptate",
+    "slugs": [
+     "calcium-gluceptate",
+     "technetium-tc-99m-gluceptate-kit"
+    ]
+   },
+   {
+    "key": "K1:WAT0DDB505",
+    "displayName": "Calcium Sulfate",
+    "slugs": [
+     "calcium-sulfate",
+     "calcium-sulfate-unspecified-form"
+    ]
+   },
+   {
+    "key": "K1:9315HN272X",
+    "displayName": "California Poppy",
+    "slugs": [
+     "california-poppy",
+     "eschscholzia-californica",
+     "eschscholzia-californica-whole"
+    ]
+   },
+   {
+    "key": "K1:6S9317F2UT",
+    "displayName": "Caltha Palustris",
+    "slugs": [
+     "caltha-palustris",
+     "caltha-palustris-whole",
+     "cowslip"
+    ]
+   },
+   {
+    "key": "K1:W2ZU1RY8B0",
+    "displayName": "Camellia Sinensis Leaf",
+    "slugs": [
+     "camellia-sinensis-leaf",
+     "green-tea",
+     "green-tea-leaf"
+    ]
+   },
+   {
+    "key": "K4:camu camu",
+    "displayName": "Camu Camu",
+    "slugs": [
+     "camu-camu",
+     "camu-camu-extract"
+    ]
+   },
+   {
+    "key": "K1:WL0328HX19",
+    "displayName": "Candelilla",
+    "slugs": [
+     "candelilla",
+     "candelilla-wax"
+    ]
+   },
+   {
+    "key": "K1:FTS5RM302N",
+    "displayName": "Cannabis (Plant Preparation)",
+    "slugs": [
+     "cannabis",
+     "marijuana"
+    ]
+   },
+   {
+    "key": "K1:W0X9457M59",
+    "displayName": "Capsella Bursa-Pastoris",
+    "slugs": [
+     "capsella-bursa-pastoris",
+     "capsella-bursa-pastoris-whole",
+     "shepherds-purse"
+    ]
+   },
+   {
+    "key": "K1:K679OBS311",
+    "displayName": "Carboxymethylcellulose Sodium, Unspecified",
+    "slugs": [
+     "carboxymethylcellulose-sodium-unspecified",
+     "carboxymethylcellulose-sodium-unspecified-form"
+    ]
+   },
+   {
+    "key": "K2:FLFJZZNKVVNCFQ-YBZZSZPVSA-N",
+    "displayName": "Carotenoid",
+    "slugs": [
+     "carotenoid",
+     "carotenoids"
+    ]
+   },
+   {
+    "key": "K1:G2A764T54B",
+    "displayName": "Carya Alba Pollen",
+    "slugs": [
+     "carya-alba-pollen",
+     "carya-tomentosa-pollen"
+    ]
+   },
+   {
+    "key": "K1:57X4TSH58S",
+    "displayName": "Centaurium Erythraea",
+    "slugs": [
+     "centaurium-erythraea",
+     "centaury"
+    ]
+   },
+   {
+    "key": "K1:7M867G6T1U",
+    "displayName": "Centella Asiatica",
+    "slugs": [
+     "centella-asiatica",
+     "centella-asiatica-whole",
+     "hydrocotyle-asiatica-extract"
+    ]
+   },
+   {
+    "key": "K1:6810070TYD",
+    "displayName": "Centella Asiatica Leaf",
+    "slugs": [
+     "centella-asiatica-leaf",
+     "gotu-kola"
+    ]
+   },
+   {
+    "key": "K1:Z608183YD0",
+    "displayName": "Cervus Elaphus Velvet",
+    "slugs": [
+     "cervus-elaphus-velvet",
+     "deer-velvet"
+    ]
+   },
+   {
+    "key": "K1:2DMT128M1S",
+    "displayName": "Cetearyl Alcohol",
+    "slugs": [
+     "cetearyl-alcohol",
+     "cetostearyl-alcohol"
+    ]
+   },
+   {
+    "key": "K1:BJ7YPN79A1",
+    "displayName": "Cetraria Islandica Subsp. Islandica",
+    "slugs": [
+     "cetraria-islandica-subsp-islandica",
+     "cetraria-islandica-whole",
+     "iceland-moss"
+    ]
+   },
+   {
+    "key": "K1:DQV54Y5H3U",
+    "displayName": "Chamaelirium Luteum Root",
+    "slugs": [
+     "chamaelirium-luteum-root",
+     "false-unicorn-root"
+    ]
+   },
+   {
+    "key": "K1:PK0TXD049P",
+    "displayName": "Chaparral",
+    "slugs": [
+     "chaparral",
+     "larrea-tridentata-leaf",
+     "larrea-tridentata-top"
+    ]
+   },
+   {
+    "key": "K1:0FF8N9C1NY",
+    "displayName": "Chard",
+    "slugs": [
+     "chard",
+     "swiss-chard"
+    ]
+   },
+   {
+    "key": "K1:7E889U5RNN",
+    "displayName": "Chelidonium Majus",
+    "slugs": [
+     "chelidonium-majus",
+     "chelidonium-majus-whole"
+    ]
+   },
+   {
+    "key": "K1:6G3UN932VF",
+    "displayName": "Chelone Glabra",
+    "slugs": [
+     "chelone-glabra",
+     "chelone-glabra-whole"
+    ]
+   },
+   {
+    "key": "K1:4H5RSU087I",
+    "displayName": "Chenopodium",
+    "slugs": [
+     "chenopodium",
+     "chenopodium-ambrosioides",
+     "dysphania-ambrosioides",
+     "dysphania-ambrosioides-whole"
+    ]
+   },
+   {
+    "key": "K1:WIB701MW2H",
+    "displayName": "Chenopodium Ambrosioides Pollen",
+    "slugs": [
+     "chenopodium-ambrosioides-pollen",
+     "dysphania-ambrosioides-pollen"
+    ]
+   },
+   {
+    "key": "K1:L7T10EIP3A",
+    "displayName": "Cherry",
+    "slugs": [
+     "cherry",
+     "menthol-unspecified-form"
+    ]
+   },
+   {
+    "key": "K1:N91637DNW9",
+    "displayName": "Chickpea",
+    "slugs": [
+     "chickpea",
+     "garbanzo-bean"
+    ]
+   },
+   {
+    "key": "K1:2H03479QVR",
+    "displayName": "Chickweed",
+    "slugs": [
+     "chickweed",
+     "stellaria-media"
+    ]
+   },
+   {
+    "key": "K1:090CTY533N",
+    "displayName": "Chicory",
+    "slugs": [
+     "chicory",
+     "chicory-root"
+    ]
+   },
+   {
+    "key": "K1:WCK21A9W9J",
+    "displayName": "Chimaphila Umbellata",
+    "slugs": [
+     "chimaphila-umbellata",
+     "chimaphila-umbellata-whole"
+    ]
+   },
+   {
+    "key": "K1:QH89N6B02U",
+    "displayName": "Chinese Rhubarb",
+    "slugs": [
+     "chinese-rhubarb",
+     "rheum-tanguticum-whole"
+    ]
+   },
+   {
+    "key": "K1:A47JP5ZG9M",
+    "displayName": "Chinese Rhubarb Root",
+    "slugs": [
+     "chinese-rhubarb-root",
+     "rheum-officinale-root"
+    ]
+   },
+   {
+    "key": "K1:29CIF30B1Z",
+    "displayName": "Chinese Yam",
+    "slugs": [
+     "chinese-yam",
+     "wild-yam"
+    ]
+   },
+   {
+    "key": "K1:OQS23HUA1X",
+    "displayName": "Chondrus Crispus",
+    "slugs": [
+     "chondrus-crispus",
+     "irish-moss"
+    ]
+   },
+   {
+    "key": "K1:S003A158SB",
+    "displayName": "Cinchona",
+    "slugs": [
+     "cinchona",
+     "cinchona-officinalis-bark"
+    ]
+   },
+   {
+    "key": "K1:23H32AOH17",
+    "displayName": "Citrullus Colocynthis Fruit Pulp",
+    "slugs": [
+     "citrullus-colocynthis-fruit-pulp",
+     "colocynth"
+    ]
+   },
+   {
+    "key": "K2:NDVASEGYNIMXJL-UHFFFAOYSA-N",
+    "displayName": "Citrus",
+    "slugs": [
+     "citrus",
+     "spice"
+    ]
+   },
+   {
+    "key": "K1:226LY0AFR9",
+    "displayName": "Clam",
+    "slugs": [
+     "clam",
+     "quahog-unspecified"
+    ]
+   },
+   {
+    "key": "K1:490F0009OP",
+    "displayName": "Clematis Vitalba Pre-Flowering Top",
+    "slugs": [
+     "clematis-vitalba-pre-flowering-top",
+     "clematis-vitalba-top"
+    ]
+   },
+   {
+    "key": "K1:DSS8V86H3Y",
+    "displayName": "Clerodendranthus Spicatus Leaf",
+    "slugs": [
+     "clerodendranthus-spicatus-leaf",
+     "java-tea"
+    ]
+   },
+   {
+    "key": "K1:PJX89V9R6N",
+    "displayName": "Clostridioides Difficile",
+    "slugs": [
+     "clostridioides-difficile",
+     "clostridium-difficile"
+    ]
+   },
+   {
+    "key": "K1:K48IKT5321",
+    "displayName": "Clove",
+    "slugs": [
+     "clove",
+     "cloves"
+    ]
+   },
+   {
+    "key": "K1:RR83T99U97",
+    "displayName": "Cnidium",
+    "slugs": [
+     "cnidium",
+     "ligusticum-sinense-subsp-chuanxiong-root"
+    ]
+   },
+   {
+    "key": "K1:JFH385Y744",
+    "displayName": "Coffee",
+    "slugs": [
+     "coffee",
+     "coffee-bean"
+    ]
+   },
+   {
+    "key": "K1:PQM9SA369U",
+    "displayName": "Cola Nitida Seed",
+    "slugs": [
+     "cola-nitida-seed",
+     "cola-nut",
+     "kola-nut"
+    ]
+   },
+   {
+    "key": "K1:V5741391RG",
+    "displayName": "Coleus Barbatus Root",
+    "slugs": [
+     "coleus-barbatus-root",
+     "plectranthus-barbatus-root"
+    ]
+   },
+   {
+    "key": "K1:5NXR7DJ9WO",
+    "displayName": "Coleus Forskohlii Root Oil",
+    "slugs": [
+     "coleus-forskohlii-root-oil",
+     "plectranthus-barbatus-root-oil"
+    ]
+   },
+   {
+    "key": "K1:3M4G523W1G",
+    "displayName": "Colloidal Silver",
+    "slugs": [
+     "colloidal-silver",
+     "silver"
+    ]
+   },
+   {
+    "key": "K1:0JXZ63016V",
+    "displayName": "Coltsfoot",
+    "slugs": [
+     "coltsfoot",
+     "tussilago-farfara"
+    ]
+   },
+   {
+    "key": "K1:267PZ9316M",
+    "displayName": "Common Periwinkle",
+    "slugs": [
+     "common-periwinkle",
+     "periwinkle"
+    ]
+   },
+   {
+    "key": "K1:QHH4HVF5QE",
+    "displayName": "Convallaria Majalis",
+    "slugs": [
+     "convallaria-majalis",
+     "lily-of-the-valley"
+    ]
+   },
+   {
+    "key": "K1:2E32821G6I",
+    "displayName": "Coral",
+    "slugs": [
+     "coral",
+     "oyster-shell-calcium-carbonate-crude"
+    ]
+   },
+   {
+    "key": "K1:0N8672707O",
+    "displayName": "Corn",
+    "slugs": [
+     "corn",
+     "maize"
+    ]
+   },
+   {
+    "key": "K1:Y5JS7YM46F",
+    "displayName": "Corydalis",
+    "slugs": [
+     "corydalis",
+     "dicentra-canadensis-root"
+    ]
+   },
+   {
+    "key": "K1:70LDW53ROO",
+    "displayName": "Cotton",
+    "slugs": [
+     "cotton",
+     "cotton-fiber"
+    ]
+   },
+   {
+    "key": "K1:917J3173FT",
+    "displayName": "Cow Milk",
+    "slugs": [
+     "cow-milk",
+     "milk"
+    ]
+   },
+   {
+    "key": "K1:463JZS0XJ3",
+    "displayName": "Cow Milk Fat",
+    "slugs": [
+     "cow-milk-fat",
+     "cream"
+    ]
+   },
+   {
+    "key": "K1:55G8SQ543S",
+    "displayName": "Cowhage",
+    "slugs": [
+     "cowhage",
+     "mucuna-pruriens-seed"
+    ]
+   },
+   {
+    "key": "K1:T1UG6H6805",
+    "displayName": "Cramp Bark",
+    "slugs": [
+     "cramp-bark",
+     "viburnum-opulus-bark"
+    ]
+   },
+   {
+    "key": "K1:46G3W789Q3",
+    "displayName": "Crocanthemum Canadense",
+    "slugs": [
+     "crocanthemum-canadense",
+     "helianthemum-canadense"
+    ]
+   },
+   {
+    "key": "K1:00IF91KFKQ",
+    "displayName": "Crocus Sativus Flower",
+    "slugs": [
+     "crocus-sativus-flower",
+     "saffron-extract"
+    ]
+   },
+   {
+    "key": "K1:Z99L7429MA",
+    "displayName": "Cubeb",
+    "slugs": [
+     "cubeb",
+     "piper-cubeba-fruit"
+    ]
+   },
+   {
+    "key": "K1:232DMH0XVF",
+    "displayName": "Cupressus Arizonica Pollen",
+    "slugs": [
+     "cupressus-arizonica-pollen",
+     "hesperocyparis-arizonica-pollen"
+    ]
+   },
+   {
+    "key": "K1:M7QUY89S4O",
+    "displayName": "Cupressus Sempervirens Leaf Oil",
+    "slugs": [
+     "cupressus-sempervirens-leaf-oil",
+     "cypress"
+    ]
+   },
+   {
+    "key": "K1:06JMS448M5",
+    "displayName": "Cymbopogon Citratus Leaf",
+    "slugs": [
+     "cymbopogon-citratus-leaf",
+     "lemongrass"
+    ]
+   },
+   {
+    "key": "K1:9R858U917W",
+    "displayName": "Cynanchum Vincetoxicum Root",
+    "slugs": [
+     "cynanchum-vincetoxicum-root",
+     "vincetoxicum-hirundinaria-root"
+    ]
+   },
+   {
+    "key": "K1:86R5J6D01D",
+    "displayName": "Daikon",
+    "slugs": [
+     "daikon",
+     "raphanus-sativus"
+    ]
+   },
+   {
+    "key": "K1:RQ2CFA7WWJ",
+    "displayName": "Damiana",
+    "slugs": [
+     "damiana",
+     "turnera-diffusa-leafy-twig"
+    ]
+   },
+   {
+    "key": "K1:39981FM375",
+    "displayName": "Dandelion",
+    "slugs": [
+     "dandelion",
+     "taraxacum-officinale"
+    ]
+   },
+   {
+    "key": "K1:1693AM5SBN",
+    "displayName": "Danshen",
+    "slugs": [
+     "danshen",
+     "salvia-miltiorrhiza-root"
+    ]
+   },
+   {
+    "key": "K1:00543AP1JV",
+    "displayName": "Delphinium Staphisagria Seed",
+    "slugs": [
+     "delphinium-staphisagria-seed",
+     "staphisagria-macrosperma-seed"
+    ]
+   },
+   {
+    "key": "K1:1OYM338E89",
+    "displayName": "Devil's Claw",
+    "slugs": [
+     "devils-claw",
+     "harpagophytum-procumbens-root"
+    ]
+   },
+   {
+    "key": "K1:01800C6E6B",
+    "displayName": "Dieffenbachia Seguine",
+    "slugs": [
+     "dieffenbachia-seguine",
+     "dieffenbachia-seguine-whole"
+    ]
+   },
+   {
+    "key": "K1:92RU3N3Y1O",
+    "displayName": "Dimethicone, Unspecified",
+    "slugs": [
+     "dimethicone-unspecified",
+     "simethicone"
+    ]
+   },
+   {
+    "key": "K1:IWY3IWX2G8",
+    "displayName": "Dioscorea Villosa Root",
+    "slugs": [
+     "dioscorea-villosa-root",
+     "dioscorea-villosa-tuber"
+    ]
+   },
+   {
+    "key": "K1:51FI676N6F",
+    "displayName": "DNA",
+    "slugs": [
+     "dna",
+     "herring-sperm-dna"
+    ]
+   },
+   {
+    "key": "K1:QR44N9XPJQ",
+    "displayName": "Drosera Rotundifolia",
+    "slugs": [
+     "drosera-rotundifolia",
+     "drosera-rotundifolia-whole"
+    ]
+   },
+   {
+    "key": "K1:75O014T1HG",
+    "displayName": "Drosera Rotundifolia Flowering Top",
+    "slugs": [
+     "drosera-rotundifolia-flowering-top",
+     "sundew"
+    ]
+   },
+   {
+    "key": "K1:QI7G114Y98",
+    "displayName": "Echinacea Purpurea",
+    "slugs": [
+     "echinacea-purpurea",
+     "echinacea-purpurea-whole"
+    ]
+   },
+   {
+    "key": "K1:07V4DX094T",
+    "displayName": "Elder Flower",
+    "slugs": [
+     "elder-flower",
+     "sambucus-nigra-flower"
+    ]
+   },
+   {
+    "key": "K1:E55SMD6DA8",
+    "displayName": "Elecampane",
+    "slugs": [
+     "elecampane",
+     "inula-helenium-root"
+    ]
+   },
+   {
+    "key": "K1:63POE2M46Y",
+    "displayName": "Elm",
+    "slugs": [
+     "elm",
+     "slippery-elm"
+    ]
+   },
+   {
+    "key": "K1:YLX4CW2576",
+    "displayName": "Emblica Officinalis Fruit",
+    "slugs": [
+     "emblica-officinalis-fruit",
+     "phyllanthus-emblica-fruit"
+    ]
+   },
+   {
+    "key": "K1:1V3SHR7QB7",
+    "displayName": "English Walnut",
+    "slugs": [
+     "english-walnut",
+     "walnut"
+    ]
+   },
+   {
+    "key": "K1:55L3XLO37E",
+    "displayName": "Ephedra",
+    "slugs": [
+     "ephedra",
+     "ma-huang"
+    ]
+   },
+   {
+    "key": "K1:Z50OE1022B",
+    "displayName": "Epistane",
+    "slugs": [
+     "epistane",
+     "methylepitiostanol"
+    ]
+   },
+   {
+    "key": "K1:59677RXH25",
+    "displayName": "Equisetum Hyemale",
+    "slugs": [
+     "equisetum-hyemale",
+     "equisetum-hyemale-whole"
+    ]
+   },
+   {
+    "key": "K1:16D08B0B9N",
+    "displayName": "Erigeron Canadensis",
+    "slugs": [
+     "erigeron-canadensis",
+     "erigeron-canadensis-whole"
+    ]
+   },
+   {
+    "key": "K1:2Y7TIQ135H",
+    "displayName": "Eriodictyon Californicum Leaf",
+    "slugs": [
+     "eriodictyon-californicum-leaf",
+     "yerba-santa"
+    ]
+   },
+   {
+    "key": "K1:192426I5JU",
+    "displayName": "Erythranthe Guttata Flowering Top",
+    "slugs": [
+     "erythranthe-guttata-flowering-top",
+     "mimulus-guttatus-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:29I4YB3S89",
+    "displayName": "Ether",
+    "slugs": [
+     "ether",
+     "tert-butyl-methyl-ether"
+    ]
+   },
+   {
+    "key": "K1:4Y5P7MUD51",
+    "displayName": "Ethylhexyl Methoxycinnamate",
+    "slugs": [
+     "ethylhexyl-methoxycinnamate",
+     "octinoxate"
+    ]
+   },
+   {
+    "key": "K1:72T9EZC2VX",
+    "displayName": "Eucalyptus",
+    "slugs": [
+     "eucalyptus",
+     "eucalyptus-gum"
+    ]
+   },
+   {
+    "key": "K1:C9642I91WL",
+    "displayName": "Euphrasia Stricta",
+    "slugs": [
+     "euphrasia-stricta",
+     "eyebright"
+    ]
+   },
+   {
+    "key": "K1:BK9092J5MP",
+    "displayName": "European Mistletoe",
+    "slugs": [
+     "european-mistletoe",
+     "viscum-album-fruiting-top"
+    ]
+   },
+   {
+    "key": "K1:0VYG5PVN5Q",
+    "displayName": "Eutrochium Purpureum Root",
+    "slugs": [
+     "eutrochium-purpureum-root",
+     "gravel-root"
+    ]
+   },
+   {
+    "key": "K1:X3AOK514E6",
+    "displayName": "Eye",
+    "slugs": [
+     "eye",
+     "sus-scrofa-eye"
+    ]
+   },
+   {
+    "key": "K1:B10M69172N",
+    "displayName": "Fagopyrum Esculentum",
+    "slugs": [
+     "fagopyrum-esculentum",
+     "fagopyrum-esculentum-whole"
+    ]
+   },
+   {
+    "key": "K1:AUZ3VD75MC",
+    "displayName": "Fallopia Multiflora Root",
+    "slugs": [
+     "fallopia-multiflora-root",
+     "reynoutria-multiflora-root"
+    ]
+   },
+   {
+    "key": "K1:654825W09Z",
+    "displayName": "Fenugreek",
+    "slugs": [
+     "fenugreek",
+     "fenugreek-seed"
+    ]
+   },
+   {
+    "key": "K1:2WTB3V159F",
+    "displayName": "Ferric Ferrocyanide",
+    "slugs": [
+     "ferric-ferrocyanide",
+     "ferric-hexacyanoferrate",
+     "hydrogen-cyanide",
+     "mercuric-cyanide",
+     "potassium-cyanide",
+     "potassium-ferrocyanide",
+     "sodium-nitroprusside"
+    ]
+   },
+   {
+    "key": "K1:91GQH8I5F7",
+    "displayName": "Ferrosoferric",
+    "slugs": [
+     "ferrosoferric",
+     "ferrum-phosphoricum"
+    ]
+   },
+   {
+    "key": "K1:CLH5FT6412",
+    "displayName": "Ferrosoferric Oxide",
+    "slugs": [
+     "ferrosoferric-oxide",
+     "ferumoxides",
+     "ferumoxytol-non-stoichiometric-magnetite"
+    ]
+   },
+   {
+    "key": "K1:GW89581OWR",
+    "displayName": "Ferrous",
+    "slugs": [
+     "ferrous",
+     "ferrous-cation"
+    ]
+   },
+   {
+    "key": "K1:A0WFQ8P6N1",
+    "displayName": "Festuca Pratensis Pollen",
+    "slugs": [
+     "festuca-pratensis-pollen",
+     "lolium-pratense-pollen"
+    ]
+   },
+   {
+    "key": "K1:30D02U2IRN",
+    "displayName": "Fomitopsis Pinicola",
+    "slugs": [
+     "fomitopsis-pinicola",
+     "fomitopsis-pinicola-fruiting-body"
+    ]
+   },
+   {
+    "key": "K1:S2D77IH61R",
+    "displayName": "Frangula",
+    "slugs": [
+     "frangula",
+     "frangula-alnus-bark"
+    ]
+   },
+   {
+    "key": "K1:R9XLF1R1WM",
+    "displayName": "Frankincense",
+    "slugs": [
+     "frankincense",
+     "olibanum"
+    ]
+   },
+   {
+    "key": "K1:831MQ9808D",
+    "displayName": "French Tarragon",
+    "slugs": [
+     "french-tarragon",
+     "tarragon"
+    ]
+   },
+   {
+    "key": "K1:Z4B6561488",
+    "displayName": "Galium Aparine",
+    "slugs": [
+     "galium-aparine",
+     "galium-aparine-whole"
+    ]
+   },
+   {
+    "key": "K1:N8C4A9A49H",
+    "displayName": "Galium Odoratum",
+    "slugs": [
+     "galium-odoratum",
+     "sweet-woodruff"
+    ]
+   },
+   {
+    "key": "K1:A04B19O2B0",
+    "displayName": "Gallium Chloride",
+    "slugs": [
+     "gallium-chloride",
+     "gallium-chloride-ga-67",
+     "gallium-citrate-ga-67"
+    ]
+   },
+   {
+    "key": "K1:7CTH8MD549",
+    "displayName": "Gardenia",
+    "slugs": [
+     "gardenia",
+     "gardenia-jasminoides-fruit"
+    ]
+   },
+   {
+    "key": "K1:S72O3284MS",
+    "displayName": "Gentian",
+    "slugs": [
+     "gentian",
+     "gentian-root",
+     "gentiana-lutea-root"
+    ]
+   },
+   {
+    "key": "K1:R5I1HK0UBL",
+    "displayName": "Geranium Robertianum",
+    "slugs": [
+     "geranium-robertianum",
+     "geranium-robertianum-whole"
+    ]
+   },
+   {
+    "key": "K1:SAS9Z1SVUK",
+    "displayName": "Ginger Oil",
+    "slugs": [
+     "ginger-oil",
+     "zingiber-officinale-root-oil"
+    ]
+   },
+   {
+    "key": "K1:3K198YD54P",
+    "displayName": "Ginsenoside",
+    "slugs": [
+     "ginsenoside",
+     "ginsenosides"
+    ]
+   },
+   {
+    "key": "K1:L6O7WQK912",
+    "displayName": "Glechoma Hederacea",
+    "slugs": [
+     "glechoma-hederacea",
+     "ground-ivy"
+    ]
+   },
+   {
+    "key": "K1:1534K8653J",
+    "displayName": "Gluten",
+    "slugs": [
+     "gluten",
+     "wheat-gluten"
+    ]
+   },
+   {
+    "key": "K4:gluthathione",
+    "displayName": "Gluthathione",
+    "slugs": [
+     "gluthathione",
+     "l-gluthathione"
+    ]
+   },
+   {
+    "key": "K1:HTB34557V4",
+    "displayName": "Glycopyrrolate",
+    "slugs": [
+     "glycopyrrolate",
+     "glycopyrronium"
+    ]
+   },
+   {
+    "key": "K1:2788Z9758H",
+    "displayName": "Glycyrrhiza Glabra",
+    "slugs": [
+     "glycyrrhiza-glabra",
+     "glycyrrhiza-glabra-root-powder"
+    ]
+   },
+   {
+    "key": "K1:36XQ854NWW",
+    "displayName": "Gnaphalium",
+    "slugs": [
+     "gnaphalium",
+     "pseudognaphalium-obtusifolium",
+     "pseudognaphalium-obtusifolium-whole"
+    ]
+   },
+   {
+    "key": "K1:930MLC8XGG",
+    "displayName": "Grape Seed Oil",
+    "slugs": [
+     "grape-seed-oil",
+     "vitis-vinifera-seed-oil"
+    ]
+   },
+   {
+    "key": "K1:BDD9991A36",
+    "displayName": "Gratiola Officinalis",
+    "slugs": [
+     "gratiola-officinalis",
+     "gratiola-officinalis-whole"
+    ]
+   },
+   {
+    "key": "K1:6HD2W46UEG",
+    "displayName": "Green Olive",
+    "slugs": [
+     "green-olive",
+     "olive"
+    ]
+   },
+   {
+    "key": "K1:IDB0NAZ6AI",
+    "displayName": "Grindelia",
+    "slugs": [
+     "grindelia",
+     "grindelia-hirsutula-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:6GLA1946WX",
+    "displayName": "Handroanthus Impetiginosus Bark",
+    "slugs": [
+     "handroanthus-impetiginosus-bark",
+     "tabebuia-impetiginosa-bark"
+    ]
+   },
+   {
+    "key": "K1:IW0OM96F6O",
+    "displayName": "Hazelnut",
+    "slugs": [
+     "hazelnut",
+     "hazelnut-unspecified"
+    ]
+   },
+   {
+    "key": "K1:3W1JG795YI",
+    "displayName": "Helianthus Annuus Seed Oil",
+    "slugs": [
+     "helianthus-annuus-seed-oil",
+     "sunflower",
+     "sunflower-oil"
+    ]
+   },
+   {
+    "key": "K1:17NL0QLS6P",
+    "displayName": "Helminthosporium Carbonum Toxin I",
+    "slugs": [
+     "helminthosporium-carbonum-toxin-i",
+     "peptide"
+    ]
+   },
+   {
+    "key": "K1:8N34F5Z76Y",
+    "displayName": "Hemlock",
+    "slugs": [
+     "hemlock",
+     "pseudotsuga-menziesii-resin"
+    ]
+   },
+   {
+    "key": "K1:4WRK2153H3",
+    "displayName": "Henbane",
+    "slugs": [
+     "henbane",
+     "hyoscyamus-niger"
+    ]
+   },
+   {
+    "key": "K1:5R6HPB294Y",
+    "displayName": "Holarrhena Antidysenterica",
+    "slugs": [
+     "holarrhena-antidysenterica",
+     "holarrhena-pubescens-bark"
+    ]
+   },
+   {
+    "key": "K1:SCJ765569P",
+    "displayName": "Holy Basil",
+    "slugs": [
+     "holy-basil",
+     "holy-basil-leaf"
+    ]
+   },
+   {
+    "key": "K1:KHI40967MV",
+    "displayName": "Homalolepis Cedron Seed",
+    "slugs": [
+     "homalolepis-cedron-seed",
+     "simaba-cedron-seed"
+    ]
+   },
+   {
+    "key": "K1:QQF931PRWK",
+    "displayName": "Human Placental Tissue",
+    "slugs": [
+     "human-placental-tissue",
+     "placenta"
+    ]
+   },
+   {
+    "key": "K1:5F658PFU56",
+    "displayName": "Hyacinthoides Non-Scripta",
+    "slugs": [
+     "hyacinthoides-non-scripta",
+     "hyacinthoides-non-scripta-whole"
+    ]
+   },
+   {
+    "key": "K1:S270N0TRQY",
+    "displayName": "Hyaluronate",
+    "slugs": [
+     "hyaluronate",
+     "hyaluronic-acid"
+    ]
+   },
+   {
+    "key": "K1:SFK828Q2DE",
+    "displayName": "Hydrangea",
+    "slugs": [
+     "hydrangea",
+     "hydrangea-arborescens-root"
+    ]
+   },
+   {
+    "key": "K1:XK4IUX8MNB",
+    "displayName": "Hypericum Perforatum",
+    "slugs": [
+     "hypericum-perforatum",
+     "hypericum-perforatum-whole"
+    ]
+   },
+   {
+    "key": "K1:X7HKN4FOJI",
+    "displayName": "Hyssop",
+    "slugs": [
+     "hyssop",
+     "hyssopus-officinalis-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:2064U29D4Y",
+    "displayName": "Indian Ipecac",
+    "slugs": [
+     "indian-ipecac",
+     "tylophora-indica-root",
+     "vincetoxicum-indicum-root"
+    ]
+   },
+   {
+    "key": "K1:2NMG4EA7B1",
+    "displayName": "Indian Long Pepper",
+    "slugs": [
+     "indian-long-pepper",
+     "long-pepper"
+    ]
+   },
+   {
+    "key": "K1:E9NGC49E0T",
+    "displayName": "Indium",
+    "slugs": [
+     "indium",
+     "indium-in-111"
+    ]
+   },
+   {
+    "key": "K1:R9HH0NDE2E",
+    "displayName": "Influenza A Virus",
+    "slugs": [
+     "influenza-a-virus",
+     "influenza-a-virus-whole"
+    ]
+   },
+   {
+    "key": "K1:1314JZ2X6W",
+    "displayName": "Influenza B Virus",
+    "slugs": [
+     "influenza-b-virus",
+     "influenza-b-virus-whole"
+    ]
+   },
+   {
+    "key": "K2:MTMGAHSPYQRCFL-RNLOPGSRSA-N",
+    "displayName": "Insulin Aspart Protamine Recombinant",
+    "slugs": [
+     "insulin-aspart-protamine-recombinant",
+     "insulin-aspart-recombinant"
+    ]
+   },
+   {
+    "key": "K1:8N6VTJ9IWV",
+    "displayName": "Iris Germanica Root",
+    "slugs": [
+     "iris-germanica-root",
+     "iris-x-germanica-root"
+    ]
+   },
+   {
+    "key": "K1:M30XO5X4XD",
+    "displayName": "Iris Germanica Var. Florentina Root",
+    "slugs": [
+     "iris-germanica-var-florentina-root",
+     "iris-x-germanica-nothovar-florentina-root",
+     "orris"
+    ]
+   },
+   {
+    "key": "K1:Z34X58O70B",
+    "displayName": "Iris Tenax",
+    "slugs": [
+     "iris-tenax",
+     "iris-tenax-whole"
+    ]
+   },
+   {
+    "key": "K1:E1UOL152H7",
+    "displayName": "Iron",
+    "slugs": [
+     "iron",
+     "iron-powder"
+    ]
+   },
+   {
+    "key": "K1:U4B223LS4X",
+    "displayName": "Jacobaea Maritima",
+    "slugs": [
+     "jacobaea-maritima",
+     "jacobaea-maritima-whole"
+    ]
+   },
+   {
+    "key": "K1:0Q8K841432",
+    "displayName": "Jasmine",
+    "slugs": [
+     "jasmine",
+     "jasminum-officinale-flower"
+    ]
+   },
+   {
+    "key": "K1:724GKU717M",
+    "displayName": "Jojoba Oil",
+    "slugs": [
+     "jojoba-oil",
+     "simmondsia-chinensis-seed-oil"
+    ]
+   },
+   {
+    "key": "K1:G55HNL2C70",
+    "displayName": "Jujube",
+    "slugs": [
+     "jujube",
+     "jujube-fruit"
+    ]
+   },
+   {
+    "key": "K1:73W9IQY50Q",
+    "displayName": "Karaya Gum",
+    "slugs": [
+     "karaya-gum",
+     "sterculia"
+    ]
+   },
+   {
+    "key": "K1:M98C8416QO",
+    "displayName": "Kidney Bean",
+    "slugs": [
+     "kidney-bean",
+     "white-kidney-bean"
+    ]
+   },
+   {
+    "key": "K1:02AA4F4VLP",
+    "displayName": "L-Leucine",
+    "slugs": [
+     "l-leucine",
+     "leucine"
+    ]
+   },
+   {
+    "key": "K1:0E7SS2999Y",
+    "displayName": "Lachnanthes Caroliniana",
+    "slugs": [
+     "lachnanthes-caroliniana",
+     "lachnanthes-caroliniana-whole"
+    ]
+   },
+   {
+    "key": "K1:QFC21096ON",
+    "displayName": "Lactiplantibacillus Plantarum",
+    "slugs": [
+     "lactiplantibacillus-plantarum",
+     "lactobacillus-plantarum"
+    ]
+   },
+   {
+    "key": "K1:HU1W4L947H",
+    "displayName": "Lactobacillus Bulgaricus",
+    "slugs": [
+     "lactobacillus-bulgaricus",
+     "lactobacillus-delbrueckii-bulgaricus"
+    ]
+   },
+   {
+    "key": "K1:9913I24QEE",
+    "displayName": "Lactobacillus Reuteri",
+    "slugs": [
+     "lactobacillus-reuteri",
+     "limosilactobacillus-reuteri"
+    ]
+   },
+   {
+    "key": "K1:6D74QW4H67",
+    "displayName": "Lactuca Virosa",
+    "slugs": [
+     "lactuca-virosa",
+     "lactuca-virosa-whole"
+    ]
+   },
+   {
+    "key": "K1:19AH1RAF4M",
+    "displayName": "Lavandula Angustifolia Flower",
+    "slugs": [
+     "lavandula-angustifolia-flower",
+     "lavandula-angustifolia-subsp-angustifolia-flower"
+    ]
+   },
+   {
+    "key": "K1:1DI56QDM62",
+    "displayName": "Lecithin, Soybean",
+    "slugs": [
+     "lecithin-soybean",
+     "soybean-lecithin"
+    ]
+   },
+   {
+    "key": "K1:877L01IZ0P",
+    "displayName": "Ledum Palustre Twig",
+    "slugs": [
+     "ledum-palustre-twig",
+     "rhododendron-tomentosum-leafy-twig"
+    ]
+   },
+   {
+    "key": "K1:621HHM46SV",
+    "displayName": "Lemna Minor",
+    "slugs": [
+     "lemna-minor",
+     "lemna-minor-whole"
+    ]
+   },
+   {
+    "key": "K1:8NC0C2YXK0",
+    "displayName": "Leonurus Cardiaca",
+    "slugs": [
+     "leonurus-cardiaca",
+     "leonurus-cardiaca-whole"
+    ]
+   },
+   {
+    "key": "K1:F930LFZ4LF",
+    "displayName": "Lespedeza Capitata",
+    "slugs": [
+     "lespedeza-capitata",
+     "lespedeza-capitata-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:42LD90786Y",
+    "displayName": "Lesser Galangal",
+    "slugs": [
+     "lesser-galangal",
+     "lesser-galangal-root"
+    ]
+   },
+   {
+    "key": "K1:P8CUH2KYHL",
+    "displayName": "Leuzea Carthamoides Root",
+    "slugs": [
+     "leuzea-carthamoides-root",
+     "maral-root"
+    ]
+   },
+   {
+    "key": "K4:lichen",
+    "displayName": "Lichen",
+    "slugs": [
+     "lichen",
+     "lichen-oil"
+    ]
+   },
+   {
+    "key": "K1:M9G2U96DUT",
+    "displayName": "Ligustrum Fruit",
+    "slugs": [
+     "ligustrum-fruit",
+     "ligustrum-lucidum-fruit"
+    ]
+   },
+   {
+    "key": "K1:J2Y905FQ57",
+    "displayName": "Lipoic Acid",
+    "slugs": [
+     "lipoic-acid",
+     "thioctic-acid"
+    ]
+   },
+   {
+    "key": "K1:D1YM0P5Z2T",
+    "displayName": "Lobaria Pulmonaria",
+    "slugs": [
+     "lobaria-pulmonaria",
+     "lungwort"
+    ]
+   },
+   {
+    "key": "K1:9PP1T3TC5U",
+    "displayName": "Lobelia Inflata",
+    "slugs": [
+     "lobelia-inflata",
+     "lobelia-inflata-whole"
+    ]
+   },
+   {
+    "key": "K1:9ZUC5NG0RD",
+    "displayName": "Lolium Perenne Top",
+    "slugs": [
+     "lolium-perenne-top",
+     "perennial-ryegrass"
+    ]
+   },
+   {
+    "key": "K1:5329928G5N",
+    "displayName": "Lomatium",
+    "slugs": [
+     "lomatium",
+     "lomatium-dissectum-root"
+    ]
+   },
+   {
+    "key": "K1:F0R3Y60C6V",
+    "displayName": "Luffa",
+    "slugs": [
+     "luffa",
+     "luffa-acutangula-fruit"
+    ]
+   },
+   {
+    "key": "K1:C88X29Y479",
+    "displayName": "Lycopodium",
+    "slugs": [
+     "lycopodium",
+     "lycopodium-clavatum-spore"
+    ]
+   },
+   {
+    "key": "K1:TWH5125Q6F",
+    "displayName": "Lycopus Virginicus",
+    "slugs": [
+     "lycopus-virginicus",
+     "lycopus-virginicus-whole"
+    ]
+   },
+   {
+    "key": "K1:515610SU8C",
+    "displayName": "Macadamia Nut Oil",
+    "slugs": [
+     "macadamia-nut-oil",
+     "macadamia-ternifolia-seed-oil"
+    ]
+   },
+   {
+    "key": "K1:BOW48C81XP",
+    "displayName": "Macropiper Methysticum Root",
+    "slugs": [
+     "macropiper-methysticum-root",
+     "piper-methysticum-root"
+    ]
+   },
+   {
+    "key": "K1:EF626V855K",
+    "displayName": "Malus Domestica Flower",
+    "slugs": [
+     "malus-domestica-flower",
+     "malus-pumila-flower"
+    ]
+   },
+   {
+    "key": "K1:04W636S1V3",
+    "displayName": "Malus Domestica Whole",
+    "slugs": [
+     "malus-domestica-whole",
+     "malus-pumila-whole"
+    ]
+   },
+   {
+    "key": "K1:KH3E3096OO",
+    "displayName": "Mandarin Orange",
+    "slugs": [
+     "mandarin-orange",
+     "tangerine"
+    ]
+   },
+   {
+    "key": "K1:7A72MUN24Z",
+    "displayName": "Marrubium Vulgare",
+    "slugs": [
+     "marrubium-vulgare",
+     "marrubium-vulgare-whole"
+    ]
+   },
+   {
+    "key": "K1:1Q953B4O4F",
+    "displayName": "Mate",
+    "slugs": [
+     "mate",
+     "yerba-mate"
+    ]
+   },
+   {
+    "key": "K1:G0R4UBI2ZZ",
+    "displayName": "Matricaria Chamomilla",
+    "slugs": [
+     "matricaria-chamomilla",
+     "matricaria-chamomilla-whole",
+     "matricaria-recutita"
+    ]
+   },
+   {
+    "key": "K1:3VNC7T6Z02",
+    "displayName": "Matricaria Chamomilla Flowering Top",
+    "slugs": [
+     "matricaria-chamomilla-flowering-top",
+     "matricaria-recutita-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:D888C394VO",
+    "displayName": "Mcpa",
+    "slugs": [
+     "mcpa",
+     "sodium-acetate"
+    ]
+   },
+   {
+    "key": "K1:G43C57162K",
+    "displayName": "Melaleuca Alternifolia Leaf",
+    "slugs": [
+     "melaleuca-alternifolia-leaf",
+     "tea-tree"
+    ]
+   },
+   {
+    "key": "K1:VIF565UC2G",
+    "displayName": "Melaleuca Alternifolia Leaf Oil",
+    "slugs": [
+     "melaleuca-alternifolia-leaf-oil",
+     "tea-tree-oil"
+    ]
+   },
+   {
+    "key": "K1:F22I9R6Q0X",
+    "displayName": "Melilotus",
+    "slugs": [
+     "melilotus",
+     "melilotus-indicus-seed"
+    ]
+   },
+   {
+    "key": "K1:YF70189L0N",
+    "displayName": "Melissa Officinalis",
+    "slugs": [
+     "melissa-officinalis",
+     "melissa-officinalis-whole"
+    ]
+   },
+   {
+    "key": "K1:A389O33LX6",
+    "displayName": "Mentha Piperita Leaf",
+    "slugs": [
+     "mentha-piperita-leaf",
+     "peppermint-leaf"
+    ]
+   },
+   {
+    "key": "K1:7H0QTZ446K",
+    "displayName": "Menyanthes Trifoliata",
+    "slugs": [
+     "menyanthes-trifoliata",
+     "menyanthes-trifoliata-whole"
+    ]
+   },
+   {
+    "key": "K1:Q35465A1MA",
+    "displayName": "Mercurialis Perennis",
+    "slugs": [
+     "mercurialis-perennis",
+     "mercurialis-perennis-whole"
+    ]
+   },
+   {
+    "key": "K1:8617Z5FMF6",
+    "displayName": "Milk Basic Protein",
+    "slugs": [
+     "milk-basic-protein",
+     "whey",
+     "whey-protein"
+    ]
+   },
+   {
+    "key": "K1:1EU532DCW4",
+    "displayName": "Monascus Purpureus",
+    "slugs": [
+     "monascus-purpureus",
+     "red-yeast"
+    ]
+   },
+   {
+    "key": "K1:LC8MEV9S89",
+    "displayName": "Morella Cerifera Pollen",
+    "slugs": [
+     "morella-cerifera-pollen",
+     "myrica-cerifera-pollen"
+    ]
+   },
+   {
+    "key": "K1:S46HJ3710D",
+    "displayName": "Morella Cerifera Root Bark",
+    "slugs": [
+     "morella-cerifera-root-bark",
+     "myrica-cerifera-root-bark"
+    ]
+   },
+   {
+    "key": "K1:MN25R0HH5A",
+    "displayName": "Mulberry",
+    "slugs": [
+     "mulberry",
+     "white-mulberry"
+    ]
+   },
+   {
+    "key": "K1:C73BK97H5J",
+    "displayName": "Myosotis Arvensis",
+    "slugs": [
+     "myosotis-arvensis",
+     "myosotis-arvensis-whole"
+    ]
+   },
+   {
+    "key": "K1:767RD0E90B",
+    "displayName": "Myricyl Alcohol",
+    "slugs": [
+     "myricyl-alcohol",
+     "triacontanol"
+    ]
+   },
+   {
+    "key": "K1:4LVZ0Z0ITT",
+    "displayName": "Nigella Sativa Seed",
+    "slugs": [
+     "nigella-sativa-seed",
+     "nigella-seed"
+    ]
+   },
+   {
+    "key": "K1:477TV3P5UX",
+    "displayName": "Nori",
+    "slugs": [
+     "nori",
+     "seaweed"
+    ]
+   },
+   {
+    "key": "K1:714LIU3V6D",
+    "displayName": "Nuphar Lutea Root",
+    "slugs": [
+     "nuphar-lutea-root",
+     "nuphar-luteum-root"
+    ]
+   },
+   {
+    "key": "K1:93LP7Y8EGT",
+    "displayName": "Oak",
+    "slugs": [
+     "oak",
+     "quercus-alba-bark"
+    ]
+   },
+   {
+    "key": "K1:Z6J799EAJK",
+    "displayName": "Oat",
+    "slugs": [
+     "oat",
+     "oats"
+    ]
+   },
+   {
+    "key": "K1:5QUO05548Z",
+    "displayName": "Oil Palm",
+    "slugs": [
+     "oil-palm",
+     "palm-oil"
+    ]
+   },
+   {
+    "key": "K1:MJ95C3OH47",
+    "displayName": "Olea Europaea Leaf",
+    "slugs": [
+     "olea-europaea-leaf",
+     "olea-europaea-leaf-powder"
+    ]
+   },
+   {
+    "key": "K1:RP8496915M",
+    "displayName": "Ononis Campestris",
+    "slugs": [
+     "ononis-campestris",
+     "ononis-spinosa-whole"
+    ]
+   },
+   {
+    "key": "K1:604NK4250S",
+    "displayName": "Onosmodium Virginianum",
+    "slugs": [
+     "onosmodium-virginianum",
+     "onosmodium-virginianum-whole"
+    ]
+   },
+   {
+    "key": "K1:9NS3M2Y78S",
+    "displayName": "Ornithogalum Umbellatum",
+    "slugs": [
+     "ornithogalum-umbellatum",
+     "ornithogalum-umbellatum-whole",
+     "star-of-bethlehem"
+    ]
+   },
+   {
+    "key": "K1:5WS1632J8W",
+    "displayName": "Packera Aurea",
+    "slugs": [
+     "packera-aurea",
+     "packera-aurea-whole"
+    ]
+   },
+   {
+    "key": "K1:P9T4K47OM0",
+    "displayName": "Panax Ginseng Root Oil",
+    "slugs": [
+     "panax-ginseng-root-oil",
+     "panax-ginseng-root-water"
+    ]
+   },
+   {
+    "key": "K1:K8F3G29S6Z",
+    "displayName": "Passiflora Incarnata Flower",
+    "slugs": [
+     "passiflora-incarnata-flower",
+     "passionflower"
+    ]
+   },
+   {
+    "key": "K1:CLF5YFS11O",
+    "displayName": "Passiflora Incarnata Flowering Top",
+    "slugs": [
+     "passiflora-incarnata-flowering-top",
+     "passiflora-incarnata-top"
+    ]
+   },
+   {
+    "key": "K1:WGM46PQF02",
+    "displayName": "Pervinca Minor Whole",
+    "slugs": [
+     "pervinca-minor-whole",
+     "vinca-minor",
+     "vinca-minor-whole"
+    ]
+   },
+   {
+    "key": "K1:1WZA4Y92EX",
+    "displayName": "Petroselinum Crispum",
+    "slugs": [
+     "petroselinum-crispum",
+     "petroselinum-crispum-whole"
+    ]
+   },
+   {
+    "key": "K1:05780F90V3",
+    "displayName": "Phenethylamine",
+    "slugs": [
+     "phenethylamine",
+     "phenylethylamine"
+    ]
+   },
+   {
+    "key": "K1:690284A407",
+    "displayName": "Phosphorus P-32",
+    "slugs": [
+     "phosphorus-p-32",
+     "sodium-phosphate-p-32"
+    ]
+   },
+   {
+    "key": "K1:26ZE1BZ2US",
+    "displayName": "Pilocarpus Jaborandi Leaf",
+    "slugs": [
+     "pilocarpus-jaborandi-leaf",
+     "pilocarpus-jaborandii-leaf"
+    ]
+   },
+   {
+    "key": "K1:60EUO12HBX",
+    "displayName": "Pine Pollen",
+    "slugs": [
+     "pine-pollen",
+     "pinus-tabuliformis-pollen"
+    ]
+   },
+   {
+    "key": "K1:K39FUU78ES",
+    "displayName": "Pinus Strobus Cone",
+    "slugs": [
+     "pinus-strobus-cone",
+     "white-pine"
+    ]
+   },
+   {
+    "key": "K1:W2469WNO6U",
+    "displayName": "Plantago Major",
+    "slugs": [
+     "plantago-major",
+     "plantago-major-whole"
+    ]
+   },
+   {
+    "key": "K1:2S713A4VP3",
+    "displayName": "Podophyllum",
+    "slugs": [
+     "podophyllum",
+     "podophyllum-peltatum-root"
+    ]
+   },
+   {
+    "key": "K1:7TRV45YZF7",
+    "displayName": "Polygonum Cuspidatum Root",
+    "slugs": [
+     "polygonum-cuspidatum-root",
+     "reynoutria-japonica-root"
+    ]
+   },
+   {
+    "key": "K1:476DVV63WP",
+    "displayName": "Populus Deltoides Pollen",
+    "slugs": [
+     "populus-deltoides-pollen",
+     "populus-deltoides-subsp-deltoides-pollen"
+    ]
+   },
+   {
+    "key": "K1:H8QYU50Z2D",
+    "displayName": "Populus Trichocarpa Pollen",
+    "slugs": [
+     "populus-trichocarpa-pollen",
+     "populus-tristis-pollen"
+    ]
+   },
+   {
+    "key": "K1:I8442U2G7J",
+    "displayName": "Pork Collagen",
+    "slugs": [
+     "pork-collagen",
+     "sus-scrofa-collagen"
+    ]
+   },
+   {
+    "key": "K2:HGVVOUNEGQIPMS-UHFFFAOYSA-N",
+    "displayName": "Proanthocyanidins",
+    "slugs": [
+     "proanthocyanidins",
+     "procyanidin"
+    ]
+   },
+   {
+    "key": "K1:97RBB414AC",
+    "displayName": "Propionibacterium Freudenreichii Shermanii",
+    "slugs": [
+     "propionibacterium-freudenreichii-shermanii",
+     "propionibacterium-shermanii"
+    ]
+   },
+   {
+    "key": "K1:5D48E975HA",
+    "displayName": "Prunus Serotina Bark",
+    "slugs": [
+     "prunus-serotina-bark",
+     "wild-cherry"
+    ]
+   },
+   {
+    "key": "K1:L63DD62R8R",
+    "displayName": "Pulex Irritans",
+    "slugs": [
+     "pulex-irritans",
+     "pulex-irritans-whole"
+    ]
+   },
+   {
+    "key": "K1:S5249Q85HW",
+    "displayName": "Quassia",
+    "slugs": [
+     "quassia",
+     "quassia-amara-wood"
+    ]
+   },
+   {
+    "key": "K1:QBR70R4FBK",
+    "displayName": "Queen's Delight",
+    "slugs": [
+     "queens-delight",
+     "stillingia",
+     "stillingia-sylvatica-root"
+    ]
+   },
+   {
+    "key": "K1:8N0K3807ZW",
+    "displayName": "Quillaja",
+    "slugs": [
+     "quillaja",
+     "quillaja-saponaria-bark"
+    ]
+   },
+   {
+    "key": "K1:AEQ8NXJ0MB",
+    "displayName": "Ranunculus Bulbosus",
+    "slugs": [
+     "ranunculus-bulbosus",
+     "ranunculus-bulbosus-whole"
+    ]
+   },
+   {
+    "key": "K1:4N14V5R27W",
+    "displayName": "Raspberry",
+    "slugs": [
+     "raspberry",
+     "red-raspberry"
+    ]
+   },
+   {
+    "key": "K1:B3FUD0528F",
+    "displayName": "Rebaudioside A",
+    "slugs": [
+     "rebaudioside-a",
+     "stevia"
+    ]
+   },
+   {
+    "key": "K1:TKD8LH0X2Z",
+    "displayName": "Reishi",
+    "slugs": [
+     "reishi",
+     "reishi-mushroom"
+    ]
+   },
+   {
+    "key": "K1:8476849N1Y",
+    "displayName": "Rhizopus Arrhizus",
+    "slugs": [
+     "rhizopus-arrhizus",
+     "rhizopus-oryzae"
+    ]
+   },
+   {
+    "key": "K1:IV92NQJ73U",
+    "displayName": "Rhododendron Aureum Leaf",
+    "slugs": [
+     "rhododendron-aureum-leaf",
+     "rhododendron-chrysanthum"
+    ]
+   },
+   {
+    "key": "K1:RHH784E0K6",
+    "displayName": "Rhus Glabra",
+    "slugs": [
+     "rhus-glabra",
+     "rhus-glabra-top"
+    ]
+   },
+   {
+    "key": "K1:A195V20H7A",
+    "displayName": "Rice",
+    "slugs": [
+     "rice",
+     "white-rice"
+    ]
+   },
+   {
+    "key": "K1:21W82Q764G",
+    "displayName": "Rosa Damascena Flowering Top",
+    "slugs": [
+     "rosa-damascena-flowering-top",
+     "rosa-x-damascena-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:1R72C0ROME",
+    "displayName": "Rosavin",
+    "slugs": [
+     "rosavin",
+     "rosavins"
+    ]
+   },
+   {
+    "key": "K1:8LGU7VM393",
+    "displayName": "Rosemary Oil",
+    "slugs": [
+     "rosemary-oil",
+     "rosmarinus-officinalis-leaf-oil"
+    ]
+   },
+   {
+    "key": "K1:NR1A27F29O",
+    "displayName": "Rosmarinus Officinalis Flower",
+    "slugs": [
+     "rosmarinus-officinalis-flower",
+     "salvia-rosmarinus-flower"
+    ]
+   },
+   {
+    "key": "K1:8JM482TI79",
+    "displayName": "Rosmarinus Officinalis Flowering Top",
+    "slugs": [
+     "rosmarinus-officinalis-flowering-top",
+     "salvia-rosmarinus-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:Y3V16D4PV4",
+    "displayName": "Salmonella Enterica Enterica Serovar Enteritidis",
+    "slugs": [
+     "salmonella-enterica-enterica-serovar-enteritidis",
+     "salmonella-enterica-subsp-enterica-serovar-enteritidis"
+    ]
+   },
+   {
+    "key": "K1:760T5R8B3O",
+    "displayName": "Salmonella Enterica Enterica Serovar Typhi",
+    "slugs": [
+     "salmonella-enterica-enterica-serovar-typhi",
+     "salmonella-enterica-subsp-enterica-serovar-typhi"
+    ]
+   },
+   {
+    "key": "K1:CT03BSA18U",
+    "displayName": "Sambucus Nigra",
+    "slugs": [
+     "sambucus-nigra",
+     "sambucus-nigra-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:3641YW25N2",
+    "displayName": "Sandalwood",
+    "slugs": [
+     "sandalwood",
+     "white-sandalwood"
+    ]
+   },
+   {
+    "key": "K1:2H1576D5WG",
+    "displayName": "Sarsaparilla",
+    "slugs": [
+     "sarsaparilla",
+     "smilax-ornata-root"
+    ]
+   },
+   {
+    "key": "K1:XC5UMP9I5F",
+    "displayName": "Sassafras",
+    "slugs": [
+     "sassafras",
+     "sassafras-albidum-root-bark"
+    ]
+   },
+   {
+    "key": "K1:CC4B5WU2XX",
+    "displayName": "Scleranthus Annus",
+    "slugs": [
+     "scleranthus-annus",
+     "scleranthus-annuus-flowering-top"
+    ]
+   },
+   {
+    "key": "K1:7H443NUB2T",
+    "displayName": "Scrophularia Nodosa",
+    "slugs": [
+     "scrophularia-nodosa",
+     "scrophularia-nodosa-whole"
+    ]
+   },
+   {
+    "key": "K1:7BP4DH5PDC",
+    "displayName": "Scutellaria Lateriflora",
+    "slugs": [
+     "scutellaria-lateriflora",
+     "scutellaria-lateriflora-whole"
+    ]
+   },
+   {
+    "key": "K1:PHR3P25W6Y",
+    "displayName": "Sea Lettuce",
+    "slugs": [
+     "sea-lettuce",
+     "ulva-lactuca-extract"
+    ]
+   },
+   {
+    "key": "K1:2496VW6S9J",
+    "displayName": "Sedum Acre",
+    "slugs": [
+     "sedum-acre",
+     "sedum-acre-whole"
+    ]
+   },
+   {
+    "key": "K1:Y0F0BU8RDU",
+    "displayName": "Semecarpus Anacardium",
+    "slugs": [
+     "semecarpus-anacardium",
+     "semecarpus-anacardium-juice"
+    ]
+   },
+   {
+    "key": "K1:38010FNG4Y",
+    "displayName": "Servicetree",
+    "slugs": [
+     "servicetree",
+     "sorbus-domestica-whole"
+    ]
+   },
+   {
+    "key": "K1:1891LE191T",
+    "displayName": "Shrimp",
+    "slugs": [
+     "shrimp",
+     "shrimp-unspecified"
+    ]
+   },
+   {
+    "key": "K1:NKI8W09136",
+    "displayName": "Silphium Laciniatum",
+    "slugs": [
+     "silphium-laciniatum",
+     "silphium-laciniatum-whole"
+    ]
+   },
+   {
+    "key": "K1:0243Q4990L",
+    "displayName": "Solanum Lycopersicum",
+    "slugs": [
+     "solanum-lycopersicum",
+     "solanum-lycopersicum-whole"
+    ]
+   },
+   {
+    "key": "K1:2A8I57T4MX",
+    "displayName": "Solanum Tuberosum",
+    "slugs": [
+     "solanum-tuberosum",
+     "solanum-tuberosum-whole"
+    ]
+   },
+   {
+    "key": "K1:467D26HS0B",
+    "displayName": "Spigelia",
+    "slugs": [
+     "spigelia",
+     "spigelia-marilandica-root"
+    ]
+   },
+   {
+    "key": "K1:WYT05213GE",
+    "displayName": "Spigelia Anthelmia",
+    "slugs": [
+     "spigelia-anthelmia",
+     "spigelia-anthelmia-whole"
+    ]
+   },
+   {
+    "key": "K1:5AZZ2GHR69",
+    "displayName": "Sus Scrofa Parasympathetic Nerve",
+    "slugs": [
+     "sus-scrofa-parasympathetic-nerve",
+     "sus-scrofa-vagus-nerve"
+    ]
+   },
+   {
+    "key": "K1:7B69B0BD62",
+    "displayName": "Sus Scrofa Thymus",
+    "slugs": [
+     "sus-scrofa-thymus",
+     "thymus"
+    ]
+   },
+   {
+    "key": "K1:GCZ4W7077C",
+    "displayName": "Taraxacum",
+    "slugs": [
+     "taraxacum",
+     "taraxacum-palustre-root"
+    ]
+   },
+   {
+    "key": "K1:EJ939L81MY",
+    "displayName": "Teacrine",
+    "slugs": [
+     "teacrine",
+     "theacrine"
+    ]
+   },
+   {
+    "key": "K1:10464S0TAA",
+    "displayName": "Teucrium Marum",
+    "slugs": [
+     "teucrium-marum",
+     "teucrium-marum-whole"
+    ]
+   },
+   {
+    "key": "K1:1NT28V9397",
+    "displayName": "Thuja",
+    "slugs": [
+     "thuja",
+     "thuja-occidentalis-leafy-twig"
+    ]
+   },
+   {
+    "key": "K1:86H4S6K51N",
+    "displayName": "Thymus Serpyllum",
+    "slugs": [
+     "thymus-serpyllum",
+     "thymus-serpyllum-whole"
+    ]
+   },
+   {
+    "key": "K1:4X4HLN92OT",
+    "displayName": "Tribulus",
+    "slugs": [
+     "tribulus",
+     "tribulus-terrestris-whole"
+    ]
+   },
+   {
+    "key": "K1:WG10XM3N5R",
+    "displayName": "Tylophora Indica Leaf",
+    "slugs": [
+     "tylophora-indica-leaf",
+     "vincetoxicum-indicum-leaf"
+    ]
+   },
+   {
+    "key": "K1:J3O020I532",
+    "displayName": "Ulmus Minor Flowering Twig",
+    "slugs": [
+     "ulmus-minor-flowering-twig",
+     "ulmus-procera-flowering-twig"
+    ]
+   },
+   {
+    "key": "K1:710FLW4U46",
+    "displayName": "Urtica Dioica",
+    "slugs": [
+     "urtica-dioica",
+     "urtica-dioica-whole"
+    ]
+   },
+   {
+    "key": "K1:IHN2NQ5OF9",
+    "displayName": "Urtica Urens",
+    "slugs": [
+     "urtica-urens",
+     "urtica-urens-whole"
+    ]
+   },
+   {
+    "key": "K1:D6DVA9TCAP",
+    "displayName": "Usnea",
+    "slugs": [
+     "usnea",
+     "usnea-barbata"
+    ]
+   },
+   {
+    "key": "K1:Q74T35078H",
+    "displayName": "Vanilla",
+    "slugs": [
+     "vanilla",
+     "vanilla-bean"
+    ]
+   },
+   {
+    "key": "K4:vegetable",
+    "displayName": "Vegetable",
+    "slugs": [
+     "vegetable",
+     "vegetable-juice"
+    ]
+   },
+   {
+    "key": "K1:C9TD27U172",
+    "displayName": "Verbascum Thapsus",
+    "slugs": [
+     "verbascum-thapsus",
+     "verbascum-thapsus-whole"
+    ]
+   },
+   {
+    "key": "K1:QT8A71T9BM",
+    "displayName": "Verbena Officinalis",
+    "slugs": [
+     "verbena-officinalis",
+     "verbena-officinalis-whole"
+    ]
+   },
+   {
+    "key": "K1:4989JW6TRZ",
+    "displayName": "Veronica Beccabunga",
+    "slugs": [
+     "veronica-beccabunga",
+     "veronica-beccabunga-whole"
+    ]
+   },
+   {
+    "key": "K1:AET12U8B74",
+    "displayName": "Viola Odorata",
+    "slugs": [
+     "viola-odorata",
+     "viola-odorata-whole"
+    ]
+   },
+   {
+    "key": "K1:9Q24RAI43V",
+    "displayName": "Viola Tricolor",
+    "slugs": [
+     "viola-tricolor",
+     "viola-tricolor-whole"
+    ]
+   },
+   {
+    "key": "K1:25VR943RPP",
+    "displayName": "White Mustard",
+    "slugs": [
+     "white-mustard",
+     "white-mustard-seed"
+    ]
+   },
+   {
+    "key": "K1:9I4XB1GP2B",
+    "displayName": "Xerophyllum Asphodeloides",
+    "slugs": [
+     "xerophyllum-asphodeloides",
+     "xerophyllum-asphodeloides-whole"
+    ]
+   },
+   {
+    "key": "K1:3NY3SM6B8U",
+    "displayName": "Yeast",
+    "slugs": [
+     "yeast",
+     "yeast-unspecified"
+    ]
+   },
+   {
+    "key": "K1:T6VR38UJ9I",
+    "displayName": "Yucca Filamentosa",
+    "slugs": [
+     "yucca-filamentosa",
+     "yucca-filamentosa-whole"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:6C282481IP,K1:SZB83O1W42}",
+    "displayName": "ERTUGLIFLOZIN PIDOLATE",
+    "slugs": [
+     "ertugliflozin",
+     "ertugliflozin-pidolate"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:2WTB3V159F,K1:F0R1QK73KB}",
+    "displayName": "CYANOCOBALAMIN CO 58",
+    "slugs": [
+     "cyanocobalamin-co-58",
+     "vitamin-b"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "displayName": "ORNITHINE OXOGLURATE",
+    "slugs": [
+     "diornithine-oxoglurate",
+     "ornithine-alpha-ketoglutarate",
+     "ornithine-ketoglutarate",
+     "ornithine-oxoglurate"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}",
+    "displayName": "Metformin Hydrochloride, Sitagliptin",
+    "slugs": [
+     "metformin-hydrochloride-sitagliptin",
+     "sitagliptin-and-metformin",
+     "sitagliptin-metformin",
+     "sitagliptin-phosphate-anhydrous-metformin"
+    ]
+   }
+  ]
+ },
+ "nameMatchedUniiRejected": 1704,
+ "suspectedMissedMerges": {
+  "structuralGroups": 830,
+  "structuralSuspected": 209,
+  "nominalGroups": 488,
+  "total": 697
+ },
+ "pubchemLookups": 1927,
+ "workedExamples": 33,
+ "issues": [
+  "DrugBank Open Data unavailable: raw/drugbank-open holds only drugbank-vocabulary.DENIED-403-login.html (recorded batch, 403 login wall). DrugBank ids, CAS, UNII, synonyms, InChIKey and SMILES from source (c) are absent; DrugBank ids on output rows come from existing registryIdentifiers and Open Targets cross-references only.",
+  "key collision disambiguated: K1:AVT680JB39#pork~1",
+  "key collision disambiguated: K1:AVT680JB39#pork~2",
+  "Open Targets records the trade names of combination products among a molecule's synonyms, so a brand synonym carried on a single-moiety page (Eucreas on metformin) is not evidence that the brand is single-ingredient. Every synonym keeps the source that supplied it. The \u00a73.3b brand merge was applied only where the record itself resolved to one moiety.",
+  "prodrug-of and ester-of relations are emitted only where a name states the modification (testosterone enanthate -> testosterone). A prodrug whose name does not name its parent (valaciclovir/aciclovir, prednisone/prednisolone) is split onto its own page correctly, but carries no relation: no source cleared in Phase 0a/0b records that metabolic relationship in a parseable field, and R1 forbids inventing one.",
+  "A record with no structure can only reach a UNII by matching a name. That match is the weakest link in this execution: nothing can verify it, and it decides the page such a record lands on. The count is reported as structurelessRecordsKeyedByNameMatchedUnii and these rows are the ones Phase 0d reconciliation should read first."
+ ]
+}

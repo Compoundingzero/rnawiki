@@ -1,0 +1,2143 @@
+{
+ "bromantane": {
+  "tried": 17,
+  "epmcHits": 95,
+  "epmcTop5": [
+   {
+    "pmid": "40558871",
+    "doi": "10.3390/jox15030088",
+    "id": "40558871",
+    "source": "MED",
+    "title": "The Occurrence of Illicit Smart Drugs or Nootropics in Europe and Australia and Their Associated Dangers: Results from a Market Surveillance",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "40875496",
+    "doi": "10.15585/mmwr.mm7432a1",
+    "id": "40875496",
+    "source": "MED",
+    "title": "Drug Overdose Deaths Involving Stimulants - United States, January 2018-June 2024.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "36680072",
+    "doi": "10.3390/v15010029",
+    "id": "36680072",
+    "source": "MED",
+    "title": "Structure-Based Design, Synthesis, and Biological Evaluation of the Cage-Amide Derived Orthopox Virus Replication Inhibitors.",
+    "pubType": "research support, non-u.s. gov't; research-article; journal article"
+   },
+   {
+    "pmid": "35284596",
+    "doi": "10.21769/bioprotoc.4306",
+    "id": "35284596",
+    "source": "MED",
+    "title": "Induction of Repeated Social Defeat Stress in Rats.",
+    "pubType": "methods-article; journal article"
+   },
+   {
+    "pmid": "39825342",
+    "doi": "10.1186/s12888-025-06468-1",
+    "id": "39825342",
+    "source": "MED",
+    "title": "Are neurasthenia and depression the same disease entity? An electroencephalography study.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 9,
+  "epmcTrialTop": [
+   {
+    "pmid": "22834121",
+    "doi": null,
+    "title": "[Ladasten versus placebo effect self-evaluated by neurasthenia patients with different EEG alpha rhythm types]."
+   },
+   {
+    "pmid": "22288153",
+    "doi": null,
+    "title": "[Self-evaluation of single test doses and objective indices of ladasten vs. placebo efficacy in neurasthenic patients]."
+   },
+   {
+    "pmid": "21434470",
+    "doi": null,
+    "title": "[Ladasten in the management of non-motor symptoms of Parkinson's disease]."
+   }
+  ],
+  "pubmedCount": 74,
+  "pubmedTrialCount": 10,
+  "pubmedTrialPmids": [
+   "42565399",
+   "26087610",
+   "22834121",
+   "22288153",
+   "21434470"
+  ],
+  "ctTotals": {
+   "query.intr=bromantane": 0,
+   "query.term=bromantane": 0,
+   "query.intr=ladasten": 0,
+   "query.intr=bromantan": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "cardarine (GW501516)": {
+  "tried": 18,
+  "epmcHits": 1526,
+  "epmcTop5": [
+   {
+    "pmid": "42556327",
+    "doi": "10.1093/stcltm/szag053",
+    "id": "42556327",
+    "source": "MED",
+    "title": "PPAR\u03b2/\u03b4 priming enhances mesenchymal stromal cell anti-apoptotic properties on chondrocytes via ANGPTL4 and improves their therapeutic effec",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42461211",
+    "doi": "10.1111/asj.70221",
+    "id": "42461211",
+    "source": "MED",
+    "title": "Peroxisome Proliferator-Activated Receptor Delta Regulates Myogenic Differentiation via Lipid Droplet-Associated Metabolic Remodeling and p3",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "39993702",
+    "doi": "10.1016/j.ejphar.2025.177418",
+    "id": "39993702",
+    "source": "MED",
+    "title": "GW501516 facilitated tumor immune escape by inhibiting phagocytosis.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "40006519",
+    "doi": "10.3390/pharmaceutics17020152",
+    "id": "40006519",
+    "source": "MED",
+    "title": "Novel Solid Forms of Cardarine/GW501516 and Their Characterization by X-Ray Diffraction, Thermal, Computational, FTIR, and UV Analysis.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "32298044",
+    "doi": "10.1002/dta.2802",
+    "id": "32298044",
+    "source": "MED",
+    "title": "Testing for GW501516 (cardarine) in human hair using LC/MS-MS and confirmation by LC/HRMS.",
+    "pubType": "validation study; journal article"
+   }
+  ],
+  "epmcTrialHits": 13,
+  "epmcTrialTop": [
+   {
+    "pmid": "39575188",
+    "doi": "10.2147/dddt.s490772",
+    "title": "Fenofibrate as an Adjunct Therapy for Ulcerative Colitis: Targeting Inflammation via SIRT1, NLRP3, and AMPK Pathways: A Randomized Controlle"
+   },
+   {
+    "pmid": "38886851",
+    "doi": "10.1186/s13063-024-08189-4",
+    "title": "Defatting of donor transplant livers during normothermic perfusion-a randomised clinical trial: study protocol for the DeFat study."
+   },
+   {
+    "pmid": "22814748",
+    "doi": "10.1161/atvbaha.112.247890",
+    "title": "Lipid effects of peroxisome proliferator-activated receptor-\u03b4 agonist GW501516 in subjects with low high-density lipoprotein cholesterol: ch"
+   }
+  ],
+  "pubmedCount": 372,
+  "pubmedTrialCount": 6,
+  "pubmedTrialPmids": [
+   "22814748",
+   "22683888",
+   "21816786",
+   "18024853",
+   "17500064"
+  ],
+  "ctTotals": {
+   "query.intr=GW501516": 3,
+   "query.term=GW501516": 3,
+   "query.intr=GW 501516": 3,
+   "query.intr=cardarine": 0,
+   "query.intr=endurobol": 3
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT00841217",
+    "title": "Regulation of Lipoprotein Transport in Metabolic Syndrome",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00388180",
+    "title": "An Exploratory Study To Look At The Effect Of Two Investigational Drugs On Body Fat And Inflammation",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT00158899",
+    "title": "GW501516 In Subjects Who Have Low Level Of High-Density Lipoprotein Cholesterol",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 3
+ },
+ "DMT": {
+  "tried": 18,
+  "epmcHits": 3545,
+  "epmcTop5": [
+   {
+    "pmid": "42427129",
+    "doi": "10.1021/acschemneuro.6c00209",
+    "id": "42427129",
+    "source": "MED",
+    "title": "Proliferative Effects of the Psychedelic N,N-Dimethyltryptamine (DMT) in Human Neural Stem Cells.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42544757",
+    "doi": "10.1111/add.70555",
+    "id": "42544757",
+    "source": "MED",
+    "title": "Psychological change processes in alcohol use disorder: A qualitative study of 5-methoxy-N,N-dimethyltryptamine (5-MeO-DMT) with cognitive b",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41468116",
+    "doi": "10.1162/jocn.a.2423",
+    "id": "41468116",
+    "source": "MED",
+    "title": "Time-resolved Neural and Experience Dynamics of Medium- and High-dose N,N-Dimethyltryptamine (DMT).",
+    "pubType": "research support, non-u.s. gov't; journal article"
+   },
+   {
+    "pmid": "42509061",
+    "doi": "10.1016/j.encep.2026.04.004",
+    "id": "42509061",
+    "source": "MED",
+    "title": "[Illicit use of classic psychedelics and suicidality: A systematic literature review].",
+    "pubType": "journal article; english abstract"
+   },
+   {
+    "pmid": "42421344",
+    "doi": "10.1177/02698811261465005",
+    "id": "42421344",
+    "source": "MED",
+    "title": "Beyond symptom reduction: DMT improves anxiety, life satisfaction, and quality of life in healthy volunteers and patients with depression.",
+    "pubType": "journal article"
+   }
+  ],
+  "epmcTrialHits": 134,
+  "epmcTrialTop": [
+   {
+    "pmid": "42068196",
+    "doi": "10.1177/02698811261443696",
+    "title": "5-HT&lt;sub&gt;1A&lt;/sub&gt; receptor blockade potentiates the subjective effects of DMT."
+   },
+   {
+    "pmid": "41896202",
+    "doi": "10.1038/s41398-026-03987-7",
+    "title": "Dose-dependent pharmacokinetics and acute effects of intravenous bolus N,N-dimethyltryptamine: double-blind, randomized versus open-label do"
+   },
+   {
+    "pmid": "40639043",
+    "doi": "10.1016/j.biopha.2025.118329",
+    "title": "Population pharmacokinetic-pharmacodynamic modeling of co-administered N,N-dimethyltryptamine and harmine in healthy subjects."
+   }
+  ],
+  "pubmedCount": 1470,
+  "pubmedTrialCount": 67,
+  "pubmedTrialPmids": [
+   "42068196",
+   "41896202",
+   "41761045",
+   "41699126",
+   "41451514"
+  ],
+  "ctTotals": {
+   "query.intr=dimethyltryptamine": 55,
+   "query.term=dimethyltryptamine": 60,
+   "query.intr=N,N-dimethyltryptamine": 55,
+   "query.intr=DMT fumarate": 16,
+   "query.intr=SPL026": 3
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT06252506",
+    "title": "Molecular Imaging Study of Harmine/DMT: a Basic Research Approach",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05347849",
+    "title": "Single Ascending Dose Study With BPL-003 in Healthy Subjects",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05839509",
+    "title": "Phase 2 Clinical Trial of GH001 in Bipolar II Disorder",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07693257",
+    "title": "Neural Effects of Intravenous N,N-dimethyltryptamine (DMT)",
+    "status": "NOT_YET_RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05032833",
+    "title": "Single Ascending Dose Study With 5-MeO-DMT in Healthy Subjects",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03308994",
+    "title": "Impact of the Arrival on the French Market of New First Line Oral Treatments on the Delay Between MS Onset and First Disease Modifying Treat",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT03345940",
+    "title": "Fingolimod Versus Dimethyl-fumarate in Multiple Sclerosis",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04673383",
+    "title": "SPL026 (DMT Fumarate) in Healthy Subjects and MDD Patients",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05776888",
+    "title": "Early Versus Late Ofatumumab (Kesimpta\u00ae) Use in Austrian RMS-Patients Over 2 Years",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT04260711",
+    "title": "Discontinuing Disease-modifying Therapies in Stable Relapsing - Onset Multiple Sclerosis (DOT-MS).",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 60
+ },
+ "follistatin-344": {
+  "tried": 18,
+  "epmcHits": 6743,
+  "epmcTop5": [
+   {
+    "pmid": null,
+    "doi": "10.20944/preprints202512.1011.v3",
+    "id": "PPR1175512",
+    "source": "PPR",
+    "title": "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance",
+    "pubType": "preprint"
+   },
+   {
+    "pmid": "41966639",
+    "doi": "10.1007/s40279-026-02437-0",
+    "id": "41966639",
+    "source": "MED",
+    "title": "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance.",
+    "pubType": "review; journal article"
+   },
+   {
+    "pmid": null,
+    "doi": "10.20944/preprints202512.1011.v1",
+    "id": "PPR1134097",
+    "source": "PPR",
+    "title": "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance",
+    "pubType": "preprint"
+   },
+   {
+    "pmid": "42123471",
+    "doi": "10.3390/ijms27093890",
+    "id": "42123471",
+    "source": "MED",
+    "title": "Therapeutic Peptides in Aesthetic, Metabolic and Endocrine Conditions: Effects, Safety, Clinical Applications, and Future Perspectives.",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": "40312924",
+    "doi": "10.1002/dta.3898",
+    "id": "40312924",
+    "source": "MED",
+    "title": "Gel Electrophoretic Detection of Black Market ACE-031.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 119,
+  "epmcTrialTop": [
+   {
+    "pmid": "42638131",
+    "doi": "10.1186/s13054-026-06186-4",
+    "title": "ICU-specific virtual reality for mental health after critical illness: an international three-arm randomized clinical trial."
+   },
+   {
+    "pmid": "42163186",
+    "doi": "10.1186/s12905-026-04509-9",
+    "title": "Menstrual product preference and factors associated with use of freely-distributed reusable products among secondary students in Uganda: a l"
+   },
+   {
+    "pmid": "41981492",
+    "doi": "10.1186/s12877-026-07464-0",
+    "title": "Effects of low-load resistance training with blood flow restriction and swallowing training on sarcopenic dysphagia in community-dwelling ol"
+   }
+  ],
+  "pubmedCount": 10,
+  "pubmedTrialCount": 0,
+  "pubmedTrialPmids": [],
+  "ctTotals": {
+   "query.intr=follistatin": 14,
+   "query.term=follistatin": 79,
+   "query.intr=follistatin 344": 0,
+   "query.intr=AAV1-FS344": 0,
+   "query.intr=ACE-083": 4
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT04112875",
+    "title": "Effect of L-arginine on Microcirculation, Myogenesis and Angiogenesis Associated With Aging, Sarcopenia and Diabetes",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02901379",
+    "title": "Effect of 80-mg Atorvastatin on Myocardial Edema",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06411366",
+    "title": "Phase I: Safety and Efficacy of an Injectable Follistatin Plasmid Gene Therapy in Humans",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06229899",
+    "title": "Follistatin Levels in Metabolically Healthy and Unhealthy Obese Individuals",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT02354781",
+    "title": "Clinical Intramuscular Gene Transfer of rAAV1.CMV.huFollistatin344 Trial to Patients With Duchenne Muscular Dystrophy",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03236662",
+    "title": "(-)- Epicatechin Becker Muscular Dystrophy",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07397468",
+    "title": "To studyJUV-161 Administered to Healthy Volunteers Undergoing Unilateral Lower Limb Immobilization (ULLI)",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02927080",
+    "title": "Study of ACE-083 in Patients With Facioscapulohumeral Muscular Dystrophy (FSHD)",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03124459",
+    "title": "Study of ACE-083 in Patients With Charcot-Marie-Tooth Disease",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02257489",
+    "title": "Phase 1 Study of ACE-083 in Healthy Subjects",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 79
+ },
+ "GHB": {
+  "tried": 19,
+  "epmcHits": 6190,
+  "epmcTop5": [
+   {
+    "pmid": "29999861",
+    "doi": null,
+    "id": "29999861",
+    "source": "MED",
+    "title": "Oxybate Salts",
+    "pubType": "review"
+   },
+   {
+    "pmid": "41204836",
+    "doi": "10.1111/bcpt.70133",
+    "id": "41204836",
+    "source": "MED",
+    "title": "Endogenous Levels, Detection Time, and Symptoms of Gamma-Hydroxybutyric Acid: Results From a Placebo-Controlled Clinical Trial.",
+    "pubType": "research-article; randomized controlled trial; journal article"
+   },
+   {
+    "pmid": "41981935",
+    "doi": "10.1111/1556-4029.70331",
+    "id": "41981935",
+    "source": "MED",
+    "title": "Insights from a 6-year hair drug analysis compendium in drug-facilitated sexual assault cases.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41628267",
+    "doi": "10.1111/add.70308",
+    "id": "41628267",
+    "source": "MED",
+    "title": "Trends in gamma-hydroxybutyrate use, harms and treatment in Australia, 2013 to 2024.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41576638",
+    "doi": "10.1016/j.jmgm.2026.109299",
+    "id": "41576638",
+    "source": "MED",
+    "title": "Boron and nitrogen-doped coronene as high-performance sensors for gamma-hydroxybutyrate drug sensing: A DFT/TD-DFT study.",
+    "pubType": "research support, non-u.s. gov't; journal article"
+   }
+  ],
+  "epmcTrialHits": 284,
+  "epmcTrialTop": [
+   {
+    "pmid": "41204836",
+    "doi": "10.1111/bcpt.70133",
+    "title": "Endogenous Levels, Detection Time, and Symptoms of Gamma-Hydroxybutyric Acid: Results From a Placebo-Controlled Clinical Trial."
+   },
+   {
+    "pmid": "39638708",
+    "doi": "10.1016/j.vaa.2024.10.135",
+    "title": "Cardiorespiratory effects of gamma-hydroxybutyric acid during isoflurane anaesthesia in pigs."
+   },
+   {
+    "pmid": "41813043",
+    "doi": "10.1136/bmjopen-2025-113194",
+    "title": "Stimulating amyloid-\u03b2 clearance in cerebral amyloid angiopathy with low-sodium oxybate and/or non-invasive vagus nerve stimulation (Clear-Br"
+   }
+  ],
+  "pubmedCount": 3552,
+  "pubmedTrialCount": 189,
+  "pubmedTrialPmids": [
+   "41831073",
+   "41469688",
+   "41442817",
+   "41204836",
+   "41090230"
+  ],
+  "ctTotals": {
+   "query.intr=sodium oxybate": 59,
+   "query.term=sodium oxybate": 63,
+   "query.intr=gamma-hydroxybutyrate": 66,
+   "query.intr=Xyrem": 64,
+   "query.intr=oxybate": 64,
+   "query.intr=calcium magnesium potassium and sodium oxybates": 3
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT04451668",
+    "title": "An Open Label Study of FT218 in Subjects With Narcolepsy",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00371137",
+    "title": "A Safety and Efficacy Study of Xyrem\u00ae in Subjects With Fibromyalgia",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00641186",
+    "title": "Trial of Xyrem for Excessive Daytime Sleepiness and Sleep Disturbance in Parkinson's Disease (PD)",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04006925",
+    "title": "Treatment of REM Sleep Behavior Disorder (RBD) With Sodium Oxybate",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03626727",
+    "title": "Evaluation of the Efficacy of Sodium Oxybate (Xyrem\u00ae) in Treatment of Post-traumatic Narcolepsy and Post-traumatic Hypersomnia",
+    "status": "WITHDRAWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05837091",
+    "title": "Low Sodium Oxybate in Patients With Idiopathic Hypersomnia",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05869773",
+    "title": "A Switch Study From High-Sodium Oxybate to Xywav to Evaluate Changes in Blood Pressure in Participants With Narcolepsy",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07625280",
+    "title": "A Study Evaluating the Efficacy and Safety of Xywav Expanded Dosing vs Placebo in Participants With Narcolepsy or IH",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 66
+ },
+ "isotonitazene": {
+  "tried": 16,
+  "epmcHits": 339,
+  "epmcTop5": [
+   {
+    "pmid": "42046253",
+    "doi": "10.1093/jat/bkag027",
+    "id": "42046253",
+    "source": "MED",
+    "title": "N-pyrrolidino isotonitazene and its metabolites in post-mortem casework.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42346338",
+    "doi": "10.3390/metabo16060358",
+    "id": "42346338",
+    "source": "MED",
+    "title": "Detection of Nitazenes (2-Benzylbenzimidazoles)-Novel Synthetic Opioids in Coronial Casework in Victoria, Australia.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42017785",
+    "doi": "10.1021/jasms.6c00059",
+    "id": "42017785",
+    "source": "MED",
+    "title": "Addressing the Oxygen in the Room: Exploring the Formation of Oxygenated Species for Nitazene Analogs Using DART-MS.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "42609078",
+    "doi": "10.1002/dta.70133",
+    "id": "42609078",
+    "source": "MED",
+    "title": "In Vitro Pharmacological Characterization of a Series of 5-Cyano Desnitazene Opioids or \"Cyanazenes\".",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42601813",
+    "doi": "10.1002/dta.70135",
+    "id": "42601813",
+    "source": "MED",
+    "title": "Detection of Nitazenes in the Illicit Drug Supply Utilizing Precursor Ion Scan Methods With Paper Spray Mass Spectrometry.",
+    "pubType": "journal article"
+   }
+  ],
+  "epmcTrialHits": 0,
+  "epmcTrialTop": [],
+  "pubmedCount": 187,
+  "pubmedTrialCount": 0,
+  "pubmedTrialPmids": [],
+  "ctTotals": {
+   "query.intr=isotonitazene": 0,
+   "query.term=isotonitazene": 0,
+   "query.intr=nitazene": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "JWH-018": {
+  "tried": 17,
+  "epmcHits": 600,
+  "epmcTop5": [
+   {
+    "pmid": "42115297",
+    "doi": "10.1038/s41598-026-51639-z",
+    "id": "42115297",
+    "source": "MED",
+    "title": "In vivo evaluation of synthetic cannabinoid JWH-018 derivatives as potential new psychoactive substances.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42630986",
+    "doi": "10.1021/acsbiomedchemau.6c00090",
+    "id": "42630986",
+    "source": "MED",
+    "title": "Dimethylindanoylindole Isomers Revealed Different Pharmacological Profiles at CB1 and CB2 Cannabinoid Receptors.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42244876",
+    "doi": "10.3389/fphar.2026.1815814",
+    "id": "42244876",
+    "source": "MED",
+    "title": "Predicting affinity and potency of new psychoactive substances at cannabinoid 1 receptor with explainable artificial intelligence.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "41276483",
+    "doi": "10.1111/bph.70223",
+    "id": "41276483",
+    "source": "MED",
+    "title": "Sex-specific impact of repeated adolescent vapour exposure to JWH-018 on dopamine response, behaviour and pharmacokinetics across adolescenc",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41184621",
+    "doi": "10.1038/s41401-025-01678-5",
+    "id": "41184621",
+    "source": "MED",
+    "title": "Structure-activity relationship of prevalent synthetic cannabinoid metabolites on hCB&lt;sub&gt;1&lt;/sub&gt; in vitro and in silico dynamic",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 5,
+  "epmcTrialTop": [
+   {
+    "pmid": "33501595",
+    "doi": "10.1007/s00213-021-05768-0",
+    "title": "Psychotomimetic symptoms after a moderate dose of a synthetic cannabinoid (JWH-018): implications for psychosis."
+   },
+   {
+    "pmid": "29245085",
+    "doi": "10.1016/j.jpba.2017.12.016",
+    "title": "Excretion of metabolites of the synthetic cannabinoid JWH-018 in urine after controlled inhalation."
+   },
+   {
+    "pmid": "29164599",
+    "doi": "10.1111/bph.14066",
+    "title": "Neurocognition and subjective experience following acute doses of the synthetic cannabinoid JWH-018: a phase 1, placebo-controlled, pilot st"
+   }
+  ],
+  "pubmedCount": 336,
+  "pubmedTrialCount": 3,
+  "pubmedTrialPmids": [
+   "33501595",
+   "29245085",
+   "29164599"
+  ],
+  "ctTotals": {
+   "query.intr=JWH-018": 1,
+   "query.term=JWH-018": 1,
+   "query.intr=JWH 018": 1,
+   "query.intr=synthetic cannabinoid": 24
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT06044415",
+    "title": "Brain Activity Under the Influence of JWH",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03458416",
+    "title": "A Study to Assess the Long-Term Safety of Pharmaceutical Grade Synthetic Cannabidiol Oral Solution in Participants With Prader-Willi Syndrom",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT01786109",
+    "title": "Effect of a Cannabinoid Agonist on Colonic Sensory Functions in Patients With Irritable Bowel Syndrome",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04129489",
+    "title": "A Phase 2a Study to Evaluate the Safety and Efficacy of Cannabidiol Only as Maintenance Therapy and Steroid Sparing in Patients With Stable ",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04734080",
+    "title": "Dronabinol in Total Knee Arthroplasty (TKA)",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06235346",
+    "title": "Ocular Effects of Synthetic Cannabinoids",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   }
+  ],
+  "ctMaxTotal": 24
+ },
+ "kratom (mitragynine)": {
+  "tried": 18,
+  "epmcHits": 2098,
+  "epmcTop5": [
+   {
+    "pmid": "40571261",
+    "doi": "10.1016/j.bbr.2025.115709",
+    "id": "40571261",
+    "source": "MED",
+    "title": "Comparative brain proteome analysis of an Indole Alkaloid of Kratom, Mitragynine and Kratom juice in rats.",
+    "pubType": "comparative study; research support, non-u.s. gov't; journal article"
+   },
+   {
+    "pmid": "39560283",
+    "doi": "10.1097/adm.0000000000001417",
+    "id": "39560283",
+    "source": "MED",
+    "title": "The Associations of Kratom (Mitragynine), Opioids, Other Substances, and Sociodemographic Variables to Drug Intoxication-related Mortality.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42584332",
+    "doi": "10.3390/nano16150939",
+    "id": "42584332",
+    "source": "MED",
+    "title": "Multifunctional Bacterial Cellulose Films Incorporating Kratom (&lt;i&gt;Mitragyna speciosa&lt;/i&gt; Korth.) Leaf Extract as a Preliminary ",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42676565",
+    "doi": "10.3389/fphar.2026.1838148",
+    "id": "42676565",
+    "source": "MED",
+    "title": "Observational real-world analysis of dose-dependent effects of &lt;i&gt;Mitragyna speciosa (Korth.)&lt;/i&gt; on focus and energy.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42572688",
+    "doi": "10.2147/sar.s606821",
+    "id": "42572688",
+    "source": "MED",
+    "title": "A Review of Kratom Product Evolution and Its Associated Health Outcomes.",
+    "pubType": "review; journal article"
+   }
+  ],
+  "epmcTrialHits": 14,
+  "epmcTrialTop": [
+   {
+    "pmid": "42144893",
+    "doi": "10.1002/dta.70089",
+    "title": "Assessment of Abuse Potential-Related Effects of Oral Dried Kratom Leaf Powder in Healthy Normal Participants Following Single and Multiple "
+   },
+   {
+    "pmid": "41837407",
+    "doi": "10.1097/jcp.0000000000002158",
+    "title": "A Pilot, Dose-Finding, Pharmacodynamic and Pharmacokinetic Study of Orally Administered Botanical Kratom."
+   },
+   {
+    "pmid": "39724441",
+    "doi": "10.1007/s00213-024-06734-2",
+    "title": "An exploratory study of the safety profile and neurocognitive function after single doses of mitragynine in humans."
+   }
+  ],
+  "pubmedCount": 1254,
+  "pubmedTrialCount": 5,
+  "pubmedTrialPmids": [
+   "42144893",
+   "41837407",
+   "39724441",
+   "38474495",
+   "32607084"
+  ],
+  "ctTotals": {
+   "query.intr=kratom": 13,
+   "query.term=kratom": 14,
+   "query.intr=mitragynine": 7,
+   "query.intr=Mitragyna speciosa": 13,
+   "query.intr=7-hydroxymitragynine": 1
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT06640569",
+    "title": "Preliminary Characterization of Commercial Kratom Extract Products",
+    "status": "TERMINATED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT07218549",
+    "title": "Evaluation of the Safety and Effects of Psychoactive Substances in People With Past Opioid Use",
+    "status": "NOT_YET_RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06089980",
+    "title": "Direct Observation Study of Kratom Product Effects Among Regular Consumers",
+    "status": "RECRUITING",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT06072170",
+    "title": "Single Ascending Doses of Kratom in Healthy Nondependent Adults With Opioid Experience",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07204171",
+    "title": "Phase 1 Study of Oral MG001",
+    "status": "NOT_YET_RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05812001",
+    "title": "Exergames-acceptance and Commitment Therapy Program for Treatment of Major Depressive Disorder",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05457803",
+    "title": "Real-world Momentary Assessment of Kratom Use Accompanied by Product Assays: A Natural-history Study for Interdisciplinary Characterization ",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT04392011",
+    "title": "Assessing the Pharmacokinetics and Drug Interaction Liability of Kratom, an Opioid-like Natural Product",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05846451",
+    "title": "Evaluating a Potential Pharmacokinetic Kratom-oxycodone Interaction Concurrent With Clinical Endpoints",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 14
+ },
+ "ligandrol (LGD-4033)": {
+  "tried": 18,
+  "epmcHits": 146,
+  "epmcTop5": [
+   {
+    "pmid": "42547066",
+    "doi": "10.1002/dta.70130",
+    "id": "42547066",
+    "source": "MED",
+    "title": "Quantification of the Carboxylated LGD-4033 Long-Term Metabolite in Human Micro-Dose Excretion Study Urine Samples.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41261783",
+    "doi": "10.1002/dta.70005",
+    "id": "41261783",
+    "source": "MED",
+    "title": "Further Insights Into the Metabolism of LGD-4033 in Human Urine. Part 2. A New Minor Metabolite With Antagonistic Activity on the Androgen R",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "41367083",
+    "doi": "10.1002/dta.70009",
+    "id": "41367083",
+    "source": "MED",
+    "title": "Further Insights Into the Metabolism of LGD-4033 in Human Urine. Part 1. Structure Elucidation of Additional Important Metabolites.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "41079187",
+    "doi": "10.3389/fendo.2025.1634799",
+    "id": "41079187",
+    "source": "MED",
+    "title": "Selective androgen receptor modulators: a critical appraisal.",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": null,
+    "doi": null,
+    "id": "PMC10392554",
+    "source": "PMC",
+    "title": "Poster 390: Systematic Review of SARMs Abuse in Athletes",
+    "pubType": "abstract"
+   }
+  ],
+  "epmcTrialHits": 2,
+  "epmcTrialTop": [
+   {
+    "pmid": "22459616",
+    "doi": "10.1093/gerona/gls078",
+    "title": "The safety, pharmacokinetics, and effects of LGD-4033, a novel nonsteroidal oral, selective androgen receptor modulator, in healthy young me"
+   },
+   {
+    "pmid": "28449232",
+    "doi": "10.1111/bcp.13316",
+    "title": "Safety, pharmacokinetics and pharmacological effects of the selective androgen receptor modulator, GSK2881078, in healthy men and postmenopa"
+   }
+  ],
+  "pubmedCount": 50,
+  "pubmedTrialCount": 1,
+  "pubmedTrialPmids": [
+   "22459616"
+  ],
+  "ctTotals": {
+   "query.intr=LGD-4033": 0,
+   "query.term=LGD-4033": 0,
+   "query.intr=ligandrol": 0,
+   "query.intr=VK5211": 1,
+   "query.intr=LGD 4033": 0
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT02578095",
+    "title": "Acute Hip Fracture Study in Patients 65 Years or Greater",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 1
+ },
+ "LSD": {
+  "tried": 19,
+  "epmcHits": 103426,
+  "epmcTop5": [
+   {
+    "pmid": "42657527",
+    "doi": "10.1080/15563650.2026.2714934",
+    "id": "42657527",
+    "source": "MED",
+    "title": "Clinical suspicion versus toxicological findings in psychoactive substance poisonings: evidence from emergency cases in Brazil (2023-2024).",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "41930230",
+    "doi": "10.1177/20420986261436104",
+    "id": "41930230",
+    "source": "MED",
+    "title": "Psychedelic exposure in pregnancy: a scoping review to inform perinatal drug safety and clinical counseling.",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": "42656086",
+    "doi": "10.1002/dta.70139",
+    "id": "42656086",
+    "source": "MED",
+    "title": "Synthesis and Analytical Characterization of 1-(1,2-Dimethylcyclobutane-1-Carbonyl)-Lysergic Acid Diethylamide (1D-LSD) and Differentiation ",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42626628",
+    "doi": "10.1093/nc/niag050",
+    "id": "42626628",
+    "source": "MED",
+    "title": "Low-dose lysergic acid diethylamide alters subjective visual perception but not visual contrast surround suppression.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42574097",
+    "doi": "10.1037/pha0000876",
+    "id": "42574097",
+    "source": "MED",
+    "title": "The impact of fluoxetine on the aversive effects of lysergic acid diethylamide.",
+    "pubType": "journal article"
+   }
+  ],
+  "epmcTrialHits": 2165,
+  "epmcTrialTop": [
+   {
+    "pmid": "42315644",
+    "doi": "10.1038/s41386-026-02454-7",
+    "title": "Acute and post-acute neurobehavioral responses to lysergic acid diethylamide in healthy subjects: a randomized controlled study."
+   },
+   {
+    "pmid": "41529826",
+    "doi": "10.1177/02698811251405686",
+    "title": "Reward-related neural activity after low doses of LSD in participants with depressed mood."
+   },
+   {
+    "pmid": "42102823",
+    "doi": "10.1016/j.xcrm.2026.102791",
+    "title": "Neuroplastic white matter changes in patients with major depression following lysergic acid diethylamide treatment."
+   }
+  ],
+  "pubmedCount": 11490,
+  "pubmedTrialCount": 408,
+  "pubmedTrialPmids": [
+   "42315644",
+   "42102823",
+   "42082971",
+   "42068187",
+   "42047222"
+  ],
+  "ctTotals": {
+   "query.intr=lysergide": 47,
+   "query.term=lysergide": 58,
+   "query.intr=lysergic acid diethylamide": 47,
+   "query.intr=LSD": 81,
+   "query.intr=MM120": 6,
+   "query.intr=LSD tartrate": 12
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT00566098",
+    "title": "Activated White Blood Cells With ASCT for Newly Diagnosed Multiple Myeloma",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05670184",
+    "title": "The Effect of LSD on Neural Synchrony, Prosocial Behavior, and Relationship Quality",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04421105",
+    "title": "A Double-blind, Placebo-controlled Study to Evaluate Very Low Dose LSD in Healthy Volunteers Aged 55-75 Years",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03207165",
+    "title": "Milrinone Versus Dobutamine in Critically Ill Patients",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07061886",
+    "title": "Drug Effects on Mood and Behavior - Expectancy",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00975481",
+    "title": "A Study To Evaluate The Abuse Potential Of Single Oral Doses Of Dimebon (Latrepirdine) In Healthy Recreational Polydrug Users",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07585786",
+    "title": "Effect of LSD on Renal Function in Cirrhosis Patients With Portal Hypertension Bleeding (2-Year Follow-Up)",
+    "status": "NOT_YET_RECRUITING",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT04386538",
+    "title": "Effect of a Low Starch Diet in Patients With Ankylosing Spondylitis",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT01299727",
+    "title": "Extension of Study HGT-SAN-055 Evaluating Administration of rhHNS in Patients With Sanfilippo Syndrome Type A (MPS IIIA)",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07592689",
+    "title": "A Phase 3 Trial of DT120 for Major Depressive Disorder (Ascend)",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 81
+ },
+ "morning glory (LSA / ergine)": {
+  "tried": 19,
+  "epmcHits": 421,
+  "epmcTop5": [
+   {
+    "pmid": "40700269",
+    "doi": "10.3390/pharmacy13040098",
+    "id": "40700269",
+    "source": "MED",
+    "title": "Lysergic Acid Amide (LSA), an LSD Analog: Systematic Review of Pharmacological Effects, Adverse Outcomes, and Therapeutic Potentials.",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": "42313736",
+    "doi": "10.1371/journal.pone.0350650",
+    "id": "42313736",
+    "source": "MED",
+    "title": "A single lysergyl peptide synthetase assembles lysergic acid amides in Aspergillus species.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": null,
+    "doi": "10.21203/rs.3.rs-8000194/v1",
+    "id": "PPR1115255",
+    "source": "PPR",
+    "title": "Investigating the psychedelic hypothesis of kykeon, the sacred elixir of the Eleusinian Mysteries",
+    "pubType": "preprint"
+   },
+   {
+    "pmid": "41680420",
+    "doi": "10.1038/s41598-026-39568-3",
+    "id": "41680420",
+    "source": "MED",
+    "title": "Investigating the psychedelic hypothesis of kykeon, the sacred elixir of the Eleusinian Mysteries.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "41160625",
+    "doi": "10.1371/journal.pone.0334651",
+    "id": "41160625",
+    "source": "MED",
+    "title": "Gene editing of the thioester reductase step in the biosynthesis of lysergic acid amides.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 1,
+  "epmcTrialTop": [
+   {
+    "pmid": "7088766",
+    "doi": "10.1136/pgmj.58.675.6",
+    "title": "Ergotamine absorption and toxicity."
+   }
+  ],
+  "pubmedCount": 94,
+  "pubmedTrialCount": 0,
+  "pubmedTrialPmids": [],
+  "ctTotals": {
+   "query.intr=ergine": 0,
+   "query.term=ergine": 0,
+   "query.intr=lysergic acid amide": 2,
+   "query.intr=Ipomoea": 1,
+   "query.intr=Argyreia nervosa": 0,
+   "query.intr=morning glory": 1
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT00314340",
+    "title": "A Comparison of the Addiction Liability of Hydrocodone and Sustained Release Morphine",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02033707",
+    "title": "Effects of Hallucinogens and Other Drugs on Mood and Performance",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04350346",
+    "title": "The Comparative Analysis Between Motilitone and Gasmotin for the Symptom Relief in Gallstone Patients With Functional Dyspepsia",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07606014",
+    "title": "No Guts No Glory Probiotics",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 2
+ },
+ "muscimol": {
+  "tried": 17,
+  "epmcHits": 13921,
+  "epmcTop5": [
+   {
+    "pmid": null,
+    "doi": "10.20944/preprints202606.1570.v1",
+    "id": "PPR1257475",
+    "source": "PPR",
+    "title": "Ibotenic Acid as a Neuroecological Stressor: Environmental Modulation of the Ibotenic Acid\u2013Muscimol Ratio in <em>Amanita muscaria</em> and I",
+    "pubType": "preprint"
+   },
+   {
+    "pmid": "42272832",
+    "doi": "10.3389/fphar.2026.1838212",
+    "id": "42272832",
+    "source": "MED",
+    "title": "Amanita muscaria in the evolving novel psychoactive substances landscape - toxicological risks and clinical implications: a narrative review",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": "42368324",
+    "doi": null,
+    "id": "42368324",
+    "source": "MED",
+    "title": "U.S. Psychedelic Use and Microdosing in 2025: Insights from a Probability-Based and Nationally Representative Survey.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "41965649",
+    "doi": "10.1186/s12917-026-05461-4",
+    "id": "41965649",
+    "source": "MED",
+    "title": "Fatal poisoning of Old Polish ducks with Amanita muscaria.",
+    "pubType": "journal article; case reports; case-report"
+   },
+   {
+    "pmid": "41820030",
+    "doi": "10.1111/nph.71064",
+    "id": "41820030",
+    "source": "MED",
+    "title": "Equipped for success: genomes and metabolomes of the European Amanita muscaria are conserved in its novel South African range.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 38,
+  "epmcTrialTop": [
+   {
+    "pmid": "40875185",
+    "doi": "10.1007/s12325-025-03327-z",
+    "title": "A New Ashwagandha Formulation (Zenroot\u2122) Alleviates Stress and Anxiety Symptoms While Improving Mood and Sleep Quality: A Randomized, Double"
+   },
+   {
+    "pmid": "36988214",
+    "doi": "10.1177/02698811231161579",
+    "title": "Effects of gamma-aminobutyric acid on working memory and attention: A randomized, double-blinded, placebo-controlled, crossover trial."
+   },
+   {
+    "pmid": "30407567",
+    "doi": "10.1093/neuros/nyy480",
+    "title": "Convection-Enhanced Delivery of Muscimol in Patients with Drug-Resistant Epilepsy."
+   }
+  ],
+  "pubmedCount": 7206,
+  "pubmedTrialCount": 15,
+  "pubmedTrialPmids": [
+   "30407567",
+   "25790455",
+   "9151364",
+   "8290671",
+   "1358231"
+  ],
+  "ctTotals": {
+   "query.intr=muscimol": 2,
+   "query.term=muscimol": 2,
+   "query.intr=Amanita muscaria": 0,
+   "query.intr=ibotenic acid": 2
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT00005925",
+    "title": "Brain Infusion of Muscimol to Treat Epilepsy",
+    "status": "TERMINATED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00921128",
+    "title": "Convection-Enhanced Delivery to Study the Pathophysiology Underlying the Clinical Features of Parkinson s Disease",
+    "status": "WITHDRAWN",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 2
+ },
+ "phencyclidine": {
+  "tried": 18,
+  "epmcHits": 29786,
+  "epmcTop5": [
+   {
+    "pmid": "42285199",
+    "doi": "10.1016/j.neuropharm.2026.111075",
+    "id": "42285199",
+    "source": "MED",
+    "title": "Cerebellar Kv2.1 downregulation, cytoarchitectural alterations, and persistent motor impairments following subchronic phencyclidine exposure",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42152229",
+    "doi": "10.1093/jat/bkag029",
+    "id": "42152229",
+    "source": "MED",
+    "title": "A retrospective review of phencyclidine in hair samples of subjects from the United States workplace drug testing population.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42583891",
+    "doi": "10.1177/02698811261473459",
+    "id": "42583891",
+    "source": "MED",
+    "title": "AUT00206, a novel and selective Kv3.1/3.2 channel modulator, restores cognitive dysfunction and negative symptoms in an animal model for sch",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42678305",
+    "doi": "10.1111/1556-4029.70429",
+    "id": "42678305",
+    "source": "MED",
+    "title": "A PCP overdose death in Northern Virginia.",
+    "pubType": "journal article; case reports"
+   },
+   {
+    "pmid": "42178157",
+    "doi": "10.1002/dta.70097",
+    "id": "42178157",
+    "source": "MED",
+    "title": "Phase I Metabolism of Novel Phencyclidine Derivative 3-Cl-PCP: In Vitro Studies With Pooled Human Liver Microsomes and Investigation of a Po",
+    "pubType": "journal article; case reports"
+   }
+  ],
+  "epmcTrialHits": 1038,
+  "epmcTrialTop": [
+   {
+    "pmid": "42566982",
+    "doi": "10.1016/j.vaccine.2026.129010",
+    "title": "A novel inactivated vaccine for cross-protection against Actinobacillus pleuropneumoniae in pigs."
+   },
+   {
+    "pmid": "40368605",
+    "doi": "10.1136/rapm-2025-106506",
+    "title": "Paravertebral analgesia versus wound infiltration in children recovering from cardiac surgery: a randomized controlled trial."
+   },
+   {
+    "pmid": "42245438",
+    "doi": "10.3389/ijph.2026.1608462",
+    "title": "Optimizing colorectal cancer screening through quality circles of primary care physicians: a cluster randomized controlled trial."
+   }
+  ],
+  "pubmedCount": 5790,
+  "pubmedTrialCount": 38,
+  "pubmedTrialPmids": [
+   "30595429",
+   "29419341",
+   "27018030",
+   "23644161",
+   "21854273"
+  ],
+  "ctTotals": {
+   "query.intr=phencyclidine": 2,
+   "query.term=phencyclidine": 32,
+   "query.intr=phencyclidine hydrochloride": 2,
+   "query.intr=Sernyl": 2,
+   "query.intr=PCP": 1192
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT01517828",
+    "title": "Intranasal Midazolam Versus Intranasal Ketamine to Sedate Newborns for Intubation in Delivery Room",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07560878",
+    "title": "Synaptic Mechanisms of Continuous Theta Burst Stimulation in Depression",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03035877",
+    "title": "Multisystemic Therapy-Emerging Adults (MST-EA) for Substance Abuse",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05834881",
+    "title": "Reducing Drug Use in Justice-Involved Emerging Adults",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05753683",
+    "title": "Gathering Online for Dialogue and Discussion to Enhance Social Support",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06115746",
+    "title": "A Randomized Clinical Trial of a Novel Drug Education and Diversion Program (iDECIDE) for Middle and High School Students",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00328848",
+    "title": "After Discharge Management of Low Income Frail Elderly",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00000991",
+    "title": "A Study of Three Drugs Plus Zidovudine in the Prevention of Infections in HIV-Infected Patients",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02527915",
+    "title": "Mental Health eConsults",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05628649",
+    "title": "Teaching Kitchen Multisite Trial",
+    "status": "ACTIVE_NOT_RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 1192
+ },
+ "phenibut": {
+  "tried": 18,
+  "epmcHits": 440,
+  "epmcTop5": [
+   {
+    "pmid": "42459031",
+    "doi": "10.1177/29767342261461089",
+    "id": "42459031",
+    "source": "MED",
+    "title": "Addiction Specialists' Knowledge About and Assessment Practices for Kratom, Phenibut, and Tianeptine.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42462355",
+    "doi": "10.1016/j.compbiolchem.2026.109245",
+    "id": "42462355",
+    "source": "MED",
+    "title": "Classical substructure search versus LLM-assisted keyword retrieval in SciFinder: A case study on GABA&lt;sub&gt;B1&lt;/sub&gt; ligand disco",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42395253",
+    "doi": "10.7759/cureus.110132",
+    "id": "42395253",
+    "source": "MED",
+    "title": "Outpatient Phenibut Taper Supported by Baclofen and Gabapentin.",
+    "pubType": "journal article; case reports; case-report"
+   },
+   {
+    "pmid": "41692998",
+    "doi": "10.1093/jat/bkag011",
+    "id": "41692998",
+    "source": "MED",
+    "title": "The detection of phenibut in keratinized specimens: a validation and case study.",
+    "pubType": "validation study; journal article"
+   },
+   {
+    "pmid": "41832720",
+    "doi": "10.2174/011570159x407182251104183509",
+    "id": "41832720",
+    "source": "MED",
+    "title": "Development of a Novel GABAB Receptor Modulator as an Alternative to Phenibut: Insights from Molecular Modeling and In Vivo Studies.",
+    "pubType": "journal article"
+   }
+  ],
+  "epmcTrialHits": 7,
+  "epmcTrialTop": [
+   {
+    "pmid": "26087584",
+    "doi": null,
+    "title": "[INDIVIDUAL APPROACH TO THE USE OF MEDICATIONS TO NORMALIZE SITUATIONAL ANXIETY UNDER THE PSYCHO-EMOTIONAL STRESS]."
+   },
+   {
+    "pmid": "21809698",
+    "doi": null,
+    "title": "[Bioequivalence of anvifen and phenibut]."
+   },
+   {
+    "pmid": "33444208",
+    "doi": "10.1136/bmjopen-2020-041176",
+    "title": "Effectiveness, cost-effectiveness and safety of gabapentin versus placebo as an adjunct to multimodal pain regimens in surgical patients: pr"
+   }
+  ],
+  "pubmedCount": 313,
+  "pubmedTrialCount": 13,
+  "pubmedTrialPmids": [
+   "29265084",
+   "28805758",
+   "27029450",
+   "28300804",
+   "26087584"
+  ],
+  "ctTotals": {
+   "query.intr=phenibut": 0,
+   "query.term=phenibut": 0,
+   "query.intr=fenibut": 0,
+   "query.intr=Anvifen": 0,
+   "query.intr=Noofen": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "phenylpiracetam": {
+  "tried": 18,
+  "epmcHits": 72,
+  "epmcTop5": [
+   {
+    "pmid": "41048238",
+    "doi": "10.5114/biolsport.2025.150047",
+    "id": "41048238",
+    "source": "MED",
+    "title": "\"Brain doping\" substances: prohibited or not in sports?",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "37357012",
+    "doi": "10.1002/dta.3529",
+    "id": "37357012",
+    "source": "MED",
+    "title": "Unauthorized ingredients in \"nootropic\" dietary supplements: A review of the history, pharmacology, prevalence, international regulations, a",
+    "pubType": "review; journal article"
+   },
+   {
+    "pmid": "39269293",
+    "doi": "10.17116/jnevro202412408121",
+    "id": "39269293",
+    "source": "MED",
+    "title": "[Pharmacological effects of fonturacetam (Actitropil) and prospects for its clinical use].",
+    "pubType": "review; journal article; english abstract"
+   },
+   {
+    "pmid": "40047835",
+    "doi": "10.17116/jnevro202512502169",
+    "id": "40047835",
+    "source": "MED",
+    "title": "[Efficacy and safety of fonturacetam in asthenia: a systematic review and meta-analysis].",
+    "pubType": "meta-analysis; systematic review; journal article; english abstract"
+   },
+   {
+    "pmid": "38826708",
+    "doi": "10.1016/j.heliyon.2024.e31089",
+    "id": "38826708",
+    "source": "MED",
+    "title": "An evolutionary game to describe doping dynamics.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 4,
+  "epmcTrialTop": [
+   {
+    "pmid": "24430043",
+    "doi": null,
+    "title": "[The use of phenotropil in vertebrobasilar insufficiency]."
+   },
+   {
+    "pmid": "23887448",
+    "doi": null,
+    "title": "[Nootropics and antioxidants in the complex therapy of symptomatic posttraumatic epilepsy]."
+   },
+   {
+    "pmid": "25403298",
+    "doi": null,
+    "title": "[New possibilities of pharmacotherapy in cardiovascular patients with mental disorders]."
+   }
+  ],
+  "pubmedCount": 34,
+  "pubmedTrialCount": 4,
+  "pubmedTrialPmids": [
+   "25403298",
+   "24430043",
+   "23887448",
+   "21626817"
+  ],
+  "ctTotals": {
+   "query.intr=phenylpiracetam": 0,
+   "query.term=phenylpiracetam": 0,
+   "query.intr=carphedon": 0,
+   "query.intr=fonturacetam": 0,
+   "query.intr=phenotropil": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "stenabolic (SR9009)": {
+  "tried": 17,
+  "epmcHits": 559,
+  "epmcTop5": [
+   {
+    "pmid": "42530886",
+    "doi": "10.1002/rcm.70149",
+    "id": "42530886",
+    "source": "MED",
+    "title": "LC-HRMS-Based Metabolic Profiling of the REV-ERB Agonist SR9009 in Camel Liver Homogenate and Cunninghamella elegans for Anti-Doping Analysi",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42564045",
+    "doi": "10.3389/fgstr.2026.1762028",
+    "id": "42564045",
+    "source": "MED",
+    "title": "SR9009 regulates macrophage polarization via the NR1D1/NF-\u03baB axis to ameliorate obesity-associated ulcerative colitis.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "40389157",
+    "doi": "10.1016/j.bj.2025.100873",
+    "id": "40389157",
+    "source": "MED",
+    "title": "Rhythms under tension: Circadian clocks in an Unsynced Society.",
+    "pubType": "editorial"
+   },
+   {
+    "pmid": "40765588",
+    "doi": "10.7759/cureus.87376",
+    "id": "40765588",
+    "source": "MED",
+    "title": "When Gains Go Wrong: A Case of Selective Androgen Receptor Modulator-Related Liver Injury.",
+    "pubType": "journal article; case reports; case-report"
+   },
+   {
+    "pmid": "41927564",
+    "doi": "10.1038/s41467-026-71189-2",
+    "id": "41927564",
+    "source": "MED",
+    "title": "Targeting REV-ERB\u03b1/BNIP3 axis attenuates pulmonary arterial hypertension by repressing mitophagy in mice.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 1,
+  "epmcTrialTop": [
+   {
+    "pmid": "29727369",
+    "doi": "10.1097/ccm.0000000000003190",
+    "title": "Blue Light Enhances Bacterial Clearance and Reduces Organ Injury During Sepsis."
+   }
+  ],
+  "pubmedCount": 149,
+  "pubmedTrialCount": 0,
+  "pubmedTrialPmids": [],
+  "ctTotals": {
+   "query.intr=SR9009": 0,
+   "query.term=SR9009": 0,
+   "query.intr=SR 9009": 0,
+   "query.intr=stenabolic": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "testolone (RAD-140)": {
+  "tried": 18,
+  "epmcHits": 139,
+  "epmcTop5": [
+   {
+    "pmid": "37758180",
+    "doi": "10.1111/1440-1681.13824",
+    "id": "37758180",
+    "source": "MED",
+    "title": "RAD140 (Testolone) negatively impacts skeletal muscle adaptation, frailty status and mortality risk in female mice.",
+    "pubType": "research support, non-u.s. gov't; journal article"
+   },
+   {
+    "pmid": "40585415",
+    "doi": "10.5599/admet.2685",
+    "id": "40585415",
+    "source": "MED",
+    "title": "Rapid detection of illegal selective androgen receptor modulators in unregistered supplements using a combination of selected solid-state an",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "42064485",
+    "doi": "10.7759/cureus.106106",
+    "id": "42064485",
+    "source": "MED",
+    "title": "Spontaneous Splenic Rupture in a Patient With Recent Use of Performance-Enhancing Compounds: A Case Report and Literature Review.",
+    "pubType": "journal article; case reports; case-report"
+   },
+   {
+    "pmid": "41703239",
+    "doi": "10.1007/s11357-026-02151-9",
+    "id": "41703239",
+    "source": "MED",
+    "title": "Treatment with a selective androgen receptor modulator (RAD140) is linked to better cardiac function, with male-specific effects that are gr",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "40680216",
+    "doi": "10.14814/phy2.70463",
+    "id": "40680216",
+    "source": "MED",
+    "title": "Preclinical assessment of the selective androgen receptor modulator RAD140 to increase muscle mass and bone mineral density.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 1,
+  "epmcTrialTop": [
+   {
+    "pmid": "34565686",
+    "doi": "10.1016/j.clbc.2021.08.003",
+    "title": "A First-in-Human Phase 1 Study of a Novel Selective Androgen Receptor Modulator (SARM), RAD140, in ER+/HER2- Metastatic Breast Cancer."
+   }
+  ],
+  "pubmedCount": 42,
+  "pubmedTrialCount": 1,
+  "pubmedTrialPmids": [
+   "34565686"
+  ],
+  "ctTotals": {
+   "query.intr=RAD140": 1,
+   "query.term=RAD140": 1,
+   "query.intr=RAD-140": 1,
+   "query.intr=testolone": 0,
+   "query.intr=RAD 140": 13
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT03088527",
+    "title": "Phase 1, First-in-Human Study of RAD140 in Postmenopausal Women With Breast Cancer",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03920098",
+    "title": "Chilean Maternal & Infant Cohort Study II (CHiMINCs-II)",
+    "status": "UNKNOWN",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT04119141",
+    "title": "Benefit of Tin Filter in Regards to Image Quality and Radiation Dose in CT Scan Study of Pulmonary Parenchyma",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT01114295",
+    "title": "Computed Tomography Enterography (CTE) Versus Capsule Endoscopy for Overt, Obscure Gastrointestinal (GI) Bleeding",
+    "status": "WITHDRAWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05889364",
+    "title": "AI-based System for Lung Tuberculosis Screening: Diagnostic Accuracy Evaluation",
+    "status": "UNKNOWN",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT04294641",
+    "title": "Front Line Ibrutinib Without Corticosteroids for Newly Diagnosed Chronic Graft-versus-Host Disease",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 13
+ },
+ "YK-11": {
+  "tried": 16,
+  "epmcHits": 76,
+  "epmcTop5": [
+   {
+    "pmid": "42450037",
+    "doi": "10.3390/ijms27135765",
+    "id": "42450037",
+    "source": "MED",
+    "title": "Limitations of Molecular Docking in Predicting the Selectivity of Selective Androgen Receptor Modulators (SARMs): A Comparative Study of YK1",
+    "pubType": "comparative study; research-article; journal article"
+   },
+   {
+    "pmid": "40757306",
+    "doi": "10.1021/acsomega.5c02504",
+    "id": "40757306",
+    "source": "MED",
+    "title": "A SARM a Day Keeps the Weakness Away: A Computational Approach for Selective Androgen Receptor Modulators (SARMs) and Their Interactions wit",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "39660819",
+    "doi": "10.1530/jme-24-0073",
+    "id": "39660819",
+    "source": "MED",
+    "title": "YK11 promotes osteogenic differentiation of BMSCs and repair of bone defects.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "40729027",
+    "doi": "10.3390/cimb47070558",
+    "id": "40729027",
+    "source": "MED",
+    "title": "Evodiamine Boosts AR Expression to Trigger Senescence and Halt Proliferation in OSCC Cells.",
+    "pubType": "research-article; journal article"
+   },
+   {
+    "pmid": "40656529",
+    "doi": "10.1039/d5sc00871a",
+    "id": "40656529",
+    "source": "MED",
+    "title": "Intracellular evaluation of protein droplet-forming capability using self-assembling peptide tags.",
+    "pubType": "research-article; journal article"
+   }
+  ],
+  "epmcTrialHits": 1,
+  "epmcTrialTop": [
+   {
+    "pmid": "22857945",
+    "doi": "10.1016/j.jbiomech.2012.05.050",
+    "title": "Flow oscillation - a measure to predict the surgery outcome for obstructed sleep apnea (OSA) subject."
+   }
+  ],
+  "pubmedCount": 20,
+  "pubmedTrialCount": 0,
+  "pubmedTrialPmids": [],
+  "ctTotals": {
+   "query.intr=YK-11": 0,
+   "query.term=YK-11": 0,
+   "query.intr=YK11": 0
+  },
+  "ctNcts": [],
+  "ctMaxTotal": 0
+ },
+ "sermorelin": {
+  "tried": 18,
+  "epmcHits": 814,
+  "epmcTop5": [
+   {
+    "pmid": "42395176",
+    "doi": "10.3389/fendo.2026.1822475",
+    "id": "42395176",
+    "source": "MED",
+    "title": "The emerging landscape of performance-enhancing peptides modulating GH-IGF1 axis: bridging the gap between clinical evidence and patient sel",
+    "pubType": "review-article; review; journal article"
+   },
+   {
+    "pmid": "41075421",
+    "doi": "10.1016/j.ghir.2025.101668",
+    "id": "41075421",
+    "source": "MED",
+    "title": "Growth hormone - releasing hormone antagonists induce autophagy in cancer cells.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42456877",
+    "doi": "10.1016/j.exer.2026.111168",
+    "id": "42456877",
+    "source": "MED",
+    "title": "Growth hormone - releasing hormone antagonists protect endothelial corneal cells against lipopolysaccharides-induced inflammation.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42465868",
+    "doi": "10.3389/fsurg.2026.1859548",
+    "id": "42465868",
+    "source": "MED",
+    "title": "Anterior cervical osteophyte-related dysphagia in a long-term growth hormone user: a case report.",
+    "pubType": "journal article; case reports"
+   },
+   {
+    "pmid": null,
+    "doi": "10.20944/preprints202604.1748.v1",
+    "id": "PPR1182497",
+    "source": "PPR",
+    "title": "Evaluation of Research Grade Peptides Marketed Directly to Consumers Reveals Extensive Variability in Purity and Measured Abundance",
+    "pubType": "preprint"
+   }
+  ],
+  "epmcTrialHits": 76,
+  "epmcTrialTop": [
+   {
+    "pmid": "16061831",
+    "doi": "10.1530/eje.1.01965",
+    "title": "Polyethylene glycol-conjugated growth hormone-releasing hormone is long acting and stimulates GH in healthy young and elderly subjects."
+   },
+   {
+    "pmid": "10754477",
+    "doi": "10.1530/eje.0.1420359",
+    "title": "The GH response to low-dose bolus growth hormone-releasing hormone (GHRH(1-29)NH2) is attenuated in patients with longstanding post-irradiat"
+   },
+   {
+    "pmid": "25331030",
+    "doi": "10.1007/s00384-014-2030-8",
+    "title": "Prospective, randomized, controlled, proof-of-concept study of the Ghrelin mimetic ipamorelin for the management of postoperative ileus in b"
+   }
+  ],
+  "pubmedCount": 561,
+  "pubmedTrialCount": 71,
+  "pubmedTrialPmids": [
+   "16061831",
+   "15538933",
+   "11572326",
+   "10803472",
+   "10754477"
+  ],
+  "ctTotals": {
+   "query.intr=sermorelin": 27,
+   "query.term=sermorelin": 42,
+   "query.intr=sermorelin acetate": 1,
+   "query.intr=Geref": 2,
+   "query.intr=GHRH 1-29": 1
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT00850564",
+    "title": "Effect of Short Term Growth Hormone Releasing Hormone in Healthy Men",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00000380",
+    "title": "Growth Hormone Releasing Hormone (GHRH) Treatment for Age-Related Sleep Disturbances",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06554717",
+    "title": "Tesamorelin as an Adjunct to Exercise for Improving Physical Function in HIV",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02196831",
+    "title": "Tesamorelin Effects on Liver Fat and Histology in HIV",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00791843",
+    "title": "The Effect of GHRH Therapy on Myocardial Structure and Function in Congestive Heart Failure",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00638287",
+    "title": "Inter-Assay Growth Hormone and IGF-I Variability",
+    "status": "WITHDRAWN",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT00507104",
+    "title": "Pituitary Functions After Traumatic Brain Injury (TBI) and/or Subarachnoid Hemorrhage (SAH)",
+    "status": "COMPLETED",
+    "studyType": "OBSERVATIONAL"
+   },
+   {
+    "nctId": "NCT03031535",
+    "title": "Study of Intranasal Octreotide (DP1038) in Healthy Adult Volunteers",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03018886",
+    "title": "Diagnosing Adult Growth Hormone Deficiency",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT00324064",
+    "title": "Sexually Dimorphic Effects of GHRH in Adult Growth Hormone Testing",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 42
+ },
+ "ketamine": {
+  "tried": 18,
+  "epmcHits": 196900,
+  "epmcTop5": [
+   {
+    "pmid": null,
+    "doi": null,
+    "id": "PMC13329323",
+    "source": "PMC",
+    "title": "Ketamine Dependence: Clinical Characteristics of an Inpatient Detoxification Population With Complex Physical Health Needs",
+    "pubType": "abstract"
+   },
+   {
+    "pmid": "42605203",
+    "doi": "10.1002/dneu.70056",
+    "id": "42605203",
+    "source": "MED",
+    "title": "Cognitive and Pyroptotic Outcomes of Neonatal Ketamine and Dexmedetomidine: Potential Neuroprotection via Caspase-1 Modulation.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42689364",
+    "doi": "10.1097/aco.0000000000001705",
+    "id": "42689364",
+    "source": "MED",
+    "title": "Ketamine in ambulatory anesthesia: dose-dependent effects on breathing and cortical function.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": "42671282",
+    "doi": "10.4088/jcp.26f16110",
+    "id": "42671282",
+    "source": "MED",
+    "title": "The Prescriber's Guide to Oral Ketamine for Patients With Major Depressive Illness: Principles and Practice.",
+    "pubType": "journal article"
+   },
+   {
+    "pmid": null,
+    "doi": null,
+    "id": "PMC13329156",
+    "source": "PMC",
+    "title": "Ketamine Addiction With Multisystem Toxicity: A Case Report From Canon Lan Detox Unit, Neath Port Talbot Hospital, South Wales",
+    "pubType": "abstract"
+   }
+  ],
+  "epmcTrialHits": 5031,
+  "epmcTrialTop": [
+   {
+    "pmid": "42683438",
+    "doi": "10.2147/dddt.s626135",
+    "title": "Effect of Sub-Anesthetic Dose Esketamine on Oculocardiac Reflex in Children Undergoing Day-Case Strabismus Surgery: A Randomized Controlled "
+   },
+   {
+    "pmid": "42633440",
+    "doi": "10.2147/dddt.s627450",
+    "title": "Dexmedetomidine-Ketamine-Based Multimodal General Anesthesia with Electroencephalographic Spectrogram-Guided Titration Improves Early Recove"
+   },
+   {
+    "pmid": "42421175",
+    "doi": "10.1111/papr.70187",
+    "title": "Mesotherapy With Lidocaine and Ketamine in Complex Regional Pain Syndrome Type 1: A Randomized Double-Blind Trial."
+   }
+  ],
+  "pubmedCount": 30280,
+  "pubmedTrialCount": 3109,
+  "pubmedTrialPmids": [
+   "42683438",
+   "42673143",
+   "42668967",
+   "42654340",
+   "42633440"
+  ],
+  "ctTotals": {
+   "query.intr=ketamine": 1884,
+   "query.term=ketamine": 2057,
+   "query.intr=ketamine hydrochloride": 274,
+   "query.intr=Ketalar": 412,
+   "query.intr=esketamine": 353
+  },
+  "ctNcts": [
+   {
+    "nctId": "NCT06399185",
+    "title": "Effect of Dexmedetomidine and Esketamine on Catheter-related Bladder Discomfort",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07247968",
+    "title": "Subanesthetic Esketamine in Modified ECT for Severe Depression in Adolescents: Clinical and Mechanistic Study",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT03640468",
+    "title": "Lidocaine as an Adjuvant for Ketamine in Induction of Anesthesia in Septic Shock Patients",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT04933149",
+    "title": "Ketamine Infusion for Neuropathic Pain in Brachial Plexus Injuries",
+    "status": "ENROLLING_BY_INVITATION",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05468047",
+    "title": "Ketamine Therapy Experiential Education Study",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT05313659",
+    "title": "Intramuscular Ketamine Effect on Postnasal Surgery Agitation",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT07340008",
+    "title": "Analgosedation With Ketamine, Nalbuphine, or Dexmedetomidine for Suture Removal in Children After Cleft Surgery",
+    "status": "RECRUITING",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT06355180",
+    "title": "Esketamine vs ECT for Acute Suicidality",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT02717052",
+    "title": "Positron Emission Tomography Assessment of Ketamine Binding of the Serotonin Transporter",
+    "status": "UNKNOWN",
+    "studyType": "INTERVENTIONAL"
+   },
+   {
+    "nctId": "NCT01101659",
+    "title": "Ketamine Challenge Study With JNJ-40411813",
+    "status": "COMPLETED",
+    "studyType": "INTERVENTIONAL"
+   }
+  ],
+  "ctMaxTotal": 2057
+ }
+}

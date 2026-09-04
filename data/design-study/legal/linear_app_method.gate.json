@@ -1,0 +1,74 @@
+{
+  "key": "linear.app/method",
+  "track": "A1",
+  "dir": "linear_app_method",
+  "checkedAt": "2026-09-03T14:35:01.175Z",
+  "indexUrl": "https://linear.app/method",
+  "contentUrl": "https://linear.app/method/introduction",
+  "reachable": true,
+  "robots": {
+    "url": "https://linear.app/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/linear_app_method.robots.txt",
+    "indexPath": "/method",
+    "contentPath": "/method/introduction",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://linear.app/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://linear.app/terms",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/linear_app_method.terms.html",
+    "textSavedTo": "data/design-study/legal/linear_app_method.terms.txt",
+    "textChars": 37600,
+    "candidatesTried": [
+      {
+        "url": "https://linear.app/terms",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Customer will not receive or have access to the code or software that underlies the Service (collectively the “ Software ”) or receive a copy of the Software itself.",
+      "Linear retains all right, title and interest (including, without limitation, all patent, copyright, trademarks, trade secret and other intellectual property rights) in and to the Linear Materials, all related and underlying technology and any updates, enhancements, upgrades, modifications, patches, workarounds, and fixes thereto and all derivative works of or modifications to any of the foregoing.",
+      "There are no implied licenses under this Agreement and any rights not expressly granted to Customer in this Agreement are expressly reserved by Linear.",
+      "Customer agrees that it will not, and will not allow Users or third parties to, directly or indirectly (a) modify, translate, copy or create derivative works based on the Service, (b) reverse assemble, reverse compile, reverse engineer, decompile or otherwise attempt to discover the object code, source code, non-public APIs or underlying ideas or algorithms of the Service, except as and only…",
+      "Linear will use commercially reasonable efforts under the circumstances of such suspension to (x) provide Customer with notice and an opportunity to remedy such violation or threat prior to any such suspension;",
+      "As part of provision of its Service, Linear may provide Customer with access to one or more application program interfaces (“ API(s) ”).",
+      "Linear may, in its sole discretion, set and enforce limits on Customer’s use of the API and Customer agrees to adhere to such limits.",
+      "Linear may also suspend Customer’s access to the API or cease providing the API at any time.",
+      "Notwithstanding Section 4.1, fees for AI Services shall be governed by the AI Addendum, which may include usage-based billing calculated on consumption metrics (e.g., tokens, API calls, or compute units) in addition to or in lieu of the subscription Fees set forth in an Order.",
+      "If the parties terminate this Agreement, it will automatically terminate all Orders.",
+      "If Customer cancels or does not renew its paid subscription to the Service, Customer’s subscription will be accessible but will automatically be downgraded to a version of the Service with diminished features and functionality that Linear offers to unpaid subscribers (“Free Version”).",
+      "Upon any termination of this Agreement, all rights and licenses granted by Linear hereunder will immediately terminate;",
+      "Linear will defend Customer and its Users, officers, directors, and employees against any third-party claim or action brought against Customer to the extent based on the allegation that the Service infringes such third party’s intellectual property rights (patents, utility models, design rights, copyrights and trademarks or any other intellectual property right) and Linear agrees to pay any…",
+      "If Customer’s use of the Service has become, or in Linear’s opinion is likely to become, the subject of any claim of infringement, Linear may at its option and expense, (a) procure for Customer the right to continue using and receiving the Service as set forth hereunder, (b) modify the Service to make it non-infringing (but containing substantially equivalent functionality), (c) substitute an…",
+      "(c) except as expressly set forth herein, make all commercially reasonable efforts not to disclose any of Disclosing Party’s Confidential Information to any third parties without the Disclosing Party’s prior written consent; and (d) will not use the Disclosing Party’s Confidential Information for any purpose other than to fulfill its obligations under this Agreement.",
+      "Linear may want to incorporate Feedback into its Service and this clause provides Linear with the necessary license to do so.",
+      "Customer hereby grant to Linear and Linear’s assigns a royalty-free, worldwide, perpetual, irrevocable, fully transferable and sublicensable right and license, if any, to use, disclose, reproduce, modify, create derivative works from, distribute, display, and otherwise distribute and exploit any Feedback as Linear sees fit, entirely without obligation or restriction of any kind, except that…",
+      "Customer (on behalf of its Users) grants Linear the right to access, use, process, copy, distribute (to Users), perform (for Users), export (to Users) and display (for Users) User Information, only as reasonably necessary (a) to provide the Service to Customer (including the transfer of User Information to Linear);",
+      "Customer grants Linear and its subcontractors a non-exclusive, worldwide, royalty-free, paid-up, transferable right and license to use, process, and display (to Users) User Submissions for the sole purpose of providing the Service to Customer.",
+      "Except for the limited rights and licenses granted in this Agreement, Customer will own all right, title and interest in and to the User Submissions and there are no implied licenses under this Agreement.",
+      "Linear will, during the Term, process all Customer Data in accordance with Linear’s data protection agreement, a copy of which can be found at linear.app/dpa .",
+      "Linear will not be liable by reason of any failure or delay in the performance of its obligations on account of events beyond the reasonable control of Linear that make it impossible or commercially impracticable for such party to perform its obligations hereunder, which may include failure by a third-party hosting provider or utility provider, strikes (provided that such strike does not…"
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows /method and /method/introduction; no terms clause matched a prohibition pattern across 22 relevant excerpts."
+  },
+  "notes": []
+}

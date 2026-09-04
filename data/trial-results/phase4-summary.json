@@ -1,0 +1,11 @@
+{
+  "attached_at": "2026-09-03T07:07:41.365Z",
+  "source_identifier": "clinicaltrials.gov/api/v2 results fetch 2026-09-03 queue-sha256:ffda47f97bf9f165",
+  "records_touched": 3569,
+  "records_with_a_results_block": 2408,
+  "records_with_registrations_but_no_qualifying_result": 1161,
+  "qualifying_studies": 29240,
+  "studies_with_a_results_section_that_failed_the_bar": 1320,
+  "distinct_studies_shown": 4807,
+  "written": 3569
+}

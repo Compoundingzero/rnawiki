@@ -1,0 +1,59 @@
+{
+  "key": "pudding.cool",
+  "track": "A1",
+  "dir": "pudding_cool",
+  "checkedAt": "2026-09-03T14:40:36.239Z",
+  "indexUrl": "https://pudding.cool/",
+  "contentUrl": "https://pudding.cool/2026/07/essential-words",
+  "reachable": true,
+  "robots": {
+    "url": "https://pudding.cool/robots.txt",
+    "httpStatus": 404,
+    "savedTo": null,
+    "indexPath": "/",
+    "contentPath": "/2026/07/essential-words",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "robots.txt returned HTTP 404; no rules exist, so nothing is disallowed / robots.txt returned HTTP 404; no rules exist, so nothing is disallowed"
+  },
+  "terms": {
+    "url": "https://pudding.cool/about/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/pudding_cool.terms.html",
+    "textSavedTo": "data/design-study/legal/pudding_cool.terms.txt",
+    "textChars": 13829,
+    "candidatesTried": [
+      {
+        "url": "https://pudding.cool/about/",
+        "status": 200,
+        "note": "HTTP 200 but neither the URL nor the <title> \"About Us\" identifies it as a terms, conditions, legal, copyright or disclaimer document; kept looking and held it only as a fallback"
+      },
+      {
+        "url": "https://pudding.cool/terms/",
+        "status": 404
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "The only time a brand finds its way on The Pudding is through sponsored posts, like this one we just did about congressional tweets with Saleforce’s Einstein API or this one about Dear Abby letters with IBM Watson."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /2026/07/essential-words; no terms clause matched a prohibition pattern across 1 relevant excerpts."
+  },
+  "notes": [
+    "The index page exposed no anchor whose text matches /terms|conditions|legal/i.",
+    "No terms-of-service document was reached. The closest page kept as a fallback is https://pudding.cool/about/; it is not a terms document, and its text is what the excerpts below come from."
+  ]
+}

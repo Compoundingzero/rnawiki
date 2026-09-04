@@ -1,0 +1,671 @@
+{
+  "site": "forum.quantifiedself.com",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png",
+    "content-375-tile-05.png"
+  ],
+  "duplicateBytesNotReopened": [
+    "content-1440-full.png (= index-1440-full.png)",
+    "content-1440-tile-01.png (= index-1440-tile-01.png)",
+    "content-1440-scroll-00.png (= index-1440-tile-01.png)",
+    "content-375-tile-01.png (= index-375-tile-01.png)",
+    "content-375-scroll-00.png (= index-375-tile-01.png)",
+    "index-1440-tile-02.png (= content-1440-tile-02.png)",
+    "index-1440-tile-03.png (= content-1440-tile-03.png)",
+    "index-375-tile-05.png (= content-375-tile-05.png)"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "The topic title is the only element given strength; the category chip, tags and date are demoted to 12-13px grey. The counts are the exception - the same small size but varying in weight and colour by magnitude - so hierarchy inside the row is carried by colour and weight rather than size.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Titles read at roughly 17px near-black. Category chip, tags and date are small grey and within a pixel or two of each other in size, separated only by tone. The reply and view counts sit at that same size but render in three distinct states (grey, slate-blue, bold near-black), so they are not uniformly demoted as originally claimed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The page's only heading is invisible: the recorded h1 'All latest topics' appears in no capture, and what reads as the list heading is 'Latest', a selected tab in a control row.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "No 'All latest topics' text is visible anywhere in the 2586px page; the top of the list shows only the categories/tags/Latest/Hot/Categories control row. The document outline and the visual outline disagree, and there is no second heading level.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The strongest typographic marks inside the data list are popularity numbers, and the emphasis is a graduated heat scale applied to both count columns rather than to views alone.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Across index-1440-tile-01 and content-1440-scroll-90 the counts render in three states: grey for small values (50, 69, 78, 86, 147), slate-blue for larger ones in both columns (48, 76, 19, 28, 21 replies; 2.5k, 4.1k, 2.3k views), and bold near-black for the two largest view counts only (18.9k, 15.6k). 3.3k is a high view count and is not bold, so 'high view counts are bold near-black while all ordinary counts stay grey' overstates a two-state rule over what is actually a three-band scale across two columns.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "eye-lands",
+      "claim": "At desktop the eye lands on chrome, not content: the navy Sign Up and Log In buttons are the highest-contrast filled shapes on the first screen and the only filled shapes that are not avatars.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Top-right pair of dark navy filled buttons against an otherwise grey-on-white first screen; the topic list below carries no fill or accent of its own. Saturated letter-disc avatars are also filled shapes (a green R on 'Pen and paper color coded diary', a peach A on 'Artificial Intelligence (AI), LLMs, and QS in 2024'), so the buttons are not literally the only saturated fills. content-1440-scroll-00.png is byte-identical to this capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At mobile the same failure is more pronounced: the navy Log In pill is the single darkest object above the fold, sitting in the right half of the header immediately left of the search and menu icons.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "375px header shows logo left, a filled navy Log In pill spanning roughly x=185 to x=267 - its centre right of the 187px viewport midpoint, so 'near the centre' is wrong - then a search magnifier and a hamburger. The list beneath is text plus one small round avatar per row with no filled shape. There is no Sign Up button at this width.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "The first row of the data list is marketing, not a record: a pinned announcement whose excerpt is a sign-up pitch, carrying the page's largest view count.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "'Welcome to the new QS Forum!' with a pin glyph, Meta chip, the excerpt 'New users Sign up/Log In to enjoy an ad-free forum experience! Old forum users Here is how to recover your password.', 3 replies and 18.9k views, dated Apr 2021.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "density",
+      "claim": "About nine topic rows fit a 900px desktop screen (eight complete plus one cut) and about seven fit 812px mobile (six complete plus one cut), with row height driven by how much metadata each record holds rather than a fixed rhythm.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Measured on the 1440x900 tile, a one-line title with no metadata line runs about 70px ('Remember The Email-Inbox Project by Mark Wilson?', rules at roughly y=278 and y=350); a two-line title with a chip and three tags runs about 82px ('Building an app to enhance self-regulation...'). The originally stated 55px and 90px are both off and the spread between the shortest and tallest row is narrower than claimed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "density",
+      "claim": "The list reads as a table with a real four-label header row, but it has five visual columns: the participant-avatar column between title and counts carries no header at all. It is grouped by nothing - thirty rows in one flat run with no dividers or sections.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Header row reads Topic / Replies / Views / Activity over five columns of content; the avatar cluster is unlabelled. Below it the sequence runs 7d, Jul 30, Jul 24 ... Dec 2025, Nov 2025 with no date dividers, no category grouping and no section breaks - except that the pinned first row is dated Apr 2021 and sits out of sequence at the head, so the run is reverse-chronological only after row one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "Mobile deletes the Views column entirely and leaves the survivors unlabelled: one bare number top-right and a date bottom-right, with no column header anywhere on the viewport.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "At 375px each row shows avatar, title, chip and tags, a single right-aligned figure (3, 5, 48, 28, 21) and a date. No Views figure and no Replies label appear at any scroll depth.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "whitespace",
+      "claim": "Nearly all whitespace sits in the outer margins: a content well of roughly 1090px inside 1440, with about 175px empty on each side and none of it spent on the record.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The table rules and row content begin around x=175 and end around x=1265 in a 1440px capture; the flanking bands are empty white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "whitespace",
+      "claim": "Inside the row the spacing is tight and says 'one continuous list' rather than 'separate objects': hairline rules, no cards, no borders, no fills.",
+      "captures": [
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "4-6px between a title and its category line; single light hairline rules between rows; no card edges, background fills, shadows or accent colour inside the list beyond the small category square.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "The one wasted space is mid-row: a short title leaves roughly 450-550px of empty band between the record and its own numbers, breaking the eye's path.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Omega-3 & Me' ends near x=312 while its avatar cluster starts near x=864 in content-1440-scroll-90; 'What is inside an oura ring' ends near x=404 with avatars from x=865 in index-1440-tile-01. The gap is materially larger than the 200-400px originally stated, which makes the point stronger, not weaker.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "long-scroll",
+      "claim": "Exactly one thing persists through the scroll: a 64px sticky header, identical at 0, 50 and 90 percent within each width - but its contents differ by width. Desktop carries logo, Sign Up, Log In, search and hamburger; mobile carries logo, Log In, search and hamburger, with no Sign Up.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "The same header renders at the top edge of every scrolled viewport capture at both widths and nothing else is repeated between them. content-375-scroll-50 and content-375-scroll-90 show no Sign Up button, so the header is not identical across viewports as originally stated.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F14",
+      "topic": "long-scroll",
+      "claim": "The column header row is not sticky, so past the first screen every number in the table is unlabelled — the clearest information-design failure in the captures.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "At scrollY 843 and 1517 the Topic / Replies / Views / Activity header is gone, leaving twelve rows each showing two bare figures (for example '0  50', '19  2.5k', '28  4.1k') with no legend on screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "The filter row scrolls away too, so at depth a reader cannot see or change which view they are in without returning to the top.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "categories, tags, Latest, Hot and Categories are present only in the first screen; they are absent from both the 50 percent and 90 percent viewport captures.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds unbroken for the whole page, which is both the strength and the cost: no interruptions, and equally no landmark to navigate by.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The full-page capture shows an even row cadence across all 2586px with no ads, promoted blocks or inserted panels after the pinned first row, and no visual landmark anywhere.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "The page ends in nothing: after the last row's closing hairline there is empty white and no footer, pagination, load-more control or link out, on both viewports.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-375-tile-05.png"
+      ],
+      "evidence": "Below 'How do you keep track of everything and learn what works?' a hairline closes the table and roughly 110px of empty white follows to the document end at 1440; at 375 the final tile is 196px tall with about 100px of white below the closing rule. The originally claimed 200px desktop gap and 'almost entirely blank' mobile tile both overstate it. The infinite-loading inference is withdrawn: scriptTokens.IntersectionObserver is not evidence of a loading behaviour, no control is visible and no content appears past the thirtieth row in any capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "imagery",
+      "claim": "Not one chart, diagram, screenshot or figure appears anywhere on the page; every image visible in the captures is a participant avatar, on a site whose entire subject is personal data and its visualisation.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Every image in the full-page capture is a small round participant portrait, apart from the QS wordmark in the header - which is an image and is not an avatar. Topics titled 'Collating and Visualising data via APIs and BI tools' and 'Open-source tool to backup and visualize your long term Garmin data' appear as plain text rows with no preview or figure. The figure 86 comes from domEvidence.imgCount and cannot be checked against the captures, so 'all 86 images are avatars' is a DOM inference, not a visual observation.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "imagery",
+      "claim": "At desktop the avatars carry real information: cluster width shows how many distinct people are in a thread, a participation signal no number in the row provides. Mobile discards it - every row shows exactly one avatar regardless.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'Sharing my odd collection of custom-built, self-quantification software' shows five avatars and 'Apple Health XML data with XSLT' one, a width difference legible before any text is read. At 375 both rows show a single leading avatar (content-375-tile-01, content-375-scroll-90), so the signal exists only at desktop and the claim needed that scope.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "Where a person has no avatar the page renders a coloured letter disc rather than a blank or a generic silhouette - an absent image replaced by an identity token. The letter, not the colour, is what distinguishes them.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Discs lettered A, R, C, T, M, F, O and P appear in place of photographs. The colours repeat and do not key to identity: R and C both render on the same green, and the R on 'Research participants wanted' is olive beside a near-identical gold M. 'Each on a different background colour' does not hold; the glyph carries the distinction and the colour is decoration.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "defers-or-competes",
+      "claim": "For almost its whole length the design defers hard: one typeface, near-black on white, hairline rules, no cards and no shadows inside the list.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Across twelve rows in each capture the non-text ink is the hairline rules, the avatar discs and a small coloured category square roughly 8px across. One correction to 'no accent colour inside the list': slate-blue is used on the larger reply and view figures (48, 76, 19, 28, 2.5k, 4.1k), so there is a fourth ink and it is spent on popularity.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "defers-or-competes",
+      "claim": "It competes at exactly two moments, both about accounts rather than content: the navy Sign Up / Log In pair, and the pinned sign-up row at the top of the data list.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "These are the only two places on either viewport where the page raises contrast or claims position for something that is not a record.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "information-design",
+      "claim": "The site is squarely longevity- and health-relevant and does not have to be forced to fit: the visible corpus is self-experimentation on the same compound classes RNAWiki catalogues.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Visible titles include tracking ferritin after blood donations, tracking blood sugar, 'Omega-3 & Me', 'Been tracking liver health for 7 years', brain fog and gut bacteria, 'Farming My Microbiome', allostatic load, cognitive fitness tracking, \"'Citizen Science' trials for supplements and other non-RX interventions\" and 'What supps would you test first in a \"citizen science\" trial of n=50+?'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "information-design",
+      "claim": "The record shape is at most seven fields on one line and a bit - title, category chip, free tags, participant avatars, reply count, view count, last-activity date - and many rows show only four of them.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Every ordinary row composes a subset of exactly these fields; 'Remember The Email-Inbox Project by Mark Wilson?' shows only title, avatars, counts and date. The one exception on the page is the pinned announcement row, which adds an excerpt and a pin glyph, so 'no row shows an eighth' is true only of the capture originally cited.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "information-design",
+      "claim": "The list carries no evidence-quality signal of any kind: no n, duration, device, protocol, outcome, verified or reviewed mark, replication count, confidence, 'self-reported' label, licence, DOI or version.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Across thirty rows at both viewports the only fields rendered are the seven in F25. No badge, tier mark, status pill or identifier appears anywhere.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "information-design",
+      "claim": "The only quality-shaped marks are popularity proxies, and the design gives bold weight to the weakest of them, so a reader scanning by apparent authority is actually sorting by attention.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Tracking blood sugar' renders a bold 15.6k view count and reads as the strongest row on the screen, though nothing in the row states who ran it, on how many people, for how long or with what result.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "information-design",
+      "claim": "The category chip is the only structural classifier and its colour separates almost nothing: six of the eight visible categories share one brown square.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Self Experimentation, Research & Media, Apps & Tools, QS newcomers, Quantified Self and Diet, Nutrition and Weight all carry the same brown square - six, not the five originally counted, and the evidence line already named six. Only Project Logs is blue and only Meta grey. An n=1 project log and a research announcement are not separable by colour at scanning speed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "information-design",
+      "claim": "User-contributed and editorial content are distinguished by one mark only — a pin glyph plus a grey Meta chip — so staff content and a stranger's health claim carry identical visual weight.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Welcome to the new QS Forum!' is the only row with a pin. 'Been tracking liver health for 7 years, not sure what to do with it' is set in the same face, size, weight and colour as every other row including the official announcement.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "What a reader gets here that a trial registry cannot give them is the mess and the failure — what happened to people who tried, including those who measured for years and got nothing usable.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Been tracking liver health for 7 years, not sure what to do with it', 'Trying to make sense of my life with scattered data', 'Building an app to enhance self-regulation. Do these 3 assumptions kill my product?', 'How do you keep track of everything and learn what works?'. Open recruiting is also visible: 'Research participants wanted: Period App Users'. None of these has a registry field.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "Dates are the one uncertainty-adjacent signal handled well: every row carries its age, relative when recent and absolute once past the year.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'7d' for the most recent, then Jul 30, Jul 24, Mar 2, Feb 26, Jan 8, then Dec 2025, Nov 2025 and Apr 2021. No row omits it, so a five-year-old thread can be discounted without opening it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "baseline",
+      "claim": "The site is light-only with no theme toggle observed and no visible keyboard-shortcut hint; its search affordance is an icon-only magnifier carrying no visible text label.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "A magnifier icon sits in the sticky header at both viewports with no on-screen text beside it - 'button Search' in searchAffordances is its accessible name, not a visible label, so 'a single labelled button' misreads the DOM as design. prefersColorScheme.found is false across 29 stylesheets and dataTheme is null; kbdTexts and ariaKeyshortcuts are both empty, so no shortcut hint is claimed.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes",
+        "searchAffordances",
+        "kbdTexts",
+        "ariaKeyshortcuts"
+      ]
+    },
+    {
+      "id": "F33",
+      "topic": "absence",
+      "claim": "An empty field renders nothing at all and the row collapses around it — no placeholder, no 'uncategorised', no greyed dash.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "'Remember The Email-Inbox Project by Mark Wilson?' and 'Do you use Obsidian/RemNote/Roam/Notion to track your notes?' carry no metadata line whatsoever and are visibly shorter rows than their neighbours.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "Partial absence collapses the same way: a missing category chip is dropped and the surviving tag closes up into its place rather than leaving a gap.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'The Human Kernel: A Control Systems Model for Business/Work Performance' shows a bare tag 'tools' starting at the left margin with no coloured square before it, where every other row's tags begin after a chip.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "A measured zero is printed as '0' while a missing field vanishes — precisely the distinction between a value measured as none and a field never populated.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Apple Health XML data with XSLT', 'Smartphone apps the quantified self community might find useful' and 'Trying to make sense of my life with scattered data' all render a literal 0 in the Replies column, in the same capture where absent category lines render nothing at all.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "borrow",
+      "claim": "Borrow for structured data blocks and browse/filter: the absence rule in full — missing field renders nothing and the row collapses, measured zero renders '0'.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "F33 and F35 together. RNAWiki's uniqueness constraint already requires the collapse; without the printed zero a collapsed row is ambiguous between 'not measured' and 'measured as none', the exact distinction boundary 6 exists to protect.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "borrow",
+      "claim": "Borrow for browse/filter: age on every row without exception, relative under a week and absolute past a year.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "F31. It is cheap to build and it is the only signal on this page that lets a reader discount a record before opening it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "borrow",
+      "claim": "Borrow for browse/filter and the dossier reading column: the undecorated row — one typeface, no cards, no fills, hairline rules, title carrying all the weight.",
+      "captures": [
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Thirty rows with zero decoration stay readable at scanning speed, which is what a 619-compound browse needs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "borrow",
+      "claim": "Borrow for structured data blocks: the letter-disc fallback — where an identity has no image, render an identity token that still distinguishes entities, never a generic silhouette.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "F21. Applies wherever an RNAWiki source, registry or reviewer has no mark of its own.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "avoid",
+      "claim": "Avoid on home and browse/filter: filled dark account buttons as the visual peak of the first screen. The home search bar is frozen and nothing may compete with it.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "F4 and F5 — chrome beats content on both viewports here. A navy account button placed beside RNAWiki's search bar would reduce its prominence and is therefore not a borrow.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "avoid",
+      "claim": "Avoid on structured data blocks and browse/filter: bold weight on a popularity number. No attention proxy may outweigh an evidence-tier or model-organism mark.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "F3 and F27 — this page makes 15.6k the most authoritative-looking object in the list while stating nothing about the evidence behind that row.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "avoid",
+      "claim": "Avoid on browse/filter: non-sticky column headers over a long numeric list. Either the legend persists or every number carries its own unit.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "F14 — twelve rows of unlabelled figures on screen at both 50 and 90 percent scroll.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F43",
+      "topic": "avoid",
+      "claim": "Avoid on browse/filter: a chip taxonomy where most chips share one colour. A classifier that does not classify is worse than none because it looks like it does.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "F28 — five visible categories share the same brown square. If RNAWiki marks evidence tier or organism with a chip, the levels must be separable at a glance or the chip should be text only.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "avoid",
+      "claim": "Avoid on home and browse/filter: a promotional or announcement row occupying the first slot of the data list.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "F6 — the pinned sign-up pitch sits where the first record belongs and carries the page's largest number.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "avoid",
+      "claim": "Avoid on browse/filter and the reference/definitions page: a page that ends in nothing, with no route onward to the one page that holds the shared explanations.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-375-tile-05.png"
+      ],
+      "evidence": "F17 — no footer, pagination or link out on either viewport. RNAWiki keeps its shared explanatory sentences on one linked definitions page, so every list must be able to reach it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Avoid on browse/filter at 320-375px: dropping a column on mobile without relabelling what survives.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "F9 — the Views column disappears and the remaining number keeps no label at any scroll depth.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "Mobile drops two of the seven fields, not one: the view count disappears and the participant cluster collapses to a single avatar, so both signals a desktop reader uses to gauge how much a record was looked at and by how many people are gone at 375px.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-375-tile-01.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "'Sharing my odd collection of custom-built, self-quantification software' shows five avatars, 48 replies and 3.3k views at 1440; at 375 the same row shows one avatar, the bare figure 48 and a date. Every mobile row carries exactly one leading avatar whatever its desktop cluster width. RNAWiki's browse must decide which evidence fields survive at 320-375px rather than letting the layout choose.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "Exactly one row in the list carries an excerpt and it is the promotional one; the other twenty-nine expose no preview text at all, so nothing about a record can be learned without opening it.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "'Welcome to the new QS Forum!' is the only row with body text under its title ('New users Sign up/Log In to enjoy an ad-free forum experience! Old forum users Here is how to recover your password.'). Across all thirty rows at both widths no other row shows a summary line. The single slot this list design reserves for prose is spent on a sign-up pitch - the sharper form of F6.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "hierarchy",
+      "claim": "The column legend is set no darker and no heavier than the values it labels, so on the single screen where the legend exists it is tied for the faintest text on the page.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Topic / Replies / Views / Activity render in the same small grey as the Activity dates beneath them and lighter than the counts in the Replies and Views columns they name. The legend therefore has less visual authority than any value in its own column, and by F14 it is also the first thing to leave the screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "forum.quantifiedself.com holds no row in the Phase 2 table, whose governing references are Apple, awwwards.com, smashingmagazine.com, linear.app/method, stripe.com/docs, pudding.cool, vercel.com/docs and quantamagazine.org, with theverge.com and atlasobscura.com explicitly unassigned. As an A2 community site it can neither strengthen nor overturn an existing assignment. It does argue for a surface it does not hold: browse/filter is governed by awwwards.com with no secondary, justified as the only measured site with no reading column - a filter surface for images. RNAWiki's browse is a filter surface for uncertain records carrying counts, dates, tier marks and absent fields, which is exactly what this page is and awwwards is not. Recommend adding it as browse/filter secondary scoped strictly to row composition and absence handling (F36, F37, F38), and explicitly not to its chrome, emphasis choices, chip palette or scroll behaviour, all of which are listed under avoid. It bears on nothing else: there is no reading column here (the widest text block is a two-line title), no contents rail, no citation graphic, and kbdTexts and ariaKeyshortcuts are empty so the global search overlay stays with vercel.com/docs.",
+    "argumentForNewAssignment": "browse/filter — secondary, scoped to row composition and absence handling only"
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Absence rule in full: missing field renders nothing and the row collapses; measured zero renders '0' (structured data blocks, browse/filter) [content-1440-tile-02.png, content-1440-scroll-90.png]",
+      "Age on every row, relative under a week and absolute past a year (browse/filter) [content-1440-scroll-90.png]",
+      "The undecorated row: one typeface, no cards, no fills, hairline rules, title carries the weight (browse/filter, dossier reading column) [content-1440-tile-02.png]",
+      "Letter-disc fallback: an absent image becomes an identity token whose glyph, not its generated colour, carries the distinction - the colours repeat (structured data blocks) [index-1440-tile-01.png]"
+    ],
+    "avoid": [
+      "Filled dark account buttons as the visual peak of the first screen — the home search bar is frozen and nothing may compete with it (home, browse/filter) [index-1440-tile-01.png, index-375-tile-01.png]",
+      "Bold weight on a popularity number; no attention proxy may outweigh an evidence-tier or model-organism mark (structured data blocks, browse/filter) [index-1440-tile-01.png]",
+      "Non-sticky column headers over a long numeric list (browse/filter) [content-1440-scroll-50.png]",
+      "A chip taxonomy where most chips share one colour, so the classifier classifies nothing (browse/filter) [content-1440-scroll-90.png]",
+      "A promotional row in the first slot of the data list (home, browse/filter) [index-1440-tile-01.png]",
+      "A page that ends in nothing, with no route to the shared definitions page (browse/filter, reference/definitions) [content-1440-tile-03.png, content-375-tile-05.png]",
+      "Dropping a column on mobile without relabelling what survives (browse/filter at 320-375px) [index-375-tile-01.png]",
+      "Letting the viewport decide which fields survive: at 375 this page silently drops both the view count and the participant cluster (browse/filter at 320-375px) [content-375-tile-01.png, content-375-scroll-90.png]",
+      "Spending the list's only prose slot on an announcement while every record shows title-only (home, browse/filter) [index-1440-full.png]",
+      "A column legend set no darker and no heavier than the values it labels (browse/filter) [index-1440-tile-01.png]"
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "None. bannerActions records a refusal failure on all four passes, but the controls it names are ordinary page content — on desktop the table header (Replies, Views, Activity) and the pinned topic row (Welcome to the new QS Forum!, Meta, and its sign-up excerpt), and on mobile a topic link (Tracking ferritin after blood donations). No consent or cookie overlay is visible in any capture; the detector caught the page, not a banner."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "confirmed": 29,
+    "qualified": 16,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "All eleven required captures were reopened independently, plus content-1440-tile-03.png and content-375-tile-05.png, which findings cite. Byte-identical duplicates were read through the file the manifest lists first.",
+      "Most important correction (F3, F22, F1, F41): the emphasis is not a two-state rule on views. Both count columns run a three-band heat scale - grey, slate-blue, bold near-black - with bold reserved for the two largest view counts only; 3.3k is a high count and is not bold. The slate-blue band is also a fourth ink inside a list described as having no accent colour, and it is spent entirely on popularity. The avoid rule (A2/F41) is unchanged and slightly widened: no attention proxy in either column may outrank an evidence-tier mark.",
+      "F18 removed as refuted: a 3px loading strip and a toast region at height 0 are DOM records that render in no capture. The cited capture shows neither, so the finding carries no visual observation about this design.",
+      "F17 rewritten to drop the infinite-loading inference; scriptTokens.IntersectionObserver is not evidence of a loading behaviour, and its whitespace figures were roughly doubled (about 110px desktop, about 100px mobile).",
+      "F13, F20 and F5 all generalised a desktop reading across both widths. The mobile header has no Sign Up button; the mobile row shows one avatar rather than a cluster; the mobile Log In pill sits in the right half of the header, not near its centre.",
+      "F8 corrected to five visual columns with four labels - the participant-avatar column has no header - and the pinned Apr 2021 row breaks the reverse-chronological run at its head.",
+      "F19 and F32 both presented DOM values as visual observations: imgCount 86 cannot be checked against a capture and the visible search control is an icon-only magnifier whose 'Search' label is an accessible name.",
+      "F28's count corrected from five to six brown categories, matching the six its own evidence line already named.",
+      "Banner handling upheld: no consent or cookie overlay is visible in any capture at either width. bannerActions named ordinary page content and nothing in these images should be discounted.",
+      "Phase 2 verdict and the browse/filter secondary recommendation are unchanged; the added findings V1-V3 all fall inside the same narrow scope of row composition and absence handling."
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "key": "vercel.com/docs",
+  "track": "A1",
+  "dir": "vercel_com_docs",
+  "checkedAt": "2026-09-03T14:34:59.706Z",
+  "indexUrl": "https://vercel.com/docs",
+  "contentUrl": "https://vercel.com/docs/deployments",
+  "reachable": true,
+  "robots": {
+    "url": "https://vercel.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/vercel_com_docs.robots.txt",
+    "indexPath": "/docs",
+    "contentPath": "/docs/deployments",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://vercel.com/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://vercel.com/legal/terms",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/vercel_com_docs.terms.html",
+    "textSavedTo": "data/design-study/legal/vercel_com_docs.terms.txt",
+    "textChars": 51420,
+    "candidatesTried": [
+      {
+        "url": "https://vercel.com/legal/terms",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "Download Brand Assets Brand Guidelines",
+      "\" Services \" means, collectively, any products or services made available by Vercel or its affiliates; provided that, your use of certain Services requires acceptance of additional terms as set forth in Schedule I hereto; and provided further, that, for the avoidance of doubt, any software that we provide exclusively under open source licenses (including, without limitation, Next.js) are not…",
+      "During the period for which you are authorized to use the Services, and subject to your compliance with the terms of this Agreement, you are granted a personal, non-sublicensable, non-exclusive, non-transferable, limited license, to use the Services for your internal business or personal purposes according to the service capacity of your account.",
+      "Any rights not expressly granted herein are reserved and no license or right to use any trademark of Vercel or any third-party is granted to you in connection with the Services.",
+      "By submitting Your Content on or through the Services, you grant Vercel a worldwide, non-exclusive, royalty-free, fully paid, sublicensable and transferable license to use, copy, modify, adapt, reproduce, distribute, display, publish, store, perform, and create derivatives of Your Content to provide and improve the Services, develop new products and services, secure and protect the Services…",
+      "You shall only use the Services under a Hobby plan for your personal or non-commercial use.",
+      "(i) sublicense, resell, rent, lease, transfer, assign, or otherwise commercially exploit or make the Services available to any third party;",
+      "(v) remove, alter or obscure in any way any proprietary rights notices (including copyright notices) of Vercel or its suppliers on or within the Services or documentation;",
+      "Subject to the terms hereof, Vercel may, but is not required to, provide you with commercially reasonable remote technical support services during Vercel's normal business hours (\" Support Services \") in accordance with Vercel's current Support Terms and Conditions .",
+      "You represent and warrant that (i) you own all Your Content or have obtained all permissions, releases, rights or licenses required to engage in posting and other activities (and allow Vercel to perform its obligations) in connection with the Services without obtaining any further releases or consents;",
+      "(ii) Your Content and other activities in connection with the Services, and Vercel's exercise of all rights and license granted by you herein, do not and will not violate, infringe, or misappropriate any third party's copyright, trademark, right of privacy, or publicity, or other personal or proprietary right;",
+      "(v) you have all necessary rights, licenses, and authority to use any third-party service account credential, API key or other access method you provide to or enable for the Services; and (vi) you are not the target of sanctions administered or enforced by the U.S.",
+      "To the extent you or any of your users provide any suggestions to Vercel regarding the functioning, features, and other characteristics of the Services, documentation, or other material or services provided or made available by Vercel (\" Feedback \"), you hereby grant Vercel a perpetual, irrevocable, non-exclusive, royalty-free, fully-paid-up, fully transferable, worldwide license (with rights…",
+      "During the term of this Agreement, you grant Vercel a non-exclusive, royalty-free, fully-paid up license to use and reproduce your trademarks, trade names and logos in Vercel's marketing materials and website(s) and to indicate that you are a Vercel customer.",
+      "You acknowledge and agree that Vercel will automatically charge your credit card or other payment method on record with Vercel (\"payment method\") in connection with the use of the Services:",
+      "The self-service subscription and any additional Services added to your self-service subscription will automatically-renew for the same term as the initial term.",
+      "If Vercel detects elevated, irregular, high or anomalous use of the Services, as determined in Vercel's sole discretion, Vercel may automatically charge your payment method for the then accrued fees in connection with the use of the Services.",
+      "The term of your hobby plan, self-service subscription, and any Services purchased or added to your self-service subscription, shall automatically renew for successive terms equal in duration to the initial term unless you cancel your hobby plan or self-service subscription in advance of the renewal date.",
+      "(i) the licenses granted under this Agreement in respect of the Services shall immediately terminate and you and your users shall cease use of the Services;",
+      "(iii) you shall pay to Vercel the full amount of any outstanding fees due hereunder; and (iv) within fourteen (14) calendar days of such termination, each party shall destroy or return all Proprietary Information of the other party in its possession or control, and will not make or retain any copies of such information in any form, except that the receiving party may retain one (1) archival…",
+      "You may not assign, transfer or sublicense without the prior written consent of Vercel, but Vercel may assign or transfer this Agreement, in whole or in part, without restriction.",
+      "Your use or purchase of any Non-Vercel Services, and any data exchanged in connection with Non-Vercel Services, is solely between you and the applicable third-party provider, and governed by the terms of service, end user license agreement, privacy notice, and/or any other terms or policies between you and that third party as disclosed or made available within the Services or the Notices and…",
+      "The API terms apply to your access or use of the Services through APIs."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows /docs and /docs/deployments; no terms clause matched a prohibition pattern across 23 relevant excerpts."
+  },
+  "notes": []
+}

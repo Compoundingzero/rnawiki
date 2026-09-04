@@ -1,0 +1,1083 @@
+{
+  "site": "smashingmagazine.com",
+  "track": "A1",
+  "urls": {
+    "index": "https://www.smashingmagazine.com/",
+    "content": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/"
+  },
+  "capturedAt": "2026-09-03T15:33:19.057Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page.",
+    "content page is taller than the 16384 px capture cap (desktop 15700 px, mobile 20771 px); the -full image stops at the cap, and the tiles continue past it but only under the head-and-tail rule recorded on the last tile"
+  ],
+  "bannerActions": [
+    "index-1440: clicked 'No, thanks.' in div.cookie-banner__container (main document)",
+    "index-1440: banner still visible after the refusal click (div.col-12); left alone",
+    "index-375: left: only accept-type controls found in div.col-12",
+    "content-1440: left: only accept-type controls found in div.col-12",
+    "content-375: left: only accept-type controls found in div.col-12"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+    "collectedAt": "2026-09-03T15:33:04.171Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0852,
+    "title": "Rethinking Data Visualisation: A UX Approach To Dashboards That Actually Drives Decisions — Smashing Magazine",
+    "innerTextLength": 23144,
+    "outerHtmlLength": 271508,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Rethinking Data Visualisation: A UX Approach To Dashboards That Actually Drives "
+      },
+      {
+        "tag": "h2",
+        "text": "The Chart Was Never The Whole Story #"
+      },
+      {
+        "tag": "h2",
+        "text": "The 80% That Happens Before The Chart #"
+      },
+      {
+        "tag": "h2",
+        "text": "Context: What Are We Trying To Show With This Data? #"
+      },
+      {
+        "tag": "h2",
+        "text": "Audience: Who Is This For, And How Do They Think? #"
+      },
+      {
+        "tag": "h2",
+        "text": "Insight: What Should Change Once This Data Lands? #"
+      },
+      {
+        "tag": "h2",
+        "text": "From Questions To Dashboard: A Project Walk-Through #"
+      },
+      {
+        "tag": "h3",
+        "text": "CONTEXT #"
+      },
+      {
+        "tag": "h3",
+        "text": "AUDIENCE #"
+      },
+      {
+        "tag": "h3",
+        "text": "INSIGHT #"
+      },
+      {
+        "tag": "h2",
+        "text": "Closing #"
+      },
+      {
+        "tag": "h2",
+        "text": "— Comments 0"
+      },
+      {
+        "tag": "h3",
+        "text": "LEAVE A COMMENT"
+      }
+    ],
+    "headingCount": 13,
+    "stickyOrFixedCount": 2,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "col col-5 comment-form__sticky",
+        "position": "sticky",
+        "top": 15982.4,
+        "height": 996.8
+      },
+      {
+        "tag": "div",
+        "class": "back-to-top-wrapper",
+        "position": "fixed",
+        "top": 17031.7,
+        "height": 50
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 4,
+    "scriptsUnreadable": 2,
+    "searchAffordances": {
+      "count": 1,
+      "firstDescriptors": [
+        "input Search articles..."
+      ]
+    },
+    "imgCount": 17,
+    "imgLazyCount": 15,
+    "htmlAttributes": {
+      "class": "wf-loaded-stage2 enhanced js",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": true,
+      "matchedSheets": 2,
+      "unreadableSheets": 0,
+      "totalSheets": 7
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 255)",
+    "bodyColor": "rgb(51, 51, 51)",
+    "canvasCount": 0,
+    "svgCount": 2
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 8251,
+      "sha256": "7ff9f0edcd116998e82d93859ae673345f53a3c42828b9197b0c760fb5966e3e",
+      "capturedAt": "2026-09-03T15:32:52.299Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2367aa0915c696046f0b4f545ecec97b84cc0eb58315e39d677eafe07393fb12",
+      "capturedAt": "2026-09-03T15:32:52.402Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "8a93c4b633fadf8ba57207f68c0d7cb6c0b1372ea53ba850ceed9d14cba8a9c9",
+      "capturedAt": "2026-09-03T15:32:52.494Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "dc4a2f90a64df27f09571545c8eb4f9d3b319af713147582cd83f617a44143ae",
+      "capturedAt": "2026-09-03T15:32:52.597Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c10b116024e0daa99ab34a33ba068735780a7885a7dfd3662f3418b10e0756a3",
+      "capturedAt": "2026-09-03T15:32:52.691Z"
+    },
+    {
+      "file": "index-1440-tile-05.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0c477c3cf67813a3162f78f2496c25bf8cfa07212f81b7d6eee4c7f41d66fca7",
+      "capturedAt": "2026-09-03T15:32:52.774Z"
+    },
+    {
+      "file": "index-1440-tile-06.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "4ff96f0dc0e3eb628dcee080700b3cc00ca710a82c404d8b01f130bc81c61b23",
+      "capturedAt": "2026-09-03T15:32:52.844Z"
+    },
+    {
+      "file": "index-1440-tile-07.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a9549ff07e759e92fadf3dbf1b0b20c564fdbbd15668ee17b336be02554f9cdd",
+      "capturedAt": "2026-09-03T15:32:52.930Z"
+    },
+    {
+      "file": "index-1440-tile-08.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ec926759341a4530497000534af1acdd321acd5cf9f466b86c6b40d8bc040c4b",
+      "capturedAt": "2026-09-03T15:32:53.037Z"
+    },
+    {
+      "file": "index-1440-tile-09.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "481f1d3eef8d3ed1c029d96759d556a29aa4d1d7b960ff1cc868e8a0e0167981",
+      "capturedAt": "2026-09-03T15:32:53.126Z"
+    },
+    {
+      "file": "index-1440-tile-10.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 8100,
+      "widthPx": 1440,
+      "heightPx": 151,
+      "sha256": "46e4835942827be405b6351ef678eaebf2b89b25425e303c1faf34af859c851c",
+      "capturedAt": "2026-09-03T15:32:53.172Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 12467,
+      "sha256": "51ac6f15365244921d4e3edfd30241c6ab878d8bd9eb908d82508acac84417c2",
+      "capturedAt": "2026-09-03T15:32:56.820Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "71eabb9e78ee718a97e1d65904d46a6bee41455e8d14248d19b7a0417255f619",
+      "capturedAt": "2026-09-03T15:32:56.890Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "39239c0f8290705874a7ded94167790540665e5b283a26ea3f30fe6640dae5c9",
+      "capturedAt": "2026-09-03T15:32:56.956Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e55006f62cbd80494fcbb85acc2f2d206f2cdb74bb4fce4860c06c7c5b1d7796",
+      "capturedAt": "2026-09-03T15:32:57.023Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b1d8583bc8ab5dc8ff55f62c55b9f86d20e830c25b25fc06d54180e916483531",
+      "capturedAt": "2026-09-03T15:32:57.081Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "41197793b26b82b27a665c4062ded7ac33a90c84a5caabb6a65fa4f8640e05c2",
+      "capturedAt": "2026-09-03T15:32:57.156Z"
+    },
+    {
+      "file": "index-375-tile-06.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7a621d38b518178301cf93233f43e96860e99aeb651562f3e2c731121f87fe8a",
+      "capturedAt": "2026-09-03T15:32:57.213Z"
+    },
+    {
+      "file": "index-375-tile-07.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8f0910ca311c397d501d0a9ef0f1cb0868a1fc821ec87f47e61a4e28859693f9",
+      "capturedAt": "2026-09-03T15:32:57.289Z"
+    },
+    {
+      "file": "index-375-tile-08.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "20233f8d960622c8026c71d3802406c6ef4181293a526cdeb632a1f93f469a73",
+      "capturedAt": "2026-09-03T15:32:57.355Z"
+    },
+    {
+      "file": "index-375-tile-09.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9b9be3d420bf93a7ec9b09743e64073178c926581f60daf66df84d9794e876bd",
+      "capturedAt": "2026-09-03T15:32:57.420Z"
+    },
+    {
+      "file": "index-375-tile-10.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f82a3328d5765c9f460d39503b92e5af0c1de9e49d28fb426ea0340dc819854a",
+      "capturedAt": "2026-09-03T15:32:57.481Z"
+    },
+    {
+      "file": "index-375-tile-11.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "88348edd5c0503be3bd765058a731516eea4678c6e236002078974487be5c507",
+      "capturedAt": "2026-09-03T15:32:57.555Z"
+    },
+    {
+      "file": "index-375-tile-12.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "fe481362c5e30874a3403f70dbd5e0209f7e26e443862a484cb80c38a5c7337e",
+      "capturedAt": "2026-09-03T15:32:57.622Z"
+    },
+    {
+      "file": "index-375-tile-15.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 15,
+      "scrollY": 11368,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c6b371c695e9136edc8139e81593abff08fd6fc8750347b861226972dd298b48",
+      "capturedAt": "2026-09-03T15:32:57.689Z"
+    },
+    {
+      "file": "index-375-tile-16.png",
+      "url": "https://www.smashingmagazine.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 16,
+      "scrollY": 12180,
+      "widthPx": 375,
+      "heightPx": 287,
+      "sha256": "07a0419e593ec97aee4ec4df44bc8fee120b3a160b9b43369753e1ac8cc9a679",
+      "capturedAt": "2026-09-03T15:32:57.738Z",
+      "note": "2 tiles between 12 and 14 were not captured"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 15700,
+      "sha256": "486cc9fbc8a178661e706330a969675c87fb1410afd049e9f3e57a0c96fc4021",
+      "capturedAt": "2026-09-03T15:33:02.303Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1b53feb7cff156573ca9bfe781194023b3e454f6e0058fb8b1aa5fc1b39318ab",
+      "capturedAt": "2026-09-03T15:33:02.488Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a808146f39b595b0411ac8577030578c61f8fc7ccb99b3931f041dddd9570d43",
+      "capturedAt": "2026-09-03T15:33:02.597Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "8bf1fba8efcb84d02dea42c48dffd6d08c2815cbb58edbc9ddf0e17622d88660",
+      "capturedAt": "2026-09-03T15:33:02.719Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ccfc871f4fc6d7eb700ea52915ad5c18160de08882fec8e6af4d967c3dedf9cc",
+      "capturedAt": "2026-09-03T15:33:02.829Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "96a3c892794ed4ce5db36f7f15d9b60eb7f4972485ec4f170577af92f62d8b8f",
+      "capturedAt": "2026-09-03T15:33:02.945Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "cadb6ddb0bf7e0e2f9b2335ff9048114f70fdfc40e180a54cd53b255da3b5053",
+      "capturedAt": "2026-09-03T15:33:03.041Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7dc9971f8b410631862631ecc3992e6bc60d0358c71ae437f152f80210c91f34",
+      "capturedAt": "2026-09-03T15:33:03.160Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c36a8903d32e0d30c5cdfb81a17cc3da26dec3f4fdf711cb52ea647ae8f096fb",
+      "capturedAt": "2026-09-03T15:33:03.290Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3ca9c0e026ca12ea9ed71831f3b3e17ab1ac66636854e9c44d82754dbcd3724b",
+      "capturedAt": "2026-09-03T15:33:03.408Z"
+    },
+    {
+      "file": "content-1440-tile-10.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 8100,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "fe29f0cc1041dc3282719252b4bc7f7feaed864d9e9c79690846ed238417c033",
+      "capturedAt": "2026-09-03T15:33:03.526Z"
+    },
+    {
+      "file": "content-1440-tile-11.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 9000,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b39ef29a23aa7fe3b2a7f9059669a2929856714c784b826a132207ffc376dfe3",
+      "capturedAt": "2026-09-03T15:33:03.637Z"
+    },
+    {
+      "file": "content-1440-tile-12.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 9900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3c107b36e709e5487d782ce010694fe8f17647769a6c6d28701ebed1a6d1e5ed",
+      "capturedAt": "2026-09-03T15:33:03.743Z"
+    },
+    {
+      "file": "content-1440-tile-17.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 17,
+      "scrollY": 14400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "872a4a537e3f6f4f0ce1febf1c4e0296bd10d0dab661b6a3276d12f24c556399",
+      "capturedAt": "2026-09-03T15:33:03.836Z"
+    },
+    {
+      "file": "content-1440-tile-18.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 18,
+      "scrollY": 15300,
+      "widthPx": 1440,
+      "heightPx": 400,
+      "sha256": "e209da0d59744a78b7fe086fdb05163ea725e20b7b1988c0a37f81f416795a8c",
+      "capturedAt": "2026-09-03T15:33:03.908Z",
+      "note": "4 tiles between 12 and 16 were not captured"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1b53feb7cff156573ca9bfe781194023b3e454f6e0058fb8b1aa5fc1b39318ab",
+      "capturedAt": "2026-09-03T15:33:05.778Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 7400,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "876a81f28586fae7975a0f051791fe8cd5b3b963170f7d361ecf2b9a821dda96",
+      "capturedAt": "2026-09-03T15:33:07.369Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 13320,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1d5a3ecd815dc098c08019f550aa89a2ce24537931ae0950597d7451141084bf",
+      "capturedAt": "2026-09-03T15:33:08.964Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 16384,
+      "sha256": "d104baea2f4db68562939ac9a1463fcc2bca42bb82045ebd095b9669e002020d",
+      "capturedAt": "2026-09-03T15:33:13.125Z",
+      "truncated": true,
+      "note": "document is 20771 px tall; this image is the top 16384 px, the tallest surface this tool asks Chromium to rasterize. The tiles continue below this point."
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "131ca1e02f9b541db23c7ff6794531da9d111777b25a1c689133f0162931baa5",
+      "capturedAt": "2026-09-03T15:33:13.241Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "51eb82b10faaaeb036906158d745b82831de78068eb4b025d9de46f54cba9c84",
+      "capturedAt": "2026-09-03T15:33:13.324Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "94e3de97ca29bebc2653348053e61b8315360c551fe8f1e5925064d7c7521a6f",
+      "capturedAt": "2026-09-03T15:33:13.407Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9ffe52fcf11a8581ce5cef20e4de919c266f58f88be596a3c19e751254f61d14",
+      "capturedAt": "2026-09-03T15:33:13.490Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "2c6e6352150ce28606ff874a6030a410de1ebba41aec015b82630789102b2d58",
+      "capturedAt": "2026-09-03T15:33:13.575Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f0141309076dee27a65b83120cd4b8ba5efe8ecd34dda04c275cd2f563613b49",
+      "capturedAt": "2026-09-03T15:33:13.657Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5de5ea3d5a6a8a0d4a88e807164c58f82ba3c30a94f440a359e2b9bfa9efce93",
+      "capturedAt": "2026-09-03T15:33:13.746Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "077ed882ce1dfe0c4145bb7d6fcc2c0e42dc319cc99da138906f77333c118076",
+      "capturedAt": "2026-09-03T15:33:13.824Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a0c0a9958379dc6ab9b9618ab0599f18da5121f3a73a3bb0c57723f321cae669",
+      "capturedAt": "2026-09-03T15:33:13.907Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7429a59618262762185cbe1b74e813ad96bfb7e3f359133953cfc7321d71b1f2",
+      "capturedAt": "2026-09-03T15:33:13.991Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "bb97e57b33782e23fb181f7380a47d2922064a2bc534ec08a0d33e359494dae1",
+      "capturedAt": "2026-09-03T15:33:14.074Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "81f6db8f3e423dc6a0180225292664d050750bcf75bdc95c2059da0a67838b7f",
+      "capturedAt": "2026-09-03T15:33:14.157Z"
+    },
+    {
+      "file": "content-375-tile-25.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 25,
+      "scrollY": 19488,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "ebe36ff8e188be58b0980b03d62ff1ad511655beba1c5cde528646952ffe81bd",
+      "capturedAt": "2026-09-03T15:33:14.228Z"
+    },
+    {
+      "file": "content-375-tile-26.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 26,
+      "scrollY": 20300,
+      "widthPx": 375,
+      "heightPx": 471,
+      "sha256": "99713e94f56cf5771526e6b2f16918caff0a60785e526773f4310d88e0ab54bd",
+      "capturedAt": "2026-09-03T15:33:14.343Z",
+      "note": "12 tiles between 12 and 24 were not captured"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "131ca1e02f9b541db23c7ff6794531da9d111777b25a1c689133f0162931baa5",
+      "capturedAt": "2026-09-03T15:33:15.911Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 9980,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9b3240c3f79857106cefcff4b6c40a27d76d7376f2a3a73fd8daa7e58fadf276",
+      "capturedAt": "2026-09-03T15:33:17.479Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://www.smashingmagazine.com/2026/08/rethinking-data-visualisation-ux-approach-dashboards/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 17963,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8e21174d8c161831cdb2345ebb8267072daf422f8845ea6f68a8204ac657d568",
+      "capturedAt": "2026-09-03T15:33:19.057Z"
+    }
+  ]
+}

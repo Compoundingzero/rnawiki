@@ -1,0 +1,1010 @@
+{
+ "generatedAt": "2026-09-04T06:07:43Z",
+ "risk": "R8",
+ "inputs": {
+  "canonicalRecords": 28966,
+  "identityDecisions": 5618,
+  "existingCanonicalRecords": 9852,
+  "previouslySubmittedIndexNowUrls": 9852,
+  "indexNowSubmissionLog": "docs/audits/discovery/indexnow-submissions.ndjson (2 runs, 9,852 URLs each, no per-URL list recorded)",
+  "sitemapQuery": {
+   "file": "app/sitemap.ts -> loadMedicineSitemapIndexabilityReports() in lib/seo/publication-indexability.ts",
+   "canonicalRecordBranch": "select drugs.id, drugs.name, drugs.slug, exists(select 1 from medicine_slug_redirects where old_slug = drugs.slug) as is_redirect_source, inventory_resolutions.resolution_status, dossier_completion_assessments.status, dossier_completion_assessments.content_changed_at, dossier_completion_assessments.applicable_section_count, dossier_completion_assessments.terminal_section_count from drugs left join inventory_resolutions on inventory_resolutions.drug_id = drugs.id left join dossier_completion_assessments on dossier_completion_assessments.drug_id = drugs.id where drugs.slug not in (PUBLIC_PLACEHOLDER_MEDICINE_SLUGS) and lower(btrim(drugs.name)) not in (PUBLIC_PLACEHOLDER_MEDICINE_NAMES)",
+   "emitRule": "a row is emitted as ${origin}/d/${canonicalSlug} only when explainMedicineIndexability returns index=true with a canonicalSlug and a lastPublicContentUpdate; the canonical-record path requires resolution_status = CANONICAL_ENTITY, no medicine_slug_redirects row on the slug, a non-null completion assessment with applicable_section_count >= 1 and terminal_section_count between 0 and applicable_section_count, and a valid content_changed_at",
+   "alsoEmitted": "static routes, /browse?page=2..N, contributor profiles; capped at SITEMAP_MAX_URLS = 50000 in one file"
+  }
+ },
+ "counts": {
+  "matchedKeys": 7049,
+  "newKeys": 19978,
+  "notFoundKeys": 1939,
+  "dispositions": {
+   "KEEP": 7049,
+   "REDIRECT": 864,
+   "RETAIN": 1939,
+   "RETIRE_410": 0
+  },
+  "dispositionTotal": 9852
+ },
+ "matchedByKeyRank": {
+  "COMBO": 20,
+  "HOLD": 55,
+  "K1": 6958,
+  "K2": 16
+ },
+ "newBySource": {
+  "open-targets": 17808,
+  "chembl": 12211,
+  "fda-unii": 11431
+ },
+ "newBySourceCombination": {
+  "chembl+fda-unii+open-targets": 8943,
+  "open-targets": 6876,
+  "chembl+fda-unii": 1597,
+  "chembl+open-targets": 1098,
+  "fda-unii+open-targets": 891,
+  "chembl": 573
+ },
+ "notFoundByEntityClass": {
+  "SUPPLEMENT_INGREDIENT": 1249,
+  "BOTANICAL_OR_ORGANISM_PREPARATION": 579,
+  "APPROVED_MEDICINE": 34,
+  "MARKETED_PRODUCT_INGREDIENT": 29,
+  "COMBINATION_PRODUCT": 18,
+  "INVESTIGATIONAL_MEDICINE": 16,
+  "APPROVED_BIOLOGIC": 10,
+  "OFF_LABEL_OR_COMPOUNDED": 4
+ },
+ "retainByEntityClass": {
+  "SUPPLEMENT_INGREDIENT": 1249,
+  "BOTANICAL_OR_ORGANISM_PREPARATION": 579,
+  "APPROVED_MEDICINE": 34,
+  "MARKETED_PRODUCT_INGREDIENT": 29,
+  "COMBINATION_PRODUCT": 18,
+  "INVESTIGATIONAL_MEDICINE": 16,
+  "APPROVED_BIOLOGIC": 10,
+  "OFF_LABEL_OR_COMPOUNDED": 4
+ },
+ "examples": {
+  "matched": [
+   {
+    "key": "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+    "keyRank": "COMBO",
+    "pageSlug": "dapagliflozin",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}",
+    "keyRank": "COMBO",
+    "pageSlug": "ergoloid-mesylates",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:0I55128JYK,K1:TE7660XO1C}",
+    "keyRank": "COMBO",
+    "pageSlug": "theophylline-sodium-glycinate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:0RBV727H71,K1:2K2DJ01BB7,K1:78YC2MAX4O,K1:7S686LQT6T,K1:9KJL21T0QJ,K1:AAN7QOV9EA,K1:HR3EZB17BI,K1:NS3OZT14QT,K1:ZAD9OKH9JC}",
+    "keyRank": "COMBO",
+    "pageSlug": "omega-3-carboxylic-acids",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+    "keyRank": "COMBO",
+    "pageSlug": "diclofenac-epolamine",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+    "keyRank": "COMBO",
+    "pageSlug": "cannabinoids",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:2WTB3V159F,K1:F0R1QK73KB}",
+    "keyRank": "COMBO",
+    "pageSlug": "vitamin-b",
+    "collapsed": [
+     "cyanocobalamin-co-58"
+    ],
+    "newSources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:3QN8BYN5QF,K1:DIQ16UC154}",
+    "keyRank": "COMBO",
+    "pageSlug": "fingolimod-lauryl",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:4G9EDB6V73,K1:R7EZ772VG2}",
+    "keyRank": "COMBO",
+    "pageSlug": "enlicitide-decanoate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
+    "keyRank": "COMBO",
+    "pageSlug": "penicillin-g-procaine",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:63937KV33D,K1:65R938S4DV}",
+    "keyRank": "COMBO",
+    "pageSlug": "erythromycin-lactobionate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:6C282481IP,K1:SZB83O1W42}",
+    "keyRank": "COMBO",
+    "pageSlug": "ertugliflozin",
+    "collapsed": [
+     "ertugliflozin-pidolate"
+    ],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:6L8OF9XRDC}",
+    "keyRank": "COMBO",
+    "pageSlug": "fosaprepitant-dimeglumine",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:8FG9H9D31J}",
+    "keyRank": "COMBO",
+    "pageSlug": "tafamidis",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:NS1Y283HW4}",
+    "keyRank": "COMBO",
+    "pageSlug": "iodoxamate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:78OY3Z0P7Z,K1:R9QTB5E82N}",
+    "keyRank": "COMBO",
+    "pageSlug": "acrisorcin",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:8G388563M7,K1:TE0865N2ET}",
+    "keyRank": "COMBO",
+    "pageSlug": "telotristat-etiprate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:8GTS82S83M,K1:GE2UA340FM}",
+    "keyRank": "COMBO",
+    "pageSlug": "dimenhydrinate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "keyRank": "COMBO",
+    "pageSlug": "ornithine-alpha-ketoglutarate",
+    "collapsed": [
+     "diornithine-oxoglurate",
+     "ornithine-ketoglutarate",
+     "ornithine-oxoglurate"
+    ],
+    "newSources": [
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:J50OIX95QV,K1:TE0865N2ET}",
+    "keyRank": "COMBO",
+    "pageSlug": "methenamine-hippurate",
+    "collapsed": [],
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   }
+  ],
+  "new": [
+   {
+    "key": "COMBO:NAME:hydroxyethyl starch 130 0 4",
+    "displayName": "HYDROXYETHYL STARCH 130/0.4",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
+    "displayName": "SVN53-67/M57-KLH PEPTIDE VACCINE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{IK:BRLQWZUYTZBJKN-UHFFFAOYSA-N,K1:506T60A25R}",
+    "displayName": "GLUSOFERRON",
+    "sources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{IK:DSLZVSRJTYRBFB-AJSXGEPRSA-N,K1:GOO8ZCK7RT}",
+    "displayName": "DEXISOMETHEPTENE MUCATE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{IK:JAZBEHYOTPTENJ-RCHUDCCISA-N,IK:OQOCQFSPEWCSDO-RCHUDCCISA-N,IK:YUFFSWGQGVEMMI-RCHUDCCISA-N}",
+    "displayName": "OMEGA-3-PENTAENOIC ACIDS",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{IK:XUFIWSHGXVLULG-IBLUXPFWSA-N,K1:AV4A72IATD}",
+    "displayName": "CHEMBL3039597",
+    "sources": [
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:00A9JB14O6,K1:2027T69J24}",
+    "displayName": "METESIND GLUCURONATE",
+    "sources": [
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:01704YP3MO,K1:HN3OFO5036}",
+    "displayName": "AMINOPHENAZONE CYCLAMATE",
+    "sources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:04Z20NMK31,K1:5A614L51CT}",
+    "displayName": "INOSINE PRANOBEX",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:071P4J77HF,K1:GN5P7K3T8S}",
+    "displayName": "CLOFEZONE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:0I8Y3P32UF,K1:724L30Y2QR}",
+    "displayName": "BERBERINE URSODEOXYCHOLATE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:0J48LPH2TH,K1:9G64RSX1XD}",
+    "displayName": "CO-ZIDOCAPT",
+    "sources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:0RH81L854J,K1:F06SGE49M6}",
+    "displayName": "MAGNESIUM PYRIDOXAL 5-PHOSPHATE GLUTAMATE",
+    "sources": [
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:16CHD79MIX,K1:6HG8UB2MUY}",
+    "displayName": "IOTHALAMATE MEGLUMINE",
+    "sources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:1RTM4PAL0V,K1:9G34HU7RV0}",
+    "displayName": "PIPERAZINE EDETATE CALCIUM",
+    "sources": [
+     "chembl"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:1RTM4PAL0V,K1:M494UE2YEP}",
+    "displayName": "ACEFYLLINE PIPERAZINE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:1RTM4PAL0V,K1:QTL48N278K}",
+    "displayName": "ESTROPIPATE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:200168S0CL,K1:M494UE2YEP}",
+    "displayName": "AMBROXOL ACEFYLLINATE",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:23521W1S24,K1:9EM05410Q9}",
+    "displayName": "AMOXICILLIN/CLAVULANIC ACID",
+    "sources": [
+     "open-targets"
+    ]
+   },
+   {
+    "key": "COMBO:{K1:23OW28RS7P,K1:R9M4FJE48E}",
+    "displayName": "QUINUPRISTIN/DALFOPRISTIN",
+    "sources": [
+     "chembl",
+     "open-targets"
+    ]
+   }
+  ],
+  "notFound": [
+   {
+    "key": "COMBO:NAME:astragalus exscapus flowering fruiting",
+    "pageSlug": "astragalus-exscapus-whole-flowering-fruiting",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+    "pageSlug": "bordetella-pertussis-fimbriae-2-3-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "INVESTIGATIONAL_MEDICINE"
+   },
+   {
+    "key": "COMBO:NAME:cairina moschata heart liver autolysate",
+    "pageSlug": "cairina-moschata-heart-liver-autolysate",
+    "disposition": "RETAIN",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "key": "COMBO:NAME:caprylic capric triglyceride",
+    "pageSlug": "caprylic-capric-triglyceride",
+    "disposition": "RETAIN",
+    "entityClass": "OFF_LABEL_OR_COMPOUNDED"
+   },
+   {
+    "key": "COMBO:NAME:comocladia dentata bark leaf",
+    "pageSlug": "comocladia-dentata-bark-leaf",
+    "disposition": "RETAIN",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "key": "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+    "pageSlug": "conjugated-estrogens-medroxyprogesterone",
+    "disposition": "RETAIN",
+    "entityClass": "APPROVED_MEDICINE"
+   },
+   {
+    "key": "COMBO:NAME:euonymus atropurpureus branch bark root bark",
+    "pageSlug": "euonymus-atropurpureus-branch-bark-root-bark",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:ferment complex 6 pf",
+    "pageSlug": "ferment-complex-6-pf",
+    "disposition": "RETAIN",
+    "entityClass": "MARKETED_PRODUCT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:follitropin alfa beta",
+    "pageSlug": "follitropin-alfa-beta",
+    "disposition": "RETAIN",
+    "entityClass": "APPROVED_BIOLOGIC"
+   },
+   {
+    "key": "COMBO:NAME:grindelia camporum flower leaf",
+    "pageSlug": "grindelia-camporum-flower-leaf",
+    "disposition": "RETAIN",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "key": "COMBO:NAME:hamamelis virginiana root bark stem bark",
+    "pageSlug": "hamamelis-virginiana-root-bark-stem-bark",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:hawthorn leaf with flower",
+    "pageSlug": "hawthorn-leaf-with-flower",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:human botulinum neurotoxin a b immune globulin",
+    "pageSlug": "human-botulinum-neurotoxin-a-b-immune-globulin",
+    "disposition": "RETAIN",
+    "entityClass": "INVESTIGATIONAL_MEDICINE"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a croatia 10136rv 2023 x 425a antigen",
+    "pageSlug": "influenza-a-virus-a-croatia-10136rv-2023-x-425a-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a darwin 6 2021",
+    "pageSlug": "influenza-a-virus-a-darwin-6-2021-whole",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a darwin 9 2021 ivr 228 antigen",
+    "pageSlug": "influenza-a-virus-a-darwin-9-2021-ivr-228-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a darwin 9 2021 ivr 228 hemagglutinin antigen",
+    "pageSlug": "influenza-a-virus-a-darwin-9-2021-ivr-228-hemagglutinin-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a guangdong maonan swl1536 2019 cnic 1909 antigen",
+    "pageSlug": "influenza-a-virus-a-guangdong-maonan-swl1536-2019-cnic-1909-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a hong kong 2671 2019 ivr 208 antigen",
+    "pageSlug": "influenza-a-virus-a-hong-kong-2671-2019-ivr-208-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "key": "COMBO:NAME:influenza a virus a michigan 105 2025 san 049a antigen",
+    "pageSlug": "influenza-a-virus-a-michigan-105-2025-san-049a-antigen",
+    "disposition": "RETAIN",
+    "entityClass": "INVESTIGATIONAL_MEDICINE"
+   }
+  ],
+  "KEEP": [
+   {
+    "slug": "dapagliflozin",
+    "key": "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "ergoloid-mesylates",
+    "key": "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "theophylline-sodium-glycinate",
+    "key": "COMBO:{K1:0I55128JYK,K1:TE7660XO1C}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "omega-3-carboxylic-acids",
+    "key": "COMBO:{K1:0RBV727H71,K1:2K2DJ01BB7,K1:78YC2MAX4O,K1:7S686LQT6T,K1:9KJL21T0QJ,K1:AAN7QOV9EA,K1:HR3EZB17BI,K1:NS3OZT14QT,K1:ZAD9OKH9JC}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "diclofenac-epolamine",
+    "key": "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "cannabinoids",
+    "key": "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "vitamin-b",
+    "key": "COMBO:{K1:2WTB3V159F,K1:F0R1QK73KB}",
+    "newSources": [
+     "chembl"
+    ]
+   },
+   {
+    "slug": "fingolimod-lauryl",
+    "key": "COMBO:{K1:3QN8BYN5QF,K1:DIQ16UC154}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "enlicitide-decanoate",
+    "key": "COMBO:{K1:4G9EDB6V73,K1:R7EZ772VG2}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "penicillin-g-procaine",
+    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "erythromycin-lactobionate",
+    "key": "COMBO:{K1:63937KV33D,K1:65R938S4DV}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "ertugliflozin",
+    "key": "COMBO:{K1:6C282481IP,K1:SZB83O1W42}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "fosaprepitant-dimeglumine",
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:6L8OF9XRDC}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "tafamidis",
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:8FG9H9D31J}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "iodoxamate",
+    "key": "COMBO:{K1:6HG8UB2MUY,K1:NS1Y283HW4}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "acrisorcin",
+    "key": "COMBO:{K1:78OY3Z0P7Z,K1:R9QTB5E82N}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "telotristat-etiprate",
+    "key": "COMBO:{K1:8G388563M7,K1:TE0865N2ET}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "dimenhydrinate",
+    "key": "COMBO:{K1:8GTS82S83M,K1:GE2UA340FM}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "ornithine-alpha-ketoglutarate",
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "newSources": [
+     "open-targets"
+    ]
+   },
+   {
+    "slug": "methenamine-hippurate",
+    "key": "COMBO:{K1:J50OIX95QV,K1:TE0865N2ET}",
+    "newSources": [
+     "chembl",
+     "open-targets"
+    ]
+   }
+  ],
+  "REDIRECT": [
+   {
+    "slug": "cyanocobalamin-co-58",
+    "targetSlug": "vitamin-b",
+    "key": "COMBO:{K1:2WTB3V159F,K1:F0R1QK73KB}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "ertugliflozin-pidolate",
+    "targetSlug": "ertugliflozin",
+    "key": "COMBO:{K1:6C282481IP,K1:SZB83O1W42}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "diornithine-oxoglurate",
+    "targetSlug": "ornithine-alpha-ketoglutarate",
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "ornithine-ketoglutarate",
+    "targetSlug": "ornithine-alpha-ketoglutarate",
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "ornithine-oxoglurate",
+    "targetSlug": "ornithine-alpha-ketoglutarate",
+    "key": "COMBO:{K1:8ID597Z82X,K1:E524N2IXA3}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "metformin-hydrochloride-sitagliptin",
+    "targetSlug": "sitagliptin-metformin",
+    "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "sitagliptin-and-metformin",
+    "targetSlug": "sitagliptin-metformin",
+    "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "sitagliptin-phosphate-anhydrous-metformin",
+    "targetSlug": "sitagliptin-metformin",
+    "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}",
+    "ruleId": "S-COMBO"
+   },
+   {
+    "slug": "staphisagria-macrosperma-seed",
+    "targetSlug": "delphinium-staphisagria-seed",
+    "key": "K1:00543AP1JV",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "crocus-sativus-flower",
+    "targetSlug": "saffron-extract",
+    "key": "K1:00IF91KFKQ",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "cayenne",
+    "targetSlug": "capsicum",
+    "key": "K1:00UK7646FG",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "dieffenbachia-seguine",
+    "targetSlug": "dieffenbachia-seguine-whole",
+    "key": "K1:01800C6E6B",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "solanum-lycopersicum-whole",
+    "targetSlug": "solanum-lycopersicum",
+    "key": "K1:0243Q4990L",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "cyanocobalamin-co-57",
+    "targetSlug": "vitamin-b12",
+    "key": "K1:025P9I542Y",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "l-leucine",
+    "targetSlug": "leucine",
+    "key": "K1:02AA4F4VLP",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "pemetrexed-ditromethamine",
+    "targetSlug": "pemetrexed-disodium-hemipentahydrate",
+    "key": "K1:04Q9AIZ7NO",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "malus-pumila-whole",
+    "targetSlug": "malus-domestica-whole",
+    "key": "K1:04W636S1V3",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "phenylethylamine",
+    "targetSlug": "phenethylamine",
+    "key": "K1:05780F90V3",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "aqua",
+    "targetSlug": "sterile-water-for-irrigation",
+    "key": "K1:059QF0KO0R",
+    "ruleId": "K1-UNII-PARENT"
+   },
+   {
+    "slug": "hydroxide-ion",
+    "targetSlug": "sterile-water-for-irrigation",
+    "key": "K1:059QF0KO0R",
+    "ruleId": "K1-UNII-PARENT"
+   }
+  ],
+  "RETAIN": [
+   {
+    "slug": "astragalus-exscapus-whole-flowering-fruiting",
+    "key": "COMBO:NAME:astragalus exscapus flowering fruiting",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 23,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 23 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "bordetella-pertussis-fimbriae-2-3-antigen",
+    "key": "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+    "entityClass": "INVESTIGATIONAL_MEDICINE",
+    "evidenceSections": 4,
+    "sourceRefs": 8,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 8 source reference(s); entity class INVESTIGATIONAL_MEDICINE"
+   },
+   {
+    "slug": "cairina-moschata-heart-liver-autolysate",
+    "key": "COMBO:NAME:cairina moschata heart liver autolysate",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION",
+    "evidenceSections": 6,
+    "sourceRefs": 95,
+    "reason": "no new source file names this key, but the existing record carries 6 source-backed section(s), 95 source reference(s), and a recorded label presence; entity class BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "slug": "caprylic-capric-triglyceride",
+    "key": "COMBO:NAME:caprylic capric triglyceride",
+    "entityClass": "OFF_LABEL_OR_COMPOUNDED",
+    "evidenceSections": 4,
+    "sourceRefs": 19,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 19 source reference(s), and a recorded label presence; entity class OFF_LABEL_OR_COMPOUNDED"
+   },
+   {
+    "slug": "comocladia-dentata-bark-leaf",
+    "key": "COMBO:NAME:comocladia dentata bark leaf",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION",
+    "evidenceSections": 5,
+    "sourceRefs": 26,
+    "reason": "no new source file names this key, but the existing record carries 5 source-backed section(s), 26 source reference(s), and a recorded label presence; entity class BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "slug": "conjugated-estrogens-medroxyprogesterone",
+    "key": "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+    "entityClass": "APPROVED_MEDICINE",
+    "evidenceSections": 8,
+    "sourceRefs": 12,
+    "reason": "no new source file names this key, but the existing record carries 8 source-backed section(s), 12 source reference(s), and a recorded label presence; entity class APPROVED_MEDICINE"
+   },
+   {
+    "slug": "euonymus-atropurpureus-branch-bark-root-bark",
+    "key": "COMBO:NAME:euonymus atropurpureus branch bark root bark",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 16,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 16 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "ferment-complex-6-pf",
+    "key": "COMBO:NAME:ferment complex 6 pf",
+    "entityClass": "MARKETED_PRODUCT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 16,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 16 source reference(s), and a recorded label presence; entity class MARKETED_PRODUCT_INGREDIENT"
+   },
+   {
+    "slug": "follitropin-alfa-beta",
+    "key": "COMBO:NAME:follitropin alfa beta",
+    "entityClass": "APPROVED_BIOLOGIC",
+    "evidenceSections": 12,
+    "sourceRefs": 49,
+    "reason": "no new source file names this key, but the existing record carries 12 source-backed section(s), 49 source reference(s), and a recorded label presence; entity class APPROVED_BIOLOGIC"
+   },
+   {
+    "slug": "grindelia-camporum-flower-leaf",
+    "key": "COMBO:NAME:grindelia camporum flower leaf",
+    "entityClass": "BOTANICAL_OR_ORGANISM_PREPARATION",
+    "evidenceSections": 5,
+    "sourceRefs": 30,
+    "reason": "no new source file names this key, but the existing record carries 5 source-backed section(s), 30 source reference(s), and a recorded label presence; entity class BOTANICAL_OR_ORGANISM_PREPARATION"
+   },
+   {
+    "slug": "hamamelis-virginiana-root-bark-stem-bark",
+    "key": "COMBO:NAME:hamamelis virginiana root bark stem bark",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 6,
+    "sourceRefs": 71,
+    "reason": "no new source file names this key, but the existing record carries 6 source-backed section(s), 71 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "hawthorn-leaf-with-flower",
+    "key": "COMBO:NAME:hawthorn leaf with flower",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 84,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 84 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "human-botulinum-neurotoxin-a-b-immune-globulin",
+    "key": "COMBO:NAME:human botulinum neurotoxin a b immune globulin",
+    "entityClass": "INVESTIGATIONAL_MEDICINE",
+    "evidenceSections": 9,
+    "sourceRefs": 17,
+    "reason": "no new source file names this key, but the existing record carries 9 source-backed section(s), 17 source reference(s), and a recorded label presence; entity class INVESTIGATIONAL_MEDICINE"
+   },
+   {
+    "slug": "influenza-a-virus-a-croatia-10136rv-2023-x-425a-antigen",
+    "key": "COMBO:NAME:influenza a virus a croatia 10136rv 2023 x 425a antigen",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 82,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 82 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-darwin-6-2021-whole",
+    "key": "COMBO:NAME:influenza a virus a darwin 6 2021",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 103,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 103 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-darwin-9-2021-ivr-228-antigen",
+    "key": "COMBO:NAME:influenza a virus a darwin 9 2021 ivr 228 antigen",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 103,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 103 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-darwin-9-2021-ivr-228-hemagglutinin-antigen",
+    "key": "COMBO:NAME:influenza a virus a darwin 9 2021 ivr 228 hemagglutinin antigen",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 103,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 103 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-guangdong-maonan-swl1536-2019-cnic-1909-antigen",
+    "key": "COMBO:NAME:influenza a virus a guangdong maonan swl1536 2019 cnic 1909 antigen",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 52,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 52 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-hong-kong-2671-2019-ivr-208-antigen",
+    "key": "COMBO:NAME:influenza a virus a hong kong 2671 2019 ivr 208 antigen",
+    "entityClass": "SUPPLEMENT_INGREDIENT",
+    "evidenceSections": 4,
+    "sourceRefs": 52,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 52 source reference(s), and a recorded label presence; entity class SUPPLEMENT_INGREDIENT"
+   },
+   {
+    "slug": "influenza-a-virus-a-michigan-105-2025-san-049a-antigen",
+    "key": "COMBO:NAME:influenza a virus a michigan 105 2025 san 049a antigen",
+    "entityClass": "INVESTIGATIONAL_MEDICINE",
+    "evidenceSections": 4,
+    "sourceRefs": 11,
+    "reason": "no new source file names this key, but the existing record carries 4 source-backed section(s), 11 source reference(s); entity class INVESTIGATIONAL_MEDICINE"
+   }
+  ],
+  "RETIRE_410": []
+ },
+ "issues": [
+  "RETIRE_410 is 0: no existing canonical record meets the narrow non-entity test. Every one of the 9852 records carries at least 2 source-backed section(s) in its completion assessment, and the 5 REGISTRY_ONLY_IDENTITY rows (bromantane, laurtrimonium, radium, sanguinarine, sodium-arsenate-dibasic) all matched a new source file, so each is KEEP.",
+  "3 unkeyed (keyRank NONE) existing identities were RETAINed because they store evidence, but they are generic terms a person should judge: calcium-potassium-phosphate-citrate, capsule, juice. The rule forbids retiring an evidence-bearing record, so none was retired here.",
+  "55 existing slugs sit on HOLD-rank keys (identity-resolution CONFLICT-K1-K2, held for a person). All received KEEP: the slug is unchanged and nothing merged into or out of them, so the identity conflict stays open and must be decided before those keys are treated as final.",
+  "864 REDIRECT slugs need medicine_slug_redirects rows written before they leave the sitemap. The sitemap's canonical-record branch drops a slug the moment a redirect row exists (is_redirect_source -> canonical_identity_redirected), so the ledger write, the 301 and the sitemap rebuild must ship in the same change or those URLs 404 while still indexed.",
+  "The IndexNow log records counts only (9,852 eligible/accepted URLs on 2026-09-02T12:48Z and 2026-09-02T17:13Z), never a per-URL list, so the previously submitted set was reconstructed as the 9,852 CANONICAL_ENTITY slugs. That set equals this disposition universe exactly, so no previously submitted URL is unaccounted for.",
+  "13 not-found page slugs carry the inventory warning ALIAS_SHADOWED_BY_CANONICAL_SLUG. They were RETAINed on evidence, but each is a candidate for a human merge decision rather than a standing page.",
+  "Projected dossier URLs after this reconciliation: 28966 (KEEP + RETAIN + new keys), against the single-file SITEMAP_MAX_URLS of 50,000 in app/sitemap.ts. Adding browse pages and contributor profiles it still fits one file, but R6's sitemap index is not yet built and the margin is roughly 19,000 URLs."
+ ],
+ "outOfScope": {
+  "note": "inventory_resolutions holds 9,859 rows; the 5 DUPLICATE_OF_CANONICAL_ENTITY slugs already have medicine_slug_redirects rows and the 2 INVALID_IDENTITY_GONE placeholders are excluded by publicMedicineFilter, so neither set is in the 9,852 disposition universe and neither was ever in the sitemap."
+ }
+}

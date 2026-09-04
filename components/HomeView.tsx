@@ -1,16 +1,19 @@
-// Minimal home page. The server supplies the featured record, popular searches, and exact database
-// counts; the search box is the only client-side part.
+// Minimal home page. The server supplies the popular searches and exact database counts; the
+// search box is the only client-side part.
+//
+// The search bar above is frozen: its component, its props and its position in the section are
+// unchanged. Everything below it is the corpus entry: the organism-ladder legend (the recurring
+// diagram of a record), the five facet indexes of the browse spec, then the counts line.
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+
+import { FacetNav } from '@/app/browse/facet-view'
 
 import { HomeSearch } from './HomeSearch'
+import { OrganismLadderLegend } from './corpus/OrganismLadderLegend'
 import { HomepageContributorSpotlight } from './home/HomepageContributorSpotlight'
 import type { SearchHit } from '@/lib/api-client'
-import type { HomeFeaturedMedicineAnswer } from '@/lib/home-featured-medicine'
 import type { HomepageContributorSpotlightView } from '@/lib/homepage-contributor-spotlight'
-import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
-import type { DrugDossier } from '@/lib/types'
 
 export interface CorpusStats {
   /** Every record in the corpus, including records not yet moved to the programme model. */
@@ -20,32 +23,14 @@ export interface CorpusStats {
 }
 
 export interface HomeViewProps {
-  /** Null on an empty database: the hero and search render, the spotlight section does not. */
-  featured: DrugDossier | null
-  /** Exact first-read purpose built by the canonical dossier mapper for the default programme. */
-  featuredAnswer: HomeFeaturedMedicineAnswer | null
   contributorSpotlight: HomepageContributorSpotlightView
   popular: SearchHit[]
   corpusStats: CorpusStats
 }
 
-/** Keep long lists of brand names from overwhelming the featured heading. */
-function tradeNameHeadline(tradeName: string, limit = 2): string {
-  const names = tradeName
-    .split('/')
-    .map((name) => name.trim())
-    .filter(Boolean)
-  if (names.length <= limit) return names.join(' / ')
-  return `${names.slice(0, limit).join(' / ')} +${names.length - limit} more`
-}
+const LADDER_HEADING_ID = 'home-organism-ladder'
 
-export function HomeView({
-  featured,
-  featuredAnswer,
-  contributorSpotlight,
-  popular,
-  corpusStats,
-}: HomeViewProps) {
+export function HomeView({ contributorSpotlight, popular, corpusStats }: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
 
   return (
@@ -65,70 +50,32 @@ export function HomeView({
         <HomeSearch popular={popular} />
       </section>
 
-      {(featured || showCorpusLine) && (
-        <section className="space-y-3">
-          {featured && (
-            <>
-              <div className="flex items-center justify-between px-1">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
-                  Featured medicine
-                </span>
-                <span className="rounded-full border border-black/[0.08] bg-white px-2.5 py-0.5 text-xs font-semibold text-[#424245]">
-                  {publicApprovalStatusLabel(featured.approvalStatus)}
-                </span>
-              </div>
+      <div className="space-y-10">
+        <section className="space-y-4" aria-labelledby={LADDER_HEADING_ID}>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 px-1">
+            <h2
+              id={LADDER_HEADING_ID}
+              className="text-lg font-semibold tracking-tight"
+              style={{ fontFamily: 'var(--corpus-serif)', color: 'var(--corpus-ink-0)' }}
+            >
+              Organism ladder
+            </h2>
+            <Link
+              href="/definitions"
+              className="text-xs font-semibold underline underline-offset-2"
+              style={{ color: 'var(--corpus-ink-2)' }}
+            >
+              Definitions
+            </Link>
+          </div>
 
-              <Link
-                href={featuredAnswer?.href ?? `/d/${featured.id}`}
-                className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-6 sm:p-8 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-5"
-              >
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight group-hover:text-[#0071E3] transition">
-                      {featured.name}{' '}
-                      {featured.tradeName && (
-                        <span
-                          className="text-lg text-[#6E6E73] font-normal"
-                          title={featured.tradeName}
-                        >
-                          ({tradeNameHeadline(featured.tradeName)})
-                        </span>
-                      )}
-                    </h2>
-                    <span className="text-xs font-bold text-[#0066CC] bg-blue-50 px-3 py-1 rounded-full border border-[#0071E3]/20 shrink-0">
-                      {publicMedicineTypeLabel(featured.modality)}
-                    </span>
-                  </div>
+          <OrganismLadderLegend className="block h-auto w-full max-w-[22rem] px-1" />
+        </section>
 
-                  {featuredAnswer?.answerFor && (
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73]">
-                      Answer for: {featuredAnswer.answerFor}
-                    </p>
-                  )}
-                  {featuredAnswer && (
-                    <div className="space-y-2 border-t border-black/[0.05] pt-4">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#0071E3]">
-                        In 10 seconds
-                      </p>
-                      <div className="space-y-1">
-                        <p className="text-xs font-bold text-[#424245]">What is it for?</p>
-                        <p className="text-sm font-medium leading-relaxed text-[#1D1D1F]">
-                          {featuredAnswer.usedFor}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex items-center justify-between pt-2 border-t border-black/[0.05] text-xs sm:text-sm font-bold text-[#0071E3]">
-                  <span>Open medicine summary</span>
-                  <div className="flex items-center gap-1 group-hover:translate-x-1 transition">
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                  </div>
-                </div>
-              </Link>
-            </>
-          )}
+        <section className="space-y-4">
+          <div className="px-1">
+            <FacetNav />
+          </div>
 
           {showCorpusLine && (
             <p className="px-1 text-[11px] text-[#6E6E73] leading-relaxed">
@@ -149,7 +96,7 @@ export function HomeView({
             </p>
           )}
         </section>
-      )}
+      </div>
 
       <HomepageContributorSpotlight spotlight={contributorSpotlight} />
     </div>

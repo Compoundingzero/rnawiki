@@ -1,0 +1,947 @@
+{
+  "gate": 2,
+  "run": "recheck v2",
+  "date": "2026-09-05",
+  "stage": "Gate 2 recheck after the Phase 5a pre-load fixes: the same method rerun on the fixed loader, fixed CSS, fixed derived content and pass-3 identity, then the threshold deploy procedure applied.",
+  "method": {
+    "database": "disposable local PostgreSQL rnawiki_gate2v2_test, migrated 0001-0025, carrying the legacy drugs (9,859), inventory_resolutions (9,859) and medicine_slug_redirects (5) rows copied from the working database. Dropped at the end.",
+    "load": "scripts/corpus-20k/load/materialise.ts --indexable-threshold 7, ALL of Tier 1 (1,719) and Tier 2 (4,477) plus Tier 3 batch 1 (250, which holds both Tier 3 samples). Markers under data/corpus-20k/gate2/load-markers-v2; batch.ts checkpoints under a scratch state root so data/corpus-20k/state.json was not touched.",
+    "build": "an isolated copy of the worktree under the scratchpad with its own .next (node_modules and data symlinked), next build (66.6 s), next start on port 3111.",
+    "extractor": "scripts/corpus-20k/gate2/extract.py, unchanged.",
+    "harness": "scripts/corpus-20k/overlap/measure.py unchanged (seed 20260904, 128 permutations, 5-gram shingles), exhaustive on every set; size-matched folds by scripts/corpus-20k/gate2/folds.py at fold size 324.",
+    "liveBaseline": "not refetched in this recheck; the live figures in report.md (0.799 positional, 0.796 shared-word share over 604 matched medicines) stand as the recorded before."
+  },
+  "load": {
+    "tier1": 1719,
+    "tier2": 4477,
+    "tier3Batch1": 250,
+    "pages": 6446,
+    "controlCharactersStripped": {
+      "characters": 3,
+      "names": 2
+    },
+    "topLevelFieldsLifted": {
+      "doseStudied": 6171,
+      "approvalDate": 5068
+    },
+    "throughputNote": "not separately timed in this run; the first Gate 2 run measured 110.3 pages/second against the deployment plan floor of 1.",
+    "withdrawnPagesLoaded": 663,
+    "withdrawnInsideThreshold11Set": 34
+  },
+  "indexable": {
+    "thresholdUsedForTheLoad": 7,
+    "at7": 2249,
+    "at11": 636,
+    "gate1bV4At7": 2249,
+    "gate1bV4At11": 636,
+    "note": "the loader present-field count now agrees exactly with Gate 1b v4 at both thresholds (2,249 and 636); the first Gate 2 run disagreed by 117 pages at threshold 11."
+  },
+  "thresholdDecision": {
+    "statement": "deploy indexing at 7 if the threshold-7 size-matched cumulative positional median <= 0.20 AND its all-pairs positional median <= 0.30; otherwise 11, with 7-10 as the promotion criterion",
+    "sizeMatchedAt7": 0.202454,
+    "sizeMatchedAt7Passes": false,
+    "allPairsAt7": 0.256167,
+    "allPairsAt7Passes": true,
+    "chosen": 11,
+    "indexedCount": 636
+  },
+  "threshold7": {
+    "pages": 2249,
+    "sizeMatchedCumulative": {
+      "foldSize": 324,
+      "folds": [324, 324, 324, 324, 324, 324, 324],
+      "owners": [324, 324, 324, 324, 324, 324, 305],
+      "positionalMedian": 0.202454,
+      "positionalP90": 0.277586,
+      "positionalAbove_0_20": 1184,
+      "positionalAbove_0_30": 162,
+      "lexicalMedian": 0.40285
+    },
+    "allPairs": {
+      "positionalMedian": 0.256167,
+      "positionalMean": 0.326009,
+      "positionalP90": 0.678161,
+      "positionalMax": 0.965293,
+      "positionalAbove_0_20": 1799,
+      "positionalAbove_0_30": 665,
+      "lexicalMedian": 0.453177,
+      "lexicalP90": 0.736617,
+      "mode": "exhaustive"
+    },
+    "matchedSizeBlocks": [
+      {
+        "label": "matched-324",
+        "pages": 324,
+        "positional": {
+          "count": 324,
+          "median": 0.196902,
+          "mean": 0.22352,
+          "p90": 0.257256,
+          "max": 0.831947,
+          "above_0_20": 154,
+          "above_0_30": 23
+        },
+        "lexical": {
+          "count": 324,
+          "median": 0.405101,
+          "mean": 0.413202,
+          "p90": 0.487073,
+          "max": 0.914773,
+          "above_0_20": 324,
+          "above_0_30": 299
+        },
+        "mode": "exhaustive",
+        "sharedWordShareMedian": 0.375949
+      },
+      {
+        "label": "matched-803",
+        "pages": 803,
+        "positional": {
+          "count": 803,
+          "median": 0.222359,
+          "mean": 0.263129,
+          "p90": 0.343654,
+          "max": 0.910308,
+          "above_0_20": 537,
+          "above_0_30": 110
+        },
+        "lexical": {
+          "count": 803,
+          "median": 0.42044,
+          "mean": 0.439059,
+          "p90": 0.545037,
+          "max": 0.945783,
+          "above_0_20": 803,
+          "above_0_30": 775
+        },
+        "mode": "exhaustive",
+        "sharedWordShareMedian": 0.378198
+      }
+    ],
+    "sharedWordShare": {
+      "withMarkup": {
+        "median": 0.376243,
+        "p90": 0.452837,
+        "byTier": {
+          "tier1": 0.374059,
+          "tier2": 0.378303
+        }
+      },
+      "proseOnly": {
+        "median": 0.312849,
+        "p90": 0.36517,
+        "byTier": {
+          "tier1": 0.30303,
+          "tier2": 0.321788
+        }
+      },
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages"
+    },
+    "proseOnly": {
+      "positionalMedian": 0.131295,
+      "positionalP90": 0.562749,
+      "lexicalMedian": 0.487288,
+      "medianTokens": 428
+    },
+    "medianTokens": 1425,
+    "nullModel": {
+      "randomPairPositional": {
+        "count": 20000,
+        "median": 0.06866,
+        "mean": 0.078349,
+        "p90": 0.133909,
+        "max": 0.616142,
+        "above_0_20": 172,
+        "above_0_30": 5
+      },
+      "randomPairLexical": {
+        "count": 20000,
+        "median": 0.242251,
+        "mean": 0.251187,
+        "p90": 0.343284,
+        "max": 0.867769,
+        "above_0_20": 15319,
+        "above_0_30": 4478
+      },
+      "expectedNearestNeighbour": {
+        "full": {
+          "pages": 2249,
+          "positional": 0.359898,
+          "lexical": 0.550123
+        },
+        "matched": [
+          {
+            "pages": 324,
+            "positional": 0.251854,
+            "lexical": 0.467471
+          },
+          {
+            "pages": 803,
+            "positional": 0.303139,
+            "lexical": 0.507221
+          }
+        ]
+      },
+      "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+    },
+    "controls": [
+      {
+        "label": "control:other",
+        "pages": 2249,
+        "positional": {
+          "count": 2249,
+          "median": 0.559477,
+          "mean": 0.574595,
+          "p90": 0.652582,
+          "max": 0.998704,
+          "above_0_20": 2249,
+          "above_0_30": 2249
+        },
+        "lexical": {
+          "count": 2249,
+          "median": 0.52281,
+          "mean": 0.52088,
+          "p90": 0.603531,
+          "max": 0.889749,
+          "above_0_20": 2249,
+          "above_0_30": 2247
+        },
+        "medianTokens": 2850
+      },
+      {
+        "label": "control:self",
+        "pages": 2249,
+        "positional": {
+          "count": 2249,
+          "median": 0.254694,
+          "mean": 0.324505,
+          "p90": 0.676201,
+          "max": 0.964363,
+          "above_0_20": 1780,
+          "above_0_30": 656
+        },
+        "lexical": {
+          "count": 2249,
+          "median": 0.453177,
+          "mean": 0.488942,
+          "p90": 0.736617,
+          "max": 0.952756,
+          "above_0_20": 2249,
+          "above_0_30": 2220
+        },
+        "medianTokens": 2850
+      }
+    ],
+    "crawlTextToHtml": {
+      "median": 0.09884,
+      "min": 0.06667,
+      "max": 0.14442
+    },
+    "rscBytesMedian": 73262,
+    "rscShareMedian": 0.6296
+  },
+  "threshold11": {
+    "pages": 636,
+    "sizeMatchedCumulative": {
+      "foldSize": 324,
+      "folds": [324, 324],
+      "owners": [324, 312],
+      "positionalMedian": 0.188161,
+      "positionalP90": 0.333633,
+      "positionalAbove_0_20": 208,
+      "positionalAbove_0_30": 73,
+      "lexicalMedian": 0.352953
+    },
+    "allPairs": {
+      "positionalMedian": 0.195831,
+      "positionalMean": 0.267843,
+      "positionalP90": 0.576669,
+      "positionalMax": 0.965293,
+      "positionalAbove_0_20": 277,
+      "positionalAbove_0_30": 103,
+      "lexicalMedian": 0.368746,
+      "lexicalP90": 0.580412,
+      "mode": "exhaustive"
+    },
+    "matchedSizeBlocks": [
+      {
+        "label": "matched-324",
+        "pages": 324,
+        "positional": {
+          "count": 324,
+          "median": 0.190217,
+          "mean": 0.233828,
+          "p90": 0.332983,
+          "max": 0.965293,
+          "above_0_20": 111,
+          "above_0_30": 38
+        },
+        "lexical": {
+          "count": 324,
+          "median": 0.355642,
+          "mean": 0.381204,
+          "p90": 0.454508,
+          "max": 0.930769,
+          "above_0_20": 324,
+          "above_0_30": 295
+        },
+        "mode": "exhaustive",
+        "sharedWordShareMedian": 0.431215
+      }
+    ],
+    "sharedWordShare": {
+      "withMarkup": {
+        "median": 0.430757,
+        "p90": 0.50386,
+        "byTier": {
+          "tier1": 0.433157,
+          "tier2": 0.384337
+        }
+      },
+      "proseOnly": {
+        "median": 0.369318,
+        "p90": 0.411472,
+        "byTier": {
+          "tier1": 0.371189,
+          "tier2": 0.321651
+        }
+      },
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages"
+    },
+    "proseOnly": {
+      "positionalMedian": 0.104789,
+      "positionalP90": 0.417508,
+      "lexicalMedian": 0.425715,
+      "medianTokens": 573
+    },
+    "medianTokens": 2124,
+    "nullModel": {
+      "randomPairPositional": {
+        "count": 20000,
+        "median": 0.099073,
+        "mean": 0.099443,
+        "p90": 0.139083,
+        "max": 0.904516,
+        "above_0_20": 37,
+        "above_0_30": 16
+      },
+      "randomPairLexical": {
+        "count": 20000,
+        "median": 0.253325,
+        "mean": 0.255494,
+        "p90": 0.298193,
+        "max": 0.889868,
+        "above_0_20": 19115,
+        "above_0_30": 1863
+      },
+      "expectedNearestNeighbour": {
+        "full": {
+          "pages": 636,
+          "positional": 0.362602,
+          "lexical": 0.497676
+        },
+        "matched": [
+          {
+            "pages": 324,
+            "positional": 0.286444,
+            "lexical": 0.443484
+          },
+          {
+            "pages": 803,
+            "positional": 0.403675,
+            "lexical": 0.525038
+          }
+        ]
+      },
+      "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+    },
+    "controls": [
+      {
+        "label": "control:other",
+        "pages": 636,
+        "positional": {
+          "count": 636,
+          "median": 0.562565,
+          "mean": 0.569971,
+          "p90": 0.621297,
+          "max": 0.703121,
+          "above_0_20": 636,
+          "above_0_30": 636
+        },
+        "lexical": {
+          "count": 636,
+          "median": 0.51224,
+          "mean": 0.512653,
+          "p90": 0.576271,
+          "max": 0.652202,
+          "above_0_20": 636,
+          "above_0_30": 636
+        },
+        "medianTokens": 4248
+      },
+      {
+        "label": "control:self",
+        "pages": 636,
+        "positional": {
+          "count": 636,
+          "median": 0.195271,
+          "mean": 0.267088,
+          "p90": 0.575581,
+          "max": 0.964363,
+          "above_0_20": 274,
+          "above_0_30": 103
+        },
+        "lexical": {
+          "count": 636,
+          "median": 0.368746,
+          "mean": 0.41148,
+          "p90": 0.580412,
+          "max": 0.930769,
+          "above_0_20": 636,
+          "above_0_30": 605
+        },
+        "medianTokens": 4248
+      }
+    ],
+    "crawlTextToHtml": {
+      "median": 0.10898,
+      "min": 0.07655,
+      "max": 0.13959
+    },
+    "rscBytesMedian": 97298,
+    "rscShareMedian": 0.6308
+  },
+  "questions": {
+    "at7": {
+      "rows": 24084,
+      "distinctStrings": 23747,
+      "mostRepeatedPages": 2,
+      "mostRepeatedShare": 0.00089
+    },
+    "at11": {
+      "rows": 8543,
+      "distinctStrings": 8464,
+      "mostRepeatedPages": 2,
+      "mostRepeatedShare": 0.00314
+    },
+    "limit": "R7: no single string on more than 30% of pages"
+  },
+  "samples": [
+    {
+      "slug": "metformin",
+      "tier": 1,
+      "page_type": "longevity",
+      "fields": 16,
+      "questions": 17,
+      "seeds": 7,
+      "indexable": true,
+      "suppressed": true,
+      "classes": ["S6"],
+      "htmlBytes": 242080,
+      "visibleChars": 30760,
+      "crawlTextToHtml": 0.12707,
+      "columnTextToHtml": 0.1149,
+      "rscBytes": 153413,
+      "rscShare": 0.6337,
+      "blocks": [
+        "supervision",
+        "human-data",
+        "ladder",
+        "itp",
+        "stopped",
+        "dose-studied",
+        "clocks",
+        "kinetics",
+        "biomarkers",
+        "ongoing",
+        "what-would-settle",
+        "unreported",
+        "trial-size",
+        "faers",
+        "fasting-exercise",
+        "pathway",
+        "provenance"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.038,
+        "w320": 0.033
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": ["null"]
+    },
+    {
+      "slug": "cysteamine",
+      "tier": 1,
+      "page_type": "longevity",
+      "fields": 11,
+      "questions": 14,
+      "seeds": 8,
+      "indexable": true,
+      "suppressed": false,
+      "classes": ["S11"],
+      "htmlBytes": 129130,
+      "visibleChars": 13620,
+      "crawlTextToHtml": 0.10548,
+      "columnTextToHtml": 0.08594,
+      "rscBytes": 80985,
+      "rscShare": 0.6272,
+      "blocks": [
+        "human-data",
+        "ladder",
+        "stopped",
+        "dose-studied",
+        "n-of-1",
+        "biomarkers",
+        "ongoing",
+        "what-would-settle",
+        "unreported",
+        "trial-size",
+        "faers",
+        "interactions",
+        "fasting-exercise",
+        "provenance"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.055,
+        "w320": 0.046
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    },
+    {
+      "slug": "amlodipine",
+      "tier": 1,
+      "page_type": "longevity",
+      "fields": 14,
+      "questions": 16,
+      "seeds": 8,
+      "indexable": true,
+      "suppressed": false,
+      "classes": ["S11"],
+      "htmlBytes": 195853,
+      "visibleChars": 22616,
+      "crawlTextToHtml": 0.11547,
+      "columnTextToHtml": 0.10134,
+      "rscBytes": 124430,
+      "rscShare": 0.6353,
+      "blocks": [
+        "human-data",
+        "ladder",
+        "stopped",
+        "dose-studied",
+        "kinetics",
+        "n-of-1",
+        "biomarkers",
+        "ongoing",
+        "unreported",
+        "trial-size",
+        "faers",
+        "interactions",
+        "fasting-exercise",
+        "pathway",
+        "jurisdiction",
+        "provenance"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.042,
+        "w320": 0.036
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    },
+    {
+      "slug": "sirolimus",
+      "tier": 1,
+      "page_type": "longevity",
+      "fields": 16,
+      "questions": 18,
+      "seeds": 8,
+      "indexable": true,
+      "suppressed": true,
+      "classes": ["S1", "S3", "S4", "S6"],
+      "htmlBytes": 255130,
+      "visibleChars": 33885,
+      "crawlTextToHtml": 0.13281,
+      "columnTextToHtml": 0.12074,
+      "rscBytes": 161138,
+      "rscShare": 0.6316,
+      "blocks": [
+        "supervision",
+        "human-data",
+        "ladder",
+        "itp",
+        "stopped",
+        "dose-studied",
+        "clocks",
+        "dose-shape",
+        "biomarkers",
+        "ongoing",
+        "what-would-settle",
+        "unreported",
+        "trial-size",
+        "faers",
+        "interactions",
+        "fasting-exercise",
+        "pathway",
+        "provenance"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.039,
+        "w320": 0.034
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    },
+    {
+      "slug": "carbidopa-levodopa",
+      "tier": 2,
+      "page_type": "clinical",
+      "fields": 5,
+      "questions": 8,
+      "seeds": 6,
+      "indexable": false,
+      "suppressed": false,
+      "classes": ["S11"],
+      "htmlBytes": 77740,
+      "visibleChars": 6646,
+      "crawlTextToHtml": 0.08549,
+      "columnTextToHtml": 0.06475,
+      "rscBytes": 48307,
+      "rscShare": 0.6214,
+      "blocks": [
+        "trial-history",
+        "stopped",
+        "dose-studied",
+        "what-would-settle",
+        "unreported",
+        "trial-size",
+        "regulatory-only",
+        "provenance"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.053,
+        "w320": 0.045
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    },
+    {
+      "slug": "cdx-3379",
+      "tier": 3,
+      "page_type": "development",
+      "fields": 7,
+      "questions": 6,
+      "seeds": 2,
+      "indexable": false,
+      "suppressed": true,
+      "classes": ["S10"],
+      "htmlBytes": 57657,
+      "visibleChars": 3820,
+      "crawlTextToHtml": 0.06625,
+      "columnTextToHtml": 0.04907,
+      "rscBytes": 35567,
+      "rscShare": 0.6169,
+      "blocks": [
+        "classification",
+        "trial-size",
+        "lineage",
+        "mechanism-action",
+        "sponsor-phase",
+        "development-stop"
+      ],
+      "liveTextToHtml": {
+        "desktop": 0.047,
+        "w320": 0.041
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    },
+    {
+      "slug": "1-2-distearoyl-sn-glycero-3-phosphocholine",
+      "tier": 3,
+      "page_type": "stub",
+      "fields": 1,
+      "questions": 0,
+      "seeds": 0,
+      "indexable": false,
+      "suppressed": false,
+      "classes": ["S11"],
+      "htmlBytes": 28389,
+      "visibleChars": 1414,
+      "crawlTextToHtml": 0.04981,
+      "columnTextToHtml": 0.03498,
+      "rscBytes": 16757,
+      "rscShare": 0.5903,
+      "blocks": [],
+      "liveTextToHtml": {
+        "desktop": 0.033,
+        "w320": 0.033
+      },
+      "scrollWidth": {
+        "desktop": 1440,
+        "w320": 320
+      },
+      "horizontalOverflow": {
+        "desktop": false,
+        "w320": false
+      },
+      "headingOrderOk": true,
+      "h1Count": 1,
+      "contrast": {
+        "bodyMin": 16.145,
+        "greyMin": 4.865
+      },
+      "keyboardNoRing": [],
+      "badgeInFlowAt320": null,
+      "emptyElements": 0,
+      "placeholderMatches": []
+    }
+  ],
+  "suppression": {
+    "suppressedPagesLoaded": 1935,
+    "seed1_2_6RowsOnSuppressedPages": 0,
+    "sirolimus": {
+      "classes": ["S1", "S3", "S4", "S6"],
+      "firstBlock": "supervision",
+      "seed1_2_6BlocksRendered": 0
+    },
+    "s10ClassificationBlock": {
+      "page": "astaxanthin-2",
+      "tier": 1,
+      "pageType": "longevity",
+      "classes": ["S10"],
+      "block": "classification",
+      "supervisionBlockPresent": false,
+      "text": "Q1 What classification does ASTAXANTHIN carry? No regulator classification is recorded for ASTAXANTHIN.",
+      "ok": true
+    }
+  },
+  "interface": {
+    "horizontalOverflowAt320": {
+      "samplesFailing": 0,
+      "documentScrollWidthAt320": 320,
+      "note": "four samples still hold elements wider than the viewport, but every one is the evidence-ladder SVG inside div.cd-ladder-scroll, its own overflow-x container; documentElement.scrollWidth is 320 on all seven."
+    },
+    "headingOrder": "h1 -> h2 -> h3, exactly one h1, no level skipped, on all seven at both widths",
+    "contrastBodyMin": 16.145,
+    "contrastGreyMin": 4.865,
+    "keyboardTargetsWithoutAVisibleRing": 0,
+    "badgeInFlowAt320": true,
+    "emptyElementsAcrossIndexedSet": 0,
+    "placeholderPhrases": {
+      "matchedPages": [
+        "sitagliptin-metformin",
+        "nepafenac",
+        "metformin",
+        "quercetin",
+        "troglitazone",
+        "vasopressin"
+      ],
+      "verdict": "five of six are verbatim source words (robust null epigenetic findings; PKA-null cells; Telomere Biology Disorders (TBD); a yet undefined PPAR-gamma-independent mechanism). The sixth, nepafenac, prints ClinicalTrials.gov\u2019s own literal whyStopped value \"undefined\" for NCT00801905, which the snapshot confirms."
+    }
+  },
+  "frozenHomeSearchBar": {
+    "maxDifferencePx": {
+      "320": 0,
+      "375": 0,
+      "1440": 0
+    },
+    "ok": true,
+    "measured": {
+      "320": {
+        "bar": {
+          "x": 16,
+          "y": 292.25,
+          "width": 288,
+          "height": 52
+        },
+        "input": {
+          "x": 64,
+          "y": 302.25,
+          "width": 133.89,
+          "height": 32
+        },
+        "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+      },
+      "375": {
+        "bar": {
+          "x": 16,
+          "y": 269.5,
+          "width": 343,
+          "height": 52
+        },
+        "input": {
+          "x": 64,
+          "y": 279.5,
+          "width": 188.89,
+          "height": 32
+        },
+        "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+      },
+      "1440": {
+        "bar": {
+          "x": 456,
+          "y": 369,
+          "width": 528,
+          "height": 60
+        },
+        "input": {
+          "x": 498,
+          "y": 381,
+          "width": 371.77,
+          "height": 36
+        },
+        "domPath": "body>div[2]>main>div>section[1]>div[2]>div[1]>input"
+      }
+    },
+    "baseline": {
+      "320": {
+        "bar": {
+          "x": 16,
+          "y": 292.25,
+          "width": 288,
+          "height": 52
+        },
+        "input": {
+          "x": 64,
+          "y": 302.25,
+          "width": 133.89,
+          "height": 32
+        }
+      },
+      "375": {
+        "bar": {
+          "x": 16,
+          "y": 269.5,
+          "width": 343,
+          "height": 52
+        },
+        "input": {
+          "x": 64,
+          "y": 279.5,
+          "width": 188.89,
+          "height": 32
+        }
+      },
+      "1440": {
+        "bar": {
+          "x": 456,
+          "y": 369,
+          "width": 528,
+          "height": 60
+        },
+        "input": {
+          "x": 498,
+          "y": 381,
+          "width": 371.77,
+          "height": 36
+        }
+      }
+    },
+    "domPathNote": "the measured DOM path is body>div[2]>main>div>section[1]>div[2]>div[1]>input against the recorded baseline string body>div[3]>main>div>section>div[1]>div>input[1]; every measured box is identical, so this is the notation/ancestor-index difference already reported in run 1."
+  },
+  "files": {
+    "lists": "data/corpus-20k/gate2/lists-v2/*.tsv",
+    "pages": "data/corpus-20k/gate2/pages-v2/*.ndjson",
+    "runs": "data/corpus-20k/gate2/runs-v2/*/",
+    "htmlAudit": "data/corpus-20k/gate2/html-audit-v2.json, html-audit-v2-samples.json",
+    "browserChecks": "data/corpus-20k/gate2/browser-checks-v2.json",
+    "loadMarkers": "data/corpus-20k/gate2/load-markers-v2/"
+  }
+}

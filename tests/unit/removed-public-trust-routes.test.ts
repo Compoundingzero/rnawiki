@@ -15,7 +15,7 @@ describe('removed public trust routes', () => {
   it('does not advertise the removed pages from public discovery surfaces', () => {
     const publicSources = [
       'components/SiteFooter.tsx',
-      'app/sitemap.ts',
+      'lib/corpus/sitemap.ts',
       'app/llms.txt/route.ts',
       'app/editorial-policy/page.tsx',
     ].map((path) => readFileSync(join(root, path), 'utf8'))

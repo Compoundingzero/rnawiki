@@ -1,0 +1,158 @@
+{
+  "pages": 521,
+  "medianTokens": 2177,
+  "medianShingles": 1904,
+  "full": {
+    "label": "full-corpus",
+    "pages": 521,
+    "positional": {
+      "count": 521,
+      "median": 0.195958,
+      "mean": 0.277908,
+      "p90": 0.675456,
+      "max": 0.916888,
+      "above_0_20": 233,
+      "above_0_30": 91
+    },
+    "lexical": {
+      "count": 521,
+      "median": 0.364042,
+      "mean": 0.415644,
+      "p90": 0.687396,
+      "max": 0.922031,
+      "above_0_20": 521,
+      "above_0_30": 504
+    },
+    "mode": "exhaustive"
+  },
+  "matched": [
+    {
+      "label": "matched-324",
+      "pages": 324,
+      "positional": {
+        "count": 324,
+        "median": 0.186259,
+        "mean": 0.244149,
+        "p90": 0.356133,
+        "max": 0.880022,
+        "above_0_20": 100,
+        "above_0_30": 36
+      },
+      "lexical": {
+        "count": 324,
+        "median": 0.352526,
+        "mean": 0.38993,
+        "p90": 0.459546,
+        "max": 0.913158,
+        "above_0_20": 324,
+        "above_0_30": 296
+      },
+      "mode": "exhaustive",
+      "sharedWordShareMedian": 0.440201
+    }
+  ],
+  "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.442578,
+    "p90": 0.50765,
+    "byTier": {
+      "1": 0.442578
+    }
+  },
+  "aboveTarget": {
+    "targetPositional": 0.2,
+    "targetLexical": 0.4,
+    "positional": 233,
+    "lexical": 142,
+    "file": "above-target.ndjson"
+  },
+  "controls": [
+    {
+      "label": "control:other",
+      "pages": 521,
+      "positional": {
+        "count": 521,
+        "median": 0.562836,
+        "mean": 0.579427,
+        "p90": 0.637238,
+        "max": 0.998572,
+        "above_0_20": 521,
+        "above_0_30": 521
+      },
+      "lexical": {
+        "count": 521,
+        "median": 0.53012,
+        "mean": 0.529299,
+        "p90": 0.591986,
+        "max": 0.879121,
+        "above_0_20": 521,
+        "above_0_30": 521
+      },
+      "medianTokens": 4354
+    },
+    {
+      "label": "control:self",
+      "pages": 521,
+      "positional": {
+        "count": 521,
+        "median": 0.19537,
+        "mean": 0.277134,
+        "p90": 0.674362,
+        "max": 0.916256,
+        "above_0_20": 220,
+        "above_0_30": 91
+      },
+      "lexical": {
+        "count": 521,
+        "median": 0.364042,
+        "mean": 0.415644,
+        "p90": 0.687396,
+        "max": 0.922031,
+        "above_0_20": 521,
+        "above_0_30": 504
+      },
+      "medianTokens": 4354
+    }
+  ],
+  "nullModel": {
+    "randomPairPositional": {
+      "count": 20000,
+      "median": 0.103929,
+      "mean": 0.107046,
+      "p90": 0.139476,
+      "max": 0.822004,
+      "above_0_20": 41,
+      "above_0_30": 14
+    },
+    "randomPairLexical": {
+      "count": 20000,
+      "median": 0.26062,
+      "mean": 0.263175,
+      "p90": 0.299781,
+      "max": 0.876543,
+      "above_0_20": 19900,
+      "above_0_30": 1968
+    },
+    "expectedNearestNeighbour": {
+      "full": {
+        "pages": 521,
+        "positional": 0.292647,
+        "lexical": 0.429149
+      },
+      "matched": [
+        {
+          "pages": 324,
+          "positional": 0.264737,
+          "lexical": 0.412767
+        },
+        {
+          "pages": 803,
+          "positional": 0.331308,
+          "lexical": 0.450358
+        }
+      ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+  },
+  "missedMergeSweep": null
+}

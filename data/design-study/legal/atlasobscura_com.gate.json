@@ -1,0 +1,60 @@
+{
+  "key": "atlasobscura.com",
+  "track": "A1",
+  "dir": "atlasobscura_com",
+  "checkedAt": "2026-09-03T14:35:10.577Z",
+  "indexUrl": "https://www.atlasobscura.com/",
+  "contentUrl": "https://www.atlasobscura.com/articles/all-places-in-the-atlas-on-one-map",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.atlasobscura.com/robots.txt",
+    "httpStatus": 403,
+    "savedTo": null,
+    "indexPath": "/",
+    "contentPath": "/articles/all-places-in-the-atlas-on-one-map",
+    "indexAllowed": null,
+    "contentAllowed": null,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [],
+    "note": "robots.txt could not be read (HTTP 403) / robots.txt could not be read (HTTP 403)"
+  },
+  "terms": {
+    "url": null,
+    "httpStatus": null,
+    "savedTo": null,
+    "textSavedTo": null,
+    "textChars": 0,
+    "candidatesTried": [
+      {
+        "url": "https://www.atlasobscura.com/terms",
+        "status": 403
+      },
+      {
+        "url": "https://www.atlasobscura.com/terms-of-use",
+        "status": 403
+      },
+      {
+        "url": "https://www.atlasobscura.com/terms",
+        "status": 403,
+        "note": "discovered on the index page"
+      }
+    ],
+    "foundViaIndexLink": true,
+    "relevantExcerpts": [],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /articles/all-places-in-the-atlas-on-one-map; no terms clause matched a prohibition pattern across 0 relevant excerpts."
+  },
+  "notes": [
+    "No terms candidate returned usable text, so the index page was fetched once and the first anchor whose text matches /terms|conditions|legal/i was followed: \"Terms and Conditions\" -> https://www.atlasobscura.com/terms."
+  ]
+}

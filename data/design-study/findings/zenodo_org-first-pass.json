@@ -1,0 +1,583 @@
+{
+  "site": "zenodo.org",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-1440-tile-03.png",
+    "index-1440-tile-04.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-02.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png"
+  ],
+  "captureCaveat": "The captured content URL (https://zenodo.org/records/22273492) had been withdrawn by capture time and rendered Zenodo's tombstone page (h1 'Gone', document title 'Tombstone | Zenodo'). No live Zenodo record page was seen in this pass; nothing here describes the normal record layout (files table, licence block, versions panel, citation exports). content-1440-scroll-00.png is byte-identical to content-1440-tile-01.png and content-1440-tile-02.png is a 14 px sliver of blue footer.",
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "The index reads chrome first, promotion second, corpus third, and the rank is carried by band colour rather than type size.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "A saturated blue gradient header band about 75 px tall spans the full width with a large white wordmark, a white search field, two links and an orange Sign up button; below it a pale blue-grey band running from about y=75 to y=390 (roughly 315 px tall, not 390) holds 'Featured communities' and one carousel slide; 'Recent uploads' only begins around y=446. The two section headings are set at the same weight and near-identical size, so a one-item promotion and the whole record list read as equal in rank.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Inside a record row hierarchy runs in five visible steps, carried mainly by colour and sequence with a modest assist from weight and size.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Each row opens with three small badges (blue date+version, grey record type, green access state), then a blue semibold title, then a grey author line with ORCID marks, then a black abstract snippet, then two grey micro-lines for upload date and community — five bands, not four. The title is bold, link-blue and roughly four pixels larger than the abstract, so weight and size do part of the work alongside colour.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The tombstone page is deliberately flat: one heading, one sentence, one box of labelled facts, no sections and no rail.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "A centred h1 'Gone' with a lightning-bolt glyph, one centred explanatory sentence, then a bordered light-grey box of six bold-label / plain-value pairs. No tabs, no headings inside the box, no sidebar.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "eye-lands",
+      "claim": "At desktop the eye lands on the wordmark and the orange Sign up button — chrome, not content; the first record title sits at about y=537 of a 900 px screen.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The white wordmark on the dark blue left edge is the highest-contrast object in the viewport and the orange Sign up button is the only warm colour; the search field is a white box on mid-blue with grey placeholder and reads third. The top ~60% of the first screen is brand, promotion and one community carousel.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At 375 px the search field is gone entirely — the header collapses to wordmark plus hamburger — and the first mobile screen contains no record and no visible way to search.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The mobile header shows only the zenodo wordmark and a hamburger glyph; the first screen is 'Featured communities', the EU flag, the community title, a Browse button and one sentence, with 'Recent uploads' just breaking the bottom edge behind the cookie banner.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "On the content page 'Gone' is the largest type in the content column at both widths, but it is not the first thing the eye meets: the retained header still carries a larger white wordmark and the page's only warm colour.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Large centred black 'Gone' with a lightning-bolt glyph sits about 30 px below the header band (not ~90 px) and is the only large type below the chrome. Above it the unchanged blue gradient header keeps the oversized white zenodo wordmark, the search field and the orange Sign up button, which remain the highest-contrast and only warm objects in the viewport.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "density",
+      "claim": "About 3.3 records fit a 900 px desktop screen and about 2.0 an 812 px mobile screen, each record carrying ten fields grouped by a hairline rule rather than a card.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Record pitch at 1440 is about 275 px (badge row to next badge row), giving 3.3 rows per 900 px screen; at 375 the pitch is about 400 px, giving 2.0 rows per 812 px screen. Per row: date+version badge, resource type, access state, title, up to three authors each with an ORCID mark, a three-line abstract snippet, an upload date, a community link, a view count and a download count — ten fields (eleven if date and version are counted apart), not nine. Rows are separated by a hairline rule with roughly 40 px clearance either side; no border, no shadow, no card.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "density",
+      "claim": "There is no table and no thumbnail anywhere in the captures; lists are handled as pure text plus coloured badges, and the same nine fields reflow intact at 375 px.",
+      "captures": [
+        "index-375-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "At 375 px the badge triplet stays on one line, the title wraps to three lines, authors wrap to two, and the abstract snippet, upload date, community and both counts all remain; nothing is dropped, only line width changes.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The right rail holds only two promotional boxes and stops at roughly y=1,272 of a 3,563 px page, leaving about 1,900 px of empty right column beside the continuing list.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "'Why use Zenodo?' bulleted panel followed by a Newsletter form with e-mail and name fields and a Subscribe button; the Newsletter box ends about 372 px into tile-02 (scrollY 900), so around y=1,272. The record list runs on to about y=3,190 before the 'More' button, so roughly 1,900 px of right column sits empty beside live content; the remaining ~370 px to the page foot is footer, not dead column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "whitespace",
+      "claim": "The most generous whitespace surrounds the least information: ~390 px of band for one flag, one title, one button and one sentence, against ~200 px for a full three-author record.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The featured-communities band runs from roughly y=75 to y=390 in the desktop first screen — about 315 px, not 390 — with a single carousel slide centred in it; record rows below fit a badge row, title, authors, three abstract lines and two micro-lines in roughly 200 px, with a 275 px pitch.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent between records and withheld inside them, so each record reads as one block with no card needed.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Measured on index-1440-tile-03: badge row to title about 20 px, title to author line about 7 px, author line to abstract about 25 px, abstract to the grey micro-lines about 20 px, then a rule with roughly 40 px either side before the next record. The viewer's original figures (8/4/16/12 px) were understated; the pattern — tight inside, loose between — holds.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "On the tombstone, whitespace is used to say there is nothing more: the fact box ends where its content ends and about 100 px of white follows before the footer.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The box is inset to roughly half the page width with ~20 px internal padding and ~10 px between field rows; below it the white area runs to about y=595 where the blue footer begins, with nothing in it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "long-scroll",
+      "claim": "The content page cannot be scrolled meaningfully — 914 px against a 900 px viewport — so no judgement about persistence during a long read is possible from this pass.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The manifest records scroll-50 at scrollY 7 and scroll-90 at scrollY 13; the three viewport captures are nearly identical, differing only by a few pixels of vertical offset.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "long-scroll",
+      "claim": "The header is not sticky and the only fixed element on the content page is the consent banner; no progress bar, rail or back-to-top control appears in any capture.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The single recorded sticky/fixed element is the cookie-banner div, and it is what overlays the footer in every image. Under the 13 px of scroll available, content-1440-scroll-90 shows the whole header shifted up and clipped at the top edge, so the header scrolls with the page rather than pinning — non-sticky at this scroll depth, though 13 px is all the evidence the page allows.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "The index list rhythm holds unbroken for ten records and ends with an explicit 'More' button rather than infinite scroll, followed by a five-column footer and a darker policy strip.",
+      "captures": [
+        "index-1440-tile-04.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The badge-title-authors-abstract-meta pattern repeats without variation down tiles 02 to 04 for ten records (the viewer said twelve; index-1440-full.png shows ten). A single centred bordered 'More' button sits after the last record, then a blue footer with About / Blog / Support / Developers / Contribute columns and CERN, OpenAIRE and EU logos, then a darker strip reading 'Powered by CERN Data Centre & InvenioRDM' with Status, Privacy policy, Cookie policy and Terms of Use.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "imagery",
+      "claim": "The site is almost imageless: one content image on the index, three institutional logos in the footer, no SVG and no canvas on the content page, and no thumbnail on any record row.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "The EU flag in the carousel is the only content image; CERN, OpenAIRE and EU marks sit in the footer under 'Funded by'. Recorded counts for the content page are 4 images, 0 SVG, 0 canvas.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "svgCount",
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F17",
+      "topic": "imagery",
+      "claim": "With no photography or thumbnails, the coloured badge triplet does the scanning work, giving each text-only row a visual fingerprint.",
+      "captures": [
+        "index-1440-tile-03.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Blue, grey and green badges open every row and are the only saturated colour in the list area. The lightning bolt beside 'Gone' is a state marker rather than decoration, but it is not the only other graphic in the study as originally claimed: ORCID iD circles, the padlock in the Open badge, eye and download glyphs, carousel arrows, the search magnifier and the footer logos all appear in the same captures.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "defers-or-competes",
+      "claim": "The record list defers completely — no cards, shadows, thumbnails or hover theatre, one type family, three badge colours.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Three consecutive records render as plain text separated by hairline rules with no container styling of any kind.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "defers-or-competes",
+      "claim": "The chrome competes in three named moments: the loud gradient header with an orange Sign up, the promoted-community band above the list, and a rail whose two slots are marketing bullets and a newsletter form.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "The header is the highest-contrast band on any screen and carries no content; the featured band occupies the position the first records would hold; the rail's first box lists 'Safe / Trusted / Citeable / No waiting time / Open or closed / Versioning / Usage statistics' and the second collects an e-mail address.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "information-design",
+      "claim": "Zenodo is domain-neutral rather than off-topic, but the most recent open record matching 'longevity' is a health-economics paper on under-five mortality in Sub-Saharan Africa, with no longevity-biology content in anything visible.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The tombstone citation reads 'Interactive Effects of Health Expenditure and Income Inequality on Under-five Mortality in Sub-Saharan Africa. Journal of Contemporary Academic Research and Methodologies (JCARM), 1(7), 005.' Where the keyword actually matched cannot be seen — the record is withdrawn and only the citation survives — so the original 'matched a word, not a field' reading is inference, not observation.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "information-design",
+      "claim": "A record is structured as a badge triplet plus a metadata stack: date+version in one blue badge, resource type in grey, access state in green with a padlock, per-author ORCID marks, a community link, and view/download counts.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Visible badges include 'January 29, 2025 (v1)', 'Dataset', 'Presentation' and a green padlocked 'Open'; each author name is followed by a green iD circle; rows carry 'Part of VALSOUNDS' or 'Part of PLATO Stellar Science Conference 2026'; an eye glyph and a download glyph each carry a number.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "information-design",
+      "claim": "Evidence quality is not signalled: across ten records there is no peer-review mark, review status, sample count, replication indicator or confidence mark — and the one curation-adjacent line on the row names a collection, not a review.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "The marks a reader could mistake for quality are the ORCID iD (identity, not work), the green 'Open' badge (access, not merit) and the 'Part of VALSOUNDS' / 'Part of PLATO Stellar Science Conference 2026' line, which does appear on every row but states community membership rather than any review having happened. Everything listed is user-contributed and nothing on screen says so.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "information-design",
+      "claim": "The only per-record numbers are usage counts, and they are near-empty — every visible view count reads 0 — while sitting in the position a reader expects a quality signal.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Across the visible rows the eye-glyph count reads 0 on every record and the download counts read 0, 1, 2, 4, 6 and 11.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "information-design",
+      "claim": "Version is the only evolution signal, its casing is inconsistent, and there is no supersession link or diff anywhere.",
+      "captures": [
+        "index-1440-tile-04.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "The same badge slot renders 'January 29, 2025 (v1)' on some rows and 'February 1, 2025 (V1)' on another; no row or page carries a 'newer version exists' pointer.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "information-design",
+      "claim": "What a reader gets that a trial registry cannot: a persistent identifier bound to a specific deposited version that still resolves after the artefact is withdrawn — but with no copy control on it.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The tombstone still renders 'Citation:' with the full author-date string and the DOI URL https://doi.org/10.5281/zenodo.22273492 and 'Identifier: 10.5281/zenodo.22273492', as plain selectable text; the page carries zero copy controls.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F26",
+      "topic": "information-design",
+      "claim": "Licence is not shown on any list row; the green 'Open' badge is the only rights-adjacent mark, and open access is not the same fact as a reuse licence.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "The manifest records the selected record as cc-by-4.0, but no index capture displays a licence string, code or icon for any of the twelve records.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "absence",
+      "claim": "A removed record does not 404 or go blank — it renders a stable tombstone that names the absence and gives six labelled facts about the absence itself.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'Gone' with a lightning glyph, the sentence 'The record you are trying to access was removed from Zenodo. The metadata of the record is kept for archival purposes.', then Reason for removal: Retraction/Withdrawal of a record; Removed by: Owner; Deletion Policy: Record owners can delete their records within 30 days of publishing; Date of removal: September 3, 2026; Citation: full string with DOI; Identifier: 10.5281/zenodo.22273492.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "absence",
+      "claim": "The tombstone page does not stretch to fill the viewport: it is short because the record is short.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The whole page is 914 px tall; the fact box ends at about y=500 and about 100 px of white follows before the footer begins, with no filler section.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "baseline",
+      "claim": "The site is light-only and its recorded text-to-HTML figure cannot be used, because the captured page was a tombstone.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "No prefers-color-scheme rule matched across seven stylesheets and the html element carries no theme class, data-theme or inline style; body background is white and body colour black. The recorded 1.72% text-to-HTML comes from a page with 1,102 characters of visible text and is not representative of a record page.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F31",
+      "topic": "borrow",
+      "claim": "Borrow the tombstone as RNAWiki's shape for a withdrawn, retracted or superseded programme, inside the Stripe-governed structured data blocks surface.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Six labelled rows and one sentence are enough to keep a URL alive and honest. It maps onto the existing rule that a stopped trial gets the registry's reason and nothing beyond it, and onto keeping CONTRADICTED and NOT_MEASURED distinct in reader-facing copy.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "borrow",
+      "claim": "Borrow the three-badge row above a result title for the browse/filter surface: evidence tier, model-organism ladder position, whether any human data exists.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-375-tile-02.png"
+      ],
+      "evidence": "Three badges in a fixed order, each answering a different question, fingerprint a row at both widths and survive reflow at 375 px. As markup rather than prose they do not count against the uniqueness metric. This is a component borrow inside the awwwards-governed surface, not a reassignment.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "borrow",
+      "claim": "Borrow text-only result rows with no thumbnails, and space spent between records rather than inside them.",
+      "captures": [
+        "index-1440-tile-03.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Ten dense ten-field records stay scannable at 1440 and 375 with no imagery, grouped only by a hairline rule and ~40 px clearance.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "borrow",
+      "claim": "Borrow the one-glyph provenance mark on a person, for the dossier reading column — RNAWiki's equivalent being a reviewer-identity mark on a published conclusion.",
+      "captures": [
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "A ~14 px green ORCID iD circle after each author name says 'this person is identified' without a sentence. It would need labelling on first appearance under the acronym rule.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "avoid",
+      "claim": "Avoid a header search that disappears at mobile — the frozen home search bar must remain the single primary action at 375 px and 320 px.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "At 375 px Zenodo's search field is replaced by a hamburger and the first mobile screen offers no visible way to search.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "avoid",
+      "claim": "Avoid a promoted-item band above the corpus: at desktop it takes about a third of the first screen for one item, and at 375 px it takes the whole of it.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The featured-communities band is about 315 px, roughly 35% of the first desktop screen (the viewer's '~390 px and roughly 60%' conflated the band with the header and the 'Recent uploads' heading above the first record at y=537). At 375 px the same band fills the entire 812 px first screen, with 'Recent uploads' only breaking the bottom edge.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "avoid",
+      "claim": "Avoid a rail spent on promotion and a rail that runs out; a contents rail must serve the whole length of its page or not exist.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "'Why use Zenodo?' and a newsletter form occupy the rail position and both stop at about y=1,272 of a 3,563 px page, leaving roughly 1,900 px of dead right column beside the continuing list. Zenodo does not fill the unassigned contents-rail gap.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "avoid",
+      "claim": "Avoid usage counts beside evidence: they read as standing and measure attention, and here almost all read zero.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Every visible view count is 0; downloads range 0 to 11. RNAWiki should show no view or download count next to a programme conclusion.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "avoid",
+      "claim": "Avoid letting a collection label stand in for a review label: Zenodo's corpus is entirely self-deposited, and the only per-row line that reads like curation says which community a record belongs to.",
+      "captures": [
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Every row carries 'Part of VALSOUNDS' or 'Part of PLATO Stellar Science Conference 2026' in the slot a reader scans for provenance, alongside an ORCID mark and an access badge. None of the three says whether anyone checked the work. RNAWiki must keep contributed and reviewed material visibly distinct and must not let a programme or collection name imply review.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "avoid",
+      "claim": "Avoid loose version rendering and a version with no supersession link, and avoid an identifier with no copy control.",
+      "captures": [
+        "index-1440-tile-04.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "'(v1)' and '(V1)' appear in the same badge slot and no 'newer version exists' pointer appears anywhere; the DOI and citation on the tombstone are plain text with zero copy controls on the page. Stripe's per-block copy button is the right model for both.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "A purely recency-sorted browse list collapses into one depositor's batch: nine of the ten records on the front page belong to the same community and eight carry the identical three-author set.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-03.png"
+      ],
+      "evidence": "Records 2-10 all read 'Part of VALSOUNDS' and eight of them list Vanhamme, Vincent; Sluyts, Yannick; Fraikin, Miara in some order; only the first record (PLATO) and the last (Kuegle, Karl) differ. Titles differ by a few words - 'Soundscape parameter set - reconstructed chambre du roi' against '... salle du roi'. For RNAWiki: a most-recent ordering on the browse surface will show one contributor's upload run as if it were the state of the field; order or group by programme, not by deposit time alone.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The browse surface offers no result count, no sort control and no facets: ten records, then a bordered 'More' button, and nothing else to steer with.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-04.png"
+      ],
+      "evidence": "Between the 'Recent uploads' heading and the 'More' button there is no toolbar, no 'showing N of M', no sort selector and no filter column - the right rail holds marketing and a newsletter form instead. A reader cannot tell how deep the list goes or reorder it without leaving the page. RNAWiki's browse surface should state the count and expose sort and filters where the rail sits.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "absence",
+      "claim": "The tombstone is a dead end: it keeps the full marketing chrome above it and offers the reader no onward route, and the DOI it displays is unlinked plain text.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Above 'Gone' the header is unchanged from the index - wordmark, search field, Communities, My dashboard, Log in and an orange Sign up. Below it the box gives six facts and stops: no link to the depositor or community, no 'other versions of this record', no search-for-related, no contact route. The DOI URL https://doi.org/10.5281/zenodo.22273492 renders in the same black body colour as the surrounding text rather than as a link. For a withdrawn RNAWiki programme, the six labelled rows are the right content model, but the page must also carry the way back into the corpus.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "Zenodo holds no Phase 2 assignment and this pass does not argue for giving it one. It is light-only (no prefers-color-scheme rule across seven stylesheets), consistent with the decided light default but not evidence for it, and its 1.72% text-to-HTML reading comes from a 1,102-character tombstone and is unusable in either direction. What it earns is one component decision inside an already-assigned surface: the tombstone belongs in the Stripe-governed structured data blocks spec as RNAWiki's shape for a withdrawn, retracted or superseded programme — Stripe supplies the block mechanics (labelled field rows, chrome type scale, copy control), Zenodo supplies the content model for absence. Its badge triplet is a second component borrow inside the awwwards-governed browse/filter surface. Neither displaces a governing reference, and Zenodo has no rail worth the name, so the contents-rail stopping rule stands."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "The tombstone: a withdrawn record keeps a stable URL and renders reason, who removed it, the governing policy, the date, the citation and the identifier as six labelled rows plus one plain sentence (content-1440-tile-01.png).",
+      "A fixed three-badge row above every result title - for RNAWiki: evidence tier, model-organism ladder position, whether any human data exists - rendered as markup, not prose (index-1440-tile-02.png, index-375-tile-02.png).",
+      "Text-only result rows with no thumbnails and no cards, kept scannable by badge colour alone (index-1440-tile-03.png).",
+      "A one-glyph per-person provenance mark, labelled on first appearance (index-1440-tile-02.png).",
+      "Whitespace spent between records rather than inside them: a hairline rule and ~40 px clearance group ten fields with no container (index-1440-tile-02.png).",
+      "A short page that ends where its content ends, with no filler section stretched to fill the viewport (content-1440-full.png)."
+    ],
+    "avoid": [
+      "A header search that collapses behind a hamburger at 375 px - the home search bar is frozen and must survive to 320 px (index-375-tile-01.png).",
+      "A promoted-item band above the corpus: ~315 px and about a third of the first desktop screen, and the whole of the first screen at 375 px (index-1440-tile-01.png, index-375-tile-01.png).",
+      "A rail spent on marketing bullets and a newsletter form, and a rail that stops at ~y=1,272 of a 3,563 px page (index-1440-tile-02.png, index-1440-full.png).",
+      "View and download counts beside evidence - attention rendered where standing is expected, and mostly reading zero (index-1440-tile-02.png, index-1440-tile-04.png).",
+      "A collection label standing in for a review label: 'Part of <community>' occupies the provenance slot but says nothing about review (index-1440-tile-03.png).",
+      "Inconsistent version casing and a version badge with no supersession link (index-1440-tile-04.png).",
+      "A DOI and citation offered for reuse with no copy control, and a DOI rendered as unlinked plain text (content-1440-tile-01.png).",
+      "A browse list ordered by deposit time alone, with no result count, sort or facets - nine of ten front-page records came from one depositor (index-1440-full.png).",
+      "A withdrawn-record page that keeps full marketing chrome and gives the reader no route back into the corpus (content-1440-tile-01.png)."
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "index-1440: cookie banner left standing (Accept all cookies / Accept only essential cookies) — fixed over the lower page in every image of the pass",
+    "index-375: cookie banner left standing (Accept all cookies / Accept only essential cookies)",
+    "content-1440: cookie banner left standing (Accept all cookies / Accept only essential cookies) — overlays the footer in every content desktop image",
+    "content-375: cookie banner left standing (Accept all cookies / Accept only essential cookies)"
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "confirmed": 23,
+    "qualified": 16,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "All eleven required captures were opened plus index-1440-tile-04, index-375-full, index-375-tile-02, content-1440-scroll-50 and content-375-scroll-50, covering every capture cited by a finding.",
+      "F28 refuted and removed: no row in any capture is missing a field, so 'on the list, absence renders nothing' rests on a case the captures never show. Zenodo's list-level absence behaviour is unobserved in this pass; the honest limit the finding also stated (every tombstone field has a value, so empty-field behaviour there cannot be judged) is recorded here instead.",
+      "Recurring count error corrected across F15, F22 and F33: the front page carries ten records, not twelve.",
+      "Recurring measurement error corrected across F1, F10 and F36: the featured-communities band is about 315 px (y~75 to y~390), not 390 px, and about 35% of the first desktop screen, not 60%. The 60% figure describes the distance to the first record title (y~537), which includes the header and the 'Recent uploads' heading.",
+      "Recurring measurement error corrected across F9 and F37: about 1,900 px of right column runs empty beside the continuing list, not 2,300 px; the balance is footer.",
+      "F6 was the largest single overstatement: the tombstone retains the full index header, so the white wordmark and the orange Sign up button remain the highest-contrast and only warm objects on a page whose sole message is that the record is gone.",
+      "F14 strengthened rather than weakened: content-1440-scroll-90 shows the header clipped at the top edge under 13 px of scroll, so it is not sticky. The cookie banner remains the only fixed element.",
+      "F20 rewritten to drop an inference: with the record withdrawn, where the 'longevity' keyword matched cannot be seen.",
+      "F22 and F39 rewritten: the 'Part of <community>' line is on screen on every row and is curation-adjacent, so the original 'nothing on screen says so' was overstated. The real hazard for RNAWiki is a collection label read as a review label.",
+      "Phase 2 verdict left at not-named and unchanged; nothing verified here bears on a governing assignment, and the 1.72% text-to-HTML figure remains unusable because it was measured on a 1,102-character tombstone."
+    ]
+  }
+}

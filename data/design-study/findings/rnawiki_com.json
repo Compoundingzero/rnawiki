@@ -1,0 +1,736 @@
+{
+  "site": "rnawiki.com",
+  "track": "baseline",
+  "viewedAt": "2026-09-03T16:05:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "content-375-full.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-00.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "The dossier has one element with typographic authority - the h1 - and exactly one further visible rank below it, carried by body text rather than by any heading.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "h1 'Metformin' at 56px/700/-2.52px tracking. Below it only the card's 'What studies found' and 'A study result is available...' lines rise above the 16px body, at roughly 18-20px bold, and neither is a heading element. Every heading on the page renders at or below body size, so rank below the title is handed to boxes, tint and rules.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The section heading is smaller than the text it introduces, inverting the declared rank.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "h2 'IN 10 SECONDS' renders 12px uppercase blue rgb(10,102,216) with 1.44px tracking above 16px body; the 'What studies found' answer below is larger and bold, so the label reads as a chip and the answer reads as the heading.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "Ranking on the dossier first screen is done by coloured area, not by type.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "Pale-blue card reads first, amber callout inside it second, grey hairlines third; no heading size separates them.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "The home page reads in three correct ranks achieved by size, colour and position together.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "56px headline with '10 seconds' set in blue, then a 16px grey subline, then the search bar - the only element on the screen drawn with an accent-blue outline. Other bordered objects sit on that first screen (the 'Sign in' pill, the 'Public evidence' chip, the FDA chip and the featured card), all in neutral grey.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "On the desktop home page the eye lands on the headline then the search bar, with no chrome competing.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Blue '10 seconds' pulls the eye inside the 56px headline, then the search bar is the only accent-blue outlined object on the screen; the Feedback pill is parked low-right and clear of it. The other bordered elements on the first screen are all neutral-grey outlines.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "On the desktop dossier a floating chrome pill overlaps the evidence card's border on the first screen.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "'Metformin' first, then the pale-blue card; the white 'Sections & feedback' pill sits at the right edge at about y=854, crossing the card's border. Whether it ranks third is not determinable from a still - the amber callout is the stronger colour signal (see F3) - but the overlap of chrome on the evidence card is directly visible.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "At 375px the home search placeholder is visibly clipped by the Search button.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Placeholder truncates mid-phrase at 'Search medicine, condition,' where the blue Search button begins; the first interactive element a mobile reader sees is cut off.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F9",
+      "topic": "eye-lands",
+      "claim": "At 375px on the dossier the fixed pill overlaps the evidence card on the very first screen.",
+      "captures": [
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "36px 'Metformin' with the trade name and regulatory line fill the top ~230px of the screen; the 'Sections & feedback' pill sits over the lower part of the blue card, covering one of its internal hairlines, before any scrolling.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "The dossier's first desktop screen carries roughly 65 words of medicine-specific text inside a card about 490px tall.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Counting from the capture: a 13-word scope sentence, a 13-word backlog sentence, a 23-word callout, a 9-word indication phrase and an 8-word regulatory line. The 1,784-character innerText and the 0.0006 text-to-HTML ratio are manifest domEvidence figures carried over from the measurer pass, not observations from these images.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio",
+        "innerTextLength"
+      ]
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "There is no list and no table anywhere on the rendered dossier; every list-shaped thing is behind a closed door.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Two collapsed disclosure rows carry a plus glyph - 'More about this medicine' (title plus subtitle) and 'Add a community note' (one line). The third door, 'See how we know', is a solid blue button with a down arrow, not a plus row. Nothing enumerable is on the page.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F12",
+      "topic": "density",
+      "claim": "The home page shows one of 9,852 records; the only routes into the corpus that need no typing are four named links and one footer link.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "One featured medicine card, one empty-state card, one collapsed explainer; '9,852 medicine records' appears once at 12px grey under the card. The 'Popular:' row links four medicines and the footer carries 'Browse all medicines', but no listing, facet or index appears on the page itself.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "density",
+      "claim": "The reading column has no single governing measure, and its widest lines run past the band the Phase 2 references sit in.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "In the capture the widest card lines run about 700-740px ('This combines research on different uses and groups...' is one 738px line) while the contribution card wraps near 505px. The 672px / 93-characters figure is a Phase 1 measurer number, not a visual observation. Hidden today only because paragraphs are two lines long.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent outside the content and withheld inside it.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "About 130px margins each side of an 1180px article and 32-57px gaps between cards; below the three-link row roughly 150px of empty ground before the footer band, with content-1440-scroll-90.png putting the link row at y~701 and the footer edge at y~855. The '4px covers 90.6% of computed spacing' figure is from the Phase 1 measurer, not from these images.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "Card whitespace is being used to hide thin data rather than to organise it.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The 'Found a name that is wrong?' card spans the full 1180px; its text column ends near x=660 and the 'Suggest a correction' button is pushed to x=1060-1285, leaving about 400px of nothing between a paragraph and its own button. The right half of the card is empty apart from that button.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "whitespace",
+      "claim": "Two vertical voids on the home page make its three sections read as separate pages stacked.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "About 115px of nothing between the Popular chips and 'FEATURED MEDICINE', and a second void of about the same size between the '9,852 medicine records' line and 'PUBLISHED THIS WEEK'. The two are close to equal rather than one being larger; both read as the page ending.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "whitespace",
+      "claim": "The blue card's internal hairlines are the one whitespace pattern that says something useful, though the rhythm is in the clearance rather than the interval.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "1px rules split 'What is it for?' from 'What studies found' from the closing disclaimer, each with about 30px of clearance either side. The rules themselves fall roughly 100px and 165px apart, so the interval tracks content length; the even clearance is what would scale to more content.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "There is no long scroll to judge; the dossier is two screens tall.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Full-page height 1,844px at 1440 wide and 2,258px at 375; the 50% and 90% captures sit at scrollY 472 and 850 on the same short page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "A 65px sticky header persists at every depth and lets page text ghost through its blur.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Wordmark, search input and 'Sign in' identical at 0%, 50% and 90%; at 50% and 90% body text is faintly visible through the backdrop-blur-xl behind the wordmark as a smudge.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "The fixed 'Sections & feedback' pill obscures the site's own footer text at mobile 90%.",
+      "captures": [
+        "content-375-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "At 90% the pill covers the middle of 'RNAWiki.com - Public medicine evidence', leaving 'Publ...' visible; the same pill overlaps card content at 50%.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F21",
+      "topic": "long-scroll",
+      "claim": "Nothing else persists: no contents rail, no progress indicator, no sticky section label.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Only the header and the pill hold position across depths; the measurer records tocPresent false with the reason 'no visible element 80-480px wide holding three or more in-page links'.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F22",
+      "topic": "long-scroll",
+      "claim": "The end of the page does nothing to carry the reader onward.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "A three-link row at 14px grey (Browse all medicines / Review queue / How this works), then empty ground, then the shared footer; no next medicine, related programme or suggested reading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "There are no images, diagrams or charts on either page; every SVG visible in the captures is an interface glyph.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "imgCount 0 and canvasCount 0 on the dossier (manifest domEvidence). About ten glyphs are actually visible - the search magnifier, the down-arrow in 'See how we know', the card arrows, the pencil on 'Suggest a correction', the circle-minus on the scope row and the plus on each disclosure row. The svgCount of 529 is a DOM count including nodes inside the closed disclosures and cannot be characterised from the captures.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "canvasCount",
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F24",
+      "topic": "imagery",
+      "claim": "The mechanism - the one genuinely diagrammatic thing on a medicine page - has no visual form on the rendered page at all.",
+      "captures": [
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "'How the medicine is expected to work' appears only in the heading outline, where it sits under the h2 'What this research summary covers' - behind the 'See how we know' door rather than inside 'More about this medicine'. It is not visible in any capture.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F25",
+      "topic": "defers-or-competes",
+      "claim": "The chassis defers; nothing on either page is styled for effect.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "One accent blue, near-white ground rgb(245,245,247), body text rgb(29,29,31), system type, thin rules. The 4px spacing base at 90.6% adherence and the 7.26:1 body / 15.46:1 title contrast ratios are Phase 1 measurer figures carried over, not observations from these images.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "bodyBackgroundColor",
+        "bodyColor"
+      ]
+    },
+    {
+      "id": "F26",
+      "topic": "defers-or-competes",
+      "claim": "On the dossier the containers compete with what they contain; the frame is larger than the thing framed.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "A tinted, bordered, internally ruled card about 490x1180px holds four sentences, and inside it an amber callout about 115x1095px holds one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "defers-or-competes",
+      "claim": "An interface control is the visual climax of the evidence page.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The solid blue 'See how we know' pill, centred on its own line with a grey subtitle beneath, is the most prominent object below the h1. It is not unique in kind: 'Suggest a correction' lower on the page uses the same solid blue fill.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "defers-or-competes",
+      "claim": "The frozen home search bar is visibly honoured in the rendered page.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Nothing sits above or beside the bar at either viewport; it is the only accent-blue outlined element on the first screen, with every other bordered object (Sign in pill, chips, featured card) in neutral grey, and the Feedback pill stays clear of it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "absence",
+      "claim": "The home page handles absence properly - it states the absence and gives the rule.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "'No published contributor changes this week yet.' at 16px bold in a white card, with a 14px grey line explaining exactly when the list would change.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "absence",
+      "claim": "The dossier renders an editorial backlog note in the position and weight reserved for the answer.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "Under 'What studies found', in the largest bold body text on the page: 'A study result is available, but it still needs a short plain-language explanation.'",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "absence",
+      "claim": "The amber callout carries broken prose at the second-highest emphasis on the page.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "'the study, the study designed to test whether metformin slows ageing, has been designed and publicised for a decade and has never started.' - lowercase opening, duplicated subject, warning-coloured container.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "At desktop 'General research summary' sits at the far right of the scope row, about 700px of empty row from the text it qualifies, and reads as a stray control; at 375px it does not.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "14px grey text with a circle-minus glyph pinned near x=1140-1310 while the scope text 'Type 2 diabetes, and blood sugar that is too high' ends near x=458. At 375px the same label sits directly beneath the scope line and reads correctly, so this is a desktop-only defect.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "Two small layout defects sit on the first screen of the site's most important page at 375px.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The search placeholder is clipped by the Search button, and the 'Popular:' chip row wraps leaving a dangling separator dot at the end of the first line.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F34",
+      "topic": "long-scroll",
+      "claim": "Two elements are position-fixed or sticky and persist through the whole scroll.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "header.sticky.top-0.z-40 at 65px tall and div.pointer-events-none.fixed.inset-x-0.bottom-0 at 44px; the persistence itself is directly visible in both scroll captures.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F35",
+      "topic": "information-design",
+      "claim": "There is no command palette and no keyboard hint; the header search is a plain always-present input.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "kbdTexts and ariaKeyshortcuts are both empty and no keyboard hint appears in any capture. scriptTokens.metaKey is true on the dossier but the separate measurer pass found no metaKey in 1.77M chars of inline script and 15 external scripts were never fetched, so the passes disagree and neither supports a palette claim. searchAffordances records a real input plus a Search button.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "scriptTokens",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F36",
+      "topic": "information-design",
+      "claim": "There is no theme toggle and no dark mode; light is not the default so much as the only mode.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "prefersColorScheme.found is false across the one readable stylesheet, htmlAttributes.dataTheme is null, and no control labelled theme, appearance or colour scheme exists.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F37",
+      "topic": "information-design",
+      "claim": "Copy controls are unresolved between the two passes and nothing is claimed about them.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The capture manifest records copyControls.count 0 on the dossier while the earlier measurer pass recorded two copy/clipboard controls; no copy affordance is visible in any of the sixteen images.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "What a reader sees first on our flagship dossier is a name, a container, and then a message saying the answer is not written yet.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Reading order down the first screen: 56px 'Metformin', the pale-blue card, then the largest body text on the page - 'A study result is available, but it still needs a short plain-language explanation.' The floating 'Sections & feedback' pill sits lower still, at about y=854, so it is met after the answer slot, not before it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "baseline",
+      "claim": "The 'In 10 seconds' card performs around thin data: its weight is set by the layout, not by the evidence in it.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Roughly 490x1180px of tinted, bordered, internally ruled container holding about 68 words - one scope sentence, one backlog sentence, one broken callout and a 19-word standing disclaimer - of which roughly 49 are medicine-specific. A page with ten trials and a page with none would render the same box.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "baseline",
+      "claim": "The coloured callouts do not defer; the strongest colour signal on the page is attached to its weakest prose.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Amber on cream with a left rule - the visual grammar of a warning - is spent on a grammatically broken sentence whose content is a non-event ('has never started').",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "baseline",
+      "claim": "The six numbered reader questions are not on the rendered page at all, and only one of the 27 h3s is.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The outline names six numbered questions and 27 h3s. The only h3 visible in any capture is 'Found a name that is wrong?' at the foot of the page; the rest sit inside the closed 'See how we know' and 'More about this medicine' doors. As delivered the page is a summary card, one blue button and two plus-signs.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F42",
+      "topic": "baseline",
+      "claim": "About half the words on the dossier's first screen are fixed copy that would repeat on all 9,852 pages, rising to roughly 60% once the templated backlog sentence is counted as fixed.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Counting from the capture, standing copy runs to roughly 64 words: 'The same medicine can have different answers...', 'Research covered on this page', 'General research summary', 'IN 10 SECONDS', 'What is it for?', 'What studies found', 'What this result does not show', 'This combines research on different uses and groups...', plus header and pill. Medicine-specific text runs to roughly 68 words: 'Metformin', 'Glucophage', one approval sentence, one indication phrase, one 13-word answer and one 23-word callout. The backlog sentence is itself template copy on every unfinished page, and 'Small chemical medicine. Approved in the United States (FDA).' repeats across every approved small molecule.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "innerTextLength"
+      ]
+    },
+    {
+      "id": "F43",
+      "topic": "baseline",
+      "claim": "The type scale is the cause of the container problem, not a separate issue.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "56/12/14px over a 16px body leaves no heading rank below the title at all; the one place the page steps up - the ~18px bold 'What studies found' line inside the card - is body text, which is why the 12px label above it reads as a chip. With no heading level to say one section matters more than another, the page reaches for a coloured box. Fixing the boxes without fixing the scale moves the problem.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "baseline",
+      "claim": "Mobile makes the thinness plainer rather than worse, apart from the pill overlap.",
+      "captures": [
+        "content-375-scroll-00.png",
+        "content-375-full.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "At 375px the h1 drops to 36px and the first screen carries the name, trade name, regulatory line, scope row and the whole 'In 10 seconds' answer down to 'explanation.'; the callout and disclaimer arrive on screen two and the page ends there. The fixed pill covers the card's lower hairline at 0%, the 'Found a name that is wrong?' heading at 50% and footer text at 90%.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F45",
+      "topic": "baseline",
+      "claim": "The home page is the stronger half of the baseline; every problem of substance is on the dossier.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "Three ranks, one action, an honest empty state, nothing above or beside the frozen search bar. Two defects in this pass are on the home page, both cosmetic and both at 375px: the clipped search placeholder (F8) and the dangling separator dot in the 'Popular:' row (F33).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "borrow",
+      "claim": "This pass strengthens four rows of the Phase 2 table and overturns none.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-02.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Reading column: the widest card lines measure about 700-740px in the capture and the 93-characters figure is a Phase 1 measurer number, but on either reading the column runs past the 68-86 band, and 56/12/14px is the concrete failure Linear's space-not-size hierarchy answers. Contents rail: tocPresent false and no rail in the 50%/90% captures confirm the gap. Structured data blocks: two collapsed rows and one blue button stand where Stripe has 61 field blocks. Search overlay: a plain input with no keyboard hint at 1440px and a bare magnifier at 375px, so the Vercel row is a target not a description. Home: validated visually - nothing in the accent colour competes with the bar.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "defers-or-competes",
+      "claim": "The fixed 'Sections & feedback' pill collides with the page's one contribution action at desktop as well as at mobile.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "At desktop 50% the white pill sits directly on the top-right corner of the solid blue 'Suggest a correction' button; at mobile 50% the same pill covers the h3 'Found a name that is wrong?' mid-word. The overlap is not a mobile-only defect, and it lands on the control that starts a correction.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The same account control is labelled two different ways across viewports: 'Sign in' at 1440px and 'Log in' at 375px, on both pages.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png",
+        "content-1440-tile-01.png",
+        "content-375-scroll-00.png"
+      ],
+      "evidence": "The header pill reads 'Sign in' in both desktop captures and 'Log in' in both mobile captures. One control, two names, inside a single capture set.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "addedBy": "verifier"
+    },
+    {
+      "id": "V3",
+      "topic": "information-design",
+      "claim": "The dossier header search changes kind rather than size between viewports, so at 375px the only route to the next medicine is an unlabelled glyph.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-375-scroll-00.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "At 1440px the dossier header carries a full input reading 'Search medicines, conditions, trials...'; at 375px it collapses to a bare magnifier with no label. The dossier offers no related medicines and no listing, so search is the only onward route. The home page also uses a different placeholder ('Search medicine, condition, gene, or protein...'), so the same field states its scope two ways.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ],
+      "addedBy": "verifier"
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Home",
+      "Compound dossier — reading column",
+      "Compound dossier — contents rail and previews",
+      "Structured data blocks",
+      "Global search overlay"
+    ],
+    "verdict": "strengthens",
+    "argument": "rnawiki.com is the subject of the table rather than a candidate reference, so it cannot overturn an assignment; what it can do is test whether each row describes a real gap. It does. The reading-column row (Smashing governing, Linear secondary) is strengthened twice over: the widest card lines measure about 700-740px in the capture (the 93-characters figure is a Phase 1 measurer number, not an image observation), which on either reading sits outside the 68-86 band the table derives from the references, and our 56/12/14px scale over a 16px body leaves exactly one visible heading level - the failure Linear's hierarchy-by-space was chosen to fix, and the reason our page reaches for coloured containers instead. The contents-rail row, left unassigned as a stopping rule, is strengthened: tocPresent is false and the 50% and 90% scroll captures show only a 65px sticky header and one floating pill persisting, so the rail is genuinely absent rather than merely unassigned. The structured-data-blocks row (Stripe) is strengthened: where the reference shows 61 collapsible field blocks, our dossier shows two closed disclosure rows plus one blue jump button, and no table or list of any kind. The global-search-overlay row (Vercel) is strengthened as a target: our header search is a real always-present input with no kbd hint and no aria-keyshortcuts, so the palette described in that row does not yet exist here. The Home row is validated visually - the rendered first screen at both viewports has nothing above or beside the search bar. Nothing observed contradicts an assignment, and the atlasobscura text-to-HTML argument is reinforced from an uncomfortable direction: our own dossier measures 0.0007, an order of magnitude worse than the site that was dropped for that number."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Keep the home page exactly as rendered: three ranks, one action, the frozen search bar with nothing above or beside it, and the Feedback pill parked clear of it (index-1440-tile-01.png).",
+      "Reuse the home empty-state pattern on the dossier: state the absence in normal body weight and add one grey line giving the rule that would change it, as 'No published contributor changes this week yet.' does (index-1440-tile-02.png).",
+      "Keep the blue card's internal hairline rhythm - 1px rules with about 30px of clearance either side, separating question from answer from qualification - and let it scale to more content instead of adding more containers (content-1440-tile-01.png).",
+      "Keep the restraint of the chassis: one accent, near-white ground rgb(245,245,247), system type, thin rules, and the spacing and contrast discipline the Phase 1 measurer recorded (4px base at 90.6%, 7.26:1 body, 15.46:1 title) (content-1440-tile-01.png)."
+    ],
+    "avoid": [
+      "Do not print editorial backlog state as reader content. 'A study result is available, but it still needs a short plain-language explanation.' must not occupy the answer slot at the page's largest body weight (content-1440-tile-01.png).",
+      "Do not spend warning colour on weak or unfinished prose. The amber callout currently carries a lowercase, subject-duplicated sentence at the page's second-highest emphasis (content-1440-tile-01.png).",
+      "Do not let a 12px uppercase h2 introduce 16px body text. Section rank must be legible without a coloured box (content-1440-tile-01.png, content-375-tile-01.png).",
+      "Do not size containers to the page when the content is four sentences; a 490x1180px card around 45 words makes thin data look padded rather than honest (content-1440-tile-01.png).",
+      "Do not let the fixed 'Sections & feedback' pill overlap content. It covers the evidence card at mobile 0% and the footer text at mobile 90% (content-375-scroll-00.png, content-375-scroll-90.png).",
+      "Do not leave the mobile search placeholder clipped by the Search button on the home page's first screen (index-375-tile-01.png).",
+      "Do not let the fixed pill land on the 'Suggest a correction' button at desktop; at 1440px/50% it sits on the button's top-right corner (content-1440-scroll-50.png).",
+      "Do not label one control two ways: the header reads 'Sign in' at 1440px and 'Log in' at 375px (index-1440-tile-01.png, index-375-tile-01.png).",
+      "Do not reduce the dossier header search to a bare magnifier at 375px while it is the page's only onward route to another medicine (content-375-scroll-00.png).",
+      "Do not treat repeating scaffolding as free: about half the dossier's first-screen words are identical across the corpus, rising to roughly 60% once the templated backlog sentence is counted (content-1440-scroll-00.png)."
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "bannerActions records a banner left standing on index-375, content-1440 and content-375, and one still visible after a refusal click on index-1440, but no consent or cookie banner is visible in any of the sixteen images; the control list recorded for that element (Browse all medicines, Public datasets, How this works, Editorial policy, Review queue, Analytics choices) is exactly the site footer seen in index-1440-full.png and content-1440-full.png, so the detector appears to have matched the footer rather than a banner.",
+    "The genuine persistent overlay in every pass is the site's own floating pill - 'Feedback' on the home page, 'Sections & feedback' on the dossier - which is design, not a banner."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "verifiedBy": "independent verifier",
+    "imagesViewed": [
+      "index-1440-full.png",
+      "index-1440-tile-01.png",
+      "index-1440-tile-02.png",
+      "index-375-full.png",
+      "index-375-tile-01.png",
+      "content-1440-full.png",
+      "content-1440-tile-01.png",
+      "content-1440-tile-02.png",
+      "content-1440-scroll-00.png",
+      "content-1440-scroll-50.png",
+      "content-1440-scroll-90.png",
+      "content-375-full.png",
+      "content-375-tile-01.png",
+      "content-375-scroll-00.png",
+      "content-375-scroll-50.png",
+      "content-375-scroll-90.png"
+    ],
+    "confirmed": 18,
+    "qualified": 27,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Most important correction: the dossier does have a second visible typographic rank - the card's ~18-20px bold 'What studies found' and 'A study result is available...' lines - but it belongs to body text, not to any heading element. F1, F5 and F43 all rested on 'one visible level'; F1 and F43 are rewritten and F5 is removed.",
+      "F5 removed (refuted): its claim of 'one visible heading level' and its example that 'More about this medicine' and 'Found a name that is wrong?' are indistinguishable in weight from surrounding prose are contradicted by content-1440-tile-02.png, where both render clearly bolder and darker than the prose beneath them. The 33-heading / 27-h3 counts it carried survive inside F41.",
+      "Phase 1 measurer numbers presented as visual observations were re-attributed rather than deleted: 93 characters per line (F13, F46), 4px at 90.6% and the contrast ratios (F14, F25), the 0.0006 text-to-HTML ratio (F10), and svgCount 529 (F23).",
+      "'The only outlined element on the first screen' appears in F4, F6 and F28 and is not what the captures show - the Sign in pill, the 'Public evidence' chip, the FDA chip and the featured card all carry borders. Rewritten to 'the only accent-blue outlined element', which is true and is the point.",
+      "Word counts in F10, F39 and F42 were recounted from the captures: about 65 medicine-specific words on the first desktop screen, about 68 words inside the card, and about half rather than two-thirds of first-screen words as fixed scaffolding.",
+      "Two orderings were wrong and are corrected: the backlog sentence is met before the floating pill, not after it (F38), and the whole 'In 10 seconds' answer is on the first mobile screen, not the second (F44).",
+      "F32 is desktop-only; the mobile capture it cited shows 'General research summary' sitting correctly beneath the scope line.",
+      "The bannerActions false positive was already correctly identified by the viewer and no finding treats a consent banner as design; nothing was discounted on banner grounds.",
+      "Three additions, each tied to a capture: the desktop pill/'Suggest a correction' collision, the Sign in / Log in label split, and the dossier header search collapsing to an unlabelled magnifier at 375px."
+    ]
+  }
+}

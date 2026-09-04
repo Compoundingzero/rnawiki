@@ -1,0 +1,200 @@
+{
+  "wikiwand.com": {
+    "summary": "No terms document could be read: both registry candidates (/terms and /en/terms-of-service) and the index page returned HTTP 403 to this gate, the index as a 5,671-byte challenge page, so what the terms permit for a person-operated browser rendering public pages and saving screenshots for private study is unestablished. robots.txt itself was served (HTTP 200) and its only rule for a generic user agent is `Allow: /`, which would permit both study paths. Because every terms candidate returned an error, the gate does not authorise a capture; the mandate's separate real-browser retry for this site is a question for the orchestrator, not a permission this gate can grant.",
+    "licence": null,
+    "decision": "blocked",
+    "clauses": [
+      "User-agent: * -> Allow: /"
+    ],
+    "reasonPrefix": "Blocked because every terms candidate returned an error to this gate: HTTP 403 at https://www.wikiwand.com/terms, HTTP 403 at https://www.wikiwand.com/en/terms-of-service and HTTP 403 (5,671 bytes) at the index page, so no clause could be read, even though robots.txt is readable and says"
+  },
+  "stripe.com/docs": {
+    "summary": "The document reached from the registry's first candidate is Stripe's Consumer Terms of Service (it redirected to /en-sg/legal/consumer), which governs Stripe's consumer payment services rather than reading docs.stripe.com; it contains no clause about automated access, crawling, rendering or screenshots, and its only automation language defines payment \"Agents\". Nothing in it restricts a person-operated browser opening the two public documentation pages or keeping screenshots for private design study. No site-wide website terms-of-use document was reached through the permitted candidate list, and that limit is recorded here rather than read as permission.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "User-agent: * -> Allow: /"
+    ],
+    "reasonPrefix": "robots.txt at docs.stripe.com allows both study paths and no clause in the saved terms text restricts rendering public pages or keeping screenshots; the robots rule relied on is"
+  },
+  "vercel.com/docs": {
+    "summary": "Vercel's terms are a subscription agreement for using the Vercel platform: the restrictions attach to the Services and to the licence a customer receives, not to reading vercel.com/docs. The saved text contains no mention of crawling, scraping, robots, spiders, data mining, automated access or screenshots, so a person-operated browser rendering the two public docs pages and keeping screenshots for private study is neither addressed nor forbidden. No content licence is stated.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "Any rights not expressly granted herein are reserved and no license or right to use any trademark of Vercel or any third-party is granted to you in connection with the Services."
+    ],
+    "reasonPrefix": "robots.txt (HTTP 200) has no rule matching /docs or /docs/deployments for a generic user agent, and no clause in the saved terms text restricts rendering or screenshots; the nearest clause reserves product and trademark rights only:"
+  },
+  "linear.app/method": {
+    "summary": "Linear's terms are a customer subscription agreement for the Linear product; the use restrictions attach to the Service and its Software (no modifying, copying, reverse engineering), not to reading the public /method pages. The saved text contains no clause on crawling, scraping, robots, automated access or screenshots, so rendering the two public pages and keeping screenshots for private study is not forbidden. No content licence is stated.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "Customer agrees that it will not, and will not allow Users or third parties to, directly or indirectly (a) modify, translate, copy or create derivative works based on the Service, (b) reverse assemble, reverse compile, reverse engineer, decompile or otherwise attempt to discover the object code, source code, non-public APIs or underlying ideas or algorithms of the Service, except as and only…"
+    ],
+    "reasonPrefix": "robots.txt (HTTP 200) has no rule matching /method or /method/introduction for a generic user agent, and the only use restriction in the saved terms text is scoped to the Service software rather than to reading public pages:"
+  },
+  "quantamagazine.org": {
+    "summary": "The terms permit use of the Site for personal, non-commercial use only and then forbid two things this phase would do: reproducing or storing the material on the Site, and conducting systematic or automated data collection on it. A scripted browser saving page images is automated collection and the saved image is a reproduction, so the clauses are taken literally rather than read around. No content licence is offered, so Quanta is linked to and nothing is kept.",
+    "licence": null,
+    "decision": "link-only",
+    "clauses": [
+      "You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Site, other than as permitted by law.",
+      "You must not conduct any systematic or automated data collection activities (including, without limitation, scraping, data mining, data extraction and data harvesting) on or in relation to our Site;"
+    ],
+    "reasonPrefix": "The terms forbid reproduction and automated collection outright:"
+  },
+  "theverge.com": {
+    "summary": "Vox Media's terms forbid using any \"robot\", \"spider\", \"rover\", \"scraper\" or any other data-mining technology or automatic or manual process to monitor, cache, frame, mask, extract data from, copy or distribute any data from the Services, and separately say the Content may not be copied, reproduced or republished without prior written permission. A browser driven by a script that saves page images is such an automatic process, so the capture this phase requires is forbidden. No content licence is offered.",
+    "licence": null,
+    "decision": "link-only",
+    "clauses": [
+      "(g) use any \"robot,\" \"spider,\" \"rover,\" \"scraper\" or any other data-mining technology or automatic or manual process to monitor, cache, frame, mask, extract data from, copy or distribute any data from the Services, our network or databases;",
+      "(a) the Content may not be copied, modified, reproduced, republished, posted, transmitted, sold, offered for sale, or redistributed in any way without our prior written permission and that of our applicable licensors; and (b) you must abide by all copyright notices, information, or restrictions contained in or attached to any Content."
+    ],
+    "reasonPrefix": "The terms forbid automated access and reproduction outright:"
+  },
+  "smashingmagazine.com": {
+    "summary": "No terms-of-service document exists at the registry's candidate — /terms-of-use/ returns HTTP 404 and the index page exposes no anchor matching terms, conditions or legal — so the only policy document reachable was the privacy notice recorded here; it is a privacy notice, not terms, and the excerpts come from it. It says nothing about automated access, crawling, screenshots or reproduction of articles; its only \"automated\" language is the GDPR right not to be subject to automated decision-making. robots.txt is served and no rule in it matches either study path for a generic user agent, so nothing that could be read forbids a person-operated browser rendering the two public pages and keeping screenshots for private study.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "You will have the right not to be subject to a decision based solely on automated processing, including profiling, which produces legal effects concerning you or similarly significantly affects you."
+    ],
+    "reasonPrefix": "No terms document exists (HTTP 404 at /terms-of-use/, and the index exposes no terms, conditions or legal anchor) and robots.txt has no rule matching either study path; the only automation clause in the privacy notice that was reachable concerns automated decision-making, not access:"
+  },
+  "pudding.cool": {
+    "summary": "The Pudding publishes no terms-of-service document: /terms/ returns HTTP 404 and the index exposes no anchor matching terms, conditions or legal, so the page recorded here is the About page the registry named, and the single matching sentence in it is about sponsored posts. Nothing readable restricts automated access, rendering or screenshots. robots.txt returns HTTP 404, so no crawl rules exist and neither study path is disallowed.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "The only time a brand finds its way on The Pudding is through sponsored posts, like this one we just did about congressional tweets with Saleforce’s Einstein API or this one about Dear Abby letters with IBM Watson."
+    ],
+    "reasonPrefix": "No terms document exists (HTTP 404 at /terms/, no terms anchor on the index) and no robots.txt is served (HTTP 404), so no rule and no clause restricts rendering or screenshots; the only sentence in the About page that the scan matched is:"
+  },
+  "atlasobscura.com": {
+    "summary": "Nothing could be read: robots.txt returned HTTP 403 and all three terms attempts returned HTTP 403 to this gate's user agent — /terms, /terms-of-use, and /terms again after following the index page's own \"Terms and Conditions\" link. The index page itself returned HTTP 200, so the host is reachable, but neither the crawl rules nor the terms could be established. With robots.txt unreadable, the condition for capture — robots allowing both study paths — cannot be satisfied, so the gate does not authorise a capture.",
+    "licence": null,
+    "decision": "blocked",
+    "clauses": [],
+    "reasonPrefix": "Blocked because robots.txt returned HTTP 403 and every terms candidate returned HTTP 403 to this gate (https://www.atlasobscura.com/robots.txt 403; /terms 403; /terms-of-use 403; /terms 403 again after following the index page's \"Terms and Conditions\" link), so neither the crawl rules nor any clause could be read"
+  },
+  "awwwards.com": {
+    "summary": "The terms reserve all rights in the site's material and prohibit unauthorized use or reproduction outright, and separately bar commercial use of the content without express authorization. A saved screenshot is a reproduction of that material and no authorization exists, so the terms forbid what this phase requires and the clause is not read around. robots.txt has no rule matching either study path, but that does not displace the terms; the site is linked to and nothing is kept.",
+    "licence": null,
+    "decision": "link-only",
+    "clauses": [
+      "All rights are reserved and any unauthorized use or reproduction is strictly prohibited.",
+      "Our content may not be used for commercial purposes unless expressly authorized by Awwwards."
+    ],
+    "reasonPrefix": "The terms forbid reproduction outright:"
+  },
+  "openhumans.org": {
+    "summary": "Open Humans' terms govern accounts, member data and the licence a member grants for their own uploaded content; nothing in the saved text restricts automated access, crawling, rendering or screenshots, so rendering the two public pages and keeping screenshots for private study is not forbidden. For A2 extraction the terms grant no site-wide content licence — they say only that some content carries alternative licences or public domain dedications — so structured content should be linked rather than copied unless a specific page states its own licence. Whether a public API exists was not established: the documented API documentation URL returned HTTP 404 and no API link appears on the pages already fetched, and nothing further was fetched. No robots.txt is served (HTTP 404), so no crawl rule disallows either path.",
+    "licence": "none stated site-wide; the terms say only that for some content \"alternative licenses or public domain dedications may allow more permissive use\" (per item, not site-wide)",
+    "apiExists": null,
+    "apiUrl": "https://www.openhumans.org/api-docs/",
+    "apiNote": "the documented API documentation URL https://www.openhumans.org/api-docs/ returned HTTP 404 and no anchor matching \"API\" appears on the pages already fetched, so the existence of a public API is not established; nothing further was fetched",
+    "decision": "capture",
+    "clauses": [
+      "For some content, alternative licenses or public domain dedications may",
+      "This license lets you use Open Humans solely as"
+    ],
+    "reasonPrefix": "No robots.txt is served (HTTP 404) so no path is disallowed, and no clause in the saved terms text restricts automated access, rendering or screenshots; the licence position, which limits extraction rather than viewing, is stated only as (the terms text is hard-wrapped, so these are the lines verbatim):"
+  },
+  "biohackrxiv (osf.io)": {
+    "summary": "The Center for Open Science terms of use grant every user a licence to use content marked \"public\" — by \"use\" they mean sublicense, reproduce, store, transmit, distribute and publicly display it, for non-commercial and commercial uses — and place no restriction on automated access, crawling, rendering or screenshots. Rendering the BiohackrXiv index and the one selected public preprint in a browser and keeping screenshots for private study is therefore permitted, and extracting structured content for citation and linking is permitted for public content under the licence its depositor identified; the prohibition the pattern scan flagged concerns harvesting personal data for commercial purposes and unsolicited advertising, not reading preprints. osf.io's robots.txt allows both study paths and asks for a 10-second crawl delay. Recorded honestly: the gate's own three requests to api.osf.io were disallowed by that host's robots.txt (`User-agent: * / Disallow: /`), so no further API request may be made there and the preprint page selected from that response is the last thing taken from it.",
+    "licence": "CC-By Attribution 4.0 International (the licence the OSF API states for the selected preprint); the OSF software itself is Apache 2.0; other content carries whatever licence its depositor identified",
+    "apiExists": true,
+    "apiUrl": "https://api.osf.io/v2/",
+    "apiNote": "the OSF Public API root returned HTTP 200, but api.osf.io/robots.txt disallows every path for a generic user agent (`User-agent: * / Disallow: /`); the gate had already made three requests there before it audited that host, which is reported in the self-audit and must not be repeated",
+    "decision": "capture",
+    "clauses": [
+      "In addition, the COS grants you a license to use any Content marked \"public,\" subject to patent, copyright and trademark law and these Terms of Use, including the limits described in the section governing Limitations on Use below.",
+      "By \"use\" we mean sublicense, reproduce, store, transmit, distribute, and publicly display the Content for non-commercial and commercial uses.",
+      "You are further prohibited from harvesting addresses, email addresses, or other personal data for commercial purposes and from sending unsolicited or unauthorized advertising, promotional materials, or other unsolicited communications to other users of the Websites or Services."
+    ],
+    "reasonPrefix": "robots.txt on osf.io allows both study paths (Crawl-delay 10) and the terms of use grant a licence to use public content rather than restricting it; the flagged prohibition is about personal-data harvesting and advertising, not reading:"
+  },
+  "wiki.biohack.me": {
+    "summary": "There is no terms-of-service document: both registry candidates are MediaWiki URLs that now redirect to a DokuWiki start page titled \"start [HumanAug Wiki]\" — the old wiki has been replaced — and the index exposes no anchor matching terms, conditions or legal. The page that was reached states the site's licence in its footer, and nothing readable restricts automated access, rendering or screenshots, so rendering public pages and keeping screenshots for private study is not forbidden; extraction for citation is permitted under that licence, with attribution, share-alike and non-commercial use. No robots.txt is served (HTTP 404), and api.php returns HTTP 404, so this wiki has no MediaWiki API.",
+    "licence": "CC Attribution-Noncommercial-Share Alike 4.0 International (stated in the wiki footer)",
+    "apiExists": false,
+    "apiNote": "api.php returns HTTP 404: the site is now DokuWiki, not MediaWiki, so no MediaWiki API exists; no other API URL was discoverable on the pages already fetched",
+    "decision": "capture",
+    "clauses": [
+      "Except where otherwise noted, content on this wiki is licensed under the following license:",
+      "CC Attribution-Noncommercial-Share Alike 4.0 International"
+    ],
+    "reasonPrefix": "No robots.txt is served (HTTP 404) and no terms document exists (both registry candidates redirect to the wiki start page); the only governing statement reachable is the footer licence:"
+  },
+  "longevity wiki (url to verify)": {
+    "summary": "The wiki publishes no terms-of-service document — the registry lists no candidate and the verified index page exposes no anchor matching terms, conditions or legal — and robots.txt (HTTP 200) has no rule matching the verified path for a generic user agent, so nothing forbids rendering public pages and keeping screenshots for private study. The MediaWiki API states the site's rights, which permits extraction for citation with attribution and share-alike. The canonical host was verified: https://longevitywiki.org/ redirects to https://en.longevitywiki.org/wiki/Longevity_Wiki, HTTP 200, <title> \"Longevity Wiki\", MediaWiki 1.41.0; that URL is now recorded as both the index and the content page, and a content article will be chosen only if the capture is confirmed.",
+    "licence": "Creative Commons Attribution-ShareAlike, https://creativecommons.org/licenses/by-sa/4.0/ (MediaWiki rightsinfo)",
+    "apiExists": true,
+    "apiUrl": "https://en.longevitywiki.org/api.php",
+    "apiNote": "MediaWiki 1.41.0 action API; siteinfo and rightsinfo returned HTTP 200 and en.longevitywiki.org/robots.txt allows /api.php",
+    "decision": "capture",
+    "clauses": [
+      "\"rightsinfo\":{\"url\":\"https://creativecommons.org/licenses/by-sa/4.0/\",\"text\":\"Creative Commons Attribution-ShareAlike\"}"
+    ],
+    "reasonPrefix": "robots.txt (HTTP 200) has no rule matching the verified path, no terms document exists, and the site's own API states its content licence:"
+  },
+  "forum.quantifiedself.com": {
+    "summary": "The forum's terms of service contain no clause on automated access, crawling, robots, spiders or screenshots; the restrictions concern accounts, what a member posts, and copyright complaints. Rendering the index and the /latest listing in a browser and keeping screenshots for private information-design study is therefore not forbidden, and robots.txt has no rule matching either path. User contributions carry a stated Creative Commons licence, so attributed non-commercial quotation with share-alike would be permitted — but the mandate treats forums as screenshot-only, so no thread was fetched here and nothing is extracted.",
+    "licence": "user contributions: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported; the terms document itself: CC-BY-SA",
+    "apiExists": true,
+    "apiUrl": "https://forum.quantifiedself.com/about.json",
+    "apiNote": "Discourse JSON endpoints exist and about.json returned HTTP 200 (site metadata only); robots.txt allows it. No thread, topic or post JSON was fetched, and none may be: this site is screenshot-only.",
+    "decision": "capture",
+    "clauses": [
+      "User contributions are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License .",
+      "This document is CC-BY-SA."
+    ],
+    "reasonPrefix": "robots.txt has no rule matching either path and no clause in the terms of service restricts automated access, rendering or screenshots; the licence the terms do state is:"
+  },
+  "longecity.org": {
+    "summary": "No terms document was located: both registry candidates return HTTP 404 and the index page (HTTP 200, 261,147 bytes) exposes no anchor whose text matches terms, conditions or legal, so no clause restricting automated access, rendering or screenshots was found — and unlike the two sites blocked here, none was refused to the gate either. No robots.txt is served (HTTP 404), so no crawl rule disallows the forum index or the supplements category listing. No content licence is stated anywhere the gate could read, and nothing is extracted: this is a forum, so the study is screenshots only and no thread was fetched.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [],
+    "reasonPrefix": "No robots.txt is served (HTTP 404) so no path is disallowed, and no terms document exists to read (https://www.longecity.org/forum/terms/ 404, https://www.longecity.org/forum/page/terms 404, and the index page exposes no terms, conditions or legal anchor), so no clause forbids rendering public listing pages and keeping screenshots; extraction is excluded separately by the mandate's forum rule"
+  },
+  "experiment.com": {
+    "summary": "No terms document was located: /terms and /legal/terms both return HTTP 404 and the index page exposes no anchor matching terms, conditions or legal, so there is no clause restricting rendering or screenshots to read. robots.txt is explicit for both the index and the selected project page. No content licence is stated and no documented API URL was discoverable from the pages already fetched, so for A2 purposes the project page should be linked rather than extracted.",
+    "licence": null,
+    "decision": "capture",
+    "clauses": [
+      "User-agent: * -> Allow: /"
+    ],
+    "reasonPrefix": "No terms document exists (HTTP 404 at /terms and /legal/terms; no terms anchor on the index), and robots.txt allows both the index and the selected project page:"
+  },
+  "zenodo.org": {
+    "summary": "Zenodo's terms are short and permissive about reading: use of Zenodo denotes agreement with them, users must respect the licence conditions that apply to each item, and downloading transfers no intellectual property rights. There is no clause on automated access, crawling, robots or screenshots, so rendering the index and one public record page in a browser and keeping screenshots for private study is not forbidden; robots.txt allows both of those paths and asks for a 10-second crawl delay. Extraction for citation and linking is permitted subject to each record's own licence — the record selected here states cc-by-4.0. Recorded honestly: the gate's own three requests to zenodo.org/api were disallowed by robots.txt (`User-agent: * / Disallow: /api`), so no further API request may be made and the record page selected from that response is the last thing taken from it.",
+    "licence": "per record; the selected record states cc-by-4.0. Zenodo's terms state only that \"Users of content (“Users”) shall respect applicable license conditions.\"",
+    "apiExists": true,
+    "apiUrl": "https://zenodo.org/api/records",
+    "apiNote": "the Zenodo REST API exists and returned HTTP 200, but zenodo.org/robots.txt disallows /api for a generic user agent (`Disallow: /api`, with a narrow `Allow: /api/records/*/files`); the gate had already made three requests there before it audited the host, which is reported in the self-audit and must not be repeated",
+    "decision": "capture",
+    "clauses": [
+      "Use of Zenodo, both the uploading and downloading of data, denotes agreement with the following terms:",
+      "Users of content (“Users”) shall respect applicable license conditions.",
+      "Download and use of content from Zenodo does not transfer any intellectual property rights in the content to the User."
+    ],
+    "reasonPrefix": "robots.txt allows the index and the selected record page (Crawl-delay 10; only /search, /api and account paths are disallowed) and the terms contain no clause on automated access, rendering or screenshots, only a duty to respect item licences:"
+  },
+  "sphere.diybio.org": {
+    "summary": "The DIYbiosphere terms of use, reached by following the index page's own \"Terms of Use\" link, dedicate the rendered site to the public domain and place the repository files under the MIT License, with logos excepted. Nothing restricts automated access, rendering or screenshots, so capture is permitted; extraction for citation and linking is permitted for the rendered pages under CC0, and attribution is still the honest practice even where the licence does not demand it. robots.txt is served but contains only a Sitemap line — no group applies to any user agent — so no path is disallowed. No project or group page was discoverable in the index's server-rendered markup, so the content page stays the index and is recorded as such.",
+    "licence": "rendered pages at sphere.diybio.org: CC0 public domain dedication; repository files at DIYbiosphere/sphere: MIT License; logos excluded from the CC0 dedication",
+    "apiExists": null,
+    "apiNote": "no documented API URL was discoverable from the terms or index page already fetched, so no API probe was made and the existence of an API is not established",
+    "decision": "capture",
+    "clauses": [
+      "Website the rendered webpages at: sphere.diybio.org , are dedicated to the Public Domain with CC0 License .",
+      "Repository the raw files at: DIYbiosphere/sphere are shared under the MIT License .",
+      "Except where otherwise noted, content on this site is dedicated to the public domain"
+    ],
+    "reasonPrefix": "robots.txt contains no user-agent group at all (only a Sitemap line), so nothing is disallowed, and the terms of use dedicate the rendered pages to the public domain:"
+  }
+}

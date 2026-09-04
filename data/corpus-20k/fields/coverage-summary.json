@@ -1,0 +1,371 @@
+{
+  "schema": "rnawiki-corpus-20k-coverage/v1",
+  "spec": "docs/specs/field-models.md",
+  "generated": "2026-09-05",
+  "totalPages": 28832,
+  "inputs": {
+    "modelAssignment": "data/corpus-20k/tiers/model-assignment.ndjson",
+    "suppression": "data/corpus-20k/suppression/assignments.ndjson",
+    "fields": [
+      "data/corpus-20k/fields/longevity/batch-*.ndjson",
+      "data/corpus-20k/fields/clinical/batch-*.ndjson",
+      "data/corpus-20k/fields/development/batch-*.ndjson"
+    ]
+  },
+  "models": {
+    "LONGEVITY": {
+      "pages": 1109,
+      "batchFiles": 5,
+      "fields": [
+        "hallmark",
+        "organismLadder",
+        "itp",
+        "endpointType",
+        "humanCeiling",
+        "clocks",
+        "doseResponse",
+        "pathway",
+        "kinetics",
+        "interactions",
+        "trialFailures",
+        "biomarkers",
+        "regulatory",
+        "ongoingTrials",
+        "faers"
+      ],
+      "applicableFieldsMax": 15,
+      "stateByField": {
+        "hallmark": {
+          "present": 545,
+          "absent": 564,
+          "notApplicable": 0
+        },
+        "organismLadder": {
+          "present": 1080,
+          "absent": 29,
+          "notApplicable": 0
+        },
+        "itp": {
+          "present": 51,
+          "absent": 1058,
+          "notApplicable": 0
+        },
+        "endpointType": {
+          "present": 1081,
+          "absent": 28,
+          "notApplicable": 0
+        },
+        "humanCeiling": {
+          "present": 1058,
+          "absent": 51,
+          "notApplicable": 0
+        },
+        "clocks": {
+          "present": 96,
+          "absent": 1013,
+          "notApplicable": 0
+        },
+        "doseResponse": {
+          "present": 775,
+          "absent": 334,
+          "notApplicable": 0
+        },
+        "pathway": {
+          "present": 677,
+          "absent": 432,
+          "notApplicable": 0
+        },
+        "kinetics": {
+          "present": 491,
+          "absent": 601,
+          "notApplicable": 17
+        },
+        "interactions": {
+          "present": 683,
+          "absent": 426,
+          "notApplicable": 0
+        },
+        "trialFailures": {
+          "present": 813,
+          "absent": 296,
+          "notApplicable": 0
+        },
+        "biomarkers": {
+          "present": 1002,
+          "absent": 107,
+          "notApplicable": 0
+        },
+        "regulatory": {
+          "present": 892,
+          "absent": 217,
+          "notApplicable": 0
+        },
+        "ongoingTrials": {
+          "present": 861,
+          "absent": 248,
+          "notApplicable": 0
+        },
+        "faers": {
+          "present": 615,
+          "absent": 494,
+          "notApplicable": 0
+        }
+      },
+      "presentFieldCountHistogram": {
+        "0": 4,
+        "1": 15,
+        "2": 7,
+        "3": 7,
+        "4": 25,
+        "5": 36,
+        "6": 85,
+        "7": 70,
+        "8": 87,
+        "9": 113,
+        "10": 140,
+        "11": 173,
+        "12": 164,
+        "13": 158,
+        "14": 23,
+        "15": 2
+      },
+      "medianPresentFields": 10,
+      "meanPresentFields": 9.666,
+      "medianApplicableFields": 15,
+      "meanApplicableFields": 14.985,
+      "medianCoverageOfApplicable": 0.6667,
+      "meanCoverageOfApplicable": 0.645
+    },
+    "CLINICAL": {
+      "pages": 5087,
+      "batchFiles": 21,
+      "fields": [
+        "indication",
+        "labelKinetics",
+        "interactions",
+        "adverseEvents",
+        "faers",
+        "trialHistory",
+        "trialFailures",
+        "regulatory",
+        "withdrawal"
+      ],
+      "applicableFieldsMax": 9,
+      "stateByField": {
+        "indication": {
+          "present": 2422,
+          "absent": 2061,
+          "notApplicable": 604
+        },
+        "labelKinetics": {
+          "present": 1240,
+          "absent": 3243,
+          "notApplicable": 604
+        },
+        "interactions": {
+          "present": 695,
+          "absent": 3788,
+          "notApplicable": 604
+        },
+        "adverseEvents": {
+          "present": 1445,
+          "absent": 3038,
+          "notApplicable": 604
+        },
+        "faers": {
+          "present": 1805,
+          "absent": 3282,
+          "notApplicable": 0
+        },
+        "trialHistory": {
+          "present": 3531,
+          "absent": 1556,
+          "notApplicable": 0
+        },
+        "trialFailures": {
+          "present": 1823,
+          "absent": 3264,
+          "notApplicable": 0
+        },
+        "regulatory": {
+          "present": 3811,
+          "absent": 1276,
+          "notApplicable": 0
+        },
+        "withdrawal": {
+          "present": 517,
+          "absent": 4570,
+          "notApplicable": 0
+        }
+      },
+      "presentFieldCountHistogram": {
+        "0": 299,
+        "1": 1065,
+        "2": 1087,
+        "3": 664,
+        "4": 460,
+        "5": 273,
+        "6": 323,
+        "7": 453,
+        "8": 423,
+        "9": 40
+      },
+      "medianPresentFields": 3,
+      "meanPresentFields": 3.399,
+      "medianApplicableFields": 9,
+      "meanApplicableFields": 8.525,
+      "medianCoverageOfApplicable": 0.3333,
+      "meanCoverageOfApplicable": 0.3933
+    },
+    "DEVELOPMENT": {
+      "pages": 22636,
+      "batchFiles": 91,
+      "fields": [
+        "target",
+        "mechanismClass",
+        "highestPhase",
+        "whyStopped",
+        "sponsor",
+        "patentStatus",
+        "everDosedInHumans",
+        "relatedOnTarget"
+      ],
+      "applicableFieldsMax": 8,
+      "stateByField": {
+        "target": {
+          "present": 2452,
+          "absent": 16213,
+          "notApplicable": 3971
+        },
+        "mechanismClass": {
+          "present": 2533,
+          "absent": 16132,
+          "notApplicable": 3971
+        },
+        "highestPhase": {
+          "present": 11487,
+          "absent": 11149,
+          "notApplicable": 0
+        },
+        "whyStopped": {
+          "present": 1811,
+          "absent": 20825,
+          "notApplicable": 0
+        },
+        "sponsor": {
+          "present": 4736,
+          "absent": 17900,
+          "notApplicable": 0
+        },
+        "patentStatus": {
+          "present": 0,
+          "absent": 35,
+          "notApplicable": 22601
+        },
+        "everDosedInHumans": {
+          "present": 22636,
+          "absent": 0,
+          "notApplicable": 0
+        },
+        "relatedOnTarget": {
+          "present": 2167,
+          "absent": 16498,
+          "notApplicable": 3971
+        }
+      },
+      "presentFieldCountHistogram": {
+        "0": 0,
+        "1": 11145,
+        "2": 6025,
+        "3": 2039,
+        "4": 1031,
+        "5": 742,
+        "6": 902,
+        "7": 752,
+        "8": 0
+      },
+      "medianPresentFields": 2,
+      "meanPresentFields": 2.113,
+      "medianApplicableFields": 7,
+      "meanApplicableFields": 6.475,
+      "medianCoverageOfApplicable": 0.2857,
+      "meanCoverageOfApplicable": 0.3253,
+      "withoutEverDosedInHumans": {
+        "medianPresentExcludingEverDosed": 1,
+        "meanPresentExcludingEverDosed": 1.113,
+        "pagesWithNoOtherPresentField": 11145
+      }
+    }
+  },
+  "tiers": {
+    "rule": "data/corpus-20k/tiers/promotion-rule.md",
+    "tier1": {
+      "pages": 1719,
+      "longevityModelPages": 1109,
+      "withdrawnPages": 663,
+      "overlapLongevityAndWithdrawn": 53,
+      "withdrawnByModel": {
+        "CLINICAL": 610,
+        "LONGEVITY": 53
+      },
+      "suppressed": 755,
+      "unknownClass": 76
+    },
+    "tier2": {
+      "pages": 4477,
+      "clinicalModelPages": 5087,
+      "promotedToTier1AsWithdrawn": 610,
+      "suppressed": 1062,
+      "unknownClass": 178,
+      "stubsUnder3PresentFields": 2084
+    },
+    "tier3": {
+      "pages": 22636,
+      "developmentModelPages": 22636,
+      "promotedToTier1AsWithdrawn": 0,
+      "suppressed": 17451,
+      "unknownClass": 17306,
+      "stubsUnder3PresentFields": 17170,
+      "stubsOverAllDevelopmentPages": 17170
+    },
+    "suppressedTotal": 19268
+  },
+  "r11Withdrawn": {
+    "withdrawnPages": 663,
+    "withStatedReason": 282,
+    "withoutStatedReason": 381,
+    "reasonSourceCounts": {
+      "model-assignment.withdrawnReasonSource.reason": 281,
+      "fields.withdrawal.value.reason": 1
+    },
+    "note": "A stated reason is a reason string the register or ChEMBL drug_warning itself prints. EMA and Health Canada record a status, not a reason; those pages count as withdrawn without a stated reason."
+  },
+  "gate1": {
+    "figure": "Tier 1 LONGEVITY-model median present fields of 15",
+    "value": 10,
+    "threshold": 8,
+    "meets": true
+  },
+  "issues": [
+    "DEVELOPMENT patentStatus is present on 0 of 22,636 pages (22,601 not-applicable, 35 absent): no Tier 3 page keys an approved US application in the openFDA Orange Book export, so the field adds nothing to Tier 3 coverage.",
+    "DEVELOPMENT everDosedInHumans is present on 22,636 of 22,636 pages, so it never discriminates. Excluding it the DEVELOPMENT median present count is 1 and 11,145 pages hold no other present field.",
+    "LONGEVITY pathway is present on 677 of 1,109 pages; 60 pages were assigned to the model by the pathway reason. Since Phase 2b the field also admits a cited Europe PMC abstract sentence that names the compound, a pathway term and a mechanism verb together.",
+    "LONGEVITY itp (51) and clocks (96) are present on under 9% of the model. They are the two fields that most distinguish a longevity page from a clinical one.",
+    "No LONGEVITY page reaches 15 of 15 present fields; the maximum observed is 15 (2 pages).",
+    "381 of 663 withdrawn pages (57.5%) carry no stated reason. EMA and Health Canada record a status and not a reason, and TGA, PMDA and the WHO consolidated withdrawn list were never cleared. R11 reports this figure; it is not closed by this stage.",
+    "Tier 3 is 17,451 of 22,636 suppressed (77.1%), of which 17,306 come from the S10 unknown-class default rather than a matched safety class.",
+    "17,170 of 22,636 Tier 3 pages (75.9%) hold fewer than 3 present fields (R15 stubs), and 2,084 of 4,477 Tier 2 pages do as well.",
+    "LONGEVITY assignment by registry-ageing-term no longer admits a page whose only ageing term is the bare word \"age-related\" (Phase 2b recut): an age-related condition such as age-related macular degeneration is not longevity work. Pages with any other ageing term, an ITP entry, broad-slice membership or a pathway reason are unaffected.",
+    "CLINICAL carries not-applicable on 604 pages for each of indication, labelKinetics, interactions and adverseEvents: records with no label in any cleared register. The CLINICAL denominator is therefore 9 applicable fields on 4,483 pages and 5 on 604.",
+    "doseStudied (field 15b) and approvalDate sit beside `fields` on the record, not inside it: docs/specs/field-models.md makes them sub-fields of field 9 and of the withdrawal / regulatory fields, so they change no coverage denominator and no present count."
+  ],
+  "issueCount": 11,
+  "validation": {
+    "keysInModelAssignment": 28832,
+    "keysWithAFieldRecord": 28832,
+    "duplicateKeys": 0,
+    "modelMismatches": 0,
+    "unmodelledOrMissingFields": 0,
+    "note": "Every assigned page has exactly one field record, in the directory of its assigned model, carrying exactly the modelled fields."
+  }
+}

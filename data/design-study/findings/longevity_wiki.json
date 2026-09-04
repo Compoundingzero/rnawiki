@@ -1,0 +1,895 @@
+{
+  "site": "longevity wiki (url to verify)",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "urls": {
+    "index": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+    "content": "https://en.longevitywiki.org/wiki/Rapamycin"
+  },
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-04.png",
+    "content-1440-tile-05.png",
+    "content-1440-tile-06.png",
+    "content-1440-tile-07.png",
+    "content-1440-tile-09.png",
+    "content-1440-tile-11.png",
+    "content-1440-tile-14.png",
+    "content-1440-tile-15.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-tile-01.png",
+    "content-375-tile-39.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "imagesNotViewedSeparately": [
+    {
+      "file": "content-1440-scroll-00.png",
+      "reason": "sha256 identical to content-1440-tile-01.png, which was viewed"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "reason": "sha256 identical to content-375-tile-01.png, which was viewed"
+    }
+  ],
+  "missingOrTruncated": [
+    "content-375-full.png is truncated at the 16384 px rasterizer cap (document is 31729 px tall)",
+    "content-1440-tile-13.png was not captured (manifest note on tile 15)",
+    "content-375 tiles 13-38 were not captured (manifest note on tile 40)"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Hierarchy is made by type size plus one device: a full-width hairline rule under h1 and under every section h2, absent under every h3 and under the boxed Contents heading.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-04.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "'Effects on age-related diseases', 'Mechanism', 'Human clinical trials', 'Dog clinical trials', 'Regulatory approval', 'Safety', 'Rapalogs', 'See also' and 'References' each carry a rule; 'Cancer', 'Heart Disease', \"Alzheimer's\", 'Dose response', 'PEARL study', 'Effects on glucoregulatory control' and 'Reducing the effects of cellular senescence' directly beneath do not. The one exception is the Contents heading, an h2 in the recorded outline, which sits inside a bordered box and carries no rule. The size step h2 to h3 is small, so the rule is what marks depth.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Colour carries no hierarchy inside prose: body and headings share one near-black ink and links are the only second colour, so a content screen of running prose has two ink values, not three. The reference list adds a third, red-brown.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-tile-09.png"
+      ],
+      "evidence": "Near-black body and near-black headings, one blue for links, bold-blue for a few inline links such as 'mTOR', and superscript reference numbers in the same blue; green only in the masthead. No second grey, no tinted callout, no coloured rule. A yeast paragraph and a 264-person human trial paragraph are identical in weight. The red-brown seen in the reference list (F28) is the only other ink on the page.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "bodyColor",
+        "bodyBackgroundColor"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The home page spends a hierarchy step restating the site name: the h1 'Longevity Wiki' repeats the logo wordmark about 250 px below it, with the tagline, the search field and the green nav between them.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Logo block roughly 80 px tall centred on the pale-green band (wordmark ends about y=100), tagline at y=147, search field at y=190-222, green nav at y=250-303, then h1 'Longevity Wiki' at y=345-375.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F4",
+      "topic": "eye-lands",
+      "claim": "Desktop home: the logo mark, not the search field, is the highest-contrast object on the first screen; the search input is a low-contrast white rectangle inside the same band.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "The pale-green band is the only large colour field on the screen and holds a high-contrast black dot-cluster logo about 120 px wide; the search field beneath is a plain white rectangle about 497 px wide with a grey placeholder and a small grey magnifier button, so it does not compete for first fixation. Ordinal gaze order is not observable in a still capture and is not claimed.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "Mobile home: no search input is present on the first screen at all; the nav collapses to a hamburger.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "At 375 px the pale-green band keeps logo and tagline but drops the input; the green bar contains only a hamburger. The full-page image shows no search field anywhere on the home page at 375.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "Desktop article: the green masthead is the only colour field and carries a search input about 500 px wide; the h1 'Rapamycin' is the highest-contrast object in the white content area, and the boxed molecule is a mid-grey render top-aligned with the lead sentence.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The masthead is a saturated green band spanning full width, about 56 px tall, containing wordmark, nav, a ~500 px search input and an account glyph. Below it the h1 is roughly 40 px near-black bold; the ball-and-stick box is light grey on white inside a hairline border, floated right and level with the first paragraph rather than above it. Gaze order is not observable in a still capture.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "imgCount"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F7",
+      "topic": "density",
+      "claim": "Prose is set to the full container: roughly 1,035 px, about 135-150 characters per line at 1440, against the study's 68-86 character cluster.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Single lines such as 'Despite mTOR being the prime target against many age-related and chronic pathologies, relatively few mTOR inhibitors have been developed to' run edge to edge between roughly 198 px and 1,240 px.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F8",
+      "topic": "information-design",
+      "claim": "There are no data tables anywhere in the captured article; every quantity lives inside running prose.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-05.png",
+        "content-1440-tile-09.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'extends median lifespan by 15% in the common marmoset', 'delivered orally at 1 mg/kg/day', 'randomized 264 older adults', '4.7, 14, or 42 ppm', '25 older adults aged 70-95', '(within-group p=0.03) and a 40% rise in triglyceride levels (within-group p=0.05)' all appear as sentence text. No table markup is visible in any tile.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "Lists are handled well on the home page and badly in the reference list: two columns where the left runs 1-47 down the whole list height and the right runs 48-93 down the same height.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png"
+      ],
+      "evidence": "Home: three headed columns (Fundamentals, Drugs, 'Longevity genes'), six bullets each plus 'More', in one grey panel. Article: tile 11 shows left entries 10-18 beside right entries 57-66; tile 14 shows left 38-47 beside right 87-93. Reading 48 after 47 requires scrolling back up thousands of pixels.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "At 375 px the reference list is a single column of 93 entries that is still on entry 74 at scrollY 27,825 and does not end until about 31,300 px, so it occupies at least the last 3,500 px of the 31,729 px page and, at the observed spacing, several thousand more.",
+      "captures": [
+        "content-375-scroll-90.png",
+        "content-375-tile-39.png"
+      ],
+      "evidence": "scroll-90 (scrollY 27,825) is entirely reference entries 74-78; tile 39 (scrollY 30,856) ends the list at 93 and reaches the footer. Mobile tiles 13-38 were never captured, so the exact start of the list at 375 px is not observable and no share-of-page figure is asserted.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F11",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent on outer margins rather than on measure. The vertical gap above an h2 is only modestly larger than above an h3, so the rule and the type size, not the spacing, are what mark depth.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "Left margin about 198 px and right about 197 px at 1440, but the gutter widens the container rather than narrowing the text. Measured on tile 04, the gap from the last line above to the heading is roughly 58 px before the h2 'Effects on age-related diseases' and roughly 46 px before the h3 'Cancer' beneath it, and part of the larger figure is the h2's larger type. The earlier 'about double' reading is not supported by the captures.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "The home page spends roughly a fifth of the first desktop screen on three icons with one- and two-word labels making unevidenced claims.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Microscope / open-access padlock / lightbulb, each with about 200 px of vertical air, labelled 'Science based', 'Open access', 'Understandable'. No link, count or source attaches to any of them.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "Cards are used as containers, not features: modest padding, hairline borders, no shadows.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-01.png",
+        "content-1440-tile-06.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "Grey panel for the browse columns; light-grey bordered Contents box; bordered figure boxes with an inset caption strip; a thin bordered Categories strip. Padding reads as roughly 12-16 px throughout.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F14",
+      "topic": "long-scroll",
+      "claim": "Nothing persists during a 12,895 px scroll: no header, rail, progress bar, breadcrumb or section label.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "scroll-50 (scrollY 5,998) opens mid-sentence in Safety with the viewport top edge showing body text; scroll-90 (scrollY 10,796) shows only reference entries. Both mobile scroll captures likewise show only content at the top edge.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "stickyOrFixedCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F15",
+      "topic": "long-scroll",
+      "claim": "The article's desktop search field leaves the viewport within about 60 px of scrolling, because the masthead is only ~56 px tall and is not sticky.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The search input sits in the green masthead, which occupies y=0 to about y=56 at scrollY 0, and stickyOrFixedCount is 0; at scrollY 5,998 the viewport top edge is body text and no masthead is present. Returning to search from anywhere in the 12,895 px page means scrolling to the top.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances",
+        "stickyOrFixedCount"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds for about 8,260 px and then breaks at the reference list; the only onward step is a one-item 'See also' list stranded above roughly 4,400 px of references, so the actual end of the page offers none.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "Body rhythm is heading, rule, two to four paragraphs, heading. The h2 'See also' sits at about 8,160 px and contains a single bullet, 'Isomyosamine (MYMD-1(R))'; the h2 'References' follows at about 8,260 px and the two-column list at smaller type and different leading runs to about 12,690 px. The page then ends with a Categories strip ('Drugs | Main list | Fundamentals'), the pale-green Tools bar, a last-modified line, the CC BY-SA mark, a 'Powered by MediaWiki' badge and four social icons. No next article, no related compounds, no back-to-top.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "The only article navigation is an inline Contents box of 31 visible entries at three levels, which scrolls away permanently by about 1,330 px.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Numbered 1 to 10 with 21 sub-entries, down to 1.3.1 'Rapidly aging mice models' and 1.3.2 'Middle-aged mice'; the box begins at about y=533 in tile 01 and ends at about y=1,330 in tile 02, and appears in no scroll capture thereafter. The figure 27 in the earlier reading is the recorded headingCount, which counts the h1 and the Contents heading and omits Cancer, Heart Disease, Alzheimer's and the Dog-trials Heart disease sub-heading; the visible box has 31 lines.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount",
+        "stickyOrFixedCount"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F18",
+      "topic": "imagery",
+      "claim": "Two figures do real evidential work; the RTI bar chart prints its own citation inside the image and its caption expands its acronym.",
+      "captures": [
+        "content-1440-tile-09.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "A six-panel bar chart labelled A and B, phases 2b / 3 / 2b plus 3, with the source printed inside the image ('Mannick, J. B., ... The Lancet Healthy Longevity. 2(5), e250-e262') and a caption ending 'RTI = respiratory tract infection'.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "imgLazyCount",
+        "svgCount",
+        "canvasCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F19",
+      "topic": "imagery",
+      "claim": "The PEARL-section sketch asserts an optimal human dose graphically with no units on either axis.",
+      "captures": [
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "A hand-drawn plot of 'Net benefits' against 'Rapamycin dose': a red segment labelled 'shorter health- and life-span (diseases including cancer)' rising to a green point labelled 'Optimum', then a blue segment falling to 'Side effects'. Both axes are unnumbered.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F20",
+      "topic": "imagery",
+      "claim": "The lead molecular structure is honest decoration, floated right and top-aligned with the lead sentence rather than placed ahead of it; at 375 px it takes the lead position outright.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Ball-and-stick render in a bordered box about 216 px wide, captioned 'The chemical structure of rapamycin.', floated right level with the first paragraph at 1440. At 375 px the same ~220 px box sits beside the opening words and dominates the first screen (F32).",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "The longest image-free run is about 2,260 px, not the whole Mechanism-to-Safety span: a figure sits inside that span, and nothing else steps in to carry structure across the gap.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-07.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Mechanism opens at about 3,888 px and is followed at about 4,928 px by the PEARL sketch inside Human clinical trials. The unbroken stretch runs from the bottom of that sketch (about 5,212 px) to the top of the RTI chart (about 7,470 px) and covers Dog clinical trials, Regulatory approval, Safety and the opening of Rapalogs: full-measure near-black text segmented only by headings and their rules.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F22",
+      "topic": "defers-or-competes",
+      "claim": "The article page defers almost completely: no share widgets, related-content interruptions, newsletter prompt, sponsor slot or floating buttons in 12,895 px.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The full-page image shows an uninterrupted single content column from masthead to footer; both scroll captures show content only.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixedCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F23",
+      "topic": "defers-or-competes",
+      "claim": "The home page competes with itself: the icon triptych and the restated h1 push the actual article columns to the fold at 1440 and to roughly 1,280 px at 375.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The grey panel of Fundamentals / Drugs / 'Longevity genes' begins at roughly 888 px at 1440, effectively at the 900 px fold, and at roughly 1,280 px at 375 - more than one and a half 812 px screens down - after the triptych and the 'Get a taste of our content...' paragraph.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F24",
+      "topic": "information-design",
+      "claim": "The heading ladder is itself the evidence-strength signal: sections run non-human primates, dogs, mice, flies, roundworms, yeast, and human trials are a separate later section.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png"
+      ],
+      "evidence": "Contents entries 1.1 Non-human primates, 1.2 Dogs, 1.3 Mice (1.3.1 Rapidly aging mice models, 1.3.2 Middle-aged mice), 1.4 Flies, 1.5 Roundworms, 1.6 Yeast; then 2 Effects on age-related diseases, 3 Mechanism, 4 Human clinical trials, 5 Dog clinical trials. A reader can see where the human material sits without reading a sentence.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F25",
+      "topic": "information-design",
+      "claim": "Uncertainty is signalled entirely in sentences with no visual mark of any kind: no badge, tier chip, confidence bar, peer-review mark, sample-size field, replication count, provenance row, 'self-reported' label or status pill anywhere in the captures.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png",
+        "content-1440-tile-09.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Hedges are adjacent to claims but at identical size, weight and colour: 'Unpublished and preliminary data presented by Dr Adam Salmon at the American Aging Association annual meeting (June, 2024)'; 'There is preliminary evidence'; 'the data remains inconclusive as the study was powered statistically for a reduction in clinically symptomatic respiratory tract infections, and not laboratory-confirmed RTIs'; 'This was a small study with a low dose of rapamycin, dosed over a short duration of 8 weeks'; 'lack of dose-response profiling ...; studying only the male sex'.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F26",
+      "topic": "information-design",
+      "claim": "Identifiers exist only as strings inside citation sentences, never as labelled fields; there is no per-claim provenance row.",
+      "captures": [
+        "content-1440-tile-09.png",
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "'PMID: 25719621', 'DOI: 10.1097/CAD.0000000000000207', 'https://doi.org/10.3390/molecules27165295', 'PMC6934974', 'PMID 38041783'; NCT numbers appear inline in the body once ('ClinicalTrials.gov Identifier: NCT04584710, NCT04409327') and in the reference list as ClinicalTrials.gov URLs.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F27",
+      "topic": "information-design",
+      "claim": "The reference list is visibly un-deduplicated, and the design neither reveals nor absorbs the duplication.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png"
+      ],
+      "evidence": "Entry 10 and entry 65 are the same ClinicalTrials.gov PEARL record (NCT04488601, both 'Retrieved 27 May 2021'); entry 12 and entry 63 are the same Selvarani/Mohammed/Richardson 2020 GeroScience paper; entries 39 and 41 are the same Miller et al. 2014 Aging Cell paper.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F28",
+      "topic": "information-design",
+      "claim": "Citation ink varies three ways in one list with no legend, and the split silently encodes whether a source is reachable at all as well as whether it has been visited.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png"
+      ],
+      "evidence": "In the same reference list some entries are plain near-black with no hyperlink anywhere (entries 1, 12, 14, 15, 18, 63 - entry 3 even prints its DOI as unlinked text), some render blue (entries 6, 10, 11, 13, 16, 17, 64, 65), and some render red-brown (entries 5, 40, 46, 62, 66). Nothing in the captures explains the split; blue against red-brown is most likely ordinary visited-link styling, but the black-versus-coloured split is the difference between a citation you can follow and one you cannot, and it is carried by ink alone.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F29",
+      "topic": "information-design",
+      "claim": "User-contributed content is not distinguished from editorial anywhere: no byline, contributor count, edit count, revision indicator, talk marker, stub flag or citation-needed flag in 12,895 px.",
+      "captures": [
+        "content-1440-tile-15.png",
+        "content-375-tile-39.png"
+      ],
+      "evidence": "The only authorship trace is the footer line 'This page was last modified on 19 June 2024, at 16:21' beside a CC BY-SA mark and a 'Powered by MediaWiki' badge. The licence is the only metadata presented as a field.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "Freshness lives only in the footer, 12,895 px below claims it contradicts.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "The PEARL section reads 'is expected to conclude in 2023'; the footer reads 'last modified on 19 June 2024'; the capture was taken 2026-09-03. Nothing near the claim marks it as possibly superseded.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "What a reader gets here that a trial registry cannot: cross-organism synthesis with the limitations attached; the design delivers it as undifferentiated prose.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-04.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The marmoset result is labelled unpublished conference data; the German C57BL/6J result carries its methodological critique in the next sentence; the 25-person pilot reports no clinical effect alongside a within-group HbA1c and triglyceride rise. A registry record carries none of that. All of it is set at the same visual weight as the claims it qualifies.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "At 375 px the floated structure box keeps its desktop width - about 220 px of a 375 px viewport - and squeezes the lead paragraph to between 4 and 13 characters per line, about 10 on average, for eleven lines.",
+      "captures": [
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Visible line breaks: 'Rapamycin,' / 'also known by' / 'its brand' / 'name' / 'Rapamune(R),' / 'is a' / 'compound' / 'used to' / 'prevent the' / 'rejection' / 'of organ' before the text clears the image. The narrowest lines are four characters; the earlier 'roughly 15 characters' reading was too generous.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F33",
+      "topic": "imagery",
+      "claim": "The RTI bar chart stops carrying evidence at 375 px: axis and category labels become unreadable and it reaches the viewport edge.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-1440-tile-09.png"
+      ],
+      "evidence": "At 375 the panel headers 'Phase 2b / Phase 3 / Phase 2b plus Phase 3' and the axis numbers survive but the virus category labels do not; the same chart is fully legible at 1440.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "The page renders nothing for what it does not have: no infobox with empty rows, no 'Not available', no dash, no greyed placeholder anywhere in the captured article.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Sections exist only where material exists: a 'Non-human primates' section for one marmoset result, a 'Dog clinical trials' section for TRIAD, and no pharmacokinetics, interactions or other empty scaffolding. The 31-entry contents box therefore describes the shape of the evidence.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "The design has no state between 'we have this' and 'we have nothing' - an expired claim looks identical to a current one.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "'expected to conclude in 2023' is set exactly like every other sentence; the only counter-signal is the footer date.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F36",
+      "topic": "borrow",
+      "claim": "Borrow the model-organism heading ladder as the base-state evidence signal on the dossier reading column, exposed through the contents list.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Sections 1.1-1.6 descend from non-human primates to yeast and human trials sit at section 4; the reader sees the ladder before reading a word. Borrow the ordering, not the flat styling that gives a worm result and a human result identical weight once inside.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F37",
+      "topic": "borrow",
+      "claim": "Borrow the adjacency of limitation to claim, and give it the visual subordination the prose here withholds - dossier reading column and structured data blocks.",
+      "captures": [
+        "content-1440-tile-04.png",
+        "content-1440-tile-09.png"
+      ],
+      "evidence": "The Johnson et al. critique sits in the same paragraph as the result it qualifies; the RTI underpowering sits in the sentence reporting the trial. Linear's grey ladder, already the secondary reference for this surface, is the mechanism for making a qualification subordinate but visible.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F38",
+      "topic": "borrow",
+      "claim": "Borrow the figure convention: source printed inside the image, acronyms expanded in the caption - structured data blocks.",
+      "captures": [
+        "content-1440-tile-09.png"
+      ],
+      "evidence": "The RTI chart carries its Lancet Healthy Longevity citation inside the raster and its caption ends 'RTI = respiratory tract infection'.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F39",
+      "topic": "borrow",
+      "claim": "Borrow the confirmation that rendering nothing for absent fields works at scale - every surface.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "A 12,895 px page with no placeholder rows whose contents box communicates the evidence profile by its own length and depth.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F40",
+      "topic": "borrow",
+      "claim": "Borrow the grouped headed browse columns as a low-cost browse block - browse/filter.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Three headed columns of six links plus 'More' in one grey panel; at 375 they stack in the same order with no reflow damage.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F41",
+      "topic": "avoid",
+      "claim": "Never ship a dose-response cartoon with an unlabelled 'Optimum' - dossier reading column.",
+      "captures": [
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "The PEARL sketch asserts graphically that an optimal human dose exists and where it lies, with no units on either axis. RNAWiki's editorial constraint forbids a suggested dose; a graphic must not assert what the prose may not say.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F42",
+      "topic": "avoid",
+      "claim": "Do not let the page lose all chrome on a long scroll - dossier contents rail and previews.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "At 12,895 px with stickyOrFixed empty, a reader at 50% has no section label, no progress cue and no route back to search. This is the strongest visual argument in the study for resolving the currently unassigned rail item.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "stickyOrFixedCount"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F43",
+      "topic": "avoid",
+      "claim": "Do not set prose to the container - dossier reading column.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "135-150 characters per line at 1440, roughly double the 68-86 cluster the Phase 2 references converge on, sustained over 12,895 px.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F44",
+      "topic": "avoid",
+      "claim": "Do not put freshness only in the footer - dossier reading column and structured data blocks.",
+      "captures": [
+        "content-1440-tile-06.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "'Last modified 19 June 2024' sits 12,895 px below 'expected to conclude in 2023'. Date and status belong beside the claim.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F45",
+      "topic": "avoid",
+      "claim": "Do not two-column a long reference list - dossier reading column.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png"
+      ],
+      "evidence": "Left column 1-47 and right column 48-93 each run the full height of the list, so sequential reading requires scrolling back thousands of pixels.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Do not let citation colour vary without defined meaning - citation evolution map.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png"
+      ],
+      "evidence": "Red-brown and blue entries sit side by side in one source list with no legend; readers will infer a quality distinction that is not intended.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F47",
+      "topic": "avoid",
+      "claim": "Do not drop the search field at mobile and do not spend the first screen on self-description - home, search bar frozen.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "At 375 px the home page carries no search input at all; at 1440 the icon triptych and a restated h1 push the article columns below the fold. Nothing on this home page is a candidate for placement above or beside the RNAWiki search bar.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F48",
+      "topic": "avoid",
+      "claim": "Do not let a floated image take the lead position at mobile - dossier reading column.",
+      "captures": [
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The structure box keeps its ~220 px desktop width inside a 375 px viewport and crushes the opening paragraph to between 4 and 13 characters per line, about 10 on average, for eleven lines (corrected from 'roughly 15 characters'; see F32).",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "F49",
+      "topic": "baseline",
+      "claim": "The site is light-only with no theme mechanism, which is consistent with the decided light default.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "White body on near-black text throughout every capture; prefersColorScheme reports found:false across 4 stylesheets with 0 unreadable, htmlAttributes carries no data-theme, and the html class is only 'client-js ve-available'.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes",
+        "bodyBackgroundColor",
+        "bodyColor"
+      ],
+      "verification": "CONFIRMED"
+    },
+    {
+      "id": "F50",
+      "topic": "baseline",
+      "claim": "No command palette, keyboard shortcut hint or copy control exists anywhere, but the interactive affordances beyond links are more numerous than a search input and a Contents toggle.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "kbdTexts is empty, ariaKeyshortcuts is empty, copyControls.count is 0. Visible controls beyond plain links are: the search input, the Contents '[hide]' toggle, a 'Contribute' nav item with a disclosure caret, an account glyph at the right of the masthead, a hamburger at 375 px, a 'Tools' disclosure bar in the footer, and a small unlabelled enlarge glyph in the corner of each figure caption strip. IntersectionObserver is present in scriptTokens but nothing scroll-driven is observable in the scroll captures, so no scroll behaviour is claimed.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "copyControls",
+        "scriptTokens",
+        "searchAffordances"
+      ],
+      "verification": "QUALIFIED"
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "Source identifiers are printed in at least four different formats within one list, and whether a citation resolves at all is signalled only by ink colour.",
+      "captures": [
+        "content-1440-tile-10.png",
+        "content-1440-tile-14.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Entry 8 reads 'PMID: 37142830 PMC10330278 DOI: 10.1038/s43587-023-00416-y'; entry 88 reads 'PMID: 38041783 DOI: 10.1007/s11357-023-01011-0'; entry 93 reads 'PMID 35914953 doi:10.1093/gerona/glac142'; entries 81 and 87 give a bare 'https://doi.org/...' with no label. Entries 1 to 4 print their URL as unlinked plain text while entry 5 is a hyperlink across the whole citation. For RNAWiki this is the argument for identifiers as typed, labelled fields with one rendering and an explicit resolvable / not-resolvable state, rather than free text whose reachability is carried by link colour.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "ADDED"
+    },
+    {
+      "id": "V2",
+      "topic": "long-scroll",
+      "claim": "The page's only related-content link is stranded above roughly 4,400 px of references, which makes onward navigation unreachable in practice.",
+      "captures": [
+        "content-1440-tile-10.png",
+        "content-1440-tile-15.png"
+      ],
+      "evidence": "The h2 'See also' at about 8,160 px carries exactly one bullet, 'Isomyosamine (MYMD-1(R))', and is immediately followed by the References heading at about 8,260 px; the two-column list then runs to about 12,690 px and the page ends on a Categories strip and footer. A reader who scrolls to the end of a dossier passes the related material thousands of pixels earlier. For RNAWiki's dossier, related programmes and successor pointers belong beside the conclusion, not behind the source list.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ],
+      "verification": "ADDED"
+    },
+    {
+      "id": "V3",
+      "topic": "information-design",
+      "claim": "The list already computes how many claims lean on each source and renders it as unlabelled superscript back-links, which is a reuse signal thrown away by its own styling.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-14.png",
+        "content-375-tile-39.png"
+      ],
+      "evidence": "Entry 11 carries '11.0 11.1', entry 13 carries '13.0 13.1 13.2', entries 40 to 43 carry two or three each, and entry 92 carries '92.0 92.1 92.2 92.3'. The count of back-links is the number of places in the article that cite that source, but it is set as ~10 px pale-blue superscript with no label, so it reads as noise. RNAWiki records dependency edges explicitly; how many claims rest on one source snapshot is a field the dossier can name rather than leave as a superscript cluster.",
+      "inferred": false,
+      "domEvidenceKeys": [],
+      "verification": "ADDED"
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "Longevity Wiki appears nowhere in the Phase 2 table and nothing seen here argues for giving it a surface: it has no reading column, no persistent rail, no structured data block, no search overlay and no citation graphic, so it has no mechanism to govern with. Its value is as the closest content analogue and as a set of confirmed failure modes, and on that basis it strengthens four existing positions. It strengthens the Smashing/Linear assignment for the dossier reading column by being the counterexample (F43: 135-150 characters per line over 12,895 px). It strengthens the case for resolving the currently unassigned contents rail in Stripe's favour, because this page has a genuinely good 31-entry three-level contents list and discards it within about 1,330 px (F17, F42) - direct visual evidence for the item recorded as waiting on a decision. It strengthens the Stripe assignment for structured data blocks by showing the cost of not having them: every enrolment, dose, ppm, p-value, PMID, DOI and NCT id lives inside a sentence and cannot be compared, filtered or dated (F8, F26). And it strengthens the frozen home search bar by failing it twice (F5, F47). Separately it supplies one thing no measured reference does, which is a content-structure rule rather than a surface assignment: the model-organism heading ladder as the base-state evidence signal (F24, F36), which should be recorded in the A3 disclosure spec, not in the Phase 2 table.",
+    "argues_for_new_assignment": false
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Model-organism heading ladder, exposed through the contents list, as the base-state evidence signal (F36)",
+      "Limitation kept adjacent to the claim it qualifies, given visual subordination via the Linear grey ladder (F37)",
+      "Figures that print their own source and expand their own acronyms in the caption (F38)",
+      "Render nothing for absent fields, so page shape reports the evidence profile (F39)",
+      "Grouped headed browse columns with a 'More' link per group, stacking cleanly at 375 px (F40)"
+    ],
+    "avoid": [
+      "Dose-response cartoons with an unlabelled 'Optimum' point (F41)",
+      "Losing all chrome on a long scroll - no rail, no section label, no progress (F42)",
+      "Setting prose to the container at 135-150 characters per line (F43)",
+      "Freshness and status only in the footer (F44)",
+      "Two-column long reference lists whose numbering does not follow the eye (F45)",
+      "Citation colour that varies without defined meaning (F46)",
+      "Dropping the search field at mobile; spending the first screen on unevidenced self-description (F47)",
+      "Floated images taking the lead position at mobile (F48)",
+      "Un-deduplicated reference lists with no identity key (F27)",
+      "Community authorship with no byline, revision or review marking of any kind (F29)",
+      "Identifiers printed in four formats in one list, with reachability carried only by link colour (V1)",
+      "Related-content links stranded above a several-thousand-pixel source list (V2)",
+      "A source-reuse count rendered as an unlabelled superscript back-link cluster (V3)"
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "manifest bannerActions records for index-1440, index-375, content-1440 and content-375: 'left: no permitted refusal control in #footer-places (controls: Privacy policy, About Longevity Wiki, Disclaimers); banner stands in the captures'. On inspection of every image listed in imagesViewed, no cookie or consent overlay is visible in any capture. The only band that could be mistaken for one is the pale-green 'Tools' strip above the licence line, which is ordinary MediaWiki footer chrome (index-1440-full.png, content-1440-tile-15.png, content-375-tile-39.png). Nothing in these captures should be read as a consent banner obscuring design."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "verifiedBy": "independent verifier, captures re-read",
+    "imagesRead": [
+      "index-1440-full.png",
+      "index-1440-tile-01.png",
+      "index-375-full.png",
+      "index-375-tile-01.png",
+      "content-1440-full.png",
+      "content-1440-tile-01.png",
+      "content-1440-tile-02.png",
+      "content-1440-tile-04.png",
+      "content-1440-tile-05.png",
+      "content-1440-tile-06.png",
+      "content-1440-tile-07.png",
+      "content-1440-tile-09.png",
+      "content-1440-tile-10.png",
+      "content-1440-tile-11.png",
+      "content-1440-tile-14.png",
+      "content-1440-tile-15.png",
+      "content-1440-scroll-50.png",
+      "content-1440-scroll-90.png",
+      "content-375-tile-01.png",
+      "content-375-tile-39.png",
+      "content-375-scroll-50.png",
+      "content-375-scroll-90.png"
+    ],
+    "confirmed": 32,
+    "qualified": 18,
+    "refuted": 0,
+    "added": 3,
+    "notes": [
+      "content-1440-scroll-00.png and content-375-scroll-00.png were not opened separately: their sha256 values are identical to content-1440-tile-01.png and content-375-tile-01.png, which were read.",
+      "Nothing was refuted outright. Every qualified finding had a true core; what failed was a number, a distance, a count or an unobservable gaze ordinal.",
+      "Most important correction: F21 overstated the image-free stretch by more than double and mislocated it. Mechanism is followed within about 1,000 px by the PEARL sketch; the real unbroken run is about 2,260 px, from the bottom of that sketch to the top of the RTI chart, covering Dog clinical trials, Regulatory approval, Safety and the start of Rapalogs.",
+      "Three findings (F7, F17, F34, and the Phase 2 argument) carried '27 entries' for the Contents box. 27 is the recorded headingCount, a DOM number, not a visual count; the box shows 31 lines. The claims survive with the count corrected.",
+      "F15 understated the failure: the masthead is only about 56 px tall, so the article's search field leaves the viewport almost immediately, not after 900 px.",
+      "F32 and F48 both carried 'roughly 15 characters per line' for the crushed mobile lead paragraph. The visible line breaks run 4 to 13 characters, about 10 on average; both were corrected.",
+      "F50 listed too few affordances. A Contribute disclosure caret, an account glyph, the 375 px hamburger, a footer Tools disclosure and a per-figure enlarge glyph are all visible; the copy-control and keyboard-hint half of the claim stands.",
+      "F28 was extended: the reference list carries three inks, not two. Plain near-black entries are citations with no hyperlink at all, so ink colour silently distinguishes a source you can follow from one you cannot.",
+      "F16 was extended: a one-item 'See also' list does exist, but it sits above roughly 4,400 px of references, so the end of the page still offers no onward step. This became addition V2.",
+      "bannersStanding checked and upheld: no cookie or consent overlay is visible in any image read. The pale-green Tools strip is ordinary MediaWiki footer chrome.",
+      "Phase 2 verdict 'not-named' upheld. The two numbers it leans on are corrected here: the contents list has 31 entries, and it is discarded within about 1,330 px rather than 900 px, which strengthens rather than weakens the argument for resolving the contents rail."
+    ]
+  }
+}

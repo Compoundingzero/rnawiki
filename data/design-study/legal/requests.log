@@ -1,0 +1,144 @@
+2026-09-03T14:34:29.763Z	GET	https://www.quantamagazine.org/robots.txt	200	121	1838ms	robots.txt
+2026-09-03T14:34:31.933Z	GET	https://www.quantamagazine.org/terms-conditions/	200	148546	2166ms	terms of service candidate
+2026-09-03T14:34:50.636Z	GET	https://www.wikiwand.com/robots.txt	200	1836	1514ms	robots.txt
+2026-09-03T14:34:50.918Z	GET	https://www.wikiwand.com/terms	403	5686	279ms	terms of service candidate
+2026-09-03T14:34:51.999Z	GET	https://www.wikiwand.com/en/terms-of-service	403	5749	359ms	terms of service candidate
+2026-09-03T14:34:52.962Z	GET	https://www.wikiwand.com/	403	5671	322ms	index page, once, to find a terms link
+2026-09-03T14:34:55.192Z	GET	https://docs.stripe.com/robots.txt	200	174	2217ms	robots.txt
+2026-09-03T14:34:59.673Z	GET	https://stripe.com/legal/consumer	200	293365	4478ms	terms of service candidate	-> https://stripe.com/en-sg/legal/consumer
+2026-09-03T14:35:00.406Z	GET	https://vercel.com/robots.txt	200	629	700ms	robots.txt
+2026-09-03T14:35:01.150Z	GET	https://vercel.com/legal/terms	200	693477	442ms	terms of service candidate
+2026-09-03T14:35:01.577Z	GET	https://linear.app/robots.txt	200	107	401ms	robots.txt
+2026-09-03T14:35:02.675Z	GET	https://linear.app/terms	200	534921	499ms	terms of service candidate
+2026-09-03T14:35:04.389Z	GET	https://www.theverge.com/robots.txt	200	5658	1702ms	robots.txt
+2026-09-03T14:35:06.218Z	GET	https://www.voxmedia.com/legal/terms-of-use	200	210007	1827ms	terms of service candidate	-> https://www.voxmedia.com/terms-of-use/
+2026-09-03T14:35:07.297Z	GET	https://www.smashingmagazine.com/robots.txt	200	13053	1035ms	robots.txt
+2026-09-03T14:35:07.733Z	GET	https://www.smashingmagazine.com/terms-of-use/	404	148176	428ms	terms of service candidate
+2026-09-03T14:35:08.823Z	GET	https://www.smashingmagazine.com/privacy-policy/	200	209811	511ms	terms of service candidate
+2026-09-03T14:35:10.002Z	GET	https://pudding.cool/robots.txt	404	1814	1163ms	robots.txt
+2026-09-03T14:35:10.573Z	GET	https://pudding.cool/about/	200	105825	568ms	terms of service candidate
+2026-09-03T14:35:11.018Z	GET	https://www.atlasobscura.com/robots.txt	403	4551	440ms	robots.txt
+2026-09-03T14:35:11.727Z	GET	https://www.atlasobscura.com/terms	403	5842	148ms	terms of service candidate
+2026-09-03T14:35:12.677Z	GET	https://www.atlasobscura.com/terms-of-use	403	5842	96ms	terms of service candidate
+2026-09-03T14:35:16.644Z	GET	https://www.atlasobscura.com/	200	495975	3060ms	index page, once, to find a terms link
+2026-09-03T14:35:16.749Z	GET	https://www.atlasobscura.com/terms	403	5842	89ms	terms page found via index link
+2026-09-03T14:35:18.020Z	GET	https://www.awwwards.com/robots.txt	200	935	1267ms	robots.txt
+2026-09-03T14:35:19.167Z	GET	https://www.awwwards.com/terms-of-use/	404	204891	1141ms	terms of service candidate
+2026-09-03T14:35:20.127Z	GET	https://www.awwwards.com/terms/	200	225457	955ms	terms of service candidate
+2026-09-03T14:35:21.945Z	GET	https://www.openhumans.org/robots.txt	404	10963	1802ms	robots.txt
+2026-09-03T14:35:22.223Z	GET	https://www.openhumans.org/terms/	200	23139	275ms	terms of service candidate
+2026-09-03T14:35:23.265Z	GET	https://www.openhumans.org/api-docs/	404	10961	316ms	API documentation page
+2026-09-03T14:35:23.561Z	GET	https://osf.io/robots.txt	200	254	291ms	robots.txt
+2026-09-03T14:35:24.119Z	GET	https://github.com/CenterForOpenScience/cos.io/blob/master/TERMS_OF_USE.md	200	411506	554ms	terms of service candidate
+2026-09-03T14:35:24.428Z	GET	https://api.osf.io/v2/	200	1375	296ms	API root (OSF)
+2026-09-03T14:35:25.890Z	GET	https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published	200	22076	757ms	select one public preprint (OSF API)
+2026-09-03T14:35:26.680Z	GET	https://wiki.biohack.me/robots.txt	404	278	781ms	robots.txt
+2026-09-03T14:35:27.760Z	GET	https://wiki.biohack.me/index.php?title=Biohack.me_Wiki:General_disclaimer	200	29193	861ms	terms of service candidate	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:35:28.188Z	GET	https://wiki.biohack.me/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json	404	278	288ms	API root (MediaWiki siteinfo + rightsinfo)
+2026-09-03T14:35:29.358Z	GET	https://wiki.biohack.me/index.php?title=Magnets	200	29193	457ms	verify the candidate article exists	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:35:33.746Z	GET	https://longevitywiki.org/	200	22674	4383ms	longevity-wiki host verification	-> https://en.longevitywiki.org/wiki/Longevity_Wiki
+2026-09-03T14:35:33.938Z	GET	https://en.longevitywiki.org/robots.txt	200	34	189ms	robots.txt
+2026-09-03T14:35:35.195Z	GET	https://en.longevitywiki.org/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json	200	1939	445ms	API root (MediaWiki siteinfo + rightsinfo)
+2026-09-03T14:35:36.429Z	GET	https://forum.quantifiedself.com/robots.txt	200	999	1230ms	robots.txt
+2026-09-03T14:35:36.717Z	GET	https://forum.quantifiedself.com/tos	200	27950	284ms	terms of service candidate
+2026-09-03T14:35:37.710Z	GET	https://forum.quantifiedself.com/about.json	200	3047	274ms	API existence probe (Discourse about.json; no threads fetched)
+2026-09-03T14:35:38.481Z	GET	https://www.longecity.org/robots.txt	404	315	769ms	robots.txt
+2026-09-03T14:35:39.851Z	GET	https://www.longecity.org/forum/terms/	404	166644	1139ms	terms of service candidate
+2026-09-03T14:35:40.216Z	GET	https://www.longecity.org/forum/page/terms	404	169781	363ms	terms of service candidate
+2026-09-03T14:35:41.863Z	GET	https://www.longecity.org/forum/	200	261147	1008ms	index page, once, to find a terms link
+2026-09-03T14:35:42.401Z	GET	https://experiment.com/robots.txt	200	1923	521ms	robots.txt
+2026-09-03T14:35:43.188Z	GET	https://experiment.com/terms	404	1687	306ms	terms of service candidate
+2026-09-03T14:35:44.249Z	GET	https://experiment.com/legal/terms	404	1687	363ms	terms of service candidate
+2026-09-03T14:35:45.948Z	GET	https://experiment.com/	200	69825	1060ms	index page, once, to find a terms link
+2026-09-03T14:35:46.508Z	GET	https://experiment.com/discover	200	42280	550ms	one public listing page, to select one project page
+2026-09-03T14:35:47.379Z	GET	https://zenodo.org/robots.txt	200	272	863ms	robots.txt
+2026-09-03T14:35:47.956Z	GET	https://about.zenodo.org/terms/	200	14429	575ms	terms of service candidate
+2026-09-03T14:35:48.148Z	GET	https://zenodo.org/api/	404	148	191ms	API root (Zenodo)
+2026-09-03T14:35:50.174Z	GET	https://zenodo.org/api/records?q=longevity&size=5&sort=mostrecent	200	70394	1215ms	select one public record (Zenodo API)
+2026-09-03T14:35:51.574Z	GET	https://sphere.diybio.org/robots.txt	200	47	1396ms	robots.txt
+2026-09-03T14:35:51.993Z	GET	https://sphere.diybio.org/terms	404	22727	417ms	terms of service candidate
+2026-09-03T14:35:52.862Z	GET	https://diybio.org/terms	404	65295	869ms	terms of service candidate
+2026-09-03T14:35:53.333Z	GET	https://sphere.diybio.org/	200	87782	470ms	index page, once, to find a terms link
+2026-09-03T14:35:54.877Z	GET	https://sphere.diybio.org/about/terms-of-use	200	26690	1013ms	terms page found via index link	-> https://sphere.diybio.org/about/terms-of-use/
+2026-09-03T14:40:37.730Z	GET	https://pudding.cool/robots.txt	404	1814	1489ms	robots.txt
+2026-09-03T14:40:38.353Z	GET	https://pudding.cool/about/	200	105825	621ms	terms of service candidate
+2026-09-03T14:40:39.072Z	GET	https://pudding.cool/terms/	404	1814	338ms	terms of service candidate
+2026-09-03T14:40:40.033Z	GET	https://pudding.cool/	200	144074	298ms	index page, once, to find a terms link
+2026-09-03T14:40:41.941Z	GET	https://www.smashingmagazine.com/robots.txt	200	13053	829ms	robots.txt
+2026-09-03T14:40:42.413Z	GET	https://www.smashingmagazine.com/terms-of-use/	404	148176	300ms	terms of service candidate
+2026-09-03T14:40:43.788Z	GET	https://www.smashingmagazine.com/privacy-policy/	200	209811	664ms	terms of service candidate
+2026-09-03T14:40:44.737Z	GET	https://www.smashingmagazine.com/	200	294902	613ms	index page, once, to find a terms link
+2026-09-03T14:40:46.584Z	GET	https://www.openhumans.org/robots.txt	404	10963	1269ms	robots.txt
+2026-09-03T14:40:46.854Z	GET	https://www.openhumans.org/terms/	200	23139	267ms	terms of service candidate
+2026-09-03T14:40:47.852Z	GET	https://www.openhumans.org/api-docs/	404	10961	265ms	API documentation page
+2026-09-03T14:40:48.930Z	GET	https://osf.io/robots.txt	200	254	349ms	robots.txt
+2026-09-03T14:40:49.461Z	GET	https://github.com/CenterForOpenScience/cos.io/blob/master/TERMS_OF_USE.md	200	411536	526ms	terms of service candidate
+2026-09-03T14:40:49.798Z	GET	https://api.osf.io/v2/	200	1375	326ms	API root (OSF)
+2026-09-03T14:40:51.358Z	GET	https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published&embed=license	200	87694	885ms	select one public preprint (OSF API)
+2026-09-03T14:40:54.654Z	GET	https://wiki.biohack.me/robots.txt	404	278	657ms	robots.txt
+2026-09-03T14:40:56.236Z	GET	https://wiki.biohack.me/index.php?title=Biohack.me_Wiki:General_disclaimer	200	29193	1238ms	terms of service candidate	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:40:56.711Z	GET	https://wiki.biohack.me/index.php?title=Biohack.me_Wiki:Copyrights	200	29193	425ms	terms of service candidate	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:40:57.753Z	GET	https://wiki.biohack.me/	200	29193	466ms	index page, once, to find a terms link	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:40:58.474Z	GET	https://wiki.biohack.me/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json	404	278	186ms	API root (MediaWiki siteinfo + rightsinfo)
+2026-09-03T14:40:59.720Z	GET	https://wiki.biohack.me/index.php?title=Magnets	200	29193	432ms	verify the candidate article exists	-> https://wiki.biohack.me/doku.php?id=start
+2026-09-03T14:41:00.553Z	GET	https://wiki.biohack.me/api.php?action=query&list=allpages&aplimit=20&apnamespace=0&apfilterredir=nonredirects&format=json	404	278	264ms	pick another article (MediaWiki allpages)
+2026-09-03T14:41:02.110Z	GET	https://experiment.com/robots.txt	200	1923	901ms	robots.txt
+2026-09-03T14:41:02.628Z	GET	https://experiment.com/terms	404	1687	417ms	terms of service candidate
+2026-09-03T14:41:03.527Z	GET	https://experiment.com/legal/terms	404	1687	315ms	terms of service candidate
+2026-09-03T14:41:04.757Z	GET	https://experiment.com/	200	69824	543ms	index page, once, to find a terms link
+2026-09-03T14:41:05.704Z	GET	https://experiment.com/discover	200	42280	489ms	one public listing page, to select one project page
+2026-09-03T14:41:08.574Z	GET	https://zenodo.org/robots.txt	200	272	1757ms	robots.txt
+2026-09-03T14:41:08.614Z	GET	https://about.zenodo.org/terms/	200	14429	36ms	terms of service candidate
+2026-09-03T14:41:09.937Z	GET	https://zenodo.org/api/records?size=1	200	14424	1318ms	API root (Zenodo REST)
+2026-09-03T14:41:10.496Z	GET	https://zenodo.org/api/records?q=longevity&size=5&sort=mostrecent	200	70394	553ms	select one public record (Zenodo API)
+2026-09-03T14:43:20.380Z	GET	https://longevitywiki.org/	200	22674	4622ms	longevity-wiki host verification	-> https://en.longevitywiki.org/wiki/Longevity_Wiki
+2026-09-03T14:43:20.565Z	GET	https://en.longevitywiki.org/robots.txt	200	34	181ms	robots.txt
+2026-09-03T14:43:22.267Z	GET	https://en.longevitywiki.org/api.php?action=query&meta=siteinfo&siprop=general%7Crightsinfo&format=json	200	1939	882ms	API root (MediaWiki siteinfo + rightsinfo)
+2026-09-03T14:46:45.906Z	GET	https://about.zenodo.org/robots.txt	404	9379	850ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:46.194Z	GET	https://api.osf.io/robots.txt	200	25	286ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:46.617Z	GET	https://diybio.org/robots.txt	200	620	418ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:47.643Z	GET	https://en.longevitywiki.org/robots.txt	200	34	1022ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:47.976Z	GET	https://github.com/robots.txt	200	2274	325ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:48.513Z	GET	https://linear.app/robots.txt	200	107	531ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:49.547Z	GET	https://longevitywiki.org/robots.txt	200	34	1029ms	self-audit: robots.txt for a host the gate fetched	-> https://en.longevitywiki.org/robots.txt
+2026-09-03T14:46:52.173Z	GET	https://pudding.cool/robots.txt	404	1814	2622ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:52.953Z	GET	https://stripe.com/robots.txt	200	643	776ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:53.650Z	GET	https://vercel.com/robots.txt	200	629	694ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:54.509Z	GET	https://wiki.biohack.me/robots.txt	404	278	856ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:54.892Z	GET	https://www.atlasobscura.com/robots.txt	403	4551	379ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:56.108Z	GET	https://www.awwwards.com/robots.txt	200	935	1215ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:56.890Z	GET	https://www.longecity.org/robots.txt	404	315	777ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:46:58.984Z	GET	https://www.openhumans.org/robots.txt	404	10963	2092ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:00.398Z	GET	https://www.quantamagazine.org/robots.txt	200	121	1411ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:01.322Z	GET	https://www.smashingmagazine.com/robots.txt	200	13053	921ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:02.865Z	GET	https://www.voxmedia.com/robots.txt	200	67	1520ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:03.186Z	GET	https://www.wikiwand.com/robots.txt	200	1836	320ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:37.651Z	GET	https://about.zenodo.org/robots.txt	404	9379	89ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:38.401Z	GET	https://pudding.cool/robots.txt	404	1814	740ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:39.030Z	GET	https://wiki.biohack.me/robots.txt	404	278	624ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:39.362Z	GET	https://www.atlasobscura.com/robots.txt	403	4551	329ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:40.223Z	GET	https://www.longecity.org/robots.txt	404	315	856ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T14:47:41.331Z	GET	https://www.openhumans.org/robots.txt	404	10963	1106ms	self-audit: robots.txt for a host the gate fetched
+2026-09-03T15:02:46Z GET https://www.atlasobscura.com/robots.txt 403 4904 (browser UA, gate completion by orchestrator) data/design-study/legal/atlasobscura_com.robots.browserua.txt
+2026-09-03T15:02:48Z GET https://www.atlasobscura.com/terms 403 5842 (browser UA, gate completion by orchestrator) data/design-study/legal/atlasobscura_com.terms.browserua.html
+2026-09-03T15:04:53.282Z GET https://www.wikiwand.com/robots.txt 200 1836 chars (real browser; challenge=false; title="") -> data/design-study/legal/wikiwand_com.robots.browser.txt
+2026-09-03T15:05:35.020Z GET https://www.wikiwand.com/terms 403 0 chars (real browser; challenge=true; title="Just a moment...")
+2026-09-03T15:06:16.743Z GET https://www.wikiwand.com/en/terms-of-service 403 0 chars (real browser; challenge=true; title="Just a moment...")
+2026-09-03T15:06:58.422Z GET https://www.wikiwand.com/ 403 (real browser, to find the terms link only; challenge=true; title="Just a moment...")
+2026-09-03T15:07:01.757Z GET https://www.atlasobscura.com/robots.txt 200 465 chars (real browser; challenge=false; title="") -> data/design-study/legal/atlasobscura_com.robots.browser.txt
+2026-09-03T15:07:12.003Z GET https://www.atlasobscura.com/terms 200 17104 chars (real browser; challenge=false; title="Terms of Use - Atlas Obscura")
+2026-09-03T18:13:07Z GET https://en.longevitywiki.org/wiki/Rapamycin 200   103317 bytes <title>Rapamycin - Longevity Wiki (orchestrator: choosing a content article)
+2026-09-03T18:13:10Z GET https://en.longevitywiki.org/wiki/Metformin 200    32883 bytes <title>Metformin - Longevity Wiki (orchestrator: choosing a content article)
+2026-09-03T18:13:12Z GET https://en.longevitywiki.org/wiki/NMN 404    14903 bytes <title>NMN - Longevity Wiki (orchestrator: choosing a content article)
+2026-09-03T19:06:16Z GET https://www.longecity.org/forum/ (orchestrator: find the supplements forum link on the index)
+2026-09-03T19:06:39Z GET https://zenodo.org/ 200 (orchestrator: pick a live record from the front page; /search and /api are disallowed)
+2026-09-03T19:06:49Z GET https://zenodo.org/records/22285985
+/records/22285988
+/records/22285992
+/records/22285995
+/records/22285997
+/records/22285998
+/records/22285999
+/records/22286000 000  (orchestrator: verify the record is live)
+2026-09-03T19:07:13Z GET https://zenodo.org/records/22285985 200 github.com/DataBiosphere/terra-scientific-pipelines-service/ReshapeReferencePanel | Zenodo (orchestrator: verify the record is live)
+2026-09-03T19:13:54Z GET https://www.longecity.org/forum/forum/6-supplements/ (orchestrator: timing test after two 60 s browser timeouts)

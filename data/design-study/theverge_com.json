@@ -1,0 +1,2084 @@
+{
+  "site": "theverge.com",
+  "fetchedAt": "2026-09-03T09:35:55.625Z",
+  "referenceReason": "modular grid for high-volume aggregation",
+  "designSystem": {
+    "name": "Duet",
+    "evidence": "body[data-duet-theme=\"vergeLight\"]; 40+ semantic duet--* component class names in DOM (duet--content-cards--content-card x112, duet--layout--river, duet--layout--rail, duet--homepage--variable-story-set); vanilla-extract hashed CSS custom properties (--_1tsb0ye*) and hashed atomic class names",
+    "measured": true
+  },
+  "pages": [
+    {
+      "url": "https://www.theverge.com/",
+      "status": "fetched",
+      "bytes": 1095702,
+      "visibleTextChars": 20704,
+      "textToHtmlRatio": 0.0189
+    },
+    {
+      "url": "https://www.theverge.com/tech",
+      "status": "fetched",
+      "bytes": 825594,
+      "visibleTextChars": 15614,
+      "textToHtmlRatio": 0.0189
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://www.theverge.com/_next/static/css/ffbb069b0773fc7f.css",
+      "bytes": 275666
+    },
+    {
+      "url": "https://www.theverge.com/_next/static/css/8dd0df83529f07f2.css",
+      "bytes": 29621
+    },
+    {
+      "url": "https://www.theverge.com/_next/static/css/bcb1665762f373c7.css",
+      "bytes": 22057
+    },
+    {
+      "url": "https://www.theverge.com/_next/static/css/d63d6a0a61059c77.css",
+      "bytes": 16782
+    },
+    {
+      "url": "https://www.theverge.com/_next/static/css/6ef5bafe30272e6e.css",
+      "bytes": 6307
+    },
+    {
+      "url": "inline <style> block 1 (home + tech, identical) — :root font-family tokens",
+      "bytes": 450
+    },
+    {
+      "url": "inline <style> block 2 (home + tech, identical) — global transition:none guard",
+      "bytes": 88
+    }
+  ],
+  "typography": {
+    "fontStacks": [
+      {
+        "stack": "var(--font-polysans), Helvetica, Arial, sans-serif  [PolySans, self-hosted via next/font]",
+        "role": "primary UI + headlines",
+        "tokenDefs": 538,
+        "evidence": "--_1tsb0ye1e; 538 of 751 font-shorthand token definitions resolve to this family",
+        "measured": true
+      },
+      {
+        "stack": "var(--font-fkroman), Georgia, serif  [FK Roman Standard, self-hosted]",
+        "role": "article body prose + card dek",
+        "tokenDefs": 125,
+        "evidence": "--_1tsb0ye1h; applied by ._18mzr4b1 (54 DOM occurrences) at 18px/160%",
+        "measured": true
+      },
+      {
+        "stack": "var(--font-polysans-mono), Courier New, Courier, monospace  [PolySans Mono]",
+        "role": "timestamps, kickers, small meta labels",
+        "tokenDefs": 88,
+        "evidence": "--_1tsb0ye1i; applied by ._77sxmb0 / ._11kb06m1 at 11px",
+        "measured": true
+      },
+      {
+        "stack": "var(--font-manuka), Impact, Helvetica, sans-serif  [Manuka]",
+        "role": "oversized section wordmark only",
+        "tokenDefs": null,
+        "evidence": "tech.html h1 resolves to 900 160px/100% var(--font-manuka) — the word \"Tech\" as a display masthead, not running headline type",
+        "measured": true
+      },
+      {
+        "stack": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif",
+        "role": "preflight/reset default on html only, overridden everywhere",
+        "evidence": "Tailwind-style preflight rule on html{}",
+        "measured": true
+      }
+    ],
+    "fontSizes": [
+      {
+        "value": "9px",
+        "count": 6,
+        "unit": "px"
+      },
+      {
+        "value": "11px",
+        "count": 94,
+        "unit": "px"
+      },
+      {
+        "value": "12px",
+        "count": 37,
+        "unit": "px"
+      },
+      {
+        "value": "13px",
+        "count": 36,
+        "unit": "px"
+      },
+      {
+        "value": "14px",
+        "count": 108,
+        "unit": "px"
+      },
+      {
+        "value": "15px",
+        "count": 25,
+        "unit": "px"
+      },
+      {
+        "value": "16px",
+        "count": 80,
+        "unit": "px"
+      },
+      {
+        "value": "17px",
+        "count": 14,
+        "unit": "px"
+      },
+      {
+        "value": "18px",
+        "count": 71,
+        "unit": "px"
+      },
+      {
+        "value": "19px",
+        "count": 10,
+        "unit": "px"
+      },
+      {
+        "value": "20px",
+        "count": 60,
+        "unit": "px"
+      },
+      {
+        "value": "21px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "22px",
+        "count": 30,
+        "unit": "px"
+      },
+      {
+        "value": "24px",
+        "count": 20,
+        "unit": "px"
+      },
+      {
+        "value": "26px",
+        "count": 28,
+        "unit": "px"
+      },
+      {
+        "value": "28px",
+        "count": 21,
+        "unit": "px"
+      },
+      {
+        "value": "29px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "30px",
+        "count": 11,
+        "unit": "px"
+      },
+      {
+        "value": "32px",
+        "count": 10,
+        "unit": "px"
+      },
+      {
+        "value": "34px",
+        "count": 11,
+        "unit": "px"
+      },
+      {
+        "value": "36px",
+        "count": 8,
+        "unit": "px"
+      },
+      {
+        "value": "38px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "40px",
+        "count": 12,
+        "unit": "px"
+      },
+      {
+        "value": "44px",
+        "count": 6,
+        "unit": "px"
+      },
+      {
+        "value": "48px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "50px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "54px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "55px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "58px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "60px",
+        "count": 5,
+        "unit": "px"
+      },
+      {
+        "value": "65px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "70px",
+        "count": 4,
+        "unit": "px"
+      },
+      {
+        "value": "71px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "85px",
+        "count": 1,
+        "unit": "px"
+      },
+      {
+        "value": "90px",
+        "count": 3,
+        "unit": "px"
+      },
+      {
+        "value": "96px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "100px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "104px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "107px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "118px",
+        "count": 2,
+        "unit": "px"
+      },
+      {
+        "value": "160px",
+        "count": 4,
+        "unit": "px"
+      }
+    ],
+    "fontSizesNote": "Counts are distinct font-shorthand token DEFINITIONS (751 total) in the form `weight size/line-height family`. All sizes are px; no rem, no clamp, no vw font sizes anywhere in 351KB of CSS.",
+    "appliedSizesByDomOccurrence": [
+      {
+        "value": "11px",
+        "domOccurrences": 396,
+        "role": "meta / kicker / timestamp / byline",
+        "evidence": "._19wv7tc5 (159), .g4xafw0 (88), ._1jiz7rn6 (41), ._1jiz7rna (41), ._77sxmb0 (25), ._11kb06m1 (21)"
+      },
+      {
+        "value": "18px",
+        "domOccurrences": 178,
+        "role": "card headline (110%) and serif body prose (160%)",
+        "evidence": ".hvvo7w0 400 18px/110% sans (124); ._18mzr4b1 400 18px/160% serif (54)"
+      },
+      {
+        "value": "20px",
+        "domOccurrences": 49,
+        "role": "bold section/module heading",
+        "evidence": "._1d4s5vd2 700 20px/100% sans (44); ._1d4s5vdm 400 20px/120% serif (5)"
+      },
+      {
+        "value": "16px",
+        "domOccurrences": 46,
+        "role": "button / form / secondary heading",
+        "evidence": "._4ine554 700 16px/normal (41); ._1qu42rq4 700 16px/110% (5)"
+      },
+      {
+        "value": "32px",
+        "domOccurrences": 36,
+        "role": "feature / hero headline",
+        "evidence": "._17jblij1 400 32px/110% (26); .cs5bg91 400 32px/110% (10)"
+      },
+      {
+        "value": "14px",
+        "domOccurrences": 34,
+        "role": "card dek (serif) and small label",
+        "evidence": "._1d4s5vdg 400 14px/120% serif (31); .rq560b0 (3)"
+      },
+      {
+        "value": "24px",
+        "domOccurrences": 19,
+        "role": "larger module heading",
+        "evidence": "._1d4s5vd3 700 24px/100% sans"
+      },
+      {
+        "value": "19px",
+        "domOccurrences": 14,
+        "role": "light-weight standfirst",
+        "evidence": "._1dzobp8 300 19px/120% sans"
+      },
+      {
+        "value": "34px",
+        "domOccurrences": 5,
+        "role": "largest running headline",
+        "evidence": "._1d4s5vd8 700 34px/100% sans"
+      },
+      {
+        "value": "160px",
+        "domOccurrences": 1,
+        "role": "section wordmark",
+        "evidence": "tech.html h1, Manuka 900 160px/100%"
+      }
+    ],
+    "lineHeights": [
+      {
+        "value": "120%",
+        "count": 276
+      },
+      {
+        "value": "110%",
+        "count": 204
+      },
+      {
+        "value": "100%",
+        "count": 160
+      },
+      {
+        "value": "130%",
+        "count": 50
+      },
+      {
+        "value": "160%",
+        "count": 15
+      },
+      {
+        "value": "140%",
+        "count": 15
+      },
+      {
+        "value": "80%",
+        "count": 14
+      },
+      {
+        "value": "105%",
+        "count": 6
+      },
+      {
+        "value": "150%",
+        "count": 3
+      },
+      {
+        "value": "82%",
+        "count": 2
+      },
+      {
+        "value": "77%",
+        "count": 2
+      },
+      {
+        "value": "104%",
+        "count": 2
+      },
+      {
+        "value": "85%",
+        "count": 2
+      }
+    ],
+    "lineHeightsNote": "Percent line-heights from the same 751 font-shorthand token definitions. The system is percentage-based, not unitless: 120% (276) and 110% (204) dominate, 100% (160) for tight bold headings, 160%/140% reserved for serif reading prose.",
+    "fontWeights": [
+      {
+        "value": "400",
+        "count": 419
+      },
+      {
+        "value": "700",
+        "count": 229
+      },
+      {
+        "value": "500",
+        "count": 59
+      },
+      {
+        "value": "300",
+        "count": 22
+      },
+      {
+        "value": "900",
+        "count": 20
+      },
+      {
+        "value": "600",
+        "count": 2
+      }
+    ],
+    "headingScale": {
+      "h1": {
+        "value": "160px",
+        "evidence": "tech.html <h1 class=\"… bpecqnq bpecqnm _19wv7tc2\"> resolves to 900 160px/100% var(--font-manuka) — a section wordmark. home.html contains NO <h1> at all.",
+        "measured": true
+      },
+      "h2": {
+        "value": "12px or 20px depending on module",
+        "evidence": "tech.html <h2 class=\"… bpecqnn\"> = 500 12px/110% sans (a label above the wordmark); home.html <h2 class=\"_1e7ii3f2\"> = font-size:20px. Both are module labels, not article titles.",
+        "measured": true
+      },
+      "h3": {
+        "value": null,
+        "evidence": "Zero <h3> elements on either page.",
+        "measured": true
+      },
+      "h4": {
+        "value": null,
+        "evidence": "One <h4> per page carrying no class and no resolvable font rule.",
+        "measured": true
+      },
+      "ratio": null,
+      "ratioReason": "No heading ratio is derivable. Semantic heading tags are not the visual hierarchy on this site: article titles are rendered as <a>/<span> inside role=\"article\" cards (21 on home, 20 on tech), styled by atomic classes. The real hierarchy runs 11 -> 18 -> 20 -> 24 -> 32 -> 34px through card classes, giving step ratios of roughly 1.64, 1.11, 1.20, 1.33, 1.06 — an irregular, hand-tuned scale, not a modular one."
+    },
+    "bodyCandidates": {
+      "fontSize": "18px",
+      "lineHeight": "160%",
+      "selectorEvidence": "._18mzr4b1 { font: var(--_1tsb0ye12) } -> 400 18px/160% var(--font-fkroman),Georgia,serif; class carries duet--article--standard-paragraph and appears 54 times across the two pages. Secondary UI body is .hvvo7w0 = 400 18px/110% PolySans (124 occurrences, card headlines).",
+      "measured": true
+    },
+    "fluidType": false,
+    "fluidTypeEvidence": "clamp() appears 0 times in 351KB of combined CSS; no font-size uses vw. The 8 vw occurrences are width:100vw overlays and two negative-inset custom properties. Size changes happen in discrete @media steps at 768px and 1180px (e.g. --_1tsb0ye10 is 700 22px/110% at one theme scope and 700 24px/110% at another)."
+  },
+  "spacing": {
+    "distinctValues": [
+      {
+        "value": "1px",
+        "count": 2
+      },
+      {
+        "value": "2px",
+        "count": 10
+      },
+      {
+        "value": "3px",
+        "count": 11
+      },
+      {
+        "value": "4px",
+        "count": 28
+      },
+      {
+        "value": "5px",
+        "count": 8
+      },
+      {
+        "value": "6px",
+        "count": 35
+      },
+      {
+        "value": "7px",
+        "count": 2
+      },
+      {
+        "value": "8px",
+        "count": 55
+      },
+      {
+        "value": "9px",
+        "count": 2
+      },
+      {
+        "value": "10px",
+        "count": 101
+      },
+      {
+        "value": "12px",
+        "count": 48
+      },
+      {
+        "value": "13px",
+        "count": 3
+      },
+      {
+        "value": "14px",
+        "count": 23
+      },
+      {
+        "value": "15px",
+        "count": 26
+      },
+      {
+        "value": "16px",
+        "count": 82
+      },
+      {
+        "value": "18px",
+        "count": 11
+      },
+      {
+        "value": "20px",
+        "count": 142
+      },
+      {
+        "value": "21px",
+        "count": 1
+      },
+      {
+        "value": "22px",
+        "count": 6
+      },
+      {
+        "value": "24px",
+        "count": 16
+      },
+      {
+        "value": "25px",
+        "count": 23
+      },
+      {
+        "value": "27px",
+        "count": 2
+      },
+      {
+        "value": "28px",
+        "count": 4
+      },
+      {
+        "value": "30px",
+        "count": 47
+      },
+      {
+        "value": "32px",
+        "count": 2
+      },
+      {
+        "value": "33px",
+        "count": 2
+      },
+      {
+        "value": "34px",
+        "count": 2
+      },
+      {
+        "value": "35px",
+        "count": 16
+      },
+      {
+        "value": "36px",
+        "count": 2
+      },
+      {
+        "value": "40px",
+        "count": 60
+      },
+      {
+        "value": "45px",
+        "count": 1
+      },
+      {
+        "value": "48px",
+        "count": 6
+      },
+      {
+        "value": "50px",
+        "count": 16
+      },
+      {
+        "value": "52px",
+        "count": 1
+      },
+      {
+        "value": "60px",
+        "count": 12
+      },
+      {
+        "value": "70px",
+        "count": 6
+      },
+      {
+        "value": "80px",
+        "count": 9
+      },
+      {
+        "value": "90px",
+        "count": 3
+      },
+      {
+        "value": "100px",
+        "count": 2
+      },
+      {
+        "value": "110px",
+        "count": 1
+      },
+      {
+        "value": "130px",
+        "count": 4
+      }
+    ],
+    "inferredBaseUnitPx": 10,
+    "inferredBaseUnitConfidence": "moderate",
+    "multiplesUsed": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      130
+    ],
+    "secondaryTrack": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      24,
+      48
+    ],
+    "evidence": "From 833 px-valued margin/padding/gap declarations. The single most frequent values are 20px (142), 10px (101), 16px (82), 40px (60), 8px (55), 12px (48), 30px (47). Multiples of 5 cover 57.3% and multiples of 10 cover 48.4%, versus 27.6% for multiples of 8 — so this is a 10px rhythm (10/20/30/40/50/60/70/80), not the 8px grid common elsewhere. A secondary 4/8/16 track survives from the Tailwind-style preflight layer and from component internals (padding 4px, 6px, 8px, 12px). 20px is also the page gutter (--_1tsb0ye12r = \"0 20px\").",
+    "namedGaps": {
+      "riverToRailGap": "100px (--_1tsb0ye14j)",
+      "railStackGap": "60px (.noh1q10 gap at >=1180px)",
+      "pageGutter": "20px"
+    }
+  },
+  "color": {
+    "customProperties": [
+      {
+        "name": "--_1tsb0ye2",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 78,
+        "usedAsBackground": 4
+      },
+      {
+        "name": "--_1tsb0ye0",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 18,
+        "usedAsBackground": 18
+      },
+      {
+        "name": "--_1tsb0ye4",
+        "value": "#636363",
+        "darkValue": "#949494",
+        "thirdThemeValue": "#636363",
+        "usedAsTextColor": 33,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yea",
+        "value": "#fff",
+        "darkValue": "#131313",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 30
+      },
+      {
+        "name": "--_1tsb0ye3",
+        "value": "#4a4a4a",
+        "darkValue": "#e9e9e9",
+        "thirdThemeValue": "#4a4a4a",
+        "usedAsTextColor": 24,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye5",
+        "value": "#e9e9e9",
+        "darkValue": "#313131",
+        "thirdThemeValue": "#e9e9e9",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 9
+      },
+      {
+        "name": "--_1tsb0ye8",
+        "value": "#fff",
+        "darkValue": "#000",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 10,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yek3",
+        "value": "#f6f6f6",
+        "darkValue": "#222",
+        "thirdThemeValue": "#f6f6f6",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 9
+      },
+      {
+        "name": "--_1tsb0ye98",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#000",
+        "usedAsTextColor": 8,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye1c",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 7,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye6",
+        "value": "#3cffd0",
+        "darkValue": "#5200ff",
+        "thirdThemeValue": "#4a4a4a",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 5
+      },
+      {
+        "name": "--_1tsb0ye8y",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 6,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye63",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 5,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yes6",
+        "value": "#fff",
+        "darkValue": "#e9e9e9",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 4
+      },
+      {
+        "name": "--_1tsb0ye1d",
+        "value": "currentColor",
+        "darkValue": "currentColor",
+        "thirdThemeValue": "currentColor",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye1er",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 4
+      },
+      {
+        "name": "--_1tsb0ye1ew",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 4
+      },
+      {
+        "name": "--_1tsb0yeho",
+        "value": "#fff",
+        "darkValue": "#e9e9e9",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yej6",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yejm",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yek",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yem",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 4,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye13l",
+        "value": "#3cffd0",
+        "darkValue": "#5200ff",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 3
+      },
+      {
+        "name": "--_1tsb0ye174",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye4q",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye8k",
+        "value": "transparent",
+        "darkValue": "transparent",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 3
+      },
+      {
+        "name": "--_1tsb0ye8l",
+        "value": "#5200ff",
+        "darkValue": "#5200ff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0ye9q",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yebb",
+        "value": "#460ec7",
+        "darkValue": "#36c7a3",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yebf",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeeb",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yei0",
+        "value": "#131313",
+        "darkValue": "#131313",
+        "thirdThemeValue": "#efefef",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 3
+      },
+      {
+        "name": "--_1tsb0yeii",
+        "value": "#e03",
+        "darkValue": "#e03",
+        "thirdThemeValue": "#e03",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yen7",
+        "value": "#4a4a4a",
+        "darkValue": "#e9e9e9",
+        "thirdThemeValue": "#4a4a4a",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yene",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeo6",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 3,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye1",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye116",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#636363",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye12q",
+        "value": "transparent",
+        "darkValue": "transparent",
+        "thirdThemeValue": "transparent",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0ye16s",
+        "value": "#000",
+        "darkValue": "#000",
+        "thirdThemeValue": "unset",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0ye16t",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "unset",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye17g",
+        "value": "#131313",
+        "darkValue": "#131313",
+        "thirdThemeValue": "#4a4a4a",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye17l",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye17m",
+        "value": "#5200ff",
+        "darkValue": "#5200ff",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0ye1f8",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#4a4a4a",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye1f9",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye1x",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye5o",
+        "value": "#636363",
+        "darkValue": "#949494",
+        "thirdThemeValue": "#636363",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye6h",
+        "value": "#636363",
+        "darkValue": "#949494",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye7",
+        "value": "#eee6ff",
+        "darkValue": "#313131",
+        "thirdThemeValue": "#d8f0e8",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 1
+      },
+      {
+        "name": "--_1tsb0ye7i",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye95",
+        "value": "#fffffff2",
+        "darkValue": "#131313f2",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0ye9x",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yea5",
+        "value": "#fff",
+        "darkValue": "#000",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yea6",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeac",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeah",
+        "value": "#fff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yeal",
+        "value": "#5200ff",
+        "darkValue": "#000",
+        "thirdThemeValue": "#000",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yedi",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yegq",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yegr",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yegy",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeiy",
+        "value": "#eee6ff",
+        "darkValue": "#313131",
+        "thirdThemeValue": "#d8f0e8",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 2
+      },
+      {
+        "name": "--_1tsb0yej2",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yeo",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0yer",
+        "value": "#131313",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 2,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye10l",
+        "value": "#fff",
+        "darkValue": "#131313",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 1
+      },
+      {
+        "name": "--_1tsb0ye119",
+        "value": "#000",
+        "darkValue": "#000",
+        "thirdThemeValue": "#000",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 1
+      },
+      {
+        "name": "--_1tsb0ye11a",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye13d",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye15a",
+        "value": "#5200ff",
+        "darkValue": "#3cffd0",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye15e",
+        "value": "#3cffd0",
+        "darkValue": "#fff",
+        "thirdThemeValue": "inherit",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye15f",
+        "value": "#000",
+        "darkValue": "#fff",
+        "thirdThemeValue": "inherit",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye16n",
+        "value": "#000",
+        "darkValue": "#000",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye16p",
+        "value": "#000",
+        "darkValue": "#000",
+        "thirdThemeValue": "#309875",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye16w",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#131313",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye176",
+        "value": "#636363",
+        "darkValue": "#949494",
+        "thirdThemeValue": "inherit",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye178",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "#fff",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 1
+      },
+      {
+        "name": "--_1tsb0ye179",
+        "value": "#000",
+        "darkValue": "#000",
+        "thirdThemeValue": "inherit",
+        "usedAsTextColor": 1,
+        "usedAsBackground": 0
+      },
+      {
+        "name": "--_1tsb0ye17h",
+        "value": "#fff",
+        "darkValue": "#fff",
+        "thirdThemeValue": "transparent",
+        "usedAsTextColor": 0,
+        "usedAsBackground": 1
+      }
+    ],
+    "customPropertiesNote": "Names are the site's own vanilla-extract hashes; they are opaque by design. Each of the three theme scopes redefines ~1,867 properties, so `value` is the light theme (vergeLight, the one actually applied to <body>), with the two alternates recorded alongside. Capped at 80, ranked by how often the property is referenced by a color/background declaration.",
+    "themeScopes": [
+      {
+        "selector": "._1se63890",
+        "name": "vergeLight",
+        "applied": true,
+        "evidence": "<body class=\"_1se63890\" data-duet-theme=\"vergeLight\">",
+        "tokensDefined": 1867
+      },
+      {
+        "selector": "._1nfixzc0",
+        "name": "vergeDark (inferred name)",
+        "applied": false,
+        "evidence": "present in CSS and referenced 3x in each page's markup; text #fff, surface #131313, accent #3cffd0",
+        "tokensDefined": 1867
+      },
+      {
+        "selector": ".nyun1q0",
+        "name": "third/section theme (inferred)",
+        "applied": false,
+        "evidence": "referenced 2x per page; light surfaces with a green #309875 accent replacing the purple",
+        "tokensDefined": 1867
+      }
+    ],
+    "bodyTextColorCandidate": "#131313",
+    "bodyTextColorEvidence": "--_1tsb0ye2, the most-referenced color token (78 `color:` declarations); light #131313, dark #fff.",
+    "backgroundCandidate": "#ffffff",
+    "backgroundEvidence": "--_1tsb0yea, the most-referenced background token (30 `background:` declarations); light #fff, dark #131313. The river container ._9kze5z0 sets background-color:var(--_1tsb0yea).",
+    "contrastRatioCandidate": 18.58,
+    "contrastNote": "#131313 on #ffffff = 18.58:1 (WCAG AA and AAA pass). Dark theme #fff on #131313 is the same 18.58:1 — the palette is deliberately symmetric.",
+    "secondaryContrasts": [
+      {
+        "pair": "#636363 on #ffffff",
+        "ratio": 6.01,
+        "note": "muted meta text, light theme — AA pass at any size"
+      },
+      {
+        "pair": "#4a4a4a on #ffffff",
+        "ratio": 8.86,
+        "note": "secondary text, light theme"
+      },
+      {
+        "pair": "#5200ff on #ffffff",
+        "ratio": 7.49,
+        "note": "brand purple accent on white"
+      },
+      {
+        "pair": "#949494 on #131313",
+        "ratio": 6.13,
+        "note": "muted meta text, dark theme"
+      },
+      {
+        "pair": "#3cffd0 on #131313",
+        "ratio": 14.52,
+        "note": "mint accent, dark theme"
+      }
+    ],
+    "paletteSummary": {
+      "lightMostCommon": [
+        {
+          "value": "#5200ff",
+          "tokens": 73,
+          "role": "brand accent (purple)"
+        },
+        {
+          "value": "#fff",
+          "tokens": 72,
+          "role": "surface"
+        },
+        {
+          "value": "#131313",
+          "tokens": 58,
+          "role": "text/ink"
+        },
+        {
+          "value": "#3cffd0",
+          "tokens": 21,
+          "role": "secondary accent (mint)"
+        },
+        {
+          "value": "#000",
+          "tokens": 17
+        },
+        {
+          "value": "#636363",
+          "tokens": 11,
+          "role": "muted text"
+        },
+        {
+          "value": "transparent",
+          "tokens": 11
+        },
+        {
+          "value": "#4a4a4a",
+          "tokens": 6
+        },
+        {
+          "value": "#e9e9e9",
+          "tokens": 6,
+          "role": "rules/dividers"
+        },
+        {
+          "value": "#eee6ff",
+          "tokens": 5,
+          "role": "tinted surface"
+        },
+        {
+          "value": "#e03",
+          "tokens": 3,
+          "role": "alert red"
+        },
+        {
+          "value": "#d6f31f",
+          "tokens": 3,
+          "role": "accent yellow"
+        }
+      ],
+      "darkMostCommon": [
+        {
+          "value": "#fff",
+          "tokens": 101
+        },
+        {
+          "value": "#3cffd0",
+          "tokens": 72,
+          "role": "accent swaps to mint in dark"
+        },
+        {
+          "value": "#000",
+          "tokens": 27
+        },
+        {
+          "value": "#5200ff",
+          "tokens": 22
+        },
+        {
+          "value": "#e9e9e9",
+          "tokens": 17
+        },
+        {
+          "value": "#131313",
+          "tokens": 11,
+          "role": "surface"
+        },
+        {
+          "value": "#949494",
+          "tokens": 10,
+          "role": "muted text"
+        },
+        {
+          "value": "#313131",
+          "tokens": 7,
+          "role": "rules/dividers"
+        }
+      ],
+      "note": "Accent and ink swap wholesale between themes: purple #5200ff <-> mint #3cffd0, ink #131313 <-> #fff. Only 4 neutral steps exist per theme (ink, secondary, muted, rule) — a very small palette for the volume of content shown."
+    },
+    "darkModeMechanism": "class/attribute",
+    "darkModeEvidence": "Zero @media (prefers-color-scheme) blocks in 351KB of CSS. Themes are three sibling class scopes each redefining ~1,867 custom properties, selected by a class on <body> alongside data-duet-theme=\"vergeLight\". A user control exists: aria-label=\"Color theme\" appears once per page. Because there is no prefers-color-scheme query, the OS setting alone does not switch the site."
+  },
+  "layout": {
+    "breakpoints": [
+      {
+        "px": 0,
+        "kind": "min",
+        "count": 2
+      },
+      {
+        "px": 420,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 550,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 767,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 768,
+        "kind": "max",
+        "count": 4
+      },
+      {
+        "px": 768,
+        "kind": "min",
+        "count": 76
+      },
+      {
+        "px": 901,
+        "kind": "max",
+        "count": 1
+      },
+      {
+        "px": 901,
+        "kind": "min",
+        "count": 7
+      },
+      {
+        "px": 1024,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1179,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 1180,
+        "kind": "max",
+        "count": 3
+      },
+      {
+        "px": 1180,
+        "kind": "min",
+        "count": 45
+      },
+      {
+        "px": 1181,
+        "kind": "min",
+        "count": 3
+      },
+      {
+        "px": 1200,
+        "kind": "min",
+        "count": 1
+      },
+      {
+        "px": 1300,
+        "kind": "min",
+        "count": 1
+      }
+    ],
+    "breakpointsNote": "Two breakpoints carry the design: min-width:768px (76 blocks) and min-width:1180px (45 blocks). min-width:901px (7) is a third minor step. Everything else is single-use. Mobile-first: min-width blocks outnumber max-width roughly 8:1.",
+    "contentWidthCandidates": [
+      {
+        "value": "1100px",
+        "selectorEvidence": ".dxb1h85 / ._1044qiz3 / ._1iq9up90 / ._3d9k250 { max-width:1100px } inside @media (min-width:1180px) — 16 declarations, the most common max-width in the CSS",
+        "measured": true
+      },
+      {
+        "value": "700px",
+        "selectorEvidence": ".dxb1h85 / ._1044qiz3 { max-width:700px } at the default (mobile/tablet) width, and --_1tsb0ye14h = 700px caps the river column .x96f282",
+        "measured": true
+      },
+      {
+        "value": "300px",
+        "selectorEvidence": "--_1tsb0ye14i = 300px caps the rail .noh1q10 at >=1180px",
+        "measured": true
+      },
+      {
+        "value": "1300px",
+        "selectorEvidence": "._1e7jslx0 { max-width:1300px } at >=1180px — the outermost homepage shell, wider than the 1100px reading measure",
+        "measured": true
+      },
+      {
+        "value": "46ch",
+        "selectorEvidence": "single max-width:46ch declaration; the only character-based measure in the stylesheet",
+        "measured": true
+      }
+    ],
+    "compositionArithmetic": "700px river + 100px gap (--_1tsb0ye14j) + 300px rail (--_1tsb0ye14i) = 1100px, exactly the dominant max-width. The desktop layout is fully accounted for by three measured tokens.",
+    "gridUsage": {
+      "cssGrid": true,
+      "flex": true,
+      "cssGridCount": 18,
+      "inlineGridCount": 0,
+      "flexCount": 216,
+      "inlineFlexCount": 24,
+      "gridTemplateColumnsValues": [
+        {
+          "value": "repeat(3,1fr)",
+          "count": 5
+        },
+        {
+          "value": "repeat(2,1fr)",
+          "count": 3
+        },
+        {
+          "value": "1fr",
+          "count": 1
+        },
+        {
+          "value": "1fr 194px",
+          "count": 1
+        },
+        {
+          "value": "44px minmax(0,1fr)",
+          "count": 1
+        },
+        {
+          "value": "50px minmax(0,1fr)",
+          "count": 1
+        },
+        {
+          "value": "repeat(4,minmax(0,1fr))",
+          "count": 1
+        },
+        {
+          "value": "repeat(var(--number-of-columns),1fr)",
+          "count": 1
+        },
+        {
+          "value": "repeat(3,minmax(0,1fr))",
+          "count": 1
+        },
+        {
+          "value": "3fr 4fr 3fr",
+          "count": 1
+        },
+        {
+          "value": "340px auto auto",
+          "count": 1
+        },
+        {
+          "value": "auto 240px 240px",
+          "count": 1
+        }
+      ],
+      "note": "Flexbox does the structural work (216 vs 18); CSS Grid is reserved for the small number of true multi-column shelves. The river/rail split is flex, not grid. One grid is column-count-parameterised via --number-of-columns, which is how a shelf changes density without a new rule. No masonry, no subgrid, no grid-auto-flow."
+    },
+    "containerQueries": {
+      "used": true,
+      "count": 22,
+      "evidence": ".x96f281 { container-name:x96f280; container-type:inline-size } is applied to duet--layout--river. Cards then respond with @container x96f280 (min-width:600px|700px). Other named contexts: _1c5x8pa0 (768px), _1cnxcye2 (100/150/300/500px), gc3ws20 (335/550px).",
+      "significance": "This is the mechanism behind the modular grid: a content card reads the width of the river it sits in, not the viewport, so the same card component is reusable in the wide river, the 300px rail and inside shelves without variant classes. For a high-volume aggregation page this is the load-bearing decision."
+    },
+    "aspectRatios": [
+      {
+        "value": "1",
+        "count": 8
+      },
+      {
+        "value": "3/2",
+        "count": 8
+      },
+      {
+        "value": "16/9",
+        "count": 5
+      },
+      {
+        "value": "1/1",
+        "count": 4
+      },
+      {
+        "value": "4/3",
+        "count": 2
+      },
+      {
+        "value": "4/5",
+        "count": 1
+      },
+      {
+        "value": "9/16",
+        "count": 1
+      },
+      {
+        "value": "5/4",
+        "count": 1
+      }
+    ],
+    "aspectRatioNote": "3/2 and 16/9 dominate card thumbnails; fixed aspect-ratio on every image slot is what keeps the modular grid from reflowing as images load.",
+    "railBehaviour": ".noh1q11 is display:none below 1180px and display:flex at >=1180px, gap:60px; .noh1q12>* and .noh1q13>* are position:sticky, top:40px. The rail simply does not exist on mobile — it is not stacked below the river."
+  },
+  "navigation": {
+    "persistentElements": [
+      "Masthead / top navigation — nav aria-label=\"Top Navigation\", sticky (._1cuypub2 { position:sticky; top:10px; z-index:10900 }, top:20px at >=768px)",
+      "Skip-to-content link — duet--cta--skip-to-content, 2 per page, first focusable element",
+      "Section links in masthead: Tech, Reviews, Science, Entertainment, AI, Policy",
+      "Search — aria-label=\"Search Form\" + \"Submit Search\", one per page",
+      "Notifications control — aria-label=\"Open Notifications\", 4 per page",
+      "Colour theme control — aria-label=\"Color theme\", 1 per page",
+      "Fixed overlay layer ._14u4qgp0/._14u4qgp1 { position:fixed; top:0; right:0; bottom:0; left:0; z-index:11000; overflow:hidden } — the drawer/modal host",
+      "Footer — duet--navigation--footer, 1 per page",
+      "Sticky rail modules at >=1180px (top:40px)"
+    ],
+    "stickyOrFixedSelectors": [
+      {
+        "selector": "._1cuypub2",
+        "type": "sticky",
+        "value": "top:10px (mobile) / 20px (>=768px), z-index:10900",
+        "role": "masthead"
+      },
+      {
+        "selector": "._1e7jslx7",
+        "type": "sticky",
+        "value": "top:20px, margin-top:130px, gap:70px",
+        "role": "homepage rail stack"
+      },
+      {
+        "selector": ".noh1q12>*, .noh1q13>*",
+        "type": "sticky",
+        "value": "top:40px",
+        "role": "rail children"
+      },
+      {
+        "selector": ".o1ls91q / .o1ls91w / .o1ls91y / .o1ls922",
+        "type": "sticky",
+        "value": "top:40px, margin-bottom:40px",
+        "role": "category-page rail modules"
+      },
+      {
+        "selector": ".o1ls920 / .o1ls924",
+        "type": "sticky",
+        "value": "top:90px",
+        "role": "rail modules offset below masthead"
+      },
+      {
+        "selector": "._14u4qgp0, ._14u4qgp1",
+        "type": "fixed",
+        "value": "top:0; right:0; bottom:0; left:0; z-index:11000",
+        "role": "drawer/modal host"
+      },
+      {
+        "selector": ".u21iof3",
+        "type": "fixed",
+        "value": "right:10px; top:10px; 40px square, background var(--_1tsb0ye0)",
+        "role": "floating action/close button"
+      },
+      {
+        "selector": "._92feoad",
+        "type": "fixed",
+        "value": "inset:0; max-width:450px; overflow-y:scroll; z-index:12000",
+        "role": "navigation drawer panel"
+      },
+      {
+        "selector": "._1zbdxc0",
+        "type": "fixed",
+        "value": "inset:0; z-index:10900; opacity transition 0.2s",
+        "role": "drawer scrim"
+      },
+      {
+        "selector": "._1uqkns90 / ._1uqkns91",
+        "type": "fixed",
+        "value": "inset:0 rgba(0,0,0,.5) scrim; bottom bar padding:16px, z-index:9999",
+        "role": "consent / bottom sheet"
+      },
+      {
+        "selector": "._1bjmjup0",
+        "type": "fixed",
+        "value": "right:0; bottom:0; left:0; z-index:10850; background #1a1a1a; padding:16px 20px",
+        "role": "bottom notification bar"
+      },
+      {
+        "selector": "._1wu3rm0",
+        "type": "fixed",
+        "value": "width:100%; bottom:0; left:0; opacity:0; transition:opacity .2s; z-index:900",
+        "role": "reveal-on-scroll bottom bar"
+      },
+      {
+        "selector": "._1ds4jca1",
+        "type": "fixed",
+        "value": "top:10%; animation .1s ease-in; z-index:12000",
+        "role": "animated panel"
+      }
+    ],
+    "tocPresent": false,
+    "tocEvidence": "No table-of-contents element, no in-page anchor navigation, no aria-label containing \"contents\", and zero <h3> to build one from. Wayfinding is the masthead plus the drawer, not an index.",
+    "revealedOnDemand": [
+      "Navigation drawer — aria-label=\"Drawer Navigation\", \"Open Drawer\", \"Close Drawer\"; panel ._92feoad is max-width:450px, fixed, z-index:12000, with scrim ._1zbdxc0",
+      "Collapsible sections inside the drawer — aria-label=\"Collapse 'Tech' Section\", and the same for Reviews, Science, AI, Policy, Gadgets, Gaming, Streaming (8 collapsible groups on the category page, 4 on home)",
+      "Search form — collapsed into the masthead until invoked",
+      "Notifications panel — role=\"dialog\", 2 per page",
+      "Image galleries — 43-44 elements carrying data-pswp-width/data-pswp-height (PhotoSwipe lightbox), duet--article--gallery x17",
+      "Tabbed module on the homepage — role=\"tablist\" x2, role=\"tab\" x5, role=\"tabpanel\" x2 (absent on the category page)",
+      "aria-expanded appears 18 times per page — the count of independently disclosable regions"
+    ],
+    "evidence": "Landmarks: home has 6 <header>, 3 <nav>, 1 <main>, 1 <footer>, 16 <section>; tech has 0 <header>, 4 <nav>, 1 <main>, 1 <footer>, 11 <section>. No <aside> on either page — the rail is a <div>, not an aside. No <dialog> element; dialogs are role=\"dialog\" divs (Headless UI, data-headlessui-state x26).",
+    "paginationModel": "Numbered pagination, not infinite scroll: tech.html contains <nav class=\"duet--navigation--pagination\"> with a visually-hidden <h2>Pagination</h2>. No \"load more\" control, no infinite-scroll markers, no IntersectionObserver reference in the delivered HTML."
+  },
+  "behaviours": [
+    {
+      "name": "copy link per card",
+      "basis": "inferred",
+      "evidence": "aria-label=\"Copy link\" appears 21 times on home and 20 on tech — exactly once per role=\"article\" card. The word \"clipboard\" appears once in home.html. Every aggregated item carries its own share affordance rather than a single page-level share button."
+    },
+    {
+      "name": "follow / subscribe per topic",
+      "basis": "inferred",
+      "evidence": "aria-label=\"Follow\" x18 on the homepage, 0 on the category page — following is offered against homepage story-set topics, not against the category itself."
+    },
+    {
+      "name": "navigation drawer with collapsible sections",
+      "basis": "inferred",
+      "evidence": "\"Open Drawer\"/\"Close Drawer\"/\"Drawer Navigation\" labels; fixed panel ._92feoad max-width:450px z-index:12000 with 0.2s opacity scrim ._1zbdxc0; 8 \"Collapse 'X' Section\" labels."
+    },
+    {
+      "name": "horizontal carousel shelves",
+      "basis": "inferred",
+      "evidence": "role=\"carousel\" x8 (home) / x9 (tech); duet--homepage-category-shelves-rail-section; overflow-x:scroll x3 and overflow-x:auto x2 in CSS; no scroll-snap declarations, so scrolling is free rather than snapped."
+    },
+    {
+      "name": "tabbed content module",
+      "basis": "inferred",
+      "evidence": "role=\"tablist\" x2, role=\"tab\" x5, role=\"tabpanel\" x2 on the homepage only; data-headlessui-state x26 indicates Headless UI drives the roving-tabindex behaviour."
+    },
+    {
+      "name": "image lightbox",
+      "basis": "inferred",
+      "evidence": "43-44 elements with data-pswp-width/data-pswp-height and a PhotoSwipe stylesheet block (/*! PhotoSwipe main CSS */ .pswp { --pswp-bg:#000; --pswp-root-z-index:100000 })"
+    },
+    {
+      "name": "container-driven card reflow",
+      "basis": "inferred",
+      "evidence": "22 @container rules against named inline-size contexts (x96f280 on the river, gc3ws20, _1cnxcye2, _1c5x8pa0). Card layout changes with its container width, independent of viewport."
+    },
+    {
+      "name": "theme switching",
+      "basis": "inferred",
+      "evidence": "aria-label=\"Color theme\" control plus three complete token themes on body-level classes; no prefers-color-scheme query, so the switch is explicit and presumably persisted."
+    },
+    {
+      "name": "lazy image loading",
+      "basis": "inferred",
+      "evidence": "loading=\"lazy\" x138 (home) / x105 (tech); sizes= x124/x91; data-nimg x139/x105 (next/image); fetchpriority x2 on the homepage hero only."
+    },
+    {
+      "name": "flash-of-transition suppression on load",
+      "basis": "inferred",
+      "evidence": "An 88-byte inline <style> on both pages sets *, *::before, *::after { transition:none!important } — a boot-time guard that script presumably removes, so the theme class can be applied without animating."
+    },
+    {
+      "name": "hover affordances",
+      "basis": "inferred",
+      "evidence": ":hover appears 209 times and transition 36 times; text-decoration:underline x16. Hover is styling only — there is no hover-preview/prefetch popover markup in the delivered HTML."
+    },
+    {
+      "name": "no command palette",
+      "basis": "inferred",
+      "evidence": "No cmdk, no command-palette markup, no keyboard-shortcut hints, no input[type=search] element. Search is a labelled form, not a palette."
+    },
+    {
+      "name": "no scroll-driven animation",
+      "basis": "inferred",
+      "evidence": "Zero animation-timeline / view-timeline / scroll-timeline declarations. 21 @keyframes exist but are time-driven. prefers-reduced-motion is honoured in only 2 places."
+    }
+  ],
+  "measurement": {
+    "status": "partial",
+    "notes": "Both pages returned HTTP 200 with full server-rendered content on the first attempt; no retries were needed and no bot protection was encountered. The one bot-marker regex hit on tech.html was a false positive: a footer notice that the newsletter form is protected by reCAPTCHA, not a challenge page. Every number here is measured from the saved HTML and the five fetched stylesheets (351,776 bytes combined, including four inline <style> blocks) using grep and node — nothing is from a rendered browser, so no computed styles, no resolved cascade, and no runtime-injected CSS is included. Text-to-HTML ratio is 0.0189 on both pages: roughly 1.9% of the payload is visible text, the rest being Next.js hydration payload, atomic class strings and inline scripts. Two limits worth naming: (1) which of the three theme scopes wins for a given element is decided by the cascade at runtime, so only the vergeLight values actually applied to <body> are reported as `value`; (2) the type scale is reported from font-shorthand token definitions and from class-to-DOM occurrence counts, not from computed styles, so a token defined but never reached by the cascade would still be counted in fontSizes — the appliedSizesByDomOccurrence list is the more reliable of the two. Raw HTML and CSS are under data/design-study/raw/theverge_com/ (gitignored); no stylesheets, fonts, images or identity assets were copied into the repository.",
+    "browserPass": {
+      "tool": "Claude Code Browser pane (Chromium), computed styles via javascript_tool",
+      "desktopViewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "mobileViewport": {
+        "w": 375,
+        "h": 812
+      },
+      "date": "2026-09-03",
+      "notes": "Desktop emulated at 1440x900. The home page carries no prose, so the reading column was measured on a news article. The inline-script behaviour scan timed out on this site and was reduced to script URLs."
+    },
+    "partialReason": "Layout, typography, colour, contrast, chrome and page-weight values are fully measured at both widths. The behaviour scan is incomplete: the full inline-script pass timed out (1.66 MB of HTML across 85 scripts), so IntersectionObserver use was not tested and library detection covers script URLs only."
+  },
+  "measured": {
+    "status": "partial",
+    "pagesMeasured": [
+      "https://www.theverge.com/ (assigned URL — a headline river with no prose)",
+      "https://www.theverge.com/tech/988265/anker-sleep-earbuds-4-pro-price-date-specs (a standard news post, used for the reading column)"
+    ],
+    "method": "Chromium computed styles via javascript_tool. Desktop emulated at 1440x900 (the pane's own 'desktop' preset reports a 0x0 viewport); mobile at the 375x812 preset with a reload. Characters per line = paragraph content-box width / average glyph width of a 100-character lorem span in the paragraph's exact computed font styles.",
+    "homePageHasNoProse": {
+      "url": "/",
+      "finding": "The largest block of paragraph text on the home page is the privacy notice itself (583 characters inside aside.duet--navigation--pmc-privacy-banner). Every other paragraph on the page is under 40 characters — the home page is headlines, timestamps and links, with no running text at all.",
+      "homeH2": {
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "26.4px",
+        "letterSpacing": "0.24px",
+        "family": "polySans",
+        "color": "rgb(255, 255, 255)"
+      },
+      "homeH1": null,
+      "homeH1Reason": "No rendered non-empty h1 on the home page.",
+      "widestContainerMaxWidth": "1100px",
+      "pageWeight": {
+        "docScrollHeightPx": 25155,
+        "screensOfScroll": 27.95,
+        "innerTextLength": 22202,
+        "htmlLength": 1660307,
+        "textToHtmlRatio": 0.01
+      }
+    },
+    "desktop": {
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "readingColumn": {
+        "measuredOn": "news article",
+        "containerTag": "div",
+        "containerClass": "duet--article--article-body-component",
+        "containerWidthPx": 600,
+        "paragraphContentWidthPx": 600,
+        "containerMaxWidth": "none",
+        "fontSizePx": "18px",
+        "lineHeight": "28.8px",
+        "lineHeightRatio": 1.6,
+        "fontFamily": "FK Roman Standard",
+        "fullStack": "__fkRomanStandard_cfceed, __fkRomanStandard_Fallback_cfceed, Georgia, serif",
+        "fontWeight": "400",
+        "letterSpacing": "-0.18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgb(19, 19, 19)",
+        "backgroundFrom": "div.duet--layout--entry-body-container",
+        "avgGlyphWidthPx": 8.51,
+        "charactersPerLine": 71,
+        "paragraphMarginBottom": "20px",
+        "note": "600px of 18px serif at -1% tracking gives 71 characters per line — inside the 45-75 range, and reached at a wider pixel column than Quanta's because the face is larger and wider."
+      },
+      "contrast": {
+        "bodyTextVsBackground": 18.58,
+        "pair": "rgb(255, 255, 255) on rgb(19, 19, 19)",
+        "passesAA": true,
+        "passesAAA": true,
+        "note": "Pure white on near-black — the highest ratio measured in this set."
+      },
+      "headings": {
+        "h1": {
+          "fontSize": "44px",
+          "fontWeight": "700",
+          "lineHeight": "44px",
+          "letterSpacing": "-0.44px",
+          "family": "polySans",
+          "color": "rgb(255, 255, 255)"
+        },
+        "h2": {
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "lineHeight": "13.2px",
+          "letterSpacing": "1.56px",
+          "family": "polySans",
+          "color": "rgb(60, 255, 208)"
+        },
+        "h3": null,
+        "ratio_h1_body": 2.44,
+        "ratio_h2_body": 0.67,
+        "twoTypefaceRule": "Headlines and interface are polySans (sans); body copy is FK Roman Standard (serif). The two faces divide by role, not by level.",
+        "h2Note": "h2 on this article is a 12px eyebrow in the brand mint rgb(60,255,208) with +13% tracking — a kicker above the headline, not a section heading. Its ratio to body is 0.67, i.e. smaller than the text it introduces.",
+        "trackingRule": "Large type is tracked in (-1% on both h1 and body); small type is tracked out (+13% on the 12px eyebrow)."
+      },
+      "chrome": {
+        "headerPresent": false,
+        "headerPresentNote": "The article page renders no <header> or [role=banner] element at all. The home page has one, but it computes to zero height with position: relative.",
+        "stickyOrFixedCount": 11,
+        "stickyOrFixedNotable": [
+          "three div.bx-slab full-viewport fixed layers at z-index 2147483643-2147483645 (the maximum 32-bit range) — an injected overlay layer, not part of the article design",
+          "aside.duet--navigation--pmc-privacy-banner, 1440x146.8 fixed at z 10850",
+          "div (unnamed) 300x578.75 sticky at top:90px — a sticky rail beside the article",
+          "div.grecaptcha-badge 256x60 fixed"
+        ],
+        "documentScrolls": true
+      },
+      "toc": null,
+      "tocReason": "No element 80-460px wide with three or more in-page anchors on either page.",
+      "search": {
+        "inputPresent": true,
+        "placeholder": "Search",
+        "renderedWidthPx": 0,
+        "submitButton": {
+          "ariaLabel": "Submit Search",
+          "widthPx": 0,
+          "heightPx": 0
+        },
+        "note": "A search input and submit button exist in the DOM but lay out at zero size on the home page — the field is collapsed until opened. No <kbd> shortcut hint anywhere."
+      },
+      "pageWeight": {
+        "docScrollHeightPx": 5173,
+        "screensOfScroll": 5.75,
+        "innerTextLength": 4736,
+        "htmlLength": 740827,
+        "textToHtmlRatio": 0.01
+      }
+    },
+    "mobile": {
+      "viewport": {
+        "w": 375,
+        "h": 812
+      },
+      "measuredOn": "news article",
+      "readingColumn": {
+        "containerWidthPx": 335,
+        "paragraphContentWidthPx": 335,
+        "fontSizePx": "18px",
+        "lineHeight": "28.8px",
+        "lineHeightRatio": 1.6,
+        "letterSpacing": "-0.18px",
+        "avgGlyphWidthPx": 8.51,
+        "charactersPerLine": 39,
+        "color": "rgb(255, 255, 255)",
+        "paragraphMarginBottom": "20px"
+      },
+      "bodyUnchangedAtMobile": "18px/28.8px with the same -0.18px tracking at both widths. Only the headline moves.",
+      "charactersPerLineNote": "39 characters per line is below the 45-character floor — the 18px serif does not step down, so a 375px screen runs short lines.",
+      "h1": {
+        "fontSize": "22px",
+        "fontWeight": "700",
+        "lineHeight": "22px",
+        "letterSpacing": "-0.22px",
+        "desktopWas": "44px/44px",
+        "note": "The headline halves exactly, 44px to 22px, and line-height stays equal to font-size at both widths."
+      },
+      "h2": {
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "lineHeight": "13.2px",
+        "letterSpacing": "1.56px",
+        "unchangedFromDesktop": true
+      },
+      "header": null,
+      "toc": null,
+      "menuControls": "None laid out: the four controls matching menu/nav/search patterns all compute to 0x0 at this width.",
+      "stickyOrFixed": [
+        "three bx-slab full-viewport fixed overlays (375x812) at z 2147483643-2147483645",
+        "aside 375x349.91 fixed at y 462 (z 900) — covers 43% of the viewport height"
+      ],
+      "horizontalOverflow": false,
+      "documentScrollWidth": 375,
+      "docScrollHeightPx": 6732
+    },
+    "consent": {
+      "banner": "aside.duet--navigation--pmc-privacy-banner, fixed, 1440x146.8, z-index 10850",
+      "controlsOffered": [
+        "a button labelled 'Dismiss privacy notice'",
+        "links to Terms of Use, Your Privacy Choices and Privacy Policy"
+      ],
+      "actionTaken": "The 'Dismiss privacy notice' button was clicked. It is a dismissal, not an acceptance — the banner offers no accept or reject control, so nothing was consented to. The banner remained in the DOM after the click and after navigation.",
+      "note": "Because the banner is the home page's largest block of paragraph text, it had to be identified explicitly so it was not mistaken for the reading column."
+    },
+    "inferred": {
+      "nextData": true,
+      "nextDataEvidence": "window.__NEXT_DATA__ or the #__NEXT_DATA__ script is present — the only reference in this set with the classic Next.js pages-router payload.",
+      "react": false,
+      "reactNote": "No __react* key on document.body; with __NEXT_DATA__ present this most likely means the probe missed the root node, so absence is not evidence of no React.",
+      "jquery": true,
+      "cmdk": false,
+      "algoliaOrDocsearch": false,
+      "scrollamaInScriptSrcs": false,
+      "gsapInScriptSrcs": false,
+      "lottieInScriptSrcs": false,
+      "d3": false,
+      "intersectionObserver": null,
+      "intersectionObserverReason": "Not tested on this site. The full inline-script scan used on the other references timed out here (the home page ships 1.66 MB of HTML across 85 scripts), so the behaviour scan was cut back to script URLs only.",
+      "hoverPreviewMarkerElements": 0,
+      "detailsElements": 0,
+      "dialogElements": 0,
+      "imgElements": 194,
+      "videoElements": 0,
+      "cssCustomPropertiesOnRoot": 4,
+      "cssCustomPropertiesNote": "Four custom properties on :root — effectively none. Styling is compiled into hashed atomic class names (_1bjmjup1, _1e7jslx7, _1cuypub2), a vanilla-extract/linaria-style zero-runtime CSS build, so the token layer is not readable at runtime.",
+      "colorSchemeDeclared": "normal",
+      "colorSchemeNote": "No color-scheme declaration and no theme attribute, yet the article renders white on rgb(19,19,19). The dark treatment is the shipped design, not a preference response.",
+      "stylesheetCount": 6,
+      "scriptCount": 85,
+      "htmlAttributes": [
+        "lang=en-US"
+      ]
+    },
+    "partialReason": "Layout, typography, colour, contrast, chrome and page-weight values are fully measured at both widths. The behaviour scan is incomplete: the full inline-script pass timed out (1.66 MB of HTML across 85 scripts), so IntersectionObserver use was not tested and library detection covers script URLs only."
+  }
+}

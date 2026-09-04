@@ -16,6 +16,16 @@ vi.mock('@/lib/queries/users', () => ({
 // The sitemap needs the browse list's own record count so it cannot advertise a page number the
 // browse route would answer as not found.
 vi.mock('@/lib/queries/drugs', () => ({ listDrugs }))
+// The sitemap children read the corpus through one module. Mocking it keeps this a unit test and
+// keeps the corpus out of the pages child, which is the file these cases are about.
+vi.mock('@/lib/corpus/facets', () => ({
+  CORPUS_FACETS: [],
+  corpusFacetValues: async () => [],
+  loadCorpusFacetRecords: async () => [],
+  FACET_LETTER_SPLIT_THRESHOLD: 300,
+  letterBuckets: () => [],
+  recordsForLetter: () => [],
+}))
 
 describe('generated sitemap behavior', () => {
   afterEach(() => {
@@ -122,9 +132,14 @@ describe('generated sitemap behavior', () => {
       },
     ])
 
-    const { default: sitemap } = await import('@/app/sitemap')
-    const entries = await sitemap()
-    const dossierEntries = entries.filter((entry) => new URL(entry.url).pathname.startsWith('/d/'))
+    const { pagesSitemapEntries } = await import('@/lib/corpus/sitemap')
+    const entries = (await pagesSitemapEntries()).map((entry) => ({
+      ...entry,
+      url: `https://rnawiki.com${entry.path}`,
+    }))
+    const dossierEntries = entries
+      .filter((entry) => entry.path.startsWith('/d/'))
+      .map(({ path: _path, ...entry }) => entry)
 
     expect(dossierEntries).toEqual([
       {
@@ -147,7 +162,7 @@ describe('generated sitemap behavior', () => {
       },
     ])
     expect(dossierEntries.some((entry) => entry.url.endsWith('/thin-import'))).toBe(false)
-    expect(entries).toContainEqual({
+    expect(entries.map(({ path: _path, ...entry }) => entry)).toContainEqual({
       url: 'https://rnawiki.com/u/evidence-reviewer',
       lastModified: contributionAcceptedAt,
       changeFrequency: 'monthly',
@@ -196,10 +211,13 @@ describe('generated sitemap behavior', () => {
       }),
     )
 
-    const { default: sitemap } = await import('@/app/sitemap')
-    const entries = await sitemap()
+    const { browseSitemapEntries, pagesSitemapEntries } = await import('@/lib/corpus/sitemap')
+    const entries = (await pagesSitemapEntries()).map((entry) => ({
+      ...entry,
+      url: `https://rnawiki.com${entry.path}`,
+    }))
     const dossierUrls = entries
-      .map((entry) => new URL(entry.url).pathname)
+      .map((entry) => entry.path)
       .filter((pathname) => pathname.startsWith('/d/'))
 
     expect(dossierUrls).toHaveLength(9_900)
@@ -207,7 +225,9 @@ describe('generated sitemap behavior', () => {
     expect(entries.length).toBeLessThan(50_000)
 
     // Page two through the last page of the browse list, and no filtered view.
-    const browseUrls = entries.map((entry) => entry.url).filter((url) => url.includes('/browse?'))
+    const browseUrls = (await browseSitemapEntries())
+      .map((entry) => `https://rnawiki.com${entry.path}`)
+      .filter((url) => url.includes('/browse?'))
     expect(browseUrls).toEqual(
       Array.from(
         { length: 164 },
@@ -230,10 +250,12 @@ describe('generated sitemap behavior', () => {
     ] as const) {
       listDrugs.mockResolvedValue({ items: [], total })
       vi.resetModules()
-      const { default: sitemap } = await import('@/app/sitemap')
-      const entries = await sitemap()
+      const { browseSitemapEntries } = await import('@/lib/corpus/sitemap')
+      const entries = await browseSitemapEntries()
       expect(
-        entries.map((entry) => entry.url).filter((url) => url.includes('/browse?')),
+        entries
+          .map((entry) => `https://rnawiki.com${entry.path}`)
+          .filter((url) => url.includes('/browse?')),
         `total ${total}`,
       ).toEqual(expected)
     }

@@ -1,0 +1,133 @@
+{
+  "inputs": {
+    "fieldsDir": "data/corpus-20k/fields",
+    "seedsDir": "data/corpus-20k/derived",
+    "tiersFile": "data/corpus-20k/tiers/model-assignment.ndjson",
+    "suppressionFile": "data/corpus-20k/suppression/assignments.ndjson",
+    "fieldFiles": 117,
+    "seedFiles": 17,
+    "tierRows": 28832
+  },
+  "pages": {
+    "total": 28832,
+    "withQuestions": 11313,
+    "stub": 17170
+  },
+  "questions": {
+    "total": 60667,
+    "meanPerPage": 2.1042,
+    "distinctStrings": 58525
+  },
+  "mostRepeatedString": {
+    "text": "What became of the other 61 compounds aimed at TUBB?",
+    "pages": 62,
+    "share": 0.00215
+  },
+  "mostRepeatedTemplate": {
+    "template": "trial-size",
+    "pages": 8615,
+    "share": 0.2988
+  },
+  "templates": {
+    "trial-size": 8615,
+    "unreported": 6086,
+    "classification": 4620,
+    "sponsor-phase": 4401,
+    "trial-history": 2878,
+    "stopped": 2771,
+    "provenance": 2574,
+    "indication": 2422,
+    "faers": 2420,
+    "mechanism-action": 2343,
+    "lineage": 2085,
+    "regulatory-only": 1916,
+    "development-stop": 1773,
+    "dose-studied": 1759,
+    "supervision": 1669,
+    "kinetics": 1324,
+    "human-data": 1056,
+    "faers-unlisted": 969,
+    "biomarkers": 904,
+    "what-would-settle": 890,
+    "ongoing": 861,
+    "target-phase": 845,
+    "interactions": 808,
+    "pathway": 677,
+    "ladder": 659,
+    "stopped-one": 650,
+    "n-of-1": 592,
+    "fasting-exercise": 523,
+    "ladder-single": 421,
+    "never-dosed": 301,
+    "dose-shape": 221,
+    "contradiction": 191,
+    "jurisdiction": 182,
+    "withdrawn": 102,
+    "clocks": 96,
+    "itp": 39,
+    "human-data-none": 22,
+    "time-to-signal": 2
+  },
+  "blocks": {
+    "trial-size": 8615,
+    "unreported": 6086,
+    "classification": 4620,
+    "sponsor-phase": 4401,
+    "stopped": 3421,
+    "trial-history": 2878,
+    "provenance": 2574,
+    "indication": 2422,
+    "faers": 2420,
+    "mechanism-action": 2343,
+    "lineage": 2085,
+    "regulatory-only": 1916,
+    "development-stop": 1773,
+    "dose-studied": 1759,
+    "supervision": 1669,
+    "kinetics": 1324,
+    "ladder": 1080,
+    "human-data": 1078,
+    "faers-unlisted": 969,
+    "biomarkers": 904,
+    "what-would-settle": 890,
+    "ongoing": 861,
+    "target-phase": 845,
+    "interactions": 808,
+    "pathway": 677,
+    "n-of-1": 592,
+    "fasting-exercise": 523,
+    "never-dosed": 301,
+    "dose-shape": 221,
+    "contradiction": 191,
+    "jurisdiction": 182,
+    "withdrawn": 102,
+    "clocks": 96,
+    "itp": 39,
+    "time-to-signal": 2
+  },
+  "fiveGramOverlap": {
+    "pairsRequested": 2000,
+    "pairsSampled": 2000,
+    "seed": 20260904,
+    "meanJaccard": 0.002746,
+    "meanContainment": 0.006756,
+    "maxJaccard": 0.2,
+    "pairsSharingAnyFiveGram": 181
+  },
+  "r7": {
+    "mostRepeatedStringShare": 0.00215,
+    "threshold": 0.3,
+    "pass": true
+  },
+  "forbiddenWords": {
+    "questionsChecked": 60667,
+    "violations": [],
+    "blocksWithheld": 20,
+    "withheldByTemplate": {
+      "n-of-1": 8,
+      "biomarkers": 7,
+      "dose-studied": 3,
+      "kinetics": 2
+    }
+  }
+}

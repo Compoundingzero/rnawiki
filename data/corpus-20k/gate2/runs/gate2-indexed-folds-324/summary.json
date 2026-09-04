@@ -1,0 +1,31 @@
+{
+ "label": "gate2: indexable pages scored inside seeded 324-page folds",
+ "pages": 521,
+ "foldSize": 324,
+ "folds": [
+  324,
+  324
+ ],
+ "owners": [
+  324,
+  197
+ ],
+ "positional": {
+  "count": 521,
+  "median": 0.191189,
+  "mean": 0.259894,
+  "p90": 0.504509,
+  "max": 0.916888,
+  "above_0_20": 185,
+  "above_0_30": 77
+ },
+ "lexical": {
+  "count": 521,
+  "median": 0.354558,
+  "mean": 0.399887,
+  "p90": 0.569942,
+  "max": 0.922031,
+  "above_0_20": 521,
+  "above_0_30": 497
+ }
+}

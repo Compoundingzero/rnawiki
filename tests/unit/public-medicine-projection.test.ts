@@ -171,17 +171,23 @@ describe('public medicine projection', () => {
     )
   })
 
-  it('is shared by browse and dataset exports while home uses the exact dossier first read', () => {
+  it('is shared by browse and dataset exports while the home page projects no medicine at all', () => {
     const root = process.cwd()
     const homePage = readFileSync(join(root, 'app/page.tsx'), 'utf8')
     const home = readFileSync(join(root, 'components/HomeView.tsx'), 'utf8')
     const browse = readFileSync(join(root, 'app/browse/page.tsx'), 'utf8')
     const exporter = readFileSync(join(root, 'scripts/export/dataset.ts'), 'utf8')
 
-    expect(homePage).toContain('homeFeaturedMedicineAnswer')
-    expect(homePage).toContain('getProgrammeEvidenceByMedicineSlug')
-    expect(home).toContain('featuredAnswer.usedFor')
+    // The home page no longer renders a featured medicine card, so it reads no projection and
+    // builds no summary. What it does render below the frozen search bar is the corpus entry.
+    expect(homePage).not.toContain('getPublicMedicineProjections')
+    expect(homePage).not.toContain('homeFeaturedMedicineAnswer')
     expect(home).not.toContain('toPublicMedicineCardView')
+    expect(home).not.toContain('cardSummary')
+    expect(home).toContain('<HomeSearch popular={popular} />')
+    expect(home).toContain('<OrganismLadderLegend')
+    expect(home).toContain('<FacetNav />')
+
     expect(browse).toContain('toPublicMedicineCardView')
     expect(exporter).toContain('toPublicDatasetProgrammeEvidence')
     expect(exporter).toContain("'oneSentenceVerdict'")

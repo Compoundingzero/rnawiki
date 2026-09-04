@@ -1,0 +1,82 @@
+{
+  "at": "2026-09-03T14:53:17.583Z",
+  "requestsMade": 0,
+  "summary": [
+    {
+      "key": "wikiwand.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "stripe.com/docs",
+      "skipped": "already gated"
+    },
+    {
+      "key": "vercel.com/docs",
+      "skipped": "already gated"
+    },
+    {
+      "key": "linear.app/method",
+      "skipped": "already gated"
+    },
+    {
+      "key": "quantamagazine.org",
+      "skipped": "already gated"
+    },
+    {
+      "key": "theverge.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "smashingmagazine.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "pudding.cool",
+      "skipped": "already gated"
+    },
+    {
+      "key": "atlasobscura.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "awwwards.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "openhumans.org",
+      "skipped": "already gated"
+    },
+    {
+      "key": "biohackrxiv (osf.io)",
+      "skipped": "already gated"
+    },
+    {
+      "key": "wiki.biohack.me",
+      "skipped": "already gated"
+    },
+    {
+      "key": "longevity wiki (url to verify)",
+      "skipped": "already gated"
+    },
+    {
+      "key": "forum.quantifiedself.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "longecity.org",
+      "skipped": "already gated"
+    },
+    {
+      "key": "experiment.com",
+      "skipped": "already gated"
+    },
+    {
+      "key": "zenodo.org",
+      "skipped": "already gated"
+    },
+    {
+      "key": "sphere.diybio.org",
+      "skipped": "already gated"
+    }
+  ]
+}

@@ -1,0 +1,960 @@
+{
+  "site": "zenodo.org",
+  "track": "A2",
+  "urls": {
+    "index": "https://zenodo.org/",
+    "content": "https://zenodo.org/records/22285985",
+    "contentNote": "Live record picked from the front page by the orchestrator on 2026-09-04 because the API-chosen record 22273492 had been withdrawn (its tombstone was captured and kept as a finding); /search and /api are disallowed by robots.txt, so topic relevance was not selectable"
+  },
+  "capturedAt": "2026-09-03T19:09:06.190Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: only accept-type controls found in div.buttons (controls: Accept all cookies, Accept only essential cookies)",
+    "index-375: left: only accept-type controls found in div.buttons (controls: Accept all cookies, Accept only essential cookies)",
+    "content-1440: left: only accept-type controls found in div.buttons (controls: Accept all cookies, Accept only essential cookies)",
+    "content-375: left: only accept-type controls found in div.buttons (controls: Accept all cookies, Accept only essential cookies)"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://zenodo.org/records/22285985",
+    "collectedAt": "2026-09-03T19:08:50.663Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0548,
+    "title": "github.com/DataBiosphere/terra-scientific-pipelines-service/ReshapeReferencePanel | Zenodo",
+    "innerTextLength": 13232,
+    "outerHtmlLength": 241678,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "github.com/DataBiosphere/terra-scientific-pipelines-service/ReshapeReferencePane"
+      },
+      {
+        "tag": "h3",
+        "text": "Authors/Creators"
+      },
+      {
+        "tag": "h2",
+        "text": "Description"
+      },
+      {
+        "tag": "h1",
+        "text": "Terra Scientific Pipelines Service"
+      },
+      {
+        "tag": "h2",
+        "text": "Overview"
+      },
+      {
+        "tag": "h2",
+        "text": "Supported pipelines"
+      },
+      {
+        "tag": "h2",
+        "text": "Architecture"
+      },
+      {
+        "tag": "h2",
+        "text": "Development"
+      },
+      {
+        "tag": "h3",
+        "text": "Requirements"
+      },
+      {
+        "tag": "h3",
+        "text": "Tech stack"
+      },
+      {
+        "tag": "h3",
+        "text": "Local development"
+      },
+      {
+        "tag": "h3",
+        "text": "Local development with the UI"
+      },
+      {
+        "tag": "h3",
+        "text": "Testing the CLI locally"
+      },
+      {
+        "tag": "h3",
+        "text": "Running Tests Locally"
+      },
+      {
+        "tag": "h3",
+        "text": "Running Linter Locally"
+      },
+      {
+        "tag": "h3",
+        "text": "(Optional) Install pre-commit hooks"
+      },
+      {
+        "tag": "h3",
+        "text": "Running SonarQube locally"
+      },
+      {
+        "tag": "h3",
+        "text": "Connecting to the database"
+      },
+      {
+        "tag": "h3",
+        "text": "Deploying to dev"
+      },
+      {
+        "tag": "h3",
+        "text": "Tracing"
+      },
+      {
+        "tag": "h3",
+        "text": "Running the BEE end-to-end tests"
+      },
+      {
+        "tag": "h2",
+        "text": "Python clients"
+      },
+      {
+        "tag": "h2",
+        "text": "Files"
+      },
+      {
+        "tag": "h3",
+        "text": "github.com-DataBiosphere-terra-scientific-pipelines-service-ReshapeReferencePane"
+      },
+      {
+        "tag": "h3",
+        "text": "Files (5.0 kB)"
+      },
+      {
+        "tag": "h2",
+        "text": "Additional details"
+      },
+      {
+        "tag": "h3",
+        "text": "Related works"
+      },
+      {
+        "tag": "h2",
+        "text": "Versions"
+      },
+      {
+        "tag": "h2",
+        "text": "External resources"
+      },
+      {
+        "tag": "h2",
+        "text": "Communities"
+      },
+      {
+        "tag": "h2",
+        "text": "Details"
+      },
+      {
+        "tag": "h3",
+        "text": "Markdown"
+      },
+      {
+        "tag": "h3",
+        "text": "reStructuredText"
+      },
+      {
+        "tag": "h3",
+        "text": "HTML"
+      },
+      {
+        "tag": "h3",
+        "text": "Image URL"
+      },
+      {
+        "tag": "h3",
+        "text": "Target URL"
+      },
+      {
+        "tag": "h2",
+        "text": "Rights"
+      },
+      {
+        "tag": "h2",
+        "text": "Citation"
+      },
+      {
+        "tag": "h2",
+        "text": "Export"
+      },
+      {
+        "tag": "h2",
+        "text": "Technical metadata"
+      }
+    ],
+    "headingCount": 46,
+    "stickyOrFixedCount": 1,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "ui container info message cookie-banner",
+        "position": "fixed",
+        "top": 838.6,
+        "height": 47.4
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 3,
+      "firstLabels": [
+        "Copy to clipboard",
+        "Copy to clipboard",
+        "Copy to clipboard"
+      ]
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 3,
+    "scriptsUnreadable": 2,
+    "searchAffordances": {
+      "count": 3,
+      "firstDescriptors": [
+        "input Search records... Search records...",
+        "button Search",
+        "input Search for citation ..."
+      ]
+    },
+    "imgCount": 9,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 7
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 255)",
+    "bodyColor": "rgb(0, 0, 0)",
+    "canvasCount": 0,
+    "svgCount": 0
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 3818,
+      "sha256": "381052b5091b52f9a542012d274342803976d9ff748dcee7c7afae274e2cfde3",
+      "capturedAt": "2026-09-03T19:08:35.802Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "424b98a7b7a8c7571935a7f04dd0564740e576fb243dfe76459278cba85ec6a8",
+      "capturedAt": "2026-09-03T19:08:35.883Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "08156a6659e357691c4655caacbf113ab197d5e6f53a5da30ceae2a52f5f60c9",
+      "capturedAt": "2026-09-03T19:08:35.956Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "1450c823292ffceef69d7be0380fd2e99542e9a8a53653fab1a8804582fa9271",
+      "capturedAt": "2026-09-03T19:08:36.021Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "954e43d9956e18412f694ac24841fdd16bc7bae07ef0db74a16dff57f2a96a59",
+      "capturedAt": "2026-09-03T19:08:36.084Z"
+    },
+    {
+      "file": "index-1440-tile-05.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 218,
+      "sha256": "bab5b422696376520171a145c960338a39d40f47581b9780eabd5476251b12c5",
+      "capturedAt": "2026-09-03T19:08:36.134Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 407,
+      "heightPx": 6852,
+      "sha256": "0bead2b15b9427d68e370d0fdb425181a684b7d5073e1b94fb05cb52dc50df1c",
+      "capturedAt": "2026-09-03T19:08:42.203Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "36b2a41587b3b42eef3104d015168cbf769833db65e620906e561420531ce891",
+      "capturedAt": "2026-09-03T19:08:42.259Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "d1340f2aec4bfe355fe667c2ea7680364b073e77f8182050c9acb11ab7659ead",
+      "capturedAt": "2026-09-03T19:08:42.306Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5c11959db64024420201bd10b1e0d936d8e8d8e2b7706a70c60f9ea353b9f4b1",
+      "capturedAt": "2026-09-03T19:08:42.358Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5e98936f6cd0dc29a4a7d5e003899604b8683dfb4640c0b3043806aaf2dc46aa",
+      "capturedAt": "2026-09-03T19:08:42.407Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "083ac1844aa59ac3855b4e585b5275c3757b2ad3260170e22f188427afcf08fe",
+      "capturedAt": "2026-09-03T19:08:42.456Z"
+    },
+    {
+      "file": "index-375-tile-06.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f61b1e9c64c79c3972e17ec44b04d7fc97e357ee13ac4193edc60046a682bf20",
+      "capturedAt": "2026-09-03T19:08:42.504Z"
+    },
+    {
+      "file": "index-375-tile-07.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "42e8420201978bdd7d220450f8fc8cde0c18603a53d0cb5023731f96af84f470",
+      "capturedAt": "2026-09-03T19:08:42.556Z"
+    },
+    {
+      "file": "index-375-tile-08.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a781876afcd7c4345b381c8ffcac7bfcaa3862ef8362dab29a256f9184d7a969",
+      "capturedAt": "2026-09-03T19:08:42.602Z"
+    },
+    {
+      "file": "index-375-tile-09.png",
+      "url": "https://zenodo.org/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 356,
+      "sha256": "2259b3795517b659e9035de88feb9b16662e7f19800d86324a05016abdfda50c",
+      "capturedAt": "2026-09-03T19:08:42.632Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 7309,
+      "sha256": "094903bd5c2f184fea01195880567df1c9f671a40ce2cf64345ab12263c01e2b",
+      "capturedAt": "2026-09-03T19:08:49.894Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "481400d7dd1c09718cf1c3d71f9014359c8721a0bf383a2b5b9700fe2cca9fa6",
+      "capturedAt": "2026-09-03T19:08:49.985Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2da18257977d86582376c5ca35b501ce9ae134216324b3eca0fe0b344eb4f788",
+      "capturedAt": "2026-09-03T19:08:50.054Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "36b477c27ac7986a2c3ba62a4696850bf56882c182e6780e3890adfab987f962",
+      "capturedAt": "2026-09-03T19:08:50.150Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "6f353eeb99e9e0848e5f350a21386d3566e62f7652c4aede8a1aa7d012a842f2",
+      "capturedAt": "2026-09-03T19:08:50.228Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ac29fa04035d7099fe29aa3301bd9a98621c1b561b88f150cb7fcb05e2810160",
+      "capturedAt": "2026-09-03T19:08:50.309Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a9393988690b7def09eaa874989736894ebde6deeca2c0eadfea3d23bcc86b48",
+      "capturedAt": "2026-09-03T19:08:50.392Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "87e8f44ff4b3f4cd85ee5a3654347b88a1c4131ba33d9f4ffb2fd3d2ecdd39ee",
+      "capturedAt": "2026-09-03T19:08:50.454Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "eff56a12e1cfc2fe33c6129137fa3b6e8ded71d1deda7a9265a6c3f9bd4080bd",
+      "capturedAt": "2026-09-03T19:08:50.521Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 109,
+      "sha256": "f4711eb913ee45a36dba682be4ec3072043b5b989a41fcf8f04a1257dad093e9",
+      "capturedAt": "2026-09-03T19:08:50.565Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "481400d7dd1c09718cf1c3d71f9014359c8721a0bf383a2b5b9700fe2cca9fa6",
+      "capturedAt": "2026-09-03T19:08:52.262Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 3205,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "9b3415ee264e1215420a13a8681cb3c76304811cc3888227460804781105c474",
+      "capturedAt": "2026-09-03T19:08:53.869Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 5768,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "d7642ddf81be1c92cc51f9ed47aa4aea9fdc1df14326982d07fdd29646abeb8f",
+      "capturedAt": "2026-09-03T19:08:55.449Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 382,
+      "heightPx": 12970,
+      "sha256": "5132e3b3f2f5f85d7253caa578546eefa4fc462561b2890c40dabdd03added52",
+      "capturedAt": "2026-09-03T19:09:00.699Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3f4eb8fa8ee84bc4f742c665ace480aef8dde98b71adfd1e5addb63f3e55c51c",
+      "capturedAt": "2026-09-03T19:09:00.745Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8c72c577215be2eb0dd874fd510dd142826d93dd6b9fe84b43bfaa3e5ca677e4",
+      "capturedAt": "2026-09-03T19:09:00.791Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0cf8abec88fc153255eea953d381831432869ee9b4b9407c85fee218039ce001",
+      "capturedAt": "2026-09-03T19:09:00.842Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3355f2a57db8f86dcee15008b053607fc54a56a64d19cf9e286c3db59c27afb1",
+      "capturedAt": "2026-09-03T19:09:00.885Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "95f5151f0c4d905fc8d4467ff421c847e070e0df6bf97114fa010517a9990128",
+      "capturedAt": "2026-09-03T19:09:00.946Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eaaf9cc392faf972888daafc16cd29e7899ad894e283ab188b7c3c101767ead3",
+      "capturedAt": "2026-09-03T19:09:01.018Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8fcd31009103caa5076d5f1cab3245d2d6a8b2eb32023c56c64205966fc2abf0",
+      "capturedAt": "2026-09-03T19:09:01.079Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "f13ee53fc67473db68b991b1b00103fe65bb2a725d90886a88c1692e7fff52a7",
+      "capturedAt": "2026-09-03T19:09:01.144Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "fd45e4eefedc33ec773a95279b84ee12d193b953804f75752fca9b325c005521",
+      "capturedAt": "2026-09-03T19:09:01.213Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "758c4557fac11a264df95c133afa983c1dbc53faabecb672fe5d4c61a0acf6bf",
+      "capturedAt": "2026-09-03T19:09:01.277Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c21f3b2b07243ab44d05c8e19528d4f3b481d0a99ab9892772ef12ca4af12812",
+      "capturedAt": "2026-09-03T19:09:01.345Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0eff33aa85af2f84a99cee67f8d5ae76b306857f8011bb3fa8c992d080b25d87",
+      "capturedAt": "2026-09-03T19:09:01.392Z"
+    },
+    {
+      "file": "content-375-tile-15.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 15,
+      "scrollY": 11368,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4a6021ff5582db0606b1ac7d3b5a7bd78f73d37e20cca0755e20bf642ddd31fa",
+      "capturedAt": "2026-09-03T19:09:01.439Z"
+    },
+    {
+      "file": "content-375-tile-16.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 16,
+      "scrollY": 12180,
+      "widthPx": 375,
+      "heightPx": 790,
+      "sha256": "e27ddb6f4eca88363fbe503b45d8b9676a6f4524f68bd774398d684038dbfc2f",
+      "capturedAt": "2026-09-03T19:09:01.479Z",
+      "note": "2 tiles between 12 and 14 were not captured"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7825d11b46e1368ba2529801c7282f48837c8c90e1a1217a7a8aea10af9e82c7",
+      "capturedAt": "2026-09-03T19:09:03.049Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 6079,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b71536aea1a35f4f97cca15dcde310168681072fc633e75ea1efd24259f71439",
+      "capturedAt": "2026-09-03T19:09:04.628Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://zenodo.org/records/22285985",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 10942,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "03c8637e1de5001c205b5952413a150c23212759fd44b29be4d54775cdbfac36",
+      "capturedAt": "2026-09-03T19:09:06.190Z"
+    }
+  ]
+}

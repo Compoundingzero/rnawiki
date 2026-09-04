@@ -1,0 +1,65 @@
+{
+  "key": "forum.quantifiedself.com",
+  "track": "A2",
+  "dir": "forum_quantifiedself_com",
+  "checkedAt": "2026-09-03T14:35:35.198Z",
+  "indexUrl": "https://forum.quantifiedself.com/",
+  "contentUrl": "https://forum.quantifiedself.com/latest",
+  "reachable": true,
+  "robots": {
+    "url": "https://forum.quantifiedself.com/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/forum_quantifiedself_com.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/latest",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://forum.quantifiedself.com/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://forum.quantifiedself.com/tos",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/forum_quantifiedself_com.terms.html",
+    "textSavedTo": "data/design-study/legal/forum_quantifiedself_com.terms.txt",
+    "textChars": 16696,
+    "candidatesTried": [
+      {
+        "url": "https://forum.quantifiedself.com/tos",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "the downloading, copying and use of the Content will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark or trade secret rights, of any third party;",
+      "you have fully complied with any third-party licenses relating to the Content, and have done all things necessary to successfully pass through to end users any required terms;",
+      "the Content is not spam, is not machine- or randomly-generated, and does not contain unethical or unwanted commercial content designed to drive traffic to third party sites or boost the search engine rankings of third party sites, or to further unlawful acts (such as phishing) or mislead recipients as to the source of the material (such as spoofing);",
+      "User contributions are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License .",
+      "Unless you notify QS Labs before the end of the applicable subscription period that you want to cancel a service or upgrade, your subscription will automatically renew and you authorize us to collect the then-applicable annual or monthly subscription fee (as well as any taxes) using any credit card or other payment mechanism we have on record for you.",
+      "The Website may also contain material that violates the privacy or publicity rights, or infringes the intellectual property and other proprietary rights, of third parties, or the downloading, copying or use of which is subject to additional terms and conditions, stated or unstated.",
+      "QS Labs disclaims any responsibility for any harm resulting from the use by visitors of the Website, or from any downloading by those visitors of content there posted.",
+      "Copyright Infringement and DMCA Policy",
+      "If you believe that material located on or linked to by forum.quantifiedself.com violates your copyright, and if this website resides in the USA, you are encouraged to notify QS Labs in accordance with QS Labs’s Digital Millennium Copyright Act (“DMCA”) Policy.",
+      "QS Labs will terminate a visitor’s access to and use of the Website if, under appropriate circumstances, the visitor is determined to be a repeat infringer of the copyrights or other intellectual property rights of QS Labs or others.",
+      "Your use of the Website grants you no right or license to reproduce or otherwise use any QS Labs or third-party trademarks.",
+      "You understand that you download from, or otherwise obtain content or services through, the Website at your own discretion and risk.",
+      "This document is CC-BY-SA."
+    ],
+    "forbiddingHits": []
+  },
+  "api": {
+    "exists": true,
+    "url": "https://forum.quantifiedself.com/about.json",
+    "licence": "Creative Commons Attribution-NonCommercial-ShareAlike 3",
+    "note": "API existence probe (Discourse about.json; no threads fetched): HTTP 200, 3047 bytes (JSON); saved excerpt to legal/forum_quantifiedself_com.api.txt"
+  },
+  "machineProposal": {
+    "decision": "capture",
+    "reason": "robots.txt allows / and /latest; no terms clause matched a prohibition pattern across 13 relevant excerpts."
+  },
+  "notes": []
+}

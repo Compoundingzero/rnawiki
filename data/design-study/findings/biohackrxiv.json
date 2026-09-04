@@ -1,0 +1,746 @@
+{
+  "site": "biohackrxiv (osf.io)",
+  "track": "A2",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png"
+  ],
+  "missingCaptures": [
+    "content-1440-tile-02.png (does not exist; only tile-01 was produced for each pass because every captured page is exactly one viewport tall)",
+    "no tile beyond index 1 on either page at either viewport, so no deep tiles or footer tiles could be read"
+  ],
+  "captureCaveats": [
+    "content-1440-full.png, content-1440-tile-01.png, content-1440-scroll-00.png, content-1440-scroll-50.png and content-1440-scroll-90.png are one byte-identical file (sha256 0a1d2436...).",
+    "content-375-full.png and all three content-375-scroll-*.png are one byte-identical file (sha256 0b38ae94...); content-375-tile-01.png differs only in the support-widget animation frame.",
+    "index-1440-full.png equals index-1440-tile-01.png; index-375-full.png equals index-375-tile-01.png.",
+    "The manifest records scrollY 0 for the captures taken at scroll fractions 0.5 and 0.9: the window never moved."
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Reading order on the index is set by fill weight, not type size: the four solid black subject tiles and the black \"Add A Preprint\" button read first, the \"BioHackrXiv\" heading second despite being the largest type on the page. The pale-yellow band above them is the left-standing cookie notice and is excluded from the order.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Four 100%-black filled rectangles (Biodiversity, Computer Engineering, Genetics and Genomics, Medicine and Health Sciences) and a black button are the only fully black filled areas; the navy h1 on white is visually lighter than any of them. The notice band stands in every image of every pass per bannerActions, so it is a capture artefact rather than a design decision.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The record page holds a clean two-level hierarchy for roughly 300px and then hands over to browser chrome: title first, column boundary second, the grey PDF toolbar third.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Bold navy two-line title runs ~970px across an otherwise empty pale-blue band; below it the built-in PDF viewer toolbar (\"Page: 1 of 65\", zoom -/+, \"Automatic Zoom\", chevrons) is a dense grey control band.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "Weight on the index policy row is spent on a platform credit rather than on the vetting link: six identical blue links, with bold reserved for \"Powered by OSF Preprints\".",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "\"About | Hackathon preprints | Submission guidelines | Moderation process | Journal policies | FAQ\" are all the same size and colour; the bold line beneath them is the OSF credit.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "The right-hand metadata column carries the most disciplined typography on either page: bold navy h3 labels over normal-weight values, one field per block, no rules or boxes.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "\"Authors\", \"Abstract\" and \"Affiliated Institutions\" are set as bold labels with plain values beneath; distinction is by weight and a small gap only.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At 1440 on the index the eye lands on chrome before content: the black deposit button, then the black subject tiles; the search field is third among the page's own objects. The yellow band above them is the standing cookie notice and is excluded.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "The search field is a full-width outlined box with grey \"Search Preprint...\" placeholder, lower in contrast than the black objects above and below it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "At 375 the ordering is a layout decision rather than a banner artefact: the full-width black \"Add A Preprint\" button sits above the tagline and the policy links, and the search field is at the bottom edge with the fixed Help pill overlapping its top-right corner.",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Order down the mobile first screen: OSF bar with hamburger, cookie notice, \"BioHackrXiv\", logo, black full-width Add A Preprint button, tagline, six policy links wrapped to three lines, \"Powered by OSF Preprints\", then the search field. The blue Help pill sits over roughly the right quarter of the field's top edge - it overlaps the field, it does not half-cover it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "On the desktop record page the eye does land on the content: the title is the first real object. Immediately after, the grey PDF toolbar pulls attention before the metadata column does.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "The title occupies its own pale-blue band; the toolbar is a dense band of controls against the metadata column’s plain text.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "At 375 the record title is first and takes five lines; the two unlabelled blue icon buttons (download arrow, share glyph) are second, and nothing on the screen names them.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Two blue rounded-square icon buttons sit directly under the wrapped title with no adjacent text label.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The index first screen is thin: about eight distinct pieces of information across 1440x900, beside a 300px sidebar carrying nine OSF-wide navigation items unrelated to preprints.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "Heading, logo, one-sentence tagline, six links, one search field, \"Show an example\", four subject tiles; sidebar lists Home, Search OSF, Support, Registries, Preprints, Meetings, Institutions, Donate, Sign in.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "The record page inherits its density from the document rather than designing it: the densest region is the PDF’s own first page, showing roughly forty author names with superscript affiliation numbers.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The site’s own metadata column shows four fields before the fold; the embedded PDF page shows a solid block of names and superscripts.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "Lists get two treatments and neither is a table: a pipe-separated inline link run, and a two-column grid of solid black subject tiles. No table or column-aligned field list appears anywhere.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-full.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The policy links wrap to three ragged lines at 375; subjects are filled tiles with centred white labels; the only field/value structure is the vertical metadata stack.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "density",
+      "claim": "Overflow is handled by truncation with a named control rather than by scrolling: eleven author names then a grey \"See more\" pill; a two-line abstract then an ellipsis and a blue \"Read more\".",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Both controls are visible in the metadata column and both state what they reveal.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "The largest single expenditure of space on the record page is a 300px dark navy sidebar, about 21% of a 1440 screen. It is record-aware but carries nothing from the record: it expands to Preprints > Discover > Preprint details > Overview with \"Overview\" highlighted, and names no part of the record's own content.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The sidebar is full-height navy. On the record page it shows the expanded Preprints branch (Discover, Preprint details, a highlighted Overview pill) alongside Registries, Meetings, Institutions, Donate and Sign in. None of the record's thirteen headings appears in it, and neither does the record's title.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "The second largest is the pale-blue title band: roughly 115px between the bottom of the two-line title and the bottom of the band, occupied only by two icon buttons at the right edge. It buys emphasis, not grouping.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "In content-1440-full.png the title's second line ends near y=320 and the band ends near y=435; the download and share buttons sit inside that space at the right, so the band is not empty below the title.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "On the index the largest separation between two of the page's own elements is roughly 120px, between \"Show an example\" and \"Browse By Subjects\". It is the only gap that is empty across the full column width, but it is not the only one of that size.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "Measured in index-1440-full.png: \"Show an example\" at y~557, \"Browse By Subjects\" at y~675 (~118px). The next largest, h1 at y~272 to tagline at y~372 (~100px), is comparable but is filled by the wordmark to its right.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "There is no long scroll to judge at either viewport: the desktop captures taken at scroll fractions 0, 0.5 and 0.9 are one byte-identical file and the manifest records scrollY 0 for all three; the mobile set behaves the same way.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "sha256 0a1d2436... is shared by content-1440-full/tile-01/scroll-00/scroll-50/scroll-90; sha256 0b38ae94... by content-375-full and all three content-375 scroll captures. Every capture is exactly one viewport tall.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "What persists does so because the page never scrolls beneath it, not because it is sticky. The Help pill is genuinely fixed; the sidebar’s stickiness cannot be tested by these captures.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "stickyOrFixed lists a FabButtonFrame at top 800 height 60, matching the blue Help pill’s position in the desktop frames, and a ContainerGradient at top 500 height 400 for the panel it opens. Nothing in stickyOrFixed corresponds to the left navigation.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "The record's own outline never appears on screen. Nine further headings - Public Data, Public Preregistration, Conflict Of Interest, Supplemental Materials, Preprint DOI, License, Subjects, Tags, Citation - are in the DOM but in no capture at either viewport. The captures cannot show why (an inner scrolling pane, or a window scroll that never moved), and there is one cue that more exists: the metadata card is sliced by the bottom edge mid-logo.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "headingOutline lists thirteen headings for the record; only h1, Authors, Abstract and Affiliated Institutions are visible in any capture at either viewport. The Carnegie Mellon logo under \"Affiliated Institutions\" is cut by the viewport's bottom edge in content-1440-tile-01.png.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "There is no end of the page to describe: no footer, no next/previous record and no related records appear in any capture. The exits that do appear are the desktop breadcrumb (Preprints / BioHackrXiv / 5psfj_v2, with BioHackrXiv linked) and the sidebar's Preprints > Discover.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The bottom edge of both record captures is occupied by the PDF viewer and the affiliation logo, not by any closing region; every route out of the record sits at the top of the frame or in the left rail.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "Images are mostly branding: the BioHackrXiv wordmark appears large on the index, again as a chip beside the record title, and a third time inside the PDF’s first page — twice within 300px on the record.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "imgCount is 3 and canvasCount is 0 on the record page; the angular black wordmark is visible in the title band and again on the rendered PDF cover.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F22",
+      "topic": "imagery",
+      "claim": "One image is used as a data value: \"Affiliated Institutions\" renders the Carnegie Mellon University logo as a tile rather than as text, and the fold cuts it off.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The logo tile appears directly beneath the \"Affiliated Institutions\" label at the bottom edge of the frame.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "A small green dot follows each author name in the PDF's own cover block, and the site's author list three inches to the right carries no equivalent mark. At capture scale the dot is not legible as any particular identifier, so it should not be reported as an ORCID mark.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Green dots follow names in the PDF author block in content-1440-tile-01.png; the metadata column's author names carry no such mark. The glyph is a few pixels across and no wordmark inside it can be read.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "imagery",
+      "claim": "There are no diagrams, charts or figures of the site’s own making on either page, and nothing here demonstrates a no-image fallback because both pages are logo-only to begin with.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "svgCount is 6 and all visible vector content is iconography and the wordmark; the pale-blue band simply stays empty.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "svgCount"
+      ]
+    },
+    {
+      "id": "F25",
+      "topic": "defers-or-competes",
+      "claim": "The record defers; the platform competes. Two pieces of furniture that carry nothing of the record - a 300px dark navy sidebar of application navigation and a fixed Help pill - together outweigh the record visually. The consent notice above them is a standing banner and is excluded.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Title, metadata column and field labels are unornamented navy-on-white; the sidebar is full-height dark navy and the Help pill is a saturated blue object over the content column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "defers-or-competes",
+      "claim": "The competition is physical, not only visual: at 1440 the Help pill covers the lower right of the metadata card beside \"Affiliated Institutions\"; on the mobile index it overlaps the search field's top-right corner; on the mobile record it covers part of the embedded viewer's toolbar.",
+      "captures": [
+        "content-1440-full.png",
+        "index-375-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The blue circular \"Help\" pill sits over page content in all three frames. At 1440 it overlaps the metadata card, not the Carnegie Mellon logo, which sits further left at the card's leading edge.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "defers-or-competes",
+      "claim": "The heaviest competition on the index is the browse grid: four solid black tiles are the highest-contrast objects on the page and pull the eye past the search field, which sits about 215px above them with \"Show an example\" and the \"Browse By Subjects\" heading in between.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "Search field bottom at y~520 and first tile top at y~737 in index-1440-full.png; the tiles are pure black with centred white labels.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "information-design",
+      "claim": "The record page shows: identifier and version together in the breadcrumb (Preprints / BioHackrXiv / 5psfj_v2), title, unlabelled download and share icons, the full document as an embedded 65-page PDF, and a metadata column of Authors, Abstract and Affiliated Institutions, with nine further named fields below the fold.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The breadcrumb text, the two icon buttons, the PDF viewer showing \"Page: 1 of 65\" and the three visible metadata blocks are all in frame; the remaining nine field names come from headingOutline.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F29",
+      "topic": "information-design",
+      "claim": "The site signals evidence quality by inventory, not by badge: no rating, score, tier, peer-review stamp, self-reported flag, sample count, replication mark or confidence indicator appears in any capture. Instead a fixed list of named slots (Public Data, Public Preregistration, Conflict Of Interest, License, Preprint DOI) would make quality legible by which slots are filled - though the slots below Affiliated Institutions are named only in headingOutline and their rendered state was never seen.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The visible metadata column contains only labels and values with no ornament; headingOutline names the further slots. Nothing resembling a badge or score is present in any capture at either viewport.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F30",
+      "topic": "information-design",
+      "claim": "That mechanism is placed where it cannot be seen: no quality field is visible in any capture at either viewport. At 375 not even Authors or Abstract appear on the captured screen.",
+      "captures": [
+        "content-375-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The mobile record capture ends at the top of the PDF viewer; the three desktop captures at scroll fractions 0, 0.5 and 0.9 are one file showing the same three metadata blocks.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "information-design",
+      "claim": "Author names render in two visible states inside one list - blue link and plain dark text - and nothing on the page explains the difference. What the two states mean (a resolvable account versus a string typed into a form) is not stated anywhere on screen and cannot be verified from the captures.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "James Mu, Aditya Kumar Karna, Kumar Koushik, Telaprolu, Jeff Winchell, Jasmine Baker and Espen Hagen are blue; Tyler Jay Yang, Caiwei Maggie Zhang, Md Enamul Hoq and Kyulin Kim are plain dark text, in the same comma-separated list. No legend, tooltip text or label accompanies either state.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "information-design",
+      "claim": "User-contributed content is not distinguished from editorial because there is no editorial layer: the site supplies breadcrumb, field names and reader, the author supplies everything with meaning. The one visible difference between the site's text and the author's is capitalisation, and it reads as automatic title-casing rather than an editorial act.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The page renders \"...Prototype Software From The 2026 Carnegie Mellon University-NVIDIA Hackathon\" in Title Case while the PDF cover directly beside it sets the same title in sentence case (\"...Prototype Software from the 2026...\"). Whether that is a stored string or a CSS text-transform cannot be told from the capture; either way it is applied without judgement and would capitalise a unit or a gene symbol the same way.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "information-design",
+      "claim": "What a reader gets that a trial registry cannot give: the document itself, immediately, in the page, plus a licence and a resolving identifier. The cost is that the page's own text is 1.34% of what it delivers - the meaning sits in an embedded PDF the site cannot quote, excerpt or deep-link into, and that only the viewer's own find control can search.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "textToHtmlRatio is 0.0134 - 2,797 characters of visible text inside 208,326 characters of delivered HTML - while the viewer reports \"Page: 1 of 65\". The embedded viewer's own toolbar carries a magnifier (find) control at its left, visible in content-1440-tile-01.png, so the document text is searchable inside the viewer even though the page is not.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio"
+      ]
+    },
+    {
+      "id": "F34",
+      "topic": "information-design",
+      "claim": "Not longevity-relevant, and it should be said plainly: the venue publishes software written at biohackathons, and this record is a federated-learning prototype for biobank infrastructure with no intervention, dose, organism, outcome measure or trial.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "The record title and the index tagline \"Preprints for BioHackathons\" both state the venue’s scope; the subject tiles are Biodiversity, Computer Engineering, Genetics and Genomics, Medicine and Health Sciences.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "Absence handling cannot be observed in this capture set and is not described: every field that could plausibly be empty on a hackathon preprint lies outside every capture at both viewports.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Public Data, Public Preregistration, Conflict Of Interest and Supplemental Materials appear in headingOutline but in no image.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F36",
+      "topic": "absence",
+      "claim": "What is observable is the handling of too much, and it is consistent: a \"See more\" pill after eleven author names and a \"Read more\" after two lines of abstract, both naming what they reveal.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The grey pill and the blue link are both in frame in the metadata column.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "absence",
+      "claim": "The record appears to render a fixed field skeleton whether or not values exist, which is the pattern our own uniqueness constraint forbids — an empty heading is repeated markup on every record adding no per-record words.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "headingOutline returns all thirteen headings including Public Preregistration and Supplemental Materials for a hackathon software preprint unlikely to have filled them. The rendered result is not visible in any capture.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "No command palette or keyboard shortcut is advertised, and the record page carries no site-level or provider-level search other than the sidebar's \"Search OSF\". The embedded PDF viewer does supply its own find control, so \"no way to search within the record\" would be wrong.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "kbdTexts and ariaKeyshortcuts are both empty; searchAffordances finds exactly one on the record page, the sidebar's \"Search OSF\"; scriptTokens reports metaKey and keyCode true but scrollama unknown, so no palette is claimed. The viewer's magnifier control is visible in the PDF toolbar in content-1440-tile-01.png and is not counted by searchAffordances.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "searchAffordances",
+        "scriptTokens"
+      ]
+    },
+    {
+      "id": "F39",
+      "topic": "baseline",
+      "claim": "No copy control exists anywhere on the record page, including on the DOI, licence and citation fields whose entire purpose is to be copied.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "copyControls.count is 0 with an empty firstLabels array. Applying this to the below-fold citation fields is an inference, since those fields are not visible.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F40",
+      "topic": "baseline",
+      "claim": "Light-only, which agrees with the decided default: no theme toggle and no dark variant exist.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "prefersColorScheme.found is false across 59 stylesheets with 0 matched and 0 unreadable; htmlAttributes returns null for class, dataTheme and style. Every capture is light.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "The Authors field is a comma-joined string, not a list of items, and it visibly splits one person into two: the site shows \"Kumar Koushik, Telaprolu\" as two comma-separated blue names while the PDF cover directly beside it prints one author, \"Kumar Koushik Telaprolu\". A reader cannot count the authors from the field the site renders.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "In content-1440-tile-01.png the metadata column reads \"James Mu, Aditya Kumar Karna, Kumar Koushik, Telaprolu, Jeff Winchell, ...\" while the PDF author block at the same eye level reads \"Kumar Koushik Telaprolu\" with a single affiliation superscript. The same delimiter separates people and, here, parts of one person's name.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "The revision identifier is desktop-only. At 1440 the breadcrumb carries \"Preprints / BioHackrXiv / 5psfj_v2\"; at 375 the whole breadcrumb row and the Sign in button are replaced by a hamburger, so the mobile record's first screen names no version and offers no visible route back to the provider.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "content-1440-full.png shows the three-part breadcrumb above the title band. content-375-tile-01.png shows the OSF bar with a hamburger, then the cookie notice, then the logo chip and title - no breadcrumb, no identifier, no version anywhere on the screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "density",
+      "claim": "At 375 the embedded viewer - the only copy of the record's substance - is not operable: its toolbar is clipped at the card's right edge, with a close glyph as the last thing visible and the page/zoom controls running past it, and the fixed Help pill covers the remaining right-hand controls.",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "In content-375-tile-01.png the viewer toolbar shows a sidebar toggle, up/down chevrons, the page box \"1 of 65\" and a minus, then is cut by the container edge with an unlabelled x at the far right; the blue Help pill sits over that end of the toolbar. The document text beneath renders at roughly 5px and is unreadable.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "biohackrxiv is an A2 community site and holds no surface in the Phase 2 table, which draws its assignments from the original ten. Nothing seen argues for giving it one. Its single transferable idea, the named-field inventory that signals evidence quality by which slots are filled rather than by a badge (F29), belongs to the structured data blocks surface, which Stripe already governs with a stronger measured version: 61 collapsible field blocks with a per-block copy button against OSF's copyControls count of 0 (F39). Adding OSF as a secondary influence there would import a fixed empty-field skeleton (F37) that the uniqueness constraint forbids. It does sharpen one open item without filling it: the dossier contents rail and previews surface is unassigned under the stopping rule with Stripe proposed for the rail alone, and biohackrxiv is the negative case - a persistent left rail on a record page that carries application sections rather than the record's own thirteen headings, so the reader gets a permanent column that never points at what they are reading (F19, A5). That strengthens the existing stopping rule by confirming that a rail generated from the document's own headings is the requirement rather than one option among several. It supplies no observed hover-preview reference, so that part of the rule stands unchanged."
+  },
+  "forRnawiki": {
+    "borrow": [
+      {
+        "id": "B1",
+        "surface": "structured data blocks",
+        "what": "Signal evidence quality by inventory rather than by badge: name the questions a sceptical reader asks (is there human data, was it preregistered, who declared a conflict, what licence, what identifier) and let the answer be whether the slot is filled. Adapt to our stricter rule - absent data renders nothing, so the inventory becomes one labelled disclosure stating which slots this compound has and which it does not, never thirteen empty headings.",
+        "captures": [
+          "content-1440-tile-01.png"
+        ],
+        "from": "F29"
+      },
+      {
+        "id": "B2",
+        "surface": "dossier reading column",
+        "what": "Identity as a two-state, not a badge: a resolvable identity renders as a link, a bare string renders as plain text, with no ornament added. Borrow it with the legend OSF omits, since an unexplained colour difference is not a signal. The meaning of OSF's two states is not stated on the page and could not be verified from the captures, which is exactly why the legend is the borrowable part.",
+        "captures": [
+          "content-1440-tile-01.png"
+        ],
+        "from": "F31"
+      },
+      {
+        "id": "B3",
+        "surface": "citation evolution map",
+        "what": "Put the revision in the address: the breadcrumb reads \"Preprints / BioHackrXiv / 5psfj_v2\", so a reader can tell which revision they are on without opening a history panel. Published programme revisions should be addressable and named the same way in the visible path. Borrow the failure too: at 375 the breadcrumb is replaced by a hamburger and the revision id appears nowhere on the record's first screen (V2), so the revision must survive the mobile layout.",
+        "captures": [
+          "content-1440-full.png",
+          "content-375-tile-01.png"
+        ],
+        "from": "F28"
+      },
+      {
+        "id": "B4",
+        "surface": "dossier reading column",
+        "what": "Truncation controls that name what they reveal: \"See more\" on a long author list, \"Read more\" on a cut abstract. One step, in place, and the control says what is behind it.",
+        "captures": [
+          "content-1440-tile-01.png"
+        ],
+        "from": "F12, F36"
+      }
+    ],
+    "avoid": [
+      {
+        "id": "A1",
+        "surface": "home (frozen search bar)",
+        "what": "Anything placed in front of the search bar. On the mobile index the black \"Add A Preprint\" button sits above the tagline and the policy links while the search field lands at the bottom edge overlapped by a fixed Help pill. This is the concrete instance of the failure the freeze exists to prevent.",
+        "captures": [
+          "index-375-full.png",
+          "index-375-tile-01.png"
+        ],
+        "from": "F6"
+      },
+      {
+        "id": "A2",
+        "surface": "browse / filter",
+        "what": "A browse grid heavier than the thing it sits under: four 100%-black subject tiles are the highest-contrast objects on the index and pull the eye past the search field above them. Filter chrome must sit at or below the weight of the records it filters.",
+        "captures": [
+          "index-1440-full.png"
+        ],
+        "from": "F1, F27"
+      },
+      {
+        "id": "A3",
+        "surface": "dossier reading column",
+        "what": "A record page where the reader's window never moves and every evidence field stays below the first fold. Three desktop scroll captures at 0, 0.5 and 0.9 returned one identical file and no quality field appears in any capture at either viewport; whether an inner pane holds the scroll is not observable from the images. The dossier must scroll as one document, and nothing a reader needs to judge the evidence may sit behind a separate scroll region.",
+        "captures": [
+          "content-1440-scroll-50.png",
+          "content-1440-scroll-90.png",
+          "content-375-scroll-50.png"
+        ],
+        "from": "F17, F19, F30"
+      },
+      {
+        "id": "A4",
+        "surface": "dossier reading column",
+        "what": "Embedding the document instead of structuring it. At 1.34% visible text to delivered HTML the page is a shell wrapped around a 65-page file it cannot search, quote or link into; our corpus sits at 8.3% and must rise.",
+        "captures": [
+          "content-1440-tile-01.png"
+        ],
+        "from": "F33"
+      },
+      {
+        "id": "A5",
+        "surface": "dossier contents rail and previews",
+        "what": "A rail that carries application sections instead of the record's own headings: 300px of dark navy, 21% of the desktop width. It is record-aware - it expands to Preprints > Discover > Preprint details > Overview - but \"Overview\" is the only section it can name, so the record's thirteen headings appear in no rail anywhere.",
+        "captures": [
+          "content-1440-full.png"
+        ],
+        "from": "F13, F19"
+      },
+      {
+        "id": "A6",
+        "surface": "all surfaces",
+        "what": "A fixed help beacon over content: at 1440 it covers the lower right of the metadata card beside \"Affiliated Institutions\"; on the mobile index it overlaps the search field's top-right corner; on the mobile record it covers part of the embedded viewer's toolbar.",
+        "captures": [
+          "content-1440-full.png",
+          "index-375-full.png",
+          "content-375-tile-01.png"
+        ],
+        "from": "F26"
+      },
+      {
+        "id": "A7",
+        "surface": "dossier reading column",
+        "what": "Unlabelled icon-only actions on a record: the download and share glyphs are the second thing seen on the mobile record and nothing names them.",
+        "captures": [
+          "content-375-tile-01.png"
+        ],
+        "from": "F8"
+      },
+      {
+        "id": "A8",
+        "surface": "dossier reading column",
+        "what": "An embedded document viewer as a record's only substance at 375: the viewer toolbar is clipped by the card and the fixed Help pill covers what remains, so the reader can neither page nor zoom the one copy of the content. Dossier evidence must be page text at 375, not a document reader.",
+        "captures": [
+          "content-375-tile-01.png"
+        ],
+        "from": "V3"
+      }
+    ]
+  },
+  "notLongevityRelevant": true,
+  "notLongevityRelevantNote": "BiohackrXiv publishes software written at biohackathons. The captured record is a federated-learning prototype for biobank infrastructure - no intervention, dose, organism, outcome measure or trial. It is not a source of longevity evidence and is useful to this study only as an information-design reference for how a platform frames a record it did not write.",
+  "bannersStanding": [
+    {
+      "pass": "index-1440",
+      "banner": "OSF cookie notice",
+      "note": "left standing: no permitted refusal control in div.footer-links (controls offered: Terms of Use, Privacy Policy, Status, API, TOP Guidelines)",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ]
+    },
+    {
+      "pass": "index-375",
+      "banner": "OSF cookie notice",
+      "note": "left standing: no permitted refusal control in div.footer-links",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-01.png"
+      ]
+    },
+    {
+      "pass": "content-1440",
+      "banner": "OSF cookie notice",
+      "note": "left standing: no permitted refusal control in div.footer-links; occupies the top ~150px of the content column in every desktop record capture",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ]
+    },
+    {
+      "pass": "content-375",
+      "banner": "OSF cookie notice",
+      "note": "left standing: no permitted refusal control in div.footer-links; occupies ~200px of the mobile first screen",
+      "captures": [
+        "content-375-tile-01.png",
+        "content-375-scroll-50.png"
+      ]
+    }
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "confirmed": 21,
+    "qualified": 18,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Independently viewed index-1440-full/tile-01, index-375-full, content-1440-full/tile-01/scroll-00/scroll-50/scroll-90, content-375-tile-01 and content-375-scroll-50. content-1440-tile-02.png does not exist in the capture directory, confirming the viewer's missingCaptures note; index-1440-full equals index-1440-tile-01 and index-375-full equals index-375-tile-01 by sha256, so the eight desktop and three mobile images asked for reduce to five distinct frames.",
+      "F13 QUALIFIED - most important correction. The record page's sidebar is not \"nothing about the record being read\": it expands to Preprints > Discover > Preprint details with a highlighted \"Overview\" item. The real defect is narrower - it is record-aware but carries nothing from the record's own content.",
+      "F16 REFUTED and removed. The capture shows the opposite of the claim: author-list line spacing is about 24px (names at y~506/531/552/577/600) while the gaps between field blocks are larger (See more pill to \"Abstract\" ~36px; \"Read more\" to \"Affiliated Institutions\" ~47px).",
+      "F1 QUALIFIED - the pale-yellow band leading the reading order is the left-standing cookie notice recorded in bannerActions, a capture artefact, not OSF's decision about what comes first. Claim rewritten to rank only the page's own objects.",
+      "F5 QUALIFIED - same banner exclusion; the search field is third among the page's own objects, not fourth behind a notice.",
+      "F6 QUALIFIED - \"half-covered by the Help pill\" overstates the overlap; the pill covers roughly the right quarter of the search field's top edge.",
+      "F14 QUALIFIED - the empty band below the title is about 115px (title ends y~320, band ends y~435), not 180px, and the two icon buttons sit inside it.",
+      "F15 QUALIFIED - the gap measures ~118px, and the h1-to-tagline band above is ~100px, so \"nothing else on the page is spaced that way\" is overstated. What distinguishes the gap is that it is empty across the full column width.",
+      "F19 QUALIFIED - that the nine headings sit in an inner scrolling pane the window never reaches is a mechanism the images cannot show; and there is a cue that more exists, since the metadata card is sliced mid-logo by the bottom edge.",
+      "F20 QUALIFIED - self-contradictory as written: the breadcrumb it names as the only exit does link back to BioHackrXiv, and the sidebar carries Preprints > Discover.",
+      "F23 QUALIFIED - the mark is a green dot a few pixels across; it is not legible as ORCID at capture scale and should not be named as one.",
+      "F25 QUALIFIED - the standing consent notice is a banner artefact and cannot be counted as one of the three pieces of competing furniture; two remain.",
+      "F26 QUALIFIED - at 1440 the Help pill overlaps the lower right of the metadata card, not the Carnegie Mellon logo, which sits at the card's leading edge further left.",
+      "F27 QUALIFIED - the tiles begin ~215px below the search field, not ~170px, and \"directly above\" is wrong: \"Show an example\" and the \"Browse By Subjects\" heading sit between them.",
+      "F29 QUALIFIED - scope narrowed from \"anywhere\" to \"in any capture\", and the inventory below Affiliated Institutions is named only in headingOutline; its rendered state was never seen.",
+      "F30 QUALIFIED - same \"inner pane\" overreach as F19; the observable part (no quality field visible at either viewport) is kept.",
+      "F31 QUALIFIED - the two colour states are visible; the meaning attributed to them (claimed account versus typed string) is not observable in the capture and is not stated on the page.",
+      "F32 QUALIFIED - the Title Case difference is real, but calling it \"the one visible editorial act\" attributes judgement to what reads as automatic capitalisation.",
+      "F33 QUALIFIED - \"a PDF the page cannot search\" is contradicted by the viewer's own magnifier control in its toolbar; the accurate loss is that the site cannot quote, excerpt or deep-link the text.",
+      "F38 QUALIFIED - \"the record page offers no way to search within the record\" is refuted by the same visible find control; searchAffordances does not see inside the embedded viewer.",
+      "Added V1 (comma-joined author string splits one person into two names), V2 (revision identifier is desktop-only), V3 (embedded viewer is not operable at 375). A8 added to avoid, from V3; A3, A5, A6, B2 and B3 rewritten to match the corrected findings."
+    ]
+  }
+}

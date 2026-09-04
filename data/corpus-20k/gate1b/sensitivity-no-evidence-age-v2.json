@@ -1,0 +1,160 @@
+{
+ "pages": 4558,
+ "pagesEdited": 3689,
+ "linesRemoved": 22134,
+ "positionalPooled": {
+  "count": 4558,
+  "median": 0.210526,
+  "mean": 0.262169,
+  "p90": 0.409298,
+  "max": 0.983068,
+  "above_0_20": 2474,
+  "above_0_30": 1070
+ },
+ "lexicalPooled": {
+  "count": 4558,
+  "median": 0.435898,
+  "mean": 0.454203,
+  "p90": 0.611856,
+  "max": 0.99,
+  "above_0_20": 4557,
+  "above_0_30": 4176
+ },
+ "threshold": 7,
+ "bucketAtThreshold": {
+  "n": 348,
+  "posMed": 0.2,
+  "cumN": 2266,
+  "cumPosMed": 0.18313600000000002,
+  "cumLexMed": 0.3795215
+ },
+ "aboveByTier": {
+  "1": 1029,
+  "2": 1237
+ },
+ "belowByTier": {
+  "1": 449,
+  "2": 1843
+ },
+ "buckets": {
+  "0": {
+   "n": 6,
+   "posMed": 0.3320695,
+   "cumN": 4558,
+   "cumPosMed": 0.210526,
+   "cumLexMed": 0.43589849999999997
+  },
+  "1": {
+   "n": 286,
+   "posMed": 0.376812,
+   "cumN": 4552,
+   "cumPosMed": 0.210526,
+   "cumLexMed": 0.4357895
+  },
+  "2": {
+   "n": 374,
+   "posMed": 0.285714,
+   "cumN": 4266,
+   "cumPosMed": 0.205128,
+   "cumLexMed": 0.42742349999999996
+  },
+  "3": {
+   "n": 438,
+   "posMed": 0.25974,
+   "cumN": 3892,
+   "cumPosMed": 0.2,
+   "cumLexMed": 0.4183495
+  },
+  "4": {
+   "n": 449,
+   "posMed": 0.230366,
+   "cumN": 3454,
+   "cumPosMed": 0.19481900000000002,
+   "cumLexMed": 0.408613
+  },
+  "5": {
+   "n": 371,
+   "posMed": 0.222222,
+   "cumN": 3005,
+   "cumPosMed": 0.190141,
+   "cumLexMed": 0.398876
+  },
+  "6": {
+   "n": 368,
+   "posMed": 0.2122105,
+   "cumN": 2634,
+   "cumPosMed": 0.18617,
+   "cumLexMed": 0.39008699999999996
+  },
+  "7": {
+   "n": 348,
+   "posMed": 0.2,
+   "cumN": 2266,
+   "cumPosMed": 0.18313600000000002,
+   "cumLexMed": 0.3795215
+  },
+  "8": {
+   "n": 374,
+   "posMed": 0.19170399999999999,
+   "cumN": 1918,
+   "cumPosMed": 0.180851,
+   "cumLexMed": 0.370499
+  },
+  "9": {
+   "n": 481,
+   "posMed": 0.183333,
+   "cumN": 1544,
+   "cumPosMed": 0.177305,
+   "cumLexMed": 0.3541025
+  },
+  "10": {
+   "n": 425,
+   "posMed": 0.17603,
+   "cumN": 1063,
+   "cumPosMed": 0.175532,
+   "cumLexMed": 0.33162
+  },
+  "11": {
+   "n": 165,
+   "posMed": 0.177083,
+   "cumN": 638,
+   "cumPosMed": 0.17463,
+   "cumLexMed": 0.3069865
+  },
+  "12": {
+   "n": 161,
+   "posMed": 0.180851,
+   "cumN": 473,
+   "cumPosMed": 0.171548,
+   "cumLexMed": 0.298357
+  },
+  "13": {
+   "n": 136,
+   "posMed": 0.173472,
+   "cumN": 312,
+   "cumPosMed": 0.170213,
+   "cumLexMed": 0.294061
+  },
+  "14": {
+   "n": 152,
+   "posMed": 0.16694550000000002,
+   "cumN": 176,
+   "cumPosMed": 0.167224,
+   "cumLexMed": 0.290716
+  },
+  "15": {
+   "n": 22,
+   "posMed": 0.16914,
+   "cumN": 24,
+   "cumPosMed": 0.16914,
+   "cumLexMed": 0.27236899999999997
+  },
+  "16": {
+   "n": 2,
+   "posMed": 0.20713700000000002,
+   "cumN": 2,
+   "cumPosMed": 0.20713700000000002,
+   "cumLexMed": 0.271043
+  }
+ }
+}

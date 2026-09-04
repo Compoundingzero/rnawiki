@@ -1,0 +1,571 @@
+{
+  "site": "pudding.cool",
+  "track": "A1",
+  "viewedAt": "2026-09-04T00:00:00Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-05.png",
+    "index-1440-tile-07.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-06.png",
+    "content-1440-tile-08.png",
+    "content-1440-tile-37.png",
+    "content-1440-tile-38.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-tile-01.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "On the index the publication's own wordmark is the first rank of the masthead band: the largest and blackest typographic object, horizontally centred, with the tagline explaining what the site is set far left at roughly a seventh of its height. It is not the largest object on the screen — the three card thumbnails below it are each larger in area.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Centred hand-drawn logotype about 215x75 px in the masthead; 'A digital publication that… explains ideas with visual essays' small and left-aligned; the first card images below measure roughly 395x385 px each.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Card rank is carried by weight and face change, not position: thumbnail, then heavy slab-serif title, then a light grey sans question; the number chip and date sit physically first but read weakest.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "'#224 / AUG 2026' in small monospace above the image; 'mowing experiment' in heavy serif at about twice the description size directly under the image with no gap.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The story builds four visible ranks with no rules, no bold and no accent colour, but not in one typeface and one grey: the h2, the h3 and the body are the same serif in the same grey and separate by size and space alone, while the fourth rank — the chart's reading line — switches to a smaller sans in a visibly lighter grey.",
+      "captures": [
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "h2 'THE EXPANDING WORLD' in letter-spaced capitals, h3 chart title in sentence case at a smaller size, both the same grey as the body serif; the caption 'Each band is one of 21 semantic categories…' is sans-serif and lighter than the text above it, so the viewer's own 'one typeface and one grey' does not hold for the caption rank.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "information-design",
+      "claim": "The chart's title (a claim) and its one-line reading instruction are typeset as prose above the graphic, so the picture ranks last even though it takes most of the height.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "'The New List Devotes More Space to Abstract Concepts, and Less to the Physical World' followed by 'Each band is one of 21 semantic categories, sized and sorted by its share of each list.' then the graphic area.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "Desktop index: the eye lands on the centred wordmark — chrome, not content. The 'Find a story…' field is a hairline-outlined box about 168 px wide (roughly an eighth of the 1440 px screen, about 15% including its magnifier icon), level with six icon filter chips. It is physically wider than any single ABOUT / SUBSCRIBE / MORE sticker but is the quietest object on its row — grey placeholder in a thin outline against black-outlined drawn artwork.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Search input spans roughly x=148–316 with the magnifier at x≈98–140; each sticker button is roughly 81x30 px in heavy black outline; first card image begins about a third down the viewport (y≈310 of 900).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "Mobile index: chrome-before-content is stronger than at desktop — wordmark, then centred tagline, then the search field paired with an 'All' select; the first card image starts roughly 45% down the screen.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Wordmark top-left with MORE button opposite; search plus select on one row; card #224 image below.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "Story, desktop first screen: the eye lands on content — two short centred sentences inside a field of about forty greyed words spread across the full width. The only chrome present is the wordmark at the top edge.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "'Look through the words scattered around this page…' centred in the 650px column; VICE, RESOLVE, SCIENCE, FRAGMENT etc. in italic grey caps in both margins.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "Story, mobile first screen: the wordmark is met first, then the scattered words compress to three narrow columns, then the two sentences in the lower half.",
+      "captures": [
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Wordmark at top; ILLUSTRATE / BATH / REMAIN / HUGE / VEGETABLE arranged in three columns; opening sentences below.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "The index is the dense surface and holds its density constant: three cards per row, each with exactly five fields (number chip, month and year, image, title, one-sentence question) — no author, tags, read time or counts — for about 7.5 screens.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "Every card in the grid, top to bottom, shows the same five slots and nothing else.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "density",
+      "claim": "The story's reading column is extremely low density — about 46 words in two paragraphs inside a column measuring roughly 650 px on a 1440 px viewport — but the first screen as a whole is not: about 44 scattered words fill the margins and the band above the column, so roughly 90 words are on screen. Whole subsequent desktop tiles are uniform cream.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "Column text spans x≈395–1046 (651 px) in the tile-08 body; two centred paragraphs of about 46 words at tile-01, with roughly 44 italic grey words around them; tile-02 is a uniform cream field with no content at all.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "Where density arrives it is a chart, not a table: a unit chart of several thousand squares in five part-of-speech columns and two list rows, with a three-item legend and a two-line note. No captured screen on either page contains a table.",
+      "captures": [
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "NOUNS / ADJECTIVES / ADVERBS / VERBS / OTHER columns, 1953 LIST and 2023 LIST rows, legend IN BOTH LISTS / REMOVED FROM THE 1953 LIST / ADDED TO THE 2023 LIST.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "density",
+      "claim": "The one list-shaped block captured is rendered as a coloured field rather than as rows: about 75 adverbs in three columns, every one highlighted the same magenta, so the size of the set reads before any member of it.",
+      "captures": [
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "TWICE, HENCE, MAINLY, FAIRLY, SLIGHTLY … all on magenta highlight, three columns filling the mobile viewport.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "Space is spent above section headings and withheld below them: measured in the capture, roughly three and a half body line-heights above the h2 and about one below it, so the heading is glued to what it introduces and cut off from what precedes it.",
+      "captures": [
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "In content-1440-tile-08 the paragraph above ends at y≈88 and 'THE EXPANDING WORLD' sits at y≈203, with the following paragraph starting about 30 px under it against a body line-height of about 31 px. The Phase 1 margin-top 80px / margin-bottom 20px figure is not part of these captures and is not relied on here.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "The story's page shape is mostly blank bands between short text blocks, but those bands cannot be read as composed whitespace: the same regions are the graphic stages that do not draw in a static full-page render (see F20), so what the tiles show is un-rendered picture, not designed emptiness.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-full.png",
+        "content-1440-tile-06.png"
+      ],
+      "evidence": "Tile 02 wholly empty cream; tile 06 empty until the 'FROM GOAT TO DESPITE' title card appears at the very bottom edge; the -full image shows long blank bands between short text blocks. The manifest records sticky graphic stages at those document offsets, so the blanks and the graphics coincide.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "On the index, empty grid cells are treated as placeable slots rather than gaps: one holds a staff member's 'Some of my favorite projects' note with a photograph, another the newsletter sign-up form, so non-story content never interrupts the list with a full-width band.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "A cell containing 'Some of my favorite projects: loneliness epidemic, music dna legacies, structure of stand-up' with a portrait and 'MATT DANIELS / Pudding Staff'; another cell containing 'Get The Pudding in your inbox' with an email field and SUBSCRIBE button.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "whitespace",
+      "claim": "The margins carry the data on the story's opening: the scattered words surround the reading column on both sides and also run in a band across the full width above it. They avoid overlapping the two sentences, not the column's width, so the reading block stays clean without the words being confined to the margins.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Words occupy the left and right thirds, but LEGAL, CHEMICAL, CONSTITUTE, RANGE, FEAR, GENDER and COUNTY sit inside the column's horizontal span in the upper band; the centre block holding the two sentences is the only area kept clear.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "Almost nothing persists through the story's scroll: no sticky site header, no progress bar, no contents rail, no in-page navigation at 0%, 50% or 90%. The single piece of persistent chrome is a small '+' with the vertical label WORD LISTS at the right edge — and it is not present on the first screen, appearing only at 50% and 90%.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The right-edge control is absent at 0% and present at 50% and 90% in the same position, so it is persistent through the body of the page but not offered at the top; no other chrome appears in any of the three. That it opens a panel is inferred from a fixed aside.explorer (1440x900, top 0) and button.explorer-fab in the DOM record.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "The same persistent control changes form at mobile: a pill reading '+ WORD LISTS' pinned to the top-right corner instead of a vertical rail label.",
+      "captures": [
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "Bordered pill overlapping the top of the adverb list.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "The rhythm seen at both widths is: a graphic pins to the viewport and a bordered cream card of prose rides up over it. The card is not laid out around the graphic — it covers the chart's legend and part of its arc labels, so the colour key and the colour-coded sentence are not on screen together.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Concentric arc diagram labelled 1953 LIST / 2023 LIST / SOCIAL-COMMUNICATIVE / INSTITUTIONAL / LOCAL-IMMEDIATE / THE SELF with a bordered text card over its lower half; at 1440 the card cuts the legend line to 'REMAINED (IN…' and '…ED TO 2023 LIST' and covers part of the 1953-side word labels; at 375 the arcs are clipped at both edges and the legend is hidden entirely. The manifest records six position:sticky/fixed stage elements at four document offsets (4 px, 6,946 px, 12,722 px, 22,056 px), not five stages; that the pinning is scroll-driven is inferred, and no library can be named because scriptTokens reports IntersectionObserver and scrollama as 'unknown'.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed",
+        "scriptTokens"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "long-scroll",
+      "claim": "The graphic regions do not draw in a static full-page render: they are blank cream in the tiled captures and fully drawn in the real scrolled viewport captures. What that proves is that this page has no static fallback for its numbers; it does not establish what a reader who simply does not scroll would see, since the manifest records that the tiles are slices of one full-page capture.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-06.png",
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Tile 08 shows the chart title and caption with an empty area beneath; the same chart is fully drawn in scroll-90. The manifest caveat states that tiles come from a single full-page capture in which Chromium paints sticky elements where they sat, so the blanks are a property of that render.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "long-scroll",
+      "claim": "The end of the story is a three-part landing marked by ground colour: a Methods & Notes region on pale olive with collapsible blocks and numbered footnotes, then a white promotional band, then the footer.",
+      "captures": [
+        "content-1440-tile-37.png",
+        "content-1440-tile-38.png"
+      ],
+      "evidence": "'What are the limitations?' and 'Footnotes' each with a '−' toggle; five numbered footnotes with citation links and return arrows; then 'We've published 214 awesome stories such as…' on white; then the footer link lists.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "long-scroll",
+      "claim": "The index ends differently: the final row of cards fades to transparent under a black LOAD MORE STORIES button, and the faded cards lose their titles entirely — an incompleteness rather than a boundary.",
+      "captures": [
+        "index-1440-tile-07.png"
+      ],
+      "evidence": "Cards #200, #199, #198 fade from saturated colour to nothing; the button sits over the middle one; no titles beneath them.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "imagery",
+      "claim": "The graphics carry the quantities and the prose does not restate them: the coloured arc segments show how much of each semantic level was removed or added, the unit chart shows the part-of-speech split by area, and the text card gives only example words, one fraction and one percentage.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Text card says 'nearly a quarter of the words in the 1953 list are gone, and 39% of the 2023 words are new' and never states the arc magnitudes it sits on top of. The encoding visible in the arcs is the angular extent of the orange and magenta segments on each ring, not ring thickness — the rings read as roughly equal in thickness.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "imagery",
+      "claim": "One colour key is taught in the sentence and reused in every graphic: orange for words removed from the 1953 list, magenta for words added to the 2023 list, highlighted inline in the prose, colouring the arcs, and legended again at the unit chart.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "'Humble, loyalty, fellowship, generous, polite,' on orange highlight and 'community, identity, organization, ethnic, gender,' on magenta highlight inside running text; the same two hues on the arcs and in the legend REMOVED FROM THE 1953 LIST / ADDED TO THE 2023 LIST.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "imagery",
+      "claim": "The one chart captured with a source note carries its provenance and its caveat in the same frame, under the picture in small type, rather than in a footnote at the foot of the page. This cannot be generalised to every chart on the page: the arc stage at 50% shows a legend and no source or caveat line.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Under the unit chart: 'The 2023 list contains more words overall (2,809 vs. 2,284). All changes mentioned in the text reflect each category's share of its list, not raw counts. Data source: NLTK (Natural Language Toolkit), with manual correction of mislabeled words.' No equivalent line is visible at content-1440-scroll-50.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "absence",
+      "claim": "A missing thumbnail keeps its box: below the fold, cards render as flat saturated blocks of a single colour at the same aspect ratio as a thumbnail, with title and question intact beneath, so the grid rhythm never breaks.",
+      "captures": [
+        "index-1440-tile-05.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Cards #208, #207, #205, #204, #203 as solid colour rectangles with 'kids book animals' / 'How and why do we gender animals in stories?' fully legible below. Why the picture is missing cannot be told from the captures: this manifest's DOM sample was taken on the story page (imgCount 2, imgLazyCount 0) and holds no lazy-loading evidence for the index, so the Phase 1 '27 of 59 img elements with loading=lazy' figure is not verifiable here and is dropped. What is verifiable is the visible result — the slot keeps its size and its colour.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F27",
+      "topic": "imagery",
+      "claim": "A video story is marked by an overlay on the same slot rather than a different card shape: a play triangle centred on the coloured block.",
+      "captures": [
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "Card #206 'loneliness video' with a circular play icon over a purple block.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "defers-or-competes",
+      "claim": "The index competes with the content on purpose: wordmark, three sticker buttons and six icon filter chips are all hand-drawn artwork with outlines and shadows, and a merch promotion is given a full card slot in the grid.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-06.png",
+        "index-1440-tile-07.png"
+      ],
+      "evidence": "ABOUT / SUBSCRIBE / MORE stickers; OUR FAVES / POPULAR / UPDATING / YOUR INPUT / VIDEO / AUDIO chips with drawn icons. The SHOP OUR SWAG button is not a floating tab overlapping the grid: index-1440-tile-06 shows it inside an ordinary third-column cell headed 'If you like our stories, you'll love our merch' with a T-shirt illustration, and tile-07 catches only the bottom edge of that cell.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "defers-or-competes",
+      "claim": "The story defers almost entirely: no header over it, one typeface, one grey, no accent colour except the two data colours, and one small edge control. The design's only visible opinion is the cream ground.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-tile-08.png"
+      ],
+      "evidence": "Nothing but the wordmark and the reading column at 0%; headings and captions share the body colour.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "defers-or-competes",
+      "claim": "The one place the story competes with itself is length: the manifest records a 33,581 px desktop document (about 37 screens) carrying 18,131 characters of text, and no contents list or jump link appears in any of the three scroll captures — so the only route to the conclusion is continuous scrolling.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "The -full image (capped at 16,384px of a 33,581px document) shows short text blocks separated by long blanks; no navigation appears at any depth. The 37-screen and 18,000-character figures come from the manifest's domEvidence, not from the pixels.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "innerTextLength"
+      ]
+    },
+    {
+      "id": "F31",
+      "topic": "defers-or-competes",
+      "claim": "The prose contrast is the weakest point for a reference reader: grey serif rgb(87,87,87) on cream rgb(255,255,241), which computes to 7.17:1 from this manifest's own recorded colours. Headings share that same grey and gain rank only from size; the chart caption is lighter still.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Body text visibly lighter than black; heading and body identical in colour; the sans caption under the chart title is visibly lighter than both. Whether this is the lowest body contrast among the ten study sites cannot be checked from this site's captures and is not claimed here.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "bodyColor",
+        "bodyBackgroundColor"
+      ]
+    },
+    {
+      "id": "F32",
+      "topic": "absence",
+      "claim": "Nothing on the index says 'image unavailable' — absence is handled by keeping the box and filling it with colour, never by a label or a collapsed card.",
+      "captures": [
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "No placeholder text or icon in any of the colour-block slots.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "The apparatus is built from disclosure blocks rather than plain sections: 'What are the limitations?' and 'Footnotes' each carry a toggle on the right of their rule, so a heading can stand as an index of what the apparatus holds. Both are captured open, so the closed state and the '+' affordance are not observed here.",
+      "captures": [
+        "content-1440-tile-37.png"
+      ],
+      "evidence": "'Footnotes' with a '−' at the right of its rule, open, listing five numbered notes with citation links and return arrows; 'What are the limitations?' above it on the same pattern, also open.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "No capture on either page shows a 'not available' line, a dash standing in for a missing value, or a stub heading. Absence is silent rather than labelled — which is not the same as absent: the index's colour blocks stand where thumbnails are missing and the story's graphic regions are blank in the static render, with nothing on screen saying so.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-37.png",
+        "content-1440-tile-08.png",
+        "index-1440-tile-05.png"
+      ],
+      "evidence": "No stub headings anywhere in the story's shape or in its apparatus region; but content-1440-tile-02, tile-06 and tile-08 show empty regions, and index-1440-tile-05 shows colour blocks, none of them labelled.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "baseline",
+      "claim": "The captured pages render light. The story's body background is a warm cream rgb(255,255,241) and no dark variant was observed on it; the index also rendered light in these captures.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "prefersColorScheme.found is false across the story's two readable sheets and the root element carries no class, data-theme or inline style.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F37",
+      "topic": "baseline",
+      "claim": "No command palette and no copy control were found on the story; search does exist on the site but only on the index, which the story-page DOM sample could not see.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "kbdTexts and ariaKeyshortcuts are empty, copyControls.count is 0 and searchAffordances.count is 0 — all collected on the story page — while the index visibly carries a 'Find a story…' input at both viewports.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "copyControls",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "baseline",
+      "claim": "The four bannerActions entries record the site's own footer, not a consent overlay: the div.about block left standing is the Patreon / newsletter / ABOUT US / FOLLOW US band, whose links match the controls the manifest names.",
+      "captures": [
+        "content-1440-tile-38.png"
+      ],
+      "evidence": "'Support us on Patreon', 'Subscribe to our newsletter', and link lists containing Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "The lightest and smallest type on the story is the type that qualifies the data. The chart's reading instruction is a small sans in a lighter grey than the body, and the source-and-caveat line under the unit chart is the smallest type on the screen, centred and lighter again — the reverse of what a reference record needs, where the caveat must not be the faintest line on the page.",
+      "captures": [
+        "content-1440-tile-08.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'Each band is one of 21 semantic categories, sized and sorted by its share of each list.' is set smaller and lighter than the serif body above it; the note giving the denominators (2,809 vs. 2,284), the share-not-counts caveat and the NLTK source sits under the chart at the smallest size in the capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "long-scroll",
+      "claim": "The persistent edge control overlaps content instead of reserving space for itself. At 1440 px the '+ WORD LISTS' rail sits in an empty right margin and costs nothing; at 375 px the same control becomes a pill floating over the text and hides list items beneath it. A dossier contents rail borrowed from this must reserve a gutter at narrow widths rather than float.",
+      "captures": [
+        "content-375-scroll-90.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "At 375 the bordered '+ WORD LISTS' pill sits over the top-right of the three-column adverb list and obscures the first word of the right-hand column; at 1440 the same control is a thin '+' and vertical label in margin space no content occupies.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "density",
+      "claim": "The index's filter vocabulary is not the same at both widths: six labelled icon chips (OUR FAVES, POPULAR, UPDATING, YOUR INPUT, VIDEO, AUDIO) sit beside the search field at 1440 px, while at 375 px they collapse into a single select labelled 'All' next to the search field. The named categories disappear from view at mobile, so a reader cannot see what the list can be filtered by without opening the control.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Desktop row: magnifier, 'Find a story…' input, then six drawn chips with visible labels. Mobile row: magnifier, 'Find a story…' input, then a bordered 'All' select with a caret; no category label is visible anywhere on the first mobile screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Citation evolution map"
+    ],
+    "verdict": "strengthens",
+    "argument": "Strengthens the citation-evolution-map assignment and sharpens its warning. The mechanism was seen working rather than inferred from a stylesheet: a pinned graphic stage with a bordered prose card riding over it (F19), a colour key introduced in the sentence and reused in the marks (F24), and a provenance-and-caveat line under the chart (F25). Two corrections. First, Phase 2's rule for this surface — that the text carries every meaning and the graphic carries none — is not what this site does; at 50% and 90% the magnitudes live only in the graphic (F23), so RNAWiki must hold that rule against the reference rather than learn it from it, and state every quantity in text as well. Second, the static evidence is worse than the numbers implied: the graphic stages render blank outside a live scroll (F20), so a map built this way has no readable fallback and the same revision history must also be readable as a plain list. It additionally argues for a surface it does not hold: the Methods & Notes region — different ground colour, collapsible limitations and footnotes with return arrows (F21, F34) — is the best observed model here for RNAWiki's technical disclosure and should be recorded as a secondary influence on structured data blocks, with stripe.com/docs still governing. Nothing seen argues for home, browse/filter, global search or the reference/definitions page; on home it argues actively against itself (F5)."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "One colour key taught once in the prose and reused in every graphic (F24) — citation evolution map. [content-1440-scroll-50.png, content-1440-scroll-90.png]",
+      "The caveat and the data source travel with the chart, under it in small type (F25) — citation evolution map and structured data blocks; observed on one chart only, and set lighter and smaller than the body, which RNAWiki should not copy (V1). [content-1440-scroll-90.png]",
+      "Chart title as a claim plus a one-line reading instruction, both above the graphic (F4) — structured data blocks. [content-1440-tile-08.png]",
+      "Hierarchy from space alone in one face and one colour, roughly 4:1 space above a heading to space below (F3, F13) — dossier reading column, corroborating the Linear secondary. [content-1440-tile-08.png]",
+      "A terminal apparatus region on its own ground colour, with collapsible limitations and numbered footnotes carrying return arrows (F21, F34) — dossier reading column and structured data blocks. [content-1440-tile-37.png]",
+      "A single fixed edge control instead of a chrome bar, becoming a pill at mobile (F17, F18) — dossier contents rail, cautiously: it is absent on the first screen and it floats over content at 375 px (V2). [content-1440-scroll-50.png, content-375-scroll-90.png]",
+      "Fixed-field cards with no optional slots, so a card with less data does not look broken (F9) — browse/filter. [index-1440-tile-05.png]"
+    ],
+    "avoid": [
+      "The index's chrome-first first screen: centred logotype largest, search field smaller than decorative sticker buttons and level with filter chips (F5, F6). Applying this to home would breach the frozen search bar. [index-1440-tile-01.png, index-375-tile-01.png]",
+      "A page whose meaning exists only during scroll: no static render of the graphic regions, about 37 screens for 18,131 characters, no contents list, no jump link at any depth (F20, F30). [content-1440-tile-02.png, content-1440-tile-06.png, content-1440-full.png]",
+      "Grey body text on cream at 7.17:1, with the caveat and caption lines lighter still (F31, V1). Take the cream ground if it helps, never the grey. [content-1440-tile-08.png]",
+      "A fade-out at the end of a list, leaving untitled cards under a LOAD MORE button (F22) — reads as broken data on a reference site and renders something where RNAWiki's rule is to render nothing. [index-1440-tile-07.png]",
+      "Two visual systems for one site: index and story share no typeface and no ground (F28 vs F29). [index-1440-tile-01.png, content-1440-tile-08.png]",
+      "Filter categories that vanish at mobile: six named chips at 1440 px become one 'All' select at 375 px (V3) — browse/filter must name what it filters by at both widths. [index-375-tile-01.png]"
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [
+    "index-1440: div.about left standing (no permitted refusal control; controls: Our Team, Our Resources, Pitch a Story, Brand Partnerships, Privacy Policy) — visible as the ordinary site footer, not a consent overlay",
+    "index-375: div.about left standing, same block",
+    "content-1440: div.about left standing, same block; seen in content-1440-tile-38.png",
+    "content-375: div.about left standing, same block"
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00Z",
+    "confirmed": 19,
+    "qualified": 18,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Verified against the eight desktop and three mobile captures named in the brief, plus index-1440-tile-06, content-1440-tile-06, content-1440-tile-37, content-1440-tile-38, content-1440-scroll-90 and content-375-scroll-50/90.",
+      "F33 removed: its distinguishing claim, that the faded end-of-list cards are 'partly loaded', is an inferred loading state with no domEvidence key; the capture shows a clean linear gradient mask, and the visible fact is already carried by F22.",
+      "F28 corrected: SHOP OUR SWAG is an in-grid merch cell (index-1440-tile-06), not a floating tab overlapping the grid.",
+      "F26 corrected: the Phase 1 '27 of 59 lazy img elements' figure is not in this manifest, whose DOM sample was taken on the story page (imgCount 2, imgLazyCount 0); the visible slot-keeps-its-box behaviour stands.",
+      "F20 and F14 corrected together: the blank regions are what a static full-page render produces, and the manifest caveat says tiles are slices of one such render, so they establish the absence of a static fallback but not what a non-scrolling reader sees, and they cannot also be counted as composed whitespace.",
+      "F31 kept but re-sourced: 7.17:1 recomputes exactly from this manifest's bodyColor rgb(87,87,87) and bodyBackgroundColor rgb(255,255,241); the 'lowest of the ten sites' ranking is not checkable from this site's captures and was dropped.",
+      "F19 and F25 corrected: the prose card covers the arc chart's legend at both widths, and only one of the two captured charts carries a source-and-caveat line."
+    ]
+  }
+}

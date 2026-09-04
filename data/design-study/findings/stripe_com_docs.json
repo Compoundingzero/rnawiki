@@ -1,0 +1,748 @@
+{
+  "site": "stripe.com/docs",
+  "track": "A1",
+  "viewedAt": "2026-09-04T00:00:00.000Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "content-1440-full.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "content-375-tile-01.png",
+    "index-375-tile-02.png",
+    "index-375-tile-03.png",
+    "index-375-tile-04.png",
+    "index-375-tile-05.png"
+  ],
+  "imagesIdenticalToOnesViewed": {
+    "index-1440-tile-01.png": "index-1440-full.png",
+    "content-1440-tile-01.png": "content-1440-full.png",
+    "content-1440-scroll-00.png": "content-1440-full.png",
+    "content-1440-scroll-50.png": "content-1440-full.png",
+    "content-1440-scroll-90.png": "content-1440-full.png",
+    "content-375-full.png": "content-375-tile-01.png",
+    "content-375-scroll-00.png": "content-375-tile-01.png",
+    "content-375-scroll-50.png": "content-375-tile-01.png",
+    "content-375-scroll-90.png": "content-375-tile-01.png"
+  },
+  "imagesViewedNote": "Nine files were opened with the Read tool. The other nine capture files in this directory are byte-identical duplicates (same sha256) of files in imagesViewed, as mapped in imagesIdenticalToOnesViewed, so their pixel content was seen but they were not opened separately. Every file in the requested minimum set is covered by one of the two lists.",
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "baseline",
+      "claim": "The content-page scroll captures did not scroll: all five content-1440 files are one identical image and all five content-375 files are another, so this site's long scroll on the API reference is unobserved and is not described.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png",
+        "index-375-full.png"
+      ],
+      "evidence": "sha256 838be048... is shared by content-1440-full/-tile-01/-scroll-00/-scroll-50/-scroll-90 (all 1440x900); c08c8fa1... by all five content-375 files (375x812). Declared full-page heights equal the viewport heights. Only index-375-full.png (375x3911) is a real long capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "baseline",
+      "claim": "The desktop guide index was also captured as a first screen only, so its below-fold behaviour is unobserved.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "index-1440-full.png and index-1440-tile-01.png share sha256 f53cafe5... at 1440x900; the manifest declares heightPx 900 for the 'full-page' kind.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "baseline",
+      "claim": "No consent banner obscures any capture; the bannerActions entries record a decliner that found no refusal control, not a standing overlay.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The controls bannerActions lists (Overview, Accept a payment, Introduction, Authentication, Copy for LLM) are ordinary page links; domEvidence.stickyOrFixed records .CookieBanner at height 0; no banner is visible in any image.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "On the guide index the reading order title > subtitle > section heading > card title is set mostly by size and weight on one near-black ink, but the last step is not: card titles are carried in link blue at ordinary size, not by a further size or weight step.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "'Payments' is roughly double body size and heavy; the subtitle sits directly beneath it in the same ink at regular weight; 'Get started' and 'Payment options' are heavy at an intermediate size; 'Accept online payments' and 'Create a subscription' are blue at ordinary size.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "hierarchy",
+      "claim": "In the guide index's content column blue means 'link', so scanning for blue there does yield a list of destinations. On the API reference blue is no longer reserved: it also marks GET method words, the Yes/No helpfulness controls and JSON syntax tokens.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-02.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "index-1440-full: every blue string ('Find your use case', 'Accept online payments', 'Create a subscription') is a link. content-1440-full: 'GET' is blue beside a green 'POST', the 'Yes'/'No' under the helpfulness prompt are blue, and string and null tokens inside the JSON panel are blue.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "hierarchy",
+      "claim": "On the API reference the heading ladder does no work: 'Charges' and 'The Charge object' render at the same size and weight, so a section and the object it documents rank equally, and what separates one block from the next is a full-width hairline and a shared left edge. They are, however, clearly larger than the field names, not barely larger.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "Both titles render at the same size and weight in content-1440-full and are visibly about twice the size of the bold monospace field names 'id' and 'amount'; sections are divided by full-width 1px rules. domEvidence.headingOutline runs h1 to h3 with no h2 on the page.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F7",
+      "topic": "information-design",
+      "claim": "A data row has a three-step internal hierarchy in a narrow size range: bold monospace name, small grey type on the same line, prose description below; HTTP method is a short coloured monospace word, so category is carried by the word not the colour.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'id  string', 'amount  integer'; 'POST /v1/charges' in green and 'GET /v1/charges' in blue before a grey monospace path.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "eye-lands",
+      "claim": "Desktop guide index: the eye lands on the H1, i.e. content. The search field is second, but not because it is the only control of its kind - it is one of three outlined pills in the top bar ('Ask AI' and 'Sign in' are the others) and it recedes because the header band is pale and low-contrast.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "H1 'Payments' sits top-left of a large white field; the search box with a '/' chip sits in the top bar between the wordmark and an outlined 'Ask AI' pill, with an outlined 'Sign in' button at the right end.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "eye-lands",
+      "claim": "Desktop API reference: the eye lands on the H1 and jumps immediately to the six-row endpoint list; the ~20-link navigation tree reads as texture, not as a destination.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "The endpoint rows are the only bold black text repeated six times in a column; the left tree is one size smaller, one grey lighter and unboxed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "eye-lands",
+      "claim": "At mobile, content wins outright on both pages: chrome is one thin row before the H1.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Guide index chrome is hamburger + 'Payments' + 'Create account or Sign in'; API page chrome is one grey band with a small all-caps 'CHARGES' breadcrumb and three icons.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "eye-lands",
+      "claim": "The persistent centred search box is desktop-only: the mobile guide index shows no search field on the first screen, and the mobile API page shows only a magnifier icon.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "No input is visible in either mobile header; search on the index is behind the hamburger.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "density",
+      "claim": "The first desktop screen of the API reference carries roughly eight distinct groups and stays legible because almost every group is separated by a hairline or a change of column. The exception is the code sample, which is a bordered, tinted panel with its own label bar - so the rule is hairlines everywhere except the exact record.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "Visible at once: ~24 nav links, a version selector and four header links, a three-sentence paragraph, a helpfulness prompt, a two-tab switch, six endpoint rows, two attribute rows and a JSON sample of about ten visible lines. The JSON sits in a boxed panel headed 'THE CHARGE OBJECT'; the current rail item 'Charges' also sits on a pale fill.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "density",
+      "claim": "Lists and tables are hairline-separated rows with no borders, no zebra striping and no cell boxes; one row shape is reused for different content, with a right chevron as the only added affordance.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The endpoint list and the attribute list use the identical construction (title line, secondary line, 1px rule) at different content.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "density",
+      "claim": "The guide index groups by cards: link title, one sentence, sometimes one small pill, two-up at desktop and one-up at mobile. Heights are equalised within a desktop row and left unequal in the mobile stack.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-02.png"
+      ],
+      "evidence": "'Accept online payments' and 'Create a subscription' are the same height side by side at 1440; in the 375 stack the 'Dynamic payment methods' card carries a 'No code required' pill and is taller than its neighbours.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "density",
+      "claim": "Density rises with the reader's commitment: descriptive cards at the top of the page, bare grouped link lists with no descriptions at the bottom.",
+      "captures": [
+        "index-375-tile-04.png",
+        "index-375-full.png"
+      ],
+      "evidence": "'More guides' is five sub-headed lists - 'Payment interfaces', 'Manage payments', 'Payment methods', 'API basics', 'Start developing' - of four naked blue links each. (The viewer wrote 'four sub-headed lists' and then named five.)",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "density",
+      "claim": "The visual density is not delivery density and must not be copied as a delivery profile.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence records textToHtmlRatio 0.0083, innerTextLength 18516 against outerHtmlLength 2222467 - 0.83% visible text, against RNAWiki's 8.3% which the mandate requires to rise.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "whitespace",
+      "claim": "Space is spent above section headings and withheld below them, so a gap reads as a section boundary rather than as padding around a heading.",
+      "captures": [
+        "index-1440-full.png",
+        "index-375-tile-02.png"
+      ],
+      "evidence": "A wide gap follows the divider under the utility row before 'Get started', while the paragraph beneath that heading starts close to it; the pattern repeats at 'Payment options'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "whitespace",
+      "claim": "Two magnitudes of space do two jobs: tight space inside a data row says 'these belong together'; wide space on the guide page says 'this section has ended'.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Name and type share a line with the description one line below and a hairline before the next field, against the much larger inter-section gaps on the guide page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "whitespace",
+      "claim": "Margins are asymmetric and nothing is stretched to the viewport: at 1440 the card grid stops well short of the right edge and the empty gutter is left empty.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "The two cards end around two-thirds of the window width while the header and dividers run wider.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "whitespace",
+      "claim": "At 375px there is a single narrow outer gutter and one shared left edge for every heading, paragraph, section title and link list; the only second edge is the padding inside a card, which indents card text about 20px further.",
+      "captures": [
+        "index-375-full.png",
+        "index-375-tile-03.png"
+      ],
+      "evidence": "H1, paragraph, section heading and every link list align to the same left edge down 3911px of page; card borders sit on that same edge while 'Accept online payments' and its sentence start inside it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "long-scroll",
+      "claim": "No claim is made about what persists during a long scroll on the API reference, because the three scroll captures are identical to the first screen.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Identical sha256 across all three files; see F1.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "long-scroll",
+      "claim": "The page is built to pin per-section panels rather than one global rail.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.stickyOrFixed lists eight ApiSection-Aside elements with position sticky at tops 139, 638, 4389.6, 6812.6, 8075.6, 8964.6, 9902 and 11347.4 and heights 374 or 764 - one per endpoint group in headingOutline. The capture shows such an aside at the top of the page holding the endpoint list and then the JSON sample.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F23",
+      "topic": "long-scroll",
+      "claim": "A fixed 48px bar holds the bottom of both desktop pages; neither mobile capture shows such a bar.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png",
+        "index-375-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "domEvidence.stickyOrFixed has a fixed div at top 852 height 48 and another at top 899 height 1; the visible counterpart is the grey 'Developers' bar with a terminal icon spanning full width, with a scroll-to-top circle at its right end, present in index-1440-full and content-1440-full and absent from index-375-full and content-375-tile-01. Because the scroll captures did not scroll, that it stays put while reading is taken from the DOM, not seen.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F24",
+      "topic": "long-scroll",
+      "claim": "In the one long capture that exists the rhythm holds: one unit - heavy section heading, then a stack of cards - repeats four times before changing gear once. The pitch is regular rather than even, because section length follows card count (2, 3, 3, 3), and a fifth heading, 'Get started', uses prose and a link instead of cards.",
+      "captures": [
+        "index-375-full.png"
+      ],
+      "evidence": "3911px tall; 'Payment options' (2 cards), 'Payment methods' (3), 'Beyond payments' (3) and 'Platforms and marketplaces' (3) each follow the same shape, then 'More guides' switches to link lists.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "long-scroll",
+      "claim": "The end of the page is quiet and useful, with no newsletter, promotional block or repeated navigation dump.",
+      "captures": [
+        "index-375-tile-05.png"
+      ],
+      "evidence": "'Was this page helpful? Yes / No', a rule, five one-line support links with small icons, a 'Powered by Markdoc' credit, then locale controls.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "imagery",
+      "claim": "The API reference carries no pictures at all and loses nothing; its only non-text element that carries meaning is the JSON sample, which restates the field list in the form the reader will receive.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.imgCount is 0 and the capture confirms it; svgCount 291 is icons.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F27",
+      "topic": "imagery",
+      "claim": "The guide index's one picture does very little: a checkout screenshot beside 'Get started', illegible at its rendered size and cut off part-way down by the section rule rather than fitted to the section.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "The screenshot sits inside the content column - its right edge is within the 1440px frame, not running off it - and is cut mid-form by the full-width rule that closes the 'Get started' section.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "imagery",
+      "claim": "The mobile guide page drops that image entirely and is not worse for it.",
+      "captures": [
+        "index-375-full.png"
+      ],
+      "evidence": "3911px of page with zero pictures, structured only by headings, cards, pills and links.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "defers-or-competes",
+      "claim": "In the prose column the design defers: one ink, one accent, hairlines, system fonts, no shadows, no gradients, no illustration. The code panel is the exception - inside its tinted box sit green and blue method words and multi-coloured JSON syntax.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "Nothing in the API page's prose draws attention except the words; 'POST' green, 'GET' blue and the string/number/null colouring inside the JSON sample are the only saturated colour on the screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "defers-or-competes",
+      "claim": "In the chrome it competes in three places: a two-bar desktop header taking roughly the top eighth of the screen, an 'Ask AI' control placed beside search at equal weight, and a fixed bottom bar.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "Header bar one holds wordmark, centred search and 'Ask AI'; bar two holds six product tabs; the 'Developers' bar holds the bottom edge on both pages.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "defers-or-competes",
+      "claim": "The quiet per-section utility row is well judged once but becomes the page's most repeated text when it recurs at every section.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "'Ask about this page | Copy for LLM | View as Markdown | Install tools' under the index H1; 'Ask about this section | Copy for LLM | View as Markdown' at both 'Charges' and 'The Charge object'; domEvidence.copyControls counts 8, all labelled 'Copy for LLM'.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F32",
+      "topic": "defers-or-competes",
+      "claim": "The API reference is theme-switchable and was captured light, which contradicts the Phase 2 note listing Stripe among light-only sites.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "A sun/switch control sits at the top-left of the reference sidebar in the capture; domEvidence.prefersColorScheme is found true with one matched sheet; htmlAttributes.dataTheme is null and bodyBackgroundColor computes to rgb(244,247,250). The Phase 1 browser pass measured this same URL at rgb(20,23,29).",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F33",
+      "topic": "defers-or-competes",
+      "claim": "The header search is an input carrying a '/' key chip. Whether pressing '/' opens an inline dropdown or a full-screen palette is unobserved: no overlay appears in any capture, and the DOM probe that would have described the control returned nothing even on a page where the input is plainly visible, so it cannot be read as evidence of absence.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "domEvidence.kbdTexts is ['/'] and ariaKeyshortcuts is empty; searchAffordances.count is 0 for the reference page although content-1440-full shows a 'Find anything /' input at the top of its sidebar.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F34",
+      "topic": "absence",
+      "claim": "No capture shows an empty field, a placeholder or a 'not available' line; every visible row is populated. That the rare is collapsed behind an expander is read from the manifest's heading outline, not seen in any image.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.headingOutline records 'More attributes Expand all' and 'More parameters Expand all' under six endpoint sections; no expander control is visible in either first-screen capture.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    },
+    {
+      "id": "F35",
+      "topic": "absence",
+      "claim": "Where a record is stale rather than missing, it is labelled in place rather than removed - recorded from the manifest, not seen.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "headingOutline carries 'Create a charge  Deprecated'; the capture's endpoint list shows 'Create a charge / POST /v1/charges' with no visible tag at that size.",
+      "inferred": true,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "absence",
+      "claim": "Structurally, no section is present-but-blank: absent content produces a shorter page rather than a padded one.",
+      "captures": [
+        "index-375-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The guide index simply ends its card sections and changes to link lists; the API page ends one endpoint block and rules a line.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "information-design",
+      "claim": "Two rows are clipped at 375px, showing truncated words at the viewport edge at rest.",
+      "captures": [
+        "index-375-tile-01.png",
+        "index-375-full.png"
+      ],
+      "evidence": "The utility row reads 'Copy for LLM | View as Markdown | Install to' cut at the edge; the tab strip reads 'Most popular  Online  In-person  Subs' cut at the edge.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F38",
+      "topic": "information-design",
+      "claim": "The mobile API page handles the same width better by collapsing all navigation into one breadcrumb with a chevron, and every content row fits without truncation.",
+      "captures": [
+        "content-375-tile-01.png"
+      ],
+      "evidence": "'CHARGES v' plus three icons in the header; endpoint name, method, path and chevron all fit the 375px width.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F39",
+      "topic": "borrow",
+      "claim": "Structured data blocks: adopt the hairline row - bold name, small grey type on the same line, one sentence below, 1px rule - with no boxes or zebra; it scales from six rows to sixty without changing weight.",
+      "captures": [
+        "content-1440-full.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The endpoint list and attribute list use the identical construction on one page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F40",
+      "topic": "borrow",
+      "claim": "Structured data blocks: carry category in a short word, colour only reinforcing, so RNAWiki's CONFIRMED / MIXED / CONTRADICTED / NOT_MEASURED / UNKNOWN distinction survives greyscale.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "POST in green and GET in blue are words first and colours second.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F41",
+      "topic": "borrow",
+      "claim": "Dossier reading column: the paired panel - prose left, the exact record right in the same vertical band - maps directly to a claim sentence beside its exact saved source snapshot.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "The Charge object prose sits left of a JSON sample of the same object; the endpoint prose sits left of the endpoint list.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F42",
+      "topic": "borrow",
+      "claim": "Contents rail: one rail only, with the current page's sections nested inside the site tree, small grey capital group labels, hairline dividers, chevrons on expandable entries, current item on a pale fill, and secondary controls parked at the rail's bottom edge.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The /payments rail shows 'ONLINE PAYMENTS' and 'IN-PERSON PAYMENTS' groups with a Singapore locale row at its foot; the /api/charges rail shows 'Charges' highlighted with 'The Charge object', 'Create a charge', 'Update a charge', 'Retrieve a charge' nested beneath it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F43",
+      "topic": "borrow",
+      "claim": "Dossier reading column: one quiet utility row of small grey actions under the H1, separated by thin vertical rules and closed by a full-width divider - a place for export, citation and technical-disclosure controls that does not compete with the heading. Once per page, not once per section.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "'Ask about this page | Copy for LLM | View as Markdown | Install tools' sits between the subtitle and the first section divider.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F44",
+      "topic": "borrow",
+      "claim": "Browse/filter: a density gradient - described cards at the top, bare grouped link lists at the bottom, card heights unforced.",
+      "captures": [
+        "index-375-tile-02.png",
+        "index-375-tile-04.png"
+      ],
+      "evidence": "Cards with one-sentence descriptions give way to five bare link groups under 'More guides'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F45",
+      "topic": "borrow",
+      "claim": "Reference/definitions page: no imagery is required; a whole reference page with imgCount 0 loses nothing.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.imgCount is 0 for /api/charges and the capture confirms no pictures.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F46",
+      "topic": "avoid",
+      "claim": "Do not repeat per-section chrome: eight 'Copy for LLM' controls and a helpfulness prompt under every section would become the words appearing on more than 90% of RNAWiki pages, against the uniqueness rule.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.copyControls count 8 with identical labels; the utility row and 'Was this section helpful? Yes No' both recur within one screen.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls"
+      ]
+    },
+    {
+      "id": "F47",
+      "topic": "avoid",
+      "claim": "Do not ship rows that truncate at small widths; RNAWiki must show no horizontal overflow at 320px.",
+      "captures": [
+        "index-375-tile-01.png"
+      ],
+      "evidence": "Two rows are visibly cut at the right edge at 375px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F48",
+      "topic": "avoid",
+      "claim": "Do not add a fixed bottom bar; it spends the bottom 48px of every screen on a control most readers will not use.",
+      "captures": [
+        "index-1440-full.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "The grey 'Developers' bar and scroll-to-top circle are present on both desktop pages.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F49",
+      "topic": "avoid",
+      "claim": "Do not place a decorative product screenshot beside explanatory prose: this one is illegible at its rendered size and is cut off mid-content by the section rule.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "The checkout screenshot beside 'Get started' is clipped by the rule that closes the section, and nothing in it can be read at that size.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F50",
+      "topic": "avoid",
+      "claim": "Do not import Stripe's header: a persistent centred search plus an assistant control at equal weight is exactly what the frozen home search bar forbids, and an assistant offer conflicts with the boundary that software checks structure while people judge meaning.",
+      "captures": [
+        "index-1440-full.png"
+      ],
+      "evidence": "Header bar one places the search field and 'Ask AI' side by side above all content.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F51",
+      "topic": "avoid",
+      "claim": "Do not import the delivery profile behind the look: 0.83% visible text against a target that must rise from 8.3%.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence textToHtmlRatio 0.0083 on a page carrying 18516 characters of text in 2222467 characters of HTML.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "long-scroll",
+      "claim": "The reason the content-page scroll captures are identical is structural, not a tooling slip: at desktop width the article scrolls inside <main> rather than in the window, so scrolling the window moves nothing. Both desktop pages declare a 'full page' height of exactly 900px while the same guide page at 375px captures 3911px. For an RNAWiki dossier this is the thing to avoid: an inner scroll container silently defeats window-scroll tooling, and with it screenshotting, scroll restoration and deep-link positioning.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-full.png",
+        "index-1440-full.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Capture evidence: one identical sha256 (838be048...) across all five content-1440 files, and heightPx 900 declared for both desktop 'full-page' captures against 3911 for index-375-full. Provenance for the mechanism is the Phase 1 measured record for the same URL (data/design-study/stripe_com_docs.json, measured.desktop.chrome): documentScrolls false, scrollOwner 'main (clientHeight 844, scrollHeight 12459, overflow-y auto)', with the left navigation scrolling inside its own 280px pane. That is a Phase 1 measurement, explicitly not a visual observation; what the images contribute is the 900px ceiling and the identical files.",
+      "inferred": true,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "borrow",
+      "claim": "Dossier reading column: the one boxed element on the API page is the exact record, and it is labelled. The JSON sample sits in a bordered panel with a small all-caps header bar reading 'THE CHARGE OBJECT', naming precisely what the panel contains. Borrow that pairing - a bordered, labelled panel used once, for the verbatim record, on a page whose other groups are separated only by hairlines - for a saved source snapshot beside a claim.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "content-1440-full shows the panel headed 'THE CHARGE OBJECT' in the right band beside the prose and the Attributes list; no other block on that screen is boxed except the pale fill under the current rail item 'Charges'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "avoid",
+      "claim": "Do not copy the flat heading ladder underneath the hairline rows. Every endpoint block on the reference page is an h1 and the page drops straight to h3, so the structure a sighted reader sees in the rules and rhythm is not in the document outline at all. RNAWiki's public pages are required to keep a logical heading order, so the borrow is the row construction, not the heading structure beneath it.",
+      "captures": [
+        "content-1440-full.png"
+      ],
+      "evidence": "domEvidence.headingOutline lists eight h1 elements ('Charges', 'The Charge object' and one per endpoint) with no h2 anywhere and h3 used for 'Attributes', 'Parameters' and 'Returns'; the Phase 1 record notes 'No rendered non-empty h2 exists'. In content-1440-full 'Charges' and 'The Charge object' render at the same size, which is what that outline looks like on screen.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline"
+      ]
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Structured data blocks",
+      "Compound dossier - contents rail and previews",
+      "Global search overlay (named only as the measured alternative)"
+    ],
+    "verdict": "strengthens",
+    "argument": "Structured data blocks: strengthened on visual evidence, and the justification should be restated. The Phase 2 row justified the assignment numerically (61 collapsible field blocks, per-block copy button, chrome versus prose scale); content-1440-full.png shows the real mechanism is the hairline row with a three-step internal hierarchy and a coloured category word, reused identically for two different kinds of content on one page. Contents rail: the assignment survives but its stated mechanism is wrong. The row describes 'a TOC generated from h2 text', and the governing reference page has no h2 at all - domEvidence.headingOutline runs h1 to h3, and the Phase 1 browser pass recorded that no rendered non-empty h2 exists. What is actually there is a persistent site-wide tree with the current page's sections nested inside it, and what pins during scroll is not that rail but eight per-section ApiSection-Aside elements (F22, inferred from stickyOrFixed). Stripe remains the only measured reference for a persistent rail and F42 is a real borrow, but the row must be corrected before anyone builds to it. Hover previews remain unobserved, as the row already states. Separately, the Phase 2 dark-mode note lists Stripe among five light-only sites; F32 shows a theme control on the reference page with prefersColorScheme found, and Phase 1 measured this same URL dark - that sentence should be corrected, without reopening the frozen light-default decision. No new surface is claimed: the header forbids the home page, the cards are weaker than the rows for browse, no graphic behaviour was observed for the citation map, and search here is a '/' launcher with no palette.",
+    "caveat": "The content page's scroll captures are identical to its first screen (F1), so this verdict rests on two first screens plus one long mobile capture, not on an observed long scroll. Verification adds the cause: the Phase 1 measured record for the same URL shows the article scrolling inside <main> rather than the window, so the scroll captures could not have moved (V1)."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Hairline data row: bold name, small grey type on the same line, one sentence below, 1px rule, no boxes or zebra (structured data blocks)",
+      "Category as a short word with colour only reinforcing, for CONFIRMED / MIXED / CONTRADICTED / NOT_MEASURED / UNKNOWN (structured data blocks)",
+      "Paired panel: prose left, the exact record right in the same vertical band - claim beside its saved source snapshot (dossier reading column)",
+      "One rail with the current page's sections nested in the site tree; grey capital group labels, hairline dividers, pale-fill current item, secondary controls at the rail's foot (dossier contents rail)",
+      "A single quiet utility row of small grey actions under the H1, once per page (dossier reading column)",
+      "Density gradient: described cards at the top, bare grouped link lists at the bottom (browse/filter)",
+      "No imagery on a reference page (reference/definitions page)",
+      "A bordered, labelled panel used once per page for the verbatim record - header bar naming exactly what it contains - on a page otherwise separated only by hairlines (dossier reading column)"
+    ],
+    "avoid": [
+      "Per-section repeated chrome (copy controls, helpfulness prompts) - collides with the uniqueness rule",
+      "Rows that truncate at the viewport edge at 375px - RNAWiki must not overflow at 320px",
+      "A fixed bottom bar occupying the last 48px of every screen",
+      "A decorative product screenshot that repeats the prose beside it",
+      "A persistent header search plus an assistant control at equal weight - the home search bar is frozen",
+      "The 0.83% text-to-HTML delivery profile behind the look",
+      "An inner scroll container that takes scrolling away from the window - it breaks screenshotting, scroll restoration and deep-link positioning (V1)",
+      "A flat heading outline behind a visually structured page - eight h1 elements and no h2 (V3)"
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [],
+  "verification": {
+    "verifiedAt": "2026-09-03T18:44:43.742Z",
+    "verifiedBy": "independent verifier, images re-opened with the Read tool",
+    "imagesViewed": [
+      "index-1440-full.png",
+      "content-1440-full.png",
+      "index-375-full.png",
+      "index-375-tile-01.png",
+      "index-375-tile-02.png",
+      "index-375-tile-03.png",
+      "index-375-tile-04.png",
+      "index-375-tile-05.png",
+      "content-375-tile-01.png"
+    ],
+    "imagesCoveredByHash": "The eleven files named in the verification brief are all covered: index-1440-tile-01 = index-1440-full; content-1440-tile-01/-scroll-00/-scroll-50/-scroll-90 = content-1440-full; content-375-scroll-50 = content-375-tile-01. sha256 recomputed over all 18 files in the directory and the viewer's duplicate map reproduced exactly.",
+    "confirmed": 36,
+    "qualified": 15,
+    "refuted": 0,
+    "added": 3,
+    "notes": [
+      "No finding was removed. Nothing in the set was fabricated or read off a capture that does not show it, so nothing met the bar for refutation; fifteen claims overreached what the cited capture supports and were rewritten in place.",
+      "Most important correction (F12, F29): the page is not box-free. The JSON sample sits in a bordered, tinted panel with an all-caps 'THE CHARGE OBJECT' label bar, and the current rail item sits on a pale fill. The real rule is hairlines everywhere except the exact record - which is a better borrow than 'never a box', and is now recorded as V2.",
+      "F5 was the largest single overreach: 'no blue is decorative' is falsified on its own cited capture, where blue marks GET method words, the Yes/No helpfulness controls and JSON syntax tokens. Scoped to the guide index content column, the claim holds.",
+      "F27 and F49 both described the guide-index screenshot as cropped by the right edge of the viewport. It is not: its right edge sits inside the 1440px frame and it is cut off part-way down by the full-width rule that closes the 'Get started' section. The advice survives; the mechanism was wrong.",
+      "F33 read searchAffordances.count 0 as evidence that search is not a palette. That probe returned 0 for a page whose search input is plainly visible in the capture, so it is a failed probe, not an absence. The claim now says only what the '/' chip shows.",
+      "F8 ('the only outlined filled control'), F14 ('heights unequal' - true only in the mobile stack), F15 ('four' lists where five are named and shown), F20 ('no second indent level' - card padding is one), F23 ('every screen on both pages' - no such bar exists at 375), F24 ('even pitch' - section length follows card count) and F6 ('barely larger than the field names' - roughly twice the size) were each narrowed to what the images support.",
+      "F32 was checked against the Phase 1 measured record and stands: measured.desktop records the same URL at rgb(20,23,29) with the note 'The reference page is dark by default at this viewport, not a user preference', while this pass captured it light with a visible theme control. The Phase 2 light-only sentence does need correcting.",
+      "Metadata defects left in place but recorded: F6 and F26 cite domEvidenceKeys 'stickyOrFixed' where they mean headingOutline and imgCount; F16, F34, F35 and F51 quote domEvidence fields with an empty domEvidenceKeys array. F6 and F34 were corrected as part of their rewrite; the others were left as the viewer filed them.",
+      "F1, F2 and F3 were re-verified independently. sha256 confirms the duplicate captures, and no consent overlay appears in any image - the bannerActions entries list ordinary page navigation links as the controls they found, and CookieBanner is recorded at height 0."
+    ]
+  }
+}

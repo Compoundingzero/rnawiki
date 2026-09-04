@@ -1,0 +1,71 @@
+{
+  "key": "quantamagazine.org",
+  "track": "A1",
+  "dir": "quantamagazine_org",
+  "checkedAt": "2026-09-03T14:34:27.924Z",
+  "indexUrl": "https://www.quantamagazine.org/",
+  "contentUrl": "https://www.quantamagazine.org/genome-duplication-is-a-radical-evolutionary-gamble-20260902/",
+  "reachable": true,
+  "robots": {
+    "url": "https://www.quantamagazine.org/robots.txt",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/quantamagazine_org.robots.txt",
+    "indexPath": "/",
+    "contentPath": "/genome-duplication-is-a-radical-evolutionary-gamble-20260902/",
+    "indexAllowed": true,
+    "contentAllowed": true,
+    "relevantLines": [],
+    "crawlDelay": null,
+    "sitemaps": [
+      "https://www.quantamagazine.org/sitemap.xml"
+    ],
+    "note": "no rule in the applicable group matches this path / no rule in the applicable group matches this path"
+  },
+  "terms": {
+    "url": "https://www.quantamagazine.org/terms-conditions/",
+    "httpStatus": 200,
+    "savedTo": "data/design-study/legal/quantamagazine_org.terms.html",
+    "textSavedTo": "data/design-study/legal/quantamagazine_org.terms.txt",
+    "textChars": 21651,
+    "candidatesTried": [
+      {
+        "url": "https://www.quantamagazine.org/terms-conditions/",
+        "status": 200
+      }
+    ],
+    "foundViaIndexLink": false,
+    "relevantExcerpts": [
+      "All content included on this Site, such as text, graphics, logos, button icons, images, audio clips, digital downloads, videos, data compilations, and software, is owned by us or our content suppliers and protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws (“IP Laws”).",
+      "These Terms permit you to use the Site for your personal, non-commercial use only.",
+      "You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Site, other than as permitted by law.",
+      "You must not access or use for any commercial purposes any part of the Site or any services or materials available through the Site.",
+      "If you print, copy, modify, download, or otherwise use or provide any other person with access to any part of the Site in breach of the Terms, your right to use the Site will stop immediately and you must, at our option, return or destroy any copies of the materials you have made.",
+      "Nothing contained on the Site should be construed as granting, by implication, estoppel, or otherwise, any license or right to use the Marks without our express written consent.",
+      "By submitting Content, you grant to us, subject to our Privacy Policy, a worldwide, non-exclusive, royalty-free right to store, host, reproduce, create derivate works of, publish, publicly perform, display, use and distribute such Content.",
+      "You also grant us the right to sub-license these rights and the right to sue for infringement of these rights.",
+      "(This license only applies to Content you publicly post to the Site — it does not apply to any personally identifiable information you supply when you, for example, create an account, or sign up for an event, which is used and protected in accordance with our Privacy Policy.)",
+      "Content that infringes copyright or any other intellectual property rights; or",
+      "You must not use our Site to copy, store, host, transmit, send, use, publish or distribute any material that consists of (or is linked to) any malicious computer software;",
+      "You must not copy, modify, distribute, sell or lease any part of the Site or its content or its software, nor may you reverse engineer or attempt to extract the source code of that software;",
+      "You must not conduct any systematic or automated data collection activities (including, without limitation, scraping, data mining, data extraction and data harvesting) on or in relation to our Site;",
+      "You must not use our Site to send spam, surveys, or any unsolicited commercial communications;",
+      "You must not use our Site for any purposes related to marketing, research, or any other commercial or organizational purpose without our prior express written consent;",
+      "You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or the Site will be free of viruses or other destructive code.",
+      "TO THE FULLEST EXTENT PROVIDED BY LAW, WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES, OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA, OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE SITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SITE OR TO YOUR DOWNLOADING OF ANY…"
+    ],
+    "forbiddingHits": [
+      "You must not conduct any systematic or automated data collection activities (including, without limitation, scraping, data mining, data extraction and data harvesting) on or in relation to our Site;"
+    ]
+  },
+  "api": {
+    "exists": null,
+    "url": null,
+    "licence": null,
+    "note": "not investigated: A1 site, screenshot study only"
+  },
+  "machineProposal": {
+    "decision": "link-only",
+    "reason": "Terms clause matched a prohibition pattern: \"You must not conduct any systematic or automated data collection activities (including, without limitation, scraping, data mining, data extraction and data harvesting) on or in relation to our Site;\""
+  },
+  "notes": []
+}

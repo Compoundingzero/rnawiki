@@ -1,0 +1,41 @@
+{
+  "label": "gate2 gate2-indexed: server HTML visible text",
+  "pagesFile": "data/corpus-20k/gate2/pages/gate2-indexed.ndjson",
+  "sampleFile": null,
+  "pages": 521,
+  "mode": "exhaustive",
+  "parameters": {
+    "shingle": 5,
+    "permutations": 128,
+    "batch": 250,
+    "neighbourBands": 32,
+    "neighbourRows": 4,
+    "neighbourAnalyticThreshold": 0.4204,
+    "neighbourBandsAreSpecDefault": true,
+    "sweepBands": 16,
+    "sweepRows": 8,
+    "sweepAnalyticThreshold": 0.7071,
+    "cascade": true,
+    "candidateStructures": [],
+    "backfilledPages": 0,
+    "minCandidates": 32,
+    "maxBucket": 512,
+    "rerank": 64,
+    "cachePages": 2000,
+    "seed": 20260904
+  },
+  "timings": {
+    "buildSeconds": 1.757,
+    "neighbourSeconds": 6.079,
+    "totalSeconds": 32.603,
+    "pagesPerSecond": 15.98
+  },
+  "work": {
+    "tokens": 1173166,
+    "vocabulary": 55306,
+    "candidatesConsidered": 270920,
+    "pairsScoredExactly": 135460,
+    "largestBucket": null
+  },
+  "peakRssMb": 374.3
+}

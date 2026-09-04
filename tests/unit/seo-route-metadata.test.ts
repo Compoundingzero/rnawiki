@@ -6,7 +6,7 @@ import { generateMetadata as browseMetadata } from '@/app/browse/page'
 
 describe('sitemap discovery contract', () => {
   it('uses one shared publication report rather than rebuilding route-level eligibility', () => {
-    const sitemapSource = readFileSync(join(process.cwd(), 'app/sitemap.ts'), 'utf8')
+    const sitemapSource = readFileSync(join(process.cwd(), 'lib/corpus/sitemap.ts'), 'utf8')
     const projectionSource = readFileSync(
       join(process.cwd(), 'lib/seo/publication-indexability.ts'),
       'utf8',

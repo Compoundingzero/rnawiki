@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "phase": "5b-rendered",
+  "last_completed_batch": 407,
+  "cursor": {
+    "queue_index": 101831,
+    "queue_path": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki-corpus-completion/data/trial-results/queue.ndjson",
+    "queue_total": 101831
+  },
+  "counts": {
+    "fetched": 101831,
+    "with_results": 30560,
+    "qualified": 29240,
+    "failed": 0,
+    "skipped": 0
+  },
+  "api": {
+    "verified_at": "2026-09-03T06:45:57.442Z",
+    "api_root": "https://clinicaltrials.gov/api/v2",
+    "probe_ids": [
+      "NCT00688597",
+      "NCT01352715",
+      "NCT03014167"
+    ],
+    "specimen": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki-corpus-completion/data/trial-results/phase0-specimen-NCT01352715.json",
+    "batch_lookup": [
+      {
+        "query": "filter.ids",
+        "status": 200,
+        "returned": 3
+      },
+      {
+        "query": "query.id",
+        "status": 200,
+        "returned": 3
+      }
+    ],
+    "page_size": [
+      {
+        "asked": 1000,
+        "status": 200,
+        "got": 1000
+      },
+      {
+        "asked": 1001,
+        "status": 200,
+        "got": 1000
+      }
+    ],
+    "observed_headers": {
+      "x-envoy-upstream-service-time": "6",
+      "x-frame-options": "SAMEORIGIN",
+      "x-ua-compatible": "IE=Edge",
+      "x-xss-protection": "1; mode=block"
+    },
+    "verified_against": {
+      "studies": 250,
+      "probe_ids": [
+        "NCT00688597",
+        "NCT01352715",
+        "NCT03014167"
+      ],
+      "full_specimen": "data/trial-results/phase0-specimen-NCT01352715.json",
+      "union_shape": "data/trial-results/phase0-union-shape.json"
+    },
+    "transport": {
+      "batch_lookup": "SUPPORTED — GET /studies?filter.ids=<comma separated NCT ids>; 250 ids verified, HTTP 200, url length 3078 chars, 20.1MB full record / 15.6MB field-restricted, ~2.1s",
+      "page_size": "pageSize caps at 1000; asking 1001 silently returns 1000 (no error)",
+      "fields_param": "fields=NCTId|HasResults|IdentificationModule|StatusModule|DesignModule|ArmsInterventionsModule|ReferencesModule|ResultsSection — module-name syntax works; dotted PascalCase paths are rejected HTTP 400",
+      "rate_limit": "NO published limit and NO rate-limit response headers (only x-envoy-upstream-service-time, x-frame-options, x-ua-compatible, x-xss-protection). 8 back-to-back requests, zero delay, all HTTP 200. Pace is a courtesy choice, not a discovered ceiling.",
+      "chosen_pace": "250 ids per request, 1500ms between requests, exponential backoff from 2s on 429/5xx, 6 attempts"
+    },
+    "paths": {
+      "outcome_measures": {
+        "root": "resultsSection.outcomeMeasuresModule.outcomeMeasures[]",
+        "title": ".title",
+        "description": ".description",
+        "type": ".type (PRIMARY | SECONDARY | OTHER_PRE_SPECIFIED | POST_HOC)",
+        "reporting_status": ".reportingStatus (POSTED | NOT_POSTED)",
+        "unit": ".unitOfMeasure",
+        "param_type": ".paramType (NUMBER | MEAN | MEDIAN | GEOMETRIC_MEAN | LEAST_SQUARES_MEAN | COUNT_OF_PARTICIPANTS | ...)",
+        "dispersion_type": ".dispersionType (free text, e.g. \"95% Confidence Interval\", \"Standard Deviation\", or empty string)",
+        "time_frame": ".timeFrame",
+        "population": ".populationDescription",
+        "value": ".classes[].categories[].measurements[].value  <-- THE REPORTED VALUE",
+        "dispersion_value": ".classes[].categories[].measurements[].spread",
+        "ci": ".classes[].categories[].measurements[].lowerLimit and .upperLimit",
+        "measurement_comment": ".classes[].categories[].measurements[].comment",
+        "group_attribution": ".classes[].categories[].measurements[].groupId -> .groups[].id / .groups[].title / .groups[].description",
+        "class_and_category_titles": ".classes[].title and .classes[].categories[].title (sub-strata; blank for a single-value measure)",
+        "denominators": ".denoms[].counts[].{groupId,value} with .denoms[].units; per-class override at .classes[].denoms[]",
+        "stated_between_group_difference": ".analyses[] — groupIds[], paramType, paramValue, dispersionType, dispersionValue, ciPctValue, ciNumSides, ciLowerLimit, ciUpperLimit, pValue, pValueComment, statisticalMethod, statisticalComment, estimateComment, groupDescription, testedNonInferiority, nonInferiorityType, nonInferiorityComment, otherAnalysisDescription"
+      },
+      "participant_flow": {
+        "root": "resultsSection.participantFlowModule",
+        "groups": ".groups[].{id,title,description}",
+        "periods": ".periods[].title",
+        "milestones": ".periods[].milestones[].type (STARTED | COMPLETED | NOT COMPLETED | ...) with .achievements[].{groupId,numSubjects,comment}",
+        "dropouts": ".periods[].dropWithdraws[].type with .reasons[].{groupId,numSubjects}",
+        "preamble": ".recruitmentDetails and .preAssignmentDetails",
+        "note": "numSubjects is a STRING, not a number"
+      },
+      "adverse_events": {
+        "root": "resultsSection.adverseEventsModule",
+        "per_arm_serious": ".eventGroups[].{id,title,description,seriousNumAffected,seriousNumAtRisk} (numbers)",
+        "per_arm_other": ".eventGroups[].{otherNumAffected,otherNumAtRisk}",
+        "per_arm_deaths": ".eventGroups[].{deathsNumAffected,deathsNumAtRisk}",
+        "frequency_threshold": ".frequencyThreshold (string percent, governs which otherEvents are listed)",
+        "serious_terms": ".seriousEvents[].{term,organSystem,sourceVocabulary,assessmentType,notes} with .stats[].{groupId,numAffected,numAtRisk,numEvents}",
+        "other_terms": ".otherEvents[] — same shape",
+        "time_frame": ".timeFrame"
+      },
+      "arm_group_definitions": {
+        "results_side": "each results module carries its own groups[] with local ids: OG### (outcome), FG### (flow), EG### (adverse events), BG### (baseline). These ids are module-local and DO NOT join across modules.",
+        "protocol_side": "protocolSection.armsInterventionsModule.armGroups[].{label,type,description,interventionNames[]} and .interventions[].{type,name,description,armGroupLabels[],otherNames[]}",
+        "join_rule": "attribute a value to an arm through the SAME module groups[] entry; match to protocol armGroups by title/label text only, never by id."
+      },
+      "results_posting": {
+        "posted_flag": "hasResults (top level, boolean)",
+        "first_posted": "protocolSection.statusModule.resultsFirstPostDateStruct.{date,type}",
+        "submitted": "protocolSection.statusModule.resultsFirstSubmitDate",
+        "qc_cleared": "protocolSection.statusModule.resultsFirstSubmitQcDate",
+        "delayed_certification": "protocolSection.statusModule.delayedPosting (boolean; PRESENT IN THE API FIELD DICTIONARY, absent from all 250 sampled results-posted studies — read absence as \"not delayed\", never as \"unknown\")"
+      },
+      "supporting": {
+        "enrolment": "protocolSection.designModule.enrollmentInfo.{count,type} (type ACTUAL | ESTIMATED)",
+        "design": "protocolSection.designModule.{studyType,phases[],designInfo.{allocation,interventionModel,primaryPurpose,maskingInfo.{masking,whoMasked[]}}}",
+        "title": "protocolSection.identificationModule.{briefTitle,officialTitle,nctId}",
+        "publications": "protocolSection.referencesModule.references[].{pmid,citation,type} (type BACKGROUND | RESULT | DERIVED)"
+      }
+    },
+    "presence_in_sample": {
+      "n": 250,
+      "note": "all 250 drawn from our own matched set with hasResults=true",
+      "resultsSection": "100.0%",
+      "outcomeMeasuresModule": "100.0%",
+      "participantFlowModule": "100.0%",
+      "adverseEventsModule": "100.0%",
+      "baselineCharacteristicsModule": "100.0%",
+      "protocol_armGroups": "98.0%",
+      "enrollment_count": "100.0%",
+      "enrollment_ACTUAL": "100.0%",
+      "at_least_one_PRIMARY_outcome": "100.0%",
+      "at_least_one_PRIMARY_with_a_reported_value": "94.8%",
+      "qualifies_primary_value_and_enrolment": "94.8%",
+      "has_stated_between_group_analysis": "30.0%",
+      "serious_AE_eventGroups": "100.0%",
+      "reference_with_pmid": "64.0%",
+      "delayedPosting_true": "0.0%"
+    }
+  },
+  "updated_at": "2026-09-03T07:16:02.534Z",
+  "phase1": {
+    "reconciled_at": "2026-09-03T06:48:39.354Z",
+    "observed": {
+      "search_records": 9852,
+      "records_with_matches": 3569,
+      "registrations_uncapped": 224946,
+      "stored_study_rows": 148733,
+      "distinct_studies": 101831,
+      "distinct_with_results": 30556,
+      "records_reaching_results": 2431,
+      "records_with_three_plus": 1767
+    },
+    "all_brief_figures_reconciled": true,
+    "registration_cap": {
+      "max_stored_per_record": 250,
+      "records_at_cap": 197,
+      "registrations_withheld": 76213,
+      "kept": "the 250 lowest NCT ids per record — the matcher sorts by nctId before slicing, so what was withheld is the newer tail"
+    },
+    "queue": {
+      "path": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki-corpus-completion/data/trial-results/queue.ndjson",
+      "digest": "ffda47f97bf9f165249b202cd6f292698552eca140addefab51f7b909ba0ca8a",
+      "total": 101831,
+      "tier1_results_posted_in_snapshot": 30556,
+      "tier2_recheck_live": 71275,
+      "order": "tier ascending, then nctId ascending"
+    }
+  },
+  "phase3": {
+    "studies": 101831,
+    "withResultsSection": 30560,
+    "qualified": 29240,
+    "failedBar": 72591,
+    "failureReasons": {
+      "no primary outcome carries a reported value": 1320,
+      "no results section": 71271
+    },
+    "withStatedComparison": 11260,
+    "withSeriousAdverseEvents": 30428,
+    "withPublication": 41947,
+    "extracted_at": "2026-09-03T07:06:50.738Z"
+  },
+  "phase4": {
+    "attached_at": "2026-09-03T07:07:41.365Z",
+    "source_identifier": "clinicaltrials.gov/api/v2 results fetch 2026-09-03 queue-sha256:ffda47f97bf9f165",
+    "records_touched": 3569,
+    "records_with_a_results_block": 2408,
+    "records_with_registrations_but_no_qualifying_result": 1161,
+    "qualifying_studies": 29240,
+    "studies_with_a_results_section_that_failed_the_bar": 1320,
+    "distinct_studies_shown": 4807,
+    "written": 3569
+  }
+}

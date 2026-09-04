@@ -1,0 +1,515 @@
+{
+  "gate": "1b",
+  "stage": "Phase 2b stage 3 (MEASURE)",
+  "date": "2026-09-04",
+  "textDefinition": {
+    "included": [
+      "page h1 (display name)",
+      "synonyms line",
+      "register + last-verified line",
+      "identity badge triplet",
+      "every question heading",
+      "paragraph 1 (values sentence)",
+      "paragraph 2 (qualification)",
+      "every revealed row inside the block <details> (delivered in the server HTML)",
+      "the identifiers panel",
+      "the relations rows",
+      "the source list",
+      "the stub sentence where a page has no question"
+    ],
+    "excluded": [
+      "site header and nav",
+      "footer",
+      "contents rail",
+      "definitions page",
+      "licence and revision lines",
+      "the repeated \"Show the evidence\" control label"
+    ],
+    "rowCap": 20,
+    "tokens": "lower-cased words, punctuation stripped, numbers kept (harness definition, unchanged)"
+  },
+  "renderer": {
+    "module": "scripts/corpus-20k/render/page-text.ts",
+    "out": "data/corpus-20k/render/text/batch-NNNN.ndjson",
+    "pages": 28966,
+    "withQuestions": 10071,
+    "withoutQuestions": 18895,
+    "byTier": {
+      "1": 1500,
+      "2": 4727,
+      "3": 22739
+    },
+    "meanWordCount": 210.7
+  },
+  "harnessFit": {
+    "fit": true,
+    "rule": "unfit above 0.02 median delta",
+    "corpus": "rendered-indexed-803",
+    "positionalDeltaMedian": 0.0,
+    "positionalDeltaP90": 0.022203,
+    "positionalDeltaMax": 0.104355,
+    "lexicalDeltaMedian": 0.0
+  },
+  "sets": {
+    "a_indexed_full_4562": {
+      "pages": 4562,
+      "positionalMedian": 0.3026,
+      "positionalP90": 0.6734,
+      "positionalMax": 0.9819,
+      "above_0_20": 3563,
+      "above_0_30": 2302,
+      "lexicalMedian": 0.491,
+      "lexicalP90": 0.7376,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.158641,
+      "note": "Tier 1 + Tier 2 with at least one question, every page scored against all 4,561 others (LSH cascade)."
+    },
+    "a_indexed_size_matched_pooled": {
+      "pages": 4562,
+      "positionalMedian": 0.2083,
+      "positionalP90": 0.4133,
+      "positionalMax": 0.9819,
+      "above_0_20": 2495,
+      "above_0_30": 1059,
+      "lexicalMedian": 0.4354,
+      "lexicalP90": 0.6074,
+      "lexicalAbove_0_40": 2892,
+      "sharedWordShareMedian": 0.1565,
+      "note": "The same 4,562 pages, each scored inside a seeded 803-page fold so the number of candidates matches the baseline draw. Six exhaustive folds; the last is padded back to 803 and only its 547 new pages are kept. This is the basis Gate 1b uses."
+    },
+    "b_matched_803": {
+      "pages": 803,
+      "positionalMedian": 0.2048,
+      "positionalP90": 0.4154,
+      "positionalMax": 0.9814,
+      "above_0_20": 415,
+      "above_0_30": 183,
+      "lexicalMedian": 0.4384,
+      "lexicalP90": 0.6143,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.15367,
+      "note": "Seeded 803-record draw from the indexed set, scored exhaustively."
+    },
+    "b_matched_324": {
+      "pages": 324,
+      "positionalMedian": 0.1919,
+      "positionalP90": 0.3654,
+      "positionalMax": 0.8489,
+      "above_0_20": 113,
+      "above_0_30": 51,
+      "lexicalMedian": 0.4171,
+      "lexicalP90": 0.5693,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.163319,
+      "note": "Seeded 324-record draw from the indexed set, scored exhaustively."
+    },
+    "c_baseline_live_803": {
+      "pages": 803,
+      "positionalMedian": 0.6472,
+      "positionalP90": 0.7935,
+      "positionalMax": 0.9147,
+      "above_0_20": 803,
+      "above_0_30": 796,
+      "lexicalMedian": 0.6152,
+      "lexicalP90": 0.767,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.559024,
+      "note": "Live corpus, build_validation_corpus.py's export-flatten text over data/drugs/*.ndjson. NOT the rendered-page definition: field paths and values, not page prose."
+    },
+    "c_baseline_live_324": {
+      "pages": 324,
+      "positionalMedian": 0.6107,
+      "positionalP90": 0.8101,
+      "positionalMax": 0.8753,
+      "above_0_20": 324,
+      "above_0_30": 313,
+      "lexicalMedian": 0.5848,
+      "lexicalP90": 0.8034,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.549864,
+      "note": "Live corpus, same export-flatten definition, 324-record draw."
+    },
+    "d_full_corpus_28966": {
+      "pages": 28966,
+      "positionalMedian": 0.7105,
+      "positionalP90": 0.8,
+      "positionalMax": 1.0,
+      "above_0_20": 28107,
+      "above_0_30": 26382,
+      "lexicalMedian": 0.6724,
+      "lexicalP90": 0.9412,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.336538,
+      "note": "All rendered pages including the 18,895 with no question (median 85 tokens). Labelled: never compare this with an 803-page figure."
+    },
+    "e_indexed_prose_only_4562": {
+      "pages": 4562,
+      "positionalMedian": 0.3235,
+      "positionalP90": 0.7574,
+      "positionalMax": 1.0,
+      "above_0_20": 3266,
+      "above_0_30": 2420,
+      "lexicalMedian": 0.519,
+      "lexicalP90": 0.8519,
+      "lexicalAbove_0_40": null,
+      "sharedWordShareMedian": 0.047755,
+      "note": "Sensitivity only: the indexed set with the lines the template itself calls markup removed (synonyms, register/date, badge triplet, identifiers, relations, source list)."
+    }
+  },
+  "nullModel": {
+    "indexed_4562": {
+      "randomPairPositionalMedian": 0.039677,
+      "randomPairLexicalMedian": 0.195481,
+      "expectedNearestNeighbour": {
+        "full": {
+          "pages": 4562,
+          "positional": 0.622308,
+          "lexical": 0.761683
+        },
+        "matched": [
+          {
+            "pages": 803,
+            "positional": 0.365837,
+            "lexical": 0.583284
+          },
+          {
+            "pages": 324,
+            "positional": 0.283956,
+            "lexical": 0.515513
+          }
+        ]
+      }
+    },
+    "baseline_803": {
+      "randomPairPositionalMedian": 0.331677,
+      "expectedNearestNeighbour": {
+        "full": {
+          "pages": 803,
+          "positional": 0.791502,
+          "lexical": 0.792828
+        },
+        "matched": [
+          {
+            "pages": 324,
+            "positional": 0.756973,
+            "lexical": 0.73731
+          }
+        ]
+      }
+    },
+    "full_28966": {
+      "randomPairPositionalMedian": 0.175439,
+      "expectedNearestNeighbour": {
+        "full": {
+          "pages": 28966,
+          "positional": 0.966667,
+          "lexical": 0.941176
+        },
+        "matched": [
+          {
+            "pages": 803,
+            "positional": 0.930833,
+            "lexical": 0.941176
+          },
+          {
+            "pages": 324,
+            "positional": 0.869994,
+            "lexical": 0.940618
+          }
+        ]
+      }
+    },
+    "reading": "Every observed nearest-neighbour median sits well below the null expectation at the same number of draws, so the pages are more distinct than the corpus size alone would produce. The null rises fast with size: 0.284 at 324 draws, 0.366 at 803, 0.622 at 4,562."
+  },
+  "controls": [
+    {
+      "label": "control:other",
+      "pages": 4562,
+      "positional": {
+        "count": 4562,
+        "median": 0.546138,
+        "mean": 0.589903,
+        "p90": 0.770084,
+        "max": 0.957916,
+        "above_0_20": 4548,
+        "above_0_30": 4530
+      },
+      "lexical": {
+        "count": 4562,
+        "median": 0.480187,
+        "mean": 0.48082,
+        "p90": 0.600791,
+        "max": 0.897862,
+        "above_0_20": 4562,
+        "above_0_30": 4452
+      },
+      "medianTokens": 1209
+    },
+    {
+      "label": "control:self",
+      "pages": 4562,
+      "positional": {
+        "count": 4562,
+        "median": 0.290536,
+        "mean": 0.354447,
+        "p90": 0.670637,
+        "max": 0.981408,
+        "above_0_20": 3459,
+        "above_0_30": 2184
+      },
+      "lexical": {
+        "count": 4562,
+        "median": 0.490712,
+        "mean": 0.516571,
+        "p90": 0.737632,
+        "max": 0.989501,
+        "above_0_20": 4561,
+        "above_0_30": 4348
+      },
+      "medianTokens": 1209
+    }
+  ],
+  "sharedWordShare": {
+    "indexed": {
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+      "median": 0.158641,
+      "p90": 0.26844,
+      "byTier": {
+        "tier1": 0.1374,
+        "tier2": 0.173502
+      }
+    },
+    "fullCorpus": {
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+      "median": 0.336538,
+      "p90": 0.577778,
+      "byTier": {
+        "tier1": 0.073163,
+        "tier2": 0.135468,
+        "tier3": 0.405797
+      }
+    },
+    "baseline803": {
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+      "median": 0.559024,
+      "p90": 0.690778,
+      "byTier": {
+        "class": 0.551855,
+        "median": 0.568606,
+        "richest": 0.325699,
+        "thinnest": 0.724139,
+        "topup": 0.563885
+      }
+    },
+    "proseOnly": {
+      "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+      "median": 0.047755,
+      "p90": 0.073307,
+      "byTier": {
+        "tier1": 0.053114,
+        "tier2": 0.044118
+      }
+    }
+  },
+  "buckets": {
+    "0": {
+      "n": 7,
+      "posMed": 0.3433,
+      "posP90": 0.4102,
+      "lexMed": 0.4884,
+      "cumN": 4562,
+      "cumPosMed": 0.2083,
+      "cumLexMed": 0.4354
+    },
+    "1": {
+      "n": 286,
+      "posMed": 0.375,
+      "posP90": 0.4915,
+      "lexMed": 0.5968,
+      "cumN": 4555,
+      "cumPosMed": 0.2083,
+      "cumLexMed": 0.4353
+    },
+    "2": {
+      "n": 374,
+      "posMed": 0.2806,
+      "posP90": 0.3988,
+      "lexMed": 0.5212,
+      "cumN": 4269,
+      "cumPosMed": 0.2045,
+      "cumLexMed": 0.4274
+    },
+    "3": {
+      "n": 438,
+      "posMed": 0.25,
+      "posP90": 0.3603,
+      "lexMed": 0.4848,
+      "cumN": 3895,
+      "cumPosMed": 0.2,
+      "cumLexMed": 0.4186
+    },
+    "4": {
+      "n": 450,
+      "posMed": 0.2222,
+      "posP90": 0.3826,
+      "lexMed": 0.4706,
+      "cumN": 3457,
+      "cumPosMed": 0.1972,
+      "cumLexMed": 0.4098
+    },
+    "5": {
+      "n": 371,
+      "posMed": 0.2165,
+      "posP90": 0.319,
+      "lexMed": 0.4449,
+      "cumN": 3007,
+      "cumPosMed": 0.1917,
+      "cumLexMed": 0.3989
+    },
+    "6": {
+      "n": 369,
+      "posMed": 0.2182,
+      "posP90": 0.7702,
+      "lexMed": 0.4491,
+      "cumN": 2636,
+      "cumPosMed": 0.19,
+      "cumLexMed": 0.3885
+    },
+    "7": {
+      "n": 348,
+      "posMed": 0.1972,
+      "posP90": 0.5188,
+      "lexMed": 0.4467,
+      "cumN": 2267,
+      "cumPosMed": 0.1861,
+      "cumLexMed": 0.377
+    },
+    "8": {
+      "n": 374,
+      "posMed": 0.1958,
+      "posP90": 0.4491,
+      "lexMed": 0.426,
+      "cumN": 1919,
+      "cumPosMed": 0.1825,
+      "cumLexMed": 0.3657
+    },
+    "9": {
+      "n": 481,
+      "posMed": 0.1833,
+      "posP90": 0.3564,
+      "lexMed": 0.4005,
+      "cumN": 1545,
+      "cumPosMed": 0.1809,
+      "cumLexMed": 0.3508
+    },
+    "10": {
+      "n": 425,
+      "posMed": 0.1816,
+      "posP90": 0.2871,
+      "lexMed": 0.3827,
+      "cumN": 1064,
+      "cumPosMed": 0.1809,
+      "cumLexMed": 0.3291
+    },
+    "11": {
+      "n": 166,
+      "posMed": 0.1822,
+      "posP90": 0.3005,
+      "lexMed": 0.3223,
+      "cumN": 639,
+      "cumPosMed": 0.1809,
+      "cumLexMed": 0.3023
+    },
+    "12": {
+      "n": 160,
+      "posMed": 0.183,
+      "posP90": 0.3836,
+      "lexMed": 0.304,
+      "cumN": 473,
+      "cumPosMed": 0.1806,
+      "cumLexMed": 0.2949
+    },
+    "13": {
+      "n": 136,
+      "posMed": 0.1806,
+      "posP90": 0.6926,
+      "lexMed": 0.2984,
+      "cumN": 313,
+      "cumPosMed": 0.1755,
+      "cumLexMed": 0.2925
+    },
+    "14": {
+      "n": 153,
+      "posMed": 0.1702,
+      "posP90": 0.2871,
+      "lexMed": 0.2893,
+      "cumN": 177,
+      "cumPosMed": 0.1709,
+      "cumLexMed": 0.2872
+    },
+    "15": {
+      "n": 22,
+      "posMed": 0.2074,
+      "posP90": 0.3026,
+      "lexMed": 0.2836,
+      "cumN": 24,
+      "cumPosMed": 0.2074,
+      "cumLexMed": 0.2794
+    },
+    "16": {
+      "n": 2,
+      "posMed": 0.2032,
+      "posP90": 0.2703,
+      "lexMed": 0.2637,
+      "cumN": 2,
+      "cumPosMed": 0.2032,
+      "cumLexMed": 0.2637
+    }
+  },
+  "threshold": {
+    "presentFields": 7,
+    "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose cumulative set (pages at or above it) also keeps median <= 0.20",
+    "basis": "a_indexed_size_matched_pooled",
+    "boundaryBucketPositionalMedian": 0.1972,
+    "cumulativePositionalMedian": 0.1861,
+    "cumulativeLexicalMedian": 0.377,
+    "indexedCount": 2267,
+    "indexedByTier": {
+      "1": 1030,
+      "2": 1237
+    },
+    "belowByTier": {
+      "1": 449,
+      "2": 1846
+    },
+    "tier2Noindex": 1846,
+    "tier1Noindex": 449,
+    "tier1And2WithNoQuestionAtAll": {
+      "2": 1644,
+      "1": 21
+    },
+    "atFullIndexedSetScale": "No bucket reaches 0.20 when every page is scored against all 4,561 others; the lowest bucket median is 0.208 at 10 present fields. The threshold above is the size-matched figure, which is the scale the 0.20 target was set at."
+  },
+  "sharedContent": {
+    "method": "for every page above target, its shared 5-grams with its nearest neighbour, attributed to the line they came from",
+    "above_0_20": {
+      "pages": 2495,
+      "markupLines": "32.2% mean",
+      "proseLines": "26.6% mean",
+      "spanningLineBreaks": "41.2% mean"
+    },
+    "above_0_30": {
+      "pages": 1059,
+      "markupLines": "23.2% mean",
+      "proseLines": "33.0% mean",
+      "spanningLineBreaks": "43.8% mean",
+      "medianPresentFields": 4,
+      "medianWordCount": 257
+    },
+    "reading": "Above 0.30 the pages are thin, not templated: median 4 present fields and 257 words against 6 and 528 across the indexed set."
+  },
+  "crawlTextToHtml": {
+    "status": "deferred to Gate 2",
+    "reason": "text-to-HTML needs rendered HTML. No React template exists yet (Phase 4 builds it), so there is no server HTML to divide by. The baselines to compare against remain crawl 8.3% and live 0.07%."
+  }
+}

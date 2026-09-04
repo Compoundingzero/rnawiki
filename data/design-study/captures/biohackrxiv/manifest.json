@@ -1,0 +1,371 @@
+{
+  "site": "biohackrxiv (osf.io)",
+  "track": "A2",
+  "urls": {
+    "index": "https://osf.io/preprints/biohackrxiv",
+    "content": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+    "contentNote": "Selected through the OSF API (https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=biohackrxiv&page%5Bsize%5D=5&sort=-date_published&embed=license): the most recently published public BiohackrXiv preprint, id 5psfj_v2, titled \"Towards Federated Learning Across Biobanks: Prototype Software from the 2026 Carnegie Mellon University–NVIDIA Hackathon\"; the API states its licence is CC-By Attribution 4.0 International."
+  },
+  "capturedAt": "2026-09-03T15:16:25.941Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in div.footer-links (controls: Terms of Use, Privacy Policy, Status, API, TOP Guidelines); banner stands in the captures",
+    "index-375: left: no permitted refusal control in div.footer-links (controls: Terms of Use, Privacy Policy, Status, API, TOP Guidelines); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in div.footer-links (controls: Terms of Use, Privacy Policy, Status, API, TOP Guidelines); banner stands in the captures",
+    "content-375: left: no permitted refusal control in div.footer-links (controls: Terms of Use, Privacy Policy, Status, API, TOP Guidelines); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+    "collectedAt": "2026-09-03T15:16:03.445Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0134,
+    "title": "OSF | Towards Federated Learning Across Biobanks: Prototype Software from the 2026 Carnegie Mellon University–NVIDIA Hackathon",
+    "innerTextLength": 2797,
+    "outerHtmlLength": 208326,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Towards Federated Learning Across Biobanks: Prototype Software From The 2026 Car"
+      },
+      {
+        "tag": "h3",
+        "text": "Authors"
+      },
+      {
+        "tag": "h3",
+        "text": "Abstract"
+      },
+      {
+        "tag": "h3",
+        "text": "Affiliated Institutions"
+      },
+      {
+        "tag": "h3",
+        "text": "Public Data"
+      },
+      {
+        "tag": "h3",
+        "text": "Public Preregistration"
+      },
+      {
+        "tag": "h3",
+        "text": "Conflict Of Interest"
+      },
+      {
+        "tag": "h3",
+        "text": "Supplemental Materials"
+      },
+      {
+        "tag": "h3",
+        "text": "Preprint DOI"
+      },
+      {
+        "tag": "h3",
+        "text": "License"
+      },
+      {
+        "tag": "h3",
+        "text": "Subjects"
+      },
+      {
+        "tag": "h3",
+        "text": "Tags"
+      },
+      {
+        "tag": "h3",
+        "text": "Citation"
+      }
+    ],
+    "headingCount": 13,
+    "stickyOrFixedCount": 4,
+    "stickyOrFixed": [
+      {
+        "tag": "p-toast",
+        "class": "p-component p-toast p-toast-top-right",
+        "position": "fixed",
+        "top": 20,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "ContainerGradient-sc-62zoy-0 dkxqZi",
+        "position": "fixed",
+        "top": 500,
+        "height": 400
+      },
+      {
+        "tag": "div",
+        "class": "ContainerFramecss__WrapperUI-sc-d7rzhh-0 idbzdx BeaconContai",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "FabButtonFramecss__FabButtonFrameUI-sc-y1b4md-0 bbHIsf Beaco",
+        "position": "fixed",
+        "top": 800,
+        "height": 60
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": true,
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 5,
+    "scriptsUnreadable": 9,
+    "searchAffordances": {
+      "count": 1,
+      "firstDescriptors": [
+        "div Search OSF"
+      ]
+    },
+    "imgCount": 3,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": null,
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 59
+    },
+    "bodyBackgroundColor": "rgba(0, 0, 0, 0)",
+    "bodyColor": "rgb(36, 56, 74)",
+    "canvasCount": 0,
+    "svgCount": 6
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://osf.io/preprints/biohackrxiv",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f9c53d07506c01a0853baa6ca90dd08af15941f126a331f342d6225e7ebc6997",
+      "capturedAt": "2026-09-03T15:15:46.449Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://osf.io/preprints/biohackrxiv",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f9c53d07506c01a0853baa6ca90dd08af15941f126a331f342d6225e7ebc6997",
+      "capturedAt": "2026-09-03T15:15:46.513Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://osf.io/preprints/biohackrxiv",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b1a7245ae5e2c62da0ffcf33c3bd183ae9066f607435edf2b5bfae9ac2869120",
+      "capturedAt": "2026-09-03T15:15:50.613Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://osf.io/preprints/biohackrxiv",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b1a7245ae5e2c62da0ffcf33c3bd183ae9066f607435edf2b5bfae9ac2869120",
+      "capturedAt": "2026-09-03T15:15:50.661Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0a1d243611de0a592c760c838c09c7115dd65bf42da79f59120c2a86438bd3f1",
+      "capturedAt": "2026-09-03T15:16:03.185Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0a1d243611de0a592c760c838c09c7115dd65bf42da79f59120c2a86438bd3f1",
+      "capturedAt": "2026-09-03T15:16:03.283Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0a1d243611de0a592c760c838c09c7115dd65bf42da79f59120c2a86438bd3f1",
+      "capturedAt": "2026-09-03T15:16:05.054Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0a1d243611de0a592c760c838c09c7115dd65bf42da79f59120c2a86438bd3f1",
+      "capturedAt": "2026-09-03T15:16:06.678Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0a1d243611de0a592c760c838c09c7115dd65bf42da79f59120c2a86438bd3f1",
+      "capturedAt": "2026-09-03T15:16:08.312Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0b38ae94360b23c8cc941a3da577b6c5af60f84810a22bbd2aa26fc0b51695af",
+      "capturedAt": "2026-09-03T15:16:21.182Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "54a434ebdc0ffc877d143032f1c403f5e36dfec5372718bda6e6b028ebab07c0",
+      "capturedAt": "2026-09-03T15:16:21.232Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0b38ae94360b23c8cc941a3da577b6c5af60f84810a22bbd2aa26fc0b51695af",
+      "capturedAt": "2026-09-03T15:16:22.792Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0b38ae94360b23c8cc941a3da577b6c5af60f84810a22bbd2aa26fc0b51695af",
+      "capturedAt": "2026-09-03T15:16:24.373Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://osf.io/preprints/biohackrxiv/5psfj_v2",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0b38ae94360b23c8cc941a3da577b6c5af60f84810a22bbd2aa26fc0b51695af",
+      "capturedAt": "2026-09-03T15:16:25.940Z"
+    }
+  ]
+}

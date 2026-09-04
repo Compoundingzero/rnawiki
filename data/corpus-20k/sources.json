@@ -1,0 +1,1276 @@
+{
+  "generatedAt": "2026-09-04",
+  "phase": "0a/0b",
+  "surveyOnly": true,
+  "diskFreeGb": 29,
+  "callBudget": {
+    "total": 11616,
+    "ceiling": 50000,
+    "underCeiling": true,
+    "largestLines": [
+      "openFDA FAERS count queries 5,003",
+      "RxNav RxCUI lookups 3,000",
+      "Europe PMC Tier 1 2,000",
+      "ClinicalTrials.gov 902",
+      "PubChem 107",
+      "ChEMBL 60"
+    ],
+    "avoidedByBulk": {
+      "perCompoundRxNav": 20000,
+      "perCompoundFaers": 20000,
+      "perCompoundOpenAlexAndEuropePmc": 40000,
+      "note": "the naive per-compound plan for these three lines alone is 80,000 calls, which would breach R5. The bulk substitutions (openFDA label rxcui, Open Targets ADR parquet, Tier-1-only literature, OpenAlex dropped) bring the whole plan to well under the ceiling."
+    }
+  },
+  "diskPlan": {
+    "downloadsGb": 3.6,
+    "peakWithDecompressionGb": 10,
+    "excluded": [
+      {
+        "file": "openFDA drug/event FAERS bulk",
+        "size": "113 GB"
+      },
+      {
+        "file": "DailyMed full release",
+        "size": "16.65 GB Rx + ~32 GB OTC"
+      },
+      {
+        "file": "ChEMBL SQLite",
+        "size": "5.4 GB compressed, tens of GB expanded"
+      },
+      {
+        "file": "OpenAlex snapshot",
+        "size": "far above 29 GB"
+      },
+      {
+        "file": "PubChem CID-InChI-Key / CID-Title / CID-Patent",
+        "size": "6.9 GB / 1.8 GB / 4.4 GB"
+      }
+    ]
+  },
+  "reachability": {
+    "chemblMaxPhaseGe1": 16784,
+    "chemblAllMolecules": 2921148,
+    "existingCanonicalRecords": 9852,
+    "workingDatabaseRows": 9859,
+    "unionUpperBound": 26636,
+    "assumedNameOverlap": 4000,
+    "centralEstimate": 22636,
+    "honestStatement": "ChEMBL max_phase >= 1 alone is 16,784, which is BELOW 20,000. The 20,000 target is only reached in union with our existing 9,852 records, and only if name overlap stays under about 6,600. The overlap was NOT measured: measuring it needs ChEMBL's 16,784 preferred names, which is a data payload and outside this survey's remit. The central estimate of 22,636 assumes 4,000 overlapping names and should be treated as unverified until Phase 0c resolves identity properly."
+  },
+  "sources": [
+    {
+      "name": "ChEMBL 37",
+      "licenceVerdict": "CLEAR (CC BY-SA 3.0 Unported; attribution must name the URL and release, ChEMBL IDs preserved)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "chembl_37_chemreps.txt.gz",
+            "format": "gzip TSV",
+            "size": "279 MB",
+            "take": true,
+            "why": "chembl_id + canonical SMILES + standard InChI + InChIKey for the whole corpus; the identity spine"
+          },
+          {
+            "file": "chembl_37_sqlite.tar.gz",
+            "format": "tar.gz SQLite",
+            "size": "5.4 GB compressed",
+            "take": false,
+            "why": "expands well past the 29 GB free-disk budget; the fields we want are reachable as Open Targets CC0 parquet or 60 REST pages"
+          },
+          {
+            "file": "chembl_37_postgresql.tar.gz",
+            "format": "tar.gz pg_dump",
+            "size": "1.9 GB",
+            "take": false,
+            "why": "same content; restored footprint is still tens of GB"
+          },
+          {
+            "file": "chembl_37.sdf.gz",
+            "format": "gzip SDF",
+            "size": "888 MB",
+            "take": false
+          },
+          {
+            "file": "chembl_uniprot_mapping.txt",
+            "format": "TSV",
+            "size": "1.2 MB",
+            "take": true,
+            "why": "target mapping for the DEVELOPMENT model"
+          },
+          {
+            "file": "chembl_37_release_notes.txt",
+            "format": "text",
+            "size": "12 KB",
+            "take": true
+          }
+        ],
+        "indexRead": "https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://www.ebi.ac.uk/chembl/api/data/",
+        "pageSizeMax": 1000,
+        "pageSizeMeasured": "requested limit=2000, page_meta.limit returned 1000",
+        "rateLimit": "none published on the FTP README or returned in headers; EBI asks for reasonable use",
+        "filters": "max_phase__gte=1 works and is the count used below; max_phase=4 and max_phase__gte=4 both returned HTTP 500 on 2026-09-04 (server-side fault, not a syntax error)",
+        "batchEndpoint": "molecule/set/{id1};{id2};... accepts a semicolon list; paging by limit/offset is simpler at our volume"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "pathway (mechanism -> target)",
+          "dose-response (activity records, organism-tagged)",
+          "regulatory status (max_phase as a proxy only, not a jurisdiction fact)"
+        ],
+        "CLINICAL": [
+          "indication (drug_indication, MeSH/EFO-coded)",
+          "trial history (via linked ClinicalTrials.gov ids)"
+        ],
+        "DEVELOPMENT": [
+          "target",
+          "mechanism class (mechanism_of_action, action_type)",
+          "highest phase (max_phase)",
+          "ever dosed in humans (max_phase >= 1)",
+          "related compounds on the same target (mechanism target_chembl_id join)"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "molecule max_phase>=1 at 1000/page = 17; mechanism 7,561 at 1000/page = 8; drug_indication ~15; molecule_form ~20",
+        "total": 60
+      },
+      "identityKeys": [
+        "ChEMBL id",
+        "InChIKey",
+        "CAS (molecule_synonyms)",
+        "UNII (molecule_synonyms, partial)",
+        "INN (pref_name / synonym type INN)"
+      ],
+      "notes": [
+        "Share-alike is the reason to prefer the Open Targets CC0 mirror for mechanism/phase/indication and to keep the ChEMBL-only slice separable.",
+        "Measured 2026-09-04: molecules with max_phase >= 1 = 16,784; all molecules = 2,921,148; mechanism records = 7,561."
+      ]
+    },
+    {
+      "name": "PubChem",
+      "licenceVerdict": "CLEAR (free to use; per-depositor exceptions flagged on each source record)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "Drug-Names.tsv.gz",
+            "format": "gzip TSV",
+            "size": "837 KB",
+            "take": true,
+            "why": "the smallest file that gives a drug-name-to-CID spine; prefer it over the 924 MB synonym dump"
+          },
+          {
+            "file": "CID-Identifiers.tsv.gz",
+            "format": "gzip TSV",
+            "size": "94 MB",
+            "take": true
+          },
+          {
+            "file": "CID-Synonym-filtered.gz",
+            "format": "gzip TSV",
+            "size": "924 MB",
+            "take": "only if Drug-Names misses too many corpus names"
+          },
+          {
+            "file": "CID-InChI-Key.gz",
+            "format": "gzip TSV",
+            "size": "6.9 GB",
+            "take": false,
+            "why": "whole-of-PubChem; we need 20k rows, not 120M \u2014 resolve via the Identifier Exchange instead"
+          },
+          {
+            "file": "CID-Title.gz",
+            "format": "gzip TSV",
+            "size": "1.8 GB",
+            "take": false
+          },
+          {
+            "file": "CID-MeSH",
+            "format": "text",
+            "size": "2.9 MB",
+            "take": true
+          },
+          {
+            "file": "CID-Patent.gz",
+            "format": "gzip TSV",
+            "size": "4.4 GB",
+            "take": false,
+            "why": "the only reachable patent-association route, but far too large for the value; revisit only if patent status becomes required"
+          },
+          {
+            "file": "CID-Parent.gz",
+            "format": "gzip TSV",
+            "size": "520 MB",
+            "take": true,
+            "why": "salt/parent normalisation, which R1 identity resolution needs"
+          }
+        ],
+        "indexRead": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/ (2026-09-03 build)",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/",
+        "rateLimit": "5 requests/second, stated as policy; no API keys or allowlists are offered; 30 s per-request server time limit; HTTP 503 on throttle and a temporary block on repeat offence; X-Throttling-Control header reports green/yellow/red/black",
+        "batchEndpoint": "PUG-REST accepts comma-separated CID lists in one call; plan 200 CIDs per request",
+        "identifierExchange": {
+          "maxInputIds": 500000,
+          "processingTimeLimit": "30 minutes per job",
+          "inputTypes": "Registry IDs, SIDs, CIDs, InChIKey, SMILES, synonyms",
+          "note": "one job resolves the whole 20k corpus; this is the single biggest call-count saving in the plan"
+        }
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "kinetics (computed physicochemical properties only, never a human PK claim)"
+        ],
+        "CLINICAL": [],
+        "DEVELOPMENT": [
+          "related compounds (same-parent and same-connectivity CIDs)"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "6 bulk files + 1 Identifier Exchange job + property batches at 200 CIDs/call",
+        "total": 107
+      },
+      "identityKeys": [
+        "PubChem CID",
+        "InChIKey",
+        "CAS (synonyms)",
+        "UNII (synonyms)",
+        "INN (synonyms)",
+        "ChEMBL id (cross-reference)"
+      ],
+      "notes": [
+        "The docs pages under /docs/ are a JavaScript app; the readable source is the markdown behind them at /pcfe/docs/markdown/*.md, which is what was fetched.",
+        "PubChem computed properties are structure-derived, not measured human data; they must never be rendered as pharmacokinetics."
+      ]
+    },
+    {
+      "name": "ClinicalTrials.gov API v2",
+      "licenceVerdict": "CLEAR (US Government work) with a recorded robots.txt conflict",
+      "bulk": {
+        "available": "already on disk",
+        "files": [
+          {
+            "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/clinicaltrials/20260901T090005/studies.ndjson",
+            "format": "NDJSON",
+            "size": "778 MB (815,589,780 bytes)",
+            "records": 601158,
+            "sha256": "00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27",
+            "apiVersion": "2.0.5",
+            "dataTimestamp": "2026-09-01T09:00:05",
+            "fields": "30 protocol fields including NCTId, Phase, OverallStatus, HasResults, InterventionName/Type/OtherName, WhyStopped, LeadSponsorName/Class, EnrollmentCount, PrimaryOutcomeMeasure, Design*, dates"
+          }
+        ],
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://clinicaltrials.gov/api/v2/studies",
+        "pageSizeMax": 1000,
+        "pageSizeMeasured": "pageSize=5000 returned exactly 1000 records",
+        "idsPerRequestMeasured": "600 ids in one GET succeeded; 1000 ids returned nginx 414 Request-URI Too Large. The binding constraint is URL length, not a documented id cap. Plan 500 ids per request.",
+        "rateLimit": "no numeric limit published in a form we could read; robots.txt sets Crawl-delay: 1, which we adopt as 1 request/second",
+        "docsProblem": "the API reference and terms pages are a single-page app (identical 94,295-byte shell); /api/v2/openapi.yaml, /api/v2/api-docs and /api/v2/swagger.json all 404"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "ongoing trials",
+          "trial failures (WhyStopped, verbatim registry reason only)",
+          "endpoint type (PrimaryOutcomeMeasure)",
+          "human ceiling (enrollment, age bounds, healthy-volunteer flag)"
+        ],
+        "CLINICAL": [
+          "trial history",
+          "failures",
+          "indication (Condition)"
+        ],
+        "DEVELOPMENT": [
+          "highest phase",
+          "why stopped",
+          "sponsor (LeadSponsorName/Class)",
+          "ever dosed in humans"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "corpus-matched results-section fetch at pageSize 50 = ~300; one weekly delta refresh of the protocol snapshot = 602",
+        "total": 902
+      },
+      "identityKeys": [
+        "NCT id (not a compound key; joins to compounds only through intervention name/other-name matching, which is exactly the R1 problem)"
+      ],
+      "notes": [
+        "What a results-section fetch would add, measured against the snapshot: 79,954 of the 601,158 studies have posted results, and 54,272 of those have a DRUG or BIOLOGICAL intervention. The current snapshot stores none of it \u2014 hasResults is a boolean and the 30 stored fields are all protocol-section.",
+        "Fetching results for all 54,272 would cost ~1,086 calls at pageSize 50 and roughly 8 GB of JSON. Restricting to studies whose interventions match the corpus is the bulk-first choice: ~15,000 studies, ~2.3 GB, ~300 calls.",
+        "robots.txt says 'Disallow: /api/' for User-agent: *, while the same site documents /api/v2 as its public API. Recorded as a conflict in legal-gate.json, not silently resolved."
+      ]
+    },
+    {
+      "name": "RxNorm full release",
+      "licenceVerdict": "NOT CLEAR without an account (free UMLS Metathesaurus Licence + UTS account required)",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "the monthly/weekly full release is download-gated behind UTS authentication; it is not a public bulk file and is excluded from an unattended plan"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [
+        "RxCUI"
+      ],
+      "notes": [
+        "Stated plainly: the full RxNorm release needs a UMLS licence account. Only RxNav is usable without one."
+      ]
+    },
+    {
+      "name": "RxNav REST",
+      "licenceVerdict": "CLEAR for RxNorm content; RxClass carries SNOMED CT and is excluded",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "note": "NLM offers RxNav-in-a-Box as a local install instead of bulk files",
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "base": "https://rxnav.nlm.nih.gov/REST/",
+        "rateLimit": "20 requests/second per IP address across RxNorm, RxTerms, Prescribable RxNorm and RxClass (documented)",
+        "batchEndpoint": "none; one name or RxCUI per call"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [
+          "interactions (RxNorm-coded, structural only)",
+          "label kinetics (join key into DailyMed/openFDA label sections)"
+        ],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "paging": "RxCUI is already carried in openfda.rxcui on our on-disk label archive for marketed products; only compounds with no label row need a lookup",
+        "total": 3000
+      },
+      "identityKeys": [
+        "RxCUI",
+        "UNII (via RxNorm properties)",
+        "name/INN"
+      ],
+      "notes": [
+        "The naive plan is one RxNav call per compound = 20,000 calls. Reading rxcui out of the openFDA label/NDC archive we already hold cuts that to roughly 3,000 and is the bulk-first version.",
+        "A US government funding-lapse banner was displayed on the NLM page on 2026-09-04."
+      ]
+    },
+    {
+      "name": "WHO INN lists (MedNet)",
+      "licenceVerdict": "NOT CLEAR (WHO default CC BY-NC-SA 3.0 IGO; non-commercial)",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "note": "Recommended List 95 / Proposed List 135 and their predecessors are published as PDF notices; there is no downloadable table",
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "the searchable INN database sits behind MedNet-INN (now School of INN), which requires a requested account; no public API"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [
+        "INN"
+      ],
+      "notes": [
+        "Machine-readable answer: essentially nothing. The public INN pages carry PDF notices only.",
+        "INN strings as facts are not copyrightable and can be recorded from ChEMBL pref_name, the FDA UNII file and DrugBank Vocabulary; the WHO documents themselves must not be redistributed."
+      ]
+    },
+    {
+      "name": "Open Targets Platform 26.06",
+      "licenceVerdict": "CLEAR (data CC0 1.0; code Apache 2.0)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "output/drug_molecule/part-00000-*.snappy.parquet",
+            "format": "parquet",
+            "size": "14 MB",
+            "take": true
+          },
+          {
+            "file": "output/drug_mechanism_of_action/ (2 parts)",
+            "format": "parquet",
+            "size": "275 KB + 293 KB",
+            "take": true
+          },
+          {
+            "file": "output/drug_warning/part-00000-*.snappy.parquet",
+            "format": "parquet",
+            "size": "249 KB",
+            "take": true
+          },
+          {
+            "file": "output/clinical_indication/clinical_indication.parquet",
+            "format": "parquet",
+            "size": "4.7 MB",
+            "take": true
+          },
+          {
+            "file": "output/openfda_significant_adverse_drug_reactions/part-00000-*.snappy.parquet",
+            "format": "parquet",
+            "size": "1.5 MB",
+            "take": true
+          }
+        ],
+        "totalSize": "~21 MB",
+        "indexRead": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/latest/output/ (release 26.06, built 2026-06-24)",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://api.platform.opentargets.org/api/v4/graphql",
+        "rateLimit": "none published; the documentation explicitly discourages repeated per-entity querying and directs users to the bulk downloads",
+        "pageSizeMax": "per-query 'page' argument"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "pathway",
+          "hallmark (indirectly, via target -> pathway annotation)",
+          "FAERS signal (openfda_significant_adverse_drug_reactions)",
+          "regulatory status (drug_warning, with country and year)"
+        ],
+        "CLINICAL": [
+          "adverse events",
+          "FAERS",
+          "withdrawal (drug_warning warningType WITHDRAWN with reason and country)",
+          "indication"
+        ],
+        "DEVELOPMENT": [
+          "target",
+          "mechanism class",
+          "highest phase",
+          "sponsor (ChEMBL-derived)",
+          "related compounds on the same target"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "5 bulk file downloads; zero GraphQL calls in the steady-state plan",
+        "total": 5
+      },
+      "identityKeys": [
+        "ChEMBL id (primary)",
+        "InChIKey",
+        "drug name/synonyms"
+      ],
+      "notes": [
+        "This is the highest-value-per-byte source in the survey: 21 MB covers most of the DEVELOPMENT model and the withdrawal half of CLINICAL, under CC0 rather than share-alike.",
+        "It is ChEMBL-derived; provenance attribution to ChEMBL is still owed even though the licence is CC0."
+      ]
+    },
+    {
+      "name": "DailyMed",
+      "licenceVerdict": "CLEAR (US Government work)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "dm_spl_release_human_rx_part1..6.zip",
+            "format": "zip of SPL XML",
+            "size": "5 x 3.00 GB + 1.65 GB = 16.65 GB",
+            "records": "54,843 label files",
+            "take": false
+          },
+          {
+            "file": "dm_spl_release_human_otc_part1..11.zip",
+            "format": "zip of SPL XML",
+            "size": "~3 GB each, ~32 GB total",
+            "take": false
+          },
+          {
+            "file": "dm_spl_monthly_update_aug2026.zip",
+            "format": "zip",
+            "size": "not published on the index page",
+            "take": false
+          }
+        ],
+        "fitsDiskBudget": "Rx alone would fit in 29 GB; Rx+OTC would not. Neither is needed.",
+        "note": "the single-file full archives were retired; only split parts exist"
+      },
+      "api": {
+        "base": "https://dailymed.nlm.nih.gov/dailymed/services/v2/",
+        "rateLimit": "none published"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "interactions",
+          "kinetics (label sections)"
+        ],
+        "CLINICAL": [
+          "indication",
+          "label kinetics",
+          "interactions",
+          "adverse events",
+          "regulatory status (US)"
+        ],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "paging": "zero \u2014 superseded by the on-disk openFDA label archive",
+        "total": 0
+      },
+      "identityKeys": [
+        "SetID",
+        "NDC",
+        "UNII",
+        "RxCUI (in the openFDA-parsed form)"
+      ],
+      "notes": [
+        "Deliberately not downloaded. Our on-disk openFDA drug/label archive (14 zips, 1.86 GB, 262,595 records, plus a 1.5 GB parsed label-index.ndjson) carries the same SPL content already parsed."
+      ]
+    },
+    {
+      "name": "Orange Book",
+      "licenceVerdict": "CLEAR (US Government work)",
+      "bulk": {
+        "available": "already on disk",
+        "files": [
+          {
+            "file": "openfda drug-orangebook-0001-of-0001.json",
+            "format": "JSON",
+            "size": "41.2 MB uncompressed on disk (2 MB in the openFDA index)",
+            "records": 48664,
+            "take": "held"
+          }
+        ],
+        "note": "the FDA page links 'Orange Book Data Files (compressed .zip file)' without publishing a size",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "n/a"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "regulatory status (US)"
+        ],
+        "CLINICAL": [
+          "regulatory status by jurisdiction (US)",
+          "withdrawal (discontinued products)"
+        ],
+        "DEVELOPMENT": [
+          "patent status (US listed patents and exclusivity, the one patent field we can source legitimately)"
+        ]
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [
+        "Application number",
+        "Product number",
+        "ingredient name"
+      ],
+      "notes": [
+        "The Orange Book patent listings are the only patent data in this survey that we may both read and republish."
+      ]
+    },
+    {
+      "name": "openFDA",
+      "licenceVerdict": "CLEAR (public domain, CC0 1.0; one GMDN carve-out that affects device data only)",
+      "bulk": {
+        "available": "partly on disk",
+        "files": [
+          {
+            "file": "drug/label (14 partitions)",
+            "format": "zipped JSON",
+            "size": "1,772 MB",
+            "records": 262595,
+            "onDisk": "yes \u2014 label-01.zip..label-14.zip, 1.86 GB"
+          },
+          {
+            "file": "drug/drugsfda",
+            "format": "JSON",
+            "size": "9 MB",
+            "records": 29312,
+            "onDisk": "yes \u2014 124.9 MB uncompressed"
+          },
+          {
+            "file": "drug/ndc",
+            "format": "JSON",
+            "size": "27 MB",
+            "records": 137637,
+            "onDisk": "yes \u2014 246.3 MB uncompressed"
+          },
+          {
+            "file": "drug/orangebook",
+            "format": "JSON",
+            "size": "2 MB",
+            "records": 48664,
+            "onDisk": "yes \u2014 41.2 MB uncompressed"
+          },
+          {
+            "file": "drug/enforcement",
+            "format": "JSON",
+            "size": "4 MB",
+            "records": 17899,
+            "onDisk": "no \u2014 4 MB, take it"
+          },
+          {
+            "file": "drug/event (FAERS)",
+            "format": "JSON",
+            "size": "113,116 MB across 1,767 partitions",
+            "records": 20692690,
+            "onDisk": "no",
+            "take": false,
+            "why": "110 GB against 29 GB free; excluded outright"
+          },
+          {
+            "file": "other/unii",
+            "format": "JSON",
+            "size": "3 MB",
+            "records": 176049,
+            "onDisk": "no \u2014 take it, it is the UNII identity spine"
+          },
+          {
+            "file": "other/nsde",
+            "format": "JSON",
+            "size": "30 MB across 3 partitions",
+            "records": 667190,
+            "onDisk": "no"
+          },
+          {
+            "file": "other/substance",
+            "format": "JSON",
+            "size": "317 MB",
+            "records": 167385,
+            "onDisk": "no \u2014 optional; GSRS substance records carry UNII + InChIKey + names"
+          }
+        ],
+        "indexRead": "https://api.fda.gov/download.json (export dates 2026-08-26 to 2026-09-03)",
+        "fitsDiskBudget": "yes for everything except drug/event"
+      },
+      "api": {
+        "base": "https://api.fda.gov/drug/",
+        "rateLimit": "without a key: 240 requests/minute per IP and 1,000/day per IP. With a key: 240 requests/minute per key and 120,000/day per key.",
+        "pageSizeMax": "limit=1000 per search request; skip capped at 25,000 (use search_after/date windowing beyond that)",
+        "batchEndpoint": "count= aggregations return a whole distribution in one call, which is how a FAERS signal per compound should be taken"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "FAERS signal",
+          "regulatory status (US)",
+          "interactions",
+          "kinetics"
+        ],
+        "CLINICAL": [
+          "indication",
+          "label kinetics",
+          "interactions",
+          "adverse events",
+          "FAERS",
+          "regulatory status (US)",
+          "withdrawal (enforcement + marketing status)"
+        ],
+        "DEVELOPMENT": [
+          "sponsor (applicant)",
+          "highest phase (approved)",
+          "ever dosed in humans"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "3 bulk downloads not yet held (enforcement, unii, nsde) + FAERS count queries for compounds absent from the Open Targets ADR table",
+        "total": 5003
+      },
+      "identityKeys": [
+        "UNII",
+        "NDC",
+        "SPL SetID",
+        "RxCUI",
+        "application number",
+        "substance name"
+      ],
+      "notes": [
+        "The FAERS bulk is the one file in this survey that decisively does not fit the disk budget. Substituting Open Targets' openfda_significant_adverse_drug_reactions parquet (1.5 MB) for the compounds it covers, and API count queries for the rest, is the redesign that keeps FAERS in the plan.",
+        "An unkeyed client would exhaust its 1,000/day allowance in four minutes at the per-minute rate. An API key is required for the FAERS plan; 5,000 calls sits inside one key-day of 120,000."
+      ]
+    },
+    {
+      "name": "Drugs@FDA bulk",
+      "licenceVerdict": "CLEAR (US Government work)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "Drugs@FDA download file",
+            "format": "zip of tab-delimited text",
+            "size": "the page's own label reads '(ZIP - 5.91KB)', which is not credible for 29,312 applications \u2014 verify with a HEAD before relying on it",
+            "take": true
+          }
+        ],
+        "note": "updated each weekday morning; data last updated 2026-09-02",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "n/a (static file)"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "regulatory status (US)"
+        ],
+        "CLINICAL": [
+          "regulatory status by jurisdiction (US)",
+          "withdrawal (marketing status)",
+          "trial history (approval submissions)"
+        ],
+        "DEVELOPMENT": [
+          "sponsor",
+          "highest phase"
+        ]
+      },
+      "projectedCalls": {
+        "total": 1
+      },
+      "identityKeys": [
+        "Application number",
+        "product number",
+        "ingredient name",
+        "UNII (via the openFDA-parsed variant)"
+      ],
+      "notes": [
+        "Largely redundant with the openFDA drugsfda JSON already on disk; take it only for the submission-level tables openFDA flattens away."
+      ]
+    },
+    {
+      "name": "EMA",
+      "licenceVerdict": "CLEAR with attribution (reproduction permitted for commercial and non-commercial use provided EMA is acknowledged as the source)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "European public assessment reports (EPAR) medicines table",
+            "format": "XLS",
+            "size": "717.5 KB",
+            "take": true
+          },
+          {
+            "file": "referrals data table",
+            "format": "XLS",
+            "size": "not published on the index page",
+            "take": true
+          },
+          {
+            "file": "orphan designations, post-authorisation procedures, shortages, herbal, medicines-for-use-outside-EU tables",
+            "format": "XLS",
+            "size": "not published",
+            "take": "as needed"
+          }
+        ],
+        "note": "EMA also states its entire website is available in JSON for automated use, with data identical to these tables",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "EMA website JSON (no separately documented API contract)",
+        "rateLimit": "none published"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "regulatory status by jurisdiction (EU)"
+        ],
+        "CLINICAL": [
+          "regulatory status by jurisdiction (EU)",
+          "withdrawal (refused, suspended and withdrawn authorisations appear on the medicine pages)",
+          "indication"
+        ],
+        "DEVELOPMENT": [
+          "sponsor (marketing authorisation holder)",
+          "highest phase (authorised)"
+        ]
+      },
+      "projectedCalls": {
+        "total": 3
+      },
+      "identityKeys": [
+        "EMA product number",
+        "INN",
+        "active substance name"
+      ],
+      "notes": [
+        "Third-party content inside EMA documents is carved out of the reproduction permission and needs the rightsholder's consent."
+      ]
+    },
+    {
+      "name": "Health Canada Drug Product Database",
+      "licenceVerdict": "CLEAR with attribution (Open Government Licence - Canada 2.0: worldwide, royalty-free, perpetual, commercial use permitted)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "allfiles.zip (marketed)",
+            "format": "zip of UTF-8 text",
+            "size": "not published on the index page \u2014 HEAD before download",
+            "take": true
+          },
+          {
+            "file": "allfiles_ia.zip (inactive)",
+            "format": "zip",
+            "size": "not published",
+            "take": true
+          },
+          {
+            "file": "allfiles_ap.zip (approved)",
+            "format": "zip",
+            "size": "not published",
+            "take": true
+          },
+          {
+            "file": "allfiles_dr.zip (dormant)",
+            "format": "zip",
+            "size": "not published",
+            "take": true
+          }
+        ],
+        "note": "per-table zips also exist (drug, ingred, comp, status, ther, route, schedule, pharm, package, form, bios, vet)",
+        "fitsDiskBudget": "almost certainly \u2014 DPD extracts are flat text; confirm with HEAD"
+      },
+      "api": {
+        "base": "https://health-products.canada.ca/api/drug/ (documented DPD API)",
+        "rateLimit": "none published"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "regulatory status by jurisdiction (CA)"
+        ],
+        "CLINICAL": [
+          "regulatory status by jurisdiction (CA)",
+          "withdrawal (inactive/dormant status)",
+          "indication (schedule and therapeutic class)"
+        ],
+        "DEVELOPMENT": [
+          "sponsor (company)"
+        ]
+      },
+      "projectedCalls": {
+        "total": 4
+      },
+      "identityKeys": [
+        "DIN",
+        "active ingredient name",
+        "company code"
+      ],
+      "notes": [
+        "Required attribution string: 'Contains information licensed under the Open Government Licence - Canada.'"
+      ]
+    },
+    {
+      "name": "TGA ARTG",
+      "licenceVerdict": "NOT CLEAR \u2014 legal gate not passed",
+      "bulk": {
+        "available": "unknown",
+        "files": [],
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "no fetch may be attempted until access is resolved by a human"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [],
+      "notes": [
+        "Two plain GETs of https://www.tga.gov.au/robots.txt failed at the transport layer with our User-Agent (HTTP/2 INTERNAL_ERROR, then a reset on HTTP/1.1), as did the ARTG resources page. Robots could not be read, so the gate cannot be passed.",
+        "Australian regulatory status stays UNKNOWN. Under R11 and the dataset-honesty protocol that is the correct outcome, not a gap to paper over."
+      ]
+    },
+    {
+      "name": "PMDA",
+      "licenceVerdict": "NOT CLEAR",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "no documented English API or bulk file"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [],
+      "notes": [
+        "What is in English and machine-readable: essentially nothing usable. The English section publishes per-product review reports and package inserts as PDFs. There is no English register export, no CSV and no API.",
+        "No licence statement was located. Japanese regulatory status stays UNKNOWN."
+      ]
+    },
+    {
+      "name": "NIA ITP (via JAX Mouse Phenome Database)",
+      "licenceVerdict": "CLEAR at phenome.jax.org (contributors waive copyright; free reuse for any purpose). NOT CLEAR at nia.nih.gov (edge blocks automated access).",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "ITP_C2004_Lifespan.xlsx .. ITP_C2021_Lifespan.xlsx",
+            "format": "xlsx",
+            "size": "per-cohort, small",
+            "take": true,
+            "note": "separate 'w error' variants exist for the 2015 and 2020 cohorts"
+          },
+          {
+            "file": "C2020_pheno_bw.xlsx, C2021_pheno_bw.xlsx, cohort_2013_fatpads.xlsx",
+            "format": "xlsx",
+            "take": true
+          }
+        ],
+        "indexRead": "https://phenome.jax.org/projects/ITP1",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "MPD REST API (phenome.jax.org)",
+        "rateLimit": "none published"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "ITP (the whole field \u2014 this is the only source for it)",
+          "organism ladder (UM-HET3 mouse)",
+          "endpoint type (lifespan, median and maximum)",
+          "dose-response (per-cohort dose arms)",
+          "biomarkers (body weight, fat pads, other phenotypes)",
+          "hallmark (only where the ITP paper states one; never inferred)"
+        ],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "paging": "~25 xlsx downloads + a handful of MPD API calls",
+        "total": 30
+      },
+      "identityKeys": [
+        "compound common name only \u2014 no InChIKey, UNII or ChEMBL id; joining ITP results to the corpus is a name-matching problem for R1"
+      ],
+      "notes": [
+        "Answering the question directly: yes, ITP results are machine-readable, but as per-cohort .xlsx files on phenome.jax.org, not as a single dataset and not from nia.nih.gov, whose edge returns a 'Human Verification' interstitial (HTTP 405) even for robots.txt.",
+        "The three ITP test sites are distinguished in the data, which matters for reporting: a result that replicated at one site is not the same claim as one that replicated at three."
+      ]
+    },
+    {
+      "name": "OpenAlex",
+      "licenceVerdict": "NOT VERIFIED \u2014 terms could not be read",
+      "bulk": {
+        "available": "snapshot exists but is far larger than 29 GB free disk; excluded on size alone",
+        "files": [],
+        "fitsDiskBudget": false
+      },
+      "api": {
+        "base": "https://api.openalex.org/",
+        "rateLimit": "NOT VERIFIED \u2014 docs.openalex.org is a JavaScript app that returns an identical 19,226-byte shell for every path, including .md variants; openalex.org/terms returns a Cloudflare 403 to our client"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "trial failures and pathway context (literature only, as pointers)"
+        ],
+        "CLINICAL": [],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "paging": "if used at all, Tier 1 only",
+        "total": 0
+      },
+      "identityKeys": [
+        "DOI",
+        "PMID"
+      ],
+      "notes": [
+        "The 2026 freemium terms, the per-day and per-second limits and the snapshot size could not be read in this survey. Recording remembered numbers here would violate the dataset-honesty protocol.",
+        "Recommendation: drop OpenAlex from the ingestion plan. Europe PMC and PubMed cover the same need under terms we did read, and the OpenAlex budget line is therefore zero."
+      ]
+    },
+    {
+      "name": "Europe PMC REST",
+      "licenceVerdict": "CLEAR for metadata only (full text is per-article copyright)",
+      "bulk": {
+        "available": "open-access subset available by FTP; not needed for metadata",
+        "files": [],
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://www.ebi.ac.uk/europepmc/webservices/rest/",
+        "rateLimit": "NOT PUBLISHED in readable form on https://europepmc.org/RestfulWebService (its parameter tables are script-rendered); plan conservatively at <=3 requests/second and confirm before a large run",
+        "pagination": "cursorMark paging; pageSize parameter exists but its documented maximum could not be read",
+        "endpoints": "search, fullTextXML (OA subset only), citations, references, textMinedTerms"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "trial failures",
+          "biomarkers",
+          "epigenetic clocks (literature pointers only)",
+          "organism ladder (species stated in the abstract)"
+        ],
+        "CLINICAL": [
+          "adverse events (literature pointers)",
+          "trial history"
+        ],
+        "DEVELOPMENT": [
+          "why stopped (literature pointers)",
+          "related compounds"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "Tier 1 compounds only, cursorMark",
+        "total": 2000
+      },
+      "identityKeys": [
+        "DOI",
+        "PMID",
+        "PMCID"
+      ],
+      "notes": [
+        "Citations, identifiers and abstracts only. Full text must not be stored or rendered without checking that article's own licence.",
+        "The citation and full-text endpoints exist; the full-text endpoint serves only the open-access subset."
+      ]
+    },
+    {
+      "name": "PubMed E-utilities",
+      "licenceVerdict": "CLEAR for metadata (US Government work; abstracts stay publisher copyright)",
+      "bulk": {
+        "available": "PubMed baseline FTP exists; not needed at our volume",
+        "files": [],
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+        "rateLimit": "3 requests/second without an API key, 10 requests/second with one (documented); NCBI asks that large jobs run at weekends or outside 21:00-05:00 US Eastern",
+        "batchEndpoint": "esummary/efetch accept a UID list; plan 200 UIDs per call"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "trial failures",
+          "biomarkers",
+          "organism ladder"
+        ],
+        "CLINICAL": [
+          "adverse events",
+          "trial history"
+        ],
+        "DEVELOPMENT": [
+          "why stopped"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "esearch per compound is the naive form; batching esummary at 200 UIDs/call plus the existing on-disk pubmed searches keeps it small",
+        "total": 500
+      },
+      "identityKeys": [
+        "PMID",
+        "DOI"
+      ],
+      "notes": [
+        "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/pubmed already holds prior search results (3.9 MB)."
+      ]
+    },
+    {
+      "name": "DrugBank",
+      "licenceVerdict": "SPLIT: Open Data CLEAR (CC0); everything else NOT CLEAR (CC BY-NC 4.0)",
+      "bulk": {
+        "available": true,
+        "files": [
+          {
+            "file": "DrugBank Vocabulary (all-drugbank-vocabulary)",
+            "format": "CSV in a zip",
+            "size": "1.12 MB",
+            "licence": "CC0",
+            "take": true,
+            "provides": "DrugBank identifiers, names and synonyms for linking and integration"
+          },
+          {
+            "file": "DrugBank Structures (all-open-structures)",
+            "format": "SDF",
+            "size": "5.16 MB",
+            "licence": "CC0",
+            "take": true,
+            "provides": "structures, names and synonyms"
+          },
+          {
+            "file": "all-full-database",
+            "format": "XML",
+            "size": "204 MB",
+            "licence": "CC BY-NC 4.0",
+            "take": false
+          },
+          {
+            "file": "all-structures / all-3d-structures / approved / experimental / nutraceutical / illicit / withdrawn structures",
+            "format": "SDF",
+            "size": "11 MB / 13.9 MB / 3.63 MB / 4.69 MB / 183 KB / 131 KB",
+            "licence": "CC BY-NC 4.0",
+            "take": false
+          },
+          {
+            "file": "external links, protein identifiers, target sequences, drug sequences",
+            "format": "CSV/FASTA",
+            "licence": "CC BY-NC 4.0",
+            "take": false
+          }
+        ],
+        "note": "every download on the page was marked 'Temporarily unavailable' on 2026-09-04",
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "base": "DrugBank Clinical API is a commercial product",
+        "rateLimit": "n/a to us"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": [
+          "related compounds (name/synonym linking only)"
+        ]
+      },
+      "projectedCalls": {
+        "paging": "1 vocabulary download",
+        "total": 1
+      },
+      "identityKeys": [
+        "DrugBank id",
+        "CAS",
+        "UNII",
+        "InChIKey (in the vocabulary CSV)",
+        "name and synonyms"
+      ],
+      "notes": [
+        "Exactly what the Open Data download provides: two files, described above \u2014 identifiers, names, synonyms and structures. It provides no targets, no interactions, no pharmacology and no indications.",
+        "The fields we would actually want for the CLINICAL and DEVELOPMENT models all sit in the CC BY-NC tier and are therefore unusable for a public reference site.",
+        "No price is published on the downloads page: the academic tier is credential-gated and the commercial tier is 'Contact Sales'. No figure is asserted here because none was read."
+      ]
+    },
+    {
+      "name": "FDA withdrawn / discontinued lists",
+      "licenceVerdict": "CLEAR in principle (US Government work) but the specific page was NOT FOUND",
+      "bulk": {
+        "available": "substitutes only",
+        "files": [
+          {
+            "file": "openFDA drug/enforcement",
+            "format": "JSON",
+            "size": "4 MB",
+            "records": 17899,
+            "take": true
+          },
+          {
+            "file": "Open Targets drug_warning.parquet",
+            "format": "parquet",
+            "size": "249 KB",
+            "take": true,
+            "provides": "withdrawal warnings with year, country and reason"
+          },
+          {
+            "file": "Orange Book discontinued products + Drugs@FDA marketing status",
+            "take": "held on disk"
+          }
+        ],
+        "fitsDiskBudget": true
+      },
+      "api": {
+        "note": "n/a"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [
+          "regulatory status by jurisdiction"
+        ],
+        "CLINICAL": [
+          "withdrawal",
+          "regulatory status by jurisdiction",
+          "adverse events (recall reasons)"
+        ],
+        "DEVELOPMENT": [
+          "why stopped"
+        ]
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [
+        "application number",
+        "UNII",
+        "ingredient name"
+      ],
+      "notes": [
+        "Three plausible FDA URLs for the safety/effectiveness withdrawal list returned 404 on 2026-09-04. No URL is asserted. Phase 1 should locate it by hand rather than guess.",
+        "Under R11, withdrawn compounds are verified against free sources; the four substitutes above are all free and all reachable."
+      ]
+    },
+    {
+      "name": "WHO consolidated list of banned/withdrawn products",
+      "licenceVerdict": "NOT CLEAR (WHO default CC BY-NC-SA 3.0 IGO) and NOT LOCATED",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "n/a"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [
+          "withdrawal",
+          "regulatory status by jurisdiction"
+        ],
+        "DEVELOPMENT": []
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [],
+      "notes": [
+        "The guessed /publications/i/item/ URL returned 404. No URL is asserted.",
+        "Even if located, the non-commercial licence bars redistribution; it could serve only as a pointer for human verification."
+      ]
+    },
+    {
+      "name": "Google Patents",
+      "licenceVerdict": "NOT CLEAR",
+      "bulk": {
+        "available": false,
+        "files": [],
+        "fitsDiskBudget": null
+      },
+      "api": {
+        "note": "no API is offered to us and no rate limit exists to plan against"
+      },
+      "fieldsContributed": {
+        "LONGEVITY": [],
+        "CLINICAL": [],
+        "DEVELOPMENT": [
+          "patent status \u2014 NOT sourceable from here"
+        ]
+      },
+      "projectedCalls": {
+        "total": 0
+      },
+      "identityKeys": [],
+      "notes": [
+        "Saying it plainly: not clear, and we should not fetch it. robots.txt is 'Disallow: /*' with narrow allowances for /patent/, /sitemap/, the bare root and /advanced. Google's terms prohibit automated access that violates those machine-readable instructions, and nothing grants us a licence to redistribute the content.",
+        "Legitimate substitutes: the Orange Book patent listings (US, already on disk) for marketed drugs, and USPTO or EPO OPS if patent status ever becomes a required field. Otherwise the field stays UNKNOWN."
+      ]
+    }
+  ]
+}

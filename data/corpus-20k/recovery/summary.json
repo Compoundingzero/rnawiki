@@ -1,0 +1,206 @@
+{
+  "found": 19,
+  "excluded": 1,
+  "perCompound": [
+    {
+      "compound": "bromantane",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 4660557,
+      "chemblId": "CHEMBL4303520",
+      "unii": "N1ILS53XWK",
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 32
+    },
+    {
+      "compound": "cardarine (GW501516)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 9803963,
+      "chemblId": "CHEMBL38943",
+      "unii": "7I2HA1NU22",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 33
+    },
+    {
+      "compound": "DMT",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 6089,
+      "chemblId": "CHEMBL12420",
+      "unii": "WUB601BHAA",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 37
+    },
+    {
+      "compound": "follistatin-344",
+      "found": false,
+      "primarySource": null,
+      "cid": null,
+      "chemblId": null,
+      "unii": null,
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 36
+    },
+    {
+      "compound": "GHB",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 10413,
+      "chemblId": "CHEMBL1342",
+      "unii": "30IW36W5B2",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 34
+    },
+    {
+      "compound": "isotonitazene",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 145721979,
+      "chemblId": null,
+      "unii": "ZFY1ZBQ8AV",
+      "humanStudyEvidence": "none",
+      "avenuesTried": 35
+    },
+    {
+      "compound": "JWH-018",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 10382701,
+      "chemblId": "CHEMBL561013",
+      "unii": "G391998J57",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 32
+    },
+    {
+      "compound": "kratom (mitragynine)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 3034396,
+      "chemblId": "CHEMBL299031",
+      "unii": "EP479K822J",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 36
+    },
+    {
+      "compound": "ligandrol (LGD-4033)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 44137686,
+      "chemblId": "CHEMBL5170587",
+      "unii": "1EJT54415A",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 34
+    },
+    {
+      "compound": "LSD",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 5761,
+      "chemblId": "CHEMBL263881",
+      "unii": "8NA5SWF92O",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 34
+    },
+    {
+      "compound": "morning glory (LSA / ergine)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 442072,
+      "chemblId": "CHEMBL227213",
+      "unii": "073830XH10",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 36
+    },
+    {
+      "compound": "muscimol",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 4266,
+      "chemblId": "CHEMBL273481",
+      "unii": "D5M179TY2E",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 34
+    },
+    {
+      "compound": "phencyclidine",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 6468,
+      "chemblId": "CHEMBL275528",
+      "unii": "J1DOI7UV76",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 35
+    },
+    {
+      "compound": "phenibut",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 14113,
+      "chemblId": "CHEMBL315818",
+      "unii": "T2M58D6LA8",
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 37
+    },
+    {
+      "compound": "phenylpiracetam",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 132441,
+      "chemblId": "CHEMBL348639",
+      "unii": "99QW5JU66Y",
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 36
+    },
+    {
+      "compound": "stenabolic (SR9009)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 57394020,
+      "chemblId": "CHEMBL1961796",
+      "unii": "X5DCA09N30",
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 34
+    },
+    {
+      "compound": "testolone (RAD-140)",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 44200882,
+      "chemblId": "CHEMBL1672635",
+      "unii": "4O87Q44KNC",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 32
+    },
+    {
+      "compound": "YK-11",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 119058028,
+      "chemblId": null,
+      "unii": "Z9748J6B0R",
+      "humanStudyEvidence": "pubmed",
+      "avenuesTried": 31
+    },
+    {
+      "compound": "sermorelin",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 16132413,
+      "chemblId": "CHEMBL428135",
+      "unii": "89243S03TE",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 32
+    },
+    {
+      "compound": "ketamine",
+      "found": true,
+      "primarySource": "PubChem",
+      "cid": 3821,
+      "chemblId": "CHEMBL742",
+      "unii": "690G0D6V8H",
+      "humanStudyEvidence": "registry",
+      "avenuesTried": 31
+    }
+  ]
+}

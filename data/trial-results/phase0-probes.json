@@ -1,0 +1,64 @@
+{
+  "probes": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00688597?format=json",
+      "status": 200,
+      "ms": 454,
+      "headers": {
+        "x-envoy-upstream-service-time": "6",
+        "x-frame-options": "SAMEORIGIN",
+        "x-ua-compatible": "IE=Edge",
+        "x-xss-protection": "1; mode=block"
+      },
+      "bytes": 22704
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT01352715?format=json",
+      "status": 200,
+      "ms": 275,
+      "headers": {
+        "x-envoy-upstream-service-time": "5",
+        "x-frame-options": "SAMEORIGIN",
+        "x-ua-compatible": "IE=Edge",
+        "x-xss-protection": "1; mode=block"
+      },
+      "bytes": 74838
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03014167?format=json",
+      "status": 200,
+      "ms": 278,
+      "headers": {
+        "x-envoy-upstream-service-time": "5",
+        "x-frame-options": "SAMEORIGIN",
+        "x-ua-compatible": "IE=Edge",
+        "x-xss-protection": "1; mode=block"
+      },
+      "bytes": 64022
+    }
+  ],
+  "batchTests": [
+    {
+      "query": "filter.ids",
+      "status": 200,
+      "returned": 3
+    },
+    {
+      "query": "query.id",
+      "status": 200,
+      "returned": 3
+    }
+  ],
+  "pageSizeTests": [
+    {
+      "asked": 1000,
+      "status": 200,
+      "got": 1000
+    },
+    {
+      "asked": 1001,
+      "status": 200,
+      "got": 1000
+    }
+  ]
+}

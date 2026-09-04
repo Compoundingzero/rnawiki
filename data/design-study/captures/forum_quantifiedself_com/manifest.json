@@ -1,0 +1,516 @@
+{
+  "site": "forum.quantifiedself.com",
+  "track": "A2",
+  "urls": {
+    "index": "https://forum.quantifiedself.com/",
+    "content": "https://forum.quantifiedself.com/latest"
+  },
+  "capturedAt": "2026-09-03T15:18:27.131Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in #ember15 (controls: Replies, Views, Activity, Welcome to the new QS Forum!, Meta, New users Sign up/Log In to enjoy an ad-free forum experienc); banner stands in the captures",
+    "index-375: left: no permitted refusal control in div.main-link (controls: Tracking ferritin after blood donations); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in #ember15 (controls: Replies, Views, Activity, Welcome to the new QS Forum!, Meta, New users Sign up/Log In to enjoy an ad-free forum experienc); banner stands in the captures",
+    "content-375: left: no permitted refusal control in div.main-link (controls: Tracking ferritin after blood donations); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://forum.quantifiedself.com/latest",
+    "collectedAt": "2026-09-03T15:18:04.026Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.0059,
+    "title": "Quantified Self Forum",
+    "innerTextLength": 3236,
+    "outerHtmlLength": 546239,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "All latest topics"
+      }
+    ],
+    "headingCount": 1,
+    "stickyOrFixedCount": 6,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "skip-links",
+        "position": "fixed",
+        "top": -75,
+        "height": 0
+      },
+      {
+        "tag": "a",
+        "class": "skip-link",
+        "position": "fixed",
+        "top": -75,
+        "height": 30.4
+      },
+      {
+        "tag": "div",
+        "class": "loading-indicator-container ready",
+        "position": "fixed",
+        "top": 0,
+        "height": 3
+      },
+      {
+        "tag": "div",
+        "class": "drop-down-mode d-header-wrap",
+        "position": "sticky",
+        "top": 0,
+        "height": 64
+      },
+      {
+        "tag": "div",
+        "class": "closed hide-preview ember-view",
+        "position": "fixed",
+        "top": 900,
+        "height": 0
+      },
+      {
+        "tag": "section",
+        "class": "fk-d-toasts",
+        "position": "fixed",
+        "top": 69.3,
+        "height": 0
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": true,
+      "scrollama": "unknown",
+      "metaKey": true,
+      "keyCode": true
+    },
+    "scriptsInline": 1,
+    "scriptsUnreadable": 3,
+    "searchAffordances": {
+      "count": 1,
+      "firstDescriptors": [
+        "button Search"
+      ]
+    },
+    "imgCount": 86,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "text-size-normal anon no-touch discourse-no-touch desktop-view not-mobile-device",
+      "dataTheme": null,
+      "style": "--header-offset: 64px; --main-outlet-offset: 64px;"
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 29
+    },
+    "bodyBackgroundColor": "rgba(0, 0, 0, 0)",
+    "bodyColor": "rgb(34, 34, 34)",
+    "canvasCount": 0,
+    "svgCount": 9
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 2586,
+      "sha256": "b98fb227302d640823a2b21ed660852593b3382917d330c1e381d05bdb2fb094",
+      "capturedAt": "2026-09-03T15:17:36.044Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a21c62921e7ec3a3c59c10b04509d19d1c68544d0ef4de0f1f9b9cb705193728",
+      "capturedAt": "2026-09-03T15:17:36.140Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a4edc79f3879bf9efb0c865981b125fdb1ac0a1cf78a90360e36d3868fe5aaab",
+      "capturedAt": "2026-09-03T15:17:36.239Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 786,
+      "sha256": "6a866f711b5878c5e0a2bc8feb15acecb11d169da3225ad81053052dc51898e3",
+      "capturedAt": "2026-09-03T15:17:36.334Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 3444,
+      "sha256": "33a9586c55c5303f9681ee854faee25a6c734a06309a7f0b6de1ea2cff3580f5",
+      "capturedAt": "2026-09-03T15:17:49.902Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "50336138cf01013c0943572cfa3ad6d7cb36a3012f9a8d5b6504902f31c8ae8c",
+      "capturedAt": "2026-09-03T15:17:49.969Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "72d75e9b20744a643fdbeda820b924697d0bb52079b14aea0975d1c56cecc778",
+      "capturedAt": "2026-09-03T15:17:50.026Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "986b78a7ca73d00de03eaae877558de861b7bae02c7c85ff0472fc38727384a2",
+      "capturedAt": "2026-09-03T15:17:50.104Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a988b4bb2890cfc1d20c377103530fd3d9d2bb212750bcf0808d7d54b7cb0757",
+      "capturedAt": "2026-09-03T15:17:50.172Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://forum.quantifiedself.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 196,
+      "sha256": "f2106e6aec67fb7f7612a3a1afc96da7e667e0be96805cd7a22edc2151a34b96",
+      "capturedAt": "2026-09-03T15:17:50.217Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 2586,
+      "sha256": "b98fb227302d640823a2b21ed660852593b3382917d330c1e381d05bdb2fb094",
+      "capturedAt": "2026-09-03T15:18:03.449Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a21c62921e7ec3a3c59c10b04509d19d1c68544d0ef4de0f1f9b9cb705193728",
+      "capturedAt": "2026-09-03T15:18:03.560Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a4edc79f3879bf9efb0c865981b125fdb1ac0a1cf78a90360e36d3868fe5aaab",
+      "capturedAt": "2026-09-03T15:18:03.656Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 786,
+      "sha256": "6a866f711b5878c5e0a2bc8feb15acecb11d169da3225ad81053052dc51898e3",
+      "capturedAt": "2026-09-03T15:18:03.750Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a21c62921e7ec3a3c59c10b04509d19d1c68544d0ef4de0f1f9b9cb705193728",
+      "capturedAt": "2026-09-03T15:18:05.615Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 843,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "17bc28265e0a6b43d64cc65fb1f71d68d3a4a42e3cc52449a60d98dfcadca509",
+      "capturedAt": "2026-09-03T15:18:07.200Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 1517,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "21a6b78f80e59af2ee74738e269e5bd7fca83c20a34a242c7fce0ac98d68c186",
+      "capturedAt": "2026-09-03T15:18:08.819Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 3444,
+      "sha256": "33a9586c55c5303f9681ee854faee25a6c734a06309a7f0b6de1ea2cff3580f5",
+      "capturedAt": "2026-09-03T15:18:22.068Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "50336138cf01013c0943572cfa3ad6d7cb36a3012f9a8d5b6504902f31c8ae8c",
+      "capturedAt": "2026-09-03T15:18:22.136Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "cd89ace4842a3076e4bd65d5e5a3e93140c6102390b78133e326f7fe56ecb9ca",
+      "capturedAt": "2026-09-03T15:18:22.207Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "986b78a7ca73d00de03eaae877558de861b7bae02c7c85ff0472fc38727384a2",
+      "capturedAt": "2026-09-03T15:18:22.303Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a988b4bb2890cfc1d20c377103530fd3d9d2bb212750bcf0808d7d54b7cb0757",
+      "capturedAt": "2026-09-03T15:18:22.372Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 196,
+      "sha256": "f2106e6aec67fb7f7612a3a1afc96da7e667e0be96805cd7a22edc2151a34b96",
+      "capturedAt": "2026-09-03T15:18:22.418Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "50336138cf01013c0943572cfa3ad6d7cb36a3012f9a8d5b6504902f31c8ae8c",
+      "capturedAt": "2026-09-03T15:18:23.975Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 1316,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eeeb536fa0858776ec075e2fa5cb564e371fe02ead7fa447ec72f1f68ed86191",
+      "capturedAt": "2026-09-03T15:18:25.561Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://forum.quantifiedself.com/latest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 2369,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7d76800cf45c370d66d00fee18c3fc2f3ea74810b4a6a897ae6777169e809529",
+      "capturedAt": "2026-09-03T15:18:27.130Z"
+    }
+  ]
+}

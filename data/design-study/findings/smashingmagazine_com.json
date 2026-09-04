@@ -1,0 +1,581 @@
+{
+  "site": "smashingmagazine.com",
+  "track": "A1",
+  "viewedAt": "2026-09-03T18:40:12.475Z",
+  "imagesViewed": [
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-09.png",
+    "index-1440-tile-10.png",
+    "content-1440-full.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-1440-tile-05.png",
+    "content-1440-tile-11.png",
+    "content-1440-tile-17.png",
+    "content-1440-tile-18.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "index-375-full.png",
+    "index-375-tile-01.png",
+    "index-375-tile-16.png",
+    "content-375-tile-01.png",
+    "content-375-tile-26.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "The article page carries its size ladder on two axes only, a typeface switch and a width change; colour appears on the first screen but only in small labels, never as a level.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "The h1 is heavy geometric sans across the full ~1,090 px two-column shell; the prose immediately below drops to serif at ~690 px, and nothing else on the first screen is large. Colour is not absent, though: the byline 'Meriem Benhabiles' and the 'QUICK SUMMARY' label are red and the read-time/share row sits on a light grey plate, so 'never on colour' was wrong as written.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "Inside the prose the ladder alternates typefaces rather than sizes: serif section heading, heavy-sans sub-heading, serif body.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-11.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "'The Chart Was Never The Whole Story' and 'From Questions To Dashboard' are bold serif with a grey # after them; 'Designing The Mental Model Early' is a smaller heavy sans; body stays serif. The collected outline records only h1-h3, so no tag is claimed for the sans sub-heading.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The home page ladder is three deep and then flattens: lead headline ~54 px, second and third ~34 px, then every later card identical.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "Author names red, dates and categories small grey letterspaced capitals, summaries serif; the size stops changing after the third story and the page becomes a uniform list.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F4",
+      "topic": "hierarchy",
+      "claim": "Emphasis in running prose is bold-in-place; no term is ever pulled into a box.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "'decision', 'clear direction', 'appropriate complexity' are bolded mid-sentence in the same serif at the same size.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At 1440 the first fixation is chrome, not content, on both pages.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "A saturated red band fills the top ~105 px edge to edge and a pink chip row another ~65 px; together they own the top 170 px at the highest colour contrast on screen, while the content below is black on white.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "eye-lands",
+      "claim": "At 375 the chrome wins more decisively and the search field is the largest thing in it, but it is not alone in the band.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "The red band is about 155 px and the search input is a full-width white pill inside it, the only white object in a red field. The logo and a dark-red 'Menu' button sit above the field in the same band and a pink chip row follows immediately below it. The band is taller than the 105 px desktop band while the fourteen-item desktop nav collapses into 'Menu' and the chip row drops to four chips, so the header both grows and collapses.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F7",
+      "topic": "eye-lands",
+      "claim": "The article's first screen gives about a third of its width to material that is not the article.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "A tilted author portrait, an 'About the author' block and the start of an email-newsletter panel sit in the right column beside the title and summary.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F8",
+      "topic": "density",
+      "claim": "The article holds three to four paragraphs per desktop screen with the right third empty; the low density is made by margin, not by short paragraphs.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "content-1440-tile-02 holds four paragraphs in 900 px, roughly 230 words, and content-1440-scroll-90 a heading plus three paragraphs, roughly 180 words — not the ~130 words first claimed. Paragraphs run five to seven lines.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "density",
+      "claim": "No table appears in any capture opened on either page; structured comparison is drawn as an image and captioned.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "The Anscombe quartet as a 2x2 scatter grid and an 'A - Analyst view / B - Executive view' side-by-side dashboard mock are the only comparative structures seen. Eleven of the eighteen desktop article tiles and most mobile tiles were never opened, so this is 'none in the captures judged', not 'none in the page'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "information-design",
+      "claim": "Lists are set at prose density, not compressed: red marker, bold lead-in term, colon, explanation at full paragraph leading.",
+      "captures": [
+        "content-1440-tile-17.png"
+      ],
+      "evidence": "'Upstream framing:', 'Calibrated density:', 'Decision-driven insight:' - three items, each two to three lines, spaced like paragraphs.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F11",
+      "topic": "density",
+      "claim": "The home page raises density down the page by changing shape rather than tightening type, through six blocks in a fixed order.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "index-1440-full, in order: a full-width river for the newest three stories, a three-card coloured guides block, a two-column grid of shorter entries, a three-card 'Smashing Family' block, a full-bleed blue workshops band, then a two-column community-links grid. The order first recorded (grid before the guide cards) was wrong and the full-bleed blue band was missed.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "whitespace",
+      "claim": "The largest whitespace on the article page is the right column below the last rail card - about 480 px including its gutter - and it carries nothing.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-17.png"
+      ],
+      "evidence": "At content-1440-tile-11 (9,000 px) and content-1440-tile-17 (14,400 px) the region from the text edge at ~832 px to the shell edge at ~1,310 px is blank white: a ~283 px rail plus a ~190 px gutter. Higher up the rail is full - content-1440-tile-02, -03 and -05 all carry cards - so 'permanently empty' means below the last card, not for the whole page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "whitespace",
+      "claim": "Heading space is asymmetric - roughly 90 px above a section heading and about 25 px below - so the heading binds forward to its own text.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-11.png"
+      ],
+      "evidence": "Paragraph gaps are about 33 px against a 33.5 px line height: exactly one blank line, while the pre-heading gap is nearly three times that.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "whitespace",
+      "claim": "The figure treatment is not uniform: the two dashboard figures get the most air and a grey plate wider than the measure, while the Anscombe figure is unplated and narrower than the measure.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "content-1440-scroll-50 shows a light grey plate from 132 px to 930 px (798 px) against the ~690 px paragraph box on the same left edge, ~100 px above and ~45 px to the caption; content-1440-scroll-90 shows the same plate for the bar/radar figure. content-1440-tile-03 shows the Anscombe quartet on plain white with its artwork spanning roughly 267-822 px, narrower than the measure. 'Figures are set wider than the measure' holds for two of the three.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F15",
+      "topic": "whitespace",
+      "claim": "The home page spends space between blocks and inside cards, not in the margins - it is wide where the article is narrow.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Roughly 60 px between story blocks and about 30 px of padding inside the coloured guide cards; the content column runs from about 105 px to about 1240 px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F16",
+      "topic": "long-scroll",
+      "claim": "Nothing persists during the scroll: no header, rail, progress indicator, back-to-top or sticky heading at 50% or 90% of a 15,700 px article, at either width.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "The top edge of all four scrolled viewport captures is running prose or a figure. The reader has no route back to navigation or search without scrolling to the top.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "long-scroll",
+      "claim": "Neither positioned element appears in any capture, and the offsets that place them below the reading area exceed the height of the captured document.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "stickyOrFixed records div.comment-form__sticky (sticky, top 15,982 px) and div.back-to-top-wrapper (fixed, top 17,031 px). The desktop full-page capture is 15,700 px tall, so both offsets sit past the end of the captured page: the DOM snapshot describes a taller document state than the images do. What the captures support is only that neither element is on screen at 0%, 50% or 90%.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F18",
+      "topic": "long-scroll",
+      "claim": "Rhythm holds for long stretches and breaks in two places, both commercial; both in-column breaks fall at a section boundary rather than mid-argument.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-375-scroll-90.png",
+        "content-1440-tile-05.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "content-1440-tile-11: 'More after jump! Continue reading below' over a grey rule with ~165 px of empty space, immediately before the heading 'From Questions To Dashboard'. content-375-scroll-90: the same label and rule reserving about 60 px, immediately before the sub-heading 'What Changed' - a section boundary, not mid-argument as first claimed. Right-rail promo cards do appear at irregular vertical intervals unrelated to the prose beside them (content-1440-tile-03, -05).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "long-scroll",
+      "claim": "The article body ends quietly and is followed by an unfilled supporters band; a comments section exists below the captured page.",
+      "captures": [
+        "content-1440-tile-17.png",
+        "content-1440-tile-18.png"
+      ],
+      "evidence": "content-1440-tile-17: bullet summary, closing paragraph, editor initials '(yk)', an italic 'Explore more on' line and three green topic chips - no next-article block, no repeated bio, no end share row. content-1440-tile-18: a full-bleed grey rule, the italic line 'Our friends and supporters. You know, they help us pay the bills' and about 250 px of white to the foot of the 15,700 px capture. The heading outline records '- Comments 0' and 'LEAVE A COMMENT' and the sticky comment form sits at 15,982 px, so 'nothing further' is true of the captured page, not of the document.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F20",
+      "topic": "imagery",
+      "claim": "On the article, images carry the argument: every figure is a comparison the prose depends on, labelled inside the image and captioned with what it shows - though the labelling scheme is not uniform.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "Four statistically identical datasets plotted differently, labelled I-IV inside the panels (content-1440-tile-03); analyst-density against executive-summary dashboards, and a bar chart against a radar chart, both labelled 'A -' / 'B -' (content-1440-scroll-50, content-1440-scroll-90). Captions are italic serif with a camera glyph and a 'Large preview' link and describe the comparison rather than repeating the sentence above.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "imagery",
+      "claim": "Every home-page story leads with a tilted red-framed portrait or cartoon; the portrait-led shape is the constant, while its size steps down with the block.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "index-1440-tile-01: the lead cartoon is about 190 px and the second story's portrait about 120 px; index-1440-tile-09: community-link portraits are about 90 px, and the grid cards in index-1440-full are smaller again, so 'about 130 px' holds for no one block. Adjacent entries in tile-09 also differ in headline length, summary and blue in-text links, so 'the only visual difference is the face' overstates it; what repeats is the row shape led by ornament.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "defers-or-competes",
+      "claim": "The reading column defers between the commercial breaks, but it is not free of cards, tints, icons or coloured links.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-05.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "content-1440-tile-02 and content-1440-scroll-90 are one serif, one measure, black on white with no borders or tints. The same flow, though, carries a tinted 'Meet Smashing Workshops' panel with a green gradient button at the full measure (content-1440-tile-05), a red tilted pull-quote tile, blue in-prose links such as 'Francis Anscombe' (content-1440-tile-03), grey figure plates and a camera glyph in every caption. The brand is mostly, not entirely, spent in the top 170 px.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "defers-or-competes",
+      "claim": "It competes at three identifiable moments - the red pull-quote, the promos and the in-column jump break - and one promo is inside the reading column, not in the rail.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "content-1440-tile-05: a tilted red tile with a white quote glyph, the sentence in large heavy sans with a red Twitter bird appended to the sentence itself, and below it a tinted 'Meet Smashing Workshops' panel with a green 'Jump to the workshops' button set at the full ~690 px measure - in the text flow, not the rail. The purple video-course promo and a teal advertisement sit in the rail at content-1440-tile-03, not tile-11.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "defers-or-competes",
+      "claim": "No in-page navigation is offered in any capture; the grey '#' after each heading is the only structural affordance visible.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "content-1440-scroll-50.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "No table of contents at either width at 0%, 50% or 90%. The '15,700 px' is the desktop capture height and the '13 headings' is domEvidence.headingOutline - neither is a visual observation, and that outline of 13 includes '- Comments 0' and 'LEAVE A COMMENT' while excluding visible sub-headings such as 'Designing The Mental Model Early' (content-1440-scroll-90), so the real number of visible headings is higher.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F26",
+      "topic": "baseline",
+      "claim": "No copy controls, no keyboard-shortcut hint, no visible theme control; the only search affordance is the visible header input.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "copyControls.count 0; kbdTexts and ariaKeyshortcuts both empty; htmlAttributes.dataTheme null and both pages render light although prefersColorScheme matched two sheets; scriptTokens reports metaKey and keyCode present in inline script, which is not evidence of a command palette and none is claimed; searchAffordances gives 'input Search articles...'.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "copyControls",
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "prefersColorScheme",
+        "htmlAttributes",
+        "scriptTokens",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F27",
+      "topic": "absence",
+      "claim": "An empty slot is rendered anyway, labelled, and given reserved space - about 165 px at desktop and about 60 px at mobile.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "'More after jump! Continue reading below' printed above a grey rule with ~165 px of blank space before the next heading (content-1440-tile-11); the same label and rule reserving about 60 px at 375 (content-375-scroll-90). The '200 px' first claimed is too large at both widths, and at both widths the band falls at a section boundary.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F28",
+      "topic": "absence",
+      "claim": "A rail card rendered as an empty bordered box containing only its caption link.",
+      "captures": [
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "An empty white box with a shadow, about 200 px tall, above the link 'Live UX Training - Smart Interface Design Patterns with Vitaly Friedman'. The container, border and space survived; only the content did not.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F29",
+      "topic": "absence",
+      "claim": "The page keeps a labelled but unfilled supporters band at the foot of the article; the label is an italic sentence, not a heading.",
+      "captures": [
+        "content-1440-tile-18.png"
+      ],
+      "evidence": "content-1440-tile-18: a full-bleed grey rule, one centred italic serif line 'Our friends and supporters. You know, they help us pay the bills', then about 250 px of white to the foot of the capture. Nothing there has heading weight, heading size or an entry in the collected outline, so 'keeps the heading of an empty section' was wrong; it keeps the caption of one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "absence",
+      "claim": "In every article section opened, the prose itself has content: no stub heading and no absence copy anywhere in the body.",
+      "captures": [
+        "content-1440-tile-17.png",
+        "content-1440-scroll-90.png"
+      ],
+      "evidence": "content-1440-tile-17 and content-1440-scroll-90 show closing bullets, prose and sub-headings all filled, and no 'not available' line appears in any tile opened. Eleven desktop tiles were never opened, so this holds for the captures judged rather than for the whole article; the placeholder behaviour that was seen is confined to commercial slots.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "baseline",
+      "claim": "The captured article renders black on white, not on the dark gradient recorded in Phase 1.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-00.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Phase 1 describes a linear-gradient(-45deg, rgb(22,44,53) 70%, rgb(12,37,47)) article background with near-white body text and reports contrast 11.53-12.62 against it; every capture here is dark text on white and domEvidence gives bodyBackgroundColor rgb(255,255,255) with bodyColor rgb(51,51,51).",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F32",
+      "topic": "borrow",
+      "claim": "Borrow the measure and the type pairing for the dossier reading column: ~690 px serif at 20.4/33.5 on white, hierarchy by typeface switch and asymmetric space rather than by colour or a box.",
+      "captures": [
+        "content-1440-tile-02.png",
+        "content-1440-tile-11.png"
+      ],
+      "evidence": "Sans heading over serif prose with ~90 px above and ~25 px below a heading lets a technical sub-section sit under a plain sentence without shouting - the mechanism Phase 2 credited to Linear, shown here at full essay length.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "borrow",
+      "claim": "Borrow the figure treatment used for the two dashboard figures: a plate slightly wider than the measure with a caption stating what the figure shows - adopting it deliberately, since the site does not apply it to every figure.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "798 px plate against a ~690 px text box on the same left edge (content-1440-scroll-50, content-1440-scroll-90), with a caption describing the comparison rather than repeating the prose - the right relationship for a mechanism diagram or a trial-timeline graphic. The Anscombe figure (content-1440-tile-03) is unplated and narrower than the measure, so this is a pattern worth choosing, not an observed house rule.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F35",
+      "topic": "borrow",
+      "claim": "Borrow the end-of-article-body exit: an 'Explore more on' line, topic chips, stop.",
+      "captures": [
+        "content-1440-tile-17.png"
+      ],
+      "evidence": "Initials, an italic 'Explore more on' line, three chips, nothing further in the article body - no related-content block and no repeated bio, so no repeated words enter the uniqueness budget. The page itself does continue into a supporters band and, below the capture, a comments section, so what is borrowable is how the article ends, not how the page ends.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F36",
+      "topic": "avoid",
+      "claim": "Avoid labelled empty containers - three instances here are exactly what the shared constraints forbid.",
+      "captures": [
+        "content-1440-tile-11.png",
+        "content-1440-tile-05.png",
+        "content-1440-tile-18.png"
+      ],
+      "evidence": "The 'More after jump' label over 200 px of nothing, the empty rail card with only its caption, and the supporters heading above blank space. Absent data on RNAWiki must render nothing at all - no placeholder, no 'not recorded' line.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F37",
+      "topic": "avoid",
+      "claim": "Avoid a very long page with no in-page navigation; the contents rail must come from elsewhere.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "No table of contents at any scroll depth or width in the captures. The page length (15,700 px, the desktop capture height) and the heading count (13, from domEvidence.headingOutline) are recorded numbers rather than visual observations, and the outline undercounts the visible sub-headings. A dossier is longer and more scanned than an essay.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "headingOutline",
+        "headingCount"
+      ]
+    },
+    {
+      "id": "F38",
+      "topic": "avoid",
+      "claim": "Avoid the pull-quote device and the saturated full-bleed header, and avoid a portrait-led card shape as the repeating unit of a browse list.",
+      "captures": [
+        "content-1440-tile-05.png",
+        "index-1440-tile-01.png",
+        "index-1440-tile-09.png"
+      ],
+      "evidence": "An oversized restated sentence in a tilted coloured tile would read as a conclusion pulled out of its programme scope; the red band takes the first desktop fixation away from content, which the frozen home search bar cannot allow; and a browse list whose rows are led by ornament spends its most prominent slot on something carrying no data. Adjacent entries at index-1440-tile-09 do differ in headline and summary, so the objection is to the ornament leading the row, not to the entries being indistinguishable.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "information-design",
+      "claim": "The article's 'about this record' facts are collected into one light grey plate directly under the title, held apart from both the prose and the rail.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "A plate about 700 px wide and 90 px tall sits between the h1 and the summary, holding read time, three topic links and the share links, each with a small coloured glyph; at 375 the same plate stacks into three rows and survives intact. For a dossier this is the shape for programme scope, review date and source count: one skippable plate, not a row of chips competing with the conclusion.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V2",
+      "topic": "information-design",
+      "claim": "A red small-caps 'QUICK SUMMARY' label opens an italic serif abstract at the full measure, before any section - the whole argument stated once, above the evidence.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-01.png"
+      ],
+      "evidence": "Eight lines of italic serif at the reading measure, introduced by a red letterspaced label inline with the first sentence and closed by a rule before the body begins; at 375 it survives the width unchanged. A dossier needs exactly this slot - the plain-language conclusion of one programme, stated before the evidence chain and visually marked as a summary rather than as a finding.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "defers-or-competes",
+      "claim": "The desktop right rail mixes editorial provenance with paid promotion in one column, so position stops signalling which is which.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png",
+        "content-1440-tile-05.png"
+      ],
+      "evidence": "Reading down the same ~283 px column: the author portrait and 'About the author' block, then an 'Email Newsletter' capture form with a 'Meow!' button, then a teal advertisement, then a purple video-course promo, then two empty promo boxes. Nothing - no rule, no label, no width change - separates the author's credentials from the advertisement. A dossier sidebar carrying provenance (sources, reviewers, revision) must not share a column with anything solicited, because a reader who learns the column is promotional stops reading the provenance in it.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [
+      "Compound dossier — reading column"
+    ],
+    "verdict": "strengthens",
+    "argument": "The reading-column assignment is strengthened, with corrections. The column that measured best also behaves well under a 15,700 px scroll: rhythm holds for thousands of pixels and the only breaks are commercial inserts RNAWiki has no equivalent of (F16, F18, F23). The earlier claim that the prose 'never acquires a card or a tint' does not survive the captures - the flow carries a tinted workshops panel with a green button at the full measure, a red pull-quote tile, blue in-prose links and grey figure plates (F23, F24) - so what is borrowable is the deference between those inserts, not a monochrome rule. The typeface-and-space hierarchy Phase 2 credited to Linear as secondary is demonstrated here at full essay length (F2, F13). Two adjustments follow. First, a boundary: this site contributes nothing to the 'dossier contents rail and previews' surface - there is no rail, no contents, no progress indicator and no sticky element on screen at any depth, and the two positioned elements recorded in the DOM sit at offsets past the end of the captured document and appear in no image (F16, F17, F25). Stripe remains the only measured rail candidate and the stopping rule stands. Second, a transfer, narrower than first written: the 375 px first screen corroborates a search-first mobile first screen, because the search field is the largest element in a header that grows taller while the nav collapses into a 'Menu' button - but the field is not alone, with the logo and that button above it and a topic-chip row below (F6). Separately, the Phase 2 justification row cites 11.5-12.6:1 from a dark article background; the article rendered black on white and domEvidence reports rgb(255,255,255)/rgb(51,51,51), so that contrast figure should be re-measured before it is used as a token (F31). One capture-boundary caveat applies to any claim about how the page ends: the desktop full capture stops at 15,700 px while the DOM records a comments section and a sticky comment form below that, so 'the page ends with chips and a supporters band' describes the capture (F19, F35)."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "The ~690 px serif reading column at 20.4/33.5 on white, with hierarchy carried by a sans/serif typeface switch and by asymmetric heading space (~90 px above, ~25 px below) rather than by colour or a box — dossier reading column [content-1440-tile-02.png, content-1440-tile-11.png]",
+      "Figures set on a plate slightly wider than the measure (798 px vs ~690 px, same left edge) with a caption that states what the figure shows rather than repeating the prose - used for the two dashboard figures but not for every figure on the page, so adopt it as a rule rather than copy it as practice - dossier reading column, structured data blocks [content-1440-scroll-50.png, content-1440-scroll-90.png, content-1440-tile-03.png]",
+      "The 'QUICK SUMMARY' block: a small red label opening an italic serif abstract at the full measure, above the first section, so the conclusion of one programme is stated once in plain language before the evidence chain - dossier reading column [content-1440-tile-01.png, content-375-tile-01.png]",
+      "The end-of-article-body exit: an 'Explore more on' line, topic chips, stop - no related-content block, no repeated bio, so no shared prose enters the uniqueness budget (the page continues below into a supporters band and a comments section; only the article's own ending is the pattern) - dossier reading column [content-1440-tile-17.png]",
+      "The mobile first screen as corroboration only for the frozen home search bar: a full-width search field is the largest element in a header that grows taller at 375 while the fourteen-item nav collapses to a 'Menu' button - a logo and that button sit above the field and a topic-chip row below it, so what corroborates is a search-first first screen, not an isolated field - home [index-375-tile-01.png]",
+      "The metadata plate: read time, topics and share links collected into one light grey plate between the title and the summary, holding record facts apart from the prose - the shape for programme scope, review date and source count on a dossier - dossier reading column [content-1440-tile-01.png, content-375-tile-01.png]"
+    ],
+    "avoid": [
+      "Labelled empty containers and reserved space for absent content - the 'More after jump' label over ~165 px of nothing at desktop and ~60 px at mobile, the empty rail cards holding only their caption links, the supporters line above ~250 px of blank space; absent data must render nothing - all surfaces [content-1440-tile-11.png, content-1440-tile-05.png, content-1440-tile-18.png, content-375-scroll-90.png]",
+      "A very long page with no in-page navigation: no contents at any scroll depth in any capture (the 15,700 px length is the capture height and the 13-heading count is domEvidence, which undercounts the visible sub-headings) - dossier contents rail [content-1440-scroll-50.png]",
+      "The pull-quote device: a tilted coloured tile restating a sentence at large size with a share control inside the argument, which on a medicine page would read as a conclusion lifted out of its programme scope — dossier reading column [content-1440-tile-05.png]",
+      "The full-bleed saturated header band, which takes the first desktop fixation away from content and cannot sit around a frozen search bar — home [index-1440-tile-01.png]",
+      "A portrait-led card shape as the repeating unit of a browse list, where the most prominent slot in every row carries no data about the entry - browse/filter [index-1440-tile-09.png]",
+      "A sidebar that mixes record provenance with solicitation in one column - author bio, newsletter form and two advertisements run together with nothing separating them, so position stops telling the reader which is editorial - dossier reading column, review history [content-1440-tile-01.png, content-1440-tile-03.png]"
+    ]
+  },
+  "notLongevityRelevant": null,
+  "bannersStanding": [
+    "index-1440: consent banner in div.cookie-banner__container — 'No, thanks.' was clicked and the banner is recorded as still visible in div.col-12; not found in any tile I opened (index-1440-tile-01/09/10)",
+    "index-375: left standing — only accept-type controls found in div.col-12; not found in index-375-tile-01 or index-375-tile-16",
+    "content-1440: left standing — only accept-type controls found in div.col-12; not found in any content-1440 tile or scroll capture I opened",
+    "content-375: left standing — only accept-type controls found in div.col-12; not found in content-375-tile-01, -26 or the scroll captures"
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-03T19:02:22.308Z",
+    "confirmed": 14,
+    "qualified": 22,
+    "refuted": 2,
+    "added": 3,
+    "notes": [
+      "Captures opened by the verifier: index-1440-full, index-1440-tile-01, index-1440-tile-09, content-1440-tile-01, -02, -03, -05, -11, -17, -18, content-1440-scroll-00, -50, -90, index-375-full, index-375-tile-01, content-375-tile-01, content-375-scroll-50 and content-375-scroll-90.",
+      "F22 removed (refuted): the stretches between figures are not unbroken text - content-1440-tile-05 and content-1440-tile-11 both show large pull-quotes, tile-05 also a tinted promo panel, and tile-11 a grey rule, so 'no decorative rules, filler quotes or section illustrations' is contradicted by the captures it cites alongside.",
+      "F34 removed (refuted): the reading region is not monochrome below the first screen - a red pull-quote tile and Twitter bird (tile-05), a green gradient button in a tinted panel (tile-05), blue in-prose links (tile-03), full-colour figures (scroll-50) and green topic chips (tile-17). The borrow item resting on it has been replaced.",
+      "No consent banner appears in any capture opened, at either width, so nothing here reads a banner as design; the bannerActions record is reported as a record only.",
+      "Two numbers used as visual observations are recorded values, not observations: the 15,700 px length is the desktop capture height and the 13-heading count is domEvidence.headingOutline, which counts two comment headings and misses visible sub-headings such as 'Designing The Mental Model Early'. F25 and F37 now say so and carry the domEvidence keys.",
+      "The desktop full-page capture is 15,700 px while stickyOrFixed places elements at 15,982 px and 17,031 px, so the DOM snapshot describes a taller document than the images. Every claim about how the page ends is now scoped to the capture."
+    ]
+  }
+}

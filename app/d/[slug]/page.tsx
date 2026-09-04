@@ -7,6 +7,8 @@ import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { AppShell } from '@/components/AppShell'
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
+import { CorpusDossierPage } from '@/components/dossier/corpus/CorpusDossierPage'
+import { corpusMetaDescription, loadCorpusDossier } from '@/lib/corpus/dossier-page'
 import {
   getDrugBySlug,
   getPublicDrugBySlug,
@@ -35,6 +37,14 @@ const siteOrigin = configuredSiteOrigin()
  */
 const loadViewer = cache(getCurrentUser)
 const loadCanonicalRoute = cache(resolvePublicMedicineRoute)
+
+/**
+ * The corpus template branch. A slug that has a `corpus_pages` row is served by the new question
+ * template; a slug that has none is served by the existing dossier exactly as before, so every URL
+ * the site already publishes keeps working while the corpus lands tier by tier. The load is cached
+ * per request because the metadata and the body both need it.
+ */
+const loadCorpusPage = cache(loadCorpusDossier)
 const loadPublicDossier = cache(getPublicDrugBySlug)
 
 const loadDossier = cache((slug: string, viewerUserId: string | undefined) =>
@@ -62,6 +72,26 @@ export async function generateMetadata({
 }: DossierPageProps): Promise<Metadata> {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
+
+  const corpus = await loadCorpusPage(slug)
+  if (corpus) {
+    const description = corpusMetaDescription(corpus)
+    const path = `/d/${corpus.slug}`
+    return {
+      title: corpus.displayName,
+      ...(description ? { description } : {}),
+      alternates: { canonical: path },
+      // A Tier 3 or below-threshold record is reachable and crawlable but not indexed (R6).
+      robots: pageRobotsMetadata({ index: corpus.indexable, follow: true }),
+      openGraph: {
+        type: 'article',
+        title: `${corpus.displayName} | RNAWiki`,
+        ...(description ? { description } : {}),
+        url: path,
+      },
+    }
+  }
+
   const route = await loadCanonicalRoute(slug)
   if (!route) {
     return {
@@ -129,7 +159,16 @@ export async function generateMetadata({
 export default async function DossierPage({ params, searchParams }: DossierPageProps) {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
-  const [viewer, route] = await Promise.all([loadViewer(), loadCanonicalRoute(slug)])
+  const [viewer, corpus] = await Promise.all([loadViewer(), loadCorpusPage(slug)])
+  if (corpus) {
+    return (
+      <AppShell initialUser={viewer}>
+        <CorpusDossierPage dossier={corpus} />
+      </AppShell>
+    )
+  }
+
+  const route = await loadCanonicalRoute(slug)
   if (!route) notFound()
   if (route.canonicalSlug !== slug) {
     const queryString = programmeRef ? `?programme=${encodeURIComponent(programmeRef)}` : ''

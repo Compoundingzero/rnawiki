@@ -1,0 +1,5 @@
+{
+  "threshold": 11,
+  "indexedCount": 636,
+  "basis": "Gate 2 recheck (data/corpus-20k/gate2/summary-v2.json, 2026-09-05). The deploy procedure fixed in Phase 2d: index at 7 only if the threshold-7 set clears a size-matched cumulative positional nearest-neighbour median of 0.20 and an all-pairs median of 0.30. Measured on the rendered HTML of all 2,249 threshold-7 pages: size-matched 0.202454 (fails <= 0.20), all-pairs 0.256167 (passes <= 0.30), and the all-pairs lexical median 0.453177 is also above R3\u2019s 0.40. The 636 pages at threshold 11 measure 0.188161 size-matched, 0.195831 all pairs, 0.368746 lexical. Indexing therefore deploys at 11; present-field counts 7 to 10 are the promotion criterion, to be re-measured as those pages gain fields."
+}

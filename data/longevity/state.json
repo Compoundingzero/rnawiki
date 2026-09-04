@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "phase": "not-started",
+  "corpus": "BROAD (803) — decided by Felix 2026-09-03, do not re-derive",
+  "cursor": {},
+  "counts": {},
+  "completed": [],
+  "batches": [],
+  "legalGate": {},
+  "decisions": [
+    {
+      "at": "2026-09-03",
+      "by": "Felix",
+      "what": "Corpus is BROAD, 803 compounds."
+    }
+  ],
+  "awaiting": "Track A delivery 1 must stop first; B1 starts only on Felix's go",
+  "updated_at": "2026-09-03T14:24:25.031Z"
+}

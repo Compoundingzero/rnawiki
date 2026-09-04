@@ -1,0 +1,854 @@
+{
+  "site": "longevity wiki (url to verify)",
+  "track": "A2",
+  "urls": {
+    "index": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+    "content": "https://en.longevitywiki.org/wiki/Rapamycin",
+    "contentNote": "Content article chosen by the orchestrator: the Rapamycin article (HTTP 200, title 'Rapamycin - Longevity Wiki'); the first capture used the main page for both roles"
+  },
+  "capturedAt": "2026-09-03T18:19:25.402Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page.",
+    "content page is taller than the 16384 px capture cap (desktop 12895 px, mobile 31729 px); the -full image stops at the cap, and the tiles continue past it but only under the head-and-tail rule recorded on the last tile"
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in #footer-places (controls: Privacy policy, About Longevity Wiki, Disclaimers); banner stands in the captures",
+    "index-375: left: no permitted refusal control in #footer-places (controls: Privacy policy, About Longevity Wiki, Disclaimers); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in #footer-places (controls: Privacy policy, About Longevity Wiki, Disclaimers); banner stands in the captures",
+    "content-375: left: no permitted refusal control in #footer-places (controls: Privacy policy, About Longevity Wiki, Disclaimers); banner stands in the captures"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://en.longevitywiki.org/wiki/Rapamycin",
+    "collectedAt": "2026-09-03T18:19:11.806Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.3606,
+    "title": "Rapamycin - Longevity Wiki",
+    "innerTextLength": 45486,
+    "outerHtmlLength": 126147,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Rapamycin"
+      },
+      {
+        "tag": "h2",
+        "text": "Contents"
+      },
+      {
+        "tag": "h2",
+        "text": "Evidence of increased healthspan or lifespan"
+      },
+      {
+        "tag": "h3",
+        "text": "Non-human primates"
+      },
+      {
+        "tag": "h3",
+        "text": "Dogs"
+      },
+      {
+        "tag": "h3",
+        "text": "Mice"
+      },
+      {
+        "tag": "h3",
+        "text": "Flies"
+      },
+      {
+        "tag": "h3",
+        "text": "Roundworms"
+      },
+      {
+        "tag": "h3",
+        "text": "Yeast"
+      },
+      {
+        "tag": "h2",
+        "text": "Effects on age-related diseases"
+      },
+      {
+        "tag": "h3",
+        "text": "Dose response"
+      },
+      {
+        "tag": "h2",
+        "text": "Mechanism"
+      },
+      {
+        "tag": "h3",
+        "text": "Manipulating metabolic pathways - differences to calorie restriction"
+      },
+      {
+        "tag": "h3",
+        "text": "mTORC1 and mTORC2"
+      },
+      {
+        "tag": "h3",
+        "text": "Effects on glucoregulatory control"
+      },
+      {
+        "tag": "h3",
+        "text": "Reducing the effects of cellular senescence"
+      },
+      {
+        "tag": "h2",
+        "text": "Human clinical trials"
+      },
+      {
+        "tag": "h3",
+        "text": "PEARL study"
+      },
+      {
+        "tag": "h2",
+        "text": "Dog clinical trials"
+      },
+      {
+        "tag": "h2",
+        "text": "Regulatory approval"
+      },
+      {
+        "tag": "h2",
+        "text": "Safety"
+      },
+      {
+        "tag": "h2",
+        "text": "Rapalogs"
+      },
+      {
+        "tag": "h3",
+        "text": "mTOR inhibition improves immune function in the elderly"
+      },
+      {
+        "tag": "h3",
+        "text": "TORC1 inhibition enhances immune function and reduces infections in the elderly"
+      },
+      {
+        "tag": "h3",
+        "text": "Improving immune function in older adults for respiratory tract infections, incl"
+      },
+      {
+        "tag": "h2",
+        "text": "See also"
+      },
+      {
+        "tag": "h2",
+        "text": "References"
+      }
+    ],
+    "headingCount": 27,
+    "stickyOrFixedCount": 0,
+    "stickyOrFixed": [],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": true,
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 6,
+    "scriptsUnreadable": 1,
+    "searchAffordances": {
+      "count": 2,
+      "firstDescriptors": [
+        "div[role=search]",
+        "input Search Longevity Wiki"
+      ]
+    },
+    "imgCount": 6,
+    "imgLazyCount": 2,
+    "htmlAttributes": {
+      "class": "client-js ve-available",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 0,
+      "totalSheets": 4
+    },
+    "bodyBackgroundColor": "rgb(255, 255, 255)",
+    "bodyColor": "rgb(33, 37, 41)",
+    "canvasCount": 0,
+    "svgCount": 0
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 1481,
+      "sha256": "779af172ed872d2b87ae06982bd54633accca5bea4faf47b132c38e1377e0b2b",
+      "capturedAt": "2026-09-03T18:18:48.982Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "16b184b082116c71acb8458951d3f39d594408a924e4205aeac553d793654913",
+      "capturedAt": "2026-09-03T18:18:49.059Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 581,
+      "sha256": "4d289a9eebaca6f7269cdec187c4c7686ef8dc04c0d223099fab96d1ff81cff2",
+      "capturedAt": "2026-09-03T18:18:49.103Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 2565,
+      "sha256": "56396765e0c1dbb77abd299935b650e5af9ac874cc5e9b90e71c3f7ba02ae668",
+      "capturedAt": "2026-09-03T18:18:51.824Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "317e03069d3bd90e8c90d457a5e34e37a4d60a70e4efd8c98f3f0eaec427ba41",
+      "capturedAt": "2026-09-03T18:18:51.880Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "1de6667c80e839e8a6aa3d4fc194db66b4054b10968de3a12f44510b68707dac",
+      "capturedAt": "2026-09-03T18:18:51.929Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3a4e003366f23e5ebecd45374f497fca760afa8295e024db1b6e405da7ba861b",
+      "capturedAt": "2026-09-03T18:18:51.980Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://en.longevitywiki.org/wiki/Longevity_Wiki",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 129,
+      "sha256": "422f31fc78fef9246e910309c95acb2c4cbf56cdecfb4aa2369befc10e9b38cc",
+      "capturedAt": "2026-09-03T18:18:52.022Z"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 12895,
+      "sha256": "dc661410ea4e1b22113c44ba0912addf8f6ed5f25012824211606831cdd9f21c",
+      "capturedAt": "2026-09-03T18:19:10.530Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7b302500412ca280c9a6b02b4a7c8d50f31022ceac4db27484fb95cdc1ced61e",
+      "capturedAt": "2026-09-03T18:19:10.620Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e01a63a70f61cd29114c48451797a6b0850554bcedc875012bb3b2df4e662c10",
+      "capturedAt": "2026-09-03T18:19:10.699Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "133342f2743bfbdcebe8deba8be110c581a98fa3f9d67e5ac33baad6c1a8fc84",
+      "capturedAt": "2026-09-03T18:19:10.793Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "768d51d1b14d43f578ed5201b3bd4e457af7a6879879a38439971061a0e9256c",
+      "capturedAt": "2026-09-03T18:19:10.876Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3fdd1782d3c67e4384d763b3011356793968a9fdce6ecc2f441d4b9de58fc7eb",
+      "capturedAt": "2026-09-03T18:19:10.958Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "538c2dc8cd80af3ab285ce061a7b0170140a99da1f91593cbd0e157b1450e8a9",
+      "capturedAt": "2026-09-03T18:19:11.039Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "6c9c39f4c9eee0d5dad6740f4f6aa8ff69f554b4106a812322c4e5056b757f98",
+      "capturedAt": "2026-09-03T18:19:11.125Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a46708226f2eeaf9a1bcf6c92bded58e06b1eee6832554e252ce033bd30780a6",
+      "capturedAt": "2026-09-03T18:19:11.213Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ff0f99cf87d8fa8b19ee89f7417d0ca314c8c779e9bf11d1ad56c1e44fbd55a2",
+      "capturedAt": "2026-09-03T18:19:11.326Z"
+    },
+    {
+      "file": "content-1440-tile-10.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 8100,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "05b72deb6b08a1ea75fde197afe639c3055ef1edeba4b41a555a8ba0b9d710a3",
+      "capturedAt": "2026-09-03T18:19:11.419Z"
+    },
+    {
+      "file": "content-1440-tile-11.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 9000,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "e0e2de3449dedfee2abc75e6f5a6d5dbd2ce8c802d2fcd05158856593fcf344b",
+      "capturedAt": "2026-09-03T18:19:11.528Z"
+    },
+    {
+      "file": "content-1440-tile-12.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 9900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "642d6e2a1ad288ecee92846aca657f9be62d8bd173ab82d3c71519e0151d0ea5",
+      "capturedAt": "2026-09-03T18:19:11.624Z"
+    },
+    {
+      "file": "content-1440-tile-14.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 14,
+      "scrollY": 11700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "53888b122695f631d90398c5a68021753cf527050ea77f90fd7d076d0e8f5064",
+      "capturedAt": "2026-09-03T18:19:11.724Z"
+    },
+    {
+      "file": "content-1440-tile-15.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 15,
+      "scrollY": 12600,
+      "widthPx": 1440,
+      "heightPx": 295,
+      "sha256": "71a31225981d65b3fb8e057d190fc90059dade0f5f2166185b951732cfee5ab4",
+      "capturedAt": "2026-09-03T18:19:11.778Z",
+      "note": "1 tiles between 12 and 13 were not captured"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7b302500412ca280c9a6b02b4a7c8d50f31022ceac4db27484fb95cdc1ced61e",
+      "capturedAt": "2026-09-03T18:19:13.411Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 5998,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b30d2b13252ea5a3f778a23ad57c829678019f8c104fb64165219c1ffeaf9d13",
+      "capturedAt": "2026-09-03T18:19:15.027Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 10796,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "bd8ca7675e1e10a2e2e5be182611f82bf7f7756cef8b1e4821354d3e0f4fd424",
+      "capturedAt": "2026-09-03T18:19:16.656Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 16384,
+      "sha256": "fe18a9320c0a6adeeabfa2098bce17abb7ccf58600a28188f3993418cc86acbe",
+      "capturedAt": "2026-09-03T18:19:19.725Z",
+      "truncated": true,
+      "note": "document is 31729 px tall; this image is the top 16384 px, the tallest surface this tool asks Chromium to rasterize. The tiles continue below this point."
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "78371dbcc6a53f8ce5e4071e4e883e64f714a831e97da6d7b043cff65a0ca37c",
+      "capturedAt": "2026-09-03T18:19:19.815Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e0f358ed159be5d801b5d9d4af99012b50aad41947cd9b0eeb367166d6aff058",
+      "capturedAt": "2026-09-03T18:19:19.866Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e35076503b54fc6c5e8333a5904cb2d32219a052e6d947e2b6a30fce064456d4",
+      "capturedAt": "2026-09-03T18:19:19.934Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "824f7933f325de5f4f27b781ee419355082e0fcbc1815d6cb3ddee1a672ce45b",
+      "capturedAt": "2026-09-03T18:19:20.000Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3b4d8e1f1f65517667e693ece1e1d8436e39b19dac0d0cf26a3af50ac1b9cd37",
+      "capturedAt": "2026-09-03T18:19:20.068Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7e33f4eb4c8827eb940cdbb75330da7c1e38a196a08f5bc276affbd34c44978c",
+      "capturedAt": "2026-09-03T18:19:20.147Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a1711dbbcf54c56fd1d6f9a1d8a2dc3366b00aab87149bb35e6bd9c34c55fa90",
+      "capturedAt": "2026-09-03T18:19:20.199Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "eba3f4a8e2f99d1dc5876a2fb9e51d6e8d5b246108cefb77ad8cd3e371054802",
+      "capturedAt": "2026-09-03T18:19:20.280Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5a56da02fbf36bb14693212324ba7190943017355eed46417d463036b32794da",
+      "capturedAt": "2026-09-03T18:19:20.344Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5a1fdd4412e343637bf279c2a53d36cc7ee48a73922399273f8f48e80989a94e",
+      "capturedAt": "2026-09-03T18:19:20.412Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "38f9ee10ecf5d61ff26489f9658aea2eb78e226e4b8d99bc3b8d86cfb7c09ab2",
+      "capturedAt": "2026-09-03T18:19:20.480Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "ba41ef6749659d8d770d5b1e4d5b304de548c95cdc028406f6bb546c7d9a7cfc",
+      "capturedAt": "2026-09-03T18:19:20.534Z"
+    },
+    {
+      "file": "content-375-tile-39.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 39,
+      "scrollY": 30856,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7ff31302a2b37858368c7df9e50edb2eb5a879984b26c2091ed23ce3a71e7eab",
+      "capturedAt": "2026-09-03T18:19:20.612Z"
+    },
+    {
+      "file": "content-375-tile-40.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 40,
+      "scrollY": 31668,
+      "widthPx": 375,
+      "heightPx": 61,
+      "sha256": "66bf791efe453758dda437f8d51993246679479fbe1d4a32711d6ab4113643ac",
+      "capturedAt": "2026-09-03T18:19:20.655Z",
+      "note": "26 tiles between 12 and 38 were not captured"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "78371dbcc6a53f8ce5e4071e4e883e64f714a831e97da6d7b043cff65a0ca37c",
+      "capturedAt": "2026-09-03T18:19:22.237Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 15459,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "1753c8066093455b74acc4b6250c27d7960a44c378ad018c791120479b0f72f5",
+      "capturedAt": "2026-09-03T18:19:23.822Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://en.longevitywiki.org/wiki/Rapamycin",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 27825,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "39c46723ae29c677d7af4dc57819d5b9e2a7948170d08282ac9ed3c2a5a3aaf4",
+      "capturedAt": "2026-09-03T18:19:25.402Z"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "total": 9852,
+  "unii": 6711,
+  "cid": 2081,
+  "inchikey": 0,
+  "chembl": 1208,
+  "cas": 2738,
+  "rxcui": 4766,
+  "anyKey": 6739,
+  "noKey": 3113,
+  "meta": {
+    "generatedAt": "2026-09-04",
+    "database": "postgresql://admin@localhost:5432/rnawiki_corpus_completion",
+    "population": "inventory_resolutions.resolution_status = 'CANONICAL_ENTITY'",
+    "keyPaths": {
+      "unii": "drugs.recorded_background->'registryIdentifiers'->>'unii'",
+      "cid": "drugs.recorded_background->'registryIdentifiers'->>'pubchemCid'",
+      "inchikey": "not stored anywhere in the database, data/registries/*.json or data/*.ndjson",
+      "chembl": "drugs.recorded_background->'registryIdentifiers'->>'chemblId'",
+      "cas": "drugs.recorded_background->'registryIdentifiers'->>'casNumber'",
+      "rxcui": "drugs.recorded_background->'registryIdentifiers'->>'rxcui'"
+    },
+    "anyKeyDefinition": "at least one of unii, pubchemCid, chemblId, casNumber, rxcui present",
+    "otherIdentifiersOverSamePopulation": {
+      "emaSubstanceId": 2375,
+      "drugBankId": 2245,
+      "ecNumber": 1354,
+      "chebiId": 1224,
+      "innIdentifier": 922,
+      "ncbiTaxonomyId": 820
+    },
+    "identityConfidence": { "REGISTRY_IDENTIFIER_RECORDED": 9802, "NAME_ONLY": 50 },
+    "identitySourceKindOccurrences": {
+      "FDA_NDC": 30430,
+      "FDA_LABEL_SET": 24892,
+      "UNII": 6711,
+      "RXCUI": 4766,
+      "DSLD_INGREDIENT_GROUP": 3884,
+      "NCBI_TAXONOMY": 3065,
+      "CAS": 2738,
+      "FDA_APPLICATION": 2399,
+      "PUBCHEM_CID": 2081
+    }
+  }
+}

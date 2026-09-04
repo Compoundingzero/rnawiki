@@ -5,6 +5,7 @@
 // a wall in front of the only thing they came for.
 
 import { z } from 'zod'
+import { corpusRanksForSlugs, rankHitsByCorpusTier, searchCorpusPages } from '@/lib/corpus/search'
 import { searchDrugs } from '@/lib/queries/drugs'
 import { PUBLIC_API } from '@/lib/rate-limit'
 import { ok, rateLimited, rateLimitKey, withHandler } from '@/lib/api-response'
@@ -50,6 +51,21 @@ export const GET = withHandler(async (req: Request) => {
   const limited = rateLimited(PUBLIC_API, rateLimitKey(req))
   if (limited) return limited
 
-  const results = await searchDrugs(query, parsed.limit ?? DEFAULT_LIMIT)
-  return ok({ results })
+  const limit = parsed.limit ?? DEFAULT_LIMIT
+  // Corpus records rank Tier 1, then Tier 2, then Tier 3, and a Tier 3 row carries its present-field
+  // count so a reader can see how thin the record is before opening it (docs/specs/browse.md).
+  // Corpus records with no legacy row are returned separately: the legacy hit shape has fields
+  // (modality, approval status, indication) that such a record has no recorded answer for.
+  const [legacyHits, corpusHits] = await Promise.all([
+    searchDrugs(query, limit),
+    searchCorpusPages(query, limit),
+  ])
+  const ranks = await corpusRanksForSlugs(legacyHits.map((hit) => hit.slug))
+  const results = rankHitsByCorpusTier(legacyHits, ranks).map((hit) => {
+    const rank = ranks.get(hit.slug)
+    return rank ? { ...hit, tier: rank.tier, presentFieldCount: rank.presentFieldCount } : hit
+  })
+  const legacySlugs = new Set(legacyHits.map((hit) => hit.slug))
+  const corpusResults = corpusHits.filter((hit) => !legacySlugs.has(hit.slug))
+  return ok({ results, corpusResults })
 })

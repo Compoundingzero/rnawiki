@@ -1,0 +1,522 @@
+{
+  "site": "openhumans.org",
+  "track": "A2",
+  "viewedAt": "2026-09-03T18:27:33.119Z",
+  "imagesViewed": [
+    "content-1440-full.png",
+    "content-1440-scroll-00.png",
+    "content-1440-scroll-50.png",
+    "content-1440-scroll-90.png",
+    "content-1440-tile-01.png",
+    "content-1440-tile-02.png",
+    "content-1440-tile-03.png",
+    "content-375-scroll-00.png",
+    "content-375-scroll-50.png",
+    "content-375-scroll-90.png",
+    "content-375-tile-01.png",
+    "content-375-tile-02.png",
+    "content-375-tile-03.png",
+    "content-375-tile-08.png",
+    "index-1440-full.png",
+    "index-1440-tile-01.png",
+    "index-1440-tile-02.png",
+    "index-375-full.png",
+    "index-375-tile-01.png"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "topic": "hierarchy",
+      "claim": "Inside the home hero, hierarchy is size-only in one dark grey and the only saturated element is the orange Join now pill in the chrome; that holds for the hero band, not for the whole first screen.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-1440-full.png"
+      ],
+      "evidence": "Wordmark ~40px, tagline ~20px, both the same dark grey; one outlined Learn more button; the orange Join now pill is the only strong colour above the first hairline rule. Below that rule, still inside the first 900px, the Featured projects row carries a saturated purple 'QF' square, two teal avatars and three orange Learn more buttons.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F2",
+      "topic": "hierarchy",
+      "claim": "The content page has exactly two levels above the cards and no grouping below them; 20 project names are visual peers.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png"
+      ],
+      "evidence": "One h3 'Explore and share your data' at ~26px plus one grey sentence; below that only cards, counted at 20 in content-1440-full.png (seven in column one, seven in column two, six in column three). The manifest headingOutline records a single heading for the whole document, matching the flat visual structure.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F3",
+      "topic": "hierarchy",
+      "claim": "The card interior is the best-designed element on the site: four type levels in ~150px with only the numeral bold.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-02.png"
+      ],
+      "evidence": "Name 20px dark, person 15px dark, affiliation 13px light grey, member count with only the number bold, description 14px, hairline rule, orange Learn more button — repeated identically across all 20 records at 1440 and at 375.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F5",
+      "topic": "eye-lands",
+      "claim": "At 375px the hero stacks and the eye lands on the words; on the content page at both widths it lands on the heading, then on the project avatar — the largest mark in the card and its least informative field.",
+      "captures": [
+        "index-375-tile-01.png",
+        "content-375-scroll-00.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "Mobile hero order is title, tagline, Learn more, sketch. On the content page the strongest mark in each card is the contributor-supplied logo, ~85px at 1440 and ~50px at 375; most avatars only restate the project name in type (GenomiX, UbiQomix, Juno's, Imputer, Gut Instinct, Galileo), though a few (Transbiome, The Quantified Heart) do carry a topical picture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F6",
+      "topic": "density",
+      "claim": "Six complete six-field project records and the start of three more fit legibly in the first 1440x900 screen because every card repeats the same fields in the same order.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-full.png",
+        "content-375-full.png"
+      ],
+      "evidence": "Rows one and two reach their Learn more button inside 900px; row three is cut. 20 records in 2,264px at 1440 and 5,999px at 375; the repeated field order lets the reader learn the pattern once.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F7",
+      "topic": "density",
+      "claim": "The list has no count, filter, sort, category, search or pagination, and no stated or readable order: member counts trend downward but the sequence is not a strict ranking in any direction, and the desktop and mobile orders differ.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-375-tile-02.png"
+      ],
+      "evidence": "Column one reads 1479, 465, 403, 286, 164, 70, 48 and column three 695, 485, 302, 262, 77, 62 — both descending — but the top row reads 1479, 685, 695 and column two reads 685, 586, 260, 269, 92, 70, 31. At 375 the same records arrive as 1479, 685, 695, 465, 485, 586. Nothing on screen states that an order exists.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F8",
+      "topic": "whitespace",
+      "claim": "Whitespace is spent on outer margin and card separation, not on the reading; card descriptions run about 55 characters.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "~1,160px content column inside 1,440px viewport (~140px each side), ~24px gutters, ~16-20px card padding, ~300px description measure.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F9",
+      "topic": "whitespace",
+      "claim": "On the home page a hairline rule plus ~50px of air above a centred grey heading is the only grouping mechanism, and it is enough — no boxes are needed.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "The same rule-and-air pattern separates Featured projects, Recent activity and Recent news.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F10",
+      "topic": "long-scroll",
+      "claim": "Only a 54px fixed navigation bar persists through the scroll; at 1440 the pale highlight behind the active nav item is the page's sole orientation cue, and at 375 the bar collapses to a hamburger so no orientation cue survives.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-scroll-90.png",
+        "content-375-scroll-50.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "The navbar sits at the top edge of every scrolled viewport capture at both widths, with a tinted box behind 'Explore & share' at 1440. At 375 the links are inside an unopened hamburger, so the active-section tint is not shown. No progress bar, contents rail, sticky section heading or position count appears at either width.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F11",
+      "topic": "long-scroll",
+      "claim": "Card height follows description length, so bottoms are ragged and no two card tops align exactly after the first row; the page still reads as seven loose rows rather than three unrelated ribbons, and the mobile single column is the calmer view.",
+      "captures": [
+        "content-1440-full.png",
+        "content-1440-tile-02.png",
+        "content-375-scroll-50.png"
+      ],
+      "evidence": "Row one aligns exactly at y=155; after that tops drift about 35px by row two, about 55px by row four and about 110px by row six, while bottoms never line up. At 375 the single column removes the problem entirely.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F12",
+      "topic": "long-scroll",
+      "claim": "The page end is unresolved: column three stops about 220px above the other two, leaving an empty rectangle, and the page drops straight into pipe-separated footer links.",
+      "captures": [
+        "content-1440-tile-03.png",
+        "content-375-tile-08.png"
+      ],
+      "evidence": "Column three's last card (Galileo) ends near y=1963 in a 2,264px page while columns one and two end near 2141 and 2187. No closing statement, total, next page or invitation; the footer is one centred line at 1440 — About | Blog | Chat | Member list | two icons | Contact Us | Community Guidelines | Terms of Use | Data Use Policy — wrapping to three lines at 375.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F13",
+      "topic": "imagery",
+      "claim": "The one diagram on the site carries the model: a hand-drawn sketch reading 'your data + you' with three arrows to explore, donate, research, intact at 375px.",
+      "captures": [
+        "index-1440-tile-01.png",
+        "index-375-tile-01.png"
+      ],
+      "evidence": "The sketch occupies the right half of the desktop hero and stacks below the tagline on mobile without losing its labels.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F14",
+      "topic": "imagery",
+      "claim": "Each of the 20 content-page cards carries one contributor-supplied avatar and none of them carries data; a site entirely about personal data shows not one chart.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png",
+        "content-1440-tile-03.png"
+      ],
+      "evidence": "A purple text circle, a black square wordmark, a QF monogram, a magnifying glass with microbes over trans-flag stripes (Transbiome), a striped photograph, an anatomical heart, an outline 'Galileo' circle, and an unresolvable grey smudge for 'Mobility data of researchers'. The manifest's imgCount of 28 covers those 20 avatars plus the navbar wordmark and the footer social icons, not 28 avatars; svgCount and canvasCount are zero.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "imgCount",
+        "svgCount",
+        "canvasCount"
+      ]
+    },
+    {
+      "id": "F15",
+      "topic": "defers-or-competes",
+      "claim": "The content page defers almost completely in what is visible: plain 1px-bordered cards, one accent colour on buttons and links only, no shadows, motion or hover art. Its 9.95% text-to-HTML ratio is DOM measurement, not a visual observation.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Visible: plain cards, one accent colour, hairline rules, no motion cues. Measured: 4,540 characters of text in 45,632 of markup (0.0995) — the highest ratio recorded in this study, but the Phase 1 comparison in the original note was wrong: the highest Phase 1 figure is rnawiki.com at 3.76%, not 8.5%.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "textToHtmlRatio",
+        "innerTextLength",
+        "outerHtmlLength"
+      ]
+    },
+    {
+      "id": "F16",
+      "topic": "defers-or-competes",
+      "claim": "The home page competes twice: the loudest element on the first screen is an account action, and half the hero is given to a drawing — the first screen does then offer three featured projects, but the doorway to the full list of 20 is one unemphasised nav link.",
+      "captures": [
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "Orange Join now pill top right; three Featured projects cards below the hero rule; 'Explore & share' set as plain nav text at the same weight as 'Add data' and 'Create'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F17",
+      "topic": "information-design",
+      "claim": "Each record is a project, not a dataset and not a result: no outcome, data preview, format, licence, identifier, version, DOI, or start/end date field exists anywhere on the page.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The six fields are name, people, affiliation, participation count, owner-written description, one outbound link, across all 20 records. A reader learns who runs something and how many joined, and nothing about what came out.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F18",
+      "topic": "information-design",
+      "claim": "The only number on the page is also the only bold text on it, and its meaning changes silently between cards with no key.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-02.png"
+      ],
+      "evidence": "'Connected by 1479 members' and 'Joined by 465 members' encode data-source connection versus study participation in identical styling; no legend, tooltip or key appears in any capture.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F19",
+      "topic": "information-design",
+      "claim": "There is no visual signal of evidence quality anywhere, and the closest thing to provenance is set in the card's smallest and lightest type while popularity is bolded.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "Across 20 records: no verified, reviewed, approved, peer-status, ethics, replication, confidence, self-reported or sample-size mark. Affiliations (New York University, ETH Zurich, Delft University of Technology, UCSD Design Lab, Wellesley College & NYU, Center for Research and Interdisciplinarity (CRI)) sit at 13px light grey; on 'Imputer' that same slot holds 'github.com/arvkevi' with nothing to mark the difference.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F20",
+      "topic": "information-design",
+      "claim": "Community-run and institution-run work are drawn identically; editorial and user-contributed content are nowhere distinguished.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-1440-scroll-50.png"
+      ],
+      "evidence": "OpenAPS Data Commons (DIY closed-loop community), Nightscout Data Commons (foundation committee) and 'Data sharing and ethical oversight' (Prof. Dr. Effy Vayena, ETH Zurich) share the same card, type scale, button and weight.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F21",
+      "topic": "information-design",
+      "claim": "The content page has no time dimension at all: a reader cannot tell a live study from an abandoned one.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "No start, last-collected or status field on any card. The single date in all 20 records is 'during Feb to Jul 2020' buried mid-sentence in the Keating Memorial description, six years before the capture, and it is prose rather than a field.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F22",
+      "topic": "information-design",
+      "claim": "The site gives a reader two things a trial registry cannot — a named accountable person per record, and a timestamped liveness feed — and the feed shows the cost of recency without a quality gate.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Every card names a human one type step below the title. The home 'Recent activity' feed carries real timestamps ('17 hours ago', '1 day ago'), but of the twelve entries visible at 1440 only two are joins of a named data source; ten are new-account rows, and six of those carry promotional-looking names (promiweltmagazine, Enterate Seguro, Ofertas de Billetes Baratos, Seguros Por Primera Vez, Enterate medicare, Enterate Insurance).",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F23",
+      "topic": "absence",
+      "claim": "Missing fields render nothing — no placeholder, no dash, no 'not available' — and cards get structurally shorter when they know less.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "'Genevieve Genome Report — Mad Ball' has no affiliation line and the member count simply moves up; 'Keeping Pace — Dr. Rumi Chunara — New York University' has one.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F24",
+      "topic": "absence",
+      "claim": "A missing section does not render nothing: 'Recent news' is a full section heading with no content beneath it, at both widths.",
+      "captures": [
+        "index-1440-full.png",
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "Hairline rule, ~50px of air, centred 26px 'Recent news', then immediately the footer links.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F25",
+      "topic": "absence",
+      "claim": "An unreplaced placeholder is indistinguishable from real content because the layout has no way to say a field was never filled in.",
+      "captures": [
+        "content-1440-scroll-50.png",
+        "content-1440-tile-02.png"
+      ],
+      "evidence": "The 'Gut Instinct' card's description is the string 'gut instinct' — its own title in lower case — set in the same 14px body style as every two-sentence description.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F26",
+      "topic": "baseline",
+      "claim": "The site is light-only with no theme control.",
+      "captures": [
+        "content-1440-scroll-00.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "prefersColorScheme.found is false across six stylesheets, the html element carries no class, style or data-theme, and body is rgb(255,255,255) on rgb(51,51,51). No toggle appears in the chrome in any capture.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "prefersColorScheme",
+        "htmlAttributes"
+      ]
+    },
+    {
+      "id": "F27",
+      "topic": "baseline",
+      "claim": "There is no command palette, no keyboard shortcut hint, no copy control and no search field; navigation is nav links and browser find only.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "kbdTexts and ariaKeyshortcuts are empty, copyControls.count is 0, searchAffordances.count is 0, and no such affordance is visible in any capture at either width.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "kbdTexts",
+        "ariaKeyshortcuts",
+        "copyControls",
+        "searchAffordances"
+      ]
+    },
+    {
+      "id": "F28",
+      "topic": "baseline",
+      "claim": "Two dialogs exist in the page but none is open in any capture, so nothing can be said about their design.",
+      "captures": [
+        "content-1440-scroll-00.png"
+      ],
+      "evidence": "stickyOrFixed lists two 'modal fade' divs at position fixed with height 0 alongside the fixed navbar; most likely behind Log in or Join now.",
+      "inferred": true,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "F29",
+      "topic": "borrow",
+      "claim": "Borrow the card field order and its type discipline for the browse/filter surface: name, responsible person, affiliation, count, description, one action, with only the numeral bold.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-02.png"
+      ],
+      "evidence": "Four type levels inside ~150px, repeated identically 20 times, with six complete records legible per 1440x900 screen.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F30",
+      "topic": "borrow",
+      "claim": "Borrow field-level absence with no placeholder for browse/filter and the dossier reading column — it is our stated constraint, rendered, and it looks correct rather than broken.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "The affiliation line vanishes when absent and the card shortens; no dash, no empty row, no 'not recorded'.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F31",
+      "topic": "avoid",
+      "claim": "Avoid the count as the only badge and the loudest thing in a record; on a dossier card the bold slot belongs to evidence tier and model organism.",
+      "captures": [
+        "content-1440-tile-01.png"
+      ],
+      "evidence": "'1479' is bolded while 'ETH Zurich' and 'New York University' sit at 13px light grey, teaching the reader to rank by popularity rather than by accountability.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F32",
+      "topic": "avoid",
+      "claim": "Avoid distinguishing states only by a word in body type — our five evidence states fail exactly as 'Connected by' versus 'Joined by' fails here.",
+      "captures": [
+        "content-1440-tile-01.png",
+        "content-375-tile-02.png"
+      ],
+      "evidence": "Two structurally different relationships rendered in identical styling with no key anywhere on the page.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "F33",
+      "topic": "avoid",
+      "claim": "Avoid a list with no stated or readable order dealt into ragged columns, an empty section heading, a placeholder that looks like content, an unfiltered directory, and an ungated recent-activity feed.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-full.png",
+        "content-1440-scroll-50.png",
+        "index-1440-tile-02.png"
+      ],
+      "evidence": "An approximate member-count order that no reading direction expresses; 'Recent news' heading over nothing; 'gut instinct' as a description; 20 records with no count, filter, sort or search; ten of twelve timestamped feed entries are new-account rows and six read as spam.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V1",
+      "topic": "long-scroll",
+      "claim": "The fixed navigation bar is opaque white with no bottom rule, shadow or fade, so scrolled content is guillotined at an invisible edge 54px down.",
+      "captures": [
+        "content-1440-scroll-90.png",
+        "content-375-scroll-90.png"
+      ],
+      "evidence": "At content-1440-scroll-90 the Learn more buttons at the top of columns two and three are sliced horizontally by the bar with nothing marking the cut; at 375 the same happens to a card border. For a dossier page with a sticky header, the bar needs a visible edge or the reader cannot tell clipped content from finished content.",
+      "inferred": false,
+      "domEvidenceKeys": [
+        "stickyOrFixed"
+      ]
+    },
+    {
+      "id": "V2",
+      "topic": "absence",
+      "claim": "The 375px home page shows six of the twelve recent-activity entries visible at 1440: the feed's second column does not stack, it disappears, and nothing on screen says rows are missing.",
+      "captures": [
+        "index-1440-tile-02.png",
+        "index-375-full.png"
+      ],
+      "evidence": "At 1440 the feed is two columns of six. At 375 only the first six entries render and 'Recent news' follows immediately. There is no count, no 'show more' and no truncation mark, so the mobile reader cannot know half the feed was dropped.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    },
+    {
+      "id": "V3",
+      "topic": "information-design",
+      "claim": "Every record ends in the same unlabelled 'Learn more' button — 20 identical link texts on one page — and the same card component orders its action differently on the home page than on the browse page.",
+      "captures": [
+        "content-1440-full.png",
+        "index-1440-tile-01.png"
+      ],
+      "evidence": "On the browse page the order is name, person, affiliation, count, description, rule, Learn more. On the home page's featured cards the Learn more button sits above the description, which is then set in a separate bordered 'About:' box. Twenty links reading 'Learn more' name no destination out of context; a browse row should name what it opens.",
+      "inferred": false,
+      "domEvidenceKeys": []
+    }
+  ],
+  "phase2": {
+    "surfacesNamed": [],
+    "verdict": "not-named",
+    "argument": "openhumans.org appears nowhere in the Phase 2 table; it is an A2 community site studied for information design, and nothing seen here argues for giving it a surface. Where it touches the table is browse/filter, currently governed by awwwards.com, and it touches it as a counter-example: awwwards was chosen because it is a stated grid with no reading column, and Open Humans is the same card idea without the grid discipline — ragged columns, an approximate member-count order that no reading direction expresses, a footer arriving mid-air (content-1440-tile-02.png, content-1440-tile-03.png). That strengthens the awwwards assignment. Its positive contribution belongs to structured data blocks (stripe.com/docs) and is a caution rather than a pattern: a repeated six-field record is learnable in one glance and field-level absence looks right, six complete records to a 1440x900 screen (content-1440-tile-01.png), yet with no evidence marks, no dates and no provenance weight a reader cannot tell a live ETH Zurich study from an abandoned one-line placeholder. That is the gap our evidence-tier and model-organism marks exist to fill, and this is the clearest measured picture of the page without them.",
+    "notes": "Nothing here may sit near the home search bar; the only home-page element worth taking is the single explanatory diagram, and it belongs on the reference/definitions page."
+  },
+  "forRnawiki": {
+    "borrow": [
+      "Card field order and type discipline for browse/filter: name, responsible person, affiliation, count, description, one action; four levels in ~150px with only the numeral bold (content-1440-tile-01.png).",
+      "Field-level absence with no placeholder for browse/filter and the dossier reading column — the record shortens when it knows less (content-1440-tile-01.png).",
+      "Evidence that deference is cheap: plain markup and one accent colour yield a 9.95% text-to-HTML ratio, the highest measured in this study (Phase 1's highest was rnawiki.com at 3.76%) — a measurement, not something the captures show (content-1440-scroll-50.png).",
+      "One hand-drawn diagram that states the model, placed once on the reference/definitions page and never near the home search bar (index-1440-tile-01.png, index-375-tile-01.png)."
+    ],
+    "avoid": [
+      "A section heading with nothing under it — 'Recent news' on the home page (index-1440-full.png).",
+      "A participation count as the only badge and the loudest element in the record, with provenance greyed out (content-1440-tile-01.png).",
+      "Two different meanings carried only by a word in identical body type, with no key — 'Connected by' versus 'Joined by' (content-1440-tile-01.png).",
+      "A list with no stated order dealt into ragged columns, so neither the columns nor the mobile stack express the order the counts hint at (content-1440-full.png, content-1440-tile-02.png).",
+      "A directory with no result count, filter, sort, search or pagination (content-1440-full.png).",
+      "An ungated community feed: ten of the twelve timestamped home entries are new-account rows and six read as spam (index-1440-tile-02.png).",
+      "A placeholder that looks like finished content — 'gut instinct' as a description (content-1440-scroll-50.png).",
+      "A sticky bar with no visible bottom edge, and a multi-column list that drops rows instead of stacking them at 375 (content-1440-scroll-90.png, index-375-full.png)."
+    ]
+  },
+  "notLongevityRelevant": false,
+  "bannersStanding": [
+    "manifest bannerActions records 'banner stands in the captures' for content-1440 and content-375 (detector matched div.panel-body whose only control was 'Learn more'). No consent or cookie overlay is visible in content-1440-scroll-00.png or content-375-scroll-00.png; the matched element is a project card body, so nothing in these images is an uncleared banner. index-1440 and index-375: no consent UI found."
+  ],
+  "verification": {
+    "verifiedAt": "2026-09-04T00:00:00.000Z",
+    "confirmed": 19,
+    "qualified": 13,
+    "refuted": 1,
+    "added": 3,
+    "notes": [
+      "Record count corrected throughout: the content page carries 20 project cards, not 22 (content-1440-full.png; column one Genevieve, Keeping Pace, Juno's, lineage, UbiQomix, GitHub Data Import, Transbiome; column two GenomiX, Imputer, Nightscout, Quantified Flu, Gut Instinct, The Quantified Heart, Mobility data of researchers; column three openSNP, OpenAPS, Keating, Data sharing and ethical oversight, nobism Ubiqum, Galileo). F3, F17, F19, F21 and F29 keep their claims; only the count inside their evidence was corrected.",
+      "F4 removed. Its distinctive assertion — that the 1440px home page offers no content entry point on the first screen — is contradicted by its own cited capture: index-1440-tile-01.png shows the Featured projects row, three complete project cards with Learn more buttons, inside the first 900px. The true parts of F4 survive elsewhere (no search field: F27; eye pulled by the sketch and the orange pill: F1 and F16).",
+      "The 8.5% Phase 1 text-to-HTML baseline in F15 is not in the record. The ten Phase 1 measurement files give a highest value of 0.0376 (rnawiki.com); the highest non-RNAWiki value is 0.0298 (smashingmagazine.com). openhumans.org at 0.0995 is still the highest recorded, so the ranking holds and only the baseline was wrong.",
+      "First-screen density corrected from nine complete records to six complete plus three begun (content-1440-tile-01.png): rows one and two reach their Learn more button inside 900px, row three is cut.",
+      "The member-count order is approximate, not exact. Columns one and three read strictly downward, but the top row reads 1479, 685, 695 and column two reads 260 before 269; the 375px single column reads 1479, 685, 695, 465, 485, 586 (content-375-tile-01.png, content-375-tile-02.png). The design lesson survives in weaker form: a browse list must state its order, because this one has none a reader can follow.",
+      "Recent-activity feed recounted: twelve entries at 1440, of which ten are new-account rows and six carry promotional-looking names — not 'twelve of fourteen'.",
+      "bannersStanding checked and upheld: content-1440-scroll-00.png (identical by sha256 to content-1440-tile-01.png) and content-375-scroll-00.png show no consent or cookie overlay. Separately, content-375-tile-02.png shows the fixed navbar painted across the middle of a card; that is the tile artifact named in the manifest caveats, not a page defect.",
+      "Verifier viewed index-1440-full/tile-01/tile-02, index-375-full/tile-01, content-1440-full/tile-01/tile-02/tile-03/scroll-50/scroll-90, content-375-tile-01/tile-02/tile-08/scroll-00/scroll-50/scroll-90; content-1440-scroll-00.png is byte-identical to content-1440-tile-01.png."
+    ]
+  }
+}

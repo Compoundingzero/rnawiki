@@ -1,0 +1,258 @@
+{
+  "generatedAt": "2026-09-03T10:56:16.903Z",
+  "population": 9852,
+  "dataTypes": [
+    "evidenceTier",
+    "humanDoseStudied",
+    "trialFailures",
+    "outcomeMeasures",
+    "kinetics",
+    "interactionPathways",
+    "evidenceCeiling",
+    "regulatoryDivergence"
+  ],
+  "coverage": {
+    "evidenceTier": {
+      "records": 5717,
+      "pctOfPopulation": 58.03
+    },
+    "humanDoseStudied": {
+      "records": 2073,
+      "pctOfPopulation": 21.04
+    },
+    "trialFailures": {
+      "records": 2136,
+      "pctOfPopulation": 21.68
+    },
+    "outcomeMeasures": {
+      "records": 3543,
+      "pctOfPopulation": 35.96
+    },
+    "kinetics": {
+      "records": 1405,
+      "pctOfPopulation": 14.26
+    },
+    "interactionPathways": {
+      "records": 757,
+      "pctOfPopulation": 7.68
+    },
+    "evidenceCeiling": {
+      "records": 3563,
+      "pctOfPopulation": 36.17
+    },
+    "regulatoryDivergence": {
+      "records": 0,
+      "pctOfPopulation": 0
+    }
+  },
+  "coverageQualifications": {
+    "evidenceTierFromRegisteredStudiesOnly": {
+      "records": 3566,
+      "pctOfPopulation": 36.2,
+      "meaning": "A ClinicalTrials.gov study is stored for the record. The larger evidenceTier figure also counts PUBMED_TITLE_ABSTRACT_MENTION_ONLY, which means only that a clinical-trial-typed paper mentions the recorded name in its title or abstract."
+    },
+    "kineticsTestedKeys": {
+      "keys": [
+        "halfLife",
+        "tMax",
+        "metabolismAsRecorded",
+        "proteinBinding",
+        "bioavailability",
+        "eliminationAsRecorded",
+        "volumeOfDistribution"
+      ],
+      "meaning": "kinetics counts a record holding any of these stored pharmacokinetic values. Testing only halfLife, tMax and metabolismAsRecorded had undercounted it by 208 records."
+    },
+    "humanDoseStudiedCorroboration": {
+      "RECORDED_SCHEDULE": 27,
+      "REGISTRY_NAME_MATCHES_RECORD": 2003,
+      "TWO_OR_MORE_TRIALS": 43
+    },
+    "kineticsRecords": 1405
+  },
+  "evidenceTierDistribution": {
+    "NONE_STORED": 4135,
+    "PUBMED_TITLE_ABSTRACT_MENTION_ONLY": 2151,
+    "HUMAN_INTERVENTIONAL": 224,
+    "HUMAN_RCT": 3297,
+    "HUMAN_OBSERVATIONAL": 45
+  },
+  "overall": {
+    "records": 9852,
+    "countOfEight": {
+      "0": 4039,
+      "1": 2205,
+      "2": 54,
+      "3": 827,
+      "4": 845,
+      "5": 795,
+      "6": 564,
+      "7": 523,
+      "8": 0
+    },
+    "median": 1,
+    "mean": 1.948
+  },
+  "maximumCountReachedByAnyRecord": 7,
+  "dataTypesNoRecordHas": [
+    "regulatoryDivergence"
+  ],
+  "slices": {
+    "phase1RecordsPath": "data/biohacker-pivot/phase1-records.ndjson",
+    "detectedShape": "object:thresholds.broad, object:thresholds.moderate, object:thresholds.strict",
+    "rowsRead": 9852,
+    "rowsWithoutRecognisedSlice": 0,
+    "membershipInterpretation": "exact — a record counts only in the slices phase 1 names for it",
+    "bySlice": {
+      "strict": {
+        "records": 166,
+        "countOfEight": {
+          "0": 0,
+          "1": 14,
+          "2": 0,
+          "3": 21,
+          "4": 34,
+          "5": 65,
+          "6": 21,
+          "7": 11,
+          "8": 0
+        },
+        "median": 5,
+        "mean": 4.464,
+        "slugsInPhase1": 166,
+        "slugsNotFoundInPhase2": 0,
+        "evidenceTierMix": {
+          "HUMAN_RCT": 147,
+          "PUBMED_TITLE_ABSTRACT_MENTION_ONLY": 13,
+          "HUMAN_INTERVENTIONAL": 5,
+          "HUMAN_OBSERVATIONAL": 1
+        },
+        "coverage": {
+          "evidenceTier": 166,
+          "humanDoseStudied": 118,
+          "trialFailures": 108,
+          "outcomeMeasures": 152,
+          "kinetics": 32,
+          "interactionPathways": 13,
+          "evidenceCeiling": 152,
+          "regulatoryDivergence": 0
+        }
+      },
+      "moderate": {
+        "records": 619,
+        "countOfEight": {
+          "0": 0,
+          "1": 28,
+          "2": 1,
+          "3": 36,
+          "4": 79,
+          "5": 165,
+          "6": 147,
+          "7": 163,
+          "8": 0
+        },
+        "median": 6,
+        "mean": 5.334,
+        "slugsInPhase1": 619,
+        "slugsNotFoundInPhase2": 0,
+        "evidenceTierMix": {
+          "HUMAN_RCT": 577,
+          "PUBMED_TITLE_ABSTRACT_MENTION_ONLY": 29,
+          "HUMAN_INTERVENTIONAL": 11,
+          "HUMAN_OBSERVATIONAL": 2
+        },
+        "coverage": {
+          "evidenceTier": 619,
+          "humanDoseStudied": 509,
+          "trialFailures": 452,
+          "outcomeMeasures": 588,
+          "kinetics": 340,
+          "interactionPathways": 205,
+          "evidenceCeiling": 589,
+          "regulatoryDivergence": 0
+        }
+      },
+      "broad": {
+        "records": 803,
+        "countOfEight": {
+          "0": 1,
+          "1": 41,
+          "2": 2,
+          "3": 60,
+          "4": 119,
+          "5": 232,
+          "6": 175,
+          "7": 173,
+          "8": 0
+        },
+        "median": 5,
+        "mean": 5.133,
+        "slugsInPhase1": 803,
+        "slugsNotFoundInPhase2": 0,
+        "evidenceTierMix": {
+          "PUBMED_TITLE_ABSTRACT_MENTION_ONLY": 43,
+          "HUMAN_RCT": 738,
+          "HUMAN_INTERVENTIONAL": 18,
+          "HUMAN_OBSERVATIONAL": 3,
+          "NONE_STORED": 1
+        },
+        "coverage": {
+          "evidenceTier": 802,
+          "humanDoseStudied": 623,
+          "trialFailures": 569,
+          "outcomeMeasures": 756,
+          "kinetics": 381,
+          "interactionPathways": 233,
+          "evidenceCeiling": 758,
+          "regulatoryDivergence": 0
+        }
+      }
+    },
+    "cumulative": null
+  },
+  "scan": {
+    "canonicalRecords": 9852,
+    "ctgMatchedRecords": 3569,
+    "pubmedMatchedRecords": 5369,
+    "storedStudyRows": 148733,
+    "rawStudiesRead": 101831,
+    "rawStudiesMappedToCanonical": 101831,
+    "doseTokensWithoutFrequencyWord": 144732,
+    "recordsWithAttributedDoseText": 2129,
+    "recordsWithDoseTextInTrialsButNoneAttributable": 365,
+    "studyRecordPairsWithDoseTextButNoAttribution": 13908,
+    "studyRecordPairsWithoutStoredMatchedInterventionNames": 0,
+    "combinationInterventionsSeen": 15519,
+    "otherNamesDroppedAsAnotherInterventionsName": 2203,
+    "recordsWithDoseTextRefusedForSingleTrialWithoutNameMatch": 56,
+    "recordsWithStoredListTruncated": 197,
+    "expandedAccessOnlyRecordsWithoutPubmed": 2,
+    "registryFileRegulatoryEntries": 2505,
+    "registryFileEntriesAgreeingWithDatabase": 2504,
+    "jurisdictionValuesSeen": [
+      "US_FDA"
+    ]
+  },
+  "notDerivable": [
+    "Animal-only and in-vitro-only evidence. ClinicalTrials.gov registers human studies only and the stored PubMed search was filtered to \"clinical trial[pt]\"; no preclinical study store exists in the database or on disk. A record with tier NONE_STORED has no human study in stored data — it is not evidence that only animal work exists.",
+    "Whether a substance has been studied in humans, for a record whose only signal is the PubMed count. The stored query is `\"<name>\"[tiab] AND clinical trial[pt]`, so a hit means a clinical-trial-typed paper mentions the recorded name in its title or abstract. The tier is named PUBMED_TITLE_ABSTRACT_MENTION_ONLY for that reason: it is the tier of records named Muscle (36,401 hits), Lung (31,289), Brain (30,542), Complex, Date, Eye, DNA, Air, Capsule and Cream, and 56 single-word-named records carry counts of 1,000 or more. coverageQualifications.evidenceTierFromRegisteredStudiesOnly gives the count that rests on a registered study instead.",
+    "Whether a stopped trial failed. overallStatus and whyStopped are the sponsor's own words; no judged outcome is stored for any study.",
+    "Regulatory divergence between jurisdictions. Every regulatoryApproval record carries source.kind FDA_DRUGSFDA (United States, Drugs@FDA); productVariants.jurisdiction is US_FDA on all 2,242 rows and costContext.jurisdiction is US on all 626. No EMA, MHRA, PMDA, Health Canada or TGA record exists, so the ≥2-jurisdiction test cannot be met by any record.",
+    "A studied dose as a stored structured value for more than 27 records. The recorded dose-schedule module (recorded_background.titration) holds 27 records, all basis LABEL_SCHEDULE and none TRIAL_PROTOCOL. Every other dose string here is parsed out of free-text arm and intervention prose.",
+    "A complete study list for records whose stored snapshot hit the 250-study cap; per-record study aggregates for those records are computed over the stored subset, flagged as storedListTruncated."
+  ],
+  "caveats": [
+    "Dose strings are verbatim contiguous slices of registry free text, selected because a dose token and a frequency word appear within 60 characters of each other. They are what a trial says it gave, never a recommendation, and the parse is this script's, not the registry's.",
+    "A dose string is kept only where the registry ties it to this record: the intervention name the snapshot matched, including the other names the registry lists for that intervention (INTERVENTION_NAME_MATCH); an arm the registry ties to exactly one matched intervention (ARM_SINGLE_INTERVENTION); a matched name within 80 characters of the dose text and closer to it than any other intervention the study names and than any other canonical medicine name in this corpus found beside the amount (ARM_NAME_NEARBY); or, on an intervention whose other-names list enumerates two or more medicines this corpus holds records for, this record's OWN name within 80 characters of the amount, with the other ingredients treated as competitors (COMBINATION_NAME_NEARBY). Amounts the registry ties to another medicine are counted in unattributedDoseMentions and never stored. The residual limit is prose: background therapy named only in narrative text, never as an intervention, can still leave its amount inside a kept string, which is why each string is carried whole with its trial id rather than reduced to a number.",
+    "One intervention's other-names list no longer joins another intervention's alias group. An other-name that is itself a different intervention's own name in the same study is dropped, because the registry is pointing at that intervention rather than naming an alias: NCT00108082 lists otherNames [\"carvedilol MR\",\"atenolol\"] on its lisinopril intervention, which had collapsed three interventions into one group and stored carvedilol's \"80 mg once daily\" under both atenolol and lisinopril. scan.otherNamesDroppedAsAnotherInterventionsName counts the drops.",
+    "humanDoseStudied is not set by a single parsed mention alone. It needs a recorded dose schedule, or two or more trials, or an intervention name the snapshot matched that is name-related to the record itself; humanDoseStudied.corroboration says which. Without that bar a record could publish another medicine's amount as its whole dose evidence — Butalbital's only string was Acetazolamide's \"250 mg tablets daily.\" and Lactobacillus Crispatus's was Adenosine's 9 mg. scan.recordsWithDoseTextRefusedForSingleTrialWithoutNameMatch counts what the bar refuses.",
+    "Zero amounts such as \"0 mg daily\" in a placebo arm are counted in zeroAmountMentions and kept out of the range, because they record the absence of the medicine rather than a dose given.",
+    "Dose ranges are min/max of the parsed numbers inside one matched unit spelling. No unit is converted and the range spans trials with different populations and designs. A per-something amount keeps its own bucket and is never mixed with a bare amount: perUnitAsMatched carries kg, ml, l, dl, m2 or cm2 as the registry wrote it, so a per-millilitre concentration such as Brimonidine's \"2mg/mL\" is no longer read as a 2 mg dose.",
+    "Trial duration is start date to primary completion date (falling back to completion date), computed from registry date strings that are sometimes month-precision only; the first of the month is assumed.",
+    "Outcome measures are primary outcome titles only. No measured value is carried here.",
+    "evidenceCeiling prefers an ACTUAL enrolment count and falls back to an ESTIMATED one, recording which type was used. The longest span can end on a sponsor-estimated completion date that has not happened yet; endsAfterToday says when it does.",
+    "interactionPathways rows include polarity NEGATED, which means the label states the medicine is NOT a substrate or inhibitor. Filter on polarity before reading a row as a positive interaction.",
+    "kinetics counts a record holding any stored quantitative pharmacokinetic value: half-life, tMax, metabolism, protein binding, bioavailability, elimination or volume of distribution. coverageQualifications.kineticsTestedKeys names them next to the count.",
+    "The phase 1 slices are audience-fit filters, not a confidence ladder. slices.bySlice publishes each slice's count-of-eight distribution and evidence-tier mix because the strict slice is a subset of the moderate slice and carries less stored evidence than it: the gates strict adds are about availability and route, and they remove evidence-rich prescription medicines."
+  ]
+}

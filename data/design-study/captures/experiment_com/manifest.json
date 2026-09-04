@@ -1,0 +1,1078 @@
+{
+  "site": "experiment.com",
+  "track": "A2",
+  "urls": {
+    "index": "https://experiment.com/",
+    "content": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+    "contentNote": "Selected from the public listing page https://experiment.com/discover: first project anchor in the server-rendered markup (link text \"You're a backer!\"). No API documentation URL was discoverable, so a listing page was used."
+  },
+  "capturedAt": "2026-09-03T15:20:07.380Z",
+  "tool": "scripts/design-study/capture.ts",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "width": 375,
+      "height": 812
+    }
+  },
+  "caveats": [
+    "Tiles are slices of one full-page capture, not separate scrolled screenshots. Chromium paints sticky and fixed elements where they sat when that capture was taken, so a sticky header or a fixed banner can appear part-way down a tile. Judge persistent chrome from the -scroll-00/-scroll-50/-scroll-90 captures, which are real scrolled viewport views.",
+    "The -scroll-* captures are deliberately not scrolled back to the top before shooting; what they show at the top edge is what the page keeps on screen.",
+    "Any banner recorded as left standing in bannerActions is present in every image of that pass, overlapping the page."
+  ],
+  "bannerActions": [
+    "index-1440: left: no permitted refusal control in div.flex-column (controls: ABOUT, How It Works, FAQ, About, Press, Mission); banner stands in the captures",
+    "index-375: left: no permitted refusal control in div.flex-column (controls: ABOUT); banner stands in the captures",
+    "content-1440: left: no permitted refusal control in div.tou (controls: Terms, Privacy Policy, Cookie Policy); banner stands in the captures",
+    "content-375: left: only accept-type controls found in div.col-md-3"
+  ],
+  "domEvidence": {
+    "collectedFrom": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+    "collectedAt": "2026-09-03T15:19:52.259Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "textToHtmlRatio": 0.1215,
+    "title": "Algorithms and news trust: Why independents may be left behind | Experiment",
+    "innerTextLength": 8395,
+    "outerHtmlLength": 69067,
+    "headingOutline": [
+      {
+        "tag": "h1",
+        "text": "Algorithms and news trust: Why independents may be left behind"
+      },
+      {
+        "tag": "h2",
+        "text": "About This Project"
+      },
+      {
+        "tag": "h2",
+        "text": "Ask the Scientists"
+      },
+      {
+        "tag": "h3",
+        "text": "What is the context of this research?"
+      },
+      {
+        "tag": "h3",
+        "text": "What is the significance of this project?"
+      },
+      {
+        "tag": "h3",
+        "text": "What are the goals of the project?"
+      },
+      {
+        "tag": "h2",
+        "text": "Budget"
+      },
+      {
+        "tag": "h2",
+        "text": "Endorsed by"
+      },
+      {
+        "tag": "h2",
+        "text": "Project Timeline"
+      },
+      {
+        "tag": "h2",
+        "text": "IRB Approval"
+      },
+      {
+        "tag": "h2",
+        "text": "Project Launched"
+      },
+      {
+        "tag": "h2",
+        "text": "Project fully funded"
+      },
+      {
+        "tag": "h2",
+        "text": "Data Collection Complete"
+      },
+      {
+        "tag": "h2",
+        "text": "Data Analysis Complete"
+      },
+      {
+        "tag": "h2",
+        "text": "Results Chapter Finalized"
+      },
+      {
+        "tag": "h2",
+        "text": "Successful Dissertation Defense"
+      },
+      {
+        "tag": "h2",
+        "text": "Study ready for publication"
+      },
+      {
+        "tag": "h2",
+        "text": "Meet the Team"
+      },
+      {
+        "tag": "h3",
+        "text": "Affiliates"
+      },
+      {
+        "tag": "h3",
+        "text": "Randall Vanadisson"
+      },
+      {
+        "tag": "h2",
+        "text": "Lab Notes"
+      },
+      {
+        "tag": "h2",
+        "text": "Additional Information"
+      },
+      {
+        "tag": "h1",
+        "text": "Project Backers"
+      },
+      {
+        "tag": "h3",
+        "text": "SEE YOUR SCIENTIFIC IMPACT"
+      }
+    ],
+    "headingCount": 24,
+    "stickyOrFixedCount": 4,
+    "stickyOrFixed": [
+      {
+        "tag": "div",
+        "class": "",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "collapse mobile-menu animated fadeIn",
+        "position": "fixed",
+        "top": 0,
+        "height": 0
+      },
+      {
+        "tag": "div",
+        "class": "grecaptcha-badge",
+        "position": "fixed",
+        "top": 826,
+        "height": 60
+      },
+      {
+        "tag": "iframe",
+        "class": "",
+        "position": "fixed",
+        "top": 7226.8,
+        "height": 1
+      }
+    ],
+    "kbdTexts": [],
+    "ariaKeyshortcuts": [],
+    "copyControls": {
+      "count": 0,
+      "firstLabels": []
+    },
+    "scriptTokens": {
+      "IntersectionObserver": "unknown",
+      "scrollama": "unknown",
+      "metaKey": "unknown",
+      "keyCode": "unknown"
+    },
+    "scriptsInline": 2,
+    "scriptsUnreadable": 12,
+    "searchAffordances": {
+      "count": 3,
+      "firstDescriptors": [
+        "form[role=search]",
+        "input Search Projects, Topics & Lab Notes",
+        "input Search projects & lab notes"
+      ]
+    },
+    "imgCount": 18,
+    "imgLazyCount": 0,
+    "htmlAttributes": {
+      "class": "wf-proximanova-n7-active wf-proximanova-n4-active wf-active",
+      "dataTheme": null,
+      "style": null
+    },
+    "prefersColorScheme": {
+      "found": false,
+      "matchedSheets": 0,
+      "unreadableSheets": 4,
+      "totalSheets": 8
+    },
+    "bodyBackgroundColor": "rgba(0, 0, 0, 0)",
+    "bodyColor": "rgb(0, 0, 0)",
+    "canvasCount": 1,
+    "svgCount": 4
+  },
+  "captures": [
+    {
+      "file": "index-1440-full.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 9660,
+      "sha256": "70516066ef74d443acfa7d7ef9ed2ccbbc24486080e74856d7e9fdaf1b1c2246",
+      "capturedAt": "2026-09-03T15:19:28.833Z"
+    },
+    {
+      "file": "index-1440-tile-01.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f9d1873bf36545bd118c317684277260889a6a50704838e3659914d208ca3eaf",
+      "capturedAt": "2026-09-03T15:19:29.530Z"
+    },
+    {
+      "file": "index-1440-tile-02.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "ae297f09afe77af93f8022859868c388d6aab13b1de4a06387c2c97208910d1c",
+      "capturedAt": "2026-09-03T15:19:30.022Z"
+    },
+    {
+      "file": "index-1440-tile-03.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "6b730022521bf087c57b5c3df83b7c92c19cc6c729fe234428a97c6822c217dd",
+      "capturedAt": "2026-09-03T15:19:30.311Z"
+    },
+    {
+      "file": "index-1440-tile-04.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "f336cd89fdff9bf1ae7a941cfbf86da16be170d2ef7996e9c020b582d993c234",
+      "capturedAt": "2026-09-03T15:19:30.797Z"
+    },
+    {
+      "file": "index-1440-tile-05.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b7fcfc4ad48f6ba0900c90b86cfbd1ecbc5700253f0b1a98d0869b0f4e7ca8bc",
+      "capturedAt": "2026-09-03T15:19:31.163Z"
+    },
+    {
+      "file": "index-1440-tile-06.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "efee2afcef5a18609b8e4f162733af1cf5fad8a5565bdd1b3426ab7c470bf6e4",
+      "capturedAt": "2026-09-03T15:19:31.565Z"
+    },
+    {
+      "file": "index-1440-tile-07.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3c61cd47201a8789d96b7d53adb3a50ca9a95ca2c89faa428f6ead7632bf1a4f",
+      "capturedAt": "2026-09-03T15:19:32.171Z"
+    },
+    {
+      "file": "index-1440-tile-08.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "a3410843de5371f88c5467000cc1e8a59114c9c5d6c9f899c7d29a07cd384856",
+      "capturedAt": "2026-09-03T15:19:32.816Z"
+    },
+    {
+      "file": "index-1440-tile-09.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "8efe92f9def43b15f881c25057730694f3094f5fad446c37a56e7f8c0f504287",
+      "capturedAt": "2026-09-03T15:19:33.062Z"
+    },
+    {
+      "file": "index-1440-tile-10.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 8100,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "b2ebaf08dd594c5317b3ef6f8155dd379501a1ee6eac03bceb7161a0c14d1ecf",
+      "capturedAt": "2026-09-03T15:19:33.582Z"
+    },
+    {
+      "file": "index-1440-tile-11.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 9000,
+      "widthPx": 1440,
+      "heightPx": 660,
+      "sha256": "e0faf255c714e7015b885ab58f16e34c814dc62961db6ba30bcb97a94cfdeeea",
+      "capturedAt": "2026-09-03T15:19:34.249Z"
+    },
+    {
+      "file": "index-375-full.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 14536,
+      "sha256": "2b8718b44201d86a32e411762426e0af5406a925fb191c0206f80e6471429951",
+      "capturedAt": "2026-09-03T15:19:39.736Z"
+    },
+    {
+      "file": "index-375-tile-01.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "bd9e1c3887ede959b108e0c481cf7151181f9622b4bcd7cb2c148eb63b31c2f4",
+      "capturedAt": "2026-09-03T15:19:39.979Z"
+    },
+    {
+      "file": "index-375-tile-02.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "13684fe4207426969f77e98091593ed191c772d275f2cb3b0b9c69d9328d69bc",
+      "capturedAt": "2026-09-03T15:19:40.116Z"
+    },
+    {
+      "file": "index-375-tile-03.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "b9f2957121080bf898938df181674644ca56a616a67b5a2292d5735d068140df",
+      "capturedAt": "2026-09-03T15:19:40.223Z"
+    },
+    {
+      "file": "index-375-tile-04.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3211274c5bebcbf03ddda93a6a67ea8986106423c912dd0db35e1bc042aafe58",
+      "capturedAt": "2026-09-03T15:19:40.329Z"
+    },
+    {
+      "file": "index-375-tile-05.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "08c94631f43ea2915d8865af8e2b8e2450fff021d7580359510c82e86b495549",
+      "capturedAt": "2026-09-03T15:19:40.439Z"
+    },
+    {
+      "file": "index-375-tile-06.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3e42aa64dc7f63ac6b2e310a5300954a61981716628ae0e046df5654188f3588",
+      "capturedAt": "2026-09-03T15:19:40.560Z"
+    },
+    {
+      "file": "index-375-tile-07.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4890af992d6d5a37546429a0c140b37f034796d123eeb4434dd7eae09d4b38bc",
+      "capturedAt": "2026-09-03T15:19:40.682Z"
+    },
+    {
+      "file": "index-375-tile-08.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e811b0e0d590ae2f59f35a72eb185f3e825b57a30f8631743817990661247948",
+      "capturedAt": "2026-09-03T15:19:40.810Z"
+    },
+    {
+      "file": "index-375-tile-09.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "8aff57c63c0e361e036c161a447bbc10e4a4e4128ee52a9e52d26178c6be4b3f",
+      "capturedAt": "2026-09-03T15:19:40.931Z"
+    },
+    {
+      "file": "index-375-tile-10.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "49fee1b118254717dcc50a694d255439c18a2d9dee248ee926d988ffc956eaad",
+      "capturedAt": "2026-09-03T15:19:41.014Z"
+    },
+    {
+      "file": "index-375-tile-11.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "c0d2c07f438e5fbd8bce7a753721c68a187d99c9145c016d0b545389999de28a",
+      "capturedAt": "2026-09-03T15:19:41.126Z"
+    },
+    {
+      "file": "index-375-tile-12.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "543be71bf98fbcc5c9c1326210034e21fb20aa4d47c570d4bf9bab54587e8de1",
+      "capturedAt": "2026-09-03T15:19:41.280Z"
+    },
+    {
+      "file": "index-375-tile-17.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 17,
+      "scrollY": 12992,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "1dfc5d4ef2838f0856d22d69280c2d5da7a47383620e323d18f8ed29bdb17564",
+      "capturedAt": "2026-09-03T15:19:41.424Z"
+    },
+    {
+      "file": "index-375-tile-18.png",
+      "url": "https://experiment.com/",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 18,
+      "scrollY": 13804,
+      "widthPx": 375,
+      "heightPx": 732,
+      "sha256": "7e919c185cd25ebd7ed98f18f8d107f7f8238c03fe12ade8dbdd0087045bcf90",
+      "capturedAt": "2026-09-03T15:19:41.607Z",
+      "note": "4 tiles between 12 and 16 were not captured"
+    },
+    {
+      "file": "content-1440-full.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "full-page",
+      "widthPx": 1440,
+      "heightPx": 7227,
+      "sha256": "b469edc596b6c8fe6a4cea008f67c376650fa7249f8fa7046f3de73f0fdb267a",
+      "capturedAt": "2026-09-03T15:19:51.353Z"
+    },
+    {
+      "file": "content-1440-tile-01.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "31d27911ce2d4d8c7c43f1000137832a56d17115fd9a33abf51d7e149714c903",
+      "capturedAt": "2026-09-03T15:19:51.508Z"
+    },
+    {
+      "file": "content-1440-tile-02.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 900,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "fe1ae9756d2a2525c65fe0bde7d48d81d245541740e9723664eb6d8757213f83",
+      "capturedAt": "2026-09-03T15:19:51.609Z"
+    },
+    {
+      "file": "content-1440-tile-03.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1800,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "3d96c698d742f0b904ebce349caf199f9cf07975f81136ce6c33efdcde26b100",
+      "capturedAt": "2026-09-03T15:19:51.717Z"
+    },
+    {
+      "file": "content-1440-tile-04.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2700,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "d1117f2be418188a076e71a20286eaf9be03448f67348e24f27f788d5f5a2729",
+      "capturedAt": "2026-09-03T15:19:51.804Z"
+    },
+    {
+      "file": "content-1440-tile-05.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3600,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "7e0aede25f01ec5f60be202ffa5aa4ce45acf6ad3c9d67f3540cee454b00c5fc",
+      "capturedAt": "2026-09-03T15:19:51.880Z"
+    },
+    {
+      "file": "content-1440-tile-06.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4500,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "50c490a11a9bb169e287fa7baca3dc75dd98d3338587e8f3259ac063c23bb6c3",
+      "capturedAt": "2026-09-03T15:19:52.005Z"
+    },
+    {
+      "file": "content-1440-tile-07.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 5400,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "c78cfd3b1b04af907b79a1f9687ae4871ca831e1a8a440a415fb55ede9378c88",
+      "capturedAt": "2026-09-03T15:19:52.110Z"
+    },
+    {
+      "file": "content-1440-tile-08.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 6300,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "cd6df1104a4bc14ae362b3ca96ffb051a144e435e8c7cc998d9f0f384cdb8909",
+      "capturedAt": "2026-09-03T15:19:52.208Z"
+    },
+    {
+      "file": "content-1440-tile-09.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 7200,
+      "widthPx": 1440,
+      "heightPx": 27,
+      "sha256": "976f0a4e58403475acc22ddd77cbe7d36076ce46cf14a05a534935b160a7dc5b",
+      "capturedAt": "2026-09-03T15:19:52.250Z"
+    },
+    {
+      "file": "content-1440-scroll-00.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "6316217d2801518596deb54b9144c12d87398aa902c837c5f9a3b4c70b725987",
+      "capturedAt": "2026-09-03T15:19:53.934Z"
+    },
+    {
+      "file": "content-1440-scroll-50.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 3164,
+      "scrollFraction": 0.5,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "0004207da9f33f793cc22c61fd4619d46ab50092842245f5a226e64f6afea5cd",
+      "capturedAt": "2026-09-03T15:19:55.496Z"
+    },
+    {
+      "file": "content-1440-scroll-90.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "viewport",
+      "scrollY": 5694,
+      "scrollFraction": 0.9,
+      "widthPx": 1440,
+      "heightPx": 900,
+      "sha256": "2abbed00079fba14a03eb7a5c522e5b86f312bc711a36a5a8913fa4aeea7184d",
+      "capturedAt": "2026-09-03T15:19:57.076Z"
+    },
+    {
+      "file": "content-375-full.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "full-page",
+      "widthPx": 375,
+      "heightPx": 11109,
+      "sha256": "1efe9299e60aa85f27cf17a9462e9794f83426a59e296d50c62bca7e82ae5bc4",
+      "capturedAt": "2026-09-03T15:20:01.668Z"
+    },
+    {
+      "file": "content-375-tile-01.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 1,
+      "scrollY": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9473f0ce88f88d5cd1e2a7170abd6c72cf9b83300c34de15c70e33ca066a2aef",
+      "capturedAt": "2026-09-03T15:20:01.749Z"
+    },
+    {
+      "file": "content-375-tile-02.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 2,
+      "scrollY": 812,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5e921af6510b4357521cfc9a5dd9c71afd3755ad97819650f32dfb577bb976d7",
+      "capturedAt": "2026-09-03T15:20:01.818Z"
+    },
+    {
+      "file": "content-375-tile-03.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 3,
+      "scrollY": 1624,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7bcea2d0eeb55a1d8635e51bf5f2aec6313d1d3e64f8605a257abf8941543b28",
+      "capturedAt": "2026-09-03T15:20:01.886Z"
+    },
+    {
+      "file": "content-375-tile-04.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 4,
+      "scrollY": 2436,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "e053215fdb32b4cac6168c57b7f22eb9be01ea402135db6acb99821b4ddfd4bc",
+      "capturedAt": "2026-09-03T15:20:01.953Z"
+    },
+    {
+      "file": "content-375-tile-05.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 5,
+      "scrollY": 3248,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "0c2f221ec70f9d3572fe87def9b9e57df98a8930567491fcf4f194314e5b9246",
+      "capturedAt": "2026-09-03T15:20:02.014Z"
+    },
+    {
+      "file": "content-375-tile-06.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 6,
+      "scrollY": 4060,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "49e7b41ad5bb1a3ff4a52d39e3132b1443887ee00eee529a462971d834634401",
+      "capturedAt": "2026-09-03T15:20:02.083Z"
+    },
+    {
+      "file": "content-375-tile-07.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 7,
+      "scrollY": 4872,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "be5f7c218df7dda4a5cb14bcfc59dd4f51c248c931aaeb0c2b3046e841711d83",
+      "capturedAt": "2026-09-03T15:20:02.151Z"
+    },
+    {
+      "file": "content-375-tile-08.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 8,
+      "scrollY": 5684,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3aea3304f13bf4d2c6a5b6af9cd5902fb6a707c252b5bbab55c73661cb9a2029",
+      "capturedAt": "2026-09-03T15:20:02.211Z"
+    },
+    {
+      "file": "content-375-tile-09.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 9,
+      "scrollY": 6496,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "929e6b1ee78d998200ffc348cd9da57292f557b22d7e305c11fd05afca6d0cbf",
+      "capturedAt": "2026-09-03T15:20:02.285Z"
+    },
+    {
+      "file": "content-375-tile-10.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 10,
+      "scrollY": 7308,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "a1f7e750de692e15a837f4fae47872e0a100a62ce920528db43fa85b03097a2c",
+      "capturedAt": "2026-09-03T15:20:02.370Z"
+    },
+    {
+      "file": "content-375-tile-11.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 11,
+      "scrollY": 8120,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "7cc0678662b91e3aaf7c3e2373a38509e5eb575b4933e34d617cbecc765a4592",
+      "capturedAt": "2026-09-03T15:20:02.469Z"
+    },
+    {
+      "file": "content-375-tile-12.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 12,
+      "scrollY": 8932,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "4aa07eb0c91e10c61c5ae861b475ffd1e5d3d595dc2c66e24aac721bfe849ccf",
+      "capturedAt": "2026-09-03T15:20:02.534Z"
+    },
+    {
+      "file": "content-375-tile-13.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 13,
+      "scrollY": 9744,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "5e73a51144b4f3100aee9c000d9287fd5b3fcaceb5fdf6104f7830750fb45820",
+      "capturedAt": "2026-09-03T15:20:02.601Z"
+    },
+    {
+      "file": "content-375-tile-14.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "tile",
+      "tileIndex": 14,
+      "scrollY": 10556,
+      "widthPx": 375,
+      "heightPx": 553,
+      "sha256": "ae04eb91487245ac243943b42bfed36dc872592f77027d9048c098300b3c98a2",
+      "capturedAt": "2026-09-03T15:20:02.662Z"
+    },
+    {
+      "file": "content-375-scroll-00.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 0,
+      "scrollFraction": 0,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "9473f0ce88f88d5cd1e2a7170abd6c72cf9b83300c34de15c70e33ca066a2aef",
+      "capturedAt": "2026-09-03T15:20:04.246Z"
+    },
+    {
+      "file": "content-375-scroll-50.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 5149,
+      "scrollFraction": 0.5,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "3e2ef1348db03f6f1daf3be352c89d676351005832604906653b59e9863c9d71",
+      "capturedAt": "2026-09-03T15:20:05.801Z"
+    },
+    {
+      "file": "content-375-scroll-90.png",
+      "url": "https://experiment.com/projects/algorithms-and-news-trust-why-independents-may-be-left-behind",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "kind": "viewport",
+      "scrollY": 9267,
+      "scrollFraction": 0.9,
+      "widthPx": 375,
+      "heightPx": 812,
+      "sha256": "dfae356631aad93b6a96c8b9173257d3f6364082d0aaf3cf89ba2326ff50a713",
+      "capturedAt": "2026-09-03T15:20:07.380Z"
+    }
+  ]
+}
