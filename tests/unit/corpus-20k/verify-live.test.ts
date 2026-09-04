@@ -12,6 +12,7 @@ import {
   robotsDisallows,
   vendorLinks,
   verifyLive,
+  waitForSitemapTier,
 } from '@/scripts/corpus-20k/deploy/verify-live'
 
 const ORIGIN = 'https://rnawiki.com'
@@ -217,5 +218,58 @@ describe('the verifier against a served deployment', () => {
     const report = await verifyLive(options(['--require-all']), fetchImpl)
     expect(report.notRun).toBeGreaterThan(0)
     expect(report.ok).toBe(false)
+  })
+})
+
+describe('waiting for a freshly loaded tier to reach the sitemap', () => {
+  it('is off by default and refuses a tier that is in no sitemap', () => {
+    expect(options().waitSitemapTier).toBeNull()
+    expect(options(['--wait-sitemap-tier', '1']).waitSitemapTier).toBe(1)
+    expect(options(['--wait-sitemap-tier=2']).waitSitemapTier).toBe(2)
+    expect(() => options(['--wait-sitemap-tier', '3'])).toThrow(/must be 1 or 2/)
+  })
+
+  it('passes as soon as the child lists a URL, without waiting again', async () => {
+    const { fetchImpl, requested } = serve({
+      [`${ORIGIN}/sitemaps/tier-1.xml`]: { body: urlset(['/d/metformin']) },
+    })
+    let waited = 0
+    const check = await waitForSitemapTier(options(['--wait-sitemap-tier', '1']), fetchImpl, {
+      wait: async (ms) => {
+        waited += ms
+      },
+    })
+
+    expect(check.status).toBe('PASS')
+    expect(check.facts).toMatchObject({ attempts: 1, urls: 1 })
+    expect(waited).toBe(0)
+    expect(requested).toEqual([`${ORIGIN}/sitemaps/tier-1.xml`])
+  })
+
+  it('polls an empty child and reports the ceiling as a failure, never as a pass', async () => {
+    const { fetchImpl, requested } = serve({
+      [`${ORIGIN}/sitemaps/tier-2.xml`]: { body: '<urlset></urlset>' },
+    })
+    // A clock the wait drives itself, so the twenty-minute ceiling is reached in milliseconds.
+    let clock = 0
+    const check = await waitForSitemapTier(options(['--wait-sitemap-tier', '2']), fetchImpl, {
+      now: () => clock,
+      wait: async (ms) => {
+        clock += ms
+      },
+    })
+
+    expect(check.status).toBe('FAIL')
+    expect(check.detail).toMatch(/20 minutes/)
+    // Twenty minutes of fifteen-second polls: the run reads the child repeatedly, not once.
+    expect(requested.length).toBe(81)
+    expect(check.facts).toMatchObject({ urls: 0 })
+  })
+
+  it('says it did not run when no tier was named', async () => {
+    const { fetchImpl, requested } = serve({})
+    const check = await waitForSitemapTier(options(), fetchImpl)
+    expect(check.status).toBe('NOT RUN')
+    expect(requested).toEqual([])
   })
 })

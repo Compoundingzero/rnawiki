@@ -19,9 +19,10 @@ import {
   CORPUS_FACETS,
   recordBadges,
   type CorpusFacetId,
+  type CorpusFacetIndexValue,
   type CorpusFacetRecord,
-  type CorpusFacetValue,
   type FacetLetterBucket,
+  type FacetSubPage,
 } from '@/lib/corpus/facets'
 
 /** Records listed on one facet page. The sitemap paginates by the same number. */
@@ -92,13 +93,57 @@ export function FacetNav({ current }: { current?: CorpusFacetId }) {
   )
 }
 
+function subPageHref(facet: CorpusFacetId, value: string, subPage: FacetSubPage): string {
+  return subPage.letter === undefined
+    ? facetValueHref(facet, value, subPage.page)
+    : facetLetterHref(facet, value, subPage.letter, subPage.page)
+}
+
+/**
+ * The list pages beneath one facet value, linked from the index itself.
+ *
+ * This is what keeps the browse spec's three-click guarantee: without these links a record on a
+ * letter sub-page or on the second page of a value is home → facet index → facet value → page →
+ * record, which is four. Each link is a label and a count, never a sentence.
+ */
+function SubPageList({
+  facet,
+  value,
+  subPages,
+}: {
+  facet: CorpusFacetId
+  value: CorpusFacetIndexValue
+  subPages: readonly FacetSubPage[]
+}) {
+  if (subPages.length === 0) return null
+  return (
+    <ul aria-label={`${value.label} pages`} className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1 px-1">
+      {subPages.map((subPage) => (
+        <li
+          key={`${subPage.letter ?? ''}-${subPage.page}`}
+          data-sub-page={subPage.label}
+          data-count={subPage.count}
+        >
+          <Link
+            href={subPageHref(facet, value.id, subPage)}
+            aria-label={`${value.label}, ${subPage.label}`}
+            className={`inline-flex min-h-8 items-center px-1 text-[11px] font-semibold tabular-nums ${LINK_ON_GROUND}`}
+          >
+            {subPage.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 /** Facet values with their counts. The count is a number in its own element, never a sentence. */
 export function FacetValueList({
   facet,
   values,
 }: {
   facet: CorpusFacetId
-  values: readonly CorpusFacetValue[]
+  values: readonly CorpusFacetIndexValue[]
 }) {
   return (
     <ul className="space-y-2">
@@ -113,6 +158,7 @@ export function FacetValueList({
               {value.count.toLocaleString('en-GB')}
             </span>
           </Link>
+          <SubPageList facet={facet} value={value} subPages={value.subPages} />
         </li>
       ))}
     </ul>

@@ -3,6 +3,7 @@
 // confined to `serialiseJsonLd`; a bare `JSON.stringify` would allow stored text containing
 // `</script>` to end the script element early.
 
+import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 import type { ProgrammeSummaryFieldPath } from '@/lib/evidence/types'
 import { resolveLegacyPublicContentDate } from '@/lib/seo/indexability'
@@ -136,6 +137,21 @@ export type DossierJsonLdNode =
   | PersonJsonLd
   | CreativeWorkJsonLd
 export type ProfileJsonLdNode = SiteJsonLdNode | ProfilePageJsonLd | PersonJsonLd
+
+/** A corpus record states its identity, its recorded identifiers and its place in the site. */
+export interface CorpusMedicineJsonLd {
+  '@type': 'Drug' | 'MedicalEntity'
+  '@id': string
+  name: string
+  url: string
+  alternateName?: string[]
+  description?: string
+  /** Recorded registry identifiers only — the same rows the page shows under "The exact record". */
+  identifier?: PropertyValueJsonLd[]
+  sameAs?: string[]
+}
+
+export type CorpusJsonLdNode = SiteJsonLdNode | CorpusMedicineJsonLd | BreadcrumbListJsonLd
 
 export interface JsonLdGraph<Node> {
   '@context': typeof SCHEMA_CONTEXT
@@ -920,6 +936,117 @@ export function profileJsonLdGraph(
   return {
     '@context': SCHEMA_CONTEXT,
     '@graph': [site.organization, site.website, page, person],
+  }
+}
+
+/* ------------------------------------------------------------------ corpus records */
+
+/**
+ * Synonym kinds that name the same substance. An international, United States or trade name is an
+ * alternate name for the record; a salt form, a fragment or a development code is not, so those
+ * kinds stay out of the graph even though the page lists them.
+ */
+const CORPUS_ALTERNATE_NAME_KINDS: readonly string[] = ['inn', 'usan', 'brand']
+
+/** Recorded registry identifiers that carry a stable, publicly meaningful property name. */
+const CORPUS_IDENTIFIER_PROPERTY_IDS: Record<string, string> = {
+  unii: 'FDA UNII',
+  chemblId: 'ChEMBL ID',
+  pubchemCid: 'PubChem CID',
+  cas: 'CAS Registry Number',
+}
+
+const MAX_CORPUS_ALTERNATE_NAMES = 10
+
+export interface CorpusJsonLdOptions extends SiteJsonLdOptions {
+  /** Absolute canonical URL for this corpus record. */
+  url: string
+}
+
+/**
+ * The graph for a corpus record (docs/specs/dossier-template.md).
+ *
+ * Every value here is already on the rendered page: the recorded display name, the synonyms the
+ * header lists, the identifiers "The exact record" shows, and the first paragraph of the first
+ * question. Nothing is looked up, resolved or inferred, and a record the corpus does not index
+ * carries no graph at all — a page a crawler is asked not to index is not given a rich description
+ * of itself.
+ *
+ * The type is `Drug` only where the record is a medicine in a drug register (its field model is
+ * CLINICAL, or a register recorded a withdrawal). Everything else — a supplement, a research
+ * compound, an investigational candidate — is the honest superclass `MedicalEntity`.
+ */
+export function corpusDossierJsonLdGraph(
+  dossier: CorpusDossier,
+  { siteUrl, url }: CorpusJsonLdOptions,
+): JsonLdGraph<CorpusJsonLdNode> | null {
+  if (!dossier.indexable) return null
+  const name = text(dossier.displayName)
+  if (!name) return null
+
+  const pageUrl = requiredHttpUrl(url, 'url')
+  const site = siteNodes(siteUrl)
+  const medicineId = fragmentUrl(pageUrl, 'medicine')
+  const breadcrumbId = fragmentUrl(pageUrl, 'breadcrumb')
+
+  const medicine: CorpusMedicineJsonLd = {
+    '@type': dossier.model === 'CLINICAL' || dossier.withdrawn ? 'Drug' : 'MedicalEntity',
+    '@id': medicineId,
+    name,
+    url: pageUrl,
+  }
+
+  // Kind order, not row order: a record with many trade names would otherwise fill the list with
+  // them and leave its international and United States names out.
+  const alternateName: string[] = []
+  for (const kind of CORPUS_ALTERNATE_NAME_KINDS) {
+    for (const group of dossier.synonyms) {
+      if (group.kind !== kind) continue
+      for (const candidate of group.names) {
+        if (alternateName.length >= MAX_CORPUS_ALTERNATE_NAMES) break
+        const synonym = text(candidate)
+        if (!synonym || synonym.toLowerCase() === name.toLowerCase()) continue
+        if (!alternateName.includes(synonym)) alternateName.push(synonym)
+      }
+    }
+  }
+  if (alternateName.length > 0) medicine.alternateName = alternateName
+
+  // The page's own opening answer, verbatim. A record with no question block describes nothing.
+  const description = text(dossier.blocks[0]?.paragraphs[0]?.text)
+  if (description) medicine.description = description
+
+  const identifier: PropertyValueJsonLd[] = []
+  const sameAs: string[] = []
+  for (const row of dossier.identifiers) {
+    const propertyID = CORPUS_IDENTIFIER_PROPERTY_IDS[row.field]
+    const value = text(row.value)
+    if (!propertyID || !value) continue
+    identifier.push({ '@type': 'PropertyValue', propertyID, value })
+    const href = httpUrl(row.href)
+    if (href && !sameAs.includes(href)) sameAs.push(href)
+  }
+  if (identifier.length > 0) medicine.identifier = identifier
+  if (sameAs.length > 0) medicine.sameAs = sameAs
+
+  const breadcrumb: BreadcrumbListJsonLd = {
+    '@type': 'BreadcrumbList',
+    '@id': breadcrumbId,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: site.root },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Medicines',
+        item: new URL('/browse', site.root).toString(),
+      },
+      { '@type': 'ListItem', position: 3, name, item: pageUrl },
+    ],
+  }
+
+  return {
+    '@context': SCHEMA_CONTEXT,
+    '@graph': [site.organization, site.website, medicine, breadcrumb],
   }
 }
 

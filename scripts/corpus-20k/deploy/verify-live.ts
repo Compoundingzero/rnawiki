@@ -29,6 +29,7 @@
  *   --dispositions <file>  reconciliation dispositions NDJSON to draw old slugs from
  *   --redirects <n>        how many old slugs to check (default 20)
  *   --suppressed <path>    a suppressed dossier path; repeatable (else the samples are used)
+ *   --wait-sitemap-tier <n>  poll /sitemaps/tier-<n>.xml until it lists a URL before checking
  *   --timeout-ms <ms>      per-request timeout (default 15000)
  *   --delay-ms <ms>        pause between requests (default 150)
  *   --require-all          a check that could not run counts as a failure
@@ -45,6 +46,9 @@ const DEFAULT_SAMPLES = 7
 const DEFAULT_REDIRECTS = 20
 const DEFAULT_TIMEOUT_MS = 15_000
 const DEFAULT_DELAY_MS = 150
+/** How long `--wait-sitemap-tier` waits for a freshly loaded tier to appear behind the cache. */
+const SITEMAP_WAIT_CEILING_MS = 20 * 60_000
+const SITEMAP_WAIT_INTERVAL_MS = 15_000
 const DEFAULT_DISPOSITIONS = 'data/corpus-20k/reconciliation/dispositions.ndjson'
 const SITEMAP_URL_CEILING = 50_000
 const MAX_BODY_CHARACTERS = 2_000_000
@@ -132,6 +136,8 @@ interface Options {
   requireAll: boolean
   json: boolean
   help: boolean
+  /** Wait for this sitemap child to list at least one URL before running the checks. */
+  waitSitemapTier: 1 | 2 | null
 }
 
 /* ------------------------------------------------------------------ arguments */
@@ -167,6 +173,7 @@ export function parseArguments(args: string[]): Options {
   let requireAll = false
   let json = false
   let help = false
+  let waitSitemapTier: 1 | 2 | null = null
 
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index] ?? ''
@@ -200,6 +207,14 @@ export function parseArguments(args: string[]): Options {
     } else if (argument === '--redirects' || argument.startsWith('--redirects=')) {
       const [value, consumed] = optionValue(args, index, '--redirects')
       redirectCount = positiveInteger(value, '--redirects', 500)
+      index = consumed
+    } else if (argument === '--wait-sitemap-tier' || argument.startsWith('--wait-sitemap-tier=')) {
+      const [value, consumed] = optionValue(args, index, '--wait-sitemap-tier')
+      if (value !== '1' && value !== '2') {
+        // Tier 3 is noindex and appears in no sitemap child, so waiting for one would never end.
+        throw new Error('--wait-sitemap-tier must be 1 or 2.')
+      }
+      waitSitemapTier = value === '1' ? 1 : 2
       index = consumed
     } else if (argument === '--dispositions' || argument.startsWith('--dispositions=')) {
       const [value, consumed] = optionValue(args, index, '--dispositions')
@@ -236,6 +251,7 @@ export function parseArguments(args: string[]): Options {
       requireAll,
       json,
       help,
+      waitSitemapTier,
     }
   }
 
@@ -267,6 +283,7 @@ export function parseArguments(args: string[]): Options {
     requireAll,
     json,
     help,
+    waitSitemapTier,
   }
 }
 
@@ -571,6 +588,68 @@ async function findTier3Paths(options: Options, fetchImpl: FetchImplementation):
   return evenSample([...new Set(paths)], 3)
 }
 
+/**
+ * Wait for a freshly loaded tier to appear in the sitemap child that serves it.
+ *
+ * The sitemap is cached for fifteen minutes, so the checks run against the previous population
+ * unless the run waits for the refresh. This polls the child itself — the document the deployment
+ * serves — and stops as soon as it lists a URL, or at the ceiling, which it reports rather than
+ * treating as a pass.
+ */
+export async function waitForSitemapTier(
+  options: Options,
+  fetchImpl: FetchImplementation,
+  waiters: {
+    now?: () => number
+    wait?: (ms: number) => Promise<void>
+  } = {},
+): Promise<CheckResult> {
+  const tier = options.waitSitemapTier
+  const title = "The tier's sitemap child lists at least one URL"
+  if (tier === null) {
+    return {
+      id: 'sitemap-tier-wait',
+      title,
+      status: 'NOT RUN',
+      detail: 'No --wait-sitemap-tier was named, so the checks read whatever is served now.',
+    }
+  }
+
+  const now = waiters.now ?? (() => Date.now())
+  const wait = waiters.wait ?? sleep
+  const child = `${options.baseUrl.origin}/sitemaps/tier-${tier}.xml`
+  const deadline = now() + SITEMAP_WAIT_CEILING_MS
+  let attempts = 0
+  let lastStatus = 0
+  let lastUrlCount = 0
+
+  for (;;) {
+    attempts += 1
+    const response = await get(child, options, fetchImpl, {}, MAX_XML_CHARACTERS)
+    lastStatus = response.status
+    lastUrlCount = response.status === 200 ? sitemapLocations(response.body).length : 0
+    if (lastUrlCount > 0) {
+      return {
+        id: 'sitemap-tier-wait',
+        title,
+        status: 'PASS',
+        detail: `${child} lists ${lastUrlCount} URLs after ${attempts} read(s).`,
+        facts: { child, attempts, urls: lastUrlCount },
+      }
+    }
+    if (now() + SITEMAP_WAIT_INTERVAL_MS > deadline) break
+    await wait(SITEMAP_WAIT_INTERVAL_MS)
+  }
+
+  return {
+    id: 'sitemap-tier-wait',
+    title,
+    status: 'FAIL',
+    detail: `${child} still lists no URL after ${Math.round(SITEMAP_WAIT_CEILING_MS / 60_000)} minutes (last answer ${lastStatus || 'no response'}).`,
+    facts: { child, attempts, urls: lastUrlCount, lastStatus },
+  }
+}
+
 export async function verifyLive(
   options: Options,
   fetchImpl: FetchImplementation = fetch,
@@ -607,6 +686,11 @@ export async function verifyLive(
         suppressedFailures.push(`${pageUrl} renders the ${block} block`)
       }
     }
+  }
+
+  /* 0. wait for a freshly loaded tier to reach the served sitemap, when asked */
+  if (options.waitSitemapTier !== null) {
+    checks.push(await waitForSitemapTier(options, fetchImpl))
   }
 
   /* 1. the sitemap index */
@@ -858,6 +942,7 @@ function usage(): string {
     `  --dispositions <file>  Reconciliation NDJSON for old slugs (default: ${DEFAULT_DISPOSITIONS})`,
     `  --redirects <n>        How many old slugs to check (default: ${DEFAULT_REDIRECTS})`,
     '  --suppressed <path>    Suppressed dossier path; repeatable',
+    `  --wait-sitemap-tier <n>  Poll /sitemaps/tier-<n>.xml for up to ${Math.round(SITEMAP_WAIT_CEILING_MS / 60_000)} minutes first`,
     `  --timeout-ms <ms>      Per-request timeout (default: ${DEFAULT_TIMEOUT_MS})`,
     `  --delay-ms <ms>        Pause between requests (default: ${DEFAULT_DELAY_MS})`,
     '  --require-all          A check that could not run counts as a failure',

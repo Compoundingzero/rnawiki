@@ -20,7 +20,7 @@ import {
   programmeReferenceExists,
 } from '@/lib/queries/programme-evidence'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
-import { dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
+import { corpusDossierJsonLdGraph, dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin, pageRobotsMetadata } from '@/lib/seo/deployment'
 import { decideDossierIndexability } from '@/lib/seo/dossier-indexability'
 import {
@@ -161,10 +161,25 @@ export default async function DossierPage({ params, searchParams }: DossierPageP
   const programmeRef = selectedProgramme(query.programme)
   const [viewer, corpus] = await Promise.all([loadViewer(), loadCorpusPage(slug)])
   if (corpus) {
+    // A corpus record carries the same kind of structured data the legacy branch emits: what the
+    // record is, the names and identifiers the page already shows, and where the page sits in the
+    // site. `corpusDossierJsonLdGraph` returns null for a record the corpus does not index.
+    const corpusJsonLd = corpusDossierJsonLdGraph(corpus, {
+      siteUrl: siteOrigin,
+      url: configuredPublicUrl(`/d/${corpus.slug}`),
+    })
     return (
-      <AppShell initialUser={viewer}>
-        <CorpusDossierPage dossier={corpus} />
-      </AppShell>
+      <>
+        {corpusJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serialiseJsonLd(corpusJsonLd) }}
+          />
+        )}
+        <AppShell initialUser={viewer}>
+          <CorpusDossierPage dossier={corpus} />
+        </AppShell>
+      </>
     )
   }
 

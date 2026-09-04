@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { AppShell } from '@/components/AppShell'
-import { corpusFacet, corpusFacetValues } from '@/lib/corpus/facets'
+import { corpusFacet, corpusFacetIndexValues } from '@/lib/corpus/facets'
 import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
 
@@ -36,7 +36,7 @@ export default async function FacetIndexPage({ params }: FacetIndexProps) {
   const facet = corpusFacet(requested)
   if (!facet) notFound()
 
-  const [user, values] = await Promise.all([getCurrentUser(), corpusFacetValues(facet.id)])
+  const [user, values] = await Promise.all([getCurrentUser(), corpusFacetIndexValues(facet.id)])
   if (values.length === 0) notFound()
 
   return (

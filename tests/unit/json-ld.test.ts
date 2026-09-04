@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  corpusDossierJsonLdGraph,
   dossierJsonLdGraph,
   drugJsonLd,
   profileJsonLdGraph,
   serialiseJsonLd,
   siteJsonLdGraph,
 } from '@/lib/json-ld'
+import type { CorpusMedicineJsonLd } from '@/lib/json-ld'
+import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 import type { DrugDossier } from '@/lib/types'
 
@@ -916,5 +919,145 @@ describe('canonical-record dossier JSON-LD', () => {
         url: `https://rnawiki.com/d/${drug.id}`,
       }),
     ).toBeNull()
+  })
+})
+
+describe('corpus record structured data', () => {
+  function corpusDossier(patch: Partial<CorpusDossier> = {}): CorpusDossier {
+    return {
+      key: 'K1:METFORMIN',
+      slug: 'metformin',
+      displayName: 'Metformin',
+      model: 'CLINICAL',
+      tier: 1,
+      pageType: 'clinical',
+      indexable: true,
+      suppressed: false,
+      suppressionClasses: [],
+      withdrawn: false,
+      presentFieldCount: 14,
+      applicableFieldCount: 18,
+      synonyms: [
+        { kind: 'inn', label: 'International name', names: ['Metformin', 'Metformine'] },
+        { kind: 'brand', label: 'Trade name', names: ['Glucophage'] },
+        { kind: 'salt', label: 'Salt form', names: ['Metformin hydrochloride'] },
+      ],
+      register: 'Drugs@FDA',
+      humanData: true,
+      ladder: [],
+      blocks: [
+        {
+          id: 'q1',
+          badge: 'Q1',
+          ordinal: 0,
+          block: 'supervision',
+          template: 'supervision-1',
+          question: 'Who supervises it?',
+          paragraphs: [
+            { text: 'Drugs@FDA records an approved application.', interpretation: false },
+            {
+              text: 'A second paragraph nobody should read as the description.',
+              interpretation: false,
+            },
+          ],
+          groups: [],
+        },
+      ],
+      arc: [],
+      identifiers: [
+        {
+          field: 'unii',
+          label: 'UNII',
+          value: '9100L32L2N',
+          href: 'https://precision.fda.gov/uniisearch/srs/unii/9100L32L2N',
+        },
+        {
+          field: 'chemblId',
+          label: 'ChEMBL id',
+          value: 'CHEMBL1431',
+          href: 'https://www.ebi.ac.uk/chembl/compound_report_card/CHEMBL1431/',
+        },
+        { field: 'cas', label: 'CAS number', value: '657-24-9' },
+        { field: 'structureInchikey', label: 'InChIKey', value: 'XZWYZXLIPXDOLR-UHFFFAOYSA-N' },
+      ],
+      relations: [],
+      sources: [],
+      licenceNotes: [],
+      registeredStudies: 3,
+      ...patch,
+    }
+  }
+
+  const options = { siteUrl: 'https://rnawiki.com', url: 'https://rnawiki.com/d/metformin' }
+
+  it('states the record, its recorded names and identifiers, and the trail to it', () => {
+    const graph = corpusDossierJsonLdGraph(corpusDossier(), options)
+    expect(graph).not.toBeNull()
+    const medicine = graph!['@graph'].find(
+      (node) => node['@type'] === 'Drug' || node['@type'] === 'MedicalEntity',
+    ) as CorpusMedicineJsonLd
+    expect(medicine['@type']).toBe('Drug')
+    expect(medicine.name).toBe('Metformin')
+    expect(medicine.url).toBe('https://rnawiki.com/d/metformin')
+    // The record's own name is not repeated as an alternate name, and a salt form is not one.
+    expect(medicine.alternateName).toEqual(['Metformine', 'Glucophage'])
+    expect(medicine.description).toBe('Drugs@FDA records an approved application.')
+    expect(medicine.identifier).toEqual([
+      { '@type': 'PropertyValue', propertyID: 'FDA UNII', value: '9100L32L2N' },
+      { '@type': 'PropertyValue', propertyID: 'ChEMBL ID', value: 'CHEMBL1431' },
+      { '@type': 'PropertyValue', propertyID: 'CAS Registry Number', value: '657-24-9' },
+    ])
+    expect(medicine.sameAs).toEqual([
+      'https://precision.fda.gov/uniisearch/srs/unii/9100L32L2N',
+      'https://www.ebi.ac.uk/chembl/compound_report_card/CHEMBL1431/',
+    ])
+
+    const breadcrumb = graph!['@graph'].find((node) => node['@type'] === 'BreadcrumbList') as {
+      itemListElement: Array<{ position: number; name: string; item: string }>
+    }
+    expect(breadcrumb.itemListElement.map((item) => item.name)).toEqual([
+      'RNAWiki',
+      'Medicines',
+      'Metformin',
+    ])
+    expect(breadcrumb.itemListElement[2]!.item).toBe('https://rnawiki.com/d/metformin')
+  })
+
+  it('emits nothing for a record the corpus does not index', () => {
+    expect(corpusDossierJsonLdGraph(corpusDossier({ indexable: false }), options)).toBeNull()
+  })
+
+  it('calls a record outside a drug register by the honest superclass', () => {
+    const graph = corpusDossierJsonLdGraph(
+      corpusDossier({ model: 'LONGEVITY', pageType: 'longevity' }),
+      options,
+    )
+    const medicine = graph!['@graph'].find(
+      (node) => node['@type'] === 'Drug' || node['@type'] === 'MedicalEntity',
+    ) as CorpusMedicineJsonLd
+    expect(medicine['@type']).toBe('MedicalEntity')
+  })
+
+  it('omits a description, alternate names and identifiers the record does not hold', () => {
+    const graph = corpusDossierJsonLdGraph(
+      corpusDossier({ blocks: [], synonyms: [], identifiers: [] }),
+      options,
+    )
+    const medicine = graph!['@graph'].find(
+      (node) => node['@type'] === 'Drug' || node['@type'] === 'MedicalEntity',
+    ) as CorpusMedicineJsonLd
+    expect(Object.keys(medicine)).toEqual(['@type', '@id', 'name', 'url'])
+    const serialised = serialiseJsonLd(graph)
+    expect(serialised).not.toContain('alternateName')
+    expect(serialised).not.toContain('PropertyValue')
+    expect(serialised).not.toContain('sameAs')
+  })
+
+  it('escapes a recorded name that would otherwise close the script element', () => {
+    const graph = corpusDossierJsonLdGraph(
+      corpusDossier({ displayName: 'Metformin </script><script>x' }),
+      options,
+    )
+    expect(serialiseJsonLd(graph)).not.toContain('</script>')
   })
 })

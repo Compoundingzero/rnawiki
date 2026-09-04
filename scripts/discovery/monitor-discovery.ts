@@ -6,13 +6,23 @@
  * state, `DISCOVERY_READY`, from the response it received. It never records that a page was
  * crawled, indexed or cited: those need a report from outside this repository.
  *
+ * Memory. A sitemap index over a corpus of tens of thousands of records is read one child at a
+ * time: each child's XML is fetched, turned into URLs, checked and dropped before the next child
+ * is fetched, and the checkpoint is folded into counters line by line rather than parsed into an
+ * array of records. What the run holds is the URL set it has seen, not the documents behind it.
+ * `--tier n` narrows the run to one sitemap child, which is how the full-corpus run was completed
+ * before this streaming existed.
+ *
  * Usage:
  *   npx tsx scripts/discovery/monitor-discovery.ts --origin https://rnawiki.com
+ *   npx tsx scripts/discovery/monitor-discovery.ts --tier 1 --limit 50
  *   npx tsx scripts/discovery/monitor-discovery.ts --input ./sitemap.xml --limit 50
  */
 
+import { createReadStream } from 'node:fs'
 import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
+import { createInterface } from 'node:readline'
 import { fileURLToPath } from 'node:url'
 
 import {
@@ -59,6 +69,8 @@ export interface MonitorOptions {
   clickDepth: boolean
   /** Most navigation pages the walk may fetch. A walk that runs out says so. */
   clickDepthBudget: number
+  /** Read only `/sitemaps/tier-<n>.xml` of the index, or null for every child it names. */
+  tier: number | null
 }
 
 export interface MonitorRecord {
@@ -103,6 +115,7 @@ export function parseMonitorArguments(args: string[]): MonitorOptions {
   let help = false
   let clickDepth = true
   let clickDepthBudget = DEFAULT_CLICK_DEPTH_BUDGET
+  let tier: number | null = null
 
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index] ?? ''
@@ -142,6 +155,10 @@ export function parseMonitorArguments(args: string[]): MonitorOptions {
       const [value, consumed] = optionValue(args, index, '--out-dir')
       outDir = value
       index = consumed
+    } else if (argument === '--tier' || argument.startsWith('--tier=')) {
+      const [value, consumed] = optionValue(args, index, '--tier')
+      tier = boundedInteger(value, '--tier', 1, 2)
+      index = consumed
     } else {
       throw new Error(`Unknown option: ${argument}`)
     }
@@ -174,7 +191,13 @@ export function parseMonitorArguments(args: string[]): MonitorOptions {
     help,
     clickDepth,
     clickDepthBudget,
+    tier,
   }
+}
+
+/** The sitemap child one corpus tier is served from (docs/specs/browse.md). */
+export function tierSitemapChild(origin: string, tier: number): string {
+  return `${origin}/sitemaps/tier-${tier}.xml`
 }
 
 function attribute(tag: string, name: string): string | null {
@@ -338,6 +361,8 @@ export interface MonitorSummary {
   /** Sitemap documents read, and the children an index named. */
   sitemapDocumentsRead: number
   sitemapChildren: string[]
+  /** The tier this run was narrowed to, or null when it read every child. */
+  tier: number | null
   unreadableSitemapChildren: Array<{ url: string; reason: string }>
   /** Absent when the walk was turned off with --no-click-depth. */
   clickDepth?: ClickDepthReport
@@ -345,45 +370,79 @@ export interface MonitorSummary {
   note: string
 }
 
-export function summarizeMonitorRecords(
-  origin: string,
-  records: readonly MonitorRecord[],
-  context: {
-    startedAt: string
-    finishedAt: string
-    sitemapDossierUrls: number
-    resumedFromCheckpoint: number
-    /** Optional so a caller that read one plain sitemap need not restate the obvious. */
-    sitemapDocumentsRead?: number
-    sitemapChildren?: string[]
-    unreadableSitemapChildren?: Array<{ url: string; reason: string }>
-    clickDepth?: ClickDepthReport
-  },
-): MonitorSummary {
-  const blockerCounts: Record<string, number> = {}
-  for (const record of records) {
-    for (const blocker of record.blockers) {
-      blockerCounts[blocker] = (blockerCounts[blocker] ?? 0) + 1
-    }
+/**
+ * What a run counts, folded one record at a time.
+ *
+ * The totals are the whole of what the summary needs, so a run of any size holds these four
+ * numbers rather than every record it has checked.
+ */
+export interface MonitorTotals {
+  checked: number
+  discoveryReady: number
+  apiAvailable: number
+  blockerCounts: Record<string, number>
+}
+
+export function emptyMonitorTotals(): MonitorTotals {
+  return { checked: 0, discoveryReady: 0, apiAvailable: 0, blockerCounts: {} }
+}
+
+export function foldMonitorRecord(totals: MonitorTotals, record: MonitorRecord): MonitorTotals {
+  totals.checked += 1
+  if (record.state === 'DISCOVERY_READY') totals.discoveryReady += 1
+  if (record.api.status === 200) totals.apiAvailable += 1
+  for (const blocker of record.blockers) {
+    totals.blockerCounts[blocker] = (totals.blockerCounts[blocker] ?? 0) + 1
   }
-  const discoveryReady = records.filter((record) => record.state === 'DISCOVERY_READY').length
+  return totals
+}
+
+interface MonitorSummaryContext {
+  startedAt: string
+  finishedAt: string
+  sitemapDossierUrls: number
+  resumedFromCheckpoint: number
+  /** Optional so a caller that read one plain sitemap need not restate the obvious. */
+  sitemapDocumentsRead?: number
+  sitemapChildren?: string[]
+  unreadableSitemapChildren?: Array<{ url: string; reason: string }>
+  clickDepth?: ClickDepthReport
+  tier?: number | null
+}
+
+export function summarizeMonitorTotals(
+  origin: string,
+  totals: MonitorTotals,
+  context: MonitorSummaryContext,
+): MonitorSummary {
   return {
     origin,
     startedAt: context.startedAt,
     finishedAt: context.finishedAt,
     sitemapDossierUrls: context.sitemapDossierUrls,
-    checked: records.length,
+    checked: totals.checked,
     resumedFromCheckpoint: context.resumedFromCheckpoint,
-    discoveryReady,
-    notDiscoveryReady: records.length - discoveryReady,
-    apiAvailable: records.filter((record) => record.api.status === 200).length,
-    blockerCounts,
+    discoveryReady: totals.discoveryReady,
+    notDiscoveryReady: totals.checked - totals.discoveryReady,
+    apiAvailable: totals.apiAvailable,
+    blockerCounts: totals.blockerCounts,
     sitemapDocumentsRead: context.sitemapDocumentsRead ?? 1,
     sitemapChildren: context.sitemapChildren ?? [],
+    tier: context.tier ?? null,
     unreadableSitemapChildren: context.unreadableSitemapChildren ?? [],
     ...(context.clickDepth ? { clickDepth: context.clickDepth } : {}),
     note: 'DISCOVERY_READY describes what this origin served. It is not a record of crawling, indexing or citation.',
   }
+}
+
+export function summarizeMonitorRecords(
+  origin: string,
+  records: readonly MonitorRecord[],
+  context: MonitorSummaryContext,
+): MonitorSummary {
+  const totals = emptyMonitorTotals()
+  for (const record of records) foldMonitorRecord(totals, record)
+  return summarizeMonitorTotals(origin, totals, context)
 }
 
 async function loadSitemapXml(
@@ -432,51 +491,82 @@ export interface SitemapReadResult {
   unreadableChildren: Array<{ url: string; reason: string }>
 }
 
+/** Children the run will read: every same-origin child, or the one `--tier` names. */
+export function selectedSitemapChildren(
+  xml: string,
+  options: MonitorOptions,
+): { children: string[]; missing: Array<{ url: string; reason: string }> } {
+  const origin = options.origin.origin
+  const named = sitemapIndexChildren(xml, origin)
+  if (options.tier === null) return { children: named, missing: [] }
+  const wanted = tierSitemapChild(origin, options.tier)
+  return named.includes(wanted)
+    ? { children: [wanted], missing: [] }
+    : { children: [], missing: [{ url: wanted, reason: 'not named by the sitemap index' }] }
+}
+
 /**
- * Read the dossier URLs out of a sitemap, following a sitemap index into its children first.
+ * Read the dossier URLs out of a sitemap one child at a time, following a sitemap index first.
  *
  * The site serves `/sitemap.xml` as an index over `/sitemaps/tier-1.xml` and its siblings
  * (docs/specs/browse.md), so reading the index alone would find no `/d/` URL at all and report an
  * empty corpus. Only same-origin children are followed, and a child that does not answer is
  * recorded rather than passed over silently.
+ *
+ * `onUrls` receives one child's dossier URLs at a time. The child's XML — up to 50,000 URLs, tens
+ * of megabytes of text — is released before the next child is requested, so the run's memory is
+ * the URLs it has seen and never the documents they came from.
  */
-export async function readSitemapDossierUrls(
+export async function streamSitemapDossierUrls(
   xml: string,
   options: MonitorOptions,
   fetchImpl: FetchImplementation,
-): Promise<SitemapReadResult> {
+  onUrls: (urls: string[], child: string | null) => Promise<void> | void,
+): Promise<Omit<SitemapReadResult, 'urls'>> {
   const origin = options.origin.origin
   if (!isSitemapIndex(xml)) {
-    return {
-      urls: sitemapDossierUrls(xml, origin),
-      children: [],
-      documentsRead: 1,
-      unreadableChildren: [],
-    }
+    await onUrls(sitemapDossierUrls(xml, origin), null)
+    return { children: [], documentsRead: 1, unreadableChildren: [] }
   }
 
-  const children = sitemapIndexChildren(xml, origin)
-  const seen = new Set<string>()
-  const unreadableChildren: Array<{ url: string; reason: string }> = []
+  const { children, missing } = selectedSitemapChildren(xml, options)
+  const unreadableChildren: Array<{ url: string; reason: string }> = [...missing]
   let documentsRead = 1
 
   for (const child of children) {
+    let urls: string[] | null = null
     try {
       const response = await fetchImpl(child, { headers: { accept: 'application/xml' } })
       if (!response.ok) {
         unreadableChildren.push({ url: child, reason: `HTTP ${response.status}` })
         continue
       }
-      const body = await response.text()
+      // The body is scoped to this iteration so the child's XML can be collected before the next
+      // request; only the extracted URLs outlive it.
+      urls = sitemapDossierUrls(await response.text(), origin)
       documentsRead += 1
-      for (const url of sitemapDossierUrls(body, origin)) seen.add(url)
     } catch (error) {
       unreadableChildren.push({ url: child, reason: errorName(error) })
+    } finally {
+      await sleep(options.delayMs)
     }
-    await sleep(options.delayMs)
+    if (urls) await onUrls(urls, child)
   }
 
-  return { urls: [...seen], children, documentsRead, unreadableChildren }
+  return { children, documentsRead, unreadableChildren }
+}
+
+/** The whole set at once, for a caller small enough to hold it. */
+export async function readSitemapDossierUrls(
+  xml: string,
+  options: MonitorOptions,
+  fetchImpl: FetchImplementation,
+): Promise<SitemapReadResult> {
+  const seen = new Set<string>()
+  const result = await streamSitemapDossierUrls(xml, options, fetchImpl, (urls) => {
+    for (const url of urls) seen.add(url)
+  })
+  return { urls: [...seen], ...result }
 }
 
 /* ------------------------------------------------------------------------------------------- */
@@ -627,25 +717,42 @@ function summaryPath(options: MonitorOptions): string {
   return resolve(options.outDir, `discovery-monitor-${options.origin.hostname}-summary.json`)
 }
 
-async function readCheckpoint(path: string): Promise<MonitorRecord[]> {
-  let raw: string
+/**
+ * Fold an existing checkpoint line by line.
+ *
+ * A resumed run over the whole corpus reads a file with one JSON object per record. Parsing it
+ * into an array was what exhausted the heap on the full index; the file is streamed instead and
+ * only the URL set and the counters are kept.
+ */
+async function forEachCheckpointRecord(
+  path: string,
+  visit: (record: MonitorRecord) => void,
+): Promise<void> {
+  let stream: ReturnType<typeof createReadStream>
   try {
-    raw = await readFile(path, 'utf8')
+    stream = createReadStream(path, { encoding: 'utf8' })
   } catch {
-    return []
+    return
   }
-  return raw
-    .split('\n')
-    .flatMap((line) => {
+  const lines = createInterface({ input: stream, crlfDelay: Infinity })
+  try {
+    for await (const line of lines) {
       const trimmed = line.trim()
-      if (!trimmed) return []
+      if (!trimmed) continue
+      let record: MonitorRecord
       try {
-        return [JSON.parse(trimmed) as MonitorRecord]
+        record = JSON.parse(trimmed) as MonitorRecord
       } catch {
-        return []
+        continue
       }
-    })
-    .filter((record) => typeof record?.url === 'string')
+      if (typeof record?.url === 'string') visit(record)
+    }
+  } catch {
+    // A checkpoint that cannot be read is a checkpoint with nothing recorded in it.
+  } finally {
+    lines.close()
+    stream.destroy()
+  }
 }
 
 export async function runMonitor(
@@ -653,35 +760,55 @@ export async function runMonitor(
   fetchImpl: FetchImplementation = fetch,
 ): Promise<MonitorSummary> {
   const startedAt = new Date().toISOString()
-  const xml = await loadSitemapXml(options, fetchImpl)
-  const sitemap = await readSitemapDossierUrls(xml, options, fetchImpl)
-  const allUrls = sitemap.urls
-
   const checkpoint = checkpointPath(options)
-  const previous = options.resume ? await readCheckpoint(checkpoint) : []
-  const done = new Set(previous.map((record) => record.url))
-  const pending = allUrls.filter((url) => !done.has(url))
-  const selected = options.limit > 0 ? pending.slice(0, options.limit) : pending
-
   await mkdir(dirname(checkpoint), { recursive: true })
-  const fresh = await runWithConcurrency(selected, options.concurrency, async (url) => {
-    const record = await monitorOneUrl(url, options, fetchImpl)
-    await appendFile(checkpoint, `${JSON.stringify(record)}\n`, 'utf8')
-    return record
+
+  const totals = emptyMonitorTotals()
+  const done = new Set<string>()
+  let resumedFromCheckpoint = 0
+  if (options.resume) {
+    await forEachCheckpointRecord(checkpoint, (record) => {
+      if (done.has(record.url)) return
+      done.add(record.url)
+      resumedFromCheckpoint += 1
+      foldMonitorRecord(totals, record)
+    })
+  }
+
+  const xml = await loadSitemapXml(options, fetchImpl)
+  // The URL set is what the click-depth walk is scored against, so it is kept; the XML each child
+  // arrived in is not.
+  const sitemapUrls = new Set<string>()
+  let remaining = options.limit > 0 ? options.limit : Number.POSITIVE_INFINITY
+
+  const sitemap = await streamSitemapDossierUrls(xml, options, fetchImpl, async (urls) => {
+    const pending: string[] = []
+    for (const url of urls) {
+      sitemapUrls.add(url)
+      if (!done.has(url) && pending.length < remaining) pending.push(url)
+    }
+    remaining -= pending.length
+    await runWithConcurrency(pending, options.concurrency, async (url) => {
+      const record = await monitorOneUrl(url, options, fetchImpl)
+      await appendFile(checkpoint, `${JSON.stringify(record)}\n`, 'utf8')
+      done.add(url)
+      foldMonitorRecord(totals, record)
+    })
   })
 
   const clickDepth = options.clickDepth
-    ? await measureClickDepth(allUrls, options, fetchImpl)
+    ? await measureClickDepth([...sitemapUrls], options, fetchImpl)
     : undefined
 
-  const summary = summarizeMonitorRecords(options.origin.origin, [...previous, ...fresh], {
+  const summary = summarizeMonitorTotals(options.origin.origin, totals, {
     startedAt,
     finishedAt: new Date().toISOString(),
-    sitemapDossierUrls: allUrls.length,
-    resumedFromCheckpoint: previous.length,
+    sitemapDossierUrls: sitemapUrls.size,
+    resumedFromCheckpoint,
     sitemapDocumentsRead: sitemap.documentsRead,
     sitemapChildren: sitemap.children,
     unreadableSitemapChildren: sitemap.unreadableChildren,
+    tier: options.tier,
     ...(clickDepth ? { clickDepth } : {}),
   })
   await writeFile(summaryPath(options), `${JSON.stringify(summary, null, 2)}\n`, 'utf8')
@@ -699,6 +826,7 @@ function usage(): string {
     `  --delay-ms <ms>       Pause between the two requests for one record (default: ${DEFAULT_DELAY_MS})`,
     `  --timeout-ms <ms>     Per-request timeout (default: ${DEFAULT_TIMEOUT_MS})`,
     '  --limit <n>           Check at most n URLs this run (default: every URL)',
+    '  --tier <1|2>          Read only that sitemap child instead of every child of the index',
     '  --resume              Skip URLs already present in the checkpoint file',
     `  --out-dir <path>      Where the checkpoint and summary are written (default: ${DEFAULT_OUT_DIR})`,
     '  --no-click-depth      Skip the home-to-record click-depth walk',
@@ -725,7 +853,7 @@ async function runCli(): Promise<void> {
     console.log(
       [
         `Discovery readiness: ${summary.origin}`,
-        `Sitemap dossier URLs: ${summary.sitemapDossierUrls}`,
+        `Sitemap dossier URLs: ${summary.sitemapDossierUrls}${summary.tier === null ? '' : ` (tier ${summary.tier} only)`}`,
         `Checked this run and earlier: ${summary.checked} (resumed ${summary.resumedFromCheckpoint})`,
         `DISCOVERY_READY: ${summary.discoveryReady}; not ready: ${summary.notDiscoveryReady}`,
         `Machine record answered: ${summary.apiAvailable}`,
