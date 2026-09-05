@@ -1,0 +1,271 @@
+{
+  "source": "openfda-label",
+  "endpoint": "openFDA drug/label bulk download (DailyMed Structured Product Labeling)",
+  "retrieved_at": "2026-08-30T15:27:00Z",
+  "processed_at": "2026-09-05",
+  "licence": "CC0 1.0 Universal (public domain dedication)",
+  "licence_url": "https://open.fda.gov/license/",
+  "licence_text": "As noted in the terms of service, unless otherwise noted, the content, data, documentation, code, and related materials on openFDA is public domain and made available with a Creative Commons CC0 1.0 Universal dedication. Under CC0, FDA has dedicated the work to the public domain by waiving all rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
+  "retrieval_route": "bulk download (the first route the spec requires). The fourteen partition archives were downloaded on 2026-08-30 into rnawiki-ingest-data/openfda/ and the revamp brief forbids refetching them; raw/ holds symbolic links to those exact files and every SHA256 below was computed from the bytes on disk on 2026-09-05.",
+  "robots_and_terms": {
+    "https://open.fda.gov/robots.txt": "HTTP 403 (AccessDenied from the S3 origin; open.fda.gov serves no robots.txt). No request for data was made to that host by this ingest: the fourteen archives were already on disk.",
+    "https://download.open.fda.gov/robots.txt": "HTTP 403 (AccessDenied from the S3 origin; the bulk-download host serves no robots.txt).",
+    "https://www.fda.gov/robots.txt": "HTTP 200, saved to legal/www.fda.gov-robots.txt.",
+    "https://api.fda.gov/robots.txt": "HTTP 404.",
+    "https://dailymed.nlm.nih.gov/robots.txt": "HTTP 200, saved to legal/dailymed.nlm.nih.gov-robots.txt.",
+    "https://open.fda.gov/license/": "HTTP 200. States: the content, data, documentation, code and related materials on openFDA are public domain and made available with a Creative Commons CC0 1.0 Universal dedication, including for commercial purposes, without asking permission.",
+    "https://open.fda.gov/terms/": "HTTP 200, saved to legal/open.fda.gov-terms.html.",
+    "https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm": "HTTP 200. DailyMed publishes the same SPL content under NLM terms; the bytes used here come from the openFDA bulk export, not from DailyMed.",
+    "https://api.fda.gov/download.json": "HTTP 200, saved to legal/api.fda.gov-download.json. Records the live export state at 2026-09-05."
+  },
+  "live_export_at_processing_time": {
+    "checked": "2026-09-05",
+    "export_date": "2026-09-04",
+    "total_records": 262663,
+    "partitions": 14,
+    "note": "The live export is newer than the archives on disk. The difference is recorded rather than closed, because the brief forbids refetching this source."
+  },
+  "files": [
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-01.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-01.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0001-of-0014.json.zip",
+      "member": "drug-label-0001-of-0014.json",
+      "bytes": 137479556,
+      "sha256": "45d5ce7b76983b84db448531490c1d92d7ad29fb8ea49dc718ba6b68310929d6",
+      "retrieved_at": "2026-08-30T15:27:19Z",
+      "openfda_export_packaged_at": "2026-08-28T14:47:10",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-02.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-02.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0002-of-0014.json.zip",
+      "member": "drug-label-0002-of-0014.json",
+      "bytes": 149547990,
+      "sha256": "dd3a668327febda8f7255b5a7d2aede6f8dc6eb0deae23557654f1f6c5abe386",
+      "retrieved_at": "2026-08-30T15:27:43Z",
+      "openfda_export_packaged_at": "2026-08-28T14:47:48",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-03.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-03.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0003-of-0014.json.zip",
+      "member": "drug-label-0003-of-0014.json",
+      "bytes": 144000859,
+      "sha256": "1d641a31ecec8e801d845ed753972190e3aae0c382745166eb32da6cfe6ec41f",
+      "retrieved_at": "2026-08-30T15:28:05Z",
+      "openfda_export_packaged_at": "2026-08-28T14:48:28",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-04.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-04.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0004-of-0014.json.zip",
+      "member": "drug-label-0004-of-0014.json",
+      "bytes": 144100401,
+      "sha256": "d116100636845688d8843b6d733911ca2222f58a24b68cf98885c6701627d228",
+      "retrieved_at": "2026-08-30T15:28:25Z",
+      "openfda_export_packaged_at": "2026-08-28T14:49:08",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-05.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-05.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0005-of-0014.json.zip",
+      "member": "drug-label-0005-of-0014.json",
+      "bytes": 131471532,
+      "sha256": "726d70200bba661266761e1f5deef3711e9db060e61348f4d9605a8d0d5bdd2b",
+      "retrieved_at": "2026-08-30T15:28:45Z",
+      "openfda_export_packaged_at": "2026-08-28T14:49:44",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-06.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-06.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0006-of-0014.json.zip",
+      "member": "drug-label-0006-of-0014.json",
+      "bytes": 142372689,
+      "sha256": "97037f7b0e0f0fd5d3a8a677e994f6352b5ec5163fdbf490072faa08100b95e1",
+      "retrieved_at": "2026-08-30T15:29:07Z",
+      "openfda_export_packaged_at": "2026-08-28T14:50:22",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-07.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-07.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0007-of-0014.json.zip",
+      "member": "drug-label-0007-of-0014.json",
+      "bytes": 149285143,
+      "sha256": "ca918c241c8900ce0fbfe9006e81751184a97221c8f0659e304c565ce78e2d03",
+      "retrieved_at": "2026-08-30T15:29:29Z",
+      "openfda_export_packaged_at": "2026-08-28T14:51:00",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-08.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-08.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0008-of-0014.json.zip",
+      "member": "drug-label-0008-of-0014.json",
+      "bytes": 143921655,
+      "sha256": "d571e691f16f239f603dbb5a9c8c65544040669651ed420d95841d645e66900e",
+      "retrieved_at": "2026-08-30T15:29:50Z",
+      "openfda_export_packaged_at": "2026-08-28T14:51:40",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-09.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-09.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0009-of-0014.json.zip",
+      "member": "drug-label-0009-of-0014.json",
+      "bytes": 131543655,
+      "sha256": "8a7d42d33ad968c224b7401be8692ed9e87f80a61a1a2d69d6005298cb6bf589",
+      "retrieved_at": "2026-08-30T15:30:10Z",
+      "openfda_export_packaged_at": "2026-08-28T14:52:18",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-10.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-10.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0010-of-0014.json.zip",
+      "member": "drug-label-0010-of-0014.json",
+      "bytes": 135545593,
+      "sha256": "40147bd1b45a6bad0fc04469993fb017f8d1f36b38611d05281b1ba6c5f974e1",
+      "retrieved_at": "2026-08-30T15:30:32Z",
+      "openfda_export_packaged_at": "2026-08-28T14:52:54",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-11.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-11.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0011-of-0014.json.zip",
+      "member": "drug-label-0011-of-0014.json",
+      "bytes": 152912608,
+      "sha256": "020b86a8e03a3f60443f6eb47c7d6d888193f8ae8874b9ce1258c50bd7e4c8e0",
+      "retrieved_at": "2026-08-30T15:30:56Z",
+      "openfda_export_packaged_at": "2026-08-28T14:53:32",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-12.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-12.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0012-of-0014.json.zip",
+      "member": "drug-label-0012-of-0014.json",
+      "bytes": 137468598,
+      "sha256": "05245ecddaabe352660456521af0df276334c9ced07821842bc4145c3eb90ee2",
+      "retrieved_at": "2026-08-30T15:31:18Z",
+      "openfda_export_packaged_at": "2026-08-28T14:54:14",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-13.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-13.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0013-of-0014.json.zip",
+      "member": "drug-label-0013-of-0014.json",
+      "bytes": 139437961,
+      "sha256": "097c2380e4d74494b9118e1d280ec16582f942c3a6a3169e152bd08b19d99d52",
+      "retrieved_at": "2026-08-30T15:31:40Z",
+      "openfda_export_packaged_at": "2026-08-28T14:54:50",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/raw/label-14.zip",
+      "stored_at": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda/label-14.zip",
+      "url": "https://download.open.fda.gov/drug/label/drug-label-0014-of-0014.json.zip",
+      "member": "drug-label-0014-of-0014.json",
+      "bytes": 17881816,
+      "sha256": "41b661faee7ae46d871ba97c82a6c8668d60e7ff88dab90c313f7a1bd451f14b",
+      "retrieved_at": "2026-08-30T15:31:43Z",
+      "openfda_export_packaged_at": "2026-08-28T14:55:16",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://open.fda.gov/license/"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/api.fda.gov-download.json",
+      "url": null,
+      "bytes": 590571,
+      "sha256": "6780a21e5472ce6883f89a060127e33055a0620217bb0bcedea781bb416d6e7a",
+      "retrieved_at": "2026-09-05T06:40:09Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/api.fda.gov-robots.txt",
+      "url": null,
+      "bytes": 149,
+      "sha256": "76349265e5506d1eba164f3909bd48be1be581943493355b3aad7ddc8ad908b7",
+      "retrieved_at": "2026-09-05T06:34:26Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/dailymed-web-services.html",
+      "url": null,
+      "bytes": 85397,
+      "sha256": "3fbe63342062c085fcbb85f1431f6c1614bbacc6b2ade5adc21de8eba3c4327e",
+      "retrieved_at": "2026-09-05T06:34:32Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/dailymed.nlm.nih.gov-robots.txt",
+      "url": null,
+      "bytes": 75120,
+      "sha256": "4c62015a881980cecc96779eeacd44ba01b2fe1d278b6b49d3b0e337d54d2746",
+      "retrieved_at": "2026-09-05T06:34:29Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/download.open.fda.gov-robots.txt",
+      "url": null,
+      "bytes": 111,
+      "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+      "retrieved_at": "2026-09-05T06:34:43Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/open.fda.gov-license.html",
+      "url": null,
+      "bytes": 122141,
+      "sha256": "21cbef5e3f906e1b89f75dc824d0642bdcdb7bb000d7c09179b75ea865ea10bc",
+      "retrieved_at": "2026-09-05T06:34:30Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/open.fda.gov-robots.txt",
+      "url": null,
+      "bytes": 474,
+      "sha256": "43c711a10e5791b2cd86d4a79f044296285a73c0ee46ba5bd460bd3f95e049ef",
+      "retrieved_at": "2026-09-05T06:34:25Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/open.fda.gov-terms.html",
+      "url": null,
+      "bytes": 130019,
+      "sha256": "c44398805629b2ec422c270180d6c9a96ca8c184519e697ea077bb95e4713353",
+      "retrieved_at": "2026-09-05T06:34:31Z",
+      "licence": "US Government work"
+    },
+    {
+      "path": "data/sources/openfda-label/2026-09-05/legal/www.fda.gov-robots.txt",
+      "url": null,
+      "bytes": 2505,
+      "sha256": "b28f1d0132f966047fe40018266dbff647024fa01c020b80e44b5c3f167114ed",
+      "retrieved_at": "2026-09-05T06:34:43Z",
+      "licence": "US Government work"
+    }
+  ],
+  "total_bytes": 1857976543
+}

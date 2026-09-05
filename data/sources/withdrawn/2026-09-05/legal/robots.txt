@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /jail/data*
+Disallow: /promiscuous/applet/drug_thumbnails
+Disallow: /promiscuous/applet/target_thumbnails
+Disallow: /promicuous_v1
+Disallow: /cobweb_v1
+Disallow: /cobweb_v2
+Disallow: /vaccimm_v1
+Disallow: /vaccimm_v2
+Disallow: /vaccimm_v3
+Disallow: /vaccimm
+Disallow: /bindingdb

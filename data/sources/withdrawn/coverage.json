@@ -1,0 +1,70 @@
+{
+  "source": "withdrawn",
+  "sourceName": "WITHDRAWN 2.0 database (Charite, Structural Bioinformatics Group)",
+  "attemptedDate": "2026-09-05",
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "blockedReason": "The WITHDRAWN 2.0 web application is offline. Every path under https://bioinformatics.charite.de/withdrawn_3/ returns HTTP 404, including the bulk CSV named in the paper's own Data Availability statement and the link printed on the group's live homepage. The predecessor host cheminfo.charite.de has no DNS A record. The bulk CSV was never captured by the Internet Archive. No licence or terms-of-use statement is published on any surviving page of the database, so its data may not be reused under Operating Rule 8.",
+  "licence": "not established - no licence or terms statement published by the database",
+  "rawFiles": 0,
+  "rawBytes": 0,
+  "mappedParquetWritten": false,
+  "mappedParquetReason": "No WITHDRAWN record was retrieved. Writing a mapped.parquet from any other source under this directory would misattribute that source's provenance.",
+  "pagesMatchedByTier": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+  },
+  "fieldsGainedByTier": {
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "unmatchedRecords": 0,
+  "nameCandidatesSentToReview": 0,
+  "evidence": {
+    "retryLog": "data/sources/withdrawn/2026-09-05/retry-evidence.txt",
+    "requestLog": "data/sources/withdrawn/2026-09-05/requests.log",
+    "legalCaptures": "data/sources/withdrawn/2026-09-05/legal/",
+    "blockerEntry": "data/revamp/worklog-entries/2.10-blocker.md"
+  },
+  "withdrawalFieldGap": {
+    "note": "Measured from sources already held under a verified licence. WITHDRAWN 2.0 was the only Phase 2 source publishing a withdrawal reason. ChEMBL 37 carries withdrawn_flag only; withdrawn_year, withdrawn_country, withdrawn_reason and withdrawn_class were removed from the ChEMBL molecule endpoint after release 29. Inxight marketing status carries a jurisdiction and record dates, but those date a marketing record, not a withdrawal decision, so no withdrawal year is derivable from it.",
+    "perTier": [
+      {
+        "tier": 1,
+        "pages": 1719,
+        "corpus_withdrawn_flag": 663,
+        "chembl_withdrawn_flag": 281,
+        "inxight_inactive_status": 890,
+        "any_withdrawal_signal": 1180,
+        "with_country_available": 890,
+        "with_year_available": 0,
+        "with_reason_available": 0
+      },
+      {
+        "tier": 2,
+        "pages": 4477,
+        "corpus_withdrawn_flag": 0,
+        "chembl_withdrawn_flag": 0,
+        "inxight_inactive_status": 1721,
+        "any_withdrawal_signal": 1721,
+        "with_country_available": 1721,
+        "with_year_available": 0,
+        "with_reason_available": 0
+      },
+      {
+        "tier": 3,
+        "pages": 22636,
+        "corpus_withdrawn_flag": 0,
+        "chembl_withdrawn_flag": 0,
+        "inxight_inactive_status": 437,
+        "any_withdrawal_signal": 437,
+        "with_country_available": 437,
+        "with_year_available": 0,
+        "with_reason_available": 0
+      }
+    ],
+    "reasonAvailableFromLicensedSources": 0,
+    "yearAvailableFromLicensedSources": 0
+  }
+}

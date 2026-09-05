@@ -1,0 +1,1022 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    
+    <head>
+         <script src="js/jquery.min.js"></script>
+ <script src="js/jquery-ui.min.js"></script>
+ <script src="js/jquery.cookie.js" type="text/javascript"></script>
+ <script src="js/jquery.cookiecuttr.js" type="text/javascript"></script>
+ <script>$(document).ready(function () {
+    console.log("Document ready");
+    $.cookieCuttr({
+        cookieAnalytics: false,
+        cookieMessage: 'We use cookies on this website, you can <a href="/privacyPolicy.jsp" title="read about our cookies and change your preference">read about them and update your preference here</a>. To use the website as intended please...',
+        cookiePolicyLink: '/privacyPolicy.jsp',
+        cookieNotificationLocationBottom: true,
+        cookieDomain: "guidetopharmacology.org",
+        debug:true
+    });
+    console.log("CookieCuttr initialized");
+});
+</script>
+        
+            <script>
+// Define dataLayer and the gtag function.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Default ad_storage to 'denied' as a placeholder
+// Determine actual values based on your own requirements
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied'
+});
+
+var accepted = jQuery.cookie('cc_cookie_accept');
+var declined = jQuery.cookie('cc_cookie_decline');
+
+if (accepted === "cc_cookie_accept") {
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+} else if (declined === "cc_cookie_decline") {
+  gtag('consent', 'update', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+}
+// If neither exists â DO NOTHING (stay denied)
+
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2BNY8HSKW5"></script>
+
+<script> 
+  gtag('js', new Date());
+  gtag('config', 'G-2BNY8HSKW5');
+</script>
+
+
+<script>
+jQuery(function($){
+    var consentGranted = ($.cookie('cc_cookie_accept') === 'cc_cookie_accept');
+
+    var consentWatcher = setInterval(syncConsentFromCookie, 1000);
+
+
+    function syncConsentFromCookie() {
+        var accepted = $.cookie('cc_cookie_accept');
+        var declined = $.cookie('cc_cookie_decline');
+
+    if (accepted === 'cc_cookie_accept' && !consentGranted) {
+      consentGranted = true;
+
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      gtag('event', 'page_view', {
+        page_path: window.location.pathname,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+
+      clearInterval(consentWatcher);
+    } else if (declined === 'cc_cookie_decline') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      clearInterval(consentWatcher);
+    }
+  }
+  syncConsentFromCookie();
+  
+  $(document).on('click', 'a', function(){
+    var href = $(this).attr('href');
+    if (href && /\.(pdf|docx|xlsx)(\?.*)?$/i.test(href)) {
+      if ($.cookie('cc_cookie_accept') === 'cc_cookie_accept') {
+        gtag('event', 'file_download', {
+            file_name: href,
+            page_path: window.location.pathname
+        });
+    }
+        }
+    });
+});
+</script>
+
+
+
+
+<!-- Google Tag Manager 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W2MLL4P');</script>
+ End Google Tag Manager -->
+
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>GtoPdb REST API | IUPHAR/BPS Guide to PHARMACOLOGY</title>
+        <meta name="description" content="The IUPHAR/BPS Guide to Pharmacology. Guide to using the REST web services."/>
+        <link rel="stylesheet" type="text/css" href="css/iuphar.css" />
+        <link rel="stylesheet" type="text/css" href="css/grac.css" />
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/cookiecuttr.css">
+        <link rel="stylesheet" type="text/css" href="superfish/css/superfish.css" />
+        <link rel="stylesheet" href="css/text.css" />
+        <link rel="stylesheet" href="css/960.css" />
+        <link rel="stylesheet" href="css/graceq.css" />
+        <link rel="stylesheet" href="css/jquery-ui.min.css"/>
+        <link rel="icon" type="image/png" href="images/gtopdb_square_white.png"/>
+        <script type="text/javascript" src="js/common.js"></script>
+     <!--   <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script> -->
+        <script src="js/autocomplete.categories.js"></script> 
+        <script src="superfish/js/hoverIntent.js"></script>
+        <script src="superfish/js/superfish.js"></script>
+        <script src="superfish/js/supersubs.js"></script>
+        
+        <script>
+            $(document).ready(function(){ 
+                $("ul.sf-menu").supersubs({ 
+                    minWidth:    12,   // minimum width of sub-menus in em units 
+                    maxWidth:    27,   // maximum width of sub-menus in em units 
+                    extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+                                       // due to slight rounding differences and font-family 
+                }).superfish();  // call supersubs first, then superfish, so that subs are 
+                                 // not display:none when measuring. Call before initialising 
+                                 // containing tabs for same reason. 
+            });
+        </script>
+      <!--  <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/jquery.cookiecuttr.js" type="text/javascript"></script>
+        <script src="js/GA_tracking.js" type="text/javascript"></script> -->
+    </head><body>
+        <div class="container_16">
+
+            <!-- ========== HEAD SECTION START - DO NOT ADD ANY CONTENT HERE ===================== -->
+             <div id="header">
+               
+<div class="brandandsearchtest"> 
+<!-- <div class="brandandsearch"> -->
+<div class="newsearchright">
+    <div id="searchTop">
+ <form class="newmainsearch" method="get" action="/GRAC/DatabaseSearchForward">
+                
+                    <input type="text" id="quick_search" size="14" maxlength="200" name="searchString"/>
+                    <input type="hidden" name="searchCategories" value="all"/>
+                    <input type="hidden" name="species" value="none"/>
+                    <input type="hidden" name="type" value="all"/>
+                    <input type="hidden" name="comments" value="includeComments"/>
+                    <input type="hidden" name="order" value="rank"/>
+                   <!-- <input type="submit" name="submit" value="Search Database" /> -->
+                    <button type="submit" aria-label="Search button"><i class="fa fa-search"></i></button>
+              
+ </form>
+
+    </div>
+    <div id="searchBottom" class="logout-container">
+        
+                
+                
+                    <form id="login_header_form_in" action="/login.jsp" method="get">
+                        <input class="loginButtonHeader" type="submit" value="Login">
+                    </form>
+                
+            
+        
+    </div>
+</div>
+<img alt="gtopdb_logo_and_banner_image" width="720" style="margin-top:15px;margin-bottom:15px;" src="../images/gtopdb_banner_2020.png"> 
+</div>
+<script>
+    $("#quick_search").catcomplete({delay: 300, minLength: 2, source: "/GRAC/autocompleteAll.jsp",
+       focus: function( event, ui ) {
+            // $( "#ligand_text" ).val( ui.item.label );
+            // do nothing on mouse over
+            return false;
+       },
+       select: function( event, ui ) {
+            //window.open(ui.item.value);
+            self.location.href = ui.item.value;
+            return false;
+       }  
+   });
+</script> 
+                                            
+           
+
+             </div>
+              <!-- ========== HEAD SECTION END ========================================================= -->
+
+             <!-- ========== SUPERFISH NAV START ============================================================ -->
+             <div class="mainnavcont">
+               <div class="mainnavtext">
+                  <ul id="sample-menu-1" class="sf-menu">
+        <li class="current">
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a  href="/about.jsp">About</a>
+            <ul>
+                <li><a href="/about.jsp">About The Guide to PHARMACOLOGY</a></li>
+                <li><a href="/nciuphar.jsp">About NC-IUPHAR</a></li>
+                <li><a href="/databaseContent.jsp">Database Content</a></li>
+                <li><a href="/GRAC/ContributorListForward">Contributors</a></li>
+                <li><a href="/sponsors.jsp">Sponsors</a></li>
+                <li><a href="/citing.jsp">Citing</a></li>
+                <li><a href="/linking.jsp">Linking to us</a></li>
+                <!--<li><a href="/faq.jsp">FAQ</a></li>-->
+                <li><a href="/disclaimer.jsp">Disclaimer</a></li>
+		<li><a href="/privacyPolicy.jsp">Privacy and Cookie Policy</a></li>
+            </ul>
+        </li>
+        <li>
+                <a  href="/targets.jsp">Targets </a>
+                <ul>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=GPCR">GPCRs</a> 
+                    </li>
+                    <li>
+                        <a  href="/GRAC/ReceptorFamiliesForward?type=IC">Ion channels</a>
+                        <ul>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">LGICs</a></li>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">VGICs</a></li>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">Other channels</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=NHR">Nuclear receptors</a> 
+                    </li>
+                    <li>
+                        <a href="/GRAC/FamilyDisplayForward?familyId=698&familyType=ENZYME">Kinases</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=CATALYTICRECEPTOR">Catalytic receptors</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=TRANSPORTER">Transporters</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=ENZYME">Enzymes</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=OTHER">Other protein targets</a>
+                    </li>
+                    <li><a href="/GRAC/searchPage.jsp">Target search</a>
+                        <ul>
+                            <li><a href="/GRAC/searchPage.jsp">Target search tools</a></li>
+                            <li><a href="/blast">BLAST</a></li>
+                        </ul>
+                    </li>
+                </ul>
+        </li>
+        <li>
+            <a  href="/GRAC/LigandListForward?type=Approved">Ligands</a>
+            <ul>
+                <li><a href="/GRAC/LigandListForward?type=Approved">Ligand list</a></li>
+                <li><a href="/GRAC/LigandFamiliesForward">Ligand families</a></li>
+                <li><a href="/GRAC/chemSearch.jsp">Ligand search</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/GRAC/DiseaseListForward">Diseases</a>
+            
+        </li>
+        <li>
+            <a  href="/helpPage.jsp">Resources</a>
+            <ul>
+                <li><a href="/helpPage.jsp">Help</a></li>
+                <li><a href="/GuidetoPHARMACOLOGY_Tutorial.pdf" target="_blank" onClick="recordEvent(this, 'Other files', 'View PDF', 'Tutorial');return false;">Tutorial</a></li>
+                <li><a href="/faq.jsp">FAQ</a></li>
+                <li><a href="/pdfs/termsAndSymbols.pdf" target="_blank" onClick="recordEvent(this, 'Other files', 'View PDF', 'Terms and Symbols');return false;">Terms and symbols</a></li>
+                <li><a href="/nomenclature.jsp">Nomenclature guidelines</a></li>
+                <li><a href="/nciupharPublications.jsp">Publications</a></li>
+                <li><a href="/GRAC/AntibacterialsForward">Antibacterials</a></li>
+                <li><a href="/GRAC/DrugApprovalsForward">Drug approvals</a></li>
+                <li><a  href="/download.jsp">Downloads</a>
+                    <ul>
+                        <li><a href="/download.jsp">Download data and reports</a></li>
+                        <li><a href="/webServices.jsp">Web services</a></li>
+                        
+                        <li><a href="/slides.jsp">Slides and posters</a></li>
+                    </ul>
+                </li>
+                <li><a  href="/news.jsp">News</a>
+                    <ul>
+                        <li><a href="/immuno/immuphar2018.jsp">Immunopharmacology Meeting 2018</a></li>
+                        <li><a href="/news.jsp">Latest news</a></li>
+                        <li><a href="/GRAC/HotTopicsForward">Hot topics</a></li>
+                        <li><a href="/latestPairings.jsp">Latest pairings</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://bpspubs.onlinelibrary.wiley.com/toc/14765381/2023/180/S2" target="_blank" onClick="recordEvent(this, 'BJP links', 'https://bpspubs.onlinelibrary.wiley.com/toc/14765381/2023/180/S2', 'CGTP table of contents');return false;">Concise Guide to PHARMACOLOGY</a></li>
+                <li><a href="/links.jsp">Useful links</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/GRAC/searchPage.jsp">Advanced search</a>
+            <ul>
+                <li><a href="/GRAC/searchPage.jsp">Target search</a>
+                    <ul>
+                        <li><a href="/GRAC/searchPage.jsp">Target search tools</a></li>
+                        <li><a href="/blast">BLAST</a></li>
+                    </ul>
+                </li>
+                <li><a href="/GRAC/chemSearch.jsp">Ligand search</a></li>
+                <li><a href="/GRAC/pharmacologySearch.jsp">Pharmacology search</a></li>
+            </ul>
+        </li>
+           
+            <li class="immuno_portal">
+                <a href="/immuno/index.jsp" onClick="recordEvent(this, 'index', 'Menu Link to GtoImmuPdb', 'Link to GtoImmuPdb');return false;">Immuno Portal</a>
+            </li>
+            <li class="gtmp_portal">
+                <a href="/malaria/index.jsp" onClick="recordEvent(this, 'index', 'Menu Link to GtoMPdb', 'Link to GtoMPdb');return false;">Malaria Portal</a>
+            </li>
+       <!-- 
+        
+        
+        
+            <li class="immuno_portal">
+                <a href="http://www.guidetoimmunopharmacology.org/immuno/index.jsp">Guide to IMMUNOPHARMACOLOGY Portal</a>
+            </li>
+        
+         -->
+  
+    </ul>
+
+                </div>
+             </div>
+             <!-- ========== SUPERFISH NAV END  ============================================================ -->
+             
+             <!-- ==================== COM ACCESS BANNER START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+            <div class="authnotice">
+               <p>GtoPdb now requires users to <b>register</b> to use the website. Please see our <b><a href="https://blog.guidetopharmacology.org/2026/07/29/user-registration-is-coming-to-gtopdb/" style="color:yellow" target="_blank">blog post</a></b> for more information.</p>
+           </div>
+           <!-- ==================== COM ACCESS BANNER END ======================================== -->
+             
+
+             <!-- ==================== BREADCRUMBS START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+             <div class="breadcrumbscont">
+               <ul class="crumbtext">
+                 <li><a href="/index.jsp">Home</a></li>
+                 <li><a href="/download.jsp">Download</a></li>
+                 <li>GtoPdb REST API</li>
+               </ul>
+             </div>
+             <!-- ==================== BREADCRUMBS END ======================================== -->
+
+            <!-- ==================== CONTENT START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+
+             <div class="grid_12">
+                 
+                 <!-- ==================== GRID 16 LIST START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+                 <div class="grid_16 alpha list">
+                    <h4>Guide to Pharmacology REST API</h4>
+                    <a name="top"></a>
+                    <ul style="list-style:none;">
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#targets">Target web services</a></li>
+                        <li><a href="#ligands">Ligand web services</a></li>
+                        <li><a href="#interactions">Interaction web services</a></li>
+                        <li><a href="#diseases">Disease web services</a></li>
+                        <li><a href="#refs">Reference web services</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#databases">Databases</a></li>
+                        <li><a href="#responses">HTTP response codes</a></li>
+                    </ul>
+                 </div>
+                <!-- ==================== GRID 16 LIST END ========================================-->
+
+                <div class="grid_16 alpha">
+                    <a name="newAPI"></a>
+                    <h4>New REST API</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright"><h3>New API - access via API Keys - from late August 2026</h3>
+                            
+                            <p>We will be updating our REST API in line with <a href="https://blog.guidetopharmacology.org/2026/07/29/user-registration-is-coming-to-gtopdb/"target="_blank">changes requiring users to register</a> to access the Guide to Pharmacology. The updated REST API will be accessible with the use of an <b>API Key</b>. Once registration to GtoPdb is available, registered users will be able to contact us to get an API Key. Registration will be available from 18th August 2026, with the implementation of the API Key requirement following in late August, early September.</p>
+                        </div></div>
+                </div>
+                    <div class="grid_16 alpha">
+                    <a name="overview"></a>
+                    <h4>Overview</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright">
+                            <p>This page describes the Guide to PHARMACOLOGY REST API, which provides programmatic access to data in the Guide to PHARMACOLOGY database. The API currently returns data in JSON format. We may extend the range of supported formats in future releases. You can retrieve information on families, targets, genes, ligands, interactions and text annotations.</p>
+                            <p>The GtoPdb REST API base URL (<b>base_url</b>) is <b>https://www.guidetopharmacology.org/services/</b>.</p>
+                            <p>This URL points to the current version of the API. The API will be updated in line with normal database release cycles to support new data types and functionality as required.
+</p>
+                 <p>
+                     Specific services can be accessed by appending the relevant path to the base URL, as shown in the tables below. Optional parameters can be added by appending a question mark (<b>?</b>) to the end of the service URL and separating multiple parameters with an ampersand (<b>&amp;</b>), for example:</p>
+                            <p><b>https://www.guidetopharmacology.org/services/targets/290/interactions?affinityType=pKi&amp;species=Human</b>.</p>
+                            
+                            <!-- link to file that needs to be generated -->
+                            <!-- A description of the API output is available in the
+  <a href="/DATA/web_service_descriptions.txt" onClick="recordEvent(this, 'Downloads', 'Data Files', 'Web Services Description');return false;">GtoPdb Web Service Output Description</a> file. -->
+                            
+                  
+                            
+                            
+               <!--             <h3>Access via API Keys</h3>
+                            
+                            <p>We have recently released an updated version of our REST API in line with the change that requires users to register and login to access the Guide to Pharmacology. Using the updated REST API require the use of an <b>API Key</b>. If you are a registered user and would like an API Key please <a href="revealEmail.jsp" onclick="window.open('revealEmail.jsp', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=550,height=300'); return false;" title="Reveal this e-mail address">get in touch</a> with us.</p>
+                            
+                            <h5>API Key Usage</h5>
+                            <p>
+                                To use an API Key we recommend passing the key in a request header:</p>
+
+                            <p>Example: <b>curl -H "GTP-API-Key: [<i>your API Key</i>]" "https://www.guidetopharmacology.org/services/targets"</b></p>
+
+                                <p>You may also use it as a URL query parameter, for example (to retrieve the target with ID 54:</p>
+
+                                <p><b>https://www.guidetopharmacology.org/services/targets/54?GTP-API-Key=[<i>your API Key</i>]</b></p>
+
+                                <p>However, using the request header is recommended because URLs may be stored in browser history or server logs. Please do not share your API key publicly or include it in published code</p>
+                                
+                                <h5>API Key Rate Limit</h5>
+                            
+                            <p>We want the API to run as smoothly as possible for all users. It should be noted that making many requests, particularly those that aim to retrieve large amounts of data may take more than a few seconds to run. To help us managge this there is a rate limit set on the number of API request a user can make (~60 per minute). Please bear this in mind when executing multiple requests.</p>
+               
+                -->
+                          <!--  <p>The second version of our web services was released on <date>23rd March 2017</date> and contains new <b>interaction web services</b>, returning lists of target-ligand pairs which can be filtered by target/ligand type, affinity etc., and <b>reference web services</b>, which can retrieve references by id or the full interaction reference set. There are some minor changes to the way that specific target and ligand interactions are accessed too, with new filtering options and simplification of the results so that just a single list of interactions is returned rather than grouping the same types of interaction together. We have also made improvements to the speed of accessing many of the web services (though it should be noted that retrieving a large list of several thousand results does take more than a few seconds). We have also introduced a basic anonymous tracking mechanism to count the number of hits so that we can better monitor usage and inform future development (this does not record any information about the client).</p> -->
+                            
+                            <h3>Python wrapper</h3>
+                            <p><a href="https://github.com/samirelanduk/pygtop" target="_blank">pyGtoP</a> provides a Python interface to the web services, which is available on <a href="https://github.com/samirelanduk/pygtop" target="_blank">GitHub</a>. Full documentation is available <a href="https://pygtop.readthedocs.io/" target="_blank">here</a>. The Python wrapper was created as part of another project and is not actively maintained, however please <a href="revealEmail.jsp" onclick="window.open('revealEmail.jsp', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=550,height=300'); return false;" title="Reveal this e-mail address">email us</a> with any questions or bug reports and we'll do our best to help.</p>
+                            
+                            <h3>Licensing and Contact Information</h3>
+                            <p>The Guide to PHARMACOLOGY database is licensed under the <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">Open Data Commons Open Database License (ODbL)</a> and its contents are licensed under the <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+                            <p>Further information may be obtained by <a href="revealEmail.jsp" onclick="window.open('revealEmail.jsp', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=550,height=300'); return false;" title="Reveal this e-mail address">emailing us</a>. We are particularly keen to hear from people using the GtoPdb REST API and have feedback.</p>
+                        </div>
+                    </div>
+               </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+                <div class="grid_16 alpha">
+                    <a name="targets"></a>
+                    <h4>Target web services</h4>
+                    <div class="contentboxfullhelp">
+                      
+                        <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                            <table class="glossary">
+                                <tr style="font-weight: bold;">
+                                    <td>Service</td><td>URL</td><td>Parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>List of targets</td><td class="url">{base_url}/targets</td><td><div class="table_cell_list"><b>type</b> (optional): The target class abbreviation, i.e. 'GPCR', 'NHR', 'LGIC', 'VGIC', 'OtherIC', 'Enzyme', 'CatalyticReceptor', 'Transporter', 'OtherProtein', 'AccessoryProtein'</div><div class="table_cell_list"><b>name</b> (optional): search for targets by name</div><div class="table_cell_list"><b>geneSymbol</b> (optional): a human, mouse or rat gene symbol</div><div class="table_cell_list"><div class="table_cell_list"><b>ecNumber</b> (optional): an Enzyme Commission (EC) number</div><div class="table_cell_list"><b>accession</b> (optional): an external database accession number or Id</div><div class="table_cell_list"><b>database</b> (optional): the name* of the database the accession number relates to (default = UniProt)</div><div class="table_cell_list"><b>immuno</b> (optional): filter targets based on whether they are tagged in GtoImmuPdb (true or false)</div><div class="table_cell_list"><b>malaria</b> (optional): filter ligands based on whether they are tagged in GtoMPdb (true or false)</div</td>
+                                </tr>
+                                <tr>
+                                    <td>Single target</td><td class="url">{base_url}/targets/{targetId}</td><td><div class="table_cell_list"><b>targetId</b>: a GtoPdb target Id</div></td>
+                                </tr>
+                                <tr>
+                                    <td>List of target families</td><td class="url">{base_url}/targets/families</td><td><div class="table_cell_list"><b>type</b> (optional): target class abbreviation as above</div><div class="table_cell_list"><b>name</b> (optional): search for families by name</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Single family</td><td class="url">{base_url}/targets/families/{familyId}</td><td><div class="table_cell_list"><b>familyId</b>: a GtoPdb family Id</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Component subunits</td><td class="url">{base_url}/targets/{targetId}/subunits</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Complexes</td><td class="url">{base_url}/targets/{targetId}/complexes</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Synonyms</td><td class="url">{base_url}/targets/{targetId}/synonyms</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gene and protein information</td><td class="url">{base_url}/targets/{targetId}/geneProteinInformation</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Database links</td><td class="url">{base_url}/targets/{targetId}/databaseLinks</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>database</b> (optional): the name* of the database to retrieve links for</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Natural/endogenous ligands</td><td class="url">{base_url}/targets/{targetId}/naturalLigands</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Interactions</td><td class="url">{base_url}/targets/{targetId}/interactions</td><td><div class="table_cell_list"><b>type</b> (optional): the type of ligand action, i.e. 'Activator', 'Agonist', 'Allosteric modulator', 'Antagonist', 'Antibody', 'Channel blocker', 'Gating inhibitor', 'Inhibitor', 'Subunit-specific'</div><div class="table_cell_list"><b>affinityParameter</b> (optional): one of 'pA2', 'pEC50', 'pIC50', 'pKB', 'pKd', 'pKi'</div><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>affinity</b> (optional): returned results must have affinity greater than this value, e.g. 7.5.</div><div class="table_cell_list"><b>ligandType</b> (optional): the class of ligand, one of 'Synthetic organic', 'Metabolite', 'Natural product', 'Endogenous peptide', 'Peptide', 'Antibody', 'Inorganic', 'Labelled', 'INN'</div><div class="table_cell_list"><b>approved</b> (optional): boolean which indicates if the interactions are for approved drugs only</div><div class="table_cell_list"><b>primaryTarget</b> (optional): boolean which indicates whether results should only include interactions where the target is marked as the primary target</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Rank order lists of ligands and other activators</td><td class="url">{base_url}/targets/{targetId}/rankOrder</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list">These lists can contain details of substrates, endogenous ligands and other non-chemical activators (pH, heat etc.). The description field describes the list and the property field lists the ligands</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Function</td><td class="url">{base_url}/targets/{targetId}/function</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Tissue distribution</td><td class="url">{base_url}/targets/{targetId}/tissueDistribution</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Functional assay</td><td class="url">{base_url}/targets/{targetId}/functionalAssay</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Gene expression and pathophysiology</td><td class="url">{base_url}/targets/{targetId}/geneExpressionPathophysiology</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Physiological consequences of altering gene expression</td><td class="url">{base_url}/targets/{targetId}/alteredExpression</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Xenobiotics influencing gene expression</td><td class="url">{base_url}/targets/{targetId}/xenobioticsGeneExpression</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Clinically-relevant mutations and pathophysiology</td><td class="url">{base_url}/targets/{targetId}/pathophysiology</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Diseases</td><td class="url">{base_url}/targets/{targetId}/diseases</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Variants</td><td class="url">{base_url}/targets/{targetId}/variants</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>PDB structures</td><td class="url">{base_url}/targets/{targetId}/pdbStructure</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Associated proteins</td><td class="url">{base_url}/targets/{targetId}/associatedProteins</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Ion selectivity</td><td class="url">{base_url}/targets/{targetId}/ionSelectivity</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Ion conductance</td><td class="url">{base_url}/targets/{targetId}/ionConductance</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Ion channel voltage dependence</td><td class="url">{base_url}/targets/{targetId}/voltageDependence</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>GPCR transduction mechanisms</td><td class="url">{base_url}/targets/{targetId}/transduction</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>NHR binding partners</td><td class="url">{base_url}/targets/{targetId}/bindingPartners</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>NHR co-regulators</td><td class="url">{base_url}/targets/{targetId}/coregulators</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>NHR target genes</td><td class="url">{base_url}/targets/{targetId}/targetGenes</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>NHR DNA binding sequence</td><td class="url">{base_url}/targets/{targetId}/dnaBinding</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Enzyme reaction</td><td class="url">{base_url}/targets/{targetId}/reactions</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Substrates</td><td class="url">{base_url}/targets/{targetId}/substrates</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Products</td><td class="url">{base_url}/targets/{targetId}/products</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Cofactors</td><td class="url">{base_url}/targets/{targetId}/cofactors</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Target comments</td><td class="url">{base_url}/targets/{targetId}/comments</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>database</b> (optional): the name* of the database to retrieve links for</div></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Immunological Processes</td><td class="url">{base_url}/targets/{targetId}/immunoProcesses</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Immunological Celltypes</td><td class="url">{base_url}/targets/{targetId}/immunoCelltypes</td><td></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Target contributing authors</td><td class="url">{base_url}/targets/{targetId}/contributors</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Family contributing authors</td><td class="url">{base_url}/targets/families/{familyId}/contributors</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Family NC-IUPHAR subcommittee</td><td class="url">{base_url}/targets/families/{familyId}/subcommittee</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Family overview</td><td class="url">{base_url}/targets/families/{familyId}/overview</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Family comments</td><td class="url">{base_url}/targets/families/{familyId}/comments</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Family introduction</td><td class="url">{base_url}/targets/families/{familyId}/introduction</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Introduction contributing authors</td><td class="url">{base_url}/targets/families/{familyId}/introduction/contributors</td><td></td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                       
+                    </div>
+               </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <!-- ==================== GRID 16 START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+                <div class="grid_16 alpha">
+                    <a name="ligands"></a>
+                    <h4>Ligand web services</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                            <table class="glossary">
+                                <tr style="font-weight: bold;">
+                                    <td>Service</td><td>URL</td><td>Parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>List of ligands</td><td class="url">{base_url}/ligands</td><td><div class="table_cell_list"><b>type</b> (optional): The ligand type, one of 'Synthetic organic', 'Metabolite', 'Natural product', 'Endogenous peptide', 'Peptide', 'Antibody', 'Inorganic', 'Approved', 'Withdrawn', 'Labelled', 'INN'</div><div class="table_cell_list"><b>name</b> (optional): search for ligands by name</div><div class="table_cell_list"><b>geneSymbol</b> (optional): a human, mouse or rat gene symbol</div><div class="table_cell_list"><b>accession</b> (optional): an external database accession number or Id</div><div class="table_cell_list"><b>database</b> (optional): the name* of the database the accession number relates to (default = PubChemCID)</div><div class="table_cell_list"><b>inchikey</b> (optional): the ligand's InChIKey, or for backbone matches (other isomers) just provide the backbone part (the first 14 characters)</div><div class="table_cell_list"><b>lipinskyGt &amp; lipinskyLt</b> (optional): lower and upper cut-offs for the number of Lipinsky's rules broken</div><div class="table_cell_list"><b>logpGt &amp; logpLt</b> (optional): lower and upper cut-offs for the LogP</div><div class="table_cell_list"><b>molWeightGt &amp; molWeightLt</b> (optional): lower and upper cut-offs for the molecular weight</div><div class="table_cell_list"><b>hBondAcceptorsGt &amp; hBondAcceptorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond acceptors</div><div class="table_cell_list"><b>hBondDonorsGt &amp; hBondDonorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond donors</div><div class="table_cell_list"><b>rotatableBondsGt &amp; rotatableBondsLt</b> (optional): lower and upper cut-offs for the number of rotatable bonds</div><div class="table_cell_list"><b>tpsaGt &amp; tpsaLt</b> (optional): lower and upper cut-offs for the topological polar surface area</div><div class="table_cell_list"><b>immuno</b> (optional): filter ligands based on whether they are tagged in GtoImmuPdb (true or false)</div><div class="table_cell_list"><b>malaria</b> (optional): filter ligands based on whether they are tagged in GtoMPdb (true or false)</div><div class="table_cell_list"><b>antibacterial</b> (optional): filter ligands based on whether they are tagged as antibacterial (true or false)</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Exact match structure search</td><td class="url">{base_url}/ligands/exact</td><td><div class="table_cell_list"><b>smiles</b>: a SMILES string to search</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Substructure search</td><td class="url">{base_url}/ligands/substructure</td><td><div class="table_cell_list"><b>smiles</b>: a SMILES string to search</div><div class="table_cell_list"><b>lipinskyGt &amp; lipinskyLt</b> (optional): lower and upper cut-offs for the number of Lipinsky's rules broken</div><div class="table_cell_list"><b>logpGt &amp; logpLt</b> (optional): lower and upper cut-offs for the LogP</div><div class="table_cell_list"><b>molWeightGt &amp; molWeightLt</b> (optional): lower and upper cut-offs for the molecular weight</div><div class="table_cell_list"><b>hBondAcceptorsGt &amp; hBondAcceptorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond acceptors</div><div class="table_cell_list"><b>hBondDonorsGt &amp; hBondDonorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond donors</div><div class="table_cell_list"><b>rotatableBondsGt &amp; rotatableBondsLt</b> (optional): lower and upper cut-offs for the number of rotatable bonds</div><div class="table_cell_list"><b>tpsaGt &amp; tpsaLt</b> (optional): lower and upper cut-offs for the topological polar surface area</div></td>
+                                </tr>
+                                <tr>
+                                    <td><br>Structure similarity search</td><td class="url">{base_url}/ligands/similarity</td><td><div class="table_cell_list"><b>smiles</b>: a SMILES string to search</div><div class="table_cell_list"><b>similarityGt</b> (optional): lower cut-off for the % similarity (use decimal, i.e. 80% = 0.8)</div><div class="table_cell_list"><b>lipinskyGt &amp; lipinskyLt</b> (optional): lower and upper cut-offs for the number of Lipinsky's rules broken</div><div class="table_cell_list"><b>logpGt &amp; logpLt</b> (optional): lower and upper cut-offs for the LogP</div><div class="table_cell_list"><b>molWeightGt &amp; molWeightLt</b> (optional): lower and upper cut-offs for the molecular weight</div><div class="table_cell_list"><b>hBondAcceptorsGt &amp; hBondAcceptorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond acceptors</div><div class="table_cell_list"><b>hBondDonorsGt &amp; hBondDonorsLt</b> (optional): lower and upper cut-offs for the number of hydrogen bond donors</div><div class="table_cell_list"><b>rotatableBondsGt &amp; rotatableBondsLt</b> (optional): lower and upper cut-offs for the number of rotatable bonds</div><div class="table_cell_list"><b>tpsaGt &amp; tpsaLt</b> (optional): lower and upper cut-offs for the topological polar surface area</div></td>
+                                </tr>
+                                <tr>
+                                    <td>List of ligand families/groups</td><td class="url">{base_url}/ligands/families</td><td><div class="table_cell_list"><b>name</b> (optional): search for families/groups by name</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Single ligand</td><td class="url">{base_url}/ligands/{ligandId}</td><td><div class="table_cell_list"><b>ligandId</b>: a GtoPdb ligand Id</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Path to image file</td><td class="url">{base_url}/ligands/{ligandId}/image</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Ligand structure</td><td class="url">{base_url}/ligands/{ligandId}/structure</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Component subunits</td><td class="url">{base_url}/ligands/{ligandId}/subunits</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Complexes</td><td class="url">{base_url}/ligands/{ligandId}/complexes</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Precursors (endogenous peptides)</td><td class="url">{base_url}/ligands/{ligandId}/precursors</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Molecular properties (non-peptides)</td><td class="url">{base_url}/ligands/{ligandId}/molecularProperties</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Synonyms</td><td class="url">{base_url}/ligands/{ligandId}/synonyms</td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>Database links</td><td class="url">{base_url}/ligands/{ligandId}/databaseLinks</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>database</b> (optional): the name* of the database to retrieve links for</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Interactions</td><td class="url">{base_url}/ligands/{ligandId}/interactions</td><td><div class="table_cell_list"><b>type</b> (optional): the type of interaction, i.e. 'Activator', 'Agonist', 'Allosteric modulator', 'Antagonist', 'Antibody', 'Channel blocker', 'Gating inhibitor', 'Inhibitor', 'Subunit-specific'</div><div class="table_cell_list"><b>affinityParameter</b> (optional): one of 'pA2', 'pEC50', 'pIC50', 'pKB', 'pKd', 'pKi'</div><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>affinity</b> (optional): returned results must have affinity greater than this value, e.g. 7.5.</div><div class="table_cell_list"><b>asTarget</b> (optional): boolean which indicates if this ligand Id should be considered as the target of interactions by other ligands, e.g. antibodies (default = true)</div><div class="table_cell_list"><b>asLigand</b> (optional): boolean which indicates if this ligand Id should be considered as the ligand interacting with other targets (default = true)</div><div class="table_cell_list"><b>targetType</b> (optional): name of a target class, i.e. 'GPCR', 'NHR', 'LGIC', 'VGIC', 'OtherIC', 'Enzyme', 'CatalyticReceptor', 'Transporter', 'OtherProtein'</div><div class="table_cell_list"><b>primaryTarget</b> (optional): boolean which indicates whether results should only include interactions marked as primary targets</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Rank order lists of ligands at targets</td><td class="url">{base_url}/ligands/{ligandId}/rankOrder</td><td><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Ligand comments and clinical use information</td><td class="url">{base_url}/ligands/{ligandId}/comments</td><td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <!-- ==================== GRID 16 START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+                <div class="grid_16 alpha">
+                    <a name="interactions"></a>
+                    <h4>Interaction web services</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                            <table class="glossary">
+                                <tr style="font-weight: bold;">
+                                    <td>Service</td><td>URL</td><td>Parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>List of interactions</td><td class="url">{base_url}/interactions</td><td><div class="table_cell_list"><b>type</b> (optional): the type of ligand action, i.e. 'Activator', 'Agonist', 'Allosteric modulator', 'Antagonist', 'Antibody', 'Channel blocker', 'Gating inhibitor', 'Inhibitor', 'Subunit-specific'</div><div class="table_cell_list"><b>affinityParameter</b> (optional): one of 'pA2', 'pEC50', 'pIC50', 'pKB', 'pKd', 'pKi'</div><div class="table_cell_list"><b>species</b> (optional): the species common name, e.g. 'Human, 'Mouse', 'Rat' etc.</div><div class="table_cell_list"><b>Plasmodium species</b> (optional): the species short name, e.g. For <i>P. falciparum</i> use 'Pf'; for <i>P. vivax</i> use 'Pv'; for <i>P. knowlesi</i> use 'Pk'; for <i>P. berghei</i> use 'Pb'; for <i>P. cynomolgi</i> use 'Pc'; for <i>P. yoelii</i> use 'Py'</div><div class="table_cell_list"><b>affinity</b> (optional): returned results must have affinity greater than this value, e.g. 7.5.</div><div class="table_cell_list"><b>ligandType</b> (optional): the class of ligand, one of 'Synthetic organic', 'Metabolite', 'Natural product', 'Endogenous peptide', 'Peptide', 'Antibody', 'Inorganic', 'Labelled', 'INN'</div><div class="table_cell_list"><b>approved</b> (optional): boolean which indicates if the interactions are for approved drugs only</div><div class="table_cell_list"><b>primaryTarget</b> (optional): boolean which indicates if the targets should be marked as primary targets only</div><div class="table_cell_list"><b>targetType</b> (optional): name of a target class, i.e. 'GPCR', 'NHR', 'LGIC', 'VGIC', 'OtherIC', 'Enzyme', 'CatalyticReceptor', 'Transporter', 'OtherProtein'</div><div class="table_cell_list"><b>structureSearchType</b> (optional): perform ligand structure-based searching, one of 'similarity' (the default if SMILES are provided), 'substructure' or 'exact'</div><div class="table_cell_list"><b>smiles</b> (optional): a SMILES string to search</div><div class="table_cell_list"><b>similarityGt</b> (optional): lower cut-off for the % similarity (default = 0.85)</div><div class="table_cell_list"><b>inchikey</b> (optional): perform ligand structure search using an InChIKey, or for backbone matches (other isomers) just provide the backbone part (the first 14 characters)</div><div class="table_cell_list"><i>Note: the results are formatted as target-ligand interaction pair summaries, which are linked to individual interactions.</i></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Single interaction</td><td class="url">{base_url}/interactions/{interactionsId}</td><td><div class="table_cell_list"><b>interactionId</b>: a GtoPdb interaction Id</div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+                <!-- ==================== GRID 16 START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+                <div class="grid_16 alpha">
+                    <a name="diseases"></a>
+                    <h4>Disease web services</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                            <table class="glossary">
+                                <tr style="font-weight: bold;">
+                                    <td>Service</td><td>URL</td><td>Parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>List of diseases</td><td class="url">{base_url}/diseases</td><td>
+                                        <div class="table_cell_list"><b>name</b> (optional): search for diseases by name</div>
+                                        <div class="table_cell_list"><b>synonym</b> (optional): search specifically with disease synonyms</div>
+                                        <div class="table_cell_list"><b>database</b> (optional): the name* of the database the accession number relates to (default = OMIM)</div>
+                                        
+                                        <div class="table_cell_list"><b>accession</b> (optional): an external database accession ID or number <i>Note, this should be used in conjuction with the database parameter.</i></div>
+                                        
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <td>Single disease</td><td class="url">{base_url}/diseases/{diseaseId}</td><td><div class="table_cell_list"><b>diseaseId</b>: a GtoPdb disease Id</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Targets associated with disease</td><td class="url">{base_url}/diseases/{diseaseId}/diseaseTargets</td><td><div class="table_cell_list"><b>diseaseId</b>: a GtoPdb disease Id</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Ligands associated with disease</td><td class="url">{base_url}/diseases/{diseaseId}/diseaseLigands</td><td><div class="table_cell_list"><b>diseaseId</b>: a GtoPdb disease Id</div>
+                                        <div class="table_cell_list"><b>approved</b> (optional): set to 'true' to restrict to just approved ligands. <i>Note, omitting this option, or setting to false will return all ligands</i> </div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <!-- ==================== GRID 16 START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+                <div class="grid_16 alpha">
+                    <a name="refs"></a>
+                    <h4>Reference web services</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                            <table class="glossary">
+                                <tr style="font-weight: bold;">
+                                    <td>Service</td><td>URL</td><td>Parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>List of references</td><td class="url">{base_url}/refs</td><td><div class="table_cell_list"><b>filter</b> (optional): a filter for the reference list, currently 'interactions' is supported which returns a list of all references associated with target-ligand interactions</div><div class="table_cell_list"><i>Warning: the full reference list (>30,000 refs) is very slow to load.</i></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Single reference</td><td class="url">{base_url}/refs/{referenceId}</td><td><div class="table_cell_list"><b>referenceId</b>: a GtoPdb reference Id</div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <div class="grid_16 alpha">
+                    <a name="examples"></a>
+                    <h4>Examples</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright">
+                            <p>These are a few example use cases for the web services.</p>
+                            <ol>
+
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve the target with Ensembl gene Id ENSG00000097007:<br/><span class="url"><a href="/services/targets?accession=ENSG00000097007&database=EnsemblGene">www.guidetopharmacology.org/services/targets?accession=ENSG00000097007&database=EnsemblGene</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve the target encoded by HGNC gene symbol CATSPER4:<br/><span class="url"><a href="/services/targets?geneSymbol=CATSPER4">www.guidetopharmacology.org/services/targets?geneSymbol=CATSPER4</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Search for the target with name HER3:<br/><span class="url"><a href="/services/targets?name=HER3">www.guidetopharmacology.org/services/targets?name=HER3</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Find the subunits of 5-HT<sub>3</sub>AB (target Id 378):<br/><span class="url"><a href="/services/targets/378/subunits">www.guidetopharmacology.org/services/targets/378/subunits</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Find agonists of GPER (target Id 221) with p<i>K</i><sub>i</sub> >= 7:<br/><span class="url"><a href="/services/targets/221/interactions?type=Agonist&affinityType=pKi&affinity=7">www.guidetopharmacology.org/services/targets/221/interactions?type=Agonist&amp;affinityType=pKi&amp;affinity=7</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve all the approved drugs:<br/><span class="url"><a href="/services/ligands?type=Approved">www.guidetopharmacology.org/services/ligands?type=Approved</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Find synonyms for tamoxifen (ligand Id 1016) :<br/><span class="url"><a href="/services/ligands/1016/synonyms">www.guidetopharmacology.org/services/ligands/1016/synonyms</a></span>
+                                </li> 
+                                <li style="margin-bottom: 10px;">
+                                    Find ligands at least 80% similar to the structure CC(CN(C)C)CN1c2ccccc2Sc2ccccc12:<br/><span class="url"><a href="/services/ligands/similarity?smiles=CC(CN(C)C)CN1c2ccccc2Sc2ccccc12&similarityGt=0.8">www.guidetopharmacology.org/services/ligands/similarity?smiles=CC(CN(C)C)CN1c2ccccc2Sc2ccccc12&amp;similarityGt=0.8</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Find ligands with the substructure Nc1cnc(Cl)c(N)n1 and calculated LogP between 0 and 2:<br/><span class="url"><a href="/services/ligands/substructure?smiles=Nc1cnc(Cl)c(N)n1&logpGt=0&logpLt=2">www.guidetopharmacology.org/services/ligands/substructure?smiles=Nc1cnc(Cl)c(N)n1&amp;logpGt=0&amp;logpLt=2</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Find all the p<i>K</i><sub>i</sub> interaction data for approved drugs at GPCRs:<br/><span class="url"><a href="/services/interactions?affinityType=pki&approved=true&targetType=GPCR">www.guidetopharmacology.org/services/interactions?affinityType=pki&approved=true&targetType=GPCR</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve all diseases with OMIM database ID mapped:<br/><span class="url"><a href="/services/diseases?database=OMIM">www.guidetopharmacology.org/services/diseases?database=OMIM</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve all diseases mapped to Disease Ontology ID 6688 (Autoimmune Lymphoproliferative syndrome):<br/><span class="url"><a href="/services/diseases?database=DOID&accession=6688">www.guidetopharmacology.org/services/diseases?database=DOID&accession=6688</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve all targets tagged in database as relevant to immunopharmacology (GtoImmuPdb):<br/><span class="url"><a href="/services/targets?immuno=true">www.guidetopharmacology.org/services/targets?immuno=true</a></span>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    Retrieve all ligands tagged in database as relevant to immunopharmacology (GtoImmuPdb):<br/><span class="url"><a href="/services/ligands?immuno=true">www.guidetopharmacology.org/services/ligands?type=immuno</a></span>
+                                </li>
+                                 <li style="margin-bottom: 10px;">
+                                    Retrieve all interaction data for Plasmodium species <i>P. vivax</i>:<br/><span class="url"><a href="/services/interactions?species=Pv">www.guidetopharmacology.org/services/interactions?species=Pv</a></span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+               </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <div class="grid_16 alpha">
+                    <a name="databases"></a>
+                    <h4>Databases</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright">
+                            <p>* This is a list of the database names to use when searching for targets or ligands by accession number. For more information about these databases see the <a href="/helpPage.jsp#databaseLinks">help page</a>.</p>
+                            <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                                <table class="glossary">
+                                    <tr style="font-weight: bold;">
+                                        <td>Database</td><td>Database name in GtoPdb</td><td>Target or ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BindingDB database of binding affinities</td><td>BindingDB</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BitterDB database of bitter compounds</td><td>BitterDB</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BRENDA database of enzyme reactions</td><td>BRENDA</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CAS Registry Number</td><td>CAS</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chemical Entities of Biological Interest (ChEBI)</td><td>ChEBI</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ChEMBL medicinal chemistry database</td><td>ChEMBL</td><td>Target &amp Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NCBI Database for Short Genetic Variations (dbSNP)</td><td>dbSNP</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Disease Ontology</td><td>DOID</td><td>Disease</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DrugBank</td><td>DrugBank</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ensembl Gene</td><td>EnsemblGene</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ensembl Protein</td><td>EnsemblProtein</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ensembl Transcript</td><td>EnsemblTranscript</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NCBI Entrez Gene</td><td>EntrezGene</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GPCRDB</td><td>GPCRDB</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Human Metabolome Database (HMDB)</td><td>HMDB</td><td>Ligand</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>HGNC database of human gene names</td><td>HGNC</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IMGT/mAb-DB database of therapeutic monoclonal antibodies</td><td>IMGT</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LIPID MAPS Lipidomics Gateway</td><td>LipidMaps</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MEROPS peptidase database</td><td>MEROPS</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mouse Genome Informatics</td><td>MGI</td><td>Target</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nuclear Receptor Signaling Atlas</td><td>NURSA</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Online Mendelian Inheritance in Man (OMIM)</td><td>OMIM</td><td>Target &amp; Ligand &amp; Disease</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Orphanet database of rare diseases</td><td>Orphanet</td><td>Target &amp; Disease</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NCBI Protein database GI numbers</td><td>ProteinGI</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Protein Data Bank (PDB)</td><td>PDB</td><td>Ligand</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td>PubChem Compound Id (CID)</td><td>PubChemCID</td><td>Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NCBI RefSeq Nucleotide</td><td>RefSeqNucleotide</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NCBI RefSeq Protein</td><td>RefSeqProtein</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rat Genome Database</td><td>RGD</td><td>Target</td>
+                                    </tr>
+                                  
+                                    <tr>
+                                        <td>UniProtKB protein resource</td><td>UniProtKB</td><td>Target &amp; Ligand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>UniProtKB variant database</td><td>UniProtVariant</td><td>Target</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+               <div class="grid_16 alpha">
+                    <a name="responses"></a>
+                    <h4>HTTP response codes</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright">
+                            <p>This is a listing of specific HTTP response error codes which can be returned by the GtoPdb web services and their meanings.</p>
+                            <div class="data_tables_container" style="padding: 5px;"><!-- === DATA TABLES START - this div is only needed to give some space around the tables === -->
+                                <table class="glossary">
+                                    <tr style="font-weight: bold;">
+                                        <td>HTTP response code</td><td>Meaning</td><td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td>204</td><td>No content</td><td>An empty page and a 204 no content response usually mean there are no results to display for the given URL (i.e. no data in the requested database table).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>303</td><td>See other</td><td>Redirection to an alternative location for the requested data (e.g. the path to a ligand image).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>404</td><td>Not found</td><td>Either a resource with that address or an entity such as a ligand with the given identifier cannot be found.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               <!-- ==================== GRID 16 LIST END ======================================== -->
+               
+            </div>
+            <!-- ==================== CONTENT END  ============================================ -->  
+
+         <!-- ============== FOOTER START ========================================================--> 
+
+         <div class="clear"></div>
+         <div id="footer">
+            <div>
+	<div style="display:table-cell; vertical-align:middle; width:250px;  float:left; display:inline;">
+		<p style="text-align:left;margin: 5px 0px 0px 10px;"><a href="/revealEmail.jsp" onclick="window.open('/revealEmail.jsp', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=550,height=300'); return false;" title="Reveal this e-mail address">Contact us</a></p>
+		<p style="text-align:left;margin: 5px 0px 5px 10px;"> <span class="invisible_link"><a href="https://www.facebook.com/pages/Guide-to-PHARMACOLOGY/231393780304076" target="_blank" title="Like us on Facebook"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/facebook.png" alt="Link to Guide to Pharmacology on Facebook"/></a><a href="http://www.linkedin.com/company/guide-to-pharmacology" target="_blank" title="Follow us on LinkedIn"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/LinkedIn.png" alt="Link to Guide to Pharmacology on LinkedIn"/></a><a href="http://blog.guidetopharmacology.org/" target="_blank" title="Visit our blog"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/wpmini-blue.png" alt="Wordpress Logo link to Guide to Pharmacology blog"/></a><a href="http://www.slideshare.net/GuidetoPHARM" target="_blank" title="View slide sets and posters on SlideShare"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/slideshare_no_name.png" alt="Link to Guide to Pharmacology on Slideshare"/></a></span></p>
+    		<p style="text-align:left;margin: 8px 0px 0px 10px;"><small><a href="/privacyPolicy.jsp">Privacy and Cookie Policy</a></small></p>
+    	</div>
+    
+    
+                    
+                    
+                    
+                        <div style="vertical-align:middle; display:table-cell; float:left; display:inline;">
+        <p style="margin: 10px 30px 0px 0px;"><a href="https://globalbiodata.org/what-we-do/global-core-biodata-resources/" target="_blank" title="GCBR Global Core Biodata Resource"><img class="logo" style="vertical-align:middle; width:140px;" src="/images/GCBR-Logo.jpg" alt="Link to GCBR"/></a></p>
+    </div>
+                    
+                
+    
+    <div style="vertical-align:middle; display:table-cell; float:left; display:inline;">
+        <p style="margin: 5px 10px 0px 10px;"><a href="https://elixiruknode.org/" target="_blank" title="Elixir UK Resource"><img class="logo" style="vertical-align:middle; width:70px;" src="/images/ELIXIR-UK_Logo.png" alt="Link to Elixir-UK"/></a></p>
+    </div> 
+	<div style="vertical-align:middle; display:table-cell; float:right; display:inline; width:340px;">
+		<p style="text-align:right; margin: 5px 10px 0px 0px; font-weight:bold; font-size:12pt;"><a href="/sponsors.jsp">Sponsors list</a></p> 
+                <p style="text-align:right; margin: 5px 10px 0px 0px; "><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0; float: left;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></small></p>
+	</div>
+</div>
+      
+   
+
+         </div>
+        <!-- ============== FOOTER END ======================================================== --> 
+        
+    </body>
+    
+</html>

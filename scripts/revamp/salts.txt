@@ -1,0 +1,195 @@
+# Salt, counter-ion and hydrate suffixes stripped from a substance name during
+# normalisation for the Phase 2 mapping rule (d) name candidate.
+# One suffix per line, lowercase, matched as a trailing whitespace-delimited token
+# sequence. Append only; never rewrite this file.
+hydrochloride
+dihydrochloride
+trihydrochloride
+hydrobromide
+dihydrobromide
+hydroiodide
+hydrofluoride
+hydrate
+dihydrate
+trihydrate
+tetrahydrate
+pentahydrate
+hexahydrate
+heptahydrate
+octahydrate
+monohydrate
+anhydrous
+sulfate
+sulphate
+hemisulfate
+bisulfate
+disulfate
+phosphate
+diphosphate
+monophosphate
+dihydrogen phosphate
+hydrogen phosphate
+nitrate
+acetate
+diacetate
+trifluoroacetate
+maleate
+dimaleate
+hydrogen maleate
+fumarate
+difumarate
+hemifumarate
+succinate
+disuccinate
+citrate
+dicitrate
+hydrogen citrate
+tartrate
+bitartrate
+hydrogen tartrate
+malate
+mandelate
+lactate
+gluconate
+glucuronate
+benzoate
+salicylate
+mesylate
+methanesulfonate
+methanesulphonate
+esylate
+ethanesulfonate
+besylate
+besilate
+benzenesulfonate
+tosylate
+tosilate
+toluenesulfonate
+napsylate
+naphthalenesulfonate
+camsylate
+camphorsulfonate
+isethionate
+edisylate
+xinafoate
+pamoate
+embonate
+oxalate
+malonate
+adipate
+aspartate
+glutamate
+glycinate
+sodium
+disodium
+trisodium
+potassium
+dipotassium
+calcium
+magnesium
+zinc
+lithium
+aluminium
+aluminum
+ammonium
+meglumine
+tromethamine
+choline
+diethylamine
+triethylamine
+ethanolamine
+diolamine
+olamine
+erbumine
+benzathine
+procaine
+arginine
+lysine
+chloride
+dichloride
+bromide
+iodide
+fluoride
+carbonate
+bicarbonate
+hydroxide
+oxide
+stearate
+palmitate
+laurate
+myristate
+oleate
+caproate
+decanoate
+undecylenate
+propionate
+valerate
+enantate
+enanthate
+cypionate
+pivalate
+furoate
+dipropionate
+valerate acetonide
+acetonide
+tebutate
+probutate
+aceponate
+butyrate
+tannate
+teoclate
+xanthate
+pectinate
+polistirex
+saccharate
+subsalicylate
+trihydroxide
+hemihydrate
+sesquihydrate
+monosodium
+monopotassium
+hemicalcium
+napadisylate
+closylate
+camsilate
+hyclate
+hexanoate
+octanoate
+betadex
+edetate
+sodium salt
+potassium salt
+calcium salt
+# Appended 2026-09-05 by the GSRS ingester (Phase 2 source 2). Each suffix below was
+# observed as the residue of a GSRS PARENT->SALT/SOLVATE pair: the salt record name minus
+# its parent record name, in dump-public-2026-08-06.gsrs, three or more occurrences.
+monohydrochloride
+tetrahydrochloride
+hydriodide
+ascorbate
+tetrasodium
+pentasodium
+mesilate
+dimesylate
+pidolate
+monosulfate
+metilsulfate
+methylsulfate
+methosulfate
+laurylsulfate
+methylenedisalicylate
+orotate
+diisethionate
+hibenzate
+hydrabamine
+terephthalate
+monoethanolamine
+arsenate
+triacetate
+monoacetate
+monofumarate
+glycolate
+d tartrate
+l tartrate
+diaspartate
+ditromethamine

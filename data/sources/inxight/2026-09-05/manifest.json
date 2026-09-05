@@ -1,0 +1,384 @@
+{
+  "source": "inxight",
+  "sourceName": "NCATS Inxight Drugs (National Center for Advancing Translational Sciences)",
+  "retrievalDate": "2026-09-05",
+  "retrievalOrder": [
+    "bulk download: /downloads-public/frdb-v2024-12-30.zip",
+    "API: stitcher.ncats.io/api/stitches/latest/{UNII}, one request per corpus UNII"
+  ],
+  "licence": "Public domain. US Government work produced by NCATS/NIH; no copyright asserted and no terms restricting bulk retrieval or redistribution.",
+  "licenceEvidence": {
+    "termsPage": "https://drugs.ncats.io/disclaimer",
+    "termsPageStoredAt": "legal/disclaimer.html",
+    "quotedTerms": "Any materials that InXight provides are for information purposes only and do not represent endorsement by or an official position of NCATS, the National Institutes of Health (NIH), or any Federal agency. All data provided via this website originates from public sources.",
+    "robotsTxt": "https://drugs.ncats.io/robots.txt returned HTTP 404 (no robots.txt is published, so no crawl directive restricts these paths); https://stitcher.ncats.io/robots.txt likewise returned HTTP 404. Both responses are stored under legal/.",
+    "bulkAccess": "The publisher itself offers the Fast Response Database as a single zip on its public downloads page, and the stitcher API is unauthenticated and documented on the site."
+  },
+  "attributionRequired": false,
+  "shareAlike": false,
+  "redistributionPermitted": true,
+  "commercialUsePermitted": true,
+  "excludedFromMapping": {
+    "DrugBank, July 2020": "CC BY-NC 4.0; the revamp spec forbids assuming a DrugBank licence, so DrugBank-sourced values are dropped.",
+    "Broad Institute Drug List 2024-03-05": "no reuse licence verifiable from the source's own terms page.",
+    "Pharmaceutical Manufacturing Encyclopedia (Third Edition)": "copyrighted reference work."
+  },
+  "requestLog": "requests.log",
+  "stitchedRecords": 21143,
+  "fileCount": 47,
+  "totalBytes": 497316482,
+  "files": [
+    {
+      "path": "legal/about-page.html",
+      "url": "https://drugs.ncats.io/about",
+      "retrieved": "2026-09-05T06:32:05Z",
+      "bytes": 78824,
+      "sha256": "93d283c5bf38819e96582ec0c60af2285191b9b12af98155b40e4a7b4fb895aa"
+    },
+    {
+      "path": "legal/disclaimer.html",
+      "url": "https://drugs.ncats.io/disclaimer",
+      "retrieved": "2026-09-05T06:33:41Z",
+      "bytes": 31360,
+      "sha256": "18ad41f816c5f705094e7e1991068b10cc600ac6cde4dbdf305315c086ec2bce"
+    },
+    {
+      "path": "legal/downloads-page.html",
+      "url": "https://drugs.ncats.io/downloads",
+      "retrieved": "2026-09-05T06:32:04Z",
+      "bytes": 30163,
+      "sha256": "cb6405c7d3c7918f0db2308132d88d14dc62cbd35a707c0bff86dc06dfd6068f"
+    },
+    {
+      "path": "legal/downloads-public.html",
+      "url": "https://drugs.ncats.io/downloads-public",
+      "retrieved": "2026-09-05T06:32:53Z",
+      "bytes": 35491,
+      "sha256": "c88bb8a00713ef2f1cb27281e1eae7f0152e118b1b7c4b6e90afa8e80ab5df7e"
+    },
+    {
+      "path": "legal/ncats-disclaimer.html",
+      "url": "https://ncats.nih.gov/disclaimer",
+      "retrieved": "2026-09-05T06:33:13Z",
+      "bytes": 35063,
+      "sha256": "86770678fcfa02a67800b822ed5fe9b31e53c6c8daa7145a12b986b0285f6d62"
+    },
+    {
+      "path": "legal/ncats-nih-robots.txt",
+      "url": "https://ncats.nih.gov/robots.txt",
+      "retrieved": "2026-09-05T06:32:07Z",
+      "bytes": 2069,
+      "sha256": "6ba9d74cb68368778deed27fc35166fd8c3cf624dd4d99b60d12733ffdfefc8e"
+    },
+    {
+      "path": "legal/nih-web-policies.html",
+      "url": "https://www.nih.gov/web-policies-notices",
+      "retrieved": "2026-09-05T06:33:15Z",
+      "bytes": 5611,
+      "sha256": "e8e99ba1a1721c2a67c813a99258b916910ff2e523d5b3e9c2494fbdf45aa0a1"
+    },
+    {
+      "path": "legal/nlm-web-policies.html",
+      "url": "https://www.nlm.nih.gov/web_policies.html",
+      "retrieved": "2026-09-05T06:46:59Z",
+      "bytes": 43525,
+      "sha256": "7a3dfa83ef711b93b9dd40b1cd2ab3c7608940e1cfb69dbd3b5a196e75dcebe1"
+    },
+    {
+      "path": "legal/robots.txt",
+      "url": "https://drugs.ncats.io/robots.txt",
+      "retrieved": "2026-09-05T06:31:56Z",
+      "bytes": 162,
+      "sha256": "766c1d6bcb81d3e983fb7adbc19c616d7fc01dafb7893738edc242e2adc59c07"
+    },
+    {
+      "path": "legal/stitcher-robots.txt",
+      "url": "https://stitcher.ncats.io/robots.txt",
+      "retrieved": "2026-09-05T06:34:19Z",
+      "bytes": 162,
+      "sha256": "766c1d6bcb81d3e983fb7adbc19c616d7fc01dafb7893738edc242e2adc59c07"
+    },
+    {
+      "path": "raw/frdb-v2024-12-30.zip",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 3437578,
+      "sha256": "647b80d9cdac4a0517ce649570517dc1aff40545bdc84617ec9f1a56405f9c7a"
+    },
+    {
+      "path": "raw/stitcher/shard-0000.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:37:11Z",
+      "bytes": 22763326,
+      "sha256": "1354f149242dc063cd106682088fd7b909edb3dccecf26be8a9e11bc16c13b13",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0001.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:39:23Z",
+      "bytes": 23605714,
+      "sha256": "4226237e1825d6e92a7995c1a83ad64baf536fd4aab8ee847f2d2e3aadf65264",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0002.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:41:34Z",
+      "bytes": 23214867,
+      "sha256": "38cc54a933b7ea2621fe75bb3ed980b28d9af4bbe86c48674c7d4ff93c50d3e7",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0003.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:43:48Z",
+      "bytes": 24847304,
+      "sha256": "96ca857eb13fe250a0d6fecf691343a9e1c5306c8fafa2ce16e3c1da78f7ff1e",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0004.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:46:07Z",
+      "bytes": 25373505,
+      "sha256": "ec07b692fd17366b0e30772a7c14bcdc0fadbabccf7d82f09eafc5ace0539052",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0005.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:48:23Z",
+      "bytes": 22762251,
+      "sha256": "d1ac3c1c45dd2ab78c707ec61f0570c42ebd2b5b175c0be420e2bb965e3342dc",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0006.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:50:50Z",
+      "bytes": 19711683,
+      "sha256": "4c994994f88870efbe91cbd4f4862f1e27f22bdaf2859ea3ccc8e355cc3d4983",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0007.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:52:49Z",
+      "bytes": 26057912,
+      "sha256": "7defdeaa5262068c3fc64feb313d1bfadd2d9745a92d6456d099d66b93731133",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0008.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:55:32Z",
+      "bytes": 22234666,
+      "sha256": "ad22a7a43b0afe0968252837016c8a0d8d3fde52a6b62adf6638ecb8e3a9b407",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0009.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T06:57:51Z",
+      "bytes": 17992046,
+      "sha256": "4298c429188495c28c87eefaf18ce8f064266f04192e798c1f2dc0e281624317",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0010.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:00:11Z",
+      "bytes": 18948421,
+      "sha256": "0b5350089489c61fb57951fb3dac0b6334ee5e14620e882c154cc35c89466b70",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0011.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:02:26Z",
+      "bytes": 22176260,
+      "sha256": "b6eded414458a4c38c44fd25e69dfd6cd22f1f9450f3e292bd05ddb4c06ea336",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0012.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:04:57Z",
+      "bytes": 19105885,
+      "sha256": "b564a57dc0fb465f35c600baf92d1a2428184e59f7439674bc3aa4cb2ab8a574",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0013.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:09:42Z",
+      "bytes": 22538221,
+      "sha256": "7bf32f0835bb4c355cbfeb99e756c87533e678a9735583ae0c2b03db7a08931f",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0014.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:13:52Z",
+      "bytes": 19385913,
+      "sha256": "82e0ea6af2525e9f6daa7534c5beebf7527e33c8eb19ec8e4182a4c4352f130b",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0015.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:16:56Z",
+      "bytes": 20702613,
+      "sha256": "2c60392d24835502f0a2870a37326e8d5a6a1e7cf31edad30641e38234b1a94e",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0016.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:19:23Z",
+      "bytes": 17057673,
+      "sha256": "e3d8710649031739c26cb3b902d732ab8916b7aa3db07701b3220d83b4d624e3",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0017.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:21:53Z",
+      "bytes": 17906123,
+      "sha256": "81eed1eb31d4215b00a1532d3f8941c5856a3a301fae8dba8e3cef75a69d518e",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0018.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:24:31Z",
+      "bytes": 1732205,
+      "sha256": "7b6ed359db4191c196cd04a0664d8e738bca15186510bacaabdeaea86babaad6",
+      "records": 142
+    },
+    {
+      "path": "raw/stitcher/shard-0019.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:30:37Z",
+      "bytes": 22837919,
+      "sha256": "6123f5b6f8d39931a8b8322caba89a2c84a73a2699391c62c06b768f6a838b27",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0020.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:33:26Z",
+      "bytes": 30531311,
+      "sha256": "ec16bc66d3a235303b529956021c14a35b12eeb54d313fced23b91638c98ea73",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0021.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:36:02Z",
+      "bytes": 30969183,
+      "sha256": "ec136c344ecf9d9b5d4b6bdff4010bf25172fdd2397bcbb2bd8b0961ad6716d5",
+      "records": 1000
+    },
+    {
+      "path": "raw/stitcher/shard-0022.ndjson.gz",
+      "url": "https://stitcher.ncats.io/api/stitches/latest/{UNII}",
+      "retrieved": "2026-09-05T07:38:36Z",
+      "bytes": 44658,
+      "sha256": "d213e56eba5ea45d1874a5930c31e5b0d790ee368062f580af105a16417df37d",
+      "records": 1
+    },
+    {
+      "path": "raw/frdb/frdb-adverseevents.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-adverseevents.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 3011526,
+      "sha256": "f42539dca1b46eea8565a202764f985ef9d4f824d48f4bd6aa2061e85111e09f"
+    },
+    {
+      "path": "raw/frdb/frdb-ddi.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-ddi.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 5383013,
+      "sha256": "afac85c9c4d49eb828f2077031ca0523fc417d1abd5b3447e85a7aa76a79d4df"
+    },
+    {
+      "path": "raw/frdb/frdb-drugs.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-drugs.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 116010,
+      "sha256": "cbd5e3e870df48bc35259d3473ed94935345ace31f1d5e94fc4d848573f58f8a"
+    },
+    {
+      "path": "raw/frdb/frdb-pk.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-pk.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 5111448,
+      "sha256": "184bb6bb6a87e50524b34b3d73fec33d6491f277fd89438010604c75f6c138fe"
+    },
+    {
+      "path": "raw/frdb/frdb-sourcing.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-sourcing.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 4945332,
+      "sha256": "0b213eba361227062f619fcdcf7aa1fce39ab9fd5d8fb846a0b83d11f7704f11"
+    },
+    {
+      "path": "raw/frdb/frdb-toxicity.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdb-toxicity.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 2381390,
+      "sha256": "8594d2656ad8b815e3d36b6028bf8d00dbadef2e4265e8a254bb39277c6e0269"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-about.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-about.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 2823,
+      "sha256": "1dba74872c3703cb547667b196bb967fe02dfbf9da7c31265b966087aa4143c0"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-data_dictionary.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-data_dictionary.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 31533,
+      "sha256": "1d122e4adcb92b892ab57278c8659eb0d86391ce83063ab7ef7101fcee240d4f"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-data_model.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-data_model.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 13957,
+      "sha256": "b06314575fb121707cf9d456c0886b82c73c77fbba4047ffdb9232d16963de20"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-targets.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-targets.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 95758,
+      "sha256": "36955f0ce16244d1413a8a66a616cca7a9de533124009b5f339f72f8369a34b4"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-units.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-units.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 21207,
+      "sha256": "05a5a95209e2dfb04e4d818b55b5f946c12352c0e9ef269744920f1eeeac3820"
+    },
+    {
+      "path": "raw/frdb/frdbmeta-units_factors.tsv",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#frdbmeta-units_factors.tsv",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 1347,
+      "sha256": "637284ea63d66ecbc4b9d3e253f95fe3a2290d0f5ace4f84b689355376734189"
+    },
+    {
+      "path": "raw/frdb/readme.txt",
+      "url": "https://drugs.ncats.io/downloads-public/frdb-v2024-12-30.zip#readme.txt",
+      "retrieved": "2026-09-05T06:35:46Z",
+      "bytes": 1471,
+      "sha256": "09a3af3a26fac587b5ed2be20aeb7c67a6b466bfe458304742d2bfd30f2645c1"
+    }
+  ]
+}

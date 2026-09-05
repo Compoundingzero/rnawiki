@@ -1,0 +1,160 @@
+{
+  "source": "PubChem",
+  "retrieval_date": "2026-09-05",
+  "licence": "Public domain (US Government work; NCBI places no restrictions on use or distribution)",
+  "corpusPages": 28832,
+  "pagesMatchedByTier": {
+    "1": 1328,
+    "2": 2667,
+    "3": 16447
+  },
+  "pagesMatchedByTierAndRuleNote": "One primary rule per page. A form_of link added alongside a primary match is counted in formOfLinksByTier, not here, so these buckets do not overlap.",
+  "formOfLinksByTier": {
+    "1": 25,
+    "2": 108,
+    "3": 66
+  },
+  "pagesMatchedByTierAndRule": {
+    "1": {
+      "unii": 934,
+      "inchikey": 361,
+      "skeleton": 16,
+      "name-candidate": 17
+    },
+    "2": {
+      "unii": 1777,
+      "inchikey": 809,
+      "skeleton": 40,
+      "name-candidate": 41
+    },
+    "3": {
+      "unii": 7980,
+      "inchikey": 8155,
+      "skeleton": 179,
+      "name-candidate": 133
+    }
+  },
+  "fieldsGainedByTier": {
+    "1": {
+      "cid": 1271,
+      "component": 24,
+      "connectivity_smiles": 82,
+      "form_of": 41,
+      "inchi": 82,
+      "inchikey": 82,
+      "mw": 1271,
+      "smiles": 82,
+      "tpsa": 1271,
+      "xlogp": 1188
+    },
+    "2": {
+      "cid": 2543,
+      "component": 43,
+      "connectivity_smiles": 152,
+      "form_of": 148,
+      "inchi": 152,
+      "inchikey": 152,
+      "mw": 2543,
+      "smiles": 152,
+      "tpsa": 2543,
+      "xlogp": 2007
+    },
+    "3": {
+      "cid": 16093,
+      "component": 42,
+      "connectivity_smiles": 323,
+      "form_of": 245,
+      "inchi": 323,
+      "inchikey": 323,
+      "mw": 16093,
+      "smiles": 323,
+      "tpsa": 16093,
+      "xlogp": 15772
+    }
+  },
+  "candidateFieldsByTier": {
+    "1": {
+      "cid": 17,
+      "connectivity_smiles": 17,
+      "inchi": 17,
+      "inchikey": 17,
+      "mw": 17,
+      "smiles": 17,
+      "tpsa": 17,
+      "xlogp": 12
+    },
+    "2": {
+      "cid": 39,
+      "component": 2,
+      "connectivity_smiles": 39,
+      "inchi": 39,
+      "inchikey": 39,
+      "mw": 39,
+      "smiles": 39,
+      "tpsa": 39,
+      "xlogp": 27
+    },
+    "3": {
+      "cid": 133,
+      "connectivity_smiles": 133,
+      "inchi": 133,
+      "inchikey": 133,
+      "mw": 133,
+      "smiles": 133,
+      "tpsa": 133,
+      "xlogp": 109
+    }
+  },
+  "fieldsGainedTotal": {
+    "cid": 19907,
+    "component": 109,
+    "connectivity_smiles": 557,
+    "form_of": 434,
+    "inchi": 557,
+    "inchikey": 557,
+    "mw": 19907,
+    "smiles": 557,
+    "tpsa": 19907,
+    "xlogp": 18967
+  },
+  "candidateFieldsTotal": {
+    "cid": 189,
+    "component": 2,
+    "connectivity_smiles": 189,
+    "inchi": 189,
+    "inchikey": 189,
+    "mw": 189,
+    "smiles": 189,
+    "tpsa": 189,
+    "xlogp": 148
+  },
+  "fetchedCompoundRecords": 22848,
+  "unmatchedSourceRecords": 2532,
+  "unmatchedSourceRecordsNote": "PubChem compound records retrieved but attached to no page. A name lookup can return several CIDs; only the first is attached, so the rest count here.",
+  "pagesUnmatched": 8390,
+  "pagesUnmatchedByTier": {
+    "3": 6189,
+    "2": 1810,
+    "1": 391
+  },
+  "nameCandidatesSentToReview": 191,
+  "corpusCidAgreement": {
+    "differ": 2636,
+    "corpus_had_none": 7136,
+    "agree": 10435
+  },
+  "corpusInchikeyAgreement": {
+    "agree": 19457
+  },
+  "structureConflictsForPhase3": 1364,
+  "structureConflictsNote": "Pages whose UNII PubChem maps to a compound that is not the structure the page records. No property is written from such a record: an ester or a parent has a different mass. Where the two share an InChIKey skeleton the relation is emitted as form_of instead.",
+  "combinationPages": 173,
+  "combinationPagesNote": "A multi-ingredient product is not one molecule, so a matched compound is written to it as a component relation carrying that compound's own values, never as the page's identifier, mass or partition coefficient.",
+  "rows": 82932,
+  "outputs": {
+    "mapped": "data/sources/pubchem/mapped.parquet",
+    "nameCandidates": "data/revamp/pubchem-name-candidates.csv",
+    "unmatchedPages": "data/revamp/pubchem-unmatched-pages.csv",
+    "structureConflicts": "data/revamp/pubchem-structure-conflicts.csv"
+  }
+}

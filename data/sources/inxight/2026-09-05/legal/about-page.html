@@ -1,0 +1,2497 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" ng-app ="ginas">
+<head>
+    <base href='/'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+	<meta property="og:type" content="website" />
+
+	
+		<meta property="og:url" content="https://drugs.ncats.io/about" />
+
+		<meta name="twitter:domain" value="drugs.ncats.io" />
+		<meta name="twitter:url" value="https://drugs.ncats.io/about" />
+		<meta name="twitter:card" content="summary_large_image">
+	
+
+	
+		<meta property="og:title" content="NCATS Inxight Drugs" />
+		<meta name="twitter:title" value="NCATS Inxight Drugs" />
+
+		<meta property="og:description" content="The National Center for Advancing Translational Sciences has developed Inxight Drugs — a comprehensive portal for drug development information. NCATS Inxight incorporates and unifies a wealth of data, including marketing and regulatory status, rigorous drug ingredient definitions, biological activity, clinical use and more." />
+		<meta name="twitter:description" value="The National Center for Advancing Translational Sciences has developed Inxight Drugs — a comprehensive portal for drug development information.NCATS Inxight incorporates and unifies a wealth of data, including marketing and regulatory status, rigorous drug ingredient definitions, biological activity, clinical use and more." />
+
+		<meta property="og:image" 
+        content='https://drugs.ncats.io/assets/ginas/images/inxight_main.png?w=500' />
+		<meta name="twitter:image" 
+        content='https://drugs.ncats.io/assets/ginas/images/inxight_main.png?w=500' />
+
+		<meta name="twitter:label1" value="US Approved Drugs" />
+		<meta name="twitter:data1" value="2638" />
+		<meta name="twitter:label2" value="Total Substances" />
+		<meta name="twitter:data2" value="167131" />
+	
+
+    <!--[if lte IE 9]>
+    	<style type="text/css">
+    		#ie6msg{border:3px solid #c33; margin:8px 0; background:#fcc; color:#000;}
+    		#ie6msg h4{margin:8px; padding:0;}
+    		#ie6msg p{margin:8px; padding:0;}
+    		#ie6msg p a.getie7{font-weight:bold; color:#006;}
+    		#ie6msg p a.ie6expl{font-weight:bold; color:#006;}
+        </style>
+    	
+    	<div id="ie6msg">
+            <h4>Did you know that your browser is out of date?</h4>
+            <p>To get the best possible experience using this website it is recommended that you upgrade your browser to a newer version.
+            <p>You could also try some other popular browsers like <a class="ie6expl" href="http://mozilla.com">FireFox</a> or
+        	<a class="ie6expl" href="https://www.google.com/chrome/S">Chrome</a>.</p>
+    	</div>
+	<![endif]-->
+
+    <!--[if IE]>
+        <style type="text/css">
+            /* do allow margin adjustment for loupe symbol in main menu in IE */
+            @media (min-width: 768px){
+                #h-menu #menubar ul .hidden-md{ 
+                    margin: 7.5px 0;
+                }
+            }
+        </style>
+    <![endif]-->
+
+    <title>Inxight Drugs</title>
+    <link rel="icon" type="img/ico" href='/assets/ginas/images/ncats_favicon.ico'>
+    <link rel="stylesheet"
+    href='/webjars/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet"
+    href='/webjars/font-awesome/4.5.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ng-tags-input.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ng-tags-input.bootstrap.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/json-formatter.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ginas.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/drugs.css'>
+    
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    
+    
+    
+    <script src='/webjars/jquery/1.11.1/jquery.min.js'></script>
+   
+    <script src='/webjars/momentjs/2.11.0/moment.js'></script>
+    <script src='/webjars/later/1.2.0/later.min.js'></script>
+    <script src='/webjars/prettycron/0.10.0/prettycron.js'></script>
+    <script src='/webjars/humanize-duration/3.0.0/humanize-duration.js'></script>
+    
+    
+    
+    <script src='/webjars/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular.js'></script>
+    <script src='/webjars/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-messages.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-route.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-resource.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-aria.js'></script>
+    <script src='/webjars/lodash/4.0.0/lodash.js'></script>
+
+    <script src='/assets/ginas/js/angular-local-storage.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginasApp.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-admin.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-downloads.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-scheduled.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-filter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-forms.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-form-elements.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-filter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-bootstrap-file-field.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/showErrors.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/diff_match_patch.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-diff-match-patch.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-loading-spinner.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/filter-listener-service.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/validators.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/json-formatter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ng-tags-input.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/screengrabber.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/filereader.js' type='text/javascript'></script>
+    
+
+    <script src="https://code.highcharts.com/5.0.14/highcharts.js"></script>
+    <script src="https://code.highcharts.com/5.0.14/modules/exporting.js"></script>
+
+
+    <script src='https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js'></script>
+
+	
+    <script type="text/javascript">
+        var session = {
+	        
+	            username:null
+	        
+        };
+    	var baseurl = '/';
+        console.log(baseurl);
+    	
+    	
+    </script>
+    
+    <link rel="stylesheet" href='//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css'>
+    <script src='//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM44TYRR6L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-NM44TYRR6L');
+    </script>
+
+    <script src='/assets/ginas/js/css_browser_selector.js' type="text/javascript"></script>
+    
+</head>
+
+<body scroll-spy="breadcrumb" data-target="#breadcrumb" ng-controller ="GinasController as GinasCtrl">
+   	<div id="ncatsRibbon">
+        <div class="container no-gutter">
+            <img src="/assets/images/nihribbon-hhs.svg" alt="HHS Logo" class="ncats-ribbon hhs-logo">
+            
+            <a href="http://www.hhs.gov/" 
+            title="U.S. Department of Health & Human Services | Homepage" 
+            class="ext" 
+            target="_blank">U.S. Department of Health &amp; Human Services</a>
+
+            <img src="/assets/images/nihribbon-divider.svg" class="nihDivider ncats-ribbon" alt="Divider Arrow">
+            <img src="/assets/images/nih-ribbon.svg" class="nihArrows ncats-ribbon nih-logo" alt="NIH Logo">            
+            
+			<a href="http://www.nih.gov/" 
+			title="National Institutes of Health | Homepage" 
+			class="ext" 
+			target="_blank">National Institutes of Health</a>
+            
+            <img src="/assets/images/nihribbon-divider.svg" class="nihDivider ncats-ribbon" alt="Divider Arrow">
+            <img src="/assets/images/nih-ribbon.svg" class="nihArrows ncats-ribbon nih-logo" alt="NIH Logo"> 
+
+            <a href="http://www.ncats.nih.gov" 
+            title="National Center for Advancing Translational Sciences | Homepage" 
+            target="new">NCATS</a>
+            
+            
+            </div>
+
+        <!--container-->
+    </div>
+<!--    <div class="alert-banner" >-->
+<!--        <p>Because of a lapse in government funding, the information on this website may not be up to date,-->
+<!--            transactions submitted via the website may not be processed, and the agency may not be able to respond to-->
+<!--            inquiries until appropriations are enacted. The NIH Clinical Center (the research hospital of NIH) is open.-->
+<!--            For more details about its operating status, please visit <a href="http://cc.nih.gov/">cc.nih.gov</a>. Updates regarding government operating-->
+<!--            status and resumption of normal operations can be found at <a href="http://opm.gov/">opm.gov</a>.</p>-->
+<!--        <button onclick="dismissBanner()">Dismiss</button>-->
+<!--    </div>-->
+    <script>
+        // Detect if the page was fully reloaded (not internal navigation)
+        if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+            sessionStorage.removeItem('bannerDismissed'); // Reset banner state on full reload
+        }
+
+        // Check sessionStorage for banner state
+        if (sessionStorage.getItem('bannerDismissed') === 'true') {
+            document.querySelector('.alert-banner').style.display = 'none';
+        }
+
+        function dismissBanner() {
+            document.querySelector('.alert-banner').style.display = 'none';
+            sessionStorage.setItem('bannerDismissed', 'true'); // Save to sessionStorage
+        }
+    </script>
+    <div class="row-fluid" id="main-menu">
+     <!-- BANNER AND MENU -->
+<nav class="navbar navbar-default" role="navigation" id="menu">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand navbar-nav">        
+                <a href="/" 
+                title="Return Home"
+                target="_self" 
+                alt ="Home" 
+                aria-label="Return Home" 
+                ng-class="(!showsearch)?'':'hidden-sm hidden-xs'" >
+                    <img src='/assets/ginas/images/ncats-logo.svg' 
+                    alt="ncats logo" 
+                    class="ncats-logo img-responsive hidden-xs hidden-sm" 
+                    >
+                    <img src='/assets/ginas/images/ncats-logo-short.svg'
+                    alt="ncats logo" 
+                    class="ncats-logo img-responsive hidden-md hidden-lg hidden-xl" 
+                    >
+
+					<span class="sr-only">Return Home</span>
+					<span class="logo-header">Inxight</span>
+                    <span class="logo-header subsection">Drugs</span>
+                </a>
+            </span>
+        </div>
+
+        <div class="navbar-default" id="menubar">
+            <ul class="nav navbar-nav pull-right" id = "left-menu">
+                <li ng-class="(showsearch)?'':'hidden-sm hidden-xs'" ng-controller="TypeAheadController">
+                    <div ng-cloak ="" ng-show="loadingSuggest"
+                    id="loading-suggest">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </div>
+
+                    <form class="form-inline main-search" role="search"
+                    id="main-menu-search">
+                        <div class="input-group" id = "search-bar">
+                            <input type="text"
+                            class="form-control"
+                            id="search"
+                            aria-label="Search Substances"
+                            title="Search Substances in Inxight Drugs"
+                            placeholder= "Search Substances..."
+
+                            ng-model = "query"
+                            typeahead-popup-template-url='/assets/templates/elements/suggest-popup.html'
+                            uib-typeahead="r.d as r.d for r in getSuggestions($viewValue)"
+                            typeahead-on-select="onSelect($item, $model, $label)"
+                            typeahead-loading="loadingSuggest"
+                            typeahead-focus-first ="false"
+                            autocomplete="off">
+                            <span class="input-group-btn">
+                                <div class="btn-group search-btn" uib-dropdown>
+									 <button id="split-button-main" class="btn btn-default"
+                                        type="search"
+                                        aria-label="Search Substances"
+									    ng-click = "submitq(query,'/principals')">
+                                        
+                                          
+                                        <span class="sr-only">Search Substances</span>
+                                        <span class="fa fa-search"></span>
+									</button>
+                                </div>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+				
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="loupe" ng-click="showsearch=!showsearch; showclose=!showclose" ng-class="(!showclose)?'':'hidden-sm hidden-xs'">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+                </li>
+
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="close-loupe" ng-class="(showclose)?'':'hidden-sm hidden-xs'" ng-click="showclose=!showclose; showsearch=!showsearch">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </a>	
+                </li>
+				
+                
+	           
+            </ul>
+
+        </div>
+        
+    	
+    </div>
+
+
+    <div class="container" id="h-menu">
+        <div ng-class="(!showsearchHMenu)?'':'hidden-sm hidden-xs'"
+        class="col-xs-10 col-sm-11 col-md-9 col-lg-7 nopadding"
+        id="hmenu-butt-wrap">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/" 
+                    title="Return Home"
+                    target="_self" 
+                    alt ="Home" 
+                    aria-label="Return Home">
+                        <span class="hidden-xs hidden-sm">Home</span>
+                        <i class="fa fa-lg fa-home hidden-md hidden-lg hidden-xl"></i>
+                    </a>            
+                </li>
+
+                <li class="dropdown">
+                    <a href="" 
+                    data-toggle="dropdown" 
+                    class="dropdown-toggle" 
+                    aria-expanded="false"
+                    title="Drugs by Development Status...">
+                        <span class="hidden-xs hidden-sm">Browse Drugs</span>
+                        <i class="fa fa-lg fa-list-ol hidden-md hidden-lg hidden-xl"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu"> 
+                        <li>
+                            <a target="_self" 
+                            href="/drugs"
+                            title="US Approved Drugs">
+                                <span>US Approved Drugs</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_self" 
+                            href="/marketeds"
+                            title="Drugs Marketed Somewhere in the World">
+                                <span>Marketed Drugs</span>
+                            </a>
+                        </li> 
+
+                        <li>
+                            <a target="_self" 
+                            href="/clinicals"
+                            title="Investigational Drugs">
+                                <span>Investigational Drugs</span>
+                            </a>
+                        </li> 
+
+                        <li> 
+                            <a target="_self" 
+                            href="/substances"
+                            title="All Substances">
+                                <span>All Substances</span>
+                            </a>
+                        </li>   
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="" 
+                    data-toggle="dropdown" 
+                    class="dropdown-toggle" 
+                    aria-expanded="false"
+                    title="Advanced Search...">
+                        <span class="hidden-xs hidden-sm">Search&nbsp;<i class="fa fa-plus-circle"></i></span>
+                        <i class="fa fa-lg fa-search-plus hidden-md hidden-lg hidden-xl"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>  
+
+                    <ul class="dropdown-menu"> 
+                        <li>
+                            <a ng-href="/structure" 
+                            ng-click="clearStructure()" 
+                            target="_self"
+                            title="Search by Structure">
+                                <span>Structure Search</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a ng-href="/sequence" 
+                            ng-click="clearStructure()" 
+                            target="_self"
+                            title="Search by Sequence">
+                                <span>Sequence Search</span>
+                            </a>
+                        </li>   
+                    </ul>       
+                </li>
+                <li>
+                    <a ng-href="/downloads-public" 
+                    target="_self"
+                    title="Public Downloads">
+                        <span class="hidden-xs hidden-sm">Downloads</span>
+                        <i class="fa fa-lg fa-download hidden-md hidden-lg hidden-xl"></i>
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="/about" 
+                    target="_self"
+                    title="About NCATS Inxight Drugs">
+                        <span class="hidden-xs hidden-sm">About</span>
+                        <i class="fa fa-lg fa-question-circle hidden-md hidden-lg hidden-xl"></i>
+                    </a>
+                </li>
+
+                
+
+
+
+
+                
+            </ul>
+
+        </div>
+
+        <div class="col-md-3 col-lg-5 nopadding" id="menubar">
+            <ul class="nav navbar-nav pull-right">
+
+                <li ng-class="(showsearchHMenu)?'':'hidden-sm hidden-xs'" 
+                ng-controller="TypeAheadController"
+                id="hmenu-li-search-wrap">
+
+                    <div ng-cloak ="" ng-show="loadingSuggestHMenu"
+                    id="loading-suggest">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </div>
+
+                    <form class="form-inline main-search" role="search"
+                    id="main-menu-search">
+                        <div class="input-group" id = "search-bar">
+                            <input type="text"
+                            class="form-control"
+                            id="search"
+                            aria-label="Search Substances"
+                            title="Search Substances in Inxight Drugs"
+                            placeholder= "Search Substances..."
+
+                            ng-model = "query"
+                            typeahead-popup-template-url='/assets/templates/elements/suggest-popup.html'
+                            uib-typeahead="r.d as r.d for r in getSuggestions($viewValue)"
+                            typeahead-on-select="onSelect($item, $model, $label)"
+                            typeahead-loading="loadingSuggestHMenu"
+                            typeahead-focus-first ="false"
+                            autocomplete="off">
+                            <span class="input-group-btn">
+                                <div class="btn-group search-btn" uib-dropdown>
+                                     <button id="split-button-main" class="btn btn-default"
+                                        type="search"
+                                        aria-label="Search Substances"
+                                        
+                                        
+                                                ng-click = "submitq(query,'/marketeds')">
+                                            
+
+                                        <span class="sr-only">Search Substances</span>
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+                
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="loupe" 
+                    ng-click="showsearchHMenu=!showsearchHMenu; showcloseHMenu=!showcloseHMenu" 
+                    ng-class="(!showcloseHMenu)?'':'hidden-sm hidden-xs'">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+                </li>
+
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="close-loupe" 
+                    ng-class="(showcloseHMenu)?'':'hidden-sm hidden-xs'" 
+                    ng-click="showcloseHMenu=!showcloseHMenu; showsearchHMenu=!showsearchHMenu">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </a>	
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+   
+    
+</nav>
+
+
+</div>
+   	
+    <div class="container" id="content" >
+		
+        
+		
+        
+
+<div class="card-generic" id="whole-page-container">
+	<div style="height:35px;">
+	</div>
+	<div class="row width95">
+		<div class="col-md-12 collapsible"> 
+			<div class="section-bar">Publications</div>
+		</div>
+
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+				<div class="paper-header">
+					NCATS Inxight Drugs: a comprehensive and curated portal for translational research 
+				</div>
+
+				<div class="paper-authors">
+					Vishal B. Siramshetty, Ivan Grishagin, 
+					&#208;&#7855;c-Trung Nguy&#7877;n, Tyler Peryea, Yulia Skovpen, 
+					Oleg Stroganov, Daniel Katzel, Timothy Sheils, 
+					Ajit Jadhav, Ewy A Math&eacute;, Noel T. Southall 
+				</div>
+				
+				<div class="paper-journal">
+					<i>Nucleic Acids Research</i>&nbsp;<b>2022</b>,&nbsp;50(D1), D1307-D1316,
+				</div>
+	
+				DOI:
+				<a target="_blank" href="https://doi.org/10.1093/nar/gkab918">
+					10.1093/nar/gkab918
+				</a>  
+			</div>
+		</div>
+
+		<div class="col-md-12 collapsible"> 
+			<div class="section-bar">Sources</div>
+		</div>
+
+<!--		FYI: Good Developer
+			The numbers come from stitcher
+		MATCH (n:`S_FRDB, OCTOBER 2021`) RETURN count(n)
+		MATCH (n:`S_G-SRS, DECEMBER 2023`) RETURN count(n)
+		MATCH (n:`S_NCATS PHARMACEUTICAL COLLECTION, APRIL 2012`) RETURN count(n)
+		MATCH (n:`S_DRUGBANK, JULY 2020`) RETURN count(n)
+		MATCH (n:`S_DAILYMED RX, MARCH 2024`) RETURN count(n)
+		MATCH (n:`S_DRUGS_at_FDA & OB, MARCH 2024`) RETURN count(n) , but replace the _at_
+-->
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+				
+
+<dl>
+    <dt>
+        v. 2025-04-03 (current)
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">58469</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+             <div class="source-version-info">Version: FRDB, December 2024</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">167121</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: G-SRS, March 2025</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">17019</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: NCATS Pharmaceutical Collection, April 2012</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">17069</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DrugBank, July 2020</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">16659</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DailyMed Rx, March 2025</div> 
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">8303</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: Drugs@FDA &amp; OB, March 2025</div> 
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+				<button ng-click="showEarlierVersions=!showEarlierVersions" 
+				class="btn btn-url font-monospace"
+				ng-hide="showEarlierVersions">
+					<span>Show earlier versions <i class="fa fa-plus" aria-hidden="true"></i>
+					</span>
+				</button>  
+
+				<button ng-click="showEarlierVersions=!showEarlierVersions" 
+				class="btn btn-url font-monospace bottom-padded"
+				ng-show="showEarlierVersions">
+					<span>Hide earlier versions <i class="fa fa-minus" aria-hidden="true"></i>
+					</span>
+				</button>
+
+				<div ng-init="showEarlierVersions=false" ng-show="showEarlierVersions">
+					
+
+<dl>
+    <dt>
+        v. 2024-03-20
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">57786</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+             <div class="source-version-info">Version: FRDB, October 2021</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">156829</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: G-SRS, December 2023</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">16849</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: NCATS Pharmaceutical Collection, April 2012</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">16831</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DrugBank, July 2020</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">15928</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DailyMed Rx, March 2024</div> 
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">7735</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: Drugs@FDA &amp; OB, March 2024</div> 
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2023-08-04
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">58713</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+             <div class="source-version-info">Version: FRDB, October 2021</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">150488</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: G-SRS, July 2023</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: NCATS Pharmaceutical Collection, April 2012</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">13580</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DrugBank, July 2020</div> 
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">10769</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: DailyMed Rx, December 2021</div> 
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">3907</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+             <div class="source-version-info">Version: Drugs@FDA &amp; OB, January 2022</div> 
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2021-07-30
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">25445</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">125036</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">13580</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">110484</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">3847</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2019-03-15
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">13183</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">100264</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">11922</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">167689</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">2326</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2018-08-28
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">9221</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">100169</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">11292</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">165710</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">1899</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2018-03-09
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">9127</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">101874</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">11292</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">165710</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+                
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">1841</span>
+        </div>
+        <div>
+            <div class="source-label">
+            Drug substances from
+            <a target='_blank'
+               href='https://www.fda.gov/Drugs/InformationOnDrugs/ucm135821.htm'
+               title='Drugs@FDA'
+               style="display: inline-block;">
+                Drugs@FDA
+                <i class="fa fa-external-link"></i>
+            </a>
+            &amp;
+            <a target='_blank'
+               href='https://www.accessdata.fda.gov/scripts/cder/ob/'
+               title='Orange Book'>
+                Orange Book
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2018-02-01
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">8691</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">99827</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">10500</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">66870</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+        </ul>
+    </dd>
+</dl>
+
+
+					
+
+<dl>
+    <dt>
+        v. 2017-10-11
+    </dt>
+
+    <dd>
+        <ul class="list-unstyled about-list">
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">6684</span>
+        </div>
+        <div>
+            <div class="source-label">Manually curated substances
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">99393</span>
+        </div>
+        <div>
+            <div class="source-label">Substances from the
+            <a target='_blank'
+               href='https://gsrs.ncats.nih.gov/'
+               title='Global Substance Registration System'>
+                Global Substance Registration System
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">14814</span>
+        </div>
+        <div>
+            <div class="source-label">Approved and investigational drugs from the
+            <a target='_blank'
+               href='https://www.sciencedirect.com/science/article/pii/S1359644619303794#bib0060'
+               title='NCATS Pharmaceutical Collection'>
+                NCATS Pharmaceutical Collection
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">7039</span>
+        </div>
+        <div>
+            <div class="source-label">Drug ingredients from
+            <a target='_blank'
+               href='https://www.drugbank.ca/'
+               title='DrugBank'>
+                DrugBank
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+
+<li>
+    <div class="source-row">
+        <div class="badge-wrap-sources badge-sources-start">
+            <span class="badge purple">66870</span>
+        </div>
+        <div>
+            <div class="source-label">Drug products from
+            <a target='_blank'
+               href='https://dailymed.nlm.nih.gov/'
+               title='DailyMed'>
+                DailyMed
+                <i class="fa fa-external-link"></i>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</li>
+
+            
+        </ul>
+    </dd>
+</dl>
+
+
+				</div>
+				
+			</div>
+		</div>
+	</div>                
+
+	<div class="row width95">
+		<div class="col-md-12 collapsible"> 
+			<div class="section-bar">Data Subsets</div>
+		</div>
+		
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+				<dl class="nostyle-padded">
+					<dt>
+						<a target="_self" href="/drugs" 
+						class="counts">
+							US Approved Drugs 
+						</a>
+					</dt>
+					<dd>
+						A list of drugs that have been approved by the FDA for marketing in the US according to one or more of the following sources:
+						<ul class="nomargin">
+							<li>DailyMed</li>
+							<li>Drugs@FDA</li>
+							<li>OrangeBook</li>
+							<li>Code of Federal Regulations Title 21 &ndash; Over-the-Counter Drugs</li>
+						</ul>
+					</dd>
+					
+					<dt>
+						<a target="_self" href="/marketeds" 
+						class="counts">
+							Marketed Drugs 
+						</a>
+					</dt>
+					
+					<dd>
+						Substances that have a record of ever having been approved for marketing anywhere in the world according to any of the sources used in NCATS Inxight.
+					</dd>
+					
+					<dt>
+						<a target="_self" href="/clinicals" 
+						class="counts">
+							Investigational Drugs 
+						</a>
+					</dt>
+					
+					<dd>
+						Substances that have ever entered any clinical trial regardless of the outcome, but have not been approved or marketed.
+					</dd>
+					
+					<dt>
+						<a target="_self" href="/substances" 
+						class="counts">
+							All Substances 
+						</a>
+					</dt>
+					<dd>
+						All substances in the database. 
+					</dd>											
+				</dl>
+			</div>
+			
+		</div>
+	</div>                
+
+	<div class="row width95">
+		<div class="col-md-12 collapsible"> 
+			<div class="section-bar">Definitions</div>
+		</div>
+		
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+			
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Drug (therapeutic, intervention)
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						The "platonic", idealized form of an active pharmaceutical ingredient 
+						included in or produced by a currently or previously marketed drug product to contribute to the pharmacological 
+						action used to treat a condition. Usually an active moiety, except for prodrugs. 
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Active Pharmaceutical Ingredient
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						A substance present in a currently or previously marketed drug product 
+						that is or becomes pharmacologically active once delivered to patients.
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Prodrug
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						A substance that is not pharmacologically active until covalently modified by endogenous biological activity.
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Active Moiety	
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						<p>
+						The essential aspect of a substance responsible for its pharmacological activity. 
+						</p>
+						<p>
+							21 CFR 314.108(a):
+							<blockquote id="about-blockquote">
+								The molecule or ion, excluding those appended portions of the molecule 
+								that cause the drug to be an ester, salt (including a salt with hydrogen or coordination bonds), 
+								or other noncovalent derivative (such as a complex, chelate, or clathrate) of the molecule, 
+								responsible for the physiological or pharmacological action of the drug substance. 
+							</blockquote>
+						</p>
+
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Drug Product
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						A regulated, packaged, and formulated product currently or previously marketed 
+						for medical use containing one or more active pharmaceutical ingredients.	
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Substance
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						<p>
+							Fundamentally, an ingredient in a drug product. 
+							Substances are catalogued by the Federal Drug Administration (FDA) and assigned a UNique Ingredient Identifier 
+							(<a target='_blank' href='https://www.fda.gov/forindustry/datastandards/substanceregistrationsystem-uniqueingredientidentifierunii/' 
+							title='UNII'>UNII</a>). 
+							Multiple substances can share the same active moiety. 
+							Currently, there are six distinct types of Substances, as defined by the ISO 11238 identification of medical products standard: chemical, protein, nucleic acid, polymer, structurally diverse, and mixture. In addition, FDA defines a "concept" as a collection of names, codes, and relationships, which refer to matter that does not fit the definition of a substance, but is still of research, regulatory, or clinical significance. To ensure comprehensive coverage and avoid ambiguity, NCATS Inxight Drugs includes concepts into its list of Substances.
+						</p>
+						<p>
+							ISO 11238:
+							<blockquote id="about-blockquote">
+								Any matter that has discrete existence, whose origin may be biological, 
+								mineral or chemical. Substances can be either single substances or mixture substances. 
+								Single substances shall be defined using a minimally sufficient set of data elements 
+								divided into five types, chemical, protein, nucleic acid, polymer, and structurally diverse. 
+								Substances may be salts, solvates, free acids, free bases, mixtures of related compounds 
+								that are either isolated or synthesized together. 
+							</blockquote>
+						</p>
+					</div>
+				</div>	
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Primary Target
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						A biological component, substance, or process that is modulated by a therapeutic intervention, and is suspected to be the most relevant target for the biological activity associated with the major pharmacological use or proposed indication of the therapeutic intervention.
+					</div>
+				</div>
+				
+				<div class="panel panel-default additional">
+					<div class="panel-heading"> 
+						<h3 class="panel-title">
+							Treatment Modality
+						</h3>
+					</div>
+					
+					<div class="panel-body additional-data">
+						Substances are classified based on their effect on disease progression for a specific disease or condition. 
+						<br>
+						NCATS Inxight uses the following categories:
+						
+						<dl class="nostyle-padded">
+							<dt>Primary</dt>
+							<dd>
+								Halts or slows disease progression. Treatment often targets the primary pathology of a disease.
+							</dd>
+							
+							<dt>Preventing</dt>
+							<dd>
+								Intended to prevent the development of a medical condition. 
+							</dd>
+							
+							<dt>Palliative</dt>
+							<dd>
+								Improves the quality of life by alleviating the associated symptoms, without necessarily affecting the underlying pathology. 
+							</dd>
+							
+							<dt>Secondary</dt>
+							<dd>
+								Treats adverse effects associated with the treatment of a condition.
+							</dd>
+							
+							<dt>Diagnostic</dt>
+							<dd>
+								A substance used for diagnostic purposes, including disease detection and monitoring of disease progression.
+							</dd>
+							
+							<dt>Inactive ingredient</dt>
+							<dd>
+								An ingredient of a given formulation (most frequently, an excipient) that does not exhibit pharmacological activity. 
+								In this case, a condition is only related to such compound via the formulation used to affect (treat or diagnose) this condition.
+							</dd>
+					
+						</dl>
+					</div>
+				</div>
+												
+			</div>
+		</div>
+	</div>
+
+	<div class="row width95">
+		<div class="col-md-12 collapsible">
+			<div class="section-bar">NCATS Inxight Team</div>
+		</div>
+
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+				<div class="panel panel-default additional">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							Current
+						</h3>
+					</div>
+
+					<div class="panel-body additional-data">
+						<dl class="nostyle-padded dl-horizontal">
+							<dt>
+								<a href="https://ncats.nih.gov/staff/mathee" target="_blank">
+									Ewy A. Mathé
+								</a>
+							</dt>
+							<dd>
+								NCATS/NIH, Division of Preclinical Innovation, IFX Core
+							</dd>
+
+							<dt>
+								<a href="https://ncats.nih.gov/preclinical/core/informatics/informatics-scientists-software-developers" target="_blank">
+									Keith Kelleher
+								</a>
+							</dt>
+							<dd>
+								NCATS/NIH, Division of Preclinical Innovation, IFX Core
+							</dd>
+						</dl>
+					</div>
+
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							Former
+						</h3>
+					</div>
+
+					<div class="panel-body additional-data">
+						<dl class="nostyle-padded dl-horizontal">
+							<dt>
+								<a href="https://www.linkedin.com/in/ajitjadhavusa/"
+								   target="_blank">
+									Ajit Jadhav
+								</a>
+							</dt>
+							<dd>
+								Pfizer
+							</dd>
+
+							<dt>
+								<a href="https://www.linkedin.com/in/noel-southall-826bbb6/" target="_blank">
+									Noel Southall
+								</a>
+							</dt>
+							<dd>AstraZeneca</dd>
+
+							<dt>
+								<a href="https://orcid.org/0000-0003-2591-9948"
+								   target="_blank">
+									Ðắc-Trung Nguyễn
+								</a>
+							</dt>
+							<dd>Pfizer</dd>
+
+							<dt>
+								<a href="https://www.linkedin.com/in/ivan-grishagin-05570b3a" target="_blank">
+									Ivan Grishagin
+								</a>
+							</dt>
+							<dd></dd>
+
+							<dt>
+								<a href="https://www.linkedin.com/in/tyler-peryea-40359996/"
+								   target="_blank">
+									Tyler Peryea
+								</a>
+							</dt>
+							<dd>FDA</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row width95">
+		<div class="col-md-12 collapsible">
+			<div class="section-bar">Release Notes</div>
+		</div>
+
+		<div class="col-md-12 content" >
+			<div class="text-block main-text-block">
+				<div class="panel panel-default additional">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							April 4, 2025
+						</h3>
+					</div>
+
+					<div class="panel-body additional-data">
+						Updates
+						<ul>
+							<li>Stitcher and Inxight are now built using these updated data sources:
+								<ul>
+									<li>G-SRS, March 2025</li>
+									<li>Curated data from FRDB, December 2024</li>
+									<li>Drugs - FDA & OB, March 2025</li>
+									<li>ClinicalTrials, March 2025</li>
+									<li>FDA Excipients, March 2025</li>
+									<li>FDA NADA and ANADAs, March 2025</li>
+									<li>DailyMed Rx, March 2025</li>
+									<li>Broad Institute Drug List 2024-03-05</li>
+								</ul>
+							</li>
+							<li>
+								There is a new set of curated data on pharmacokinetics, adverse events, drug-to-drug interactions, and sourcing.
+								It is available on the <a href="/downloads-public" target="_self">Downloads page</a>.
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default additional">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							March 20, 2024
+						</h3>
+					</div>
+
+					<div class="panel-body additional-data">
+						Updates
+						<ul>
+							<li>Stitcher and Inxight are now built using these updated data sources:
+								<ul>
+									<li>G-SRS, December 2023</li>
+									<li>Drugs - FDA & OB, March 2024</li>
+									<li>ClinicalTrials, March 2024</li>
+									<li>FDA Excipients, March 2024</li>
+									<li>FDA NADA and ANADAs, March 2024</li>
+									<li>DailyMed Rx, March 2024</li>
+									<li>Broad Institute Drug List 2024-03-05</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="panel panel-default additional">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							August 4, 2023
+						</h3>
+					</div>
+					<div class="panel-body additional-data">
+						Updates
+						<ul>
+							<li>Stitcher and Inxight are now built using the G-SRS data from July 2023.</li>
+							<li>There is a new dataset from the Fast Response Database (FRDB), available on the
+								<a href="/downloads-public" target="_self">Downloads page</a>.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="panel panel-default additional">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							March 15, 2023
+						</h3>
+					</div>
+
+					<div class="panel-body additional-data">
+						Updates
+						<ul>
+							<li>Stitcher and Inxight are now built using the G-SRS data from December 2022.</li>
+							<li>This Release Notes section is new, and will summarize recent enhancements and fixes.</li>
+							<li>There is a new dataset from the Fast Response Database (FRDB), available on the
+								<a href="/downloads-public" target="_self">Downloads page</a>.</li>
+						</ul>
+						Fixes
+						<ul>
+							<li>Previously, the Sequence Search functionality was broken. The problem is fixed.</li>
+							<li>Previously, some drug pages may render some cards incorrectly, such as with {cardTitle}
+								instead of the card title, due to associated diseases having some problematic characters.
+								The problem is fixed.</li>
+							<li>Previously, the Application fields might not show up depending on the format of the data
+								coming from Stitcher. The problem is fixed.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row width95 margin-top-15">
+		Last updated: September 1, 2026 (challenge session fix)
+	</div>
+</div>
+
+
+        <mol-export></mol-export>
+    </div>
+	<script>
+		$(document).ready(function(){
+		    try{
+				$("table.gsrs-datatable").DataTable( {
+					"lengthMenu": [[5, 20, 100, -1], [5, 20, 100, "All"]],
+					language: {
+						search: "",
+						searchPlaceholder: "Search..."
+					},
+					"aaSorting": [],
+                    "scrollX": true
+				});
+
+			}catch(e){
+				console.log(e);
+			}
+
+			$('.unloaded').removeClass("unloaded");
+ 
+			$('body').scrollspy({
+				offset:300,
+				target:".sidebar-inner"
+			});
+
+			$('#affix').affix({
+				offset: {
+					top: 50
+				}
+			});
+
+			$(".dataTables_filter input").addClass("form-control");
+
+		});
+
+	  var onResize = function() {
+		// apply dynamic padding at the top of the body according to the fixed navbar height
+		  $("body").css("padding-top", $(".navbar-fixed-top").height());
+		};
+
+		// attach the function to the window resize event
+		$(window).resize(onResize);
+
+		// call it also when the page is ready after load or reload
+		$(function() {
+		  onResize();
+		});
+	</script>
+
+	<script>
+        var hmenu = document.getElementById("h-menu");
+        var hmenuOffset = hmenu.offsetTop;
+        var hmenuHeight = hmenu.offsetHeight;
+
+        var hmenuButtonWrap = document.getElementById("hmenu-butt-wrap");
+        var liSearchWrap = document.getElementById("hmenu-li-search-wrap");
+
+        window.onscroll = function() {
+            fixHMenu();
+        }
+
+        function fixHMenu() {
+            if(hmenuOffset != null) {
+                // check the offse of the page compared to the horizontal menu
+                if (window.pageYOffset >= hmenuOffset) {
+                    // if scrolled past the hmenu, then fix the menu to the top 
+                    // and show the search bar in it
+                    hmenu.classList.add("fix2top");
+                    $("#h-menu #menubar").show();
+
+                    // now we want to ensure that visibility of the menu buttons
+                    // and that of hmenu's search bar is always opposite on small screens
+                    if(liSearchWrap.classList.contains("hidden-sm")){
+                        hmenuButtonWrap.classList.remove("hidden-sm", "hidden-xs");
+                    } else {
+                        hmenuButtonWrap.classList.add("hidden-sm", "hidden-xs");
+                    }
+
+                } else {
+                    // if we haven't scrolled past the h menu, then do not fix it to top
+                    hmenu.classList.remove("fix2top");
+                    $("#h-menu #menubar").hide();
+
+                    // ensure hmenu's buttons are visible all the time when it's not on top
+                    hmenuButtonWrap.classList.remove("hidden-sm", "hidden-xs");
+                }
+            } 
+        }
+
+    </script>
+    <script>
+		$(function () {
+            
+			if($('.fixedpos').length>0){
+    			var fixmeTop = $('.fixedpos').offset().top;       // get initial position of the element
+
+    			$(window).scroll(function() {                  // assign scroll event listener
+
+    				var currentScroll = $(window).scrollTop(); // get current position
+    			
+    				if (currentScroll >= fixmeTop-100) {           // apply position: fixed if you
+    					$('.fixedpos').css({                      // scroll to that element or below it
+    						position: 'fixed',
+    						top: 70
+    					});
+    				} else {                                   // apply position: static
+    					$('.fixedpos').css({                      // if you scroll above it
+    						position: 'absolute',
+    						top: 'inherit'
+    					});
+    				}
+    			});
+			}
+            
+			var resetBindings = function(){
+			
+				$('[data-toggle="popover"]:not(.toggle-force)').off();
+				$('.toggle-on').off();
+				
+				
+				$('[data-toggle="popover"]:not(.toggle-on)').unbind( "click" );
+				$('.toggle-on').unbind( "click" );
+				
+				$('[data-toggle="popover"]:not(.toggle-on)').click(function(){
+					$(this).addClass("toggle-on");
+					var _this=this;
+					console.log("not toggle on");
+					setTimeout(function(){
+						$(_this).popover("show");
+					},10);
+					resetBindings();
+				});
+				
+				$('.toggle-on').click(function(){
+					$(this).removeClass("toggle-on");
+					$(this).popover('hide');
+					resetBindings();
+				});	
+				
+				$('[data-toggle="popover"]:not(.toggle-force)')
+			.popover({ trigger: "manual" , html: true, animation:false})
+			.on("mouseenter", function () {
+				
+				if(false){
+				var _this = this;
+				var t=Math.random() + "";
+				$(_this).attr("fade_id",t);
+				$(this).popover("show");
+				$(".popover").on("mouseleave", function () {
+					setTimeout(function () {
+						if(!$(_this).hasClass("toggle-on")){
+							$(_this).popover('hide');
+						}
+					},800);
+				});
+				}
+			})
+			.on("mouseleave", function () {
+			if(false){
+				var _this = this;
+				if(!$(_this).hasClass("toggle-on")){
+				var t=Math.random() + "";
+				$(_this).attr("fade_id",t);
+				
+				setTimeout(function () {
+						if (!$(".popover:hover").length) {
+							if($(_this).attr("fade_id") == t){
+								$(_this).popover("hide");
+							}
+						}
+				}, 800);
+				}
+				}
+			});
+			};
+			resetBindings();
+			
+			document.body.addEventListener("click", function(e){
+				if(!$(e.target).parents(".popover").length){
+					$('[data-toggle="popover"]').popover('hide');
+				}
+			
+			});
+		});
+	</script>
+
+
+	<div class="modal export" id="loading">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="loading-progress"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="inxight-footer">
+	<div class="container">
+		<div class="item"><a target="_blank" href="https://www.nih.gov/">NIH</a></div>
+		<div class="item"><a target="_blank" href="https://ncats.nih.gov/">NCATS</a></div>
+        <div class="item"><a href="/privacy" target="_self">PRIVACY NOTICE</a></div>
+		<div class="item"><a target="_blank" href="https://ncats.nih.gov/accessibility">ACCESSIBILITY</a></div>
+		<div class="item-last">
+			<a target="_blank" 
+			href="/disclaimer">
+			DISCLAIMER
+			</a>
+		</div>
+		<div class="row">
+			<div class="item-last">
+				<a target="_blank" 
+				href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html">
+				HHS VULNERABILITY DISCLOSURE
+				</a>
+			</div>
+		</div>
+
+		<div class="statement">
+			<div class="statement-desktop">
+				For <a href="http://edi.nih.gov/consulting/language-access-program/about" target="_blank" title="Read  the plan">language access</a> assistance, 
+				contact the <a href="mailto:info@ncats.nih.gov" title="Email Public Information Officer">NCATS Public Information Officer</a> 
+				<br>
+			</div>
+			<div>
+				National Center for Advancing Translational Sciences (NCATS), 
+				<span class="mobile-statement-break"><br></span>
+				6701 Democracy Boulevard, Bethesda MD 20892-4874 • 301-594-8966
+				
+			</div>
+		</div>
+	</div>
+	<div class=" hidden-xs hidden-sm" id="version">
+		<code uib-tooltip="Built on Wed Sep 02 17:05:26 GMT 2026 (commit: b4d43c75f)"
+		tooltip-placement="auto"
+		tooltip-append-to-body="true">
+			<small>version 1.1</small>
+		</code>
+	</div>
+</div>
+   
+</body>
+</html>
+
+

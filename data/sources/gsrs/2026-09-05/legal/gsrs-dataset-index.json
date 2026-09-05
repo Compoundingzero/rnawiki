@@ -1,0 +1,217 @@
+{
+  "retrieved_from": "https://gsrs.ncats.nih.gov/main.7bf32f449a289080.js",
+  "note": "dataset index embedded in the GSRS single-page application; identifies dump-public-2026-08-06.gsrs as the current public export",
+  "index": {
+    "Datasets": [
+      {
+        "date": "20260806",
+        "filename": "dump-public-2026-08-06.gsrs",
+        "records": 177121,
+        "formattedDate": ""
+      },
+      {
+        "date": "20260226",
+        "filename": "dump-public-2026-02-26.gsrs",
+        "records": 173080,
+        "formattedDate": ""
+      },
+      {
+        "date": "20260205",
+        "filename": "dump-public-2026-02-05.gsrs",
+        "records": 172648,
+        "formattedDate": ""
+      },
+      {
+        "date": "20250821",
+        "filename": "dump-public-2025-08-21.gsrs",
+        "records": 169794,
+        "formattedDate": ""
+      },
+      {
+        "date": "20250703",
+        "filename": "dump-public-2025-07-03.gsrs",
+        "records": 169060,
+        "formattedDate": ""
+      },
+      {
+        "date": "20250306",
+        "filename": "dump-public-2025-03-06.gsrs",
+        "records": 167385,
+        "formattedDate": ""
+      },
+      {
+        "date": "20240829",
+        "filename": "dump-public-2024-08-29.gsrs",
+        "records": 162731,
+        "formattedDate": ""
+      },
+      {
+        "date": "20240516",
+        "filename": "dump-public-2024-05-16.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20231214",
+        "filename": "dump-public-2023-12-14.gsrs",
+        "records": 156829,
+        "formattedDate": ""
+      },
+      {
+        "date": "20231130",
+        "filename": "dump-public-2023-11-30.gsrs",
+        "records": 156313,
+        "formattedDate": ""
+      },
+      {
+        "date": "20230914",
+        "filename": "dump-public-2023-09-14.gsrs",
+        "records": 152697,
+        "formattedDate": ""
+      },
+      {
+        "date": "20230831",
+        "filename": "dump-public-2023-08-31.gsrs",
+        "records": 152252,
+        "formattedDate": ""
+      },
+      {
+        "date": "20230629",
+        "filename": "dump-public-2023-06-29.gsrs",
+        "records": 150488,
+        "formattedDate": ""
+      },
+      {
+        "date": "20230413",
+        "filename": "dump-public-2023-04-13.gsrs",
+        "records": 148118,
+        "formattedDate": ""
+      },
+      {
+        "date": "20221215",
+        "filename": "dump-public-2022-12-15.gsrs",
+        "records": 144045,
+        "formattedDate": ""
+      },
+      {
+        "date": "20221117",
+        "filename": "dump-public-2022-11-17.gsrs",
+        "records": 143067,
+        "formattedDate": ""
+      },
+      {
+        "date": "20221013",
+        "filename": "dump-public-2022-10-13.gsrs",
+        "formattedDate": ""
+      },
+      {
+        "date": "20220714",
+        "filename": "dump-public-2022-07-14.gsrs",
+        "records": 138632,
+        "formattedDate": ""
+      },
+      {
+        "date": "20220512",
+        "filename": "dump-public-2022-05-12.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20220220",
+        "filename": "dump-public-2022-02-20.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20211215",
+        "filename": "dump-public-2021-12-15.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20211103",
+        "filename": "dump-public-2021-11-03.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20211013",
+        "filename": "dump-public-2021-10-13.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210827",
+        "filename": "dump-public-2021-08-27.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210729",
+        "filename": "dump-public-2021-07-29.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210623",
+        "filename": "dump-public-2021-06-23.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210502",
+        "filename": "dump-public-2021-05-02.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210318",
+        "filename": "dump-public-2021-03-18.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20210203",
+        "filename": "dump-public-2021-02-03.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20201203",
+        "filename": "dump-public-2020-12-03.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20201001",
+        "filename": "dump-public-2020-10-01.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20200707",
+        "filename": "dump-public-2020-07-07.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20200428",
+        "filename": "dump-public-2020-04-28.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20191011",
+        "filename": "dump-public-2019-10-11.gsrs",
+        "records": null,
+        "formattedDate": ""
+      },
+      {
+        "date": "20190403",
+        "filename": "dump-public-2019-04-03.gsrs",
+        "records": null,
+        "formattedDate": ""
+      }
+    ]
+  }
+}

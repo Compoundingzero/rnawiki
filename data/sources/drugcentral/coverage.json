@@ -1,0 +1,133 @@
+{
+  "corpus_pages_total": 28832,
+  "drugcentral_structures_total": 4995,
+  "fields_gained_by_tier": {
+    "1": {
+      "adverse_events_faers": 718,
+      "atc_codes": 1014,
+      "contraindications": 603,
+      "external_identifiers": 1226,
+      "indications": 947,
+      "mechanism_targets": 814,
+      "off_label_uses": 280,
+      "other_omop_relationships": 3,
+      "parent_molecule": 108,
+      "pharmacologic_action": 1105,
+      "regulatory.EU": 250,
+      "regulatory.JP": 181,
+      "regulatory.US": 1021,
+      "regulatory.other_agencies": 3,
+      "target_bioactivities": 712,
+      "year_introduced": 29
+    },
+    "2": {
+      "adverse_events_faers": 1590,
+      "atc_codes": 1952,
+      "contraindications": 1124,
+      "external_identifiers": 2419,
+      "indications": 1947,
+      "mechanism_targets": 1378,
+      "off_label_uses": 506,
+      "other_omop_relationships": 4,
+      "parent_molecule": 168,
+      "pharmacologic_action": 2088,
+      "regulatory.EU": 650,
+      "regulatory.JP": 470,
+      "regulatory.US": 1982,
+      "regulatory.other_agencies": 9,
+      "target_bioactivities": 1225,
+      "year_introduced": 70
+    },
+    "3": {
+      "adverse_events_faers": 358,
+      "atc_codes": 1052,
+      "contraindications": 218,
+      "external_identifiers": 2068,
+      "indications": 567,
+      "mechanism_targets": 295,
+      "off_label_uses": 111,
+      "other_omop_relationships": 2,
+      "parent_molecule": 153,
+      "pharmacologic_action": 1192,
+      "regulatory.EU": 36,
+      "regulatory.JP": 100,
+      "regulatory.US": 334,
+      "regulatory.other_agencies": 27,
+      "target_bioactivities": 651,
+      "year_introduced": 85
+    }
+  },
+  "licence": "CC BY-SA 4.0",
+  "name_candidate_pages": 148,
+  "name_candidates_sent_to_review": 164,
+  "name_candidates_suppressed_page_already_bound_by_identifier": 117,
+  "pages_confirmed_by_structure_or_unii": {
+    "by_tier": {
+      "1": 1203,
+      "2": 2343,
+      "3": 2022
+    },
+    "pages": 5568
+  },
+  "pages_matched_by_rule": {
+    "inchikey": {
+      "by_tier": {
+        "1": 53,
+        "2": 93,
+        "3": 73
+      },
+      "pages": 219
+    },
+    "name-candidate": {
+      "by_tier": {
+        "1": 25,
+        "2": 77,
+        "3": 46
+      },
+      "pages": 148
+    },
+    "skeleton": {
+      "by_tier": {
+        "1": 126,
+        "2": 212,
+        "3": 301
+      },
+      "pages": 639
+    },
+    "unii": {
+      "by_tier": {
+        "1": 1086,
+        "2": 2121,
+        "3": 1681
+      },
+      "pages": 4888
+    }
+  },
+  "pages_matched_by_tier": {
+    "1": 1226,
+    "2": 2419,
+    "3": 2068
+  },
+  "pages_matched_total": 5713,
+  "release": {
+    "dbversion": 54,
+    "release_date": "2023-11-01"
+  },
+  "retrieved": "2026-09-05",
+  "rows_written": 35686,
+  "source": "DrugCentral",
+  "source_rows_on_unmatched_structures": {
+    "act_table_full:bioactivity": 119,
+    "act_table_full:mechanism": 18,
+    "approval:China Food and Drug Administration (CFDA)": 3,
+    "approval:FDA": 23,
+    "approval:PMDA": 3,
+    "approval:YEAR INTRODUCED": 5,
+    "faers": 1373,
+    "omop_relationship:contraindication": 120,
+    "omop_relationship:indication": 73,
+    "omop_relationship:off-label use": 5
+  },
+  "unmatched_record_count": 213,
+  "unmatched_records_detail": "unmatched-records.json"
+}

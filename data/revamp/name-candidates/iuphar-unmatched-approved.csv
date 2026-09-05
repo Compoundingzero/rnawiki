@@ -1,0 +1,16 @@
+gtopdb_ligand_id,gtopdb_name,gtopdb_type,gtopdb_inchikey,gtopdb_chembl_id,gtopdb_pubchem_cid,interactions_unmapped
+13293,aponermin,Peptide,,,,2
+14404,bireociclib,Synthetic organic,CMOYPFUEZDEQEH-UHFFFAOYSA-N,,91820696,2
+10510,carotegrast methyl,Synthetic organic,MMHHPKCJJIFLBQ-QFIPXVFZSA-N,,9872780,1
+13952,cetagliptin,Synthetic organic,AEAPWXUIBZJCNV-MWLCHTKSSA-N,,74221499,1
+13811,dirozalkib,Synthetic organic,ABKQZNVWMCRCGQ-UHFFFAOYSA-N,,121260977,1
+13786,ebronucimab,Antibody,,,,1
+14399,firsekibart,Antibody,,,,1
+13951,fotagliptin,Synthetic organic,IXSWMXRAIPXMRH-OAHLLOKOSA-N,CHEMBL5408495,53258570,1
+14249,ifupinostat,Synthetic organic,TWJZFXHSPBBPNI-UHFFFAOYSA-N,,59474330,1
+13792,iparomlimab,Antibody,,,,1
+12781,simenafil,Synthetic organic,PIOIVHHIGWTEJQ-UHFFFAOYSA-N,CHEMBL4462192,136197286,1
+13795,tagitanlimab,Antibody,,,,1
+13793,tuvonralimab,Antibody,,,,1
+13784,xeligekimab,Antibody,,,,2
+13433,zastaprazan,Synthetic organic,FEQFUBYYZYQTOJ-UHFFFAOYSA-N,,138622158,1

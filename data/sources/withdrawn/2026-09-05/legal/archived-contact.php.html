@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- A NOTE ON IMPORTS:
+There are many options, all with their drawbacks. 
+
+-JS includes are powerful, but loading order can be a problem - especially if you have to fetch via ajax from a file. 
+This works for page content itself if you just use defer, but it does NOT work well for headers, at least not to my experiences so far.
+
+So you need to take at least one other method
+
+-PHP is the easiest by far if you use apache/php. This has been chosen here. For other servers, analogs exist.
+
+-For a more generalized solution : pick a preprocessor (like sergey) and/or a templating language. Most "modern" HTML is pre-processed anyhow
+(just as you might need a preprocessor for SASS). 
+
+But then you almost can move to a "modern" web framework toolchain anyhow, be it react, angular, vue or similar, and reap the many other benefits
+
+Though if you do preprocessing ONLY for that...there's an option like Sergey that is basically just HTML + partials, adding tiny bits to your static sites.
+
+If you want to use npm to install the dependencies, the main ones are bootstrap (~4), bootstrap-icons, jquery
+
+Use if you need a different tree vis (javascript object based input, used for atc tree), you can give bstreeview a shake (though I dislike its icon handling)
+
+-->
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--Responsive meta tag-->
+
+<!--This needs to be included via php/server-side/preprocessor, otherwise we run into issues-->
+<!--IMPORTANT : IF YOU CHANGE YOUR SERVER, ADJUST THIS LINE TO MATCH!!!!!!! That's the only server-specific adjustment essential-->
+<base href="https://bioinformatics.charite.de/withdrawn_3/index.html"> <!--Set BASE Url as common ground for checks, so you don't have to care where you are.-->
+
+<!--NOTE : All those mins are okay. Just make sure you have "enable source maps" settings enabled in browser.-->
+<link rel="stylesheet" href="include/bootstrap/dist/css/bootstrap.min.css"> <!-- This includes ALL bootstrap. grid only includes grid and flex utils, reboot only reboot-->
+<script src="include/jquery/dist/jquery.min.js"></script>  
+<script src="include/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!--Deferred javascript loads - these only loads once the page is completed, making sure the queried ID's exist-->
+<script src="js/load_ajax.js"></script> <!--We want this one immediately available-->
+<script src="js/load_templates.js" defer></script>  <!--defer other things, so page elements load first.-->
+<script src="js/common.js" defer></script>
+<script type="text/javascript" src="js/bootstrap_themes.js"></script>
+ <!--If you are NOT using php, use your server equivalent. For exampüle for node, %include ... -->
+</head>
+
+<body>
+    <header class="header" data-active="nav_contact"></header> <!--Just specify the page you used it on for auto activation-->
+
+    <div class="alert alert-secondary text-center" role="alert"><strong>Contact information</strong></div>
+	
+    <div class="container">
+
+    <!--Add Image here-->
+      <div class="row justify-content-center">
+        <div class="col-6 my-auto text-center">
+		<br>
+          <h5>Institute for Physiology</h5>
+          <h5>Structural Bioinformatics Group</h5>
+          <h5>Philippstr. 12</h5>
+          <h5>10115 Berlin, Germany</h5>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row justify-content-center">
+        <div class="col-6 my-auto text-center">
+			Björn Gohlke <a href="#">bjoern-oliver.gohlke@charite.de</a><br>
+          Kathleen Gallo <a href="#">kathleen.gallo@charite.de</a><br>
+          Andrean Goede <a href="#">andrean.goede@charite.de</a><br>
+          Andreas Eckert <a href="#">oliver-andreas.eckert@charite.de</a><br>
+          Robert Preissner <a href="#">robert.preissner@charite.de</a><br>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer"></footer>
+</body>
+
+</html>

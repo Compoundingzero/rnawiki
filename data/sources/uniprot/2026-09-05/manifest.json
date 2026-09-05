@@ -1,0 +1,95 @@
+{
+ "source": "UniProt (UniProtKB)",
+ "retrieved_date": "2026-09-05",
+ "uniprot_release": "2026_03",
+ "uniprot_release_date": "02-September-2026",
+ "endpoint": "https://rest.uniprot.org",
+ "licence": "CC BY 4.0 \u2014 https://www.uniprot.org/help/license (licence text saved at legal/help-license.json)",
+ "licence_url": "https://www.uniprot.org/help/license",
+ "attribution": "UniProt Consortium, UniProtKB, https://www.uniprot.org/",
+ "robots_compliance": {
+  "robots_txt": [
+   "legal/robots-www.txt",
+   "legal/robots-rest.txt"
+  ],
+  "disallowed_paths_avoided": [
+   "/idmapping/",
+   "/uniprotkb/stream/",
+   "/docs/"
+  ],
+  "note": "One request to https://rest.uniprot.org/docs/ (a Disallow path) was issued in the same batch as robots.txt, before robots.txt had been parsed. Its response is kept at legal/rest-docs.html as the record of that request; it is an empty client shell, carries no data and is not parsed by any script here. No further request was made to a disallowed path."
+ },
+ "api_key": "none \u2014 UniProt REST offers no API key and requires no registration",
+ "files": [
+  {
+   "path": "raw/chembl-xref.tsv",
+   "url": "https://rest.uniprot.org/uniprotkb/search?query=(database:chembl)&fields=accession,xref_chembl&format=tsv&size=500",
+   "retrieved_at": "2026-09-05T06:52:41Z",
+   "bytes": 248215,
+   "sha256": "683f54a806425945368b645934149e208abe3eb1c05bf3e2816db3cf300fe712"
+  },
+  {
+   "path": "raw/target-records.tsv",
+   "url": "https://rest.uniprot.org/uniprotkb/accessions?accessions=<4496 accessions in batches of 200>&fields=accession,id,reviewed,protein_name,gene_primary,gene_names,organism_name,organism_id,cc_function,cc_subcellular_location,length,mass,xref_chembl,xref_drugcentral,protein_families&format=tsv",
+   "retrieved_at": "2026-09-05T06:53:26Z",
+   "bytes": 7082298,
+   "sha256": "2d426f5a7f51115bcb08dbad08afe435f6a509299b6895f798f14c16d7ad6bbf"
+  },
+  {
+   "path": "raw/pharmaceutical.tsv",
+   "url": "https://rest.uniprot.org/uniprotkb/search?query=(cc_pharmaceutical:*)&fields=accession,id,reviewed,protein_name,gene_primary,gene_names,organism_name,organism_id,cc_function,cc_pharmaceutical,sequence,length,mass,ft_chain,xref_chembl&format=tsv&size=500",
+   "retrieved_at": "2026-09-05T06:53:28Z",
+   "bytes": 308628,
+   "sha256": "14b71a1163bf4adf88c701c3c393dcce2810d054e5d54080baee51e495da5d70"
+  },
+  {
+   "path": "raw/human-reviewed.tsv",
+   "url": "https://rest.uniprot.org/uniprotkb/search?query=(reviewed:true) AND (organism_id:9606)&fields=accession,id,reviewed,protein_name,gene_primary,gene_names,organism_name,organism_id,cc_function,cc_pharmaceutical,sequence,length,mass,ft_chain,xref_chembl&format=tsv&size=500",
+   "retrieved_at": "2026-09-05T06:56:24Z",
+   "bytes": 29559564,
+   "sha256": "8db793fd2bb352a8558205686d3fbf513efecdab2b4f561c3cb8db8f5278d047"
+  },
+  {
+   "path": "legal/help-downloads.html",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:08Z",
+   "bytes": 6450,
+   "sha256": "cf5618abf275f09c20022383960544544d04ee3faeab7df9ccdc1f1d640aedd7"
+  },
+  {
+   "path": "legal/help-license.html",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:08Z",
+   "bytes": 6450,
+   "sha256": "cf5618abf275f09c20022383960544544d04ee3faeab7df9ccdc1f1d640aedd7"
+  },
+  {
+   "path": "legal/help-license.json",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:33Z",
+   "bytes": 914,
+   "sha256": "5960c22bf17f22286504b927dbb3ca41713c571ed91a10fe7a88ddd964b416ce"
+  },
+  {
+   "path": "legal/rest-docs.html",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:09Z",
+   "bytes": 1674,
+   "sha256": "338484ab5b7331c2e414cb34ffb346dfff0a84b47476dad948dfd3db5f5d3541"
+  },
+  {
+   "path": "legal/robots-rest.txt",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:07Z",
+   "bytes": 416,
+   "sha256": "125f99bdbd461d8980feabe2cbc407a4f5f95eef10987126d75bec656b4c4803"
+  },
+  {
+   "path": "legal/robots-www.txt",
+   "url": "recorded in requests.log",
+   "retrieved_at": "2026-09-05T06:46:06Z",
+   "bytes": 228,
+   "sha256": "24b0d485e4c8db5de10da795a329f021249fd21bb1279998cdf3e9a1e8f55b63"
+  }
+ ]
+}

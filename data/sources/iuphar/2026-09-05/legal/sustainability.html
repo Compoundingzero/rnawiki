@@ -1,0 +1,483 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+         <script src="js/jquery.min.js"></script>
+ <script src="js/jquery-ui.min.js"></script>
+ <script src="js/jquery.cookie.js" type="text/javascript"></script>
+ <script src="js/jquery.cookiecuttr.js" type="text/javascript"></script>
+ <script>$(document).ready(function () {
+    console.log("Document ready");
+    $.cookieCuttr({
+        cookieAnalytics: false,
+        cookieMessage: 'We use cookies on this website, you can <a href="/privacyPolicy.jsp" title="read about our cookies and change your preference">read about them and update your preference here</a>. To use the website as intended please...',
+        cookiePolicyLink: '/privacyPolicy.jsp',
+        cookieNotificationLocationBottom: true,
+        cookieDomain: "guidetopharmacology.org",
+        debug:true
+    });
+    console.log("CookieCuttr initialized");
+});
+</script>
+        
+            <script>
+// Define dataLayer and the gtag function.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Default ad_storage to 'denied' as a placeholder
+// Determine actual values based on your own requirements
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied'
+});
+
+var accepted = jQuery.cookie('cc_cookie_accept');
+var declined = jQuery.cookie('cc_cookie_decline');
+
+if (accepted === "cc_cookie_accept") {
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+} else if (declined === "cc_cookie_decline") {
+  gtag('consent', 'update', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+}
+// If neither exists â DO NOTHING (stay denied)
+
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2BNY8HSKW5"></script>
+
+<script> 
+  gtag('js', new Date());
+  gtag('config', 'G-2BNY8HSKW5');
+</script>
+
+
+<script>
+jQuery(function($){
+    var consentGranted = ($.cookie('cc_cookie_accept') === 'cc_cookie_accept');
+
+    var consentWatcher = setInterval(syncConsentFromCookie, 1000);
+
+
+    function syncConsentFromCookie() {
+        var accepted = $.cookie('cc_cookie_accept');
+        var declined = $.cookie('cc_cookie_decline');
+
+    if (accepted === 'cc_cookie_accept' && !consentGranted) {
+      consentGranted = true;
+
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      gtag('event', 'page_view', {
+        page_path: window.location.pathname,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+
+      clearInterval(consentWatcher);
+    } else if (declined === 'cc_cookie_decline') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      clearInterval(consentWatcher);
+    }
+  }
+  syncConsentFromCookie();
+  
+  $(document).on('click', 'a', function(){
+    var href = $(this).attr('href');
+    if (href && /\.(pdf|docx|xlsx)(\?.*)?$/i.test(href)) {
+      if ($.cookie('cc_cookie_accept') === 'cc_cookie_accept') {
+        gtag('event', 'file_download', {
+            file_name: href,
+            page_path: window.location.pathname
+        });
+    }
+        }
+    });
+});
+</script>
+
+
+
+
+<!-- Google Tag Manager 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W2MLL4P');</script>
+ End Google Tag Manager -->
+
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Financial Sustainability | IUPHAR/BPS Guide to PHARMACOLOGY</title>
+        <meta name="description" content="The IUPHAR/BPS Guide to Pharmacology. How to cite. An expert-driven guide to pharmacological targets with quantitative information on the prescription medicines and experimental dugs that act on them. Includes an online database of information from the International Union of Basic and Clinical Pharmacology Database (IUPHAR-DB) AND THE British Pharmacological Society (BPS) Guide to Receptors and Channels (GRAC)."/>
+        <link rel="stylesheet" type="text/css" href="css/iuphar.css" />
+        <link rel="stylesheet" type="text/css" href="css/grac.css" />
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="superfish/css/superfish.css" /> 
+        <link rel="stylesheet" href="css/cookiecuttr.css"/>
+        <link rel="stylesheet" href="css/text.css" />
+        <link rel="stylesheet" href="css/960.css" />
+        <link rel="stylesheet" href="css/graceq.css" />
+        <link rel="stylesheet" href="css/jquery-ui.min.css"/>
+        <link rel="icon" type="image/png" href="images/gtopdb_square_white.png"/>
+        <script type="text/javascript" src="js/common.js"></script>
+      <!--  <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script> -->
+        <script src="js/autocomplete.categories.js"></script> 
+        <script src="superfish/js/hoverIntent.js"></script> 
+        <script src="superfish/js/superfish.js"></script> 
+        <script src="superfish/js/supersubs.js"></script>
+        
+        <script> 
+            $(document).ready(function(){ 
+                $("ul.sf-menu").supersubs({ 
+                    minWidth:    12,   // minimum width of sub-menus in em units 
+                    maxWidth:    27,   // maximum width of sub-menus in em units 
+                    extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+                                       // due to slight rounding differences and font-family 
+                }).superfish();  // call supersubs first, then superfish, so that subs are 
+                                 // not display:none when measuring. Call before initialising 
+                                 // containing tabs for same reason. 
+            }); 
+        </script>
+        <script>
+            $(function() {
+  $('#cite_format_selector').change(function(){
+    $('.citeformat').hide();
+    $('#' + $(this).val()).show();
+  });
+});
+            </script>
+      <!--  <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/jquery.cookiecuttr.js" type="text/javascript"></script>
+        <script src="js/GA_tracking.js" type="text/javascript"></script> -->
+        
+        <script src="js/citing.js" type="text/javascript"></script>
+
+    </head><body>
+        <div class="container_16">
+            <!-- ========== HEAD SECTION START - DO NOT ADD ANY CONTENT HERE ===================== -->
+            <div id="header">
+              
+<div class="brandandsearchtest"> 
+<!-- <div class="brandandsearch"> -->
+<div class="newsearchright">
+    <div id="searchTop">
+ <form class="newmainsearch" method="get" action="/GRAC/DatabaseSearchForward">
+                
+                    <input type="text" id="quick_search" size="14" maxlength="200" name="searchString"/>
+                    <input type="hidden" name="searchCategories" value="all"/>
+                    <input type="hidden" name="species" value="none"/>
+                    <input type="hidden" name="type" value="all"/>
+                    <input type="hidden" name="comments" value="includeComments"/>
+                    <input type="hidden" name="order" value="rank"/>
+                   <!-- <input type="submit" name="submit" value="Search Database" /> -->
+                    <button type="submit" aria-label="Search button"><i class="fa fa-search"></i></button>
+              
+ </form>
+
+    </div>
+    <div id="searchBottom" class="logout-container">
+        
+                
+                
+                    <form id="login_header_form_in" action="/login.jsp" method="get">
+                        <input class="loginButtonHeader" type="submit" value="Login">
+                    </form>
+                
+            
+        
+    </div>
+</div>
+<img alt="gtopdb_logo_and_banner_image" width="720" style="margin-top:15px;margin-bottom:15px;" src="../images/gtopdb_banner_2020.png"> 
+</div>
+<script>
+    $("#quick_search").catcomplete({delay: 300, minLength: 2, source: "/GRAC/autocompleteAll.jsp",
+       focus: function( event, ui ) {
+            // $( "#ligand_text" ).val( ui.item.label );
+            // do nothing on mouse over
+            return false;
+       },
+       select: function( event, ui ) {
+            //window.open(ui.item.value);
+            self.location.href = ui.item.value;
+            return false;
+       }  
+   });
+</script> 
+                                            
+           
+
+            </div>
+            <!-- =========== END OF HEAD SECTION =================================================== -->
+            
+            <!-- ========== SUPERFISH NAV START ============================================================ -->
+            <div class="mainnavcont">
+              <div class="mainnavtext">
+                 <ul id="sample-menu-1" class="sf-menu">
+        <li class="current">
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a  href="/about.jsp">About</a>
+            <ul>
+                <li><a href="/about.jsp">About The Guide to PHARMACOLOGY</a></li>
+                <li><a href="/nciuphar.jsp">About NC-IUPHAR</a></li>
+                <li><a href="/databaseContent.jsp">Database Content</a></li>
+                <li><a href="/GRAC/ContributorListForward">Contributors</a></li>
+                <li><a href="/sponsors.jsp">Sponsors</a></li>
+                <li><a href="/citing.jsp">Citing</a></li>
+                <li><a href="/linking.jsp">Linking to us</a></li>
+                <!--<li><a href="/faq.jsp">FAQ</a></li>-->
+                <li><a href="/disclaimer.jsp">Disclaimer</a></li>
+		<li><a href="/privacyPolicy.jsp">Privacy and Cookie Policy</a></li>
+            </ul>
+        </li>
+        <li>
+                <a  href="/targets.jsp">Targets </a>
+                <ul>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=GPCR">GPCRs</a> 
+                    </li>
+                    <li>
+                        <a  href="/GRAC/ReceptorFamiliesForward?type=IC">Ion channels</a>
+                        <ul>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">LGICs</a></li>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">VGICs</a></li>
+                            <li><a href="/GRAC/ReceptorFamiliesForward?type=IC">Other channels</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=NHR">Nuclear receptors</a> 
+                    </li>
+                    <li>
+                        <a href="/GRAC/FamilyDisplayForward?familyId=698&familyType=ENZYME">Kinases</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=CATALYTICRECEPTOR">Catalytic receptors</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=TRANSPORTER">Transporters</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=ENZYME">Enzymes</a>
+                    </li>
+                    <li>
+                        <a href="/GRAC/ReceptorFamiliesForward?type=OTHER">Other protein targets</a>
+                    </li>
+                    <li><a href="/GRAC/searchPage.jsp">Target search</a>
+                        <ul>
+                            <li><a href="/GRAC/searchPage.jsp">Target search tools</a></li>
+                            <li><a href="/blast">BLAST</a></li>
+                        </ul>
+                    </li>
+                </ul>
+        </li>
+        <li>
+            <a  href="/GRAC/LigandListForward?type=Approved">Ligands</a>
+            <ul>
+                <li><a href="/GRAC/LigandListForward?type=Approved">Ligand list</a></li>
+                <li><a href="/GRAC/LigandFamiliesForward">Ligand families</a></li>
+                <li><a href="/GRAC/chemSearch.jsp">Ligand search</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/GRAC/DiseaseListForward">Diseases</a>
+            
+        </li>
+        <li>
+            <a  href="/helpPage.jsp">Resources</a>
+            <ul>
+                <li><a href="/helpPage.jsp">Help</a></li>
+                <li><a href="/GuidetoPHARMACOLOGY_Tutorial.pdf" target="_blank" onClick="recordEvent(this, 'Other files', 'View PDF', 'Tutorial');return false;">Tutorial</a></li>
+                <li><a href="/faq.jsp">FAQ</a></li>
+                <li><a href="/pdfs/termsAndSymbols.pdf" target="_blank" onClick="recordEvent(this, 'Other files', 'View PDF', 'Terms and Symbols');return false;">Terms and symbols</a></li>
+                <li><a href="/nomenclature.jsp">Nomenclature guidelines</a></li>
+                <li><a href="/nciupharPublications.jsp">Publications</a></li>
+                <li><a href="/GRAC/AntibacterialsForward">Antibacterials</a></li>
+                <li><a href="/GRAC/DrugApprovalsForward">Drug approvals</a></li>
+                <li><a  href="/download.jsp">Downloads</a>
+                    <ul>
+                        <li><a href="/download.jsp">Download data and reports</a></li>
+                        <li><a href="/webServices.jsp">Web services</a></li>
+                        
+                        <li><a href="/slides.jsp">Slides and posters</a></li>
+                    </ul>
+                </li>
+                <li><a  href="/news.jsp">News</a>
+                    <ul>
+                        <li><a href="/immuno/immuphar2018.jsp">Immunopharmacology Meeting 2018</a></li>
+                        <li><a href="/news.jsp">Latest news</a></li>
+                        <li><a href="/GRAC/HotTopicsForward">Hot topics</a></li>
+                        <li><a href="/latestPairings.jsp">Latest pairings</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://bpspubs.onlinelibrary.wiley.com/toc/14765381/2023/180/S2" target="_blank" onClick="recordEvent(this, 'BJP links', 'https://bpspubs.onlinelibrary.wiley.com/toc/14765381/2023/180/S2', 'CGTP table of contents');return false;">Concise Guide to PHARMACOLOGY</a></li>
+                <li><a href="/links.jsp">Useful links</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/GRAC/searchPage.jsp">Advanced search</a>
+            <ul>
+                <li><a href="/GRAC/searchPage.jsp">Target search</a>
+                    <ul>
+                        <li><a href="/GRAC/searchPage.jsp">Target search tools</a></li>
+                        <li><a href="/blast">BLAST</a></li>
+                    </ul>
+                </li>
+                <li><a href="/GRAC/chemSearch.jsp">Ligand search</a></li>
+                <li><a href="/GRAC/pharmacologySearch.jsp">Pharmacology search</a></li>
+            </ul>
+        </li>
+           
+            <li class="immuno_portal">
+                <a href="/immuno/index.jsp" onClick="recordEvent(this, 'index', 'Menu Link to GtoImmuPdb', 'Link to GtoImmuPdb');return false;">Immuno Portal</a>
+            </li>
+            <li class="gtmp_portal">
+                <a href="/malaria/index.jsp" onClick="recordEvent(this, 'index', 'Menu Link to GtoMPdb', 'Link to GtoMPdb');return false;">Malaria Portal</a>
+            </li>
+       <!-- 
+        
+        
+        
+            <li class="immuno_portal">
+                <a href="http://www.guidetoimmunopharmacology.org/immuno/index.jsp">Guide to IMMUNOPHARMACOLOGY Portal</a>
+            </li>
+        
+         -->
+  
+    </ul>
+
+                </div>
+            </div>
+            <!-- ========== SUPERFISH NAV END  ============================================================ -->
+  
+            <!-- ==================== BREADCRUMBS START - NEEDS TO BE UPDATED MANUALLY ==================== -->
+            <div class="breadcrumbscont">
+              <ul class="crumbtext">
+                <li><a href="/index.jsp">Home</a></li>
+                <li>GtoPdb Financial Sustainability</li>
+              </ul>
+            </div>
+            <!-- ==================== BREADCRUMBS END ======================================== -->
+  
+            <!-- ==================== CONTENT START ==================== -->
+             <div class="grid_12">
+                 
+                <!-- ==================== GRID 16 START ==================== -->
+                <div class="grid_16 alpha">
+                    <a name="top"></a>
+                    <h4>GtoPdb - Financial Sustainability</h4>
+                    <div class="contentboxfullhelp">
+                        <div class="textright_sustain">
+                            <p><b>Commercial organisations that use GtoPdb pay access-fees which support the maintenance, curation and sustainability of the resource.</b></p>
+                            <p>Our current commercial access fees are:<br></br>
+                                
+                            <table id="sustaintable" style="width:400px;">
+                                    <tr>
+                                        <th style="width:50%">Organisation Size*</th>
+                                        <th style="width:50%">Access Fees (per annum)**</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Large <span style="font-size:x-small;">(250+ employees)</span></td><td>£2,000 GBP</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium <span style="font-size:x-small;">(50-249 employees)</span></td><td>£1,000 GBP</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Small <span style="font-size:x-small;">(<50 employees)</span></td><td>£500 GBP</td>
+                                    </tr>
+                                <tr><td colspan="2" style="border: none;font-size:x-small;">* Employee numbers given are an approximate guide. See <a href="https://www.gov.uk/government/publications/beis-small-and-medium-enterprises-sme-action-plan-2022-to-2025/beis-small-and-medium-enterprises-smes-action-plan-2022-to-2025-accessible-webpage#definition-of-an-sme" target="_blank">Definition of an SME (www.gov.uk)</a></td></tr>
+                                <tr><td colspan="2" style="border: none;font-size:x-small;">** A single annual payment covers all users within a company.</td></tr>
+                                </table>
+                            </p>
+                            
+
+                            <p>To arrange payment, please get in touch with the <b>Guide to Pharmacology curatorial team</b> at: </a> <a href="mailto:enquiries@guidetopharmacology.org?subject=GtoPdb Access"><span class="ebackwards">gro.ygolocamrahpotediug@seiriuqne</span></a>, using the subject '<b>GtoPdb Access</b>', and provide us with your organsation's name and main contact person. We will then get in touch to arrange the next steps.<br></br>
+                            
+                            Invoices will be arranged and managed by <b><a href="https://edinburgh-innovations.ed.ac.uk/contact-us">Edinburgh Innovations</a></b>, the University of Edinburgh's commercialisation service.<br></br>
+                              
+                            </p>
+                                
+                        </div>
+                            
+                            
+                            
+                    </div>
+                            
+                </div>
+                <!-- ==================== GRID 16 END ========================================-->
+            </div>
+            <!-- ==================== CONTENT END  ============================================ -->  
+    
+            <!-- ============== FOOTER START ========================================================--> 
+
+            <div class="clear"></div>
+            <div id="footer">
+                <div>
+	<div style="display:table-cell; vertical-align:middle; width:250px;  float:left; display:inline;">
+		<p style="text-align:left;margin: 5px 0px 0px 10px;"><a href="/revealEmail.jsp" onclick="window.open('/revealEmail.jsp', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=550,height=300'); return false;" title="Reveal this e-mail address">Contact us</a></p>
+		<p style="text-align:left;margin: 5px 0px 5px 10px;"> <span class="invisible_link"><a href="https://www.facebook.com/pages/Guide-to-PHARMACOLOGY/231393780304076" target="_blank" title="Like us on Facebook"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/facebook.png" alt="Link to Guide to Pharmacology on Facebook"/></a><a href="http://www.linkedin.com/company/guide-to-pharmacology" target="_blank" title="Follow us on LinkedIn"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/LinkedIn.png" alt="Link to Guide to Pharmacology on LinkedIn"/></a><a href="http://blog.guidetopharmacology.org/" target="_blank" title="Visit our blog"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/wpmini-blue.png" alt="Wordpress Logo link to Guide to Pharmacology blog"/></a><a href="http://www.slideshare.net/GuidetoPHARM" target="_blank" title="View slide sets and posters on SlideShare"><img class="logo" style="vertical-align:middle;margin-left:5px;" src="/images/slideshare_no_name.png" alt="Link to Guide to Pharmacology on Slideshare"/></a></span></p>
+    		<p style="text-align:left;margin: 8px 0px 0px 10px;"><small><a href="/privacyPolicy.jsp">Privacy and Cookie Policy</a></small></p>
+    	</div>
+    
+    
+                    
+                    
+                    
+                        <div style="vertical-align:middle; display:table-cell; float:left; display:inline;">
+        <p style="margin: 10px 30px 0px 0px;"><a href="https://globalbiodata.org/what-we-do/global-core-biodata-resources/" target="_blank" title="GCBR Global Core Biodata Resource"><img class="logo" style="vertical-align:middle; width:140px;" src="/images/GCBR-Logo.jpg" alt="Link to GCBR"/></a></p>
+    </div>
+                    
+                
+    
+    <div style="vertical-align:middle; display:table-cell; float:left; display:inline;">
+        <p style="margin: 5px 10px 0px 10px;"><a href="https://elixiruknode.org/" target="_blank" title="Elixir UK Resource"><img class="logo" style="vertical-align:middle; width:70px;" src="/images/ELIXIR-UK_Logo.png" alt="Link to Elixir-UK"/></a></p>
+    </div> 
+	<div style="vertical-align:middle; display:table-cell; float:right; display:inline; width:340px;">
+		<p style="text-align:right; margin: 5px 10px 0px 0px; font-weight:bold; font-size:12pt;"><a href="/sponsors.jsp">Sponsors list</a></p> 
+                <p style="text-align:right; margin: 5px 10px 0px 0px; "><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0; float: left;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></small></p>
+	</div>
+</div>
+      
+   
+
+            </div>
+            <!-- ============== FOOTER END ======================================================== --> 
+      </div>      
+            
+    </body>
+</html>

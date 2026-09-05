@@ -132,3 +132,17 @@ data/revamp/gsc-export-*/
 scripts/**/__pycache__/
 scripts/revamp/.drugcentral-public-credentials
 data/revamp/overlap/
+# Phase 2 raw source pulls stay on the workstation (manifests, legal, logs, mapped and coverage are tracked); DVC covers them in Phase 6
+data/sources/**/raw/
+data/sources/**/*.gz
+data/sources/**/*.zip
+data/sources/**/*.sql
+data/sources/**/*.dump
+data/sources/**/*.tar
+data/sources/**/*.duckdb
+data/sources/**/cache/
+data/sources/**/responses/
+data/sources/**/records/
+data/sources/**/api/
+data/validation/**/raw/
+data/sources/**/parsed/

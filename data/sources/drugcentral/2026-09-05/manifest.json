@@ -1,0 +1,267 @@
+{
+  "bulk_download_size_check": {
+    "content_length_bytes": 1400714190,
+    "note": "the archive size was read from a HEAD request and recorded before the transfer was started, per the disk rule; the dump expands to 4,977,219,505 bytes, so it was kept compressed and the tables were read from the public instance instead of being restored locally",
+    "uncompressed_bytes": 4977219505,
+    "under_5gb_limit": true,
+    "url": "https://unmtid-dbs.net/download/drugcentral.dump.11012023.sql.gz"
+  },
+  "files": {
+    "legal/activedownload-page.html": {
+      "bytes": 9095,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:33:25Z",
+      "sha256": "193ac07195c08d0b52e0ff8a453892cb0597e447503ff4033dc6d40bae850f47",
+      "url": "https://drugcentral.org/ActiveDownload"
+    },
+    "legal/download-page.html": {
+      "bytes": 14175,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:45:12Z",
+      "sha256": "a7ba9349a89f5986ed487c02688df47596c30f1f3721a199d852e7b59d76553a",
+      "url": "https://drugcentral.org/download"
+    },
+    "legal/privacy-license.html": {
+      "bytes": 6727,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:45:11Z",
+      "sha256": "bfc39aafcae90b58510884c3e0d272062ab0a7ef634195560dd4665870f12c96",
+      "url": "https://drugcentral.org/privacy"
+    },
+    "legal/robots-check.json": {
+      "bytes": 438,
+      "licence": "not applicable (retrieval-policy check, not source data)",
+      "retrieved_utc": "2026-09-05T06:45:13Z",
+      "sha256": "16921e869a091c7b936a111709c4f2cc15a619c2a64d48c28c1eb90d2a57a08c",
+      "url": "https://drugcentral.org/robots.txt and https://unmtid-dbs.net/robots.txt"
+    },
+    "legal/unmtid-download-index.html": {
+      "bytes": 4405,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:33:34Z",
+      "sha256": "53e862c50c9997df87e34a2fd25e0d2021a91f5e177968df22bb46f3c68ec3b8",
+      "url": "https://unmtid-dbs.net/download/"
+    },
+    "raw/EMA_Approved.csv": {
+      "bytes": 8099,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:34:21Z",
+      "sha256": "58e32326c89fa4f1901e51303c92fa77c685e82bf3bb79b05fee87ef155d0de8",
+      "url": "https://drugcentral.org/static/EMA_Approved.csv"
+    },
+    "raw/FDA+EMA+PMDA_Approved.csv": {
+      "bytes": 2937,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:34:23Z",
+      "sha256": "986378142f49e721b3fb021f6a5b0e9fcd5fb192e0c5c744c7a4eeb9999216ad",
+      "url": "https://drugcentral.org/static/FDA%2BEMA%2BPMDA_Approved.csv"
+    },
+    "raw/FDA_Approved.csv": {
+      "bytes": 42482,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:34:20Z",
+      "sha256": "e645cf89a6f2f01317b9a42354ba761c13b21908c0212444f6aead0791a88186",
+      "url": "https://drugcentral.org/static/FDA_Approved.csv"
+    },
+    "raw/PMDA_Approved.csv": {
+      "bytes": 7716,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:34:22Z",
+      "sha256": "b88d9bb693e015a31dd838bcb7ec6033cb472216adc3946da2891d90236e1e9b",
+      "url": "https://drugcentral.org/static/PMDA_Approved.csv"
+    },
+    "raw/drug.target.interaction.2021_09_01.tsv.gz": {
+      "bytes": 779363,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieved_utc": "2026-09-05T06:34:43Z",
+      "sha256": "160d7b3827997442def525d7499a82e12c3f97a96bc3b5bcaace1c6d12d48618",
+      "url": "https://unmtid-dbs.net/download/DrugCentral/2021_09_01/drug.target.interaction.tsv.gz"
+    },
+    "raw/drugcentral.dump.11012023.sql.gz": {
+      "bytes": 1400714190,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "retrieval_method": "6 concurrent HTTP range requests, reassembled in order",
+      "retrieved_utc": "2026-09-05T07:34:33Z",
+      "sha256": "055904d152d6c8eef4ee872b25f6476019682df8b5f49bcdf7cc018204f3e04f",
+      "transfer_note": "06:48:09Z to 07:33:47Z UTC across six range segments, about 512 KiB/s aggregate; a single connection to the same file settled at about 110 KiB/s",
+      "transfer_seconds": 2738,
+      "url": "https://unmtid-dbs.net/download/drugcentral.dump.11012023.sql.gz",
+      "verification": {
+        "content_length_matched": true,
+        "gzip_integrity_test": "gzip -t passed (CRC32 of the full decompressed stream)",
+        "gzip_trailer_modulo_2_32": 682252209,
+        "uncompressed_bytes": 4977219505
+      }
+    },
+    "raw/tables/act_table_full.csv": {
+      "bytes": 4531558,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select act_id, struct_id, target_id, target_name, target_class, accession, gene, swissprot, act_value, act_unit, act_type, act_comment, act_source, relation, moa, moa_source, act_source_url, moa_source_url, action_type, first_in_class, tdl, act_ref_id, moa_ref_id, organism from public.act_table_full",
+      "retrieved_utc": "2026-09-05T06:38:03Z",
+      "rows": 20978,
+      "sha256": "892d08940ab848bd19bf1cc10eeca970fe484bdd726cd4cc721cc587d18e3eab",
+      "table": "act_table_full",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/approval.csv": {
+      "bytes": 150580,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, struct_id, approval, type, applicant, orphan from public.approval",
+      "retrieved_utc": "2026-09-05T06:38:18Z",
+      "rows": 3915,
+      "sha256": "3b1d72a1677cdb8b93fef06eaf45271ddc5b63c0822818b796814c757ac43d8c",
+      "table": "approval",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/approval_type.csv": {
+      "bytes": 280,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, descr from public.approval_type",
+      "retrieved_utc": "2026-09-05T06:38:19Z",
+      "rows": 10,
+      "sha256": "f4a62079317e037456c34467411d6f57f8dfcb397efbd24f4dc2fd53284e1a6e",
+      "table": "approval_type",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/atc.csv": {
+      "bytes": 897760,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, code, chemical_substance, l1_code, l1_name, l2_code, l2_name, l3_code, l3_name, l4_code, l4_name, chemical_substance_count from public.atc",
+      "retrieved_utc": "2026-09-05T06:38:33Z",
+      "rows": 5372,
+      "sha256": "0325ab983827cb1a3444cc40c924f0e7510fedb85873933df4450d09ff2a5e7f",
+      "table": "atc",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/dbversion.csv": {
+      "bytes": 41,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select version, dtime from public.dbversion",
+      "retrieved_utc": "2026-09-05T06:37:22Z",
+      "rows": 1,
+      "sha256": "a80fcdb1ae00dce1bccf26a01d343aa98ce785a187f212535ffde58f2572695a",
+      "table": "dbversion",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/faers.csv": {
+      "bytes": 31095593,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, struct_id, meddra_name, meddra_code, level, llr, llr_threshold, drug_ae, drug_no_ae, no_drug_ae, no_drug_no_ae from public.faers",
+      "retrieved_utc": "2026-09-05T06:38:26Z",
+      "rows": 364935,
+      "sha256": "2b62f4a2623baff92a3b01b4f8fe3dc5fe9cfc1027268d14e6e31b2d407b6a83",
+      "table": "faers",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/identifier.csv": {
+      "bytes": 2610309,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, identifier, id_type, struct_id, parent_match from public.identifier",
+      "retrieved_utc": "2026-09-05T06:37:35Z",
+      "rows": 82230,
+      "sha256": "26b17abd4028d498387db3ee3ef8c5050e2ee287d460764ccc5f02182b5471e4",
+      "table": "identifier",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/omop_relationship.csv": {
+      "bytes": 4211849,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, struct_id, concept_id, relationship_name, concept_name, umls_cui, snomed_full_name, cui_semantic_type, snomed_conceptid from public.omop_relationship",
+      "retrieved_utc": "2026-09-05T06:37:43Z",
+      "rows": 42307,
+      "sha256": "c55a1112f8929a13f061cabe35a9a92afecd7467dd5d8e22a3636f391a716fed",
+      "table": "omop_relationship",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/parentmol.csv": {
+      "bytes": 82149,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select cd_id, name, cas_reg_no, inchi, nostereo_inchi, smiles, inchikey from public.parentmol",
+      "retrieved_utc": "2026-09-05T06:38:28Z",
+      "rows": 225,
+      "sha256": "a2733425e872493764c09d21808f28cc49c33a606275c5ba42657acbb76e597c",
+      "table": "parentmol",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/pharma_class.csv": {
+      "bytes": 1401920,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, struct_id, type, name, class_code, source from public.pharma_class",
+      "retrieved_utc": "2026-09-05T06:38:15Z",
+      "rows": 25687,
+      "sha256": "020bd859f75cfe38c9648796dc45042b55c57711e409f0409db7c040e3e55004",
+      "table": "pharma_class",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/struct2atc.csv": {
+      "bytes": 90374,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select struct_id, id, atc_code from public.struct2atc",
+      "retrieved_utc": "2026-09-05T06:38:36Z",
+      "rows": 5148,
+      "sha256": "020066170a14dffd3e2156f3ad697d26fbae35d19b18971e0bd7fb3d4e18916f",
+      "table": "struct2atc",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/struct2parent.csv": {
+      "bytes": 2961,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select struct_id, parent_id from public.struct2parent",
+      "retrieved_utc": "2026-09-05T06:38:30Z",
+      "rows": 361,
+      "sha256": "0834e89fe87d3ad648f467d99bf54ffca38a63e3af0faa700dc1e9f929c03693",
+      "table": "struct2parent",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/structures.csv": {
+      "bytes": 2173137,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select id, name, cas_reg_no, inchi, inchikey, smiles, cd_formula, cd_molweight, clogp, alogs, tpsa, lipinski, stem, mrdef, status, no_formulations, fda_labels from public.structures",
+      "retrieved_utc": "2026-09-05T06:37:32Z",
+      "rows": 4995,
+      "sha256": "aabdeb9e731347cf53e581f8533efb0e62effc227d8e93abd9d4eb9c7af35bee",
+      "table": "structures",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    },
+    "raw/tables/synonyms.csv": {
+      "bytes": 978738,
+      "licence": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)",
+      "query": "select syn_id, id, name, preferred_name, parent_id, lname from public.synonyms",
+      "retrieved_utc": "2026-09-05T06:37:39Z",
+      "rows": 23369,
+      "sha256": "70a10a5bea97d5c2638c99341ad6816929aa98e17c09cd8dae8fea0d71f1272d",
+      "table": "synonyms",
+      "url": "postgresql://unmtid-dbs.net:5433/drugcentral (public read-only instance published on https://drugcentral.org/download)"
+    }
+  },
+  "licence": {
+    "attribution_required": true,
+    "citation": "Ursu O. et al., DrugCentral, Nucleic Acids Research. https://doi.org/10.1093/nar/gkw993",
+    "commercial_use_permitted": true,
+    "name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "redistribution_permitted": true,
+    "share_alike": true,
+    "stated_at": "https://drugcentral.org/privacy",
+    "text_as_published": "DrugCentral License. DrugCentral is available under Creative Commons license, download and use of this resource evidences your agreement to all the terms and conditions of license.",
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode"
+  },
+  "publisher": "Division of Translational Informatics, University of New Mexico",
+  "release": {
+    "dbversion": 54,
+    "name": "DrugCentral 2023",
+    "release_timestamp": "2023-11-01T12:10:57.835",
+    "verified_from": "raw/tables/dbversion.csv, exported from the public read-only instance"
+  },
+  "retrieval_policy": {
+    "bulk_access": "explicitly offered by the publisher: a PostgreSQL dump and a public read-only PostgreSQL instance, both linked from https://drugcentral.org/download",
+    "pages_scraped": "none; no HTML page of the site was parsed for data, only for its download links and licence text",
+    "request_log": "requests.log",
+    "robots_txt": "neither drugcentral.org nor unmtid-dbs.net serves robots.txt (HTTP 404 on both); see legal/robots-check.json",
+    "terms_reviewed": [
+      "https://drugcentral.org/privacy",
+      "https://drugcentral.org/download"
+    ]
+  },
+  "retrieved_date": "2026-09-05",
+  "source": "DrugCentral"
+}

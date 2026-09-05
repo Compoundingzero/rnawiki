@@ -1,0 +1,168 @@
+{
+  "source": "iuphar",
+  "source_name": "IUPHAR/BPS Guide to PHARMACOLOGY (GtoPdb)",
+  "source_version": "2026.2",
+  "source_published": "2026-06-15",
+  "retrieval_date": "2026-09-05",
+  "retrieval_route": "bulk CSV download from https://www.guidetopharmacology.org/DATA/",
+  "base_url": "https://www.guidetopharmacology.org",
+  "licence": {
+    "database": "Open Data Commons Open Database License (ODbL)",
+    "contents": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "statement_url": "https://www.guidetopharmacology.org/about.jsp#license",
+    "statement_quote": "The Guide to PHARMACOLOGY database is licensed under the Open Data Commons Open Database License (ODbL). Its contents are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License",
+    "attribution_required": true,
+    "share_alike": true,
+    "redistribution_permitted": true,
+    "commercial_use_permitted": true,
+    "commercial_access_fee_notice": "The GtoPdb financial sustainability statement asks commercial organisations that use GtoPdb to pay an annual access fee (GBP 500 small / 1,000 medium / 2,000 large, per organisation). The fee is an access arrangement with the resource; it is not a restriction written into the ODbL or CC BY-SA 4.0 terms that cover the database and its contents. Saved at legal/sustainability.html.",
+    "citation": "Harding SD et al. (2026) The IUPHAR/BPS Guide to PHARMACOLOGY. https://www.guidetopharmacology.org/ - GtoPdb version 2026.2, published 2026-06-15."
+  },
+  "robots_txt": {
+    "url": "https://www.guidetopharmacology.org/robots.txt",
+    "http_status": 302,
+    "redirect_location": "/login.jsp",
+    "note": "No robots.txt is served: the path answers 302 to /login.jsp, so the site publishes no crawl directives. Headers saved at legal/robots-headers.txt. Retrieval used the site's published bulk-download directory /DATA/, which serves 200 without a session, and the documented web service for two single-record identifier checks. No interactive page was crawled."
+  },
+  "access_note": "The interactive .jsp pages of GtoPdb now sit behind a registration or guest login (download.jsp answers 302 to /login.jsp). The /DATA/ bulk files and the /services/ web service answer 200 without a session and are the routes used here.",
+  "request_log": "requests.log",
+  "request_log_note": "requests.log lines for drugcentral.org and unmtid-dbs.net were written by a concurrent source-ingester run sharing this workspace and are not part of the IUPHAR pull. Every guidetopharmacology.org line is.",
+  "files": [
+    {
+      "path": "legal/DATA-index.html",
+      "url": "https://www.guidetopharmacology.org/DATA/",
+      "retrieved_utc": "",
+      "http_status": "",
+      "bytes": 760,
+      "sha256": "8282d541fbe782c9053178b65186aa19edc8205fdd4e7b76f16c075bac85eb0e",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/about.html",
+      "url": "https://www.guidetopharmacology.org/about.jsp",
+      "retrieved_utc": "2026-09-05T06:33:45Z",
+      "http_status": "200",
+      "bytes": 38000,
+      "sha256": "0565e2a1c682453d37f23e8954670e9dfdab9a517c11205b595b42bfe69f3f69",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/download-page.html",
+      "url": "https://www.guidetopharmacology.org/download.jsp",
+      "retrieved_utc": "2026-09-05T06:32:12Z",
+      "http_status": "200",
+      "bytes": 6612,
+      "sha256": "7ae0b9b85f8737c419b00282de2ac4106165dca2f48e7ef9ce6284e32b9be0fc",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/robots-headers.txt",
+      "url": "https://www.guidetopharmacology.org/robots.txt",
+      "retrieved_utc": "",
+      "http_status": "",
+      "bytes": 386,
+      "sha256": "45f7584e14ecd703affc1eab8a8bb307cfea7f38cdc7e9da4bc4e7886f66bafa",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/robots-raw-response.txt",
+      "url": "https://www.guidetopharmacology.org/robots.txt",
+      "retrieved_utc": "",
+      "http_status": "",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/robots-redirect-target-login.html",
+      "url": "https://www.guidetopharmacology.org/login.jsp",
+      "retrieved_utc": "",
+      "http_status": "",
+      "bytes": 6612,
+      "sha256": "7ae0b9b85f8737c419b00282de2ac4106165dca2f48e7ef9ce6284e32b9be0fc",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/sustainability.html",
+      "url": "https://www.guidetopharmacology.org/gtopdbSustainability.jsp",
+      "retrieved_utc": "2026-09-05T06:32:11Z",
+      "http_status": "200",
+      "bytes": 24572,
+      "sha256": "875119816edf23e491ac2bb673f2e76857142077f31e5a377ecd55f985705985",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "legal/webServices.html",
+      "url": "https://www.guidetopharmacology.org/webServices.jsp",
+      "retrieved_utc": "2026-09-05T06:33:47Z",
+      "http_status": "200",
+      "bytes": 81535,
+      "sha256": "37eb10ff488c81093c059d107f210bcade76cb63d776ba48dfa3baa9dae43d98",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/approved_drug_detailed_interactions.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/approved_drug_detailed_interactions.csv",
+      "retrieved_utc": "2026-09-05T06:34:41Z",
+      "http_status": "200",
+      "bytes": 3704972,
+      "sha256": "6b82015714333bd7596b40e5b8e6ea644be3968be43b361499e29c09c0f3a417",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/approved_drug_primary_target_interactions.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/approved_drug_primary_target_interactions.csv",
+      "retrieved_utc": "2026-09-05T06:34:39Z",
+      "http_status": "200",
+      "bytes": 104965,
+      "sha256": "b83e12c2f86c799332aa80114974f280d6cfaafb8185c389b3d8bfe073c80137",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/interactions.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/interactions.csv",
+      "retrieved_utc": "2026-09-05T06:34:22Z",
+      "http_status": "200",
+      "bytes": 7435365,
+      "sha256": "07bb605283dfc5356f309181737a4b15e7ecfe9e1dc53f9f4667163705d6a082",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/ligand_id_mapping.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/ligand_id_mapping.csv",
+      "retrieved_utc": "2026-09-05T06:34:31Z",
+      "http_status": "200",
+      "bytes": 2586831,
+      "sha256": "a711879adda7bb28cf78afae50ebc13b4388b08065abd4de63b0485d7f46054c",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/ligands.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/ligands.csv",
+      "retrieved_utc": "2026-09-05T06:34:16Z",
+      "http_status": "200",
+      "bytes": 6786509,
+      "sha256": "daaeb79ae670f2774e8e2b31cf047a32fdbf5cd434464113db6b3382af2faf42",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/peptides.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/peptides.csv",
+      "retrieved_utc": "2026-09-05T06:34:36Z",
+      "http_status": "200",
+      "bytes": 1663927,
+      "sha256": "e1bc66d24cf18d86301a5a1b3e825f41a7428c787a70ea37d304da1eda825637",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    },
+    {
+      "path": "raw/targets_and_families.csv",
+      "url": "https://www.guidetopharmacology.org/DATA/targets_and_families.csv",
+      "retrieved_utc": "2026-09-05T06:34:28Z",
+      "http_status": "200",
+      "bytes": 1893389,
+      "sha256": "1be2b880391bd0b523c027ca7b3767e176507374526184793ab91302b7272dfd",
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+    }
+  ],
+  "total_bytes": 24334435
+}

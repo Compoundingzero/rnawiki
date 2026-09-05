@@ -1,0 +1,107 @@
+{
+  "source": "iuphar",
+  "source_name": "IUPHAR/BPS Guide to PHARMACOLOGY (GtoPdb)",
+  "source_version": "2026.2",
+  "source_published": "2026-06-15",
+  "retrieval_date": "2026-09-05",
+  "licence": "CC BY-SA 4.0 (contents); ODbL (database) - IUPHAR/BPS Guide to PHARMACOLOGY",
+  "corpus_pages_total": 28832,
+  "corpus_pages_by_tier": {
+    "1": 1719,
+    "2": 4477,
+    "3": 22636
+  },
+  "source_records": {
+    "ligands": 13856,
+    "ligands_with_at_least_one_interaction": 11130,
+    "interaction_rows": 24599,
+    "interaction_rows_excluded_no_target": 256,
+    "interaction_rows_mappable": 24343,
+    "targets": 3298
+  },
+  "pages_matched_by_tier": {
+    "1": 687,
+    "2": 1063,
+    "3": 2828
+  },
+  "pages_matched_total": 4578,
+  "pages_matched_by_tier_and_rule": {
+    "inchikey": {
+      "1": 500,
+      "2": 750,
+      "3": 2211
+    },
+    "name-candidate": {
+      "1": 168,
+      "2": 290,
+      "3": 458
+    },
+    "skeleton": {
+      "1": 36,
+      "2": 60,
+      "3": 212
+    }
+  },
+  "fields_gained_by_tier": {
+    "1": {
+      "iupharTargets": {
+        "pages": 687,
+        "values": 2285
+      }
+    },
+    "2": {
+      "iupharTargets": {
+        "pages": 1063,
+        "values": 3688
+      }
+    },
+    "3": {
+      "iupharTargets": {
+        "pages": 2828,
+        "values": 7098
+      }
+    }
+  },
+  "fields_gained": [
+    "iupharTargets"
+  ],
+  "mapped_rows": 13071,
+  "ligands_matched_by_rule": {
+    "unii": 0,
+    "inchikey": 3472,
+    "skeleton": 298,
+    "name-candidate": 725
+  },
+  "unii_rule_note": "GtoPdb release 2026.2 publishes no UNII in ligands.csv, ligand_id_mapping.csv, peptides.csv or the /services/ligands/{id}/databaseLinks web service, so mapping rule (a) produced no matches from this source. Verified against ligand 4779 (metformin) and 4860 (adalimumab): database links are CAS, ChEBI, ChEMBL, DrugBank, DrugCentral, PubChem, RCSB PDB, IMGT/mAb-DB and Wikipedia only.",
+  "excluded_source_records": {
+    "interaction_rows_without_any_target": 256,
+    "reason": "GtoPdb records these as activity against a whole organism or preparation. They carry no target name, target id, gene symbol, UniProt accession or family, so they cannot populate iupharTargets."
+  },
+  "unmatched_source_records": {
+    "ligands_with_interactions_unmatched": 6635,
+    "interaction_rows_unmatched": 12603,
+    "unmatched_by_ligand_type": {
+      "Synthetic organic": 4691,
+      "Peptide": 1614,
+      "Inorganic": 16,
+      "Natural product": 161,
+      "Metabolite": 108,
+      "Antibody": 45
+    },
+    "approved_ligands_with_interactions": 1459,
+    "approved_ligands_unmatched": 15,
+    "note": "Most unmatched GtoPdb ligands are research tool compounds, radioligands and unapproved candidates that have no rnawiki page. Approved ligands that stayed unmatched are the residue worth a Phase 3 look and are listed in data/revamp/name-candidates/iuphar-unmatched-approved.csv."
+  },
+  "name_candidates_sent_to_review": {
+    "pairs": 974,
+    "distinct_pages": 911,
+    "distinct_ligands": 725,
+    "path": "data/revamp/name-candidates/iuphar.csv"
+  },
+  "combination_pages_mapped_via_component": 44,
+  "outputs": {
+    "mapped_parquet": "data/sources/iuphar/mapped.parquet",
+    "raw": "data/sources/iuphar/2026-09-05/",
+    "manifest": "data/sources/iuphar/2026-09-05/manifest.json"
+  }
+}

@@ -28,9 +28,28 @@
     },
     "2": {
       "status": "IN_PROGRESS",
-      "steps": {},
+      "steps": {
+        "2.1": "done",
+        "2.2": "done",
+        "2.3": "done",
+        "2.5": "done",
+        "2.6": "done",
+        "2.7": "done",
+        "2.9": "done",
+        "2.4": "rerun pending (session limit)",
+        "2.8": "rerun pending (session limit)",
+        "2.10": "rerun pending (session limit)",
+        "2.11": "rerun pending (session limit)",
+        "2.12": "rerun pending (session limit)",
+        "2.13": "rerun pending (session limit)",
+        "2.14": "rerun pending (session limit)",
+        "2.15": "rerun pending (session limit)",
+        "2.16": "rerun pending (session limit)",
+        "2.17": "rerun pending (session limit)",
+        "2.18": "rerun pending (session limit)"
+      },
       "gate_evidence": null,
-      "updated": "2026-09-05T07:15:38+00:00"
+      "updated": "2026-09-05T15:58:35+00:00"
     },
     "3": {
       "status": "PENDING",

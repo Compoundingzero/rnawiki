@@ -1,0 +1,9 @@
+--- attempt 1 (HTTP/1.1, desktop browser UA) at 2026-09-05T07:42:47Z ---
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 time_total=30.011056 size=0
+--- attempt 2 (HTTP/1.1, desktop browser UA) at 2026-09-05T07:43:22Z ---
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 time_total=30.011740 size=0
+--- attempt 3 (HTTP/1.1, desktop browser UA) at 2026-09-05T07:44:07Z ---
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 time_total=30.011866 size=0

@@ -1,0 +1,143 @@
+{
+  "combination_pages_matched": 4,
+  "corpus_pages_total": 28832,
+  "datasets": {
+    "orange_book": {
+      "data_file_dates": {
+        "exclusivity.txt": "2026-08-14",
+        "patent.txt": "2026-08-14",
+        "products.txt": "2026-08-15"
+      },
+      "distinct_ingredient_components": 2364,
+      "exclusivity_rows": 2370,
+      "patent_rows": 22205,
+      "products_rows": 48664
+    },
+    "purple_book": {
+      "distinct_proper_names": 663,
+      "product_listing_rows": 2242,
+      "report_month": "2026-08",
+      "rows_with_date_of_first_licensure": 38,
+      "rows_with_exclusivity_expiration_date": 0,
+      "rows_with_first_interchangeable_exclusivity_date": 36,
+      "rows_with_orphan_exclusivity_date": 572,
+      "rows_with_reference_product_exclusivity_date": 36
+    }
+  },
+  "date_interpretation": {
+    "orange_book": "'Mon DD, YYYY'; 'Approved Prior to Jan 1, 1982' is kept as text and flagged, and is treated as 1982-01-01 only when ranking a first generic approval, where the flag is carried alongside.",
+    "purple_book_two_digit_years": "Approval Date, Inter. Approval Date and Date of First Licensure read as 20yy unless that lands after 2026-08-31, in which case 19yy. Exclusivity expiry fields read as 20yy for yy<=60, else 19yy.",
+    "unexpired_as_of": {
+      "orange_book": "2026-08-15",
+      "purple_book": "2026-08-31"
+    }
+  },
+  "fields_gained_by_tier": {
+    "1": {
+      "orangeBookExclusivity": 217,
+      "orangeBookPatents": 386,
+      "orangeBookProducts": 915,
+      "patentStatus": 915,
+      "purpleBook": 182,
+      "purpleBookProducts": 182
+    },
+    "2": {
+      "orangeBookExclusivity": 509,
+      "orangeBookPatents": 850,
+      "orangeBookProducts": 1713,
+      "patentStatus": 1713,
+      "purpleBook": 492,
+      "purpleBookProducts": 492
+    },
+    "3": {
+      "orangeBookExclusivity": 60,
+      "orangeBookPatents": 104,
+      "orangeBookProducts": 238,
+      "patentStatus": 238,
+      "purpleBook": 67,
+      "purpleBookProducts": 67
+    }
+  },
+  "licence": "US Government work, public domain (FDA)",
+  "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+  "name_candidate_pages": 172,
+  "name_candidates_emitted_into_mapped_parquet": 270,
+  "name_candidates_listed_for_review_only_page_already_bound_by_identifier": 76,
+  "name_candidates_sent_to_review": 346,
+  "pages_confirmed_by_unii_or_structure": {
+    "by_tier": {
+      "1": 1042,
+      "2": 2122,
+      "3": 271
+    },
+    "pages": 3435
+  },
+  "pages_matched_by_rule": {
+    "inchikey": {
+      "by_tier": {
+        "1": 14,
+        "2": 22,
+        "3": 4
+      },
+      "pages": 40
+    },
+    "name-candidate": {
+      "by_tier": {
+        "1": 55,
+        "2": 83,
+        "3": 34
+      },
+      "pages": 172
+    },
+    "skeleton": {
+      "by_tier": {
+        "1": 79,
+        "2": 195,
+        "3": 141
+      },
+      "pages": 415
+    },
+    "unii": {
+      "by_tier": {
+        "1": 994,
+        "2": 1977,
+        "3": 126
+      },
+      "pages": 3097
+    }
+  },
+  "pages_matched_by_tier": {
+    "1": 1097,
+    "2": 2204,
+    "3": 305
+  },
+  "pages_matched_total": 3606,
+  "pages_reached_only_via_salt_stripped_parent_substance": {
+    "by_tier": {
+      "1": 309,
+      "2": 631,
+      "3": 87
+    },
+    "pages": 1027
+  },
+  "pull_directory": "data/sources/orange-purple-book/2026-09-05",
+  "retrieved": "2026-09-05",
+  "rows_written": 192732,
+  "source": "FDA Orange Book and Purple Book",
+  "substance_name_resolution": {
+    "unii-names-exact": 2834,
+    "unii-names-exact-after-biosimilar-suffix-strip": 22,
+    "unii-names-exact-after-trailing-parenthetical-strip": 2,
+    "unii-names-normalised": 13,
+    "unresolved-to-unii": 156
+  },
+  "substance_names_matched_to_a_page": 2879,
+  "substance_names_seen": 3027,
+  "unmatched_record_count": 473,
+  "unmatched_records_breakdown": {
+    "distinct_substance_names_unmatched": 95,
+    "orange_book_products": 245,
+    "purple_book_products": 228
+  },
+  "unmatched_records_detail": "unmatched-records.json"
+}

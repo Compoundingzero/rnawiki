@@ -1,0 +1,71 @@
+{
+  "all_match": true,
+  "dump": "drugcentral.dump.11012023.sql.gz",
+  "tables": {
+    "act_table_full": {
+      "match": true,
+      "rows_in_dump": 20978,
+      "rows_in_export": 20978
+    },
+    "approval": {
+      "match": true,
+      "rows_in_dump": 3915,
+      "rows_in_export": 3915
+    },
+    "approval_type": {
+      "match": true,
+      "rows_in_dump": 10,
+      "rows_in_export": 10
+    },
+    "atc": {
+      "match": true,
+      "rows_in_dump": 5372,
+      "rows_in_export": 5372
+    },
+    "faers": {
+      "match": true,
+      "rows_in_dump": 364935,
+      "rows_in_export": 364935
+    },
+    "identifier": {
+      "match": true,
+      "rows_in_dump": 82230,
+      "rows_in_export": 82230
+    },
+    "omop_relationship": {
+      "match": true,
+      "rows_in_dump": 42307,
+      "rows_in_export": 42307
+    },
+    "parentmol": {
+      "match": true,
+      "rows_in_dump": 225,
+      "rows_in_export": 225
+    },
+    "pharma_class": {
+      "match": true,
+      "rows_in_dump": 25687,
+      "rows_in_export": 25687
+    },
+    "struct2atc": {
+      "match": true,
+      "rows_in_dump": 5148,
+      "rows_in_export": 5148
+    },
+    "struct2parent": {
+      "match": true,
+      "rows_in_dump": 361,
+      "rows_in_export": 361
+    },
+    "structures": {
+      "match": true,
+      "rows_in_dump": 4995,
+      "rows_in_export": 4995
+    },
+    "synonyms": {
+      "match": true,
+      "rows_in_dump": 23369,
+      "rows_in_export": 23369
+    }
+  }
+}

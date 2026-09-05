@@ -1,0 +1,1478 @@
+[
+  {
+    "page_key": "HOLD:existing:sodium-succinate",
+    "drugcentral_struct_id": "5200",
+    "drugcentral_name": "sodium succinate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Succinate",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:125DP6010H",
+    "drugcentral_struct_id": "3482",
+    "drugcentral_name": "polyestradiol phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Polyestradiol",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:26GW6E5M72",
+    "drugcentral_struct_id": "4879",
+    "drugcentral_name": "enoxaparin sodium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Heparin (PORCINE; 7000 MW)",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:26GW6E5M72",
+    "drugcentral_struct_id": "1358",
+    "drugcentral_name": "heparin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Heparin (PORCINE; 7000 MW)",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:30IW36W5B2",
+    "drugcentral_struct_id": "4566",
+    "drugcentral_name": "sodium oxybate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Oxybate",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:64FS3BFH5W",
+    "drugcentral_struct_id": "5007",
+    "drugcentral_name": "epoetin theta",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Epoetin alfa",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:64FS3BFH5W",
+    "drugcentral_struct_id": "5160",
+    "drugcentral_name": "epoetin beta",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Epoetin alfa",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:64FS3BFH5W",
+    "drugcentral_struct_id": "4995",
+    "drugcentral_name": "epoetin alfa",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Epoetin alfa",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:7GB7U7M282",
+    "drugcentral_struct_id": "4306",
+    "drugcentral_name": "DL-Alanine",
+    "drugcentral_inchikey": "QNAYBMKLOCPYGJ-UHFFFAOYSA-N",
+    "page_display_name": "Hypoglycine A",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:86117BWO7P",
+    "drugcentral_struct_id": "4479",
+    "drugcentral_name": "calcium citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Calcium Citrate Anhydrous",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:9QAU17N705",
+    "drugcentral_struct_id": "4845",
+    "drugcentral_name": "chromium (51Cr) edetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Chromium CR-51",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:9U6A490501",
+    "drugcentral_struct_id": "3613",
+    "drugcentral_name": "Vitamin E",
+    "drugcentral_inchikey": null,
+    "page_display_name": ".BETA.-TOCOPHEROL",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:D9GM7FH652",
+    "drugcentral_struct_id": "4839",
+    "drugcentral_name": "aprotinin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Pyroglutamylaprotinin",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:DI9132OQ3R",
+    "drugcentral_struct_id": "4821",
+    "drugcentral_name": "seractide",
+    "drugcentral_inchikey": "FHOCOBKCNJYXOP-OVLDLUHVSA-N",
+    "page_display_name": "SERACTIDE ACETATE",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:FZ989GH94E",
+    "drugcentral_struct_id": "4278",
+    "drugcentral_name": "crospovidone",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Povidone",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:M4F288ZCTR",
+    "drugcentral_struct_id": "1358",
+    "drugcentral_name": "heparin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "HEPARIN CALCIUM",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:P699N4QOWE",
+    "drugcentral_struct_id": "5200",
+    "drugcentral_name": "sodium succinate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Monosodium Succinate",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:UVP74NG1C5",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "FERRIC AMMONIUM CITRATE",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:ZZ45AB24CA",
+    "drugcentral_struct_id": "1358",
+    "drugcentral_name": "heparin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Heparin sodium",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:SEBFKMXJBCUCAI-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "2443",
+    "drugcentral_name": "silymarin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Silymarin",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:TZRFSLHOCZEXCC-HIVFKXHNSA-N",
+    "drugcentral_struct_id": "4747",
+    "drugcentral_name": "mipomersen",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Mipomersen",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:WQZGKKKJIJFFOK-GASJEMHNSA-N",
+    "drugcentral_struct_id": "3265",
+    "drugcentral_name": "glucose-1-phosphate",
+    "drugcentral_inchikey": "HXXFSFRBOHSIMQ-VFUOTHLCSA-N",
+    "page_display_name": "DEXTROSE",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:ZAKOWWREFLAJOT-ADUHFSDSSA-N",
+    "drugcentral_struct_id": "3613",
+    "drugcentral_name": "Vitamin E",
+    "drugcentral_inchikey": null,
+    "page_display_name": "TOCOPHEROL ACETATE",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:ZFGMDIBRIDKWMY-PASTXAENSA-N",
+    "drugcentral_struct_id": "1358",
+    "drugcentral_name": "heparin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "SODIUM HEPARIN",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:chondroitin",
+    "drugcentral_struct_id": "4103",
+    "drugcentral_name": "chondroitin sulfate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Chondroitin",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:ferric ammonium",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Ammonium",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:policosanol",
+    "drugcentral_struct_id": "5074",
+    "drugcentral_name": "policosanol",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Policosanol",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:trisodium",
+    "drugcentral_struct_id": "4477",
+    "drugcentral_name": "sodium citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Anhydrous Trisodium",
+    "tier": 1,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:0309P36Q66",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Fluoride",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:0I2XIN602U",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Chloride Hexahydrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:0LB9J2797D",
+    "drugcentral_struct_id": "5056",
+    "drugcentral_name": "patiromer calcium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Patiromer Sorbitex Calcium",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:1FQ2RY5YHH",
+    "drugcentral_struct_id": "5056",
+    "drugcentral_name": "patiromer calcium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Patiromer",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:1ZPG1ELY14",
+    "drugcentral_struct_id": "4637",
+    "drugcentral_name": "rose bengal",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Rose Bengal Potassium",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:22ADO53M6F",
+    "drugcentral_struct_id": "4448",
+    "drugcentral_name": "calcium hydrogen phosphate dihydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Phosphate, Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:22ADO53M6F",
+    "drugcentral_struct_id": "4219",
+    "drugcentral_name": "sodium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Phosphate, Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:23227F83U0",
+    "drugcentral_struct_id": "4453",
+    "drugcentral_name": "lysine acetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Lysine Aspartate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:2711I21VE5",
+    "drugcentral_struct_id": "5039",
+    "drugcentral_name": "tannic acid",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Tannic Acid (QUERCUS Infectoria NUTGALL)",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:2QH3L1MO19",
+    "drugcentral_struct_id": "4020",
+    "drugcentral_name": "sodium stibogluconate",
+    "drugcentral_inchikey": "PFOYFBYIHCVQGB-XCCFGPONSA-N",
+    "page_display_name": "STIBOGLUCONIC ACID",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:2URQ2N32W3",
+    "drugcentral_struct_id": "4383",
+    "drugcentral_name": "calcium lactate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Calcium Lactate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:35C9R2N24F",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Enterobactin",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:382L14738L",
+    "drugcentral_struct_id": "5163",
+    "drugcentral_name": "nonacog alfa",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Nonacog alfa",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:3JYG22FD73",
+    "drugcentral_struct_id": "4859",
+    "drugcentral_name": "creosote",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Wood Creosote",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:3R504894L9",
+    "drugcentral_struct_id": "5702",
+    "drugcentral_name": "birch bark extract",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Betula Pubescens Bark",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:47RRR83SK7",
+    "drugcentral_struct_id": "5205",
+    "drugcentral_name": "interferon alfa-2b",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Interferon ALFA-2A",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:4DVS4AG4DF",
+    "drugcentral_struct_id": "5205",
+    "drugcentral_name": "interferon alfa-2b",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Interferon alfa-2b",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:532B59J990",
+    "drugcentral_struct_id": "4279",
+    "drugcentral_name": "polyvinyl alcohol",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Polyvinyl Alcohol",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:56X54T817Q",
+    "drugcentral_struct_id": "5195",
+    "drugcentral_name": "corticorelin ovine",
+    "drugcentral_inchikey": "QEEJLLNYQOBRRM-KSHGRFHLSA-N",
+    "page_display_name": "Corticorelin ovine triflutate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:619G5K328Y",
+    "drugcentral_struct_id": "4403",
+    "drugcentral_name": "cerium oxalate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ceric Oxide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:63G354M39Z",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Citrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:64FS3BFH5W#epbx",
+    "drugcentral_struct_id": "4995",
+    "drugcentral_name": "epoetin alfa",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Epoetin Alfa-Epbx",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:64FS3BFH5W#zeta",
+    "drugcentral_struct_id": "5170",
+    "drugcentral_name": "epoetin zeta",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Epoetin zeta",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:6W4Z4SO23U",
+    "drugcentral_struct_id": "5596",
+    "drugcentral_name": "pegbovigrastim",
+    "drugcentral_inchikey": null,
+    "page_display_name": "4-(MPEG-20000-CARBONYLAMINOETHOXYIMINOETHYL)PHENYLALANINE",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:70097M6I30",
+    "drugcentral_struct_id": "4448",
+    "drugcentral_name": "calcium hydrogen phosphate dihydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium Stearate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:726Q6M95ZA",
+    "drugcentral_struct_id": "5695",
+    "drugcentral_name": "xenon (129Xe) hyperpolarized",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Xenon XE-129, Hyperpolarized",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:743QUY4VD8",
+    "drugcentral_struct_id": "5033",
+    "drugcentral_name": "hyaluronidase",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Hyaluronidase (HUMAN RECOMBINANT)",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:839MOZ74GK#viii",
+    "drugcentral_struct_id": "5099",
+    "drugcentral_name": "octocog alfa",
+    "drugcentral_inchikey": null,
+    "page_display_name": "HUMAN COAGULATION FACTOR VIII",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:8FYM5179QJ",
+    "drugcentral_struct_id": "5605",
+    "drugcentral_name": "porcine pituitary-derived follicle stimulating hormone",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Follicle Stimulating Hormone (PORCINE)",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:8X7386QRLV",
+    "drugcentral_struct_id": "4265",
+    "drugcentral_name": "gentamicin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Gentamicin Sulfate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:94255I6E2T",
+    "drugcentral_struct_id": "4219",
+    "drugcentral_name": "sodium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium PHOSPHATE, DIBASIC, Dihydrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:95D580798S",
+    "drugcentral_struct_id": "4779",
+    "drugcentral_name": "sodium picosulfate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Picosulfuric Acid",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:95D580798S",
+    "drugcentral_struct_id": "4473",
+    "drugcentral_name": "prepopik",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Picosulfuric Acid",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:96P72VE680",
+    "drugcentral_struct_id": "4403",
+    "drugcentral_name": "cerium oxalate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "CERIUM OXALATE",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:9RDO128EH7",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Bromide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:9UFH75HT7S",
+    "drugcentral_struct_id": "5041",
+    "drugcentral_name": "technetium (99mTc) nofetumomab merpentan",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Technetium (99mtc) nofetumomab merpentan",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:A1Y870209Z",
+    "drugcentral_struct_id": "4448",
+    "drugcentral_name": "calcium hydrogen phosphate dihydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium Phosphate, Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:A1Y870209Z",
+    "drugcentral_struct_id": "4596",
+    "drugcentral_name": "magnesium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium Phosphate, Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:AC71R787OV",
+    "drugcentral_struct_id": "5159",
+    "drugcentral_name": "eptacog alfa (activated)",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Eptacog alfa",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:AE221IM3BB",
+    "drugcentral_struct_id": "5275",
+    "drugcentral_name": "lutetium (177Lu) oxodotreotide",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Lutetium (177lu) oxodotreotide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:AU0V1LM3JT",
+    "drugcentral_struct_id": "4558",
+    "drugcentral_name": "gadopentetate dimeglumine",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Gadolinium",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:B7862WZ632",
+    "drugcentral_struct_id": "4527",
+    "drugcentral_name": "potassium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Potassium Phosphate, Unspecified Form",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:BIU7Q7W2SH",
+    "drugcentral_struct_id": "4637",
+    "drugcentral_name": "rose bengal",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Rose Bengal Lactone",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:BX09B0RQR0",
+    "drugcentral_struct_id": "5702",
+    "drugcentral_name": "birch bark extract",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Birch Triterpenes",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:CC9149U2QX",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:D888C394VO",
+    "drugcentral_struct_id": "4203",
+    "drugcentral_name": "sodium acetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Mcpa",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:DL2R53P963",
+    "drugcentral_struct_id": "731",
+    "drugcentral_name": "colistimethate sodium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "COLISTIMETHATE",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:E47C0NF7LV",
+    "drugcentral_struct_id": "1358",
+    "drugcentral_name": "heparin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Enoxaparin",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:E47C0NF7LV",
+    "drugcentral_struct_id": "4879",
+    "drugcentral_name": "enoxaparin sodium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Enoxaparin",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:FPN5WPV10D",
+    "drugcentral_struct_id": "4786",
+    "drugcentral_name": "mercuric amidochloride",
+    "drugcentral_inchikey": "WRWRKDRWMURIBI-UHFFFAOYSA-M",
+    "page_display_name": "Mercuric Arsenate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:HF539G9L3Q",
+    "drugcentral_struct_id": "4596",
+    "drugcentral_name": "magnesium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium PHOSPHATE, Dibasic Trihydrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:IY191986AO",
+    "drugcentral_struct_id": "4786",
+    "drugcentral_name": "mercuric amidochloride",
+    "drugcentral_inchikey": "WRWRKDRWMURIBI-UHFFFAOYSA-M",
+    "page_display_name": "Mercuric Oxide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:J4L3PPG58I",
+    "drugcentral_struct_id": "4786",
+    "drugcentral_name": "mercuric amidochloride",
+    "drugcentral_inchikey": "WRWRKDRWMURIBI-UHFFFAOYSA-M",
+    "page_display_name": "Mercuric Sulfate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:JHU490RVYR",
+    "drugcentral_struct_id": "4796",
+    "drugcentral_name": "sodium propionate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "PROPIONIC ACID",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:JSM64OJO9B",
+    "drugcentral_struct_id": "5549",
+    "drugcentral_name": "gelatin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Marine NON-GELLING Gelatin",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:KH7I04HPUU",
+    "drugcentral_struct_id": "4295",
+    "drugcentral_name": "sodium phosphate, monobasic, monohydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Phosphate, Monobasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:KH7I04HPUU",
+    "drugcentral_struct_id": "4271",
+    "drugcentral_name": "sodium phosphate, monobasic",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Phosphate, Monobasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:KH7I04HPUU",
+    "drugcentral_struct_id": "4219",
+    "drugcentral_name": "sodium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Phosphate, Monobasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:L11K75P92J",
+    "drugcentral_struct_id": "4448",
+    "drugcentral_name": "calcium hydrogen phosphate dihydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Anhydrous Dibasic Calcium Phosphate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:M7Y086VB5G",
+    "drugcentral_struct_id": "4214",
+    "drugcentral_name": "sodium gluconate",
+    "drugcentral_inchikey": null,
+    "page_display_name": ".ALPHA.-D-GLUCURONIC Acid",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:MRL3739G66",
+    "drugcentral_struct_id": "5275",
+    "drugcentral_name": "lutetium (177Lu) oxodotreotide",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Oxodotreotide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:MRL3739G66",
+    "drugcentral_struct_id": "5156",
+    "drugcentral_name": "Gallium Ga 68 dotatate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Oxodotreotide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:N6BAA189V1",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric Phosphate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:NVG71ZZ7P0",
+    "drugcentral_struct_id": "4203",
+    "drugcentral_name": "sodium acetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium Acetate Anhydrous",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:P89DR4NY54",
+    "drugcentral_struct_id": "5099",
+    "drugcentral_name": "octocog alfa",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Octocog alfa",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Q91187K011",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Tetraferric Tricitrate Decahydrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:QCD9FA9PLW",
+    "drugcentral_struct_id": "4479",
+    "drugcentral_name": "calcium citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Calcium Monocitrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:RS7A450LGA",
+    "drugcentral_struct_id": "4477",
+    "drugcentral_name": "sodium citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Anhydrous Trisodium Citrate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:SX01TZO3QZ",
+    "drugcentral_struct_id": "4219",
+    "drugcentral_name": "sodium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sodium PHOSPHATE, TRIBASIC, Anhydrous",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:SZB83O1W42",
+    "drugcentral_struct_id": "4597",
+    "drugcentral_name": "magnesium pidolate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Pidolic acid",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:U194AS08HZ",
+    "drugcentral_struct_id": "5185",
+    "drugcentral_name": "gallium (68Ga) edotreotide",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Edotreotide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:U946SH95EE",
+    "drugcentral_struct_id": "2443",
+    "drugcentral_name": "silymarin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Milk Thistle",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:V7OK6J19HQ",
+    "drugcentral_struct_id": "4558",
+    "drugcentral_name": "gadopentetate dimeglumine",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Gadopentetate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:WIQ1H85SYP",
+    "drugcentral_struct_id": "3541",
+    "drugcentral_name": "salicylsulfuric acid",
+    "drugcentral_inchikey": "MOODSJOROWROTO-UHFFFAOYSA-N",
+    "page_display_name": "Sodium Salicylate",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Y68179SY2L",
+    "drugcentral_struct_id": "5156",
+    "drugcentral_name": "Gallium Ga 68 dotatate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "EDOTREOTIDE GALLIUM GA-68",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Y68179SY2L",
+    "drugcentral_struct_id": "5185",
+    "drugcentral_name": "gallium (68Ga) edotreotide",
+    "drugcentral_inchikey": null,
+    "page_display_name": "EDOTREOTIDE GALLIUM GA-68",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Z7F472XQPA",
+    "drugcentral_struct_id": "4416",
+    "drugcentral_name": "didecyldimethylammonium chloride",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Didecyldimonium",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:FPAFDBFIGPHWGO-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "5190",
+    "drugcentral_name": "talc",
+    "drugcentral_inchikey": null,
+    "page_display_name": "TALC",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:LRBQNJMCXXYXIU-PPKXGCFTSA-N",
+    "drugcentral_struct_id": "5039",
+    "drugcentral_name": "tannic acid",
+    "drugcentral_inchikey": null,
+    "page_display_name": "TANNIC ACID",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:VPKDCDLSJZCGKE-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "4432",
+    "drugcentral_name": "calcium carbimide",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Calcium carbimide",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:XBPUDTAATCFDRE-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "5190",
+    "drugcentral_name": "talc",
+    "drugcentral_inchikey": null,
+    "page_display_name": "TALC ANHYDROUS",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:dibasic",
+    "drugcentral_struct_id": "4219",
+    "drugcentral_name": "sodium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Anhydrous Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:dibasic",
+    "drugcentral_struct_id": "4448",
+    "drugcentral_name": "calcium hydrogen phosphate dihydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Anhydrous Dibasic",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:menthyl",
+    "drugcentral_struct_id": "4460",
+    "drugcentral_name": "menthyl salicylate",
+    "drugcentral_inchikey": "SJOXEWUZWQYCGL-DVOMOZLQSA-N",
+    "page_display_name": "Menthyl",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:mercuric",
+    "drugcentral_struct_id": "4786",
+    "drugcentral_name": "mercuric amidochloride",
+    "drugcentral_inchikey": "WRWRKDRWMURIBI-UHFFFAOYSA-M",
+    "page_display_name": "Mercuric",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:tetradecyl",
+    "drugcentral_struct_id": "2465",
+    "drugcentral_name": "sodium myristyl sulfate",
+    "drugcentral_inchikey": "URLJMZWTXZTZRR-UHFFFAOYSA-N",
+    "page_display_name": "Sodium Tetradecyl",
+    "tier": 2,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:06XEA2VD56",
+    "drugcentral_struct_id": "3552",
+    "drugcentral_name": "sorbitan laurate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sorbitan oleate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:0SPD480WFH",
+    "drugcentral_struct_id": "1743",
+    "drugcentral_name": "methenolone",
+    "drugcentral_inchikey": "ANJQEDFWRSLVBR-VHUDCFPWSA-N",
+    "page_display_name": "METHENOLONE ENANTHATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:11P2JDE17B",
+    "drugcentral_struct_id": "4306",
+    "drugcentral_name": "DL-Alanine",
+    "drugcentral_inchikey": "QNAYBMKLOCPYGJ-UHFFFAOYSA-N",
+    "page_display_name": "BETA-ALANINE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:2S7830E561",
+    "drugcentral_struct_id": "4278",
+    "drugcentral_name": "crospovidone",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Crospovidone",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:30K4522N6T",
+    "drugcentral_struct_id": "4403",
+    "drugcentral_name": "cerium oxalate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Cerium",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:3DDR181HS3",
+    "drugcentral_struct_id": "5625",
+    "drugcentral_name": "thenium closylate",
+    "drugcentral_inchikey": "QMAHSUSUOMSSBK-UHFFFAOYSA-M",
+    "page_display_name": "Thenium",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:434C3EI07T",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "FERRIC SODIUM CITRATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:453COF7817",
+    "drugcentral_struct_id": "4596",
+    "drugcentral_name": "magnesium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium Phosphate, Tribasic",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:4RKY41TBTF",
+    "drugcentral_struct_id": "2443",
+    "drugcentral_name": "silymarin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Silybin",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:4ZI204Y1MC",
+    "drugcentral_struct_id": "4761",
+    "drugcentral_name": "aluminium acetoacetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "ACETOACETIC ACID",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:5171JCI1D5",
+    "drugcentral_struct_id": "4537",
+    "drugcentral_name": "ferric (59Fe) citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Ferric (59fe) citrate injection",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:5G1JDI469J",
+    "drugcentral_struct_id": "4759",
+    "drugcentral_name": "aloglutamol",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Dihydroxyaluminum Gluconate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:5G1JDI469J",
+    "drugcentral_struct_id": "4522",
+    "drugcentral_name": "carbaldrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Dihydroxyaluminum Gluconate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:5G1JDI469J",
+    "drugcentral_struct_id": "4763",
+    "drugcentral_name": "aluminium glycinate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Dihydroxyaluminum Gluconate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:6M3P64V0NC",
+    "drugcentral_struct_id": "4341",
+    "drugcentral_name": "almasilate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "MAGNESIUM ALUMINUM SILICATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:6W9PS8B71J",
+    "drugcentral_struct_id": "3552",
+    "drugcentral_name": "sorbitan laurate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sorbitan laurate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:72HML2UK6J",
+    "drugcentral_struct_id": "4637",
+    "drugcentral_name": "rose bengal",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Itruvone",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:77K6Z421KU",
+    "drugcentral_struct_id": "3552",
+    "drugcentral_name": "sorbitan laurate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sorbitan palmitate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:8QTV3DTT8W",
+    "drugcentral_struct_id": "4103",
+    "drugcentral_name": "chondroitin sulfate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Chondroitin Sulfate Sodium (BOVINE)",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:8S07EB1568",
+    "drugcentral_struct_id": "4644",
+    "drugcentral_name": "hydroxocobalamin acetate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "AQUACOBALAMIN",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:GGO4Y809LO",
+    "drugcentral_struct_id": "3118",
+    "drugcentral_name": "cresatin",
+    "drugcentral_inchikey": "OTGAHJPFNKQGAE-UHFFFAOYSA-N",
+    "page_display_name": "METACRESOL",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:GV54A213NN",
+    "drugcentral_struct_id": "5639",
+    "drugcentral_name": "trypsin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Trypsin",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:JD546Z56F0",
+    "drugcentral_struct_id": "4786",
+    "drugcentral_name": "mercuric amidochloride",
+    "drugcentral_inchikey": "WRWRKDRWMURIBI-UHFFFAOYSA-M",
+    "page_display_name": "MERCURY, AMMONIATED",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:K91YT16P5M",
+    "drugcentral_struct_id": "3541",
+    "drugcentral_name": "salicylsulfuric acid",
+    "drugcentral_inchikey": "MOODSJOROWROTO-UHFFFAOYSA-N",
+    "page_display_name": "POTASSIUM SALICYLATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:M88B0M598L",
+    "drugcentral_struct_id": "5489",
+    "drugcentral_name": "diclofenac etalhyaluronate sodium",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Diclofenac etalhyaluronate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:MD64P82Y28",
+    "drugcentral_struct_id": "4590",
+    "drugcentral_name": "lithium succinate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "LITHIUM SUCCINATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:NLX9TZ649P",
+    "drugcentral_struct_id": "4449",
+    "drugcentral_name": "diodone",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Diodone Acid",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:NVZ4I0H58X",
+    "drugcentral_struct_id": "3552",
+    "drugcentral_name": "sorbitan laurate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Sorbitan stearate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Q28IFH7A50",
+    "drugcentral_struct_id": "68",
+    "drugcentral_name": "acetyldigoxin",
+    "drugcentral_inchikey": "NREAGDHHMSOWKZ-DXJNJSHLSA-N",
+    "page_display_name": "ACETYLDIGOXIN",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:S3FKL8RY1D",
+    "drugcentral_struct_id": "4637",
+    "drugcentral_name": "rose bengal",
+    "drugcentral_inchikey": null,
+    "page_display_name": ".ALPHA.-PYRROLIDINONONANOPHENONE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:W108RK810P",
+    "drugcentral_struct_id": "4538",
+    "drugcentral_name": "ferric citrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "FERRIC GLUCONATE TRIHYDRATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:W75590VPKQ",
+    "drugcentral_struct_id": "1743",
+    "drugcentral_name": "methenolone",
+    "drugcentral_inchikey": "ANJQEDFWRSLVBR-VHUDCFPWSA-N",
+    "page_display_name": "Methenolone Acetate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:XC0K09B7K4",
+    "drugcentral_struct_id": "1061",
+    "drugcentral_name": "estradiol enanthate",
+    "drugcentral_inchikey": "RFWTZQAOOLFXAY-BZDYCCQFSA-N",
+    "page_display_name": "Atrimustine",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:XC0K09B7K4",
+    "drugcentral_struct_id": "1060",
+    "drugcentral_name": "estradiol dipropionate",
+    "drugcentral_inchikey": "JQIYNMYZKRGDFK-RUFWAXPRSA-N",
+    "page_display_name": "Atrimustine",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:XMK14ETW2D",
+    "drugcentral_struct_id": "4596",
+    "drugcentral_name": "magnesium phosphate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Magnesium Phosphate Anhydrous",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K1:Z243A6BHCS",
+    "drugcentral_struct_id": "3093",
+    "drugcentral_name": "chloroprednisone",
+    "drugcentral_inchikey": "NPSLCOWKFFNQKK-ZPSUVKRCSA-N",
+    "page_display_name": "Chloroprednisone Acetate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:DWLVWMUCHSLGSU-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "4770",
+    "drugcentral_name": "dimethylcarbate",
+    "drugcentral_inchikey": "VGQLNJWOULYVFV-SPJNRGJMSA-N",
+    "page_display_name": "DIMETHYLCARBATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:FPJHWYCPAOPVIV-VOZMEZHOSA-N",
+    "drugcentral_struct_id": "2973",
+    "drugcentral_name": "dermatan sulfate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "DERMATAN SULFATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:KVOLEYCISIIDBJ-UHFFFAOYSA-K",
+    "drugcentral_struct_id": "4522",
+    "drugcentral_name": "carbaldrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "DIHYDROXIALUMINI SODIUM CARBONATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:MTIIUKRETHUFRF-KLJDHDAFSA-N",
+    "drugcentral_struct_id": "4729",
+    "drugcentral_name": "tetragalacturonic acid hydroxymethylester",
+    "drugcentral_inchikey": "PHKOCTCUZMQEOT-LRVJTQDXSA-N",
+    "page_display_name": "TETRAGALACTURONIC ACID HYDROXYMETHYLESTER",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:NFTBBVJRGJPZER-WYMLVPIESA-N",
+    "drugcentral_struct_id": "5550",
+    "drugcentral_name": "amphomycin",
+    "drugcentral_inchikey": "XBNDESPXQUOOBQ-VFMQETIVSA-N",
+    "page_display_name": "Amfomycin",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:OAEOAAHCJGWJIC-CEVJMMQXSA-N",
+    "drugcentral_struct_id": "4103",
+    "drugcentral_name": "chondroitin sulfate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "CHONDROITIN SULFATE",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:PIEXSEDEFNIKCT-UHFFFAOYSA-N",
+    "drugcentral_struct_id": "4341",
+    "drugcentral_name": "almasilate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Almasilate",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K2:SEBFKMXJBCUCAI-DBMPWETRSA-N",
+    "drugcentral_struct_id": "2443",
+    "drugcentral_name": "silymarin",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Silibinin",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K3:CHEMBL2108183",
+    "drugcentral_struct_id": "4854",
+    "drugcentral_name": "crilanomer",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Crilanomer",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K3:CHEMBL2108241",
+    "drugcentral_struct_id": "4852",
+    "drugcentral_name": "colextran",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Colextran",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K3:CHEMBL3707352",
+    "drugcentral_struct_id": "5074",
+    "drugcentral_name": "policosanol",
+    "drugcentral_inchikey": null,
+    "page_display_name": "POLICOSANOL",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:monobasic",
+    "drugcentral_struct_id": "4295",
+    "drugcentral_name": "sodium phosphate, monobasic, monohydrate",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Monobasic",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:monobasic",
+    "drugcentral_struct_id": "4271",
+    "drugcentral_name": "sodium phosphate, monobasic",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Monobasic",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  },
+  {
+    "page_key": "K4:tannin",
+    "drugcentral_struct_id": "5039",
+    "drugcentral_name": "tannic acid",
+    "drugcentral_inchikey": null,
+    "page_display_name": "Tannin",
+    "tier": 3,
+    "needs": "UNII or InChIKey confirmation"
+  }
+]
