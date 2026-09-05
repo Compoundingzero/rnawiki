@@ -1,0 +1,307 @@
+{
+ "COMBO:NAME:rhamphospermum arvense flowering fruiting top": {
+  "displayName": "Sinapis Arvensis Flowering/Fruiting Top",
+  "slug": "sinapis-arvensis-flowering-fruiting-top",
+  "survivor": "COMBO:NAME:sinapis arvensis flowering fruiting top"
+ },
+ "HOLD:existing:abarelix": {
+  "displayName": "Abarelix",
+  "slug": "abarelix-2",
+  "survivor": "K2:AIWRTTMUVOZGPW-HSPKUQOVSA-N"
+ },
+ "HOLD:existing:ceftobiprole-medocaril": {
+  "displayName": "Ceftobiprole medocaril",
+  "slug": "ceftobiprole-medocaril-2",
+  "survivor": "K2:HFTSMHTWUFCYMJ-FDNJTQOMSA-N"
+ },
+ "HOLD:existing:glucuronolactone": {
+  "displayName": "Glucurolactone",
+  "slug": "glucurolactone",
+  "survivor": "K2:OGLCQHRZUSEXNB-UAPNVWQMSA-N"
+ },
+ "HOLD:existing:iobenguane-sulfate-i-131": {
+  "displayName": "Iobenguane I-131",
+  "slug": "iobenguane-i-131",
+  "survivor": "HOLD:existing:iobenguane-i-131"
+ },
+ "HOLD:existing:lefamulin": {
+  "displayName": "Lefamulin",
+  "slug": "lefamulin-2",
+  "survivor": "K2:KPVIXBKIJXZQJX-FCEONZPQSA-N"
+ },
+ "HOLD:existing:methylsynephrine": {
+  "displayName": "Oxilofrine",
+  "slug": "oxilofrine",
+  "survivor": "K2:OXFGTKPPFSCSMA-UHFFFAOYSA-N"
+ },
+ "HOLD:existing:plicamycin": {
+  "displayName": "Plicamycin",
+  "slug": "plicamycin-3",
+  "survivor": "K2:XDKMHMINQXATOR-RCFLUEAHSA-N"
+ },
+ "HOLD:existing:voxilaprevir": {
+  "displayName": "Voxilaprevir",
+  "slug": "voxilaprevir-3",
+  "survivor": "K2:MKDALIOACIEUJM-XCFCBFDASA-N"
+ },
+ "K1:0E53J927NA": {
+  "displayName": "Magnesite",
+  "slug": "magnesite",
+  "survivor": "K1:0IHC698356"
+ },
+ "K1:276897E67U": {
+  "displayName": "Lactic Acid, Dl",
+  "slug": "lactic-acid-dl",
+  "survivor": "K1:3B8D35Y7S4"
+ },
+ "K1:2M607MGJ8U": {
+  "displayName": "Gluconic Acid",
+  "slug": "calcium-gluconate",
+  "survivor": "K1:R4R8J0Q44B"
+ },
+ "K1:381E0BTR5Q": {
+  "displayName": "Choline C-11",
+  "slug": "choline-c-11",
+  "survivor": "K1:M4AS4XGD4Q"
+ },
+ "K1:48N6U1781G": {
+  "displayName": "PHENYLACETIC ACID",
+  "slug": "phenylacetic-acid",
+  "survivor": "K1:ER5I1W795A"
+ },
+ "K1:70097M6I30": {
+  "displayName": "STEARIC ACID",
+  "slug": "stearic-acid",
+  "survivor": "K1:4ELV7Z65AP"
+ },
+ "K1:O9WLL1ZL8S": {
+  "displayName": "TARTARIC ACID",
+  "slug": "tartaric-acid-2",
+  "survivor": "K1:W4888I119H"
+ },
+ "K1:OC4598NZEQ": {
+  "displayName": "Aspartic acid",
+  "slug": "potassium-aspartate",
+  "survivor": "K1:30KYC7MIAI"
+ },
+ "K1:QTO9JB4MDD": {
+  "displayName": "TARTARIC ACID",
+  "slug": "tartaric-acid-2",
+  "survivor": "K1:W4888I119H"
+ },
+ "K1:QVF9Y6955W": {
+  "displayName": "GADOTERATE MEGLUMINE",
+  "slug": "gadoterate-meglumine",
+  "survivor": "K1:L0ND3981AG"
+ },
+ "K1:YSE9PPT4TH": {
+  "displayName": "Hyaluronate",
+  "slug": "hyaluronate",
+  "survivor": "K1:S270N0TRQY"
+ },
+ "K2:AWVBBFQUFXCVGF-YFGWCFLESA-N": {
+  "displayName": "Imsamotide",
+  "slug": "imsamotide",
+  "survivor": "K1:V74I849BP9"
+ },
+ "K2:BBBFJLBPOGFECG-VJVYQDLKSA-N": {
+  "displayName": "Calcitonin Salmon",
+  "slug": "calcitonin-salmon",
+  "survivor": "K1:7SFC6U2VI5"
+ },
+ "K2:BENFXAYNYRLAIU-QSVFAHTRSA-N": {
+  "displayName": "Terlipressin",
+  "slug": "terlipressin",
+  "survivor": "K1:7Z5X49W53P"
+ },
+ "K2:BPKIMPVREBSLAJ-QTBYCLKRSA-N": {
+  "displayName": "Ziconotide",
+  "slug": "ziconotide",
+  "survivor": "K1:7I64C51O16"
+ },
+ "K2:CILIXQOJUNDIDU-ASQIGDHWSA-N": {
+  "displayName": "Teduglutide",
+  "slug": "teduglutide",
+  "survivor": "K1:7M19191IKG"
+ },
+ "K2:DNTGGZPQPQTDQF-UHFFFAOYSA-N": {
+  "displayName": "Crotamiton",
+  "slug": "crotamiton",
+  "survivor": "K1:D6S4O4XD0H"
+ },
+ "K2:DUGOZIWVEXMGBE-UHFFFAOYSA-N": {
+  "displayName": "Methylphenidate",
+  "slug": "methylphenidate",
+  "survivor": "HOLD:existing:methylphenidate"
+ },
+ "K2:FBWNMEQMRUMQSO-UHFFFAOYSA-N": {
+  "displayName": "Nonoxynol-9",
+  "slug": "nonoxynol-9",
+  "survivor": "K1:48Q180SH9T"
+ },
+ "K2:FCCNSUIJIOOXEZ-SJYYZXOBSA-N": {
+  "displayName": "Pentosan Polysulfate",
+  "slug": "pentosan-polysulfate",
+  "survivor": "K1:F59P8B75R4"
+ },
+ "K2:GUBGYTABKSRVRQ-QKKXKWKRSA-N": {
+  "displayName": "Lactose, Unspecified Form",
+  "slug": "lactose-unspecified-form",
+  "survivor": "K1:J2B2A4N98G"
+ },
+ "K2:GXPHKUHSUJUWKP-UHFFFAOYSA-N": {
+  "displayName": "Troglitazone",
+  "slug": "troglitazone",
+  "survivor": "K1:I66ZZ0ZN0E"
+ },
+ "K2:HEOCBCNFKCOKBX-SDNWHVSQSA-N": {
+  "displayName": "4-Methylbenzylidene Camphor",
+  "slug": "4-methylbenzylidene-camphor",
+  "survivor": "HOLD:existing:4-methylbenzylidene-camphor"
+ },
+ "K2:HTQBXNHDCUEHJF-XWLPCZSASA-N": {
+  "displayName": "Exenatide",
+  "slug": "exenatide",
+  "survivor": "K1:9P1872D4OL"
+ },
+ "K2:IPQVTOJGNYVQEO-LALZNDFESA-N": {
+  "displayName": "Sennoside",
+  "slug": "sennoside",
+  "survivor": "K1:9VK7V8762D"
+ },
+ "K2:JSZILQVIPPROJI-UHFFFAOYSA-N": {
+  "displayName": "Benzquinamide",
+  "slug": "benzquinamide",
+  "survivor": "HOLD:existing:benzquinamide"
+ },
+ "K2:KBZOIRJILGZLEJ-LGYYRGKSSA-N": {
+  "displayName": "Vasopressin",
+  "slug": "vasopressin",
+  "survivor": "K1:Y4907O6MFD"
+ },
+ "K2:KXGCNMMJRFDFNR-WDRJZQOASA-N": {
+  "displayName": "Linaclotide",
+  "slug": "linaclotide",
+  "survivor": "K1:N0TXR0XR5X"
+ },
+ "K2:LDVRMNJZLWXJPL-JKQNMTHDSA-N": {
+  "displayName": "Calcitonin Human",
+  "slug": "calcitonin-human",
+  "survivor": "K1:I0IO929019"
+ },
+ "K2:LRBQNJMCXXYXIU-PPKXGCFTSA-N": {
+  "displayName": "Tannic Acid (QUERCUS Infectoria NUTGALL)",
+  "slug": "tannic-acid",
+  "survivor": "K1:2711I21VE5"
+ },
+ "K2:LRYZPFWEZHSTHD-HEFFAWAOSA-O": {
+  "displayName": "Sphingomyelin (EGG)",
+  "slug": "sphingomyelin",
+  "survivor": "K1:25WE4JC35O"
+ },
+ "K2:MAFMQEKGGFWBAB-UHFFFAOYSA-N": {
+  "displayName": "Benzonatate",
+  "slug": "benzonatate",
+  "survivor": "K1:5P4DHS6ENR"
+ },
+ "K2:NSPHQWLKCGGCQR-DLJDZFDSSA-N": {
+  "displayName": "Plecanatide",
+  "slug": "plecanatide",
+  "survivor": "K1:7IK8Z952OK"
+ },
+ "K2:ONJQDTZCDSESIW-UHFFFAOYSA-N": {
+  "displayName": "Lauromacrogol 400",
+  "slug": "polidocanol",
+  "survivor": "K1:0AWH8BFG9A"
+ },
+ "K2:OOBHFESNSZDWIU-UHFFFAOYSA-N": {
+  "displayName": "Phenmetrazine",
+  "slug": "phenmetrazine",
+  "survivor": "HOLD:existing:phenmetrazine"
+ },
+ "K2:OPGSFDUODIJJGF-JBUZINEHSA-N": {
+  "displayName": "Candicidin",
+  "slug": "candicidin",
+  "survivor": "K1:48N2IYJ202"
+ },
+ "K2:PPXLVGBVOZLEIW-ITQXDASVSA-N": {
+  "displayName": "Nafarelin",
+  "slug": "nafarelin",
+  "survivor": "HOLD:existing:nafarelin"
+ },
+ "K2:RLLPVAHGXHCWKJ-UHFFFAOYSA-N": {
+  "displayName": "Permethrin",
+  "slug": "permethrin",
+  "survivor": "K1:509F88P9SZ"
+ },
+ "K2:SEBFKMXJBCUCAI-DBMPWETRSA-N": {
+  "displayName": "Silybin",
+  "slug": "silybin",
+  "survivor": "K1:4RKY41TBTF"
+ },
+ "K2:SFHKDFCCPYKRKM-XRHWNUEBSA-N": {
+  "displayName": "Etimumotide",
+  "slug": "etimumotide",
+  "survivor": "K1:49CUA4ZSL9"
+ },
+ "K2:UGOZVNFCFYTPAZ-IOXYNQHNSA-N": {
+  "displayName": "Insulin Detemir",
+  "slug": "insulin-detemir",
+  "survivor": "K1:4FT78T86XV"
+ },
+ "K2:URPYMXQQVHTUDU-OFGSCBOVSA-N": {
+  "displayName": "Neuropeptide Y",
+  "slug": "neuropeptide-y",
+  "survivor": "K1:BY7U39XXK0"
+ },
+ "K2:VGBVAARMQYYITG-DESRROFGSA-N": {
+  "displayName": "Tridecactide",
+  "slug": "tridecactide",
+  "survivor": "K1:T7PQK27HTI"
+ },
+ "K2:VPMRSLWWUXNYRY-NDOYXKHWSA-N": {
+  "displayName": "Benzhydrocodone",
+  "slug": "benzhydrocodone",
+  "survivor": "HOLD:existing:benzhydrocodone"
+ },
+ "K2:WDLWHQDACQUCJR-PBFPGSCMSA-N": {
+  "displayName": "Cefprozil",
+  "slug": "cefprozil",
+  "survivor": "K1:4W0459ZA4V"
+ },
+ "K2:WQZGKKKJIJFFOK-GASJEMHNSA-N": {
+  "displayName": "DEXTROSE, Unspecified Form",
+  "slug": "anhydrous-dextrose",
+  "survivor": "K1:IY9XDZ35W2"
+ },
+ "K2:XNOPRXBHLZRZKH-DSZYJQQASA-N": {
+  "displayName": "Oxytocin",
+  "slug": "oxytocin",
+  "survivor": "K1:1JQS135EYN"
+ },
+ "K2:XUNKPNYCNUKOAU-VXJRNSOOSA-N": {
+  "displayName": "NONA-ARGININE",
+  "slug": "nona-arginine",
+  "survivor": "K1:PK7O6W0U44"
+ },
+ "K2:YSDQQAXHVYUZIW-QCIJIYAXSA-N": {
+  "displayName": "Liraglutide",
+  "slug": "liraglutide",
+  "survivor": "K1:839I73S42A"
+ },
+ "K2:ZFGMDIBRIDKWMY-PASTXAENSA-N": {
+  "displayName": "Heparin sodium",
+  "slug": "heparin-sodium",
+  "survivor": "K1:ZZ45AB24CA"
+ },
+ "K2:ZOEFCCMDUURGSE-SQKVDDBVSA-N": {
+  "displayName": "Cosyntropin",
+  "slug": "cosyntropin",
+  "survivor": "K1:72YY86EA29"
+ },
+ "K2:ZZWQHNRGJQENEP-KXQOOQHDSA-N": {
+  "displayName": "Egg Phospholipids",
+  "slug": "egg-phospholipids",
+  "survivor": "K1:1Z74184RGV"
+ }
+}

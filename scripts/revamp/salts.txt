@@ -193,3 +193,11 @@ d tartrate
 l tartrate
 diaspartate
 ditromethamine
+hcl
+2hcl
+3hcl
+hbr
+2hbr
+esilate
+edisilate
+napadisilate

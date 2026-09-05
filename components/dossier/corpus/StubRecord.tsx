@@ -5,9 +5,11 @@
  * identity, whatever relations resolution found, and a count. It carries no questions, even when
  * the compound is suppressed, and it is not indexed.
  *
- * The supervision line is written only where a classification exists to cite: S1-S9 name the
- * recorded classes, an S10-only page says that no classification is recorded, and a cleared page
- * says nothing at all. Both lines are markup, not a claim about the compound's safety.
+ * A suppressed record that has a recorded classification states it in the supervision block above
+ * this record view, in the words docs/specs/suppression-classes.md fixes; the block, not the stub,
+ * is where a reader meets it, and no class id is ever printed. The one line left here belongs to
+ * the record whose registers returned no classification at all, which is a statement about the
+ * data held and not a claim about the compound.
  */
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import { ExactRecord } from './ExactRecord'

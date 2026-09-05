@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DDInter 2.0</title>
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <script src="/static/common/layui/layui.js"></script>
+    
+    <link rel="stylesheet" href="/static/common/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+
+    <link href="/static/common/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/style.css"/>
+    <script src="/static/common/js/jquery.min.js"></script>
+    
+    <script src="/static/common/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+        <link rel="stylesheet" type="text/css" href="/static/common/nav/css/style.css"/>
+        <script src="/static/common/nav/js/style.js"></script>
+    
+
+    
+    <link rel="stylesheet" href="/static/common/footer/css/style.css"/>
+
+    
+    <link rel="stylesheet" href="/static/common/banner/css/style.css"/>
+
+    <link rel="stylesheet" href="/static/services/css/jquery.dataTables.min.css">
+    <script src="/static/services/js/jquery.dataTables.min.js"></script>
+
+    
+    <link href="/static/common/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="antin-container">
+    
+        
+<style>
+    .box-with-border {
+        border-bottom: 1px solid rgb(6, 101, 183); /* 边框样式，2px 宽度，颜色 #333 */
+    
+    }
+
+    /* 添加阴影 */
+    .box-with-shadow {
+        box-shadow: 0 0 10px 0 rgba(6, 101, 183, 0.3); /* x偏移、y偏移、模糊度、颜色（rgba格式） */
+    
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+</style>
+<header class="header-area overlay box-with-border box-with-shadow" style="">
+    <nav class="navbar navbar-expand-md navbar-dark" data-bs-theme="dark">
+        <div class="offset-1 col-10 d-flex align-items-center justify-content-between">
+            <a href="/" class="navbar-brand d-flex justify-content-center align-items-center">
+                <img src="/static/favicon.ico" width="45" height="45"
+                     class="d-inline-block justify-content-center align-items-center me-2" alt=""/>
+                <h1 class="" style="font-family: 'Lobster', sans-serif">DDInter 2.0</h1>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-atom"></i> Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/server/drug/">Drug</a></li>
+                            <li><a class="dropdown-item" href="/server/dis_food/">Disease</a></li>
+                            <li><a class="dropdown-item" href="/server/interaction/">Drug-Drug
+                                Interaction</a></li>
+                            <li><a class="dropdown-item" href="/server/other_interaction/">Drug-Others
+                                Interaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inter-checker/">
+                            <i class="fab fa-staylinked nav-icon"></i>
+                            Interaction Checker
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                        >
+                            <i class="far fa-file-alt"></i> About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/explanation/">Explanation</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/statistics/">Statistics</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/tutorials/">Tutorials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/terms/">Terms and conditions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/"><i class="fas fa-id-card"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    
+
+    
+
+
+    <div class="antin-contain">
+        
+    
+<link rel="stylesheet" href="/static/home/css/header.css">
+<link rel="stylesheet" href="/static/home/explanation/css/style.css">
+<main class="">
+    <div class="container mt-4">
+        <h2 class="page-title-2">Disclaimer</h2>
+        <p class="page-content-p">
+            We endeavor to provide a reasonable level of service based on the scientific literatures and reports, but
+            DDInter has never made any specific commitments to the contents of the database. DDInter team cannot
+            guarantee the accuracy or completeness of the information in the current release. Be aware that DDInter is
+            still incomplete and undoubtedly contains errors, and the absence of an interaction does not necessarily
+            mean no interactions exist. DDInter assumes no liability for any direct or indirect damage arising out of
+            the use of DDInter.
+        </p>
+        <h2 class="page-title-2">Privacy policy</h2>
+        <div class="page-content-p-without">
+            We collect some of your personal data:
+            <ul class="page-content-ul" style="margin-top: 1rem">
+                <li>Location of IP address</li>
+                <li>Date and time of visit to the service</li>
+            </ul>
+            We use
+            <script type="text/javascript"
+                    src="//rf.revolvermaps.com/0/0/9.js?i=52tndw7zfmq&amp;t=RevolverMaps"
+                    async="async"></script>
+            to collect statistics about DDInter. These statistics are not used to
+            track users
+            individually, but rather to monitor the performance and the usage of the website.
+        </div>
+        <h2 class="page-title-2 mt-2">Data licensing</h2>
+        <p class="page-content-p">
+            The DDInter data is made available under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+            International license. Except as otherwise provided in any additional terms for a service, you may print or
+            download content from the services for your own personal, non-commercial, informational or scholarly use.
+        </p>
+        <h2 class="page-title-2">Acknowledgments</h2>
+        <p class="page-content-p">
+            We would thank the pharmacist team from Xiangya hospital for their professional technical support in the
+            data curation and valuable feedback about clinical demands.
+        </p>
+        <h2 class="page-title-2">Funding</h2>
+        <p class="page-content-p-without">
+            This work was supported by grants from the following funding
+        </p>
+        <ul class="page-content-ul" style="margin-top: 1rem">
+            <li>National Key Research and Development Program of China (2021YFF1201400)</li>
+            <li>National Natural Science Foundation of China (22173118, 22220102001)</li>
+            <li>Hunan Provincial Science Fund for Distinguished Young Scholars (2021JJ10068)</li>
+            <li>Science and Technology Innovation Program of Hunan Province (2021RC4011)</li>
+            <li>Natural Science Foundation of Hunan Province (2022JJ80104)</li>
+            <li>2020 Guangdong Provincial Science and Technology Innovation Strategy Special Fund (2020B1212030006,
+                Guangdong-Hong Kong-Macau Joint Lab)
+            </li>
+            <li>Funding for open access charge: HKBU Strategic Development Fund project (SDF19-0402-P02)</li>
+        </ul>
+    </div>
+</main>
+
+    </div>
+    
+        
+
+<footer class="site-footer" id="footer">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="copyright">
+      &copy; Copyright &nbsp; <a href="http://www.scbdd.com/" target="_blank">Computational Biology & Drug DesignGroup</a>. All Rights Reserved<div class="heart d-inline-block mx-2"></div>
+      
+    </div>
+    <div style="width: 200px;">
+      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=TXcYuwgsTf230Gc363rPwJc4RS20yZ5QOakSiw4gHgw&cl=ffffff&w=a"></script>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .heart {
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    position: relative;
+    filter: drop-shadow(0px 0px 20px rgb(255, 20, 20));
+    transform: rotate(45deg);
+  }
+  
+  .heart:before,
+  .heart:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 5px;
+  }
+  
+  .heart:before {
+    left: -5px;
+  }
+  
+  .heart:after {
+    left: 0;
+    top: -5px;
+  }
+  
+  @keyframes heartbeat {
+    0% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+    25% {
+      transform: rotate(45deg) scale(1, 1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+</div>
+</body>
+
+
+
+</html>

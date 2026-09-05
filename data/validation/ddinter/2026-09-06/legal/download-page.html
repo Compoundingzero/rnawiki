@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DDInter 2.0</title>
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <script src="/static/common/layui/layui.js"></script>
+    
+    <link rel="stylesheet" href="/static/common/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+
+    <link href="/static/common/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/style.css"/>
+    <script src="/static/common/js/jquery.min.js"></script>
+    
+    <script src="/static/common/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+        <link rel="stylesheet" type="text/css" href="/static/common/nav/css/style.css"/>
+        <script src="/static/common/nav/js/style.js"></script>
+    
+
+    
+    <link rel="stylesheet" href="/static/common/footer/css/style.css"/>
+
+    
+    <link rel="stylesheet" href="/static/common/banner/css/style.css"/>
+
+    <link rel="stylesheet" href="/static/services/css/jquery.dataTables.min.css">
+    <script src="/static/services/js/jquery.dataTables.min.js"></script>
+
+    
+    <link href="/static/common/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="antin-container">
+    
+        
+<style>
+    .box-with-border {
+        border-bottom: 1px solid rgb(6, 101, 183); /* 边框样式，2px 宽度，颜色 #333 */
+    
+    }
+
+    /* 添加阴影 */
+    .box-with-shadow {
+        box-shadow: 0 0 10px 0 rgba(6, 101, 183, 0.3); /* x偏移、y偏移、模糊度、颜色（rgba格式） */
+    
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+</style>
+<header class="header-area overlay box-with-border box-with-shadow" style="">
+    <nav class="navbar navbar-expand-md navbar-dark" data-bs-theme="dark">
+        <div class="offset-1 col-10 d-flex align-items-center justify-content-between">
+            <a href="/" class="navbar-brand d-flex justify-content-center align-items-center">
+                <img src="/static/favicon.ico" width="45" height="45"
+                     class="d-inline-block justify-content-center align-items-center me-2" alt=""/>
+                <h1 class="" style="font-family: 'Lobster', sans-serif">DDInter 2.0</h1>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-atom"></i> Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/server/drug/">Drug</a></li>
+                            <li><a class="dropdown-item" href="/server/dis_food/">Disease</a></li>
+                            <li><a class="dropdown-item" href="/server/interaction/">Drug-Drug
+                                Interaction</a></li>
+                            <li><a class="dropdown-item" href="/server/other_interaction/">Drug-Others
+                                Interaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inter-checker/">
+                            <i class="fab fa-staylinked nav-icon"></i>
+                            Interaction Checker
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                        >
+                            <i class="far fa-file-alt"></i> About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/explanation/">Explanation</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/statistics/">Statistics</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/tutorials/">Tutorials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/terms/">Terms and conditions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/"><i class="fas fa-id-card"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    
+
+    
+
+
+    <div class="antin-contain">
+        
+    
+<link rel="stylesheet" href="/static/home/css/header.css">
+<link rel="stylesheet" href="/static/home/explanation/css/style.css">
+<style>
+    table thead {
+        background-color: #404D69;
+    }
+    table thead tr th {
+        color: white;
+    }
+</style>
+<main class="">
+    <div class="container mt-5 mb-5">
+        <h2 id="content-1" class="page-title-2">Download</h2>
+        <table class="table mt-2 table-striped table-hover">
+            <colgroup>
+                <col width="15%">
+                <col width="50%">
+                <col width="">
+                <col width="">
+            </colgroup>
+            <thead>
+            <tr>
+                <th class="thead-item">File name</th>
+                <th class="thead-item">Content</th>
+                <th class="thead-item">Size</th>
+                <th class="thead-item">Download</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ddinter_downloads_code_A.csv</td>
+                <td>Interaction involving alimentary tract and metabolism drugs</td>
+                <td>3.3MB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_A.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_B.csv</td>
+                <td>Interaction involving blood and blood forming organs drugs</td>
+                <td>867.7KB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_B.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_D.csv</td>
+                <td>Interaction involving dermatologicals drugs</td>
+                <td>1.5MB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_D.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_H.csv</td>
+                <td>Interaction involving systemic hormonal preparations, excluding sex hormones and insulins drugs</td>
+                <td>705.1KB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_H.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_L.csv</td>
+                <td>Interaction involving antineoplastic and immunomodulating agents drugs</td>
+                <td>3.9MB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_L.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_P.csv</td>
+                <td>Interaction involving antiparasitic products, insecticides and repellents drugs</td>
+                <td>317.5KB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_P.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_R.csv</td>
+                <td>Interaction involving respiratory system drugs</td>
+                <td>1.8MB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_R.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ddinter_downloads_code_V.csv</td>
+                <td>Interaction involving various drugs</td>
+                <td>700.8KB</td>
+                <td><a href="/static/media/download/ddinter_downloads_code_V.csv" download="">Click to Save</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+    </div>
+    
+        
+
+<footer class="site-footer" id="footer">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="copyright">
+      &copy; Copyright &nbsp; <a href="http://www.scbdd.com/" target="_blank">Computational Biology & Drug DesignGroup</a>. All Rights Reserved<div class="heart d-inline-block mx-2"></div>
+      
+    </div>
+    <div style="width: 200px;">
+      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=TXcYuwgsTf230Gc363rPwJc4RS20yZ5QOakSiw4gHgw&cl=ffffff&w=a"></script>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .heart {
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    position: relative;
+    filter: drop-shadow(0px 0px 20px rgb(255, 20, 20));
+    transform: rotate(45deg);
+  }
+  
+  .heart:before,
+  .heart:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 5px;
+  }
+  
+  .heart:before {
+    left: -5px;
+  }
+  
+  .heart:after {
+    left: 0;
+    top: -5px;
+  }
+  
+  @keyframes heartbeat {
+    0% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+    25% {
+      transform: rotate(45deg) scale(1, 1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+</div>
+</body>
+
+
+
+</html>

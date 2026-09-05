@@ -1,0 +1,71 @@
+{
+  "source": "pmda",
+  "dataset": "PMDA List of Approved Products (New Drugs), English, April 2004 to February 2026",
+  "source_url": "https://www.pmda.go.jp/english/review-services/reviews/approved-information/drugs/0002.html",
+  "source_date": "2026-09-06",
+  "licence": "Public Data License 1.0 (公共データ利用規約 第1.0版); attribution to PMDA with the page URL required; commercial use and redistribution permitted; no share-alike",
+  "corpus_pages_total": 28832,
+  "pmda_records_parsed": 2525,
+  "pmda_ingredient_components_seen": 2801,
+  "pages_matched_by_tier": {
+    "1": 353,
+    "2": 901,
+    "3": 94
+  },
+  "pages_matched_total": 1348,
+  "fields_gained_by_tier": {
+    "1": {
+      "regulatory.JP": 353
+    },
+    "2": {
+      "regulatory.JP": 901
+    },
+    "3": {
+      "regulatory.JP": 94
+    }
+  },
+  "rows_written": 3558,
+  "match_rule_row_counts": {
+    "unii": 3250,
+    "name-candidate": 307,
+    "skeleton": 1
+  },
+  "match_rule_page_counts": {
+    "name-candidate": 157,
+    "skeleton": 1,
+    "unii": 1199
+  },
+  "records_matched": 2275,
+  "records_partially_matched": 21,
+  "unmatched_record_count": 250,
+  "unmatched_breakdown": {
+    "no_corpus_page_for_any_named_ingredient": 225,
+    "row_names_no_active_ingredient_in_the_source": 25
+  },
+  "unmatched_component_rows": 25,
+  "name_candidates_sent_to_phase_3_review": 307,
+  "name_candidate_pages": 157,
+  "resolution_diagnostics": {
+    "ambiguous_exact_name_2_uniis": 1,
+    "ambiguous_exact_name_3_uniis": 4,
+    "ambiguous_normalised_name_10_uniis": 6,
+    "ambiguous_normalised_name_14_uniis": 2,
+    "ambiguous_normalised_name_25_uniis": 1,
+    "ambiguous_normalised_name_2_uniis": 4,
+    "ambiguous_normalised_name_3_uniis": 15,
+    "ambiguous_normalised_name_43_uniis": 2,
+    "ambiguous_normalised_name_4_uniis": 10,
+    "ambiguous_normalised_name_54_uniis": 1,
+    "ambiguous_normalised_name_5_uniis": 1,
+    "ambiguous_normalised_name_6_uniis": 5,
+    "ambiguous_normalised_name_7_uniis": 10,
+    "ambiguous_normalised_name_8_uniis": 5,
+    "ambiguous_normalised_name_92_uniis": 2,
+    "ambiguous_normalised_name_9_uniis": 2,
+    "name_candidate": 104,
+    "skeleton_match": 1,
+    "unii_match_via_exact_name": 2002,
+    "unii_match_via_normalised_name": 413
+  },
+  "drugcentral_crosscheck": "data/sources/pmda/drugcentral-pmda-crosscheck.json"
+}

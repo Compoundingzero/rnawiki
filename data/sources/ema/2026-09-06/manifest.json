@@ -1,0 +1,72 @@
+{
+  "source": "ema",
+  "sourceName": "European Medicines Agency, medicines output report (centrally authorised human and veterinary medicines)",
+  "retrievalDate": "2026-09-06",
+  "retrievalDateNote": "The directory date is the local calendar date (Asia/Singapore, UTC+8). Every per-file `retrieved` timestamp is UTC.",
+  "landingPage": "https://www.ema.europa.eu/en/medicines/download-medicine-data",
+  "licence": "European Medicines Agency copyright and limited reproduction notice: information and documents made available on EMA's webpages are public and may be reproduced and/or distributed, totally or in part, irrespective of the means and/or the formats used, for non-commercial and commercial purposes, provided that EMA is always acknowledged as the source of the material.",
+  "licenceUrl": "https://www.ema.europa.eu/en/about-us/about-website/legal-notice",
+  "licenceCapture": "data/sources/ema/2026-09-06/legal/ema-copyright-and-limited-reproduction-notice.txt",
+  "attribution": "Source: European Medicines Agency",
+  "robotsCapture": "data/sources/ema/2026-09-06/legal/robots-www.ema.europa.eu.txt",
+  "robotsAssessment": "robots.txt for www.ema.europa.eu disallows /core/, /profiles/, /admin/, /search/, /user/* and /media/oembed. It disallows no path under /en/documents/report/ or /en/medicines/, and explicitly allows /*/documents/report/*.json$. The two paths retrieved here, /en/documents/report/medicines-output-medicines-report_en.xlsx and /en/medicines/download-medicine-data, are permitted.",
+  "reportLastModified": "Sat, 05 Sep 2026 04:02:55 GMT",
+  "supersedes": {
+    "path": "data/corpus-20k/raw/ema/medicines-output-medicines-report_en.xlsx",
+    "sha256": "bb1eadf5eecbc4db033b90f66a9335d57b162c3fa272be198ffaa1a17fbdef1f",
+    "reportGenerated": "03/09/2026 - 18:00",
+    "reason": "The copy already on disk was generated 03/09/2026 18:00. The published file carries Last-Modified Sat, 05 Sep 2026 04:02:55 GMT and generates 05/09/2026 06:00, so it is newer and was refetched. Both hold 2,732 rows, 2,339 of them human."
+  },
+  "requestLog": "data/sources/ema/2026-09-06/requests.log",
+  "files": [
+    {
+      "path": "data/sources/ema/2026-09-06/legal/robots-www.ema.europa.eu.txt",
+      "url": "https://www.ema.europa.eu/robots.txt",
+      "http_status": 200,
+      "retrieved": "2026-09-05T16:03:48Z",
+      "bytes": 2082,
+      "logged_bytes": 2082,
+      "sha256": "10019eac449a8109c781c6ccd86769673f46a23c28965fe045a7694e925004c9",
+      "role": "legal"
+    },
+    {
+      "path": "data/sources/ema/2026-09-06/legal/ema-legal-notice.html",
+      "url": "https://www.ema.europa.eu/en/about-us/about-website/legal-notice",
+      "http_status": 200,
+      "retrieved": "2026-09-05T16:03:49Z",
+      "bytes": 67988,
+      "logged_bytes": 67988,
+      "sha256": "f04740d8d3c4b5a161acdf9081a03f1f63200a0a1e810ecd4dd9ab58a4318a93",
+      "role": "legal"
+    },
+    {
+      "path": "data/sources/ema/2026-09-06/legal/ema-download-medicine-data.html",
+      "url": "https://www.ema.europa.eu/en/medicines/download-medicine-data",
+      "http_status": 200,
+      "retrieved": "2026-09-05T16:03:51Z",
+      "bytes": 85849,
+      "logged_bytes": 85849,
+      "sha256": "1a0693910db46ad18e611e4ebfe9356378f72a5d6e41438408bb2078e2998500",
+      "role": "legal"
+    },
+    {
+      "path": "data/sources/ema/2026-09-06/raw/medicines-output-medicines-report_en.xlsx",
+      "url": "https://www.ema.europa.eu/en/documents/report/medicines-output-medicines-report_en.xlsx",
+      "http_status": 200,
+      "retrieved": "2026-09-05T16:04:15Z",
+      "bytes": 898690,
+      "logged_bytes": 898690,
+      "sha256": "e27089a6bf7e8f49b84a7bd18e623431cdda15d9ace8eb22b6da1250c17b5323",
+      "role": "raw"
+    }
+  ],
+  "derivedFiles": [
+    {
+      "path": "data/sources/ema/2026-09-06/legal/ema-copyright-and-limited-reproduction-notice.txt",
+      "derivedFrom": "data/sources/ema/2026-09-06/legal/ema-legal-notice.html",
+      "description": "Verbatim text of the copyright and limited reproduction notice section.",
+      "bytes": 2348,
+      "sha256": "58964fda5cd322dd5ff2669640951603bf00982af20966ca340c6fb9b2b94b3a"
+    }
+  ]
+}

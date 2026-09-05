@@ -14,7 +14,9 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import struct
 import sys
+import zipfile
 from datetime import datetime, timezone
 
 ROOT = "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion"
@@ -22,6 +24,14 @@ DATE = "2026-09-05"
 DIR = os.path.join(ROOT, "data", "sources", "orange-purple-book", DATE)
 MANIFEST = os.path.join(DIR, "manifest.json")
 LOG = os.path.join(DIR, "requests.log")
+
+ARCHIVE_DATE_BASIS = (
+    "UTC, from the extended-timestamp extra field (0x5455) the Orange Book archive "
+    "stores for each member, whose modification time is a Unix epoch second. The zip's "
+    "DOS stamp declares no timezone and is not used alone; `unzip -l` shows the same "
+    "instant in the extracting machine's local zone, which displays products.txt as "
+    "2026-08-15 00:04 in Singapore for a recorded 2026-08-14T16:04:26Z."
+)
 
 LICENCE = "US Government work, public domain (FDA)"
 LICENCE_URL = "https://www.fda.gov/about-fda/about-website/website-policies"
@@ -63,8 +73,35 @@ def sha256(path: str) -> str:
     return h.hexdigest()
 
 
-def file_date(path: str) -> str:
-    return datetime.fromtimestamp(os.path.getmtime(path), timezone.utc).strftime("%Y-%m-%d")
+def archive_member_dates(zip_path: str) -> dict[str, str]:
+    """Date each member carries inside the Orange Book archive, in UTC.
+
+    Each member carries an extended-timestamp extra field (header 0x5455) whose
+    modification time is a Unix epoch second and therefore states UTC outright.
+    That field is authoritative here. The zip's DOS timestamp is read only as a
+    cross-check: it declares no timezone, and `unzip -l` renders the extended
+    field in the extracting machine's local zone, which is how the same archive
+    can display as 08-15 in Singapore while the recorded instant is 08-14 UTC.
+    These are the dates the mapping script stamps on every Orange Book row as
+    `source_date`.
+    """
+    dates: dict[str, str] = {}
+    with zipfile.ZipFile(zip_path) as zf:
+        for info in zf.infolist():
+            extra, offset, unix_mtime = info.extra, 0, None
+            while offset + 4 <= len(extra):
+                header_id, size = struct.unpack_from("<HH", extra, offset)
+                body = extra[offset + 4:offset + 4 + size]
+                offset += 4 + size
+                if header_id == 0x5455 and len(body) >= 5 and body[0] & 1:
+                    unix_mtime = struct.unpack_from("<i", body, 1)[0]
+            if unix_mtime is None:
+                raise SystemExit(
+                    f"{info.filename} carries no extended timestamp; the DOS stamp "
+                    f"{info.date_time[:3]} declares no timezone and is not used alone")
+            dates[info.filename] = datetime.fromtimestamp(
+                unix_mtime, timezone.utc).strftime("%Y-%m-%d")
+    return dates
 
 
 def read_requests_log() -> dict[str, dict]:
@@ -90,6 +127,7 @@ def main() -> int:
         previous = {f["path"]: f for f in old.get("files", [])}
 
     log = read_requests_log()
+    member_dates = archive_member_dates(os.path.join(DIR, "raw/EOBZIP.zip"))
     files = []
     for rel in sorted(set(ORIGIN) | set(EXTRACTED_FROM)):
         path = os.path.join(DIR, rel)
@@ -100,10 +138,15 @@ def main() -> int:
             "path": rel,
             "sha256": digest,
             "bytes": os.path.getsize(path),
-            "file_date_utc": file_date(path),
             "licence": LICENCE,
             "licence_url": LICENCE_URL,
         }
+        if rel in EXTRACTED_FROM:
+            member = os.path.basename(rel)
+            entry["data_file_date"] = member_dates[member]
+            entry["data_file_date_basis"] = ARCHIVE_DATE_BASIS
+        else:
+            entry["retrieved_date_utc"] = log.get(rel, {}).get("retrieved_at", "")[:10]
         if rel in ORIGIN:
             entry["url"] = ORIGIN[rel]
             entry.update({k: v for k, v in log.get(rel, {}).items() if k != "url"})
@@ -132,11 +175,12 @@ def main() -> int:
                 "archive_url": ORIGIN["raw/EOBZIP.zip"],
                 "members": ["products.txt", "patent.txt", "exclusivity.txt"],
                 "format": "ASCII text, tilde (~) delimited",
-                "data_file_dates_utc": {
-                    "products.txt": file_date(os.path.join(DIR, "raw/orange-book/products.txt")),
-                    "patent.txt": file_date(os.path.join(DIR, "raw/orange-book/patent.txt")),
-                    "exclusivity.txt": file_date(os.path.join(DIR, "raw/orange-book/exclusivity.txt")),
+                "data_file_dates": {
+                    "products.txt": member_dates["products.txt"],
+                    "patent.txt": member_dates["patent.txt"],
+                    "exclusivity.txt": member_dates["exclusivity.txt"],
                 },
+                "data_file_date_basis": ARCHIVE_DATE_BASIS,
             },
             "purple_book": {
                 "title": "Purple Book: Database of Licensed Biological Products, "

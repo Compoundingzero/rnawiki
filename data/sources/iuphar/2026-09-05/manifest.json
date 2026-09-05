@@ -31,11 +31,12 @@
     {
       "path": "legal/DATA-index.html",
       "url": "https://www.guidetopharmacology.org/DATA/",
-      "retrieved_utc": "",
-      "http_status": "",
+      "retrieved_utc": "2026-09-05T06:33:48Z",
+      "http_status": "404",
       "bytes": 760,
       "sha256": "8282d541fbe782c9053178b65186aa19edc8205fdd4e7b76f16c075bac85eb0e",
-      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "note": "Saved response for the bulk directory https://www.guidetopharmacology.org/DATA/. The directory serves no index (HTTP 404); the individual CSV files under it answer 200. Kept as evidence of how the bulk route was reached."
     },
     {
       "path": "legal/about.html",
@@ -58,29 +59,32 @@
     {
       "path": "legal/robots-headers.txt",
       "url": "https://www.guidetopharmacology.org/robots.txt",
-      "retrieved_utc": "",
-      "http_status": "",
+      "retrieved_utc": "2026-09-05T06:32:10Z",
+      "http_status": "302",
       "bytes": 386,
       "sha256": "45f7584e14ecd703affc1eab8a8bb307cfea7f38cdc7e9da4bc4e7886f66bafa",
-      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "note": "Response headers of https://www.guidetopharmacology.org/robots.txt. The path answers 302 to /login.jsp, so the site serves no crawl directives."
     },
     {
       "path": "legal/robots-raw-response.txt",
       "url": "https://www.guidetopharmacology.org/robots.txt",
-      "retrieved_utc": "",
-      "http_status": "",
+      "retrieved_utc": "2026-09-05T06:32:10Z",
+      "http_status": "302",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "note": "Response body of https://www.guidetopharmacology.org/robots.txt. The 302 carries Content-Length: 0, so the saved body is empty; the SHA256 is the SHA256 of the empty string."
     },
     {
       "path": "legal/robots-redirect-target-login.html",
       "url": "https://www.guidetopharmacology.org/login.jsp",
-      "retrieved_utc": "",
-      "http_status": "",
+      "retrieved_utc": "2026-09-05T06:32:12Z",
+      "http_status": "200",
       "bytes": 6612,
       "sha256": "7ae0b9b85f8737c419b00282de2ac4106165dca2f48e7ef9ce6284e32b9be0fc",
-      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+      "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "note": "Body served at the redirect target https://www.guidetopharmacology.org/login.jsp, reached from download.jsp. Byte-identical to legal/download-page.html, which is why both share one SHA256."
     },
     {
       "path": "legal/sustainability.html",

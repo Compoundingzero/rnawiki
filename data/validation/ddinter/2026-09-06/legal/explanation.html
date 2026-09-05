@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DDInter 2.0</title>
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <script src="/static/common/layui/layui.js"></script>
+    
+    <link rel="stylesheet" href="/static/common/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+
+    <link href="/static/common/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/style.css"/>
+    <script src="/static/common/js/jquery.min.js"></script>
+    
+    <script src="/static/common/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+        <link rel="stylesheet" type="text/css" href="/static/common/nav/css/style.css"/>
+        <script src="/static/common/nav/js/style.js"></script>
+    
+
+    
+    <link rel="stylesheet" href="/static/common/footer/css/style.css"/>
+
+    
+    <link rel="stylesheet" href="/static/common/banner/css/style.css"/>
+
+    <link rel="stylesheet" href="/static/services/css/jquery.dataTables.min.css">
+    <script src="/static/services/js/jquery.dataTables.min.js"></script>
+
+    
+    <link href="/static/common/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="antin-container">
+    
+        
+<style>
+    .box-with-border {
+        border-bottom: 1px solid rgb(6, 101, 183); /* 边框样式，2px 宽度，颜色 #333 */
+    
+    }
+
+    /* 添加阴影 */
+    .box-with-shadow {
+        box-shadow: 0 0 10px 0 rgba(6, 101, 183, 0.3); /* x偏移、y偏移、模糊度、颜色（rgba格式） */
+    
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+</style>
+<header class="header-area overlay box-with-border box-with-shadow" style="">
+    <nav class="navbar navbar-expand-md navbar-dark" data-bs-theme="dark">
+        <div class="offset-1 col-10 d-flex align-items-center justify-content-between">
+            <a href="/" class="navbar-brand d-flex justify-content-center align-items-center">
+                <img src="/static/favicon.ico" width="45" height="45"
+                     class="d-inline-block justify-content-center align-items-center me-2" alt=""/>
+                <h1 class="" style="font-family: 'Lobster', sans-serif">DDInter 2.0</h1>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-atom"></i> Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/server/drug/">Drug</a></li>
+                            <li><a class="dropdown-item" href="/server/dis_food/">Disease</a></li>
+                            <li><a class="dropdown-item" href="/server/interaction/">Drug-Drug
+                                Interaction</a></li>
+                            <li><a class="dropdown-item" href="/server/other_interaction/">Drug-Others
+                                Interaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inter-checker/">
+                            <i class="fab fa-staylinked nav-icon"></i>
+                            Interaction Checker
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                        >
+                            <i class="far fa-file-alt"></i> About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/explanation/">Explanation</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/statistics/">Statistics</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/tutorials/">Tutorials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/terms/">Terms and conditions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/"><i class="fas fa-id-card"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    
+
+    
+
+
+    <div class="antin-contain">
+        
+    
+<link rel="stylesheet" href="/static/home/css/header.css">
+<link rel="stylesheet" href="/static/home/explanation/css/style.css">
+<main class="">
+    <div class="container mt-5 mb-5">
+        <h2 id="content-1" class="page-title-2">1. What is Drug-food interactions (DFIs)?</h2>
+        <p class="page-content-p"> Drug-food interactions (DFIs) occur when food or beverages influence the
+            pharmacokinetics or pharmacodynamics of a drug, altering its absorption, distribution, metabolism, or
+            excretion processes in the body, or enhancing or diminishing its therapeutic effects. Common DFIs involve
+            alcohol and grapefruit juice. Alcohol can alter the pharmacokinetics and pharmacodynamics of various drugs,
+            leading to reduced efficacy or increased toxicity. For example, alcohol can increase the sedative effects of
+            benzodiazepines and opioids. Grapefruit juice inhibits cytochrome P450 enzymes, which can result in elevated
+            blood levels of certain medications, such as statins, calcium channel blockers, and some antidepressants,
+            increasing the risk of adverse events. Patients should be aware of potential DFIs and discuss their dietary
+            habits with healthcare providers.
+        </p>
+
+        <h2 id="content-2" class="page-title-2">2. What is Drug-disease interactions (DDSIs)?</h2>
+
+        <p class="page-content-p"> Drug-disease interactions (DDSIs) refer to the interactions between a drug and a
+            patient's pre-existing disease conditions, which may exacerbate the underlying disease, reduce drug
+            efficacy, or increase the risk of adverse reactions. Common DDSIs involve kidney diseases, liver diseases,
+            and diabetes mellitus. These conditions can affect a patient's ability to metabolize and eliminate drugs.
+            For instance, NSAIDs may worsen kidney function in patients with chronic kidney disease. Healthcare
+            providers should exercise extra caution when prescribing medications to patients with these comorbidities
+            and closely monitor their liver and kidney function, as well as clinical symptoms, to avoid potential
+            adverse events. Patients should inform their healthcare providers about all their pre-existing medical
+            conditions.
+        </p>
+
+        <h2 id="content-2" class="page-title-2">3. What is Therapeutic duplication?</h2>
+
+        <p class="page-content-p"> Therapeutic duplication occurs when a patient takes two or more drugs from the same
+            therapeutic class simultaneously, which may result from prescriptions by multiple healthcare providers or
+            inadequate medication reconciliation. Common therapeutic duplications involve drug classes such as
+            antihistamines, NSAIDs, and anticholinergics/antispasmodics. For example, a patient may unknowingly take a
+            cold remedy and a sleep aid, both containing diphenhydramine, or receive prescriptions for a sleep aid and
+            an antianxiety drug with similar sedative properties from different doctors. Such duplication can lead to
+            adverse events, such as excessive sedation. Healthcare providers should perform thorough medication
+            reconciliation and educate patients about the risks of therapeutic duplication. Patients should inform their
+            healthcare providers about all the medications they are taking, including over-the-counter drugs and
+            supplements.
+        </p>
+
+        <h2 id="content-2" class="page-title-2">4. What can DDInter do?</h2>
+        <div class="text-center" style="">
+            <img src="/static/home/explanation/img/abstract.png"
+                 alt="Fig 1. The constitute of DDInter 2.0 database"
+                 class="img-fluid img-thumbnail"></div>
+        <br>
+
+        <p class="page-content-p-without"> For physicians and pharmacists: </p>
+        <ul class="page-content-ul">
+            <li> Carry out dose adjustment according to the interaction descriptions</li>
+            <li> Judge if the advantages overweight disadvantages based on the risk level</li>
+            <li> Gain drug replacement guidance from the alternative medications</li>
+            <li> Identify dangerous combinations to prevent potential ADRs timely</li>
+        </ul>
+        <p class="page-content-p-without"> For data scientists: </p>
+        <ul class="page-content-ul">
+            <li> Obtain valuable interaction data as the resources for the detection of potential DDIs</li>
+            <li> Employ DDInter to validate the performance of DDI prediction tools</li>
+        </ul>
+
+
+        <h2 id="content-3" class="page-title-2">5. Criteria for mechanism annotation</h2>
+        <h3 class="page-title-3 scroll-address" id="content-3-1">5.1 Absorption</h3>
+        <p class="page-content-p"> Absorption-related drug interactions are commonly associated with various mechanisms,
+            with most cases hindering and very few promoting. First, decreased absorption may be secondary to chelation
+            with a cation such as calcium or iron. Second, absorption may be decreased when the dissolution of the
+            medication is highly dependent on gastric pH. Third, intestinal absorption may be influenced by inhibition
+            or induction of the p-glycoprotein efflux transporter in the intestinal epithelium. These mechanisms also
+            apply to drug-food interactions (DFIs).
+        </p>
+        <ul class="page-content-ul">
+            <li>
+                The absorption of itraconazole is pH-dependent and may be impaired when gastric pH is increased after
+                antacid administration such as proton pump inhibitor omeprazole.
+            </li>
+            <li>
+                The macrolides may potentiate digoxin toxicity. The inhibition of the P-gp transporter in the intestine
+                is the mechanism of this interaction, as digoxin is a p-glycoprotein substrate and the macrolides may
+                inhibit this transporter.
+            </li>
+            <li>
+                The absorption of certain antibiotics, such as ciprofloxacin and tetracyclines, can be significantly
+                reduced when taken with foods high in calcium, such as dairy products, due to the formation of insoluble
+                chelation complexes.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-2">5.2 Distribution</h3>
+        <p class="page-content-p"> The distribution of medications into tissues is mediated by drug influx and efflux
+            transporters and influenced by protein binding as only the free fraction will be able to penetrate across
+            tissue membranes. Distribution-related drug interactions include competing for the plasma protein binding
+            sites, changing the free-drug fraction, or influencing the distribution in some tissues and organs, etc.
+        </p>
+        <ul class="page-content-ul">
+            <li> Methotrexate leads to hematological toxicity when coadministered with acetylsalicylic acid. This
+                interaction occurs due to decreased clearance of methotrexate through competition with acetylsalicylic
+                acid, resulting in methotrexate being displaced from its plasma protein binding site.
+            </li>
+            <li> Coadministration with drugs that reduce catecholamine uptake or deplete catecholamine stores may
+                interfere with iobenguane I-131 uptake into neuroendocrine tumors such as pheochromocytoma and
+                paraganglioma that express high levels of norepinephrine transporter on their cell surfaces.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-3">5.3 Metabolism</h3>
+        <p class="page-content-p"> Metabolic interactions are mostly due to CYP450 isoenzymes and are responsible for up
+            to 40% of DDIs found in patients. Medications interacting with the CYP450 system can be classified as
+            substrates, inhibitors, or inducers. Inhibitors decrease the activity of CYP450 enzymes, while inducers
+            increase their activity. These interactions can also occur between drugs and certain foods or beverages that
+            contain compounds capable of inhibiting or inducing CYP450 enzymes.
+        </p>
+        <ul class="page-content-ul">
+            <li>
+                Coadministration of ketoconazole, a potent CYP3A4 inhibitor, with lovastatin, a CYP3A4 substrate, may
+                increase the risk of myopathy by increasing plasma concentrations of lovastatin.
+                Rifampin, a potent CYP3A4 inducer, may decrease the plasma concentrations and pharmacologic effects of
+                verapamil.
+            </li>
+            <li>
+                Grapefruit juice contains compounds that inhibit CYP3A4, which can lead to increased plasma
+                concentrations of certain drugs metabolized by this enzyme, such as simvastatin, potentially increasing
+                the risk of adverse effects.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-4">5.4 Excretion</h3>
+        <p class="page-content-p"> Excretion-related drug interactions can occur through various mechanisms, such as
+            changes in renal blood flow, competition for active tubular secretion, or alterations in urinary pH. These
+            interactions can lead to increased or decreased elimination of drugs, potentially affecting their plasma
+            concentrations and therapeutic effects. As the main excretion organ, most excretion-related interactions
+            occur in the kidney.
+        </p>
+        <ul class="page-content-ul">
+            <li>
+                Probenecid may increase plasma concentrations of penicillins by competing for active tubular secretion
+                in the kidneys. Probenecid is an uricosuric and renal tubular blocking agent that inhibits the tubular
+                secretion of penicillin and usually increases penicillin plasma levels by any route the antibiotic is
+                given. Probenecid is indicated to be given as an adjuvant to therapy to penicillin to enhance their
+                plasma levels, and concomitant use has been associated with increased penicillin-related adverse
+                reactions.
+            </li>
+            <li>
+                Coadministration of methenamine with urinary acidifying agents may increase the antibacterial activity
+                of methenamine in the urinary tract by lowering urinary pH. Diuretics may increase serum lithium
+                concentration by reducing sodium reabsorption and increasing the reabsorption of lithium, resulting in
+                increased serum lithium concentrations. Diuretics affect filtration rates and affect electrolyte
+                exchange in the nephron.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-5">5.5 Synergy</h3>
+        <p class="page-content-p"> The synergistic effect occurs when the overall effect of the drug combination is
+            greater than the sum of the effects of the individual drugs. Synergistic interactions can be beneficial when
+            used to enhance therapeutic efficacy or reduce side effects, but they can also lead to increased toxicity if
+            not properly managed.
+        </p>
+        <ul class="page-content-ul">
+            <li> Aminoglycoside antibiotics have the potential to cause ototoxicity, and furosemide may increase the
+                ototoxic potential of aminoglycoside antibiotics, especially in the presence of impaired renal function.
+                Following furosemide injection, there was a rapid and reversible decrease in the endocochlear potential
+                and eighth nerve action potential with a more gradual decrease of the endolymph potassium concentration,
+                leading to transient or permanent ototoxicity.
+            </li>
+            <li> The combination of certain foods, such as tyramine-rich foods (e.g., aged cheeses, cured meats), with
+                monoamine oxidase inhibitors (MAOIs) can lead to a synergistic effect, potentially causing a
+                hypertensive crisis due to the accumulation of tyramine in the body.
+            </li>
+            <li> The additive effects between benzodiazepines and opiates can lead to respiratory depression and
+                possibly cause coma and death. This interaction occurs due to the co-location of GABA and opiate
+                receptors in the central nervous system, and cross-reactivity and common pathways of intracellular
+                transduction for these agents.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-6">5.6 Antagonism</h3>
+        <p class="page-content-p"> The antagonistic effect occurs when the overall effect of the drug combination is
+            less than additive. Sometimes antagonistic interactions are used to alleviate the harmful effects of certain
+            medications clinically, while they may also offset the pharmacological effects of the drugs taken together.
+        </p>
+        <ul class="page-content-ul">
+            <li> The concomitant administration of an opioid antagonist with an opioid can result in the mitigation of
+                both classes of medications' therapeutic effects for the patient. While the pharmacological effect of
+                the opioid antagonist to treat or manage opiate abuse or overdose can be inhibited, at the same time the
+                legitimate pharmacological effect of any opioids administered for the genuine management of pain can
+                also be decreased.
+            </li>
+            <li> Some beta-blockers, such as propranolol, may antagonize the bronchodilatory, hypotensive, and
+                tachycardic effects of isoproterenol. The mechanism is blockade of beta-adrenergic receptors, which
+                leads to bronchoconstriction, vasodilation, and increased heart rate. Beta-blockers have been used
+                successfully to treat catecholamine or isoproterenol-induced tachyarrhythmias.
+            </li>
+            <li>
+                Vitamin K-rich foods, such as green leafy vegetables, can antagonize the anticoagulant effects of
+                warfarin by providing additional vitamin K, which is essential for the synthesis of clotting factors in
+                the liver.
+            </li>
+        </ul>
+        <h3 class="page-title-3 scroll-address" id="content-3-7">5.7 Others and Unknown</h3>
+        <p class="page-content-p"> The expanded descriptions of some interactions were ambiguous, which made it
+            difficult work to identify the concrete categories. Therefore, these interactions were annotated with
+            'Others'. In addition, the DDIs collected from the article published in Sci Transl Med were lack of
+            mechanism descriptions, and thus these DDIs were annotated with 'Unknown'.
+        </p>
+        <h2 id="content-4" class="page-title-2">6. Criteria for severity annotation</h2>
+        <p class="page-content-p"> Categories of severity were accepted as suggested by DRUGDEX and other similar
+            resources: </p>
+        <ul class="page-content-ul">
+            <li><span style="color: #A7466A"><strong>Major:</strong></span> The interactions are life-threatening and/or
+                require medical treatment or intervention to minimize or prevent severe adverse effects.
+            </li>
+            <li><span style="color: #DDC87A"><strong>Moderate:</strong></span> The interactions may result in
+                exacerbation of the disease of the patient and/or change in therapy.
+            </li>
+            <li><span style="color: #84A78F"><strong>Minor:</strong></span> The interactions would limit the clinical
+                effects. The manifestations may include an increase in frequency or severity of adverse effects, but
+                usually they do not require changes in therapy.
+            </li>
+            <li><span style="color: #B6B2B2"><strong>Unknown:</strong></span> The DDIs collected from the article
+                published in Sci Transl Med were lack of mechanism descriptions, and thus the severity classifications
+                of these DDIs were annotated with 'Unknown'.
+            </li>
+        </ul>
+
+        <h2 id="content-4" class="page-title-2">7. Statistic</h2>
+
+        <p class="page-content-p"> DDInter 2.0 is a comprehensive, professional, and open-access database dedicated to
+            drug interactions, including drug-drug interactions (DDIs), drug-food interactions (DFIs), drug-disease
+            interactions (DDSIs), and therapeutic duplications. The interaction data is extracted from scientific
+            literature, package inserts, and labels of production information. DDInter 2.0 provides detailed interaction
+            information, including mechanisms, risk levels, strategies for managing potential problems, suggestions for
+            drug adjustment, and detailed citations. The data statistics of the latest version are as follows:</p>
+
+        <ul class="page-content-ul">
+            <li>
+                <strong>2,310</strong> approved drug entries
+            </li>
+            <li>
+                <strong>302,516</strong> DDI records, accompanied by <strong>8,398</strong> distinct and high-quality
+                mechanism descriptions and management recommendations
+            </li>
+            <li>
+                <strong>857</strong> DFI records involving <strong>29</strong> foods, with <strong>430</strong>high-quality
+                mechanism descriptions and management recommendations
+            </li>
+            <li>
+                <strong>8,359</strong> DDSI records involving <strong>472</strong> diseases, with <strong>3,300</strong>detailed
+                interaction information and management recommendations
+            </li>
+            <li>
+                <strong>6,033</strong> therapeutic duplication records involving <strong>317</strong> combination drugs
+                and <strong>96</strong>pharmacological classes, each accompanied by a specific warning and note
+            </li>
+            <li>
+                Interaction data extracted from <strong>16028</strong> relevant literature pieces
+                (<strong>12298</strong> on DDIs, <strong>430</strong> on DFIs, and <strong>3,300</strong>on DDSIs)
+            </li>
+        </ul>
+    </div>
+</main>
+
+    </div>
+    
+        
+
+<footer class="site-footer" id="footer">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="copyright">
+      &copy; Copyright &nbsp; <a href="http://www.scbdd.com/" target="_blank">Computational Biology & Drug DesignGroup</a>. All Rights Reserved<div class="heart d-inline-block mx-2"></div>
+      
+    </div>
+    <div style="width: 200px;">
+      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=TXcYuwgsTf230Gc363rPwJc4RS20yZ5QOakSiw4gHgw&cl=ffffff&w=a"></script>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .heart {
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    position: relative;
+    filter: drop-shadow(0px 0px 20px rgb(255, 20, 20));
+    transform: rotate(45deg);
+  }
+  
+  .heart:before,
+  .heart:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 5px;
+  }
+  
+  .heart:before {
+    left: -5px;
+  }
+  
+  .heart:after {
+    left: 0;
+    top: -5px;
+  }
+  
+  @keyframes heartbeat {
+    0% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+    25% {
+      transform: rotate(45deg) scale(1, 1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+</div>
+</body>
+
+
+
+</html>

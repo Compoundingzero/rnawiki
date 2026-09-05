@@ -121,6 +121,21 @@ def main() -> None:
         """
     ).fetchall()
 
+    # An effective_time that is not an eight-digit date cannot be read as a day
+    # without guessing which digits to drop, so pass 1 records it as 0 and the
+    # row carries an empty source_date. Both counts are reported rather than
+    # repaired.
+    unparseable_labels = con.execute(
+        f"""
+        SELECT count(*) FROM read_parquet('{PARSED / "label-index.parquet"}')
+        WHERE effective_time = 0
+        """
+    ).fetchone()[0]
+    undated_rows, undated_set_ids = con.execute(
+        "SELECT count(*), count(DISTINCT source_record_id) "
+        "FROM deduped WHERE source_date = ''"
+    ).fetchone()
+
     stats = json.loads((PARSED / "map-stats.json").read_text())
     index_summary = json.loads((PARSED / "label-index-summary.json").read_text())
     candidates = [
@@ -175,6 +190,15 @@ def main() -> None:
             "rule": "mapping rule (d): a normalised-name hit is a candidate only and "
             "carries no field value into mapped.parquet until a UNII or InChIKey "
             "confirms it; these go to the Phase 3 review list",
+        },
+        "source_date_quality": {
+            "labels_with_unparseable_effective_time": unparseable_labels,
+            "mapped_rows_with_empty_source_date": undated_rows,
+            "mapped_set_ids_with_empty_source_date": undated_set_ids,
+            "note": "These labels carry an effective_time that is not an eight-digit "
+            "date (nine or ten digits). Which digits are surplus cannot be "
+            "determined from the record, so source_date is left empty rather than "
+            "truncated to a date the label does not state.",
         },
         "match_rule_note": "match_rule 'rxcui' records an exact openfda.rxcui to page "
         "rxcui identifier match. It is the second mapping route named in the Phase 2 "

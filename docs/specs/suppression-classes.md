@@ -47,3 +47,34 @@ worklog gets the table.
 Suppression is orthogonal to tier. A Tier 1 longevity compound in a suppression class (e.g. a
 scheduled substance) keeps the LONGEVITY model's factual fields and loses seeds 1, 2 and 6. A
 suppressed record never renders "can I test this myself" in any wording.
+
+## Ordinary-language labels (reader-facing wording)
+
+A class id is a storage token. It never reaches a reader. Wherever a page states its own
+classification — the supervision block on any suppressed page, including one that holds too few
+fields to carry a question — it names the class in the words below and never as `S1`…`S10`. This
+table is the only place the wording is fixed; `lib/corpus/suppression-classes.ts` reads from it and
+`tests/unit/corpus-suppression-block.test.ts` holds it to it.
+
+| Id  | Reader-facing label                                                                                                          |
+| --- | ---------------------------------------------------------------------------------------------------------------------------- |
+| S1  | a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics |
+| S2  | a controlled-substance schedule in the United States, the United Kingdom or Singapore                                        |
+| S3  | a label warning about harm to a developing baby, or a pregnancy-prevention programme                                         |
+| S4  | a list of cytotoxic or otherwise hazardous medicines                                                                         |
+| S5  | a United States programme that restricts how the medicine is supplied and who may supply it                                  |
+| S6  | a boxed warning, the strongest warning a United States label carries                                                         |
+| S7  | a route a clinician administers, such as an injection into a vein or into the spine                                          |
+| S8  | a register record of withdrawal or suspension for a safety reason                                                            |
+| S9  | a long-acting injection, an insulin, or another injected hormone adjusted by measurement                                     |
+| S10 | no classification found in the registers checked                                                                             |
+
+The block's two sentences are generated, never free-written:
+
+1. `A register records <name> in <one classification | N classifications> given under medical
+supervision: <labels, joined by "; ">.`
+2. `Because of that classification, this record holds no bioavailability, self-experiment design or
+time-to-signal section.`
+
+An S10-only record has no classification to state, so it carries no supervision block; it keeps the
+stub's single line saying that no classification is recorded.

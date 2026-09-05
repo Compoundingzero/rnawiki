@@ -1,0 +1,580 @@
+{
+  "source": "mhra-emc",
+  "source_name": "MHRA products database (products.mhra.gov.uk) and emc, the electronic medicines compendium (www.medicines.org.uk)",
+  "phase2_item": 14,
+  "retrieval_date": "2026-09-06",
+  "written": "2026-09-05T16:14:08Z",
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "status_reason": "emc forbids this use in its published Terms; products.mhra.gov.uk publishes no reuse terms and offers no bulk file and no working or permitted API. No SmPC, PIL or PAR content was retrieved from either site.",
+  "licence": {
+    "products.mhra.gov.uk": "No reuse licence published. products.mhra.gov.uk carries no terms-of-use or copyright page (its Next.js build manifest enumerates every route on the site and none exists); SmPC, PIL and PAR text is authored by marketing authorisation holders, which is third-party copyright that the Open Government Licence expressly does not cover and which is not asserted here in any case.",
+    "www.medicines.org.uk (emc)": "All rights reserved, Datapharm Ltd. The published Terms prohibit commercial use, populating a database or knowledge bank from the site, re-circulating material to third parties and systematically tracking updates. Reuse requires a negotiated licence from Datapharm.",
+    "licence_evidence": [
+      "legal/TERMS-DETERMINATION.md",
+      "legal/emc-legal-and-privacy-notice.verbatim.txt",
+      "legal/govuk-terms-and-conditions.verbatim.txt",
+      "legal/open-government-licence-v3.verbatim.txt"
+    ],
+    "licence_urls": [
+      "https://www.medicines.org.uk/emc/privacy-notice-and-legal",
+      "https://www.gov.uk/help/terms-conditions",
+      "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    ]
+  },
+  "content_retrieved": {
+    "smpc_pil_par_documents": 0,
+    "note": "Only robots.txt, legal and about pages, the client bundles needed to establish whether an API exists, the data.gov.uk dataset listing, the API probe transcript and the products sitemap were retrieved. The sitemap is kept to measure the forgone scope and is joined to nothing."
+  },
+  "file_count": 35,
+  "raw_file_count": 1,
+  "raw_bytes": 4973488,
+  "total_bytes": 6061391,
+  "files": [
+    {
+      "path": "legal/TERMS-DETERMINATION.md",
+      "bytes": 9372,
+      "sha256": "e2435e259f4f503296e72c43b6bf00d1f824429048f4c07968cb204c71aba7f0",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/datagovuk-mhra-package-search.json",
+      "bytes": 186581,
+      "sha256": "d05fa7e288cc531624137330c667c319d02c67f536239774020398395e7a16c7",
+      "requests": [
+        {
+          "url": "https://ckan.publishing.service.gov.uk/api/3/action/package_search?q=organization:medicines-and-healthcare-products-regulatory-agency&rows=100",
+          "retrieved": "2026-09-05T16:08:11Z",
+          "http_status": "200",
+          "bytes": 186581
+        }
+      ],
+      "url": "https://ckan.publishing.service.gov.uk/api/3/action/package_search?q=organization:medicines-and-healthcare-products-regulatory-agency&rows=100",
+      "retrieved": "2026-09-05T16:08:11Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/emc-about-the-emc.html",
+      "bytes": 32112,
+      "sha256": "d73934e6e137ee7e0c0cc9fdc9207e2b9f3d45b504a6b719c0426cfa4b605401",
+      "requests": [
+        {
+          "url": "https://www.medicines.org.uk/emc/about-the-emc",
+          "retrieved": "2026-09-05T16:07:23Z",
+          "http_status": "200",
+          "bytes": 32112
+        }
+      ],
+      "url": "https://www.medicines.org.uk/emc/about-the-emc",
+      "retrieved": "2026-09-05T16:07:23Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/emc-about-the-emc.verbatim.txt",
+      "bytes": 7743,
+      "sha256": "d4ac19738f88c0bfffe9ba8732de29ed833bb026b3aa1225ac88b8f0b391e5a9",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/emc-home.html",
+      "bytes": 29924,
+      "sha256": "a98bc1d78b05f99b984fe83d380751c17e60a6fd89952b98784c405e83592a8b",
+      "requests": [
+        {
+          "url": "https://www.medicines.org.uk/emc",
+          "retrieved": "2026-09-05T16:07:15Z",
+          "http_status": "200",
+          "bytes": 29924
+        }
+      ],
+      "url": "https://www.medicines.org.uk/emc",
+      "retrieved": "2026-09-05T16:07:15Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/emc-legal-and-privacy-notice.verbatim.txt",
+      "bytes": 24416,
+      "sha256": "8a8122d28525deb579d44b0e49fb4274fa9e3480945bd31823e33d7bf4a3098b",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/emc-privacy-notice-and-legal.html",
+      "bytes": 58552,
+      "sha256": "8783be5d6a8f4f4cb1764d7ba4622382ae820c0a249163049c975ea9ab349824",
+      "requests": [
+        {
+          "url": "https://www.medicines.org.uk/emc/privacy-notice-and-legal",
+          "retrieved": "2026-09-05T16:07:22Z",
+          "http_status": "200",
+          "bytes": 58552
+        }
+      ],
+      "url": "https://www.medicines.org.uk/emc/privacy-notice-and-legal",
+      "retrieved": "2026-09-05T16:07:22Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/govuk-find-product-information-about-medicines.html",
+      "bytes": 84493,
+      "sha256": "93980304ec3087fda0bf9402d3e9f5d094495623da64c536a8b353cb0fb9c494",
+      "requests": [
+        {
+          "url": "https://www.gov.uk/guidance/find-product-information-about-medicines",
+          "retrieved": "2026-09-05T16:07:56Z",
+          "http_status": "200",
+          "bytes": 84493
+        }
+      ],
+      "url": "https://www.gov.uk/guidance/find-product-information-about-medicines",
+      "retrieved": "2026-09-05T16:07:56Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/govuk-terms-and-conditions.verbatim.txt",
+      "bytes": 8175,
+      "sha256": "ff536aba98c91aad5cf90947700cbee8523a85a3b0e31b3b9a41e87b46499df4",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/govuk-terms-conditions.html",
+      "bytes": 80565,
+      "sha256": "40427499bab678c1883d9a7f3516fb6af99a19dd346dae54b230305b0ea26ebe",
+      "requests": [
+        {
+          "url": "https://www.gov.uk/help/terms-conditions",
+          "retrieved": "2026-09-05T16:07:58Z",
+          "http_status": "200",
+          "bytes": 80565
+        }
+      ],
+      "url": "https://www.gov.uk/help/terms-conditions",
+      "retrieved": "2026-09-05T16:07:58Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-buildManifest.js",
+      "bytes": 2134,
+      "sha256": "846299d9899a15859878adf20fdf3768364e0d7c603a79c49b9f5b28ed98d806",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/_next/static/ufPgk6V6gc0hHc9abqxts/_buildManifest.js",
+          "retrieved": "2026-09-05T16:09:04Z",
+          "http_status": "200",
+          "bytes": 2134
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/_next/static/ufPgk6V6gc0hHc9abqxts/_buildManifest.js",
+      "retrieved": "2026-09-05T16:09:04Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-chunk-494.js",
+      "bytes": 14200,
+      "sha256": "91f1e639ea3b69bf1be8510d9c05d765677a1f4d3df2e593df3e8861a9b084d6",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/_next/static/chunks/494-e3c228b2155e624e.js",
+          "retrieved": "2026-09-05T16:08:56Z",
+          "http_status": "200",
+          "bytes": 14200
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/_next/static/chunks/494-e3c228b2155e624e.js",
+      "retrieved": "2026-09-05T16:08:56Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-chunk-843-012836701345ef2e.js",
+      "bytes": 13285,
+      "sha256": "58047350f16c32576abc044c6a37ac48ff459c5783a039be4c7917f22a0ced2e",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/_next/static/chunks/843-012836701345ef2e.js",
+          "retrieved": "2026-09-05T16:09:14Z",
+          "http_status": "200",
+          "bytes": 13258
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/_next/static/chunks/843-012836701345ef2e.js",
+      "retrieved": "2026-09-05T16:09:14Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-chunk-97.js",
+      "bytes": 47392,
+      "sha256": "68e9255fb2ec41844f2b0da19ed856468e818b0148f8e4a541f7ebf90b47d25b",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/_next/static/chunks/97-a4b5a48515d063a6.js",
+          "retrieved": "2026-09-05T16:08:57Z",
+          "http_status": "200",
+          "bytes": 47392
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/_next/static/chunks/97-a4b5a48515d063a6.js",
+      "retrieved": "2026-09-05T16:08:57Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-chunk-search-62af6d95c277fba2.js",
+      "bytes": 6731,
+      "sha256": "cd762ab3d7894f0fa1909c7455fcd5b859349ed03a5b2c2c0fa5de1154533948",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/_next/static/chunks/pages/search-62af6d95c277fba2.js",
+          "retrieved": "2026-09-05T16:09:13Z",
+          "http_status": "200",
+          "bytes": 6731
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/_next/static/chunks/pages/search-62af6d95c277fba2.js",
+      "retrieved": "2026-09-05T16:09:13Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-graphql.attempt1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/graphql",
+          "retrieved": "2026-09-05T16:09:45Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/graphql",
+      "retrieved": "2026-09-05T16:09:45Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-graphql.attempt2.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/graphql",
+          "retrieved": "2026-09-05T16:09:47Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/graphql",
+      "retrieved": "2026-09-05T16:09:47Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-graphql.attempt3.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/graphql",
+          "retrieved": "2026-09-05T16:09:52Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/graphql",
+      "retrieved": "2026-09-05T16:09:52Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-probe.json",
+      "bytes": 2711,
+      "sha256": "625d4688998e15a2922938e026405f25a550d87538ca6c9cf116545f1ef0eea2",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/mhra-medicines-api-root-retry.attempt1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/",
+          "retrieved": "2026-09-05T16:09:53Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/",
+      "retrieved": "2026-09-05T16:09:53Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-root-retry.attempt2.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/",
+          "retrieved": "2026-09-05T16:09:55Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/",
+      "retrieved": "2026-09-05T16:09:55Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-root-retry.attempt3.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/",
+          "retrieved": "2026-09-05T16:10:00Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/",
+      "retrieved": "2026-09-05T16:10:00Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-medicines-api-root.html",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/",
+          "retrieved": "2026-09-05T16:09:27Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/",
+      "retrieved": "2026-09-05T16:09:27Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-products-about-this-service.verbatim.txt",
+      "bytes": 3050,
+      "sha256": "69eb1781607ce4a071739ee3b4f7a15dac1c53031b78effdcfae1744ec1a4c5f",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/mhra-products-about.html",
+      "bytes": 110395,
+      "sha256": "492837d302130c17340fa0bccdcae1bf3c4f5957640b4e79be1b357b5944d40d",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/about/",
+          "retrieved": "2026-09-05T16:06:49Z",
+          "http_status": "200",
+          "bytes": 110395
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/about/",
+      "retrieved": "2026-09-05T16:06:49Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-products-accessibility.html",
+      "bytes": 112532,
+      "sha256": "e4c2167b481e8c371d3b183427fd6479483a8ed114fae83d0a4b4f59ca15d2b8",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/accessibility/",
+          "retrieved": "2026-09-05T16:11:02Z",
+          "http_status": "200",
+          "bytes": 112532
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/accessibility/",
+      "retrieved": "2026-09-05T16:11:02Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-products-cookies.html",
+      "bytes": 110333,
+      "sha256": "fc9d8a098195831f434ed96a074273ca20f37a85fa2e60d0afe487fc668a64e4",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/cookies/",
+          "retrieved": "2026-09-05T16:11:00Z",
+          "http_status": "200",
+          "bytes": 110333
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/cookies/",
+      "retrieved": "2026-09-05T16:11:00Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/mhra-products-home.html",
+      "bytes": 124886,
+      "sha256": "f8e019066ec32e9941dc5d0134cd87807e5574d676aed5bd746dbddbaffde56c",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/",
+          "retrieved": "2026-09-05T16:06:42Z",
+          "http_status": "200",
+          "bytes": 124886
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/",
+      "retrieved": "2026-09-05T16:06:42Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/ogl-v3.html",
+      "bytes": 10450,
+      "sha256": "f5b2b9f2af63647cde889fa6c3508f5705925295b74912c68caa28dd37e64aa5",
+      "requests": [
+        {
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "retrieved": "2026-09-05T16:08:00Z",
+          "http_status": "200",
+          "bytes": 10450
+        }
+      ],
+      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "retrieved": "2026-09-05T16:08:00Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/open-government-licence-v3.verbatim.txt",
+      "bytes": 6623,
+      "sha256": "d9a5ad710baf75023303b46b81218d44330e1035075809ebfd04fc9e9714eb98",
+      "requests": [],
+      "url": null,
+      "retrieved": null,
+      "http_status": null,
+      "derived_from": "written locally from the retrieved files in this directory"
+    },
+    {
+      "path": "legal/robots-medicines.api.mhra.gov.uk.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requests": [
+        {
+          "url": "https://medicines.api.mhra.gov.uk/robots.txt",
+          "retrieved": "2026-09-05T16:09:26Z",
+          "http_status": "503",
+          "bytes": 0
+        }
+      ],
+      "url": "https://medicines.api.mhra.gov.uk/robots.txt",
+      "retrieved": "2026-09-05T16:09:26Z",
+      "http_status": "503",
+      "derived_from": null
+    },
+    {
+      "path": "legal/robots-products.mhra.gov.uk.txt",
+      "bytes": 66,
+      "sha256": "64cb230fb2286028af6fb3dbb869c3c8638655dadda8d278aad69710e76238fa",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/robots.txt",
+          "retrieved": "2026-09-05T16:06:31Z",
+          "http_status": "200",
+          "bytes": 66
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/robots.txt",
+      "retrieved": "2026-09-05T16:06:31Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/robots-www.gov.uk.txt",
+      "bytes": 1097,
+      "sha256": "459835d29527b9c00f00f6af00f45c73a909af1944e81fefa153f585e1857305",
+      "requests": [
+        {
+          "url": "https://www.gov.uk/robots.txt",
+          "retrieved": "2026-09-05T16:06:33Z",
+          "http_status": "200",
+          "bytes": 1097
+        }
+      ],
+      "url": "https://www.gov.uk/robots.txt",
+      "retrieved": "2026-09-05T16:06:33Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "legal/robots-www.medicines.org.uk.txt",
+      "bytes": 85,
+      "sha256": "a4420ccbba2ad931f984a9c74aa1729a45496ad1a556839d0a060c5ff82a6087",
+      "requests": [
+        {
+          "url": "https://www.medicines.org.uk/robots.txt",
+          "retrieved": "2026-09-05T16:06:31Z",
+          "http_status": "200",
+          "bytes": 85
+        }
+      ],
+      "url": "https://www.medicines.org.uk/robots.txt",
+      "retrieved": "2026-09-05T16:06:31Z",
+      "http_status": "200",
+      "derived_from": null
+    },
+    {
+      "path": "raw/products-mhra-sitemap.xml",
+      "bytes": 4973488,
+      "sha256": "9c2e617a4eec649e46a3e7fdfa7b0c96bea2b060e65791f41ef35cdbea2b4598",
+      "requests": [
+        {
+          "url": "https://products.mhra.gov.uk/sitemap.xml",
+          "retrieved": "2026-09-05T16:11:03Z",
+          "http_status": "200",
+          "bytes": 4973488
+        }
+      ],
+      "url": "https://products.mhra.gov.uk/sitemap.xml",
+      "retrieved": "2026-09-05T16:11:03Z",
+      "http_status": "200",
+      "derived_from": null
+    }
+  ]
+}

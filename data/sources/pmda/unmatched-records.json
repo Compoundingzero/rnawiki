@@ -1,0 +1,3518 @@
+[
+  {
+    "source_record_id": "pmda:p002:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "mRNA encoding the F\nglycoprotein from RSV\nsubtype A stabilized in\nthe prefusion\nconformation",
+    "components": [
+      "mRNA encoding the F glycoprotein from RSV subtype A stabilized in the prefusion conformation"
+    ],
+    "brand_names": [
+      "mRESVIA Intramuscular Injection Syringes"
+    ],
+    "approval_date": "2025-05-19"
+  },
+  {
+    "source_record_id": "pmda:p002:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "mRNA encoding the\nspike protein of SARS-\nCoV-2",
+    "components": [
+      "mRNA encoding the spike protein of SARS-CoV-2"
+    ],
+    "brand_names": [
+      "Spikevax Intramuscular Injection"
+    ],
+    "approval_date": "2025-05-19"
+  },
+  {
+    "source_record_id": "pmda:p003:r03",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "pH4-treated acidic normal human immunoglobulin (subcutaneous injection)",
+    "active_ingredient_raw": "pH4-treated acidic\nnormal human\nimmunoglobulin\n(subcutaneous\ninjection) and\nVorhyaluronidase alfa\n(genetical\nrecombination)",
+    "approval_date": "2025-06-24"
+  },
+  {
+    "source_record_id": "pmda:p003:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Etrasimod L-arginine",
+    "components": [
+      "Etrasimod L-arginine"
+    ],
+    "brand_names": [
+      "Velsipity Tablets 2 mg"
+    ],
+    "approval_date": "2025-06-24"
+  },
+  {
+    "source_record_id": "pmda:p005:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal 21-\nvalent conjugate\nvaccine (mutated\ndiphtheria CRM197\nconjugate)",
+    "components": [
+      "Pneumococcal 21-valent conjugate vaccine (mutated diphtheria CRM197 conjugate)"
+    ],
+    "brand_names": [
+      "Capvaxive for Intramuscular Injection Syringes"
+    ],
+    "approval_date": "2025-08-08"
+  },
+  {
+    "source_record_id": "pmda:p005:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Selmetinib sulfate",
+    "components": [
+      "Selmetinib sulfate"
+    ],
+    "brand_names": [
+      "Koselugo Capsules 10 mg",
+      "Koselugo Capsules 25 mg"
+    ],
+    "approval_date": "2025-08-25"
+  },
+  {
+    "source_record_id": "pmda:p005:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant adsorbed\n9-valent human\npapillomavirus virus-like\nparticle vaccines (yeast\norigin)",
+    "components": [
+      "Recombinant adsorbed 9-valent human papillomavirus virus-like particle vaccines (yeast origin)"
+    ],
+    "brand_names": [
+      "Silgard 9 Aqueous Suspension for Intramuscular",
+      "Injection Syringes"
+    ],
+    "approval_date": "2025-08-25"
+  },
+  {
+    "source_record_id": "pmda:p006:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Vorasidenib citric acid\nhydrate",
+    "components": [
+      "Vorasidenib citric acid hydrate"
+    ],
+    "brand_names": [
+      "Voranigo Tablets 10 mg",
+      "Voranigo Tablets 40 mg"
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Gallium (68Ga) chloride",
+    "components": [
+      "Gallium (68Ga) chloride"
+    ],
+    "brand_names": [
+      "GalliaPharm 68Ge/68Ga Generator"
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Aflibercept (genetical\nrecombination)\n[aflibercept biosimilar 2]",
+    "components": [
+      "Aflibercept (genetical recombination) [aflibercept biosimilar 2]"
+    ],
+    "brand_names": [
+      "Aflibercept BS Solution 40 mg/mL for IVT Injection",
+      "\"NIT\"",
+      "Aflibercept BS Kit 40 mg/mL for IVT Injection \"NIT\""
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Aflibercept (genetical\nrecombination)\n[aflibercept biosimilar 3]",
+    "components": [
+      "Aflibercept (genetical recombination) [aflibercept biosimilar 3]"
+    ],
+    "brand_names": [
+      "Aflibercept BS Solution for Intravitreal Injection 40",
+      "mg/mL \"SCD\"",
+      "Aflibercept BS Kit for Intravitreal Injection 40 mg/mL",
+      "\"SCD\""
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Selmetinib sulfate",
+    "components": [
+      "Selmetinib sulfate"
+    ],
+    "brand_names": [
+      "Koselugo Granules 5 mg",
+      "Koselugo Granules 7.5 mg",
+      "Koselugo Capsules 10 mg",
+      "Koselugo Capsules 25 mg"
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Denosumab (genetical\nrecombination)\n[denosumab biosimilar\n1]",
+    "components": [
+      "Denosumab (genetical recombination) [denosumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Denosumab BS 120 mg RM for S.C. Injection \"F\""
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p007:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Tocilizumab (genetical\nrecombination)\n[tocilizumab biosimilar\n1]",
+    "components": [
+      "Tocilizumab (genetical recombination) [tocilizumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Tocilizumab BS for Intravenous Infusion 80 mg",
+      "“CT”",
+      "Tocilizumab BS for Intravenous Infusion 200 mg",
+      "“CT”",
+      "Tocilizumab BS for Intravenous Infusion 400 mg",
+      "“CT”",
+      "Tocilizumab BS 162 mg Syringes for S.C.",
+      "Injection “CT”",
+      "Tocilizumab BS 162 mg Auto-Iinjector for S.C.",
+      "Injection “CT”"
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p008:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Golimumab (genetical\nrecombination)\n[golimumab biosimilar 1]",
+    "components": [
+      "Golimumab (genetical recombination) [golimumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Golimumab BS 50 mg Syringe for S.C. Injection “F”"
+    ],
+    "approval_date": "2025-09-19"
+  },
+  {
+    "source_record_id": "pmda:p010:r07",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Magnesium monohydrogen phosphate",
+    "active_ingredient_raw": "(1) (2) Human milk/\nCalcium\nglycerophosphate/\nCalcium gluconate\nhydrate/Calcium\nchloride\nhydrate/Anhydrous\nSodium\nCitrate/Potassium\ncitrate/Magnesium\nmonohydrogen\nphosphate/Zinc sulfate\nhydrate/Sodium\nchloride/Copper sulfate\n(3) Human milk",
+    "approval_date": "2025-12-22"
+  },
+  {
+    "source_record_id": "pmda:p011:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ustekinumab (genetical\nrecombination)\n[Ustekinumab biosimilar\n4]",
+    "components": [
+      "Ustekinumab (genetical recombination) [Ustekinumab biosimilar 4]"
+    ],
+    "brand_names": [
+      "Ustekinumab BS Subcutaneous Injection Syringes 45",
+      "mg “Nipro”"
+    ],
+    "approval_date": "2025-12-22"
+  },
+  {
+    "source_record_id": "pmda:p012:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Tucatinib ethanolate",
+    "components": [
+      "Tucatinib ethanolate"
+    ],
+    "brand_names": [
+      "Tukysa Tablets 50 mg",
+      "Tukysa Tablets 150 mg"
+    ],
+    "approval_date": "2026-02-19"
+  },
+  {
+    "source_record_id": "pmda:p012:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ropeginterferon alfa-2a\n(genetical\nrecombination)",
+    "components": [
+      "Ropeginterferon alfa-2a (genetical recombination)"
+    ],
+    "brand_names": [
+      "Besremi Subcutaneous Injection 250 µg Syringes",
+      "Besremi Subcutaneous Injection 500 µg Syringes"
+    ],
+    "approval_date": "2026-02-19"
+  },
+  {
+    "source_record_id": "pmda:p013:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Venoglobulin IH 10% I.V. 0.5 g/5 mL",
+      "Venoglobulin IH 10% I.V. 2.5 g/25 mL",
+      "Venoglobulin IH 10% I.V. 5 g/50 mL",
+      "Venoglobulin IH 10% I.V. 10 g/100 mL",
+      "Venoglobulin IH 10% I.V. 20 g/200 mL"
+    ],
+    "approval_date": "2024-09-24"
+  },
+  {
+    "source_record_id": "pmda:p015:r13",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Kidparen Injection"
+    ],
+    "approval_date": "2024-09-24"
+  },
+  {
+    "source_record_id": "pmda:p016:r01",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Enosolid Semi Solid for Enteral Use"
+    ],
+    "approval_date": "2024-09-24"
+  },
+  {
+    "source_record_id": "pmda:p016:r02",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Carbostar 2 · L for Dialysis",
+      "Carbostar 2 · P for Dialysis"
+    ],
+    "approval_date": "2025-03-27"
+  },
+  {
+    "source_record_id": "pmda:p022:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Aflibercept (genetical\nrecombination)\n[aflibercept biosimilar 1]",
+    "components": [
+      "Aflibercept (genetical recombination) [aflibercept biosimilar 1]"
+    ],
+    "brand_names": [
+      "Aflibercept BS Solution for Intravitreal Injection 40",
+      "mg/mL \"GRP\""
+    ],
+    "approval_date": "2024-06-24"
+  },
+  {
+    "source_record_id": "pmda:p022:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ustekinumab (genetical\nrecombination)\n[ustekinumab biosimilar\n2]",
+    "components": [
+      "Ustekinumab (genetical recombination) [ustekinumab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Ustekinumab BS 45 mg Syringe for S.C. Injection",
+      "“YD”"
+    ],
+    "approval_date": "2024-12-27"
+  },
+  {
+    "source_record_id": "pmda:p022:r13",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ustekinumab (genetical\nrecombination)\n[ustekinumab biosimilar\n3]",
+    "components": [
+      "Ustekinumab (genetical recombination) [ustekinumab biosimilar 3]"
+    ],
+    "brand_names": [
+      "Ustekinumab BS 45 mg Syringes for S.C. Injection",
+      "“CT”"
+    ],
+    "approval_date": "2025-03-27"
+  },
+  {
+    "source_record_id": "pmda:p022:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant\ncoronavirus (SARS-\nCoV-2) spike protein\nantigen",
+    "components": [
+      "Recombinant coronavirus (SARS-CoV-",
+      "spike protein antigen"
+    ],
+    "brand_names": [
+      "Covgoze Intramuscular Injection"
+    ],
+    "approval_date": "2024-06-24"
+  },
+  {
+    "source_record_id": "pmda:p022:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Salmonella typhi (TY2\nstrain) purified Vi\ncapsular polysaccharide",
+    "components": [
+      "Salmonella typhi (TY2 strain) purified Vi capsular polysaccharide"
+    ],
+    "brand_names": [
+      "Typhim Vi Syringe for Injection"
+    ],
+    "approval_date": "2024-06-24"
+  },
+  {
+    "source_record_id": "pmda:p023:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal\npolysaccharide\nconjugated to CRM197\ncarrier protein",
+    "components": [
+      "Pneumococcal polysaccharide conjugated to CRM197 carrier protein"
+    ],
+    "brand_names": [
+      "Prevenar20 Suspension Liquid for Injection"
+    ],
+    "approval_date": "2024-08-28"
+  },
+  {
+    "source_record_id": "pmda:p023:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "SARS-CoV-2 rS\n(Omicron JN.1 variant)",
+    "components": [
+      "SARS-CoV-2 rS (Omicron JN.1 variant)"
+    ],
+    "brand_names": [
+      "Nuvaxovid Intramuscular Injection 1 mL"
+    ],
+    "approval_date": "2024-09-05"
+  },
+  {
+    "source_record_id": "pmda:p023:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "mRNA encoding the\nspike protein of SARS-\nCoV-2 (Omicron JN.1\nvariant)",
+    "components": [
+      "mRNA encoding the spike protein of SARS-CoV-2 (Omicron JN.1 variant)"
+    ],
+    "brand_names": [
+      "Kostaive Intramuscular Injection"
+    ],
+    "approval_date": "2024-09-13"
+  },
+  {
+    "source_record_id": "pmda:p023:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Live attenuated\nmeasles virus (Tanabe\nstrain) and live\nattenuated rubella virus\n(Matsuura/J16 strain)",
+    "components": [
+      "Live attenuated measles virus (Tanabe strain)",
+      "live attenuated rubella virus (Matsuura/J16 strain)"
+    ],
+    "brand_names": [
+      "Mearubik II Subcutaneous Injection",
+      "(The Research Foundation for Microbial Diseases of",
+      "Osaka University)"
+    ],
+    "approval_date": "2024-09-24"
+  },
+  {
+    "source_record_id": "pmda:p023:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant\nrespiratory syncytial\nvirus PreF3 antigen",
+    "components": [
+      "Recombinant respiratory syncytial virus PreF3 antigen"
+    ],
+    "brand_names": [
+      "Arexvy Intramuscular Injection"
+    ],
+    "approval_date": "2024-11-22"
+  },
+  {
+    "source_record_id": "pmda:p023:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Influenza virus (type A\nand type B) HA fraction",
+    "components": [
+      "Influenza virus (type A and type B) HA fraction"
+    ],
+    "brand_names": [
+      "Efluelda intramuscular injection"
+    ],
+    "approval_date": "2024-12-27"
+  },
+  {
+    "source_record_id": "pmda:p023:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "mRNA encoding the\nspike protein of SARS-\nCoV-2",
+    "components": [
+      "mRNA encoding the spike protein of SARS-CoV-2"
+    ],
+    "brand_names": [
+      "Daichirona for Intramuscular Injection"
+    ],
+    "approval_date": "2025-03-27"
+  },
+  {
+    "source_record_id": "pmda:p023:r11",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Human normal immunoglobulin G (pH4-treated acidic normal human immunoglobulin [subcutaneous injection])",
+    "active_ingredient_raw": "Human normal\nimmunoglobulin G\n(pH4-treated acidic\nnormal human\nimmunoglobulin\n[subcutaneous\ninjection]) and\nVorhyaluronidase alfa\n(genetical\nrecombination)",
+    "approval_date": "2024-12-27"
+  },
+  {
+    "source_record_id": "pmda:p025:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Zinc histidine hydrate",
+    "components": [
+      "Zinc histidine hydrate"
+    ],
+    "brand_names": [
+      "Zintus Tablets 25 mg",
+      "Zintus Tablets 50 mg"
+    ],
+    "approval_date": "2024-03-26"
+  },
+  {
+    "source_record_id": "pmda:p028:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ensitrelvir fumaric\nacid",
+    "components": [
+      "Ensitrelvir fumaric acid"
+    ],
+    "brand_names": [
+      "Xocova Tablets 125 mg"
+    ],
+    "approval_date": "2024-03-05"
+  },
+  {
+    "source_record_id": "pmda:p032:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pegfilgrastim\n(genetical\nrecombination)\n[pegfilgrastim\nbiosimilar 1]",
+    "components": [
+      "Pegfilgrastim (genetical recombination) [pegfilgrastim biosimilar 1]"
+    ],
+    "brand_names": [
+      "Pegfilgrastim BS Subcutaneous Injection 3.6",
+      "mg \"Mochida\"",
+      "Pegfilgrastim BS Subcutaneous Injection 3.6",
+      "mg \"Nipro\""
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p032:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ustekinumab\n(genetical\nrecombination)\n[ustekinumab\nbiosimilar 1]",
+    "components": [
+      "Ustekinumab (genetical recombination) [ustekinumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Ustekinumab BS 45 mg Syringe for S.C.",
+      "Injection “F”"
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p033:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adalimumab\n(genetical\nrecombination)\n[adalimumab\nbiosimilar 4]",
+    "components": [
+      "Adalimumab (genetical recombination) [adalimumab biosimilar 4]"
+    ],
+    "brand_names": [
+      "Adalimumab BS Subcutaneous Injection 20 mg",
+      "Syringe 0.2 mL \"CTNK\"",
+      "Adalimumab BS Subcutaneous Injection 40 mg",
+      "Syringe 0.4 mL \"CTNK\"",
+      "Adalimumab BS Subcutaneous Injection 80 mg",
+      "Syringe 0.8 mL \"CTNK\"",
+      "Adalimumab BS Subcutaneous Injection 40 mg",
+      "Pen 0.4 mL \"CTNK\"",
+      "Adalimumab BS Subcutaneous Injection 80 mg",
+      "Pen 0.8 mL \"CTNK\""
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p033:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal\npolysaccharides of\nserotypes 1, 3, 4, 5,\n6A, 6B, 7F, 9V, 14,\n18C, 19A, 19F, 22F,\n23F, and 33F\nconjugated to\nCRM197 carrier\nprotein",
+    "components": [
+      "Pneumococcal polysaccharides of serotypes 1, 3, 4, 5",
+      "33F conjugated to CRM197 carrier protein"
+    ],
+    "brand_names": [
+      "Vaxneuvance Aqueous Suspension Syringes"
+    ],
+    "approval_date": "2023-06-26"
+  },
+  {
+    "source_record_id": "pmda:p033:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Varicella zoster virus\ngE antigen",
+    "components": [
+      "Varicella zoster virus gE antigen"
+    ],
+    "brand_names": [
+      "Shingrix for I.M. Injection"
+    ],
+    "approval_date": "2023-06-26"
+  },
+  {
+    "source_record_id": "pmda:p033:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ufrenmeran",
+    "components": [
+      "Ufrenmeran"
+    ],
+    "brand_names": [
+      "Daichirona for Intramuscular Injection"
+    ],
+    "approval_date": "2023-08-02"
+  },
+  {
+    "source_record_id": "pmda:p033:r05",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Imelasomeran",
+    "active_ingredient_raw": "Elasomeran,\nElasomeran and\nImelasomeran,\nElasomeran and\nDavesomeran",
+    "approval_date": "2023-08-02"
+  },
+  {
+    "source_record_id": "pmda:p033:r05",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Davesomeran",
+    "active_ingredient_raw": "Elasomeran,\nElasomeran and\nImelasomeran,\nElasomeran and\nDavesomeran",
+    "approval_date": "2023-08-02"
+  },
+  {
+    "source_record_id": "pmda:p033:r06",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Famtozinameran",
+    "active_ingredient_raw": "(1) Tozinameran,\nTozinameran and\nFamtozinameran,\nTozinameran and\nRiltozinameran\n(2)-(4) Tozinameran,\nTozinameran and\nFamtozinameran",
+    "approval_date": "2023-08-02"
+  },
+  {
+    "source_record_id": "pmda:p033:r06",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Riltozinameran",
+    "active_ingredient_raw": "(1) Tozinameran,\nTozinameran and\nFamtozinameran,\nTozinameran and\nRiltozinameran\n(2)-(4) Tozinameran,\nTozinameran and\nFamtozinameran",
+    "approval_date": "2023-08-02"
+  },
+  {
+    "source_record_id": "pmda:p033:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Protective antigen of\nBordetella pertussis\nDiphtheria toxoid\nTetanus toxoid\nInactivated poliovirus\ntypes 1-3 (Sabin\nstrain)\nHaemophilus\ninfluenzae type b\npolysaccharide-\ntetanus toxoid\nconjugate",
+    "components": [
+      "Protective antigen of Bordetella pertussis Diphtheria toxoid Tetanus toxoid Inactivated poliovirus types 1-3 (Sabin strain) Haemophilus influenzae type b polysaccharide-tetanus toxoid conjugate"
+    ],
+    "brand_names": [
+      "Quintovac Aqueous Suspension Injection"
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p033:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant\nrespiratory syncytial\nvirus PreF3 antigen",
+    "components": [
+      "Recombinant respiratory syncytial virus PreF3 antigen"
+    ],
+    "brand_names": [
+      "Arexvy Intramuscular Injection"
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p033:r09",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Imelasomeran",
+    "active_ingredient_raw": "Elasomeran,\nElasomeran and\nImelasomeran,\nElasomeran and\nDavesomeran,\nAndusomeran",
+    "approval_date": "2023-10-24"
+  },
+  {
+    "source_record_id": "pmda:p033:r09",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Davesomeran",
+    "active_ingredient_raw": "Elasomeran,\nElasomeran and\nImelasomeran,\nElasomeran and\nDavesomeran,\nAndusomeran",
+    "approval_date": "2023-10-24"
+  },
+  {
+    "source_record_id": "pmda:p033:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Zapomeran",
+    "components": [
+      "Zapomeran"
+    ],
+    "brand_names": [
+      "Kostaive Intramuscular Injection"
+    ],
+    "approval_date": "2023-11-28"
+  },
+  {
+    "source_record_id": "pmda:p034:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ufrenmeran, MAFB-\n7256a",
+    "components": [
+      "Ufrenmeran",
+      "MAFB-7256a"
+    ],
+    "brand_names": [
+      "Daichirona for Intramuscular Injection"
+    ],
+    "approval_date": "2023-11-28"
+  },
+  {
+    "source_record_id": "pmda:p034:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Respiratory syncytial\nvirus-A prefusion F\nprotein\nRespiratory syncytial\nvirus-B prefusion F\nprotein",
+    "components": [
+      "Respiratory syncytial virus-A prefusion F protein Respiratory syncytial virus-B prefusion F protein"
+    ],
+    "brand_names": [
+      "Abrysvo Intramuscular Injection"
+    ],
+    "approval_date": "2024-01-18"
+  },
+  {
+    "source_record_id": "pmda:p034:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated tick-borne\nencephalitis virus",
+    "components": [
+      "Inactivated tick-borne encephalitis virus"
+    ],
+    "brand_names": [
+      "Ticovac Suspension Liquid for Intramuscular",
+      "Injection 0.5 mL",
+      "Ticovac Junior Suspension Liquid for",
+      "Intramuscular Injection 0.25 mL"
+    ],
+    "approval_date": "2024-03-26"
+  },
+  {
+    "source_record_id": "pmda:p034:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal\npolysaccharide\nconjugated to\nCRM197 carrier\nprotein",
+    "components": [
+      "Pneumococcal polysaccharide conjugated to CRM197 carrier protein"
+    ],
+    "brand_names": [
+      "Prevenar 20 Suspension Liquid for Injection"
+    ],
+    "approval_date": "2024-03-26"
+  },
+  {
+    "source_record_id": "pmda:p034:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Respiratory syncytial\nvirus-A prefusion F\nprotein\nRespiratory syncytial\nvirus-B prefusion F\nprotein",
+    "components": [
+      "Respiratory syncytial virus-A prefusion F protein Respiratory syncytial virus-B prefusion F protein"
+    ],
+    "brand_names": [
+      "Abrysvo Intramuscular Injection"
+    ],
+    "approval_date": "2024-03-26"
+  },
+  {
+    "source_record_id": "pmda:p034:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Human normal\nimmunoglobulin G\n(pH4-treated acidic\nnormal human\nimmunoglobulin\n[subcutaneous\ninjection])",
+    "components": [
+      "Human normal immunoglobulin G (pH4-treated acidic normal human immunoglobulin [subcutaneous injection])"
+    ],
+    "brand_names": [
+      "Hizentra 20% S.C. Injection 1 g/5 mL",
+      "Hizentra 20% S.C. Injection 2 g/10 mL",
+      "Hizentra 20% S.C. Injection 4 g/20 mL"
+    ],
+    "approval_date": "2023-06-26"
+  },
+  {
+    "source_record_id": "pmda:p034:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Human normal\nimmunoglobulin G\n(pH4-treated acidic\nnormal human\nimmunoglobulin\n[subcutaneous\ninjection])",
+    "components": [
+      "Human normal immunoglobulin G (pH4-treated acidic normal human immunoglobulin [subcutaneous injection])"
+    ],
+    "brand_names": [
+      "Cuvitru 20% S.C. Injection 1 g/5 mL",
+      "Cuvitru 20% S.C. Injection 2 g/10 mL",
+      "Cuvitru 20% S.C. Injection 4 g/20 mL",
+      "Cuvitru 20% S.C. Injection 8 g/40 mL",
+      "Cuvitru 20% S.C. Injection 10 g/50 mL"
+    ],
+    "approval_date": "2023-09-25"
+  },
+  {
+    "source_record_id": "pmda:p036:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Purified pineapple stem\njuice",
+    "components": [
+      "Purified pineapple stem juice"
+    ],
+    "brand_names": [
+      "NexoBrid Gel 5 g"
+    ],
+    "approval_date": "2022-12-23"
+  },
+  {
+    "source_record_id": "pmda:p039:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Purified human\nmenopausal\ngonadotrophin",
+    "components": [
+      "Purified human menopausal gonadotrophin"
+    ],
+    "brand_names": [
+      "Folyrmon-P Injection 75",
+      "Folyrmon-P Injection 150",
+      "uFSH Injection 75 IU \"Aska\"",
+      "uFSH Injection 150 IU \"Aska\"",
+      "((1) (2) Fuji Pharma Co., Ltd.",
+      "(4) ASKA Pharmaceutical Co., Ltd.)"
+    ],
+    "approval_date": "2022-09-16"
+  },
+  {
+    "source_record_id": "pmda:p040:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ensitrelvir fumaric acid",
+    "components": [
+      "Ensitrelvir fumaric acid"
+    ],
+    "brand_names": [
+      "Xocova Tablets 125 mg"
+    ],
+    "approval_date": "2022-11-22"
+  },
+  {
+    "source_record_id": "pmda:p041:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "DiquafosoI sodium",
+    "components": [
+      "DiquafosoI sodium"
+    ],
+    "brand_names": [
+      "Diquas LX Ophthalmic Solution 3%"
+    ],
+    "approval_date": "2022-06-20"
+  },
+  {
+    "source_record_id": "pmda:p045:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Bevacizumab (genetical\nrecombination)\n[bevacizumab biosimilar\n4]",
+    "components": [
+      "Bevacizumab (genetical recombination) [bevacizumab biosimilar 4]"
+    ],
+    "brand_names": [
+      "Bevacizumab BS for Intravenous Infusion 100 mg",
+      "“CTNK”",
+      "Bevacizumab BS for Intravenous Infusion 400 mg",
+      "“CTNK”"
+    ],
+    "approval_date": "2022-09-26"
+  },
+  {
+    "source_record_id": "pmda:p045:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant\ncoronavirus (SARS-\nCoV-2) vaccine",
+    "components": [
+      "Recombinant coronavirus (SARS-CoV-",
+      "vaccine"
+    ],
+    "brand_names": [
+      "Nuvaxovid Intramuscular Injection"
+    ],
+    "approval_date": "2022-04-19"
+  },
+  {
+    "source_record_id": "pmda:p045:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "COVID-19 (SARS-CoV-\n2) vaccine (recombinant\nadenovirus vector)",
+    "components": [
+      "COVID-19 (SARS-CoV-",
+      "vaccine (recombinant adenovirus vector)"
+    ],
+    "brand_names": [
+      "Jcovden Intramuscular Injection"
+    ],
+    "approval_date": "2022-06-20"
+  },
+  {
+    "source_record_id": "pmda:p045:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Live vaccinia virus\n(LC16m8 strain)",
+    "components": [
+      "Live vaccinia virus (LC16m8 strain)"
+    ],
+    "brand_names": [
+      "Freeze-dried Smallpox Vaccine Prepared in Cell",
+      "Culture LC16 “KMB”"
+    ],
+    "approval_date": "2022-08-02"
+  },
+  {
+    "source_record_id": "pmda:p045:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Tozinameran\nTozinameran and\nRiltozinameran",
+    "components": [
+      "Tozinameran Tozinameran",
+      "Riltozinameran"
+    ],
+    "brand_names": [
+      "Comirnaty RTU Intramuscular Injection"
+    ],
+    "approval_date": "2022-09-12"
+  },
+  {
+    "source_record_id": "pmda:p045:r13",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Elasomeran\nElasomeran and\nImelasomeran",
+    "components": [
+      "Elasomeran Elasomeran",
+      "Imelasomeran"
+    ],
+    "brand_names": [
+      "Spikevax Intramuscular Injection"
+    ],
+    "approval_date": "2022-09-12"
+  },
+  {
+    "source_record_id": "pmda:p045:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Neisseria meningitidis\npolysaccharides\nconjugated to tetanus\ntoxoid (serogroups A, C,\nW, and Y)",
+    "components": [
+      "Neisseria meningitidis polysaccharides conjugated to tetanus toxoid (serogroups A, C,"
+    ],
+    "brand_names": [
+      "MenQuadfi intramuscular injection"
+    ],
+    "approval_date": "2022-09-26"
+  },
+  {
+    "source_record_id": "pmda:p046:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal\npolysaccharides of\nserotypes 1, 3, 4, 5, 6A,\n6B, 7F, 9V, 14, 18C,\n19A, 19F, 22F, 23F,\nand 33F conjugated to\nCRM197 carrier protein",
+    "components": [
+      "Pneumococcal polysaccharides of serotypes 1, 3, 4, 5, 6A",
+      "33F conjugated to CRM197 carrier protein"
+    ],
+    "brand_names": [
+      "Vaxneuvance Aqueous Suspension Syringes"
+    ],
+    "approval_date": "2022-09-26"
+  },
+  {
+    "source_record_id": "pmda:p046:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Tozinameran\nTozinameran and\nFamtozinameran",
+    "components": [
+      "Tozinameran Tozinameran",
+      "Famtozinameran"
+    ],
+    "brand_names": [
+      "Comirnaty Intramuscular Injection for 5 to 11 years",
+      "old"
+    ],
+    "approval_date": "2023-02-28"
+  },
+  {
+    "source_record_id": "pmda:p046:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Human papillomavirus\nL1 protein virus-like\nparticles (types 6, 11,\n16, 18, 31, 33, 45, 52,\nand 58)",
+    "components": [
+      "Human papillomavirus L1 protein virus-like particles (types 6, 11,",
+      "and"
+    ],
+    "brand_names": [
+      "Silgard 9 Aqueous Suspension for Intramuscular",
+      "Injection Syringes"
+    ],
+    "approval_date": "2023-03-08"
+  },
+  {
+    "source_record_id": "pmda:p046:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Live attenuated\ninfluenza virus (type A\nand type B)",
+    "components": [
+      "Live attenuated influenza virus (type A and type B)"
+    ],
+    "brand_names": [
+      "Fulmist Intranasal Spray"
+    ],
+    "approval_date": "2023-03-27"
+  },
+  {
+    "source_record_id": "pmda:p046:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Protective antigen of\nBordetella pertussis\nDiphtheria toxoid\nTetanus toxoid\nInactivated poliovirus\ntypes 1-3 (Sabin strain)\nHaemophilus influenzae\ntype b oligosaccharide -\ndiphtheria CRM\n197\nconjugate",
+    "components": [
+      "Protective antigen of Bordetella pertussis Diphtheria toxoid Tetanus toxoid Inactivated poliovirus types 1-3 (Sabin strain) Haemophilus influenzae type b oligosaccharide -diphtheria CRM 197 conjugate"
+    ],
+    "brand_names": [
+      "Gobik Aqueous Suspension Syringes",
+      "(The Research Foundation for Microbial Diseases of",
+      "Osaka University)"
+    ],
+    "approval_date": "2023-03-27"
+  },
+  {
+    "source_record_id": "pmda:p046:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried activated\nhuman blood\ncoagulation factor VII\nconcentrate containing\nfactor X",
+    "components": [
+      "Freeze-dried activated human blood coagulation factor VII concentrate containing factor X"
+    ],
+    "brand_names": [
+      "Byclot Combination Intravenous Injection"
+    ],
+    "approval_date": "2022-08-24"
+  },
+  {
+    "source_record_id": "pmda:p046:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Human C1-inactivator",
+    "components": [
+      "Human C1-inactivator"
+    ],
+    "brand_names": [
+      "Berinert S.C. Injection 2000"
+    ],
+    "approval_date": "2022-09-26"
+  },
+  {
+    "source_record_id": "pmda:p046:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Anti-human thymocyte\nimmunoglobulin, equine",
+    "components": [
+      "Anti-human thymocyte immunoglobulin",
+      "equine"
+    ],
+    "brand_names": [
+      "Atgam Intravenous Infusion 250 mg"
+    ],
+    "approval_date": "2023-03-27"
+  },
+  {
+    "source_record_id": "pmda:p048:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Carotegrast methyl",
+    "components": [
+      "Carotegrast methyl"
+    ],
+    "brand_names": [
+      "Carogra Tablets 120 mg"
+    ],
+    "approval_date": "2022-03-28"
+  },
+  {
+    "source_record_id": "pmda:p051:r08",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Lympack TA5"
+    ],
+    "approval_date": "2022-03-28"
+  },
+  {
+    "source_record_id": "pmda:p057:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Ranibizumab\n(genetical\nrecombination)\n[ranibizumab biosimilar\n1]",
+    "components": [
+      "Ranibizumab (genetical recombination) [ranibizumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Ranibizumab BS Intravitreal Injection kit 10",
+      "mg/mL \"Senju\""
+    ],
+    "approval_date": "2021-09-27"
+  },
+  {
+    "source_record_id": "pmda:p057:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Bevacizumab\n(genetical\nrecombination)\n[bevacizumab\nbiosimilar 3]",
+    "components": [
+      "Bevacizumab (genetical recombination) [bevacizumab biosimilar 3]"
+    ],
+    "brand_names": [
+      "Bevacizumab BS Intravenous Infusion 100 mg",
+      "\"Nichi-Iko\"",
+      "Bevacizumab BS Intravenous Infusion 400 mg",
+      "\"Nichi-Iko\""
+    ],
+    "approval_date": "2022-01-20"
+  },
+  {
+    "source_record_id": "pmda:p057:r09",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "CX-024414",
+    "brand_names": [
+      "COVID-19 Vaccine Moderna Intramuscular",
+      "Injection"
+    ],
+    "approval_date": "2021-05-21"
+  },
+  {
+    "source_record_id": "pmda:p057:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "COVID-19 (SARS-\nCoV-2) vaccine\n(recombinant\nchimpanzee\nadenovirus vector)",
+    "components": [
+      "COVID-19 (SARS-CoV-",
+      "vaccine (recombinant chimpanzee adenovirus vector)"
+    ],
+    "brand_names": [
+      "Vaxzevria Intramuscular Injection"
+    ],
+    "approval_date": "2021-05-21"
+  },
+  {
+    "source_record_id": "pmda:p057:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Elasomeran (former\ningredient name: CX-\n024414)",
+    "components": [
+      "Elasomeran (former ingredient name: CX-0244"
+    ],
+    "brand_names": [
+      "Spikevax Intramuscular Injection (previously",
+      "COVID-19 Vaccine Moderna Intramuscular",
+      "Injection)"
+    ],
+    "approval_date": "2021-12-16"
+  },
+  {
+    "source_record_id": "pmda:p058:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried human\nfibrinogen",
+    "components": [
+      "Freeze-dried human fibrinogen"
+    ],
+    "brand_names": [
+      "Fibrinogen HT I.V. 1 g “JB”"
+    ],
+    "approval_date": "2022-03-28"
+  },
+  {
+    "source_record_id": "pmda:p061:r06",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Kindaly AF-5",
+      "Kindaly AF-5P",
+      "Kindaly 5E"
+    ],
+    "approval_date": "2020-06-29"
+  },
+  {
+    "source_record_id": "pmda:p061:r07",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Enefluid Injection"
+    ],
+    "approval_date": "2020-09-25"
+  },
+  {
+    "source_record_id": "pmda:p069:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adalimumab (genetical\nrecombination)\n[adalimumab biosimilar\n1]",
+    "components": [
+      "Adalimumab (genetical recombination) [adalimumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Adalimumab BS Subcutaneous Injection 40 mg Syringe",
+      ".8 mL “FKB”",
+      "Adalimumab BS Subcutaneous Injection 40 mg Pen 0.8",
+      "mL “FKB”",
+      "Adalimumab BS Subcutaneous Injection 20 mg Syringe",
+      ".4 mL “FKB”"
+    ],
+    "approval_date": "2020-06-29"
+  },
+  {
+    "source_record_id": "pmda:p069:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adalimumab (genetical\nrecombination)\n[adalimumab biosimilar\n2]",
+    "components": [
+      "Adalimumab (genetical recombination) [adalimumab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Adalimumab BS Subcutaneous Injection 20 mg Syringe",
+      ".4 mL ”Daiichi Sankyo”",
+      "Adalimumab BS Subcutaneous Injection 40 mg Syringe",
+      ".8 mL ”Daiichi Sankyo”",
+      "Adalimumab BS Subcutaneous Injection 40 mg Pen 0.8",
+      "mL ”Daiichi Sankyo”"
+    ],
+    "approval_date": "2021-01-22"
+  },
+  {
+    "source_record_id": "pmda:p069:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Insulin aspart (genetical\nrecombination) [insulin\naspart biosimilar 1]",
+    "components": [
+      "Insulin aspart (genetical recombination) [insulin aspart biosimilar 1]"
+    ],
+    "brand_names": [
+      "Insulin Aspart BS Injection SoloStar NR \"Sanofi\"",
+      "Insulin Aspart BS Injection Cart NR \"Sanofi\"",
+      "Insulin Aspart BS Injection 100 I.U./mL NR \"Sanofi\""
+    ],
+    "approval_date": "2021-03-23"
+  },
+  {
+    "source_record_id": "pmda:p069:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adalimumab (genetical\nrecombination)\n[adalimumab biosimilar\n3]",
+    "components": [
+      "Adalimumab (genetical recombination) [adalimumab biosimilar 3]"
+    ],
+    "brand_names": [
+      "Adalimumab BS Subcutaneous Injection 20 mg Syringe",
+      ".2 mL \"MA\"",
+      "Adalimumab BS Subcutaneous Injection 40 mg Syringe",
+      ".4 mL \"MA\"",
+      "Adalimumab BS Subcutaneous Injection 80 mg Syringe",
+      ".8 mL \"MA\"",
+      "Adalimumab BS Subcutaneous Injection 40 mg Pen 0.4",
+      "mL \"MA\""
+    ],
+    "approval_date": "2021-03-23"
+  },
+  {
+    "source_record_id": "pmda:p069:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal 13-valent\nconjugate vaccine\nadsorbed (mutated\ndiphtheria CRM197\nconjugate)",
+    "components": [
+      "Pneumococcal 13-valent conjugate vaccine adsorbed (mutated diphtheria CRM197 conjugate)"
+    ],
+    "brand_names": [
+      "Prevenar 13 Suspension Liquid for Injection"
+    ],
+    "approval_date": "2020-05-29"
+  },
+  {
+    "source_record_id": "pmda:p070:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant adsorbed\n9-valent human\npapillomavirus\nvirus-like particle vaccine\n(yeast origin)",
+    "components": [
+      "Recombinant adsorbed 9-valent human papillomavirus virus-like particle vaccine (yeast origin)"
+    ],
+    "brand_names": [
+      "Silgard9 Aqueous Suspension for Intramuscular",
+      "Injection Syringes"
+    ],
+    "approval_date": "2020-07-21"
+  },
+  {
+    "source_record_id": "pmda:p070:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant adsorbed\n4-valent human\npapillomavirus virus-like\nparticle vaccine (yeast\norigin)",
+    "components": [
+      "Recombinant adsorbed 4-valent human papillomavirus virus-like particle vaccine (yeast origin)"
+    ],
+    "brand_names": [
+      "Gardasil Aqueous Suspension for Intramuscular",
+      "Injection Syringes"
+    ],
+    "approval_date": "2020-12-25"
+  },
+  {
+    "source_record_id": "pmda:p070:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Lyophilized human\nalpha1-proteinase\ninhibitor concentrate",
+    "components": [
+      "Lyophilized human alpha1-proteinase inhibitor concentrate"
+    ],
+    "brand_names": [
+      "Lynspad for Intravenous Infusion 1000 mg"
+    ],
+    "approval_date": "2021-01-22"
+  },
+  {
+    "source_record_id": "pmda:p071:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol treated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Venoglobulin IH 5% I.V. 0.5 g/10 mL",
+      "Venoglobulin IH 5% I.V. 1 g/20 mL",
+      "Venoglobulin IH 5% I.V. 2.5 g/50 mL",
+      "Venoglobulin IH 5% I.V. 5 g/100 mL",
+      "Venoglobulin IH 5% I.V. 10 g/200 mL",
+      "Venoglobulin IH 10% I.V. 0.5 g/5 mL",
+      "Venoglobulin IH 10% I.V. 2.5 g/25 mL",
+      "Venoglobulin IH 10% I.V. 5 g/50 mL",
+      "Venoglobulin IH 10% I.V. 10 g/100 mL",
+      "Venoglobulin IH 10% I.V. 20 g/200 mL"
+    ],
+    "approval_date": "2019-12-20"
+  },
+  {
+    "source_record_id": "pmda:p073:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried sulfonated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried sulfonated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketsu Venilon-I for Intravenous Injection 500 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 1000 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 2500 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 5000 mg"
+    ],
+    "approval_date": "2019-08-22"
+  },
+  {
+    "source_record_id": "pmda:p074:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried sulfonated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried sulfonated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketsu Venilon-I for Intravenous Injection 500 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 1000 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 2500 mg",
+      "Kenketsu Venilon-I for Intravenous Injection 5000 mg"
+    ],
+    "approval_date": "2019-12-20"
+  },
+  {
+    "source_record_id": "pmda:p079:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "pH4-treated acidic normal\nhuman immunoglobulin",
+    "components": [
+      "pH4-treated acidic normal human immunoglobulin"
+    ],
+    "brand_names": [
+      "Privigen 10% I.V. Drip Infusion 5 g/50 mL",
+      "Privigen 10% I.V. Drip Infusion 10 g/100 mL",
+      "Privigen 10% I.V. Drip Infusion 20 g/200 mL"
+    ],
+    "approval_date": "2020-02-21"
+  },
+  {
+    "source_record_id": "pmda:p079:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Bevacizumab\n(genetical recombination)\n[bevacizumab biosimilar 1]",
+    "components": [
+      "Bevacizumab (genetical recombination) [bevacizumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Bevacizumab BS Intravenous Infusion 100 mg [Pfizer]",
+      "Bevacizumab BS Intravenous Infusion 400 mg [Pfizer]"
+    ],
+    "approval_date": "2019-06-18"
+  },
+  {
+    "source_record_id": "pmda:p079:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Teriparatide (genetical\nrecombination) [teriparatide\nbiosimilar 1]",
+    "components": [
+      "Teriparatide (genetical recombination) [teriparatide biosimilar 1]"
+    ],
+    "brand_names": [
+      "Teriparatide BS Subcutaneous Injection Kit 600 μg",
+      "\"MOCHIDA\""
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p079:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Darbepoetin alfa (genetical\nrecombination) [darbepoetin\nalfa biosimilar 1]",
+    "components": [
+      "Darbepoetin alfa (genetical recombination) [darbepoetin alfa biosimilar 1]"
+    ],
+    "brand_names": [
+      "Darbepoetin Alfa BS Injection 5 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 10 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 15 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 20 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 30 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 40 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 60 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 120 μg Syringe [JCR]",
+      "Darbepoetin Alfa BS Injection 180 μg Syringe [JCR]"
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p079:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Darbepoetin alfa (genetical\nrecombination) [darbepoetin\nalfa biosimilar 2]",
+    "components": [
+      "Darbepoetin alfa (genetical recombination) [darbepoetin alfa biosimilar 2]"
+    ],
+    "brand_names": [
+      "Darbepoetin Alfa BS 5 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 10 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 15 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 20 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 30 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 40 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 60 μg Syringe for Injection “Sanwa”",
+      "Darbepoetin Alfa BS 120 μg Syringe for Injection",
+      "“Sanwa”",
+      "Darbepoetin Alfa BS 180 μg Syringe for Injection",
+      "“Sanwa”"
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p080:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Darbepoetin alfa (genetical\nrecombination) [darbepoetin\nalfa biosimilar 3]",
+    "components": [
+      "Darbepoetin alfa (genetical recombination) [darbepoetin alfa biosimilar 3]"
+    ],
+    "brand_names": [
+      "Darbepoetin Alfa BS Injection 5 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 10 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 15 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 20 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 30 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 40 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 60 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 120 μg Syringe \"MYL\"",
+      "Darbepoetin Alfa BS Injection 180 μg Syringe \"MYL\""
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p080:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Bevacizumab (genetical\nrecombination)\n[bevacizumab biosimilar 2]",
+    "components": [
+      "Bevacizumab (genetical recombination) [bevacizumab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Bevacizumab BS Intravenous Drip Infusions 100 mg",
+      "“Daiichi Sankyo”",
+      "Bevacizumab BS Intravenous Drip Infusions 400 mg",
+      "“Daiichi Sankyo”"
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p080:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Rituximab (genetical\nrecombination) [rituximab\nbiosimilar 2]",
+    "components": [
+      "Rituximab (genetical recombination) [rituximab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Rituximab BS Intravenous Infusion 100 mg [Pfizer]",
+      "Rituximab BS Intravenous Infusion 500 mg [Pfizer]"
+    ],
+    "approval_date": "2019-09-20"
+  },
+  {
+    "source_record_id": "pmda:p080:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Insulin lispro (genetical\nrecombination) [Insulin lispro\nbiosimilar 1]",
+    "components": [
+      "Insulin lispro (genetical recombination) [Insulin lispro biosimilar 1]"
+    ],
+    "brand_names": [
+      "Insulin Lispro BS Injection HU Solostar \"Sanofi\"",
+      "Insulin Lispro BS Injection HU Cart \"Sanofi\"",
+      "Insulin Lispro BS Injection HU 100 U/mL \"Sanofi\""
+    ],
+    "approval_date": "2020-03-25"
+  },
+  {
+    "source_record_id": "pmda:p081:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Lactulose crystal",
+    "components": [
+      "Lactulose crystal"
+    ],
+    "brand_names": [
+      "Lagnos NF Jelly for Oral Administration Divided",
+      "Pack 12 g"
+    ],
+    "approval_date": "2018-09-21"
+  },
+  {
+    "source_record_id": "pmda:p082:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "pH4-treated acidic normal\nhuman immunoglobulin",
+    "components": [
+      "pH4-treated acidic normal human immunoglobulin"
+    ],
+    "brand_names": [
+      "Privigen 10% I.V. Drip Infusion 5 g/50 mL",
+      "Privigen 10% I.V. Drip Infusion 10 g/100 mL",
+      "Privigen 10% I.V. Drip Infusion 20 g/200 mL"
+    ],
+    "approval_date": "2019-03-26"
+  },
+  {
+    "source_record_id": "pmda:p082:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "pH4-treated acidic normal\nhuman immunoglobulin\n(subcutaneous injection)",
+    "components": [
+      "pH4-treated acidic normal human immunoglobulin (subcutaneous injection)"
+    ],
+    "brand_names": [
+      "Hizentra 20% S.C. Injection 1 g/5 mL",
+      "Hizentra 20% S.C. Injection 2 g/10 mL",
+      "Hizentra 20% S.C. Injection 4 g/20 mL"
+    ],
+    "approval_date": "2019-03-26"
+  },
+  {
+    "source_record_id": "pmda:p083:r11",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Ethinylestrad iol",
+    "active_ingredient_raw": "Levonorgestrel/Ethinylestrad\niol",
+    "approval_date": "2018-07-02"
+  },
+  {
+    "source_record_id": "pmda:p084:r01",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Enoras Liquid for Enteral Use"
+    ],
+    "approval_date": "2019-03-26"
+  },
+  {
+    "source_record_id": "pmda:p087:r02",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Except",
+    "active_ingredient_raw": "Except (2): Levofolinate\ncalcium\n(2): Calcium levofolinate\nhydrate",
+    "approval_date": "2018-09-21"
+  },
+  {
+    "source_record_id": "pmda:p089:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried inactivated\ntissue culture rabies vaccine",
+    "components": [
+      "Freeze-dried inactivated tissue culture rabies vaccine"
+    ],
+    "brand_names": [
+      "Rabipur Intramuscular Injection"
+    ],
+    "approval_date": "2019-03-26"
+  },
+  {
+    "source_record_id": "pmda:p089:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Infliximab\n(genetical recombination)\n[infliximab biosimilar 3]",
+    "components": [
+      "Infliximab (genetical recombination) [infliximab biosimilar 3]"
+    ],
+    "brand_names": [
+      "Infliximab BS for I.V. Infusion 100 mg [Pfizer]"
+    ],
+    "approval_date": "2018-07-02"
+  },
+  {
+    "source_record_id": "pmda:p089:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Agalsidase beta\n(genetical recombination)\n[agalsidase beta biosimilar\n1]",
+    "components": [
+      "Agalsidase beta (genetical recombination) [agalsidase beta biosimilar 1]"
+    ],
+    "brand_names": [
+      "Agalsidase Beta BS I.V. Infusion 5 mg [JCR]",
+      "Agalsidase Beta BS I.V. Infusion 35 mg [JCR]"
+    ],
+    "approval_date": "2018-09-21"
+  },
+  {
+    "source_record_id": "pmda:p089:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Trastuzumab\n(genetical recombination)\n[trastuzumab biosimilar 2]",
+    "components": [
+      "Trastuzumab (genetical recombination) [trastuzumab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Trastuzumab BS for Intravenous Drip Infusions",
+      "mg \"Daiichi Sankyo\"",
+      "Trastuzumab BS for Intravenous Drip Infusions",
+      "mg \"Daiichi Sankyo\""
+    ],
+    "approval_date": "2018-09-21"
+  },
+  {
+    "source_record_id": "pmda:p089:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Trastuzumab\n(genetical recombination)\n[trastuzumab biosimilar 3]",
+    "components": [
+      "Trastuzumab (genetical recombination) [trastuzumab biosimilar 3]"
+    ],
+    "brand_names": [
+      "Trastuzumab BS for Intravenous Infusion 60 mg",
+      "[Pfizer]",
+      "Trastuzumab BS for Intravenous Infusion 150 mg",
+      "[Pfizer]"
+    ],
+    "approval_date": "2018-09-21"
+  },
+  {
+    "source_record_id": "pmda:p089:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Etanercept\n(genetical recombination)\n[etanercept biosimilar 2]",
+    "components": [
+      "Etanercept (genetical recombination) [etanercept biosimilar 2]"
+    ],
+    "brand_names": [
+      "Etanercept BS 10 mg Syringe 1.0 mL for S.C. Inj.",
+      "“TY”",
+      "Etanercept BS 25 mg Syringe 0.5 mL for S.C. Inj.",
+      "“TY”",
+      "Etanercept BS 50 mg Syringe 1.0 mL for S.C. Inj.",
+      "“TY”",
+      "Etanercept BS 50 mg Pen 1.0 mL for S.C. Inj.",
+      "“TY”",
+      "Etanercept BS 10 mg Syringe 1.0 mL for S.C. Inj.",
+      "“Nichiiko”",
+      "Etanercept BS 25 mg Syringe 0.5 mL for S.C. Inj.",
+      "“Nichiiko”",
+      "Etanercept BS 50 mg Syringe 1.0 mL for S.C. Inj.",
+      "“Nichiiko”",
+      "Etanercept BS 50 mg Pen 1.0 mL for S.C. Inj.",
+      "“Nichiiko”"
+    ],
+    "approval_date": "2019-03-26"
+  },
+  {
+    "source_record_id": "pmda:p090:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Lyophilized human\nantithrombin III\nconcentrate",
+    "components": [
+      "Lyophilized human antithrombin III concentrate"
+    ],
+    "brand_names": [
+      "Kenketu Nonthron 500 for injection",
+      "Kenketu Nonthron 1500 for injection"
+    ],
+    "approval_date": "2017-08-25"
+  },
+  {
+    "source_record_id": "pmda:p093:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Fosravuconazole L-\nlysine ethanolate",
+    "components": [
+      "Fosravuconazole L-lysine ethanolate"
+    ],
+    "brand_names": [
+      "Nailin Capsules 100 mg"
+    ],
+    "approval_date": "2018-01-19"
+  },
+  {
+    "source_record_id": "pmda:p094:r04",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Onepal No. 1 Injection",
+      "Onepal No. 2 Injection"
+    ],
+    "approval_date": "2018-03-23"
+  },
+  {
+    "source_record_id": "pmda:p094:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Japanese cedar pollen\nextract bulk powder",
+    "components": [
+      "Japanese cedar pollen extract bulk powder"
+    ],
+    "brand_names": [
+      "Cedarcure Japanese Cedar Pollen",
+      "Sublingual Tablets 2,000 JAU",
+      "Cedarcure Japanese Cedar Pollen",
+      "Sublingual Tablets 5,000 JAU"
+    ],
+    "approval_date": "2017-09-27"
+  },
+  {
+    "source_record_id": "pmda:p095:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract,\nDermatophagoides\npteronyssinus extract",
+    "components": [
+      "Dermatophagoides farinae extract",
+      "Dermatophagoides pteronyssinus extract"
+    ],
+    "brand_names": [
+      "Miticure House Dust Mite Sublingual Tablets",
+      "300 JAU",
+      "Miticure House Dust Mite Sublingual Tablets",
+      "000 JAU"
+    ],
+    "approval_date": "2018-02-16"
+  },
+  {
+    "source_record_id": "pmda:p095:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract bulk\npowder,\nDermatophagoides\npteronyssinus extract\nbulk powder",
+    "components": [
+      "Dermatophagoides farinae extract bulk powder",
+      "Dermatophagoides pteronyssinus extract bulk powder"
+    ],
+    "brand_names": [
+      "Actair 100 IR Sublingual Tablets-HDM",
+      "Actair 300 IR Sublingual Tablets-HDM"
+    ],
+    "approval_date": "2018-02-16"
+  },
+  {
+    "source_record_id": "pmda:p099:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried\nrecombinant herpes\nzoster vaccine (prepared\nfrom Chinese hamster\novary cells)",
+    "components": [
+      "Freeze-dried recombinant herpes zoster vaccine (prepared from Chinese hamster ovary cells)"
+    ],
+    "brand_names": [
+      "Shingrix for Intramuscular Injection"
+    ],
+    "approval_date": "2018-03-23"
+  },
+  {
+    "source_record_id": "pmda:p099:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Emulsion-adjuvanted\ncell-culture derived\ninfluenza HA vaccine\n(H5N1)",
+    "components": [
+      "Emulsion-adjuvanted cell-culture derived influenza HA vaccine (H5N"
+    ],
+    "brand_names": [
+      "Emulsion-adjuvanted Cell-culture Derived",
+      "Influenza HA Vaccine H5N1 for Intramuscular",
+      "Injection “Kaketsuken”"
+    ],
+    "approval_date": "2018-03-23"
+  },
+  {
+    "source_record_id": "pmda:p099:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Emulsion-adjuvanted\ncell-culture derived\ninfluenza HA vaccine\n(prototype)",
+    "components": [
+      "Emulsion-adjuvanted cell-culture derived influenza HA vaccine (prototype)"
+    ],
+    "brand_names": [
+      "Emulsion-adjuvanted Cell-culture Derived",
+      "Influenza HA Vaccine (prototype) for",
+      "Intramuscular Injection “Kaketsuken”"
+    ],
+    "approval_date": "2018-03-23"
+  },
+  {
+    "source_record_id": "pmda:p100:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Infliximab\n(genetical\nrecombination)\n[Infliximab biosimilar 2]",
+    "components": [
+      "Infliximab (genetical recombination) [Infliximab biosimilar 2]"
+    ],
+    "brand_names": [
+      "Infliximab BS for I.V. Infusion 100 mg",
+      "“Nichiiko”",
+      "Infliximab BS for I.V. Infusion 100 mg",
+      "“AYUMI”"
+    ],
+    "approval_date": "2017-09-27"
+  },
+  {
+    "source_record_id": "pmda:p100:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Rituximab\n(genetical\nrecombination)\n[Rituximab biosimilar 1]",
+    "components": [
+      "Rituximab (genetical recombination) [Rituximab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Rituximab BS Intravenous Infusion 100 mg",
+      "[KHK]",
+      "Rituximab BS Intravenous Infusion 500 mg",
+      "[KHK]"
+    ],
+    "approval_date": "2017-09-27"
+  },
+  {
+    "source_record_id": "pmda:p100:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Etanercept (genetical\nrecombination)\n[etanercept biosimilar 1]",
+    "components": [
+      "Etanercept (genetical recombination) [etanercept biosimilar 1]"
+    ],
+    "brand_names": [
+      "Etanercept BS 10 mg for S.C. Inj. \"MA\"",
+      "Etanercept BS 25 mg for S.C. Inj. \"MA\"",
+      "Etanercept BS 25 mg Syringe 0.5 mL for S.C.",
+      "Inj. \"MA\"",
+      "Etanercept BS 50 mg Syringe 1.0 mL for S.C.",
+      "Inj. \"MA\"",
+      "Etanercept BS 50 mg PEN 1.0 mL for S.C.",
+      "Inj. \"MA\""
+    ],
+    "approval_date": "2018-01-19"
+  },
+  {
+    "source_record_id": "pmda:p100:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Trastuzumab (genetical\nrecombination)\n[trastuzumab biosimilar\n1]",
+    "components": [
+      "Trastuzumab (genetical recombination) [trastuzumab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Trastuzumab BS for I.V. Infusion 60 mg \"NK\"",
+      "Trastuzumab BS for I.V. Infusion 150 mg",
+      "\"NK\"",
+      "Trastuzumab BS for I.V. Infusion 60 mg",
+      "\"CTH\"",
+      "Trastuzumab BS for I.V. Infusion 150 mg",
+      "\"CTH\""
+    ],
+    "approval_date": "2018-03-23"
+  },
+  {
+    "source_record_id": "pmda:p103:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried\npolyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketu Glovenin-I for I.V. Injection 500 mg",
+      "Kenketu Glovenin-I for I.V. Injection 2500 mg",
+      "Kenketu Glovenin-I for I.V. Injection 5000 mg"
+    ],
+    "approval_date": "2016-09-28"
+  },
+  {
+    "source_record_id": "pmda:p103:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin G",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin G"
+    ],
+    "brand_names": [
+      "Kenketu Glovenin-I for I.V. Injection 2500 mg",
+      "Kenketu Glovenin-I for I.V. Injection 500 mg",
+      "Kenketu Glovenin-I for I.V. Injection 5000 mg"
+    ],
+    "approval_date": "2016-12-19"
+  },
+  {
+    "source_record_id": "pmda:p105:r03",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Elneopa-NF No. 1 Injection",
+      "Elneopa-NF No. 2 Injection"
+    ],
+    "approval_date": "2016-07-04"
+  },
+  {
+    "source_record_id": "pmda:p105:r07",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "D Dry 2.75S"
+    ],
+    "approval_date": "2017-03-30"
+  },
+  {
+    "source_record_id": "pmda:p106:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Lyophilized human\nC1-inactivator\nconcentrate",
+    "components": [
+      "Lyophilized human C1-inactivator concentrate"
+    ],
+    "brand_names": [
+      "Berinert P I.V. Injection 500"
+    ],
+    "approval_date": "2017-03-24"
+  },
+  {
+    "source_record_id": "pmda:p108:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Haemophilus\ninfluenzae type b\nvaccine adsorbed\n(mutated diphtheria\ntoxin CRM197\nconjugate)",
+    "components": [
+      "Haemophilus influenzae type b vaccine adsorbed (mutated diphtheria toxin CRM197 conjugate)"
+    ],
+    "brand_names": [
+      "Vaxem Hib Suspension Liquid for Injection"
+    ],
+    "approval_date": "2016-12-19"
+  },
+  {
+    "source_record_id": "pmda:p108:r17",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried human\nprothrombin complex\nconcentrated",
+    "components": [
+      "Freeze-dried human prothrombin complex concentrated"
+    ],
+    "brand_names": [
+      "Kcentra for I.V. Injection 500",
+      "Kcentra for I.V. Injection 1000"
+    ],
+    "approval_date": "2017-03-30"
+  },
+  {
+    "source_record_id": "pmda:p109:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried\npolyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "kenketu Glovenin-I for I.V. Injection 500 mg",
+      "kenketu Glovenin-I for I.V. Injection 2500 mg",
+      "kenketu Glovenin-I for I.V. Injection 5000 mg"
+    ],
+    "approval_date": "2015-11-20"
+  },
+  {
+    "source_record_id": "pmda:p111:r09",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Propitocain e",
+    "active_ingredient_raw": "Lidocaine/Propitocain\ne",
+    "approval_date": "2015-06-26"
+  },
+  {
+    "source_record_id": "pmda:p113:r08",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Mentha oil",
+    "active_ingredient_raw": "Esflurbiprofen/Mentha\noil",
+    "approval_date": "2015-09-28"
+  },
+  {
+    "source_record_id": "pmda:p113:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract,\nDermatophagoides\npteronyssinus extract",
+    "components": [
+      "Dermatophagoides farinae extract",
+      "Dermatophagoides pteronyssinus extract"
+    ],
+    "brand_names": [
+      "Miticure House Dust Mite Sublingual Tablets",
+      "300 JAU",
+      "Miticure House Dust Mite Sublingual Tablets",
+      "000 JAU"
+    ],
+    "approval_date": "2015-09-28"
+  },
+  {
+    "source_record_id": "pmda:p114:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Indium pentetoreotide\n(111In)",
+    "components": [
+      "Indium pentetoreotide (111In)"
+    ],
+    "brand_names": [
+      "Octreoscan Injection"
+    ],
+    "approval_date": "2015-09-28"
+  },
+  {
+    "source_record_id": "pmda:p116:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Haemophilus\ninfluenzae type b\nvaccine absorbed\n(mutated diphtheria\nCRM conjugate)\n197",
+    "components": [
+      "Haemophilus influenzae type b vaccine absorbed (mutated diphtheria CRM conjugate) 197"
+    ],
+    "brand_names": [
+      "Vaxem Hib Suspension Liquid for Injection"
+    ],
+    "approval_date": "2016-01-22"
+  },
+  {
+    "source_record_id": "pmda:p116:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed diphtheria-\npurified pertussis-\ntetanus combined\nvaccine",
+    "components": [
+      "Adsorbed diphtheria-purified pertussis-tetanus combined vaccine"
+    ],
+    "brand_names": [
+      "Tribik",
+      "(The Research Foundation for Microbial Diseases",
+      "of Osaka University)"
+    ],
+    "approval_date": "2016-02-29"
+  },
+  {
+    "source_record_id": "pmda:p116:r16",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried live\nattenuated varicella\nvaccine",
+    "components": [
+      "Freeze-dried live attenuated varicella vaccine"
+    ],
+    "brand_names": [
+      "Freeze-dried Live Attenuated Varicella Vaccine",
+      "\"Biken\"",
+      "(The Research Foundation for Microbial Diseases",
+      "of Osaka University)"
+    ],
+    "approval_date": "2016-03-18"
+  },
+  {
+    "source_record_id": "pmda:p117:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed cell culture-\nderived influenza\nvaccine (H5N1)",
+    "components": [
+      "Adsorbed cell culture-derived influenza vaccine (H5N"
+    ],
+    "brand_names": [
+      "Adsorbed Cell Culture-derived Influenza Vaccine",
+      "H5N1 for Intramuscular Injection 30μg/mL",
+      "“Kitasato Daiichi Sankyo”"
+    ],
+    "approval_date": "2016-03-18"
+  },
+  {
+    "source_record_id": "pmda:p117:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Octocog beta\n(genetical\nrecombination)",
+    "components": [
+      "Octocog beta (genetical recombination)"
+    ],
+    "brand_names": [
+      "Kovaltry for iv injection 250",
+      "Kovaltry for iv injection 500",
+      "Kovaltry for iv injection 1000",
+      "Kovaltry for iv injection 2000",
+      "Kovaltry for iv injection 3000",
+      "Kovaltry for iv injection Kit 250",
+      "Kovaltry for iv injection Kit 500",
+      "Kovaltry for iv injection Kit 1000",
+      "Kovaltry for iv injection Kit 2000",
+      "Kovaltry for iv injection Kit 3000"
+    ],
+    "approval_date": "2016-03-28"
+  },
+  {
+    "source_record_id": "pmda:p117:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Insulin glargine\n(genetical\nrecombination)\n[insulin glargine\nbiosimilar 2]",
+    "components": [
+      "Insulin glargine (genetical recombination) [insulin glargine biosimilar 2]"
+    ],
+    "brand_names": [
+      "Insulin Glargine BS Injection Kit \"FFP\"",
+      "Insulin Glargine BS Injection 100 Unit/mL \"FFP\"",
+      "(Fujifilm Pharma Co., Ltd.）"
+    ],
+    "approval_date": "2016-03-28"
+  },
+  {
+    "source_record_id": "pmda:p118:r03",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Anti-human thymocyte immunoglobulin",
+    "active_ingredient_raw": "Anti-human thymocyte\nimmunoglobulin, rabbit",
+    "approval_date": "2014-09-19"
+  },
+  {
+    "source_record_id": "pmda:p121:r09",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Pareplus for IV. Infusion"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p122:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried\npolyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "kenketu Glovenin-I for I.V. Injection 2500 mg",
+      "kenketu Glovenin-I for I.V. Injection 500 mg",
+      "kenketu Glovenin-I for I.V. Injection 5000 mg"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p122:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract 10,000\nAU/mL,\nDermatophagoides\npteronyssinus extract\n10,000 AU/mL",
+    "components": [
+      "Dermatophagoides farinae extract 10, 000 AU",
+      "Dermatophagoides pteronyssinus extract 10, 000 AU"
+    ],
+    "brand_names": [
+      "Allergen Extract for Subcutaneous Injection-HDM",
+      "\"TORII\"100,000 JAU/mL",
+      "Allergen Extract for Subcutaneous Injection-HDM",
+      "\"TORII\"10,000 JAU/mL"
+    ],
+    "approval_date": "2014-12-26"
+  },
+  {
+    "source_record_id": "pmda:p122:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract 10,000\nAU/mL,\nDermatophagoides\npteronyssinus extract\n10,000 AU/mL",
+    "components": [
+      "Dermatophagoides farinae extract 10, 000 AU",
+      "Dermatophagoides pteronyssinus extract 10, 000 AU"
+    ],
+    "brand_names": [
+      "Allergen Extract for Scratch Test - HDM \"TORII\"",
+      "000 JAU/mL"
+    ],
+    "approval_date": "2014-12-26"
+  },
+  {
+    "source_record_id": "pmda:p122:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dermatophagoides\nfarinae extract bulk\npowder,\nDermatophagoides\npteronyssinus extract\nbulk powder",
+    "components": [
+      "Dermatophagoides farinae extract bulk powder",
+      "Dermatophagoides pteronyssinus extract bulk powder"
+    ],
+    "brand_names": [
+      "Actair 100 IR Sublingual Tablets-HDM",
+      "Actair 300 IR Sublingual Tablets-HDM"
+    ],
+    "approval_date": "2015-03-26"
+  },
+  {
+    "source_record_id": "pmda:p123:r15",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this drug used\nfor patch tests",
+    "brand_names": [
+      "Patch Test Panel (S)"
+    ],
+    "approval_date": "2014-12-26"
+  },
+  {
+    "source_record_id": "pmda:p125:r13",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal 13-\nvalent conjugate\nvaccine adsorbed\n(mutated diphtheria\nCRM conjugate)\n197",
+    "components": [
+      "Pneumococcal 13-valent conjugate vaccine adsorbed (mutated diphtheria CRM conjugate) 197"
+    ],
+    "brand_names": [
+      "Prevenar 13 Suspension Liquid for Injection"
+    ],
+    "approval_date": "2014-06-20"
+  },
+  {
+    "source_record_id": "pmda:p125:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Meningococcal\nquadrivalent vaccine\n(diphtheria toxoid\nconjugate)",
+    "components": [
+      "Meningococcal quadrivalent vaccine (diphtheria toxoid conjugate)"
+    ],
+    "brand_names": [
+      "Menactra Intramuscular Injection"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p125:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed diphtheria-\npurified pertussis-\ntetanus-inactivated\npolio (salk vaccine)\ncombined vaccine",
+    "components": [
+      "Adsorbed diphtheria-purified pertussis-tetanus-inactivated polio (salk vaccine) combined vaccine"
+    ],
+    "brand_names": [
+      "Squarekids Subcutaneous Injection Syringe"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p125:r16",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Cell culture-derived\ninfluenza emulsion HA\nvaccines (prototype)",
+    "components": [
+      "Cell culture-derived influenza emulsion HA vaccines (prototype)"
+    ],
+    "brand_names": [
+      "Cell Culture-derived Influenza Emulsion HA",
+      "Vaccine (prototype) for Intramuscular Injection",
+      "“Kaketsuken”"
+    ],
+    "approval_date": "2015-03-26"
+  },
+  {
+    "source_record_id": "pmda:p126:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal 10-\nvalent conjugate\nvaccine adsorbed\n(Non-Typeable\nHaemophilus\ninfluenzae (NTHi)\nprotein D, diphtheria\nor tetanus toxoid\nconjugates)",
+    "components": [
+      "Pneumococcal 10-valent conjugate vaccine adsorbed (Non-Typeable Haemophilus influenzae (NTHi) protein D, diphtheria or tetanus toxoid conjugates)"
+    ],
+    "brand_names": [
+      "Synflorix Aqueous Suspension for Intramuscular",
+      "Injection"
+    ],
+    "approval_date": "2015-03-26"
+  },
+  {
+    "source_record_id": "pmda:p126:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried activated\nhuman blood\ncoagulation factor VII\nconcentrate containing\nfactor X",
+    "components": [
+      "Freeze-dried activated human blood coagulation factor VII concentrate containing factor X"
+    ],
+    "brand_names": [
+      "Byclot Combination Intravenous Injection"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p126:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Venoglobulin IH 5% I.V. 2.5 g/50 mL"
+    ],
+    "approval_date": "2015-02-02"
+  },
+  {
+    "source_record_id": "pmda:p126:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Infliximab (genetical\nrecombination)\n[infliximab biosimilar 1]",
+    "components": [
+      "Infliximab (genetical recombination) [infliximab biosimilar 1]"
+    ],
+    "brand_names": [
+      "Infliximab BS for I.V. Infusion 100 mg “NK”",
+      "Infliximab BS for I.V. Infusion 100 mg “CTH”"
+    ],
+    "approval_date": "2014-07-04"
+  },
+  {
+    "source_record_id": "pmda:p126:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Insulin glargine\n(genetical\nrecombination)\n[Insulin glargine\nbiosimilar 1]",
+    "components": [
+      "Insulin glargine (genetical recombination) [Insulin glargine biosimilar 1]"
+    ],
+    "brand_names": [
+      "Insulin Glargine BS Inj. Cartridges [Lilly]",
+      "Insulin Glargine BS Inj. MirioPen [Lilly]"
+    ],
+    "approval_date": "2014-12-26"
+  },
+  {
+    "source_record_id": "pmda:p127:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Iodine addition\nproducts of the\nethylesters of the fatty\nacids obtained from\npoppyseed oil",
+    "components": [
+      "Iodine addition products of the ethylesters of the fatty acids obtained from poppyseed oil"
+    ],
+    "brand_names": [
+      "Lipiodol 480 Injection 10 mL"
+    ],
+    "approval_date": "2013-09-13"
+  },
+  {
+    "source_record_id": "pmda:p129:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "[1] - [3]\nPrednisolone sodium\nsuccinate\n[4] - [6]\nPrednisolone",
+    "components": [
+      "[1] - [3] Prednisolone sodium succinate [4] - [6] Prednisolone"
+    ],
+    "brand_names": [
+      "[1] Predonine 10 mg",
+      "[2] Predonine 20 mg",
+      "[3] Predonine 50 mg",
+      "[4] Predonine Tablets 5 mg",
+      "[5] Prednisolone Tablets 1 mg (Asahi Kasei)",
+      "[6] Prednisolone Tablets 5 mg (Asahi Kasei)"
+    ],
+    "approval_date": "2013-09-13"
+  },
+  {
+    "source_record_id": "pmda:p131:r11",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Reguneal HCa 1.5 Peritoneal Dialysis Solution",
+      "Reguneal HCa 2.5 Peritoneal Dialysis Solution",
+      "Reguneal HCa 4.25 Peritoneal Dialysis Solution",
+      "Reguneal LCa 1.5 Peritoneal Dialysis Solution",
+      "Reguneal LCa 2.5 Peritoneal Dialysis Solution",
+      "Reguneal LCa 4.25 Peritoneal Dialysis Solution"
+    ],
+    "approval_date": "2013-09-20"
+  },
+  {
+    "source_record_id": "pmda:p131:r14",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Racol-NF Semisolid for Enteral Use"
+    ],
+    "approval_date": "2014-03-24"
+  },
+  {
+    "source_record_id": "pmda:p132:r01",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this\ncombination drug",
+    "brand_names": [
+      "Enevo Liquid for Enteral Use"
+    ],
+    "approval_date": "2014-03-24"
+  },
+  {
+    "source_record_id": "pmda:p132:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Standardized\nJapanese cedar pollen\nextract original\nsolution 10,000\nJAU/mL",
+    "components": [
+      "Standardized Japanese cedar pollen extract original solution 10, 000 JAU"
+    ],
+    "brand_names": [
+      "Cedartolen Sublingual Drop-Japanese Cedar",
+      "Polllen 200 JAU/mL bottle",
+      "Cedartolen Sublingual Drop-Japanese Cedar",
+      "Polllen 2,000 JAU/mL bottle",
+      "Cedartolen Sublingual Drop-Japanese Cedar",
+      "Polllen 2,000 JAU/mL pack"
+    ],
+    "approval_date": "2014-01-17"
+  },
+  {
+    "source_record_id": "pmda:p133:r18",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Sterile talc",
+    "components": [
+      "Sterile talc"
+    ],
+    "brand_names": [
+      "Unitalc Intrapleural 4 g"
+    ],
+    "approval_date": "2013-09-20"
+  },
+  {
+    "source_record_id": "pmda:p134:r18",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Cell culture-derived\ninfluenza vaccines\n(prototype)",
+    "components": [
+      "Cell culture-derived influenza vaccines (prototype)"
+    ],
+    "brand_names": [
+      "Cell Culture-derived Influenza Vaccine",
+      "(prototype) \"Baxter\"",
+      "Cell Culture-derived Influenza Vaccine",
+      "(prototype) \"Takeda\" 5 mL"
+    ],
+    "approval_date": "2013-04-26"
+  },
+  {
+    "source_record_id": "pmda:p135:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal 13-\nvalent conjugate\nvaccine adsorbed\n(mutated diphtheria\nCRM conjugate)\n197",
+    "components": [
+      "Pneumococcal 13-valent conjugate vaccine adsorbed (mutated diphtheria CRM conjugate) 197"
+    ],
+    "brand_names": [
+      "Prevenar 13 Suspension Liquid for Injection"
+    ],
+    "approval_date": "2013-06-18"
+  },
+  {
+    "source_record_id": "pmda:p135:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Cell culture-derived\ninfluenza vaccine\n(H5N1)",
+    "components": [
+      "Cell culture-derived influenza vaccine (H5N"
+    ],
+    "brand_names": [
+      "Cell Culture-derived Influenza Vaccine H5N1",
+      "\"Baxter\"",
+      "Cell Culture-derived Influenza Vaccine H5N1",
+      "\"Takeda\" 5 mL"
+    ],
+    "approval_date": "2013-06-18"
+  },
+  {
+    "source_record_id": "pmda:p135:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant\nadsorbed hepatitis B\nvaccine (prepared\nfrom yeast)",
+    "components": [
+      "Recombinant adsorbed hepatitis B vaccine (prepared from yeast)"
+    ],
+    "brand_names": [
+      "Heptavax-II",
+      "Bimmugen",
+      "Bimmugen Injection 0.25 mL",
+      "Bimmugen Injection 0.5 mL"
+    ],
+    "approval_date": "2014-03-17"
+  },
+  {
+    "source_record_id": "pmda:p135:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Cell culture-derived\ninfluenza emulsion HA\nvaccine (H5N1)",
+    "components": [
+      "Cell culture-derived influenza emulsion HA vaccine (H5N"
+    ],
+    "brand_names": [
+      "Cell Culture-derived Influenza Emulsion HA",
+      "Vaccine H5N1 for Intramuscular Injection",
+      "“Kaketsuken”"
+    ],
+    "approval_date": "2014-03-24"
+  },
+  {
+    "source_record_id": "pmda:p135:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed cell culture-\nderived influenza\nvaccine (H5N1)",
+    "components": [
+      "Adsorbed cell culture-derived influenza vaccine (H5N"
+    ],
+    "brand_names": [
+      "Adsorbed Cell Culture-derived Influenza Vaccine",
+      "H5N1 for Intramuscular Injection 30μg/mL",
+      "“Kitasato Daiichi Sankyo”",
+      "Adsorbed Cell Culture-derived Influenza Vaccine",
+      "H5N1 for Intramuscular Injection 60μg/mL",
+      "“Kitasato Daiichi sankyo”"
+    ],
+    "approval_date": "2014-03-24"
+  },
+  {
+    "source_record_id": "pmda:p135:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Lyophilized human\nblood coagulation\nfactor XIII concentrate",
+    "components": [
+      "Lyophilized human blood coagulation factor XIII concentrate"
+    ],
+    "brand_names": [
+      "Fibrogammin P I.V. Injection"
+    ],
+    "approval_date": "2013-09-13"
+  },
+  {
+    "source_record_id": "pmda:p135:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "pH4-treated normal\nhuman\nimmunoglobulin\n(subcutaneous\ninjection)",
+    "components": [
+      "pH4-treated normal human immunoglobulin (subcutaneous injection)"
+    ],
+    "brand_names": [
+      "Hizentra 20% S.C. Injection 1 g/5 mL",
+      "Hizentra 20% S.C. Injection 2 g/10 mL",
+      "Hizentra 20% S.C. Injection 4 g/20 mL"
+    ],
+    "approval_date": "2013-09-27"
+  },
+  {
+    "source_record_id": "pmda:p135:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Turoctocog alpha\n(genetical\nrecombination)",
+    "components": [
+      "Turoctocog alpha (genetical recombination)"
+    ],
+    "brand_names": [
+      "NovoEight i.v.injection 250",
+      "NovoEight i.v.injection 500",
+      "NovoEight i.v.injection 1000",
+      "NovoEight i.v.injection 1500",
+      "NovoEight i.v.injection 2000",
+      "NovoEight i.v.injection 3000"
+    ],
+    "approval_date": "2014-01-17"
+  },
+  {
+    "source_record_id": "pmda:p135:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Filgrastim (genetical\nrecombination)\n[Filgrastim biosimilar\n3]",
+    "components": [
+      "Filgrastim (genetical recombination) [Filgrastim biosimilar 3]"
+    ],
+    "brand_names": [
+      "Filgrastim BS Inj.75 mg Syringe “Sandoz”",
+      "Filgrastim BS Inj.150 mg Syringe “Sandoz”",
+      "Filgrastim BS Inj.300 mg Syringe “Sandoz”"
+    ],
+    "approval_date": "2014-03-24"
+  },
+  {
+    "source_record_id": "pmda:p136:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Iron (III)\nhexacyanoferrate (II)",
+    "components": [
+      "Iron (III) hexacyanoferrate (II)"
+    ],
+    "brand_names": [
+      "Radiogardase Capsule 500 mg"
+    ],
+    "approval_date": "2012-12-21"
+  },
+  {
+    "source_record_id": "pmda:p136:r06",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Moviprep Combination Oral Solution"
+    ],
+    "approval_date": "2012-12-25"
+  },
+  {
+    "source_record_id": "pmda:p141:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Hydroxyethylated starch\n130000",
+    "components": [
+      "Hydroxyethylated starch 130000"
+    ],
+    "brand_names": [
+      "Voluven Solution for Infusion 6%"
+    ],
+    "approval_date": "2013-03-25"
+  },
+  {
+    "source_record_id": "pmda:p143:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Thyrotropin human alfa\n(genetical recombination)",
+    "components": [
+      "Thyrotropin human alfa (genetical recombination)"
+    ],
+    "brand_names": [
+      "Thyrogen for Intramuscular Injection 0.9 mg"
+    ],
+    "approval_date": "2012-05-25"
+  },
+  {
+    "source_record_id": "pmda:p145:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated poliomyelitis\nvaccine (Salk vaccine)",
+    "components": [
+      "Inactivated poliomyelitis vaccine (Salk vaccine)"
+    ],
+    "brand_names": [
+      "Imovax Polio Subcutaneous Injection"
+    ],
+    "approval_date": "2012-04-27"
+  },
+  {
+    "source_record_id": "pmda:p145:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed diphtheria-\npurified pertussis-tetanus-\ninactivated polio (Sabin\nstrain) combined vaccine",
+    "components": [
+      "Adsorbed diphtheria-purified pertussis-tetanus-inactivated polio (Sabin strain) combined vaccine"
+    ],
+    "brand_names": [
+      "Tetrabik Subcutaneous Injection Syringe",
+      "(The Research Foundation for Microbial Diseases of",
+      "Osaka University)"
+    ],
+    "approval_date": "2012-07-27"
+  },
+  {
+    "source_record_id": "pmda:p145:r11",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed diphtheria-\npurified pertussis-tetanus-\ninactivated polio (Sabin\nstrain) combined vaccine",
+    "components": [
+      "Adsorbed diphtheria-purified pertussis-tetanus-inactivated polio (Sabin strain) combined vaccine"
+    ],
+    "brand_names": [
+      "Quattrovac Subcutaneous Injection Syringe"
+    ],
+    "approval_date": "2012-07-27"
+  },
+  {
+    "source_record_id": "pmda:p145:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried inactivated\ntissue culture hepatitis A\nvaccine",
+    "components": [
+      "Freeze-dried inactivated tissue culture hepatitis A vaccine"
+    ],
+    "brand_names": [
+      "Aimmugen"
+    ],
+    "approval_date": "2013-03-15"
+  },
+  {
+    "source_record_id": "pmda:p145:r13",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Adsorbed influenza vaccine\n(H5N1)",
+    "components": [
+      "Adsorbed influenza vaccine (H5N"
+    ],
+    "brand_names": [
+      "Adsorbed Influenza Vaccine (H5N1) \"Seiken\" 1 mL"
+    ],
+    "approval_date": "2013-03-25"
+  },
+  {
+    "source_record_id": "pmda:p146:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Filgrastim (genetical\nrecombination) [filgrastim\nbiosimilar 2]",
+    "components": [
+      "Filgrastim (genetical recombination) [filgrastim biosimilar 2]"
+    ],
+    "brand_names": [
+      "Filgrastim BS Inj. 75 μg Syringe \"NK\"",
+      "Filgrastim BS Inj. 150 μg Syringe \"NK\"",
+      "Filgrastim BS Inj. 300 μg Syringe \"NK\"",
+      "Filgrastim BS Injection 75 μg Syringe \"Teva\"",
+      "Filgrastim BS Injection 150 μg Syringe \"Teva\"",
+      "Filgrastim BS Injection 300 μg Syringe \"Teva\""
+    ],
+    "approval_date": "2013-02-28"
+  },
+  {
+    "source_record_id": "pmda:p147:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Epoetin beta pegol\n(genetical recombination)",
+    "components": [
+      "Epoetin beta pegol (genetical recombination)"
+    ],
+    "brand_names": [
+      "Mircera Injection Syringe 25 μg",
+      "Mircera Injection Syringe 50 μg",
+      "Mircera Injection Syringe 75 μg",
+      "Mircera Injection Syringe 100 μg",
+      "Mircera Injection Syringe 150 μg",
+      "Mircera Injection Syringe 200 μg",
+      "Mircera Injection Syringe 250 μg"
+    ],
+    "approval_date": "2011-04-22"
+  },
+  {
+    "source_record_id": "pmda:p147:r03",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Anti-human thymocyte immunoglobulin",
+    "active_ingredient_raw": "Anti-human thymocyte\nimmunoglobulin, rabbit",
+    "approval_date": "2011-04-22"
+  },
+  {
+    "source_record_id": "pmda:p147:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Infliximab (genetical recom",
+    "components": [
+      "Infliximab (genetical recom"
+    ],
+    "brand_names": [
+      "Remicade for I.V. Infusion 100"
+    ],
+    "approval_date": "2011-08-17"
+  },
+  {
+    "source_record_id": "pmda:p150:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Venoglobulin IH 5% I.V. 0.5 g/10 mL",
+      "Venoglobulin IH 5% I.V. 1 g/20 mL",
+      "Venoglobulin IH 5% I.V. 2.5 g/50 mL",
+      "Venoglobulin IH 5% I.V. 5 g/100 mL"
+    ],
+    "approval_date": "2011-09-26"
+  },
+  {
+    "source_record_id": "pmda:p153:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dry anti-Rho(D) immune\nhuman globulin",
+    "components": [
+      "Dry anti-Rho(D) immune human globulin"
+    ],
+    "brand_names": [
+      "Anti-D Globulin for I.M. Injection",
+      "\"Nichiyaku\""
+    ],
+    "approval_date": "2011-05-20"
+  },
+  {
+    "source_record_id": "pmda:p153:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dry anti-Rho(D) immune\nhuman globulin",
+    "components": [
+      "Dry anti-Rho(D) immune human globulin"
+    ],
+    "brand_names": [
+      "Anti-D Human Immunoglobulin I.M.",
+      "-Benesis"
+    ],
+    "approval_date": "2011-05-20"
+  },
+  {
+    "source_record_id": "pmda:p154:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Golimumab (genetical reco",
+    "components": [
+      "Golimumab (genetical reco"
+    ],
+    "brand_names": [
+      "Simponi Subcutaneous Injection 50 mg Syringe"
+    ],
+    "approval_date": "2011-07-01"
+  },
+  {
+    "source_record_id": "pmda:p155:r12",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "thrombin fraction",
+    "active_ingredient_raw": "Human\nfibrinogen/thrombin\nfraction",
+    "approval_date": "2011-09-26"
+  },
+  {
+    "source_record_id": "pmda:p158:r02",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Live attenuated human rotavirus vaccine",
+    "active_ingredient_raw": "Live attenuated human\nrotavirus vaccine, oral",
+    "approval_date": "2011-07-01"
+  },
+  {
+    "source_record_id": "pmda:p158:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Recombinant adsorbed\nquadrivalent human\npapillomavirus virus-like\nparticle vaccine (yeast\norigin)",
+    "components": [
+      "Recombinant adsorbed quadrivalent human papillomavirus virus-like particle vaccine (yeast origin)"
+    ],
+    "brand_names": [
+      "Gardasil Aqueous Suspension for Intramuscular",
+      "Injection",
+      "Gardasil Aqueous Suspension for Intramuscular",
+      "Injection Syringe"
+    ],
+    "approval_date": "2011-07-01"
+  },
+  {
+    "source_record_id": "pmda:p158:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Influenza HA Vaccine",
+    "components": [
+      "Influenza HA Vaccine"
+    ],
+    "brand_names": [
+      "Influenza HA Vaccine \"Kaketsuken\" TF",
+      "Influenza HA Vaccine \"Kaketsuken\"",
+      "Influ \"Kaketsuken\" Syringe"
+    ],
+    "approval_date": "2011-08-08"
+  },
+  {
+    "source_record_id": "pmda:p158:r05",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Influenza HA Vaccine",
+    "components": [
+      "Influenza HA Vaccine"
+    ],
+    "brand_names": [
+      "Influenza HA Vaccine \"Biken\"",
+      "Flubik HA",
+      "Flubik HA Syringe",
+      "(The Research Foundation for Microbial",
+      "Diseases of Osaka University)"
+    ],
+    "approval_date": "2011-08-08"
+  },
+  {
+    "source_record_id": "pmda:p158:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Influenza HA Vaccine",
+    "components": [
+      "Influenza HA Vaccine"
+    ],
+    "brand_names": [
+      "Influenza HA Vaccine \"Seiken\"",
+      "Flu-Syringe “Seiken”"
+    ],
+    "approval_date": "2011-08-08"
+  },
+  {
+    "source_record_id": "pmda:p158:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Influenza HA Vaccine",
+    "components": [
+      "Influenza HA Vaccine"
+    ],
+    "brand_names": [
+      "Influenza HA Vaccine \"Kitasatodaiichisankyo\"",
+      "Influenza HA Vaccine \"S Hokken\"",
+      "Influenza HA Vaccine \"Kitasatodaiichisankyo\"",
+      "Syringe"
+    ],
+    "approval_date": "2011-08-08"
+  },
+  {
+    "source_record_id": "pmda:p158:r08",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Live attenuated rotavirus vaccine",
+    "active_ingredient_raw": "Live attenuated rotavirus\nvaccine, oral, pentavalent",
+    "approval_date": "2012-01-18"
+  },
+  {
+    "source_record_id": "pmda:p158:r08",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "pentavalent",
+    "active_ingredient_raw": "Live attenuated rotavirus\nvaccine, oral, pentavalent",
+    "approval_date": "2012-01-18"
+  },
+  {
+    "source_record_id": "pmda:p158:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "3-iodobenzylguanidine\n(123I) injection",
+    "components": [
+      "3-iodobenzylguanidine (123I) injection"
+    ],
+    "brand_names": [
+      "MyoMIBG-I123 Injection"
+    ],
+    "approval_date": "2011-05-20"
+  },
+  {
+    "source_record_id": "pmda:p159:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Iron(III)hexacyanoferrate(I\nI)",
+    "components": [
+      "Iron(III)hexacyanoferrate(I I)"
+    ],
+    "brand_names": [
+      "Radiogardase Capsule 500 mg"
+    ],
+    "approval_date": "2010-10-27"
+  },
+  {
+    "source_record_id": "pmda:p160:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketsu Venoglobulin IH 5% I.V. 2.5 g/50 mL"
+    ],
+    "approval_date": "2010-10-27"
+  },
+  {
+    "source_record_id": "pmda:p163:r07",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Sodium Phosphate Corrective Injection 0.5",
+      "mmol/mL"
+    ],
+    "approval_date": "2010-12-21"
+  },
+  {
+    "source_record_id": "pmda:p163:r09",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Kindaly 4E",
+      "Kindaly 4D",
+      "Kindaly AF-4P"
+    ],
+    "approval_date": "2010-12-21"
+  },
+  {
+    "source_record_id": "pmda:p163:r10",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "ethinylestra diol betadex",
+    "active_ingredient_raw": "Drospirenone/ethinylestra\ndiol betadex",
+    "approval_date": "2010-07-23"
+  },
+  {
+    "source_record_id": "pmda:p163:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "DiquafosoI sodium",
+    "components": [
+      "DiquafosoI sodium"
+    ],
+    "brand_names": [
+      "Diquas Ophthalmic Solution 3%"
+    ],
+    "approval_date": "2010-04-16"
+  },
+  {
+    "source_record_id": "pmda:p163:r16",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Sodium hyaluronate\ncrosslinked polymer and\nsodium hyaluronate\ncrosslinked polymer\ncrosslinked with\nvinylsulfone",
+    "components": [
+      "Sodium hyaluronate crosslinked polymer",
+      "sodium hyaluronate crosslinked polymer crosslinked with vinylsulfone"
+    ],
+    "brand_names": [
+      "Synvisc Intraarticular Injection 2 mL"
+    ],
+    "approval_date": "2010-07-23"
+  },
+  {
+    "source_record_id": "pmda:p166:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried bacillus of\nCalmette and Guerin for\nintravesical use\n(Connaught strain)",
+    "components": [
+      "Freeze-dried bacillus of Calmette",
+      "Guerin for intravesical use (Connaught strain)"
+    ],
+    "brand_names": [
+      "Immucyst Intravesical 81 mg"
+    ],
+    "approval_date": "2010-08-20"
+  },
+  {
+    "source_record_id": "pmda:p166:r14",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated influenza\nvirus, H5N1 (whole virion)",
+    "components": [
+      "Inactivated influenza virus",
+      "H5N1 (whole virion)"
+    ],
+    "brand_names": [
+      "Adsorbed Pandemic Influenza Vaccine (H5N1)",
+      "\"Kaketsuken\""
+    ],
+    "approval_date": "2010-10-27"
+  },
+  {
+    "source_record_id": "pmda:p166:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried live\nattenuated measles,\nrubella combined vaccine",
+    "components": [
+      "Freeze-dried live attenuated measles",
+      "rubella combined vaccine"
+    ],
+    "brand_names": [
+      "Freeze-dried Live Attenuated Measles, Rubella",
+      "Combined Vaccine \"Hokken\""
+    ],
+    "approval_date": "2011-01-14"
+  },
+  {
+    "source_record_id": "pmda:p166:r16",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried, cell culture-\nderived Japanese\nencephalitis vaccine\n（inactivated）",
+    "components": [
+      "Freeze-dried",
+      "cell culture-derived Japanese encephalitis vaccine （inactivated）"
+    ],
+    "brand_names": [
+      "Encevac for Subcutaneous Injection"
+    ],
+    "approval_date": "2011-01-17"
+  },
+  {
+    "source_record_id": "pmda:p166:r17",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol\ntreated human normal\nimmunoglobulin",
+    "components": [
+      "Polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Venoglobulin IH 5% I.V. 2.5 g/50 mL"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p166:r18",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried sulfonated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried sulfonated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketsu Venilon-I for Intravenous Injection",
+      "mg"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p166:r19",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried polyethylene\nglycol treated human\nnormal immunoglobulin",
+    "components": [
+      "Freeze-dried polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketu Glovenin-I for I.V. Injection 2500 mg"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p167:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "pH4-treated acidic human\nnormal immunoglobulin",
+    "components": [
+      "pH4-treated acidic human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Nisseki Polyglobin-N 5% I.V. 2.5 g/50 mL"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p167:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried pH4 treated\nhuman immunoglobulin",
+    "components": [
+      "Freeze-dried pH4 treated human immunoglobulin"
+    ],
+    "brand_names": [
+      "Sanglopor I.V. Infusion 2.5 g"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p167:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried ion-\nexchange-resin treated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried ion-exchange-resin treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Gammagard for Intravenous Injection 2.5 g"
+    ],
+    "approval_date": "2010-05-13"
+  },
+  {
+    "source_record_id": "pmda:p168:r01",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Niflec"
+    ],
+    "approval_date": "2009-04-22"
+  },
+  {
+    "source_record_id": "pmda:p168:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Epoetin kappa (genetical\nrecombination) [epoetin\nalfa biosimilar 1]",
+    "components": [
+      "Epoetin kappa (genetical recombination) [epoetin alfa biosimilar 1]"
+    ],
+    "brand_names": [
+      "Epoetin Alfa BS Injection 750 syringe [JCR]",
+      "Epoetin Alfa BS Injection 1500 syringe [JCR]",
+      "Epoetin Alfa BS Injection 3000 syringe [JCR]",
+      "Epoetin Alfa BS Injection 750 [JCR]",
+      "Epoetin Alfa BS Injection 1500 [JCR]",
+      "Epoetin Alfa BS Injection 3000 [JCR]"
+    ],
+    "approval_date": "2010-01-20"
+  },
+  {
+    "source_record_id": "pmda:p169:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried sulfonated\nhuman normal\nimmunoglobulin",
+    "components": [
+      "Freeze-dried sulfonated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketsu Venilon-I for Intravenous Injection 500 mg"
+    ],
+    "approval_date": "2010-01-20"
+  },
+  {
+    "source_record_id": "pmda:p171:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Dexamethasone\ncipecilate",
+    "components": [
+      "Dexamethasone cipecilate"
+    ],
+    "brand_names": [
+      "Erizas Capsule for Nasal Spray 400 µg"
+    ],
+    "approval_date": "2009-10-16"
+  },
+  {
+    "source_record_id": "pmda:p173:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Iodine addition products\nof the ethyl esters of the\nfatty acids obtained from\npoppyseed oil",
+    "components": [
+      "Iodine addition products of the ethyl esters of the fatty acids obtained from poppyseed oil"
+    ],
+    "brand_names": [
+      "Miripla Suspension Vehicle 4 mL"
+    ],
+    "approval_date": "2009-08-20"
+  },
+  {
+    "source_record_id": "pmda:p173:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Miriplatin hydrate",
+    "components": [
+      "Miriplatin hydrate"
+    ],
+    "brand_names": [
+      "Miripla for Intra-arterial Injection 70 mg"
+    ],
+    "approval_date": "2009-10-16"
+  },
+  {
+    "source_record_id": "pmda:p173:r15",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "HPV-16 L1 VLP and\nHPV-18 L1 VLP",
+    "components": [
+      "HPV-16 L1 VLP and HPV-18 L1 VLP"
+    ],
+    "brand_names": [
+      "Cervarix"
+    ],
+    "approval_date": "2009-10-16"
+  },
+  {
+    "source_record_id": "pmda:p174:r00",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pneumococcal\npolysaccharide\n(serotypes 4, 6B, 9V, 14,\n18C, 19F, and 23F)-\nCRM197 conjugate",
+    "components": [
+      "Pneumococcal polysaccharide (serotypes 4, 6B, 9V, 14,",
+      "23F)-CRM197 conjugate"
+    ],
+    "brand_names": [
+      "Prevenar Suspension Liquid for S.C. Injection"
+    ],
+    "approval_date": "2009-10-16"
+  },
+  {
+    "source_record_id": "pmda:p174:r01",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated split-virus\ninfluenza A\n(A/California/7/2009\n[H1N1])",
+    "components": [
+      "Inactivated split-virus influenza A (A/California/7/2009 [H1N1])"
+    ],
+    "brand_names": [
+      "Arepanrix (H1N1) Intramuscular Injection"
+    ],
+    "approval_date": "2010-01-20"
+  },
+  {
+    "source_record_id": "pmda:p174:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Pandemic influenza virus\nsurface antigens of\nA/California/7/2009\n(H1N1) like strain",
+    "components": [
+      "Pandemic influenza virus surface antigens of A",
+      "California",
+      "like strain"
+    ],
+    "brand_names": [
+      "Cell-culture Derived Influenza A (H1N1) Emulsion HA",
+      "Vaccine \"Novartis\" for Intramuscular Injection"
+    ],
+    "approval_date": "2010-01-20"
+  },
+  {
+    "source_record_id": "pmda:p174:r07",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Technetium (99mTc)\nstannous colloid",
+    "components": [
+      "Technetium (99mTc) stannous colloid"
+    ],
+    "brand_names": [
+      "Tin Colloid Tc-99m Kit"
+    ],
+    "approval_date": "2009-09-18"
+  },
+  {
+    "source_record_id": "pmda:p174:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Technetium (99mTc)\nphytate",
+    "components": [
+      "Technetium (99mTc) phytate"
+    ],
+    "brand_names": [
+      "Techne Phytate Kit"
+    ],
+    "approval_date": "2009-09-18"
+  },
+  {
+    "source_record_id": "pmda:p174:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "3-iodobenzylguanidine\n(123I) injection",
+    "components": [
+      "3-iodobenzylguanidine (123I) injection"
+    ],
+    "brand_names": [
+      "MyoMIBG-I123 Injection"
+    ],
+    "approval_date": "2009-11-06"
+  },
+  {
+    "source_record_id": "pmda:p174:r10",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Technetium (99mTc)\nhexakis (2-methoxy-\nisobutyl isonitrile)\nTetrakis (2-methoxy-\nisobutyl isonitrile) copper\n(I) tetrafluoroborate",
+    "components": [
+      "Technetium (99mTc) hexakis (2-methoxy-isobutyl isonitrile) Tetrakis (2-methoxy-isobutyl isonitrile) copper (I) tetrafluoroborate"
+    ],
+    "brand_names": [
+      "Cardiolite Injection Daiichi",
+      "Cardiolite Daiichi"
+    ],
+    "approval_date": "2010-02-05"
+  },
+  {
+    "source_record_id": "pmda:p175:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Interferon alfa\n(NAMALWA)",
+    "components": [
+      "Interferon alfa (NAMALWA)"
+    ],
+    "brand_names": [
+      "Sumiferon 300",
+      "Sumiferon 600",
+      "Sumiferon DS 300",
+      "Sumiferon DS 600"
+    ],
+    "approval_date": "2008-10-16"
+  },
+  {
+    "source_record_id": "pmda:p175:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried polyethylene\nglycol treated human\nnormal immunoglobulin",
+    "components": [
+      "Freeze-dried polyethylene glycol treated human normal immunoglobulin"
+    ],
+    "brand_names": [
+      "Kenketu Glovenin-I-Nichiyaku"
+    ],
+    "approval_date": "2008-10-16"
+  },
+  {
+    "source_record_id": "pmda:p177:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "[JP] Human chorionic\ngonadotrophin (extract\nfrom human urine)",
+    "components": [
+      "[JP] Human chorionic gonadotrophin (extract from human urine)"
+    ],
+    "brand_names": [
+      "Gonatropin 5000"
+    ],
+    "approval_date": "2008-09-01"
+  },
+  {
+    "source_record_id": "pmda:p177:r10",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A for this combination\ndrug",
+    "brand_names": [
+      "Elneopa No. 1 Injection",
+      "Elneopa No. 2 Injection"
+    ],
+    "approval_date": "2009-03-31"
+  },
+  {
+    "source_record_id": "pmda:p179:r13",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Thyrotropin human alfa\n(genetical recombination)",
+    "components": [
+      "Thyrotropin human alfa (genetical recombination)"
+    ],
+    "brand_names": [
+      "Thyrogen IM Injection 0.9 mg"
+    ],
+    "approval_date": "2008-10-16"
+  },
+  {
+    "source_record_id": "pmda:p179:r15",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Mercaptobenzothiazole N-hydroxymethyl succinimide Thimerosal",
+    "active_ingredient_raw": "Nickel sulfate\nPotassium dichromate\nCobalt chloride\nMercaptobenzothiazole\nN-hydroxymethyl\nsuccinimide\nThimerosal",
+    "approval_date": "2009-02-23"
+  },
+  {
+    "source_record_id": "pmda:p179:r16",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated Japanese\nencephalitis virus\n(Beijing strain)",
+    "components": [
+      "Inactivated Japanese encephalitis virus (Beijing strain)"
+    ],
+    "brand_names": [
+      "Jebik V",
+      "(Research Foundation for Microbial Diseases of",
+      "Osaka University)"
+    ],
+    "approval_date": "2009-02-23"
+  },
+  {
+    "source_record_id": "pmda:p180:r01",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Anti-human thymocyte immunoglobulin",
+    "active_ingredient_raw": "Anti-human thymocyte\nimmunoglobulin, Rabbit",
+    "approval_date": "2008-07-16"
+  },
+  {
+    "source_record_id": "pmda:p181:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Infliximab (genetically\nengineered)",
+    "components": [
+      "Infliximab (genetically engineered)"
+    ],
+    "brand_names": [
+      "Remicade for I.V. Infusion 100"
+    ],
+    "approval_date": "2007-11-13"
+  },
+  {
+    "source_record_id": "pmda:p181:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Polyethylene glycol-\ntreated human anti-\nHBs immunoglobulin",
+    "components": [
+      "Polyethylene glycol-treated human anti-HBs immunoglobulin"
+    ],
+    "brand_names": [
+      "Hebsbulin-IH for Intravenous"
+    ],
+    "approval_date": "2008-02-29"
+  },
+  {
+    "source_record_id": "pmda:p184:r05",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A because of a new\ncombination drug",
+    "brand_names": [
+      "Artcereb Irrigation and Perfusion",
+      "Solution for Cerebrospinal Surgery"
+    ],
+    "approval_date": "2007-10-19"
+  },
+  {
+    "source_record_id": "pmda:p184:r06",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": "N/A because of a\ncombination drug",
+    "brand_names": [
+      "Bicanate Infusion"
+    ],
+    "approval_date": "2008-03-19"
+  },
+  {
+    "source_record_id": "pmda:p186:r11",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "A combination drug of Tegafur",
+    "active_ingredient_raw": "A combination drug of\nTegafur, Gimeracil,\nand Oteracil\npotassium",
+    "approval_date": "2007-08-23"
+  },
+  {
+    "source_record_id": "pmda:p187:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "1:\nIbritumomab tiuxetan\n(genetical\nrecombination)\nYttrium chloride (90Y)\n2:\nIbritumomab tiuxetan\n(genetical\nrecombination)\nIndium chloride (111In)",
+    "components": [
+      "1: Ibritumomab tiuxetan (genetical recombination) Yttrium chloride (90Y) 2: Ibritumomab tiuxetan (genetical recombination) Indium chloride (111In)"
+    ],
+    "brand_names": [
+      ". Zevalin Yttrium (90Y) Injection Set",
+      ". Zevalin Indium (111In) Injection Set"
+    ],
+    "approval_date": "2008-01-25"
+  },
+  {
+    "source_record_id": "pmda:p187:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated influenza\nvirus, H5N1 (whole\nvirion)",
+    "components": [
+      "Inactivated influenza virus",
+      "H5N1 (whole virion)"
+    ],
+    "brand_names": [
+      "Adsorbed Pandemic Influenza Vaccine",
+      "(H5N1) \"Hokken\""
+    ],
+    "approval_date": "2007-10-19"
+  },
+  {
+    "source_record_id": "pmda:p187:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Inactivated influenza\nvirus, H5N1 (whole\nvirion)",
+    "components": [
+      "Inactivated influenza virus",
+      "H5N1 (whole virion)"
+    ],
+    "brand_names": [
+      "Adsorbed Pandemic Influenza Vaccine",
+      "(H5N1) \"Biken\"",
+      "(The Research Foundation for",
+      "Microbial Diseases of Osaka",
+      "University)"
+    ],
+    "approval_date": "2007-10-19"
+  },
+  {
+    "source_record_id": "pmda:p191:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "(combination drug)",
+    "components": [
+      "(combination drug)"
+    ],
+    "brand_names": [
+      "Carbostar Dialysate L",
+      "Carbostar Dialysate M",
+      "Carbostar Dialysate P"
+    ],
+    "approval_date": "2007-03-02"
+  },
+  {
+    "source_record_id": "pmda:p193:r04",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Combination drug containing Tegafur",
+    "active_ingredient_raw": "Combination drug\ncontaining Tegafur,\nGimeracil, and\nOteracil potassium.",
+    "approval_date": "2006-08-10"
+  },
+  {
+    "source_record_id": "pmda:p194:r03",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried human\nactivated protein C\nconcentrated",
+    "components": [
+      "Freeze-dried human activated protein C concentrated"
+    ],
+    "brand_names": [
+      "Anact C for Injection 2500 Units"
+    ],
+    "approval_date": "2006-10-20"
+  },
+  {
+    "source_record_id": "pmda:p194:r04",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Rurioctocog alfa\n(genetical\nrecombination)",
+    "components": [
+      "Rurioctocog alfa (genetical recombination)"
+    ],
+    "brand_names": [
+      "Advate for Injection 250",
+      "Advate for Injection 500",
+      "Advate for Injection 1000"
+    ],
+    "approval_date": "2006-10-20"
+  },
+  {
+    "source_record_id": "pmda:p194:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Haemophilus\ninfluenzae type bb\npolysaccharide-\ntetanus toxoid\nconjugate vaccine",
+    "components": [
+      "Haemophilus influenzae type bb polysaccharide-tetanus toxoid conjugate vaccine"
+    ],
+    "brand_names": [
+      "ActHIB"
+    ],
+    "approval_date": "2007-01-26"
+  },
+  {
+    "source_record_id": "pmda:p195:r12",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Aspirin dialminate\nAspirin",
+    "components": [
+      "Aspirin dialminate Aspirin"
+    ],
+    "brand_names": [
+      "Bufferin 81 mg Tablets",
+      "Nitogis Tablets 81 mg",
+      "Bassamin Tablets 81 mg",
+      "Famoter 81mg Tablets",
+      "Asphanate Tablets 81 mg",
+      "Aspirin \"Metal\"",
+      "aspirin \"Yoshida\"",
+      "Aspirin \"Hoei\""
+    ],
+    "approval_date": "2005-10-31"
+  },
+  {
+    "source_record_id": "pmda:p196:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Clavulante potasium\namoxicillin",
+    "components": [
+      "Clavulante potasium amoxicillin"
+    ],
+    "brand_names": [
+      "Augmentin ES Dry Syrups for Children"
+    ],
+    "approval_date": "2005-10-11"
+  },
+  {
+    "source_record_id": "pmda:p197:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Silodoshin",
+    "components": [
+      "Silodoshin"
+    ],
+    "brand_names": [
+      "Silodosin \"SFL\"",
+      "Urief Capsules 2mg",
+      "Urief Capsules 4mg"
+    ],
+    "approval_date": "2006-01-23"
+  },
+  {
+    "source_record_id": "pmda:p197:r03",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": null,
+    "brand_names": [
+      "Amigrand Intravenous Infusion",
+      "Paresafe for IV. Infusion"
+    ],
+    "approval_date": "2006-03-03"
+  },
+  {
+    "source_record_id": "pmda:p197:r04",
+    "reason": "no active ingredient named in the PMDA row",
+    "active_ingredient_raw": null,
+    "brand_names": [
+      "Bfluid for I.V. Infusion"
+    ],
+    "approval_date": "2006-03-03"
+  },
+  {
+    "source_record_id": "pmda:p197:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Sodium loxoprofen",
+    "components": [
+      "Sodium loxoprofen"
+    ],
+    "brand_names": [
+      "Loxonin Tablets, Loxonin Fine Granules",
+      "Ollox Oral Solution 60 mg",
+      "Lobu Tablets",
+      "LoxipainTablets 60 mg",
+      "Threenofen Tablets",
+      "Loxoprofen Sodium Tablets \"Kunihiro\" 60 mg",
+      "Cobalokinin Tablets",
+      "Letrac Tablets 60 mg",
+      "Loxomarin Tablets",
+      "Roseol Tablets, Roseol Fine Granules",
+      "Lokiflan Tablets, Lokiflan Fine Granuales",
+      "Tsurumerin Tablets",
+      "Confatanin Tablets",
+      "Lorfenamin Tablets, Lorfenamin Fine Granules",
+      "Loxot Tablets",
+      "Kentan Tablets, Kentan Fine Granules",
+      "Unastin Tablets",
+      "Ringereaze Tablets",
+      "Rokifen Tablets 60 mg",
+      "Syllable Tablets",
+      "Loxipronal Tablets"
+    ],
+    "approval_date": "2005-12-22"
+  },
+  {
+    "source_record_id": "pmda:p198:r02",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "fludeoxyglucose (F18)",
+    "components": [
+      "fludeoxyglucose (F"
+    ],
+    "brand_names": [
+      "FDGscan Injectable",
+      "FDGscan-MP Injectable"
+    ],
+    "approval_date": "2005-07-25"
+  },
+  {
+    "source_record_id": "pmda:p199:r06",
+    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+    "component": "Otera cil potassium",
+    "active_ingredient_raw": "Tegafur/Gimeracil/Otera\ncil potassium",
+    "approval_date": "2005-11-14"
+  },
+  {
+    "source_record_id": "pmda:p199:r08",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freeze-dried live\nattenuated measles and\nrubella combined",
+    "components": [
+      "Freeze-dried live attenuated measles",
+      "rubella combined"
+    ],
+    "brand_names": [
+      "Mearubik",
+      "(The Research Foundation for Microbial Diseases of",
+      "Osaka University)"
+    ],
+    "approval_date": "2005-07-25"
+  },
+  {
+    "source_record_id": "pmda:p199:r09",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Freezie-dried live\nattenuated measles and\nrubella combined",
+    "components": [
+      "Freezie-dried live attenuated measles",
+      "rubella combined"
+    ],
+    "brand_names": [
+      "Freeze-Dried Live Attenuated Measles and Rubella",
+      "Combined Vaccine \"Takeda\""
+    ],
+    "approval_date": "2005-10-14"
+  },
+  {
+    "source_record_id": "pmda:p201:r06",
+    "reason": "no corpus page for any named ingredient",
+    "active_ingredient_raw": "Etanercept (genetic\nrecombination)",
+    "components": [
+      "Etanercept (genetic recombination)"
+    ],
+    "brand_names": [
+      "Enbrel 25mg for S.C. Injection"
+    ],
+    "approval_date": "2005-01-19"
+  }
+]

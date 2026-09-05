@@ -36,26 +36,34 @@
         "2.6": "done",
         "2.7": "done",
         "2.9": "done",
-        "2.4": "rerun pending (session limit)",
-        "2.8": "rerun pending (session limit)",
-        "2.10": "rerun pending (session limit)",
-        "2.11": "rerun pending (session limit)",
-        "2.12": "rerun pending (session limit)",
-        "2.13": "rerun pending (session limit)",
-        "2.14": "rerun pending (session limit)",
-        "2.15": "rerun pending (session limit)",
-        "2.16": "rerun pending (session limit)",
-        "2.17": "rerun pending (session limit)",
-        "2.18": "rerun pending (session limit)"
+        "2.4": "done",
+        "2.8": "done",
+        "2.10": "BLOCKED-WITH-EVIDENCE (licence/no data; ChEMBL drug_warning used)",
+        "2.11": "rerun pending (session limit \u00d72)",
+        "2.12": "mapped-partial (SUSMP; ARTG BLOCKED on licence)",
+        "2.13": "done",
+        "2.14": "BLOCKED-WITH-EVIDENCE (no reuse licence)",
+        "2.15": "done",
+        "2.16": "done (rendering gated on licence decision)",
+        "2.17": "done",
+        "2.18": "done (validation only)"
       },
       "gate_evidence": null,
-      "updated": "2026-09-05T15:58:35+00:00"
+      "updated": "2026-09-05T20:52:47+00:00"
     },
     "3": {
-      "status": "PENDING",
-      "steps": {},
+      "status": "IN_PROGRESS",
+      "steps": {
+        "3.1": "done",
+        "3.2": "done",
+        "3.3": "done",
+        "3.4": "in_progress (second opinion returned; lead adjudicating)",
+        "3.5": "done (live PASS, plan PASS)",
+        "3.6": "run: 19 indexable pairs \u2265 0.5; re-run after Phase 4 differentiation",
+        "3.7": "done (39/39 verified)"
+      },
       "gate_evidence": null,
-      "updated": "2026-09-05T05:13:47+00:00"
+      "updated": "2026-09-05T20:52:47+00:00"
     },
     "4": {
       "status": "PENDING",
@@ -90,7 +98,11 @@
   },
   "blockers": [
     "docs/revamp/BLOCKERS.md#credentials",
-    "docs/revamp/BLOCKERS.md#0.4"
+    "docs/revamp/BLOCKERS.md#0.4",
+    "docs/revamp/BLOCKERS.md#withdrawn",
+    "docs/revamp/BLOCKERS.md#tga-artg",
+    "docs/revamp/BLOCKERS.md#mhra-emc",
+    "docs/revamp/BLOCKERS.md#clinpgx"
   ],
   "last_commit": "15c51f593bd561e13fd23a22775e5ddcaa7ac69b"
 }

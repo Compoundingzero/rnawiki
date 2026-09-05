@@ -1,0 +1,166 @@
+{
+  "source": "clinicaltrials",
+  "sourceName": "ClinicalTrials.gov, API v2 studies snapshot",
+  "status": "mapped",
+  "retrievalDate": "2026-09-06",
+  "snapshotRefetched": false,
+  "snapshotRefetchNote": "The snapshot of 2026-09-01T09:00:05 was already on disk at /Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/clinicaltrials/20260901T090005/studies.ndjson and the Phase 2 brief forbids refetching it. Its recorded SHA256 was re-verified byte for byte before use (data/sources/clinicaltrials/2026-09-06/snapshot-field-audit.json). The only registry requests made on the retrieval date are the date-type and intervention-model top-up described under topUpFetched, plus four legal pages; every request is in requests.log.",
+  "licence": "US Government work, public domain (National Library of Medicine). NLM Web Policies: works produced by the U.S. government are not subject to copyright protection in the United States and may be freely used or reproduced without permission. Attribution requested, not required: \"Source: National Library of Medicine\". Evidence: data/sources/clinicaltrials/2026-09-06/legal/",
+  "attribution": "Source: National Library of Medicine",
+  "snapshot": {
+    "apiVersion": "2.0.5",
+    "dataTimestamp": "2026-09-01T09:00:05",
+    "studies": 601158,
+    "sha256": "00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27"
+  },
+  "rawFiles": 3,
+  "rawBytes": 815591884,
+  "corpusPagesByTier": {
+    "1": 1719,
+    "2": 4477,
+    "3": 22636
+  },
+  "corpusPagesTotal": 28832,
+  "pagesMatchedByTier": {
+    "1": 1272,
+    "2": 2663,
+    "3": 4728
+  },
+  "pagesMatchedTotal": 8663,
+  "fieldsGained": [
+    "registry.trialCount",
+    "registry.hasResults",
+    "registry.enrolment",
+    "registry.phases",
+    "registry.statuses",
+    "registry.completionDates",
+    "registry.whyStopped",
+    "registry.design"
+  ],
+  "fieldsGainedByTier": {
+    "1": {
+      "registry.trialCount": 1272,
+      "registry.hasResults": 1272,
+      "registry.enrolment": 1272,
+      "registry.phases": 1272,
+      "registry.statuses": 1272,
+      "registry.completionDates": 1272,
+      "registry.whyStopped": 1272,
+      "registry.design": 1272
+    },
+    "2": {
+      "registry.trialCount": 2663,
+      "registry.hasResults": 2663,
+      "registry.enrolment": 2663,
+      "registry.phases": 2663,
+      "registry.statuses": 2663,
+      "registry.completionDates": 2663,
+      "registry.whyStopped": 2663,
+      "registry.design": 2663
+    },
+    "3": {
+      "registry.trialCount": 4728,
+      "registry.hasResults": 4728,
+      "registry.enrolment": 4728,
+      "registry.phases": 4728,
+      "registry.statuses": 4728,
+      "registry.completionDates": 4728,
+      "registry.whyStopped": 4728,
+      "registry.design": 4728
+    }
+  },
+  "mappedRows": 69304,
+  "pageTrialPairs": 326420,
+  "distinctTrialsUsed": 155645,
+  "matchRuleCounts": {
+    "name-candidate": 8663
+  },
+  "matchRuleCountsByTier": {
+    "1": {
+      "name-candidate": 1272
+    },
+    "2": {
+      "name-candidate": 2663
+    },
+    "3": {
+      "name-candidate": 4728
+    }
+  },
+  "matchRuleNote": "Rules (a) UNII, (b) full InChIKey and (c) InChIKey skeleton cannot fire for this source: no ClinicalTrials.gov study record carries a UNII, an InChIKey or a structure. Every link is rule (d), a normalised intervention name, made by scripts/corpus-20k/registry/match.ts during corpus-20k and reused unchanged.",
+  "topUpFetched": {
+    "reason": "The 2026-09-01 snapshot requested StartDate, PrimaryCompletionDate and CompletionDate but not their *Type companions, so it records a date with no way to tell an ACTUAL date from an ESTIMATED one, and it did not request DesignInterventionModel. Both are read by the trial-size and registry-gap sections: a last completion date that is an estimate is a plan, not an event.",
+    "fields": [
+      "StartDateType",
+      "PrimaryCompletionDateType",
+      "CompletionDateType",
+      "DesignInterventionModel"
+    ],
+    "scope": "the studies already linked to a corpus page, not the whole registry",
+    "calls": 390,
+    "idsPerCall": 400,
+    "ceilingForThisStep": 500,
+    "studiesCovered": 155645,
+    "studiesNotReturned": 0,
+    "studiesNotReturnedSample": [],
+    "callsToAddTheSameFieldsForTheWholeRegistry": 602,
+    "callsToAddTheSameFieldsForTheWholeRegistryMethod": "601,158 studies at the measured pageSize ceiling of 1,000 per page; the snapshot run itself took 602 pages."
+  },
+  "unmatchedRecords": 0,
+  "unmatchedRecordsNote": "Studies linked to a page by the corpus-20k matcher that are absent from the 2026-09-01 snapshot.",
+  "studiesInSnapshotNotLinkedToAnyPage": 445513,
+  "pagesInMatchesAbsentFromCurrentCorpus": 0,
+  "pagesInMatchesAbsentFromCurrentCorpusSample": [],
+  "corpus20kSummaryReconciliation": {
+    "finding": "data/corpus-20k/registry/summary.json describes an earlier match run and no longer describes the files beside it. It reports 8,775 pages with studies, 328,324 page-study pairs and 155,671 distinct studies, and its files list names 72 batch files totalling 17,550 records. The matches and aggregates directories on disk hold 70 files, 8,663 records each side, 326,420 page-study pairs and 155,645 distinct studies, and aggregates-v3.json (generated 2026-09-05) agrees with the files at 8,663 pages and 155,645 studies. The two files summary.json names that are absent from disk are matches/batch-0036.ndjson and aggregates/batch-0036.ndjson, 25 records each.",
+    "measured": {
+      "summaryPagesWithStudies": 8775,
+      "summaryStudiesMatched": 328324,
+      "summaryDistinctStudiesMatched": 155671,
+      "summaryFilesListed": 72,
+      "summaryFilesMissingOnDisk": [
+        "data/corpus-20k/registry/matches/batch-0036.ndjson",
+        "data/corpus-20k/registry/aggregates/batch-0036.ndjson"
+      ],
+      "filesOnDiskPages": 8663,
+      "filesOnDiskPageTrialPairs": 326420,
+      "filesOnDiskDistinctStudies": 155645
+    },
+    "actionTaken": "This step maps the files on disk, which aggregates-v3.json corroborates. summary.json is not used as a count anywhere in this coverage report. Phase 3 should either regenerate summary.json or record it as superseded; it is stale, not wrong about a different thing."
+  },
+  "pagesInCorpus20kAggregates": 8663,
+  "aggregatePagesNotRemapped": 0,
+  "nameCandidatesSentToReview": 8663,
+  "nameCandidateFile": "data/revamp/name-candidates/clinicaltrials.csv",
+  "nameCandidatePagesWithCorpusSideStructuralId": 8283,
+  "nameCandidatePagesWithoutCorpusSideStructuralId": 380,
+  "ambiguousPageTrialLinks": 239036,
+  "ambiguousPageTrialLinksNote": "Page-trial links whose NCT is also linked to at least one other page. A trial of a combination product legitimately belongs to the combination page and to each component page, so these are not errors; they are counted so a reviewer can see how much of the mapping is shared.",
+  "saltListChange": "scripts/revamp/salts.txt was read by corpus_join.load_corpus_index and not extended. The name normalisation used for these links is the corpus-20k TypeScript normalizeInterventionName, which stripped salt, dose and dosage-form words at match time; no new suffix was found to add.",
+  "mappedParquet": "data/sources/clinicaltrials/mapped.parquet",
+  "manifest": "data/sources/clinicaltrials/2026-09-06/manifest.json",
+  "snapshotFieldAudit": "data/sources/clinicaltrials/2026-09-06/snapshot-field-audit.json",
+  "estimatedDateImpact": {
+    "finding": "The corpus-20k aggregate's lastCompletionDate is computed over COMPLETED studies without knowing whether the date is ACTUAL or ESTIMATED, because the snapshot did not hold the type. With the type now attached, 57 of the 7,257 pages that carry a lastCompletionDate have one that the sponsor marked ESTIMATED or left untyped, and on 47 of those the page has no ACTUAL completion date at all. Those 57 pages should render the date as a sponsor estimate, not as an event that happened.",
+    "pagesWithLastCompletionDate": 7257,
+    "pagesWhereLastCompletionDateIsNotAnActualDate": 57,
+    "ofThosePagesWithNoActualCompletionDateAtAll": 47,
+    "newFieldKey": "registry.completionDates.lastActualCompletionDate"
+  },
+  "designCoverage": {
+    "pagesWithInterventionalTrials": 8577,
+    "pagesWithAtLeastOneStatedInterventionModel": 8469,
+    "note": "Allocation, masking and primary purpose came from the snapshot; intervention model came from the top-up. All four are counted per page in registry.design and listed per trial beside the NCT id."
+  },
+  "requestsMade": {
+    "total": 396,
+    "logged": "data/sources/clinicaltrials/2026-09-06/requests.log",
+    "breakdown": {
+      "legalPages": 5,
+      "topUpApiCalls": 390,
+      "fieldNameProbe": 1
+    },
+    "allHttp200": true,
+    "note": "The probe was a two-id call made before committing to 390, to confirm the four field names resolve; its response was read at the terminal and not saved, and it is the last line of requests.log, marked not-saved."
+  },
+  "diskNote": "The brief assumed about 20 GB free. The volume had 9.2 GB free at the start of this step. Nothing over 5 GB was downloaded: the top-up is 43 MB across 390 files and the 778 MB snapshot was reused in place rather than copied."
+}

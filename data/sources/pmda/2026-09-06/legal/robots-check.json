@@ -1,0 +1,9 @@
+{
+  "url": "https://www.pmda.go.jp/robots.txt",
+  "http_status": 404,
+  "retrieved_utc": "2026-09-05T16:08:02Z",
+  "result": "www.pmda.go.jp serves no robots.txt; the request returns the site's HTTP 404 error page (saved as robots-404-response.html). No crawl directives are declared for any path.",
+  "saved_response": "robots-404-response.html",
+  "saved_response_sha256": "83b310d9973c639e0cae2c932c589f2851783df0c2c8670da678b20130050f10",
+  "saved_response_bytes": 70060
+}

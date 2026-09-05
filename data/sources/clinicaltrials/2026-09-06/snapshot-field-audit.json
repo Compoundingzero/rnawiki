@@ -1,0 +1,233 @@
+{
+  "schema": "rnawiki-revamp-clinicaltrials-snapshot-audit/v1",
+  "checkedAt": "2026-09-06",
+  "snapshotDir": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/clinicaltrials/20260901T090005",
+  "snapshotFile": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/clinicaltrials/20260901T090005/studies.ndjson",
+  "snapshotBytes": 815589780,
+  "snapshotSha256Recorded": "00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27",
+  "snapshotSha256Measured": "00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27",
+  "snapshotSha256Matches": true,
+  "apiVersion": "2.0.5",
+  "dataTimestamp": "2026-09-01T09:00:05",
+  "requestedFields": [
+    "NCTId",
+    "BriefTitle",
+    "OverallStatus",
+    "Phase",
+    "HasResults",
+    "InterventionName",
+    "InterventionType",
+    "InterventionOtherName",
+    "StartDate",
+    "PrimaryCompletionDate",
+    "CompletionDate",
+    "StudyType",
+    "EnrollmentCount",
+    "EnrollmentType",
+    "LeadSponsorName",
+    "LeadSponsorClass",
+    "ResultsFirstPostDate",
+    "LastUpdatePostDate",
+    "WhyStopped",
+    "Condition",
+    "Sex",
+    "MinimumAge",
+    "MaximumAge",
+    "StdAge",
+    "HealthyVolunteers",
+    "PrimaryOutcomeMeasure",
+    "PrimaryOutcomeTimeFrame",
+    "DesignAllocation",
+    "DesignMasking",
+    "DesignPrimaryPurpose"
+  ],
+  "studiesRecorded": 601158,
+  "studiesCounted": 601158,
+  "fieldPresence": {
+    "nctId": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "briefTitle": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "overallStatus": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "lastUpdatePostDate": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "hasResults": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "leadSponsorName": {
+      "studies": 601158,
+      "percent": 100.0
+    },
+    "studyType": {
+      "studies": 600172,
+      "percent": 99.84
+    },
+    "leadSponsorClass": {
+      "studies": 600172,
+      "percent": 99.84
+    },
+    "stdAges": {
+      "studies": 600172,
+      "percent": 99.84
+    },
+    "conditions": {
+      "studies": 600134,
+      "percent": 99.83
+    },
+    "sex": {
+      "studies": 599758,
+      "percent": 99.77
+    },
+    "startDate": {
+      "studies": 595794,
+      "percent": 99.11
+    },
+    "enrollmentCount": {
+      "studies": 594020,
+      "percent": 98.81
+    },
+    "healthyVolunteers": {
+      "studies": 586258,
+      "percent": 97.52
+    },
+    "completionDate": {
+      "studies": 584465,
+      "percent": 97.22
+    },
+    "enrollmentType": {
+      "studies": 584022,
+      "percent": 97.15
+    },
+    "primaryOutcomes": {
+      "studies": 583497,
+      "percent": 97.06
+    },
+    "primaryCompletionDate": {
+      "studies": 579278,
+      "percent": 96.36
+    },
+    "minimumAge": {
+      "studies": 562104,
+      "percent": 93.5
+    },
+    "interventions": {
+      "studies": 540285,
+      "percent": 89.87
+    },
+    "phase": {
+      "studies": 458698,
+      "percent": 76.3
+    },
+    "designMasking": {
+      "studies": 453422,
+      "percent": 75.42
+    },
+    "designAllocation": {
+      "studies": 453129,
+      "percent": 75.38
+    },
+    "designPrimaryPurpose": {
+      "studies": 452004,
+      "percent": 75.19
+    },
+    "maximumAge": {
+      "studies": 319257,
+      "percent": 53.11
+    },
+    "resultsFirstPostDate": {
+      "studies": 79954,
+      "percent": 13.3
+    },
+    "whyStopped": {
+      "studies": 46889,
+      "percent": 7.8
+    }
+  },
+  "hasResultsTrue": 79954,
+  "hasResultsTruePercent": 13.3,
+  "resultsFirstPostDatePresentWhenHasResults": 79954,
+  "stoppedStudies": 52711,
+  "whyStoppedPresentOnStoppedStudies": 46889,
+  "valueCounts": {
+    "overallStatus": {
+      "COMPLETED": 328250,
+      "UNKNOWN": 97164,
+      "RECRUITING": 64420,
+      "TERMINATED": 34239,
+      "NOT_YET_RECRUITING": 29469,
+      "ACTIVE_NOT_RECRUITING": 21872,
+      "WITHDRAWN": 16713,
+      "ENROLLING_BY_INVITATION": 5219,
+      "SUSPENDED": 1759,
+      "WITHHELD": 986,
+      "NO_LONGER_AVAILABLE": 533,
+      "AVAILABLE": 260,
+      "APPROVED_FOR_MARKETING": 239,
+      "TEMPORARILY_NOT_AVAILABLE": 35
+    },
+    "phase": {
+      "NA": 235761,
+      "PHASE2": 89991,
+      "PHASE1": 65588,
+      "PHASE3": 49775,
+      "PHASE4": 35737,
+      "EARLY_PHASE1": 6459
+    },
+    "studyType": {
+      "INTERVENTIONAL": 458821,
+      "OBSERVATIONAL": 140284,
+      "EXPANDED_ACCESS": 1067
+    },
+    "enrollmentType": {
+      "ACTUAL": 373411,
+      "ESTIMATED": 210611
+    },
+    "designAllocation": {
+      "RANDOMIZED": 301890,
+      "NA": 103315,
+      "NON_RANDOMIZED": 47924
+    },
+    "designMasking": {
+      "NONE": 251839,
+      "SINGLE": 69412,
+      "DOUBLE": 61503,
+      "QUADRUPLE": 40671,
+      "TRIPLE": 29997
+    },
+    "designPrimaryPurpose": {
+      "TREATMENT": 291562,
+      "PREVENTION": 48491,
+      "OTHER": 26514,
+      "SUPPORTIVE_CARE": 26115,
+      "BASIC_SCIENCE": 21791,
+      "DIAGNOSTIC": 19458,
+      "HEALTH_SERVICES_RESEARCH": 12130,
+      "SCREENING": 4171,
+      "DEVICE_FEASIBILITY": 1599,
+      "ECT": 173
+    },
+    "interventionType": {
+      "DRUG": 413568,
+      "OTHER": 180355,
+      "DEVICE": 104170,
+      "BEHAVIORAL": 98552,
+      "PROCEDURE": 92826,
+      "BIOLOGICAL": 47354,
+      "DIETARY_SUPPLEMENT": 30934,
+      "DIAGNOSTIC_TEST": 27311,
+      "RADIATION": 13013,
+      "COMBINATION_PRODUCT": 4698,
+      "GENETIC": 4064
+    }
+  }
+}

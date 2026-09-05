@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-05T16:32:43.694947+00:00",
+  "step": "3.1",
+  "inputs": {
+    "canonical": "data/corpus-20k/identity/canonical.ndjson",
+    "tiers": "data/revamp/presence-applicable.ndjson",
+    "gsrsSpine": "data/sources/gsrs/spine.parquet",
+    "gsrsMapped": "data/sources/gsrs/mapped.parquet",
+    "pubchemMapped": "data/sources/pubchem/mapped.parquet"
+  },
+  "pages": 28832,
+  "coverage": {
+    "unii": {
+      "tier1": {
+        "pages": 1719,
+        "with": 1636,
+        "percent": 95.17
+      },
+      "tier2": {
+        "pages": 4477,
+        "with": 4241,
+        "percent": 94.73
+      },
+      "tier3": {
+        "pages": 22636,
+        "with": 14584,
+        "percent": 64.43
+      },
+      "all": {
+        "pages": 28832,
+        "with": 20461,
+        "percent": 70.97
+      }
+    },
+    "inchikey": {
+      "tier1": {
+        "pages": 1719,
+        "with": 1325,
+        "percent": 77.08
+      },
+      "tier2": {
+        "pages": 4477,
+        "with": 2678,
+        "percent": 59.82
+      },
+      "tier3": {
+        "pages": 22636,
+        "with": 16631,
+        "percent": 73.47
+      },
+      "all": {
+        "pages": 28832,
+        "with": 20634,
+        "percent": 71.57
+      }
+    },
+    "skeleton": {
+      "tier1": {
+        "pages": 1719,
+        "with": 1325,
+        "percent": 77.08
+      },
+      "tier2": {
+        "pages": 4477,
+        "with": 2678,
+        "percent": 59.82
+      },
+      "tier3": {
+        "pages": 22636,
+        "with": 16631,
+        "percent": 73.47
+      },
+      "all": {
+        "pages": 28832,
+        "with": 20634,
+        "percent": 71.57
+      }
+    }
+  },
+  "sources": {
+    "inchikey_source": {
+      "page-structure": 20075,
+      "pubchem-exact": 557,
+      "gsrs-spine": 2
+    },
+    "unii_source": {
+      "page-key": 19994,
+      "page-field": 353,
+      "pubchem-cid-to-gsrs": 98,
+      "gsrs-by-inchikey": 16
+    }
+  }
+}

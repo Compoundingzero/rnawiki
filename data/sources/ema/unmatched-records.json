@@ -1,0 +1,1184 @@
+{
+  "source": "ema",
+  "generated": "2026-09-06",
+  "count": 143,
+  "records": [
+    {
+      "ema_product_number": "EMEA/H/C/005155",
+      "medicine_name": "Qdenga",
+      "status": "Authorised",
+      "substances": [
+        "Dengue virus, serotype 2, expressing Dengue virus, serotype 1, surface proteins, live, attenuated",
+        "Dengue virus, serotype 2, expressing Dengue virus, serotype 3, surface proteins, live, attenuated",
+        "Dengue virus, serotype 2, expressing Dengue virus, serotype 4, surface proteins, live, attenuated",
+        "Dengue virus, serotype 2, live, attenuated",
+        "dengue tetravalent vaccine (live, attenuated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002596",
+      "medicine_name": "Imvanex",
+      "status": "Authorised",
+      "substances": [
+        "modified vaccinia Ankara - Bavarian Nordic (MVA-BN) virus",
+        "smallpox and monkeypox vaccine (Live Modified Vaccinia Virus Ankara)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006692",
+      "medicine_name": "Aujemflu",
+      "status": "Authorised",
+      "substances": [
+        "A/(H1N1)-like virus antigen",
+        "A/(H3N2)-like virus antigen",
+        "B (Victoria lineage)-like virus antigen",
+        "Influenza vaccine (surface antigen, inactivated, adjuvanted, prepared in cell culture)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006278",
+      "medicine_name": "mResvia",
+      "status": "Authorised",
+      "substances": [
+        "Single-stranded 5' capped mRNA encoding the respiratory syncytial virus glycoprotein F stabilised in the prefusion conformation",
+        "respiratory syncytial virus mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005735",
+      "medicine_name": "Comirnaty",
+      "status": "Authorised",
+      "substances": [
+        "single-stranded, 5’-capped messenger RNA produced using a cell-free in vitro transcription from the corresponding DNA templates, encoding the viral spike (S) protein of SARS-CoV-2",
+        "COVID-19 mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005791",
+      "medicine_name": "Spikevax (previously COVID-19 Vaccine Moderna)",
+      "status": "Authorised",
+      "substances": [
+        "single-stranded, 5’-capped messenger RNA (mRNA) produced using a cell-free in vitro transcription from the corresponding DNA templates, encoding the viral spike (S) protein of SARS-CoV-2",
+        "COVID-19 mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005797",
+      "medicine_name": "Ixchiq",
+      "status": "Authorised",
+      "substances": [
+        "Chikungunya virus, strain CHIKV LR2006-OPY1, live attenuated",
+        "Chikungunya vaccine (live)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000639",
+      "medicine_name": "Rotarix",
+      "status": "Authorised",
+      "substances": [
+        "human rotavirus, live attenuated",
+        "rotavirus vaccine, live"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006054",
+      "medicine_name": "Arexvy",
+      "status": "Authorised",
+      "substances": [
+        "Respiratory Syncytial Virus (RSV) vaccine (recombinant, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005084",
+      "medicine_name": "MenQuadfi",
+      "status": "Authorised",
+      "substances": [
+        "Neisseria meningitidis group C polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group A polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group Y polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group W-135 polysaccharide conjugated to tetanus toxoid",
+        "meningococcal group A, C, W-135 and Y conjugate vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005808",
+      "medicine_name": "Nuvaxovid",
+      "status": "Authorised",
+      "substances": [
+        "SARS CoV-2 (Original) recombinant spike protein",
+        "SARS-CoV-2 (Omicron XBB.1.5) recombinant spike protein",
+        "COVID-19 Vaccine (recombinant, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006027",
+      "medicine_name": "Abrysvo",
+      "status": "Authorised",
+      "substances": [
+        "respiratory syncytial virus vaccine (bivalent, recombinant)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006058",
+      "medicine_name": "Bimervax",
+      "status": "Authorised",
+      "substances": [
+        "COVID-19 Vaccine (recombinant, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006514",
+      "medicine_name": "Fluenz",
+      "status": "Authorised",
+      "substances": [
+        "influenza virus (live attenuated)",
+        "A/Missouri/11/2025 (H1N1)pdm09 - like strain (A/Switzerland/6849/2025, MEDI 400592)",
+        "A/Darwin/1454/2025 (H3N2) - like strain (A/Darwin/1369/2025, MEDI 406666)",
+        "B/Tokyo/EIS13-175/2025 - like strain (B/Perth/115/2025, MEDI 407730)",
+        "influenza vaccine (live attenuated, nasal)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006532",
+      "medicine_name": "Flucelvax",
+      "status": "Authorised",
+      "substances": [
+        "A/Missouri/11/2025 (H1N1)pdm09-like strain (A/Tasmania/318/2025, CVR-351)",
+        "A/Darwin/1415/2025 (H3N2)-like strain (A/Tasmania/787/2025, CVR-388)",
+        "B/Pennsylvania/14/2025-like strain (B/Arizona/21/2025, wild type)",
+        "influenza vaccine (surface antigen, inactivated, prepared in cell cultures)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006538",
+      "medicine_name": "Fluad",
+      "status": "Authorised",
+      "substances": [
+        "type A (H1N1) strain",
+        "type A (H3N2) strain",
+        "type B strain",
+        "A/Missouri/11/2025 (H1N1)pdm09-like strain (A/Missouri/11/2025, IVR-279)",
+        "A/Darwin/1454/2025 (H3N2)-like strain (A/Michigan/105/2025, IVR-285)",
+        "B/Tokyo/EIS13-175/2025-like strain (B/Tokyo/EIS13-175/2025, wild type)",
+        "influenza vaccine (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005477",
+      "medicine_name": "Vaxneuvance",
+      "status": "Authorised",
+      "substances": [
+        "pneumococcal polysaccharide conjugate vaccine (adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006678",
+      "medicine_name": "Xervyteg",
+      "status": "Opinion",
+      "substances": [
+        "allogeneic faecal microbiota, pooled"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006207",
+      "medicine_name": "Kostaive",
+      "status": "Authorised",
+      "substances": [
+        "COVID-19 sa-mRNA Vaccine",
+        "zapomeran"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003876",
+      "medicine_name": "Vaxchora",
+      "status": "Authorised",
+      "substances": [
+        "vibrio cholerae, strain cvd 103-hgr, live",
+        "cholera vaccine, oral, live"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001095",
+      "medicine_name": "Menveo",
+      "status": "Authorised",
+      "substances": [
+        "meningococcal group A, C, W-135 and Y conjugate vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006563",
+      "medicine_name": "Tacquell",
+      "status": "Opinion",
+      "substances": [
+        "autologous melanoma-derived tumor infiltrating lymphocytes, ex vivo-expanded,"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006267",
+      "medicine_name": "Capvaxive",
+      "status": "Authorised",
+      "substances": [
+        "pneumococcal polysaccharide serotype 3, 6A, 7F, 8, 9N, 10A, 11A, 12F, 15A, 15B de-O-acetylated, 16F, 17F, 19A, 20A, 22F, 23A, 23B, 24F, 31, 33F and 35B conjugated to CRM197 carrier protein",
+        "pneumococcal polysaccharide conjugate vaccine (21-valent)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004051",
+      "medicine_name": "Trumenba",
+      "status": "Authorised",
+      "substances": [
+        "Neisseria meningitidis serogroup B fHbp (recombinant lipidated fHbp (factor H binding protein)) subfamily A",
+        "Neisseria meningitidis serogroup B fHbp (recombinant lipidated fHbp (factor H binding protein)) subfamily B",
+        "meningococcal group b vaccine (recombinant, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003963",
+      "medicine_name": "Pandemic influenza vaccine H5N1 AstraZeneca (previously Pandemic influenza vaccine H5N1 Medimmune)",
+      "status": "Authorised",
+      "substances": [
+        "reassortant influenza virus (live attenuated) of the following strain: A/Vietnam/1203/2004 (H5N1) strain",
+        "pandemic influenza vaccine (H5N1) (live attenuated, nasal)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000963",
+      "medicine_name": "Ixiaro",
+      "status": "Authorised",
+      "substances": [
+        "Japanese-encephalitis virus, inactivated (attenuated strain SA14-14-2 grown in vero cells)",
+        "Japanese encephalitis vaccine (inactivated, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003852",
+      "medicine_name": "Gardasil 9",
+      "status": "Authorised",
+      "substances": [
+        "human papillomavirus vaccine [types 6, 11, 16, 18, 31, 33, 45, 52, 58] (recombinant, adsorbed)",
+        "human papillomavirus 9-valent vaccine (recombinant, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005343",
+      "medicine_name": "Mvabea",
+      "status": "Withdrawn",
+      "substances": [
+        "recombinant Modified Vaccinia Ankara Bavarian Nordic Virus encoding the: Ebola virus Zaire (ZEBOV) Mayinga strain glycoprotein (GP)",
+        "Ebola virus Sudan Gulu strain GP",
+        "Ebola virus Taï Forest strain nucleoprotein and the Marburg virus Musoke strain GP",
+        "Ebola vaccine (MVA-BN-Filo [recombinant])"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005337",
+      "medicine_name": "Zabdeno",
+      "status": "Withdrawn",
+      "substances": [
+        "recombinant adenovirus type 26 (Ad26) encoding the glycoprotein (GP) of the Ebola virus Zaire (ZEBOV) Mayinga strain",
+        "ebola vaccine (Ad26.ZEBOV-GP [recombinant])"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006472",
+      "medicine_name": "mCombriax",
+      "status": "Authorised",
+      "substances": [
+        "single-stranded, 5’-capped messenger RNAs (mRNAs) produced using a cell-free in vitro transcription from the corresponding DNA template, encoding seasonal influenza haemagglutinin (HA) glycoproteins: A/H1N1, A/H3N2, B/Victoria",
+        "influenza mRNA vaccine",
+        "COVID-19 mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004594",
+      "medicine_name": "Jelrix",
+      "status": "Application withdrawn",
+      "substances": [
+        "autologous cartilage-derived articular chondrocytes, in-vitro expanded"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006674",
+      "medicine_name": "Supemtek",
+      "status": "Authorised",
+      "substances": [
+        "A/California/07/2009 (H1N1)pdm09-like strain (A/California/07/2009)",
+        "A/Texas/50/2012 (H3N2)-like strain (A/Texas/50/2012)",
+        "B/Brisbane/60/2008-like strain (B/Brisbane/60/2008)",
+        "trivalent influenza vaccine (recombinant, prepared in cell culture)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004336",
+      "medicine_name": "Shingrix",
+      "status": "Authorised",
+      "substances": [
+        "recombinant varicella zoster virus glycoprotein E",
+        "herpes zoster vaccine (recombinant, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006304",
+      "medicine_name": "VacPertagen",
+      "status": "Authorised",
+      "substances": [
+        "recombinant pertussis toxin",
+        "filamentous haemagglutinin",
+        "pertussis vaccine (recombinant, acellular, component, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006428",
+      "medicine_name": "mNexspike",
+      "status": "Authorised",
+      "substances": [
+        "single-stranded, 5’-capped messenger RNA (mRNA) produced using a cell-free in vitro transcription from the corresponding DNA template, encoding the N-terminal domain and receptor-binding domain of the viral spike (S) protein of SARS-CoV-2",
+        "COVID-19 mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004814",
+      "medicine_name": "Flucelvax Tetra",
+      "status": "Withdrawn",
+      "substances": [
+        "A/Wisconsin/67/2022 (H1N1)pdm09-like strain (A/Georgia/12/2022, CVR-167)  A/Massachusetts/18/2022 (H3N2)-like strain (A/Sydney/1304/2022, wild type)  B/Austria/1359417/2021-like strain (B/Singapore/WUH4618/2021, wild type)  B/Phuket/3073/2013-like strain (B/Singapore/INFTT-16-0610/2016, wild type)",
+        "influenza vaccine (surface antigen, inactivated, prepared in cell cultures)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004993",
+      "medicine_name": "Fluad Tetra",
+      "status": "Withdrawn",
+      "substances": [
+        "A/Victoria/4897/2022 (H1N1)pdm09-like strain (A/Victoria/4897/2022, IVR-238) /  A/Thailand/8/2022 (H3N2)-like strain (A/Thailand/8/2022 IVR-237) /  B/Austria/1359417/2021-like strain (B/Austria/1359417/2021, BVR-26) /  B/Phuket/3073/2013-like strain (B/Phuket/3073/2013, BVR-1B) influenza virus",
+        "influenza vaccine (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006053",
+      "medicine_name": "GalliaPharm",
+      "status": "Authorised",
+      "substances": [
+        "gallium (68Ga) chloride",
+        "germanium (68Ge) chloride"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002094",
+      "medicine_name": "Aflunov",
+      "status": "Authorised",
+      "substances": [
+        "influenza virus surface antigens (haemagglutinin and neuraminidase) of strain: A/turkey/Turkey/1/05 (H5N1)-like strain (NIBRG-23)",
+        "zoonotic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004554",
+      "medicine_name": "Ervebo",
+      "status": "Authorised",
+      "substances": [
+        "recombinant vesicular stomatitis virus (strain indiana) with a deletion of the envelope glycoprotein, replaced with the zaire ebolavirus (strain kikwit 1995) surface glycoprotein",
+        "Ebola Zaire vaccine (rVSV∆G-ZEBOV-GP, live)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006639",
+      "medicine_name": "GalenVita",
+      "status": "Authorised",
+      "substances": [
+        "germanium (68Ge) chloride",
+        "gallium (68Ga) chloride"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000669",
+      "medicine_name": "RotaTeq",
+      "status": "Authorised",
+      "substances": [
+        "rotavirus serotype G1",
+        "rotavirus serotype G2",
+        "rotavirus serotype G3",
+        "rotavirus serotype G4",
+        "rotavirus serotype P1",
+        "rotavirus vaccine, live"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001206",
+      "medicine_name": "Adjupanrix (previously Pandemic influenza vaccine (H5N1) (split virion, inactivated, adjuvanted) GlaxoSmithKline Biologicals)",
+      "status": "Authorised",
+      "substances": [
+        "split influenza virus, inactivated, containing antigen: A/VietNam/1194/2004 (H5N1) like strain used (NIBRG-14)",
+        "pandemic influenza vaccine (H5N1) (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004171",
+      "medicine_name": "Dengvaxia",
+      "status": "Withdrawn",
+      "substances": [
+        "chimeric yellow fever dengue virus serotype 1 (live, attenuated)",
+        "chimeric yellow fever dengue virus serotype 2 (live, attenuated)",
+        "chimeric yellow fever dengue virus serotype 3 (live, attenuated)",
+        "chimeric yellow fever dengue virus serotype 4 (live, attenuated)",
+        "dengue tetravalent vaccine (live, attenuated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006051",
+      "medicine_name": "Incellipan",
+      "status": "Authorised",
+      "substances": [
+        "Influenza virus A/turkey/Turkey/1/2005 (H5N1) NIBRG-23 strain, HA surface antigen",
+        "pandemic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted, prepared in cell cultures)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002127",
+      "medicine_name": "Hizentra",
+      "status": "Authorised",
+      "substances": [
+        "human normal immunoglobulin (SCIg)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000373",
+      "medicine_name": "HBVaxPro",
+      "status": "Authorised",
+      "substances": [
+        "hepatitis B, recombinant surface antigen",
+        "hepatitis B vaccine (recombinant DNA)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000604",
+      "medicine_name": "M-M-RVaxPro",
+      "status": "Authorised",
+      "substances": [
+        "measles virus Enders’ Edmonston strain (live, attenuated)",
+        "mumps virus Jeryl Lynn (level B) strain (live, attenuated)",
+        "rubella virus Wistar RA 27/3 strain (live, attenuated)",
+        "measles, mumps and rubella vaccine (live)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006177",
+      "medicine_name": "Siiltibcy",
+      "status": "Authorised",
+      "substances": [
+        "Mycobacterium tuberculosis derived antigens (rdESAT‑6 and rCFP‑10)",
+        "Mycobacterium tuberculosis derived antigens (rdESAT-6 / rCFP-10)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000622",
+      "medicine_name": "ProQuad",
+      "status": "Authorised",
+      "substances": [
+        "virus, live attenuated, measles, virus, live attenuated, mumps, virus, live attenuated, rubella, virus, live attenuated, varicella",
+        "measles, mumps, rubella and varicella vaccine (live)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005737",
+      "medicine_name": "Jcovden (previously COVID-19 Vaccine Janssen)",
+      "status": "Withdrawn",
+      "substances": [
+        "adenovirus type 26 encoding the SARS-CoV-2 spike glycoprotein (Ad26.COV2-S)",
+        "COVID-19 vaccine (Ad26.COV2-S [recombinant])"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005470",
+      "medicine_name": "Vimkunya",
+      "status": "Authorised",
+      "substances": [
+        "Chikungunya virus (CHIKV) virus-like particle (VLP) proteins (capsid protein (C) and envelope proteins E1 and E2) derived from CHIKV Senegal strain 37997 produced in human embryonic kidney cells by recombinant DNA technology, adsorbed on aluminium hydroxide, hydrated",
+        "Chikungunya vaccine (recombinant, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002617",
+      "medicine_name": "Fluenz Tetra",
+      "status": "Withdrawn",
+      "substances": [
+        "A/Darwin/9/2021 (H3N2) - like strain (A/Norway/16606/2021, MEDI 355293) / A/Victoria/2570/2019 (H1N1)pdm09 - like strain (A/Victoria/1/2020, MEDI 340505) / B/Austria/1359417/2021 - like strain (B/Austria/1359417/2021, MEDI 355292) / B/Phuket/3073/2013 - like strain (B/Phuket/3073/2013, MEDI 306444)",
+        "influenza vaccine (live attenuated, nasal)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002333",
+      "medicine_name": "Bexsero",
+      "status": "Authorised",
+      "substances": [
+        "outer membrane vesicles from neisseria meningitidis group b (strain nz 98/254)",
+        "recombinant Neisseria meningitidis group B fHbp fusion protein",
+        "recombinant Neisseria meningitidis group B NadA protein",
+        "recombinant Neisseria meningitidis group B NHBA fusion protein",
+        "meningococcal group B Vaccine (rDNA, component, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005159",
+      "medicine_name": "Supemtek Tetra (previously Supemtek)",
+      "status": "Authorised",
+      "substances": [
+        "Influenza A virus subtype H1N1 haemagglutinin, recombinant",
+        "Influenza A virus subtype H3N2 haemagglutinin, recombinant",
+        "Influenza B virus Victoria lineage haemagglutinin, recombinant",
+        "Influenza B virus Yamagata lineage haemagglutinin, recombinant",
+        "quadrivalent influenza vaccine (recombinant, prepared in cell culture)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006375",
+      "medicine_name": "Zoonotic Influenza Vaccine Seqirus",
+      "status": "Authorised",
+      "substances": [
+        "A/Astrakhan/3212/2020 (H5N8)-like strain (CBER-RG8A) (clade 2.3.4.4b)",
+        "zoonotic influenza vaccine (H5N8) (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001208",
+      "medicine_name": "Foclivia",
+      "status": "Authorised",
+      "substances": [
+        "influenza virus surface antigens, inactivated: A/Viet Nam/1194/2004 (H5N1)",
+        "pandemic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004155",
+      "medicine_name": "Cinainu",
+      "status": "Application withdrawn",
+      "substances": [
+        "dry aqueous extract of paullinia cupana seed",
+        "dry hydroethanolic extract of theobroma cacao seed",
+        "liquid ethanolic extract 30 per cent (W/W) of Allium cepa fresh bulb and Citrus limon fresh fruit"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005165",
+      "medicine_name": "GeGant",
+      "status": "Application withdrawn",
+      "substances": [
+        "gallium (68Ga) chloride",
+        "germanium (68Ge) chloride"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002226",
+      "medicine_name": "Nimenrix",
+      "status": "Authorised",
+      "substances": [
+        "Neisseria meningitidis group A polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group C polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group W-135 polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group Y polysaccharide conjugated to tetanus toxoid",
+        "meningococcal groups A, C, W-135 and Y conjugate vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006165",
+      "medicine_name": "Penbraya",
+      "status": "Withdrawn",
+      "substances": [
+        "Neisseria meningitidis group A polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group C polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group W polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group Y polysaccharide conjugated to tetanus toxoid",
+        "Neisseria meningitidis group B fHBP protein subfamily A",
+        "Neisseria meningitidis group B fHBP protein subfamily B",
+        "meningococcal groups A, C, W, Y conjugate and group B vaccine (recombinant, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006052",
+      "medicine_name": "Celldemic",
+      "status": "Authorised",
+      "substances": [
+        "Influenza virus A/turkey/Turkey/1/2005 (H5N1) NIBRG-23 strain, HA surface antigen",
+        "zoonotic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted, prepared in cell cultures)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005998",
+      "medicine_name": "Skycovion",
+      "status": "Application withdrawn",
+      "substances": [
+        "GBP510"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005675",
+      "medicine_name": "Vaxzevria (previously COVID-19 Vaccine AstraZeneca)",
+      "status": "Withdrawn",
+      "substances": [
+        "ChAdOx1-SARS-COV-2",
+        "COVID-19 Vaccine (ChAdOx1-S [recombinant])"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005754",
+      "medicine_name": "VidPrevtyn Beta",
+      "status": "Withdrawn",
+      "substances": [
+        "SARS-CoV-2 prefusion Spike delta TM protein, recombinant (B.1.351 strain)",
+        "COVID-19 Vaccine (recombinant, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/006019",
+      "medicine_name": "COVID-19 Vaccine (inactivated, adjuvanted) Valneva",
+      "status": "Withdrawn",
+      "substances": [
+        "COVID-19 vaccine (inactivated, adjuvanted, adsorbed)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001200",
+      "medicine_name": "Pandemic Influenza Vaccine H5N1 Baxter AG",
+      "status": "Withdrawn",
+      "substances": [
+        "influenza vaccine (whole virion, inactivated) containing antigen of: A/Vietnam/1203/2004 (H5N1)",
+        "pandemic influenza vaccine (H5N1) (whole virion, inactivated, prepared in cell culture)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005047",
+      "medicine_name": "Lumevoq",
+      "status": "Application withdrawn",
+      "substances": [
+        "lenadogene nolparvovec"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005499",
+      "medicine_name": "Omblastys",
+      "status": "Refused",
+      "substances": [
+        "iodine (131I) omburtamab"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004810",
+      "medicine_name": "Abylqis",
+      "status": "Application withdrawn",
+      "substances": [
+        "arachis hypogaea extract"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003693",
+      "medicine_name": "Sitoiganap",
+      "status": "Application withdrawn",
+      "substances": [
+        "allogeneic glioma tumor cell lysates (inactivated)",
+        "allogeneic glioma tumor cells (inactivated)",
+        "autologous glioma tumor cell lysates (inactivated)",
+        "autologous glioma tumor cells (inactivated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/005845",
+      "medicine_name": "CureVac’s COVID-19 vaccine (CVnCoV)",
+      "status": "Withdrawn from rolling review",
+      "substances": [
+        "single-stranded, 5’-capped messenger RNA (mRNA) produced using a cell-free in vitro transcription from the corresponding DNA templates, encoding the viral spike (S) protein of SARS-CoV-2",
+        "COVID-19 mRNA vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000822",
+      "medicine_name": "Prepandrix",
+      "status": "Withdrawn",
+      "substances": [
+        "A/Indonesia/05/2005 (H5N1) like strain used (PR8-IBCDC-RG2)",
+        "prepandemic influenza vaccine (H5N1) (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002070",
+      "medicine_name": "Enzepi",
+      "status": "Withdrawn",
+      "substances": [
+        "pancreas powder"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004598",
+      "medicine_name": "Artobend",
+      "status": "Application withdrawn",
+      "substances": [
+        "autologous human chondrocytes in vitro expanded"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002089",
+      "medicine_name": "Vepacel",
+      "status": "Withdrawn",
+      "substances": [
+        "Influenza virus (whole virion, inactivated), containing antigen of: A/Vietnam/1203/2004 (H5N1)",
+        "prepandemic influenza vaccine (H5N1) (whole virion, inactivated,prepared in cell culture)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002397",
+      "medicine_name": "Luxceptar",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002801",
+      "medicine_name": "Zalmoxis",
+      "status": "Withdrawn",
+      "substances": [
+        "allogeneic T cells genetically modified with a retroviral vector encoding for a truncated form of the human low affinity nerve growth factor receptor (ΔLNGFR) and the herpes simplex I virus thymidine kinase (HSV-TK Mut2)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004734",
+      "medicine_name": "Xyndari",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004324",
+      "medicine_name": "Idhifa",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004715",
+      "medicine_name": "Nuzyra",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004394",
+      "medicine_name": "Linhaliq",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004793",
+      "medicine_name": "Epjevy",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000957",
+      "medicine_name": "Intanza",
+      "status": "Withdrawn",
+      "substances": [
+        "influenza virus (inactivated, split) of the following strains:A/California/7/2009 (H1N1)pdm09 - like strain (A/California/7/2009, NYMC X-179A)A/Hong Kong/4801/2014 (H3N2) - like strain (A/Hong Kong/4801/2014, NYMC X-263B)B/Brisbane/60/2008 - like strain (B/Brisbane/60/2008, wild type)",
+        "influenza vaccine (split virion, inactivated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004473",
+      "medicine_name": "Raligize",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000966",
+      "medicine_name": "IDflu",
+      "status": "Withdrawn",
+      "substances": [
+        "influenza virus (inactivated, split) of the following strains:A/California/7/2009 (H1N1)pdm09 - like strain (A/California/7/2009, NYMC X-179A)A/Hong Kong/4801/2014 (H3N2) - like strain (A/Hong Kong/4801/2014, NYMC X-263B)B/Brisbane/60/2008 - like strain (B/Brisbane/60/2008, wild type)",
+        "influenza vaccine (split virion, inactivated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004455",
+      "medicine_name": "Zafiride",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004153",
+      "medicine_name": "Qizenday",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004346",
+      "medicine_name": "Ogivri",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004388",
+      "medicine_name": "Human IGG1 monoclonal antibody specific for human interleukin-1 alpha XBiotech",
+      "status": "Refused",
+      "substances": [
+        "human IgG1 monoclonal antibody specific for human interleukin-1 alpha"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004330",
+      "medicine_name": "Elmisol",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000758",
+      "medicine_name": "Optaflu",
+      "status": "Expired",
+      "substances": [
+        "influenza virus surface antigens (haemagglutinin and neuraminidase), inactivated, of the following strains:A/California/7/2009 (H1N1)pdm09 - like strain(A/Brisbane/10/2010, wild type)A/Switzerland/9715293/2013 (H3N2) - like strain(A/South Australia/55/2014, wild type)B/Phuket/3073/2013–like strain(B/Utah/9/2014, wild type)",
+        "influenza vaccine (surface antigen, inactivated, prepared in cell cultures)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004193",
+      "medicine_name": "Enpaxiq",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004055",
+      "medicine_name": "Graspa",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000982",
+      "medicine_name": "Celvapan",
+      "status": "Withdrawn",
+      "substances": [
+        "whole virion influenza vaccine, inactivated containing antigen of strain A/California/07/2009 (H1N1)v",
+        "influenza vaccine (H1N1)v (whole virion, Vero cell derived, inactivated)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004176",
+      "medicine_name": "Kepnetic",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004235",
+      "medicine_name": "Cokiera",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003846",
+      "medicine_name": "Kyndrisa",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/004053",
+      "medicine_name": "Xegafri",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000832",
+      "medicine_name": "Pandemrix",
+      "status": "Expired",
+      "substances": [
+        "split influenza virus inactivated, containing antigen equivalent to A/California/07/2009 (H1N1)-derived strain used NYMC X-179A",
+        "influenza vaccine (H1N1)v (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/003750",
+      "medicine_name": "Heparesc",
+      "status": "Refused",
+      "substances": [
+        "human heterologous liver cells"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002269",
+      "medicine_name": "Prepandemic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted) Novartis Vaccines and Diagnostics",
+      "status": "Expired",
+      "substances": [
+        "influenza virus surface antigens (haemagglutinin and neuraminidase) of strain A/Viet Nam/1194/2004 (H5N1)",
+        "prepandemic influenza vaccine (H5N1) (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000710",
+      "medicine_name": "Focetria",
+      "status": "Expired",
+      "substances": [
+        "Influenza virus surface antigens (haemagglutinin and neuraminidase) of strain: A/California/7/2009 (H1N1)-derived strain used NYMC X-181",
+        "influenza vaccine H1N1v (surface antigen, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001212",
+      "medicine_name": "Pumarix",
+      "status": "Withdrawn",
+      "substances": [
+        "pandemic influenza vaccine (H5N1) (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002637",
+      "medicine_name": "Egranli",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001101",
+      "medicine_name": "Fluenz",
+      "status": "Withdrawn",
+      "substances": [
+        "reassortant influenza virus (live attenuated) of the following strains:A/California/7/2009 (H1N1)pdm09 like strain, A/Victoria/361/2011 (H3N2) like strain, B/Massachusetts/2/2012 like strain",
+        "influenza vaccine (live attenuated, nasal)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002571",
+      "medicine_name": "Vynfinit",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002603",
+      "medicine_name": "Heplisav",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002683",
+      "medicine_name": "Winfuran",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002597",
+      "medicine_name": "Belviq",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002443",
+      "medicine_name": "OraNera",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000706",
+      "medicine_name": "Daronrix",
+      "status": "Lapsed",
+      "substances": [
+        "whole virion, inactivated, containing antigen*: A/Vietnam/1194/2004 (H5N1)* produced in eggs",
+        "pandemic influenza vaccine (whole virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002657",
+      "medicine_name": "Hyalograft C autograft",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002259",
+      "medicine_name": "Jenzyl",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002027",
+      "medicine_name": "SecreFlo",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002299",
+      "medicine_name": "Fluad Paediatric",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001015",
+      "medicine_name": "Prepandemic Influenza Vaccine (H5N1) (Split Virion, Inactivated, Adjuvanted) GlaxoSmithKline Biologicals",
+      "status": "Withdrawn",
+      "substances": [
+        "split influenza virus, inactivated, containing antigen: A/VietNam/1194/2004 (H5N1) like strain used (NIBRG-14)",
+        "prepandemic influenza vaccine (H5N1) (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002177",
+      "medicine_name": "Megestrol Alkermes",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002200",
+      "medicine_name": "Kalbitor",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002394",
+      "medicine_name": "Janacti",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001201",
+      "medicine_name": "Arepanrix",
+      "status": "Withdrawn",
+      "substances": [
+        "split influenza virus, inactivated, containing antigen*: A/California/7/2009 (H1N1)v like strain (X-179A)*propagated in eggs.",
+        "pandemic influenza vaccine (H1N1)v (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001202",
+      "medicine_name": "Humenza",
+      "status": "Withdrawn",
+      "substances": [
+        "split influenza virus, inactivated, containing antigen*: A/California/7/2009 (H1N1)v like strain (X-179A)*propagated in eggs.",
+        "pandemic influenza vaccine (H1N1) (split virion, inactivated, adjuvanted)"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002104",
+      "medicine_name": "Joicela",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001103",
+      "medicine_name": "Cerepro",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000859",
+      "medicine_name": "Emerflu",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001191",
+      "medicine_name": "Rasival",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001102",
+      "medicine_name": "Sliwens",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/002166",
+      "medicine_name": "Joulferon",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001072",
+      "medicine_name": "Oncophage",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000919",
+      "medicine_name": "Advexin",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001148",
+      "medicine_name": "Ethyl Eicosapent soft gelatin capsules",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001057",
+      "medicine_name": "Mersarex",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000994",
+      "medicine_name": "Opaxio",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000231",
+      "medicine_name": "Procomvax",
+      "status": "Expired",
+      "substances": [
+        "polyribosylribitol phosphate from Haemophilus influenzae type b as PRP-OMPC",
+        "outer membrane protein complex of Neisseria meningitidis (outer membrane protein complex of the B11 strain of Neisseria meningitidis subgroup B)",
+        "adsorbed hepatitis B surface antigen produced in recombinant yeast cells (Saccharomyces cerevisiae)",
+        "haemophilus B conjugate (meningococcal protein conjugate) and hepatitis B (recombinant) vaccine"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/001041",
+      "medicine_name": "Contusugene Ladenovec Gendux",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000995",
+      "medicine_name": "Factive",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000930",
+      "medicine_name": "Ixempra",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000932",
+      "medicine_name": "Ellefore",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000838",
+      "medicine_name": "Ramelteon",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000902",
+      "medicine_name": "Exulett",
+      "status": "Application withdrawn",
+      "substances": []
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000804",
+      "medicine_name": "Aflunov",
+      "status": "Application withdrawn",
+      "substances": [
+        "A/VietNam/1194/2004"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000694",
+      "medicine_name": "Cerepro",
+      "status": "Application withdrawn",
+      "substances": [
+        "adenovirus-mediated Herpes simplex virus-thymidine kinase gene"
+      ]
+    },
+    {
+      "ema_product_number": "EMEA/H/C/000261",
+      "medicine_name": "Hepacare",
+      "status": "Withdrawn",
+      "substances": [
+        "hepatitis B surface antigens recombinant (S, pre-S1, pre-S2) adsorbed on aluminium hydroxide [produced on genetically engineered murine (C127I) cells]"
+      ]
+    }
+  ]
+}

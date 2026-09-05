@@ -1,0 +1,4 @@
+# Allow all crawlers by default
+User-agent: *
+Allow: /
+Crawl-delay: 30

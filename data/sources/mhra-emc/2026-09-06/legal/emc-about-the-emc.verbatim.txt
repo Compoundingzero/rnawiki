@@ -1,0 +1,137 @@
+Verbatim text of https://www.medicines.org.uk/emc/about-the-emc
+Retrieved 2026-09-06 (see requests.log for the exact timestamp, HTTP status and byte count).
+Extracted from the saved HTML at legal/emc-about-the-emc.html by scripts/revamp/mhra_emc_extract_terms.py.
+------------------------------------------------------------------------------
+
+Back to top
+
+About emc
+
+Expand All
+
+What is emc?
+
+The electronic medicines compendium (emc) contains up to date, easily accessible information about medicines licensed for use in the UK. emc has more than 14,000 documents, all of which have been checked and approved by either the UK or European government agencies which license medicines. These agencies are the UK Medicines and Healthcare Products Regulatory Agency (MHRA) and the European Medicines Agency (EMA).
+
+emc hosts medicines information for medicines licensed for use in Great Britain (England, Scotland and Wales), as well as UK-wide licensed medicines (Great Britain and Northern Ireland).
+
+The following marketing authorisation codes are applicable for Great Britain and UK-wide licensed medicines:
+
+PLGB – Medicine licensed by the MHRA for Great Britain only
+
+PL – Medicines licensed by the MHRA for the whole of the United Kingdom
+
+emc was launched in 1999 and has become an established website, trusted for reliable information about medicines. You can search and view medicine information on emc without the need to register. See the Legal and Privacy Notice for full usage terms.
+
+emc is managed and owned by Datapharm Ltd. We work with pharmaceutical companies, the NHS, and other healthcare organisations to provide good information about medicines.
+
+What does emc contain?
+
+emc contains regulated and approved information on medicines available in the UK
+
+Summaries of Product Characteristics (known as SPCs or SmPCs)
+
+Patient Information Leaflets (known as PILs, Package Leaflets or PLs)
+
+Risk Minimisation Materials (RMMs)
+
+Letters to healthcare professionals
+
+Live Chat
+
+Audio/Video
+
+Safety Alerts
+
+Product Information
+
+Summaries of Product Characteristics
+
+An SmPC tells healthcare professionals, such as doctors, pharmacists and nurses, how to prescribe and use a medicine correctly. An SmPC is based on clinical trials that a pharmaceutical company has carried out, and gives information about dose, use and possible side effects. An SmPC is always written in a standard format, which is explained in our glossary.
+
+Patient Information Leaflets
+
+A PIL is the leaflet that is included in the pack with a medicine. The PIL is a summary of the SmPC and is written for patients. Our glossary section explains more.
+
+Risk Minimisation Materials
+
+Risk Minimisation Materials are part of a suite of measures that aim to optimise the safe and effective use of a medicine. See the glossary for more information.
+
+Letters to HCPs
+
+Letters to HCPs are direct communications to healthcare professionals to aid education and risk management. Their aim is to ensure the safe and effective use of a marketed medicine.
+
+Live Chat
+
+Live chat functionality is provided by the marketing authorisation holder, or manufacturer of a medicine, for healthcare professionals, and sometimes patients, to contact the company’s Medical Information department with questions about their medicines.
+
+Audio/Video
+
+Audio and video content provides additional information in a user friendly way to promote the safe and effective use of a medicine. They may demonstrate how to administer a medicine or improve the accessibility of the information, such as for the blind or visually impaired.
+
+Safety Alert
+
+Safety alerts are issued by the Regulator and/or marketing authorisation holder and contain important public health messages or safety critical information about a medicine.
+
+Product Information
+
+This is additional information about a product. It may include important information such as about a change of ownership of the medicine, package related information or stock issues.
+
+Where does the information come from?
+
+All the information on emc comes directly from pharmaceutical companies or via the medicines regulator (MHRA or EMA). Over 250 pharmaceutical companies subscribe to emc and so pay Datapharm to publish their information on emc website. This is how the information is approved and added.
+
+The pharmaceutical company drafts a Summary of Product Characteristics, Patient Information Leaflet or Risk Materials using the up to date information about their medicine
+
+The UK or European medicines licensing agency - the Medicines and Healthcare products Regulatory Agency (MHRA) or the European Medicines Agency (EMA) - then checks and approves the information
+
+The pharmaceutical company publishes the approved SmPC, PIL or risk materials on emc
+
+How is the information updated?
+
+When there is new information about a medicine, or when a new medicine is launched, the pharmaceutical company should update emc within 10 days of the UK or European medicines authority approving the change.
+
+The Latest medicine updates page of the emc website shows you all the new or updated documents that have been published. This page also links to detailed information about the exact changes that have been made.
+
+Who can use emc?
+
+emc can be used by those looking for good quality, up to date information about medicines
+
+Healthcare professionals, such as doctors, pharmacists or nurses, use emc to check the latest information about medicines, and to help them prescribe medicines safely.
+
+Patients or their carers, check information about their medicines.
+
+The general public can find information about medicines they are thinking of taking.
+
+emc is an established website, trusted for reliable information about medicines.
+
+Which pharmaceutical companies add information to emc?
+
+Over 250 pharmaceutical companies add information about their medicines to emc. You can see a full list of the companies that contribute by choosing 'browse companies' and then selecting the option 'Show All'.
+
+If you are a pharmaceutical company and would like to add your information to emc, please contact us.
+
+I can't find the information I'm looking for
+
+If you can't find the information you are looking for, please visit our help section.
+
+About us
+
+emc is managed and owned by Datapharm Ltd. We work with pharmaceutical companies, the NHS, and other healthcare organisations to provide good information about medicines.
+
+Our aim is to improve public health and safety by providing up to date, accurate and comprehensive information about medicines to healthcare professionals, patients and the general public.
+
+All the SmPCs and PILs have been checked and approved
+by the UK or European medicines licensing authority - the UK Medicines and Healthcare products Regulatory Agency (MHRA) or the European Medicines Agency (EMA).
+
+We have a range of medicines information websites and services.
+
+electronic medicines compendium (emc) - An up to date and easily accessible source of information about medicines licensed in the UK.
+
+emc accessibility - We work with the pharmaceutical industry to make Patient Information Leaflets (known as PILs,
+Package Leaflets or PLs) available for blind and partially sighted people.
+Where available, X-PILs can be viewed on emc and may also be available in Braille, large print and audio versions that are delivered on our behalf by RNIB.
+
+emc med data – A platform that gives users access to the dm+d database, allowing a fast and effective way to check product price, availability, and medicine information.
+
+Datapharm was formed in 1977 and is an independent company registered in England & Wales - registered number 11275607. Our registered office is Cassini Court, Randalls Way, Leatherhead, Surrey, KT22 7TW.

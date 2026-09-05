@@ -12,6 +12,7 @@ mention a medicine-subsidy term).
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import re
 import sys
@@ -19,7 +20,7 @@ import time
 import urllib.error
 import urllib.request
 
-DATE = "2026-09-05"
+DATE = os.environ.get("HSA_SG_DATE", "2026-09-05")
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / "data" / "sources" / "hsa-singapore" / DATE / "raw" / "search"
 LOG = ROOT / "data" / "sources" / "hsa-singapore" / DATE / "requests.log"

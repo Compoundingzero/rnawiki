@@ -1,0 +1,85 @@
+{
+  "source": "DDInter 2.0",
+  "source_url": "https://ddinter2.scbdd.com",
+  "retrieval_date": "2026-09-06",
+  "licence": "CC BY-NC-SA 4.0",
+  "licence_url": "https://ddinter2.scbdd.com/terms/",
+  "usage_restriction": "Validation only, non-commercial licence. Never joined into the corpus, never rendered, never in the release candidate. Use is gated on Felix's confirmation (docs/revamp/BLOCKERS.md).",
+  "mapped_into_corpus": false,
+  "in_release_candidate": false,
+  "fields_gained_per_tier": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "note": "No field is gained on any page. DDInter is not joined to the corpus; it is held for the Phase 4 validation comparison only, behind the gate in docs/revamp/BLOCKERS.md."
+  },
+  "raw": {
+    "files": 22,
+    "bytes": 196126600
+  },
+  "interactions": {
+    "bulk_csv_rows": 222383,
+    "bulk_csv_distinct_pairs": 160235,
+    "site_endpoint_drugs_read": 2290,
+    "site_endpoint_rows": 605029,
+    "site_endpoint_distinct_pairs": 295184,
+    "union_distinct_pairs": 295184,
+    "pairs_only_in_bulk_csv": 0,
+    "pairs_only_in_site_endpoint": 134949,
+    "severity_agreement_where_both_the_csv_and_the_endpoint_hold_the_pair": {
+      "agree": 160221,
+      "differ": 14
+    },
+    "endpoint_two_sided_disagreements": {
+      "same_severity_different_interaction_id": 14076,
+      "severity_differs_between_the_two_sides": 586
+    },
+    "severity_distribution": {
+      "Moderate": 189427,
+      "Major": 51003,
+      "Unknown": 42415,
+      "Minor": 12339
+    },
+    "distinct_interaction_records_seen": 295184,
+    "distinct_interaction_descriptions": 8466,
+    "pair_to_description_link": "not published. The per-drug endpoint returns an interaction_id from the interaction table (1 to 302,665) and the description endpoint returns row ids of the description table (-1 to 8,576); the two overlap at the low end by coincidence, verified in data/validation/ddinter/2026-09-06/verification/interaction-id-space.md. The descriptions are therefore written to interaction-descriptions.parquet unjoined, and every pair in index.parquet carries severity and the seven mechanism flags."
+  },
+  "drugs": {
+    "in_drug_list_endpoint": 2290,
+    "seen_in_interaction_data": 2290,
+    "with_drugbank_id": 2084,
+    "matched_to_at_least_one_corpus_page_as_candidate": 2229,
+    "unmatched": 61
+  },
+  "candidate_pages_per_tier": {
+    "note": "Corpus pages a DDInter drug name or DrugBank id would reach. These are candidates for the Phase 4 comparison, not a join; no page carries DDInter data.",
+    "tier_1": 892,
+    "tier_2": 1780,
+    "tier_3": 216,
+    "total": 2888,
+    "by_rule": {
+      "drugbank-id": {
+        "tier_1": 582,
+        "tier_2": 1053,
+        "tier_3": 39
+      },
+      "name-candidate": {
+        "tier_1": 886,
+        "tier_2": 1763,
+        "tier_3": 206
+      }
+    }
+  },
+  "name_candidates_sent_to_review": 4565,
+  "confirmed_by_unii_or_inchikey": 0,
+  "confirmation_note": "DDInter publishes no UNII, InChIKey or structure identifier for its drugs, only a drug name and a DrugBank accession, so mapping rules (a) UNII exact and (b) full InChIKey exact cannot be applied from this source. Every row in name-unii-candidates.parquet is a candidate.",
+  "outputs": {
+    "index_parquet": "data/validation/ddinter/index.parquet",
+    "index_rows": 295184,
+    "interaction_descriptions_parquet": "data/validation/ddinter/interaction-descriptions.parquet",
+    "interaction_description_rows": 8466,
+    "name_unii_candidates_parquet": "data/validation/ddinter/name-unii-candidates.parquet",
+    "name_unii_candidate_rows": 6351,
+    "unmatched_drugs_csv": "data/validation/ddinter/unmatched-drugs.csv"
+  }
+}

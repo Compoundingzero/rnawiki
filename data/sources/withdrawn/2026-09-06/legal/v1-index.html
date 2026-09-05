@@ -1,0 +1,250 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="css/stylesheet.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="images/udb.ico">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin%20Slab">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- d3 map links -->
+        <script src="d3/d3.min.js"></script>
+        <script src="d3/topojson.min.js"></script>
+        <script src="d3/datamaps.world.min.js"></script>
+        <title>WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</title>
+    </head>
+    <body>
+
+        <!-- top container-->
+        <div class="container" align="center">
+            <h3 align="center" class="shadow_inner">WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</h3><br>
+            <div class="jumbotron" align="center">
+                <!-- pages -->
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#">WITHDRAWN</a></li>
+                    <li><a href="drug_search.html">Drugs</a></li>
+                    <li><a href="targets.html">Targets</a></li>
+                    <li><a href="pathways.html">Pathways</a></li>
+                    <li><a href="toxicities.html">Toxicities</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="help_faq.html">Help/FAQ</a></li>
+                    <li><a href="links.html">Links/Download</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- other description -->
+        <div class="container">
+            <div class="shadow">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h4 align="center" class="shadow_inner">About WITHDRAWN</h4><br>
+                        <p align="justify">Welcome to <strong>WITHDRAWN</strong>, a database of withdrawn and discontinued drugs that were pulled out of <a href="#mapcontainer">global markets</a> due to safety concerns. The database serves as a useful resource with information about the therapeutic (or primary) targets, off-targets, toxicity types and biological pathways associated with the drugs in the database.</p>
+                        <p align="justify">Furthermore, genetic variations (SNPs) associated with the therapeutic and off-targets are presented within to shed light on the common genetic variations that could lead to toxicity and thereby to drug withdrawal or discontinuation in specific populations.</p>
+                        <p align="justify">Should you have further questions about the content or usage, please refer to our <a href="help_faq.html">help</a> page or feel free to <a href="contact.html">contact us</a>!</p>
+                    </div>
+                    <div class="col-md-5">
+                        <h4 align="center" class="shadow_inner">Database Statistics</h4>
+                        <table class="table table-striped">
+                            <col width="70%">
+                            <col width="30%">
+                            <thead>
+                                <tr>
+                                    <td><font size=2><strong>Entity Type</strong></font></td>
+                                    <td><font size=2><strong>Total Count</strong></font></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><font size=2>All Drugs</font></td>
+                                    <td><font size=2>578</font></td>
+                                </tr>
+                                <tr>
+                                    <td><font size=2>&nbsp;<img src="images/down-arrow.png" height="16" width="16" alt="down-arrow">&nbsp;Withdrawn Drugs</font>
+                                        <img src="images/question.jpeg" height="10" width="10" alt="down-arrow" title="These are the drugs recalled from market due to safety reasons.">
+                                    </td>
+                                    <td><font size=2>270</font></td>
+                                </tr>
+                                <tr>
+                                    <td><font size=2>&nbsp;<img src="images/down-arrow.png" height="16" width="16" alt="down-arrow">&nbsp;Discontinued Drugs</font>
+                                        <img src="images/question.jpeg" height="10" width="10" alt="down-arrow" title="These are the drugs discontinued in at least one country due to non-safety or unclear reasons.">
+                                    </td>
+                                    <td><font size=2>308</font></td>
+                                </tr>
+                                <tr>
+                                    <td><font size=2>Human Targets</font></td>
+                                    <td><font size=2>946</font></td>
+                                </tr>
+                                <tr>
+                                    <td><font size=2>KEGG Pathways</font></td>
+                                    <td><font size=2>149</font></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+
+        <div class="container">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">Citation</h4><br>
+                <p align="middle">Siramshetty V.B., Nickel-Seeber J., Omieczynski C., Gohlke B.-O., Drwal M.N., Preissner R.: <strong>WITHDRAWN-a resource for withdrawn and discontinued drugs</strong><br>
+                    Nucleic Acids Res (Database issue 2015); <a href="http://nar.oxfordjournals.org/content/early/2015/11/06/nar.gkv1192.long" target="_blank">NAR&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></p>
+            </div><br>
+        </div>
+
+        <div class="container">
+            <div class="shadow">
+                <div class="row">
+                    <div class="col-md-7" align="center">
+                        <h4 align="center" class="shadow_inner">Overview</h4><br>
+                        <img src="images/overview.png" class="img-responsive" alt="Overview" width="600" height="450">
+                    </div>
+                    <div class="col-md-5">
+                        <h4 align="center" class="shadow_inner">Recent Drug Withdrawals</h4>
+                        <table class="table table-striped">
+                            <col width="40%">
+                            <col width="30%">
+                            <col width="30%">
+                            <thead>
+                                <tr>
+                                    <td><font size=2><strong>Drug</strong></font></td>
+                                    <td><font size=2><strong>Approval Year</strong></font></td>
+                                    <td><font size=2><strong>Withdrawal Year</strong></font></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Telaprevir" target="_blank">Telaprevir&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>2011</font></td>
+                                    <td ><font size=2>2014</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Ribavirin" target="_blank">Ribavirin&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1999</font></td>
+                                    <td ><font size=2>2014</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Ketoconazole" target="_blank">Ketoconazole&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1976</font></td>
+                                    <td ><font size=2>2013</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Tetrazepam" target="_blank">Tetrazepam&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1960</font></td>
+                                    <td ><font size=2>2013</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Clorazepate" target="_blank">Clorazepate&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>2004</font></td>
+                                    <td ><font size=2>2012</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Celecoxib" target="_blank">Celecoxib&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1999</font></td>
+                                    <td ><font size=2>2011</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Pioglitazone" target="_blank">Pioglitazone&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1999</font></td>
+                                    <td ><font size=2>2011</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Dolasetron" target="_blank">Dolasetron&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1997</font></td>
+                                    <td ><font size=2>2011</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Rosiglitazone" target="_blank">Rosiglitazone&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1999</font></td>
+                                    <td ><font size=2>2010</font></td>
+                                </tr>
+                                <tr><td ><font size=2><a href="https://en.wikipedia.org/wiki/Sibutramine" target="_blank">Sibutramine&nbsp;<img src="images/external.png" height="12" width="12" alt="ext"></a></font></td>
+                                    <td ><font size=2>1997</font></td>
+                                    <td ><font size=2>2010</font></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p align="center"><a href="drugs_withdrawn.html"><button type="button" class="btn btn-default">Browse More Withdrawn Drugs</button></a></p>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+
+        <!-- news container -->
+
+        <div class="container" align="center">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">News</h4><br>
+                <ul>
+                    <li><strong>December 2015</strong>: 48 drugs withdrawn/suspended/refused by European Medicines Agency (for the European Union region) are added to WITHDRAWN.</li>
+                    <li><strong>November 2015</strong>: WITHDRAWN paper published in NAR database issue (<a href="http://nar.oxfordjournals.org/content/early/2015/11/06/nar.gkv1192.long" target="_blank">link to full-text</a>).</li>
+                </ul>
+            </div><br>
+        </div>
+
+        <!-- world map -->
+        <div class="container">
+            <br>
+            <div class="shadow" align="center">
+                <h4 align="center" class="shadow_inner">Data Map of Withdrawn Drugs</h4><br>
+                <div id="mapcontainer" style="width: 760px; height: 680px;">
+                    <font style="color:red">Hint: Click on any country within the map to view the list of drugs which were withdrawn.</font><br>
+                    <font style="color:red">Note: In case there are no drugs exclusively withdrawn in the country selected, 
+                    you will be redirected to the list of drugs which were withdrawn world-wide.</font>
+                    <script>
+                        var map = new Datamap({
+                            element: document.getElementById('mapcontainer'),
+                            projection: 'mercator',
+                            fills: {
+                                defaultFill: '#428BCA'
+                            },
+                            geographyConfig: {
+                                popupTemplate: function (geo) {
+                                    return ['<div class="hoverinfo"><strong>Country Name: ', geo.properties.name, '</strong>\n\
+                                            <form id="myform" action="loadDrugsByCountry" method="POST"><input type="hidden" value="" id="ccode" name="countrycode"></form></div>'].join('');
+                                }
+                            },
+                            done: function (datamap) {
+                                datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
+                                    var code = geography.properties.name;
+                                    document.getElementById("ccode").value = code;
+                                    document.getElementById("myform").submit();
+                                });
+                            }
+
+                        });
+                    </script>
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://bioinformatics.charite.de/biostats/" : "http://bioinformatics.charite.de/biostats/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+            try {
+                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 25);
+                piwikTracker.trackPageView();
+                piwikTracker.enableLinkTracking();
+            } catch (err) {
+            }
+        </script><noscript><p><img src="http://bioinformatics.charite.de/biostats/piwik.php?idsite=25" style="border:0" alt="" /></p></noscript>
+        <!-- End Piwik Tracking Code -->
+
+        <!-- footer -->
+        <footer class="footer-intro">
+            <ul>
+                <li><font color="white">Last Updated: September 2015</font></li>
+                <li><font color="white">|</font></li>
+                <li><a href="http://bioinformatics.charite.de/main/content/index.php" target="_blank">Structural Bioinformatics Group at Charité</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

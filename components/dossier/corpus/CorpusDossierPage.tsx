@@ -35,6 +35,11 @@ function RegionGlyph() {
 }
 
 export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
+  // The supervision block is not an answer to a question about the compound: it states the class a
+  // register put the record in. A record that holds nothing else is still a stub, so the stub's own
+  // record view is what renders beneath the block.
+  const supervision = dossier.blocks.find((block) => block.block === 'supervision')
+  const answers = dossier.blocks.filter((block) => block.block !== 'supervision')
   const stub = dossier.pageType === 'stub' || dossier.blocks.length === 0
 
   return (
@@ -46,23 +51,27 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
           {stub ? null : <ContentsRail blocks={dossier.blocks} variant="inline" />}
           {stub ? null : <RegionGlyph />}
 
+          {/*
+            The supervision block leads, on every suppressed record that has a classification to
+            state and whether or not the record answers any question. It is rendered from the block
+            list rather than from the block loop below so that a record with no questions at all
+            still meets its classification first, above its own identifiers.
+          */}
+          {supervision ? <SupervisionBlock block={supervision} name={dossier.displayName} /> : null}
+
           <WithdrawnArc rows={dossier.arc} />
 
           {stub ? (
             <StubRecord dossier={dossier} />
           ) : (
-            dossier.blocks.map((block) =>
-              block.block === 'supervision' ? (
-                <SupervisionBlock block={block} key={block.id} name={dossier.displayName} />
-              ) : (
-                <QuestionBlock
-                  block={block}
-                  key={block.id}
-                  name={dossier.displayName}
-                  {...(LADDER_BLOCKS.has(block.block) ? { ladder: dossier.ladder } : {})}
-                />
-              ),
-            )
+            answers.map((block) => (
+              <QuestionBlock
+                block={block}
+                key={block.id}
+                name={dossier.displayName}
+                {...(LADDER_BLOCKS.has(block.block) ? { ladder: dossier.ladder } : {})}
+              />
+            ))
           )}
 
           {stub ? null : (

@@ -1,0 +1,194 @@
+{
+  "source": "tga-artg",
+  "sourceName": "Poisons Standard (SUSMP) schedule lists, Therapeutic Goods (Poisons Standard—June 2026) Instrument 2026, Federal Register of Legislation",
+  "status": "mapped-partial",
+  "statusReason": "The SUSMP schedule half of regulatory.AU is mapped. The ARTG half (active ingredient, ARTG id, ARTG status) is BLOCKED-WITH-EVIDENCE: the TGA website copyright notice allows personal or internal non-commercial reproduction only and requires prior written Commonwealth approval to re-transmit, distribute or commercialise, and www.ebs.tga.gov.au serves User-agent: * / Disallow: /. www.tga.gov.au was also unreachable from this workstation across nine attempts on two days. Evidence: data/revamp/worklog-entries/2.12-blocker.md.",
+  "retrievalDate": "2026-09-06",
+  "instrument": {
+    "registerId": "F2026L00633",
+    "name": "Therapeutic Goods (Poisons Standard—June 2026) Instrument 2026",
+    "commonName": "Poisons Standard June 2026 (SUSMP)",
+    "source": "https://www.legislation.gov.au/F2026L00633/asmade",
+    "file": "data/sources/tga-artg/2026-09-06/raw/poisons-standard-june-2026-F2026L00633.docx"
+  },
+  "licence": "CC BY 4.0 (Creative Commons Attribution 4.0 International). Federal Register of Legislation terms governing the use of this website: all content except the Commonwealth Coat of Arms is provided under CC BY 4.0; reuse requires a link to the relevant Legislation Register page and attribution to the Federal Register of Legislation with a link to the licence and an indication of any changes (https://www.legislation.gov.au/terms-of-use)",
+  "attribution": "Sourced from the Federal Register of Legislation at 6 September 2026. For the latest information on Australian Government law please go to https://www.legislation.gov.au.",
+  "rawFiles": 1,
+  "rawBytes": 966941,
+  "legalArtefacts": 9,
+  "schedulesParsed": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+  ],
+  "scheduleScopeNote": "Schedules 2 to 9 are the range named in the Phase 2 brief. Schedule 10 (substances of such danger to health as to warrant prohibition of supply and use) is parsed and mapped alongside them because it is the same list structure in the same instrument and it changes what a reader may lawfully obtain in Australia. Schedule 1 is intentionally blank in the Standard.",
+  "sourceEntries": 4278,
+  "sourceEntriesBySchedule": {
+    "2": 165,
+    "3": 100,
+    "4": 2394,
+    "5": 480,
+    "6": 572,
+    "7": 216,
+    "8": 85,
+    "9": 173,
+    "10": 93
+  },
+  "entriesMatched": 3128,
+  "entriesMatchedBySchedule": {
+    "2": 153,
+    "3": 93,
+    "4": 2219,
+    "5": 182,
+    "6": 214,
+    "7": 70,
+    "8": 70,
+    "9": 90,
+    "10": 37
+  },
+  "mappedRows": 3549,
+  "pagesMatchedByTier": {
+    "1": 787,
+    "2": 1543,
+    "3": 599
+  },
+  "pagesMatchedTotal": 2929,
+  "pagesMatchedBySchedule": {
+    "2": 158,
+    "3": 143,
+    "4": 2447,
+    "5": 224,
+    "6": 228,
+    "7": 71,
+    "8": 74,
+    "9": 93,
+    "10": 37
+  },
+  "fieldsGainedByTier": {
+    "1": {
+      "regulatory.AU": 787
+    },
+    "2": {
+      "regulatory.AU": 1543
+    },
+    "3": {
+      "regulatory.AU": 599
+    }
+  },
+  "fieldsGained": [
+    "regulatory.AU"
+  ],
+  "matchRuleCounts": {
+    "unii": 3096,
+    "name-candidate": 396,
+    "skeleton": 32,
+    "inchikey": 25
+  },
+  "matchRuleCountsByTier": {
+    "1": {
+      "unii": 850,
+      "name-candidate": 106,
+      "inchikey": 5,
+      "skeleton": 2
+    },
+    "2": {
+      "unii": 1648,
+      "name-candidate": 245,
+      "skeleton": 13,
+      "inchikey": 10
+    },
+    "3": {
+      "unii": 598,
+      "name-candidate": 45,
+      "inchikey": 10,
+      "skeleton": 17
+    }
+  },
+  "substanceResolutionOutcomes": {
+    "unii": 2915,
+    "unresolved": 1161,
+    "name-candidate": 177,
+    "skeleton": 28,
+    "inchikey": 18,
+    "parser_open_name": 18
+  },
+  "unmatchedRecords": 1150,
+  "unmatchedRecordsFile": "data/sources/tga-artg/unmatched-records.json",
+  "nameCandidatesSentToReview": 146,
+  "ambiguousUniiResolutions": 50,
+  "nameCandidateFile": "data/sources/tga-artg/name-candidates-for-review.json",
+  "parserOpenNames": 18,
+  "parserOpenNameExamples": [
+    {
+      "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:1786",
+      "extractedName": "PRALMORELIN (GROWTH HORMONE RELEASING PEPTIDE-2 (GHRP-2)",
+      "entryText": "# PRALMORELIN (GROWTH HORMONE RELEASING PEPTIDE-2 (GHRP-2))."
+    },
+    {
+      "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0148",
+      "extractedName": "DI-",
+      "entryText": "DI-n-PROPYL ISOCINCHOMERONATE except in preparations containing 25% or less of di-n-propyl isocinchomeronate."
+    },
+    {
+      "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0180",
+      "extractedName": "FENOXAPROP-",
+      "entryText": "FENOXAPROP-p-ETHYL."
+    },
+    {
+      "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0387",
+      "extractedName": "QUIZALOFOP-",
+      "entryText": "QUIZALOFOP-p-ETHYL in aqueous preparations containing 40% or less of quizalofop-p-ethyl."
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0020",
+      "extractedName": "4-AMINO-",
+      "entryText": "4-AMINO-m-CRESOL in hair dyes and eyebrow/eyelash colouring preparations except:"
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0261",
+      "extractedName": "FLUAZIFOP-",
+      "entryText": "FLUAZIFOP-p-BUTYL."
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0399",
+      "extractedName": "3-NITRO-",
+      "entryText": "3-NITRO-p-HYDROXYETHYLAMINOPHENOL except"
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0483",
+      "extractedName": "QUIZALOFOP-",
+      "entryText": "QUIZALOFOP-p-ETHYL except when included in Schedule 5."
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0484",
+      "extractedName": "QUIZALOFOP-",
+      "entryText": "QUIZALOFOP-p-TEFURYL."
+    },
+    {
+      "schedule": "7",
+      "sourceRecordId": "frl:F2026L00633:schedule-7:0058",
+      "extractedName": "4-CHLORO-",
+      "entryText": "4-CHLORO-o-TOLUIDINE."
+    }
+  ],
+  "mappedParquet": "data/sources/tga-artg/mapped.parquet",
+  "manifest": "data/sources/tga-artg/2026-09-06/manifest.json",
+  "saltListChange": "scripts/revamp/salts.txt was read and not extended. Poisons Standard entries are written as the substance name with the conditions of scheduling in following prose, and the trailing tokens that failed to resolve are class words (COMPOUNDS, DERIVATIVES, SALTS, SPP) and plant genus names, not counter-ions, so no suffix was appended.",
+  "method": "The Poisons Standard carries no UNII, InChIKey, CAS or structure. Each schedule entry's substance name, and any trivial name the Standard marks with an asterisk, was resolved to a UNII against the FDA UNII name lists (types of/cn/sys; brand and code names excluded), exact punctuation-normalised name first, then the shared salt-stripped normaliser. A name resolving to more than one UNII is disambiguated by an exact UNII preferred-name match, then by a single corpus-present UNII; anything still ambiguous is not treated as a UNII match. A resolved UNII joins the corpus by UNII, then by its full InChIKey, then by InChIKey skeleton as form_of. A substance with no resolved UNII joins by normalised name as an unconfirmed candidate only."
+}

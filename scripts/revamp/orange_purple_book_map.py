@@ -60,14 +60,21 @@ OB_URL = "https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-dat
 PB_URL = ("https://www.accessdata.fda.gov/drugsatfda_docs/PurpleBook/2026/"
           "purplebook-search-August-data-download.csv")
 
-OB_PRODUCTS_DATE = "2026-08-15"
-OB_PATENT_DATE = "2026-08-14"
-OB_EXCLUSIVITY_DATE = "2026-08-14"
+# Orange Book data-file dates come from the pull manifest, which reads each zip
+# member's extended-timestamp extra field (a Unix epoch second, so UTC outright).
+# Reading them here rather than restating them keeps `source_date` on every row
+# identical to the manifest and to `coverage.json`.
+_MANIFEST_DATES = json.load(open(
+    os.path.join(ROOT, "data", "sources", "orange-purple-book", PULL_DATE, "manifest.json"),
+    encoding="utf-8"))["datasets"]["orange_book"]["data_file_dates"]
+OB_PRODUCTS_DATE = _MANIFEST_DATES["products.txt"]
+OB_PATENT_DATE = _MANIFEST_DATES["patent.txt"]
+OB_EXCLUSIVITY_DATE = _MANIFEST_DATES["exclusivity.txt"]
 PB_REPORT_MONTH = "2026-08"
 PB_SOURCE_DATE = "2026-08-31"
 
 # `as of` line for expiry arithmetic: the Orange Book products data-file date.
-AS_OF = date(2026, 8, 15)
+AS_OF = date.fromisoformat(OB_PRODUCTS_DATE)
 PB_AS_OF = date(2026, 8, 31)
 
 MONTHS = {m: i for i, m in enumerate(

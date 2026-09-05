@@ -1,70 +1,65 @@
 {
   "source": "withdrawn",
-  "sourceName": "WITHDRAWN 2.0 database (Charite, Structural Bioinformatics Group)",
-  "attemptedDate": "2026-09-05",
+  "sourceName": "WITHDRAWN database (Charite) - BLOCKED; withdrawal field mapped from ChEMBL 37 drug_warning instead",
+  "date": "2026-09-06",
   "status": "BLOCKED-WITH-EVIDENCE",
-  "blockedReason": "The WITHDRAWN 2.0 web application is offline. Every path under https://bioinformatics.charite.de/withdrawn_3/ returns HTTP 404, including the bulk CSV named in the paper's own Data Availability statement and the link printed on the group's live homepage. The predecessor host cheminfo.charite.de has no DNS A record. The bulk CSV was never captured by the Internet Archive. No licence or terms-of-use statement is published on any surviving page of the database, so its data may not be reused under Operating Rule 8.",
-  "licence": "not established - no licence or terms statement published by the database",
-  "rawFiles": 0,
-  "rawBytes": 0,
-  "mappedParquetWritten": false,
-  "mappedParquetReason": "No WITHDRAWN record was retrieved. Writing a mapped.parquet from any other source under this directory would misattribute that source's provenance.",
-  "pagesMatchedByTier": {
-    "1": 0,
-    "2": 0,
-    "3": 0
+  "assignedSource": {
+    "name": "WITHDRAWN / WITHDRAWN 2.0 (Charite, Structural Bioinformatics Group)",
+    "recordsRetrieved": 0,
+    "rowsMapped": 0,
+    "blockedReason": "Two independent bars in operating rule 8 fail. (1) The database publishes no licence, terms-of-use or copyright grant for its contents on any page of either version - checked the v1 index, help/FAQ, links/download and contact pages and the v2 index, FAQ, contact and footer, plus the group homepage. (2) The only licence attaching to the work is CC BY-NC 4.0, the Oxford University Press licence of both Nucleic Acids Research papers, which forbids commercial re-use; rnawiki.com is a commercial site. Separately the v2 web application is offline: every path under bioinformatics.charite.de/withdrawn_3/ returns HTTP 404, and the v1 host cheminfo.charite.de has no DNS A record.",
+    "dataExistsButNotTaken": "Four bulk SDF files from the v1 host are preserved in the Internet Archive (withdrawn_all.sdf 628,870 bytes; withdrawn_withdrawn.sdf 244,969; withdrawn_discontinued.sdf 324,993; withdrawn_ema.sdf 60,967), together with about 500 v2 drug_info.php pages. They were deliberately not retrieved because the licence bar above is independent of availability."
   },
+  "substituteSource": {
+    "name": "ChEMBL 37 drug_warning",
+    "licence": "CC BY-SA 3.0",
+    "commercialUsePermitted": true,
+    "held": "ChEMBL 37 drug_warning, held at data/corpus-20k/raw/chembl/warning-*.json",
+    "withdrawnRecords": 1014,
+    "distinctMoleculeIds": 365,
+    "moleculeIdsResolvingToAtLeastOnePage": 365,
+    "moleculeIdsUsedAsTheMatchTarget": 327,
+    "moleculeIdsUsedAsTheMatchTargetNote": "Lower than the resolving count because a warning row carrying both a molecule and a parent molecule id is mapped once, through whichever id resolves first.",
+    "moleculeIdsResolvingToNoPage": 0
+  },
+  "rowsWritten": 1062,
+  "pagesMatchedByTier": {
+    "1": 301,
+    "2": 4,
+    "3": 2
+  },
+  "pagesMatchedTotal": 307,
   "fieldsGainedByTier": {
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "withdrawal": 301
+    },
+    "2": {
+      "withdrawal": 4
+    },
+    "3": {
+      "withdrawal": 2
+    }
+  },
+  "matchRuleCounts": {
+    "name-candidate": 182,
+    "unii": 844,
+    "inchikey": 36
+  },
+  "fieldCompleteness": {
+    "rowsWithReason": 1062,
+    "rowsWithCountry": 1062,
+    "rowsWithYear": 1058,
+    "rowsWithSourceReference": 1056
   },
   "unmatchedRecords": 0,
-  "nameCandidatesSentToReview": 0,
-  "evidence": {
-    "retryLog": "data/sources/withdrawn/2026-09-05/retry-evidence.txt",
-    "requestLog": "data/sources/withdrawn/2026-09-05/requests.log",
-    "legalCaptures": "data/sources/withdrawn/2026-09-05/legal/",
-    "blockerEntry": "data/revamp/worklog-entries/2.10-blocker.md"
-  },
-  "withdrawalFieldGap": {
-    "note": "Measured from sources already held under a verified licence. WITHDRAWN 2.0 was the only Phase 2 source publishing a withdrawal reason. ChEMBL 37 carries withdrawn_flag only; withdrawn_year, withdrawn_country, withdrawn_reason and withdrawn_class were removed from the ChEMBL molecule endpoint after release 29. Inxight marketing status carries a jurisdiction and record dates, but those date a marketing record, not a withdrawal decision, so no withdrawal year is derivable from it.",
-    "perTier": [
-      {
-        "tier": 1,
-        "pages": 1719,
-        "corpus_withdrawn_flag": 663,
-        "chembl_withdrawn_flag": 281,
-        "inxight_inactive_status": 890,
-        "any_withdrawal_signal": 1180,
-        "with_country_available": 890,
-        "with_year_available": 0,
-        "with_reason_available": 0
-      },
-      {
-        "tier": 2,
-        "pages": 4477,
-        "corpus_withdrawn_flag": 0,
-        "chembl_withdrawn_flag": 0,
-        "inxight_inactive_status": 1721,
-        "any_withdrawal_signal": 1721,
-        "with_country_available": 1721,
-        "with_year_available": 0,
-        "with_reason_available": 0
-      },
-      {
-        "tier": 3,
-        "pages": 22636,
-        "corpus_withdrawn_flag": 0,
-        "chembl_withdrawn_flag": 0,
-        "inxight_inactive_status": 437,
-        "any_withdrawal_signal": 437,
-        "with_country_available": 437,
-        "with_year_available": 0,
-        "with_reason_available": 0
-      }
-    ],
-    "reasonAvailableFromLicensedSources": 0,
-    "yearAvailableFromLicensedSources": 0
+  "nameCandidatesSentToReview": 182,
+  "crossCheck": {
+    "method": "Pages carrying a mapped withdrawal record compared against the corpus withdrawn flag and against Inxight marketing status with zero active records.",
+    "pagesWithMappedWithdrawal": 307,
+    "alsoFlaggedWithdrawnInCorpus": 301,
+    "notFlaggedWithdrawnInCorpus": 6,
+    "alsoInxightInactive": 288,
+    "inxightInactiveTotal": 15737,
+    "note": "Inxight marketing status records a jurisdiction and record dates but no withdrawal decision date or reason, so it corroborates that a substance is no longer marketed and supplies neither a year nor a reason."
   }
 }

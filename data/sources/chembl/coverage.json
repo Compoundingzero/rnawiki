@@ -11,11 +11,26 @@
     "3": 22636
   },
   "already_held_confirmed": {
-    "molecule_table_max_phase_gte_1": 16784,
+    "source_files": "data/corpus-20k/raw/chembl",
+    "molecule_table": {
+      "molecule_records": 16784,
+      "max_phase_present": 16784,
+      "max_phase_gte_1": 16784,
+      "withdrawn_flag_true": 364,
+      "withdrawn_year_present": 0,
+      "withdrawn_reason_present": 0,
+      "withdrawn_country_present": 0,
+      "molecule_hierarchy_present": 16507,
+      "molecule_hierarchy_salt_or_child_of_other_parent": 2125,
+      "withdrawn_keys_on_molecule_record": [
+        "withdrawn_flag"
+      ]
+    },
     "drug_mechanism_rows": 7473,
     "drug_indication_rows": 59916,
     "drug_warning_rows": 2304,
-    "chemreps_structures_file": "data/corpus-20k/raw/chembl/chembl_37_chemreps.txt.gz"
+    "chemreps_structures_file": "data/corpus-20k/raw/chembl/chembl_37_chemreps.txt.gz",
+    "withdrawn_detail_note": "ChEMBL 37 carries withdrawn_flag on the molecule record and no withdrawn_reason, withdrawn_year or withdrawn_country field. Withdrawal detail is published in the drug_warning table, held here as warning-*.json with warning_type, warning_class, warning_description, warning_country and warning_year."
   },
   "source_records": {
     "corpus_chembl_ids": 22792,

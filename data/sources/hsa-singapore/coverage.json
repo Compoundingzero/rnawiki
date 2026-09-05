@@ -1,0 +1,95 @@
+{
+ "source": "hsa-singapore",
+ "source_name": "Health Sciences Authority, Listing of Registered Therapeutic Products",
+ "dataset_id": "d_767279312753558cbf19d48344577084",
+ "source_url": "https://data.gov.sg/datasets/d_767279312753558cbf19d48344577084/view",
+ "source_date": "2026-08-07",
+ "retrieval_date": "2026-09-06",
+ "licence": "Singapore Open Data Licence version 1.0",
+ "register_records": 5511,
+ "register_records_matched": 5366,
+ "unmatched_records": 145,
+ "corpus_pages": 28832,
+ "pages_matched_by_tier": {
+  "1": 442,
+  "2": 1058,
+  "3": 94
+ },
+ "pages_matched_total": 1594,
+ "fields_gained_by_tier": {
+  "1": {
+   "hsaAtcCodes": 441,
+   "hsaForensicClass": 442,
+   "hsaProduct": 442,
+   "hsaRegistrants": 442,
+   "regulatorySG": 442
+  },
+  "2": {
+   "hsaAtcCodes": 1053,
+   "hsaForensicClass": 1058,
+   "hsaProduct": 1058,
+   "hsaRegistrants": 1058,
+   "regulatorySG": 1058
+  },
+  "3": {
+   "hsaAtcCodes": 94,
+   "hsaForensicClass": 94,
+   "hsaProduct": 94,
+   "hsaRegistrants": 94,
+   "regulatorySG": 94
+  }
+ },
+ "mapped_rows": 14824,
+ "pages_by_match_rule_and_tier": {
+  "unii": {
+   "1": 436,
+   "2": 1045,
+   "3": 90
+  },
+  "name-candidate": {
+   "1": 4,
+   "2": 18,
+   "3": 4
+  },
+  "skeleton": {
+   "1": 3,
+   "2": 2
+  }
+ },
+ "components_resolved_to_unii": 6780,
+ "components_unresolved": 385,
+ "components_ambiguous_unii": 2057,
+ "name_candidates_dropped_ambiguous_page": 26,
+ "name_candidates_sent_to_review": 41,
+ "name_candidate_pages": 26,
+ "name_candidate_review_list": "data/sources/hsa-singapore/name-candidates-for-review.csv",
+ "combination_page_rows": 61,
+ "combination_pages_matched": 13,
+ "sg_registration_status_all_pages": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
+ "sg_registration_status_counts": {
+  "registered": 1594,
+  "not found": 27238
+ },
+ "subsidy": {
+  "status": "not published as open data",
+  "statement": "No drug-level subsidy list is published on data.gov.sg as of 2026-09-06. All 4,616 datasets in the portal catalogue were read and searched; the Ministry of Health dataset d_586ee0cbc5c79ff8167a46132a405239 (Healthcare Schemes and Subsidies) names the Standard Drug List and the Medication Assistance Fund as two of 26 schemes but carries no medicine. The Ministry of Health publishes its subsidised-drug list only as a paginated in-page table at https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/list-of-subsidised-drugs/, which offers no bulk or API route and states no reuse licence, so it was not retrieved.",
+  "searchedOn": "2026-09-06",
+  "evidence": [
+   "data/sources/hsa-singapore/2026-09-06/raw/search/catalogue.json",
+   "data/sources/hsa-singapore/2026-09-06/raw/search/catalogue-matches.json",
+   "data/sources/hsa-singapore/2026-09-06/raw/search/moh-healthcare-schemes-records.json"
+  ]
+ },
+ "controlled_substances": "Singapore Statutes Online schedules not present at data/sources/hsa-singapore/controlled-substances.parquet when this mapping ran",
+ "unmatched_record_list": "data/sources/hsa-singapore/unmatched-records.csv",
+ "forensic_classification_counts_in_register": {
+  "Prescription Only": 4717,
+  "Pharmacy Only": 308,
+  "General Sale List": 486
+ },
+ "method": {
+  "identifier_confirmation": "Every ingredient string is resolved to a UNII through data/corpus-20k/raw/fda-unii/UNII_Names_4Aug2026.txt before any page match. A page match by UNII, InChIKey or InChIKey skeleton is identifier-confirmed; an ingredient string that resolves to no UNII reaches a page only as a name candidate and goes to the Phase 3 review list.",
+  "combination_products": "`&&` separates the components of a combination product. Every component is mapped to its own page. A combination page is additionally matched only when its recorded component set is exactly the set of component pages resolved for that product.",
+  "salt_and_moiety": "`X eqv Y` marks X as the salt present and Y as the active moiety. Both are resolved; the moiety is preferred as the page target. Where only a salt resolves and its InChIKey skeleton matches a page, the row is emitted with match_rule `skeleton` and form_of_target set to that InChIKey, never merged."
+ }
+}

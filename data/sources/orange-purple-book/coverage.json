@@ -6,7 +6,7 @@
       "data_file_dates": {
         "exclusivity.txt": "2026-08-14",
         "patent.txt": "2026-08-14",
-        "products.txt": "2026-08-15"
+        "products.txt": "2026-08-14"
       },
       "distinct_ingredient_components": 2364,
       "exclusivity_rows": 2370,
@@ -28,7 +28,7 @@
     "orange_book": "'Mon DD, YYYY'; 'Approved Prior to Jan 1, 1982' is kept as text and flagged, and is treated as 1982-01-01 only when ranking a first generic approval, where the flag is carried alongside.",
     "purple_book_two_digit_years": "Approval Date, Inter. Approval Date and Date of First Licensure read as 20yy unless that lands after 2026-08-31, in which case 19yy. Exclusivity expiry fields read as 20yy for yy<=60, else 19yy.",
     "unexpired_as_of": {
-      "orange_book": "2026-08-15",
+      "orange_book": "2026-08-14",
       "purple_book": "2026-08-31"
     }
   },
@@ -73,14 +73,6 @@
     "pages": 3435
   },
   "pages_matched_by_rule": {
-    "inchikey": {
-      "by_tier": {
-        "1": 14,
-        "2": 22,
-        "3": 4
-      },
-      "pages": 40
-    },
     "name-candidate": {
       "by_tier": {
         "1": 55,
@@ -91,19 +83,19 @@
     },
     "skeleton": {
       "by_tier": {
-        "1": 79,
-        "2": 195,
-        "3": 141
+        "1": 66,
+        "2": 157,
+        "3": 109
       },
-      "pages": 415
+      "pages": 332
     },
     "unii": {
       "by_tier": {
-        "1": 994,
-        "2": 1977,
-        "3": 126
+        "1": 1011,
+        "2": 2030,
+        "3": 163
       },
-      "pages": 3097
+      "pages": 3204
     }
   },
   "pages_matched_by_tier": {
@@ -114,11 +106,11 @@
   "pages_matched_total": 3606,
   "pages_reached_only_via_salt_stripped_parent_substance": {
     "by_tier": {
-      "1": 309,
-      "2": 631,
-      "3": 87
+      "1": 296,
+      "2": 644,
+      "3": 124
     },
-    "pages": 1027
+    "pages": 1064
   },
   "pull_directory": "data/sources/orange-purple-book/2026-09-05",
   "retrieved": "2026-09-05",

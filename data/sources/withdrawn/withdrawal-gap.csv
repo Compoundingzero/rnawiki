@@ -1,4 +1,4 @@
-tier,pages,corpus_withdrawn_flag,chembl_withdrawn_flag,inxight_inactive_status,any_withdrawal_signal,with_country_available,with_year_available,with_reason_available
-1,1719,663,281,890,1180,890,0,0
-2,4477,0,0,1721,1721,1721,0,0
-3,22636,0,0,437,437,437,0,0
+tier,pages,corpus_withdrawn_flag,chembl_withdrawn_flag,inxight_inactive_status,pages_with_mapped_withdrawal_record,with_country_available,with_year_available,with_reason_available
+1,1719,663,281,1525,301,301,298,301
+2,4477,0,0,3438,4,4,4,4
+3,22636,0,0,10774,2,2,2,2

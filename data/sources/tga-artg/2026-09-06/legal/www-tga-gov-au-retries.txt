@@ -1,0 +1,28 @@
+--- https://www.tga.gov.au/robots.txt attempt 1 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:07:41Z, backoff before this attempt: 0s
+curl: (28) Operation timed out after 30009 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.009652
+--- https://www.tga.gov.au/robots.txt attempt 2 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:08:16Z, backoff before this attempt: 7s
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.011225
+--- https://www.tga.gov.au/robots.txt attempt 3 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:09:01Z, backoff before this attempt: 22s
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.011129
+--- https://www.tga.gov.au/about-tga/copyright attempt 1 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:10:16Z, backoff before this attempt: 0s
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.012005
+--- https://www.tga.gov.au/about-tga/copyright attempt 2 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:10:51Z, backoff before this attempt: 7s
+curl: (28) Operation timed out after 30001 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.002002
+--- https://www.tga.gov.au/about-tga/copyright attempt 3 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:11:36Z, backoff before this attempt: 22s
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.011279
+--- https://www.tga.gov.au/resources/artg attempt 1 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:12:51Z, backoff before this attempt: 0s
+curl: (28) Operation timed out after 30006 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.006324
+--- https://www.tga.gov.au/resources/artg attempt 2 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:13:26Z, backoff before this attempt: 7s
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.011840
+--- https://www.tga.gov.au/resources/artg attempt 3 (curl 8.x, HTTP/1.1, desktop Chrome UA) at 2026-09-05T16:14:11Z, backoff before this attempt: 22s
+curl: (28) Operation timed out after 30004 milliseconds with 0 bytes received
+http_code=000 size=0 time_total=30.004310
+DONE

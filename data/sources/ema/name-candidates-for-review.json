@@ -1,0 +1,2685 @@
+{
+  "source": "ema",
+  "generated": "2026-09-06",
+  "rule": "revamp-2026-09 Phase 2 mapping rule (d): a normalised-name match is a candidate until a UNII or InChIKey confirms it. Every entry below is unconfirmed.",
+  "count": 207,
+  "candidates": [
+    {
+      "substance": "5-aminolevulinic acid hydrochloride",
+      "normalised": "5 aminolevulinic acid",
+      "candidate_page_keys": [
+        "K1:88755TAZ87"
+      ],
+      "products": [
+        "EMEA/H/C/002204",
+        "EMEA/H/C/000744"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Aumolertinib mesilate",
+      "normalised": "aumolertinib",
+      "candidate_page_keys": [
+        "K1:T4RS462G19"
+      ],
+      "products": [
+        "EMEA/H/C/006069"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "Brensocatib monohydrate",
+      "normalised": "brensocatib",
+      "candidate_page_keys": [
+        "K1:25CG88L0BB"
+      ],
+      "products": [
+        "EMEA/H/C/005820"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Caffeine citrate",
+      "normalised": "caffeine",
+      "candidate_page_keys": [
+        "K1:3G6A5W338E"
+      ],
+      "products": [
+        "EMEA/H/C/005435",
+        "EMEA/H/C/001014",
+        "EMEA/H/C/004100"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Colistimethate sodium",
+      "normalised": "colistimethate",
+      "candidate_page_keys": [
+        "K1:DL2R53P963",
+        "K1:Z67X93HJG1"
+      ],
+      "products": [
+        "EMEA/H/C/001225"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Dexamethasone (sodium phosphate)",
+      "normalised": "dexamethasone",
+      "candidate_page_keys": [
+        "K1:2BP70L44PR",
+        "K1:7S5I7G3JQL",
+        "K1:9PHQ9Y1OLM",
+        "K1:K7V8P532WP",
+        "K1:VB0R961HZT"
+      ],
+      "products": [
+        "EMEA/H/C/005740"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Eliglustat (tartrate)",
+      "normalised": "eliglustat",
+      "candidate_page_keys": [
+        "K1:DR40J4WA67"
+      ],
+      "products": [
+        "EMEA/H/C/003724"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Etarfolatide",
+      "normalised": "etarfolatide",
+      "candidate_page_keys": [
+        "K2:YZSIZVRFVQKMJU-RDGPPVDQSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/002570"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Fentanyl citrate",
+      "normalised": "fentanyl",
+      "candidate_page_keys": [
+        "K1:UF599785JZ"
+      ],
+      "products": [
+        "EMEA/H/C/000959"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Formoterol (fumarate)",
+      "normalised": "formoterol",
+      "candidate_page_keys": [
+        "K1:F91H02EBWT",
+        "K2:BPZSYCZIITTYBL-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/001217"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Glasdegib maleate",
+      "normalised": "glasdegib",
+      "candidate_page_keys": [
+        "K1:K673DMO5H9"
+      ],
+      "products": [
+        "EMEA/H/C/004878"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Ibuprofen",
+      "normalised": "ibuprofen",
+      "candidate_page_keys": [
+        "K1:671DKG7P5S",
+        "K1:99W8H60N62",
+        "K1:WK2XYI10QM"
+      ],
+      "products": [
+        "EMEA/H/C/006129",
+        "EMEA/H/C/000549",
+        "EMEA/H/C/001108"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "Indacaterol (acetate)",
+      "normalised": "indacaterol",
+      "candidate_page_keys": [
+        "K1:8OR09251MQ"
+      ],
+      "products": [
+        "EMEA/H/C/005518"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "L-lysine hydrochloride",
+      "normalised": "lysine",
+      "candidate_page_keys": [
+        "K1:23227F83U0",
+        "K1:K3Z4F929H6"
+      ],
+      "products": [
+        "EMEA/H/C/004541"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Lasofoxifene tartrate",
+      "normalised": "lasofoxifene",
+      "candidate_page_keys": [
+        "K1:337G83N988"
+      ],
+      "products": [
+        "EMEA/H/C/000977"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Lumasiran sodium",
+      "normalised": "lumasiran",
+      "candidate_page_keys": [
+        "K1:RZT8C352O1"
+      ],
+      "products": [
+        "EMEA/H/C/005040"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Maralixibat chloride",
+      "normalised": "maralixibat",
+      "candidate_page_keys": [
+        "K1:UYB6UOF69L"
+      ],
+      "products": [
+        "EMEA/H/C/005857",
+        "EMEA/H/C/005551"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Masitinib mesilate",
+      "normalised": "masitinib",
+      "candidate_page_keys": [
+        "K1:M59NC4E26P"
+      ],
+      "products": [
+        "EMEA/H/C/005897",
+        "EMEA/H/C/004398",
+        "EMEA/H/C/004159"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Mexiletine hydrochloride",
+      "normalised": "mexiletine",
+      "candidate_page_keys": [
+        "K1:1U511HHV4Z",
+        "K1:4KQ8G4M9DE",
+        "K1:UZX645YZ46"
+      ],
+      "products": [
+        "EMEA/H/C/004584"
+      ],
+      "reason": "unii_name_exact_display_name_tiebreak"
+    },
+    {
+      "substance": "Midazolam Hydrochloride",
+      "normalised": "midazolam",
+      "candidate_page_keys": [
+        "K1:M0Q7802G2B",
+        "K1:R60L0SM5BC"
+      ],
+      "products": [
+        "EMEA/H/C/005657",
+        "EMEA/H/C/005658"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "Parsaclisib hydrochloride",
+      "normalised": "parsaclisib",
+      "candidate_page_keys": [
+        "K1:OS7097575K"
+      ],
+      "products": [
+        "EMEA/H/C/005893"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "acalabrutinib maleate",
+      "normalised": "acalabrutinib",
+      "candidate_page_keys": [
+        "K1:I42748ELQW"
+      ],
+      "products": [
+        "EMEA/H/C/005299"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "aclidinium bromide",
+      "normalised": "aclidinium",
+      "candidate_page_keys": [
+        "K1:K17VY42F6C"
+      ],
+      "products": [
+        "EMEA/H/C/002211",
+        "EMEA/H/C/003745",
+        "EMEA/H/C/003969",
+        "EMEA/H/C/002706"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "acoramidis hydrochloride",
+      "normalised": "acoramidis",
+      "candidate_page_keys": [
+        "K1:T12B44A1OE"
+      ],
+      "products": [
+        "EMEA/H/C/006333"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "alectinib hydrochloride",
+      "normalised": "alectinib",
+      "candidate_page_keys": [
+        "K1:LIJ4CT1Z3Y"
+      ],
+      "products": [
+        "EMEA/H/C/004164"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "aliskiren hemifumarate",
+      "normalised": "aliskiren",
+      "candidate_page_keys": [
+        "K1:502FWN4Q32"
+      ],
+      "products": [
+        "EMEA/H/C/002073"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "amikacin sulfate",
+      "normalised": "amikacin",
+      "candidate_page_keys": [
+        "K1:84319SGC3C"
+      ],
+      "products": [
+        "EMEA/H/C/005264",
+        "EMEA/H/C/003936"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "anagrelide hydrochloride",
+      "normalised": "anagrelide",
+      "candidate_page_keys": [
+        "K1:K9X45X0051"
+      ],
+      "products": [
+        "EMEA/H/C/004585"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "anti-melanoma mab fragments",
+      "normalised": "anti melanoma mab fragments",
+      "candidate_page_keys": [
+        "K3:CHEMBL5315106"
+      ],
+      "products": [
+        "EMEA/H/C/000068"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "arimoclomol citrate",
+      "normalised": "arimoclomol",
+      "candidate_page_keys": [
+        "HOLD:existing:arimoclomol",
+        "K1:EUT3557RT5",
+        "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/006736",
+        "EMEA/H/C/005203"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "aripiprazole monohydrate",
+      "normalised": "aripiprazole",
+      "candidate_page_keys": [
+        "K1:82VFR53I78",
+        "K1:V1I29R0RJQ"
+      ],
+      "products": [
+        "EMEA/H/C/005929"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "asenapine maleate",
+      "normalised": "asenapine",
+      "candidate_page_keys": [
+        "K1:JKZ19V908O",
+        "K2:VSWBSWWIRNCQIJ-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/001177"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "autologous CD34+ enriched cell fraction that contains CD34+ cells transduced with retroviral vector that encodes for the human ADA cDNA sequence",
+      "normalised": "autologous cd34 enriched cell fraction that contains cd34 cells transduced with retroviral vector that encodes for the human ada cdna sequence",
+      "candidate_page_keys": [
+        "K3:CHEMBL5315093"
+      ],
+      "products": [
+        "EMEA/H/C/003854"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "autologous peripheral blood T cells CD4 and CD8 selected and CD3 and CD28 activated transduced with retroviral vector expressing anti-CD19 CD28/CD3-zeta chimeric antigen receptor and cultured (brexucabtagene autoleucel)",
+      "normalised": "autologous peripheral blood t cells cd4 and cd8 selected and cd3 and cd28 activated transduced with retroviral vector expressing anti cd19 cd28 cd3 zeta chimeric antigen receptor and cultured brexucabtagene autoleucel",
+      "candidate_page_keys": [
+        "K1:4MD2J2T8SJ"
+      ],
+      "products": [
+        "EMEA/H/C/005102"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "autologous peripheral-blood mononuclear cells including a minimum of 50 million autologous CD54+ cells activated with prostatic acid phosphatase granulocyte-macrophage colony-stimulating factor",
+      "normalised": "autologous peripheral blood mononuclear cells including a minimum of 50 million autologous cd54 cells activated with prostatic acid phosphatase granulocyte macrophage colony stimulating factor",
+      "candidate_page_keys": [
+        "K1:8Q622VDR18"
+      ],
+      "products": [
+        "EMEA/H/C/002513"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "avatrombopag maleate",
+      "normalised": "avatrombopag",
+      "candidate_page_keys": [
+        "K1:3H8GSZ4SQL"
+      ],
+      "products": [
+        "EMEA/H/C/004722"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "avibactam sodium",
+      "normalised": "avibactam",
+      "candidate_page_keys": [
+        "K1:7352665165"
+      ],
+      "products": [
+        "EMEA/H/C/004027"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "aztreonam lysine",
+      "normalised": "aztreonam",
+      "candidate_page_keys": [
+        "K1:G2B4VE5GH8"
+      ],
+      "products": [
+        "EMEA/H/C/000996"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "bedaquiline fumarate",
+      "normalised": "bedaquiline",
+      "candidate_page_keys": [
+        "K1:78846I289Y"
+      ],
+      "products": [
+        "EMEA/H/C/002614"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "belumosudil mesilate",
+      "normalised": "belumosudil",
+      "candidate_page_keys": [
+        "K1:834YJF89WO"
+      ],
+      "products": [
+        "EMEA/H/C/006421"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "betrixaban maleate",
+      "normalised": "betrixaban",
+      "candidate_page_keys": [
+        "K1:74RWP7W0J9"
+      ],
+      "products": [
+        "EMEA/H/C/004309"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "bromfenac sodium sesquihydrate",
+      "normalised": "bromfenac",
+      "candidate_page_keys": [
+        "K1:864P0921DW"
+      ],
+      "products": [
+        "EMEA/H/C/001198"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cabozantinib (s)-malate",
+      "normalised": "cabozantinib s",
+      "candidate_page_keys": [
+        "K1:1C39JW444G"
+      ],
+      "products": [
+        "EMEA/H/C/004163"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cariprazine hydrochloride",
+      "normalised": "cariprazine",
+      "candidate_page_keys": [
+        "K1:F6RJL8B278"
+      ],
+      "products": [
+        "EMEA/H/C/002770"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "caspofungin acetate",
+      "normalised": "caspofungin",
+      "candidate_page_keys": [
+        "K1:F0XDI6ZL63"
+      ],
+      "products": [
+        "EMEA/H/C/004134"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cefepime dihydrochloride monohydrate",
+      "normalised": "cefepime",
+      "candidate_page_keys": [
+        "K1:807PW4VQE3",
+        "K2:HVFLCNVBZFFHBT-ZKDACBOMSA-O"
+      ],
+      "products": [
+        "EMEA/H/C/005431"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cefiderocol sulfate tosilate",
+      "normalised": "cefiderocol",
+      "candidate_page_keys": [
+        "K1:SZ34OMG6E8",
+        "K1:TTP8LBP45D"
+      ],
+      "products": [
+        "EMEA/H/C/004829"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "ceftolozane sulfate",
+      "normalised": "ceftolozane",
+      "candidate_page_keys": [
+        "K1:37A4IES95Q"
+      ],
+      "products": [
+        "EMEA/H/C/003772"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cidofovir",
+      "normalised": "cidofovir",
+      "candidate_page_keys": [
+        "K1:768M1V522C"
+      ],
+      "products": [
+        "EMEA/H/C/000121"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "cilastatin sodium",
+      "normalised": "cilastatin",
+      "candidate_page_keys": [
+        "K1:141A6AMN38"
+      ],
+      "products": [
+        "EMEA/H/C/004808"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "clopidogrel besilate",
+      "normalised": "clopidogrel",
+      "candidate_page_keys": [
+        "K1:A74586SNO7",
+        "K1:OM90ZUW7M1"
+      ],
+      "products": [
+        "EMEA/H/C/001189"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "clopidogrel hydrochloride",
+      "normalised": "clopidogrel",
+      "candidate_page_keys": [
+        "K1:A74586SNO7",
+        "K1:OM90ZUW7M1"
+      ],
+      "products": [
+        "EMEA/H/C/001134"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dabigatran etexilate mesilate",
+      "normalised": "dabigatran etexilate",
+      "candidate_page_keys": [
+        "K1:2E18WX195X",
+        "K1:I0VM4M70GC"
+      ],
+      "products": [
+        "EMEA/H/C/005639",
+        "EMEA/H/C/000829",
+        "EMEA/H/C/005922",
+        "EMEA/H/C/006023"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "daclatasvir dihydrochloride",
+      "normalised": "daclatasvir",
+      "candidate_page_keys": [
+        "K1:LI2427F9CI"
+      ],
+      "products": [
+        "EMEA/H/C/003768"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "dacomitinib",
+      "normalised": "dacomitinib",
+      "candidate_page_keys": [
+        "K1:2XJX250C20"
+      ],
+      "products": [
+        "EMEA/H/C/004779"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dacomitinib monohydrate",
+      "normalised": "dacomitinib",
+      "candidate_page_keys": [
+        "K1:2XJX250C20"
+      ],
+      "products": [
+        "EMEA/H/C/004779"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dalbavancin",
+      "normalised": "dalbavancin",
+      "candidate_page_keys": [
+        "K1:33WDQ7T81E",
+        "K1:B0U42518WL"
+      ],
+      "products": [
+        "EMEA/H/C/002840"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "darifenacin hydrobromide",
+      "normalised": "darifenacin",
+      "candidate_page_keys": [
+        "K1:APG9819VLM"
+      ],
+      "products": [
+        "EMEA/H/C/000554"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dasabuvir sodium",
+      "normalised": "dasabuvir",
+      "candidate_page_keys": [
+        "K1:DE54EQW8T1"
+      ],
+      "products": [
+        "EMEA/H/C/003837"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dasiglucagon hydrochloride",
+      "normalised": "dasiglucagon",
+      "candidate_page_keys": [
+        "K1:AD4J2O47FQ"
+      ],
+      "products": [
+        "EMEA/H/C/006214"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dasiprotimut-t",
+      "normalised": "dasiprotimut t",
+      "candidate_page_keys": [
+        "K3:nan"
+      ],
+      "products": [
+        "EMEA/H/C/002772"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "daunorubicin hydrochloride",
+      "normalised": "daunorubicin",
+      "candidate_page_keys": [
+        "K1:776B62CQ27",
+        "K1:ZS7284E0ZP"
+      ],
+      "products": [
+        "EMEA/H/C/004282"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "defatted powder of Arachis hypogaea L., semen (peanuts)",
+      "normalised": "defatted powder of arachis hypogaea l semen peanuts",
+      "candidate_page_keys": [
+        "K1:MNA8KG5NQ9"
+      ],
+      "products": [
+        "EMEA/H/C/004917"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "depreotide trifluoroacetate",
+      "normalised": "depreotide",
+      "candidate_page_keys": [
+        "K1:NDP0H8E844"
+      ],
+      "products": [
+        "EMEA/H/C/000263"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "desvenlafaxine",
+      "normalised": "desvenlafaxine",
+      "candidate_page_keys": [
+        "K1:189BFR45S0",
+        "K1:NG99554ANW"
+      ],
+      "products": [
+        "EMEA/H/C/000794"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "dexrazoxane hydrochloride",
+      "normalised": "dexrazoxane",
+      "candidate_page_keys": [
+        "K1:048L81261F"
+      ],
+      "products": [
+        "EMEA/H/C/000682"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dextromethorphan hydrobromide",
+      "normalised": "dextromethorphan",
+      "candidate_page_keys": [
+        "K1:7355X3ROTS"
+      ],
+      "products": [
+        "EMEA/H/C/002560"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "docetaxel",
+      "normalised": "docetaxel",
+      "candidate_page_keys": [
+        "K1:699121PHCA",
+        "K1:X9N27M888C"
+      ],
+      "products": [
+        "EMEA/H/C/002325",
+        "EMEA/H/C/002539",
+        "EMEA/H/C/000073",
+        "EMEA/H/C/000808",
+        "EMEA/H/C/001107",
+        "EMEA/H/C/003925",
+        "EMEA/H/C/004086",
+        "EMEA/H/C/002317",
+        "EMEA/H/C/002032",
+        "EMEA/H/C/001074",
+        "EMEA/H/C/001193"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "docetaxel trihydrate",
+      "normalised": "docetaxel",
+      "candidate_page_keys": [
+        "K1:699121PHCA",
+        "K1:X9N27M888C"
+      ],
+      "products": [
+        "EMEA/H/C/003925"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "dolutegravir sodium",
+      "normalised": "dolutegravir",
+      "candidate_page_keys": [
+        "K1:DKO1W9H7M1"
+      ],
+      "products": [
+        "EMEA/H/C/004909",
+        "EMEA/H/C/002754",
+        "EMEA/H/C/004427"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "doxorubicin hydrochloride",
+      "normalised": "doxorubicin",
+      "candidate_page_keys": [
+        "K1:3Z8479ZZ5X",
+        "K1:80168379AG",
+        "K1:ZS7284E0ZP"
+      ],
+      "products": [
+        "EMEA/H/C/000089",
+        "EMEA/H/C/005330",
+        "EMEA/H/C/000297",
+        "EMEA/H/C/005194",
+        "EMEA/H/C/004110",
+        "EMEA/H/C/002049"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "enoxaparin sodium",
+      "normalised": "enoxaparin",
+      "candidate_page_keys": [
+        "K1:26GW6E5M72",
+        "K1:E47C0NF7LV"
+      ],
+      "products": [
+        "EMEA/H/C/004264",
+        "EMEA/H/C/003795"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "epinephrine",
+      "normalised": "epinephrine",
+      "candidate_page_keys": [
+        "K1:GR0L9S3J0F",
+        "K1:NA71GR3TNV",
+        "K1:YKH834O4BH"
+      ],
+      "products": [
+        "EMEA/H/C/006139",
+        "EMEA/H/C/005584"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "eplontersen sodium",
+      "normalised": "eplontersen",
+      "candidate_page_keys": [
+        "K1:0GRZ0F5XJ6"
+      ],
+      "products": [
+        "EMEA/H/C/006295"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "esketamine hydrochloride",
+      "normalised": "esketamine",
+      "candidate_page_keys": [
+        "K1:50LFG02TXD",
+        "K1:690G0D6V8H"
+      ],
+      "products": [
+        "EMEA/H/C/004535"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "estetrol monohydrate",
+      "normalised": "estetrol",
+      "candidate_page_keys": [
+        "K1:ENB39R14VF"
+      ],
+      "products": [
+        "EMEA/H/C/006213",
+        "EMEA/H/C/005382",
+        "EMEA/H/C/005336"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "estradiol hemihydrate",
+      "normalised": "estradiol",
+      "candidate_page_keys": [
+        "K1:1S4CJB5ZGN",
+        "K1:4TI98Z838E",
+        "K1:5R97F5H93P",
+        "K1:7E1DV054LO",
+        "K1:OKG364O896",
+        "K1:T18F433X4S",
+        "K1:XC0K09B7K4",
+        "K2:GJUHUIXJLZINMA-MJCUULBUSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/005267"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "etelcalcetide hydrochloride",
+      "normalised": "etelcalcetide",
+      "candidate_page_keys": [
+        "K1:60ME133FJB"
+      ],
+      "products": [
+        "EMEA/H/C/003995"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "ex vivo expanded autologous human corneal epithelial cells containing stem cells",
+      "normalised": "ex vivo expanded autologous human corneal epithelial cells containing stem cells",
+      "candidate_page_keys": [
+        "K3:CHEMBL5315099"
+      ],
+      "products": [
+        "EMEA/H/C/002450"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "fedratinib dihydrochloride monohydrate",
+      "normalised": "fedratinib",
+      "candidate_page_keys": [
+        "K1:6L1XP550I6"
+      ],
+      "products": [
+        "EMEA/H/C/005026"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "fenfluramine hydrochloride",
+      "normalised": "fenfluramine",
+      "candidate_page_keys": [
+        "K1:2DS058H2CF",
+        "K1:953A94Y45B",
+        "K1:E35R3G56OV"
+      ],
+      "products": [
+        "EMEA/H/C/003933"
+      ],
+      "reason": "unii_name_exact_display_name_tiebreak"
+    },
+    {
+      "substance": "ferric citrate coordination complex",
+      "normalised": "ferric citrate coordination complex",
+      "candidate_page_keys": [
+        "K1:63G354M39Z"
+      ],
+      "products": [
+        "EMEA/H/C/006402",
+        "EMEA/H/C/003776"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "fesoterodine fumarate",
+      "normalised": "fesoterodine",
+      "candidate_page_keys": [
+        "K1:621G617227"
+      ],
+      "products": [
+        "EMEA/H/C/000723"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "filgotinib maleate",
+      "normalised": "filgotinib",
+      "candidate_page_keys": [
+        "K1:3XVL385Q0M"
+      ],
+      "products": [
+        "EMEA/H/C/005113"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "fingolimod hydrochloride",
+      "normalised": "fingolimod",
+      "candidate_page_keys": [
+        "K1:3QN8BYN5QF"
+      ],
+      "products": [
+        "EMEA/H/C/002202",
+        "EMEA/H/C/005191",
+        "EMEA/H/C/005282"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "fondaparinux sodium",
+      "normalised": "fondaparinux",
+      "candidate_page_keys": [
+        "K1:J177FOW5JL"
+      ],
+      "products": [
+        "EMEA/H/C/000403",
+        "EMEA/H/C/000404"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "formoterol fumarate dihydrate",
+      "normalised": "formoterol",
+      "candidate_page_keys": [
+        "K1:F91H02EBWT",
+        "K2:BPZSYCZIITTYBL-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/004257",
+        "EMEA/H/C/004702",
+        "EMEA/H/C/005311",
+        "EMEA/H/C/004983",
+        "EMEA/H/C/003745",
+        "EMEA/H/C/004836",
+        "EMEA/H/C/003969",
+        "EMEA/H/C/004882",
+        "EMEA/H/C/004245",
+        "EMEA/H/C/002348",
+        "EMEA/H/C/003890",
+        "EMEA/H/C/003951",
+        "EMEA/H/C/003953",
+        "EMEA/H/C/003952"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "fosdenopterin hydrobromide dihydrate",
+      "normalised": "fosdenopterin",
+      "candidate_page_keys": [
+        "K1:4X7K2681Y7"
+      ],
+      "products": [
+        "EMEA/H/C/005378"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "fostemsavir trometamol",
+      "normalised": "fostemsavir trometamol",
+      "candidate_page_keys": [
+        "K1:97IQ273H4L"
+      ],
+      "products": [
+        "EMEA/H/C/005011"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "givinostat hydrochloride monohydrate",
+      "normalised": "givinostat",
+      "candidate_page_keys": [
+        "K1:5P60F84FBH"
+      ],
+      "products": [
+        "EMEA/H/C/006079"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "glycopyrronium bromide",
+      "normalised": "glycopyrronium",
+      "candidate_page_keys": [
+        "K1:HTB34557V4",
+        "K2:ANGKOCUUWGHLCE-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/002691",
+        "EMEA/H/C/004257",
+        "EMEA/H/C/004702",
+        "EMEA/H/C/002690",
+        "EMEA/H/C/002430",
+        "EMEA/H/C/005061",
+        "EMEA/H/C/005518",
+        "EMEA/H/C/005311",
+        "EMEA/H/C/004983",
+        "EMEA/H/C/003755",
+        "EMEA/H/C/002679",
+        "EMEA/H/C/003875",
+        "EMEA/H/C/003883"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "guanfacine hydrochloride",
+      "normalised": "guanfacine",
+      "candidate_page_keys": [
+        "K1:30OMY4G3MK"
+      ],
+      "products": [
+        "EMEA/H/C/006312",
+        "EMEA/H/C/003759"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "hyaluronidase",
+      "normalised": "hyaluronidase",
+      "candidate_page_keys": [
+        "K1:743QUY4VD8"
+      ],
+      "products": [
+        "EMEA/H/C/000696"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "icotrokinra hydrochloride",
+      "normalised": "icotrokinra",
+      "candidate_page_keys": [
+        "K1:MUW8FP7HNZ"
+      ],
+      "products": [
+        "EMEA/H/C/006730"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "imlunestrant tosilate",
+      "normalised": "imlunestrant",
+      "candidate_page_keys": [
+        "K1:9CXQ3PF69U"
+      ],
+      "products": [
+        "EMEA/H/C/006184"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "indacaterol acetate",
+      "normalised": "indacaterol",
+      "candidate_page_keys": [
+        "K1:8OR09251MQ"
+      ],
+      "products": [
+        "EMEA/H/C/005067"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "indinavir sulfate ethanolate",
+      "normalised": "indinavir sulfate ethanolate",
+      "candidate_page_keys": [
+        "K1:9MG78X43ZT"
+      ],
+      "products": [
+        "EMEA/H/C/000128"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "inotersen sodium",
+      "normalised": "inotersen",
+      "candidate_page_keys": [
+        "K1:0IEO0F56LV"
+      ],
+      "products": [
+        "EMEA/H/C/004782"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "interferon alfa-2b",
+      "normalised": "interferon alfa 2b",
+      "candidate_page_keys": [
+        "K1:47RRR83SK7",
+        "K1:4DVS4AG4DF",
+        "K1:981TME683S",
+        "K1:G8RGG88B68"
+      ],
+      "products": [
+        "EMEA/H/C/000281",
+        "EMEA/H/C/000282"
+      ],
+      "reason": "unii_name_exact_display_name_tiebreak"
+    },
+    {
+      "substance": "iptacopan hydrochloride monohydrate",
+      "normalised": "iptacopan",
+      "candidate_page_keys": [
+        "K1:8E05T07Z6W"
+      ],
+      "products": [
+        "EMEA/H/C/005764"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "irinotecan anhydrous free-base",
+      "normalised": "irinotecan anhydrous free base",
+      "candidate_page_keys": [
+        "K1:7673326042"
+      ],
+      "products": [
+        "EMEA/H/C/004125"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "ketamine hydrochloride",
+      "normalised": "ketamine",
+      "candidate_page_keys": [
+        "K1:50LFG02TXD",
+        "K1:690G0D6V8H"
+      ],
+      "products": [
+        "EMEA/H/C/006395"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "larotrectinib sulfate",
+      "normalised": "larotrectinib",
+      "candidate_page_keys": [
+        "K1:PF9462I9HX"
+      ],
+      "products": [
+        "EMEA/H/C/004919"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "lasmiditan succinate",
+      "normalised": "lasmiditan",
+      "candidate_page_keys": [
+        "K1:760I9WM792"
+      ],
+      "products": [
+        "EMEA/H/C/005332"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "lefamulin acetate",
+      "normalised": "lefamulin",
+      "candidate_page_keys": [
+        "HOLD:existing:lefamulin",
+        "K2:KPVIXBKIJXZQJX-FCEONZPQSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/005048"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "lenacapavir sodium",
+      "normalised": "lenacapavir",
+      "candidate_page_keys": [
+        "K1:A9A0O6FB4H"
+      ],
+      "products": [
+        "EMEA/H/C/006658",
+        "EMEA/H/C/005638"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "lenalidomide hydrochloride hydrate",
+      "normalised": "lenalidomide",
+      "candidate_page_keys": [
+        "K1:F0P408N6V4"
+      ],
+      "products": [
+        "EMEA/H/C/005729"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "leriglitazone hydrochloride",
+      "normalised": "leriglitazone",
+      "candidate_page_keys": [
+        "K1:K824X25AYA"
+      ],
+      "products": [
+        "EMEA/H/C/005757"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "leuprorelin mesilate",
+      "normalised": "leuprorelin",
+      "candidate_page_keys": [
+        "K1:EFY6W0M8TG"
+      ],
+      "products": [
+        "EMEA/H/C/005034"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "linzagolix choline",
+      "normalised": "linzagolix",
+      "candidate_page_keys": [
+        "K1:7CDW97HUEX"
+      ],
+      "products": [
+        "EMEA/H/C/005442"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "macimorelin acetate",
+      "normalised": "macimorelin",
+      "candidate_page_keys": [
+        "K1:8680B21W73"
+      ],
+      "products": [
+        "EMEA/H/C/004660"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "matrix-applied characterised autologous cultured chondrocytes",
+      "normalised": "matrix applied characterised autologous cultured chondrocytes",
+      "candidate_page_keys": [
+        "K1:D5P3K3V822"
+      ],
+      "products": [
+        "EMEA/H/C/002522"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "mercaptamine bitartrate",
+      "normalised": "mercaptamine",
+      "candidate_page_keys": [
+        "K1:5UX2SD1KE2"
+      ],
+      "products": [
+        "EMEA/H/C/002465",
+        "EMEA/H/C/000125"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "mercaptamine hydrochloride",
+      "normalised": "mercaptamine",
+      "candidate_page_keys": [
+        "K1:5UX2SD1KE2"
+      ],
+      "products": [
+        "EMEA/H/C/003769"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "methylnaltrexone bromide",
+      "normalised": "methylnaltrexone",
+      "candidate_page_keys": [
+        "K1:0RK7M7IABE",
+        "K2:JVLBPIPGETUEET-GAAHOAFPSA-O"
+      ],
+      "products": [
+        "EMEA/H/C/000870"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "methylphenidate hydrochloride",
+      "normalised": "methylphenidate",
+      "candidate_page_keys": [
+        "HOLD:existing:methylphenidate",
+        "K2:DUGOZIWVEXMGBE-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/005975"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "mifamurtide",
+      "normalised": "mifamurtide",
+      "candidate_page_keys": [
+        "K2:JMUHBNWAORSSBD-WKYWBUFDSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/000802"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "migalastat hydrochloride",
+      "normalised": "migalastat",
+      "candidate_page_keys": [
+        "K1:C4XNY919FW"
+      ],
+      "products": [
+        "EMEA/H/C/004059"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "mitapivat sulfate",
+      "normalised": "mitapivat",
+      "candidate_page_keys": [
+        "K1:2WTV10SIKH"
+      ],
+      "products": [
+        "EMEA/H/C/005540"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "naldemedine tosilate",
+      "normalised": "naldemedine",
+      "candidate_page_keys": [
+        "K1:03KSI6WLXH"
+      ],
+      "products": [
+        "EMEA/H/C/004256"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "naloxegol oxalate",
+      "normalised": "naloxegol",
+      "candidate_page_keys": [
+        "K1:44T7335BKE"
+      ],
+      "products": [
+        "EMEA/H/C/002810"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "naloxone hydrochloride dihydrate",
+      "normalised": "naloxone",
+      "candidate_page_keys": [
+        "K1:36B82AMQ7N"
+      ],
+      "products": [
+        "EMEA/H/C/004407",
+        "EMEA/H/C/004325"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "naltrexone hydrochloride",
+      "normalised": "naltrexone",
+      "candidate_page_keys": [
+        "K1:01ZG3TPX31",
+        "K1:5S6W795CQM"
+      ],
+      "products": [
+        "EMEA/H/C/003687"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "niraparib (tosilate monohydrate)",
+      "normalised": "niraparib",
+      "candidate_page_keys": [
+        "K1:HMC2H89N35",
+        "K1:OWV057OPZ3"
+      ],
+      "products": [
+        "EMEA/H/C/005932",
+        "EMEA/H/C/004249"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "norelgestromin",
+      "normalised": "norelgestromin",
+      "candidate_page_keys": [
+        "K1:UM2XKY25DH"
+      ],
+      "products": [
+        "EMEA/H/C/000410"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "nusinersen sodium",
+      "normalised": "nusinersen",
+      "candidate_page_keys": [
+        "K1:5Z9SP3X666"
+      ],
+      "products": [
+        "EMEA/H/C/004312"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "obicetrapib hemicalcium",
+      "normalised": "obicetrapib",
+      "candidate_page_keys": [
+        "K1:8O74K609HN"
+      ],
+      "products": [
+        "EMEA/H/C/006517",
+        "EMEA/H/C/006516"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "octreotide hydrochloride",
+      "normalised": "octreotide",
+      "candidate_page_keys": [
+        "K1:7PBO3W74TY",
+        "K1:M312JJ6Z32",
+        "K1:N2UJM5NBF6",
+        "K1:RWM8CCW8GP",
+        "K2:WNBILILJFBJQFP-SDLVTCPTSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/006322"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "odevixibat sesquihydrate",
+      "normalised": "odevixibat",
+      "candidate_page_keys": [
+        "K1:2W150K0UUC"
+      ],
+      "products": [
+        "EMEA/H/C/006462"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "oestrogens conjugated",
+      "normalised": "oestrogens conjugated",
+      "candidate_page_keys": [
+        "K1:IU5QR144QX"
+      ],
+      "products": [
+        "EMEA/H/C/002314"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "olanzapine pamoate",
+      "normalised": "olanzapine",
+      "candidate_page_keys": [
+        "K1:N7U69T4SZR"
+      ],
+      "products": [
+        "EMEA/H/C/000890"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "olezarsen sodium",
+      "normalised": "olezarsen",
+      "candidate_page_keys": [
+        "K1:S3RS2SA30L"
+      ],
+      "products": [
+        "EMEA/H/C/006477"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "oritavancin (diphosphate)",
+      "normalised": "oritavancin",
+      "candidate_page_keys": [
+        "K1:PUG62FRZ2E"
+      ],
+      "products": [
+        "EMEA/H/C/003785"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "osilodrostat phosphate",
+      "normalised": "osilodrostat",
+      "candidate_page_keys": [
+        "K1:5YL4IQ1078"
+      ],
+      "products": [
+        "EMEA/H/C/004821"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "osimertinib mesilate",
+      "normalised": "osimertinib",
+      "candidate_page_keys": [
+        "K1:3C06JJ0Z2O"
+      ],
+      "products": [
+        "EMEA/H/C/004124"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "padeliporfin di-potassium",
+      "normalised": "padeliporfin di",
+      "candidate_page_keys": [
+        "K1:EEO29FZT86"
+      ],
+      "products": [
+        "EMEA/H/C/004182"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "paltusotine hydrochloride",
+      "normalised": "paltusotine",
+      "candidate_page_keys": [
+        "K1:F2IBD1GMD3"
+      ],
+      "products": [
+        "EMEA/H/C/006636"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "panobinostat lactate anhydrous",
+      "normalised": "panobinostat",
+      "candidate_page_keys": [
+        "K1:9647FM7Y3Z"
+      ],
+      "products": [
+        "EMEA/H/C/003725"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "parecoxib sodium",
+      "normalised": "parecoxib",
+      "candidate_page_keys": [
+        "K1:2919279Q3W",
+        "K1:9TUW81Y3CE"
+      ],
+      "products": [
+        "EMEA/H/C/000381"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "patisiran sodium",
+      "normalised": "patisiran",
+      "candidate_page_keys": [
+        "K1:50FKX8CB2Y"
+      ],
+      "products": [
+        "EMEA/H/C/004699"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pemetrexed disodium",
+      "normalised": "pemetrexed",
+      "candidate_page_keys": [
+        "K1:04Q9AIZ7NO",
+        "K1:FG8Q47888S"
+      ],
+      "products": [
+        "EMEA/H/C/003970",
+        "EMEA/H/C/003958"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pemetrexed disodium hemipentahydrate",
+      "normalised": "pemetrexed disodium hemipentahydrate",
+      "candidate_page_keys": [
+        "K1:04Q9AIZ7NO"
+      ],
+      "products": [
+        "EMEA/H/C/004072",
+        "EMEA/H/C/003970",
+        "EMEA/H/C/004011",
+        "EMEA/H/C/003788"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pemetrexed disodium heptahydrate",
+      "normalised": "pemetrexed",
+      "candidate_page_keys": [
+        "K1:04Q9AIZ7NO",
+        "K1:FG8Q47888S"
+      ],
+      "products": [
+        "EMEA/H/C/005848"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pemetrexed ditromethamine",
+      "normalised": "pemetrexed",
+      "candidate_page_keys": [
+        "K1:04Q9AIZ7NO",
+        "K1:FG8Q47888S"
+      ],
+      "products": [
+        "EMEA/H/C/004488",
+        "EMEA/H/C/004306"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pentosan polysulfate sodium",
+      "normalised": "pentosan polysulfate",
+      "candidate_page_keys": [
+        "K1:F59P8B75R4"
+      ],
+      "products": [
+        "EMEA/H/C/004246"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "peramivir",
+      "normalised": "peramivir",
+      "candidate_page_keys": [
+        "K1:9ZS94HQO3B"
+      ],
+      "products": [
+        "EMEA/H/C/004299"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "piperaquine tetraphosphate",
+      "normalised": "piperaquine tetraphosphate",
+      "candidate_page_keys": [
+        "K1:A0HV2Q956Y"
+      ],
+      "products": [
+        "EMEA/H/C/001199"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pixantrone dimaleate",
+      "normalised": "pixantrone",
+      "candidate_page_keys": [
+        "K1:F5SXN2KNMR"
+      ],
+      "products": [
+        "EMEA/H/C/002055"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "plozasiran sodium",
+      "normalised": "plozasiran",
+      "candidate_page_keys": [
+        "K1:XG9ARL6P25"
+      ],
+      "products": [
+        "EMEA/H/C/006579"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "porfimer sodium",
+      "normalised": "porfimer",
+      "candidate_page_keys": [
+        "K1:M15H03K69B"
+      ],
+      "products": [
+        "EMEA/H/C/000493"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "prasugrel besilate",
+      "normalised": "prasugrel",
+      "candidate_page_keys": [
+        "K1:34K66TBT99"
+      ],
+      "products": [
+        "EMEA/H/C/004644"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "pridopidine hydrochloride",
+      "normalised": "pridopidine",
+      "candidate_page_keys": [
+        "K1:HD4TW8S2VK"
+      ],
+      "products": [
+        "EMEA/H/C/006261"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "proteolytic enzymes enriched in bromelain",
+      "normalised": "proteolytic enzymes enriched in bromelain",
+      "candidate_page_keys": [
+        "K1:ZLM4P8929R"
+      ],
+      "products": [
+        "EMEA/H/C/002246"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "prucalopride succinate",
+      "normalised": "prucalopride",
+      "candidate_page_keys": [
+        "K1:0A09IUW5TP"
+      ],
+      "products": [
+        "EMEA/H/C/001012"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "quinidine sulfate",
+      "normalised": "quinidine",
+      "candidate_page_keys": [
+        "K1:ITX08688JL"
+      ],
+      "products": [
+        "EMEA/H/C/002560"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "quizartinib dihydrochloride",
+      "normalised": "quizartinib",
+      "candidate_page_keys": [
+        "K1:7LA4O6Q0D3"
+      ],
+      "products": [
+        "EMEA/H/C/005910",
+        "EMEA/H/C/004468"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "rADAMTS13",
+      "normalised": "radamts13",
+      "candidate_page_keys": [
+        "K1:U5SFU33XUX"
+      ],
+      "products": [
+        "EMEA/H/C/006198"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "radium (223Ra) dichloride",
+      "normalised": "radium 223ra",
+      "candidate_page_keys": [
+        "K1:RJ00KV3VTG"
+      ],
+      "products": [
+        "EMEA/H/C/002653"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "raltegravir potassium",
+      "normalised": "raltegravir",
+      "candidate_page_keys": [
+        "K1:22VKV8053U"
+      ],
+      "products": [
+        "EMEA/H/C/005813",
+        "EMEA/H/C/003823"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "rasagiline tartrate",
+      "normalised": "rasagiline",
+      "candidate_page_keys": [
+        "K1:003N66TS6T",
+        "K1:4KM7HJ6CBA"
+      ],
+      "products": [
+        "EMEA/H/C/004064"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "recombinant human nerve growth factor",
+      "normalised": "recombinant human nerve growth factor",
+      "candidate_page_keys": [
+        "K1:B6E7K36KT8",
+        "K1:V7FWP1D62O"
+      ],
+      "products": [
+        "EMEA/H/C/004209"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "recombinant salmon calcitonin",
+      "normalised": "recombinant salmon calcitonin",
+      "candidate_page_keys": [
+        "K2:BBBFJLBPOGFECG-VJVYQDLKSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/000197"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "relebactam",
+      "normalised": "relebactam",
+      "candidate_page_keys": [
+        "K1:1OQF7TT3PF"
+      ],
+      "products": [
+        "EMEA/H/C/004808"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "relebactam monohydrate",
+      "normalised": "relebactam",
+      "candidate_page_keys": [
+        "K1:1OQF7TT3PF"
+      ],
+      "products": [
+        "EMEA/H/C/004808"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "ritlecitinib tosilate",
+      "normalised": "ritlecitinib",
+      "candidate_page_keys": [
+        "K1:2OYE00PC25"
+      ],
+      "products": [
+        "EMEA/H/C/006025"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "rotavirus vaccine",
+      "normalised": "rotavirus vaccine",
+      "candidate_page_keys": [
+        "K1:KZ3L01D2PC#live",
+        "K3:CHEMBL6068351"
+      ],
+      "products": [
+        "EMEA/H/C/000192"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "ruxolitinib hemifumarate",
+      "normalised": "ruxolitinib",
+      "candidate_page_keys": [
+        "K1:82S8X8XX8H"
+      ],
+      "products": [
+        "EMEA/H/C/006618"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "safinamide methanesulfonate",
+      "normalised": "safinamide",
+      "candidate_page_keys": [
+        "K1:90ENL74SIG"
+      ],
+      "products": [
+        "EMEA/H/C/002396"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "salmeterol xinafoate",
+      "normalised": "salmeterol",
+      "candidate_page_keys": [
+        "K1:2I4BC502BT"
+      ],
+      "products": [
+        "EMEA/H/C/004881",
+        "EMEA/H/C/005591",
+        "EMEA/H/C/002752",
+        "EMEA/H/C/004267"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sapropterin dihydrochloride",
+      "normalised": "sapropterin",
+      "candidate_page_keys": [
+        "K1:EGX657432I"
+      ],
+      "products": [
+        "EMEA/H/C/000943",
+        "EMEA/H/C/005646"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "saxagliptin hydrochloride",
+      "normalised": "saxagliptin",
+      "candidate_page_keys": [
+        "K1:8I7IO46IVQ"
+      ],
+      "products": [
+        "EMEA/H/C/002059"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "seladelpar lysine dihydrate",
+      "normalised": "seladelpar",
+      "candidate_page_keys": [
+        "K1:7C00L34NB9",
+        "K2:XJHXZGHPCAKRFK-UHFFFAOYSA-N"
+      ],
+      "products": [
+        "EMEA/H/C/004692"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "selumetinib sulfate",
+      "normalised": "selumetinib",
+      "candidate_page_keys": [
+        "K1:6UH91I579U"
+      ],
+      "products": [
+        "EMEA/H/C/005244"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "semuloparin sodium",
+      "normalised": "semuloparin",
+      "candidate_page_keys": [
+        "K1:4QW4AN84NQ"
+      ],
+      "products": [
+        "EMEA/H/C/002516"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sevelamer hydrochloride",
+      "normalised": "sevelamer",
+      "candidate_page_keys": [
+        "K1:941N5DUU5C",
+        "K1:9YCX42I8IU"
+      ],
+      "products": [
+        "EMEA/H/C/003968"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sildenafil citrate",
+      "normalised": "sildenafil",
+      "candidate_page_keys": [
+        "K1:3M7OB98Y7H",
+        "K1:742SXX0ICT"
+      ],
+      "products": [
+        "EMEA/H/C/004289",
+        "EMEA/H/C/005439"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "siponimod fumaric acid",
+      "normalised": "siponimod fumaric acid",
+      "candidate_page_keys": [
+        "K1:RR6P8L282I"
+      ],
+      "products": [
+        "EMEA/H/C/004712"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sitagliptin fumarate",
+      "normalised": "sitagliptin",
+      "candidate_page_keys": [
+        "K1:QFP0P1DV7Z"
+      ],
+      "products": [
+        "EMEA/H/C/005741",
+        "EMEA/H/C/005778"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sitagliptin hydrochloride",
+      "normalised": "sitagliptin",
+      "candidate_page_keys": [
+        "K1:QFP0P1DV7Z"
+      ],
+      "products": [
+        "EMEA/H/C/005598"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "sitagliptin phosphate monohydrate",
+      "normalised": "sitagliptin",
+      "candidate_page_keys": [
+        "K1:QFP0P1DV7Z"
+      ],
+      "products": [
+        "EMEA/H/C/004313"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sodium oxybate",
+      "normalised": "sodium oxybate",
+      "candidate_page_keys": [
+        "K1:30IW36W5B2"
+      ],
+      "products": [
+        "EMEA/H/C/000593"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "solriamfetol hydrochloride",
+      "normalised": "solriamfetol",
+      "candidate_page_keys": [
+        "K1:939U7C91AI"
+      ],
+      "products": [
+        "EMEA/H/C/004893"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    },
+    {
+      "substance": "sonidegib diphosphate",
+      "normalised": "sonidegib",
+      "candidate_page_keys": [
+        "K1:0RLU3VTK5M"
+      ],
+      "products": [
+        "EMEA/H/C/002839"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "spheroids of human autologous matrix-associated chondrocytes",
+      "normalised": "spheroids of human autologous matrix associated chondrocytes",
+      "candidate_page_keys": [
+        "K3:CHEMBL5315113"
+      ],
+      "products": [
+        "EMEA/H/C/002736"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "sufentanil citrate",
+      "normalised": "sufentanil",
+      "candidate_page_keys": [
+        "K1:AFE2YW0IIZ"
+      ],
+      "products": [
+        "EMEA/H/C/006395",
+        "EMEA/H/C/004335"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "sumatriptan succinate",
+      "normalised": "sumatriptan",
+      "candidate_page_keys": [
+        "K1:8R78F6L9VO"
+      ],
+      "products": [
+        "EMEA/H/C/002140"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tazobactam sodium",
+      "normalised": "tazobactam",
+      "candidate_page_keys": [
+        "K1:37A4IES95Q",
+        "K1:SE10G96M8W"
+      ],
+      "products": [
+        "EMEA/H/C/003772"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tecovirimat monohydrate",
+      "normalised": "tecovirimat",
+      "candidate_page_keys": [
+        "K1:F925RR824R"
+      ],
+      "products": [
+        "EMEA/H/C/005248"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tenofovir alafenamide fumarate",
+      "normalised": "tenofovir alafenamide",
+      "candidate_page_keys": [
+        "K1:EL9943AG5J"
+      ],
+      "products": [
+        "EMEA/H/C/006491",
+        "EMEA/H/C/006469",
+        "EMEA/H/C/004169"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tenofovir disoproxil fumarate",
+      "normalised": "tenofovir disoproxil",
+      "candidate_page_keys": [
+        "K1:F4YU4LON7I",
+        "K1:W4HFE001U5"
+      ],
+      "products": [
+        "EMEA/H/C/002312",
+        "EMEA/H/C/004746",
+        "EMEA/H/C/000419",
+        "EMEA/H/C/000594",
+        "EMEA/H/C/002574",
+        "EMEA/H/C/000797"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tenofovir disoproxil maleate",
+      "normalised": "tenofovir disoproxil",
+      "candidate_page_keys": [
+        "K1:F4YU4LON7I",
+        "K1:W4HFE001U5"
+      ],
+      "products": [
+        "EMEA/H/C/004050",
+        "EMEA/H/C/004240"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tenofovir disoproxil succinate",
+      "normalised": "tenofovir disoproxil",
+      "candidate_page_keys": [
+        "K1:F4YU4LON7I",
+        "K1:W4HFE001U5"
+      ],
+      "products": [
+        "EMEA/H/C/004686",
+        "EMEA/H/C/004215",
+        "EMEA/H/C/004274"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "tepotinib hydrochloride monohydrate",
+      "normalised": "tepotinib",
+      "candidate_page_keys": [
+        "K1:1IJV77EI07"
+      ],
+      "products": [
+        "EMEA/H/C/005524"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "timolol maleate",
+      "normalised": "timolol",
+      "candidate_page_keys": [
+        "K1:5JKY92S7BR"
+      ],
+      "products": [
+        "EMEA/H/C/000960"
+      ],
+      "reason": "unii_name_exact_display_name_tiebreak"
+    },
+    {
+      "substance": "tivozanib hydrochloride monohydrate",
+      "normalised": "tivozanib",
+      "candidate_page_keys": [
+        "K1:172030934T"
+      ],
+      "products": [
+        "EMEA/H/C/004131"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "topotecan hydrochloride",
+      "normalised": "topotecan",
+      "candidate_page_keys": [
+        "K1:7M7YKX2N15"
+      ],
+      "products": [
+        "EMEA/H/C/002261"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "trametinib dimethyl sulfoxide",
+      "normalised": "trametinib dimethyl sulfoxide",
+      "candidate_page_keys": [
+        "K1:33E86K87QN"
+      ],
+      "products": [
+        "EMEA/H/C/005886"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "trenibotulinumtoxinE",
+      "normalised": "trenibotulinumtoxine",
+      "candidate_page_keys": [
+        "K1:T579M564JY"
+      ],
+      "products": [
+        "EMEA/H/C/006420"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "treprostinil diolamine",
+      "normalised": "treprostinil",
+      "candidate_page_keys": [
+        "K1:99S2PY5BN2",
+        "K1:RUM6K67ESG",
+        "K1:ZGK8DW84SK"
+      ],
+      "products": [
+        "EMEA/H/C/005990"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "trientine dihydrochloride",
+      "normalised": "trientine",
+      "candidate_page_keys": [
+        "K1:SJ76Y07H5F"
+      ],
+      "products": [
+        "EMEA/H/C/004111"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "vanzacaftor calcium dihydrate",
+      "normalised": "vanzacaftor",
+      "candidate_page_keys": [
+        "K1:COM1POP492"
+      ],
+      "products": [
+        "EMEA/H/C/006382"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "varicella-zoster virus (live, attenuated)",
+      "normalised": "varicella zoster virus live attenuated",
+      "candidate_page_keys": [
+        "K1:GPV39ZGD8C"
+      ],
+      "products": [
+        "EMEA/H/C/000674"
+      ],
+      "reason": "no_unii_name_match"
+    },
+    {
+      "substance": "vilanterol trifenatate",
+      "normalised": "vilanterol trifenatate",
+      "candidate_page_keys": [
+        "K1:028LZY775B"
+      ],
+      "products": [
+        "EMEA/H/C/004781",
+        "EMEA/H/C/004363",
+        "EMEA/H/C/002751",
+        "EMEA/H/C/002745",
+        "EMEA/H/C/005254"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "vimseltinib dihydrate",
+      "normalised": "vimseltinib",
+      "candidate_page_keys": [
+        "K1:PX9FTM69BF"
+      ],
+      "products": [
+        "EMEA/H/C/006363"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "volanesorsen sodium",
+      "normalised": "volanesorsen",
+      "candidate_page_keys": [
+        "K1:2O4BE0K238"
+      ],
+      "products": [
+        "EMEA/H/C/004538"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "vutrisiran sodium",
+      "normalised": "vutrisiran",
+      "candidate_page_keys": [
+        "K1:GB4I2JI8UI"
+      ],
+      "products": [
+        "EMEA/H/C/005852"
+      ],
+      "reason": "unii_name_exact"
+    },
+    {
+      "substance": "zoledronic acid monohydrate",
+      "normalised": "zoledronic acid",
+      "candidate_page_keys": [
+        "K1:70HZ18PH24"
+      ],
+      "products": [
+        "EMEA/H/C/002359",
+        "EMEA/H/C/002488",
+        "EMEA/H/C/002365",
+        "EMEA/H/C/002667",
+        "EMEA/H/C/000336",
+        "EMEA/H/C/002805"
+      ],
+      "reason": "ambiguous_unii_name_match"
+    }
+  ],
+  "ambiguousUniiResolutions": [
+    {
+      "substance": "Aumolertinib mesilate",
+      "candidate_uniis": [
+        "RZ6I9WX68U",
+        "T4RS462G19"
+      ],
+      "candidate_uniis_in_corpus": [
+        "RZ6I9WX68U",
+        "T4RS462G19"
+      ],
+      "products": [
+        "EMEA/H/C/006069"
+      ]
+    },
+    {
+      "substance": "Ibuprofen",
+      "candidate_uniis": [
+        "99W8H60N62",
+        "WK2XYI10QM"
+      ],
+      "candidate_uniis_in_corpus": [
+        "99W8H60N62",
+        "WK2XYI10QM"
+      ],
+      "products": [
+        "EMEA/H/C/006129",
+        "EMEA/H/C/000549",
+        "EMEA/H/C/001108"
+      ]
+    },
+    {
+      "substance": "avibactam sodium",
+      "candidate_uniis": [
+        "9V824P8TAI",
+        "C8SM6IRW7G",
+        "TROMZ29W33"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "products": [
+        "EMEA/H/C/004027"
+      ]
+    },
+    {
+      "substance": "belumosudil mesilate",
+      "candidate_uniis": [
+        "6MX7XE1M0U",
+        "834YJF89WO",
+        "LL4OG4RZ5D"
+      ],
+      "candidate_uniis_in_corpus": [
+        "6MX7XE1M0U",
+        "834YJF89WO"
+      ],
+      "products": [
+        "EMEA/H/C/006421"
+      ]
+    },
+    {
+      "substance": "cefiderocol sulfate tosilate",
+      "candidate_uniis": [
+        "2V3QJ9TGE5",
+        "SZ34OMG6E8",
+        "TTP8LBP45D"
+      ],
+      "candidate_uniis_in_corpus": [
+        "SZ34OMG6E8",
+        "TTP8LBP45D"
+      ],
+      "products": [
+        "EMEA/H/C/004829"
+      ]
+    },
+    {
+      "substance": "daclatasvir dihydrochloride",
+      "candidate_uniis": [
+        "50ZO25C11D",
+        "LI2427F9CI"
+      ],
+      "candidate_uniis_in_corpus": [
+        "50ZO25C11D",
+        "LI2427F9CI"
+      ],
+      "products": [
+        "EMEA/H/C/003768"
+      ]
+    },
+    {
+      "substance": "desvenlafaxine",
+      "candidate_uniis": [
+        "189BFR45S0",
+        "HY5T9WKI4O",
+        "NG99554ANW"
+      ],
+      "candidate_uniis_in_corpus": [
+        "189BFR45S0",
+        "NG99554ANW"
+      ],
+      "products": [
+        "EMEA/H/C/000794"
+      ]
+    },
+    {
+      "substance": "epinephrine",
+      "candidate_uniis": [
+        "GR0L9S3J0F",
+        "NA71GR3TNV",
+        "YKH834O4BH"
+      ],
+      "candidate_uniis_in_corpus": [
+        "GR0L9S3J0F",
+        "NA71GR3TNV",
+        "YKH834O4BH"
+      ],
+      "products": [
+        "EMEA/H/C/006139",
+        "EMEA/H/C/005584"
+      ]
+    },
+    {
+      "substance": "niraparib (tosilate monohydrate)",
+      "candidate_uniis": [
+        "195Q483UZD",
+        "75KE12AY9U",
+        "8SE9H8T4PY",
+        "HMC2H89N35",
+        "L4JFC1PHCI"
+      ],
+      "candidate_uniis_in_corpus": [
+        "195Q483UZD",
+        "HMC2H89N35"
+      ],
+      "products": [
+        "EMEA/H/C/005932",
+        "EMEA/H/C/004249"
+      ]
+    },
+    {
+      "substance": "obicetrapib hemicalcium",
+      "candidate_uniis": [
+        "0X8JBE081M",
+        "2PBJ8V9F6I",
+        "8303E7ZEKW",
+        "8O74K609HN"
+      ],
+      "candidate_uniis_in_corpus": [
+        "8303E7ZEKW",
+        "8O74K609HN"
+      ],
+      "products": [
+        "EMEA/H/C/006517",
+        "EMEA/H/C/006516"
+      ]
+    },
+    {
+      "substance": "peramivir",
+      "candidate_uniis": [
+        "IDL9Q29886",
+        "QW7Y7ZR15U"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "products": [
+        "EMEA/H/C/004299"
+      ]
+    },
+    {
+      "substance": "sitagliptin hydrochloride",
+      "candidate_uniis": [
+        "15UP896M97",
+        "494P4635I6",
+        "6DH2XG35TG",
+        "6Q9M3E3GG7",
+        "79C7Y78XGP",
+        "85ZK84E34T",
+        "IEL0A0OS7E",
+        "NRD527S3TT",
+        "QFP0P1DV7Z",
+        "TS63EW8X6F",
+        "WQC5W43W24",
+        "X9M873A9NG"
+      ],
+      "candidate_uniis_in_corpus": [
+        "6DH2XG35TG",
+        "QFP0P1DV7Z"
+      ],
+      "products": [
+        "EMEA/H/C/005598"
+      ]
+    },
+    {
+      "substance": "solriamfetol hydrochloride",
+      "candidate_uniis": [
+        "EBJ6P77H42",
+        "K7RO88SP7A"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "products": [
+        "EMEA/H/C/004893"
+      ]
+    },
+    {
+      "substance": "zoledronic acid monohydrate",
+      "candidate_uniis": [
+        "6XC1PAD3KF",
+        "70HZ18PH24",
+        "Y1X5LD5UCA"
+      ],
+      "candidate_uniis_in_corpus": [
+        "6XC1PAD3KF",
+        "70HZ18PH24"
+      ],
+      "products": [
+        "EMEA/H/C/002359",
+        "EMEA/H/C/002488",
+        "EMEA/H/C/002365",
+        "EMEA/H/C/002667",
+        "EMEA/H/C/000336",
+        "EMEA/H/C/002805"
+      ]
+    }
+  ]
+}

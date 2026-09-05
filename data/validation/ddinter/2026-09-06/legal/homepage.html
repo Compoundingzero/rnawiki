@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DDInter 2.0</title>
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <script src="/static/common/layui/layui.js"></script>
+    
+    <link rel="stylesheet" href="/static/common/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+
+    <link href="/static/common/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/style.css"/>
+    <script src="/static/common/js/jquery.min.js"></script>
+    
+    <script src="/static/common/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+        <link rel="stylesheet" type="text/css" href="/static/common/nav/css/style.css"/>
+        <script src="/static/common/nav/js/style.js"></script>
+    
+
+    
+    <link rel="stylesheet" href="/static/common/footer/css/style.css"/>
+
+    
+    <link rel="stylesheet" href="/static/common/banner/css/style.css"/>
+
+    <link rel="stylesheet" href="/static/services/css/jquery.dataTables.min.css">
+    <script src="/static/services/js/jquery.dataTables.min.js"></script>
+
+    
+    <link href="/static/common/fontawesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="antin-container">
+    
+        
+<style>
+    .box-with-border {
+        border-bottom: 1px solid rgb(6, 101, 183); /* 边框样式，2px 宽度，颜色 #333 */
+    
+    }
+
+    /* 添加阴影 */
+    .box-with-shadow {
+        box-shadow: 0 0 10px 0 rgba(6, 101, 183, 0.3); /* x偏移、y偏移、模糊度、颜色（rgba格式） */
+    
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+</style>
+<header class="header-area overlay box-with-border box-with-shadow" style="background:
+    rgba(32, 88, 155, 0.5);">
+    <nav class="navbar navbar-expand-md navbar-dark" data-bs-theme="dark">
+        <div class="offset-1 col-10 d-flex align-items-center justify-content-between">
+            <a href="/" class="navbar-brand d-flex justify-content-center align-items-center">
+                <img src="/static/favicon.ico" width="45" height="45"
+                     class="d-inline-block justify-content-center align-items-center me-2" alt=""/>
+                <h1 class="" style="font-family: 'Lobster', sans-serif">DDInter 2.0</h1>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-atom"></i> Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/server/drug/">Drug</a></li>
+                            <li><a class="dropdown-item" href="/server/dis_food/">Disease</a></li>
+                            <li><a class="dropdown-item" href="/server/interaction/">Drug-Drug
+                                Interaction</a></li>
+                            <li><a class="dropdown-item" href="/server/other_interaction/">Drug-Others
+                                Interaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inter-checker/">
+                            <i class="fab fa-staylinked nav-icon"></i>
+                            Interaction Checker
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                        >
+                            <i class="far fa-file-alt"></i> About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/explanation/">Explanation</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/statistics/">Statistics</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/tutorials/">Tutorials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/terms/">Terms and conditions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/"><i class="fas fa-id-card"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    
+
+    
+        
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade"
+         data-bs-ride="carousel">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Enhanced and curated Drug Interactions Database</h2>
+                <p class="animate__animated animate__fadeInUp" style="text-align: justify">DDinter 2.0 is a
+                    comprehensive, professional, and open-access database that provides extensive information on
+                    drug-drug interactions (DDIs), drug-food interactions (DFIs), drug-disease similarity interactions
+                    (DDSIs), and therapeutic duplications. This enhanced version offers expanded drug interaction data,
+                    along with detailed annotations such as mechanism descriptions, risk levels, management strategies,
+                    and updated ATC codes for both new and existing drugs. Curated by pharmacists, DDinter 2.0 serves as
+                    an invaluable resource for healthcare professionals, researchers, and patients, supporting clinical
+                    decision-making and promoting patient safety. </p>
+                <a href="/explanation/"
+                   class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
+                    More</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="search-block">
+        <div class="container">
+            <form class="form" action="/server/search/" method="post" id="search-form">
+                <input type="hidden" name="csrfmiddlewaretoken" value="gtWTQK8o8LP1IfZwPToXy9pHwgwSeCgZg6ybAfbtFTyrqzFSL9iOARf4Q9B5p9nM">
+                <input type="text" name="key" placeholder="Enter drug generic name or synonym"
+                       autocomplete="off"
+                       class="" id="search-input">
+                <button type="submit" class="" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 14px;">
+                Examples:
+                <a onclick="example_submit('Acetylsalicylic acid')" href="javascript:void(0);">Acetylsalicylic
+                    acid</a>; <a
+                    onclick="example_submit('Abacavir')" href="javascript:void(0);">Abacavir</a>; <a
+                    onclick="example_submit('ABC')" href="javascript:void(0);">ABC</a>;
+                <a onclick="example_submit('Theine')" href="javascript:void(0);">Theine</a>
+            </p>
+        </div>
+    </section>
+</section><!-- End Hero -->
+
+<section id="icon-boxes" class="icon-boxes pb-5">
+    <div class="container">
+        <div class="row gx-3">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+                 data-aos="fade-up">
+                <div class="icon-box">
+                    <div class="d-flex align-content-center justify-content-start mb-4">
+                        <div class="icon me-3">
+                            <i class="fas fa-solar-system"></i>
+                        </div>
+                        <h4 class="title d-flex justify-content-center align-content-center">
+                            <a href="" class="d-flex justify-content-center align-items-center">Comprehensive
+                                data
+                                coverage</a></h4>
+                    </div>
+                    <p class="description">Rich interaction information of 302,516 DDI associations connecting 2,290
+                        approved drugs were extracted from published scientific literature and pharmaceutical
+                        labels.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+                 data-aos="fade-up"
+                 data-aos-delay="100">
+                <div class="icon-box">
+                    <div class="d-flex align-content-center justify-content-start mb-4">
+                        <div class="icon me-3"><i class="fas fa-capsules"></i></div>
+                        <h4 class="title d-flex justify-content-center align-content-center">
+                            <a href=""
+                               class="d-flex justify-content-center align-items-center">Practical
+                                medication guidance</a></h4>
+                    </div>
+                    <p class="description">Detailed annotations for safe medication use, Comprehensive descriptions of
+                        drug interactions and therapeutic duplications provide valuable guidance
+                        
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+                 data-aos="fade-up"
+                 data-aos-delay="200">
+                <div class="icon-box">
+                    <div class="d-flex align-content-center justify-content-start mb-4">
+                        <div class="icon me-3"><i class="fas fa-hands-helping"></i></div>
+                        <h4 class="title d-flex justify-content-center align-content-center">
+                            <a href="" class="d-flex justify-content-center align-items-center">User-friendly function
+                                design</a></h4>
+                    </div>
+                    <p class="description">Users can easily browse drug, disease, and interaction entries, retrieve
+                        comprehensive interaction networks, and perform efficient prescription checks.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+                 data-aos="fade-up"
+                 data-aos-delay="300">
+                <div class="icon-box">
+                    <div class="d-flex align-content-center justify-content-start mb-4">
+                        <div class="icon me-3"><i class="fas fa-chart-pie"></i></div>
+                        <h4 class="title d-flex justify-content-center align-content-center">
+                            <a href="" class="d-flex justify-content-center align-items-center">Powerful results
+                                visualization</a></h4>
+                    </div>
+                    <p class="description">Various data visualizations tools are applied to demonstrate the
+                        complex searching results dynamically and to help users understand the
+                        interactions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Icon Boxes Section -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="fas fa-info-circle"></i> Important information</strong>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        </div>
+    </div>
+</div>
+
+<script>
+    function example_submit(keyword) {
+        $('#search-input').val(keyword);
+        $('#search-form').submit();
+    }
+
+    $(document).ready(function () {
+        let message = "";
+        if (message) {
+            const myToastEl = document.getElementById('liveToast');
+            $('.toast-body').text(message);
+            let bsToast = new bootstrap.Toast(myToastEl);
+            bsToast.show();
+        }
+    });
+</script>
+    
+
+    <div class="antin-contain">
+        
+    <main id="main">
+        <div class="container text-center">
+            <div class="version">
+                Current Release: DDInter 2.0 | Last update: 2024-05-14
+            </div>
+        </div>
+    </main>
+
+    </div>
+    
+        
+
+<footer class="site-footer" id="footer">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="copyright">
+      &copy; Copyright &nbsp; <a href="http://www.scbdd.com/" target="_blank">Computational Biology & Drug DesignGroup</a>. All Rights Reserved<div class="heart d-inline-block mx-2"></div>
+      
+    </div>
+    <div style="width: 200px;">
+      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=TXcYuwgsTf230Gc363rPwJc4RS20yZ5QOakSiw4gHgw&cl=ffffff&w=a"></script>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .heart {
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    position: relative;
+    filter: drop-shadow(0px 0px 20px rgb(255, 20, 20));
+    transform: rotate(45deg);
+  }
+  
+  .heart:before,
+  .heart:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 5px;
+  }
+  
+  .heart:before {
+    left: -5px;
+  }
+  
+  .heart:after {
+    left: 0;
+    top: -5px;
+  }
+  
+  @keyframes heartbeat {
+    0% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+    25% {
+      transform: rotate(45deg) scale(1, 1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(45deg) scale(0.8, 0.8);
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+</div>
+</body>
+
+
+
+
+</html>

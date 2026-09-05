@@ -1,0 +1,114 @@
+{
+  "schema": "rnawiki-revamp-rendered-dup-check/v1",
+  "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
+  "at": "2026-09-05T16:32:06Z",
+  "baseUrl": "https://rnawiki.com",
+  "widths": [
+    390,
+    1280
+  ],
+  "threshold": 0.5,
+  "sampleSeed": 20260905,
+  "minhash": {
+    "permutations": 128,
+    "shingleWords": 5,
+    "permutationSeed": 20260904,
+    "permutationFamily": "splitmix64(shingle XOR seed_i), scripts/corpus-20k/overlap/harness.py",
+    "screenMargin": 0.1,
+    "scoring": "MinHash screens; the reported jaccard is the exact shingle-set Jaccard"
+  },
+  "rendered": {
+    "indexable": 636,
+    "noindexSample": 1000,
+    "hubs": 0
+  },
+  "sets": {
+    "indexableRequested": 636,
+    "hubsRequested": 0,
+    "noindexSampleRequested": 1000,
+    "noindexFrame": 28196,
+    "sitemapChildren": [
+      "tier-1",
+      "tier-2",
+      "browse",
+      "pages"
+    ],
+    "hubSitemapChildren": []
+  },
+  "slugSources": {
+    "recorded": 9278,
+    "recomputed": 19554
+  },
+  "pagesDroppedOnIdentityCheck": 0,
+  "pagesRenderedThisRun": 0,
+  "pagesFromCache": 1636,
+  "renderCounters": {
+    "cached": 1636,
+    "rendered": 0,
+    "requests logged": 0
+  },
+  "perWidth": {
+    "390": {
+      "pagesScored": 1636,
+      "pairsFlagged": 50460,
+      "indexablePairsFlagged": 19,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 6,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2177,
+          "medianJaccard": 0.086
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 21,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2579,
+          "medianJaccard": 0.0982
+        }
+      }
+    },
+    "1280": {
+      "pagesScored": 1636,
+      "pairsFlagged": 50460,
+      "indexablePairsFlagged": 19,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 6,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2177,
+          "medianJaccard": 0.086
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 21,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2579,
+          "medianJaccard": 0.0982
+        }
+      }
+    }
+  },
+  "pairsFlagged": 100920,
+  "indexablePairsFlagged": 38,
+  "reasons": {
+    "stub-template": {
+      "pairs": 100882,
+      "indexablePairs": 0
+    },
+    "identical-trial-set": {
+      "pairs": 32,
+      "indexablePairs": 32
+    },
+    "unclassified-overlap": {
+      "pairs": 6,
+      "indexablePairs": 6
+    }
+  },
+  "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision",
+  "runtimeMinutes": 0.15,
+  "outputs": {
+    "pairs": "data/revamp/rendered-dups.csv",
+    "cache": "data/revamp/rendered-text",
+    "requestLog": "data/corpus-20k/legal/requests.log"
+  },
+  "issues": []
+}

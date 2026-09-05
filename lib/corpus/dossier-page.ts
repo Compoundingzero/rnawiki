@@ -44,6 +44,11 @@ import {
   type SourceRef,
 } from '@/lib/corpus/page-text'
 import { ORGANISM_RUNGS } from '@/lib/corpus/organism-ladder'
+import {
+  isUnknownClassOnly,
+  supervisionBlock,
+  unknownClassificationLine,
+} from '@/lib/corpus/suppression-classes'
 
 /* ------------------------------------------------------------------ types */
 
@@ -159,7 +164,10 @@ export interface CorpusDossier {
   sources: CorpusSourceRow[]
   licenceNotes: string[]
   registeredStudies: number
-  /** The stub's supervision line, from the recorded classification only. */
+  /**
+   * The line a record carries when the registers recorded no classification at all. A record that
+   * has one states it in the supervision block instead, in ordinary words.
+   */
   supervisionLine?: string
 }
 
@@ -731,14 +739,33 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ...(row.licence ? { licence: row.licence } : {}),
     }))
 
-  const cited = page.suppressionClasses.filter((code) => /^S[1-9]$/.test(code))
+  /*
+   * The supervision block, on every suppressed record that has a classification to state.
+   *
+   * A record with question rows already carries it: the derivation puts the supervision question
+   * first and the loop above built it like any other block. A record below the stub floor has no
+   * question rows at all, and until this was fixed its classification fell through to the stub's
+   * own line, which printed the stored class ids. The block is built here instead, from the same
+   * recorded classes, in the words docs/specs/suppression-classes.md fixes.
+   *
+   * An S10-only record is not given a block. S10 is the class the suppression pass assigns when it
+   * could read no classification, so there is nothing for the block to state; that record keeps the
+   * single line saying exactly that.
+   */
+  const stubSupervision =
+    page.suppressed && blocks.length === 0
+      ? supervisionBlock(page.displayName, page.suppressionClasses)
+      : undefined
+  if (stubSupervision) blocks.push(stubSupervision)
+
+  // The stub line survives only for the record that has no classification to name.
   const supervisionLine =
-    cited.length > 0
-      ? `Regulator classification recorded: ${cited.join(', ')}`
-      : page.suppressionClasses.length > 0 &&
-          page.suppressionClasses.every((code) => code === 'S10')
-        ? 'No regulator classification is recorded for this compound'
-        : undefined
+    page.suppressed &&
+    stubSupervision === undefined &&
+    isUnknownClassOnly(page.suppressionClasses) &&
+    blocks.length === 0
+      ? unknownClassificationLine()
+      : undefined
 
   return {
     key,
