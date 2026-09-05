@@ -1,0 +1,31 @@
+{
+ "label": "final indexed folds 324",
+ "pages": 636,
+ "foldSize": 324,
+ "folds": [
+  324,
+  324
+ ],
+ "owners": [
+  324,
+  312
+ ],
+ "positional": {
+  "count": 636,
+  "median": 0.188161,
+  "mean": 0.236084,
+  "p90": 0.333633,
+  "max": 0.921449,
+  "above_0_20": 208,
+  "above_0_30": 73
+ },
+ "lexical": {
+  "count": 636,
+  "median": 0.352953,
+  "mean": 0.384975,
+  "p90": 0.455663,
+  "max": 0.925333,
+  "above_0_20": 636,
+  "above_0_30": 578
+ }
+}

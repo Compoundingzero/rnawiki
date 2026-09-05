@@ -1,0 +1,87 @@
+{
+  "pages": 322,
+  "medianTokens": 608,
+  "medianShingles": 553,
+  "full": {
+    "label": "full-corpus",
+    "pages": 322,
+    "positional": {
+      "count": 322,
+      "median": 0.27549,
+      "mean": 0.300653,
+      "p90": 0.417913,
+      "max": 0.959285,
+      "above_0_20": 277,
+      "above_0_30": 129
+    },
+    "lexical": {
+      "count": 322,
+      "median": 0.454566,
+      "mean": 0.461984,
+      "p90": 0.582304,
+      "max": 0.98538,
+      "above_0_20": 322,
+      "above_0_30": 306
+    },
+    "mode": "exhaustive"
+  },
+  "matched": [],
+  "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.206739,
+    "p90": 0.289836,
+    "byTier": {
+      "tier1": 0.181967,
+      "tier2": 0.213491
+    }
+  },
+  "aboveTarget": {
+    "targetPositional": 0.2,
+    "targetLexical": 0.4,
+    "positional": 277,
+    "lexical": 225,
+    "file": "above-target.ndjson"
+  },
+  "controls": [],
+  "nullModel": {
+    "randomPairPositional": {
+      "count": 20000,
+      "median": 0.085106,
+      "mean": 0.092676,
+      "p90": 0.163357,
+      "max": 0.959285,
+      "above_0_20": 1013,
+      "above_0_30": 200
+    },
+    "randomPairLexical": {
+      "count": 20000,
+      "median": 0.206897,
+      "mean": 0.213854,
+      "p90": 0.340109,
+      "max": 0.98538,
+      "above_0_20": 10593,
+      "above_0_30": 3653
+    },
+    "expectedNearestNeighbour": {
+      "full": {
+        "pages": 322,
+        "positional": 0.394765,
+        "lexical": 0.550156
+      },
+      "matched": [
+        {
+          "pages": 324,
+          "positional": 0.395459,
+          "lexical": 0.550392
+        },
+        {
+          "pages": 803,
+          "positional": 0.451646,
+          "lexical": 0.609005
+        }
+      ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+  },
+  "missedMergeSweep": null
+}

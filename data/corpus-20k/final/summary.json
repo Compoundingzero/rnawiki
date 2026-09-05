@@ -1,0 +1,501 @@
+{
+ "schema": "rnawiki-corpus-20k-final-measure/v1",
+ "stage": "Phase 5d final measurement, against the live site",
+ "ranAt": "2026-09-05",
+ "site": "https://rnawiki.com",
+ "method": {
+  "fetch": "scripts/corpus-20k/gate2/fetch.py --base https://rnawiki.com --concurrency 4, one request per URL, every request appended to data/corpus-20k/legal/requests.log",
+  "extractor": "scripts/corpus-20k/gate2/extract.py, unchanged - the same extractor Gate 2 ran on the live baseline and on the pre-deploy build",
+  "scorer": "scripts/corpus-20k/overlap/measure.py, unchanged (seed 20260904, 128 permutations, 5-gram shingles), exhaustive on every set",
+  "sizeMatched": "scripts/corpus-20k/gate2/folds.py --fold-size 324, the fold construction Gate 1b used",
+  "sampleFlagAvoided": "measure.py --sample truncates a key at its first comma, which mangles COMBO keys; one NDJSON per set was written instead, as Gate 2 did",
+  "requests": {
+   "dossierPages": 1592,
+   "dossierPages200": 1592,
+   "sitemapChildSweep": 1853,
+   "sitemapChildSweep200": 1853,
+   "sitemapFiles": 9,
+   "tier3NoindexPages": 5,
+   "mergedSlugRedirects": 7,
+   "samplePages": 8,
+   "robots": 1,
+   "loggedTo": "data/corpus-20k/legal/requests.log"
+  }
+ },
+ "sets": {
+  "draw803": {
+   "pages": 798,
+   "note": "the seeded 803-key draw; 5 keys were merged away by identity pass 3, so 798 pages exist"
+  },
+  "draw324": {
+   "pages": 322,
+   "note": "the seeded 324-key draw; 2 keys merged away"
+  },
+  "matched604": {
+   "pages": 604,
+   "note": "the 604 medicines of the 803 draw that resolved on the live site before the corpus deploy - the like-for-like set"
+  },
+  "matched252": {
+   "pages": 251,
+   "note": "the 252 of the 324 draw that resolved before; 1 key merged away, 251 measured"
+  },
+  "indexed": {
+   "pages": 636,
+   "note": "every indexable dossier URL in sitemaps/tier-1.xml and tier-2.xml; identical to the production indexable set"
+  }
+ },
+ "positional": {
+  "matched803": 0.3,
+  "matched324": 0.27549,
+  "indexedAllPairs": 0.195831,
+  "indexedSizeMatched": 0.188161,
+  "nullExpected": 0.362602,
+  "p90": {
+   "matched803": 0.510581,
+   "matched324": 0.417913,
+   "indexedAllPairs": 0.576669,
+   "indexedSizeMatched": 0.333633
+  },
+  "aboveTarget_0_20": {
+   "indexedAllPairs": 277,
+   "indexedSizeMatched": 208,
+   "of": 636
+  },
+  "draw803SizeMatchedTo324": 0.275916,
+  "proseOnlyIndexed": 0.104789
+ },
+ "lexical": {
+  "matched803": 0.478208,
+  "matched324": 0.454566,
+  "indexedAllPairs": 0.368746,
+  "indexedSizeMatched": 0.352953,
+  "nullExpected": 0.49764,
+  "p90": {
+   "matched803": 0.656566,
+   "matched324": 0.582304,
+   "indexedAllPairs": 0.580412,
+   "indexedSizeMatched": 0.455663
+  },
+  "proseOnlyIndexed": 0.425715
+ },
+ "sharedWordShare": {
+  "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages in the same set",
+  "indexedWithMarkup": 0.430757,
+  "indexedWithoutMarkup": 0.369318,
+  "indexedWithMarkupP90": 0.50386,
+  "indexedWithoutMarkupP90": 0.411472,
+  "matched604": 0.206851,
+  "matched604LiveBaseline": 0.795912,
+  "matched252": 0.194226,
+  "matched252LiveBaseline": 0.785672
+ },
+ "crawlTextToHtml": {
+  "indexedMedian": 0.10649,
+  "indexedMin": 0.07424,
+  "indexedMax": 0.13699,
+  "allFetchedMedian": 0.09055,
+  "byTierMedian": {
+   "tier1": 0.10301,
+   "tier2": 0.07358,
+   "tier3": 0.0584
+  },
+  "gate2PreDeployIndexedMedian": 0.10898,
+  "baseline": 0.083
+ },
+ "likeForLike": {
+  "pages": 604,
+  "beforePositionalMedian": 0.798649,
+  "afterPositionalMedian": 0.277962,
+  "beforePositionalP90": 0.894887,
+  "afterPositionalP90": 0.485714,
+  "beforeLexicalMedian": 0.69655,
+  "afterLexicalMedian": 0.457729,
+  "beforeSharedWordShare": 0.795912,
+  "afterSharedWordShare": 0.206851,
+  "beforeMedianTokens": 6800,
+  "afterMedianTokens": 716,
+  "second": {
+   "pages": 251,
+   "beforePositionalMedian": 0.785569,
+   "afterPositionalMedian": 0.263006,
+   "beforeLexicalMedian": 0.679825,
+   "afterLexicalMedian": 0.441687,
+   "beforeSharedWordShare": 0.785672,
+   "afterSharedWordShare": 0.194226,
+   "note": "the 324 draw's live-resolving set was 252 medicines before; one key was merged by identity pass 3, so 251 are measured",
+   "beforePositionalP90": 0.877304,
+   "beforeMedianTokens": 7174
+  },
+  "source": "data/corpus-20k/gate2/report.md and data/corpus-20k/gate2/runs/gate2-live-803/summary.json"
+ },
+ "controls": {
+  "control:other": 0.562496,
+  "control:self": 0.195271
+ },
+ "production": {
+  "readAt": "2026-09-05, read-only SQL over the Railway TCP proxy (sslmode=verify-ca, PGSSLSERVERNAME=localhost)",
+  "migrationsApplied": 26,
+  "legacyDrugsRows": 9859,
+  "corpusPages": 28832,
+  "pagesByTier": {
+   "tier1": 1719,
+   "tier2": 4477,
+   "tier3": 22636
+  },
+  "pagesByModel": {
+   "LONGEVITY": 1109,
+   "CLINICAL": 5087,
+   "DEVELOPMENT": 22636
+  },
+  "pagesByTierAndModel": {
+   "tier1": {
+    "LONGEVITY": 1109,
+    "CLINICAL": 610
+   },
+   "tier2": {
+    "CLINICAL": 4477
+   },
+   "tier3": {
+    "DEVELOPMENT": 22636
+   }
+  },
+  "pagesByPageType": {
+   "longevity": 1109,
+   "withdrawn": 610,
+   "clinical": 4477,
+   "development": 5466,
+   "stub": 17170
+  },
+  "indexable": 636,
+  "indexableByTier": {
+   "tier1": 610,
+   "tier2": 26,
+   "tier3": 0
+  },
+  "sitemapIndexableUrls": 636,
+  "sitemapMatchesDatabase": true,
+  "suppressed": 19268,
+  "suppressedByTier": {
+   "tier1": 755,
+   "tier2": 1062,
+   "tier3": 17451
+  },
+  "notSuppressedByTier": {
+   "tier1": 964,
+   "tier2": 3415,
+   "tier3": 5185
+  },
+  "suppressedNote": "data/corpus-20k/suppression/summary.json records 19,335 suppressed over 28,943 records; that count predates identity pass 3, which merged the corpus to 28,832 pages",
+  "withdrawn": 663,
+  "withdrawnByTier": {
+   "tier1": 663,
+   "tier2": 0,
+   "tier3": 0
+  },
+  "withdrawnIndexable": 34,
+  "redirects": 870,
+  "seedFires": {
+   "2": 600,
+   "3": 2771,
+   "4": 1054,
+   "5": 575,
+   "6": 2,
+   "7": 36,
+   "8": 2574,
+   "9": 890,
+   "10": 191,
+   "12": 6086,
+   "13": 2164,
+   "14": 969,
+   "15": 7257,
+   "16": 8615,
+   "17": 182
+  },
+  "seedFiresIndexable": {
+   "2": 333,
+   "3": 537,
+   "4": 603,
+   "5": 28,
+   "6": 1,
+   "7": 27,
+   "8": 473,
+   "9": 258,
+   "10": 12,
+   "12": 626,
+   "14": 33,
+   "15": 634,
+   "16": 636,
+   "17": 63
+  },
+  "seedFiresNote": "page_seeds holds no row for seed 1 (bioavailability gap) or seed 11 (animal-only ceiling), and no seed 13 row on any indexable page. page_seeds is not the same quantity as rendered sections: 38 distinct question blocks render on production, several of them (ladder, classification, supervision, regulatory-only) derived from fields rather than from a seed row. Seed 7's 36 stored rows render no question: 0 question strings name a sex.",
+  "questionBlocksRenderedIndexable": {
+   "trial-size": 636,
+   "unreported": 626,
+   "human-data": 603,
+   "ladder": 603,
+   "stopped": 595,
+   "biomarkers": 582,
+   "ongoing": 573,
+   "dose-studied": 543,
+   "faers": 526,
+   "pathway": 492,
+   "provenance": 473,
+   "fasting-exercise": 415,
+   "n-of-1": 325,
+   "supervision": 287,
+   "kinetics": 282,
+   "what-would-settle": 258,
+   "interactions": 256,
+   "dose-shape": 170,
+   "clocks": 84,
+   "jurisdiction": 63,
+   "trial-history": 33,
+   "indication": 33,
+   "faers-unlisted": 33,
+   "itp": 27,
+   "contradiction": 12,
+   "classification": 7,
+   "withdrawn": 5,
+   "time-to-signal": 1
+  },
+  "questions": {
+   "indexable": {
+    "pages": 636,
+    "rows": 8543,
+    "distinctStrings": 8464,
+    "mostRepeatedPages": 2,
+    "mostRepeatedShare": 0.003145,
+    "mostRepeatedExample": "53 of Oxytocin's trials stopped: safety, accrual/recruitment, funding/business, other?",
+    "limit": 0.3
+   },
+   "wholeCorpus": {
+    "pagesWithQuestions": 11313,
+    "rows": 60667,
+    "distinctStrings": 58525,
+    "mostRepeatedPages": 62,
+    "mostRepeatedShare": 0.00548,
+    "mostRepeatedExample": "What became of the other 61 compounds aimed at TUBB?"
+   }
+  },
+  "safety": {
+   "suppressedPagesHoldingSeed1_2_or_6": 0,
+   "suppressedPagesRenderingNOf1TimeToSignalOrBioavailability": 0,
+   "s10OnlyPagesRenderingASupervisionBlock": 0,
+   "s10OnlyPagesRenderingAClassificationBlock": 4620
+  }
+ },
+ "throughput": {
+  "unit": "pages per second, wall clock of the whole loader command (process start to exit), from data/corpus-20k/deploy/tier-*.json",
+  "tier1": 14.64,
+  "tier2": 23.08,
+  "tier3": 42.31,
+  "tier1Pages": 1719,
+  "tier2Pages": 4477,
+  "tier3Pages": 22636,
+  "tier1Seconds": 117.44,
+  "tier2Seconds": 194,
+  "tier3Seconds": 535,
+  "tier1Batches": 7,
+  "tier2Batches": 18,
+  "tier3Batches": 91,
+  "floor": 1,
+  "note": "this is the materialisation rate against production PostgreSQL, which is what the tier stage files record. No separate server render rate was timed; the live fetch of 1,592 dossier pages at 4 concurrent ran at 9.58 pages/second end to end."
+ },
+ "liveFetch": {
+  "dossierPages": 1592,
+  "status200": 1592,
+  "seconds": 166.11,
+  "pagesPerSecond": 9.584,
+  "concurrency": 4,
+  "sitemapChildSweep": {
+   "urls": 1853,
+   "status200": 1853,
+   "children": [
+    "browse.xml",
+    "pages.xml"
+   ]
+  }
+ },
+ "tier3Noindex": {
+  "ok": true,
+  "urlsChecked": [
+   "https://rnawiki.com/d/opicinumab",
+   "https://rnawiki.com/d/azintamide",
+   "https://rnawiki.com/d/rocastine",
+   "https://rnawiki.com/d/sovaprevir",
+   "https://rnawiki.com/d/eniporide"
+  ],
+  "selection": "5 Tier 3 slugs drawn by md5(key||'measure-final') order from production",
+  "everyOneCarriesNoindex": true,
+  "metaRobots": "noindex, follow",
+  "presentInAnySitemapChild": 0,
+  "robotsTxtDisallowsDossiers": false,
+  "robotsTxt": "User-Agent: * / Allow: / / Disallow: /api/ / Disallow: /healthz"
+ },
+ "sampleUrls": [
+  "https://rnawiki.com/d/metformin",
+  "https://rnawiki.com/d/cysteamine",
+  "https://rnawiki.com/d/rofecoxib",
+  "https://rnawiki.com/d/sirolimus",
+  "https://rnawiki.com/d/carbidopa-levodopa",
+  "https://rnawiki.com/d/cdx-3379",
+  "https://rnawiki.com/d/1-2-distearoyl-sn-glycero-3-phosphocholine",
+  "https://rnawiki.com/d/amlodipine"
+ ],
+ "samples": [
+  {
+   "role": "data-rich Tier 1",
+   "slug": "metformin",
+   "tier": 1,
+   "model": "LONGEVITY",
+   "indexable": true,
+   "suppressed": true,
+   "suppressionClasses": "S6",
+   "fields": 16,
+   "questions": 17,
+   "htmlBytes": 246491,
+   "visibleChars": 30817,
+   "crawl": 0.12502,
+   "jsonLd": true,
+   "noindex": false
+  },
+  {
+   "role": "mid Tier 1",
+   "slug": "cysteamine",
+   "tier": 1,
+   "model": "LONGEVITY",
+   "indexable": true,
+   "suppressed": false,
+   "suppressionClasses": "S11",
+   "fields": 11,
+   "questions": 14,
+   "htmlBytes": 133122,
+   "visibleChars": 13643,
+   "crawl": 0.10248,
+   "jsonLd": true,
+   "noindex": false
+  },
+  {
+   "role": "withdrawn arc",
+   "slug": "rofecoxib",
+   "tier": 1,
+   "model": "LONGEVITY",
+   "indexable": true,
+   "suppressed": true,
+   "suppressionClasses": "S8",
+   "fields": 11,
+   "questions": 11,
+   "htmlBytes": 121451,
+   "visibleChars": 10039,
+   "crawl": 0.08266,
+   "jsonLd": true,
+   "noindex": false,
+   "withdrawn": true
+  },
+  {
+   "role": "suppression class",
+   "slug": "sirolimus",
+   "tier": 1,
+   "model": "LONGEVITY",
+   "indexable": true,
+   "suppressed": true,
+   "suppressionClasses": "S1,S3,S4,S6",
+   "fields": 16,
+   "questions": 18,
+   "htmlBytes": 259299,
+   "visibleChars": 33942,
+   "crawl": 0.1309,
+   "jsonLd": true,
+   "noindex": false
+  },
+  {
+   "role": "formerly-withdrawn control",
+   "slug": "amlodipine",
+   "tier": 1,
+   "model": "LONGEVITY",
+   "indexable": true,
+   "suppressed": false,
+   "suppressionClasses": "S11",
+   "fields": 14,
+   "questions": 16,
+   "htmlBytes": 200241,
+   "visibleChars": 22673,
+   "crawl": 0.11323,
+   "jsonLd": true,
+   "noindex": false,
+   "withdrawn": false
+  },
+  {
+   "role": "Tier 2 standard",
+   "slug": "carbidopa-levodopa",
+   "tier": 2,
+   "model": "CLINICAL",
+   "indexable": false,
+   "suppressed": false,
+   "suppressionClasses": "S11",
+   "fields": 5,
+   "questions": 8,
+   "htmlBytes": 77936,
+   "visibleChars": 6677,
+   "crawl": 0.08567,
+   "jsonLd": false,
+   "noindex": true
+  },
+  {
+   "role": "Tier 3 experimental",
+   "slug": "cdx-3379",
+   "tier": 3,
+   "model": "DEVELOPMENT",
+   "indexable": false,
+   "suppressed": true,
+   "suppressionClasses": "S10",
+   "fields": 7,
+   "questions": 6,
+   "htmlBytes": 57733,
+   "visibleChars": 3839,
+   "crawl": 0.0665,
+   "jsonLd": false,
+   "noindex": true
+  },
+  {
+   "role": "Tier 3 near-empty stub",
+   "slug": "1-2-distearoyl-sn-glycero-3-phosphocholine",
+   "tier": 3,
+   "model": "DEVELOPMENT",
+   "indexable": false,
+   "suppressed": false,
+   "suppressionClasses": "S11",
+   "fields": 1,
+   "questions": 0,
+   "htmlBytes": 28445,
+   "visibleChars": 1431,
+   "crawl": 0.05031,
+   "jsonLd": false,
+   "noindex": true
+  }
+ ],
+ "issues": [
+  "Seven of the 1,127 draw keys no longer exist: identity pass 3 merged them after Gate 1b drew the samples. The 803 draw measures 798 pages, the 324 draw 322, and the 324 draw's like-for-like set 251 rather than 252. Six of the seven old slugs answer 308 to their merged parent (danaparoid-sodium, enoxaparin-sodium, teriparatide-acetate, ardeparin-sodium, porfimer-sodium, tesamorelin-acetate) and inclisiran answers 200 under a new key, so no indexed URL was orphaned.",
+  "scripts/corpus-20k/overlap/measure.py --sample truncates a page key at its first comma (load_sample splits on ','), so COMBO keys are silently dropped: a first pass lost 10 of 798, 7 of 604, 3 of 636. Worked around by writing one NDJSON per set, the way Gate 2 did; the scorer was not edited mid-measurement. It should be fixed before the next measurement run.",
+  "The live indexed figures reproduce the pre-deploy Gate 2 v2 recheck to six decimal places (all-pairs positional 0.195831, size-matched 0.188161, lexical 0.368746 / 0.352953, shared-word share 0.430757 / 0.369318). Mean and max differ in the fifth decimal, so one or two pages differ slightly; the extracted visible text of the deployed pages is otherwise the same text Gate 2 measured on the isolated build.",
+  "Crawl text-to-HTML on the same 636 pages fell from 0.10898 pre-deploy to 0.10649 live: the JSON-LD block added in Phase 5d adds bytes and no visible text. Still well above the 8.3 % baseline.",
+  "The all-pairs positional p90 on the indexed set is 0.577 and 277 of 636 pages sit above the 0.20 median target. R3 binds the median; the tail is concentrated in the pages that share a display name or a target lineage, as Gate 2 recorded.",
+  "Production suppressed is 19,268 of 28,832 pages. data/corpus-20k/suppression/summary.json records 19,335 of 28,943; that file predates identity pass 3 and the two are not the same population.",
+  "page_seeds holds no row for seed 1 (bioavailability gap) or seed 11 (animal-only ceiling) anywhere in production, and no seed 13 row on any indexable page. Seed 7 (sex-specific divergence) still has 36 stored rows after the Phase 5a decision to discard it, but it renders nothing: no question string on production asks whether a compound acted differently in male and female animals (0 of 60,667). The stored rows are bookkeeping, not page content.",
+  "Tier 2 contributes 26 of the 636 indexed pages; the 7-10 present-field promotion band recorded in Phase 5a has not been exercised."
+ ],
+ "verdict": {
+  "positionalTargetMedian": 0.2,
+  "positionalMeasured": 0.188161,
+  "positionalPasses": true,
+  "lexicalTarget": 0.4,
+  "lexicalMeasured": 0.352953,
+  "lexicalPasses": true,
+  "mostRepeatedQuestionLimit": 0.3,
+  "mostRepeatedQuestionMeasured": 0.003145,
+  "questionPasses": true,
+  "tier3NoindexPasses": true,
+  "throughputFloorPasses": true,
+  "statement": "Every binding threshold is met on the live site: R3 uniqueness at the indexed set, R7 question repetition, R6 Tier 3 noindex and sitemap exclusion, R13 throughput floor."
+ }
+}

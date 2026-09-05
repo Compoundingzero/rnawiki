@@ -1,0 +1,87 @@
+{
+  "pages": 251,
+  "medianTokens": 700,
+  "medianShingles": 616,
+  "full": {
+    "label": "full-corpus",
+    "pages": 251,
+    "positional": {
+      "count": 251,
+      "median": 0.263006,
+      "mean": 0.291617,
+      "p90": 0.407407,
+      "max": 0.959285,
+      "above_0_20": 213,
+      "above_0_30": 84
+    },
+    "lexical": {
+      "count": 251,
+      "median": 0.441687,
+      "mean": 0.456879,
+      "p90": 0.590909,
+      "max": 0.98538,
+      "above_0_20": 251,
+      "above_0_30": 237
+    },
+    "mode": "exhaustive"
+  },
+  "matched": [],
+  "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.194226,
+    "p90": 0.294326,
+    "byTier": {
+      "tier1": 0.159609,
+      "tier2": 0.214463
+    }
+  },
+  "aboveTarget": {
+    "targetPositional": 0.2,
+    "targetLexical": 0.4,
+    "positional": 213,
+    "lexical": 166,
+    "file": "above-target.ndjson"
+  },
+  "controls": [],
+  "nullModel": {
+    "randomPairPositional": {
+      "count": 20000,
+      "median": 0.08284,
+      "mean": 0.090432,
+      "p90": 0.15625,
+      "max": 0.959285,
+      "above_0_20": 854,
+      "above_0_30": 170
+    },
+    "randomPairLexical": {
+      "count": 20000,
+      "median": 0.203547,
+      "mean": 0.210205,
+      "p90": 0.337017,
+      "max": 0.98538,
+      "above_0_20": 10315,
+      "above_0_30": 3431
+    },
+    "expectedNearestNeighbour": {
+      "full": {
+        "pages": 251,
+        "positional": 0.371608,
+        "lexical": 0.531461
+      },
+      "matched": [
+        {
+          "pages": 324,
+          "positional": 0.386963,
+          "lexical": 0.548277
+        },
+        {
+          "pages": 803,
+          "positional": 0.435036,
+          "lexical": 0.602436
+        }
+      ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+  },
+  "missedMergeSweep": null
+}
