@@ -254,6 +254,7 @@ def main() -> int:
     rows = list(csv.DictReader(csv_path.open(encoding="utf-8-sig")))
 
     controlled_path = SOURCE_DIR / "controlled-substances.parquet"
+    controlled_summary_path = SOURCE_DIR / "controlled-substances-summary.json"
     controlled_by_key: dict[str, list[dict]] = {}
     controlled_note = (
         "Singapore Statutes Online schedules not present at "
@@ -261,18 +262,38 @@ def main() -> int:
     )
     if controlled_path.exists():
         cdf = pd.read_parquet(controlled_path)
+
+        def _text(value):
+            """Parquet nulls arrive as NaN, which is not representable in JSON."""
+            if value is None or (isinstance(value, float) and value != value):
+                return None
+            text = str(value).strip()
+            return text or None
+
         for rec in cdf.to_dict("records"):
-            key = rec.get("key")
+            key = _text(rec.get("key"))
             if not key:
                 continue
-            controlled_by_key.setdefault(key, []).append(
-                {
-                    "substance": rec.get("substance"),
-                    "schedule": rec.get("schedule"),
-                    "statute": rec.get("statute"),
-                    "statute_version_date": rec.get("version_date"),
-                }
-            )
+            entry = {
+                "substance": _text(rec.get("substance")),
+                "schedule": _text(rec.get("schedule")),
+                "scheduleCode": _text(rec.get("schedule_code")),
+                "itemNumber": _text(rec.get("item_number")),
+                "statute": _text(rec.get("statute")),
+                "statuteCitation": _text(rec.get("statute_citation")),
+                "statuteUrl": _text(rec.get("source_url")),
+                "statuteVersionDate": _text(rec.get("version_date")),
+                "matchRule": _text(rec.get("match_rule")) or "unii",
+                "matchedName": _text(rec.get("matched_name")),
+                "matchedUnii": _text(rec.get("unii")),
+            }
+            note = _text(rec.get("paragraph_note"))
+            if note:
+                entry["paragraphNote"] = note
+            form_of = _text(rec.get("form_of_target"))
+            if form_of:
+                entry["formOfTarget"] = form_of
+            controlled_by_key.setdefault(key, []).append(entry)
         controlled_note = (
             f"{len(controlled_by_key)} pages carry a Misuse of Drugs Act or "
             "Poisons Act schedule entry from "
@@ -798,11 +819,23 @@ def main() -> int:
                 "source_record_id": "sso.agc.gov.sg",
                 "source_url": "https://sso.agc.gov.sg/",
                 "source_date": max(
-                    (e.get("statute_version_date") or "") for e in entries
+                    (e.get("statuteVersionDate") or "") for e in entries
                 )
                 or args.date,
-                "match_rule": "unii",
-                "form_of_target": None,
+                # The strictest rule that reached this page: an identifier match
+                # is preferred, and a skeleton match is recorded as `form_of`.
+                "match_rule": next(
+                    (
+                        rule
+                        for rule in ("unii", "inchikey", "skeleton")
+                        if any(e.get("matchRule") == rule for e in entries)
+                    ),
+                    "unii",
+                ),
+                "form_of_target": next(
+                    (e["formOfTarget"] for e in entries if e.get("formOfTarget")),
+                    None,
+                ),
                 "licence": (
                     "Singapore legislation, reproduced with the permission of the "
                     "Attorney-General's Chambers under clause 13 of the Singapore "
@@ -848,6 +881,28 @@ def main() -> int:
                 "Not found in the HSA Listing of Registered Therapeutic Products "
                 f"as of {source_date}"
             )
+        controlled = controlled_by_key.get(key)
+        if controlled:
+            schedules = sorted({e["schedule"] for e in controlled if e.get("schedule")})
+            versions = sorted(
+                {e["statuteVersionDate"] for e in controlled if e.get("statuteVersionDate")}
+            )
+            controlled_status = "listed"
+            controlled_statement = (
+                "Listed in Singapore statutory control: "
+                + "; ".join(schedules)
+                + f" (statute text in force as of {', '.join(versions)}, "
+                f"retrieved {args.date})"
+            )
+        else:
+            schedules = []
+            versions = []
+            controlled_status = "not listed"
+            controlled_statement = (
+                "Not listed in the Misuse of Drugs Act 1973 First or Fourth "
+                "Schedule, the Poisons Act 1938 Schedule or the Poisons Rules "
+                f"schedules retrieved on {args.date}"
+            )
         status_rows.append(
             {
                 "key": key,
@@ -855,6 +910,10 @@ def main() -> int:
                 "page": idx.display.get(key, key),
                 "status": status,
                 "statement": statement,
+                "controlled_status": controlled_status,
+                "controlled_statement": controlled_statement,
+                "controlled_schedules": json.dumps(schedules, ensure_ascii=False),
+                "statute_version_dates": json.dumps(versions, ensure_ascii=False),
                 "as_of": source_date,
                 "retrieved_on": args.date,
                 "product_count": len(per_page_products.get(key, [])),
@@ -936,7 +995,23 @@ def main() -> int:
             "not found": len(all_keys) - len(matched_pages),
         },
         "subsidy": subsidy_statement,
-        "controlled_substances": controlled_note,
+        "controlled_substances": {
+            "note": controlled_note,
+            "table": str(controlled_path.relative_to(ROOT)),
+            "pages_with_a_schedule_entry": len(controlled_by_key),
+            "pages_with_a_schedule_entry_by_tier": dict(
+                sorted(
+                    collections.Counter(
+                        idx.tier_of(k) for k in controlled_by_key
+                    ).items()
+                )
+            ),
+            "summary": (
+                json.loads(controlled_summary_path.read_text())
+                if controlled_summary_path.exists()
+                else None
+            ),
+        },
         "unmatched_record_list": "data/sources/hsa-singapore/unmatched-records.csv",
         "forensic_classification_counts_in_register": dict(
             collections.Counter(r["Forensicclassification"].strip() for r in rows)

@@ -175,9 +175,9 @@ def field_entries(record: dict) -> dict[str, dict]:
     return out
 
 
-def read_records():
+def read_records(fields_dir: Path = FIELDS_DIR):
     for model_dir in MODEL_DIRS:
-        for path in sorted((FIELDS_DIR / model_dir).glob("batch-*.ndjson")):
+        for path in sorted((fields_dir / model_dir).glob("batch-*.ndjson")):
             with path.open(encoding="utf-8") as handle:
                 for line in handle:
                     if line.strip():
@@ -301,7 +301,7 @@ def classify_page(entries: dict[str, dict], meta: dict, reg: dict, pending: set[
     return applicable, present, structural_na, recorded_na, pending_na, dropped
 
 
-def build_presence(spec: dict, census: dict[str, dict]):
+def build_presence(spec: dict, census: dict[str, dict], fields_dir: Path = FIELDS_DIR):
     assignment = read_assignment()
     registry = read_registry()
     pending, pending_notes = pending_source_fields(spec, census)
@@ -317,7 +317,7 @@ def build_presence(spec: dict, census: dict[str, dict]):
     dropped_present: dict[str, int] = defaultdict(int)
     unassigned = 0
 
-    for record in read_records():
+    for record in read_records(fields_dir):
         key = record["key"]
         meta = assignment.get(key)
         if meta is None:
@@ -369,8 +369,8 @@ def build_presence(spec: dict, census: dict[str, dict]):
     return rows, tally, field_order, dict(dropped_present), pending, pending_notes, unassigned, assignment
 
 
-def write_presence(rows: list[dict]) -> Path:
-    path = OUT_DIR / "presence-applicable.ndjson"
+def write_presence(rows: list[dict], tag: str = "") -> Path:
+    path = OUT_DIR / f"presence-applicable{tag}.ndjson"
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         for row in sorted(rows, key=lambda r: r["key"]):
@@ -378,8 +378,8 @@ def write_presence(rows: list[dict]) -> Path:
     return path
 
 
-def write_applicable_census(tally, field_order, census) -> Path:
-    path = OUT_DIR / "field-census-applicable.csv"
+def write_applicable_census(tally, field_order, census, tag: str = "") -> Path:
+    path = OUT_DIR / f"field-census-applicable{tag}.csv"
     header = ["field"]
     for tier in TIERS:
         header += [
@@ -639,16 +639,26 @@ def main() -> int:
     parser.add_argument("--census", default=None, help="census CSV (default: after if present, else before)")
     parser.add_argument("--refresh", action="store_true", help="recompute cached overlap scores")
     parser.add_argument("--applicability-only", action="store_true")
+    parser.add_argument("--fields-dir", default=str(FIELDS_DIR),
+                        help="directory of per-model field batches (default: the corpus-20k fields)")
+    parser.add_argument("--out", default=str(OUT_DIR / "thresholds.json"),
+                        help="thresholds JSON path; the markdown, the presence file and the "
+                             "applicable census take the same stem's suffix")
     args = parser.parse_args()
+
+    fields_dir = Path(args.fields_dir)
+    out_json = Path(args.out)
+    stem = out_json.stem
+    tag = stem[len("thresholds"):] if stem.startswith("thresholds") else f"-{stem}"
 
     spec = json.loads(APPLICABILITY.read_text(encoding="utf-8"))
     cpath = census_path(args.census)
     census = read_census(cpath)
 
     (rows, tally, field_order, dropped_present, pending, pending_notes, unassigned,
-     assignment) = build_presence(spec, census)
-    presence_path = write_presence(rows)
-    census_out = write_applicable_census(tally, field_order, census)
+     assignment) = build_presence(spec, census, fields_dir)
+    presence_path = write_presence(rows, tag)
+    census_out = write_applicable_census(tally, field_order, census, tag)
     print(f"pages={len(rows)} unassigned={unassigned} census={os.path.relpath(cpath, ROOT)}")
     print(f"presence -> {os.path.relpath(presence_path, ROOT)}")
     print(f"applicable census -> {os.path.relpath(census_out, ROOT)}")
@@ -672,6 +682,7 @@ def main() -> int:
 
     result: dict = {
         "generated": "scripts/revamp/derive_threshold.py",
+        "fieldsDir": os.path.relpath(fields_dir, ROOT),
         "census": os.path.relpath(cpath, ROOT),
         "pageText": {
             "dir": "data/corpus-20k/render/text",
@@ -883,16 +894,16 @@ def main() -> int:
             f"indexable={entry['indexable']}"
         )
 
-    out_json = OUT_DIR / "thresholds.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8")
-    write_markdown(result, by_key)
+    md_path = write_markdown(result, by_key, out_json.with_suffix(".md"))
     print(f"thresholds -> {os.path.relpath(out_json, ROOT)}")
-    print(f"markdown   -> data/revamp/thresholds.md")
+    print(f"markdown   -> {os.path.relpath(md_path, ROOT)}")
     return 0
 
 
-def write_markdown(result: dict, by_key: dict) -> Path:
-    path = OUT_DIR / "thresholds.md"
+def write_markdown(result: dict, by_key: dict, path: Path | None = None) -> Path:
+    path = path or (OUT_DIR / "thresholds.md")
     out: list[str] = []
     out.append("# Per-tier indexing thresholds over applicable fields (Phase 1.3)\n")
     out.append(

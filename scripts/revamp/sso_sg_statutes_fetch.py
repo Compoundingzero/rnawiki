@@ -44,9 +44,21 @@ WINDOW_START = 3
 WINDOW_END = 7
 
 TARGETS = [
-    # (output stem, statute short name, candidate URLs in preference order)
+    # (output file name, statute short name, candidate URLs in preference order)
+    #
+    # Three forms of each document are kept.
+    #
+    # `?WholeDoc=1` is the reading view. It carries the long title, the enacting
+    # provisions and the table of contents, but not the bodies of the Schedules:
+    # SSO loads those through `/Details/GetLazyLoadContent` after the page
+    # renders, so the substance lists are absent from that HTML.
+    #
+    # `?ViewType=Print` returns the print-selection form, not the document.
+    #
+    # `?ViewType=Pdf` returns the complete document in SSO's published PDF form,
+    # Schedules included. That PDF is what the controlled-substance parse reads.
     (
-        "misuse-of-drugs-act-1973",
+        "misuse-of-drugs-act-1973.html",
         "Misuse of Drugs Act 1973",
         [
             "https://sso.agc.gov.sg/Act/MDA1973?WholeDoc=1",
@@ -54,7 +66,7 @@ TARGETS = [
         ],
     ),
     (
-        "poisons-act-1938",
+        "poisons-act-1938.html",
         "Poisons Act 1938",
         [
             "https://sso.agc.gov.sg/Act/PA1938?WholeDoc=1",
@@ -62,12 +74,42 @@ TARGETS = [
         ],
     ),
     (
-        "poisons-rules",
+        "poisons-rules.html",
         "Poisons Rules (subsidiary legislation under the Poisons Act 1938)",
         [
             "https://sso.agc.gov.sg/SL/PA1938-R1?WholeDoc=1",
             "https://sso.agc.gov.sg/SL/PA1938-R1",
         ],
+    ),
+    (
+        "misuse-of-drugs-act-1973-print.html",
+        "Misuse of Drugs Act 1973 (print-selection form)",
+        ["https://sso.agc.gov.sg/Act/MDA1973?ViewType=Print"],
+    ),
+    (
+        "poisons-act-1938-print.html",
+        "Poisons Act 1938 (print-selection form)",
+        ["https://sso.agc.gov.sg/Act/PA1938?ViewType=Print"],
+    ),
+    (
+        "poisons-rules-print.html",
+        "Poisons Rules (print-selection form)",
+        ["https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Print"],
+    ),
+    (
+        "misuse-of-drugs-act-1973.pdf",
+        "Misuse of Drugs Act 1973 (published PDF, Schedules included)",
+        ["https://sso.agc.gov.sg/Act/MDA1973?ViewType=Pdf"],
+    ),
+    (
+        "poisons-act-1938.pdf",
+        "Poisons Act 1938 (published PDF, Schedules included)",
+        ["https://sso.agc.gov.sg/Act/PA1938?ViewType=Pdf"],
+    ),
+    (
+        "poisons-rules.pdf",
+        "Poisons Rules (published PDF, Schedules included)",
+        ["https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Pdf"],
     ),
 ]
 
@@ -195,7 +237,34 @@ def main() -> int:
     fetcher = SsoFetcher(log)
     files: list[dict] = []
 
+    # Resume: a document already recorded in this date's statutes manifest whose
+    # file is still on disk with the recorded SHA256 is carried forward and not
+    # requested again.
+    already: dict[str, dict] = {}
+    already_legal: dict[str, dict] = {}
+    if out_manifest.exists():
+        previous = json.loads(out_manifest.read_text())
+        for doc in previous.get("documents", []):
+            path = doc.get("path")
+            sha = doc.get("sha256")
+            if not path or not sha:
+                continue
+            disk = ROOT / path
+            if disk.exists() and sha256_of(disk) == sha:
+                already[pathlib.Path(path).name] = doc
+        for rec in previous.get("files", []):
+            path = rec.get("path")
+            sha = rec.get("sha256")
+            if not path or not sha or "stem" in rec:
+                continue
+            disk = ROOT / path
+            if disk.exists() and sha256_of(disk) == sha:
+                already_legal[pathlib.Path(path).name] = rec
+
     for name, url in LEGAL:
+        if name in already_legal:
+            files.append(already_legal[name])
+            continue
         out = legal / name
         status, _ = fetcher.get(url, out)
         files.append(
@@ -210,11 +279,16 @@ def main() -> int:
         )
 
     documents: list[dict] = []
-    for stem, statute, candidates in TARGETS:
+    for filename, statute, candidates in TARGETS:
+        stem = filename.rsplit(".", 1)[0]
+        if filename in already:
+            documents.append(already[filename])
+            files.append(already[filename])
+            continue
         got = False
         attempts: list[str] = []
         for url in candidates:
-            out = statutes / f"{stem}.html"
+            out = statutes / filename
             try:
                 status, body = fetcher.get(url, out)
             except RuntimeError as exc:
@@ -224,6 +298,7 @@ def main() -> int:
                 documents.append(
                     {
                         "stem": stem,
+                        "file": filename,
                         "statute": statute,
                         "url": url,
                         "path": str(out.relative_to(ROOT)),
@@ -242,6 +317,7 @@ def main() -> int:
             documents.append(
                 {
                     "stem": stem,
+                    "file": filename,
                     "statute": statute,
                     "url": None,
                     "path": None,
@@ -285,6 +361,30 @@ def main() -> int:
         "files": files,
     }
     out_manifest.write_text(json.dumps(manifest, indent=1))
+
+    # Fold the statute pull into the source's single date manifest so one file
+    # lists every raw artefact with its URL, retrieval time, SHA256 and licence.
+    source_manifest = base / "manifest.json"
+    if source_manifest.exists():
+        combined = json.loads(source_manifest.read_text())
+        combined["statutes"] = {
+            "manifest": str(out_manifest.relative_to(ROOT)),
+            "base_url": manifest["base_url"],
+            "robots_txt": manifest["robots_txt"],
+            "licence": manifest["licence"],
+            "documents": documents,
+        }
+        others = [
+            rec
+            for rec in combined.get("files", [])
+            if not str(rec.get("path", "")).startswith(
+                str((base / "raw" / "statutes").relative_to(ROOT))
+            )
+            and pathlib.Path(str(rec.get("path", ""))).name
+            not in {"robots-sso-agc.txt", "sso-terms-of-use.html"}
+        ]
+        combined["files"] = others + files
+        source_manifest.write_text(json.dumps(combined, indent=1))
     print(json.dumps({"documents": len(documents), "manifest": str(out_manifest)}))
     return 0
 

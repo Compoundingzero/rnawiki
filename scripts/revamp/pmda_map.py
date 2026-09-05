@@ -26,7 +26,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from corpus_join import load_corpus_index, normalise_name  # noqa: E402
+from corpus_join import CANONICAL, load_corpus_index, normalise_name  # noqa: E402
 
 PULL_DATE = "2026-09-06"
 BASE = Path("data/sources/pmda")
@@ -103,6 +103,23 @@ class Resolver:
                 unii = (row.get("UNII") or "").strip().upper()
                 if unii and ik:
                     self.unii_inchikey[unii] = ik
+        # The names each corpus page carries as written, before any salt suffix is stripped.
+        # idx.name_to_keys is built by stripping salts from the page's own names too, so
+        # "Calcium Lactate" and "Calcium Palmitate" are both indexed under "calcium". This
+        # index is what tells a parent match ("Vilanterol trifenatate" reaching the page
+        # actually named "Vilanterol") apart from two different salts of a shared parent.
+        self.page_light_names: dict[str, set[str]] = defaultdict(set)
+        with CANONICAL.open(encoding="utf-8") as fh:
+            for line in fh:
+                rec = json.loads(line)
+                key = rec["key"]
+                names = [rec.get("displayName") or ""]
+                for syn in rec.get("synonyms") or []:
+                    names.append(syn.get("name") or "")
+                for raw_name in names:
+                    token = light_normalise(raw_name)
+                    if len(token) >= 3:
+                        self.page_light_names[key].add(token)
 
     def resolves(self, raw: str) -> bool:
         light = light_normalise(raw)
@@ -186,7 +203,8 @@ def components_of(raw: str, resolver: Resolver) -> list[str]:
     return out
 
 
-def match_component(name: str, resolver: Resolver, idx, stats: Counter):
+def match_component(name: str, resolver: Resolver, idx, stats: Counter,
+                    sibling_rejects: list[dict]):
     """Return (rule, keys, form_of_target, unii_note) for one ingredient name.
 
     A name that resolves to several UNIIs sitting on several different corpus pages is not an exact
@@ -235,8 +253,30 @@ def match_component(name: str, resolver: Resolver, idx, stats: Counter):
 
     name_keys = idx.name_to_keys.get(norm, [])
     if name_keys:
-        stats["name_candidate"] += 1
-        return "name-candidate", list(name_keys), None, None
+        # Rule (d) is a candidate on a normalised name, and normalisation strips the counter-ion
+        # from the page's own name as well as from the PMDA name. Where the page needed its own
+        # salt stripped to meet this name, the two are different salts of a shared parent, or two
+        # unrelated substances sharing a cation: "Calcium gluconate hydrate" and "Oxalic Acid"
+        # both reduce to "calcium". Such a pair is not a candidate for this substance's approval,
+        # so it is held out of the mapped rows and written to the review file with its reason.
+        kept, rejected = [], []
+        for key in name_keys:
+            (kept if norm in resolver.page_light_names.get(key, ()) else rejected).append(key)
+        for key in rejected:
+            sibling_rejects.append({
+                "key": key,
+                "corpus_display_name": idx.display.get(key),
+                "pmda_name": name.strip(),
+                "normalised_to": norm,
+                "reason": ("the page name matches only after its own salt or counter-ion was "
+                           "stripped, so this is a different substance sharing a normalised "
+                           "name, not a form of the substance PMDA approved"),
+            })
+        if kept:
+            stats["name_candidate"] += 1
+            return "name-candidate", kept, None, None
+        stats["name_candidate_all_siblings_rejected"] += 1
+        return "sibling-salt-only", [], None, None
     return None, [], None, None
 
 
@@ -248,6 +288,7 @@ def main() -> int:
     rows: list[dict] = []
     name_candidates: list[dict] = []
     unmatched: list[dict] = []
+    sibling_rejects: list[dict] = []
     stats = Counter()
     matched_keys_by_tier: dict[int, set[str]] = defaultdict(set)
     rule_counts = Counter()
@@ -266,9 +307,13 @@ def main() -> int:
             continue
         record_hits: list[tuple[str, str, str | None, str]] = []
         record_misses: list[str] = []
+        sibling_only_parts: set[str] = set()
         for part in parts:
-            rule, keys, form_of, unii = match_component(part, resolver, idx, stats)
+            rule, keys, form_of, unii = match_component(part, resolver, idx, stats,
+                                                        sibling_rejects)
             if not keys:
+                if rule == "sibling-salt-only":
+                    sibling_only_parts.add(part)
                 record_misses.append(part)
                 continue
             for key in keys:
@@ -284,7 +329,12 @@ def main() -> int:
         if not record_hits:
             stats["records_unmatched"] += 1
             unmatched.append({"source_record_id": rec["source_record_id"],
-                              "reason": "no corpus page for any named ingredient",
+                              "reason": ("no corpus page for any named ingredient"
+                                         if sibling_only_parts != set(parts) else
+                                         "every named ingredient reaches a corpus page only "
+                                         "through a normalised name shared by counter-ion, not "
+                                         "by substance; held out and listed in "
+                                         "name-candidates-held-out.json"),
                               "active_ingredient_raw": raw,
                               "components": parts,
                               "brand_names": rec["brand_names"],
@@ -345,8 +395,13 @@ def main() -> int:
                     "needs": "UNII or InChIKey confirmation before this approval is shown on the page",
                 })
         for miss in record_misses:
+            reason = ("ingredient names no corpus page and resolves to no corpus UNII"
+                      if miss not in sibling_only_parts else
+                      "ingredient reaches a corpus page only through a normalised name that the "
+                      "page shares by counter-ion, not by substance; held out and listed in "
+                      "name-candidates-for-review.json")
             unmatched.append({"source_record_id": rec["source_record_id"],
-                              "reason": "ingredient names no corpus page and resolves to no corpus UNII",
+                              "reason": reason,
                               "component": miss,
                               "active_ingredient_raw": raw,
                               "approval_date": rec["approval_date"]})
@@ -426,6 +481,9 @@ def main() -> int:
         "unmatched_component_rows": sum(1 for u in unmatched if "component" in u),
         "name_candidates_sent_to_phase_3_review": len(name_candidates),
         "name_candidate_pages": len({c["key"] for c in name_candidates}),
+        "name_pairs_held_out_as_shared_counter_ion": len(sibling_rejects),
+        "name_pairs_held_out_pages": len({c["key"] for c in sibling_rejects}),
+        "name_pairs_held_out_file": "data/sources/pmda/name-candidates-held-out.json",
         "resolution_diagnostics": {k: v for k, v in sorted(stats.items())
                                    if k.startswith(("unii_match", "ambiguous", "inchikey", "skeleton", "name_candidate"))},
         "drugcentral_crosscheck": "data/sources/pmda/drugcentral-pmda-crosscheck.json",
@@ -434,6 +492,8 @@ def main() -> int:
         json.dump(coverage, fh, indent=2, ensure_ascii=False)
     with open(BASE / "name-candidates-for-review.json", "w", encoding="utf-8") as fh:
         json.dump(name_candidates, fh, indent=2, ensure_ascii=False)
+    with open(BASE / "name-candidates-held-out.json", "w", encoding="utf-8") as fh:
+        json.dump(sibling_rejects, fh, indent=2, ensure_ascii=False)
     with open(BASE / "unmatched-records.json", "w", encoding="utf-8") as fh:
         json.dump(unmatched, fh, indent=2, ensure_ascii=False)
 

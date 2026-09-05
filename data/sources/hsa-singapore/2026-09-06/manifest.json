@@ -137,7 +137,214 @@
    "bytes": 2749307,
    "sha256": "f125c8b4678174fc4138214244c554bcfe1dfa92d0a2a86ae5307c113b0210a7",
    "note": "every datastore_search page concatenated in retrieval order"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/robots-sso-agc.txt",
+   "url": "https://sso.agc.gov.sg/robots.txt",
+   "http_status": 200,
+   "retrieved_utc": "2026-09-05T19:01:59Z",
+   "bytes": 48,
+   "sha256": "22e07dcf595c6248eeffbf95acebe9fe5cb657a91b29e8576acdc71d8c3b69b9"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/sso-terms-of-use.html",
+   "url": "https://sso.agc.gov.sg/Terms-of-Use",
+   "http_status": 200,
+   "retrieved_utc": "2026-09-05T19:02:05Z",
+   "bytes": 42663,
+   "sha256": "a1edea5563240d35aa41333d679e48df0c9b6be4782775d38d80790b4ba70bb1"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973",
+   "statute": "Misuse of Drugs Act 1973",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.html",
+   "bytes": 485618,
+   "sha256": "008c01148a227130b45e017b8c5c61e8b9bc69974619f3333e7f86d19e178b67",
+   "retrieved_utc": "2026-09-05T19:02:11Z"
+  },
+  {
+   "stem": "poisons-act-1938",
+   "statute": "Poisons Act 1938",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.html",
+   "bytes": 307062,
+   "sha256": "b5fc199fca187c1f146b301d353ef4b92d060bd622d9bbc8f7599ae52c60f154",
+   "retrieved_utc": "2026-09-05T19:02:18Z"
+  },
+  {
+   "stem": "poisons-rules",
+   "statute": "Poisons Rules (subsidiary legislation under the Poisons Act 1938)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.html",
+   "bytes": 289672,
+   "sha256": "6092a4a0c2e0f8f8a1efed343d337a0056638dd02779c5246386aaef86e1709d",
+   "retrieved_utc": "2026-09-05T19:02:24Z"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973-print",
+   "statute": "Misuse of Drugs Act 1973 (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973-print.html",
+   "bytes": 59102,
+   "sha256": "b109ef7f692706a73bd8dd84b65cf65131a555c91a2b79d02c476579f2a1c098",
+   "retrieved_utc": "2026-09-05T20:55:52Z"
+  },
+  {
+   "stem": "poisons-act-1938-print",
+   "statute": "Poisons Act 1938 (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938-print.html",
+   "bytes": 16341,
+   "sha256": "4b32a45133db8cef627307da0ac238f0ff9b0e68fa79210440d276cd1ca2b4e1",
+   "retrieved_utc": "2026-09-05T20:55:58Z"
+  },
+  {
+   "stem": "poisons-rules-print",
+   "statute": "Poisons Rules (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules-print.html",
+   "bytes": 22091,
+   "sha256": "01cc920a87d9b280e8b6b24bd78ea053363191f517120f8995d7c42673031d5b",
+   "retrieved_utc": "2026-09-05T20:56:04Z"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973",
+   "file": "misuse-of-drugs-act-1973.pdf",
+   "statute": "Misuse of Drugs Act 1973 (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf",
+   "bytes": 638537,
+   "sha256": "5ca9d474fe08d227334e732baf4a4a65b6b60722e639f706ee99172a2b17e690",
+   "retrieved_utc": "2026-09-05T20:56:51Z"
+  },
+  {
+   "stem": "poisons-act-1938",
+   "file": "poisons-act-1938.pdf",
+   "statute": "Poisons Act 1938 (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.pdf",
+   "bytes": 280615,
+   "sha256": "491b62c02312793af0df068ca20ffa483e5e9c8242f253940b7a233c64e20d20",
+   "retrieved_utc": "2026-09-05T20:56:57Z"
+  },
+  {
+   "stem": "poisons-rules",
+   "file": "poisons-rules.pdf",
+   "statute": "Poisons Rules (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.pdf",
+   "bytes": 660096,
+   "sha256": "cce14e00c60bb10e363731cb962a71b81f6bd7a436cb496521b82a44c3b02822",
+   "retrieved_utc": "2026-09-05T20:57:03Z"
   }
  ],
- "files_reused_from_prior_manifest": 0
+ "files_reused_from_prior_manifest": 0,
+ "statutes": {
+  "manifest": "data/sources/hsa-singapore/2026-09-06/statutes-manifest.json",
+  "base_url": "https://sso.agc.gov.sg/",
+  "robots_txt": "allows all paths except /search; crawl-delay 6",
+  "licence": {
+   "name": "Singapore legislation reproduced under clause 13 of the Singapore Statutes Online Terms of Use",
+   "url": "https://sso.agc.gov.sg/Terms-of-Use",
+   "attribution_required": true,
+   "share_alike": false,
+   "redistribution_permitted": true,
+   "commercial_use_permitted": true,
+   "conditions": [
+    "state that the legislation is subject to Singapore Government copyright and is reproduced with AGC's permission",
+    "tell readers they may check SSO for the latest version",
+    "the reproducer is responsible for the accuracy of what it reproduces",
+    "no suggestion of AGC or SSO association or endorsement",
+    "automated extraction only between 3 a.m. and 7 a.m. Singapore time, not abusive, intrusive or deceptive, and without affecting SSO's performance"
+   ],
+   "attribution_notice": "Singapore legislation reproduced from Singapore Statutes Online is subject to the copyright of the Singapore Government and is reproduced with the permission of the Attorney-General's Chambers. Readers may check Singapore Statutes Online (https://sso.agc.gov.sg) for the latest version of the legislation. Singapore Statutes Online is an unofficial version and is not the authoritative text."
+  },
+  "documents": [
+   {
+    "stem": "misuse-of-drugs-act-1973",
+    "statute": "Misuse of Drugs Act 1973",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.html",
+    "bytes": 485618,
+    "sha256": "008c01148a227130b45e017b8c5c61e8b9bc69974619f3333e7f86d19e178b67",
+    "retrieved_utc": "2026-09-05T19:02:11Z"
+   },
+   {
+    "stem": "poisons-act-1938",
+    "statute": "Poisons Act 1938",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.html",
+    "bytes": 307062,
+    "sha256": "b5fc199fca187c1f146b301d353ef4b92d060bd622d9bbc8f7599ae52c60f154",
+    "retrieved_utc": "2026-09-05T19:02:18Z"
+   },
+   {
+    "stem": "poisons-rules",
+    "statute": "Poisons Rules (subsidiary legislation under the Poisons Act 1938)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.html",
+    "bytes": 289672,
+    "sha256": "6092a4a0c2e0f8f8a1efed343d337a0056638dd02779c5246386aaef86e1709d",
+    "retrieved_utc": "2026-09-05T19:02:24Z"
+   },
+   {
+    "stem": "misuse-of-drugs-act-1973-print",
+    "statute": "Misuse of Drugs Act 1973 (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973-print.html",
+    "bytes": 59102,
+    "sha256": "b109ef7f692706a73bd8dd84b65cf65131a555c91a2b79d02c476579f2a1c098",
+    "retrieved_utc": "2026-09-05T20:55:52Z"
+   },
+   {
+    "stem": "poisons-act-1938-print",
+    "statute": "Poisons Act 1938 (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938-print.html",
+    "bytes": 16341,
+    "sha256": "4b32a45133db8cef627307da0ac238f0ff9b0e68fa79210440d276cd1ca2b4e1",
+    "retrieved_utc": "2026-09-05T20:55:58Z"
+   },
+   {
+    "stem": "poisons-rules-print",
+    "statute": "Poisons Rules (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules-print.html",
+    "bytes": 22091,
+    "sha256": "01cc920a87d9b280e8b6b24bd78ea053363191f517120f8995d7c42673031d5b",
+    "retrieved_utc": "2026-09-05T20:56:04Z"
+   },
+   {
+    "stem": "misuse-of-drugs-act-1973",
+    "file": "misuse-of-drugs-act-1973.pdf",
+    "statute": "Misuse of Drugs Act 1973 (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf",
+    "bytes": 638537,
+    "sha256": "5ca9d474fe08d227334e732baf4a4a65b6b60722e639f706ee99172a2b17e690",
+    "retrieved_utc": "2026-09-05T20:56:51Z"
+   },
+   {
+    "stem": "poisons-act-1938",
+    "file": "poisons-act-1938.pdf",
+    "statute": "Poisons Act 1938 (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.pdf",
+    "bytes": 280615,
+    "sha256": "491b62c02312793af0df068ca20ffa483e5e9c8242f253940b7a233c64e20d20",
+    "retrieved_utc": "2026-09-05T20:56:57Z"
+   },
+   {
+    "stem": "poisons-rules",
+    "file": "poisons-rules.pdf",
+    "statute": "Poisons Rules (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.pdf",
+    "bytes": 660096,
+    "sha256": "cce14e00c60bb10e363731cb962a71b81f6bd7a436cb496521b82a44c3b02822",
+    "retrieved_utc": "2026-09-05T20:57:03Z"
+   }
+  ]
+ }
 }

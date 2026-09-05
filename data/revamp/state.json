@@ -39,7 +39,7 @@
         "2.4": "done",
         "2.8": "done",
         "2.10": "BLOCKED-WITH-EVIDENCE (licence/no data; ChEMBL drug_warning used)",
-        "2.11": "rerun pending (session limit \u00d72)",
+        "2.11": "mapped-partial (HSA listing + MDA/Poisons schedules; MOH subsidy BLOCKED-WITH-EVIDENCE)",
         "2.12": "mapped-partial (SUSMP; ARTG BLOCKED on licence)",
         "2.13": "done",
         "2.14": "BLOCKED-WITH-EVIDENCE (no reuse licence)",
@@ -49,7 +49,7 @@
         "2.18": "done (validation only)"
       },
       "gate_evidence": null,
-      "updated": "2026-09-05T20:52:47+00:00"
+      "updated": "2026-09-05T21:20:38+00:00"
     },
     "3": {
       "status": "IN_PROGRESS",
@@ -102,7 +102,8 @@
     "docs/revamp/BLOCKERS.md#withdrawn",
     "docs/revamp/BLOCKERS.md#tga-artg",
     "docs/revamp/BLOCKERS.md#mhra-emc",
-    "docs/revamp/BLOCKERS.md#clinpgx"
+    "docs/revamp/BLOCKERS.md#clinpgx",
+    "docs/revamp/BLOCKERS.md#moh-subsidy"
   ],
   "last_commit": "15c51f593bd561e13fd23a22775e5ddcaa7ac69b"
 }
