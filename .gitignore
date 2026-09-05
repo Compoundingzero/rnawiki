@@ -123,3 +123,5 @@ data/corpus-20k/legal/counts/
 __pycache__/
 *.pyc
 .pytest_cache/
+data/corpus-20k/final/html-text/
+data/corpus-20k/final/pages/

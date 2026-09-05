@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "phase": "5d-fix-and-tiers",
+  "phase": "5-done",
   "next": {
-    "step": "Phase 5d: workflow corpus-20k-phase5d",
-    "command": "when it lands: read data/corpus-20k/final/summary.json; write the final report into docs/worklogs/corpus-20k.md; deliver"
+    "step": "DONE: corpus-20k in production; open decisions for Felix in the RESUME block",
+    "command": "npx tsx scripts/corpus-20k/deploy/verify-live.ts --base-url https://rnawiki.com --json --require-all"
   },
   "completed": [
     "drugbank-open",
@@ -13957,5 +13957,5 @@
     }
   },
   "awaiting": null,
-  "updated_at": "2026-09-05T01:37:09.103Z"
+  "updated_at": "2026-09-05T03:18:04.650Z"
 }
