@@ -130,3 +130,5 @@ data/revamp/baseline/html-text/
 data/revamp/baseline/runs/
 data/revamp/gsc-export-*/
 scripts/**/__pycache__/
+scripts/revamp/.drugcentral-public-credentials
+data/revamp/overlap/

@@ -1,0 +1,316 @@
+{
+ "generated": "scripts/revamp/reevaluate_gates.py",
+ "thresholds": "data/revamp/thresholds.json",
+ "gate1": {
+  "figure": "Tier 1 LONGEVITY median present fields, counted over applicable fields",
+  "codePath": "scripts/corpus-20k/fields/coverage.py:main() lines 286-291; median at 69-71",
+  "recorded": {
+   "value": 10,
+   "threshold": 8,
+   "meets": true,
+   "basis": "median present out of 15 named fields, applicability ignored"
+  },
+  "pages": 1109,
+  "coverageFifteenFieldBasis": {
+   "fields": [
+    "biomarkers",
+    "clocks",
+    "doseResponse",
+    "endpointType",
+    "faers",
+    "hallmark",
+    "humanCeiling",
+    "interactions",
+    "itp",
+    "kinetics",
+    "ongoingTrials",
+    "organismLadder",
+    "pathway",
+    "regulatory",
+    "trialFailures"
+   ],
+   "medianPresentRaw": 10,
+   "medianApplicable": 14,
+   "medianPresentOverApplicable": 10,
+   "medianCoverageShare": 0.714286,
+   "equivalentBarAsAShare": 0.533333,
+   "equivalentBarInFields": 7.4667,
+   "meets": true
+  },
+  "loaderFieldListBasis": {
+   "note": "the field list the loader counts, liftTopLevelFields included \u2014 the same list Gate 1b's threshold is measured on",
+   "medianApplicable": 15,
+   "medianPresentOverApplicable": 11,
+   "medianCoverageShare": 0.733333,
+   "meets": true
+  },
+  "delta": {
+   "medianPresent": 0,
+   "statement": "recorded median 10 of 15 against a bar of 8; corrected median 10 of 14 applicable, a share of 0.7143 against the same bar restated as 0.5333"
+  },
+  "result": "PASSED"
+ },
+ "gate1b": {
+  "figure": "per-tier present-over-applicable threshold and the set it produces",
+  "codePath": "scripts/corpus-20k/overlap/gate1b_v3.py:analyse_matched lines 236-268",
+  "recorded": {
+   "threshold": 11,
+   "indexed": 636,
+   "note": "11 is gate1b_v3's answer on the v3 render, kept as the deploy procedure's fallback after threshold 7 missed the size-matched line by 0.002454; the same rule on the v4 render selected 10 with 1,057 indexed (data/corpus-20k/gate1b/threshold-v4.json)",
+   "v4RuleAnswer": 10,
+   "v4Indexed": 1057
+  },
+  "lines": {
+   "positional": 0.2,
+   "lexical": 0.353
+  },
+  "tiers": {
+   "tier1": {
+    "threshold": 7,
+    "indexable": 993,
+    "positionalSizeMatched": 0.134359,
+    "positionalAllPairs": 0.163482,
+    "lexicalSizeMatched": 0.324224,
+    "lexicalAllPairs": 0.350567,
+    "ruleAnswerAfterStubFloor": 7,
+    "lineCheckSteps": [
+     {
+      "threshold": 7,
+      "indexable": 993,
+      "positionalAllPairs": 0.163482,
+      "positionalSizeMatchedSet": 0.134359,
+      "lexicalSizeMatchedSet": 0.324224,
+      "lexicalAllPairs": 0.350567,
+      "clearsPositionalLine": true,
+      "clearsLexicalLine": true,
+      "clearsR3LexicalTarget": true,
+      "clearsBothLines": true
+     }
+    ],
+    "clearsPositional": true,
+    "clearsLexical": true,
+    "result": "PASSED"
+   },
+   "tier2": {
+    "threshold": null,
+    "indexable": 0,
+    "positionalSizeMatched": null,
+    "positionalAllPairs": null,
+    "lexicalSizeMatched": null,
+    "lexicalAllPairs": null,
+    "ruleAnswerAfterStubFloor": 8,
+    "lineCheckSteps": [
+     {
+      "threshold": 8,
+      "indexable": 987,
+      "positionalAllPairs": 0.138846,
+      "positionalSizeMatchedSet": 0.120108,
+      "lexicalSizeMatchedSet": 0.412005,
+      "lexicalAllPairs": 0.436409,
+      "clearsPositionalLine": true,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 9,
+      "indexable": 687,
+      "positionalAllPairs": 0.130165,
+      "positionalSizeMatchedSet": 0.118314,
+      "lexicalSizeMatchedSet": 0.405629,
+      "lexicalAllPairs": 0.422697,
+      "clearsPositionalLine": true,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 10,
+      "indexable": 314,
+      "positionalAllPairs": 0.119845,
+      "positionalSizeMatchedSet": 0.119845,
+      "lexicalSizeMatchedSet": 0.402659,
+      "lexicalAllPairs": 0.402659,
+      "clearsPositionalLine": true,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 11,
+      "indexable": 5,
+      "positionalAllPairs": 0.155372,
+      "positionalSizeMatchedSet": 0.155372,
+      "lexicalSizeMatchedSet": 0.408602,
+      "lexicalAllPairs": 0.408602,
+      "clearsPositionalLine": true,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     }
+    ],
+    "clearsPositional": false,
+    "clearsLexical": false,
+    "result": "FAILED"
+   },
+   "tier3": {
+    "threshold": null,
+    "indexable": 0,
+    "positionalSizeMatched": null,
+    "positionalAllPairs": null,
+    "lexicalSizeMatched": null,
+    "lexicalAllPairs": null,
+    "ruleAnswerAfterStubFloor": null,
+    "lineCheckSteps": [
+     {
+      "threshold": 3,
+      "indexable": 5466,
+      "positionalAllPairs": 0.451807,
+      "positionalSizeMatchedSet": 0.358852,
+      "lexicalSizeMatchedSet": 0.573248,
+      "lexicalAllPairs": 0.648649,
+      "clearsPositionalLine": false,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 4,
+      "indexable": 3427,
+      "positionalAllPairs": 0.441989,
+      "positionalSizeMatchedSet": 0.329897,
+      "lexicalSizeMatchedSet": 0.563636,
+      "lexicalAllPairs": 0.635659,
+      "clearsPositionalLine": false,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 5,
+      "indexable": 2396,
+      "positionalAllPairs": 0.459672,
+      "positionalSizeMatchedSet": 0.346667,
+      "lexicalSizeMatchedSet": 0.582835,
+      "lexicalAllPairs": 0.647763,
+      "clearsPositionalLine": false,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 6,
+      "indexable": 1654,
+      "positionalAllPairs": 0.374622,
+      "positionalSizeMatchedSet": 0.314588,
+      "lexicalSizeMatchedSet": 0.582822,
+      "lexicalAllPairs": 0.629161,
+      "clearsPositionalLine": false,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     },
+     {
+      "threshold": 7,
+      "indexable": 752,
+      "positionalAllPairs": 0.32762,
+      "positionalSizeMatchedSet": 0.29011,
+      "lexicalSizeMatchedSet": 0.554453,
+      "lexicalAllPairs": 0.583512,
+      "clearsPositionalLine": false,
+      "clearsLexicalLine": false,
+      "clearsR3LexicalTarget": false,
+      "clearsBothLines": false
+     }
+    ],
+    "clearsPositional": false,
+    "clearsLexical": false,
+    "result": "FAILED"
+   }
+  },
+  "result": "FAILED",
+  "resultNote": "Tier 3 carries noindex and appears in no sitemap (Operating rule 7), so its threshold is a promotion criterion and its line result does not decide this gate; it is recorded above."
+ },
+ "gate2": {
+  "figure": "the indexed set measured from the same page text",
+  "codePath": "scripts/corpus-20k/gate2/folds.py (size-matched, fold size 324) and scripts/corpus-20k/overlap/harness.py:exhaustive_neighbours (all pairs)",
+  "set": {
+   "definition": "Tier 1 and Tier 2 pages at or above their tier threshold; Tier 3 is noindex and is not in the indexed set",
+   "pages": 993,
+   "byTier": {
+    "tier1": 993,
+    "tier2": 0
+   }
+  },
+  "sizeMatched": {
+   "pages": 993,
+   "foldSize": 324,
+   "folds": [
+    324,
+    324,
+    324,
+    324
+   ],
+   "positional": {
+    "count": 993,
+    "median": 0.134359,
+    "mean": 0.182603,
+    "p90": 0.246432,
+    "max": 0.903163,
+    "above_0_20": 131,
+    "above_0_30": 93
+   },
+   "lexical": {
+    "count": 993,
+    "median": 0.324224,
+    "mean": 0.354643,
+    "p90": 0.433181,
+    "max": 0.957483,
+    "above_0_20": 992,
+    "above_0_30": 691
+   },
+   "sharedWordShareMedian": 0.357417
+  },
+  "allPairs": {
+   "pages": 993,
+   "pairsScored": 492528,
+   "positional": {
+    "count": 993,
+    "median": 0.163482,
+    "mean": 0.243921,
+    "p90": 0.629642,
+    "max": 0.971522,
+    "above_0_20": 260,
+    "above_0_30": 174
+   },
+   "lexical": {
+    "count": 993,
+    "median": 0.350567,
+    "mean": 0.400575,
+    "p90": 0.599028,
+    "max": 0.957483,
+    "above_0_20": 993,
+    "above_0_30": 835
+   },
+   "sharedWordShareMedian": 0.357417,
+   "positionalAbove_0_20": 260
+  },
+  "recorded": {
+   "sizeMatchedPositionalMedian": 0.188161,
+   "allPairsPositionalMedian": 0.195831,
+   "sizeMatchedLexicalMedian": 0.352953,
+   "allPairsLexicalMedian": 0.368746,
+   "sharedWordShareMedian": 0.430757,
+   "indexedCount": 636
+  },
+  "htmlLevelChecks": "crawl text-to-HTML, RSC payload share, empty elements, the filler-phrase scan, data-block order and the 320 px browser journey read rendered HTML from a running deployment; they are re-run in Phase 7, not here",
+  "delta": {
+   "sizeMatchedPositionalMedian": -0.053802,
+   "allPairsPositionalMedian": -0.032349,
+   "sizeMatchedLexicalMedian": -0.028729,
+   "indexedCount": 357,
+   "sharedWordShareMedian": -0.07334
+  },
+  "result": "PASSED"
+ }
+}

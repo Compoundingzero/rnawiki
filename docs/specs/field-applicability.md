@@ -45,12 +45,17 @@ differ.
 | everDosedInHumans | n/a | n/a | n/a | applicable | a boolean present by construction on 100 %; it counts once and never discriminates |
 | relatedOnTarget | n/a | n/a | n/a | applicable, except no ChEMBL id | 9.6 % |
 
-Consequences: the LONGEVITY denominator is 14 (+1 for the 47 ITP-tested pages, +1 for doseStudied
-when the page holds any registry dose text, +1 approvalDate when approved); the withdrawn-arc
-denominator is 11 minus label fields under NA-LABEL-CLASS; the Tier 2 denominator is 10 (withdrawal
-excluded unless withdrawn) minus NA-LABEL-CLASS; the Tier 3 denominator is 7 (patentStatus
-pending_source) minus the no-ChEMBL and no-registry exclusions, which for 11,145 Tier 3 pages that
-hold nothing but the boolean leaves 1 applicable field — those pages are stubs and the threshold
-derivation reports them as such rather than treating a 1-of-1 page as fully covered. The threshold
+Consequences (corrected 2026-09-05 after `derive_threshold.py` measured the records): a LONGEVITY
+record carries 16 field entries (15 nested + doseStudied), so its denominator is 15 without ITP and
+16 for the 51 ITP-tested pages (14 where kinetics is NA-COMBINATION, 17 pages); approvalDate exists
+on only 6 LONGEVITY records. The withdrawn-arc denominator is 11 minus label fields under
+NA-LABEL-CLASS; the Tier 2 denominator is 10 (withdrawal excluded unless withdrawn; 132 recall-note
+`present` entries with withdrawn = false leave both numerator and denominator) minus NA-LABEL-CLASS;
+the Tier 3 denominator is 7 (patentStatus pending_source) minus the no-ChEMBL and no-registry
+exclusions. highestPhase applies to every DEVELOPMENT page, so no Tier 3 page has exactly one
+applicable field: the floor is 2 (everDosedInHumans + highestPhase) or 5 with a ChEMBL id; 3,512
+Tier 3 pages hold fewer than 3 applicable fields and are reported as stubs. The stub floor of 3
+(R15) makes a bucket below 3 ineligible for selection, so a small-denominator page can never read as
+fully covered. The threshold
 script buckets pages by **present count over applicable fields** within each tier and applies the
 Gate 1b rule quoted in `data/revamp/orient.md` unchanged.
