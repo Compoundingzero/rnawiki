@@ -1,0 +1,57 @@
+{
+  "pairs": 680,
+  "distinctPairs": 644,
+  "classified": {
+    "LICENSED-MERGE": 6,
+    "LICENSED-FORM_OF": 7,
+    "LICENSED-SEPARATE": 453,
+    "NOT-LICENSED": 214
+  },
+  "applyRows": 13,
+  "applyDistinctPairs": 10,
+  "held": 64,
+  "heldDistinctPairs": 63,
+  "heldByReach": {
+    "indexable": 23,
+    "band": 7,
+    "rest": 34
+  },
+  "reviewMinutes": 64,
+  "underTwoHours": true,
+  "alreadyMergedRows": 150,
+  "nameGroupRows": 17,
+  "reachDefinition": {
+    "indexable": "the page's tier holds a derived threshold in thresholds.json and the page meets it",
+    "band": "the page's tier holds no derived threshold and the page is at or above that tier's ruleAnswerAfterStubFloor",
+    "rest": "every other page",
+    "perTier": {
+      "1": {
+        "threshold": 7,
+        "ruleAnswer": 7
+      },
+      "2": {
+        "threshold": null,
+        "ruleAnswer": 8
+      },
+      "3": {
+        "threshold": null,
+        "ruleAnswer": null
+      }
+    }
+  },
+  "issues": [
+    "8 second-opinion merge rows rest on a sentence the corpus record does not bear out (spine-attached.parquet); each is held, and the rows are listed in data/revamp/identity-review.md under \"Where the second opinion and the corpus record disagree\"",
+    "36 of the 680 rows repeat a pair already present under a different origin; the apply and hold lists carry one row per pair and name the repeats",
+    "all 150 already-merged rows confirmed against presence-applicable.ndjson: the named source key is absent from the live corpus and the survivor is present, so the merge is in force and the row carries no decision",
+    "none of the 150 already-merged source keys appears in identity/merge-map.json, which holds 61 entries and records this run's pass-4 merges only; the pass 2/3 merges are evidenced by the source key's absence from the live corpus instead",
+    "2 page(s) appear on both the apply list and the hold list (HOLD:existing:anhydrous-citric-acid, HOLD:existing:potassium-citrate); apply the licensed row before the held pair is reopened so the held pair is decided against the surviving page",
+    "8 apply-list rows come from the pairs the first pass held as a whole chain because an exception class separates another link of that chain; applying them needs the transitive closure checked so no exception-separated pages are joined",
+    "the residual band has no recorded definition in data/revamp, so this script defines it from thresholds.json: a tier with no derived threshold contributes its own ruleAnswerAfterStubFloor set (tier 2 at 8 present fields), which is the set thresholds.json measures as clearing the positional line and missing the lexical line; tier 1 holds a threshold so its rule-answer set is the indexable set, and tier 3 has no rule answer"
+  ],
+  "outputs": {
+    "classified": "data/revamp/identity/second-opinion-classified.csv",
+    "apply": "data/revamp/identity/apply-list.csv",
+    "hold": "data/revamp/identity/hold-list.csv",
+    "review": "data/revamp/identity-review.md"
+  }
+}

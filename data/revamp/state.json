@@ -27,7 +27,7 @@
       "updated": "2026-09-05T07:15:38+00:00"
     },
     "2": {
-      "status": "IN_PROGRESS",
+      "status": "PASSED",
       "steps": {
         "2.1": "done",
         "2.2": "done",
@@ -48,8 +48,8 @@
         "2.17": "done",
         "2.18": "done (validation only)"
       },
-      "gate_evidence": null,
-      "updated": "2026-09-05T21:20:38+00:00"
+      "gate_evidence": "docs/worklogs/revamp-2026-09.md#G2",
+      "updated": "2026-09-05T22:13:30+00:00"
     },
     "3": {
       "status": "IN_PROGRESS",
@@ -57,7 +57,7 @@
         "3.1": "done",
         "3.2": "done",
         "3.3": "done",
-        "3.4": "in_progress (second opinion returned; lead adjudicating)",
+        "3.4": "adjudicated: 13 licensed rows applied in the Phase 4 data workflow; 64 held for Felix (64 min)",
         "3.5": "done (live PASS, plan PASS)",
         "3.6": "run: 19 indexable pairs \u2265 0.5; re-run after Phase 4 differentiation",
         "3.7": "done (39/39 verified)"
@@ -66,10 +66,10 @@
       "updated": "2026-09-05T20:52:47+00:00"
     },
     "4": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "steps": {},
       "gate_evidence": null,
-      "updated": "2026-09-05T05:13:47+00:00"
+      "updated": "2026-09-05T22:13:30+00:00"
     },
     "5": {
       "status": "PENDING",

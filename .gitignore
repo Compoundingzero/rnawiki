@@ -159,3 +159,5 @@ data/sources/**/parsed/
 data/validation/ddinter/*.parquet
 data/revamp/rendered-text/
 data/validation/**/*.parquet
+data/revamp/fields-v2/
+data/revamp/fields-v2-gated/

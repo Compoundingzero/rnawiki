@@ -96,7 +96,17 @@ LICENCE_SHORT = {
     "mhra-emc": "no reuse licence found; nothing retrieved",
 }
 
-LICENCE_FULL: dict[str, str] = {}
+# A source can publish more than one licence: the HSA source carries the data.gov.sg listing under
+# the Singapore Open Data Licence and the Misuse of Drugs Act / Poisons Act schedules under the
+# Singapore Statutes Online terms. A row's own licence text decides, and the source's licence is
+# only the fallback.
+LICENCE_SHORT_BY_TEXT = {
+    "Singapore legislation, reproduced with the permission of the Attorney-General":
+        "Singapore Statutes Online, reproduced with the permission of the Attorney-General's "
+        "Chambers under clause 13 of the Terms of Use",
+}
+
+LICENCE_FULL: dict[str, list[str]] = {}
 
 
 def prov(row: dict, source: str) -> dict:
@@ -104,14 +114,24 @@ def prov(row: dict, source: str) -> dict:
     short name; the licence text exactly as the source publishes it is recorded once per source in
     data/revamp/fields-v2/integration-summary.json and in docs/data/LICENSES.md."""
     full = row.get("licence")
-    if full and source not in LICENCE_FULL:
-        LICENCE_FULL[source] = full
+    if full:
+        held = LICENCE_FULL.setdefault(source, [])
+        if full not in held:
+            held.append(full)
+    short = None
+    if full:
+        for prefix, name in LICENCE_SHORT_BY_TEXT.items():
+            if full.startswith(prefix):
+                short = name
+                break
+    if short is None:
+        short = LICENCE_SHORT.get(source, full)
     return {
         "source": source,
         "source_record_id": row.get("source_record_id"),
         "source_url": row.get("source_url"),
         "source_date": row.get("source_date"),
-        "licence": LICENCE_SHORT.get(source, full),
+        "licence": short,
     }
 
 
@@ -387,8 +407,8 @@ def build_interactions(incumbent, page, run_date, filled):
     value["curatedInteractionsFound"] = sum(1 for r in curated if r["interactionFound"])
     value["curatedInteractionsNotFound"] = sum(1 for r in curated if not r["interactionFound"])
     value["sourcesChecked"] = [
-        "openFDA drug label drug_interactions",
-        "NCATS Inxight Drugs curated drug-drug interaction dataset",
+        "openFDA drug label drug_interactions section (bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs curated drug-drug interaction dataset (FRDB v2024-12-30; stitcher read 2026-09-05)",
     ]
     affirmative = bool(label_rows) or value["curatedInteractionsFound"] > 0
     state = "present" if (incumbent.get("state") == "present" or affirmative) else incumbent.get("state", "absent")
@@ -426,7 +446,8 @@ def build_kinetics(incumbent, page, run_date, field_name, filled):
         value["labelStatements"] = statements[:2]
     if params:
         value["curatedParameters"] = params
-    value["precedence"] = "openFDA label pharmacokinetics, then the NCATS Inxight FRDB parameter rows"
+    value["precedence"] = ("openFDA label pharmacokinetics (bulk export packaged 2026-08-28), then the NCATS Inxight FRDB "
+                           "parameter rows (FRDB v2024-12-30; stitcher read 2026-09-05)")
     was = incumbent.get("state")
     state = "present"
     if was != "present":
@@ -464,8 +485,12 @@ def build_cyp_profile(page, run_date):
                      "interactionFound": bool(v.get("interactionFound")),
                      "evidence": "NCATS Inxight curated DDI row", "provenance": row["p"]})
         srcs.append(row["p"])
-    consulted = ["openFDA drug label pharmacokinetics/drug_interactions CYP and transporter extraction",
-                 "NCATS Inxight Drugs curated drug-drug interaction dataset (enzyme and transporter rows)"]
+    consulted = [
+        "openFDA drug label pharmacokinetics and drug_interactions CYP and transporter extraction "
+        "(bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs curated drug-drug interaction dataset, enzyme and transporter rows "
+        "(FRDB v2024-12-30; stitcher read 2026-09-05)",
+    ]
     if not rows:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
     merged: dict[tuple, dict] = {}
@@ -507,6 +532,11 @@ def build_adverse_events(incumbent, page, run_date, filled):
     if not label_rows and not curated:
         return None
     value = incumbent_dict(incumbent)
+    value["sourcesChecked"] = [
+        "openFDA drug label warnings_and_cautions and overdosage sections (bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs curated adverse-event rows (FRDB v2024-12-30; stitcher read 2026-09-05)",
+        "DrugCentral FAERS disproportionality rows (release 2023-11-01), recorded on the faers field",
+    ]
     if label_rows:
         value["labelSections"] = label_rows[:4]
     if curated:
@@ -599,8 +629,9 @@ def build_indication(incumbent, page, run_date, filled):
         value["structuredIndications"] = structured[:25]
     if curated:
         value["curatedUses"] = curated
-    value["precedence"] = ("openFDA label indications_and_usage statement, then DrugCentral OMOP "
-                           "indication and off-label rows, then NCATS Inxight uses")
+    value["precedence"] = (
+        "openFDA label indications_and_usage statement (bulk export packaged 2026-08-28), then DrugCentral OMOP indication "
+        "and off-label rows (release 2023-11-01), then NCATS Inxight uses (FRDB v2024-12-30; stitcher read 2026-09-05)")
     was = incumbent.get("state")
     if was != "present":
         filled.append(("indication", sorted({p["source"] for p in srcs})))
@@ -625,8 +656,8 @@ def build_contraindications(page, run_date):
             structured.append({"condition": r.get("concept_name"), "snomed": r.get("snomed_conceptid"),
                                "umls": r.get("umls_cui"), "provenance": row["p"]})
         srcs.append(row["p"])
-    consulted = ["openFDA drug label contraindications section",
-                 "DrugCentral omop_relationship contraindication rows"]
+    consulted = ["openFDA drug label contraindications section (bulk export packaged 2026-08-28)",
+                 "DrugCentral omop_relationship contraindication rows (release 2023-11-01)"]
     if not (label_rows or structured):
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
     value = {"sourcesChecked": consulted}
@@ -644,7 +675,7 @@ def build_boxed_warning(page, run_date):
         for text in as_list(row["v"]):
             rows.append({"labelSection": "boxed_warning", "statement": text, "provenance": row["p"]})
         srcs.append(row["p"])
-    consulted = ["openFDA drug label boxed_warning section"]
+    consulted = ["openFDA drug label boxed_warning section (bulk export packaged 2026-08-28)"]
     if not rows:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
     value = {"statements": rows[:2], "sourcesChecked": consulted}
@@ -816,6 +847,9 @@ def build_regulatory(incumbent, page, run_date, sg_row, filled):
             sg["licenceHolders"] = (row["v"] or {}).get("licenceHolders")
         for row in page["hsa-singapore"].get("hsaAtcCodes", []):
             sg["atcCodes"] = (row["v"] or {}).get("atcCodes")
+        sg["controlledStatus"] = sg_row["controlled_status"]
+        sg["controlledStatement"] = sg_row["controlled_statement"]
+        sg["controlledDetail"] = "the schedules themselves are on the controlled field of this page"
         products = [{**(r["v"] or {}), "provenance": r["p"]}
                     for r in page["hsa-singapore"].get("hsaProduct", [])]
         if products:
@@ -850,7 +884,8 @@ def build_regulatory(incumbent, page, run_date, sg_row, filled):
         filled.append(("regulatory", sorted(contributing)))
     base = incumbent.get("sources") or []
     entry = make_entry(state, value if value else None, dedupe_provs(base + srcs),
-                       run_date=run_date, source_date=incumbent.get("sourceDate"))
+                       run_date=run_date, source_date=incumbent.get("sourceDate"),
+                       note=incumbent.get("note"))
     if was == "present" and incumbent.get("source"):
         entry["source"] = incumbent["source"]
         entry["sourceDate"] = incumbent.get("sourceDate")
@@ -862,7 +897,7 @@ def build_regulatory(incumbent, page, run_date, sg_row, filled):
 
 
 def build_controlled(page, run_date, incumbent_regulatory, sg_row):
-    us, au, sg = None, None, None
+    us, au, sg = None, None, None  # sg is filled from the statutes, then the forensic class
     srcs = []
     reg_value = incumbent_regulatory.get("value") or {}
     dea = ((reg_value.get("US") or {}).get("deaSchedule")) if isinstance(reg_value, dict) else None
@@ -894,24 +929,66 @@ def build_controlled(page, run_date, incumbent_regulatory, sg_row):
         srcs.append(row["p"])
     if au:
         au["controlledUnderSchedule8or9"] = any(s["schedule"] in ("8", "9") for s in au["schedules"])
+    sg_listed = False
+    for row in page["hsa-singapore"].get("sgControlledStatus", []):
+        v = row["v"] or {}
+        entries = v.get("entries") or []
+        if not entries:
+            continue
+        sg_listed = True
+        sg = {
+            "jurisdiction": "SG",
+            "status": "listed",
+            "register": "Singapore Statutes Online: Misuse of Drugs Act 1973, Poisons Act 1938 "
+                        "and the Poisons Rules",
+            "schedules": [
+                {"statute": e.get("statute"), "statuteCitation": e.get("statuteCitation"),
+                 "statuteUrl": e.get("statuteUrl"), "statuteVersionDate": e.get("statuteVersionDate"),
+                 "schedule": e.get("schedule"), "scheduleCode": e.get("scheduleCode"),
+                 "itemNumber": e.get("itemNumber"), "substanceAsListed": e.get("substance")}
+                for e in entries[:12]
+            ],
+            "scheduleCount": len(entries),
+            "statuteVersionDates": sorted({e.get("statuteVersionDate") for e in entries
+                                           if e.get("statuteVersionDate")}),
+            "misuseOfDrugsActClass": sorted({e.get("schedule") for e in entries
+                                             if str(e.get("statute", "")).startswith(
+                                                 "Misuse of Drugs Act")}),
+            "provenance": row["p"],
+        }
+        srcs.append(row["p"])
+    if sg_row is not None and not sg_listed:
+        sg = {
+            "jurisdiction": "SG",
+            "status": sg_row["controlled_status"] or "not listed",
+            "register": "Singapore Statutes Online: Misuse of Drugs Act 1973, Poisons Act 1938 "
+                        "and the Poisons Rules",
+            "statement": sg_row["controlled_statement"],
+            "schedules": [],
+        }
     for row in page["hsa-singapore"].get("hsaForensicClass", []):
         v = row["v"] or {}
-        sg = {"jurisdiction": "SG",
-              "register": "HSA Listing of Registered Therapeutic Products, forensic classification",
-              "forensicClassification": v.get("class"),
-              "plainLanguage": v.get("plainLanguage"),
-              "asOf": v.get("asOf"),
-              "note": "This is the HSA supply classification of the registered product. The "
-                      "Misuse of Drugs Act First Schedule and the Poisons Act schedules were not "
-                      "retrieved for this run, so no Singapore controlled-drug class is recorded.",
-              "provenance": row["p"]}
+        sg = dict(sg or {"jurisdiction": "SG"})
+        sg["forensicClassification"] = v.get("class")
+        sg["forensicClassificationPlain"] = v.get("plainLanguage")
+        sg["forensicClassificationAsOf"] = v.get("asOf")
+        sg["forensicClassificationNote"] = (
+            "the HSA supply classification of the registered product, which restricts how it is "
+            "supplied in Singapore and is not itself a controlled-drug schedule")
+        sg["forensicClassificationProvenance"] = row["p"]
         srcs.append(row["p"])
-    consulted = ["US DEA schedule as recorded on the openFDA NDC product record",
-                 "TGA Standard for the Uniform Scheduling of Medicines and Poisons, June 2026",
-                 "HSA forensic classification (the Singapore Misuse of Drugs Act and Poisons Act "
-                 "schedules were not retrieved for this run)"]
-    if not (us or au or sg):
-        return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
+    consulted = ["US DEA schedule as recorded on the openFDA NDC product record, retrieved "
+                 "2026-08-28",
+                 "TGA Standard for the Uniform Scheduling of Medicines and Poisons, Poisons "
+                 "Standard June 2026, register instrument F2026L00633",
+                 "Singapore Misuse of Drugs Act 1973 First and Fourth Schedules, Poisons Act 1938 "
+                 "Schedule and the Poisons Rules schedules, read from Singapore Statutes Online on "
+                 "2026-09-06",
+                 "HSA forensic classification as of 2026-08-07"]
+    if not (us or au or sg_listed or any(
+            k in (sg or {}) for k in ("forensicClassification",))):
+        return make_entry("absent", {"SG": sg} if sg else None, [], consulted=consulted,
+                          run_date=run_date), []
     value = {"sourcesChecked": consulted}
     if us:
         value["US"] = us
@@ -920,7 +997,7 @@ def build_controlled(page, run_date, incumbent_regulatory, sg_row):
     if sg:
         value["SG"] = sg
     value["controlledAnywhereIngested"] = bool(
-        us or (au and au.get("controlledUnderSchedule8or9")))
+        us or (au and au.get("controlledUnderSchedule8or9")) or sg_listed)
     return make_entry("present", value, dedupe_provs(srcs), run_date=run_date), \
         sorted({p["source"] for p in srcs})
 
@@ -1092,7 +1169,7 @@ def build_potency(page, run_date):
                                   "provenance": row["p"]})
         g["values"].append(pch)
         srcs.append(row["p"])
-    consulted = ["ChEMBL 37 activities with a pChEMBL value, grouped per target and assay type"]
+    consulted = ["ChEMBL 37, retrieved 2026-09-05: activities carrying a pChEMBL value, grouped per target and assay type"]
     if not groups:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
     rows = []
@@ -1111,7 +1188,7 @@ def build_potency(page, run_date):
 
 
 def build_publication_years(page, run_date):
-    consulted = ["ChEMBL 37 compound_record document years"]
+    consulted = ["ChEMBL 37, retrieved 2026-09-05: compound_record document years"]
     rows = page["chembl"].get("publicationYears", [])
     if not rows:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
@@ -1266,7 +1343,7 @@ def registry_value(page):
 
 
 def build_registry(page, run_date):
-    consulted = ["ClinicalTrials.gov API v2 studies snapshot 2026-09-01"]
+    consulted = ["ClinicalTrials.gov API v2 studies snapshot 2026-09-01T09:00:05"]
     value, srcs = registry_value(page)
     if not value:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
@@ -1367,7 +1444,8 @@ def build_identifiers(page, run_date):
             srcs.append(rows[0]["p"])
     if gsrs:
         value["gsrs"] = gsrs
-    consulted = ["PubChem PUG REST compound record", "UniProtKB target and sequence records",
+    consulted = ["PubChem PUG REST compound record, retrieved 2026-09-05",
+                 "UniProtKB release 2026_03 target and sequence records, retrieved 2026-09-05",
                  "FDA GSRS public substance dump 2026-08-06"]
     if not value:
         return make_entry("absent", None, [], consulted=consulted, run_date=run_date), []
@@ -1396,6 +1474,62 @@ def build_pgx(page, run_date):
                                       "count until the decision recorded in "
                                       "docs/revamp/BLOCKERS.md#clinpgx"})
     return entry
+
+
+ALSO_CONSULTED = {
+    "interactions": [
+        "openFDA drug label drug_interactions section (bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs curated drug-drug interaction dataset "
+        "(FRDB v2024-12-30; stitcher read 2026-09-05)",
+    ],
+    "adverseEvents": [
+        "openFDA drug label warnings_and_cautions and overdosage sections "
+        "(bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs curated adverse-event rows (FRDB v2024-12-30)",
+        "DrugCentral FAERS disproportionality rows (release 2023-11-01)",
+    ],
+    "indication": [
+        "openFDA drug label indications_and_usage section (bulk export packaged 2026-08-28)",
+        "DrugCentral OMOP indication and off-label rows (release 2023-11-01)",
+        "NCATS Inxight Drugs uses (stitcher read 2026-09-05)",
+    ],
+    "kinetics": [
+        "openFDA drug label pharmacokinetics section (bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs FRDB pharmacokinetic parameter rows (v2024-12-30)",
+    ],
+    "labelKinetics": [
+        "openFDA drug label pharmacokinetics section (bulk export packaged 2026-08-28)",
+        "NCATS Inxight Drugs FRDB pharmacokinetic parameter rows (v2024-12-30)",
+    ],
+    "faers": ["DrugCentral FAERS disproportionality rows (release 2023-11-01)"],
+    "withdrawal": ["ChEMBL 37 drug_warning rows (retrieved 2026-09-04)",
+                   "NCATS Inxight Drugs marketing status by jurisdiction (stitcher read 2026-09-05)"],
+    "target": [
+        "NCATS Inxight Drugs targets (stitcher read 2026-09-05)",
+        "DrugCentral act_table mechanism targets (release 2023-11-01)",
+        "IUPHAR/BPS Guide to PHARMACOLOGY 2026.2 ligand-target interactions",
+        "UniProtKB release 2026_03 target records",
+    ],
+    "mechanismClass": [
+        "NCATS Inxight Drugs pharmacologic class statements (stitcher read 2026-09-05)",
+        "DrugCentral MeSH pharmacologic action rows (release 2023-11-01)",
+        "IUPHAR/BPS Guide to PHARMACOLOGY 2026.2 ligand action",
+    ],
+}
+
+
+def note_consulted(fields: dict, name: str) -> None:
+    """A field this run did not fill still names every source that was searched for it, so a page
+    can render 'not found in [sources checked, date]' rather than a blank."""
+    entry = fields.get(name)
+    if entry is None or entry.get("state") == "present":
+        return
+    held = list(entry.get("consulted") or [])
+    for line in ALSO_CONSULTED.get(name, []):
+        if line not in held:
+            held.append(line)
+    if held:
+        entry["consulted"] = held
 
 
 # ----------------------------------------------------------------------------------------------
@@ -1503,7 +1637,8 @@ def main() -> int:
         "pmda": ({"regulatory.JP": 12}, None),
         "tga-artg": ({"regulatory.AU": 12}, None),
         "hsa-singapore": ({"regulatorySG": 1, "hsaForensicClass": 1, "hsaRegistrants": 1,
-                           "hsaAtcCodes": 1, "hsaProduct": 12}, trim_hsa),
+                           "hsaAtcCodes": 1, "hsaProduct": 12,
+                           "sgControlledStatus": 1}, trim_hsa),
         "clinicaltrials": ({"registry.trialCount": 1, "registry.phases": 1, "registry.statuses": 1,
                             "registry.completionDates": 1, "registry.design": 1,
                             "registry.enrolment": 1, "registry.hasResults": 1,
@@ -1596,8 +1731,9 @@ def main() -> int:
                     regulatory_incumbent = fields.get(
                         "regulatory",
                         {"state": "absent", "value": None,
-                         "consulted": ["the DEVELOPMENT model carried no regulatory field before "
-                                       "this integration"]})
+                         "note": "the DEVELOPMENT model carried no regulatory field before this "
+                                 "integration; what is recorded here is what the Phase 2 registers "
+                                 "state about this substance"})
                     fields["regulatory"] = build_regulatory(
                         regulatory_incumbent, page, run_date, sg_status.get(key), filled)
                     sg_block = (fields["regulatory"].get("value") or {}).get("SG")
@@ -1638,6 +1774,9 @@ def main() -> int:
                     if entry["state"] == "present":
                         filled.append(("identifiers", contributors))
 
+                    for name in ALSO_CONSULTED:
+                        note_consulted(fields, name)
+
                     incumbent_patent = fields.get("patentStatus", {"state": "absent", "value": None})
                     entry, contributors = build_patent_status(incumbent_patent, page, run_date, filled)
                     fields["patentStatus"] = entry
@@ -1675,7 +1814,7 @@ def main() -> int:
         "pagesInBatchesNotInAssignment": unassigned,
         "gatedPagesWritten": gated_pages,
         "sources": {name: {**report, "licence": LICENCE_SHORT.get(name),
-                            "licence_full_text_as_published": LICENCE_FULL.get(name)}
+                            "licence_full_text_as_published": LICENCE_FULL.get(name, [])}
                     for name, report in load_report.items()},
         "newFields": new_fields + ["patentStatus (existing field, re-filled from the Orange Book "
                                    "and Purple Book)"],
