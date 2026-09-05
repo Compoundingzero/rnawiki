@@ -151,3 +151,7 @@ Do not deploy a migration or scientific workflow after static tests alone. Requi
 replay, PostgreSQL integration tests, production build and the relevant keyboard, accessibility and
 responsive browser journey. After deployment, verify the public page, API/export binding, source
 freshness and review history against the same current revision.
+
+## Active revamp (Sept 2026)
+The authoritative plan is docs/specs/revamp-2026-09.md. Progress is data/revamp/state.json.
+At the start of every session: read both, read the last 60 lines of docs/worklogs/revamp-2026-09.md, announce the current step, resume. Never restart a completed step.

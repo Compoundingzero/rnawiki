@@ -1,0 +1,63 @@
+{
+  "branch": "revamp/2026-09",
+  "phases": {
+    "0": {
+      "status": "IN_PROGRESS",
+      "steps": {
+        "0.5": "done"
+      },
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "1": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "2": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "3": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "4": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "5": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "6": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "7": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    },
+    "8": {
+      "status": "PENDING",
+      "steps": {},
+      "gate_evidence": null,
+      "updated": "2026-09-05T05:13:47+00:00"
+    }
+  },
+  "blockers": [],
+  "last_commit": null
+}
