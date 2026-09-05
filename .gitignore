@@ -126,3 +126,6 @@ __pycache__/
 .pytest_cache/
 data/corpus-20k/final/html-text/
 data/corpus-20k/final/pages/
+data/revamp/baseline/html-text/
+data/revamp/baseline/runs/
+data/revamp/gsc-export-*/

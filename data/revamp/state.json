@@ -2,15 +2,19 @@
   "branch": "revamp/2026-09",
   "phases": {
     "0": {
-      "status": "IN_PROGRESS",
+      "status": "PASSED",
       "steps": {
+        "0.1": "done",
+        "0.2": "done",
+        "0.3": "done",
+        "0.4": "BLOCKED-WITH-EVIDENCE (per-page attribution; question answered from the export on disk)",
         "0.5": "done"
       },
-      "gate_evidence": null,
-      "updated": "2026-09-05T05:13:47+00:00"
+      "gate_evidence": "docs/worklogs/revamp-2026-09.md#G0",
+      "updated": "2026-09-05T05:30:57+00:00"
     },
     "1": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "steps": {},
       "gate_evidence": null,
       "updated": "2026-09-05T05:13:47+00:00"
@@ -58,6 +62,9 @@
       "updated": "2026-09-05T05:13:47+00:00"
     }
   },
-  "blockers": [],
+  "blockers": [
+    "docs/revamp/BLOCKERS.md#credentials",
+    "docs/revamp/BLOCKERS.md#0.4"
+  ],
   "last_commit": null
 }

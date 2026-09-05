@@ -1,0 +1,67 @@
+{
+ "fetchedPages": 1592,
+ "status200": 1592,
+ "non200": [],
+ "setsWritten": {
+  "draw803": 798,
+  "draw324": 322,
+  "indexed": 636,
+  "matched604": 604,
+  "matched252": 251
+ },
+ "keysMissingFromFetch": {},
+ "crawlTextToHtml": {
+  "definition": "extract.py fullChars / htmlBytes, the same figure Gate 2 and the Phase 5 measurement recorded",
+  "indexedMedian": 0.10649,
+  "indexedMin": 0.07424,
+  "indexedMax": 0.13699,
+  "allFetchedMedian": 0.09055,
+  "byTierMedian": {
+   "tier1": 0.10301,
+   "tier2": 0.07358,
+   "tier3": 0.0584
+  }
+ },
+ "perSampleCrawl": {
+  "carbidopa-levodopa": {
+   "crawl": 0.08567,
+   "htmlBytes": 77936,
+   "visibleChars": 6677
+  },
+  "cdx-3379": {
+   "crawl": 0.0665,
+   "htmlBytes": 57733,
+   "visibleChars": 3839
+  },
+  "1-2-distearoyl-sn-glycero-3-phosphocholine": {
+   "crawl": 0.05031,
+   "htmlBytes": 28445,
+   "visibleChars": 1431
+  },
+  "rofecoxib": {
+   "crawl": 0.08266,
+   "htmlBytes": 121451,
+   "visibleChars": 10039
+  },
+  "amlodipine": {
+   "crawl": 0.11323,
+   "htmlBytes": 200241,
+   "visibleChars": 22673
+  },
+  "cysteamine": {
+   "crawl": 0.10248,
+   "htmlBytes": 133122,
+   "visibleChars": 13643
+  },
+  "metformin": {
+   "crawl": 0.12502,
+   "htmlBytes": 246491,
+   "visibleChars": 30817
+  },
+  "sirolimus": {
+   "crawl": 0.1309,
+   "htmlBytes": 259299,
+   "visibleChars": 33942
+  }
+ }
+}
