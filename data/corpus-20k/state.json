@@ -236,7 +236,9 @@
     "gate-1b-v4.batches": 20,
     "gate-1b-v4.records": 50658,
     "identity-pass3-final.batches": 7,
-    "identity-pass3-final.records": 102101
+    "identity-pass3-final.records": 102101,
+    "materialise-tier-2.batches": 18,
+    "materialise-tier-2.records": 4477
   },
   "batches": [
     {
@@ -12814,6 +12816,168 @@
       "sha256": "ff345e2076636c7fa4e219898ba428cadd6a66ef2b272a3af2a3b65b6ca14f30",
       "records": 219,
       "at": "2026-09-04T22:18:33.616Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 1,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0001.json",
+      "sha256": "10df247d5f085b7ded384cbf366b07834ef8e2afd1aa258871f82b2257e67a02",
+      "records": 250,
+      "at": "2026-09-05T00:10:56.586Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 2,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0002.json",
+      "sha256": "9529d624ce6f035d39758ebcbe3cdfc0f6a2bf06fb817ba39e68e30462ff7839",
+      "records": 250,
+      "at": "2026-09-05T00:11:06.122Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 3,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0003.json",
+      "sha256": "a569c37af485cdebb25ee491eafcff88ccfaa60fafa76d0ee7b10fb390c30fa1",
+      "records": 250,
+      "at": "2026-09-05T00:11:16.283Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 4,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0004.json",
+      "sha256": "26130466194b0e6784f709798481629ccaaf0ef0478d994ff425778588b0a507",
+      "records": 250,
+      "at": "2026-09-05T00:11:25.353Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 5,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0005.json",
+      "sha256": "966608db0c90305ab671b944dca1c0a82833d7942e4143ddb859f9ead4785718",
+      "records": 250,
+      "at": "2026-09-05T00:11:34.868Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 6,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0006.json",
+      "sha256": "b6dc7a359c74958472157ee5f41e2aaee950bafcba5f27e7031d5465b2b42f28",
+      "records": 250,
+      "at": "2026-09-05T00:11:46.911Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 7,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0007.json",
+      "sha256": "5523c21ebb428a5159aa9ec09050593b9a14c2f25605eb5e4e5b29a2e48529ce",
+      "records": 250,
+      "at": "2026-09-05T00:11:57.557Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 8,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0008.json",
+      "sha256": "9018b722b9bed12c26f9c6492aee276ef0c332adafd2011e874bcc4855493551",
+      "records": 250,
+      "at": "2026-09-05T00:12:08.512Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 9,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0009.json",
+      "sha256": "57a986c0eb8afd8d624a2199b95cd6a10306915d0af112ca59c14181e4f36229",
+      "records": 250,
+      "at": "2026-09-05T00:12:19.182Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 10,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0010.json",
+      "sha256": "de897fe9cb69402e9ae0145c217603d8dc2a7d4e1de662743eb2eb643c80e8d3",
+      "records": 250,
+      "at": "2026-09-05T00:12:29.370Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 11,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0011.json",
+      "sha256": "0d8931ccd812f9aa814af26a4161faff69aa7fed94d8a92ad9a449c50a96333f",
+      "records": 250,
+      "at": "2026-09-05T00:12:39.559Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 12,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0012.json",
+      "sha256": "1e8c6d434ef857474cd7497758d59fcf27a5c439abe1a0ec4e7aa9ebf138267e",
+      "records": 250,
+      "at": "2026-09-05T00:12:50.345Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 13,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0013.json",
+      "sha256": "bdc92eafa5817cde1503a8d38fdf35fd0874df2baec420b919ca397043dbe859",
+      "records": 250,
+      "at": "2026-09-05T00:13:00.288Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 14,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0014.json",
+      "sha256": "2f790b428a9c0d70d55b0d9c306054316d5b11138c6f86965d4163834a5af1ed",
+      "records": 250,
+      "at": "2026-09-05T00:13:12.718Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 15,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0015.json",
+      "sha256": "afde62520ea68a8a1b6ef5fcaefebabe7ec2cb9354b727ed2af4d60549d95cec",
+      "records": 250,
+      "at": "2026-09-05T00:13:21.752Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 16,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0016.json",
+      "sha256": "a6ae5794e798835e9775b571e5af6c15b828de65da0897a677bddd868ecdaaeb",
+      "records": 250,
+      "at": "2026-09-05T00:13:32.460Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 17,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0017.json",
+      "sha256": "d8b40188725ba6c92572aaefc8b8c6f6afe0dab82f14ff31749b6506fefe215f",
+      "records": 250,
+      "at": "2026-09-05T00:13:44.593Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-2",
+      "batch": 18,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-2/batch-0018.json",
+      "sha256": "c9fa30a1310d2f16d847517ae2c96c5d85ddadec8c7392b26ca46bfcf21fd740",
+      "records": 227,
+      "at": "2026-09-05T00:13:53.129Z"
     }
   ],
   "legalGate": {},
@@ -12972,5 +13136,5 @@
     }
   },
   "awaiting": null,
-  "updated_at": "2026-09-04T23:03:28.524Z"
+  "updated_at": "2026-09-05T00:13:53.132Z"
 }
