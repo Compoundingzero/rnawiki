@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://rnawiki.com/sitemaps/tier-1.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://rnawiki.com/sitemaps/tier-2.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://rnawiki.com/sitemaps/browse.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://rnawiki.com/sitemaps/pages.xml</loc>
+  </sitemap>
+</sitemapindex>
