@@ -1,0 +1,46 @@
+{
+  "version": "2026-09-05",
+  "pending_source": [
+    "patentStatus"
+  ],
+  "structural": {
+    "itp": {
+      "applicable_when": "itp_tested",
+      "source": "data/corpus-20k/raw/jax-itp legend mapping in data/corpus-20k/tiers/model-assignment.ndjson reasons (ITP)"
+    },
+    "withdrawal": {
+      "applicable_when": "withdrawn_true"
+    },
+    "approvalDate": {
+      "applicable_when": "approved_in_any_register_or_model_clinical"
+    },
+    "whyStopped": {
+      "applicable_when": "has_stopped_registry_study"
+    },
+    "sponsor": {
+      "applicable_when": "has_registry_study"
+    },
+    "indication": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "labelKinetics": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "adverseEvents": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "kinetics": {
+      "applicable_when": "not_NA_COMBINATION"
+    },
+    "target": {
+      "applicable_when": "has_chembl_id"
+    },
+    "mechanismClass": {
+      "applicable_when": "has_chembl_id"
+    },
+    "relatedOnTarget": {
+      "applicable_when": "has_chembl_id"
+    }
+  },
+  "note": "A field whose stored state is not-applicable with a rule id is not applicable; a field absent from a page's record but listed for its model is absent (applicable). The loader's lifted fields (doseStudied, approvalDate) count as fields."
+}
