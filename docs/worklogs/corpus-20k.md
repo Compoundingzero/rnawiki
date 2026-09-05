@@ -11,83 +11,42 @@ above its threshold. Everything else: decide, log, continue.
 
 ## RESUME
 
+**Where work is: DONE — the corpus-20k rebuild is in production (2026-09-05).** 28,832 pages on
+rnawiki.com (Tier 1 1,719 · Tier 2 4,477 · Tier 3 22,636), 636 indexable at threshold 11, every
+tier verified live, Tiers 1–2 submitted to IndexNow, backup and data archive recorded. The FINAL
+REPORT below is the deliverable; production numbers supersede earlier sections.
+
 ```bash
 cd "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion"
-npx tsx scripts/corpus-20k/status.ts     # phase, exact next step + command, completed steps, batches, gates
+npx tsx scripts/corpus-20k/status.ts                       # phase 5-done; load ledger per tier
+npx tsx scripts/corpus-20k/deploy/verify-live.ts --base-url https://rnawiki.com --json --require-all
 ```
 
-**Where work is:** TIER 1 IS LIVE on rnawiki.com (PR #16, deployment 3ef6829f). Phase 5d runs as
-workflow `corpus-20k-phase5d`: code fixes (JSON-LD on corpus pages, corpus-aware IndexNow,
-three-click facet index, monitor memory, marker identity) → PR → deploy → IndexNow Tier 1 → Tier 2
-→ Tier 3 → final measurement. The worktree's main now equals origin/main; corpus data is present
-but untracked (archive branch + tarball). Earlier: Phase 5c Phase 5b's hygiene stage
-made the gate green (18 of 18; commit `15bc55a`) and took the production backup
-(`rnawiki-backups/corpus-20k-2026-09-05/`, 131 MB, sha256 f66f8fb0…), but the push was refused:
-local main carries 3.56 GB of corpus data with ten files over GitHub's 100 MiB limit. Decision
-(logged): the release branch `release-d1/corpus-20k` is built from origin/main with code, specs,
-worklogs and small evidence only; the corpus data stays on the workstation (local branch
-`archive/corpus-20k-full-history` + tarball under rnawiki-backups); after the merge the worktree's
-main is reset to origin/main with the data restored untracked. Then Tier 1 → 2 → 3 → measure.
-Threshold 11. Earlier: Phase 5a done; Earlier: Phase 2d (evidence-age fix, CLINICAL templates, threshold derivation; integration fixes; then Gate 2 on seven samples through the real template with like-for-like HTML measurement against the live site). Phase 4 templates are built and committed. Earlier: Phase 2c re-measure 0.247 (cause fixed in 2d); Phase 2b (augment → seeds → questions →
-page text → measure → Gate 1b) is running as workflow `corpus-20k-phase2b`, relaunched after its
-augment step hit a session limit having edited batch files in place with no checkpoint (those files
-were reverted to `dbc7241`; the augment script and extractor edits were kept). Built and committed
-meanwhile: migration `0024_corpus_pages` and the idempotent loader `scripts/corpus-20k/load/materialise.ts`
-(disposable-database replay passed; suppression guard triggers fire), plus the three executors
-(`overlap/`, `questions/`, `derived/`). **Lesson:** an agent that rewrites files in place must
-checkpoint each file before the next; a run cut off between edits leaves no recoverable state. Scaffolding committed (`scripts/corpus-20k/state.ts`,
-`status.ts`, `decide.ts`; `data/corpus-20k/state.json`; this log). Closed decisions logged in
-state (contents rail → Vercel; hover previews dropped; Wikiwand governs dossier structure from
-Felix's eight supplied captures at `data/design-study/captures/wikiwand/`; Atlas Obscura reversed and
-its captures deleted; Awwwards and Quanta measured-not-seen; B4 link-only, OSF/Zenodo robots
-conflict is a hard blocker on ingestion; light default). **Next:** when the execute workflow lands, read `data/corpus-20k/identity/summary.json`,
-`reconciliation/summary.json`, `suppression/summary.json`, `recovery/report.md`, write the five
-Phase 0 tables and the Phase 1 table below, commit, then Phase 2. `state.next` names it. Python
-environment for RDKit/duckdb: `.venv-corpus/bin/python` (gitignored; recreate with
-`python3 -m venv .venv-corpus && .venv-corpus/bin/pip install rdkit duckdb pyarrow pandas`).
+**Open for Felix:** (1) the index population — hold threshold 11 (636 URLs) or index the 7–10
+band (2,365 more pages at measured medians 0.202 positional / 0.453 lexical); (2) the DrugBank
+licence, against the list in the final report; (3) the 214 display-name collisions and 697
+suspected missed merges (`identity/slug-collisions-pass2.json`, `identity/suspected-missed-merges.json`)
+for a person's pass; (4) the RSC payload (59–64 % of each document) as the next text-to-HTML lever.
+**Follow-ups, not blocking:** run the §5.3 rendered duplicate check; give the 39 suppressed Tier 3
+pages without a question block a supervision line in the stub template; drop seed 7's stored
+rows; fix `overlap/measure.py --sample` truncating COMBO keys at a comma; re-record the frozen
+bar's DOM-path string; the legacy `/browse` pager.
 
-**Designs fixed (Fable), do not re-derive:** `docs/specs/identity-resolution.md` (R1),
-`suppression-classes.md` (R2), `field-models.md` (R4), `derived-content.md` (Phase 3 seeds: ten
-mandated, seven own kept, four rejected with reasons), `disclosure.md` (Phase 4), `question-derivation.md`
-(R7), `overlap-measure.md` (R3), `dossier-template.md`, `browse.md` (R12), `deployment-plan.md`
-(R6/R8/R13). Opus executes them; a change to a spec invalidates its execution.
+**How to resume any later work:** the corpus data is on the workstation only (untracked under
+`data/corpus-20k/`, archive branch `archive/corpus-20k-full-history`, tarball in
+`rnawiki-backups/corpus-20k-data-2026-09-05/`); the loader refuses production without
+`--production-confirmed` and skips batches whose fingerprinted marker matches; never edit an agent
+prompt mid-run; every value verbatim with source and date; R2 suppression removes seeds 1, 2, 6.
 
-**"resume corpus 20k" / "continue":** run `status.ts`, read `next`, do exactly that. Never
-refetch a file that exists under `data/corpus-20k/raw/` (each batch is recorded in `state.batches`
-with its sha256). Never re-derive a step listed in `completed`. Never edit an agent prompt mid-run.
-
-**Working database:** `postgresql://admin@localhost:5432/rnawiki_corpus_completion` (PG18 tools at
-`/opt/homebrew/opt/postgresql@18/bin`). **Ingest data on disk:**
-`/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/` (openFDA archives 2.1 GB,
-label index 1.5 GB, ClinicalTrials.gov snapshot 778 MB, PubMed searches, models). **Disk free at
-start: 29 GB** — bulk downloads must fit; prefer paginated bulk endpoints over multi-GB dumps.
-
-**Build order (three deployments failed before this was found):** `export:dataset` writes
-`data/recorded-background.ndjson`; commit the export; `agents:run` reads it; `attach:agent-datasets`
-checks the manifest digest against the COMMITTED corpus. Regenerate export → commit → agent checks →
-attach. Production writes over verified TLS with the CA at
-`/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-backups/railway/postgres-root.crt` and `PGSSLSERVERNAME=localhost`.
-
-| Phase | What | State |
-| --- | --- | --- |
-| 0a/0b | Sources, licences, bulk, rate limits, projected calls | ✅ `a0a00bd`; tables below |
-| 0c | Identity resolution (R1) | ✅ 28,966 canonical; 4,307 merges; 1,256 splits; 55 holds |
-| 0d | Reconciliation (R8) | ✅ keep 7,049 · redirect 864 · retain 1,939 · retire 0 |
-| 0e | Suppression classes (R2) | ✅ suppressed 19,393 (17,663 unknown) · cleared 9,573; S1 narrowed, re-applied in Phase 2 |
-| 1 | Recover the 20 unreachable compounds | ✅ 19 found, 1 excluded (follistatin-344) |
-| 2 | Corpus assembly and tiering; Gate 1; Gate 1b | ✅ Gate 1 PROCEED (10/15); Gate 1b provisional PROCEED (threshold 7, 0.197) — re-measured once in 2c |
-| 2c | Identity pass 2, seeds retried, DEVELOPMENT templates, re-measure | ✅ 23 merges; re-measure 0.247 traced to the evidence-age block |
-| 2d | Evidence-age fix, CLINICAL templates, Gate 1b final, integration, **Gate 2** | ✅ GATE 2 PROCEED (indexed 0.191; like-for-like HTML 0.799 → 0.279) |
-| 5a | Pre-load fixes + Gate 2 recheck | ✅ threshold 11 → 636 indexed (0.188 / 0.196 / lexical 0.369); 7–10 promotion band |
-| 5b | Hygiene to a green gate; production backup | ✅ gate 18/18 (`15bc55a`); backup taken; push refused (oversize data) |
-| 5c | Filtered release, PR #16, deploy 3ef6829f, verify; **Tier 1 live** | ✅ 1,719 pages, 610 indexable; stopped before IndexNow on JSON-LD / IndexNow / click-depth defects |
-| 5d | Fix JSON-LD, corpus-aware IndexNow, three-click facet index, monitor memory, marker identity; deploy; IndexNow Tier 1; Tier 2; Tier 3; measure | 🔄 workflow `corpus-20k-phase5d` |
-| 3 | Derived content table | ✅ below (counts from 2c; seed 7 re-run in 2d) |
-| 4 | Templates, browse, home, sitemap index, definitions, ITP page | ✅ built and verified on an isolated production build (`d6af1da`) |
-| 3 | Derived content (Fable): ten seeds + at least six own, fire counts, question wording, suppression | ⛔ |
-| 4 | Disclosure spec, question derivation rules (Fable), templates and browse (Opus); Gate 2 on seven samples | ⛔ |
-| 5 | Rebuild and deploy tier by tier, verify live, IndexNow, orphan audit, measure | ⛔ |
-| — | Final report | ⛔ |
+| Phase | State |
+| --- | --- |
+| 0 sources / identity / reconciliation / suppression | ✅ |
+| 1 recovery of the 20 unreachable compounds | ✅ 19 of 20 |
+| 2 assembly, Gate 1 (median 10/15), Gate 1b (threshold 11) | ✅ |
+| 3 derived content (13 seeds fire, 4 discarded, 4 rejected) | ✅ |
+| 4 disclosure, questions, templates, browse, home | ✅ |
+| 5 Gate 2 PROCEED; deploy Tier 1 → 2 → 3; verify; IndexNow; audit; measure | ✅ **live** |
+| Final report | ✅ below |
 
 <!-- END RESUME BLOCK -->
 
@@ -540,6 +499,145 @@ found: the loader accepted `--production-confirmed` without enforcing it (fixed 
 stale disposable-run markers cannot be told from production markers (hardened in 5d);
 `discovery:monitor` exhausts Node's heap on the full index (streamed per child in 5d); the sitemap
 cache is 15 minutes, so verification runs after the refresh.
+
+## FINAL REPORT — corpus 20k in production (2026-09-05)
+
+Production numbers supersede every earlier figure in this log; the 29 places where an earlier
+section's number no longer matches (pre-pass-3 tier sizes, suppressed totals, seed counts) are
+listed in `data/corpus-20k/final/report-figures.json` → `contradictions`. Live measurement:
+`data/corpus-20k/final/summary.json` and `report.md`.
+
+### What shipped, per tier
+
+| Tier | Pages loaded | Indexable (≥ 11 present fields) | Suppressed | Load rate | Deployment record |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1 Longevity + withdrawn arcs | 1,719 | 610 | 755 | 14.6 pages/s | PR #16 → deployment 3ef6829f; `deploy/tier-1.json` |
+| 2 Clinical | 4,477 | 26 | 1,062 | 23.1 pages/s | PR #17 (JSON-LD, corpus-aware IndexNow, three-click facets) → deployment 1d8e7949; `deploy/tier-2.json` |
+| 3 Development (noindex, out of every sitemap, not robots-disallowed) | 22,636 | 0 by rule | 17,451 | 42.3 pages/s | `deploy/tier-3.json` |
+| **Total** | **28,832** | **636** | **19,268** | | migrations 26; 870 redirects all 308; 0 orphans over 9,859 legacy slugs |
+
+Models: LONGEVITY 1,109 · CLINICAL 5,087 · DEVELOPMENT 22,636. Withdrawn 663 (282 with a stated
+reason). IndexNow: Tier 1 610 submitted / 610 accepted; Tier 2 26 / 26; Tier 3 refused by the tool
+by design. Live checks per tier: samples 200 on the new template, no empty element, no placeholder
+(two substring false positives cleared by word-boundary), suppression sweep (0 seed 1/2/6 blocks on
+any suppressed page; supervision first), robots allows dossiers, 0 vendor hosts, frozen home
+search bar 0.0 px at 1440/375/320, Tier 3 noindex verified on 10 random pages and by exhaustive
+intersection (22,636 URLs against the four sitemap children: empty).
+
+### Before / after, matched sizes (the like-for-like figures)
+
+| Measure | Before (live, same medicines) | After (live, same medicines) | Rule |
+| --- | ---: | ---: | --- |
+| Positional nearest-neighbour median, 803 draw (798 pages after merges) | 0.799 | **0.278** | — |
+| Positional, 324 draw (322) | 0.786 | **0.263** | — |
+| Shared-word share (>90 % of pages), 604 medicines | 0.796 | **0.207** | target near zero |
+| Crawl text-to-HTML, indexed median | 8.3 % | **10.6 %** | must rise ✓ |
+| Live text-to-HTML (innerText/outerHTML), samples | 0.07 % | **3.3–5.5 %** | must rise ✓ |
+
+Indexed set on production (636 pages): positional 0.188 size-matched / 0.196 all pairs (null
+model expects 0.363 at that size); p90 0.577; lexical 0.353 / 0.369; shared-word share 0.431 with
+markup rows, 0.369 prose-only (function words 0.146, ISO-date digits 0.111, clinical vocabulary
+0.181 — not near zero and cannot be); 277 of 636 pages sit above 0.20 (the tail is display-name
+collisions and same-target lineage pairs). The deployed pages reproduce the pre-deploy Gate 2
+recheck to six decimals. Questions on production: 58,525 distinct strings corpus-wide, most
+repeated on 0.55 % of pages; 8,464 on the indexable set, most repeated 0.31 %.
+
+### Indexing threshold and what it did to the legacy population
+
+Derived by measurement (Gate 1b, re-derived through rendered HTML): **11 present fields** — the
+2,249-page set at 7 missed on positional (0.202) and lexical (0.453). Consequence, live: the
+sitemap announces 636 dossier URLs where it announced 9,852; of the 9,852 legacy slugs, 8,987 map
+to a corpus page (588 indexable, 8,399 now `noindex, follow`, all answering 200) and 865 redirect
+(308) to their merged parent. **9,264 URLs left the index.** The promotion band (7–10 present
+fields) holds 2,365 pages: Tier 2 1,230 (257 / 292 / 369 / 312 at 7 / 8 / 9 / 10; their two
+fillable absences are interactions 592 and doseStudied 464), Tier 1 383, Tier 3 752 — but a
+DEVELOPMENT page cannot reach 11 on an 8-field model (patentStatus has no cleared source, so the
+ceiling is 7); a Tier 3 page promotes only by a **model change**: a register approval or label
+(6,706 Tier 3 pages have been dosed in humans; 406 reached registry phase 4, 1,234 phase 3), an
+ITP entry, an ageing-condition trial or a cited pathway sentence. This is the one decision left
+open for Felix: hold 11, or index the 7–10 band (2,365 pages) knowing the measured medians there.
+
+### Identity (R1)
+
+34,897 source records → 28,832 pages. Merges 4,441 (pass 1: 4,307 — salts 1,854, formulations
+1,198, name variants 736, brands 392, codes 112, stereo accidents 15; pass 2: 23 salt/solvate
+by parent structure; pass 3: 111 salt-named structureless pages), splits 1,257 (stereo 697,
+biosimilars 208, combinations 173, isotopes 133, esters 45; the dimethyl/ethane split), 55 K1/K2
+conflicts held for a person. 30 worked examples: `identity/worked-examples.md`. Suspected missed
+merges 697 (209 protonation-only structural, 488 nominal groups; 20-row sample in
+`report-figures.json`); **the §5.3 rendered-overlap check never ran** and is deferred. 214
+display-name collisions listed, unresolved (`identity/slug-collisions-pass2.json`).
+
+### Suppression (R2)
+
+19,268 pages suppressed on production; classes by test (last full run over 28,943): S1 ATC 819 ·
+S2 DEA 40 · S3 teratogenicity 516 · S4 cytotoxic 455 · S5 REMS 78 · S6 boxed warning 546 · S7
+monitored route 174 · S8 safety withdrawal 316 · S9 depot/insulin 31 · S10 unknown 17,621 ·
+cleared 9,608. Seeds 1, 2 and 6 exist on no suppressed page (database trigger plus a live sweep of
+487 suppressed pages). 39 Tier 3 pages with S1–S9 classes carry no question block at all and state
+the classification in the header only — recorded as thin, not as a breach.
+
+### Derived sections, on production
+
+Fires corpus-wide / on the 636 indexable: 2 N-of-1 designability 600 / 333 · 3 failure autopsy
+2,771 / 537 · 4 endpoint mismatch 1,054 / 603 · 5 stack interaction graph 575 / 28 · 8 provenance
+timeline 2,574 / 473 · 9 what would change this 890 / 258 · 10 source contradiction 191 / 12 · 12
+registry-to-publication gap 6,086 / 626 · 13 same-target lineage 2,164 / 0 · 14 spontaneous-report
+disproportion 969 / 33 · 15 evidence age (as a value) 7,257 / 634 · 16 trial size 8,615 / 636 · 17
+jurisdiction divergence 182 / 63. Discarded under the 40-page floor: 1 bioavailability gap (no
+parenteral-route positive sentence outside suppression), 6 time-to-signal (2, name collisions), 7
+sex-specific (36), 11 animal-only ceiling (the longevity set is human-trial-bearing by
+construction). Rejected by design: 18 human-equivalent dose, 19 ITP map (a reference page instead),
+20 formulation form, 21 evidence score.
+
+### Sources — what each contributed (production `page_sources`, 60,826 rows over 28,623 pages)
+
+Per-kind tables in `report-figures.json` → `sourcesContributed`. In words: ChEMBL supplied the
+page universe, structures, phases, mechanisms, ATC and warnings (CC BY-SA, noted per page); the
+FDA UNII file is the identity spine (171,912 substances; 0 field rows — identity, not content);
+openFDA label/NDC/Drugs@FDA/Orange Book/enforcement supplied indications, kinetics, interactions,
+adverse reactions, schedules, routes and marketing status; the ClinicalTrials.gov snapshot
+supplied every trial field (155,671 studies matched); Europe PMC supplied hallmark, organism-ladder,
+clock, dose-response, pathway and fasting/exercise sentences (11,801 cached queries at 3/s); JAX
+MPD supplied the ITP cohorts (53 pages); Open Targets supplied FAERS signals, mechanisms and
+targets; EMA and Health Canada supplied register statuses and withdrawal; PubChem resolved 1,927
+keyless names. UK, AU, JP and SG statuses are UNKNOWN on every page (registers not cleared);
+patent status is never present (Orange Book export carries no patent rows).
+
+**What DrugBank holds that no cleared source supplied** (the open subset is behind a login; the
+full set is CC BY-NC 4.0, price unpublished): curated drug–drug interactions (our interactions
+field is present on 695 of 5,087 CLINICAL pages — the second blocker in the promotion band);
+curated indications (2,422 of 5,087); curated targets and mechanism pharmacology for the 3,971
+pages without a ChEMBL id; protein sequences and 3D structures; the curated approved / experimental
+/ nutraceutical / illicit / withdrawn subsets (17,306 Tier 3 pages fall to the unknown-class
+default; 381 withdrawn pages carry no reason); cross-database links. That is the licence decision.
+
+### Still thin, and why
+
+Tier 3: 17,213 stubs; three quarters of the sampled Tier 3 pages carry no question — the honest
+shape of ChEMBL-only records. LONGEVITY: pathway 680, kinetics 524, hallmark 581, clocks 107, ITP
+53 of 1,109 (source limits, not extraction gaps). Seed 1 never fires. Withdrawn reasons 282 of
+663. The RSC payload is still 59–64 % of every corpus document (live text-to-HTML rose from
+0.07 % to 3–5 %; the inline payload remains the next lever). The 214 name collisions and 697
+suspected merges await a person. The §5.3 rendered duplicate check is deferred. Seed 7's 36 rows
+are stored and render nothing. The legacy `/browse` pager still links 18 of 153 pages (legacy-only
+dossiers were unreachable by three clicks before this release and now carry noindex anyway).
+
+### The eight sample pages, live
+
+https://rnawiki.com/d/metformin (data-rich Tier 1, 17 questions, suppressed by boxed warning) ·
+https://rnawiki.com/d/cysteamine (median Tier 1) · https://rnawiki.com/d/rofecoxib (withdrawn
+arc) · https://rnawiki.com/d/sirolimus (suppression class) · https://rnawiki.com/d/carbidopa-levodopa
+(Tier 2, noindex) · https://rnawiki.com/d/cdx-3379 (Tier 3) ·
+https://rnawiki.com/d/1-2-distearoyl-sn-glycero-3-phosphocholine (Tier 3 stub) ·
+https://rnawiki.com/d/amlodipine (formerly-withdrawn control).
+
+### Records
+
+Backup `rnawiki-backups/corpus-20k-2026-09-05/` (sha256 f66f8fb0…); data tarball
+`rnawiki-backups/corpus-20k-data-2026-09-05/` (1.77 GB, sha256 ea3df0c3…); full commit history on
+local branch `archive/corpus-20k-full-history`; production loads checkpointed under phase 5 in
+`data/corpus-20k/state.json` with database-fingerprinted markers under `data/corpus-20k/load/`.
 
 ## Risk register (binding; resolved in the phase named)
 

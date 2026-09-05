@@ -43,6 +43,24 @@
  * that is not there yet. `medicine_slug_redirects.target_drug_id` is a foreign key onto the legacy
  * `drugs` table: a redirect whose target has no legacy row is skipped and counted, not invented.
  *
+ * One hop, always. `resolvePublicMedicineRoute` (lib/queries/drugs.ts) refuses a redirect whose
+ * target is itself an old slug: a bad ledger fails closed rather than serving a chain or a loop.
+ * The Tier 2 load proved that this script could write one anyway. It wrote
+ * `risedronate-sodium-hemi-pentahydrate -> risedronate` while a row from 2026-09-02 already said
+ * `risedronate-sodium-hemipentahydrate -> risedronate-sodium-hemi-pentahydrate`, and the older
+ * slug — a URL that had been answering 308 — began answering 404. So the ledger is now read with
+ * its target slugs, and three things follow, all counted and none inventing a destination:
+ *
+ *   - before any batch runs, every chain already in the ledger is walked to its terminal drug and
+ *     the earlier hops are re-pointed there, keeping each row's own recorded reason and rationale;
+ *   - a redirect this run would write onto a slug that is itself an old slug is re-pointed to that
+ *     chain's terminal drug instead of being written as a first hop;
+ *   - an existing row whose target this run is turning into an old slug is re-pointed, in the same
+ *     transaction, to where the new row points.
+ *
+ * A cycle is never repaired: the walk stops and the load refuses, because a cycle has no terminal
+ * target and picking one would be a guess about which URL is canonical.
+ *
  * Memory. The script holds one tier's inputs in memory (Tier 3, the largest, is ~90 MB of NDJSON).
  * Files are read line by line; nothing is slurped whole.
  */
@@ -542,7 +560,7 @@ function recordedDate(value: unknown, counters: Counters): string | null {
   return null
 }
 
-class Counters {
+export class Counters {
   private readonly values = new Map<string, number>()
 
   bump(label: string, by = 1): void {
@@ -629,6 +647,103 @@ export function assignSlugs(input: {
   }
 
   return slugByKey
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Redirect chains                                                                               */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface LedgerRedirect {
+  oldSlug: string
+  targetSlug: string
+  reason: string
+  rationale: string
+}
+
+export interface RedirectRepair {
+  oldSlug: string
+  targetSlug: string
+  terminalSlug: string
+  targetDrugId: string
+  reason: string
+  rationale: string
+}
+
+/**
+ * Follow `slug` through the ledger to the slug that is not itself an old slug.
+ *
+ * Returns null for a cycle, and null when the walk ends on a slug with no legacy `drugs` row —
+ * neither has a target this script is entitled to choose.
+ */
+export function terminalSlugOf(slug: string, ledger: Map<string, LedgerRedirect>): string | null {
+  const seen = new Set<string>([slug])
+  let current = slug
+  while (true) {
+    const next = ledger.get(current)
+    if (!next) return current
+    if (seen.has(next.targetSlug)) return null
+    seen.add(next.targetSlug)
+    current = next.targetSlug
+  }
+}
+
+/**
+ * Every ledger row whose target is itself an old slug, re-pointed at the end of its chain. The
+ * row's own recorded reason and rationale are carried over unchanged: only the destination moves.
+ */
+export function repairLedgerChains(input: {
+  ledger: Map<string, LedgerRedirect>
+  legacyDrugIdBySlug: Map<string, string>
+  counters: Counters
+}): RedirectRepair[] {
+  const { ledger, legacyDrugIdBySlug, counters } = input
+  const repairs: RedirectRepair[] = []
+  for (const row of [...ledger.values()].sort((a, b) => (a.oldSlug < b.oldSlug ? -1 : 1))) {
+    if (!ledger.has(row.targetSlug)) continue
+    const terminal = terminalSlugOf(row.targetSlug, ledger)
+    if (terminal === null) {
+      throw new Error(
+        `medicine_slug_redirects holds a cycle reachable from ${row.oldSlug}. A cycle has no ` +
+          'terminal target and this script will not choose one; correct the ledger by hand.',
+      )
+    }
+    const targetDrugId = legacyDrugIdBySlug.get(terminal)
+    if (!targetDrugId) {
+      counters.bump('redirect chains left alone: the terminal slug has no legacy drugs row')
+      continue
+    }
+    repairs.push({
+      oldSlug: row.oldSlug,
+      targetSlug: row.targetSlug,
+      terminalSlug: terminal,
+      targetDrugId,
+      reason: row.reason,
+      rationale: row.rationale,
+    })
+    counters.bump('redirect chains repaired: an earlier hop re-pointed to its terminal target')
+  }
+  return repairs
+}
+
+/** Write chain repairs in one transaction. Only `target_drug_id` changes. */
+export async function writeRedirectRepairs(
+  client: Client,
+  repairs: RedirectRepair[],
+): Promise<void> {
+  if (repairs.length === 0) return
+  await client.query('BEGIN')
+  try {
+    for (const repair of repairs) {
+      await client.query(
+        'UPDATE medicine_slug_redirects SET target_drug_id = $1 WHERE old_slug = $2',
+        [repair.targetDrugId, repair.oldSlug],
+      )
+    }
+    await client.query('COMMIT')
+  } catch (error) {
+    await client.query('ROLLBACK')
+    throw error
+  }
 }
 
 /* ------------------------------------------------------------------------------------------- */
@@ -823,10 +938,46 @@ async function main(): Promise<void> {
       if (entityClass !== null) legacyEntityClassBySlug.set(drug.slug, entityClass)
       reserved.add(drug.slug)
     }
-    const redirectRows = await client.query<{ old_slug: string }>(
-      'SELECT old_slug FROM medicine_slug_redirects',
+    const ledgerRows = await client.query<{
+      old_slug: string
+      target_slug: string
+      reason: string
+      rationale: string
+    }>(
+      `SELECT r.old_slug, d.slug AS target_slug, r.reason::text AS reason, r.rationale
+         FROM medicine_slug_redirects r
+         JOIN drugs d ON d.id = r.target_drug_id`,
     )
-    for (const redirect of redirectRows.rows) reserved.add(redirect.old_slug)
+    const ledger = new Map<string, LedgerRedirect>()
+    for (const redirect of ledgerRows.rows) {
+      reserved.add(redirect.old_slug)
+      ledger.set(redirect.old_slug, {
+        oldSlug: redirect.old_slug,
+        targetSlug: redirect.target_slug,
+        reason: redirect.reason,
+        rationale: redirect.rationale,
+      })
+    }
+
+    /* ---- 2b. chains already in the ledger -------------------------------------------------- */
+
+    const preflight = repairLedgerChains({ ledger, legacyDrugIdBySlug, counters })
+    if (preflight.length > 0) {
+      process.stdout.write(
+        `Redirect chains already in the ledger: ${preflight.length} row(s) re-pointed to their ` +
+          `terminal target${dryRun ? ' (dry run — nothing written)' : ''}.\n`,
+      )
+      for (const row of preflight) {
+        process.stdout.write(`  ${row.oldSlug} -> ${row.terminalSlug} (was ${row.targetSlug})\n`)
+      }
+      if (!dryRun) await writeRedirectRepairs(client, preflight)
+      // Applied to the in-memory ledger either way, so a dry run reports the plan a real run
+      // would follow rather than one computed against a ledger it is about to change.
+      for (const row of preflight) {
+        const held = ledger.get(row.oldSlug)
+        if (held) held.targetSlug = row.terminalSlug
+      }
+    }
 
     const slugByKey = assignSlugs({
       keysInOrder: identityOrder,
@@ -998,6 +1149,7 @@ async function main(): Promise<void> {
         legacyEntityClassBySlug,
         chembl,
         redirectsByTargetKey,
+        ledger,
         counters,
       })
 
@@ -1216,6 +1368,7 @@ function buildBatch(input: {
   legacyEntityClassBySlug: Map<string, string>
   chembl: Map<string, ChemblMoleculeFacts>
   redirectsByTargetKey: Map<string, Disposition[]>
+  ledger: Map<string, LedgerRedirect>
   counters: Counters
 }): BuiltBatch {
   const { keys, tier, threshold, counters } = input
@@ -1228,6 +1381,18 @@ function buildBatch(input: {
   const sourceRows: unknown[][] = []
   const registryRows: unknown[][] = []
   const redirectRows: unknown[][] = []
+  // One row per old slug per batch: `ON CONFLICT DO UPDATE` cannot affect the same row twice in
+  // one statement, and a repair could otherwise collide with a recorded disposition.
+  const redirectOldSlugs = new Set<string>()
+  const pushRedirect = (row: [string, string, string, string]): boolean => {
+    if (redirectOldSlugs.has(row[0])) {
+      counters.bump('redirect rows skipped: the old slug is already written in this batch')
+      return false
+    }
+    redirectOldSlugs.add(row[0])
+    redirectRows.push(row)
+    return true
+  }
 
   for (const key of keys) {
     const record = input.identity.get(key)
@@ -1458,14 +1623,30 @@ function buildBatch(input: {
 
     /* redirects onto this page */
     for (const redirect of input.redirectsByTargetKey.get(key) ?? []) {
-      const targetDrugId =
-        input.legacyDrugIdBySlug.get(slug) ??
-        (redirect.targetSlug ? input.legacyDrugIdBySlug.get(redirect.targetSlug) : undefined)
+      /*
+       * Where this redirect actually lands. The page's own slug when the page has a legacy row,
+       * otherwise the slug the disposition named. If that landing slug is itself an old slug the
+       * ledger already redirects, following it here is what keeps the row one hop: writing it as
+       * recorded would make this the first hop of a chain, and resolvePublicMedicineRoute answers
+       * 404 for a chain.
+       */
+      const landingSlug = input.legacyDrugIdBySlug.has(slug) ? slug : redirect.targetSlug
+      let targetSlug = landingSlug
+      if (landingSlug !== null && landingSlug !== undefined && input.ledger.has(landingSlug)) {
+        const terminal = terminalSlugOf(landingSlug, input.ledger)
+        if (terminal === null) {
+          counters.bump('REDIRECT rows skipped: the recorded target sits on a ledger cycle')
+          continue
+        }
+        targetSlug = terminal
+        counters.bump('REDIRECT rows re-pointed: the recorded target is itself an old slug')
+      }
+      const targetDrugId = targetSlug ? input.legacyDrugIdBySlug.get(targetSlug) : undefined
       if (!targetDrugId) {
         counters.bump('REDIRECT rows skipped: the target page has no legacy drugs row')
         continue
       }
-      if (redirect.slug === slug) {
+      if (redirect.slug === targetSlug) {
         counters.bump('REDIRECT rows skipped: the old slug is the target slug')
         continue
       }
@@ -1474,7 +1655,29 @@ function buildBatch(input: {
         counters.bump('REDIRECT rows skipped: the disposition states no reason')
         continue
       }
-      redirectRows.push([redirect.slug, targetDrugId, 'MERGED', rationale])
+      if (!pushRedirect([redirect.slug, targetDrugId, 'MERGED', rationale])) continue
+
+      /*
+       * The other direction. Any ledger row already pointing at the slug this row is turning into
+       * an old slug would become a first hop the moment this batch commits, so it is re-pointed
+       * here, in the same transaction, keeping its own recorded reason and rationale.
+       */
+      for (const held of input.ledger.values()) {
+        if (held.targetSlug !== redirect.slug) continue
+        if (held.oldSlug === targetSlug) {
+          counters.bump('ledger rows left alone: re-pointing them would make a loop')
+          continue
+        }
+        if (!pushRedirect([held.oldSlug, targetDrugId, held.reason, held.rationale])) continue
+        held.targetSlug = targetSlug ?? held.targetSlug
+        counters.bump('ledger rows re-pointed: this load turned their target into an old slug')
+      }
+      input.ledger.set(redirect.slug, {
+        oldSlug: redirect.slug,
+        targetSlug: targetSlug ?? '',
+        reason: 'MERGED',
+        rationale,
+      })
     }
   }
 

@@ -1,0 +1,41 @@
+{
+  "label": "final draw324",
+  "pagesFile": "data/corpus-20k/final/pages/draw324.ndjson",
+  "sampleFile": null,
+  "pages": 322,
+  "mode": "exhaustive",
+  "parameters": {
+    "shingle": 5,
+    "permutations": 128,
+    "batch": 250,
+    "neighbourBands": 32,
+    "neighbourRows": 4,
+    "neighbourAnalyticThreshold": 0.4204,
+    "neighbourBandsAreSpecDefault": true,
+    "sweepBands": 16,
+    "sweepRows": 8,
+    "sweepAnalyticThreshold": 0.7071,
+    "cascade": true,
+    "candidateStructures": [],
+    "backfilledPages": 0,
+    "minCandidates": 32,
+    "maxBucket": 512,
+    "rerank": 64,
+    "cachePages": 2000,
+    "seed": 20260904
+  },
+  "timings": {
+    "buildSeconds": 0.727,
+    "neighbourSeconds": 0.921,
+    "totalSeconds": 2.227,
+    "pagesPerSecond": 144.57
+  },
+  "work": {
+    "tokens": 279849,
+    "vocabulary": 19869,
+    "candidatesConsidered": 103362,
+    "pairsScoredExactly": 51681,
+    "largestBucket": null
+  },
+  "peakRssMb": 193.2
+}

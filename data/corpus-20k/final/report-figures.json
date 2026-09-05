@@ -1,0 +1,1482 @@
+{
+ "schema": "rnawiki-corpus-20k-report-figures/v1",
+ "generated": "2026-09-05",
+ "scope": "Figures for the corpus-20k final report. Local inputs are the Phase 5a/5d stage files under data/corpus-20k/; production figures are read-only SQL over the Railway TCP proxy (sslmode=verify-ca, PGSSLSERVERNAME=localhost) against the same 28,832-page corpus the site serves.",
+ "inputs": [
+  "data/corpus-20k/tiers/model-assignment.ndjson",
+  "data/corpus-20k/tiers/promotion-rule.md",
+  "data/corpus-20k/fields/{longevity,clinical,development}/batch-*.ndjson",
+  "data/corpus-20k/fields/coverage-summary.json",
+  "data/corpus-20k/identity/{summary,pass2-summary,pass3-summary,suspected-missed-merges,slug-collisions-pass2}.json",
+  "data/corpus-20k/identity/decisions.ndjson",
+  "data/corpus-20k/suppression/summary.json",
+  "data/corpus-20k/derived/fire-counts.json",
+  "data/corpus-20k/deploy/{threshold,tier-1,tier-2,tier-3}.json",
+  "data/corpus-20k/final/summary.json",
+  "data/corpus-20k/sources.json",
+  "docs/specs/corpus-20k-sources.md",
+  "production: corpus_pages, page_sources, drugs, inventory_resolutions, medicine_slug_redirects (read-only)"
+ ],
+ "tier3PromotionPool": {
+  "definition": "Tier 3 is the DEVELOPMENT model with withdrawn == false (data/corpus-20k/tiers/promotion-rule.md). Present-field counts are the production rule: the eight modelled fields; DEVELOPMENT records carry no doseStudied or approvalDate entry beside `fields`, so nothing is lifted.",
+  "tier3Pages": 22636,
+  "everDosedInHumans": {
+   "true": 6706,
+   "false": 15930,
+   "shareOfTier3": 0.2963,
+   "basis": {
+    "a ClinicalTrials.gov study matched this page": 4728,
+    "ChEMBL max_phase >= 1 with a recorded human indication, no matched registry study": 1978
+   },
+   "highestPhaseAmongDosed": {
+    "registry:PHASE2": 1929,
+    "chembl:2.0": 1414,
+    "registry:PHASE3": 1234,
+    "registry:PHASE1": 802,
+    "registry:PHASE4": 406,
+    "chembl:1.0": 389,
+    "registry:NA": 265,
+    "chembl:3.0": 175,
+    "registry:NA_OR_UNSTATED": 65,
+    "registry:EARLY_PHASE1": 27
+   }
+  },
+  "whatIsMissingToReachClinical": {
+   "pagesConcerned": 6706,
+   "count": 6706,
+   "statement": "All 6,706 dosed Tier 3 pages are missing an approval or label entry in a cleared register. This is definitional, not incidental: scripts/corpus-20k/tiers/assign-models.py assigns CLINICAL on any one of seven signals, and a page holding any of them would not be in the DEVELOPMENT model at all.",
+   "theSevenSignalsNoneOfThemHolds": [
+    "ChEMBL max_phase 4.0 or a first_approval year (reason code chembl-approval)",
+    "a Drugs@FDA application naming the substance as a single ingredient (drugsfda)",
+    "an Orange Book product with a single active ingredient (orange-book)",
+    "an EMA medicine-register entry matched on active substance (ema)",
+    "a Health Canada DPD ingredient entry (health-canada)",
+    "an openFDA label of product type HUMAN OTC DRUG (otc-label)",
+    "an existing RNAWiki entity class of APPROVED_MEDICINE, APPROVED_BIOLOGIC, WITHDRAWN_MEDICINE or OFF_LABEL_OR_COMPOUNDED (entity-class)"
+   ],
+   "howCloseTheySit": {
+    "registryPhase4": 406,
+    "registryPhase3": 1234,
+    "note": "Registry phase is not approval. A page at PHASE4 in ClinicalTrials.gov with no register entry stays DEVELOPMENT because no cleared register records a marketed or approved product for the substance; ChEMBL max_phase 3.0 (175 pages) is likewise short of the 4.0 the rule requires."
+   }
+  },
+  "whatIsMissingToReachLongevity": {
+   "pagesConcerned": 6706,
+   "count": 6706,
+   "statement": "All 6,706 dosed Tier 3 pages are missing every LONGEVITY trigger, again definitionally.",
+   "theFourTriggersNoneOfThemHolds": [
+    "an NIA ITP lifespan cohort arm (nia-itp; 51 pages corpus-wide hold it)",
+    "an ageing term in a matched ClinicalTrials.gov condition or primary outcome, after the Phase 2b recut dropped bare \"age-related\" (registry-ageing-term; 421 pages)",
+    "membership of the 803-slug biohacker broad slice (broad-slice; 765 pages)",
+    "a cited pathway sentence naming the compound, an ageing pathway and a mechanism verb (pathway; 60 pages)"
+   ],
+   "howCloseTheySit": {
+    "haveAtLeastOneMatchedRegistryStudy": 4728,
+    "chemblPhaseOnlyNoRegistryStudy": 1978,
+    "note": "Only a page with a matched registration can ever gain the registry-ageing-term reason, so 4,728 of the 6,706 sit on a route that a future ClinicalTrials.gov snapshot could open; the other 1,978 hold a ChEMBL phase and no registry record at all, and for them only an ITP entry or a cited pathway sentence could apply."
+   }
+  },
+  "presentFieldDistributionAgainstTheIndexingThreshold": {
+   "indexingThreshold": 11,
+   "thresholdBasis": "Gate 2 recheck (data/corpus-20k/gate2/summary-v2.json, 2026-09-05). The deploy procedure fixed in Phase 2d: index at 7 only if the threshold-7 set clears a size-matched cumulative positional nearest-neighbour median of 0.20 and an all-pairs median of 0.30. Measured on the rendered HTML of all 2,249 threshold-7 pages: size-matched 0.202454 (fails <= 0.20), all-pairs 0.256167 (passes <= 0.30), and the all-pairs lexical median 0.453177 is also above R3’s 0.40. The 636 pages at threshold 11 measure 0.188161 size-matched, 0.195831 all pairs, 0.368746 lexical. Indexing therefore deploys at 11; present-field counts 7 to 10 are the promotion criterion, to be re-measured as those pages gain fields.",
+   "histogram": {
+    "1": 11145,
+    "2": 6025,
+    "3": 2039,
+    "4": 1031,
+    "5": 742,
+    "6": 902,
+    "7": 752
+   },
+   "maxPresentObserved": 7,
+   "within1FieldOf11": 0,
+   "within2FieldsOf11": 0,
+   "within3FieldsOf11": 0,
+   "plainStatement": "No Tier 3 page is within 1, 2 or 3 fields of the threshold, and none can be. The DEVELOPMENT model defines eight fields, so 8 is the arithmetic ceiling and 11 is unreachable. In practice the ceiling is 7: patentStatus is present on 0 of 22,636 pages (22,601 not-applicable, 35 absent) because no Tier 3 page keys an approved US application in the openFDA Orange Book export. 752 pages already sit at that ceiling of 7, four fields short. Promotion to the indexed set is therefore not a coverage problem and no amount of extraction can solve it: a Tier 3 page reaches the threshold only by changing model - to CLINICAL (nine fields plus doseStudied and approvalDate, ceiling 11) or to LONGEVITY (fifteen fields plus doseStudied, ceiling 16) - which requires a new register, ITP, ageing-term or pathway fact, not a new value in an existing field.",
+   "distanceOfTheCeilingFromTheThreshold": {
+    "modelCeiling": 8,
+    "observedCeiling": 7,
+    "threshold": 11,
+    "shortfallAtObservedCeiling": 4
+   }
+  },
+  "topAbsentFieldsAmongTier3PagesWith3OrMorePresent": {
+   "pagesInScope": 5466,
+   "topThreeNotPresent": [
+    {
+     "field": "patentStatus",
+     "pages": 5466
+    },
+    {
+     "field": "whyStopped",
+     "pages": 3655
+    },
+    {
+     "field": "relatedOnTarget",
+     "pages": 3299
+    }
+   ],
+   "allNotPresent": [
+    {
+     "field": "patentStatus",
+     "pages": 5466
+    },
+    {
+     "field": "whyStopped",
+     "pages": 3655
+    },
+    {
+     "field": "relatedOnTarget",
+     "pages": 3299
+    },
+    {
+     "field": "target",
+     "pages": 3018
+    },
+    {
+     "field": "mechanismClass",
+     "pages": 2933
+    },
+    {
+     "field": "sponsor",
+     "pages": 730
+    }
+   ],
+   "topThreeRecordedAbsentOnly": [
+    {
+     "field": "whyStopped",
+     "pages": 3655
+    },
+    {
+     "field": "relatedOnTarget",
+     "pages": 2840
+    },
+    {
+     "field": "target",
+     "pages": 2559
+    }
+   ],
+   "note": "\"Not present\" counts absent plus not-applicable; \"recorded absent\" counts only state == absent. patentStatus tops the first list because it is not-applicable on every one of these pages (no approved US application), so it can never be filled; whyStopped, relatedOnTarget, target and mechanismClass are the fields a future source could actually fill."
+  }
+ },
+ "tier2PromotionPool": {
+  "definition": "Tier 2 is the CLINICAL model with withdrawn == false. Present-field counts follow the production rule: the nine modelled fields plus the two entries the augment stage wrote beside `fields` (doseStudied, approvalDate), which the loader lifts (scripts/corpus-20k/load/materialise.ts, liftTopLevelFields). Ceiling 11.",
+  "tier2Pages": 4477,
+  "presentFieldHistogram": {
+   "0": 204,
+   "1": 869,
+   "2": 769,
+   "3": 499,
+   "4": 339,
+   "5": 284,
+   "6": 257,
+   "7": 257,
+   "8": 292,
+   "9": 369,
+   "10": 312,
+   "11": 26
+  },
+  "verifiedAgainstProduction": true,
+  "promotionBand7to10": {
+   "pages": 1230,
+   "byCount": {
+    "7": 257,
+    "8": 292,
+    "9": 369,
+    "10": 312
+   },
+   "shareOfTier2": 0.2747
+  },
+  "alreadyIndexable": {
+   "pages": 26,
+   "atCount": 11,
+   "note": "26 Tier 2 pages hold all 11 and are the only Tier 2 URLs in the sitemap; final/summary.json records the same 26."
+  },
+  "topAbsentFieldsInTheBand": {
+   "topThree": [
+    {
+     "field": "withdrawal",
+     "pages": 1128
+    },
+    {
+     "field": "interactions",
+     "pages": 592
+    },
+    {
+     "field": "doseStudied",
+     "pages": 464
+    }
+   ],
+   "all": [
+    {
+     "field": "withdrawal",
+     "pages": 1128
+    },
+    {
+     "field": "interactions",
+     "pages": 592
+    },
+    {
+     "field": "doseStudied",
+     "pages": 464
+    },
+    {
+     "field": "faers",
+     "pages": 324
+    },
+    {
+     "field": "trialFailures",
+     "pages": 195
+    },
+    {
+     "field": "labelKinetics",
+     "pages": 159
+    },
+    {
+     "field": "adverseEvents",
+     "pages": 43
+    },
+    {
+     "field": "regulatory",
+     "pages": 21
+    },
+    {
+     "field": "approvalDate",
+     "pages": 15
+    },
+    {
+     "field": "indication",
+     "pages": 11
+    }
+   ],
+   "note": "Inside the band every non-present field is recorded absent, not not-applicable: the 604 CLINICAL pages carrying not-applicable on indication, labelKinetics, interactions and adverseEvents (no label in any cleared register) sit below the band. withdrawal absent is the normal state of a medicine that was never withdrawn, so the two fields a source could realistically add are interactions (592 pages) and doseStudied (464)."
+  },
+  "worklogNote": "final/summary.json issue: \"Tier 2 contributes 26 of the 636 indexed pages; the 7-10 present-field promotion band recorded in Phase 5a has not been exercised.\" This is that band measured: 1,230 pages."
+ },
+ "sourcesContributed": {
+  "twoDifferentFigures": {
+   "productionPageSources": "Rows in production page_sources: one row per page per distinct (source_kind, source_id, source_url) taken from PRESENT field rows only. This is what a reader can click through to. Totals: 60,826 rows over 28,623 pages.",
+   "localFieldBatches": "Source kinds recorded on field records in data/corpus-20k/fields/*/batch-*.ndjson, counted per field entry including non-present entries. Higher than page_sources for kinds whose sources repeat across fields of one page, lower where one page holds many distinct ids of one kind."
+  },
+  "productionTotals": {
+   "rows": 60826,
+   "pages": 28623,
+   "corpusPages": 28832,
+   "pagesWithNoSourceRow": 209
+  },
+  "productionByKind": [
+   {
+    "sourceKind": "clinicaltrials.gov+chembl",
+    "pages": 15930,
+    "rows": 15930
+   },
+   {
+    "sourceKind": "clinicaltrials.gov",
+    "pages": 6928,
+    "rows": 12185
+   },
+   {
+    "sourceKind": "chembl",
+    "pages": 11317,
+    "rows": 11319
+   },
+   {
+    "sourceKind": "REGISTER_SET",
+    "pages": 3814,
+    "rows": 3831
+   },
+   {
+    "sourceKind": "CLINICALTRIALS_SNAPSHOT",
+    "pages": 2878,
+    "rows": 2879
+   },
+   {
+    "sourceKind": "FDA_LABEL",
+    "pages": 2424,
+    "rows": 2454
+   },
+   {
+    "sourceKind": "europepmc",
+    "pages": 862,
+    "rows": 2032
+   },
+   {
+    "sourceKind": "OPEN_TARGETS_FAERS",
+    "pages": 1806,
+    "rows": 1806
+   },
+   {
+    "sourceKind": "derived-from-fields",
+    "pages": 1081,
+    "rows": 1081
+   },
+   {
+    "sourceKind": "europepmc+clinicaltrials.gov",
+    "pages": 1080,
+    "rows": 1080
+   },
+   {
+    "sourceKind": "chembl+drugsfda",
+    "pages": 943,
+    "rows": 943
+   },
+   {
+    "sourceKind": "registers",
+    "pages": 892,
+    "rows": 892
+   },
+   {
+    "sourceKind": "openfda-label+europepmc",
+    "pages": 683,
+    "rows": 683
+   },
+   {
+    "sourceKind": "PUBMED_ESEARCH",
+    "pages": 653,
+    "rows": 653
+   },
+   {
+    "sourceKind": "open-targets-adr",
+    "pages": 614,
+    "rows": 614
+   },
+   {
+    "sourceKind": "openfda-label",
+    "pages": 491,
+    "rows": 491
+   },
+   {
+    "sourceKind": "chembl+drugsfda+ema",
+    "pages": 466,
+    "rows": 466
+   },
+   {
+    "sourceKind": "chembl+ema",
+    "pages": 260,
+    "rows": 260
+   },
+   {
+    "sourceKind": "OPEN_TARGETS_DRUG_WARNING",
+    "pages": 259,
+    "rows": 259
+   },
+   {
+    "sourceKind": "drugsfda",
+    "pages": 246,
+    "rows": 246
+   },
+   {
+    "sourceKind": "drugsfda+ema",
+    "pages": 217,
+    "rows": 217
+   },
+   {
+    "sourceKind": "OPENFDA_ENFORCEMENT",
+    "pages": 132,
+    "rows": 132
+   },
+   {
+    "sourceKind": "EMA_MEDICINE_REGISTER",
+    "pages": 106,
+    "rows": 106
+   },
+   {
+    "sourceKind": "ema",
+    "pages": 96,
+    "rows": 96
+   },
+   {
+    "sourceKind": "jax-mpd-itp",
+    "pages": 51,
+    "rows": 68
+   },
+   {
+    "sourceKind": "chembl+open-targets+europepmc",
+    "pages": 52,
+    "rows": 52
+   },
+   {
+    "sourceKind": "clinicaltrials.gov+jax-mpd-itp",
+    "pages": 34,
+    "rows": 34
+   },
+   {
+    "sourceKind": "chembl+open-targets",
+    "pages": 9,
+    "rows": 9
+   },
+   {
+    "sourceKind": "open-targets",
+    "pages": 8,
+    "rows": 8
+   }
+  ],
+  "productionGroupedBySource": {
+   "ChEMBL": {
+    "sourceKinds": [
+     "chembl",
+     "chembl+drugsfda",
+     "chembl+drugsfda+ema",
+     "chembl+ema",
+     "chembl+open-targets",
+     "chembl+open-targets+europepmc",
+     "clinicaltrials.gov+chembl"
+    ],
+    "pageSourceRows": 28979,
+    "pagesUnderThoseKindsSummed": 28977,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "ClinicalTrials.gov snapshot": {
+    "sourceKinds": [
+     "clinicaltrials.gov",
+     "CLINICALTRIALS_SNAPSHOT",
+     "clinicaltrials.gov+chembl",
+     "europepmc+clinicaltrials.gov",
+     "clinicaltrials.gov+jax-mpd-itp"
+    ],
+    "pageSourceRows": 32108,
+    "pagesUnderThoseKindsSummed": 26850,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "openFDA label / DailyMed": {
+    "sourceKinds": [
+     "FDA_LABEL",
+     "openfda-label",
+     "openfda-label+europepmc"
+    ],
+    "pageSourceRows": 3628,
+    "pagesUnderThoseKindsSummed": 3598,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "Registers (Drugs@FDA, Orange Book, EMA, Health Canada), mixed and single": {
+    "sourceKinds": [
+     "REGISTER_SET",
+     "registers",
+     "drugsfda",
+     "drugsfda+ema",
+     "ema",
+     "EMA_MEDICINE_REGISTER",
+     "chembl+drugsfda",
+     "chembl+drugsfda+ema",
+     "chembl+ema"
+    ],
+    "pageSourceRows": 7057,
+    "pagesUnderThoseKindsSummed": 7040,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "openFDA enforcement": {
+    "sourceKinds": [
+     "OPENFDA_ENFORCEMENT"
+    ],
+    "pageSourceRows": 132,
+    "pagesUnderThoseKindsSummed": 132,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "Open Targets (FAERS/ADR, drug_warning, mechanism)": {
+    "sourceKinds": [
+     "OPEN_TARGETS_FAERS",
+     "open-targets-adr",
+     "OPEN_TARGETS_DRUG_WARNING",
+     "open-targets",
+     "chembl+open-targets",
+     "chembl+open-targets+europepmc"
+    ],
+    "pageSourceRows": 2748,
+    "pagesUnderThoseKindsSummed": 2748,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "Europe PMC": {
+    "sourceKinds": [
+     "europepmc",
+     "europepmc+clinicaltrials.gov",
+     "openfda-label+europepmc",
+     "chembl+open-targets+europepmc"
+    ],
+    "pageSourceRows": 3847,
+    "pagesUnderThoseKindsSummed": 2677,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "PubMed clinical-trial searches": {
+    "sourceKinds": [
+     "PUBMED_ESEARCH"
+    ],
+    "pageSourceRows": 653,
+    "pagesUnderThoseKindsSummed": 653,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "JAX MPD ITP": {
+    "sourceKinds": [
+     "jax-mpd-itp",
+     "clinicaltrials.gov+jax-mpd-itp"
+    ],
+    "pageSourceRows": 102,
+    "pagesUnderThoseKindsSummed": 85,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   },
+   "Derived from the page's own recorded fields (no external source)": {
+    "sourceKinds": [
+     "derived-from-fields"
+    ],
+    "pageSourceRows": 1081,
+    "pagesUnderThoseKindsSummed": 1081,
+    "note": "rows are exact; the pages column sums per-kind distinct-page counts, so a page appearing under two of this group's kinds is counted twice"
+   }
+  },
+  "perNamedSource": {
+   "ChEMBL": {
+    "productionRows": 28979,
+    "licence": "CC BY-SA 3.0 Unported; kept separable per the share-alike boundary"
+   },
+   "ClinicalTrials.gov snapshot": {
+    "productionRows": 32108,
+    "snapshot": "studies snapshot 2026-09-01"
+   },
+   "openFDA label / DailyMed": {
+    "productionRows": 3628
+   },
+   "openFDA enforcement": {
+    "productionRows": 132
+   },
+   "Drugs@FDA / Orange Book / EMA / Health Canada": {
+    "productionRows": 7057,
+    "note": "These four are carried as mixed register sets (REGISTER_SET 3,831 rows, registers 892) and as named kinds (drugsfda 246, ema 96, drugsfda+ema 217, EMA_MEDICINE_REGISTER 106, chembl+drugsfda 943, chembl+drugsfda+ema 466, chembl+ema 260). The licence string on the mixed rows reads \"mixed register set; per-register licences in docs/specs/corpus-20k-sources.md\" (4,723 rows). No page_sources row names Health Canada or the Orange Book on its own: their contribution is inside the mixed sets and inside the model-assignment reasons (health-canada 2,845 pages, orange-book 1,650 pages)."
+   },
+   "Europe PMC": {
+    "productionRows": 3847,
+    "licence": "metadata only, under the recorded legal gate"
+   },
+   "PubMed clinical-trial searches": {
+    "productionRows": 653
+   },
+   "JAX MPD ITP": {
+    "productionRows": 102,
+    "pages": 51,
+    "note": "51 pages, the whole ITP contribution; 68 rows plus 34 rows on the clinicaltrials.gov+jax-mpd-itp kind"
+   },
+   "Open Targets": {
+    "productionRows": 2748,
+    "licence": "Open Targets 26.06 - CC0"
+   },
+   "FDA UNII": {
+    "productionRows": 0,
+    "note": "The FDA UNII file (171,912 substances, 1,050,022 names) is the identity spine, not a field source: it decided keys, parent structures and display names. It produced no page_sources row because no field cites it."
+   },
+   "PubChem lookups": {
+    "productionRows": 0,
+    "lookups": 1927,
+    "note": "1,927 PubChem name lookups resolved keyless existing records during identity resolution. Same position as UNII: identity input, not a field source."
+   },
+   "DrugBank": {
+    "productionRows": 0,
+    "recordsRead": 0,
+    "note": "Unreachable; see drugBankOnly."
+   }
+  },
+  "localFieldBatchSourceKinds": {
+   "definition": "count of field entries carrying that source kind, and distinct pages, across all 117 batch files",
+   "byKind": [
+    {
+     "sourceKind": "chembl",
+     "fieldEntries": 20437,
+     "pages": 11317,
+     "presentFieldEntries": 20437,
+     "pagesWithAPresentField": 11317
+    },
+    {
+     "sourceKind": "clinicaltrials.gov",
+     "fieldEntries": 17396,
+     "pages": 6928,
+     "presentFieldEntries": 17396,
+     "pagesWithAPresentField": 6928
+    },
+    {
+     "sourceKind": "clinicaltrials.gov+chembl",
+     "fieldEntries": 15930,
+     "pages": 15930,
+     "presentFieldEntries": 15930,
+     "pagesWithAPresentField": 15930
+    },
+    {
+     "sourceKind": "FDA_LABEL",
+     "fieldEntries": 5802,
+     "pages": 2424,
+     "presentFieldEntries": 5802,
+     "pagesWithAPresentField": 2424
+    },
+    {
+     "sourceKind": "CLINICALTRIALS_SNAPSHOT",
+     "fieldEntries": 4701,
+     "pages": 2878,
+     "presentFieldEntries": 4701,
+     "pagesWithAPresentField": 2878
+    },
+    {
+     "sourceKind": "REGISTER_SET",
+     "fieldEntries": 3831,
+     "pages": 3814,
+     "presentFieldEntries": 3831,
+     "pagesWithAPresentField": 3814
+    },
+    {
+     "sourceKind": "europepmc",
+     "fieldEntries": 2032,
+     "pages": 862,
+     "presentFieldEntries": 2032,
+     "pagesWithAPresentField": 862
+    },
+    {
+     "sourceKind": "OPEN_TARGETS_FAERS",
+     "fieldEntries": 1806,
+     "pages": 1806,
+     "presentFieldEntries": 1806,
+     "pagesWithAPresentField": 1806
+    },
+    {
+     "sourceKind": "derived-from-fields",
+     "fieldEntries": 1081,
+     "pages": 1081,
+     "presentFieldEntries": 1081,
+     "pagesWithAPresentField": 1081
+    },
+    {
+     "sourceKind": "europepmc+clinicaltrials.gov",
+     "fieldEntries": 1080,
+     "pages": 1080,
+     "presentFieldEntries": 1080,
+     "pagesWithAPresentField": 1080
+    },
+    {
+     "sourceKind": "chembl+drugsfda",
+     "fieldEntries": 943,
+     "pages": 943,
+     "presentFieldEntries": 943,
+     "pagesWithAPresentField": 943
+    },
+    {
+     "sourceKind": "registers",
+     "fieldEntries": 892,
+     "pages": 892,
+     "presentFieldEntries": 892,
+     "pagesWithAPresentField": 892
+    },
+    {
+     "sourceKind": "openfda-label+europepmc",
+     "fieldEntries": 683,
+     "pages": 683,
+     "presentFieldEntries": 683,
+     "pagesWithAPresentField": 683
+    },
+    {
+     "sourceKind": "PUBMED_ESEARCH",
+     "fieldEntries": 653,
+     "pages": 653,
+     "presentFieldEntries": 653,
+     "pagesWithAPresentField": 653
+    },
+    {
+     "sourceKind": "open-targets-adr",
+     "fieldEntries": 614,
+     "pages": 614,
+     "presentFieldEntries": 614,
+     "pagesWithAPresentField": 614
+    },
+    {
+     "sourceKind": "openfda-label",
+     "fieldEntries": 491,
+     "pages": 491,
+     "presentFieldEntries": 491,
+     "pagesWithAPresentField": 491
+    },
+    {
+     "sourceKind": "chembl+drugsfda+ema",
+     "fieldEntries": 466,
+     "pages": 466,
+     "presentFieldEntries": 466,
+     "pagesWithAPresentField": 466
+    },
+    {
+     "sourceKind": "chembl+ema",
+     "fieldEntries": 260,
+     "pages": 260,
+     "presentFieldEntries": 260,
+     "pagesWithAPresentField": 260
+    },
+    {
+     "sourceKind": "OPEN_TARGETS_DRUG_WARNING",
+     "fieldEntries": 259,
+     "pages": 259,
+     "presentFieldEntries": 259,
+     "pagesWithAPresentField": 259
+    },
+    {
+     "sourceKind": "drugsfda",
+     "fieldEntries": 246,
+     "pages": 246,
+     "presentFieldEntries": 246,
+     "pagesWithAPresentField": 246
+    },
+    {
+     "sourceKind": "drugsfda+ema",
+     "fieldEntries": 217,
+     "pages": 217,
+     "presentFieldEntries": 217,
+     "pagesWithAPresentField": 217
+    },
+    {
+     "sourceKind": "OPENFDA_ENFORCEMENT",
+     "fieldEntries": 132,
+     "pages": 132,
+     "presentFieldEntries": 132,
+     "pagesWithAPresentField": 132
+    },
+    {
+     "sourceKind": "EMA_MEDICINE_REGISTER",
+     "fieldEntries": 106,
+     "pages": 106,
+     "presentFieldEntries": 106,
+     "pagesWithAPresentField": 106
+    },
+    {
+     "sourceKind": "ema",
+     "fieldEntries": 96,
+     "pages": 96,
+     "presentFieldEntries": 96,
+     "pagesWithAPresentField": 96
+    },
+    {
+     "sourceKind": "jax-mpd-itp",
+     "fieldEntries": 68,
+     "pages": 51,
+     "presentFieldEntries": 68,
+     "pagesWithAPresentField": 51
+    },
+    {
+     "sourceKind": "chembl+open-targets+europepmc",
+     "fieldEntries": 52,
+     "pages": 52,
+     "presentFieldEntries": 52,
+     "pagesWithAPresentField": 52
+    },
+    {
+     "sourceKind": "clinicaltrials.gov+jax-mpd-itp",
+     "fieldEntries": 34,
+     "pages": 34,
+     "presentFieldEntries": 34,
+     "pagesWithAPresentField": 34
+    },
+    {
+     "sourceKind": "chembl+open-targets",
+     "fieldEntries": 9,
+     "pages": 9,
+     "presentFieldEntries": 9,
+     "pagesWithAPresentField": 9
+    },
+    {
+     "sourceKind": "open-targets",
+     "fieldEntries": 8,
+     "pages": 8,
+     "presentFieldEntries": 8,
+     "pagesWithAPresentField": 8
+    }
+   ],
+   "agreement": "The per-kind distinct-page counts agree with production page_sources exactly for every kind (chembl 11,317; clinicaltrials.gov 6,928; FDA_LABEL 2,424; jax-mpd-itp 51). The row counts differ because the loader collapses field entries that share a (kind, id, url) on the same page: chembl 20,437 field entries become 11,319 rows, clinicaltrials.gov 17,396 become 12,185, FDA_LABEL 5,802 become 2,454."
+  }
+ },
+ "drugBankOnly": {
+  "citedSection": "docs/specs/corpus-20k-sources.md, the \"DrugBank\" paragraph under the per-source notes (lines 244-256), and the DrugBank row of the source table (line 53)",
+  "openDataStatus": "Unreachable. The Open Data download (Vocabulary 1.12 MB CSV, Structures 5.16 MB SDF, both CC0) sat behind a login wall: data/corpus-20k/raw/drugbank-open holds only drugbank-vocabulary.DENIED-403-login.html (37,960 bytes, HTTP 403, no login attempted). data/corpus-20k/identity/summary.json records the drugbank-open input as 0 records. The spec also notes every download was marked \"Temporarily unavailable\" on the survey date and that the terms-of-use page itself returned 403.",
+  "whatTheOpenTierWouldHaveGiven": "DrugBank identifiers, names and synonyms for linking, plus structures. The spec is explicit: \"That is all. No targets, no interactions, no pharmacology, no indications.\" Even had it downloaded, it would have added identifier linking only - the source table scopes DrugBank to \"D: related compounds by name linking only\".",
+  "heldOnlyInTheNonCommercialTier": [
+   {
+    "item": "Curated drug-drug interactions",
+    "spec": "\"No targets, no interactions...\" is what Open Data lacks; the full database (204 MB XML, CC BY-NC 4.0) carries them",
+    "whatThisBuildHadInstead": "label interaction sections and shared CYP/transporter membership only. CLINICAL interactions is present on 695 of 5,087 pages (3,788 absent, 604 not-applicable) because OTC monograph labels carry no interaction section; LONGEVITY interactions 683 of 1,109. In the Tier 2 promotion band interactions is the second-largest gap (592 of 1,230 pages)."
+   },
+   {
+    "item": "Curated indications",
+    "spec": "same sentence; indications sit in the non-commercial tier",
+    "whatThisBuildHadInstead": "CLINICAL indication comes from a matched openFDA label and is present on 2,422 of 5,087 pages; the DEVELOPMENT model has no indication field at all, so 22,636 pages state no indication."
+   },
+   {
+    "item": "Curated targets and mechanism-of-action pharmacology",
+    "spec": "\"No targets... no pharmacology\"; the non-commercial tier adds protein identifiers and target sequences",
+    "whatThisBuildHadInstead": "ChEMBL mechanism plus the Open Targets mechanism-of-action table, keyed only by ChEMBL id. DEVELOPMENT target is present on 2,452 of 22,636 pages and mechanismClass on 2,533; 3,971 pages take not-applicable on both because they hold no ChEMBL identifier."
+   },
+   {
+    "item": "Drug and target protein sequences, and 3D structures (13.9 MB)",
+    "spec": "\"plus external links, protein identifiers and sequences\" and the 3D structures file, all CC BY-NC 4.0",
+    "whatThisBuildHadInstead": "nothing. No cleared source supplied a sequence. Identity resolution recorded 3,451 biologics and 8,891 records with no structure at all; those pages are keyed on name and UNII."
+   },
+   {
+    "item": "The curated category subsets - approved (3.63 MB), experimental (4.69 MB), nutraceutical (183 KB), illicit (131 KB), withdrawn",
+    "spec": "listed by name and size in the DrugBank paragraph, all CC BY-NC 4.0",
+    "whatThisBuildHadInstead": "class had to be inferred. 17,306 of 22,636 Tier 3 pages fall to the S10 unknown-class default rather than a matched class, and the withdrawn flag had to be derived from four grounds across four registers - which is why 381 of 663 withdrawn pages carry no stated reason."
+   },
+   {
+    "item": "External links / cross-references between databases",
+    "spec": "\"plus external links\"",
+    "whatThisBuildHadInstead": "DrugBank ids on output rows come only from existing registryIdentifiers and Open Targets cross-references (recorded as issue 1 in data/corpus-20k/identity/summary.json)."
+   }
+  ],
+  "priceAndLicence": "Split licence: Open Data CC0 (clear), everything else CC BY-NC 4.0 (not clear for a public reference site). No price is stated on the downloads page - the academic tier is credential-gated (curl -u EMAIL:PASSWORD) and the commercial tier is \"Contact Sales\" - so the spec quotes no figure and records it as an open licence decision for Felix."
+ },
+ "legacyIndexability": {
+  "query": "drugs joined to inventory_resolutions on resolution_status = 'CANONICAL_ENTITY', left joined to corpus_pages on corpus_pages.legacy_drug_id = drugs.id; read-only over the CA-pinned production connection on 2026-09-05",
+  "legacyCanonicalSlugs": 9852,
+  "mappedToACorpusPage": 8987,
+  "indexableNow": 588,
+  "noindexNow": 8399,
+  "noCorpusPage": 865,
+  "everyOrphanHasARedirect": true,
+  "orphanRedirectRows": 865,
+  "byTier": {
+   "tier1": {
+    "indexable": 565,
+    "noindex": 756
+   },
+   "tier2": {
+    "indexable": 23,
+    "noindex": 3378
+   },
+   "tier3": {
+    "indexable": 0,
+    "noindex": 4265
+   },
+   "noCorpusPage": 865
+  },
+  "beforeAndAfter": {
+   "preReleaseSitemap": {
+    "urls": 10027,
+    "dossierUrls": 9852,
+    "source": "docs/worklogs/corpus-20k.md, Phase 5b/5c: \"production then held 24 migrations, 9,859 medicines, 5 redirects, a single 10,027-URL sitemap\""
+   },
+   "now": {
+    "indexableDossierUrls": 636,
+    "legacyAmongThem": 588,
+    "newCorpusOnlyAmongThem": 48,
+    "sitemapIsAnIndex": true,
+    "children": [
+     "tier-1.xml",
+     "tier-2.xml",
+     "browse.xml",
+     "pages.xml"
+    ],
+    "source": "production corpus_pages.indexable and data/corpus-20k/final/summary.json"
+   },
+   "delta": {
+    "dossierUrlsWithdrawnFromTheIndex": 9264,
+    "statement": "9,264 of the 9,852 legacy dossier slugs that were in the old sitemap are no longer indexable: 8,399 became noindex corpus pages and 865 became 301/308 redirects onto a merged parent. All 9,852 still resolve - none was orphaned - and 588 of them stayed in the index. The index shrank from 10,027 URLs to 636 indexable dossier URLs by design (threshold 11), not by loss."
+   }
+  },
+  "totalRedirectRowsOnProduction": 870
+ },
+ "identity": {
+  "passes": {
+   "pass1": {
+    "canonicalPagesAfter": 28966,
+    "merges": 4307,
+    "splits": 1256,
+    "holds": 55,
+    "byRule": {
+     "CONFLICT-K1-K2": 55,
+     "M-BRAND": 392,
+     "M-CODE": 112,
+     "M-FORMULATION": 1198,
+     "M-NAME-VARIANT": 736,
+     "M-SALT": 1854,
+     "M-STEREO-ACCIDENT": 15,
+     "S-BIOSIMILAR": 208,
+     "S-COMBO": 173,
+     "S-ESTER": 45,
+     "S-ISOTOPE": 133,
+     "S-STEREO": 697
+    }
+   },
+   "pass2": {
+    "canonicalPagesAfter": 28943,
+    "merges": 23,
+    "splits": 1,
+    "byRule": {
+     "M-SALT-P2": 23,
+     "S-SPLIT-P2": 1
+    }
+   },
+   "pass3": {
+    "canonicalPagesAfter": 28832,
+    "merges": 111,
+    "splits": 0,
+    "byRule": {
+     "M-SALT-P3": 111
+    }
+   }
+  },
+  "decisionsFileTotals": {
+   "rows": 5753,
+   "merge": 4441,
+   "split": 1257,
+   "hold": 55
+  },
+  "holds": {
+   "count": 55,
+   "rule": "CONFLICT-K1-K2",
+   "meaning": "the UNII record (K1) and the InChIKey (K2) name different parent substances; the page is held out of merging for a person to decide"
+  },
+  "suspectedMissedMerges": {
+   "total": 697,
+   "structuralGroupsExamined": 830,
+   "structuralSuspected": 209,
+   "nominalGroups": 488,
+   "renderedCheck": {
+    "status": "deferred",
+    "note": "§5.3 (MinHash/LSH candidates, exact positional scoring over rendered data, pairs > 0.60) runs in Phase 2 with the R3 harness; it cannot run before the corpus is assembled."
+   },
+   "sample20": [
+    {
+     "group": "structural",
+     "names": [
+      "CHEMBL4790644",
+      "Cyprolidol"
+     ],
+     "reason": "same InChIKey skeleton KPUSUIKQQCFQCX, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "Catechins",
+      "(-)-CATECHIN",
+      "Cianidanol",
+      "Dexepicatechin",
+      "(-)-EPICATECHIN"
+     ],
+     "reason": "same InChIKey skeleton PFTAWBLQPZVEMU, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "BMS-791826",
+      "CHEMBL4296682"
+     ],
+     "reason": "same InChIKey skeleton DZBKAUMYTFPJIS, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "CHEMBL4204703",
+      "Derenofylline"
+     ],
+     "reason": "same InChIKey skeleton RBZNJGHIKXAKQE, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "NAMITECAN",
+      "CHEMBL419186"
+     ],
+     "reason": "same InChIKey skeleton IBTISPLPBBHVSU, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "Cenisertib",
+      "CHEMBL1614709"
+     ],
+     "reason": "same InChIKey skeleton KSOVGRCOLZZTPF, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "Exaluren",
+      "CHEMBL2220482"
+     ],
+     "reason": "same InChIKey skeleton KJBRSTPUILEBDR, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "CAMPHOR",
+      "(-)-CAMPHOR",
+      "Camphor"
+     ],
+     "reason": "same InChIKey skeleton DSSYKIVIOFKYAU, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "Sodium iopodate",
+      "Ipodate"
+     ],
+     "reason": "same InChIKey skeleton YQNFBOJPTAXAKV, separated by protonation flag only"
+    },
+    {
+     "group": "structural",
+     "names": [
+      "CHEMBL1229250",
+      "CHEMBL1233001"
+     ],
+     "reason": "same InChIKey skeleton LQEBEXMHBLQMDB, separated by protonation flag only"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "POTASSIUM SALICYLATE",
+      "Sodium Salicylate"
+     ],
+     "reason": "name family \"salicylate\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "TRIETHYL PHOSPHATE",
+      "TRIETHYL CITRATE"
+     ],
+     "reason": "name family \"triethyl\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "ETOPOSIDE PHOSPHATE",
+      "Etoposide"
+     ],
+     "reason": "name family \"etoposide\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "IODOHIPPURATE",
+      "Sodium iodohippurate (131i)"
+     ],
+     "reason": "name family \"iodohippurate\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "Calcium Nitrite",
+      "Sodium Nitrite"
+     ],
+     "reason": "name family \"nitrite\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "Bulevirtide",
+      "Bulevirtide"
+     ],
+     "reason": "name family \"bulevirtide\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "Fluphenazine",
+      "Fluphenazine"
+     ],
+     "reason": "name family \"fluphenazine\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "Lead (212pb) bamzireotide navoxetan",
+      "LEAD BAMZIREOTIDE NAVOXETAN"
+     ],
+     "reason": "name family \"lead bamzireotide navoxetan\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "ADENOSINE TRIPHOSPHATE",
+      "Adenosine Triphosphate"
+     ],
+     "reason": "name family \"adenosine triphosphate\": equal name families, different canonical keys, no §3 split rule links them"
+    },
+    {
+     "group": "nominal",
+     "names": [
+      "Polycarbophil",
+      "Calcium Polycarbophil"
+     ],
+     "reason": "name family \"polycarbophil\": equal name families, different canonical keys, no §3 split rule links them"
+    }
+   ]
+  },
+  "slugCollisionsPass2": {
+   "count": 214,
+   "listedIn": "data/corpus-20k/identity/slug-collisions-pass2.json",
+   "status": "listed for human review; never auto-resolved",
+   "examples10": [
+    {
+     "slug": "mometasone",
+     "page": "Mometasone Furoate",
+     "collidesWith": [
+      "MOMETASONE"
+     ]
+    },
+    {
+     "slug": "ropivacaine",
+     "page": "ROPIVACAINE, (R)-",
+     "collidesWith": [
+      "Ropivacaine"
+     ]
+    },
+    {
+     "slug": "radium",
+     "page": "Radium Cation",
+     "collidesWith": [
+      "Radium Bromide",
+      "RADIUM"
+     ]
+    },
+    {
+     "slug": "phenethylamine",
+     "page": "1-PHENETHYLAMINE, (-)-",
+     "collidesWith": [
+      "Phenethylamine"
+     ]
+    },
+    {
+     "slug": "carbon-monoxide",
+     "page": "Carbon Monoxide C-11",
+     "collidesWith": [
+      "Carbon Monoxide"
+     ]
+    },
+    {
+     "slug": "segesterone",
+     "page": "Segesterone",
+     "collidesWith": [
+      "SEGESTERONE ACETATE"
+     ]
+    },
+    {
+     "slug": "glycolic-acid",
+     "page": "Vanillylmandelic Acid",
+     "collidesWith": [
+      "GLYCOLIC ACID"
+     ]
+    },
+    {
+     "slug": "magnesium-acetate",
+     "page": "Magnesium Acetate",
+     "collidesWith": [
+      "MAGNESIUM ACETATE TETRAHYDRATE"
+     ]
+    },
+    {
+     "slug": "eplontersen",
+     "page": "Eplontersen",
+     "collidesWith": [
+      "EPLONTERSEN SODIUM"
+     ]
+    },
+    {
+     "slug": "serdexmethylphenidate",
+     "page": "Serdexmethylphenidate",
+     "collidesWith": [
+      "Serdexmethylphenidate Chloride"
+     ]
+    }
+   ]
+  }
+ },
+ "seedsOnProduction": {
+  "source": "data/corpus-20k/final/summary.json, production.seedFires and production.seedFiresIndexable, read from page_seeds on 2026-09-05",
+  "corpusWide": {
+   "2": 600,
+   "3": 2771,
+   "4": 1054,
+   "5": 575,
+   "6": 2,
+   "7": 36,
+   "8": 2574,
+   "9": 890,
+   "10": 191,
+   "12": 6086,
+   "13": 2164,
+   "14": 969,
+   "15": 7257,
+   "16": 8615,
+   "17": 182
+  },
+  "onTheIndexableSet": {
+   "2": 333,
+   "3": 537,
+   "4": 603,
+   "5": 28,
+   "6": 1,
+   "7": 27,
+   "8": 473,
+   "9": 258,
+   "10": 12,
+   "12": 626,
+   "14": 33,
+   "15": 634,
+   "16": 636,
+   "17": 63
+  },
+  "indexablePages": 636,
+  "note": "page_seeds holds no row for seed 1 (bioavailability gap) or seed 11 (animal-only ceiling), and no seed 13 row on any indexable page. page_seeds is not the same quantity as rendered sections: 38 distinct question blocks render on production, several of them (ladder, classification, supervision, regulatory-only) derived from fields rather than from a seed row. Seed 7's 36 stored rows render no question: 0 question strings name a sex.",
+  "discardedSeeds": [
+   {
+    "seed": 1,
+    "name": "Bioavailability gap",
+    "storedRows": 0,
+    "reason": "No page carries a non-human positive-result sentence with a parenteral route word beside an oral bioavailability value outside suppression. Only 3 sentences in the whole corpus pair the two, and all 3 sit on suppressed pages, where the seed is absolutely suppressed. Fires on 0 of the 4,379 pages in its models (CLINICAL, LONGEVITY), below the 40-page floor."
+   },
+   {
+    "seed": 6,
+    "name": "Time-to-signal",
+    "storedRows": 0,
+    "fires": 2,
+    "reason": "Fires on 2 of 671 unsuppressed LONGEVITY pages, and both are name collisions - the publication sentence names a different substance. Below the 40-page floor with nothing real behind it."
+   },
+   {
+    "seed": 7,
+    "name": "Sex-specific divergence",
+    "storedRows": 36,
+    "fires": 36,
+    "reason": "36 < 40. The limit is sentences that name a sex, not the lexicon: re-run in Phase 2d against the lemma family and it stayed at 36. The 36 rows are still stored in page_seeds but render nothing - 0 of 60,667 question strings on production name a sex."
+   },
+   {
+    "seed": 11,
+    "name": "Animal-only ceiling",
+    "storedRows": 0,
+    "fires": 0,
+    "reason": "The longevity set is human-trial-bearing by construction, so only 22 of 1,109 LONGEVITY pages have a non-human top rung and none of those also lacks a human ageing endpoint. The compounds that really do die at mouse sit in Tier 3 without registry trials. An honest finding about the set, not a defect."
+   },
+   {
+    "seed": 18,
+    "name": "Human-equivalent dose",
+    "rejected": "by design",
+    "reason": "derives a number no source states, and reads as dosing"
+   },
+   {
+    "seed": 19,
+    "name": "ITP translation map",
+    "rejected": "by design",
+    "reason": "at most 60 compounds; rejected as a per-compound seed and built once as the shared /itp reference page"
+   },
+   {
+    "seed": 20,
+    "name": "Formulation vs trial form",
+    "rejected": "by design",
+    "reason": "duplicate of seed 1"
+   },
+   {
+    "seed": 21,
+    "name": "Evidence score",
+    "rejected": "by design",
+    "reason": "a score is an adjudication and reads as a recommendation"
+   }
+  ],
+  "seedsWithNoRowAnywhere": [
+   1,
+   11
+  ],
+  "seedsWithNoRowOnAnIndexablePage": [
+   13
+  ],
+  "firesFloor": 40
+ },
+ "contradictions": {
+  "definition": "Figures stated in the earlier sections of docs/worklogs/corpus-20k.md that the production read of 2026-09-05 (or data/corpus-20k/final/summary.json, read from the same database) now contradicts. Each row gives both values. Most are superseded rather than wrong - identity pass 2 and pass 3 and the narrowed withdrawn rule changed the population under them - but the worklog states them without a qualifier, so a reader of the report would carry the wrong number.",
+  "rows": [
+   {
+    "section": "Phase 0c - identity resolution",
+    "figure": "Canonical pages",
+    "worklogValue": 28966,
+    "productionOrFinalValue": 28832,
+    "why": "identity pass 2 merged 23 and split 1 (28,943), pass 3 merged 111 more"
+   },
+   {
+    "section": "Phase 0e / RESUME table",
+    "figure": "Suppressed pages",
+    "worklogValue": "19,393 (unknown-class 17,663, cleared 9,573) over 28,966 records",
+    "productionOrFinalValue": "19,268 over 28,832 pages on production",
+    "why": "S1 was narrowed and re-applied at the start of Phase 2, then re-run again in Phase 2d (19,335 over 28,943 in data/corpus-20k/suppression/summary.json), then the corpus shrank in pass 3. Three different numbers are in the log for one quantity."
+   },
+   {
+    "section": "Phase 5a",
+    "figure": "Suppressed pages, stated in the same sentence as the 28,832-page corpus",
+    "worklogValue": 19335,
+    "productionOrFinalValue": 19268,
+    "why": "19,335 was measured over 28,943 records before identity pass 3; the sentence pairs it with the post-pass-3 page count, and the two cannot both describe the same population. final/summary.json flags this."
+   },
+   {
+    "section": "Phase 2 - assembly",
+    "figure": "Tiers",
+    "worklogValue": "Tier 1 1,599 · Tier 2 4,664 · Tier 3 22,703",
+    "productionOrFinalValue": "Tier 1 1,719 · Tier 2 4,477 · Tier 3 22,636"
+   },
+   {
+    "section": "Phase 2b - augmentation",
+    "figure": "Tiers",
+    "worklogValue": "Tier 1 1,500 · Tier 2 4,727 · Tier 3 22,739",
+    "productionOrFinalValue": "Tier 1 1,719 · Tier 2 4,477 · Tier 3 22,636"
+   },
+   {
+    "section": "Phase 2c - identity pass 2",
+    "figure": "Tiers and corpus size",
+    "worklogValue": "28,943 pages; Tier 1 1,498 · Tier 2 4,724 · Tier 3 22,721",
+    "productionOrFinalValue": "28,832 pages; Tier 1 1,719 · Tier 2 4,477 · Tier 3 22,636",
+    "why": "the Phase 5a withdrawn rule moved 610 CLINICAL pages into Tier 1, and pass 3 merged 111"
+   },
+   {
+    "section": "Phase 2 - assembly",
+    "figure": "Model assignment",
+    "worklogValue": "LONGEVITY 1,219 · CLINICAL 5,044 · DEVELOPMENT 22,703",
+    "productionOrFinalValue": "LONGEVITY 1,109 · CLINICAL 5,087 · DEVELOPMENT 22,636"
+   },
+   {
+    "section": "Phase 2 - assembly",
+    "figure": "Withdrawn pages",
+    "worklogValue": "439 (438 in promotion-rule.md)",
+    "productionOrFinalValue": 663,
+    "why": "the Phase 5a rule change: every Drugs@FDA application discontinued now sets the flag"
+   },
+   {
+    "section": "Phase 2 - assembly",
+    "figure": "Broad longevity slice",
+    "worklogValue": "all 803 broad slugs mapped, collapsing to 765 pages after merges",
+    "productionOrFinalValue": "765 pages carry the broad-slice reason, but final/summary.json measures the 803-key draw as 798 pages",
+    "why": "Both figures describe '803'. 765 is the count of pages holding the broad-slice assignment reason; 798 is the count of surviving pages behind the 803 drawn keys. The worklog never distinguishes them, so a reader cannot tell which 803 is meant. 33 of the 798 hold no broad-slice reason."
+   },
+   {
+    "section": "Phase 2 - assembly",
+    "figure": "Pages holding at least one ClinicalTrials.gov registration",
+    "worklogValue": "8,775 of 28,966",
+    "productionOrFinalValue": "8,663 aggregate pages (data/corpus-20k/derived/fire-counts.json, post-pass-3)"
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 15 evidence age fires",
+    "worklogValue": 7332,
+    "productionOrFinalValue": 7257
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 16 trial-size ceiling fires",
+    "worklogValue": 8709,
+    "productionOrFinalValue": 8615
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 12 registry-to-publication gap fires",
+    "worklogValue": 6148,
+    "productionOrFinalValue": 6086
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 3 failure autopsy fires",
+    "worklogValue": 2804,
+    "productionOrFinalValue": 2771
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 8 provenance timeline fires",
+    "worklogValue": 2607,
+    "productionOrFinalValue": 2574
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 13 same-target lineage fires",
+    "worklogValue": 2181,
+    "productionOrFinalValue": 2164
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 4 endpoint mismatch fires",
+    "worklogValue": 1057,
+    "productionOrFinalValue": 1054
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 14 spontaneous-report disproportion fires",
+    "worklogValue": 974,
+    "productionOrFinalValue": 969
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 9 what-would-change-this fires",
+    "worklogValue": 897,
+    "productionOrFinalValue": 890
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 2 N-of-1 designability fires",
+    "worklogValue": 602,
+    "productionOrFinalValue": 600
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 5 stack interaction graph fires",
+    "worklogValue": 581,
+    "productionOrFinalValue": 575
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 10 source contradiction fires",
+    "worklogValue": 192,
+    "productionOrFinalValue": 191
+   },
+   {
+    "section": "Phase 3 - derived content table",
+    "figure": "Seed 17 jurisdiction divergence fires",
+    "worklogValue": 184,
+    "productionOrFinalValue": 182
+   },
+   {
+    "section": "Phase 2d - Gate 1b v3",
+    "figure": "Indexed pages at threshold 11",
+    "worklogValue": 638,
+    "productionOrFinalValue": 636
+   },
+   {
+    "section": "Phase 2d - Gate 2 table",
+    "figure": "Indexed set size at threshold 11",
+    "worklogValue": "521 pages",
+    "productionOrFinalValue": "636 pages",
+    "why": "Gate 2 measured a partial set; the Phase 5a recheck and the live measurement both give 636"
+   },
+   {
+    "section": "Phase 2d / Phase 2c",
+    "figure": "Pages carrying questions and distinct question strings",
+    "worklogValue": "11,388 pages, 59,040 distinct (Phase 2d); 59,101 distinct (Phase 2c)",
+    "productionOrFinalValue": "11,313 pages, 58,525 distinct on production"
+   },
+   {
+    "section": "Phase 2d / Phase 2c",
+    "figure": "Most-repeated question string share",
+    "worklogValue": "0.21 % of pages",
+    "productionOrFinalValue": "0.548 % corpus-wide (62 pages), 0.315 % on the indexable set"
+   },
+   {
+    "section": "Phase 5b/5c",
+    "figure": "Production state before the corpus load",
+    "worklogValue": "24 migrations, 9,859 medicines, 5 redirects, a single 10,027-URL sitemap",
+    "productionOrFinalValue": "26 migrations, 9,859 legacy medicines, 870 redirects, a sitemap index whose dossier children hold 636 indexable URLs"
+   },
+   {
+    "section": "Phase 2d - Gate 2 sample table",
+    "figure": "Sample present-field counts",
+    "worklogValue": "metformin 15 · cysteamine 10 · amlodipine 13 (listed as the withdrawn arc) · sirolimus 15 · carbidopa-levodopa 3 · cdx-3379 7",
+    "productionOrFinalValue": "metformin 16 · cysteamine 11 · amlodipine 14 and NOT withdrawn · sirolimus 16 · carbidopa-levodopa 5 · cdx-3379 7",
+    "why": "Phase 5a made the loader read doseStudied and approvalDate from beside `fields`, which raised most counts by one or two; the narrowed withdrawn rule cleared amlodipine, and rofecoxib replaced it as the withdrawn sample."
+   }
+  ],
+  "count": 29,
+  "notContradictionsButUnrendered": [
+   "Phase 0d - reconciliation section prints the literal word None six times ('matched None · new None · existing not found in any new source None', 'KEEP None · REDIRECT None · RETAIN None · RETIRE_410 None'). The RESUME table above it gives keep 7,049 · redirect 864 · retain 1,939 · retire 0; production holds 870 redirect rows.",
+   "Phase 0e prints 'Over None canonical pages: suppressed None' and 'Suppressed inside the 803 broad longevity slice: — —'. The byTest table below it is populated."
+  ]
+ },
+ "issues": [
+  "No Tier 3 page can ever reach the indexing threshold of 11 on the DEVELOPMENT model's 8 fields, and the practical ceiling is 7 because patentStatus is present on 0 of 22,636 pages. Promotion out of Tier 3 requires a model change, not more extraction. This should be said plainly in the report rather than presented as a coverage gap.",
+  "everDosedInHumans is present on 100 % of Tier 3 pages and therefore never discriminates; excluding it, 11,145 of 22,636 Tier 3 pages hold no present field at all.",
+  "The Tier 2 promotion band (7-10 present fields) holds 1,230 pages, but the two fields that most often block them - interactions (592) and doseStudied (464) - have no cleared source that would fill them at scale. interactions is exactly what the DrugBank non-commercial tier holds.",
+  "Health Canada and the Orange Book have no page_sources row of their own on production: their contribution is folded into the mixed REGISTER_SET / registers kinds. A reader cannot attribute a register fact to a specific register from page_sources alone.",
+  "The FDA UNII file and the 1,927 PubChem lookups produced no page_sources rows: they are identity inputs, not field sources. If the report counts 'sources contributed', these two must be described separately or they read as unused.",
+  "209 pages remain in the corpus that data/corpus-20k/identity/suspected-missed-merges.json flags as probably the same substance separated by a protonation flag only, plus 488 nominal groups; the §5.3 rendered check that would settle them is recorded as 'deferred' and never ran.",
+  "The 214 pass-2 slug collisions are listed for human review and were never resolved; each is a page whose slug matches another page's legacy name.",
+  "Seed 7 still holds 36 rows in production page_seeds after being discarded, and they render nothing. Storage and rendering disagree.",
+  "The worklog's Phase 0d and Phase 0e sections contain unrendered template placeholders (the literal word None, and em-dashes) where counts belong.",
+  "The worklog states 12 seed fire counts, the suppressed total, the tier sizes, the model sizes and the question metrics at values production no longer holds. None carries an 'as of' qualifier, so the final report must take its figures from production or final/summary.json, not from the worklog body."
+ ]
+}

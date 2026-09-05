@@ -1,0 +1,41 @@
+{
+  "label": "final draw803",
+  "pagesFile": "data/corpus-20k/final/pages/draw803.ndjson",
+  "sampleFile": null,
+  "pages": 798,
+  "mode": "exhaustive",
+  "parameters": {
+    "shingle": 5,
+    "permutations": 128,
+    "batch": 250,
+    "neighbourBands": 32,
+    "neighbourRows": 4,
+    "neighbourAnalyticThreshold": 0.4204,
+    "neighbourBandsAreSpecDefault": true,
+    "sweepBands": 16,
+    "sweepRows": 8,
+    "sweepAnalyticThreshold": 0.7071,
+    "cascade": true,
+    "candidateStructures": [],
+    "backfilledPages": 0,
+    "minCandidates": 32,
+    "maxBucket": 512,
+    "rerank": 64,
+    "cachePages": 2000,
+    "seed": 20260904
+  },
+  "timings": {
+    "buildSeconds": 1.196,
+    "neighbourSeconds": 5.611,
+    "totalSeconds": 8.27,
+    "pagesPerSecond": 96.49
+  },
+  "work": {
+    "tokens": 688664,
+    "vocabulary": 39949,
+    "candidatesConsidered": 636006,
+    "pairsScoredExactly": 318003,
+    "largestBucket": null
+  },
+  "peakRssMb": 213.3
+}

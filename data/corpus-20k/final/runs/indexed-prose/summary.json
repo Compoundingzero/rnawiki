@@ -1,0 +1,112 @@
+{
+  "pages": 636,
+  "medianTokens": 573,
+  "medianShingles": 545,
+  "full": {
+    "label": "full-corpus",
+    "pages": 636,
+    "positional": {
+      "count": 636,
+      "median": 0.104789,
+      "mean": 0.174545,
+      "p90": 0.417508,
+      "max": 1.0,
+      "above_0_20": 108,
+      "above_0_30": 86
+    },
+    "lexical": {
+      "count": 636,
+      "median": 0.425715,
+      "mean": 0.466066,
+      "p90": 0.606402,
+      "max": 1.0,
+      "above_0_20": 636,
+      "above_0_30": 636
+    },
+    "mode": "exhaustive"
+  },
+  "matched": [
+    {
+      "label": "matched-324",
+      "pages": 324,
+      "positional": {
+        "count": 324,
+        "median": 0.094087,
+        "mean": 0.143666,
+        "p90": 0.245639,
+        "max": 1.0,
+        "above_0_20": 39,
+        "above_0_30": 27
+      },
+      "lexical": {
+        "count": 324,
+        "median": 0.410864,
+        "mean": 0.435752,
+        "p90": 0.499645,
+        "max": 1.0,
+        "above_0_20": 324,
+        "above_0_30": 324
+      },
+      "mode": "exhaustive",
+      "sharedWordShareMedian": 0.369194
+    }
+  ],
+  "sharedWordShare": {
+    "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+    "median": 0.369318,
+    "p90": 0.411472,
+    "byTier": {
+      "tier1": 0.371189,
+      "tier2": 0.321651
+    }
+  },
+  "aboveTarget": {
+    "targetPositional": 0.2,
+    "targetLexical": 0.4,
+    "positional": 108,
+    "lexical": 470,
+    "file": "above-target.ndjson"
+  },
+  "controls": [],
+  "nullModel": {
+    "randomPairPositional": {
+      "count": 20000,
+      "median": 0.027592,
+      "mean": 0.030206,
+      "p90": 0.05169,
+      "max": 0.896127,
+      "above_0_20": 15,
+      "above_0_30": 11
+    },
+    "randomPairLexical": {
+      "count": 20000,
+      "median": 0.300706,
+      "mean": 0.302149,
+      "p90": 0.352754,
+      "max": 0.901024,
+      "above_0_20": 19881,
+      "above_0_30": 10121
+    },
+    "expectedNearestNeighbour": {
+      "full": {
+        "pages": 636,
+        "positional": 0.27839,
+        "lexical": 0.546359
+      },
+      "matched": [
+        {
+          "pages": 324,
+          "positional": 0.201058,
+          "lexical": 0.497018
+        },
+        {
+          "pages": 803,
+          "positional": 0.318381,
+          "lexical": 0.568957
+        }
+      ]
+    },
+    "note": "Nearest-neighbour maxima rise with corpus size alone. Compare an observed maximum with the expected maximum over the same number of draws before reading a rise as a change in the pages."
+  },
+  "missedMergeSweep": null
+}
