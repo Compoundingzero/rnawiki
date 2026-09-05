@@ -1,13 +1,36 @@
 {
   "origin": "https://rnawiki.com",
-  "startedAt": "2026-09-02T13:54:16.665Z",
-  "finishedAt": "2026-09-02T13:56:21.117Z",
-  "sitemapDossierUrls": 9852,
-  "checked": 9852,
-  "resumedFromCheckpoint": 9821,
-  "discoveryReady": 9852,
+  "startedAt": "2026-09-05T02:15:39.482Z",
+  "finishedAt": "2026-09-05T02:36:17.609Z",
+  "sitemapDossierUrls": 636,
+  "checked": 636,
+  "resumedFromCheckpoint": 0,
+  "discoveryReady": 636,
   "notDiscoveryReady": 0,
-  "apiAvailable": 9852,
+  "apiAvailable": 465,
   "blockerCounts": {},
+  "sitemapDocumentsRead": 5,
+  "sitemapChildren": [
+    "https://rnawiki.com/sitemaps/tier-1.xml",
+    "https://rnawiki.com/sitemaps/tier-2.xml",
+    "https://rnawiki.com/sitemaps/browse.xml",
+    "https://rnawiki.com/sitemaps/pages.xml"
+  ],
+  "tier": null,
+  "unreadableSitemapChildren": [],
+  "clickDepth": {
+    "pagesWalked": 2033,
+    "budget": 20000,
+    "budgetExhausted": false,
+    "distribution": {
+      "1": 4,
+      "2": 24,
+      "3": 608
+    },
+    "unreachable": 0,
+    "deeperThanThree": [],
+    "deeperThanThreeTotal": 0,
+    "note": "Click depth counts links followed from the home page. A record counted as unreachable was not linked from any page the walk reached within four clicks."
+  },
   "note": "DISCOVERY_READY describes what this origin served. It is not a record of crawling, indexing or citation."
 }

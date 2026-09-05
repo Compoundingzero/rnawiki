@@ -1,0 +1,476 @@
+{
+  "schema": "rnawiki-corpus-20k-deploy-tier/v1",
+  "tier": 3,
+  "ranAt": "2026-09-05",
+  "spec": "docs/specs/deployment-plan.md",
+  "outcome": "LOADED AND VERIFIED. Tier 3 is live, noindex, in no sitemap child and not disallowed. IndexNow is skipped for this tier by design. The Tier 2 redirect-chain blocker was closed before the load and no chain remains.",
+  "blockerClearedFirst": {
+    "why": "The Tier 2 record closed with a blocker for this stage: that load wrote risedronate-sodium-hemi-pentahydrate -> risedronate while a row from 2026-09-02 already said risedronate-sodium-hemipentahydrate -> risedronate-sodium-hemi-pentahydrate. resolvePublicMedicineRoute refuses a redirect whose target is itself an old slug, so a URL that had been answering 308 was answering 404 in production. Tier 3 writes 176 more redirects and could have made more of them, so this was closed before any Tier 3 row was written.",
+    "confirmedBeforeTheFix": "select from medicine_slug_redirects joined to itself through drugs returned exactly one chain, and https://rnawiki.com/d/risedronate-sodium-hemipentahydrate answered 404.",
+    "change": "scripts/corpus-20k/load/materialise.ts now reads the ledger with each row's target slug and holds a redirect to one hop in three places: a pre-flight pass walks every chain already in the ledger to its terminal drug and re-points the earlier hops, keeping each row's own recorded reason and rationale; a redirect this run would write onto a slug that is itself an old slug is re-pointed to that chain's terminal drug instead of being written as a first hop; and an existing row whose target this run turns into an old slug is re-pointed, in the same transaction, to where the new row points. A cycle is never repaired - the load refuses, because a cycle has no terminal target and choosing one would be a guess about which URL is canonical. One row per old slug per batch, because ON CONFLICT DO UPDATE cannot touch the same row twice in one statement.",
+    "test": "tests/unit/corpus-20k/load-redirect-chains.test.ts - 7 cases over terminalSlugOf and repairLedgerChains, including the exact risedronate ledger, a ledger with no chain, a terminal slug with no legacy drugs row, and a cycle.",
+    "dryRunBeforeTheLoad": "The Tier 3 dry run reported the one existing chain as the only repair and the same 22636 pages, 91 batches and 176 redirects as before the change, so the guard changed what the ledger holds and nothing about what the tier writes.",
+    "repairedInProduction": 1,
+    "repair": "risedronate-sodium-hemipentahydrate -> risedronate (was risedronate-sodium-hemi-pentahydrate)",
+    "liveAfter": "/d/risedronate-sodium-hemipentahydrate and /d/risedronate-sodium-hemi-pentahydrate both answer 308 to /d/risedronate, which answers 200.",
+    "chainsInTheLedgerNow": 0,
+    "notDeployed": "The change is to a workstation loader, not to the web service. No deployment, no migration; production still holds 26 migrations."
+  },
+  "load": {
+    "command": "npx tsx scripts/corpus-20k/load/materialise.ts --tier 3 --indexable-threshold 11 --production-confirmed",
+    "target": "Railway RNAwiki / production PostgreSQL over the Railway TCP proxy (DATABASE_PUBLIC_URL), sslmode verified against rnawiki-backups/railway/postgres-root.crt with PGSSLSERVERNAME=localhost",
+    "indexableThreshold": 11,
+    "thresholdSource": "data/corpus-20k/deploy/threshold.json",
+    "batchSize": 250,
+    "batches": 91,
+    "batchesSkipped": 0,
+    "pagesLoaded": 22636,
+    "elapsedSeconds": 535,
+    "pagesPerSecond": 42.31,
+    "throughputMethod": "Wall clock of the whole command, process start to exit, including tsx start-up and reading the tier's 90 MB of inputs, so the figure is a floor. The 91 batch markers span 520.31 s, which is 43.5 pages/s over the writing itself. Tier 1 measured 14.6 and Tier 2 23.08 the same way.",
+    "throughputFloor": "1 page/second (deployment plan); met with 42x headroom",
+    "dryRunFirst": "The same command with --dry-run in place of --production-confirmed reported 22636 pages, 91 batches and 176 redirects with 0 skipped before anything was written.",
+    "rows": {
+      "corpus_pages": 22636,
+      "page_synonyms": 109022,
+      "page_fields": 181088,
+      "page_seeds": 14068,
+      "page_questions": 24516,
+      "page_relations": 689,
+      "page_sources": 36169,
+      "page_registry_studies": 31417,
+      "medicine_slug_redirects": 176
+    },
+    "rowsConfirmedInProduction": "Every count above was read back from production by joining each child table to corpus_pages on tier = 3; all eight page tables match the loader's own totals exactly.",
+    "indexableLoaded": 0,
+    "nonIndexableLoaded": 22636,
+    "whyNoneIsIndexable": "The loader sets indexable only for tier <= 2 (materialise.ts: `tier <= 2 && pageType !== 'stub' && presentFieldCount >= threshold`), so R6's rule is a property of the row, not of a later filter. No Tier 3 page can become indexable by gaining fields without a tier change.",
+    "redirectsBefore": 694,
+    "redirectsAfter": 870,
+    "checkpoints": "state.json phase 5 step materialise-tier-3, batches 1-91, recorded by the loader's own batch.ts calls (state reads materialise-tier-3.batches 91, .records 22636)",
+    "reRunSkipsRecordedBatches": "The same command run a second time against production reported batches 91, skipped 91, pages 0 and wrote nothing; the chain pre-flight found nothing to repair.",
+    "productionStateAfter": {
+      "migrationsApplied": 26,
+      "corpus_pages": 28832,
+      "corpus_pages_tier_1": 1719,
+      "corpus_pages_tier_2": 4477,
+      "corpus_pages_tier_3": 22636,
+      "indexable_tier_1": 610,
+      "indexable_tier_2": 26,
+      "indexable_tier_3": 0,
+      "model_LONGEVITY": 1109,
+      "model_CLINICAL": 5087,
+      "model_DEVELOPMENT": 22636,
+      "suppressed_tier_3": 17451,
+      "medicine_slug_redirects": 870,
+      "drugs": 9859
+    },
+    "whatTheInputsDidNotSupply": {
+      "controlCharactersStrippedFromANameOrSynonym": 1,
+      "derivedSlugsThatNeededANumericSuffix": 385,
+      "pagesWhoseChemblIdIsNotInTheRecordedMoleculePages": 7860,
+      "pagesWithNoRecordedEntityClass": 8630,
+      "pagesWithNoRecordedOrganism": 17908,
+      "facetColumnsFilled": {
+        "atc_codes": 799,
+        "entity_class": 14006,
+        "top_rung": 4728,
+        "human_data": 4728,
+        "evidence_tier": 22636
+      }
+    },
+    "tier3FieldCounts": {
+      "distribution": {
+        "1": 11145,
+        "2": 6025,
+        "3": 2039,
+        "4": 1031,
+        "5": 742,
+        "6": 902,
+        "7": 752
+      },
+      "maximum": 7,
+      "atOrAboveTheThresholdOf11": 0,
+      "reading": "No Tier 3 page reaches 11 present fields, so the tier is noindex twice over: by the loader's tier rule and by the threshold itself. 752 Tier 3 pages sit at 7 fields, inside the 7-10 promotion band."
+    }
+  },
+  "sitemapCacheWait": {
+    "why": "The sitemap index, each child body and the corpus facet record set are three independent 15-minute per-process caches, so a freshly loaded tier does not appear at once. Tier 2 recorded the same window.",
+    "tier3ChildIsNotPolled": "/sitemaps/tier-3.xml does not exist and must not: app/sitemaps/[name]/route.ts refuses any name outside the four children with 404 and X-Robots-Tag: noindex, 'so tier-3 cannot exist even as an empty document', and verify-live.ts refuses --wait-sitemap-tier 3 outright ('Tier 3 is noindex and appears in no sitemap child, so waiting for one would never end'). Polling it for this tier's indexable URLs would have waited 20 minutes for a document the design forbids and for URLs that do not exist, because the tier has 0 indexable rows. What was waited for instead was the settling of the three children that do exist.",
+    "settled": "Verification ran about 20 minutes after the last batch committed, by which time /sitemaps/pages.xml had rebuilt and the index had settled at 636 dossier URLs.",
+    "whatChangedInTheServedSitemap": "pages.xml fell from 4451 URLs (4441 of them legacy-only dossiers) to 10, all of them static pages and none a dossier; browse.xml grew from 1023 to 1843 facet URLs; tier-1.xml and tier-2.xml were untouched at 610 and 26.",
+    "notADefect": "Every legacy dossier now has a corpus_pages row, and a Tier 3 row is noindex, so pages.xml correctly stops announcing it. Nothing lost an answer: all 9859 legacy slugs still resolve."
+  },
+  "verifyLive": {
+    "command": "npx tsx scripts/corpus-20k/deploy/verify-live.ts --base-url https://rnawiki.com --json --require-all (6 Tier 3 samples, 10 Tier 3 noindex paths, the 20 Tier 3 redirect old slugs, 8 suppressed Tier 3 pages that carry a supervision block)",
+    "ok": true,
+    "passed": 7,
+    "failed": 0,
+    "notRun": 0,
+    "checks": {
+      "sitemap-index": "PASS - 4 children, 636 dossier URLs, each child within 50000",
+      "samples-200": "PASS - 6 sampled dossier URLs answered 200",
+      "redirects": "PASS - 20 old slugs answered 301 or 308 with a target",
+      "tier-3-noindex": "PASS - 10 Tier 3 records carry noindex and appear in no sitemap child",
+      "robots-allows-dossiers": "PASS - no wildcard Disallow covers /d/",
+      "no-vendor-hosts": "PASS - no selling host or affiliate shape on 16 fetched pages",
+      "suppression": "PASS - 7 suppressed pages read, none renders a bioavailability, n-of-1 or time-to-signal block"
+    },
+    "note": "--require-all was passed, so a check that could not run would have counted as a failure. On the first attempt the suppression check reported NOT RUN because the Tier 3 suppressed pages named at random were S10-only classification pages, which carry no supervision block; it was re-run with pages whose suppression classes include S1-S9 and passed.",
+    "externalHostsSeen": [
+      "clinicaltrials.gov",
+      "mor.nlm.nih.gov",
+      "precision.fda.gov",
+      "pubchem.ncbi.nlm.nih.gov",
+      "www.ebi.ac.uk"
+    ],
+    "robots": "User-Agent: * / Allow: / with only /api/ and /healthz disallowed; nothing covers /d/ and nothing disallows any Tier 3 URL. OAI-SearchBot and GPTBot carry the same three lines.",
+    "tier3Noindex": {
+      "requirement": "R6: Tier 3 is noindex, absent from every sitemap child, and NOT disallowed in robots.txt.",
+      "randomUrlsChecked": 10,
+      "drawnBy": "select slug from corpus_pages where tier=3 order by random() limit 10",
+      "urls": [
+        "atuveciclib",
+        "osi-7904",
+        "pyridoxal-isonicotinoyl-hydrazone-e",
+        "intoplicine",
+        "zenidolol",
+        "bos-taurus-intervertebral-disc",
+        "chembl370347",
+        "chembl612137",
+        "chembl3827056",
+        "aldosterone"
+      ],
+      "allAnswered200": true,
+      "allCarryMetaRobotsNoindex": "10 of 10 serve <meta name=\"robots\" content=\"noindex, follow\">. None needs an X-Robots-Tag header and none sends one; the meta directive is what app/d/[slug]/page.tsx emits from corpus.indexable.",
+      "noneDisallowedInRobots": true,
+      "exhaustiveSitemapAbsence": "Not a sample: the 22636 Tier 3 URLs were intersected with every URL in all four sitemap children (2489 URLs). The intersection is empty. The whole index announces 636 dossier URLs, which is exactly tier-1.xml's 610 plus tier-2.xml's 26.",
+      "tier3ChildStill404": true
+    },
+    "sitemap": {
+      "index": [
+        "/sitemaps/tier-1.xml",
+        "/sitemaps/tier-2.xml",
+        "/sitemaps/browse.xml",
+        "/sitemaps/pages.xml"
+      ],
+      "tier1Urls": 610,
+      "tier2Urls": 26,
+      "browseUrls": 1843,
+      "browseUrlsThatAreDossiers": 0,
+      "pagesUrls": 10,
+      "pagesUrlsThatAreDossiers": 0,
+      "dossierUrlsInTheWholeIndex": 636,
+      "tier3UrlsInAnyChild": 0,
+      "ceiling": 50000,
+      "largestChild": 1843
+    },
+    "previouslyPublishedSlugs": {
+      "why": "R8 and the deployment plan both forbid orphaning a previously indexed URL, and this is the load that gives every remaining legacy medicine a corpus page.",
+      "legacySlugsRequested": 9859,
+      "answered200": 8987,
+      "answered308": 870,
+      "answered410": 2,
+      "answered404": 0,
+      "the410s": "header and tbd - placeholder legacy rows retired before this work; neither is a corpus page",
+      "orphans": 0
+    }
+  },
+  "samples": {
+    "source": "data/corpus-20k/gate2/samples.json - the two entries whose tier is tier3, plus Tier 3 pages added for the suppression and supervision roles because the committed sample set has no suppressed Tier 3 row",
+    "allRenderTheNewTemplate": true,
+    "perSample": {
+      "cdx-3379": {
+        "role": "Tier 3 experimental (committed Gate 2 sample)",
+        "http": 200,
+        "questionBlocks": 6,
+        "badges": 6,
+        "questionHeadings": 6,
+        "hairlines": 6,
+        "expectedQuestions": 6,
+        "emptyElements": 0,
+        "placeholderPhrases": 0,
+        "mainElements": 1,
+        "h1Count": 1,
+        "headingOrderOk": true,
+        "robots": "noindex, follow",
+        "suppressed": false,
+        "firstBlock": "classification",
+        "seed126BlocksPresent": false,
+        "jsonLdBlocks": 0,
+        "jsonLdNote": "By design: a noindex page is not offered as a search result, so corpusDossierJsonLdGraph returns null for it. No Tier 3 page carries an ld+json block and none should."
+      },
+      "1-2-distearoyl-sn-glycero-3-phosphocholine": {
+        "role": "Tier 3 near-empty stub (committed Gate 2 sample)",
+        "http": 200,
+        "questionBlocks": 0,
+        "expectedQuestions": 0,
+        "emptyElements": 0,
+        "placeholderPhrases": 0,
+        "mainElements": 1,
+        "h1Count": 1,
+        "headingOrderOk": true,
+        "robots": "noindex, follow",
+        "seed126BlocksPresent": false,
+        "jsonLdBlocks": 0,
+        "note": "The page carries the corpus template - cd-title, cd-header, the exact-record table and the sources list - and no question block, because the record holds one present field and the derivation produced no question. That is R15's honest stub, not a broken render: the alternative would be a heading with nothing under it."
+      },
+      "lanatoside-c": {
+        "role": "suppression class (S1), supervision block",
+        "http": 200,
+        "questionBlocks": 3,
+        "emptyElements": 0,
+        "placeholderPhrases": 0,
+        "mainElements": 1,
+        "h1Count": 1,
+        "robots": "noindex, follow",
+        "suppressed": true,
+        "firstBlock": "supervision",
+        "seed126BlocksPresent": false
+      },
+      "telisotuzumab-vedotin": {
+        "role": "suppression class, supervision block, richer record",
+        "http": 200,
+        "questionBlocks": 7,
+        "emptyElements": 0,
+        "placeholderPhrases": 0,
+        "mainElements": 1,
+        "h1Count": 1,
+        "robots": "noindex, follow",
+        "suppressed": true,
+        "firstBlock": "supervision",
+        "seed126BlocksPresent": false
+      },
+      "seniprutug": {
+        "role": "suppression class S1 on a two-field stub",
+        "http": 200,
+        "questionBlocks": 0,
+        "emptyElements": 0,
+        "placeholderPhrases": 0,
+        "mainElements": 1,
+        "h1Count": 1,
+        "robots": "noindex, follow",
+        "suppressed": true,
+        "seed126BlocksPresent": false,
+        "note": "No supervision block, because the page has no question block at all. The classification is still stated, in the page header: 'Regulator classification recorded: S1', beside 'Evidence recorded: no human trial recorded' and 'This record holds 2 fields'."
+      }
+    },
+    "wholeTierSweep": {
+      "everyPageInTheTier": "All 22636 Tier 3 slugs were requested from production: 22636 of 22636 answered 200, none 404 or 5xx. (Three returned a transient client-side socket error on the first pass and answered 200 on retry.)",
+      "pagesFetchedAndParsed": 5350,
+      "composition": "all 145 Tier 3 pages whose suppression classes include S1-S9, 1500 suppressed Tier 3 pages drawn by digest, and 4000 further Tier 3 pages drawn by digest; 5350 distinct slugs, 24 per cent of the tier",
+      "http200": 5350,
+      "carryMetaRobotsNoindex": 5350,
+      "carryAnLdJsonBlock": 0,
+      "emptyElements": 0,
+      "placeholderPhrases": 0,
+      "pagesWithOneMainElement": 5350,
+      "pagesWithExactlyOneH1": 5350,
+      "badgeHeadingHairlineCountsAgree": 5350,
+      "vendorRetailerOrAffiliateHosts": 0,
+      "suppressedPagesRead": 1634,
+      "suppressedPagesRenderingASeed1_2_6Block": 0,
+      "anyPageRenderingASeed1_2_6Block": 0,
+      "questionBlockDistribution": {
+        "0": 4026,
+        "1": 32,
+        "2": 87,
+        "3": 315,
+        "4": 322,
+        "5": 107,
+        "6": 168,
+        "7": 211,
+        "8": 82
+      },
+      "questionBlockReading": "4026 of 5350 pages carry no question block. That is the shape of Tier 3, not a rendering failure: these are name-and-identifier records under R15's stub floor, and the template renders what the record holds rather than a heading over nothing.",
+      "supervisionPages": "145 pages carry an S1-S9 suppression class. 106 of them lead with the supervision block. The other 39 carry no question block at all, and every one of those 39 states its recorded classification in the page header instead.",
+      "databaseInvariant": "select count(*) from page_seeds join corpus_pages using (key) where suppressed and seed in (1,2,6) returns 0 across the whole corpus."
+    },
+    "indexableRegressionSweep": {
+      "why": "Tier 3 writes no indexable row, but it changes the facet population every indexable page links into, so the 636 already-indexed pages were re-read on the same deployment.",
+      "pagesFetched": 636,
+      "http200": 636,
+      "carryAnLdJsonBlock": 636,
+      "robots": "index, follow on all 636",
+      "emptyElements": 0,
+      "pagesWithOneMainElement": 636,
+      "badgeHeadingHairlineCountsAgree": 636,
+      "vendorRetailerOrAffiliateHosts": 0,
+      "placeholderScan": "One substring hit, on quercetin: 'Telomere Biology Disorders (TBD)', the registry's own verbatim condition name in a ClinicalTrials.gov row. It is a source's abbreviation, not a placeholder, and no page holds a real one."
+    },
+    "browserChecks": {
+      "command": "npx tsx scripts/corpus-20k/gate2/browser-checks.ts --base https://rnawiki.com --slugs <10 Tier 3 pages>",
+      "pagesChecked": 10,
+      "pages": [
+        "cdx-3379",
+        "1-2-distearoyl-sn-glycero-3-phosphocholine",
+        "lanatoside-c",
+        "telisotuzumab-vedotin",
+        "seniprutug",
+        "atuveciclib",
+        "osi-7904",
+        "aldosterone",
+        "intoplicine",
+        "chembl370347"
+      ],
+      "widths": [
+        "320",
+        "desktop 1440"
+      ],
+      "h1PerPage": 1,
+      "headingOrderOk": true,
+      "horizontalOverflowAt320": false,
+      "badgeInFlowAt320": "true on the 6 pages that have a badge; not applicable on the 4 stubs with no question block",
+      "emptyElements": 0,
+      "placeholderHits": 0,
+      "contrastBodyMin": 16.145,
+      "contrastGreyMin": 4.865,
+      "focusRingsMissing": 0,
+      "liveTextToHtml": "0.035 to 0.050"
+    },
+    "frozenHomeSearchBar": {
+      "baseline": "scripts/corpus-20k/gate2/browser-checks.ts FROZEN_BAR_BASELINE",
+      "widthsMeasured": [
+        1440,
+        375,
+        320
+      ],
+      "maxDeltaPx": 0.0,
+      "tolerancePx": 0.5,
+      "verdict": "unchanged",
+      "homeHeadline": "\"Understand any drug in 10 seconds.\" - unchanged"
+    }
+  },
+  "redirects": {
+    "written": 176,
+    "of864Total": "the 176 whose target page is in Tier 3; Tier 1 wrote 215 and Tier 2 wrote 474",
+    "totalInProductionNow": 870,
+    "byDate": {
+      "2026-09-02 (pre-corpus)": 5,
+      "2026-09-04 (Tier 1)": 215,
+      "2026-09-05 (Tier 2 and Tier 3)": 650
+    },
+    "rowsWhoseTargetIsATier3Page": 177,
+    "the177th": "fructo-oligosaccharides -> fructooligosaccharides, one of the five pre-corpus rows from 2026-09-02, whose target became a Tier 3 page in this load.",
+    "skipped": 0,
+    "sampled": 20,
+    "answered301or308": 20,
+    "targetsAnswering200": 20,
+    "sampledFrom": "the redirect rows in production whose target page is in Tier 3, ordered by digest",
+    "note": "Next's permanentRedirect emits 308; all 20 answered 308.",
+    "exhaustiveSweep": {
+      "why": "Twenty is the plan's sample, and it is what missed the Tier 2 chain until the whole ledger was requested.",
+      "oldSlugsRequested": 870,
+      "answered308": 870,
+      "answered404": 0,
+      "broken": [],
+      "chainsInTheLedger": 0
+    }
+  },
+  "indexNow": {
+    "attempted": false,
+    "submitted": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "responseCodes": [],
+    "why": "Tier 3 is noindex and appears in no sitemap child, so it has no URL to announce. Announcing a page to a search engine while telling that engine not to index it would be a contradiction, and R6 forbids it. The corpus-aware script enforces this itself: `npm run discovery:indexnow -- --tier 3 --json` exits with 'Tier 3 records are not indexed and appear in no sitemap, so none is announced', and its --tier flag is bounded to 1 or 2. Tier 1 submitted 610 URLs and Tier 2 submitted 26; the indexable population is unchanged by this load, so nothing new was announced.",
+    "ledgerEntryWritten": false
+  },
+  "audit": {
+    "command": "npm run discovery:monitor -- --origin https://rnawiki.com --click-depth-budget 20000 --json (no --tier: the sitemap index followed, all four children)",
+    "startedAt": "2026-09-05T02:15:39.482Z",
+    "finishedAt": "2026-09-05T02:36:17.609Z",
+    "sitemapDocumentsRead": 5,
+    "unreadableSitemapChildren": [],
+    "sitemapDossierUrls": 636,
+    "checked": 636,
+    "discoveryReady": 636,
+    "notDiscoveryReady": 0,
+    "blockerCounts": {},
+    "apiAvailable": 465,
+    "clickDepth": {
+      "pagesWalked": 2033,
+      "budget": 20000,
+      "budgetExhausted": false,
+      "distribution": {
+        "1": 4,
+        "2": 24,
+        "3": 608
+      },
+      "deeperThanThree": 0,
+      "unreachable": 0,
+      "requirement": "0 (R12: every indexed record within three clicks of home)",
+      "verdict": "MET"
+    },
+    "whyDeeperThanThreeIsZeroForThisTier": "Tier 3 contributes no indexed record, so R12 is satisfied for it trivially. The figure that matters is the whole served index, and it is 0 there too.",
+    "tier2WholeIndexComparison": {
+      "atTier2": {
+        "deeperThanThree": 1683,
+        "unreachable": 2190,
+        "cause": "4441 legacy-only dossiers announced in pages.xml, first linked from the legacy /browse pager, which links 18 of its 153 pages"
+      },
+      "now": {
+        "deeperThanThree": 0,
+        "unreachable": 0
+      },
+      "whatClosedIt": "Not a fix made here. Every legacy medicine now has a corpus_pages row, so pages.xml stops announcing legacy-only dossiers and the whole announced set is the 636 indexable corpus pages, all of which the corpus facet browse reaches. The legacy /browse pager is unchanged and still links 18 of its pages; it no longer gates anything the sitemap announces.",
+      "noBrowseOrFacetDefectWasFound": true
+    },
+    "independentClickDepthCheck": {
+      "why": "A second measurement that does not depend on the monitor's walk, run against the same deployment.",
+      "method": "Breadth-first from the home page over same-origin links, three levels, recording the depth at which each target URL is first linked.",
+      "pagesFetched": 1753,
+      "urlsSeenWithinThreeClicks": 30877,
+      "fetchFailures": 0,
+      "indexedRecords": {
+        "targets": 636,
+        "foundWithinThreeClicks": 636,
+        "distribution": {
+          "1": 4,
+          "2": 24,
+          "3": 608
+        },
+        "deeperThanThreeOrUnreachable": 0
+      },
+      "tier3Records": {
+        "targets": 22636,
+        "foundWithinThreeClicks": 22636,
+        "distribution": {
+          "2": 3,
+          "3": 22633
+        },
+        "unreachable": 0
+      },
+      "agreesWithTheMonitor": true,
+      "reading": "Every Tier 3 record is reachable in three clicks even though none is indexed, which is what keeps R6's 'noindex but crawlable' honest: the pages are findable by a reader, and the facet links to them carry rel=nofollow."
+    },
+    "browseStructure": {
+      "facetIndexesLinkedFromHome": 5,
+      "letterAndPageSubPagesLinkedInlineFromBrowseType": 516,
+      "tier3RecordLinksCarryRelNofollow": "60 of 60 on /browse/type/development/a; 0 of 60 on /browse/type/longevity/a, where the records are indexable",
+      "reading": "The facet index linking its letter and page sub-pages inline - the fix made after Tier 1 - is what holds the three-click guarantee at 28,832 records."
+    }
+  },
+  "issues": [
+    "The stage opened by closing the blocker the Tier 2 record left for it, which meant changing a loader and one production row before loading anything. scripts/corpus-20k/load/materialise.ts now refuses to write a redirect chain and repairs any it finds; the one broken row was re-pointed and /d/risedronate-sodium-hemipentahydrate answers 308 again. All 870 redirect rows in production answer 308 and the ledger holds no chain. Running Tier 3 without this would have written 176 more redirects into a ledger the route was already failing closed on.",
+    "FOR THE SPEC OWNER, NOT A DEFECT. The served sitemap now announces 636 dossier URLs where it announced 5,077 before this load. Nothing was lost - every one of the 9,859 legacy slugs still answers 200, 308 or 410 - but 4,441 dossiers that pages.xml was announcing are now Tier 3 corpus pages carrying noindex, follow. That is the threshold-11 decision and R6 landing together, and it is the first time the whole consequence is visible on the live site. The promotion band is where the population comes back: 2,365 pages hold 7 to 10 present fields, 752 of them in Tier 3.",
+    "IndexNow was skipped for this tier, and the tooling refuses it rather than leaving it to judgement: `npm run discovery:indexnow -- --tier 3` exits with 'Tier 3 records are not indexed and appear in no sitemap, so none is announced', and the flag is bounded to 1 or 2. Submitted 0, accepted 0, no ledger entry. Announcing a page to a search engine while telling that engine not to index it would contradict R6.",
+    "/sitemaps/tier-3.xml does not exist and returns 404 with X-Robots-Tag: noindex. The instruction to poll it until it lists this tier's indexable URLs cannot be met and should not be: the route refuses the name by design, verify-live.ts refuses --wait-sitemap-tier 3 for the same reason, and the tier has 0 indexable rows. What was waited for instead was the 15-minute settling of the three children that do exist; /sitemaps/pages.xml went from 4,379 URLs mid-load to its settled 10.",
+    "4,026 of the 5,350 Tier 3 pages read carry no question block at all. These are name-and-identifier records under R15's stub floor and the template renders what the record holds rather than a heading over nothing, but three quarters of the tier being a stub is the honest shape of what was loaded, and worth stating plainly rather than reporting only that the pages answered 200.",
+    "39 of the 145 Tier 3 pages whose suppression classes include S1-S9 carry no supervision block, because they carry no question block at all. Every one of the 39 states its recorded classification in the page header instead ('Regulator classification recorded: S1'), so the safety statement is not lost, but it is not the supervision block the suppression rule describes.",
+    "The placeholder scan raised one substring hit across 5,986 fetched pages, on quercetin: 'Telomere Biology Disorders (TBD)', a verbatim ClinicalTrials.gov condition name. It is a source's own abbreviation, not a placeholder. The Tier 2 record has the same finding on an InChIKey, so the substring scan has now raised a false positive twice; a word-boundary scan clears both.",
+    "npm run discovery:monitor took 20 minutes 38 seconds over the whole index: 636 record checks plus a 2,033-page walk at the script's 250 ms per-request pace. It completed in one process with no heap failure, so the Tier 1 out-of-memory defect stays closed, but a whole-index run is now a twenty-minute step and the next stage should budget for it."
+  ],
+  "gateChecksRunLocally": {
+    "why": "No code was deployed in this stage, but the loader was changed, so the checks that could invalidate that change were run.",
+    "typecheck": "pass",
+    "lint": "pass (one pre-existing warning in scripts/design-study/measure.ts, untouched here)",
+    "check:copy": "pass - 405 public/docs files, 0 hits",
+    "format": "pass",
+    "drizzle-kit check": "pass",
+    "check:seo": "pass - 24 files, 279 tests",
+    "test:unit": "pass - 174 files, 2544 tests, 9 skipped",
+    "test:integration": "pass on a disposable database - 26 files, 167 tests, including tests/integration/canonical-slug-history.test.ts, which asserts that resolvePublicMedicineRoute rejects a redirect chain",
+    "build": "pass"
+  }
+}
