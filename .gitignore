@@ -161,3 +161,15 @@ data/revamp/rendered-text/
 data/validation/**/*.parquet
 data/revamp/fields-v2/
 data/revamp/fields-v2-gated/
+
+# Phase 4 rebuild artefacts, on the same rule as data/revamp/fields-v2/ above: they are written
+# wholesale by a script from tracked inputs, they run to 900 MB, and the next run rewrites every
+# byte. The summaries beside them ARE the evidence and stay tracked, so a reader can check the
+# counts without the corpus.
+data/revamp/page-blocks/batch-*.ndjson
+data/revamp/questions-v2/batch-*.ndjson
+data/revamp/render-v5/text/
+data/revamp/render-v5/provenance/
+data/revamp/render-v5/pages-all.ndjson
+data/revamp/derived-v2/
+data/revamp/render-v5/

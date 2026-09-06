@@ -59,7 +59,7 @@ table is the only place the wording is fixed; `lib/corpus/suppression-classes.ts
 | Id  | Reader-facing label                                                                                                          |
 | --- | ---------------------------------------------------------------------------------------------------------------------------- |
 | S1  | a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics |
-| S2  | a controlled-substance schedule in the United States, the United Kingdom or Singapore                                        |
+| S2  | a controlled-substance schedule in Singapore, the United States, Australia or the United Kingdom                                        |
 | S3  | a label warning about harm to a developing baby, or a pregnancy-prevention programme                                         |
 | S4  | a list of cytotoxic or otherwise hazardous medicines                                                                         |
 | S5  | a United States programme that restricts how the medicine is supplied and who may supply it                                  |

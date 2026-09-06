@@ -100,11 +100,11 @@ def read_plan(path: Path) -> list[tuple[str, str, str]]:
         return [(row["old_slug"], row["new_slug"], row["reason"]) for row in csv.DictReader(handle)]
 
 
-def surviving_slugs(plan: list[tuple[str, str, str]]) -> set[str]:
-    """The slugs that still serve a page once the 3.2 merges and adoptions are applied."""
+def surviving_slugs(plan: list[tuple[str, str, str]], canonical: Path = CANONICAL_V2) -> set[str]:
+    """The slugs that still serve a page once the merges and adoptions in `canonical` are applied."""
     by_key = read_page_slugs()
     live: set[str] = set()
-    with CANONICAL_V2.open() as handle:
+    with canonical.open() as handle:
         for line in handle:
             record = json.loads(line)
             slug = by_key.get(record["key"]) or record.get("adoptedSlug") or record.get("existingSlug")
@@ -258,6 +258,9 @@ def main() -> int:
     parser.add_argument("--base-url", default="https://rnawiki.com")
     parser.add_argument("--plan", type=Path, default=ROOT / "data/revamp/identity/redirect-plan.csv")
     parser.add_argument("--out", type=Path, default=ROOT / "data/revamp/redirect-check.json")
+    parser.add_argument("--canonical", type=Path, default=CANONICAL_V2,
+                        help="the canonical revision whose pages the plan must land on; the merges "
+                             "a later revision applies change which slugs still serve a page")
     parser.add_argument("--service", default="Postgres")
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--timeout", type=float, default=30.0)
@@ -275,7 +278,8 @@ def main() -> int:
     universe = {json.loads(line)["slug"] for line in DISPOSITIONS.open()}
     universe |= {old for old, _target in production}
     plan = read_plan(args.plan.resolve())
-    live = surviving_slugs(plan)
+    canonical = args.canonical.resolve()
+    live = surviving_slugs(plan, canonical)
 
     payload = {
         "generatedAt": now(),
@@ -284,7 +288,7 @@ def main() -> int:
             "dispositions": str(DISPOSITIONS.relative_to(ROOT)),
             "productionRedirectTable": "medicine_slug_redirects (CA-pinned read)",
             "plan": str(args.plan.resolve().relative_to(ROOT)),
-            "canonicalV2": str(CANONICAL_V2.relative_to(ROOT)),
+            "canonical": str(canonical.relative_to(ROOT)),
         },
     }
     payload["plan"] = check_plan(universe, production, plan, live)

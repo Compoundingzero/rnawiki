@@ -157,3 +157,36 @@ lead reads the 60 pages for the logical-sequence test: each sentence must follow
 before it, and a paragraph that pairs a fact with an unrelated fact fails even when each sentence
 is true. Every failure is fixed in the generator; the draw is re-run with a fresh seed; the gate
 passes on two consecutive clean draws, both committed under `data/revamp/slop-draws/`.
+
+## 10. Decisions taken on the data stage's findings (2026-09-06, Fable)
+
+- **Seed 17 (jurisdiction divergence)** fires only when two affirmative register findings diverge
+  (approved versus withdrawn, refused, suspended or revoked). A "not found" or "not cleared" row
+  is an absence and never a divergence. The data-stage re-run that compared absences produced
+  12,872 records; with absences excluded 1,642 remain, and the 40-page floor still applies.
+- **Controlled trigger** = Singapore Misuse of Drugs Act schedules, US DEA schedules, Australian
+  SUSMP Schedules 8 and 9, and the UN conventions when ingested. The Singapore Poisons Act and
+  Poisons Rules schedules are a prescription classification, not a controlled-substance list:
+  they render in the registration block and do not trigger the no-dose path. (Measured: 1,836
+  pages with the Poisons Act included, 241 SG MDA pages without; Operating Rule 9 names the MDA.)
+- **Class S2 label** names Australia as well: "a controlled-substance schedule in Singapore, the
+  United States, Australia or the United Kingdom" (`docs/specs/suppression-classes.md` updated).
+- **Dose question** is withheld on every suppressed page, controlled pages included, exactly as
+  seeds 1, 2 and 6 are; the recorded dose stays in the technical disclosure's field list as a
+  value name only, never as text.
+- **Inxight "unspecified" jurisdiction** rows (15,140 pages) go to the technical disclosure, not
+  to "Other registers"; the 100 other unmapped strings render under "Other registers" with the
+  verbatim string and are listed in `data/revamp/jurisdiction-unmapped.csv`.
+- **Display names after a merge:** the printed name is never an all-caps register string when a
+  title-case synonym of kind common or INN exists (potassium citrate, not "POTASSIUM CITRATE
+  ANHYDROUS"; sodium succinate, not "Monosodium Succinate" unless that is the only name). Slugs do
+  not change; the redirect plan stands.
+- **Heparin calcium / heparin sodium and chromium / chromium acetate**: no single parent page
+  prints the stripped name, so the parent-named trials stay on the form pages. The form pages open
+  with the form-of note and their own register, label and patent facts; if the rendered duplicate
+  check still flags a pair after Phase 4, the pair joins the held list for Felix with the
+  recommended default "one page per active moiety".
+- **Neighbour status clause** keeps the jurisdiction codes of §8's example ("approved (US, EU)").
+- **Interaction rules C2, C3-hepatotoxic and C3-nephrotoxic** stay disabled with the recorded
+  reasons; the engine publishes the eight rules that reached the bars (likely precision 0.996,
+  overall 0.983 on 1,748 label-adjudicated pairs; recall 0.108 against label-documented pairs).

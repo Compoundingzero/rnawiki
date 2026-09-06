@@ -57,7 +57,7 @@
         "3.1": "done",
         "3.2": "done",
         "3.3": "done",
-        "3.4": "adjudicated: 13 licensed rows applied in the Phase 4 data workflow; 64 held for Felix (64 min)",
+        "3.4": "done: 10 pairs applied (canonical-v3), 64 held for Felix",
         "3.5": "done (live PASS, plan PASS)",
         "3.6": "run: 19 indexable pairs \u2265 0.5; re-run after Phase 4 differentiation",
         "3.7": "done (39/39 verified)"
@@ -67,9 +67,17 @@
     },
     "4": {
       "status": "IN_PROGRESS",
-      "steps": {},
+      "steps": {
+        "4.1": "data done (engine + validation); rendering in progress",
+        "4.2": "data done; rendering in progress",
+        "4.3": "data done; rendering in progress",
+        "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
+        "4.5": "data done; rendering in progress",
+        "4.6": "done (seed 17 rule corrected in render stage)",
+        "4.7": "pending (draw after render)"
+      },
       "gate_evidence": null,
-      "updated": "2026-09-05T22:13:30+00:00"
+      "updated": "2026-09-06T01:53:06+00:00"
     },
     "5": {
       "status": "PENDING",

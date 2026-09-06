@@ -1,0 +1,433 @@
+{
+  "generatedAt": "2026-09-05T22:33:06Z",
+  "step": "3.4 application",
+  "inputs": {
+    "apply": "data/revamp/identity/apply-list.csv",
+    "hold": "data/revamp/identity/hold-list.csv",
+    "canonicalV2": "data/revamp/identity/canonical-v2.ndjson",
+    "relations": "data/revamp/identity/relations.parquet",
+    "decisions": "data/revamp/identity-decisions.csv",
+    "registryMatches": "data/corpus-20k/registry/matches"
+  },
+  "pages": {
+    "before": 28822,
+    "after": 28818,
+    "mergedAway": 4
+  },
+  "appliedByRule": {
+    "LICENSED-MERGE": 4,
+    "LICENSED-FORM_OF": 6
+  },
+  "merges": [
+    {
+      "pair": [
+        "HOLD:existing:anhydrous-citric-acid",
+        "K1:XF417D3PSL"
+      ],
+      "names": [
+        "Anhydrous Citric Acid",
+        "Anhydrous Citric Acid"
+      ],
+      "survivor": "K1:XF417D3PSL",
+      "absorbed": [
+        "HOLD:existing:anhydrous-citric-acid"
+      ],
+      "survivorName": "Anhydrous Citric Acid",
+      "survivorSlug": "anhydrous-citric-acid-2",
+      "reach": "band",
+      "tier": "2",
+      "ground": "both pages carry the identical full InChIKey recorded in the corpus",
+      "applyRow": 2,
+      "note": "merged"
+    },
+    {
+      "pair": [
+        "HOLD:existing:potassium-citrate",
+        "K1:86R1NVR0HW"
+      ],
+      "names": [
+        "Potassium Citrate",
+        "POTASSIUM CITRATE ANHYDROUS"
+      ],
+      "survivor": "K1:86R1NVR0HW",
+      "absorbed": [
+        "HOLD:existing:potassium-citrate"
+      ],
+      "survivorName": "POTASSIUM CITRATE ANHYDROUS",
+      "survivorSlug": "potassium-citrate-anhydrous",
+      "reach": "band",
+      "tier": "2",
+      "ground": "both pages carry the identical full InChIKey recorded in the corpus",
+      "applyRow": 3,
+      "note": "merged"
+    },
+    {
+      "pair": [
+        "K1:B22547B95K",
+        "K1:XF417D3PSL"
+      ],
+      "names": [
+        "Trisodium Citrate Dihydrate",
+        "Anhydrous Citric Acid"
+      ],
+      "survivor": "K1:XF417D3PSL",
+      "absorbed": [
+        "K1:B22547B95K"
+      ],
+      "survivorName": "Anhydrous Citric Acid",
+      "survivorSlug": "anhydrous-citric-acid-2",
+      "reach": "band",
+      "tier": "2",
+      "ground": "a GSRS salt-to-parent link confirmed by the FDA active moiety the corpus records and by the parent skeleton the evidence names",
+      "applyRow": 7,
+      "note": "merged"
+    },
+    {
+      "pair": [
+        "HOLD:existing:sodium-succinate",
+        "K1:P699N4QOWE"
+      ],
+      "names": [
+        "Sodium Succinate (C4H5NaO4)",
+        "Monosodium Succinate"
+      ],
+      "survivor": "K1:P699N4QOWE",
+      "absorbed": [
+        "HOLD:existing:sodium-succinate"
+      ],
+      "survivorName": "Monosodium Succinate",
+      "survivorSlug": "monosodium-succinate",
+      "reach": "rest",
+      "tier": "1",
+      "ground": "both pages carry the identical full InChIKey recorded in the corpus",
+      "applyRow": 8,
+      "note": "merged"
+    }
+  ],
+  "formOf": [
+    {
+      "pair": [
+        "K1:5J49Q6B70F",
+        "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N"
+      ],
+      "names": [
+        "Vincristine",
+        "Vincristine"
+      ],
+      "child": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
+      "parent": "K1:5J49Q6B70F",
+      "relation": "stereoisomer_of",
+      "note": "Vincristine (structure OGWKCGZFUXNPDA-XQKSVPLYSA-N) is a diastereomer of Vincristine (UNII 5J49Q6B70F).",
+      "backNote": "Vincristine (UNII 5J49Q6B70F) is the parent form recorded for Vincristine (structure OGWKCGZFUXNPDA-XQKSVPLYSA-N).",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [
+        "form_of",
+        "stereoisomer_of"
+      ],
+      "provenance": {
+        "Vincristine (structure OGWKCGZFUXNPDA-XQKSVPLYSA-N) is a diastereomer of Vincristine (UNII 5J49Q6B70F).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "Vincristine (UNII 5J49Q6B70F) is the parent form recorded for Vincristine (structure OGWKCGZFUXNPDA-XQKSVPLYSA-N).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 5
+    },
+    {
+      "pair": [
+        "K1:UVL329170W",
+        "K2:DCSUBABJRXZOMT-UHFFFAOYSA-N"
+      ],
+      "names": [
+        "Cisapride",
+        "Cisapride"
+      ],
+      "child": "K1:UVL329170W",
+      "parent": "K2:DCSUBABJRXZOMT-UHFFFAOYSA-N",
+      "relation": "stereoisomer_of",
+      "note": "Cisapride (UNII UVL329170W) carries defined stereochemistry; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without it.",
+      "backNote": "Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is the parent form recorded for Cisapride (UNII UVL329170W).",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [
+        "form_of",
+        "stereoisomer_of"
+      ],
+      "provenance": {
+        "Cisapride (UNII UVL329170W) carries defined stereochemistry; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without it.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is the parent form recorded for Cisapride (UNII UVL329170W).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 9
+    },
+    {
+      "pair": [
+        "K1:V10579P3QZ",
+        "K2:BWWVAEOLVKTZFQ-ISVUSNJMSA-N"
+      ],
+      "names": [
+        "Amdinocillin",
+        "Mecillinam"
+      ],
+      "child": "K2:BWWVAEOLVKTZFQ-ISVUSNJMSA-N",
+      "parent": "K1:V10579P3QZ",
+      "relation": "stereoisomer_of",
+      "note": "Mecillinam is a diastereomer of Amdinocillin.",
+      "backNote": "Amdinocillin is the parent form recorded for Mecillinam.",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [
+        "form_of",
+        "stereoisomer_of"
+      ],
+      "provenance": {
+        "Mecillinam is a diastereomer of Amdinocillin.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "Amdinocillin is the parent form recorded for Mecillinam.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 10
+    },
+    {
+      "pair": [
+        "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}",
+        "COMBO:{K1:2679MF687A,K1:TN1B5910V2}"
+      ],
+      "names": [
+        "Xantinol Nicotinate",
+        "XANTHINOL NIACINATE"
+      ],
+      "child": "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}",
+      "parent": "COMBO:{K1:2679MF687A,K1:TN1B5910V2}",
+      "relation": "stereoisomer_of",
+      "note": "Xantinol Nicotinate carries defined stereochemistry; XANTHINOL NIACINATE is recorded without it.",
+      "backNote": "XANTHINOL NIACINATE is the parent form recorded for Xantinol Nicotinate.",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [],
+      "provenance": {
+        "Xantinol Nicotinate carries defined stereochemistry; XANTHINOL NIACINATE is recorded without it.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "XANTHINOL NIACINATE is the parent form recorded for Xantinol Nicotinate.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 11
+    },
+    {
+      "pair": [
+        "K1:EUT3557RT5",
+        "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N"
+      ],
+      "names": [
+        "Arimoclomol",
+        "Arimoclomol"
+      ],
+      "child": "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N",
+      "parent": "K1:EUT3557RT5",
+      "relation": "stereoisomer_of",
+      "note": "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) is a diastereomer of Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N).",
+      "backNote": "Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N) is the parent form recorded for Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N).",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [
+        "form_of",
+        "stereoisomer_of"
+      ],
+      "provenance": {
+        "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) is a diastereomer of Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N) is the parent form recorded for Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 12
+    },
+    {
+      "pair": [
+        "K1:D81QY6I88E",
+        "K1:F4VNO44C09"
+      ],
+      "names": [
+        "LINALOOL",
+        "Linalool"
+      ],
+      "child": "K1:F4VNO44C09",
+      "parent": "K1:D81QY6I88E",
+      "relation": "stereoisomer_of",
+      "note": "Linalool (UNII F4VNO44C09) carries defined stereochemistry; LINALOOL (UNII D81QY6I88E) is recorded without it.",
+      "backNote": "LINALOOL (UNII D81QY6I88E) is the parent form recorded for Linalool (UNII F4VNO44C09).",
+      "edgesWritten": 2,
+      "edgesAlreadyRecorded": [
+        "form_of",
+        "stereoisomer_of"
+      ],
+      "provenance": {
+        "Linalool (UNII F4VNO44C09) carries defined stereochemistry; LINALOOL (UNII D81QY6I88E) is recorded without it.": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ],
+        "LINALOOL (UNII D81QY6I88E) is the parent form recorded for Linalool (UNII F4VNO44C09).": [
+          "canonical-v2.displayName (both pages)",
+          "spine-attached.unii or spine-attached.inchikey where two pages print one name",
+          "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
+          "structure.smiles CIP stereo codes (both pages)"
+        ]
+      },
+      "applyRow": 13
+    }
+  ],
+  "refused": [],
+  "closureCheck": {
+    "separatedPairsChecked": 1067,
+    "sources": [
+      "identity-decisions.csv EXCEPTION-* rows",
+      "relations.parquet EXCEPTION-* rows",
+      "hold-list.csv pairs",
+      "identity_resolve.exception_class re-run over every new pair in a component"
+    ]
+  },
+  "heldPairsRekeyed": [
+    {
+      "name_a": "Anhydrous Citric Acid",
+      "name_b": "Citric Acid",
+      "changes": {
+        "page_a": {
+          "before": "HOLD:existing:anhydrous-citric-acid",
+          "after": "K1:XF417D3PSL"
+        }
+      }
+    },
+    {
+      "name_a": "Potassium Citrate",
+      "name_b": "POTASSIUM CITRATE",
+      "changes": {
+        "page_a": {
+          "before": "HOLD:existing:potassium-citrate",
+          "after": "K1:86R1NVR0HW"
+        }
+      }
+    },
+    {
+      "name_a": "POTASSIUM CITRATE",
+      "name_b": "Potassium Citrate",
+      "changes": {
+        "resolved_page_b": {
+          "before": "HOLD:existing:potassium-citrate",
+          "after": "K1:86R1NVR0HW"
+        }
+      }
+    }
+  ],
+  "trialReassignment": {
+    "formPagesLinkedToAParent": 452,
+    "pagesByOutcome": {
+      "form page linked to the page that prints the stripped name": 452,
+      "no page prints the stripped name": 573,
+      "no shorter name is reached by removing a salt, hydrate or ester token": 27777,
+      "two or more pages print the stripped name, so no parent is decidable": 20
+    },
+    "childPagesWithMovedStudies": 97,
+    "studiesMoved": 10638,
+    "rule": "R14b-PARENT-NAME-TRIAL-FORM",
+    "provenance": {
+      "every registry intervention recorded for this study on the <form> page names <parent>; <form> is that name plus <form words>, so the study belongs to the parent page": [
+        "display-names.csv current_display_name or canonical-v2.displayName (both pages)",
+        "registry/matches/*.ndjson matchedName for every match of that NCT on the form page",
+        "scripts/revamp/salts.txt, identity_resolve.ESTER_WORDS and identity_resolve.CATION_WORDS for the removed tokens"
+      ]
+    },
+    "rowsByRule": {
+      "R14-PARENT-NAME-TRIAL": 1682,
+      "R14b-PARENT-NAME-TRIAL-FORM": 10638
+    },
+    "rowsBefore": 1682,
+    "rowsAfter": 12320
+  },
+  "relations": {
+    "before": 5392,
+    "after": 5364,
+    "writtenByLicensedFormOf": 12,
+    "droppedOrRetargetedByMerges": 30
+  },
+  "displayNames": {
+    "before": 410,
+    "after": 409,
+    "dropped": [
+      {
+        "key": "HOLD:existing:sodium-succinate",
+        "why": "the page merged into K1:P699N4QOWE"
+      }
+    ]
+  },
+  "redirectPlan": {
+    "v2Rows": 61,
+    "v3Rows": 65,
+    "newRows": [
+      {
+        "old_slug": "anhydrous-citric-acid-2",
+        "new_slug": "anhydrous-citric-acid",
+        "reason": "MERGED: K1:XF417D3PSL adopted the unnumbered slug of a page it absorbed"
+      },
+      {
+        "old_slug": "potassium-citrate",
+        "new_slug": "potassium-citrate-anhydrous",
+        "reason": "MERGED into K1:86R1NVR0HW by the adjudicated identity decisions (3.4)"
+      },
+      {
+        "old_slug": "sodium-citrate",
+        "new_slug": "anhydrous-citric-acid",
+        "reason": "MERGED into K1:XF417D3PSL by the adjudicated identity decisions (3.4)"
+      },
+      {
+        "old_slug": "sodium-succinate",
+        "new_slug": "monosodium-succinate",
+        "reason": "MERGED into K1:P699N4QOWE by the adjudicated identity decisions (3.4)"
+      }
+    ]
+  },
+  "outputs": {
+    "canonical": "data/revamp/identity/canonical-v3.ndjson",
+    "relations": "data/revamp/identity/relations-v3.parquet",
+    "displayNames": "data/revamp/identity/display-names-v3.csv",
+    "redirectPlan": "data/revamp/identity/redirect-plan-v3.csv",
+    "trialReassignments": "data/revamp/identity/trial-reassignments-v3.csv",
+    "holdList": "data/revamp/identity/hold-list-v3.csv"
+  }
+}
