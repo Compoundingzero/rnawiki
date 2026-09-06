@@ -68,5 +68,14 @@
       "bytes": 2348,
       "sha256": "58964fda5cd322dd5ff2669640951603bf00982af20966ca340c6fb9b2b94b3a"
     }
-  ]
+  ],
+  "freshnessCheck": {
+    "script": "scripts/revamp/ema_freshness_check.py",
+    "report": "data/sources/ema/2026-09-06/freshness-check.json",
+    "checkedAt": "2026-09-05T20:56:24Z",
+    "publishedGenerated": "05/09/2026 - 18:00",
+    "publishedLastModified": "Sat, 05 Sep 2026 16:01:10 GMT",
+    "publishedSha256": "7aeb28d71b0ff0b5a3ed0a0d988ce7edd3efac9c31f6c9fc090912631398cda1",
+    "result": "EMA regenerates this report on a schedule, so the published bytes and Last-Modified change without any record changing. The published file generated 05/09/2026 18:00 was downloaded and compared cell by cell against the stored pull generated 05/09/2026 06:00: 2,732 rows x 39 columns, 0 cells differing. The stored pull carries the current data and was not replaced; the downloaded copy was discarded."
+  }
 }

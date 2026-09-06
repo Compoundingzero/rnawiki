@@ -1709,6 +1709,13 @@ def interaction_nodes(page):
         for name in ("transporters", "transporter"):
             if value.get(name):
                 buckets.append(("transporter", as_list(value[name])))
+        # The Phase 2 integration (docs/specs/field-integration.md §3) keeps the corpus's own
+        # recorded interaction rows and adds the label and curated rows beside them; where the
+        # corpus value was a list it now sits under `recordedValue`. Following the value to the
+        # key it was moved to reads the same recorded rows this accessor has always read, so the
+        # measurement stays the same one. A record that never held the key is unaffected.
+        if value.get("recordedValue"):
+            buckets.append((None, as_list(value["recordedValue"])))
         if not buckets:
             buckets.append((None, [v for v in value.values() if isinstance(v, (dict, str))]))
     else:

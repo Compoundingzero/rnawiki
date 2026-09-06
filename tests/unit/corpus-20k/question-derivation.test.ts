@@ -663,6 +663,29 @@ describe('suppression (R2)', () => {
     expect(blocks).toContain('time-to-signal')
     expect(blocks).not.toContain('supervision')
   })
+
+  /*
+   * docs/specs/phase4-generators.md §4: a substance carrying a controlled-substance schedule
+   * reaches this deriver as a suppressed page, and the dose question is withheld on it exactly as
+   * seeds 1, 2 and 6 are. The recorded dose is not removed; only the question is withheld.
+   */
+  const withADose = {
+    doseStudied: field([{ organism: 'human', doseText: '10 mg daily', route: null }]),
+  }
+
+  it('withholds the dose question on a suppressed page', () => {
+    const blocks = deriveQuestions(page({ suppressed: true, fields: { ...withADose } })).map(
+      (q) => q.block,
+    )
+    expect(blocks).not.toContain('dose-studied')
+  })
+
+  it('asks the dose question on the same page when it is not suppressed', () => {
+    const blocks = deriveQuestions(page({ suppressed: false, fields: { ...withADose } })).map(
+      (q) => q.block,
+    )
+    expect(blocks).toContain('dose-studied')
+  })
 })
 
 describe('stub rule (R15)', () => {

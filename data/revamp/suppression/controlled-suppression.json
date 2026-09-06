@@ -1,0 +1,41 @@
+{
+  "generatedBy": "scripts/revamp/controlled_suppression.py",
+  "inputs": {
+    "assignmentLines": 28832,
+    "assignments": "data/corpus-20k/suppression/assignments.ndjson",
+    "fieldsDir": "data/revamp/fields-v2",
+    "pagesRead": 28832
+  },
+  "narrowerReading": {
+    "definition": "the Misuse of Drugs Act 1973 schedules only, without the Poisons Act 1938 Schedule and the Poisons Rules schedules, plus the same US DEA and AU SUSMP 8/9 tests",
+    "pagesFiring": 241
+  },
+  "output": "data/revamp/suppression/assignments-v2.ndjson",
+  "spec": [
+    "docs/specs/phase4-generators.md#4",
+    "docs/specs/suppression-classes.md"
+  ],
+  "suppression": {
+    "alreadySuppressedUnderR2": 830,
+    "newlySuppressedByControlledField": 1006,
+    "newlySuppressedByTier": {
+      "1": 225,
+      "2": 539,
+      "3": 242
+    }
+  },
+  "trigger": {
+    "byRegister": {
+      "AU-SUSMP-8-9": 161,
+      "SG-MDA-POISONS": 1801,
+      "US-DEA": 68
+    },
+    "byTier": {
+      "1": 527,
+      "2": 807,
+      "3": 502
+    },
+    "pagesFiring": 1836
+  },
+  "triggeredKeysNotInAssignments": []
+}

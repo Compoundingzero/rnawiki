@@ -1890,6 +1890,18 @@
     "approval_date": "2015-09-28"
   },
   {
+    "source_record_id": "pmda:p116:r10",
+    "reason": "every named ingredient reaches a corpus page only through a normalised name shared by counter-ion, not by substance; held out and listed in name-candidates-held-out.json",
+    "active_ingredient_raw": "Radium （223Ra）\ndichloride",
+    "components": [
+      "Radium （223Ra） dichloride"
+    ],
+    "brand_names": [
+      "Xofigo Injection"
+    ],
+    "approval_date": "2016-03-28"
+  },
+  {
     "source_record_id": "pmda:p116:r14",
     "reason": "no corpus page for any named ingredient",
     "active_ingredient_raw": "Haemophilus\ninfluenzae type b\nvaccine absorbed\n(mutated diphtheria\nCRM conjugate)\n197",
@@ -2444,6 +2456,13 @@
     "approval_date": "2013-03-25"
   },
   {
+    "source_record_id": "pmda:p143:r01",
+    "reason": "ingredient reaches a corpus page only through a normalised name that the page shares by counter-ion, not by substance; held out and listed in name-candidates-for-review.json",
+    "component": "Precipitated calcium carbonate",
+    "active_ingredient_raw": "Precipitated calcium\ncarbonate/cholecalciferol/\nmagnesium carbonate",
+    "approval_date": "2013-02-28"
+  },
+  {
     "source_record_id": "pmda:p143:r06",
     "reason": "no corpus page for any named ingredient",
     "active_ingredient_raw": "Thyrotropin human alfa\n(genetical recombination)",
@@ -2633,9 +2652,15 @@
   },
   {
     "source_record_id": "pmda:p158:r02",
-    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
-    "component": "Live attenuated human rotavirus vaccine",
+    "reason": "no corpus page for any named ingredient",
     "active_ingredient_raw": "Live attenuated human\nrotavirus vaccine, oral",
+    "components": [
+      "Live attenuated human rotavirus vaccine",
+      "oral"
+    ],
+    "brand_names": [
+      "Rotarix Oral Solution"
+    ],
     "approval_date": "2011-07-01"
   },
   {
@@ -2713,16 +2738,16 @@
   },
   {
     "source_record_id": "pmda:p158:r08",
-    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
-    "component": "Live attenuated rotavirus vaccine",
+    "reason": "no corpus page for any named ingredient",
     "active_ingredient_raw": "Live attenuated rotavirus\nvaccine, oral, pentavalent",
-    "approval_date": "2012-01-18"
-  },
-  {
-    "source_record_id": "pmda:p158:r08",
-    "reason": "ingredient names no corpus page and resolves to no corpus UNII",
-    "component": "pentavalent",
-    "active_ingredient_raw": "Live attenuated rotavirus\nvaccine, oral, pentavalent",
+    "components": [
+      "Live attenuated rotavirus vaccine",
+      "oral",
+      "pentavalent"
+    ],
+    "brand_names": [
+      "RotaTeq Oral Solution"
+    ],
     "approval_date": "2012-01-18"
   },
   {

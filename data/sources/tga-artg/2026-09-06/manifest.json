@@ -34,7 +34,7 @@
   {
    "url": "https://www.tga.gov.au/robots.txt",
    "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-www-tga-gov-au-wayback-20260202.txt",
-   "finding": "Not retrievable live: nine requests over two days timed out after 30 s with 0 bytes received (evidence in legal/www-tga-gov-au-retries.txt). The copy here is the Internet Archive capture of 2026-02-02, a stock Drupal robots.txt whose Disallow rules cover /core/, /profiles/, /admin/, /search and account paths only. Robots is not what blocks this source; the site copyright notice is."
+   "finding": "Not retrievable live: fifteen requests across two days and two rounds timed out after 30 s with 0 bytes received (evidence in legal/www-tga-gov-au-retries.txt, legal/www-tga-gov-au-retries-2.txt and the 2026-09-05 directory). The copy here is the Internet Archive capture of 2026-02-02, a stock Drupal robots.txt whose Disallow rules cover /core/, /profiles/, /admin/, /search and account paths only. Robots is not what blocks this source; the site copyright notice is."
   },
   {
    "url": "https://www.ebs.tga.gov.au/robots.txt",
@@ -60,7 +60,13 @@
    "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20251128.html",
    "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20250518.html"
   ],
-  "quoted": "TGA Copyright page (https://www.tga.gov.au/about-us/using-our-website/copyright, Internet Archive capture of 2025-11-28, the most recent capture that returns the page): \"You must not use the whole or any part of the content on this website for any commercial purposes.\" and \"You are not permitted to re-transmit, distribute or commercialise the material without our prior written approval.\" The earlier capture at https://www.tga.gov.au/copyright (2025-05-18) says the same in the older wording: reproduction is permitted for personal or internal organisational use \"but only if you or your organisation do not use the reproduction for any commercial purpose\"."
+  "quoted": "TGA Copyright page (https://www.tga.gov.au/about-us/using-our-website/copyright, Internet Archive capture of 2025-11-28, the most recent capture that returns the page): \"You must not use the whole or any part of the content on this website for any commercial purposes.\" and \"You are not permitted to re-transmit, distribute or commercialise the material without our prior written approval.\" The earlier capture at https://www.tga.gov.au/copyright (2025-05-18) says the same in the older wording: reproduction is permitted for personal or internal organisational use \"but only if you or your organisation do not use the reproduction for any commercial purpose\".",
+  "reachabilityRecheck": {
+   "date": "2026-09-06",
+   "script": "scripts/revamp/tga_recheck.sh",
+   "result": "Six further attempts, all failed: five curl exit 28 and one curl exit 56, every one with 0 bytes received. The blocker does not rest on reachability; ground 1 (the copyright terms) and ground 2 (eBS robots.txt Disallow: /) stand independently.",
+   "evidence": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries-2.txt"
+  }
  },
  "apiKey": "None. The Federal Register of Legislation OData API is open and offers no key registration; no credential was created or stored for this source.",
  "requestLog": "data/sources/tga-artg/2026-09-06/requests.log",
@@ -154,6 +160,14 @@
    "retrieved": "2026-09-05T16:25:02Z",
    "logged_bytes": 113063,
    "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries-2.txt",
+   "role": "legal",
+   "bytes": 1984,
+   "sha256": "55ae88627b844ee4f62e690b50f16259bf5313c19d0e7d6f64a32e2626fa72ad",
+   "provenance": "Written by this step, not fetched: the verbatim curl output of a second round of six requests to www.tga.gov.au on 2026-09-06 (two URLs, three attempts each with 0 s, 7 s and 22 s backoff, desktop Chrome user agent over HTTP/1.1), run by scripts/revamp/tga_recheck.sh. Five attempts returned curl exit 28 (operation timed out with 0 bytes received) and one returned curl exit 56 (recv failure: operation timed out). Fifteen attempts across two rounds and two days have now failed identically.",
+   "state": "added"
   },
   {
    "path": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries.txt",

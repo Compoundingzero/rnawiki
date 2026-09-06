@@ -1,0 +1,122 @@
+{
+  "schema": "rnawiki-revamp-rendered-dup-check/v1",
+  "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
+  "at": "2026-09-06T04:39:30Z",
+  "baseUrl": "http://127.0.0.1:3141",
+  "widths": [
+    390,
+    1280
+  ],
+  "threshold": 0.5,
+  "sampleSeed": 20260905,
+  "minhash": {
+    "permutations": 128,
+    "shingleWords": 5,
+    "permutationSeed": 20260904,
+    "permutationFamily": "splitmix64(shingle XOR seed_i), scripts/corpus-20k/overlap/harness.py",
+    "screenMargin": 0.1,
+    "scoring": "MinHash screens; the reported jaccard is the exact shingle-set Jaccard"
+  },
+  "rendered": {
+    "indexable": 1019,
+    "noindexSample": 990,
+    "hubs": 0
+  },
+  "sets": {
+    "indexableRequested": 1062,
+    "hubsRequested": 0,
+    "noindexSampleRequested": 1000,
+    "noindexFrame": 27744,
+    "sitemapChildren": [
+      "tier-1",
+      "tier-2",
+      "browse",
+      "pages"
+    ],
+    "hubSitemapChildren": []
+  },
+  "slugSources": {
+    "recorded": 9278,
+    "recomputed": 19554
+  },
+  "pagesDroppedOnIdentityCheck": 31,
+  "pagesRenderedThisRun": 1930,
+  "pagesFromCache": 110,
+  "renderCounters": {
+    "cached": 110,
+    "pages dropped: no 200 response at both widths": 22,
+    "rendered": 1930,
+    "requests logged": 3882
+  },
+  "perWidth": {
+    "390": {
+      "pagesScored": 2009,
+      "pairsFlagged": 96538,
+      "indexablePairsFlagged": 32,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 13,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.4951,
+          "medianJaccard": 0.2818
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 18,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.3176,
+          "medianJaccard": 0.185
+        }
+      }
+    },
+    "1280": {
+      "pagesScored": 2009,
+      "pairsFlagged": 96538,
+      "indexablePairsFlagged": 32,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 13,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.4951,
+          "medianJaccard": 0.2818
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 18,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.3176,
+          "medianJaccard": 0.185
+        }
+      }
+    }
+  },
+  "pairsFlagged": 193076,
+  "indexablePairsFlagged": 64,
+  "reasons": {
+    "unclassified-overlap": {
+      "pairs": 180730,
+      "indexablePairs": 12
+    },
+    "stub-template": {
+      "pairs": 12294,
+      "indexablePairs": 0
+    },
+    "biosimilar": {
+      "pairs": 32,
+      "indexablePairs": 32
+    },
+    "identical-trial-set": {
+      "pairs": 20,
+      "indexablePairs": 20
+    }
+  },
+  "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision",
+  "runtimeMinutes": 29.04,
+  "outputs": {
+    "pairs": "data/revamp/rendered-dups-v5-prior-set.csv",
+    "cache": "data/revamp/rendered-text",
+    "requestLog": "data/corpus-20k/legal/requests.log"
+  },
+  "issues": [
+    "the indexable set is the 1062 pages named by /private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/indexable-thresholds-after.txt, not the live sitemap's",
+    "31 requested slugs rendered a different substance than their key names and were dropped before scoring"
+  ]
+}

@@ -1,11 +1,11 @@
 {
   "drugcentral_mapped_parquet_present": true,
   "drugcentral_pages_with_regulatory_JP": 751,
-  "pmda_pages_with_regulatory_JP": 1348,
-  "pages_in_both": 629,
-  "pages_only_in_drugcentral": 122,
-  "pages_only_in_pmda": 719,
-  "agreement_rate_over_union": 0.4279,
+  "pmda_pages_with_regulatory_JP": 1276,
+  "pages_in_both": 615,
+  "pages_only_in_drugcentral": 136,
+  "pages_only_in_pmda": 661,
+  "agreement_rate_over_union": 0.4356,
   "discrepancy_reading": "DrugCentral's PMDA flag comes from its 2023-11-01 release and marks any Japanese approval it holds; the PMDA list covers new-drug approvals from April 2004 only. A page only in DrugCentral is a Japanese approval outside that window or one PMDA lists under a name that resolves to no UNII here; a page only in PMDA is an approval DrugCentral's 2023 release does not carry, including every approval after November 2023.",
   "pages_only_in_drugcentral_list": [
     {
@@ -89,6 +89,11 @@
       "tier": 1
     },
     {
+      "key": "K1:0309P36Q66",
+      "display_name": "Ferric Fluoride",
+      "tier": 2
+    },
+    {
       "key": "K1:04UZQ7O9SJ",
       "display_name": "Mosapramine",
       "tier": 3
@@ -101,6 +106,11 @@
     {
       "key": "K1:0F3M7032P5",
       "display_name": "FLUTEMETAMOL",
+      "tier": 2
+    },
+    {
+      "key": "K1:0I2XIN602U",
+      "display_name": "Ferric Chloride Hexahydrate",
       "tier": 2
     },
     {
@@ -194,6 +204,11 @@
       "tier": 1
     },
     {
+      "key": "K1:434C3EI07T",
+      "display_name": "FERRIC SODIUM CITRATE",
+      "tier": 3
+    },
+    {
       "key": "K1:4KM7HJ6CBA",
       "display_name": "RASAGILINE, (S)-",
       "tier": 2
@@ -241,6 +256,11 @@
     {
       "key": "K1:60UTO373KE",
       "display_name": "Isavuconazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:63G354M39Z",
+      "display_name": "Ferric Citrate",
       "tier": 2
     },
     {
@@ -324,6 +344,11 @@
       "tier": 3
     },
     {
+      "key": "K1:9RDO128EH7",
+      "display_name": "Ferric Bromide",
+      "tier": 2
+    },
+    {
       "key": "K1:9U7D5QH5AE",
       "display_name": "Lactulose",
       "tier": 2
@@ -339,6 +364,11 @@
       "tier": 3
     },
     {
+      "key": "K1:CC9149U2QX",
+      "display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
+      "tier": 2
+    },
+    {
       "key": "K1:CUT2W21N7U",
       "display_name": "Fluticasone",
       "tier": 3
@@ -347,6 +377,11 @@
       "key": "K1:DWI62G0P59",
       "display_name": "Sivelestat",
       "tier": 3
+    },
+    {
+      "key": "K1:E026V904RL",
+      "display_name": "LANINAMIVIR OCTANOATE",
+      "tier": 2
     },
     {
       "key": "K1:E9PC7N0DID",
@@ -424,6 +459,11 @@
       "tier": 3
     },
     {
+      "key": "K1:N6BAA189V1",
+      "display_name": "Ferric Phosphate",
+      "tier": 2
+    },
+    {
       "key": "K1:P2K93U8740",
       "display_name": "Fludarabine",
       "tier": 2
@@ -439,6 +479,16 @@
       "tier": 3
     },
     {
+      "key": "K1:Q91187K011",
+      "display_name": "Tetraferric Tricitrate Decahydrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:QI846AL4NC",
+      "display_name": "Dexivacaine",
+      "tier": 2
+    },
+    {
       "key": "K1:QR0BV3BRIA",
       "display_name": "THYROXINE, DL-",
       "tier": 3
@@ -451,6 +501,11 @@
     {
       "key": "K1:R54Z304Z7C",
       "display_name": "ARGININE, D-",
+      "tier": 3
+    },
+    {
+      "key": "K1:R6D2UI4FLS",
+      "display_name": "Enclomifene",
       "tier": 3
     },
     {
@@ -506,6 +561,11 @@
     {
       "key": "K1:V93U9DH62C",
       "display_name": "Emorfazone",
+      "tier": 3
+    },
+    {
+      "key": "K1:W108RK810P",
+      "display_name": "FERRIC GLUCONATE TRIHYDRATE",
       "tier": 3
     },
     {
@@ -609,6 +669,11 @@
       "tier": 2
     },
     {
+      "key": "K2:XBPUDTAATCFDRE-UHFFFAOYSA-N",
+      "display_name": "TALC ANHYDROUS",
+      "tier": 2
+    },
+    {
       "key": "K2:XIIOFHFUYBLOLW-UHFFFAOYSA-N",
       "display_name": "Selpercatinib",
       "tier": 2
@@ -617,6 +682,11 @@
       "key": "K2:XQSPYNMVSIKCOC-UHFFFAOYSA-N",
       "display_name": "EMTRICITABINE, (+/-)-",
       "tier": 2
+    },
+    {
+      "key": "K4:ferric ammonium",
+      "display_name": "Ferric Ammonium",
+      "tier": 1
     }
   ],
   "pages_only_in_pmda_list": [
@@ -638,11 +708,6 @@
     {
       "key": "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
       "display_name": "Carbidopa, Levodopa",
-      "tier": 2
-    },
-    {
-      "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
-      "display_name": "PENICILLIN G PROCAINE",
       "tier": 2
     },
     {
@@ -774,11 +839,6 @@
       "key": "K1:0GEI24LG0J",
       "display_name": "Chenodeoxycholic acid",
       "tier": 2
-    },
-    {
-      "key": "K1:0HU2UI27HF",
-      "display_name": "Propionyl-L-Carnitine",
-      "tier": 1
     },
     {
       "key": "K1:0J48LPH2TH",
@@ -946,11 +1006,6 @@
       "tier": 1
     },
     {
-      "key": "K1:1GA689N629",
-      "display_name": "Aluminum Carbonate",
-      "tier": 2
-    },
-    {
       "key": "K1:1J444QC288",
       "display_name": "Amlodipine",
       "tier": 1
@@ -959,11 +1014,6 @@
       "key": "K1:1JSN1I7582",
       "display_name": "Esuberaprost",
       "tier": 3
-    },
-    {
-      "key": "K1:1K09F3G675",
-      "display_name": "Ferric Oxide Red",
-      "tier": 2
     },
     {
       "key": "K1:1L4806J2QF",
@@ -1141,16 +1191,6 @@
       "tier": 1
     },
     {
-      "key": "K1:2UA751211N",
-      "display_name": "FERRIC HYDROXIDE",
-      "tier": 2
-    },
-    {
-      "key": "K1:2URQ2N32W3",
-      "display_name": "Calcium Lactate",
-      "tier": 2
-    },
-    {
       "key": "K1:2VU8WT49WX",
       "display_name": "Thrombomodulin alfa",
       "tier": 3
@@ -1206,11 +1246,6 @@
       "tier": 2
     },
     {
-      "key": "K1:34S289N54E",
-      "display_name": "Aluminum Sulfate",
-      "tier": 1
-    },
-    {
       "key": "K1:35E3NJJ4O6",
       "display_name": "Beraprost",
       "tier": 3
@@ -1246,19 +1281,9 @@
       "tier": 2
     },
     {
-      "key": "K1:3CYT62D3GA",
-      "display_name": "Aluminum Chloride",
-      "tier": 2
-    },
-    {
       "key": "K1:3G6A5W338E",
       "display_name": "Caffeine",
       "tier": 1
-    },
-    {
-      "key": "K1:3HWS7HF5XD",
-      "display_name": "FERRIC SULFATE",
-      "tier": 2
     },
     {
       "key": "K1:3JB47N2Q2P",
@@ -1309,11 +1334,6 @@
       "key": "K1:3Z9Y7UWC1J",
       "display_name": "Apixaban",
       "tier": 1
-    },
-    {
-      "key": "K1:403J23EMFA",
-      "display_name": "Sodium feredetate",
-      "tier": 3
     },
     {
       "key": "K1:40D3SCR4GZ",
@@ -1481,11 +1501,6 @@
       "tier": 1
     },
     {
-      "key": "K1:4J9FJ0HL51",
-      "display_name": "Potassium Phosphate, Monobasic",
-      "tier": 2
-    },
-    {
       "key": "K1:4O4S742ANY",
       "display_name": "Escitalopram",
       "tier": 1
@@ -1566,11 +1581,6 @@
       "tier": 2
     },
     {
-      "key": "K1:5792C4VMFZ",
-      "display_name": "Calcium Palmitate",
-      "tier": 3
-    },
-    {
       "key": "K1:57GNO57U7G",
       "display_name": "Finasteride",
       "tier": 1
@@ -1629,11 +1639,6 @@
       "key": "K1:5Q7ZVV76EI",
       "display_name": "Warfarin",
       "tier": 1
-    },
-    {
-      "key": "K1:5QB0T2IUN0",
-      "display_name": "Aluminum Hydroxide",
-      "tier": 2
     },
     {
       "key": "K1:5R78837D4A",
@@ -2006,11 +2011,6 @@
       "tier": 3
     },
     {
-      "key": "K1:7UJQ5OPE7D",
-      "display_name": "Carbonate Ion",
-      "tier": 1
-    },
-    {
       "key": "K1:7WY7YBI87E",
       "display_name": "Phenylbutyric Acid",
       "tier": 1
@@ -2034,11 +2034,6 @@
       "key": "K1:807PW4VQE3",
       "display_name": "Cefepime",
       "tier": 2
-    },
-    {
-      "key": "K1:80EHD8I43D",
-      "display_name": "Aluminum Acetate",
-      "tier": 1
     },
     {
       "key": "K1:81485Y3A9A",
@@ -2091,11 +2086,6 @@
       "tier": 2
     },
     {
-      "key": "K1:86117BWO7P",
-      "display_name": "Calcium Citrate Anhydrous",
-      "tier": 1
-    },
-    {
       "key": "K1:87M90CV8NC",
       "display_name": "Nipocalimab",
       "tier": 2
@@ -2146,11 +2136,6 @@
       "tier": 2
     },
     {
-      "key": "K1:8EKI9QEE2H",
-      "display_name": "Calcium Iodide",
-      "tier": 2
-    },
-    {
       "key": "K1:8FOJ430U94#beco",
       "display_name": "Somapacitan-Beco",
       "tier": 2
@@ -2174,11 +2159,6 @@
       "key": "K1:8NF31401XG",
       "display_name": "Carteolol",
       "tier": 2
-    },
-    {
-      "key": "K1:8QTV3DTT8W",
-      "display_name": "Chondroitin Sulfate Sodium (BOVINE)",
-      "tier": 3
     },
     {
       "key": "K1:8VLN5B44ZY",
@@ -2276,11 +2256,6 @@
       "tier": 3
     },
     {
-      "key": "K1:97Z1WI3NDX",
-      "display_name": "Calcium Phosphate, Unspecified Form",
-      "tier": 3
-    },
-    {
       "key": "K1:98H1T17066",
       "display_name": "Pasireotide",
       "tier": 1
@@ -2319,16 +2294,6 @@
       "key": "K1:9CXQ3PF69U",
       "display_name": "Imlunestrant",
       "tier": 1
-    },
-    {
-      "key": "K1:9E7R5L6H31",
-      "display_name": "Oxalic Acid",
-      "tier": 2
-    },
-    {
-      "key": "K1:9G34HU7RV0",
-      "display_name": "Edetic Acid",
-      "tier": 2
     },
     {
       "key": "K1:9I628532GX",
@@ -2516,11 +2481,6 @@
       "tier": 2
     },
     {
-      "key": "K1:C7X2M0VVNH",
-      "display_name": "LIME",
-      "tier": 3
-    },
-    {
       "key": "K1:C9LVQ0YUXG",
       "display_name": "Axitinib",
       "tier": 2
@@ -2651,11 +2611,6 @@
       "tier": 2
     },
     {
-      "key": "K1:E934B3V59H",
-      "display_name": "Calcium Sulfate Anhydrous",
-      "tier": 2
-    },
-    {
       "key": "K1:EAO03PE1TC",
       "display_name": "SODIUM NITROPRUSSIDE",
       "tier": 1
@@ -2694,11 +2649,6 @@
       "key": "K1:EPK39PL4R4",
       "display_name": "Elasomeran",
       "tier": 2
-    },
-    {
-      "key": "K1:ET54W9J4U2",
-      "display_name": "Methylprednisolone aceponate",
-      "tier": 3
     },
     {
       "key": "K1:EVS87XF13W",
@@ -2744,11 +2694,6 @@
       "key": "K1:F925RR824R",
       "display_name": "Tecovirimat",
       "tier": 2
-    },
-    {
-      "key": "K1:F92V3S521O",
-      "display_name": "Aluminum Phosphate",
-      "tier": 1
     },
     {
       "key": "K1:FO2303MNI2",
@@ -2841,11 +2786,6 @@
       "tier": 3
     },
     {
-      "key": "K1:H0G9379FGK",
-      "display_name": "Calcium Carbonate",
-      "tier": 1
-    },
-    {
       "key": "K1:H1250JIK0A",
       "display_name": "Clarithromycin",
       "tier": 2
@@ -2876,16 +2816,6 @@
       "tier": 2
     },
     {
-      "key": "K1:HUI2S00793",
-      "display_name": "CALCIUM POLYSTYRENE SULFONATE",
-      "tier": 2
-    },
-    {
-      "key": "K1:HUO854648Y",
-      "display_name": "Aluminum Nitrate",
-      "tier": 2
-    },
-    {
       "key": "K1:HYD2U48IAS",
       "display_name": "Bepotastine",
       "tier": 2
@@ -2899,11 +2829,6 @@
       "key": "K1:I6WP63U32H",
       "display_name": "Acenocoumarol",
       "tier": 2
-    },
-    {
-      "key": "K1:I7T908772F",
-      "display_name": "ALUMINUM SULFATE ANHYDROUS",
-      "tier": 3
     },
     {
       "key": "K1:I8MFJ1C0BY",
@@ -2944,11 +2869,6 @@
       "key": "K1:IX503L9WN0",
       "display_name": "Ganirelix",
       "tier": 1
-    },
-    {
-      "key": "K1:IY20HBK5LK",
-      "display_name": "Aluminum Bromide",
-      "tier": 2
     },
     {
       "key": "K1:J0E2756Z7N",
@@ -3016,16 +2936,6 @@
       "tier": 2
     },
     {
-      "key": "K1:K3D86KJ24N",
-      "display_name": "Undecylenic Acid",
-      "tier": 2
-    },
-    {
-      "key": "K1:K4C08XP666",
-      "display_name": "Tricalcium Phosphate",
-      "tier": 2
-    },
-    {
       "key": "K1:K4YTU42T8G",
       "display_name": "Sebelipase alfa",
       "tier": 2
@@ -3061,11 +2971,6 @@
       "tier": 2
     },
     {
-      "key": "K1:KH7I04HPUU",
-      "display_name": "Sodium Phosphate, Monobasic",
-      "tier": 2
-    },
-    {
       "key": "K1:KM2Z91756Z",
       "display_name": "Risedronic acid",
       "tier": 2
@@ -3079,11 +2984,6 @@
       "key": "K1:L0HR9A577V",
       "display_name": "Elranatamab",
       "tier": 1
-    },
-    {
-      "key": "K1:L11K75P92J",
-      "display_name": "Anhydrous Dibasic Calcium Phosphate",
-      "tier": 2
     },
     {
       "key": "K1:L36O5T016N",
@@ -3106,11 +3006,6 @@
       "tier": 2
     },
     {
-      "key": "K1:L903Z8J9VR",
-      "display_name": "Aluminum Iodide",
-      "tier": 2
-    },
-    {
       "key": "K1:LDJ89SS0YG",
       "display_name": "Mosunetuzumab",
       "tier": 2
@@ -3123,16 +3018,6 @@
     {
       "key": "K1:LI2427F9CI",
       "display_name": "Daclatasvir",
-      "tier": 2
-    },
-    {
-      "key": "K1:LIF1N9568Y",
-      "display_name": "ALUMINUM CHLORIDE ANHYDROUS",
-      "tier": 2
-    },
-    {
-      "key": "K1:LMI26O6933",
-      "display_name": "Alumina",
       "tier": 2
     },
     {
@@ -3149,11 +3034,6 @@
       "key": "K1:LRX7AJ16DT",
       "display_name": "Cupric Sulfate",
       "tier": 2
-    },
-    {
-      "key": "K1:M4I0D6VV5M",
-      "display_name": "Calcium Chloride",
-      "tier": 1
     },
     {
       "key": "K1:M9BYU8XDQ6",
@@ -3241,11 +3121,6 @@
       "tier": 2
     },
     {
-      "key": "K1:N7CIZ75ZPN",
-      "display_name": "Arsenic Acid",
-      "tier": 2
-    },
-    {
       "key": "K1:N7U69T4SZR",
       "display_name": "Olanzapine",
       "tier": 2
@@ -3306,11 +3181,6 @@
       "tier": 2
     },
     {
-      "key": "K1:O3B55K4YKI",
-      "display_name": "Calcium Fluoride",
-      "tier": 2
-    },
-    {
       "key": "K1:O4L1XPO44W",
       "display_name": "Fluvoxamine",
       "tier": 2
@@ -3346,11 +3216,6 @@
       "tier": 2
     },
     {
-      "key": "K1:OFM21057LP",
-      "display_name": "Calcium Chloride Anhydrous",
-      "tier": 1
-    },
-    {
       "key": "K1:OU2YM37K86",
       "display_name": "Paritaprevir",
       "tier": 2
@@ -3381,18 +3246,8 @@
       "tier": 1
     },
     {
-      "key": "K1:PF5DZW74VN",
-      "display_name": "Calcium Hydroxide",
-      "tier": 2
-    },
-    {
       "key": "K1:PKI06M3IW0",
       "display_name": "Rivastigmine",
-      "tier": 1
-    },
-    {
-      "key": "K1:PQ6CK8PD0R",
-      "display_name": "Ascorbic acid",
       "tier": 1
     },
     {
@@ -3466,19 +3321,9 @@
       "tier": 1
     },
     {
-      "key": "K1:QCD9FA9PLW",
-      "display_name": "Calcium Monocitrate",
-      "tier": 2
-    },
-    {
       "key": "K1:QFP0P1DV7Z",
       "display_name": "Sitagliptin",
       "tier": 1
-    },
-    {
-      "key": "K1:QLZ991V4A2",
-      "display_name": "Glucaric Acid",
-      "tier": 3
     },
     {
       "key": "K1:QQA9MLH692",
@@ -3536,11 +3381,6 @@
       "tier": 1
     },
     {
-      "key": "K1:R4R8J0Q44B",
-      "display_name": "Gluconic Acid",
-      "tier": 2
-    },
-    {
       "key": "K1:R765VT7PWP",
       "display_name": "CINAXADAMTASE ALFA",
       "tier": 3
@@ -3551,18 +3391,8 @@
       "tier": 2
     },
     {
-      "key": "K1:RFJ7QXF345",
-      "display_name": "Aluminum Magnesium Hydroxide Carbonate",
-      "tier": 2
-    },
-    {
       "key": "K1:RIX4E89Y14",
       "display_name": "Levofloxacin (anhydrous)",
-      "tier": 2
-    },
-    {
-      "key": "K1:RJ00KV3VTG",
-      "display_name": "Radium Ra-223 Dichloride",
       "tier": 2
     },
     {
@@ -3646,11 +3476,6 @@
       "tier": 2
     },
     {
-      "key": "K1:SQE6VB453K",
-      "display_name": "CALCIUM GLUCONATE",
-      "tier": 2
-    },
-    {
       "key": "K1:SY7Q814VUP",
       "display_name": "CALCIUM",
       "tier": 1
@@ -3726,11 +3551,6 @@
       "tier": 2
     },
     {
-      "key": "K1:TYR2U59WMA",
-      "display_name": "Amitriptylinoxide",
-      "tier": 3
-    },
-    {
       "key": "K1:U188XYD42P",
       "display_name": "Moxifloxacin",
       "tier": 2
@@ -3739,11 +3559,6 @@
       "key": "K1:U202363UOS",
       "display_name": "Fenofibrate",
       "tier": 1
-    },
-    {
-      "key": "K1:U38V3ZVV3V",
-      "display_name": "Ferric Chloride",
-      "tier": 2
     },
     {
       "key": "K1:U3H27498KS",
@@ -3926,11 +3741,6 @@
       "tier": 2
     },
     {
-      "key": "K1:WAT0DDB505",
-      "display_name": "Calcium Sulfate",
-      "tier": 2
-    },
-    {
       "key": "K1:WFR23M21IE",
       "display_name": "Capivasertib",
       "tier": 1
@@ -4061,11 +3871,6 @@
       "tier": 2
     },
     {
-      "key": "K1:Y882YXF34X",
-      "display_name": "Calcium Acetate",
-      "tier": 2
-    },
-    {
       "key": "K1:Y883P1Z2LT",
       "display_name": "Atovaquone",
       "tier": 2
@@ -4121,11 +3926,6 @@
       "tier": 1
     },
     {
-      "key": "K1:Z77H3IKW94",
-      "display_name": "Aluminum Fluoride",
-      "tier": 2
-    },
-    {
       "key": "K1:Z80293URPV",
       "display_name": "Ozanimod",
       "tier": 1
@@ -4156,11 +3956,6 @@
       "tier": 1
     },
     {
-      "key": "K1:ZUP3LSD0DO",
-      "display_name": "ROXATIDINE ACETATE",
-      "tier": 3
-    },
-    {
       "key": "K1:ZY54BP1CK3",
       "display_name": "Vornorexant",
       "tier": 3
@@ -4181,18 +3976,8 @@
       "tier": 1
     },
     {
-      "key": "K2:OAEOAAHCJGWJIC-CEVJMMQXSA-N",
-      "display_name": "CHONDROITIN SULFATE",
-      "tier": 3
-    },
-    {
       "key": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
       "display_name": "Vincristine",
-      "tier": 2
-    },
-    {
-      "key": "K2:TWNQGVIAIRXVLR-UHFFFAOYSA-N",
-      "display_name": "ALUMINIUM OXIDE",
       "tier": 2
     },
     {
@@ -4209,13 +3994,8 @@
       "key": "K4:monobasic",
       "display_name": "Monobasic",
       "tier": 3
-    },
-    {
-      "key": "UNKEYED:existing:calcium-potassium-phosphate-citrate",
-      "display_name": "Calcium Potassium Phosphate Citrate",
-      "tier": 3
     }
   ],
   "drugcentral_release_date": "2023-11-01",
-  "pmda_pages_whose_only_approval_postdates_the_drugcentral_release": 200
+  "pmda_pages_whose_only_approval_postdates_the_drugcentral_release": 171
 }

@@ -52,6 +52,7 @@ import {
   type QuestionBlock,
   type SourceRef,
 } from '../questions/derive'
+import { citedSuppressionLabels } from '@/lib/corpus/suppression-labels'
 // The specifier is extensionless so the Next.js build can resolve it: the dossier template imports
 // `buildBlockBody` from here through `lib/corpus/page-text.ts`, and webpack does not rewrite a
 // `.js` specifier onto a `.ts` file. `tsx` and Vitest resolve it unchanged.
@@ -103,6 +104,13 @@ export interface PageBundle {
   questions: QuestionBlock[]
   /** key → display name, for the relations rows (R10: relations are rows, never sentences). */
   names: Map<string, string>
+  /**
+   * The Phase 4 blocks for this page (docs/specs/phase4-generators.md), as
+   * `scripts/revamp/page_blocks.py` joined them. Absent on a page rendered from the corpus-20k
+   * inputs, which have no Phase 4 blocks; the renderer then emits none, rather than a heading with
+   * nothing under it.
+   */
+  blocks?: PageBlocks
 }
 
 export interface RevealedRow {
@@ -513,8 +521,22 @@ function developmentGaps(
  * "primary endpoint" before every measure repeated that phrase on every page carrying a trial,
  * which is a shared five-gram bought for nothing.
  */
+/**
+ * The first six trials keep the "Trial" label and read inline; the rest are given a label carrying
+ * the count, which `groupRows` turns into a headed group inside the same disclosure. That is
+ * docs/specs/phase4-generators.md §7 — "trial endpoint lists show at most six rows inline; the rest
+ * sit in a disclosure with a count" — and it is what stops a record with 250 registered trials from
+ * printing a wall of endpoints the Phase 1 reading found unreadable.
+ */
+export const TRIAL_ROWS_INLINE = 6
+
 function rowsFromTrials(list: unknown[], cap = ROW_CAP): RevealedRow[] {
   const out: RevealedRow[] = []
+  const beyondInline = Math.max(0, Math.min(list.length, cap) - TRIAL_ROWS_INLINE)
+  const restLabel =
+    beyondInline > 0
+      ? `${beyondInline} further recorded ${beyondInline === 1 ? 'trial' : 'trials'}`
+      : 'Trial'
   for (const item of list.slice(0, cap)) {
     const o = asObject(item)
     if (!o) continue
@@ -528,19 +550,26 @@ function rowsFromTrials(list: unknown[], cap = ROW_CAP): RevealedRow[] {
     const title = asString(pick(o, 'title'))
     const why = asString(pick(o, 'whyStopped'))
     const timeFrame = asString(pick(o, 'timeFrame'))
-    if (title) bits.push(title)
+    // The registry's own title, quoted. It is the sponsor's wording, not this site's: a trial
+    // called "A Study to Test How Safe X Is" is the registry naming a question, and printing it
+    // unquoted would read as this page calling something safe.
+    if (title) bits.push(`"${title}"`)
     if (phase) bits.push(phase.toLowerCase().replace(/_/g, ' '))
     if (status) bits.push(status.toLowerCase().replace(/_/g, ' '))
     if (n !== undefined) bits.push(`n ${n}`)
-    if (endpoint) bits.push(clampSentence(endpoint, 240))
-    if (timeFrame) bits.push(clampSentence(timeFrame, 160))
+    if (endpoint) bits.push(`"${clampSentence(endpoint, 240)}"`)
+    if (timeFrame) bits.push(`"${clampSentence(timeFrame, 160)}"`)
     if (completion) bits.push(completion)
     // The registry's stop text is quoted here exactly as the block sentence quotes it. Some
     // ClinicalTrials.gov records store the literal string "undefined" in that position; unquoted
     // it reads as a rendering fault, quoted it reads as the registry value the row is reporting.
     if (why) bits.push(`"${clampSentence(why, 240)}"`)
     if (bits.length === 0) continue
-    out.push({ label: 'Trial', ...(nct ? { identifier: nct } : {}), value: bits.join('; ') })
+    out.push({
+      label: out.length < TRIAL_ROWS_INLINE ? 'Trial' : restLabel,
+      ...(nct ? { identifier: nct } : {}),
+      value: bits.join('; '),
+    })
   }
   return out
 }
@@ -700,9 +729,14 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           `${joinList(classifications)}: the registers' classification of ${name}.`,
           entrySource(reg),
         )
-      } else if (page.suppressionClasses.filter((c) => /^S[1-9]$/.test(c)).length > 0) {
+      } else if (citedSuppressionLabels(page.suppressionClasses).length > 0) {
+        // §7: the class is `S2` in storage and "a controlled-substance schedule in Singapore,
+        // the United States, Australia or the United Kingdom" on the page. Printing the token put
+        // a storage identifier in front of a reader on 2,800 pages.
         p1(
-          `Classification ${joinList(page.suppressionClasses.filter((c) => /^S[1-9]$/.test(c)))} is recorded for ${name}.`,
+          `A register records ${name} under medical supervision: ${joinList(
+            citedSuppressionLabels(page.suppressionClasses),
+          )}.`,
           entrySource(reg),
         )
       } else {
@@ -873,7 +907,9 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         if (text)
           rows.push({
             label: asString(pick(o, 'jurisdiction')) ?? 'Reason',
-            value: clampSentence(text),
+            // The register's own wording, quoted: "Not safe or effective for intended use" is what
+            // the register concluded, not a judgement this page is making.
+            value: `"${clampSentence(text)}"`,
           })
       }
       break
@@ -993,17 +1029,30 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         rows.push({
           label: clock ?? 'Clock sentence',
           ...(asString(pick(o, 'pmid')) ? { identifier: `PMID ${asString(pick(o, 'pmid'))}` } : {}),
-          value: joinBits([asString(pick(o, 'year')), clampSentence(s ?? '')]),
+          value: joinBits([asString(pick(o, 'year')), s ? `"${clampSentence(s)}"` : undefined]),
         })
       }
       break
     }
 
     /* ------------------------------------------------------ dose shape */
+    /*
+     * docs/specs/phase4-generators.md §7, from the Phase 1 reading: a dose-response quotation
+     * renders only where the sentence names this page's compound or one of its recorded synonyms.
+     * The extraction matched papers, not molecules, so a page could quote a dose-response sentence
+     * about a different compound entirely. A finding that does not name the compound is not
+     * evidence about it; where no finding names it, the section does not fire at all and the block
+     * renders nothing, rather than quoting a sentence that is about something else.
+     */
     case 'dose-shape':
     case 'dose-shape-plateau': {
       const shape = asObject(f.present('doseResponseShape')?.value)
-      const findings = asArray(pick(shape, 'findings'))
+      const synonyms = page.identity.synonyms.map((s) => s.name)
+      const findings = asArray(pick(shape, 'findings')).filter((item) => {
+        const sentence = asString(pick(asObject(item), 'sentence'))
+        return sentence !== undefined && sentenceNamesCompound(sentence, name, synonyms)
+      })
+      if (findings.length === 0) break
       const first = asObject(findings[0])
       const sentence = asString(pick(first, 'sentence'))
       p1(
@@ -1012,7 +1061,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       )
       p2(
         joinBits([
-          `${findings.length} recorded ${findings.length === 1 ? 'sentence' : 'sentences'}`,
+          `${findings.length} recorded ${findings.length === 1 ? 'sentence' : 'sentences'} naming ${name}`,
           unique(findings.map((x) => asString(pick(asObject(x), 'wordAsPrinted')) ?? '')).join(
             ', ',
           ) || undefined,
@@ -1026,7 +1075,8 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         rows.push({
           label: asString(pick(o, 'wordAsPrinted')) ?? 'Recorded sentence',
           ...(asString(pick(o, 'pmid')) ? { identifier: `PMID ${asString(pick(o, 'pmid'))}` } : {}),
-          value: clampSentence(s),
+          // The paper's own sentence, quoted, for the same reason the trial title is.
+          value: `"${clampSentence(s)}"`,
         })
       }
       break
@@ -1208,7 +1258,9 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         joinBits([
           `${trials.length} open ${trials.length === 1 ? 'trial' : 'trials'}`,
           asNumber(pick(first, 'n')) !== undefined ? `n ${asNumber(pick(first, 'n'))}` : undefined,
-          clampSentence(asString(pick(first, 'title')) ?? '', 200) || undefined,
+          asString(pick(first, 'title'))
+            ? `"${clampSentence(asString(pick(first, 'title')) as string, 200)}"`
+            : undefined,
         ]),
       )
       rows.push(...rowsFromTrials(trials))
@@ -1431,7 +1483,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         rows.push({
           label: asString(pick(o, 'pathway')) ?? 'Pathway sentence',
           ...(asString(pick(o, 'pmid')) ? { identifier: `PMID ${asString(pick(o, 'pmid'))}` } : {}),
-          value: clampSentence(s),
+          value: `"${clampSentence(s)}"`,
         })
       }
       break
@@ -2046,7 +2098,13 @@ export function pageProse(page: PageBundle, f = facts(page)): PageProse {
   const rowLabels = new Set<string>()
   const valueWords = new Set<string>()
   collectWords(valueWords, page.displayName)
-  for (const q of page.questions) {
+  // The audit measures what the page renders, so it applies the same controlled-substance filter
+  // `renderPage` applies: a withheld block is not a sentence this page stands behind.
+  const questions =
+    page.blocks?.controlled === true
+      ? page.questions.filter((q) => !CONTROLLED_WITHHELD_BLOCKS.has(q.block))
+      : page.questions
+  for (const q of questions) {
     sentences.add(q.text.trim())
     for (const value of Object.values(q.values)) collectWords(valueWords, value)
     const body = buildBlockBody(q, page, f)
@@ -2088,7 +2146,578 @@ export function gramCarriesValue(gram: string, valueWords?: ReadonlySet<string>)
   return gram.split(' ').some((word) => /\d/.test(word) || (valueWords?.has(word) ?? false))
 }
 
+/* ------------------------------------------- Phase 4 blocks (docs/specs/phase4-generators.md) */
+
+/**
+ * The blocks Phase 4 adds to every corpus page: where it's registered, interactions, generic and
+ * patent, the controlled-substance schedules, and the Tier 3 computed sections.
+ *
+ * Every value here was written by the stage that read the register — `scripts/revamp/build_blocks.py`
+ * for the registration and patent lines, `scripts/revamp/interactions_build.py` for the interaction
+ * rows, `scripts/revamp/tier3_sections.py` for the computed sentences — and reaches this module
+ * through `scripts/revamp/page_blocks.py`, which joins them into one bundle per page. Nothing in
+ * this section reads a source, decides a status or writes a claim. What it does is fix the *shape*
+ * of the line the reader sees, once, so the loader, the React template and the measured text all
+ * print the same words.
+ *
+ * Two rules are enforced structurally rather than by review.
+ *
+ * 1. **A controlled substance has no dose path.** `blocks.controlled` is the narrow trigger
+ *    §4 fixes. Where it is set, `renderPage` filters the dose, bioavailability, self-experiment and
+ *    time-to-signal blocks out of the question list before a single line is written, and the
+ *    interaction lines drop everything but mechanism and direction. The question derivation
+ *    withholds the same blocks upstream and migration 0026 refuses to store one; this is the third
+ *    lock, and it is the one that runs on every render.
+ * 2. **No raw class, seed or rule identifier reaches prose.** A rule fires as
+ *    `C1-cyp-inhibitor-substrate` in storage and reads as "an enzyme inhibitor met a substrate of
+ *    the same enzyme" on the page. The tables below are the only place the two meet.
+ */
+
+/** One "Where it's registered" line, as `data/revamp/blocks/registration.parquet` recorded it. */
+export interface RegistrationLine {
+  /** `SG`…`CA`, or `OTHER` for a source string the jurisdiction map does not carry. */
+  jurisdiction: string
+  /** "Singapore", or — under Other registers — the source's own words. */
+  label: string
+  status: string
+  detail?: string
+  source?: string
+  dateChecked?: string
+  ordinal: number
+  /** The component of a combination product this line belongs to. */
+  component?: string
+  /** The finished line: status · detail · date checked. */
+  line: string
+  /** Application ids and curated marketing rows the summary line stands for (§3). */
+  disclosure?: Record<string, unknown>
+  provenance?: string[]
+}
+
+/** One interaction row, as `data/revamp/interactions/interactions.parquet` recorded it. */
+export interface InteractionRow {
+  counterpartKey?: string
+  counterpartName?: string
+  counterpartUnii?: string
+  direction?: string
+  mechanism?: string
+  source?: string
+  sourceRecordId?: string
+  sourceUrl?: string
+  sourceDate?: string
+  setId?: string
+  effectiveTime?: string
+  labelSection?: string
+  licence?: string
+  ruleId?: string
+  confidence?: string
+  /** The label sentence, verbatim, on a Tier A row. */
+  sentence?: string
+  /** The Tier C derivation, naming its inputs verbatim; a JSON object on a Tier B row. */
+  derivation?: string
+  matchBasis?: string
+  provenance?: Record<string, unknown>
+}
+
+export interface InteractionTierBlock {
+  inline: InteractionRow[]
+  disclosed: InteractionRow[]
+  /** How many distinct counterparts this page holds in this tier, including the ones not stored. */
+  total: number
+  /** How many stored rows stand behind those counterparts, for the technical disclosure. */
+  rowsRecorded?: number
+}
+
+export interface CheckedSources {
+  sourcesChecked: string[]
+  date: string
+  hasLabel?: boolean
+  statementOnly?: boolean
+}
+
+export interface PatentLine {
+  eligible: boolean
+  register?: string
+  rld?: boolean | null
+  earliestUnexpiredPatentExpiry?: string
+  exclusivityEnd?: string
+  genericAvailable?: boolean | null
+  firstGenericApproval?: string
+  teCode?: string
+  noRecordLine?: string
+  reason?: string
+  line: string
+  source?: string
+  dateChecked?: string
+  disclosure?: Record<string, unknown>
+  provenance?: string[]
+}
+
+export interface ControlledRow {
+  jurisdiction: string
+  list: string
+  classOrSchedule: string
+  scheduleCode?: string
+  itemNumber?: string
+  substanceAsListed?: string
+  statute?: string
+  statuteUrl?: string
+  versionDate?: string
+  source?: string
+  provenance?: string
+}
+
+/** One computed Tier 3 sentence with the map from its parts to the values behind them. */
+export interface SectionSentence {
+  values: Record<string, unknown>
+  provenance: Record<string, unknown>
+  templateId?: string
+}
+
+export interface RelationNote {
+  relation: string
+  counterpartKey?: string
+  counterpartName?: string
+  note?: string
+  rule?: string
+}
+
+export interface PageBlocks {
+  /** The narrow controlled-substance trigger of §4. Never inferred here. */
+  controlled: boolean
+  controlledBasis: string[]
+  registration: RegistrationLine[]
+  controlledSchedules: ControlledRow[]
+  patent?: PatentLine
+  interactions: {
+    tiers: Partial<Record<'A' | 'B' | 'C', InteractionTierBlock>>
+    checked?: CheckedSources
+  }
+  sections: Partial<Record<'neighbour' | 'potency' | 'timeline' | 'formOf', SectionSentence[]>>
+  relations: RelationNote[]
+  /** The disambiguated `h1` for one half of a same-name pair (§6). */
+  disambiguation?: {
+    displayName: string
+    disambiguator?: string
+    basis?: string
+    collidesOn?: string
+  }
+  /** Trials the parent name matched, moved to the parent page by the Phase 3 R14 rule (§6). */
+  trialsMoved?: { count: number; toKey: string; toName: string; rule?: string }
+}
+
+/** The tier label, in words, that begins every interaction line (§4). Never a letter, never a class. */
+export const INTERACTION_TIER_LABELS: Readonly<Record<string, string>> = {
+  A: 'Label-documented',
+  B: 'Curated',
+  C: 'Predicted from mechanism',
+}
+
+/**
+ * What each interaction rule actually tested, in ordinary words.
+ *
+ * §4 prints the rule id on a Tier C line. A raw rule id is a storage token, and §7 forbids one in
+ * prose, so the page prints the rule's words and the stored row keeps the id for the technical
+ * disclosure. A rule absent from this table renders no rule clause at all rather than its id.
+ */
+export const INTERACTION_RULE_LABELS: Readonly<Record<string, string>> = {
+  'A-label-statement': 'stated in an approved product label',
+  'B-inxight-frdb': 'a curated enzyme and transporter record',
+  'C1-cyp-inhibitor-substrate': 'an enzyme inhibitor met a substrate of the same enzyme',
+  'C1-cyp-inducer-substrate': 'an enzyme inducer met a substrate of the same enzyme',
+  'C3-additive-serotonergic': 'both act on serotonin signalling',
+  'C3-additive-CNS-depressant': 'both depress the central nervous system',
+  'C3-additive-anticoagulant-antiplatelet': 'both reduce blood clotting',
+  'C3-additive-hypotensive': 'both lower blood pressure',
+  'C3-additive-hypoglycaemic': 'both lower blood sugar',
+  'C3-additive-hyperkalaemic': 'both raise blood potassium',
+  'C3-additive-QT-prolonging': 'both carry a label warning about QT prolongation',
+}
+
+/** The confidence band, in words. `documented` is Tier A's own band and states no prediction. */
+export const INTERACTION_CONFIDENCE_LABELS: Readonly<Record<string, string>> = {
+  likely: 'likely',
+  possible: 'possible',
+}
+
+/**
+ * The short name of a checked source, for the page-level statement.
+ *
+ * `checked-sources.parquet` records the exact extraction each page was put through, which runs to
+ * a hundred characters. The statement names the register, and the exact extraction stays in the
+ * technical disclosure. A string this table does not recognise is kept verbatim rather than
+ * dropped: the reader is never told a source was checked under a name it does not have.
+ */
+export function checkedSourceName(recorded: string): string {
+  const lower = recorded.toLowerCase()
+  if (lower.includes('openfda')) return 'openFDA drug labels'
+  if (lower.includes('inxight')) return 'the NCATS Inxight Drugs curated interaction dataset'
+  if (lower.includes('clinpgx') || lower.includes('pharmgkb')) return 'ClinPGx'
+  if (lower.includes('recorded_background')) return "this record's own recorded interaction signals"
+  return recorded
+}
+
+/** The distinct registers checked for a page, in the order they were recorded. */
+export function checkedSourceNames(checked: CheckedSources | undefined): string[] {
+  if (!checked) return []
+  return unique(checked.sourcesChecked.map((source) => checkedSourceName(source)))
+}
+
+/**
+ * The page-level statement §4 requires beside the interaction block, present whether or not the
+ * block has a row.
+ *
+ * Where nothing was found it reads "No interaction found in [registers] as of [date]" — the exact
+ * words Operating Rule 9 fixes, and never "safe" or "no interaction". Where rows were found, saying
+ * "no interaction found" would be false, so the same statement is made in the affirmative: the
+ * registers checked and the date. A page whose sources were not recorded gets no statement, because
+ * there is nothing true to say about what was checked.
+ */
+export function checkedSourcesStatement(
+  checked: CheckedSources | undefined,
+  found: boolean,
+): string | undefined {
+  const names = checkedSourceNames(checked)
+  if (names.length === 0 || !checked?.date) return undefined
+  const list = joinPlainList(names)
+  return found
+    ? `Checked in ${list} as of ${checked.date}.`
+    : `No interaction found in ${list} as of ${checked.date}.`
+}
+
+/** The middle dot the register lines already use, over the parts that exist. */
+function joinDots(bits: Array<string | undefined>): string {
+  return bits.filter((bit): bit is string => Boolean(bit && bit.trim())).join(' · ')
+}
+
+/** A comma list, for the role-and-magnitude pair §4 fixes on a curated line. */
+function joinCommas(bits: Array<string | undefined>): string {
+  return bits.filter((bit): bit is string => Boolean(bit && bit.trim())).join(', ')
+}
+
+/** "a, b and c" without the Oxford flourish the register lines use. */
+function joinPlainList(items: string[]): string {
+  if (items.length === 0) return ''
+  if (items.length === 1) return items[0] as string
+  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+}
+
+/** The role and magnitude a curated Inxight row states, read from its stored derivation object. */
+function curatedRoleAndMagnitude(row: InteractionRow): string | undefined {
+  const derivation = row.derivation
+  if (!derivation) return undefined
+  let parsed: Record<string, unknown> | undefined
+  try {
+    parsed = asObject(JSON.parse(derivation))
+  } catch {
+    parsed = undefined
+  }
+  if (!parsed) return undefined
+  const role = asString(pick(parsed, 'role'))
+  const magnitude =
+    asString(pick(parsed, 'magnitudeReported')) === 'yes'
+      ? 'a magnitude is reported'
+      : asString(pick(parsed, 'magnitudeReported')) === 'no'
+        ? 'no magnitude reported'
+        : undefined
+  return joinCommas([role, magnitude]) || undefined
+}
+
+/** An ATC level-4 classification code as the registers write it: one letter, two digits, two letters. */
+const ATC_LEVEL_4 = /^[A-Z][0-9]{2}[A-Z]{2}$/
+
+/**
+ * A rule (iii) derivation with each side's inputs named as what they are (§4, §7).
+ *
+ * The additive-effect rules record the membership evidence verbatim, and that evidence is a mix of
+ * pharmacologic-action names ("Platelet Aggregation Inhibitors") and ATC classification codes
+ * ("C09DX"). A name reads as itself; a bare code does not, and §7 keeps a bare code out of prose.
+ * The corpus holds no ATC class-name table, so the code is not translated into words it would have
+ * to invent: it is labelled with the classification it belongs to, and the reader can see that
+ * "ATC C09DX" is a register's filing class rather than something about the substance.
+ *
+ * Only the rule (iii) derivations pass through here. The enzyme rules' derivations already name
+ * their inputs in words and carry a quoted label sentence, which is left exactly as the label
+ * wrote it.
+ */
+function classMembershipInputs(derivation: string): string {
+  return derivation
+    .split(' x ')
+    .map((side) => {
+      const terms = side.split('; ').map((term) => term.trim())
+      // A side that is nothing but codes takes the label once — "ATC C08CA; C08GA" — because
+      // repeating it in front of every code says the same thing six times.
+      if (terms.length > 0 && terms.every((term) => ATC_LEVEL_4.test(term))) {
+        return `ATC ${terms.join('; ')}`
+      }
+      return terms.map((term) => (ATC_LEVEL_4.test(term) ? `ATC ${term}` : term)).join('; ')
+    })
+    .join(' × ')
+}
+
+/**
+ * One interaction line, in the shape §4 fixes for its tier.
+ *
+ * Tier A quotes the label sentence and cites the label record and the date it took effect. Tier B
+ * names the enzyme or transporter, the role and whether a magnitude was reported. Tier C opens with
+ * "Predicted from mechanism:", names the counterpart, shows the derivation with its inputs named
+ * verbatim, gives the direction, and closes with what the rule tested and how confident the
+ * prediction is.
+ *
+ * On a controlled substance the line carries mechanism and direction only: the label sentence is
+ * dropped, because a label's interaction sentence routinely carries dose, timing and combination
+ * wording, and §4 gives that page no code path to it.
+ */
+export function interactionLine(
+  tier: 'A' | 'B' | 'C',
+  row: InteractionRow,
+  options: { controlled?: boolean; quote?: boolean } = {},
+): string {
+  const label = INTERACTION_TIER_LABELS[tier] as string
+  const counterpart = row.counterpartName ?? row.counterpartKey
+  const controlled = options.controlled === true
+  // The label's own words are quoted on the lines the page shows first. Beyond those, the line
+  // gives the counterpart, the direction and the label record, and the reader who wants the
+  // sentence follows the citation: thirty verbatim label paragraphs on one page are a wall, and
+  // two products sharing one label would then share thirty identical paragraphs.
+  const quote = options.quote !== false
+
+  if (tier === 'A') {
+    const citation = joinDots([
+      row.setId ? `DailyMed label ${row.setId}` : undefined,
+      row.effectiveTime,
+    ])
+    const body =
+      controlled || !quote
+        ? joinCommas([row.direction, row.mechanism])
+        : row.sentence
+          ? `"${clampSentence(row.sentence, 320)}"`
+          : joinCommas([row.direction, row.mechanism])
+    return joinDots([
+      label,
+      counterpart ? `${counterpart}: ${body || 'an interaction is stated'}` : body,
+      citation || undefined,
+    ])
+  }
+
+  if (tier === 'B') {
+    const body = curatedRoleAndMagnitude(row) ?? row.direction
+    const citation = row.sourceRecordId ? `Inxight ${row.sourceRecordId}` : undefined
+    return joinDots([
+      label,
+      counterpart ? `${counterpart}: ${body || 'a curated row is recorded'}` : body,
+      citation || undefined,
+    ])
+  }
+
+  const derivation = controlled ? row.mechanism : (row.derivation ?? row.mechanism)
+  const named =
+    derivation && row.ruleId?.startsWith('C3-') ? classMembershipInputs(derivation) : derivation
+  const direction = row.direction
+  const body = named
+    ? direction
+      ? `${named} → ${direction}`
+      : named
+    : (direction ?? 'a mechanism is shared')
+  // The counterpart is named here as it is on the other two tiers. A prediction the reader cannot
+  // attach to a second substance is not a prediction they can act on, and rule (iii) states a class
+  // membership rather than a direction naming the other drug, so without this every additive-class
+  // line on a page reads the same.
+  const head = counterpart ? `${label}: ${counterpart} · ${body}` : `${label}: ${body}`
+  const rule = row.ruleId ? INTERACTION_RULE_LABELS[row.ruleId] : undefined
+  const band = row.confidence ? INTERACTION_CONFIDENCE_LABELS[row.confidence] : undefined
+  const tail = joinCommas([rule, band])
+  return tail ? `${head} (${tail})` : head
+}
+
+/**
+ * One controlled-substance schedule line: the schedule in the instrument's own words, the
+ * instrument, and the version it was read at. The schedule code stays out of the line — it is the
+ * instrument's filing reference, not a fact about the substance.
+ */
+export function controlledLine(row: ControlledRow): string {
+  const heldName =
+    row.substanceAsListed && row.substanceAsListed.length <= 120
+      ? `listed as "${row.substanceAsListed}"`
+      : undefined
+  return joinDots([
+    row.classOrSchedule,
+    row.list,
+    row.versionDate ? `version ${row.versionDate}` : undefined,
+    heldName,
+  ])
+}
+
+/** The field paths behind one interaction row, as the interaction build recorded them. */
+export function interactionProvenance(row: InteractionRow): string[] {
+  return Object.values(row.provenance ?? {})
+    .map((value) => (typeof value === 'string' ? value : JSON.stringify(value)))
+    .sort()
+}
+
+/** The registration line as the page prints it: the jurisdiction, then the recorded status line. */
+export function registrationLineText(row: RegistrationLine): string {
+  const head = row.component ? `${row.component} — ${row.label}` : row.label
+  return `${head}: ${row.line}`
+}
+
+/**
+ * The register applications a summary line stands for, for the disclosure (§3, §7).
+ *
+ * Only `applications` is read. It is the list the summary line's own count was computed from, so
+ * the ids under the disclosure and the number in the line are always the same set. The curated
+ * stitcher record carries an `approvalApplicationIds` array too, and on some records that array
+ * holds dosage strengths rather than application ids ("0.25%w/v OPHTHALMIC SOLUTION/ DROPS"), so
+ * reading it as a fallback printed strengths under a heading that promised applications.
+ */
+export function registerApplicationIds(row: RegistrationLine): string[] {
+  return unique(
+    asArray(pick(row.disclosure ?? {}, 'applications'))
+      .map((item) => asString(item))
+      .filter((item): item is string => Boolean(item)),
+  )
+}
+
+/** The recorded sentence of a computed section, exactly as the computing stage wrote it. */
+export function sectionSentenceText(entry: SectionSentence): string | undefined {
+  return asString(pick(entry.values, 'sentence'))
+}
+
+/** Sentence → the field or computed value behind each part of it, as the stage recorded it. */
+export function sectionSentenceFields(entry: SectionSentence): string[] {
+  const fields = asObject(pick(entry.provenance, 'fields'))
+  if (!fields) return []
+  return Object.values(fields)
+    .map((value) => asString(value))
+    .filter((value): value is string => Boolean(value))
+}
+
+/**
+ * The form-of note (§6): the identity sentence a salt, ester, biosimilar or product component page
+ * opens with, and — where Phase 3 moved trials to the parent — the count and where they went.
+ */
+export function formOfNoteLines(blocks: PageBlocks | undefined): Array<{
+  sentence: string
+  fields: string[]
+}> {
+  if (!blocks) return []
+  const out: Array<{ sentence: string; fields: string[] }> = []
+  for (const entry of blocks.sections.formOf ?? []) {
+    const sentence = sectionSentenceText(entry)
+    if (!sentence) continue
+    out.push({ sentence, fields: sectionSentenceFields(entry) })
+  }
+  const moved = blocks.trialsMoved
+  if (moved && moved.count > 0) {
+    out.push({
+      sentence:
+        `${moved.count} registered ${moved.count === 1 ? 'trial names' : 'trials name'} ` +
+        `${moved.toName} without this form; ${moved.count === 1 ? 'it is' : 'they are'} recorded ` +
+        `on the ${moved.toName} page.`,
+      fields: ['data/revamp/identity/trial-reassignments-v3.csv action=move'],
+    })
+  }
+  return out
+}
+
+/** Question blocks a controlled substance never carries (§4; migration 0026 enforces the same set). */
+export const CONTROLLED_WITHHELD_BLOCKS: ReadonlySet<string> = new Set([
+  'dose-studied',
+  'bioavailability',
+  'n-of-1',
+  'time-to-signal',
+])
+
+/** Derived seeds a controlled substance never carries: 1, 2 and 6, exactly as R2 removes them. */
+export const CONTROLLED_WITHHELD_SEEDS: readonly number[] = [1, 2, 6]
+
+/**
+ * What a dose, a timing, a route or a combination protocol looks like in the corpus's own words.
+ *
+ * §4 and Operating Rule 9 give a controlled substance's page no code path to any of them. Removing
+ * the four blocks that ask about dosing is most of that, but not all of it: a registry trial title
+ * says "320 mg/d", a bioavailability sentence quotes "QNASL Nasal Aerosol 320 mcg", and a recorded
+ * endpoint says "Maximum Tolerated Dose". Those are the source's words, and on any other page they
+ * are exactly the evidence a reader wants — but on a page carrying a Misuse of Drugs Act, DEA or
+ * Poisons Standard Schedule 8/9 entry they are the thing the rule forbids, whoever wrote them.
+ *
+ * So `renderPage` drops a line matching any of these from a controlled page, and counts what it
+ * dropped. Nothing is rewritten or softened: the line is not rendered at all, which is what "the
+ * generator has no code path that emits dose, timing, route, frequency or combination-protocol
+ * text for them" means when the text arrives from a register rather than from a template.
+ */
+export const CONTROLLED_DOSE_PATTERNS: readonly RegExp[] = [
+  /\b\d+(?:\.\d+)?\s?(?:mg|mcg|µg|ug|g|ml|iu|units?)\b/i,
+  /\b(?:once|twice|three times|four times)\s+(?:a|per)\s+(?:day|week|month)\b/i,
+  /\b(?:daily|nightly|hourly)\s+dos(?:e|ing|age)\b/i,
+  /\bdos(?:e|es|ing|age)\s+(?:of|adjust|regimen|schedule|escalat|titrat|reduc|increas)/i,
+  /\b(?:maximum|minimum|recommended|starting|loading|maintenance)\s+(?:tolerated\s+)?dos(?:e|age)\b/i,
+  /\b(?:administered|taken|given|injected|infused)\s+(?:orally|intravenously|subcutaneously|intramuscularly|sublingually|by mouth)\b/i,
+  /\b(?:co-?administer(?:ed|ation)?|stack(?:ed|ing)?|combined? with)\b\s+(?:at|for|over|using)\b/i,
+  /\b(?:washout|crossover)\s+period\b/i,
+]
+
+/** True where a line carries dose, timing, route or combination-protocol text (§4). */
+export function carriesDoseText(line: string): boolean {
+  return CONTROLLED_DOSE_PATTERNS.some((pattern) => pattern.test(line))
+}
+
+/**
+ * §7: a dose-response quotation renders only where the sentence names the page.
+ *
+ * The Phase 1 reading found dose-response sections quoting a sentence about a different compound
+ * entirely, because the extraction matched a paper, not a molecule. A quotation that does not name
+ * the compound or one of its recorded synonyms is not evidence about it, so the section does not
+ * fire. Comparison is case-insensitive and strips the salt and hydrate suffixes a display name
+ * carries but a paper does not.
+ */
+const SALT_SUFFIXES =
+  /\s+(hydrochloride|hydrobromide|sulfate|sulphate|acetate|maleate|mesylate|besylate|citrate|tartrate|fumarate|succinate|phosphate|sodium|potassium|calcium|magnesium|dihydrate|monohydrate|hydrate|anhydrous)\b/g
+
+export function nameStem(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(SALT_SUFFIXES, ' ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+export function sentenceNamesCompound(
+  sentence: string,
+  displayName: string,
+  synonyms: readonly string[] = [],
+): boolean {
+  const haystack = ` ${nameStem(sentence)} `
+  const candidates = [displayName, ...synonyms]
+    .map((name) => nameStem(name))
+    .filter((name) => name.length >= 4)
+  for (const candidate of candidates) {
+    if (haystack.includes(` ${candidate} `)) return true
+    // A stem of two or more words matches on its own head word too: "heparin calcium" is named by
+    // a sentence that says "heparin", and the page is the calcium salt of exactly that.
+    const head = candidate.split(' ')[0]
+    if (head && head.length >= 5 && haystack.includes(` ${head} `)) return true
+  }
+  return false
+}
+
 /* ------------------------------------------------------ page rendering */
+
+/** One rendered sentence and the stored fields or computed values it traces to (Phase 4.7). */
+export interface ProvenanceEntry {
+  sentence: string
+  fields: string[]
+  /**
+   * What the line is. `sentence` is prose this generator composed — a question, a paragraph, a
+   * register line, an interaction line, a computed section. `row` is a revealed row: a label naming
+   * a recorded bucket beside the value a source wrote, both of them the source's own vocabulary.
+   *
+   * The distinction is the one `pageProse` already draws — "only prose is subject to the rule; row
+   * labels are counted and reported beside it, because a label is markup" — and
+   * `tests/test_render_safety.py` reads it, so a rule about what this site says is not applied to
+   * what a register called one of its own columns.
+   */
+  kind: 'sentence' | 'row'
+}
 
 export interface RenderedPage {
   key: string
@@ -2106,77 +2735,310 @@ export interface RenderedPage {
    */
   proseText: string
   proseWordCount: number
+  /** Sentence → field, one entry per rendered sentence. Built only when asked for. */
+  provenance?: ProvenanceEntry[]
+  /**
+   * Lines a controlled substance's page did not render because a register's own words carried a
+   * dose, a timing, a route or a combination protocol (§4). Absent where none was dropped.
+   */
+  withheldDoseLines?: number
 }
 
-export function renderPage(page: PageBundle): RenderedPage {
-  const f = facts(page)
+/**
+ * A `PageFacts` that remembers which fields and seeds a block builder actually read.
+ *
+ * The provenance map has to name the stored field behind every sentence, and the block builders
+ * reach their values through `present()`, `field()` and `seed()`. Recording those calls is the only
+ * way to name the field a given block used without writing the mapping down twice and letting the
+ * two drift.
+ */
+function recordingFacts(base: PageFacts): { facts: PageFacts; touched: () => string[] } {
+  const read = new Set<string>()
+  const wrapped: PageFacts = {
+    ...base,
+    field: (id: string) => {
+      read.add(`fields.${id}`)
+      return base.field(id)
+    },
+    present: (id: string) => {
+      read.add(`fields.${id}`)
+      return base.present(id)
+    },
+    seed: (id: string) => {
+      read.add(`seeds.${id}`)
+      return base.seed(id)
+    },
+  }
+  return { facts: wrapped, touched: () => [...read].sort() }
+}
+
+/** The seeds a controlled substance never carries, removed before any builder can read one. */
+function withoutControlledSeeds(seeds: PageBundle['seeds']): PageBundle['seeds'] {
+  const out: PageBundle['seeds'] = {}
+  for (const [id, value] of Object.entries(seeds)) {
+    const number = Number(/^seed0*(\d+)$/.exec(id)?.[1] ?? NaN)
+    if (CONTROLLED_WITHHELD_SEEDS.includes(number)) continue
+    out[id] = value
+  }
+  return out
+}
+
+export function renderPage(page: PageBundle, options: { provenance?: boolean } = {}): RenderedPage {
+  const blocks = page.blocks
+  const controlled = blocks?.controlled === true
+
+  /*
+   * The controlled-substance filter, applied before anything is rendered (§4).
+   *
+   * A page carrying a Singapore Misuse of Drugs Act or Poisons Act schedule, a United States DEA
+   * schedule or an Australian Poisons Standard Schedule 8 or 9 entry has no code path to a dose,
+   * timing, route, frequency or combination protocol. The four blocks that could carry one are
+   * removed from the question list, and seeds 1, 2 and 6 are removed from the bundle, so no builder
+   * below is ever handed the values to write one. The question derivation withholds the same set
+   * upstream and migration 0026 refuses to store one; this filter is what makes the rule hold for a
+   * page rendered from any input, including a stale one.
+   */
+  const bundle: PageBundle = controlled
+    ? {
+        ...page,
+        questions: page.questions.filter((q) => !CONTROLLED_WITHHELD_BLOCKS.has(q.block)),
+        seeds: withoutControlledSeeds(page.seeds),
+      }
+    : page
+
+  const f = facts(bundle)
   const lines: string[] = []
   /** Parallel to `lines`: true where the template declares the line markup rather than prose. */
   const isMarkup: boolean[] = []
-  const push = (line: string, markup = false): void => {
+  const provenance: ProvenanceEntry[] = []
+  let dropped = 0
+  const push = (
+    line: string,
+    markup = false,
+    fields: string[] = [],
+    kind: ProvenanceEntry['kind'] = 'sentence',
+  ): void => {
+    if (controlled && carriesDoseText(line)) {
+      // §4: this page has no code path to a dose, a timing, a route or a combination protocol,
+      // including one a register wrote. The line is not rendered.
+      dropped += 1
+      return
+    }
     lines.push(line)
     isMarkup.push(markup)
+    if (options.provenance === true && !markup && line.trim().length > 0) {
+      provenance.push({ sentence: line.replace(/\s+/g, ' ').trim(), fields, kind })
+    }
   }
 
   /* header — display name, synonyms, register/date, badge triplet */
-  push(page.displayName)
-  const synonyms = page.identity.synonyms
-    .filter((s) => s.name && s.name.toLowerCase() !== page.displayName.toLowerCase())
+  const displayName = blocks?.disambiguation?.displayName ?? bundle.displayName
+  push(displayName, false, [
+    blocks?.disambiguation
+      ? `data/revamp/identity/display-names-v3.csv disambiguated_display_name (${
+          blocks.disambiguation.basis ?? 'recorded basis'
+        })`
+      : 'identity.displayName',
+  ])
+  const synonyms = bundle.identity.synonyms
+    .filter((s) => s.name && s.name.toLowerCase() !== bundle.displayName.toLowerCase())
     .map((s) => (s.kind ? `${s.name} (${s.kind})` : s.name))
   if (synonyms.length > 0) push(`Also recorded as ${synonyms.join(', ')}`, true)
-  const { register, date } = headerRegister(page, f)
+  const { register, date } = headerRegister(bundle, f)
   push(`${register} · last verified ${date}`, true)
   const humanData = f.rungs.some((r) => r.organism === 'human') || f.largestN !== undefined
   push(
-    `Tier ${page.tier} · ${f.topRung ? f.topRung.organism : 'no organism recorded'} · human data ${humanData ? 'yes' : 'no'}`,
+    `Tier ${bundle.tier} · ${f.topRung ? f.topRung.organism : 'no organism recorded'} · human data ${humanData ? 'yes' : 'no'}`,
     true,
   )
 
+  /*
+   * The form-of note (§6). A salt, ester, biosimilar or product-component page opens with what it
+   * is a form of, because that is the first question a reader has and the difference the rendered
+   * duplicate check found the pages failing to state. §1 lists the note among the Tier 3 computed
+   * sections; §6 says the page opens with it, and the reader is served by meeting it here.
+   */
+  for (const note of formOfNoteLines(blocks)) push(note.sentence, false, note.fields)
+
+  /* the supervision block leads, before the registers (§1) */
+  const supervision = bundle.questions.filter((q) => q.block === 'supervision')
+  const answers = bundle.questions.filter((q) => q.block !== 'supervision')
+
+  const renderQuestion = (q: QuestionBlock): void => {
+    const recorder = recordingFacts(f)
+    const body = buildBlockBody(q, bundle, recorder.facts)
+    // A block whose builder wrote nothing renders nothing: §7 stops a dose-response section whose
+    // quotations name a different compound, and a heading over an empty body is forbidden by §1.
+    if (body.paragraphs.length === 0 && body.rows.length === 0) return
+    const fields = [`page_questions.${q.template}`, ...recorder.touched()]
+    push(q.text, false, fields)
+    for (const p of body.paragraphs) push(p, false, fields)
+    if (body.rows.length > 0) {
+      // The `<summary>` reads "Show the evidence" on every block of every page. It is a control
+      // label, so it is a repeated element and excluded with the rest of the chrome; the rows it
+      // opens are the page's own words and are counted.
+      for (const row of body.rows) {
+        push(
+          `${row.label}${row.identifier ? ` ${row.identifier}` : ''} ${row.value}`,
+          false,
+          fields,
+          'row',
+        )
+      }
+    }
+  }
+
+  for (const q of supervision) renderQuestion(q)
+
+  /* ---- Where it's registered (§2, §3): every page, including a Tier 3 stub ------------------ */
+  const registration = [...(blocks?.registration ?? [])].sort(
+    (a, b) =>
+      a.ordinal - b.ordinal ||
+      (a.component ?? '').localeCompare(b.component ?? '') ||
+      a.label.localeCompare(b.label),
+  )
+  if (registration.length > 0) {
+    push("Where it's registered", true)
+    const mapped = registration.filter((row) => row.jurisdiction !== 'OTHER')
+    const other = registration.filter((row) => row.jurisdiction === 'OTHER')
+    for (const row of mapped) {
+      push(registrationLineText(row), false, row.provenance ?? [])
+      const applications = registerApplicationIds(row)
+      if (applications.length > 0) {
+        // §3: the applications collapse to the one summary line above, and their ids sit in a
+        // disclosure. The disclosure is delivered in the server HTML, so this line is what a
+        // crawler and this measurement read; the template renders it inside a `<details>`.
+        push(
+          `${row.component ? `${row.component} — ` : ''}${row.label} applications on record: ${applications.join(', ')}`,
+          false,
+          row.provenance ?? [],
+          'row',
+        )
+      }
+    }
+    if (other.length > 0) {
+      push('Other registers', true)
+      for (const row of other) push(registrationLineText(row), false, row.provenance ?? [])
+    }
+  }
+  const schedules = blocks?.controlledSchedules ?? []
+  if (schedules.length > 0) {
+    push('Controlled-substance schedules', true)
+    for (const row of schedules) {
+      push(controlledLine(row), false, [row.provenance ?? 'fields.controlled'])
+    }
+  }
+
+  /* ---- Interactions (§4) -------------------------------------------------------------------- */
+  const tiers = blocks?.interactions.tiers ?? {}
+  const interactionLines: Array<{ sentence: string; fields: string[] }> = []
+  for (const tier of ['A', 'B', 'C'] as const) {
+    const held = tiers[tier]
+    if (!held) continue
+    for (const row of held.inline) {
+      interactionLines.push({
+        sentence: interactionLine(tier, row, { controlled, quote: true }),
+        fields: interactionProvenance(row),
+      })
+    }
+    for (const row of held.disclosed) {
+      interactionLines.push({
+        sentence: interactionLine(tier, row, { controlled, quote: false }),
+        fields: interactionProvenance(row),
+      })
+    }
+    const shown = held.inline.length + held.disclosed.length
+    if (held.total > shown) {
+      interactionLines.push({
+        sentence:
+          `${held.total} counterparts are recorded under ${INTERACTION_TIER_LABELS[tier]} for ` +
+          `this record; ${shown} are shown.`,
+        fields: [
+          'data/revamp/interactions/interactions.parquet distinct counterparts for this page and tier',
+        ],
+      })
+    }
+  }
+  const statement = checkedSourcesStatement(
+    blocks?.interactions.checked,
+    interactionLines.length > 0,
+  )
+  const predictedOnly =
+    interactionLines.length > 0 && tiers.A === undefined && tiers.B === undefined
+  if (interactionLines.length > 0 || statement !== undefined) {
+    push('Interactions', true)
+    const statementFields = ['data/revamp/interactions/checked-sources.parquet sources_checked']
+    // §4: a predicted-only page carries the statement first, so the reader meets what was checked
+    // before meeting a prediction.
+    if (statement !== undefined && predictedOnly) push(statement, false, statementFields)
+    for (const entry of interactionLines) push(entry.sentence, false, entry.fields)
+    if (statement !== undefined && !predictedOnly) push(statement, false, statementFields)
+  }
+
+  /* ---- Generic and patent (§5) -------------------------------------------------------------- */
+  const patent = blocks?.patent
+  if (patent) {
+    push('Generic and patent', true)
+    push(patent.line, false, patent.provenance ?? [])
+  }
+
   /* question blocks, or the stub sentence */
-  if (page.questions.length === 0) {
-    push(`This record holds ${page.presentFields} ${page.presentFields === 1 ? 'field' : 'fields'}`)
+  if (answers.length === 0 && supervision.length === 0) {
+    push(
+      `This record holds ${bundle.presentFields} ${bundle.presentFields === 1 ? 'field' : 'fields'}`,
+      false,
+      ['corpus_pages.present_field_count'],
+    )
     // Question-derivation amendment: a stub carries a supervision line only where a class S1–S9 was
     // matched; where the only class is S10 (unknown) it says so, and never a supervision claim
     // without a classification to cite. S11 is the cleared class and states nothing.
-    const cited = page.suppressionClasses.filter((c) => /^S[1-9]$/.test(c))
+    const cited = bundle.suppressionClasses.filter((c) => /^S[1-9]$/.test(c))
     if (cited.length > 0) {
-      push(`Regulator classification recorded: ${cited.join(', ')}`)
+      push(
+        `A register records this compound under medical supervision: ${citedSuppressionLabels(cited).join('; ')}.`,
+        false,
+        ['corpus_pages.suppression_classes'],
+      )
     } else if (
-      page.suppressionClasses.length > 0 &&
-      page.suppressionClasses.every((c) => c === 'S10')
+      bundle.suppressionClasses.length > 0 &&
+      bundle.suppressionClasses.every((c) => c === 'S10')
     ) {
-      push('No regulator classification is recorded for this compound')
+      push('No regulator classification is recorded for this compound', false, [
+        'corpus_pages.suppression_classes',
+      ])
     }
   } else {
-    for (const q of page.questions) {
-      push(q.text)
-      const body = buildBlockBody(q, page, f)
-      for (const p of body.paragraphs) push(p)
-      if (body.rows.length > 0) {
-        // The `<summary>` reads "Show the evidence" on every block of every page. It is a control
-        // label, so it is a repeated element and excluded with the rest of the chrome; the rows it
-        // opens are the page's own words and are counted.
-        for (const row of body.rows) {
-          push(`${row.label}${row.identifier ? ` ${row.identifier}` : ''} ${row.value}`)
-        }
-      }
+    for (const q of answers) renderQuestion(q)
+  }
+
+  /* ---- Tier 3 computed sections (§8) --------------------------------------------------------- */
+  const computed: Array<{ sentence: string; fields: string[] }> = []
+  for (const section of ['neighbour', 'potency', 'timeline'] as const) {
+    for (const entry of blocks?.sections[section] ?? []) {
+      const sentence = sectionSentenceText(entry)
+      if (!sentence) continue
+      computed.push({ sentence, fields: sectionSentenceFields(entry) })
     }
+  }
+  if (computed.length > 0) {
+    push('What the structure and the activity record show', true)
+    for (const entry of computed) push(entry.sentence, false, entry.fields)
   }
 
   /* the exact record: identifiers panel, then the relations rows (R10) */
   const identifierRows: string[] = []
   for (const [key, label] of IDENTIFIER_LABELS) {
-    const value = asString(page.identity[key] as unknown)
+    const value = asString(bundle.identity[key] as unknown)
     if (value) identifierRows.push(`${label} ${value}`)
   }
   if (identifierRows.length > 0) {
     push('The exact record', true)
     for (const row of identifierRows) push(row, true)
   }
-  const relationRows = page.identity.relations
+  const relationRows = bundle.identity.relations
     .map((r) => {
       const label = RELATION_LABELS[r.type] ?? r.type.replace(/-/g, ' ')
-      const target = page.names.get(r.targetKey)
+      const target = bundle.names.get(r.targetKey)
       return target ? `${label} ${target}` : undefined
     })
     .filter((r): r is string => Boolean(r))
@@ -2187,7 +3049,7 @@ export function renderPage(page: PageBundle): RenderedPage {
 
   /* the source list: every anchor's source, once */
   const sources = new Map<string, string>()
-  for (const q of page.questions) {
+  for (const q of bundle.questions) {
     for (const s of q.sources) {
       const line = anchor(s)
       if (line) sources.set(line, line)
@@ -2206,13 +3068,15 @@ export function renderPage(page: PageBundle): RenderedPage {
   const text = clean.filter((l) => l.length > 0).join('\n')
   const proseText = clean.filter((l, i) => l.length > 0 && !isMarkup[i]).join('\n')
   return {
-    key: page.key,
-    tier: page.tier,
-    presentFields: page.presentFields,
+    key: bundle.key,
+    tier: bundle.tier,
+    presentFields: bundle.presentFields,
+    ...(dropped > 0 ? { withheldDoseLines: dropped } : {}),
     text,
     wordCount: text.split(/\s+/).filter(Boolean).length,
     proseText,
     proseWordCount: proseText.split(/\s+/).filter(Boolean).length,
+    ...(options.provenance === true ? { provenance } : {}),
   }
 }
 

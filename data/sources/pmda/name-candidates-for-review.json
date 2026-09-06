@@ -1,14 +1,5 @@
 [
   {
-    "key": "K1:GR0L9S3J0F",
-    "tier": 2,
-    "corpus_display_name": "Racepinefrine",
-    "pmda_name": "Adrenaline",
-    "source_record_id": "pmda:p006:r10",
-    "approval_date": "2025-09-19",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:NA71GR3TNV",
     "tier": 2,
     "corpus_display_name": "Adrenaline",
@@ -18,231 +9,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:2URQ2N32W3",
-    "tier": 2,
-    "corpus_display_name": "Calcium Lactate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:5792C4VMFZ",
-    "tier": 3,
-    "corpus_display_name": "Calcium Palmitate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:7UJQ5OPE7D",
-    "tier": 1,
-    "corpus_display_name": "Carbonate Ion",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:86117BWO7P",
-    "tier": 1,
-    "corpus_display_name": "Calcium Citrate Anhydrous",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:8EKI9QEE2H",
-    "tier": 2,
-    "corpus_display_name": "Calcium Iodide",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:97Z1WI3NDX",
-    "tier": 3,
-    "corpus_display_name": "Calcium Phosphate, Unspecified Form",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9E7R5L6H31",
-    "tier": 2,
-    "corpus_display_name": "Oxalic Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9G34HU7RV0",
-    "tier": 2,
-    "corpus_display_name": "Edetic Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:C7X2M0VVNH",
-    "tier": 3,
-    "corpus_display_name": "LIME",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:E934B3V59H",
-    "tier": 2,
-    "corpus_display_name": "Calcium Sulfate Anhydrous",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:H0G9379FGK",
-    "tier": 1,
-    "corpus_display_name": "Calcium Carbonate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:HUI2S00793",
-    "tier": 2,
-    "corpus_display_name": "CALCIUM POLYSTYRENE SULFONATE",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:K3D86KJ24N",
-    "tier": 2,
-    "corpus_display_name": "Undecylenic Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:K4C08XP666",
-    "tier": 2,
-    "corpus_display_name": "Tricalcium Phosphate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:L11K75P92J",
-    "tier": 2,
-    "corpus_display_name": "Anhydrous Dibasic Calcium Phosphate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:M4I0D6VV5M",
-    "tier": 1,
-    "corpus_display_name": "Calcium Chloride",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:N7CIZ75ZPN",
-    "tier": 2,
-    "corpus_display_name": "Arsenic Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:O3B55K4YKI",
-    "tier": 2,
-    "corpus_display_name": "Calcium Fluoride",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:OFM21057LP",
-    "tier": 1,
-    "corpus_display_name": "Calcium Chloride Anhydrous",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:PF5DZW74VN",
-    "tier": 2,
-    "corpus_display_name": "Calcium Hydroxide",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:PQ6CK8PD0R",
-    "tier": 1,
-    "corpus_display_name": "Ascorbic acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:QCD9FA9PLW",
-    "tier": 2,
-    "corpus_display_name": "Calcium Monocitrate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:QLZ991V4A2",
-    "tier": 3,
-    "corpus_display_name": "Glucaric Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:R4R8J0Q44B",
-    "tier": 2,
-    "corpus_display_name": "Gluconic Acid",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:SQE6VB453K",
-    "tier": 2,
-    "corpus_display_name": "CALCIUM GLUCONATE",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:SY7Q814VUP",
     "tier": 1,
     "corpus_display_name": "CALCIUM",
@@ -261,258 +27,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:WAT0DDB505",
-    "tier": 2,
-    "corpus_display_name": "Calcium Sulfate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:Y882YXF34X",
-    "tier": 2,
-    "corpus_display_name": "Calcium Acetate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "UNKEYED:existing:calcium-potassium-phosphate-citrate",
-    "tier": 3,
-    "corpus_display_name": "Calcium Potassium Phosphate Citrate",
-    "pmda_name": "Calcium gluconate hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:2URQ2N32W3",
-    "tier": 2,
-    "corpus_display_name": "Calcium Lactate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:5792C4VMFZ",
-    "tier": 3,
-    "corpus_display_name": "Calcium Palmitate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:7UJQ5OPE7D",
-    "tier": 1,
-    "corpus_display_name": "Carbonate Ion",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:86117BWO7P",
-    "tier": 1,
-    "corpus_display_name": "Calcium Citrate Anhydrous",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:8EKI9QEE2H",
-    "tier": 2,
-    "corpus_display_name": "Calcium Iodide",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:97Z1WI3NDX",
-    "tier": 3,
-    "corpus_display_name": "Calcium Phosphate, Unspecified Form",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9E7R5L6H31",
-    "tier": 2,
-    "corpus_display_name": "Oxalic Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9G34HU7RV0",
-    "tier": 2,
-    "corpus_display_name": "Edetic Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:C7X2M0VVNH",
-    "tier": 3,
-    "corpus_display_name": "LIME",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:E934B3V59H",
-    "tier": 2,
-    "corpus_display_name": "Calcium Sulfate Anhydrous",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:H0G9379FGK",
-    "tier": 1,
-    "corpus_display_name": "Calcium Carbonate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:HUI2S00793",
-    "tier": 2,
-    "corpus_display_name": "CALCIUM POLYSTYRENE SULFONATE",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:K3D86KJ24N",
-    "tier": 2,
-    "corpus_display_name": "Undecylenic Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:K4C08XP666",
-    "tier": 2,
-    "corpus_display_name": "Tricalcium Phosphate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:L11K75P92J",
-    "tier": 2,
-    "corpus_display_name": "Anhydrous Dibasic Calcium Phosphate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:M4I0D6VV5M",
-    "tier": 1,
-    "corpus_display_name": "Calcium Chloride",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:N7CIZ75ZPN",
-    "tier": 2,
-    "corpus_display_name": "Arsenic Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:O3B55K4YKI",
-    "tier": 2,
-    "corpus_display_name": "Calcium Fluoride",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:OFM21057LP",
-    "tier": 1,
-    "corpus_display_name": "Calcium Chloride Anhydrous",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:PF5DZW74VN",
-    "tier": 2,
-    "corpus_display_name": "Calcium Hydroxide",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:PQ6CK8PD0R",
-    "tier": 1,
-    "corpus_display_name": "Ascorbic acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:QCD9FA9PLW",
-    "tier": 2,
-    "corpus_display_name": "Calcium Monocitrate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:QLZ991V4A2",
-    "tier": 3,
-    "corpus_display_name": "Glucaric Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:R4R8J0Q44B",
-    "tier": 2,
-    "corpus_display_name": "Gluconic Acid",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:SQE6VB453K",
-    "tier": 2,
-    "corpus_display_name": "CALCIUM GLUCONATE",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:SY7Q814VUP",
     "tier": 1,
     "corpus_display_name": "CALCIUM",
@@ -525,33 +39,6 @@
     "key": "K1:UV63W89SJM",
     "tier": 2,
     "corpus_display_name": "(ACETATO-O)(DODECANOATO-O)CALCIUM",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:WAT0DDB505",
-    "tier": 2,
-    "corpus_display_name": "Calcium Sulfate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:Y882YXF34X",
-    "tier": 2,
-    "corpus_display_name": "Calcium Acetate",
-    "pmda_name": "Calcium chloride hydrate",
-    "source_record_id": "pmda:p010:r07",
-    "approval_date": "2025-12-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "UNKEYED:existing:calcium-potassium-phosphate-citrate",
-    "tier": 3,
-    "corpus_display_name": "Calcium Potassium Phosphate Citrate",
     "pmda_name": "Calcium chloride hydrate",
     "source_record_id": "pmda:p010:r07",
     "approval_date": "2025-12-22",
@@ -573,15 +60,6 @@
     "pmda_name": "Trametinib dimethyl sulfoxide",
     "source_record_id": "pmda:p012:r15",
     "approval_date": "2026-02-19",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:GR0L9S3J0F",
-    "tier": 2,
-    "corpus_display_name": "Racepinefrine",
-    "pmda_name": "Adrenaline bitartrate",
-    "source_record_id": "pmda:p017:r03",
-    "approval_date": "2024-09-24",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -660,15 +138,6 @@
     "key": "K1:9PHQ9Y1OLM",
     "tier": 1,
     "corpus_display_name": "Prednisolone",
-    "pmda_name": "Methylprednisolone sodium succinate",
-    "source_record_id": "pmda:p026:r03",
-    "approval_date": "2023-09-25",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:ET54W9J4U2",
-    "tier": 3,
-    "corpus_display_name": "Methylprednisolone aceponate",
     "pmda_name": "Methylprednisolone sodium succinate",
     "source_record_id": "pmda:p026:r03",
     "approval_date": "2023-09-25",
@@ -792,15 +261,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:QI846AL4NC",
-    "tier": 2,
-    "corpus_display_name": "Dexivacaine",
-    "pmda_name": "Mepivacaine hydrochloride",
-    "source_record_id": "pmda:p040:r08",
-    "approval_date": "2022-12-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:04Q9AIZ7NO",
     "tier": 2,
     "corpus_display_name": "Pemetrexed",
@@ -810,30 +270,12 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:R6D2UI4FLS",
-    "tier": 3,
-    "corpus_display_name": "Enclomifene",
-    "pmda_name": "Clomiphene citrate",
-    "source_record_id": "pmda:p050:r10",
-    "approval_date": "2022-03-11",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K2:GKIRPKYJQBWNGO-UHFFFAOYSA-N",
     "tier": 1,
     "corpus_display_name": "Clomifene",
     "pmda_name": "Clomiphene citrate",
     "source_record_id": "pmda:p050:r10",
     "approval_date": "2022-03-11",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
-    "tier": 2,
-    "corpus_display_name": "PENICILLIN G PROCAINE",
-    "pmda_name": "Benzylpenicillin benzathine hydrate",
-    "source_record_id": "pmda:p052:r08",
-    "approval_date": "2021-09-27",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -849,15 +291,6 @@
     "key": "K2:FPAFDBFIGPHWGO-UHFFFAOYSA-N",
     "tier": 2,
     "corpus_display_name": "TALC",
-    "pmda_name": "Talc",
-    "source_record_id": "pmda:p054:r02",
-    "approval_date": "2022-03-28",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K2:XBPUDTAATCFDRE-UHFFFAOYSA-N",
-    "tier": 2,
-    "corpus_display_name": "TALC ANHYDROUS",
     "pmda_name": "Talc",
     "source_record_id": "pmda:p054:r02",
     "approval_date": "2022-03-28",
@@ -900,162 +333,9 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:0309P36Q66",
-    "tier": 2,
-    "corpus_display_name": "Ferric Fluoride",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:0I2XIN602U",
-    "tier": 2,
-    "corpus_display_name": "Ferric Chloride Hexahydrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:1K09F3G675",
-    "tier": 2,
-    "corpus_display_name": "Ferric Oxide Red",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:2UA751211N",
-    "tier": 2,
-    "corpus_display_name": "FERRIC HYDROXIDE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:35C9R2N24F",
     "tier": 2,
     "corpus_display_name": "Enterobactin",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:3HWS7HF5XD",
-    "tier": 2,
-    "corpus_display_name": "FERRIC SULFATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:403J23EMFA",
-    "tier": 3,
-    "corpus_display_name": "Sodium feredetate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:434C3EI07T",
-    "tier": 3,
-    "corpus_display_name": "FERRIC SODIUM CITRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:63G354M39Z",
-    "tier": 2,
-    "corpus_display_name": "Ferric Citrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:87PZU03K0K",
-    "tier": 2,
-    "corpus_display_name": "Ferric Oxyhydroxide",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9RDO128EH7",
-    "tier": 2,
-    "corpus_display_name": "Ferric Bromide",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:CC9149U2QX",
-    "tier": 2,
-    "corpus_display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:N6BAA189V1",
-    "tier": 2,
-    "corpus_display_name": "Ferric Phosphate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:Q91187K011",
-    "tier": 2,
-    "corpus_display_name": "Tetraferric Tricitrate Decahydrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:U38V3ZVV3V",
-    "tier": 2,
-    "corpus_display_name": "Ferric Chloride",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:UVP74NG1C5",
-    "tier": 1,
-    "corpus_display_name": "FERRIC AMMONIUM CITRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:W108RK810P",
-    "tier": 3,
-    "corpus_display_name": "FERRIC GLUCONATE TRIHYDRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p059:r13",
-    "approval_date": "2021-03-23",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K4:ferric ammonium",
-    "tier": 1,
-    "corpus_display_name": "Ferric Ammonium",
     "pmda_name": "Ferric citrate hydrate",
     "source_record_id": "pmda:p059:r13",
     "approval_date": "2021-03-23",
@@ -1083,15 +363,6 @@
     "key": "K1:B408IW3GL5",
     "tier": 3,
     "corpus_display_name": "LANINAMIVIR",
-    "pmda_name": "Laninamivir octanoate hydrate",
-    "source_record_id": "pmda:p074:r16",
-    "approval_date": "2019-06-18",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:E026V904RL",
-    "tier": 2,
-    "corpus_display_name": "LANINAMIVIR OCTANOATE",
     "pmda_name": "Laninamivir octanoate hydrate",
     "source_record_id": "pmda:p074:r16",
     "approval_date": "2019-06-18",
@@ -1278,15 +549,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:E026V904RL",
-    "tier": 2,
-    "corpus_display_name": "LANINAMIVIR OCTANOATE",
-    "pmda_name": "Laninamivir octanoate hydrate",
-    "source_record_id": "pmda:p103:r13",
-    "approval_date": "2016-08-26",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:EL9943AG5J",
     "tier": 2,
     "corpus_display_name": "Tenofovir alafenamide",
@@ -1341,15 +603,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:TYR2U59WMA",
-    "tier": 3,
-    "corpus_display_name": "Amitriptylinoxide",
-    "pmda_name": "Amitriptyline hydrochloride",
-    "source_record_id": "pmda:p111:r04",
-    "approval_date": "2016-02-29",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:013TE6E4WV",
     "tier": 2,
     "corpus_display_name": "Ledipasvir",
@@ -1386,15 +639,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:RJ00KV3VTG",
-    "tier": 2,
-    "corpus_display_name": "Radium Ra-223 Dichloride",
-    "pmda_name": "Radium （223Ra） dichloride",
-    "source_record_id": "pmda:p116:r10",
-    "approval_date": "2016-03-28",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:028LZY775B",
     "tier": 2,
     "corpus_display_name": "Vilanterol",
@@ -1425,15 +669,6 @@
     "key": "K1:9PHQ9Y1OLM",
     "tier": 1,
     "corpus_display_name": "Prednisolone",
-    "pmda_name": "Methylprednisolone sodium succinate",
-    "source_record_id": "pmda:p122:r02",
-    "approval_date": "2014-08-29",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:ET54W9J4U2",
-    "tier": 3,
-    "corpus_display_name": "Methylprednisolone aceponate",
     "pmda_name": "Methylprednisolone sodium succinate",
     "source_record_id": "pmda:p122:r02",
     "approval_date": "2014-08-29",
@@ -1494,162 +729,9 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:0309P36Q66",
-    "tier": 2,
-    "corpus_display_name": "Ferric Fluoride",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:0I2XIN602U",
-    "tier": 2,
-    "corpus_display_name": "Ferric Chloride Hexahydrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:1K09F3G675",
-    "tier": 2,
-    "corpus_display_name": "Ferric Oxide Red",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:2UA751211N",
-    "tier": 2,
-    "corpus_display_name": "FERRIC HYDROXIDE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:35C9R2N24F",
     "tier": 2,
     "corpus_display_name": "Enterobactin",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:3HWS7HF5XD",
-    "tier": 2,
-    "corpus_display_name": "FERRIC SULFATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:403J23EMFA",
-    "tier": 3,
-    "corpus_display_name": "Sodium feredetate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:434C3EI07T",
-    "tier": 3,
-    "corpus_display_name": "FERRIC SODIUM CITRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:63G354M39Z",
-    "tier": 2,
-    "corpus_display_name": "Ferric Citrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:87PZU03K0K",
-    "tier": 2,
-    "corpus_display_name": "Ferric Oxyhydroxide",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:9RDO128EH7",
-    "tier": 2,
-    "corpus_display_name": "Ferric Bromide",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:CC9149U2QX",
-    "tier": 2,
-    "corpus_display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:N6BAA189V1",
-    "tier": 2,
-    "corpus_display_name": "Ferric Phosphate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:Q91187K011",
-    "tier": 2,
-    "corpus_display_name": "Tetraferric Tricitrate Decahydrate",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:U38V3ZVV3V",
-    "tier": 2,
-    "corpus_display_name": "Ferric Chloride",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:UVP74NG1C5",
-    "tier": 1,
-    "corpus_display_name": "FERRIC AMMONIUM CITRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:W108RK810P",
-    "tier": 3,
-    "corpus_display_name": "FERRIC GLUCONATE TRIHYDRATE",
-    "pmda_name": "Ferric citrate hydrate",
-    "source_record_id": "pmda:p127:r11",
-    "approval_date": "2014-01-17",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K4:ferric ammonium",
-    "tier": 1,
-    "corpus_display_name": "Ferric Ammonium",
     "pmda_name": "Ferric citrate hydrate",
     "source_record_id": "pmda:p127:r11",
     "approval_date": "2014-01-17",
@@ -1701,15 +783,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:E026V904RL",
-    "tier": 2,
-    "corpus_display_name": "LANINAMIVIR OCTANOATE",
-    "pmda_name": "Laninamivir octanoate hydrate",
-    "source_record_id": "pmda:p131:r02",
-    "approval_date": "2013-12-20",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:028LZY775B",
     "tier": 2,
     "corpus_display_name": "Vilanterol",
@@ -1725,24 +798,6 @@
     "pmda_name": "Dolutegravir sodium",
     "source_record_id": "pmda:p134:r17",
     "approval_date": "2014-03-24",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:4J9FJ0HL51",
-    "tier": 2,
-    "corpus_display_name": "Potassium Phosphate, Monobasic",
-    "pmda_name": "Monobasic sodium phosphate monohydrate",
-    "source_record_id": "pmda:p136:r07",
-    "approval_date": "2012-12-25",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:KH7I04HPUU",
-    "tier": 2,
-    "corpus_display_name": "Sodium Phosphate, Monobasic",
-    "pmda_name": "Monobasic sodium phosphate monohydrate",
-    "source_record_id": "pmda:p136:r07",
-    "approval_date": "2012-12-25",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -1776,15 +831,6 @@
     "key": "K1:9PHQ9Y1OLM",
     "tier": 1,
     "corpus_display_name": "Prednisolone",
-    "pmda_name": "Methylprednisolone sodium succinate",
-    "source_record_id": "pmda:p138:r13",
-    "approval_date": "2013-03-25",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:ET54W9J4U2",
-    "tier": 3,
-    "corpus_display_name": "Methylprednisolone aceponate",
     "pmda_name": "Methylprednisolone sodium succinate",
     "source_record_id": "pmda:p138:r13",
     "approval_date": "2013-03-25",
@@ -1863,15 +909,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:E934B3V59H",
-    "tier": 2,
-    "corpus_display_name": "Calcium Sulfate Anhydrous",
-    "pmda_name": "Precipitated calcium carbonate",
-    "source_record_id": "pmda:p143:r01",
-    "approval_date": "2013-02-28",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "HOLD:existing:vincristine",
     "tier": 2,
     "corpus_display_name": "Vincristine",
@@ -1935,15 +972,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:ET54W9J4U2",
-    "tier": 3,
-    "corpus_display_name": "Methylprednisolone aceponate",
-    "pmda_name": "Methylprednisolone sodium succinate",
-    "source_record_id": "pmda:p147:r04",
-    "approval_date": "2011-05-20",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:VB0R961HZT",
     "tier": 1,
     "corpus_display_name": "Prednisone",
@@ -1962,39 +990,12 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
-    "tier": 2,
-    "corpus_display_name": "PENICILLIN G PROCAINE",
-    "pmda_name": "Benzylpenicillin potassium",
-    "source_record_id": "pmda:p152:r09",
-    "approval_date": "2012-02-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:Q42T66VG0C",
     "tier": 2,
     "corpus_display_name": "Penicillin G",
     "pmda_name": "Benzylpenicillin potassium",
     "source_record_id": "pmda:p152:r09",
     "approval_date": "2012-02-22",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:SY7Q814VUP",
-    "tier": 1,
-    "corpus_display_name": "CALCIUM",
-    "pmda_name": "oral",
-    "source_record_id": "pmda:p158:r02",
-    "approval_date": "2011-07-01",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:SY7Q814VUP",
-    "tier": 1,
-    "corpus_display_name": "CALCIUM",
-    "pmda_name": "oral",
-    "source_record_id": "pmda:p158:r08",
-    "approval_date": "2012-01-18",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -2010,15 +1011,6 @@
     "key": "K1:IV9VHT3YUM",
     "tier": 3,
     "corpus_display_name": "Roxatidine",
-    "pmda_name": "Roxatidine acetate hydrochloride",
-    "source_record_id": "pmda:p159:r11",
-    "approval_date": "2011-01-21",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:ZUP3LSD0DO",
-    "tier": 3,
-    "corpus_display_name": "ROXATIDINE ACETATE",
     "pmda_name": "Roxatidine acetate hydrochloride",
     "source_record_id": "pmda:p159:r11",
     "approval_date": "2011-01-21",
@@ -2061,15 +1053,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:E026V904RL",
-    "tier": 2,
-    "corpus_display_name": "LANINAMIVIR OCTANOATE",
-    "pmda_name": "Laninamivir octanoate hydrate",
-    "source_record_id": "pmda:p163:r02",
-    "approval_date": "2010-09-10",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:90Y4QC304K",
     "tier": 1,
     "corpus_display_name": "Ketoprofen",
@@ -2082,15 +1065,6 @@
     "key": "K1:0G389FZZ9M",
     "tier": 1,
     "corpus_display_name": "Levocarnitine",
-    "pmda_name": "Levocarnitine chloride",
-    "source_record_id": "pmda:p165:r13",
-    "approval_date": "2011-03-10",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:0HU2UI27HF",
-    "tier": 1,
-    "corpus_display_name": "Propionyl-L-Carnitine",
     "pmda_name": "Levocarnitine chloride",
     "source_record_id": "pmda:p165:r13",
     "approval_date": "2011-03-10",
@@ -2130,24 +1104,6 @@
     "pmda_name": "Paroxetine hydrochloride hydrate",
     "source_record_id": "pmda:p169:r04",
     "approval_date": "2009-10-16",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:8QTV3DTT8W",
-    "tier": 3,
-    "corpus_display_name": "Chondroitin Sulfate Sodium (BOVINE)",
-    "pmda_name": "chondroitin sulfate sodium",
-    "source_record_id": "pmda:p169:r10",
-    "approval_date": "2009-08-20",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K2:OAEOAAHCJGWJIC-CEVJMMQXSA-N",
-    "tier": 3,
-    "corpus_display_name": "CHONDROITIN SULFATE",
-    "pmda_name": "chondroitin sulfate sodium",
-    "source_record_id": "pmda:p169:r10",
-    "approval_date": "2009-08-20",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -2211,24 +1167,6 @@
     "pmda_name": "Mometasone furoate hydrate",
     "source_record_id": "pmda:p177:r13",
     "approval_date": "2008-07-16",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:4J9FJ0HL51",
-    "tier": 2,
-    "corpus_display_name": "Potassium Phosphate, Monobasic",
-    "pmda_name": "Monobasic sodium phosphate monohydrate",
-    "source_record_id": "pmda:p181:r01",
-    "approval_date": "2007-04-18",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:KH7I04HPUU",
-    "tier": 2,
-    "corpus_display_name": "Sodium Phosphate, Monobasic",
-    "pmda_name": "Monobasic sodium phosphate monohydrate",
-    "source_record_id": "pmda:p181:r01",
-    "approval_date": "2007-04-18",
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
@@ -2385,15 +1323,6 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:ET54W9J4U2",
-    "tier": 3,
-    "corpus_display_name": "Methylprednisolone aceponate",
-    "pmda_name": "Methylprednisolone sodium succinate",
-    "source_record_id": "pmda:p198:r15",
-    "approval_date": "2005-09-15",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:VB0R961HZT",
     "tier": 1,
     "corpus_display_name": "Prednisone",
@@ -2457,144 +1386,9 @@
     "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
   },
   {
-    "key": "K1:1GA689N629",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Carbonate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:34S289N54E",
-    "tier": 1,
-    "corpus_display_name": "Aluminum Sulfate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:3CYT62D3GA",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Chloride",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:5QB0T2IUN0",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Hydroxide",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:80EHD8I43D",
-    "tier": 1,
-    "corpus_display_name": "Aluminum Acetate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
     "key": "K1:CPD4NFA903",
     "tier": 1,
     "corpus_display_name": "Aluminum",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:F92V3S521O",
-    "tier": 1,
-    "corpus_display_name": "Aluminum Phosphate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:HUO854648Y",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Nitrate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:I7T908772F",
-    "tier": 3,
-    "corpus_display_name": "ALUMINUM SULFATE ANHYDROUS",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:IY20HBK5LK",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Bromide",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:L903Z8J9VR",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Iodide",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:LIF1N9568Y",
-    "tier": 2,
-    "corpus_display_name": "ALUMINUM CHLORIDE ANHYDROUS",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:LMI26O6933",
-    "tier": 2,
-    "corpus_display_name": "Alumina",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:RFJ7QXF345",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Magnesium Hydroxide Carbonate",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K1:Z77H3IKW94",
-    "tier": 2,
-    "corpus_display_name": "Aluminum Fluoride",
-    "pmda_name": "Aluminum potassium sulfate",
-    "source_record_id": "pmda:p200:r02",
-    "approval_date": "2004-07-09",
-    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
-  },
-  {
-    "key": "K2:TWNQGVIAIRXVLR-UHFFFAOYSA-N",
-    "tier": 2,
-    "corpus_display_name": "ALUMINIUM OXIDE",
     "pmda_name": "Aluminum potassium sulfate",
     "source_record_id": "pmda:p200:r02",
     "approval_date": "2004-07-09",

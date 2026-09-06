@@ -18,6 +18,10 @@ of the database container, with PGSSLSERVERNAME=localhost, the only name that ce
 
     redirect_check.py --base-url https://rnawiki.com --plan data/revamp/identity/redirect-plan.csv
 
+The live half also runs against a build served on this machine, which is how the plan is proved
+before it is deployed: `--base-url http://127.0.0.1:<port>`. Plain HTTP is accepted only for a
+loopback host; every other base URL must be https, and the check itself is unchanged.
+
 The script exits non-zero and names the offending slug when either check fails, so it can run as a
 CI gate.
 """
@@ -125,17 +129,29 @@ def check_live(base_url: str, slugs: list[str], concurrency: int, timeout: float
     """At most `concurrency` connections, each kept alive and reused, one HEAD at a time on each."""
     parsed = urllib.parse.urlsplit(base_url)
     host = parsed.netloc
-    if parsed.scheme != "https":
-        raise SystemExit("the live check speaks https only")
+    hostname = parsed.hostname or ""
+    loopback = hostname in ("localhost", "127.0.0.1", "::1")
+    if parsed.scheme == "https":
+        plain = False
+    elif parsed.scheme == "http" and loopback:
+        # The same check, run against a build served on this machine. Plain HTTP is accepted only
+        # for a loopback host, so nothing over a network is ever requested without TLS.
+        plain = True
+    else:
+        raise SystemExit("the live check speaks https, or http to a loopback host")
     lock = threading.Lock()
     handle = REQUEST_LOG.open("a")
     results: dict[str, int | str] = {}
     local = threading.local()
 
-    def connection() -> http.client.HTTPSConnection:
+    def connection() -> http.client.HTTPConnection:
         existing = getattr(local, "connection", None)
         if existing is None:
-            existing = http.client.HTTPSConnection(host, timeout=timeout)
+            existing = (
+                http.client.HTTPConnection(host, timeout=timeout)
+                if plain
+                else http.client.HTTPSConnection(host, timeout=timeout)
+            )
             local.connection = existing
         return existing
 

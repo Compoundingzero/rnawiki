@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-05T20:56:24Z",
+  "url": "https://www.ema.europa.eu/en/documents/report/medicines-output-medicines-report_en.xlsx",
+  "httpStatus": "HTTP/2 200",
+  "storedFile": "data/sources/ema/2026-09-06/raw/medicines-output-medicines-report_en.xlsx",
+  "storedSha256": "e27089a6bf7e8f49b84a7bd18e623431cdda15d9ace8eb22b6da1250c17b5323",
+  "storedGenerated": "05/09/2026 - 06:00",
+  "publishedSha256": "7aeb28d71b0ff0b5a3ed0a0d988ce7edd3efac9c31f6c9fc090912631398cda1",
+  "publishedBytes": 898691,
+  "publishedLastModified": "Sat, 05 Sep 2026 16:01:10 GMT",
+  "publishedGenerated": "05/09/2026 - 18:00",
+  "rowsCompared": 2732,
+  "columnsCompared": 39,
+  "sameShape": true,
+  "sameColumns": true,
+  "cellsDiffering": 0,
+  "rowsDiffering": 0,
+  "columnsDiffering": {},
+  "storedPullStillCurrent": true
+}

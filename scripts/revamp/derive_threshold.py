@@ -198,9 +198,9 @@ def census_path(explicit: str | None) -> Path:
     return CENSUS_AFTER if CENSUS_AFTER.exists() else CENSUS_BEFORE
 
 
-def read_pages_text() -> dict[str, dict]:
+def read_pages_text(text_dir: Path = TEXT_DIR) -> dict[str, dict]:
     pages: dict[str, dict] = {}
-    for path in sorted(TEXT_DIR.glob("batch-*.ndjson")):
+    for path in sorted(text_dir.glob("batch-*.ndjson")):
         with path.open(encoding="utf-8") as handle:
             for line in handle:
                 if line.strip():
@@ -439,6 +439,16 @@ def write_applicable_census(tally, field_order, census, tag: str = "") -> Path:
 # half 2 — overlap measurement
 
 
+CACHE_PREFIX = ""
+
+
+def cache_name(name: str) -> str:
+    """Cache basename for one scored set. A run over a text directory other than the default
+    carries that directory's tag, so two renders can be measured without either invalidating the
+    other's cached fold scores."""
+    return f"{CACHE_PREFIX}{name}"
+
+
 def fingerprint(keys: list[str], pages: dict[str, dict]) -> str:
     digest = hashlib.sha256()
     for key in keys:
@@ -465,13 +475,13 @@ def write_pages_file(path: Path, keys: list[str], pages: dict[str, dict], tiers:
 def score_size_matched(name: str, keys: list[str], pages, tiers, refresh: bool) -> dict[str, dict]:
     """gate1b_v3's size-matched basis, unchanged: seeded permutation cut into 803-page folds,
     each fold scored exhaustively, each page keeping the score from the fold that owns it."""
-    cache = WORK_DIR / f"sm-{name}.json"
+    cache = WORK_DIR / f"sm-{cache_name(name)}.json"
     fp = fingerprint(keys, pages)
     if cache.exists() and not refresh:
         held = json.loads(cache.read_text(encoding="utf-8"))
         if held.get("fingerprint") == fp and held.get("foldSize") == FOLD_SIZE:
             return held["rows"]
-    pages_file = WORK_DIR / f"pages-{name}.ndjson"
+    pages_file = WORK_DIR / f"pages-{cache_name(name)}.ndjson"
     write_pages_file(pages_file, keys, pages, tiers)
     source = SourceIndex.build(pages_file, None)
     n = len(source.offsets)
@@ -479,7 +489,7 @@ def score_size_matched(name: str, keys: list[str], pages, tiers, refresh: bool) 
     folds, owners, _order = fold_membership(n, FOLD_SIZE)
     rows: dict[str, dict] = {}
     for f, (fold, own) in enumerate(zip(folds, owners)):
-        store = PageStore(WORK_DIR / f"work-{name}-{f}.duckdb", cache_pages=1000)
+        store = PageStore(WORK_DIR / f"work-{cache_name(name)}-{f}.duckdb", cache_pages=1000)
         try:
             build_store(source, store, seeds, indices=fold)
             result = exhaustive_neighbours(store)
@@ -490,7 +500,7 @@ def score_size_matched(name: str, keys: list[str], pages, tiers, refresh: bool) 
                     rows[row["key"]] = row
         finally:
             store.close()
-            (WORK_DIR / f"work-{name}-{f}.duckdb").unlink(missing_ok=True)
+            (WORK_DIR / f"work-{cache_name(name)}-{f}.duckdb").unlink(missing_ok=True)
         print(f"  [{name}] fold {f}: {len(fold)} pages, {len(own)} kept, total {len(rows)}", flush=True)
     assert len(rows) == n, (len(rows), n)
     pages_file.unlink(missing_ok=True)
@@ -502,17 +512,17 @@ def score_size_matched(name: str, keys: list[str], pages, tiers, refresh: bool) 
 
 def score_all_pairs(name: str, keys: list[str], pages, tiers, refresh: bool) -> dict:
     """Every pair of the set scored exactly."""
-    cache = WORK_DIR / f"ap-{name}.json"
+    cache = WORK_DIR / f"ap-{cache_name(name)}.json"
     fp = fingerprint(keys, pages)
     if cache.exists() and not refresh:
         held = json.loads(cache.read_text(encoding="utf-8"))
         if held.get("fingerprint") == fp:
             return held["summary"]
-    pages_file = WORK_DIR / f"pages-ap-{name}.ndjson"
+    pages_file = WORK_DIR / f"pages-ap-{cache_name(name)}.ndjson"
     write_pages_file(pages_file, keys, pages, tiers)
     source = SourceIndex.build(pages_file, None)
     seeds = make_hash_seeds(seed=DEFAULT_SEED)
-    store = PageStore(WORK_DIR / f"work-ap-{name}.duckdb", cache_pages=max(2000, len(keys) + 16))
+    store = PageStore(WORK_DIR / f"work-ap-{cache_name(name)}.duckdb", cache_pages=max(2000, len(keys) + 16))
     try:
         build_store(source, store, seeds)
         result = exhaustive_neighbours(store)
@@ -520,7 +530,7 @@ def score_all_pairs(name: str, keys: list[str], pages, tiers, refresh: bool) -> 
         rows = list(per_page_rows(store, result, share))
     finally:
         store.close()
-        (WORK_DIR / f"work-ap-{name}.duckdb").unlink(missing_ok=True)
+        (WORK_DIR / f"work-ap-{cache_name(name)}.duckdb").unlink(missing_ok=True)
     pages_file.unlink(missing_ok=True)
     pos = np.array([r["positional"] for r in rows])
     lex = np.array([r["lexical"] for r in rows])
@@ -544,17 +554,17 @@ def score_set_size_matched(name: str, keys: list[str], pages, tiers, refresh: bo
     threshold-7 and threshold-11 sets (`scripts/corpus-20k/gate2/folds.py`, fold size 324, the
     same fold construction and the same exhaustive scorer). This is the basis the recorded
     lexical figure of 0.353 was measured on, so it is the basis the lexical line is read on."""
-    cache = WORK_DIR / f"sms-{name}.json"
+    cache = WORK_DIR / f"sms-{cache_name(name)}.json"
     fp = fingerprint(keys, pages)
     if cache.exists() and not refresh:
         held = json.loads(cache.read_text(encoding="utf-8"))
         if held.get("fingerprint") == fp and held.get("foldSize") == fold_size:
             return held["summary"]
-    pages_file = WORK_DIR / f"pages-sms-{name}.ndjson"
+    pages_file = WORK_DIR / f"pages-sms-{cache_name(name)}.ndjson"
     write_pages_file(pages_file, keys, pages, tiers)
     source = SourceIndex.build(pages_file, None)
     seeds = make_hash_seeds(seed=DEFAULT_SEED)
-    store = PageStore(WORK_DIR / f"work-sms-{name}.duckdb", cache_pages=max(2000, len(keys) + 16))
+    store = PageStore(WORK_DIR / f"work-sms-{cache_name(name)}.duckdb", cache_pages=max(2000, len(keys) + 16))
     try:
         build_store(source, store, seeds)
         n = store.size
@@ -584,7 +594,7 @@ def score_set_size_matched(name: str, keys: list[str], pages, tiers, refresh: bo
         }
     finally:
         store.close()
-        (WORK_DIR / f"work-sms-{name}.duckdb").unlink(missing_ok=True)
+        (WORK_DIR / f"work-sms-{cache_name(name)}.duckdb").unlink(missing_ok=True)
     pages_file.unlink(missing_ok=True)
     cache.write_text(json.dumps({"fingerprint": fp, "foldSize": fold_size, "summary": summary}),
                      encoding="utf-8")
@@ -641,15 +651,27 @@ def main() -> int:
     parser.add_argument("--applicability-only", action="store_true")
     parser.add_argument("--fields-dir", default=str(FIELDS_DIR),
                         help="directory of per-model field batches (default: the corpus-20k fields)")
+    parser.add_argument("--text-dir", default=str(TEXT_DIR),
+                        help="directory of rendered page-text batches to measure overlap on "
+                             "(default: the corpus-20k v4 render). The rule, the fold "
+                             "construction, the population and both lines are unchanged; only "
+                             "which render the text comes from changes.")
     parser.add_argument("--out", default=str(OUT_DIR / "thresholds.json"),
                         help="thresholds JSON path; the markdown, the presence file and the "
                              "applicable census take the same stem's suffix")
     args = parser.parse_args()
 
     fields_dir = Path(args.fields_dir)
+    text_dir = Path(args.text_dir)
     out_json = Path(args.out)
     stem = out_json.stem
     tag = stem[len("thresholds"):] if stem.startswith("thresholds") else f"-{stem}"
+
+    global CACHE_PREFIX
+    if text_dir.resolve() != TEXT_DIR.resolve():
+        CACHE_PREFIX = (
+            os.path.relpath(text_dir, ROOT).replace("/", "_").replace(".", "_") + "-"
+        )
 
     spec = json.loads(APPLICABILITY.read_text(encoding="utf-8"))
     cpath = census_path(args.census)
@@ -668,7 +690,7 @@ def main() -> int:
     by_key = {r["key"]: r for r in rows}
     tiers = {r["key"]: r["tier"] for r in rows}
     counts_by_key = {r["key"]: r["present"] for r in rows}
-    pages = read_pages_text()
+    pages = read_pages_text(text_dir)
     questions = read_question_counts()
     WORK_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -685,11 +707,19 @@ def main() -> int:
         "fieldsDir": os.path.relpath(fields_dir, ROOT),
         "census": os.path.relpath(cpath, ROOT),
         "pageText": {
-            "dir": "data/corpus-20k/render/text",
-            "render": "v4 — page-meta-v4.json reproduces every presentFields value in these files "
-                      "exactly, while page-meta-v3.json disagrees on 158 keys and carries 111 keys "
-                      "the render no longer holds. These files are therefore the current render, "
-                      "and gate1b_v3's rule is applied to them unchanged.",
+            "dir": os.path.relpath(text_dir, ROOT),
+            "render": (
+                "v4 — page-meta-v4.json reproduces every presentFields value in these files "
+                "exactly, while page-meta-v3.json disagrees on 158 keys and carries 111 keys "
+                "the render no longer holds. These files are therefore the current render, "
+                "and gate1b_v3's rule is applied to them unchanged."
+                if text_dir.resolve() == TEXT_DIR.resolve()
+                else
+                "a render other than the corpus-20k v4 text. gate1b_v3's rule, the fold "
+                "construction, the population and both lines are applied to it unchanged, so the "
+                "only difference from the run over "
+                f"`{os.path.relpath(TEXT_DIR, ROOT)}` is the text itself."
+            ),
             "pages": len(pages),
         },
         "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose "

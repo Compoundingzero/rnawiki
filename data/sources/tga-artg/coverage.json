@@ -2,7 +2,7 @@
   "source": "tga-artg",
   "sourceName": "Poisons Standard (SUSMP) schedule lists, Therapeutic Goods (Poisons Standard—June 2026) Instrument 2026, Federal Register of Legislation",
   "status": "mapped-partial",
-  "statusReason": "The SUSMP schedule half of regulatory.AU is mapped. The ARTG half (active ingredient, ARTG id, ARTG status) is BLOCKED-WITH-EVIDENCE: the TGA website copyright notice allows personal or internal non-commercial reproduction only and requires prior written Commonwealth approval to re-transmit, distribute or commercialise, and www.ebs.tga.gov.au serves User-agent: * / Disallow: /. www.tga.gov.au was also unreachable from this workstation across nine attempts on two days. Evidence: data/revamp/worklog-entries/2.12-blocker.md.",
+  "statusReason": "The SUSMP schedule half of regulatory.AU is mapped. The ARTG half (active ingredient, ARTG id, ARTG status) is BLOCKED-WITH-EVIDENCE: the TGA website copyright notice allows personal or internal non-commercial reproduction only and requires prior written Commonwealth approval to re-transmit, distribute or commercialise, and www.ebs.tga.gov.au serves User-agent: * / Disallow: /. www.tga.gov.au was also unreachable from this workstation across fifteen attempts in two rounds on two days (re-checked 2026-09-06 by scripts/revamp/tga_recheck.sh); reachability is not what blocks it. Evidence: data/revamp/worklog-entries/2.12-blocker.md.",
   "retrievalDate": "2026-09-06",
   "instrument": {
     "registerId": "F2026L00633",
@@ -190,5 +190,11 @@
   "mappedParquet": "data/sources/tga-artg/mapped.parquet",
   "manifest": "data/sources/tga-artg/2026-09-06/manifest.json",
   "saltListChange": "scripts/revamp/salts.txt was read and not extended. Poisons Standard entries are written as the substance name with the conditions of scheduling in following prose, and the trailing tokens that failed to resolve are class words (COMPOUNDS, DERIVATIVES, SALTS, SPP) and plant genus names, not counter-ions, so no suffix was appended.",
-  "method": "The Poisons Standard carries no UNII, InChIKey, CAS or structure. Each schedule entry's substance name, and any trivial name the Standard marks with an asterisk, was resolved to a UNII against the FDA UNII name lists (types of/cn/sys; brand and code names excluded), exact punctuation-normalised name first, then the shared salt-stripped normaliser. A name resolving to more than one UNII is disambiguated by an exact UNII preferred-name match, then by a single corpus-present UNII; anything still ambiguous is not treated as a UNII match. A resolved UNII joins the corpus by UNII, then by its full InChIKey, then by InChIKey skeleton as form_of. A substance with no resolved UNII joins by normalised name as an unconfirmed candidate only."
+  "method": "The Poisons Standard carries no UNII, InChIKey, CAS or structure. Each schedule entry's substance name, and any trivial name the Standard marks with an asterisk, was resolved to a UNII against the FDA UNII name lists (types of/cn/sys; brand and code names excluded), exact punctuation-normalised name first, then the shared salt-stripped normaliser. A name resolving to more than one UNII is disambiguated by an exact UNII preferred-name match, then by a single corpus-present UNII; anything still ambiguous is not treated as a UNII match. A resolved UNII joins the corpus by UNII, then by its full InChIKey, then by InChIKey skeleton as form_of. A substance with no resolved UNII joins by normalised name as an unconfirmed candidate only.",
+  "identifierConfirmation": {
+    "pagesConfirmedByUniiOrFullInchikey": 2697,
+    "pagesRestingOnUnconfirmedNameOnly": 208,
+    "pagesRestingOnInchikeySkeletonFormOfOnly": 24,
+    "note": "Rule (d) name matches are candidates, not confirmations. The 208 name-only pages and the 146 distinct unconfirmed substance names behind them go to the Phase 3 review list; the 24 skeleton-only pages are linked as form_of and are never merged."
+  }
 }

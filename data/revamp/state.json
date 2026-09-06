@@ -68,16 +68,16 @@
     "4": {
       "status": "IN_PROGRESS",
       "steps": {
-        "4.1": "data done (engine + validation); rendering in progress",
-        "4.2": "data done; rendering in progress",
-        "4.3": "data done; rendering in progress",
+        "4.1": "rendered; fix round on furniture/provenance",
+        "4.2": "rendered; furniture rule applied in fix round",
+        "4.3": "rendered",
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
-        "4.5": "data done; rendering in progress",
+        "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "pending (draw after render)"
+        "4.7": "draw 1 not clean (a 128, b 609 in scope, c 0); fix round then draw 2"
       },
       "gate_evidence": null,
-      "updated": "2026-09-06T01:53:06+00:00"
+      "updated": "2026-09-06T05:35:15+00:00"
     },
     "5": {
       "status": "PENDING",

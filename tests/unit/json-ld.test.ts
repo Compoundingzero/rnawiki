@@ -983,6 +983,13 @@ describe('corpus record structured data', () => {
       relations: [],
       sources: [],
       licenceNotes: [],
+      controlled: false,
+      controlledBasis: [],
+      registration: [],
+      controlledSchedules: [],
+      interactions: { lines: [], sourcesChecked: [], totals: {}, predictedOnly: false },
+      computedSections: [],
+      formOfNotes: [],
       registeredStudies: 3,
       ...patch,
     }

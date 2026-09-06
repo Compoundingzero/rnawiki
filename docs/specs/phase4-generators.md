@@ -190,3 +190,51 @@ passes on two consecutive clean draws, both committed under `data/revamp/slop-dr
 - **Interaction rules C2, C3-hepatotoxic and C3-nephrotoxic** stay disabled with the recorded
   reasons; the engine publishes the eight rules that reached the bars (likely precision 0.996,
   overall 0.983 on 1,748 label-adjudicated pairs; recall 0.108 against label-documented pairs).
+
+## 11. Furniture, the ruler, and the slop draw's scope (2026-09-06, Fable, after measure v5)
+
+Measured: on the Phase 4 text the lines carried by more than half of all pages rose from 5.1 % to
+27.6 % of the corpus's words and the median page from 80 to 357 words; the unchanged rule then
+selected Tier 1 at 23 present fields (48 indexable). The cause is three honest statements that
+Operating Rule 9 requires and that repeat on 25,000+ pages: the register lines whose status is an
+absence, the checked-sources statement on pages with no interaction row, and the patent
+no-record line. Two binding rules collide — "unknowns render as Not found in [register] as of
+[date]" and "repeated elements are markup, never prose". Resolution:
+
+- **Furniture.** A statement with a fixed vocabulary that exists to state an absence is page
+  furniture, on the same footing as the supervision block: the register rows whose status is
+  "not found", "not cleared" or "not checked"; the checked-sources statement when the page holds
+  no interaction row; the patent no-record line; the S10-only classification line. Furniture is
+  rendered as a table or an aside carrying `data-furniture="true"`, with the shared tokens
+  ("as of", the date, the register names) in column headers or a caption written once per page,
+  and each absent register as one cell, never a sentence.
+- **The ruler excludes furniture.** `page_text_v5` writes the reading text without furniture by
+  default and with it under `--with-furniture`; `derive_threshold.py` and
+  `rendered_dup_check.py` read the furniture-free text (the dup check skips
+  `[data-furniture]` exactly as it skips the supervision block). Both figures are reported —
+  furniture-free is the gate figure, with-furniture is recorded beside it — so the before/after
+  comparison is like-for-like: before Phase 4 an absence rendered nothing and was not in the
+  text either.
+- **Affirmative content is never furniture.** A register row with an approval, withdrawal,
+  schedule or class, an interaction line, a patent line with a date, a Tier 3 section, a
+  derived section: all of it stays in the measured text.
+- **Provenance of an absence** cites the field path that was searched and the register's date
+  (`fields.regulatory.value` absent for JZ; source: HSA listing 2026-08-07), never a path the
+  record does not carry.
+- **The render and the DOM must agree.** `page_text_v5` mirrors the painted order and content of
+  the page (jurisdiction order, every sentence); a sentence the page paints but the render lacks,
+  or the reverse, fails `tests/test_render_safety.py`. The empty-target supervision sentence
+  (DunedinPACE) is a generator bug: a sentence whose slot is empty does not render.
+- **Loader numerator = ruler numerator.** The loader marks a page indexable on present count over
+  applicable fields at its tier's threshold from `data/revamp/thresholds-v5.json`, never on
+  present count over all fields at one corpus-wide number.
+- **Biosimilars.** A trial that names only the reference product moves to the reference page
+  (extend R14b: the reference is the one live page printing the INN without a suffix); the
+  biosimilar page opens with "X is a biosimilar of Y" and shows its own BLA, approval dates and
+  own-named trials.
+- **Slug recompute** in every check reads `canonical-v3`, never the corpus-20k canonical.
+- **Slop draw scope.** Test (b) (template on ≤ 0.5 % of pages after masking) applies to answer
+  sentences, derived-section sentences, computed-section sentences and hub syntheses. It does not
+  apply to question headings, which are the corpus-20k template contract (masked template ≤ 30 %,
+  most-repeated unmasked string ≤ 0.5 %), nor to furniture, nor to the h1. Tests (a) and (c)
+  apply to everything the page paints outside furniture.

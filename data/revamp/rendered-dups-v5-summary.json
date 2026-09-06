@@ -1,0 +1,116 @@
+{
+  "schema": "rnawiki-revamp-rendered-dup-check/v1",
+  "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
+  "at": "2026-09-06T04:10:28Z",
+  "baseUrl": "http://127.0.0.1:3141",
+  "widths": [
+    390,
+    1280
+  ],
+  "threshold": 0.5,
+  "sampleSeed": 20260905,
+  "minhash": {
+    "permutations": 128,
+    "shingleWords": 5,
+    "permutationSeed": 20260904,
+    "permutationFamily": "splitmix64(shingle XOR seed_i), scripts/corpus-20k/overlap/harness.py",
+    "screenMargin": 0.1,
+    "scoring": "MinHash screens; the reported jaccard is the exact shingle-set Jaccard"
+  },
+  "rendered": {
+    "indexable": 55,
+    "noindexSample": 981,
+    "hubs": 0
+  },
+  "sets": {
+    "indexableRequested": 58,
+    "hubsRequested": 0,
+    "noindexSampleRequested": 1000,
+    "noindexFrame": 28192,
+    "sitemapChildren": [
+      "tier-1",
+      "tier-2",
+      "browse",
+      "pages"
+    ],
+    "hubSitemapChildren": []
+  },
+  "slugSources": {
+    "recorded": 9278,
+    "recomputed": 19554
+  },
+  "pagesDroppedOnIdentityCheck": 9,
+  "pagesRenderedThisRun": 1045,
+  "pagesFromCache": 0,
+  "renderCounters": {
+    "pages dropped: no 200 response at both widths": 13,
+    "rendered": 1045,
+    "requests logged": 2103
+  },
+  "perWidth": {
+    "390": {
+      "pagesScored": 1036,
+      "pairsFlagged": 101326,
+      "indexablePairsFlagged": 0,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 0,
+          "pairsOverThreshold": 0,
+          "maxJaccard": null,
+          "medianJaccard": null
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 0,
+          "pairsOverThreshold": 0,
+          "maxJaccard": null,
+          "medianJaccard": null
+        }
+      }
+    },
+    "1280": {
+      "pagesScored": 1036,
+      "pairsFlagged": 101326,
+      "indexablePairsFlagged": 0,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 0,
+          "pairsOverThreshold": 0,
+          "maxJaccard": null,
+          "medianJaccard": null
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 0,
+          "pairsOverThreshold": 0,
+          "maxJaccard": null,
+          "medianJaccard": null
+        }
+      }
+    }
+  },
+  "pairsFlagged": 202652,
+  "indexablePairsFlagged": 0,
+  "reasons": {
+    "unclassified-overlap": {
+      "pairs": 191060,
+      "indexablePairs": 0
+    },
+    "stub-template": {
+      "pairs": 11588,
+      "indexablePairs": 0
+    },
+    "biosimilar": {
+      "pairs": 4,
+      "indexablePairs": 0
+    }
+  },
+  "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision",
+  "runtimeMinutes": 12.83,
+  "outputs": {
+    "pairs": "data/revamp/rendered-dups-v5.csv",
+    "cache": "data/revamp/rendered-text",
+    "requestLog": "data/corpus-20k/legal/requests.log"
+  },
+  "issues": [
+    "9 requested slugs rendered a different substance than their key names and were dropped before scoring"
+  ]
+}

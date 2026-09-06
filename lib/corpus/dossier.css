@@ -638,3 +638,110 @@
 .cd-block {
   scroll-margin-top: 5rem;
 }
+
+/* ------------------------------------------- Phase 4 blocks (docs/specs/phase4-generators.md) */
+
+/*
+ * The register, interaction, patent, form-of and computed-section blocks share the row shape the
+ * rest of the page already uses: a hairline between rows, the label in the muted ink, the value in
+ * the reading ink, and every long string allowed to break so nothing pushes the page wider than the
+ * viewport at 320 px. None of these blocks introduces a box, a badge or a colour of its own.
+ */
+
+.cd-register-rows,
+.cd-interactions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cd-register-rows > li,
+.cd-interactions > li {
+  border-top: 1px solid var(--corpus-hairline);
+  padding: 0.55rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.92rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 700px) {
+  .cd-register-rows > li {
+    display: grid;
+    grid-template-columns: minmax(8rem, 12rem) 1fr;
+    gap: 0.2rem 1rem;
+    align-items: baseline;
+  }
+
+  .cd-register-rows > li > .cd-evidence {
+    grid-column: 2;
+  }
+}
+
+.cd-register-label {
+  color: var(--corpus-ink-2);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.cd-register-status {
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+.cd-register-status a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/*
+ * The tier label is the first thing on an interaction line and reads as a word, not a chip: §4
+ * makes it "a visible element, not a class", and a reader deciding what to take with what must see
+ * whether a line came from a label, from a curated dataset or from a rule.
+ */
+.cd-interaction-tier {
+  color: var(--corpus-ink-2);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cd-interaction-line {
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+.cd-interaction-statement {
+  color: var(--corpus-ink-1);
+}
+
+.cd-register-applications {
+  margin-top: 0.35rem;
+}
+
+.cd-form-of .cd-paragraph:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.cd-form-of a,
+.cd-computed a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* A heading the page needs for its outline but the reader does not need to see. */
+.cd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

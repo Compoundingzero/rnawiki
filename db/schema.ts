@@ -4669,6 +4669,12 @@ export const corpusSynonymKindEnum = pgEnum('corpus_synonym_kind', [
   'fragment',
   'common',
   'display',
+  /**
+   * Migration 0026: the name a page absorbed when Phase 3 merged two records into one. Dropping it
+   * would take a name a reader may search for — "Sodium Hyaluronate", "Trisodium Citrate Dihydrate"
+   * — out of the index, which is the opposite of what a merge is for.
+   */
+  'merged-page',
 ])
 
 export const corpusRelationKindEnum = pgEnum('corpus_relation_kind', [
@@ -4681,6 +4687,17 @@ export const corpusRelationKindEnum = pgEnum('corpus_relation_kind', [
   'isotopologue-of',
   'same-target',
   'shares-enzyme',
+  // Migration 0026: the rest of the Phase 3 vocabulary in `data/revamp/identity/relations-v3.parquet`
+  // (docs/specs/identity-resolution.md). Without these the loader dropped a resolved relation and
+  // counted it, which is how a salt page lost the link to its parent.
+  'form-of',
+  'related-form-of',
+  'ionised-form-of',
+  'component-of',
+  'active-moiety-of',
+  'same-structure-as',
+  'originator-of',
+  'parent-of',
 ])
 
 export const corpusPages = pgTable(
@@ -4699,6 +4716,20 @@ export const corpusPages = pgTable(
     indexable: boolean('indexable').notNull().default(false),
     suppressed: boolean('suppressed').notNull().default(false),
     suppressionClasses: text('suppression_classes')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /**
+     * The controlled-substance trigger (docs/specs/phase4-generators.md §4; migration 0026): a
+     * recorded entry in the Singapore Misuse of Drugs Act or Poisons Act schedules, a United States
+     * DEA schedule, or Australian Poisons Standard Schedule 8 or 9. A page carrying it never holds
+     * a dose, bioavailability, self-experiment-design or time-to-signal block, and the database
+     * refuses to write one: see the triggers migration 0026 installs. A Poisons Standard Schedule 2
+     * to 7 entry is a supply restriction, not a schedule, and does not set this column.
+     */
+    controlled: boolean('controlled').notNull().default(false),
+    /** Which registers fired the trigger, e.g. `SG-MDA-POISONS`, `US-DEA`, `AU-SUSMP-8-9`. */
+    controlledBasis: text('controlled_basis')
       .array()
       .notNull()
       .default(sql`'{}'::text[]`),
@@ -4769,6 +4800,9 @@ export const corpusPages = pgTable(
     index('corpus_pages_suppressed_idx')
       .on(table.tier)
       .where(sql`${table.suppressed}`),
+    index('corpus_pages_controlled_idx')
+      .on(table.tier)
+      .where(sql`${table.controlled}`),
     // Identifier lookups. Partial, because most pages hold only one or two of these keys.
     index('corpus_pages_unii_idx')
       .on(table.unii)
@@ -4947,6 +4981,12 @@ export const pageRelations = pgTable(
      */
     targetKey: varchar('target_key', { length: 200 }).notNull(),
     label: text('label'),
+    /**
+     * The form note (migration 0026, docs/specs/phase4-generators.md §6): the sentence Phase 3
+     * recorded for this relation, e.g. "Heparin calcium is the calcium salt of heparin". Written by
+     * the identity stage and copied verbatim; null where that stage recorded none.
+     */
+    note: text('note'),
     source: varchar('source', { length: 64 }).notNull(),
   },
   (table) => [
@@ -5007,6 +5047,289 @@ export const pageRegistryStudies = pgTable(
   ],
 )
 
+/* --------------------------------------------------------------------------------------------- */
+/* Phase 4 blocks (migration 0026, docs/specs/phase4-generators.md)                                */
+/* --------------------------------------------------------------------------------------------- */
+
+/**
+ * Which evidence tier an interaction row came from (`docs/specs/interaction-rules.md`). The letter
+ * is storage; the reader always meets the words `INTERACTION_TIER_LABELS` fixes.
+ */
+export const corpusInteractionTierEnum = pgEnum('corpus_interaction_tier', ['A', 'B', 'C'])
+
+/**
+ * A row in `page_interactions` is either one interaction or the page-level statement of which
+ * sources were checked and when. The statement exists on every page, including the 25,217 that
+ * hold no interaction at all: "no rows" is a finding, and the reader is told where it was looked
+ * for rather than left to infer safety (`docs/specs/revamp-2026-09.md` Operating Rule 9).
+ */
+export const corpusInteractionRowKindEnum = pgEnum('corpus_interaction_row_kind', [
+  'interaction',
+  'sources-checked',
+])
+
+/**
+ * "Where it's registered" (§2, §3) — one row per jurisdiction per page, on every page including a
+ * Tier 3 stub, plus one row per component of a combination product and one per unmapped "Other
+ * registers" source string.
+ *
+ * `line` is the finished reader-facing line, written by `scripts/revamp/build_blocks.py` from the
+ * page's own `regulatory` field; `provenance` names the field path behind every value in it. An
+ * unknown reads "Not found in [register] as of [date]" and is a row like any other.
+ */
+export const pageRegistration = pgTable(
+  'page_registration',
+  {
+    /** sha256 of key | jurisdiction | component | ordinal. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** `SG`…`CA`, or `OTHER` for a source string `lib/corpus/jurisdictions.ts` does not map. */
+    jurisdiction: varchar('jurisdiction', { length: 16 }).notNull(),
+    /** The reader-facing name: "Singapore", "United States", or the source's verbatim string. */
+    label: text('label').notNull(),
+    status: text('status').notNull(),
+    detail: text('detail'),
+    source: text('source'),
+    dateChecked: varchar('date_checked', { length: 32 }),
+    /** Page order, fixed by §2: Singapore, United States, Australia, UK, EU, Japan, Canada, other. */
+    ordinal: integer('ordinal').notNull().default(0),
+    /** The component this line belongs to on a combination product; null on the product's own. */
+    component: text('component'),
+    line: text('line').notNull(),
+    /** The register application ids and curated marketing rows the summary line stands for. */
+    disclosure: jsonb('disclosure')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+  },
+  (table) => [
+    index('page_registration_key_idx').on(table.key, table.ordinal),
+    index('page_registration_jurisdiction_idx').on(table.jurisdiction),
+    check('page_registration_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_registration_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_registration_date_shape',
+      sql`${table.dateChecked} is null or ${table.dateChecked} ~ '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'`,
+    ),
+  ],
+)
+
+/**
+ * Interactions (§4) and the checked-sources statement that stands beside them.
+ *
+ * A page carries at most `disclosed = false` six rows per tier inline and the rest in its
+ * disclosure; `total_in_tier` records how many rows the tier actually holds, because a page with
+ * 10,034 label-documented rows must say so rather than imply that six is all there is.
+ */
+export const pageInteractions = pgTable(
+  'page_interactions',
+  {
+    /** sha256 of key | kind | tier | ordinal | counterpart. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    kind: corpusInteractionRowKindEnum('kind').notNull().default('interaction'),
+    /** Null on the checked-sources row, which belongs to no tier. */
+    tier: corpusInteractionTierEnum('tier'),
+    ordinal: integer('ordinal').notNull().default(0),
+    /** True where the row sits in the disclosure rather than on the page's inline lines. */
+    disclosed: boolean('disclosed').notNull().default(false),
+    /** How many rows this page holds in this tier, including the ones not stored. */
+    totalInTier: integer('total_in_tier'),
+    counterpartKey: varchar('counterpart_key', { length: 200 }),
+    counterpartName: text('counterpart_name'),
+    direction: text('direction'),
+    mechanism: text('mechanism'),
+    source: varchar('source', { length: 64 }),
+    sourceRecordId: varchar('source_record_id', { length: 200 }),
+    sourceUrl: text('source_url'),
+    sourceDate: varchar('source_date', { length: 32 }),
+    setId: varchar('set_id', { length: 64 }),
+    effectiveTime: varchar('effective_time', { length: 32 }),
+    labelSection: varchar('label_section', { length: 64 }),
+    licence: text('licence'),
+    /** `C1-cyp-inhibitor-substrate` and the like. Storage: the page prints the rule's words. */
+    ruleId: varchar('rule_id', { length: 64 }),
+    confidence: varchar('confidence', { length: 24 }),
+    /** The label sentence, verbatim, on a Tier A row. */
+    sentence: text('sentence'),
+    /** The Tier C derivation, naming its inputs verbatim. */
+    derivation: text('derivation'),
+    /** The finished reader-facing line, tier label first. */
+    line: text('line').notNull(),
+    /** The sources checked for this page, on the `sources-checked` row. */
+    sourcesChecked: jsonb('sources_checked')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    index('page_interactions_key_idx').on(table.key, table.tier, table.ordinal),
+    index('page_interactions_counterpart_idx')
+      .on(table.counterpartKey)
+      .where(sql`${table.counterpartKey} is not null`),
+    uniqueIndex('page_interactions_checked_once')
+      .on(table.key)
+      .where(sql`${table.kind} = 'sources-checked'`),
+    check('page_interactions_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_interactions_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_interactions_tier_by_kind',
+      sql`(${table.kind} = 'interaction' and ${table.tier} is not null) or (${table.kind} = 'sources-checked' and ${table.tier} is null)`,
+    ),
+  ],
+)
+
+/**
+ * Generic and patent (§5) — one row for every page, because a page with no Orange Book record
+ * still states that, and states the reason where the reason is knowable.
+ */
+export const pagePatent = pgTable(
+  'page_patent',
+  {
+    key: varchar('key', { length: 200 })
+      .primaryKey()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** Whether an Orange Book or Purple Book product record exists for this page at all. */
+    eligible: boolean('eligible').notNull(),
+    register: text('register'),
+    rld: boolean('rld'),
+    earliestUnexpiredPatentExpiry: varchar('earliest_unexpired_patent_expiry', { length: 32 }),
+    exclusivityEnd: varchar('exclusivity_end', { length: 32 }),
+    genericAvailable: boolean('generic_available'),
+    firstGenericApproval: varchar('first_generic_approval', { length: 32 }),
+    teCode: varchar('te_code', { length: 16 }),
+    /** "No US patent or exclusivity data on record", where that is the finding. */
+    noRecordLine: text('no_record_line'),
+    /** Why there is no record, where the registers make it knowable. */
+    reason: text('reason'),
+    line: text('line').notNull(),
+    source: text('source'),
+    dateChecked: varchar('date_checked', { length: 32 }),
+    disclosure: jsonb('disclosure')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+  },
+  (table) => [
+    index('page_patent_eligible_idx')
+      .on(table.eligible)
+      .where(sql`${table.eligible}`),
+    check('page_patent_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_patent_no_record_has_line',
+      sql`${table.eligible} or ${table.noRecordLine} is not null`,
+    ),
+  ],
+)
+
+/**
+ * Controlled-substance schedule entries, as the statute or instrument records them.
+ *
+ * This table holds every entry the registers state, Schedule 2 to Schedule 10 included. It is not
+ * the trigger: `corpus_pages.controlled` carries the narrow test §4 fixes (Singapore Misuse of
+ * Drugs Act and Poisons Act schedules, United States DEA schedules, Australian Poisons Standard
+ * Schedules 8 and 9), and that column, not this table, is what withholds a dose block.
+ */
+export const pageControlled = pgTable(
+  'page_controlled',
+  {
+    /** sha256 of key | jurisdiction | schedule_code | substance_as_listed. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    jurisdiction: varchar('jurisdiction', { length: 16 }).notNull(),
+    /** The instrument, e.g. "Misuse of Drugs Act 1973 (2020 Rev Ed)". */
+    list: text('list').notNull(),
+    /** The schedule in its own words, e.g. "First Schedule Part 1 — Class A controlled drug". */
+    classOrSchedule: text('class_or_schedule').notNull(),
+    /** The instrument's own code, e.g. `MDA-Sch1-Part1-ClassA`. Technical disclosure only. */
+    scheduleCode: varchar('schedule_code', { length: 64 }),
+    itemNumber: varchar('item_number', { length: 32 }),
+    /** The substance exactly as the schedule names it, which is often not the page's own name. */
+    substanceAsListed: text('substance_as_listed'),
+    statute: text('statute'),
+    statuteUrl: text('statute_url'),
+    versionDate: varchar('version_date', { length: 32 }),
+    source: text('source'),
+    provenance: text('provenance'),
+  },
+  (table) => [
+    index('page_controlled_key_idx').on(table.key, table.jurisdiction),
+    check('page_controlled_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+  ],
+)
+
+/**
+ * The Tier 3 computed sections (§8): nearest approved structural neighbour, potency rank, activity
+ * timeline and the form-of note. Each row is one finished sentence with the map from that sentence
+ * to the stored field or computed value behind every part of it.
+ */
+export const pageSections = pgTable(
+  'page_sections',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** `neighbour`, `potency`, `timeline`, `formOf`. */
+    section: varchar('section', { length: 32 }).notNull(),
+    ordinal: integer('ordinal').notNull().default(0),
+    templateId: varchar('template_id', { length: 64 }),
+    sentence: text('sentence').notNull(),
+    values: jsonb('values')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    primaryKey({
+      name: 'page_sections_key_section_ordinal_pk',
+      columns: [table.key, table.section, table.ordinal],
+    }),
+    index('page_sections_section_idx').on(table.section),
+    check('page_sections_ordinal', sql`${table.ordinal} >= 0`),
+    check('page_sections_sentence_nonempty', sql`nullif(btrim(${table.sentence}), '') is not null`),
+  ],
+)
+
+/**
+ * The disambiguated display name a same-name pair renders in its `h1` (§6).
+ *
+ * Present only for the 409 keys `data/revamp/identity/display-names-v3.csv` names. Every other page
+ * renders `corpus_pages.display_name` unchanged; a row here never rewrites a name, it adds the
+ * recorded distinguishing fact (a molecular formula, a UNII) in brackets after it.
+ */
+export const pageDisplayNames = pgTable(
+  'page_display_names',
+  {
+    key: varchar('key', { length: 200 })
+      .primaryKey()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    displayName: text('display_name').notNull(),
+    /** The distinguishing value itself, e.g. `C26H33NO2`. */
+    disambiguator: text('disambiguator'),
+    /** Where that value came from, e.g. "molecular formula". */
+    basis: text('basis'),
+    /** The name the two records collide on. */
+    collidesOn: text('collides_on'),
+  },
+  (table) => [
+    check('page_display_names_nonempty', sql`nullif(btrim(${table.displayName}), '') is not null`),
+  ],
+)
+
 export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   legacyDrug: one(drugs, { fields: [corpusPages.legacyDrugId], references: [drugs.id] }),
   synonyms: many(pageSynonyms),
@@ -5016,4 +5339,10 @@ export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   pageRelations: many(pageRelations),
   sources: many(pageSources),
   registryStudies: many(pageRegistryStudies),
+  registration: many(pageRegistration),
+  interactions: many(pageInteractions),
+  patent: one(pagePatent),
+  controlledSchedules: many(pageControlled),
+  sections: many(pageSections),
+  displayName: one(pageDisplayNames),
 }))

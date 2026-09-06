@@ -55,6 +55,15 @@ function suppressedStub(classes: string[]): CorpusDossier {
     sources: [],
     licenceNotes: [],
     registeredStudies: 0,
+    // Phase 4 (migration 0026): a stub carries the same block set as any other page, and holds
+    // none of it. Empty here is the honest fixture — the 39 pages have no register line to render.
+    controlled: false,
+    controlledBasis: [],
+    registration: [],
+    controlledSchedules: [],
+    interactions: { lines: [], sourcesChecked: [], totals: {}, predictedOnly: false },
+    computedSections: [],
+    formOfNotes: [],
     // What the loader writes: the line exists only where there is no classification to state.
     ...(block === undefined && isUnknownClassOnly(classes)
       ? { supervisionLine: unknownClassificationLine() }

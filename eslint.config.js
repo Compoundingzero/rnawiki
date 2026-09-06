@@ -21,6 +21,10 @@ const eslintConfig = [
       // Captured third-party pages, scripts and datasets kept as evidence. They are recorded
       // exactly as fetched, so their style is not ours to correct.
       'data/**',
+      // The Python environment the corpus scripts run in (docs/specs/revamp-2026-09.md). It is
+      // gitignored, and it ships a vendored Playwright driver whose bundled JavaScript is not ours
+      // to lint; without this, `npm run lint` reports two thousand errors in someone else's code.
+      '.venv*/**',
     ],
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),

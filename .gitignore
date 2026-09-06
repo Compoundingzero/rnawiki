@@ -173,3 +173,7 @@ data/revamp/render-v5/provenance/
 data/revamp/render-v5/pages-all.ndjson
 data/revamp/derived-v2/
 data/revamp/render-v5/
+data/revamp/slop-draws/**/pages-full/
+data/revamp/page-blocks/
+data/revamp/questions-v2/
+data/revamp/load/

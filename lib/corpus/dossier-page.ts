@@ -24,10 +24,16 @@ import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   corpusPages,
+  pageControlled,
+  pageDisplayNames,
   pageFields,
+  pageInteractions,
+  pagePatent,
   pageQuestions,
+  pageRegistration,
   pageRegistryStudies,
   pageRelations,
+  pageSections,
   pageSeeds,
   pageSources,
   pageSynonyms,
@@ -35,7 +41,10 @@ import {
 import {
   anchor,
   buildBlockBody,
+  checkedSourceNames,
+  checkedSourcesStatement,
   deriveQuestions,
+  INTERACTION_TIER_LABELS,
   registerName,
   type FieldEntry,
   type PageBundle,
@@ -136,6 +145,90 @@ export interface CorpusSynonymGroup {
   names: string[]
 }
 
+/* ------------------------------------------- Phase 4 blocks (docs/specs/phase4-generators.md) */
+
+/** One "Where it's registered" line (§3). `line` is what the register stage wrote; nothing here rewrites it. */
+export interface CorpusRegistrationLine {
+  id: string
+  jurisdiction: string
+  label: string
+  status: string
+  detail?: string
+  source?: string
+  dateChecked?: string
+  ordinal: number
+  /** The component of a combination product this line belongs to. */
+  component?: string
+  line: string
+  /** The application ids the summary line stands for; rendered in a disclosure, never as lines. */
+  applications: string[]
+}
+
+/** One interaction line (§4). The tier label is the first thing on it, in words. */
+export interface CorpusInteractionLine {
+  id: string
+  tier: 'A' | 'B' | 'C'
+  tierLabel: string
+  line: string
+  /** The counterpart's own page, where the corpus holds one. A slug, never a storage key. */
+  counterpartSlug?: string
+  counterpartName?: string
+  /** True where the line sits in the disclosure rather than on the page's first six. */
+  disclosed: boolean
+  sourceUrl?: string
+  /** Storage tokens, for the technical disclosure only. */
+  ruleId?: string
+  setId?: string
+  sourceRecordId?: string
+}
+
+export interface CorpusInteractions {
+  /** Ordered by tier: label-documented, curated, predicted. */
+  lines: CorpusInteractionLine[]
+  /** "No interaction found in … as of …", or the affirmative form where rows were found. */
+  statement?: string
+  /** The registers checked, in words, for the technical disclosure. */
+  sourcesChecked: string[]
+  date?: string
+  /** Distinct counterparts recorded per tier, including the ones not stored. */
+  totals: Partial<Record<'A' | 'B' | 'C', number>>
+  /** True where the page carries predictions and nothing documented or curated (§4). */
+  predictedOnly: boolean
+}
+
+export interface CorpusPatentLine {
+  eligible: boolean
+  line: string
+  register?: string
+  reason?: string
+  source?: string
+  dateChecked?: string
+  /** Orange Book and Purple Book application ids, for the disclosure. */
+  applications: string[]
+}
+
+export interface CorpusControlledRow {
+  id: string
+  jurisdiction: string
+  list: string
+  classOrSchedule: string
+  substanceAsListed?: string
+  statute?: string
+  statuteUrl?: string
+  versionDate?: string
+  source?: string
+}
+
+/** One computed Tier 3 sentence (§8), with the values behind it for the technical disclosure. */
+export interface CorpusSectionSentence {
+  section: 'neighbour' | 'potency' | 'timeline' | 'formOf'
+  ordinal: number
+  sentence: string
+  /** The linked page a nearest-neighbour or form-of sentence names, where it has one. */
+  counterpartSlug?: string
+  counterpartName?: string
+}
+
 export interface CorpusDossier {
   key: string
   slug: string
@@ -169,6 +262,26 @@ export interface CorpusDossier {
    * has one states it in the supervision block instead, in ordinary words.
    */
   supervisionLine?: string
+
+  /* ---- Phase 4 (docs/specs/phase4-generators.md §1 block order) --------------------------- */
+
+  /** The controlled-substance trigger of §4: no dose, timing, route or combination text renders. */
+  controlled: boolean
+  /** Which registers fired that trigger, for the technical disclosure. */
+  controlledBasis: string[]
+  /** "Where it's registered": one line per jurisdiction, on every page including a Tier 3 stub. */
+  registration: CorpusRegistrationLine[]
+  /** The recorded controlled-substance schedule entries, in the instruments' own words. */
+  controlledSchedules: CorpusControlledRow[]
+  interactions: CorpusInteractions
+  patent?: CorpusPatentLine
+  /** Nearest approved neighbour, potency rank and activity timeline (§8). */
+  computedSections: CorpusSectionSentence[]
+  /**
+   * The form-of, biosimilar-of or component-of note the page opens with (§6), and — where Phase 3
+   * moved registry studies the parent's name matched — the sentence saying how many went where.
+   */
+  formOfNotes: CorpusSectionSentence[]
 }
 
 /* --------------------------------------------------------- small helpers */
@@ -508,21 +621,51 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   if (!page) return null
   const key = page.key
 
-  const [synonymRows, fieldRows, seedRows, questionRows, relationRows, sourceRows, studyRows] =
-    await Promise.all([
-      db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
-      db.select().from(pageFields).where(eq(pageFields.key, key)),
-      db.select().from(pageSeeds).where(eq(pageSeeds.key, key)),
-      db.select().from(pageQuestions).where(eq(pageQuestions.key, key)),
-      db.select().from(pageRelations).where(eq(pageRelations.key, key)),
-      db.select().from(pageSources).where(eq(pageSources.key, key)),
-      db
-        .select({ nct: pageRegistryStudies.nct })
-        .from(pageRegistryStudies)
-        .where(eq(pageRegistryStudies.key, key)),
-    ])
+  const [
+    synonymRows,
+    fieldRows,
+    seedRows,
+    questionRows,
+    relationRows,
+    sourceRows,
+    studyRows,
+    registrationRows,
+    interactionRows,
+    patentRows,
+    controlledRows,
+    sectionRows,
+    displayNameRows,
+  ] = await Promise.all([
+    db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
+    db.select().from(pageFields).where(eq(pageFields.key, key)),
+    db.select().from(pageSeeds).where(eq(pageSeeds.key, key)),
+    db.select().from(pageQuestions).where(eq(pageQuestions.key, key)),
+    db.select().from(pageRelations).where(eq(pageRelations.key, key)),
+    db.select().from(pageSources).where(eq(pageSources.key, key)),
+    db
+      .select({ nct: pageRegistryStudies.nct })
+      .from(pageRegistryStudies)
+      .where(eq(pageRegistryStudies.key, key)),
+    db.select().from(pageRegistration).where(eq(pageRegistration.key, key)),
+    db.select().from(pageInteractions).where(eq(pageInteractions.key, key)),
+    db.select().from(pagePatent).where(eq(pagePatent.key, key)),
+    db.select().from(pageControlled).where(eq(pageControlled.key, key)),
+    db.select().from(pageSections).where(eq(pageSections.key, key)),
+    db.select().from(pageDisplayNames).where(eq(pageDisplayNames.key, key)),
+  ])
 
-  const targetKeys = [...new Set(relationRows.map((row) => row.targetKey))]
+  const sectionCounterpartKeys = sectionRows
+    .map((row) => text(asRecord(row.values)?.counterpartPage ?? asRecord(row.values)?.toKey))
+    .filter((value): value is string => value !== undefined)
+  const targetKeys = [
+    ...new Set([
+      ...relationRows.map((row) => row.targetKey),
+      ...interactionRows
+        .map((row) => row.counterpartKey)
+        .filter((value): value is string => value !== null),
+      ...sectionCounterpartKeys,
+    ]),
+  ]
   const targets =
     targetKeys.length > 0
       ? await db
@@ -767,10 +910,155 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ? unknownClassificationLine()
       : undefined
 
+  /* ---- Phase 4 blocks -------------------------------------------------------------------- */
+
+  const registration: CorpusRegistrationLine[] = [...registrationRows]
+    .sort(
+      (a, b) =>
+        a.ordinal - b.ordinal ||
+        (a.component ?? '').localeCompare(b.component ?? '') ||
+        a.label.localeCompare(b.label),
+    )
+    .map((row) => ({
+      id: row.id,
+      jurisdiction: row.jurisdiction,
+      label: row.label,
+      status: row.status,
+      ...(row.detail ? { detail: row.detail } : {}),
+      ...(row.source ? { source: row.source } : {}),
+      ...(row.dateChecked ? { dateChecked: row.dateChecked } : {}),
+      ordinal: row.ordinal,
+      ...(row.component ? { component: row.component } : {}),
+      line: row.line,
+      applications: Array.isArray(asRecord(row.disclosure)?.applications)
+        ? ((asRecord(row.disclosure)?.applications as unknown[])
+            .map((item) => text(item))
+            .filter((item): item is string => item !== undefined) as string[])
+        : [],
+    }))
+
+  const interactionRowsOnly = interactionRows.filter((row) => row.kind === 'interaction')
+  const checkedRow = interactionRows.find((row) => row.kind === 'sources-checked')
+  const tierOrder: Record<string, number> = { A: 0, B: 1, C: 2 }
+  const interactionLines: CorpusInteractionLine[] = [...interactionRowsOnly]
+    .sort(
+      (a, b) =>
+        (tierOrder[a.tier ?? 'C'] ?? 3) - (tierOrder[b.tier ?? 'C'] ?? 3) || a.ordinal - b.ordinal,
+    )
+    .map((row) => {
+      const tier = (row.tier ?? 'C') as 'A' | 'B' | 'C'
+      const target = row.counterpartKey ? targetByKey.get(row.counterpartKey) : undefined
+      return {
+        id: row.id,
+        tier,
+        tierLabel: INTERACTION_TIER_LABELS[tier] as string,
+        line: row.line,
+        ...(target ? { counterpartSlug: target.slug } : {}),
+        ...(row.counterpartName
+          ? { counterpartName: row.counterpartName }
+          : target
+            ? { counterpartName: target.displayName }
+            : {}),
+        disclosed: row.disclosed,
+        ...(row.sourceUrl ? { sourceUrl: row.sourceUrl } : {}),
+        ...(row.ruleId ? { ruleId: row.ruleId } : {}),
+        ...(row.setId ? { setId: row.setId } : {}),
+        ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+      }
+    })
+  const interactionTotals: CorpusInteractions['totals'] = {}
+  for (const row of interactionRowsOnly) {
+    const tier = (row.tier ?? 'C') as 'A' | 'B' | 'C'
+    if (row.totalInTier !== null) interactionTotals[tier] = row.totalInTier
+  }
+  const checkedSourcesRecorded = Array.isArray(checkedRow?.sourcesChecked)
+    ? (checkedRow.sourcesChecked as unknown[])
+        .map((item) => text(item))
+        .filter((item): item is string => item !== undefined)
+    : []
+  const interactions: CorpusInteractions = {
+    lines: interactionLines,
+    ...(checkedRow?.line ? { statement: checkedRow.line } : {}),
+    sourcesChecked: checkedSourceNames(
+      checkedSourcesRecorded.length > 0
+        ? { sourcesChecked: checkedSourcesRecorded, date: checkedRow?.sourceDate ?? '' }
+        : undefined,
+    ),
+    ...(checkedRow?.sourceDate ? { date: checkedRow.sourceDate } : {}),
+    totals: interactionTotals,
+    predictedOnly:
+      interactionLines.length > 0 && interactionLines.every((line) => line.tier === 'C'),
+  }
+  // The statement the loader stored is the one the measured text carries; rebuilding it here would
+  // be a second implementation. It is only recomputed where the stored row predates the rule.
+  if (interactions.statement === undefined && checkedSourcesRecorded.length > 0) {
+    const rebuilt = checkedSourcesStatement(
+      { sourcesChecked: checkedSourcesRecorded, date: checkedRow?.sourceDate ?? '' },
+      interactionLines.length > 0,
+    )
+    if (rebuilt) interactions.statement = rebuilt
+  }
+
+  const patentRow = patentRows[0]
+  const patent: CorpusPatentLine | undefined = patentRow
+    ? {
+        eligible: patentRow.eligible,
+        line: patentRow.line,
+        ...(patentRow.register ? { register: patentRow.register } : {}),
+        ...(patentRow.reason ? { reason: patentRow.reason } : {}),
+        ...(patentRow.source ? { source: patentRow.source } : {}),
+        ...(patentRow.dateChecked ? { dateChecked: patentRow.dateChecked } : {}),
+        applications: Array.isArray(asRecord(patentRow.disclosure)?.applications)
+          ? ((asRecord(patentRow.disclosure)?.applications as unknown[])
+              .map((item) => text(item))
+              .filter((item): item is string => item !== undefined) as string[])
+          : [],
+      }
+    : undefined
+
+  const controlledSchedules: CorpusControlledRow[] = [...controlledRows]
+    .sort(
+      (a, b) =>
+        a.jurisdiction.localeCompare(b.jurisdiction) ||
+        a.list.localeCompare(b.list) ||
+        a.classOrSchedule.localeCompare(b.classOrSchedule),
+    )
+    .map((row) => ({
+      id: row.id,
+      jurisdiction: row.jurisdiction,
+      list: row.list,
+      classOrSchedule: row.classOrSchedule,
+      ...(row.substanceAsListed ? { substanceAsListed: row.substanceAsListed } : {}),
+      ...(row.statute ? { statute: row.statute } : {}),
+      ...(row.statuteUrl ? { statuteUrl: row.statuteUrl } : {}),
+      ...(row.versionDate ? { versionDate: row.versionDate } : {}),
+      ...(row.source ? { source: row.source } : {}),
+    }))
+
+  const SECTION_ORDER: Record<string, number> = { neighbour: 0, potency: 1, timeline: 2, formOf: 3 }
+  const sections: CorpusSectionSentence[] = [...sectionRows]
+    .sort(
+      (a, b) =>
+        (SECTION_ORDER[a.section] ?? 9) - (SECTION_ORDER[b.section] ?? 9) || a.ordinal - b.ordinal,
+    )
+    .map((row) => {
+      const values = asRecord(row.values) ?? {}
+      const counterpartKey = text(values.counterpartPage ?? values.neighbourPage ?? values.toKey)
+      const target = counterpartKey ? targetByKey.get(counterpartKey) : undefined
+      return {
+        section: row.section as CorpusSectionSentence['section'],
+        ordinal: row.ordinal,
+        sentence: row.sentence,
+        ...(target ? { counterpartSlug: target.slug, counterpartName: target.displayName } : {}),
+      }
+    })
+  const formOfNotes = sections.filter((row) => row.section === 'formOf')
+  const computedSections = sections.filter((row) => row.section !== 'formOf')
+
   return {
     key,
     slug: page.slug,
-    displayName: page.displayName,
+    displayName: displayNameRows[0]?.displayName ?? page.displayName,
     model: page.model,
     tier: page.tier,
     pageType: page.pageType,
@@ -795,6 +1083,14 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     licenceNotes: page.licenceNotes,
     registeredStudies,
     ...(supervisionLine ? { supervisionLine } : {}),
+    controlled: page.controlled,
+    controlledBasis: page.controlledBasis,
+    registration,
+    controlledSchedules,
+    interactions,
+    ...(patent ? { patent } : {}),
+    computedSections,
+    formOfNotes,
   }
 }
 

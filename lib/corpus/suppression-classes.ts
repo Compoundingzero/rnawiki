@@ -8,44 +8,19 @@
  * else: this module reads no label text, judges no compound and never softens a class into a
  * milder one. A class the spec does not list is dropped rather than printed, because printing it
  * would put a token on the page.
+ *
+ * The words themselves live in `lib/corpus/suppression-labels.ts`, which imports nothing, because
+ * the corpus-scale renderer under `scripts/` needs the same table and must not pull the database
+ * layer in to get it.
  */
 import type { CorpusBlock } from '@/lib/corpus/dossier-page'
+import {
+  SUPPRESSION_CLASS_LABELS,
+  citedSuppressionLabels,
+  isUnknownClassOnly,
+} from '@/lib/corpus/suppression-labels'
 
-/** The exact label the spec fixes for each class. */
-export const SUPPRESSION_CLASS_LABELS: Readonly<Record<string, string>> = {
-  S1: 'a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics',
-  S2: 'a controlled-substance schedule in the United States, the United Kingdom or Singapore',
-  S3: 'a label warning about harm to a developing baby, or a pregnancy-prevention programme',
-  S4: 'a list of cytotoxic or otherwise hazardous medicines',
-  S5: 'a United States programme that restricts how the medicine is supplied and who may supply it',
-  S6: 'a boxed warning, the strongest warning a United States label carries',
-  S7: 'a route a clinician administers, such as an injection into a vein or into the spine',
-  S8: 'a register record of withdrawal or suspension for a safety reason',
-  S9: 'a long-acting injection, an insulin, or another injected hormone adjusted by measurement',
-  S10: 'no classification found in the registers checked',
-}
-
-/** S1-S9 are the classes a register positively recorded; S10 is the absence of one. */
-const CITED_CLASS = /^S[1-9]$/
-
-/**
- * The classes on this record that a register positively stated, in the spec's own order, each as
- * the words a reader sees. Empty where the record carries only S10 or nothing at all.
- */
-export function citedSuppressionLabels(classes: readonly string[]): string[] {
-  const seen = new Set<string>()
-  for (const code of classes) {
-    if (CITED_CLASS.test(code) && code in SUPPRESSION_CLASS_LABELS) seen.add(code)
-  }
-  return [...seen]
-    .sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)))
-    .map((code) => SUPPRESSION_CLASS_LABELS[code] as string)
-}
-
-/** True where the record's only recorded class is the unknown one. */
-export function isUnknownClassOnly(classes: readonly string[]): boolean {
-  return classes.length > 0 && classes.every((code) => code === 'S10')
-}
+export { SUPPRESSION_CLASS_LABELS, citedSuppressionLabels, isUnknownClassOnly }
 
 /** The supervision block's question, worded exactly as the derivation words it on a full page. */
 export function supervisionQuestion(name: string): string {

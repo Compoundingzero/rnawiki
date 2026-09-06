@@ -37,8 +37,26 @@ docs/audits/semantic/
 data/biohacker-pivot/
 data/corpus-20k/
 data/design-study/
+data/revamp/
 data/trial-results/
 # Running logs, rewritten at the top on every batch and hand-wrapped at 100 columns. Their reader
 # check is scripts/quality/slop-scan.mjs, which reads the prose; realigning their tables would
 # rewrite files that the next batch rewrites again.
 docs/worklogs/
+# The Python environment the corpus scripts run in (docs/specs/revamp-2026-09.md): gitignored, and
+# a vendored third-party driver's bundled JavaScript is not ours to reformat.
+.venv-corpus/
+# Retrieved source material, kept exactly as it was served: the legal pages, terms, verification
+# captures and manifests under data/sources/ and data/validation/ are recorded with a SHA256 in
+# their manifest.json, and that digest is the evidence of what was retrieved on the date recorded.
+# Reformatting a byte of them would break the one thing they are held for. Several are also
+# malformed HTML as served, which is itself part of the record.
+data/sources/
+data/validation/
+# Specs, licences and blockers for the revamp run, hand-wrapped at 100 columns with wide reference
+# tables — the same reason docs/worklogs/ is here. Their reader check is
+# scripts/quality/slop-scan.mjs, which reads the prose; realigning the tables would rewrite the
+# lead's fixed spec text without changing a word of it.
+docs/specs/
+docs/data/
+docs/revamp/

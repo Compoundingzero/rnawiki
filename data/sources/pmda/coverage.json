@@ -8,43 +8,46 @@
   "pmda_records_parsed": 2525,
   "pmda_ingredient_components_seen": 2801,
   "pages_matched_by_tier": {
-    "1": 353,
-    "2": 901,
-    "3": 94
+    "1": 342,
+    "2": 855,
+    "3": 79
   },
-  "pages_matched_total": 1348,
+  "pages_matched_total": 1276,
   "fields_gained_by_tier": {
     "1": {
-      "regulatory.JP": 353
+      "regulatory.JP": 342
     },
     "2": {
-      "regulatory.JP": 901
+      "regulatory.JP": 855
     },
     "3": {
-      "regulatory.JP": 94
+      "regulatory.JP": 79
     }
   },
-  "rows_written": 3558,
+  "rows_written": 3424,
   "match_rule_row_counts": {
     "unii": 3250,
-    "name-candidate": 307,
+    "name-candidate": 173,
     "skeleton": 1
   },
   "match_rule_page_counts": {
-    "name-candidate": 157,
+    "name-candidate": 83,
     "skeleton": 1,
     "unii": 1199
   },
-  "records_matched": 2275,
-  "records_partially_matched": 21,
-  "unmatched_record_count": 250,
+  "records_matched": 2272,
+  "records_partially_matched": 20,
+  "unmatched_record_count": 253,
   "unmatched_breakdown": {
-    "no_corpus_page_for_any_named_ingredient": 225,
+    "no_corpus_page_for_any_named_ingredient": 228,
     "row_names_no_active_ingredient_in_the_source": 25
   },
-  "unmatched_component_rows": 25,
-  "name_candidates_sent_to_phase_3_review": 307,
-  "name_candidate_pages": 157,
+  "unmatched_component_rows": 23,
+  "name_candidates_sent_to_phase_3_review": 173,
+  "name_candidate_pages": 83,
+  "name_pairs_held_out_as_shared_counter_ion": 134,
+  "name_pairs_held_out_pages": 76,
+  "name_pairs_held_out_file": "data/sources/pmda/name-candidates-held-out.json",
   "resolution_diagnostics": {
     "ambiguous_exact_name_2_uniis": 1,
     "ambiguous_exact_name_3_uniis": 4,
@@ -62,7 +65,8 @@
     "ambiguous_normalised_name_8_uniis": 5,
     "ambiguous_normalised_name_92_uniis": 2,
     "ambiguous_normalised_name_9_uniis": 2,
-    "name_candidate": 104,
+    "name_candidate": 100,
+    "name_candidate_all_siblings_rejected": 4,
     "skeleton_match": 1,
     "unii_match_via_exact_name": 2002,
     "unii_match_via_normalised_name": 413

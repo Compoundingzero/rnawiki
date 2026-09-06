@@ -12,6 +12,10 @@
  *
  * Flags:
  *   --tier 1|2|3            required; the deployment tier to load (tiers/promotion-rule.md)
+ *   --revamp                load the revamp 2026-09 corpus: canonical-v3, fields-v2, derived-v2,
+ *                           questions-v2, the controlled-substance suppression assignments, and the
+ *                           Phase 4 blocks migration 0026 adds (docs/specs/phase4-generators.md).
+ *                           Without it the corpus-20k inputs load exactly as before.
  *   --dry-run               read, derive and report; touch neither the database nor any marker
  *   --batches n             stop after n batches (a smoke load)
  *   --batch-size n          default 250
@@ -63,6 +67,16 @@
  *
  * Memory. The script holds one tier's inputs in memory (Tier 3, the largest, is ~90 MB of NDJSON).
  * Files are read line by line; nothing is slurped whole.
+ *
+ * Phase 4. Under `--revamp` the load also writes `page_registration`, `page_interactions`,
+ * `page_patent`, `page_controlled`, `page_sections` and `page_display_names`, sets
+ * `corpus_pages.controlled` from the recorded controlled-substance trigger, and carries the Phase 3
+ * form note onto `page_relations.note`. Two things follow from that trigger and are enforced here as
+ * well as by migration 0026's triggers: seeds 1, 2 and 6 and the dose, bioavailability, n-of-1 and
+ * time-to-signal question blocks are withheld from a controlled page. The Phase 3 trial
+ * reassignments move a registry study from a salt or ester page to the parent the registry named,
+ * and the Phase 3 redirect plan joins the recorded dispositions so it goes through the same
+ * one-hop chain repair as every other redirect.
  */
 import { spawn } from 'node:child_process'
 import { createHash } from 'node:crypto'
@@ -76,6 +90,12 @@ import 'dotenv/config'
 import { Client } from 'pg'
 
 import { databaseSslConfig, isLocalDatabaseHost } from '@/db/ssl'
+import {
+  checkedSourcesStatement,
+  CONTROLLED_WITHHELD_BLOCKS,
+  interactionLine,
+  type InteractionRow,
+} from '../render/page-text'
 
 /* ------------------------------------------------------------------------------------------- */
 /* Shapes of the recorded inputs                                                                 */
@@ -213,7 +233,14 @@ interface PageRow {
   humanData: boolean | null
   /** The ladder's own evidence kind, else what the registry records. */
   evidenceTier: string | null
+  /** The controlled-substance trigger of docs/specs/phase4-generators.md §4 (migration 0026). */
+  controlled: boolean
+  /** Which registers fired it, e.g. `SG-MDA-POISONS`. */
+  controlledBasis: string[]
 }
+
+/* Phase 4 block rows (migration 0026). Written as positional arrays, like every other child row. */
+type BlockRow = unknown[]
 
 const ROOT = resolve(process.cwd())
 const DATA = join(ROOT, 'data', 'corpus-20k')
@@ -235,7 +262,26 @@ const RELATION_KINDS = new Set([
   'isotopologue-of',
   'same-target',
   'shares-enzyme',
+  // Migration 0026: the rest of the Phase 3 vocabulary. Without these a resolved relation — a salt
+  // to its parent, a component to its product, a biosimilar to its originator — was dropped and
+  // counted, so the pages the rendered duplicate check flagged could not link to what they are.
+  'form-of',
+  'related-form-of',
+  'ionised-form-of',
+  'component-of',
+  'active-moiety-of',
+  'same-structure-as',
+  'originator-of',
+  'parent-of',
 ])
+
+/**
+ * The identity stage writes `form_of`; the enum stores `form-of`. One spelling, converted once.
+ * Reading the underscore spelling as unknown is what dropped 322 resolved relations on Tier 1.
+ */
+function relationKind(type: string): string {
+  return type.trim().toLowerCase().replace(/_/g, '-')
+}
 
 const SYNONYM_KINDS = new Set([
   'inn',
@@ -248,6 +294,8 @@ const SYNONYM_KINDS = new Set([
   'fragment',
   'common',
   'display',
+  // Migration 0026: the name a page absorbed when Phase 3 merged two records into one.
+  'merged-page',
 ])
 
 /**
@@ -273,6 +321,40 @@ const LICENCE_BY_SOURCE: Record<string, string> = {
   registers: 'mixed register set; per-register licences in docs/specs/corpus-20k-sources.md',
   REGISTER_SET: 'mixed register set; per-register licences in docs/specs/corpus-20k-sources.md',
   'derived-from-fields': "derived from this page's own recorded fields; no external licence",
+
+  /*
+   * The revamp 2026-09 sources (docs/data/LICENSES.md rows 17-35). Every string below is that
+   * table's own reading of the licence the source publishes; a source whose terms were not
+   * obtained — the MHRA products database, emc, the ARTG, the WITHDRAWN database, DDInter — is not
+   * here, because none of it is joined into a page.
+   */
+  clinicaltrials: 'ClinicalTrials.gov — US Government work, public domain',
+  drugcentral: 'DrugCentral 2023 — CC BY-SA 4.0',
+  drugsfda: 'Drugs@FDA via openFDA — CC0 1.0 / US Government work',
+  ema: 'EMA medicines report — reuse permitted with acknowledgement (Source: European Medicines Agency)',
+  gsrs: 'FDA GSRS public data export — US Government work, public domain',
+  'hsa-singapore':
+    'HSA Listing of Registered Therapeutic Products, data.gov.sg — Singapore Open Data Licence v1.0',
+  inxight: 'NCATS Inxight Drugs — public domain (US Government work, NCATS/NIH)',
+  iuphar: 'IUPHAR/BPS Guide to PHARMACOLOGY 2026.2 — CC BY-SA 4.0 (contents); ODbL (database)',
+  'openfda-ndc': 'openFDA NDC — CC0 1.0 / US Government work',
+  "openfda-ndc, as recorded on this page's regulatory field":
+    'openFDA NDC — CC0 1.0 / US Government work',
+  'orange-purple-book':
+    'FDA Orange Book and Purple Book data files — US Government work, public domain',
+  pmda: 'PMDA List of Approved Products (New Drugs) — Public Data License 1.0 (Digital Agency of Japan)',
+  pubchem: 'PubChem — public domain (NIH); PubChem-computed properties only',
+  'sso-singapore':
+    "Singapore Statutes Online — reproduced with the Attorney-General's Chambers' clause 13 permission; Singapore Government copyright",
+  'tga-artg':
+    'Poisons Standard (SUSMP), Federal Register of Legislation — CC BY 4.0 (sourced 6 September 2026)',
+  uniprot: 'UniProt release 2026_03 — CC BY 4.0',
+  /*
+   * The withdrawal field's rows are ChEMBL drug_warning records, which carry ChEMBL's licence. The
+   * WITHDRAWN database itself was not ingested (LICENSES.md row 26: no licence is published, and
+   * the only one attaching to the work is non-commercial).
+   */
+  withdrawn: 'ChEMBL 37 drug warnings — CC BY-SA 3.0',
 }
 
 /**
@@ -747,6 +829,234 @@ export async function writeRedirectRepairs(
 }
 
 /* ------------------------------------------------------------------------------------------- */
+/* Phase 4 (revamp 2026-09) — the v3 corpus and the blocks migration 0026 adds                   */
+/* ------------------------------------------------------------------------------------------- */
+
+/**
+ * `--revamp` points every input at the Phase 2–4 outputs and loads five more tables.
+ *
+ * The corpus-20k inputs stay the default, so a re-run of the original load is unchanged. What the
+ * flag does is swap the identity spine for `canonical-v3`, the fields for `fields-v2`, the seeds
+ * for `derived-v2`, the questions for `questions-v2` and the suppression assignments for the file
+ * that carries the controlled-substance trigger, and then load the Phase 4 blocks
+ * (`docs/specs/phase4-generators.md`) from `data/revamp/page-blocks`.
+ *
+ * Every safety this script already had holds: the production guard, the working-database refusal,
+ * the fingerprinted markers, the child-rows-first delete order, and the redirect chain repair. The
+ * redirect plan `data/revamp/identity/redirect-plan-v3.csv` joins the recorded dispositions and
+ * goes through the same chain walk, so a Phase 3 merge cannot write a two-hop redirect either.
+ */
+const REVAMP = join(ROOT, 'data', 'revamp')
+
+interface CorpusSources {
+  label: string
+  identity: string
+  fieldDirs: string[]
+  seedsDir: string
+  questionsDir: string
+  suppression: string
+  loadDir: string
+  /** Absent outside `--revamp`: the corpus-20k inputs carry no Phase 4 block. */
+  blocksDir?: string
+  reassignments?: string
+  redirectPlan?: string
+}
+
+function corpusSources(revamp: boolean): CorpusSources {
+  if (!revamp) {
+    return {
+      label: 'corpus-20k',
+      identity: join(DATA, 'identity', 'canonical.ndjson'),
+      fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) => join(DATA, 'fields', directory)),
+      seedsDir: join(DATA, 'derived'),
+      questionsDir: join(DATA, 'questions'),
+      suppression: join(DATA, 'suppression', 'assignments.ndjson'),
+      loadDir: join(DATA, 'load'),
+    }
+  }
+  return {
+    label: 'revamp-2026-09',
+    identity: join(REVAMP, 'identity', 'canonical-v3.ndjson'),
+    fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
+      join(REVAMP, 'fields-v2', directory),
+    ),
+    seedsDir: join(REVAMP, 'derived-v2'),
+    questionsDir: join(REVAMP, 'questions-v2'),
+    suppression: join(REVAMP, 'suppression', 'assignments-v2.ndjson'),
+    loadDir: join(REVAMP, 'load'),
+    blocksDir: join(REVAMP, 'page-blocks'),
+    reassignments: join(REVAMP, 'identity', 'trial-reassignments-v3.csv'),
+    redirectPlan: join(REVAMP, 'identity', 'redirect-plan-v3.csv'),
+  }
+}
+
+/** One page's Phase 4 blocks, as `scripts/revamp/page_blocks.py` wrote them. */
+interface BlockBundle {
+  key: string
+  controlled?: boolean
+  controlledBasis?: string[]
+  registration?: Array<{
+    jurisdiction: string
+    label: string
+    status: string
+    detail?: string | null
+    source?: string | null
+    dateChecked?: string | null
+    ordinal?: number
+    component?: string | null
+    line: string
+    disclosure?: Record<string, unknown>
+    provenance?: string[]
+  }>
+  controlledSchedules?: Array<Record<string, unknown>>
+  patent?: Record<string, unknown>
+  interactions?: {
+    tiers?: Record<string, { inline?: unknown[]; disclosed?: unknown[]; total?: number }>
+    checked?: { sourcesChecked?: string[]; date?: string }
+  }
+  sections?: Record<
+    string,
+    Array<{ values?: Record<string, unknown>; provenance?: unknown; templateId?: string | null }>
+  >
+  relations?: Array<{
+    relation: string
+    counterpartKey?: string
+    note?: string | null
+    rule?: string | null
+  }>
+  disambiguation?: {
+    displayName?: string
+    disambiguator?: string | null
+    basis?: string | null
+    collidesOn?: string | null
+  }
+  trialsMoved?: { count: number; toKey: string; toName: string; rule?: string }
+}
+
+/** A registry study Phase 3 moved from one page to another (§6; Phase 3 rule R14). */
+interface TrialReassignment {
+  nct: string
+  fromKey: string
+  toKey: string
+  matchedName: string | null
+}
+
+/** A minimal CSV reader: a header row, quoted fields, embedded commas and doubled quotes. */
+export function parseCsv(text: string): Array<Record<string, string>> {
+  const rows: string[][] = []
+  let row: string[] = []
+  let field = ''
+  let quoted = false
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index]
+    if (quoted) {
+      if (character === '"') {
+        if (text[index + 1] === '"') {
+          field += '"'
+          index += 1
+        } else quoted = false
+      } else field += character
+      continue
+    }
+    if (character === '"') quoted = true
+    else if (character === ',') {
+      row.push(field)
+      field = ''
+    } else if (character === '\n') {
+      row.push(field)
+      rows.push(row)
+      row = []
+      field = ''
+    } else if (character !== '\r') field += character
+  }
+  if (field.length > 0 || row.length > 0) {
+    row.push(field)
+    rows.push(row)
+  }
+  const header = rows.shift() ?? []
+  return rows
+    .filter((values) => values.some((value) => value.length > 0))
+    .map((values) => {
+      const record: Record<string, string> = {}
+      header.forEach((name, index) => {
+        record[name] = values[index] ?? ''
+      })
+      return record
+    })
+}
+
+/** The `action=move` rows, which are the only ones that change where a study is recorded. */
+async function readTrialReassignments(path: string | undefined): Promise<TrialReassignment[]> {
+  if (!path || !existsSync(path)) return []
+  const out: TrialReassignment[] = []
+  for (const row of parseCsv(await readFile(path, 'utf8'))) {
+    if (row.action !== 'move') continue
+    const nct = nullIfBlank(row.nct)
+    const fromKey = nullIfBlank(row.from_key)
+    const toKey = nullIfBlank(row.to_key)
+    if (!nct || !fromKey || !toKey) continue
+    out.push({ nct, fromKey, toKey, matchedName: nullIfBlank(row.matched_name) })
+  }
+  return out
+}
+
+/**
+ * The Phase 3 redirect plan, as dispositions the existing REDIRECT path already knows how to write.
+ *
+ * `redirect-plan-v3.csv` records the "-2" slugs a merge retired (`abarelix-2 -> abarelix`). Turning
+ * them into `Disposition` rows means they go through `pushRedirect`, the ledger chain walk and the
+ * one-hop rule with every other redirect this load writes, rather than through a second path that
+ * would have to repeat those three protections.
+ */
+async function readRedirectPlan(
+  path: string | undefined,
+  keyBySlug: Map<string, string>,
+  counters: Counters,
+): Promise<Disposition[]> {
+  if (!path || !existsSync(path)) return []
+  const out: Disposition[] = []
+  for (const row of parseCsv(await readFile(path, 'utf8'))) {
+    const oldSlug = nullIfBlank(row.old_slug)
+    const newSlug = nullIfBlank(row.new_slug)
+    const reason = nullIfBlank(row.reason)
+    if (!oldSlug || !newSlug || !reason) continue
+    const key = keyBySlug.get(newSlug)
+    if (!key) {
+      counters.bump('redirect-plan rows skipped: the target slug is not a page in this corpus')
+      continue
+    }
+    out.push({
+      slug: oldSlug,
+      disposition: 'REDIRECT',
+      key,
+      targetSlug: newSlug,
+      reason,
+    })
+  }
+  return out
+}
+
+/** Every page's Phase 4 blocks, for the keys of this tier. */
+async function readBlockBundles(
+  directory: string | undefined,
+  tierKeys: ReadonlySet<string>,
+  counters: Counters,
+): Promise<Map<string, BlockBundle>> {
+  const out = new Map<string, BlockBundle>()
+  if (!directory || !existsSync(directory)) {
+    counters.bump('Phase 4 block bundles absent; no block row was written')
+    return out
+  }
+  for (const file of await batchFiles(directory, 'batch-')) {
+    for await (const row of readNdjson(file)) {
+      const record = row as BlockBundle
+      if (typeof record.key === 'string' && tierKeys.has(record.key)) out.set(record.key, record)
+    }
+  }
+  return out
+}
+
+/* ------------------------------------------------------------------------------------------- */
 /* Derivations                                                                                   */
 /* ------------------------------------------------------------------------------------------- */
 
@@ -845,10 +1155,21 @@ async function main(): Promise<void> {
   }
 
   const dryRun = flag('dry-run')
+  const revamp = flag('revamp')
+  const sources = corpusSources(revamp)
   const batchSize = Number(option('batch-size') ?? 250)
   if (!Number.isInteger(batchSize) || batchSize < 1) throw new Error('--batch-size must be >= 1.')
   const batchLimit = option('batches') ? Number(option('batches')) : Infinity
-  const loadDir = resolve(option('load-dir') ?? join(DATA, 'load'))
+  const loadDirGiven = option('load-dir')
+  // A marker records that a batch was written, and it is read on the next run. `--load-dir` with a
+  // blank value, or with the next flag where its value should be, resolved to the working directory
+  // and scattered `tier-1/batch-0001.json` into the repository root, where nothing looks for it: the
+  // batch would then be re-run in full every time, and a marker naming a real database would sit
+  // outside the load directory that is supposed to hold the record of that load.
+  if (loadDirGiven !== undefined && (loadDirGiven.trim() === '' || loadDirGiven.startsWith('--'))) {
+    throw new Error('--load-dir needs a directory; omit the flag to use the recorded default.')
+  }
+  const loadDir = resolve(loadDirGiven ?? sources.loadDir)
   const stateRoot = resolve(option('state-root') ?? ROOT)
   const checkpoint = !flag('no-checkpoint')
   const counters = new Counters()
@@ -896,8 +1217,10 @@ async function main(): Promise<void> {
       })
     }
 
+    process.stdout.write(`Corpus inputs: ${sources.label}.\n`)
+
     const suppression = new Map<string, SuppressionAssignment>()
-    for await (const row of readNdjson(join(DATA, 'suppression', 'assignments.ndjson'))) {
+    for await (const row of readNdjson(sources.suppression)) {
       const record = row as SuppressionAssignment
       suppression.set(record.key, {
         key: record.key,
@@ -915,7 +1238,7 @@ async function main(): Promise<void> {
 
     const displayNameByKey = new Map<string, string>()
     const identityOrder: string[] = []
-    for await (const row of readNdjson(join(DATA, 'identity', 'canonical.ndjson'))) {
+    for await (const row of readNdjson(sources.identity)) {
       const record = row as CanonicalRecord
       displayNameByKey.set(record.key, record.displayName ?? '')
       identityOrder.push(record.key)
@@ -1004,7 +1327,7 @@ async function main(): Promise<void> {
     /* ---- 4. this tier's identity records, fields, seeds, questions and registry matches ----- */
 
     const identity = new Map<string, CanonicalRecord>()
-    for await (const row of readNdjson(join(DATA, 'identity', 'canonical.ndjson'))) {
+    for await (const row of readNdjson(sources.identity)) {
       const record = row as CanonicalRecord
       if (tierKeys.has(record.key)) identity.set(record.key, record)
     }
@@ -1013,8 +1336,7 @@ async function main(): Promise<void> {
     process.stdout.write(`ChEMBL molecules read for ATC and molecule type: ${chembl.size}.\n`)
 
     const fields = new Map<string, FieldsRecord>()
-    for (const directory of Object.values(MODEL_DIRECTORY)) {
-      const modelDir = join(DATA, 'fields', directory)
+    for (const modelDir of sources.fieldDirs) {
       if (!existsSync(modelDir)) continue
       for (const file of await batchFiles(modelDir, 'batch-')) {
         for await (const row of readNdjson(file)) {
@@ -1025,7 +1347,7 @@ async function main(): Promise<void> {
     }
 
     const seeds = new Map<string, Map<number, SeedRecord>>()
-    const derivedDir = join(DATA, 'derived')
+    const derivedDir = sources.seedsDir
     if (existsSync(derivedDir)) {
       for (const file of await batchFiles(derivedDir, 'seed-')) {
         const match = /seed-0*(\d+)\.ndjson$/.exec(file)
@@ -1052,7 +1374,7 @@ async function main(): Promise<void> {
     }
 
     const questions = new Map<string, QuestionRow[]>()
-    const questionsDir = join(DATA, 'questions')
+    const questionsDir = sources.questionsDir
     if (existsSync(questionsDir)) {
       for (const file of await batchFiles(questionsDir, 'batch-')) {
         for await (const row of readNdjson(file)) {
@@ -1089,7 +1411,63 @@ async function main(): Promise<void> {
       }
     }
 
+    /*
+     * Phase 3 R14, extended in `docs/specs/phase4-generators.md` §6 from stereo descriptors to salt
+     * and ester forms: a registry record that names the parent belongs to the parent's page. The
+     * matches were computed before that decision, so the move is applied here — the study leaves the
+     * form's page and joins the parent's, with the registry string that matched carried across and
+     * the role recorded as what it is. A study the target page already holds is not added twice.
+     */
+    const reassignments = await readTrialReassignments(sources.reassignments)
+    if (reassignments.length > 0) {
+      const movedOut = new Map<string, Set<string>>()
+      const movedIn = new Map<string, TrialReassignment[]>()
+      for (const move of reassignments) {
+        const out = movedOut.get(move.fromKey) ?? new Set<string>()
+        out.add(move.nct)
+        movedOut.set(move.fromKey, out)
+        const into = movedIn.get(move.toKey) ?? []
+        into.push(move)
+        movedIn.set(move.toKey, into)
+      }
+      for (const [key, ncts] of movedOut) {
+        const held = registry.get(key)
+        if (!held) continue
+        const kept = held.filter((study) => !ncts.has(study.nct))
+        counters.bump('registry studies moved off a form page (R14)', held.length - kept.length)
+        registry.set(key, kept)
+      }
+      for (const [key, moves] of movedIn) {
+        if (!tierKeys.has(key)) continue
+        const held = registry.get(key) ?? []
+        const seen = new Set(held.map((study) => study.nct))
+        for (const move of moves) {
+          if (seen.has(move.nct)) {
+            counters.bump('registry studies already recorded on the parent page (R14, no change)')
+            continue
+          }
+          seen.add(move.nct)
+          held.push({ nct: move.nct, matchedName: move.matchedName, role: 'parent-name' })
+          counters.bump('registry studies moved onto a parent page (R14)')
+        }
+        registry.set(key, held)
+      }
+    }
+
+    /* The Phase 4 blocks for this tier's pages (migration 0026). */
+    const blocks = await readBlockBundles(sources.blocksDir, tierKeys, counters)
+    if (blocks.size > 0) {
+      process.stdout.write(`Phase 4 block bundles read for this tier: ${blocks.size}.\n`)
+    }
+
     /* ---- 5. redirects grouped by the target page ------------------------------------------- */
+
+    const keyBySlug = new Map<string, string>()
+    for (const [key, slug] of slugByKey) keyBySlug.set(slug, key)
+    for (const row of await readRedirectPlan(sources.redirectPlan, keyBySlug, counters)) {
+      dispositions.push(row)
+      counters.bump('redirect-plan rows added to the recorded dispositions')
+    }
 
     const redirectsByTargetKey = new Map<string, Disposition[]>()
     for (const row of dispositions) {
@@ -1119,6 +1497,12 @@ async function main(): Promise<void> {
       sources: 0,
       registryStudies: 0,
       redirects: 0,
+      registration: 0,
+      interactions: 0,
+      patent: 0,
+      controlled: 0,
+      sections: 0,
+      displayNames: 0,
     }
     // Coverage of the five facet columns, reported so a load says how much of the triplet the
     // inputs actually supplied rather than implying every page carries one.
@@ -1144,6 +1528,7 @@ async function main(): Promise<void> {
         seeds,
         questions,
         registry,
+        blocks,
         slugByKey,
         legacyDrugIdBySlug,
         legacyEntityClassBySlug,
@@ -1188,6 +1573,12 @@ async function main(): Promise<void> {
       totals.sources += built.sourceRows.length
       totals.registryStudies += built.registryRows.length
       totals.redirects += built.redirectRows.length
+      totals.registration += built.registrationRows.length
+      totals.interactions += built.interactionRows.length
+      totals.patent += built.patentRows.length
+      totals.controlled += built.controlledRows.length
+      totals.sections += built.sectionRows.length
+      totals.displayNames += built.displayNameRows.length
       for (const page of built.pages) {
         if (page.atcCodes.length > 0) columnsFilled.atc_codes += 1
         if (page.entityClass !== null) columnsFilled.entity_class += 1
@@ -1223,6 +1614,12 @@ async function main(): Promise<void> {
                 page_sources: built.sourceRows.length,
                 page_registry_studies: built.registryRows.length,
                 medicine_slug_redirects: built.redirectRows.length,
+                page_registration: built.registrationRows.length,
+                page_interactions: built.interactionRows.length,
+                page_patent: built.patentRows.length,
+                page_controlled: built.controlledRows.length,
+                page_sections: built.sectionRows.length,
+                page_display_names: built.displayNameRows.length,
               },
               indexableThreshold: threshold,
               firstKey: keys[0],
@@ -1349,6 +1746,13 @@ interface BuiltBatch {
   sourceRows: unknown[][]
   registryRows: unknown[][]
   redirectRows: unknown[][]
+  /* Phase 4 blocks, migration 0026. Empty outside `--revamp`. */
+  registrationRows: BlockRow[]
+  interactionRows: BlockRow[]
+  patentRows: BlockRow[]
+  controlledRows: BlockRow[]
+  sectionRows: BlockRow[]
+  displayNameRows: BlockRow[]
   inputDigest: string
 }
 
@@ -1363,6 +1767,8 @@ function buildBatch(input: {
   seeds: Map<string, Map<number, SeedRecord>>
   questions: Map<string, QuestionRow[]>
   registry: Map<string, RegistryMatchRecord['nctIds']>
+  /** The Phase 4 blocks for this batch's pages. Empty outside `--revamp`. */
+  blocks: Map<string, BlockBundle>
   slugByKey: Map<string, string>
   legacyDrugIdBySlug: Map<string, string>
   legacyEntityClassBySlug: Map<string, string>
@@ -1381,6 +1787,12 @@ function buildBatch(input: {
   const sourceRows: unknown[][] = []
   const registryRows: unknown[][] = []
   const redirectRows: unknown[][] = []
+  const registrationRows: BlockRow[] = []
+  const interactionRows: BlockRow[] = []
+  const patentRows: BlockRow[] = []
+  const controlledRows: BlockRow[] = []
+  const sectionRows: BlockRow[] = []
+  const displayNameRows: BlockRow[] = []
   // One row per old slug per batch: `ON CONFLICT DO UPDATE` cannot affect the same row twice in
   // one statement, and a repair could otherwise collide with a recorded disposition.
   const redirectOldSlugs = new Set<string>()
@@ -1409,6 +1821,15 @@ function buildBatch(input: {
     const suppressionRow = input.suppression.get(key)
     if (!suppressionRow) counters.bump('pages with no suppression assignment (treated as cleared)')
     const suppressed = suppressionRow?.suppressed ?? false
+    /*
+     * The controlled-substance trigger (docs/specs/phase4-generators.md §4). It is read from the
+     * block bundle, which carries the decision `scripts/revamp/controlled_suppression.py` recorded;
+     * nothing here re-derives it from the schedule rows, because those hold every Poisons Standard
+     * entry from Schedule 2 up and reading them as the trigger would withhold a dose block from a
+     * pharmacy medicine.
+     */
+    const controlled = input.blocks.get(key)?.controlled === true
+    const controlledBasis = input.blocks.get(key)?.controlledBasis ?? []
 
     /* fields */
     const recordedFields = input.fields.get(key)
@@ -1523,6 +1944,8 @@ function buildBatch(input: {
       indexable,
       suppressed,
       suppressionClasses: suppressionRow?.classes ?? [],
+      controlled,
+      controlledBasis,
       withdrawn: assignment.withdrawn,
       presentFieldCount,
       applicableFieldCount,
@@ -1559,10 +1982,17 @@ function buildBatch(input: {
       synonyms.push([id, key, name, synonym.kind, (synonym.source ?? '').slice(0, 64)])
     }
 
-    /* relations */
+    /* relations, with the form note Phase 3 recorded against each one (§6) */
+    const noteByRelation = new Map<string, string>()
+    for (const recorded of input.blocks.get(key)?.relations ?? []) {
+      const note = nullIfBlank(recorded.note)
+      if (!note || !recorded.counterpartKey) continue
+      noteByRelation.set(`${relationKind(recorded.relation)}|${recorded.counterpartKey}`, note)
+    }
     const seenRelations = new Set<string>()
     for (const relation of record.relations ?? []) {
-      if (!RELATION_KINDS.has(relation.type)) {
+      const kind = relationKind(relation.type)
+      if (!RELATION_KINDS.has(kind)) {
         counters.bump(`relation type outside the recorded vocabulary: ${relation.type}`)
         continue
       }
@@ -1570,16 +2000,28 @@ function buildBatch(input: {
         counters.bump('self-relations dropped')
         continue
       }
-      const id = sha256(`${key} ${relation.type} ${relation.targetKey}`)
+      const id = sha256(`${key} ${kind} ${relation.targetKey}`)
       if (seenRelations.has(id)) continue
       seenRelations.add(id)
-      relationRows.push([id, key, relation.type, relation.targetKey, null, 'identity-resolution'])
+      relationRows.push([
+        id,
+        key,
+        kind,
+        relation.targetKey,
+        null,
+        noteByRelation.get(`${kind}|${relation.targetKey}`) ?? null,
+        'identity-resolution',
+      ])
     }
 
     /* seeds — R2 is enforced here as well as by the database trigger */
     for (const [seed, row] of input.seeds.get(key) ?? []) {
       if (suppressed && [1, 2, 6].includes(seed)) {
         counters.bump('seed 1/2/6 rows withheld from a suppressed page (R2)')
+        continue
+      }
+      if (controlled && [1, 2, 6].includes(seed)) {
+        counters.bump('seed 1/2/6 rows withheld from a controlled-substance page (§4)')
         continue
       }
       seedRows.push([
@@ -1591,7 +2033,11 @@ function buildBatch(input: {
     }
 
     /* questions */
-    const pageQuestions = input.questions.get(key) ?? []
+    const pageQuestions = (input.questions.get(key) ?? []).filter((question) => {
+      if (!controlled || !CONTROLLED_WITHHELD_BLOCKS.has(question.block)) return true
+      counters.bump('question blocks withheld from a controlled-substance page (§4)')
+      return false
+    })
     pageQuestions.forEach((question, ordinal) => {
       const text = nullIfBlank(question.text)
       if (text === null) {
@@ -1619,6 +2065,246 @@ function buildBatch(input: {
       if (seenStudies.has(id)) continue
       seenStudies.add(id)
       registryRows.push([id, key, study.nct, study.role.slice(0, 32), matchedName])
+    }
+
+    /* ---- Phase 4 blocks (migration 0026) --------------------------------------------------- */
+    const bundle = input.blocks.get(key)
+    if (bundle) {
+      let order = 0
+      for (const row of bundle.registration ?? []) {
+        const ordinal = typeof row.ordinal === 'number' ? row.ordinal : order
+        const line = nullIfBlank(row.line)
+        if (line === null) {
+          counters.bump('registration rows skipped: the block stage recorded no line')
+          continue
+        }
+        registrationRows.push([
+          sha256(`${key} ${row.jurisdiction} ${row.component ?? ''} ${order}`),
+          key,
+          row.jurisdiction.slice(0, 16),
+          stripControlCharacters(row.label, counters) ?? row.jurisdiction,
+          stripControlCharacters(row.status, counters) ?? line,
+          nullIfBlank(row.detail),
+          nullIfBlank(row.source),
+          recordedDate(row.dateChecked, counters),
+          ordinal,
+          nullIfBlank(row.component),
+          line,
+          JSON.stringify(row.disclosure ?? {}),
+          JSON.stringify(row.provenance ?? []),
+        ])
+        order += 1
+      }
+
+      for (const row of bundle.controlledSchedules ?? []) {
+        const jurisdiction = nullIfBlank(row.jurisdiction)
+        const list = nullIfBlank(row.list)
+        const classOrSchedule = nullIfBlank(row.classOrSchedule)
+        if (!jurisdiction || !list || !classOrSchedule) {
+          counters.bump('controlled rows skipped: the schedule stage recorded no schedule')
+          continue
+        }
+        controlledRows.push([
+          sha256(
+            `${key} ${jurisdiction} ${nullIfBlank(row.scheduleCode) ?? ''} ${nullIfBlank(row.substanceAsListed) ?? ''}`,
+          ),
+          key,
+          jurisdiction.slice(0, 16),
+          list,
+          classOrSchedule,
+          nullIfBlank(row.scheduleCode)?.slice(0, 64) ?? null,
+          nullIfBlank(row.itemNumber)?.slice(0, 32) ?? null,
+          nullIfBlank(row.substanceAsListed),
+          nullIfBlank(row.statute),
+          nullIfBlank(row.statuteUrl),
+          nullIfBlank(row.versionDate),
+          nullIfBlank(row.source),
+          nullIfBlank(row.provenance),
+        ])
+      }
+
+      const patent = bundle.patent
+      if (patent) {
+        const line = nullIfBlank(patent.line)
+        if (line === null) counters.bump('patent rows skipped: the block stage recorded no line')
+        else {
+          patentRows.push([
+            key,
+            patent.eligible === true,
+            nullIfBlank(patent.register),
+            typeof patent.rld === 'boolean' ? patent.rld : null,
+            nullIfBlank(patent.earliestUnexpiredPatentExpiry),
+            nullIfBlank(patent.exclusivityEnd),
+            typeof patent.genericAvailable === 'boolean' ? patent.genericAvailable : null,
+            nullIfBlank(patent.firstGenericApproval),
+            nullIfBlank(patent.teCode)?.slice(0, 16) ?? null,
+            nullIfBlank(patent.noRecordLine),
+            nullIfBlank(patent.reason),
+            line,
+            nullIfBlank(patent.source),
+            recordedDate(patent.dateChecked, counters),
+            JSON.stringify(patent.disclosure ?? {}),
+            JSON.stringify(patent.provenance ?? []),
+          ])
+        }
+      }
+
+      /*
+       * Interaction rows, with their line built here by the one shared builder. The React template
+       * and the measured text both print `page_interactions.line`, so the tier label, the quoted
+       * label sentence and the derivation are written once and read three times.
+       */
+      let interactionOrdinal = 0
+      let interactionRowsWritten = 0
+      for (const tier of ['A', 'B', 'C'] as const) {
+        const held = bundle.interactions?.tiers?.[tier]
+        if (!held) continue
+        const inline = (held.inline ?? []) as InteractionRow[]
+        const disclosedRows = (held.disclosed ?? []) as InteractionRow[]
+        for (const [rows, disclosed] of [
+          [inline, false],
+          [disclosedRows, true],
+        ] as Array<[InteractionRow[], boolean]>) {
+          for (const row of rows) {
+            const line = interactionLine(tier, row, { controlled, quote: !disclosed })
+            if (nullIfBlank(line) === null) {
+              counters.bump('interaction rows skipped: no line could be built from the stored row')
+              continue
+            }
+            interactionRows.push([
+              sha256(`${key} interaction ${tier} ${interactionOrdinal}`),
+              key,
+              'interaction',
+              tier,
+              interactionOrdinal,
+              disclosed,
+              typeof held.total === 'number' ? held.total : null,
+              nullIfBlank(row.counterpartKey),
+              nullIfBlank(row.counterpartName),
+              nullIfBlank(row.direction),
+              nullIfBlank(row.mechanism),
+              nullIfBlank(row.source)?.slice(0, 64) ?? null,
+              nullIfBlank(row.sourceRecordId)?.slice(0, 200) ?? null,
+              nullIfBlank(row.sourceUrl),
+              recordedDate(row.sourceDate, counters),
+              nullIfBlank(row.setId)?.slice(0, 64) ?? null,
+              nullIfBlank(row.effectiveTime)?.slice(0, 32) ?? null,
+              nullIfBlank(row.labelSection)?.slice(0, 64) ?? null,
+              nullIfBlank(row.licence),
+              nullIfBlank(row.ruleId)?.slice(0, 64) ?? null,
+              nullIfBlank(row.confidence)?.slice(0, 24) ?? null,
+              nullIfBlank(row.sentence),
+              nullIfBlank(row.derivation),
+              line,
+              '[]',
+              JSON.stringify(row.provenance ?? {}),
+            ])
+            interactionOrdinal += 1
+            interactionRowsWritten += 1
+          }
+        }
+      }
+
+      /*
+       * The checked-sources statement, on every page that has one — including the 25,217 that hold
+       * no interaction at all. An absence of rows in three registers is a finding about the
+       * registers, and Operating Rule 9 requires the page to say which ones were read and when.
+       */
+      const checked = bundle.interactions?.checked
+      if (checked && Array.isArray(checked.sourcesChecked) && checked.date) {
+        const statement = checkedSourcesStatement(
+          { sourcesChecked: checked.sourcesChecked, date: checked.date },
+          interactionRowsWritten > 0,
+        )
+        if (statement !== undefined) {
+          interactionRows.push([
+            sha256(`${key} sources-checked`),
+            key,
+            'sources-checked',
+            null,
+            0,
+            false,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            recordedDate(checked.date, counters),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            statement,
+            JSON.stringify(checked.sourcesChecked),
+            '{}',
+          ])
+        } else counters.bump('pages with no checked-sources statement: no source was recorded')
+      } else counters.bump('pages with no recorded interaction-source check')
+
+      for (const [section, entries] of Object.entries(bundle.sections ?? {})) {
+        let sectionOrdinal = 0
+        for (const entry of entries) {
+          const sentence = nullIfBlank((entry.values ?? {}).sentence)
+          if (sentence === null) {
+            counters.bump('computed section rows skipped: the stage recorded no sentence')
+            continue
+          }
+          sectionRows.push([
+            key,
+            section.slice(0, 32),
+            sectionOrdinal,
+            nullIfBlank(entry.templateId)?.slice(0, 64) ?? null,
+            sentence,
+            JSON.stringify(entry.values ?? {}),
+            JSON.stringify(entry.provenance ?? {}),
+          ])
+          sectionOrdinal += 1
+        }
+      }
+
+      /*
+       * The moved-trial sentence sits with the form-of note, because it answers the question that
+       * note raises: if this page is the calcium salt of heparin, where did heparin's trials go?
+       */
+      const moved = bundle.trialsMoved
+      if (moved && moved.count > 0) {
+        const existing = sectionRows.filter((row) => row[0] === key && row[1] === 'formOf').length
+        sectionRows.push([
+          key,
+          'formOf',
+          existing,
+          'trials-moved-to-parent',
+          `${moved.count} registered ${moved.count === 1 ? 'trial names' : 'trials name'} ` +
+            `${moved.toName} without this form; ${moved.count === 1 ? 'it is' : 'they are'} ` +
+            `recorded on the ${moved.toName} page.`,
+          JSON.stringify({ count: moved.count, toKey: moved.toKey, toName: moved.toName }),
+          JSON.stringify({
+            fields: {
+              [String(moved.count)]:
+                'data/revamp/identity/trial-reassignments-v3.csv rows with action=move for this page',
+            },
+          }),
+        ])
+      }
+
+      const disambiguation = bundle.disambiguation
+      const disambiguated = nullIfBlank(disambiguation?.displayName)
+      if (disambiguated !== null) {
+        displayNameRows.push([
+          key,
+          stripControlCharacters(disambiguated, counters) ?? disambiguated,
+          nullIfBlank(disambiguation?.disambiguator),
+          nullIfBlank(disambiguation?.basis),
+          nullIfBlank(disambiguation?.collidesOn),
+        ])
+      }
     }
 
     /* redirects onto this page */
@@ -1692,6 +2378,12 @@ function buildBatch(input: {
       sourceRows,
       registryRows,
       redirectRows,
+      registrationRows,
+      interactionRows,
+      patentRows,
+      controlledRows,
+      sectionRows,
+      displayNameRows,
     }),
   )
 
@@ -1706,6 +2398,12 @@ function buildBatch(input: {
     sourceRows,
     registryRows,
     redirectRows,
+    registrationRows,
+    interactionRows,
+    patentRows,
+    controlledRows,
+    sectionRows,
+    displayNameRows,
     inputDigest,
   }
 }
@@ -1729,6 +2427,15 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
       'page_relations',
       'page_sources',
       'page_registry_studies',
+      // Phase 4 blocks (migration 0026). Deleted with the rest of the children, before the page
+      // row is written, so a page that has just become a controlled substance loses its withheld
+      // blocks inside the same transaction that marks it one.
+      'page_registration',
+      'page_interactions',
+      'page_patent',
+      'page_controlled',
+      'page_sections',
+      'page_display_names',
     ]) {
       await client.query(`DELETE FROM "${table}" WHERE key = ANY($1::varchar[])`, [keys])
     }
@@ -1765,6 +2472,8 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'top_rung',
         'human_data',
         'evidence_tier',
+        'controlled',
+        'controlled_basis',
       ],
       built.pages.map((page) => [
         page.key,
@@ -1795,6 +2504,8 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         page.topRung,
         page.humanData,
         page.evidenceTier,
+        page.controlled,
+        page.controlledBasis,
       ]),
       `ON CONFLICT ("key") DO UPDATE SET
          "slug" = EXCLUDED."slug",
@@ -1824,6 +2535,8 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
          "top_rung" = EXCLUDED."top_rung",
          "human_data" = EXCLUDED."human_data",
          "evidence_tier" = EXCLUDED."evidence_tier",
+         "controlled" = EXCLUDED."controlled",
+         "controlled_basis" = EXCLUDED."controlled_basis",
          "updated_at" = now()`,
     )
 
@@ -1898,7 +2611,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
     await insertRows(
       client,
       'page_relations',
-      ['id', 'key', 'relation', 'target_key', 'label', 'source'],
+      ['id', 'key', 'relation', 'target_key', 'label', 'note', 'source'],
       built.relationRows,
       'ON CONFLICT ("id") DO NOTHING',
     )
@@ -1917,6 +2630,128 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
       ['id', 'key', 'nct', 'role', 'matched_name'],
       built.registryRows,
       'ON CONFLICT ("id") DO NOTHING',
+    )
+
+    /* ---- Phase 4 blocks (migration 0026) ---------------------------------------------------- */
+
+    await insertRows(
+      client,
+      'page_registration',
+      [
+        'id',
+        'key',
+        'jurisdiction',
+        'label',
+        'status',
+        'detail',
+        'source',
+        'date_checked',
+        'ordinal',
+        'component',
+        'line',
+        'disclosure',
+        'provenance',
+      ],
+      built.registrationRows,
+      'ON CONFLICT ("id") DO NOTHING',
+    )
+
+    await insertRows(
+      client,
+      'page_interactions',
+      [
+        'id',
+        'key',
+        'kind',
+        'tier',
+        'ordinal',
+        'disclosed',
+        'total_in_tier',
+        'counterpart_key',
+        'counterpart_name',
+        'direction',
+        'mechanism',
+        'source',
+        'source_record_id',
+        'source_url',
+        'source_date',
+        'set_id',
+        'effective_time',
+        'label_section',
+        'licence',
+        'rule_id',
+        'confidence',
+        'sentence',
+        'derivation',
+        'line',
+        'sources_checked',
+        'provenance',
+      ],
+      built.interactionRows,
+      'ON CONFLICT ("id") DO NOTHING',
+    )
+
+    await insertRows(
+      client,
+      'page_patent',
+      [
+        'key',
+        'eligible',
+        'register',
+        'rld',
+        'earliest_unexpired_patent_expiry',
+        'exclusivity_end',
+        'generic_available',
+        'first_generic_approval',
+        'te_code',
+        'no_record_line',
+        'reason',
+        'line',
+        'source',
+        'date_checked',
+        'disclosure',
+        'provenance',
+      ],
+      built.patentRows,
+      'ON CONFLICT ("key") DO NOTHING',
+    )
+
+    await insertRows(
+      client,
+      'page_controlled',
+      [
+        'id',
+        'key',
+        'jurisdiction',
+        'list',
+        'class_or_schedule',
+        'schedule_code',
+        'item_number',
+        'substance_as_listed',
+        'statute',
+        'statute_url',
+        'version_date',
+        'source',
+        'provenance',
+      ],
+      built.controlledRows,
+      'ON CONFLICT ("id") DO NOTHING',
+    )
+
+    await insertRows(
+      client,
+      'page_sections',
+      ['key', 'section', 'ordinal', 'template_id', 'sentence', 'values', 'provenance'],
+      built.sectionRows,
+      'ON CONFLICT ("key", "section", "ordinal") DO NOTHING',
+    )
+
+    await insertRows(
+      client,
+      'page_display_names',
+      ['key', 'display_name', 'disambiguator', 'basis', 'collides_on'],
+      built.displayNameRows,
+      'ON CONFLICT ("key") DO NOTHING',
     )
 
     await insertRows(

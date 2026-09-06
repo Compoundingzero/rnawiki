@@ -61,6 +61,18 @@ export interface PageInput {
    * classification to cite, so it must not be asked why it carries a supervision requirement.
    */
   suppressionClasses?: string[]
+  /**
+   * The controlled-substance trigger (docs/specs/phase4-generators.md §4): a recorded entry in the
+   * Singapore Misuse of Drugs Act or Poisons Act schedules, a United States DEA schedule, or
+   * Australian Poisons Standard Schedule 8 or 9, as
+   * `scripts/revamp/controlled_suppression.py` recorded it.
+   *
+   * The Phase 4 assignments file also sets `suppressed` on such a page, so the four withheld blocks
+   * were already going; this flag makes the rule independent of that coupling. A page that carries a
+   * schedule but is not otherwise suppressed still has no dose question, and a reader of this file
+   * can see why without following the assignments file to find out.
+   */
+  controlled?: boolean
 }
 
 export interface QuestionBlock {
@@ -341,6 +353,8 @@ interface NormalPage {
   name: string
   model: string
   suppressed: boolean
+  /** The controlled-substance trigger of docs/specs/phase4-generators.md §4. */
+  controlled: boolean
   tier?: number
   suppressionClasses: string[]
   fields: Map<FieldId, FieldEntry>
@@ -423,6 +437,7 @@ export function normalisePage(page: PageInput): NormalPage {
     name: page.displayName,
     model: page.model,
     suppressed: page.suppressed === true,
+    controlled: page.controlled === true,
     suppressionClasses: Array.isArray(page.suppressionClasses) ? page.suppressionClasses : [],
     ...(typeof page.tier === 'number' ? { tier: page.tier } : {}),
     fields,
@@ -991,8 +1006,19 @@ interface Draft {
 /**
  * Seeds 1, 2 and 6 are removed absolutely under R2 suppression, and a suppressed page always leads
  * with the supervision block (which is first in §4's order).
+ *
+ * `dose-studied` joins them (`docs/specs/phase4-generators.md` §4). That question quotes a
+ * recorded dose and asks the reader over how long it ran, which is the one question on the page a
+ * reader can act on with a dose in hand. R2 already drops "any other derived seed that could read
+ * as guidance for a suppressed compound" (`docs/specs/suppression-classes.md`), and Operating
+ * Rule 9 forbids dosing text on a substance carrying a controlled-substance schedule. The
+ * schedules themselves reach this filter through `p.suppressed`: the Phase 4 assignments file
+ * (`scripts/revamp/controlled_suppression.py`) sets that flag from the `controlled` field's SG
+ * Misuse of Drugs Act and Poisons Act schedules, US DEA schedule and AU Poisons Standard
+ * Schedule 8 or 9 entries, so no dose rule is written here. The recorded dose itself is not
+ * removed: it stays in the block's rows, and only the question is withheld.
  */
-const SUPPRESSED_BLOCKS = new Set(['bioavailability', 'n-of-1', 'time-to-signal'])
+const SUPPRESSED_BLOCKS = new Set(['bioavailability', 'n-of-1', 'time-to-signal', 'dose-studied'])
 
 /**
  * A slot carries a source's own words, and a recorded value may contain one of the guarded words
@@ -1842,7 +1868,7 @@ export function deriveQuestions(
   /* -- suppression, one-per-block, §4 order ---------------------------------------------------------- */
   const kept = new Map<string, Draft>()
   for (const d of drafts) {
-    if (p.suppressed && SUPPRESSED_BLOCKS.has(d.block)) continue
+    if ((p.suppressed || p.controlled) && SUPPRESSED_BLOCKS.has(d.block)) continue
     if (!kept.has(d.block)) kept.set(d.block, d)
   }
   const ordered = [...kept.values()].sort(
@@ -2269,11 +2295,20 @@ async function main(): Promise<void> {
     const classes = asArray(pick(row, 'classes', 'suppressionClasses'))
       .map((c) => asString(c))
       .filter((c): c is string => Boolean(c))
+    const page = pages.get(key)
     if (classes.length > 0) {
       suppressionClasses.set(key, classes)
-      const page = pages.get(key)
       if (page) page.suppressionClasses = classes
     }
+    if (!page) continue
+    /*
+     * The assignments file is the record of both flags. The field batches carry `suppressed` only
+     * where the extractor happened to copy it, and the Phase 4 batches do not carry it at all, so
+     * reading it here is what makes the Phase 4 run withhold the blocks it must withhold. The
+     * controlled trigger is `scripts/revamp/controlled_suppression.py`'s own recorded decision.
+     */
+    if (typeof row.suppressed === 'boolean') page.suppressed = row.suppressed
+    if (row.controlledTrigger === true) page.controlled = true
   }
 
   // Only the seed files themselves: `derived/indexes/*.ndjson` holds the corpus-wide bipartite

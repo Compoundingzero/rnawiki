@@ -380,7 +380,17 @@ def build_targets(
     sample_size: int,
     sample_seed: int,
     issues: list[str],
+    indexable_keys_file: Path | None = None,
 ) -> tuple[list[PageTarget], dict]:
+    """The three sets. The indexable set is the live sitemap's, which is the build's own answer.
+
+    `indexable_keys_file` names a set of corpus keys to measure as the indexable set instead. It
+    exists for one job: when a re-derived threshold empties the sitemap, a pair count over an empty
+    set is zero for a reason that has nothing to do with duplication, and the set an earlier
+    threshold named has to be measured to compare like with like. It changes which pages are called
+    indexable and nothing else — the rendering, the shingles, the scorer and the threshold are
+    untouched.
+    """
     key_by_slug = {slug: key for key, slug in slug_by_key.items()}
 
     children = sitemap_children(base_url, issues)
@@ -394,7 +404,39 @@ def build_targets(
 
     indexable: list[PageTarget] = []
     seen: set[str] = set()
-    for child in INDEXABLE_SITEMAPS:
+    if indexable_keys_file is not None:
+        named = [
+            line.strip()
+            for line in indexable_keys_file.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        missing = 0
+        for key in named:
+            slug = slug_by_key.get(key)
+            if slug is None:
+                missing += 1
+                continue
+            if slug in seen:
+                continue
+            seen.add(slug)
+            indexable.append(
+                PageTarget(
+                    slug=slug,
+                    key=key,
+                    set_name="indexable",
+                    tier=records[key].tier if key in records else None,
+                )
+            )
+        if missing:
+            issues.append(
+                f"{missing} of the {len(named)} keys in {repo_path(indexable_keys_file)} have no "
+                "slug in this corpus and are not in the measured set"
+            )
+        issues.append(
+            f"the indexable set is the {len(indexable)} pages named by "
+            f"{repo_path(indexable_keys_file)}, not the live sitemap's"
+        )
+    for child in [] if indexable_keys_file is not None else INDEXABLE_SITEMAPS:
         if children and child not in children:
             issues.append(f"sitemap index does not list {child}.xml")
             continue
@@ -880,6 +922,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="comma-separated viewport widths",
     )
     parser.add_argument("--refresh", action="store_true", help="re-render pages already cached")
+    parser.add_argument(
+        "--indexable-keys",
+        type=Path,
+        help="file of corpus keys to measure as the indexable set, one per line, instead of the "
+             "live sitemap's; for comparing a new set with the set an earlier threshold named",
+    )
     parser.add_argument("--csv", type=Path, default=OUT_CSV)
     parser.add_argument("--summary", type=Path, default=OUT_SUMMARY)
     return parser.parse_args(argv)
@@ -894,7 +942,9 @@ def main(argv: list[str] | None = None) -> int:
 
     records = load_corpus()
     slug_by_key, provenance = assign_slugs(records)
-    targets, sets = build_targets(base_url, records, slug_by_key, args.sample, args.seed, issues)
+    targets, sets = build_targets(
+        base_url, records, slug_by_key, args.sample, args.seed, issues, args.indexable_keys
+    )
     print(
         f"targets: {sets['indexableRequested']} indexable, {sets['hubsRequested']} hubs, "
         f"{sets['noindexSampleRequested']} noindex (frame {sets['noindexFrame']})",
