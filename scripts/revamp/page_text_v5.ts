@@ -8,7 +8,16 @@
  * overlap ruler measures and the words a reader sees are one function's output, not two.
  *
  *   npx tsx scripts/revamp/page_text_v5.ts
+ *   npx tsx scripts/revamp/page_text_v5.ts --with-furniture
  *   npx tsx scripts/revamp/page_text_v5.ts --limit 200 --out data/revamp/render-v5-smoke
+ *
+ * Furniture (docs/specs/phase4-generators.md §11). By default the text is written without it: the
+ * register rows whose status is an absence, the checked-sources statement on a page holding no
+ * interaction row, the patent no-record line and the S10-only classification line are on the page
+ * and are not in the measured text, because before Phase 4 an absence rendered nothing and was not
+ * in the measured text either. `--with-furniture` writes the page as the browser paints it, which
+ * is what the DOM parity check and the rendering-safety rules read; its default output directory is
+ * `data/revamp/render-v5-with-furniture`, so the two runs never overwrite one another.
  *
  * Outputs, under `--out` (default `data/revamp/render-v5`):
  *   text/batch-0001.ndjson …   one `RenderedPage` per line, the shape the overlap ruler reads
@@ -16,7 +25,7 @@
  *   provenance/batch-0001.ndjson …  `{key, provenance: [{sentence, fields}]}` per page (4.7)
  *   summary.json               counts, and what the inputs did not supply
  *
- * Trial reassignment. `data/revamp/identity/trial-reassignments-v3.csv` moves a registry study from
+ * Trial reassignment. `data/revamp/identity/trial-reassignments-v4.csv` moves a registry study from
  * a salt, ester or stereoisomer page to the parent the registry actually named (Phase 3 R14, extended
  * in §6). The registry aggregate this renderer reads was computed before that move, so a moved study
  * is removed here: every per-trial list is filtered by NCT identifier, and the counts that can be
@@ -37,6 +46,7 @@ import {
   type QuestionBlock,
 } from '../corpus-20k/questions/derive'
 import {
+  aggregateWithoutMovedStudies,
   renderPage,
   type PageBlocks,
   type PageBundle,
@@ -67,10 +77,6 @@ function asString(value: unknown): string | undefined {
   }
   if (typeof value === 'number' && Number.isFinite(value)) return String(value)
   return undefined
-}
-
-function asNumber(value: unknown): number | undefined {
-  return typeof value === 'number' && Number.isFinite(value) ? value : undefined
 }
 
 function arg(name: string): string | undefined {
@@ -166,88 +172,6 @@ function readCsv(text: string): Array<Record<string, string>> {
     })
 }
 
-/* ------------------------------------------------------------------ trial reassignment */
-
-/**
- * The registry aggregate with the studies Phase 3 moved to another page removed.
- *
- * Every list in the aggregate carries the NCT identifier, so the lists are filtered exactly. The
- * derived counts are recomputed from `perTrial`, which the v3 aggregate carries for 8,615 of the
- * 8,663 pages that have one; where `perTrial` is absent, only `studies` is reduced by the number of
- * identifiers removed, and every count that cannot be recomputed is dropped.
- */
-export function aggregateWithoutMovedStudies(
-  aggregate: Record<string, unknown>,
-  moved: ReadonlySet<string>,
-): Record<string, unknown> {
-  if (moved.size === 0) return aggregate
-  const out: Record<string, unknown> = { ...aggregate }
-  const keeps = (item: unknown): boolean => {
-    const nct = asString(asObject(item)?.nct)
-    return nct === undefined || !moved.has(nct)
-  }
-  for (const field of [
-    'perTrial',
-    'stopped',
-    'primaryOutcomes',
-    'completedOverTwoYearsWithoutResults',
-    'ongoing',
-    'trials',
-  ]) {
-    const held = aggregate[field]
-    if (Array.isArray(held)) out[field] = held.filter(keeps)
-  }
-  const perTrial = Array.isArray(out.perTrial) ? out.perTrial : undefined
-  if (perTrial !== undefined) {
-    out.studies = perTrial.length
-    out.summarised = perTrial.length
-    const byPhase: Record<string, number> = {}
-    const byStatus: Record<string, number> = {}
-    const enrolments: number[] = []
-    for (const item of perTrial) {
-      const row = asObject(item)
-      if (!row) continue
-      const phase = asString(row.phase)
-      if (phase) byPhase[phase] = (byPhase[phase] ?? 0) + 1
-      const status = asString(row.status)
-      if (status) byStatus[status] = (byStatus[status] ?? 0) + 1
-      const enrolment = asNumber(row.enrollment) ?? asNumber(row.enrolment)
-      if (enrolment !== undefined) enrolments.push(enrolment)
-    }
-    out.byPhase = byPhase
-    out.byOverallStatus = byStatus
-    if (enrolments.length > 0) {
-      const sorted = [...enrolments].sort((a, b) => a - b)
-      const middle = Math.floor(sorted.length / 2)
-      out.enrolment = {
-        max: sorted[sorted.length - 1],
-        min: sorted[0],
-        median:
-          sorted.length % 2 === 1
-            ? sorted[middle]
-            : Math.round((((sorted[middle - 1] as number) + (sorted[middle] as number)) / 2) * 10) /
-              10,
-        n: sorted.length,
-      }
-      out.enrolmentMin = sorted[0]
-    } else {
-      delete out.enrolment
-      delete out.enrolmentMin
-    }
-    // The longest run is a named study; where that study moved, the page no longer holds a longest
-    // run it can name, and the field goes rather than pointing at another page's trial.
-    const heldNct = asString(asObject(aggregate.longestDuration)?.nct)
-    if (heldNct !== undefined && moved.has(heldNct)) delete out.longestDuration
-  } else {
-    const studies = asNumber(aggregate.studies)
-    if (studies !== undefined) out.studies = Math.max(0, studies - moved.size)
-  }
-  // A count with no per-trial flag behind it cannot be recomputed, and restating it would count
-  // studies that belong to another page. It is dropped: the page then says less, not something false.
-  delete out.hasResults
-  return out
-}
-
 /* ------------------------------------------------------------------ the run */
 
 interface Written {
@@ -265,8 +189,11 @@ async function main(): Promise<void> {
   const registryDir = arg('registry') ?? 'data/corpus-20k/registry/aggregates'
   const blocksDir = arg('blocks') ?? 'data/revamp/page-blocks'
   const reassignmentsFile =
-    arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v3.csv'
-  const outDir = arg('out') ?? 'data/revamp/render-v5'
+    arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v4.csv'
+  const displayNamesFile = arg('display-names') ?? 'data/revamp/identity/display-names-v3.csv'
+  const withFurniture = process.argv.includes('--with-furniture')
+  const outDir =
+    arg('out') ?? (withFurniture ? 'data/revamp/render-v5-with-furniture' : 'data/revamp/render-v5')
   const shards = Number(arg('shards') ?? 8)
   const batchSize = Number(arg('batch-size') ?? 1000)
   const limit = arg('limit') ? Number(arg('limit')) : undefined
@@ -292,6 +219,21 @@ async function main(): Promise<void> {
     const display = asString(row.displayName)
     if (display) names.set(key, display)
   })
+
+  /*
+   * The name each page prints, where Phase 3 disambiguated two pages that print the same one
+   * (§11). The loader writes the disambiguated name into `corpus_pages.display_name`, so the page
+   * links a counterpart by that name; this map is what the measured text names it by, and the two
+   * have to be the same name.
+   */
+  try {
+    for (const row of readCsv(await fs.readFile(displayNamesFile, 'utf8'))) {
+      const disambiguated = row.disambiguated_display_name
+      if (row.key && disambiguated) names.set(row.key, disambiguated)
+    }
+  } catch {
+    note(`no display names read from ${displayNamesFile}`)
+  }
 
   const suppressed = new Set<string>()
   const classes = new Map<string, string[]>()
@@ -377,6 +319,7 @@ async function main(): Promise<void> {
     withheldDoseLines: 0,
     sentencesWithProvenance: 0,
     sentencesWithoutProvenance: 0,
+    furnitureLines: 0,
     words: 0,
     byTier: { 1: 0, 2: 0, 3: 0 } as Record<number, number>,
   }
@@ -530,7 +473,7 @@ async function main(): Promise<void> {
       bundle.presentFields = Object.values(bundle.fields).filter(
         (entry) => entry && entry.state === 'present',
       ).length
-      const rendered = renderPage(bundle, { provenance: true })
+      const rendered = renderPage(bundle, { provenance: true, withFurniture })
       const provenance = rendered.provenance ?? []
       delete rendered.provenance
 
@@ -553,6 +496,7 @@ async function main(): Promise<void> {
       )
         stats.withComputedSections += 1
       if ((blocks?.sections.formOf?.length ?? 0) > 0) stats.withFormOfNote += 1
+      stats.furnitureLines += rendered.furnitureLines
       if (rendered.withheldDoseLines !== undefined) {
         stats.controlledPagesWithAWithheldDoseLine += 1
         stats.withheldDoseLines += rendered.withheldDoseLines
@@ -587,6 +531,7 @@ async function main(): Promise<void> {
       blocksDir,
       reassignmentsFile,
     },
+    withFurniture,
     pagesWithMovedStudies: movedOut.size,
     ...stats,
     meanWordCount: stats.pages > 0 ? Number((stats.words / stats.pages).toFixed(1)) : 0,

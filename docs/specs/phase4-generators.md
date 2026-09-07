@@ -238,3 +238,39 @@ no-record line. Two binding rules collide — "unknowns render as Not found in [
   apply to question headings, which are the corpus-20k template contract (masked template ≤ 30 %,
   most-repeated unmasked string ≤ 0.5 %), nor to furniture, nor to the h1. Tests (a) and (c)
   apply to everything the page paints outside furniture.
+
+## 12. After measure 2 (2026-09-07, Fable)
+
+- **Test (b) is evaluated over the masked block**, not the masked sentence. Felix's definition of
+  slop is "template sentences with a name swapped in" and "a passage where consecutive claims do
+  not follow". The unit a reader meets is the block's answer (all its sentences, in order); after
+  masking drug, target and number tokens, that block text may appear on at most 0.5 % of pages. A
+  one-sentence block is therefore held to the literal sentence rule. The sentence-level literal
+  reading is reported beside it for the record: it fails every deterministic generator, including
+  the thirteen corpus-20k seeds that shipped, because a section that fires on 30 % of pages with a
+  fixed skeleton cannot appear on 0.5 % once its slots are masked.
+- **"No regulator classification is recorded for X"** is an absence statement and is furniture
+  wherever it renders, including as a question-block answer (it was marked only in the stub
+  record). It carries `data-furniture`, leaves the ruler, and is exempt from (b).
+- **Same-name "-2" pairs** (nebivolol / nebivolol-2 and the rest): registry studies whose
+  interventions name only the shared name belong to the page whose key the registers rank first
+  (K1 over K2 over K3 over K4; the unsuffixed slug); the other page keeps only facts sourced
+  against its own identifiers. A "-2" page left with nothing of its own falls below its tier's
+  threshold and is noindex, which is the honest state of a record that holds no independent fact.
+- **Combination products sharing a component** (pertuzumab-trastuzumab-hyaluronidase-zzxf and
+  trastuzumab-hyaluronidase-oysk): a trial belongs to the combination whose full component set
+  its interventions name; label, register and patent rows are the product's own by construction;
+  the page opens with its component list. If a pair still measures ≥ 0.5 after that, it goes to
+  the held list for Felix.
+- **351(a) suffixed biologics are not biosimilars.** Where the FDA Purple Book licenses the page's
+  proper name under 351(a) and the page's UNII is identical to the unsuffixed INN page's, the two
+  are one substance: R1 (identical UNII) licenses the merge and the biosimilar exception does not
+  apply. The INN page survives, the suffixed proper name becomes a synonym, the suffixed slug
+  redirects. `biosimilar_of` edges are kept only for 351(k) licences (Phase 3 rule corrected:
+  the suffix alone never makes a biosimilar).
+- **Line definitions**: the slop draw's render/DOM comparison uses the same extraction as
+  `dom_parity.py` (main-region text lines outside furniture), so one number describes parity.
+- **Hub integration** (member Hubs row, `hubs.xml`, `hubs_load.ts` after the corpus loader) is
+  applied now that the renderer is stable, from `data/revamp/hubs/integration-plan.md`.
+- **Tailwind source scan** excludes `data/` and `.dvc/` (`@source not` in `app/globals.css`);
+  the build worker was being killed reading 17 GB of measurement output.

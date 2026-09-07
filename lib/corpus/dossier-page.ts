@@ -31,6 +31,7 @@ import {
   pagePatent,
   pageQuestions,
   pageRegistration,
+  pageRegistryAggregate,
   pageRegistryStudies,
   pageRelations,
   pageSections,
@@ -41,11 +42,14 @@ import {
 import {
   anchor,
   buildBlockBody,
+  carriesDoseText,
   checkedSourceNames,
   checkedSourcesStatement,
   deriveQuestions,
+  groupRevealedRows,
   INTERACTION_TIER_LABELS,
   registerName,
+  withdrawnArcRows,
   type FieldEntry,
   type PageBundle,
   type QuestionBlock,
@@ -149,6 +153,12 @@ export interface CorpusSynonymGroup {
 
 /** One "Where it's registered" line (§3). `line` is what the register stage wrote; nothing here rewrites it. */
 export interface CorpusRegistrationLine {
+  /**
+   * The absence this row states, in three words — `not found`, `not cleared`, `not checked` — and
+   * absent on a row that states anything affirmative. §11 renders these as one table of furniture
+   * rather than as seven sentences on 25,000 pages.
+   */
+  absence?: string
   id: string
   jurisdiction: string
   label: string
@@ -199,6 +209,8 @@ export interface CorpusInteractions {
 export interface CorpusPatentLine {
   eligible: boolean
   line: string
+  /** True where the line states only that no US register holds this record (§11 furniture). */
+  absence: boolean
   register?: string
   reason?: string
   source?: string
@@ -460,30 +472,19 @@ function emphasisRange(
   return best
 }
 
-/** Consecutive rows sharing a label become one headed group; a lone row keeps its inline label. */
+/**
+ * Consecutive rows sharing a label become one headed group; a lone row keeps its inline label.
+ *
+ * The rule itself lives in `lib/corpus/page-text.ts` beside the body builders, because the corpus
+ * renderer has to print the rows the same way: it printed the label on every row of a run where
+ * the page prints it once, and the two texts disagreed on every disclosure holding a run.
+ */
 function groupRows(blockId: string, rows: RevealedRow[]): CorpusRowGroup[] {
-  const groups: CorpusRowGroup[] = []
-  let index = 0
-  while (index < rows.length) {
-    const current = rows[index]
-    if (!current) break
-    let end = index + 1
-    while (end < rows.length && rows[end]?.label === current.label) end += 1
-    const run = rows.slice(index, end)
-    if (run.length > 1) {
-      groups.push({
-        id: `${blockId}-g${groups.length + 1}`,
-        label: current.label,
-        rows: run,
-      })
-    } else {
-      const previous = groups[groups.length - 1]
-      if (previous && previous.label === undefined) previous.rows.push(...run)
-      else groups.push({ id: `${blockId}-g${groups.length + 1}`, rows: run })
-    }
-    index = end
-  }
-  return groups
+  return groupRevealedRows(rows).map((group, index) => ({
+    id: `${blockId}-g${index + 1}`,
+    ...(group.label === undefined ? {} : { label: group.label }),
+    rows: group.rows,
+  }))
 }
 
 /** The register named in the header line, and the date the record was last checked. */
@@ -513,105 +514,26 @@ function headerLine(
 }
 
 /**
- * The withdrawn arc (R11): the dated register rows that record what happened, each carrying the
- * register that states it. Nothing is narrated — a row exists only where a register wrote one.
+ * The withdrawn arc (R11), as `withdrawnArcRows` built it, with each row's source resolved to a
+ * link this page already carries. The rows themselves are built beside every other body builder,
+ * so the measured text and the painted page hold the same rows in the same order.
  */
 function withdrawnArc(
   fields: Record<string, FieldEntry>,
   candidates: AnchorCandidate[],
 ): CorpusArcRow[] {
-  const rows: CorpusArcRow[] = []
-  const seen = new Set<string>()
-  const push = (row: CorpusArcRow): void => {
-    const id = `${row.date ?? ''}|${row.label}|${row.value}`
-    if (seen.has(id)) return
-    seen.add(id)
-    rows.push(row)
-  }
-  const anchorFor = (kind?: string, id?: string, date?: string): CorpusAnchor | undefined => {
-    const label = anchor({
-      ...(kind ? { kind } : {}),
-      ...(id ? { id } : {}),
-      ...(date ? { sourceDate: date } : {}),
-    })
-    if (!label) return undefined
-    return candidates.find((candidate) => candidate.text === label) ?? { text: label }
-  }
-
-  const approval = fields.approvalDate ?? fields.firstApproval
-  if (approval && approval.state === 'present') {
-    const value = asRecord(approval.value)
-    const date = text(value?.date ?? value?.year ?? approval.value)
-    const register = text(value?.register ?? value?.source)
-    if (date && register) {
-      const source = Array.isArray(approval.source) ? approval.source[0] : approval.source
-      const row: CorpusArcRow = { date, label: 'First approval', value: register }
-      const found = anchorFor(source?.kind, source?.id, source?.sourceDate ?? approval.sourceDate)
-      if (found) row.anchor = found
-      push(row)
+  return withdrawnArcRows(fields).map((row) => {
+    const label = anchor(row.source ?? {})
+    const found = label
+      ? (candidates.find((candidate) => candidate.text === label) ?? { text: label })
+      : undefined
+    return {
+      ...(row.date ? { date: row.date } : {}),
+      label: row.label,
+      value: row.value,
+      ...(found ? { anchor: found } : {}),
     }
-  }
-
-  const withdrawal = fields.withdrawal ?? fields.withdrawalStatus ?? fields.withdrawn
-  if (withdrawal && withdrawal.state === 'present') {
-    const value = asRecord(withdrawal.value)
-    const evidence = Array.isArray(value?.evidence) ? value.evidence : []
-    for (const item of evidence.slice(0, 12)) {
-      const row = asRecord(item)
-      if (!row) continue
-      const statement = text(row.statement ?? row.statusVerbatim)
-      if (!statement) continue
-      const source = text(row.source ?? row.register)
-      const date = text(row.sourceDate ?? row.date)
-      const entry: CorpusArcRow = {
-        ...(date ? { date } : {}),
-        label: source ?? 'Register record',
-        value: statement,
-      }
-      const found = anchorFor(source, text(row.id), date)
-      if (found) entry.anchor = found
-      push(entry)
-    }
-  }
-
-  const regulatory = fields.regulatory ?? fields.regulatoryStatus
-  if (regulatory && regulatory.state === 'present') {
-    const value = asRecord(regulatory.value)
-    for (const [jurisdiction, raw] of Object.entries(value ?? {})) {
-      const record = asRecord(raw)
-      const status = text(record?.status)
-      if (!status || status === 'unknown') continue
-      const evidence = [
-        ...(Array.isArray(record?.evidence) ? record.evidence : []),
-        ...(Array.isArray(record?.records) ? record.records : []),
-      ]
-      for (const item of evidence.slice(0, 4)) {
-        const row = asRecord(item)
-        if (!row) continue
-        const verbatim = text(row.statusVerbatim ?? row.statement)
-        if (!verbatim) continue
-        const date = text(row.sourceDate)
-        const register = text(row.register ?? row.source)
-        const entry: CorpusArcRow = {
-          ...(date ? { date } : {}),
-          label: `${jurisdiction}${register ? ` · ${register}` : ''}`,
-          value: verbatim,
-        }
-        const found = anchorFor(register, text(row.recordId ?? row.id), date)
-        if (found) entry.anchor = found
-        push(entry)
-      }
-    }
-  }
-
-  return rows
-    .sort((a, b) => {
-      if (a.date && b.date) return a.date.localeCompare(b.date)
-      if (a.date) return -1
-      if (b.date) return 1
-      return 0
-    })
-    .slice(0, 16)
+  })
 }
 
 /* ------------------------------------------------------------- the load */
@@ -629,6 +551,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     relationRows,
     sourceRows,
     studyRows,
+    registryAggregateRows,
     registrationRows,
     interactionRows,
     patentRows,
@@ -646,6 +569,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       .select({ nct: pageRegistryStudies.nct })
       .from(pageRegistryStudies)
       .where(eq(pageRegistryStudies.key, key)),
+    db.select().from(pageRegistryAggregate).where(eq(pageRegistryAggregate.key, key)),
     db.select().from(pageRegistration).where(eq(pageRegistration.key, key)),
     db.select().from(pageInteractions).where(eq(pageInteractions.key, key)),
     db.select().from(pagePatent).where(eq(pagePatent.key, key)),
@@ -654,8 +578,18 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     db.select().from(pageDisplayNames).where(eq(pageDisplayNames.key, key)),
   ])
 
+  // The three names the computing stages give "the other page this sentence names", read in the
+  // same order the section list below reads them. `neighbourPage` was missing here, so the nearest
+  // approved compound was never fetched and the page could not name it where the measured text
+  // did (§11).
   const sectionCounterpartKeys = sectionRows
-    .map((row) => text(asRecord(row.values)?.counterpartPage ?? asRecord(row.values)?.toKey))
+    .map((row) =>
+      text(
+        asRecord(row.values)?.counterpartPage ??
+          asRecord(row.values)?.neighbourPage ??
+          asRecord(row.values)?.toKey,
+      ),
+    )
     .filter((value): value is string => value !== undefined)
   const targetKeys = [
     ...new Set([
@@ -702,7 +636,12 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   const seeds: PageBundle['seeds'] = {}
   for (const row of seedRows) {
     const values = asRecord(row.values) ?? {}
-    seeds[`seed${row.seed}`] = { fires: true, values, slots: values }
+    // §11: the slots are their own recorded object (migration 0029). Reading `values` in their
+    // place gave the derivation a slot map it does not recognise, so a seed-driven question was
+    // not re-derived here at all, and the page then wrote "this target" where the measured text
+    // named the target.
+    const slots = asRecord(row.slots) ?? values
+    seeds[`seed${row.seed}`] = { fires: true, values, slots }
   }
 
   const registeredStudies = studyRows.length
@@ -728,7 +667,18 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       cas: page.cas,
       rxcui: page.rxcui,
     },
-    ...(registeredStudies > 0 ? { registry: { studies: registeredStudies } } : {}),
+    /*
+     * The registry aggregate, as the load stored it (migration 0027; §11). The body builders read
+     * the phases, the enrolments, the durations and the per-trial rows out of it, and a page given
+     * only a study count wrote a shorter paragraph than the page the ruler measures. Where no
+     * aggregate is on file the count is still passed, so a page loaded before migration 0027 says
+     * less rather than saying something else.
+     */
+    ...(asRecord(registryAggregateRows[0]?.aggregate)
+      ? { registry: asRecord(registryAggregateRows[0]?.aggregate) as Record<string, unknown> }
+      : registeredStudies > 0
+        ? { registry: { studies: registeredStudies } }
+        : {}),
     questions: [],
     names: new Map(targets.map((row) => [row.key, row.displayName])),
   }
@@ -749,6 +699,22 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   const ordered = [...questionRows].sort((a, b) => a.ordinal - b.ordinal)
   const questions: QuestionBlock[] = ordered.map((row, index) => {
     const match = derivedByTemplate.get(row.template) ?? derivedByBlock.get(row.block)
+    /*
+     * §11: the slot values and the sources the derivation produced when this page was loaded
+     * (migration 0030). They are what the corpus renderer wrote its sentences from, so the page
+     * writes its sentences from them too, and the second derivation above is the fallback for a
+     * page loaded before those columns existed.
+     */
+    const storedValues = asRecord(row.values)
+    const storedQuestionSources: SourceRef[] = (Array.isArray(row.sources) ? row.sources : [])
+      .map((item) => asRecord(item))
+      .filter((item): item is Record<string, unknown> => item !== undefined)
+      .map((item) => ({
+        ...(text(item.kind) ? { kind: text(item.kind) } : {}),
+        ...(text(item.id) ? { id: text(item.id) } : {}),
+        ...(text(item.url) ? { url: text(item.url) } : {}),
+        ...(text(item.sourceDate) ? { sourceDate: text(item.sourceDate) } : {}),
+      }))
     const storedAnchors = Array.isArray(row.anchors) ? row.anchors : []
     const storedSources: SourceRef[] = storedAnchors
       .map((item) => asRecord(item))
@@ -768,17 +734,36 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       badge: `Q${index + 1}`,
       block: row.block,
       template: row.template,
-      values: match?.values ?? {},
-      sources: match?.sources ?? storedSources,
+      values:
+        storedValues && Object.keys(storedValues).length > 0
+          ? (storedValues as Record<string, string>)
+          : (match?.values ?? {}),
+      sources:
+        storedQuestionSources.length > 0
+          ? storedQuestionSources
+          : (match?.sources ?? storedSources),
     }
   })
   bundle.questions = questions
 
   const candidates = anchorCandidates(fieldRows, sourceRows, questions)
 
+  /*
+   * Operating Rule 9 and §4, applied to what the page paints, line by line.
+   *
+   * The loader withholds the four dose-bearing blocks from a controlled record, and the corpus
+   * renderer drops any remaining line that carries a dose, a timing, a route, a frequency or a
+   * combination protocol — a registry trial title reading "320 mg/d" is dosing text on the page
+   * whoever wrote it. The page must drop the same lines: §11 makes the render and the page one
+   * text, and until this was here the page painted dose sentences the render had withheld.
+   */
+  const withholdsDoseText = page.controlled
+  const keeps = (text: string): boolean => !withholdsDoseText || !carriesDoseText(text)
+
   const blocks: CorpusBlock[] = questions.map((question, index) => {
     const body = buildBlockBody(question, bundle)
     const paragraphs: CorpusParagraph[] = body.paragraphs
+      .filter(keeps)
       .map((raw, position) => {
         const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
         if (withoutAnchor.length === 0) return undefined
@@ -810,7 +795,10 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       template: question.template,
       question: question.text,
       paragraphs,
-      groups: groupRows(blockId, body.rows),
+      groups: groupRows(
+        blockId,
+        body.rows.filter((row) => keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`)),
+      ),
       ...(sourceDate ? { sourceDate } : {}),
       ...(lastVerified ? { lastVerified } : {}),
     }
@@ -913,6 +901,8 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   /* ---- Phase 4 blocks -------------------------------------------------------------------- */
 
   const registration: CorpusRegistrationLine[] = [...registrationRows]
+    // Rule 9 on a controlled record, line by line, exactly as the corpus renderer applies it.
+    .filter((row) => keeps(`${row.component ?? ''} ${row.label} ${row.line}`))
     .sort(
       (a, b) =>
         a.ordinal - b.ordinal ||
@@ -930,6 +920,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ordinal: row.ordinal,
       ...(row.component ? { component: row.component } : {}),
       line: row.line,
+      ...(row.absence ? { absence: row.absence } : {}),
       applications: Array.isArray(asRecord(row.disclosure)?.applications)
         ? ((asRecord(row.disclosure)?.applications as unknown[])
             .map((item) => text(item))
@@ -977,7 +968,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
         .filter((item): item is string => item !== undefined)
     : []
   const interactions: CorpusInteractions = {
-    lines: interactionLines,
+    lines: interactionLines.filter((line) => keeps(line.line)),
     ...(checkedRow?.line ? { statement: checkedRow.line } : {}),
     sourcesChecked: checkedSourceNames(
       checkedSourcesRecorded.length > 0
@@ -999,11 +990,12 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     if (rebuilt) interactions.statement = rebuilt
   }
 
-  const patentRow = patentRows[0]
+  const patentRow = patentRows[0] && keeps(patentRows[0].line) ? patentRows[0] : undefined
   const patent: CorpusPatentLine | undefined = patentRow
     ? {
         eligible: patentRow.eligible,
         line: patentRow.line,
+        absence: patentRow.absence,
         ...(patentRow.register ? { register: patentRow.register } : {}),
         ...(patentRow.reason ? { reason: patentRow.reason } : {}),
         ...(patentRow.source ? { source: patentRow.source } : {}),
@@ -1017,6 +1009,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     : undefined
 
   const controlledSchedules: CorpusControlledRow[] = [...controlledRows]
+    .filter((row) => keeps(`${row.classOrSchedule} ${row.list} ${row.substanceAsListed ?? ''}`))
     .sort(
       (a, b) =>
         a.jurisdiction.localeCompare(b.jurisdiction) ||
@@ -1041,6 +1034,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       (a, b) =>
         (SECTION_ORDER[a.section] ?? 9) - (SECTION_ORDER[b.section] ?? 9) || a.ordinal - b.ordinal,
     )
+    .filter((row) => keeps(row.sentence))
     .map((row) => {
       const values = asRecord(row.values) ?? {}
       const counterpartKey = text(values.counterpartPage ?? values.neighbourPage ?? values.toKey)
@@ -1076,7 +1070,9 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     ...(page.evidenceTier ? { evidenceTier: page.evidenceTier } : {}),
     ladder,
     blocks,
-    arc: page.withdrawn ? withdrawnArc(fields, candidates) : [],
+    arc: page.withdrawn
+      ? withdrawnArc(fields, candidates).filter((row) => keeps(`${row.label} ${row.value}`))
+      : [],
     identifiers,
     relations,
     sources,

@@ -214,3 +214,6 @@ data/release/**
 data/revamp/promotion/*.out
 data/revamp/hubs/text/
 data/revamp/hubs/load/
+data/revamp/render-v5-with-furniture/
+data/revamp/render-v6/
+data/revamp/render-v6-fresh/

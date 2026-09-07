@@ -64,7 +64,8 @@ const FULL_SYNTHESIS: HubSynthesisRecord[] = [
   {
     ordinal: 0,
     templateId: 'H1',
-    sentence: 'Approved: 15 of 50 — United States 14, Singapore 5. Singapore: Bicalutamide (prescription-only).',
+    sentence:
+      'Approved: 15 of 50 — United States 14, Singapore 5. Singapore: Bicalutamide (prescription-only).',
     provenance: {
       columns: ['approval by jurisdiction', 'Singapore forensic class'],
       fields: ['fields.regulatory.value.<jurisdiction>.status'],
@@ -83,13 +84,19 @@ const FULL_SYNTHESIS: HubSynthesisRecord[] = [
     ordinal: 2,
     templateId: 'H3',
     sentence: 'HSA lists 5 of 50 on 11 product licences — prescription-only 5.',
-    provenance: { columns: ['Singapore forensic class'], fields: ['fields.regulatory.value.SG.status'] },
+    provenance: {
+      columns: ['Singapore forensic class'],
+      fields: ['fields.regulatory.value.SG.status'],
+    },
   },
   {
     ordinal: 3,
     templateId: 'H4',
     sentence: 'Predicted additive hypotensive: 19 member pairs, 0 label-documented — Ifenprodil 6.',
-    provenance: { columns: ['name'], fields: ['interactions.parquet rule_id=C3-additive-hypotensive'] },
+    provenance: {
+      columns: ['name'],
+      fields: ['interactions.parquet rule_id=C3-additive-hypotensive'],
+    },
   },
   {
     ordinal: 4,
@@ -105,12 +112,16 @@ const FULL_SYNTHESIS: HubSynthesisRecord[] = [
     ordinal: 5,
     templateId: 'H6',
     sentence: 'pChEMBL 5.75-9.00 across 5: Ligandrol 9.00 (Ki, binding); Azd 3514 5.75.',
-    provenance: { columns: ['potency'], fields: ['fields.potency.value.assayGroups[].medianPChembl'] },
+    provenance: {
+      columns: ['potency'],
+      fields: ['fields.potency.value.assayGroups[].medianPChembl'],
+    },
   },
   {
     ordinal: 6,
     templateId: 'H7',
-    sentence: 'Organism ladder: 12 of 50 — human 12, mouse 9. Interventions Testing Program: 2 — Acarbose, Rapamycin.',
+    sentence:
+      'Organism ladder: 12 of 50 — human 12, mouse 9. Interventions Testing Program: 2 — Acarbose, Rapamycin.',
     provenance: { columns: ['name'], fields: ['fields.organismLadder.value.countsPerRung'] },
   },
 ]
@@ -172,7 +183,10 @@ describe('hub synthesis rendering', () => {
 
 describe('hub comparison table', () => {
   it('prints one row per member, values only, with every jurisdiction column', () => {
-    const members = [member(), member({ key: 'K1:ZZZ', slug: 'nandrolone', name: 'Nandrolone', ordinal: 1 })]
+    const members = [
+      member(),
+      member({ key: 'K1:ZZZ', slug: 'nandrolone', name: 'Nandrolone', ordinal: 1 }),
+    ]
     const html = renderToStaticMarkup(
       React.createElement(HubTable, { members, hubType: 'target', hubName: 'AR' }),
     )

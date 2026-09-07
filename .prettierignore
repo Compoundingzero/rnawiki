@@ -43,6 +43,10 @@ data/trial-results/
 # check is scripts/quality/slop-scan.mjs, which reads the prose; realigning their tables would
 # rewrite files that the next batch rewrites again.
 docs/worklogs/
+# The DVC cache: content-addressed copies of the run's data files, written by `dvc add` and
+# gitignored. Several are hundreds of megabytes, which Prettier cannot read as a string at all
+# ("Invalid string length"), and none of them is source.
+.dvc/
 # The Python environment the corpus scripts run in (docs/specs/revamp-2026-09.md): gitignored, and
 # a vendored third-party driver's bundled JavaScript is not ours to reformat.
 .venv-corpus/

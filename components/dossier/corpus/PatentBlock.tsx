@@ -20,7 +20,15 @@ export function PatentBlock({ patent }: { patent?: CorpusPatentLine }) {
       <h2 className="cd-section-heading" id="cd-patent-heading">
         Generic and patent
       </h2>
-      <p className="cd-paragraph">{patent.line}</p>
+      {/*
+        §11: a line that says only that no US register holds this record is the same statement on
+        25,226 pages. It stays on the page and is marked furniture, so the overlap ruler measures
+        what this record says rather than what every record says. A line carrying a date, a BLA
+        number or a TE code is a finding and is not marked.
+      */}
+      <p className="cd-paragraph" {...(patent.absence ? { 'data-furniture': 'true' } : {})}>
+        {patent.line}
+      </p>
       <RegisterSummary
         applications={patent.applications}
         label={patent.register ?? 'the United States register'}

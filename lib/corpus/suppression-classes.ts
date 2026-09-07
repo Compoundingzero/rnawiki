@@ -18,9 +18,15 @@ import {
   SUPPRESSION_CLASS_LABELS,
   citedSuppressionLabels,
   isUnknownClassOnly,
+  unknownClassificationLine,
 } from '@/lib/corpus/suppression-labels'
 
-export { SUPPRESSION_CLASS_LABELS, citedSuppressionLabels, isUnknownClassOnly }
+export {
+  SUPPRESSION_CLASS_LABELS,
+  citedSuppressionLabels,
+  isUnknownClassOnly,
+  unknownClassificationLine,
+}
 
 /** The supervision block's question, worded exactly as the derivation words it on a full page. */
 export function supervisionQuestion(name: string): string {
@@ -40,14 +46,6 @@ export function supervisionParagraphs(name: string, labels: readonly string[]): 
     `Because of ${single ? 'that classification' : 'those classifications'}, this record holds no ` +
       'bioavailability, self-experiment design or time-to-signal section.',
   ]
-}
-
-/**
- * The single line an S10-only record carries in place of a block: it has no classification to
- * state, and saying so is not the same as saying nothing was found to worry about.
- */
-export function unknownClassificationLine(): string {
-  return 'No classification is recorded for this compound in the registers checked.'
 }
 
 /**

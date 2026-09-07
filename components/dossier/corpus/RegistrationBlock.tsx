@@ -1,5 +1,5 @@
 /**
- * "Where it's registered" (docs/specs/phase4-generators.md §2, §3).
+ * "Where it's registered" (docs/specs/phase4-generators.md §2, §3, §11).
  *
  * One line per jurisdiction, in the fixed order Singapore, United States, Australia, United
  * Kingdom, European Union, Japan, Canada, then any register whose source string the jurisdiction
@@ -14,8 +14,18 @@
  *
  * The controlled-substance schedules follow the jurisdiction lines: a schedule is a fact about how
  * a substance is supplied, so it belongs with the registers rather than in a banner.
+ *
+ * Then the absences, as one table. Seven rows saying a register holds no record were, by
+ * measurement, a quarter of every word in the corpus, and repeated on 25,000 pages they are not
+ * prose — they are the page's furniture. §11 keeps the statement (Operating Rule 9 requires it)
+ * and writes its shared words once: the "as of" and the date in the caption, the register names
+ * and the finding in column headings, and each absent register as one cell. Every such row carries
+ * `data-furniture="true"`, which the overlap ruler and the rendered-duplicate check skip exactly as
+ * they skip the supervision block. An affirmative row — an approval, a withdrawal, a schedule, a
+ * class — is never furniture and never enters this table.
  */
 import type { CorpusControlledRow, CorpusRegistrationLine } from '@/lib/corpus/dossier-page'
+import { absenceCaption, absentAsOf, ABSENCE_COLUMNS } from '@/lib/corpus/page-text'
 import { RegisterSummary } from './RegisterSummary'
 
 function Line({ row }: { row: CorpusRegistrationLine }) {
@@ -53,6 +63,42 @@ function Schedule({ row }: { row: CorpusControlledRow }) {
   )
 }
 
+/** The absences, in one table: the shared words once, each absent register as one cell (§11). */
+function AbsentRegisters({ rows }: { rows: CorpusRegistrationLine[] }) {
+  if (rows.length === 0) return null
+  return (
+    <table className="cd-register-absent">
+      <caption className="cd-group-heading">{absenceCaption(absentAsOf(rows))}</caption>
+      <thead className="cd-group-heading">
+        <tr>
+          {ABSENCE_COLUMNS.map((column) => (
+            <th key={column} scope="col">
+              {column}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr data-furniture="true" key={row.id}>
+            <th scope="row">{row.component ? `${row.component} — ${row.label}` : row.label}</th>
+            <td>{row.source ?? row.label}</td>
+            <td>{row.absence}</td>
+            {/* A register never cleared for this corpus has no read date, and the cell says so. */}
+            <td>
+              {row.dateChecked ? (
+                <time dateTime={row.dateChecked}>{row.dateChecked}</time>
+              ) : (
+                'not read'
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 export function RegistrationBlock({
   registration,
   schedules,
@@ -61,8 +107,10 @@ export function RegistrationBlock({
   schedules: CorpusControlledRow[]
 }) {
   if (registration.length === 0 && schedules.length === 0) return null
-  const mapped = registration.filter((row) => row.jurisdiction !== 'OTHER')
-  const other = registration.filter((row) => row.jurisdiction === 'OTHER')
+  const stated = registration.filter((row) => !row.absence)
+  const absent = registration.filter((row) => Boolean(row.absence))
+  const mapped = stated.filter((row) => row.jurisdiction !== 'OTHER')
+  const other = stated.filter((row) => row.jurisdiction === 'OTHER')
   return (
     <section aria-labelledby="cd-registration-heading" className="cd-register">
       <h2 className="cd-section-heading" id="cd-registration-heading">
@@ -99,6 +147,7 @@ export function RegistrationBlock({
           </ul>
         </>
       ) : null}
+      <AbsentRegisters rows={absent} />
     </section>
   )
 }

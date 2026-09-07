@@ -8,7 +8,7 @@ reads. Four separate stages produced that content as columnar tables:
   * `scripts/revamp/interactions_build.py` -> `data/revamp/interactions/{interactions,checked-sources}.parquet`
   * `scripts/revamp/tier3_sections.py` -> `data/revamp/tier3-sections.parquet`
   * `scripts/revamp/identity_apply.py`  -> `data/revamp/identity/{relations-v3.parquet,
-    display-names-v3.csv, trial-reassignments-v3.csv}`
+    display-names-v3.csv, trial-reassignments-v4.csv}`
 
 Neither the loader (`scripts/corpus-20k/load/materialise.ts`) nor the renderer
 (`scripts/revamp/page_text_v5.ts`) reads Parquet, and neither should hold 535,118 interaction rows
@@ -179,7 +179,7 @@ def main() -> None:
 
     # ---- trials moved to another page (§6 form pairs; R14 extended to salts and esters) --------
     moved: dict[str, dict[str, Any]] = {}
-    reassignments = os.path.join(args.identity_dir, "trial-reassignments-v3.csv")
+    reassignments = os.path.join(args.identity_dir, "trial-reassignments-v4.csv")
     if os.path.exists(reassignments):
         grouped: dict[tuple[str, str], set[str]] = defaultdict(set)
         rules: dict[tuple[str, str], str] = {}
@@ -225,6 +225,9 @@ def main() -> None:
                 "ordinal": int(row["order"]) if row.get("order") is not None else 0,
                 "line": row.get("line"),
                 "component": row.get("component"),
+                # §11: "not found", "not cleared" or "not checked" on a row that states only an
+                # absence; empty on a row that states anything affirmative.
+                "absence": row.get("absence") or "",
                 "disclosure": parse_json(row.get("disclosure"), {}),
                 "provenance": parse_json(row.get("provenance"), []),
             }
@@ -248,6 +251,7 @@ def main() -> None:
             "noRecordLine": row.get("no_record_line"),
             "reason": row.get("reason"),
             "line": row.get("line"),
+            "absence": bool(row.get("absence")),
             "source": row.get("source"),
             "dateChecked": row.get("date_checked"),
             "disclosure": parse_json(row.get("disclosure"), {}),

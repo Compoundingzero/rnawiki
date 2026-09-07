@@ -22,8 +22,15 @@ export function StubRecord({ dossier }: { dossier: CorpusDossier }) {
       <p className="cd-stub-count">
         This record holds {fields} {fields === 1 ? 'field' : 'fields'}.
       </p>
+      {/*
+        §11: the S10-only line states an absence in fixed words, so it is furniture. It is still
+        printed — a record whose registers returned no classification says so — and the ruler
+        leaves it out of the measured text.
+      */}
       {dossier.supervisionLine ? (
-        <p className="cd-supervision-line">{dossier.supervisionLine}</p>
+        <p className="cd-supervision-line" data-furniture="true">
+          {dossier.supervisionLine}
+        </p>
       ) : null}
       <ExactRecord identifiers={dossier.identifiers} />
       <RelationsRows relations={dossier.relations} />

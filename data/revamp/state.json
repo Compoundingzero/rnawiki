@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draw 1 not clean (a 128, b 609 in scope, c 0); fix round then draw 2"
+        "4.7": "draw 2: a 0, b 242 (absence answer + block-level rule pending), c 0; fix round 2 then draw 3"
       },
       "gate_evidence": null,
-      "updated": "2026-09-06T05:35:15+00:00"
+      "updated": "2026-09-07T21:07:40+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",

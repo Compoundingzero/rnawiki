@@ -76,6 +76,7 @@ import asyncio
 import csv
 import hashlib
 import json
+import os
 import random
 import re
 import sys
@@ -97,10 +98,19 @@ import harness  # noqa: E402  (path is set immediately above)
 # ---------------------------------------------------------------------------------------------
 # paths and constants
 
-CANONICAL = REPO_ROOT / "data/corpus-20k/identity/canonical.ndjson"
+# §11: "Slug recompute in every check reads `canonical-v3`, never the corpus-20k canonical." The
+# revision this run publishes is `data/revamp/identity/canonical-v3.ndjson`; recomputing a slug from
+# the corpus-20k canonical would name pages the merges of Phase 3 no longer keep, and would print a
+# display name four merged pages no longer carry. The corpus-20k file stays as the fallback for a
+# checkout that has not run Phase 3, and which file was read is recorded in the summary.
+CANONICAL_V3 = REPO_ROOT / "data/revamp/identity/canonical-v3.ndjson"
+CANONICAL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/identity/canonical.ndjson"
+CANONICAL = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_CORPUS_20K
 DISPOSITIONS = REPO_ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"
 LEGACY_STAGE = REPO_ROOT / "data/corpus-20k/identity/stages/existing.ndjson"
-PAGES_ALL = REPO_ROOT / "data/corpus-20k/render/pages-all.ndjson"
+PAGES_ALL_V5 = REPO_ROOT / "data/revamp/render-v5/pages-all.ndjson"
+PAGES_ALL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/render/pages-all.ndjson"
+PAGES_ALL = PAGES_ALL_V5 if PAGES_ALL_V5.exists() else PAGES_ALL_CORPUS_20K
 INDEXED_KEYS = REPO_ROOT / "data/corpus-20k/final/lists/indexed.txt"
 SLUG_FACT_FILES = (
     REPO_ROOT / "data/corpus-20k/gate2/html-text/crawl.ndjson",
@@ -148,13 +158,20 @@ DIGIT_RUN_RE = re.compile(r"\d+")
 # `main` is the content region (`components/AppShell.tsx:53`). The site header and footer are
 # siblings of it, so what is hidden here is what sits *inside* the region: the contents rail
 # (`nav.cd-rail`) and its small-screen twin (`details.cd-contents`), any search control, and the
-# supervision block (`.cd-supervision`, `components/dossier/corpus/QuestionBlock.tsx:58`). The page
-# header band (`header.cd-header`, the title, the recorded names and the register line) is content
-# and stays in: it is the part a duplicate pair most often differs by, and dropping it would
-# manufacture matches.
+# supervision block (`.cd-supervision`, `components/dossier/corpus/QuestionBlock.tsx:58`) and the
+# page furniture (`[data-furniture]`). The page header band (`header.cd-header`, the title, the
+# recorded names and the register line) is content and stays in: it is the part a duplicate pair
+# most often differs by, and dropping it would manufacture matches.
+#
+# Furniture is skipped for the reason `docs/specs/phase4-generators.md` §11 gives: a register row
+# reading "not found", the checked-sources statement on a page with no interaction row, the patent
+# no-record line and the S10-only classification line are the same fixed words on 25,000 pages. They
+# are on the page because Operating Rule 9 requires them, and counting them as this page's own text
+# would say that two pages overlap because neither register holds either of them. This is the same
+# decision, and the same selector, as the supervision block beside it.
 EXCLUDE_SELECTOR = (
     "nav, footer, [role='search'], [role='combobox'], [role='listbox'], "
-    "input, .cd-rail, .cd-contents, .cd-supervision"
+    "input, .cd-rail, .cd-contents, .cd-supervision, [data-furniture]"
 )
 
 EXTRACT_JS = """() => {
@@ -1048,6 +1065,10 @@ def main(argv: list[str] | None = None) -> int:
         "slugSources": {
             "recorded": sum(1 for v in provenance.values() if v == "recorded"),
             "recomputed": sum(1 for v in provenance.values() if v == "recomputed"),
+            # §11: a recomputed slug and a checked display name come from this revision's
+            # canonical file, not from the corpus-20k one.
+            "canonical": os.path.relpath(CANONICAL, REPO_ROOT),
+            "tiers": os.path.relpath(PAGES_ALL, REPO_ROOT),
         },
         "pagesDroppedOnIdentityCheck": dropped,
         # `runtimeMinutes` is only the cost of a cold run when `pagesFromCache` is zero; a run that

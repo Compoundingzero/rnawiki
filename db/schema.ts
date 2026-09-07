@@ -4739,6 +4739,16 @@ export const corpusPages = pgTable(
     /** Coverage denominator: fields of this page's model that are not `not-applicable`. */
     applicableFieldCount: integer('applicable_field_count').notNull().default(0),
     /**
+     * The ruler's own numerator (docs/specs/phase4-generators.md §11): fields that are present
+     * *and* applicable, as `scripts/revamp/derive_threshold.py` counts them — the recorded state,
+     * the fields a Phase 2 source has not filled anywhere, and the structural rules of
+     * `data/revamp/field-applicability.json`. `indexable` is decided on this count against the
+     * page's own tier threshold, never on the present count against one corpus-wide number.
+     *
+     * Where a load is given no presence file it equals `present_field_count`, and the load says so.
+     */
+    presentApplicableCount: integer('present_applicable_count').notNull().default(0),
+    /**
      * ATC codes ChEMBL records for this molecule, verbatim (e.g. `C02CA01`). The browse class
      * facet reads their first level. ChEMBL content is CC BY-SA 3.0, which `licence_notes`
      * carries as "ChEMBL ATC CC BY-SA" whenever this array is not empty.
@@ -4838,6 +4848,10 @@ export const corpusPages = pgTable(
       sql`${table.presentFieldCount} >= 0 and ${table.applicableFieldCount} >= 0 and ${table.presentFieldCount} <= ${table.applicableFieldCount}`,
     ),
     check(
+      'corpus_pages_present_applicable_count',
+      sql`${table.presentApplicableCount} >= 0 and ${table.presentApplicableCount} <= ${table.presentFieldCount}`,
+    ),
+    check(
       'corpus_pages_stub_not_indexable',
       sql`not (${table.indexable} and (${table.pageType} = 'stub' or ${table.tier} = 3))`,
     ),
@@ -4923,6 +4937,17 @@ export const pageSeeds = pgTable(
     values: jsonb('values')
       .notNull()
       .default(sql`'{}'::jsonb`),
+    /**
+     * The seed's own slots — the named values the question text is written from, which the seed
+     * stage records beside `values` and which are not the same thing (docs/specs/phase4-generators
+     * §11). Without them the page re-derives its question list from a smaller input than the
+     * corpus renderer read, and the two write different sentences: a block whose slot is missing
+     * falls back to "this target" where the render names the target. Stored so the page and the
+     * measured text are one text.
+     */
+    slots: jsonb('slots')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
     sources: jsonb('sources')
       .notNull()
       .default(sql`'[]'::jsonb`),
@@ -4954,6 +4979,22 @@ export const pageQuestions = pgTable(
       .default(sql`'[]'::jsonb`),
     /** The technical rows revealed under the answer. */
     revealed: jsonb('revealed')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /**
+     * The slot values and the sources the question was derived with (docs/specs/
+     * phase4-generators.md §11).
+     *
+     * The page rebuilds each answer from the derivation, and the derivation it can run at request
+     * time reads what this database holds rather than the corpus files the render read. Where the
+     * two disagreed the page wrote a different sentence from the measured text — "this target"
+     * where the render named the target, and a paragraph with no source where the render cited
+     * one. These are the derivation's own outputs, stored so the page answers with them.
+     */
+    values: jsonb('values')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    sources: jsonb('sources')
       .notNull()
       .default(sql`'[]'::jsonb`),
   },
@@ -5024,6 +5065,26 @@ export const pageSources = pgTable(
     ),
   ],
 )
+
+/**
+ * The registry aggregate one page's question blocks are written from.
+ *
+ * `page_registry_studies` holds the NCT identifiers a page matched, which is enough to count
+ * studies and nothing else. The body builders need the aggregate itself — the phases, the
+ * enrolments, the durations, the per-trial rows — and without it the page built from the database
+ * wrote "98 registered studies." where the page built from the corpus files wrote "98 registered
+ * studies of Atropine Sulfate: 19 na, 12 phase 1, …". That is the disagreement §11 forbids, so the
+ * aggregate the renderer reads is stored and the template reads the same object.
+ *
+ * The stored object is the corpus aggregate with the studies Phase 3 moved to another page already
+ * removed, exactly as `scripts/revamp/page_text_v5.ts` removes them.
+ */
+export const pageRegistryAggregate = pgTable('page_registry_aggregate', {
+  key: varchar('key', { length: 200 })
+    .primaryKey()
+    .references(() => corpusPages.key, { onDelete: 'cascade' }),
+  aggregate: jsonb('aggregate').notNull(),
+})
 
 export const pageRegistryStudies = pgTable(
   'page_registry_studies',
@@ -5098,6 +5159,12 @@ export const pageRegistration = pgTable(
     /** The component this line belongs to on a combination product; null on the product's own. */
     component: text('component'),
     line: text('line').notNull(),
+    /**
+     * The absence this row states, in the register's own three words — `not found`, `not cleared`
+     * or `not checked` — and null on a row that states anything affirmative (§11). The template
+     * prints these rows as one table of furniture; the ruler and the duplicate check skip them.
+     */
+    absence: varchar('absence', { length: 32 }),
     /** The register application ids and curated marketing rows the summary line stands for. */
     disclosure: jsonb('disclosure')
       .notNull()
@@ -5211,6 +5278,12 @@ export const pagePatent = pgTable(
     /** Why there is no record, where the registers make it knowable. */
     reason: text('reason'),
     line: text('line').notNull(),
+    /**
+     * True where the line states only that no US register holds this record — the furniture case of
+     * §11. A Purple Book line carries BLA numbers and an exclusivity date, which is a finding, and
+     * is not marked.
+     */
+    absence: boolean('absence').notNull().default(false),
     source: text('source'),
     dateChecked: varchar('date_checked', { length: 32 }),
     disclosure: jsonb('disclosure')
@@ -5339,6 +5412,7 @@ export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   pageRelations: many(pageRelations),
   sources: many(pageSources),
   registryStudies: many(pageRegistryStudies),
+  registryAggregate: one(pageRegistryAggregate),
   registration: many(pageRegistration),
   interactions: many(pageInteractions),
   patent: one(pagePatent),
@@ -5346,3 +5420,165 @@ export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   sections: many(pageSections),
   displayName: one(pageDisplayNames),
 }))
+
+/* ============================================================================================= */
+/* BEGIN revamp 2026-09 Phase 5 — hubs (docs/specs/hubs.md). Additive block; nothing above is     */
+/* changed by it. Migration 0028_hubs.sql creates these three tables.                             */
+/* ============================================================================================= */
+
+/** The three hub kinds `docs/specs/hubs.md` §1 defines. A hub is a grouping of existing pages. */
+export const corpusHubTypeEnum = pgEnum('corpus_hub_type', ['target', 'class', 'pathway'])
+
+/** The role a member holds inside a hub, which decides the comparison table's row order (§2). */
+export const corpusHubMemberRoleEnum = pgEnum('corpus_hub_member_role', [
+  'approved',
+  'clinical',
+  'development',
+  'withdrawn',
+])
+
+/**
+ * One hub: a target, a mechanism class or a pathway that at least five corpus pages share.
+ *
+ * Every column is copied from `data/revamp/hubs/hubs.parquet`, which `scripts/revamp/hubs_build.py`
+ * computes from the members' stored fields. Nothing here is authored: the definition is the source
+ * vocabulary's own record (a UniProt protein name, an ATC description, the pathway name), and
+ * `definition_source` names the register and the date it was read.
+ */
+export const hubs = pgTable(
+  'hubs',
+  {
+    /** `<type>/<slug>`, the identifier the build and the loader share. */
+    hubId: varchar('hub_id', { length: 200 }).primaryKey(),
+    type: corpusHubTypeEnum('type').notNull(),
+    /** What the hub is called in its `h1`: a gene symbol, an ATC level-4 code, a pathway name. */
+    name: text('name').notNull(),
+    /** The last path segment of `/h/<type>/<slug>`. */
+    slug: varchar('slug', { length: 200 }).notNull(),
+    definition: text('definition').notNull(),
+    definitionSource: text('definition_source').notNull(),
+    memberCount: integer('member_count').notNull(),
+    approvedCount: integer('approved_count').notNull(),
+    /** §4: 1 where the target carries an ITP or ageing-trial link, else 0.5; 1 for pathways. */
+    relevance: numeric('relevance', { precision: 4, scale: 2 }).notNull(),
+    /** approved-member count × relevance, the §4 ranking. */
+    rankScore: numeric('rank_score', { precision: 10, scale: 2 }).notNull(),
+    /** True for the 30 hubs measured first (§4). */
+    firstBatch: boolean('first_batch').notNull().default(false),
+  },
+  (table) => [
+    unique('hubs_type_slug_unique').on(table.type, table.slug),
+    index('hubs_type_name_idx').on(table.type, table.name),
+    index('hubs_rank_idx').on(table.rankScore),
+    check('hubs_member_count', sql`${table.memberCount} >= 5`),
+    check('hubs_approved_count', sql`${table.approvedCount} >= 0`),
+    check('hubs_slug_shape', sql`${table.slug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+  ],
+)
+
+/**
+ * One member page inside one hub, carrying its comparison-table row (§2 item 2).
+ *
+ * Each column is a value, never a sentence: the table is markup, so the uniqueness ruler reads only
+ * the synthesis. A cell the registers do not fill holds the recorded absence word ("not found",
+ * "not cleared") that `data/revamp/blocks/registration.parquet` carries, never a blank guess.
+ */
+export const hubMembers = pgTable(
+  'hub_members',
+  {
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** The §2 row order: approved by jurisdiction count, then clinical by phase, then the rest. */
+    ordinal: integer('ordinal').notNull(),
+    memberRole: corpusHubMemberRoleEnum('member_role').notNull(),
+    /** Which stored row put this page in this hub, e.g. "target field names uniprot:P10275". */
+    membershipEvidence: text('membership_evidence').notNull(),
+    /** The seven jurisdiction cells, in the §2 column order. */
+    approvalSg: text('approval_sg').notNull(),
+    approvalUs: text('approval_us').notNull(),
+    approvalAu: text('approval_au').notNull(),
+    approvalUk: text('approval_uk').notNull(),
+    approvalEu: text('approval_eu').notNull(),
+    approvalJp: text('approval_jp').notNull(),
+    approvalCa: text('approval_ca').notNull(),
+    /** POM, P, GSL or an empty string where the HSA listing records no classification. */
+    sgForensicClass: text('sg_forensic_class').notNull(),
+    /** yes / no / no record, from the Orange Book and Purple Book block. */
+    genericAvailable: text('generic_available').notNull(),
+    /** The median pChEMBL against this hub's target; empty on class and pathway hubs. */
+    potency: text('potency').notNull(),
+    /** The first three approved label indications, and the full count beside them. */
+    indications: text('indications').notNull(),
+    indicationCount: integer('indication_count').notNull(),
+    withdrawnReason: text('withdrawn_reason').notNull(),
+    withdrawnWhere: text('withdrawn_where').notNull(),
+    trialsCount: integer('trials_count').notNull(),
+    /** "171/524": completed trials with posted results over completed trials. */
+    resultsPostedShare: text('results_posted_share').notNull(),
+    tier: integer('tier').notNull(),
+    /** The member page's own first question, its one-line description in the members list (§2.4). */
+    firstQuestion: text('first_question').notNull(),
+  },
+  (table) => [
+    primaryKey({ name: 'hub_members_hub_key_pk', columns: [table.hubId, table.key] }),
+    index('hub_members_key_idx').on(table.key),
+    index('hub_members_hub_ordinal_idx').on(table.hubId, table.ordinal),
+    check('hub_members_ordinal', sql`${table.ordinal} >= 0`),
+    check('hub_members_tier', sql`${table.tier} between 0 and 3`),
+    check('hub_members_trials', sql`${table.trialsCount} >= 0`),
+  ],
+)
+
+/**
+ * One synthesis sentence and the provenance map that says which columns and fields produced it.
+ *
+ * `template_id` is one of H1–H7 (§2 item 3). A template whose inputs are absent writes no row, so a
+ * hub simply carries fewer sentences; there is never a row standing in for a missing one.
+ */
+export const hubSyntheses = pgTable(
+  'hub_syntheses',
+  {
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    ordinal: integer('ordinal').notNull(),
+    templateId: varchar('template_id', { length: 4 }).notNull(),
+    sentence: text('sentence').notNull(),
+    /** sentence → the table columns and stored field paths it was assembled from. */
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    primaryKey({ name: 'hub_syntheses_hub_ordinal_pk', columns: [table.hubId, table.ordinal] }),
+    index('hub_syntheses_template_idx').on(table.templateId),
+    check('hub_syntheses_ordinal', sql`${table.ordinal} >= 0`),
+    check(
+      'hub_syntheses_template',
+      sql`${table.templateId} in ('H1','H2','H3','H4','H5','H6','H7')`,
+    ),
+    check('hub_syntheses_sentence_nonempty', sql`nullif(btrim(${table.sentence}), '') is not null`),
+  ],
+)
+
+export const hubsRelations = relations(hubs, ({ many }) => ({
+  members: many(hubMembers),
+  syntheses: many(hubSyntheses),
+}))
+
+export const hubMembersRelations = relations(hubMembers, ({ one }) => ({
+  hub: one(hubs, { fields: [hubMembers.hubId], references: [hubs.hubId] }),
+  page: one(corpusPages, { fields: [hubMembers.key], references: [corpusPages.key] }),
+}))
+
+export const hubSynthesesRelations = relations(hubSyntheses, ({ one }) => ({
+  hub: one(hubs, { fields: [hubSyntheses.hubId], references: [hubs.hubId] }),
+}))
+
+/* ============================================================================================= */
+/* END revamp 2026-09 Phase 5 — hubs                                                              */
+/* ============================================================================================= */

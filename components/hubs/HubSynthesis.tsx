@@ -72,8 +72,8 @@ export function HubSynthesis({
           <dd className="inline">
             ChEMBL&apos;s comparable potency number: the negative base-10 logarithm of a reported
             IC50, EC50, Ki or Kd in molar units, so 9.0 is one nanomolar and a larger number is a
-            lower concentration in that assay. It is a measurement in a named assay, not a
-            statement about a person.
+            lower concentration in that assay. It is a measurement in a named assay, not a statement
+            about a person.
           </dd>
         </div>
         <div>

@@ -123,6 +123,70 @@ def join(parts):
     return " · ".join([p for p in parts if p])
 
 
+# --------------------------------------------------------------------------- provenance (§11)
+
+
+def walk(value, path):
+    """Does the dotted `path` — `[]` for "any element of this list" — reach a recorded value?"""
+    if not path:
+        return value is not None
+    head, _, rest = path.partition(".")
+    if head.endswith("[]"):
+        head = head[:-2]
+        if head:
+            if not isinstance(value, dict) or head not in value:
+                return False
+            value = value[head]
+        if not isinstance(value, list):
+            return False
+        return any(walk(item, rest) for item in value)
+    if isinstance(value, list):
+        return any(walk(item, path) for item in value)
+    if not isinstance(value, dict) or head not in value:
+        return False
+    return walk(value[head], rest)
+
+
+def has_path(record, path):
+    """`fields.regulatory.value.SG.status` against this page's own stored record."""
+    return walk(record, path)
+
+
+def carried(record, *paths):
+    """Only the paths this record actually carries.
+
+    §11: "Provenance of an absence cites the field path that was searched and the register's date
+    …, never a path the record does not carry." The line builders below look for several values and
+    write a line out of the ones they find; naming a key the record does not hold made 469 of 1,632
+    traces in slop draw 1 unresolvable. Every builder now names what it read.
+    """
+    return [path for path in paths if has_path(record, path)]
+
+
+def searched(record, paths, register, date):
+    """The trace for values looked for and not found: the paths searched, and the register's date.
+
+    Section 11: "Provenance of an absence cites the field path that was searched and the register's
+    date, never a path the record does not carry." Both halves are here. Only the paths this record
+    genuinely does not carry are named, and they are named as absent rather than as the source of a
+    value; the register that was read and the date it was read on are stated beside them, because
+    an absence is a fact about a register on a day and not a fact about the substance.
+
+    The shape is fixed, because `tests/test_render_safety.py` and `scripts/revamp/slop_draw.py`
+    resolve it by executing it: every path named must be absent from this page's own stored record,
+    and a register and a date must be stated. Passing the same paths to `carried` and to `searched`
+    makes the union of the two non-empty for any path list: a path is in exactly one of them.
+    """
+    absent = [path for path in paths if not has_path(record, path)]
+    if not absent:
+        return []
+    return ["searched and not recorded: %s; register: %s as of %s" % (
+        ", ".join(absent),
+        register,
+        date or "an unrecorded date",
+    )]
+
+
 def plural(n, word):
     return "%d %s%s" % (n, word, "" if n == 1 else "s")
 
@@ -268,12 +332,15 @@ def line_sg(record, registers):
     sg_controlled = block(controlled, "SG")
     as_of = sg.get("asOf")
     registers.see("SG", as_of)
-    provenance = ["fields.regulatory.value.SG.status", "fields.regulatory.value.SG.asOf"]
+    provenance = carried(
+        record, "fields.regulatory.value.SG.status", "fields.regulatory.value.SG.asOf"
+    )
 
     clauses = schedule_clauses(sg_controlled)
     if clauses:
-        provenance.append("fields.controlled.value.SG.schedules[].schedule")
+        provenance += carried(record, "fields.controlled.value.SG.schedules[].schedule")
 
+    absence = ""
     if sg.get("status") == "registered":
         status = "Registered (HSA)"
         parts = []
@@ -281,15 +348,21 @@ def line_sg(record, registers):
         short = {"Prescription Only": "POM", "Pharmacy Only": "P", "General Sale List": "GSL"}.get(forensic)
         if short:
             parts.append(short)
-            provenance.append("fields.regulatory.value.SG.forensicClassification")
+            provenance += carried(record, "fields.regulatory.value.SG.forensicClassification")
         parts.extend(clauses)
         parts.append("checked %s" % as_of if as_of else None)
         detail = join(parts)
     else:
-        status = sg.get("statement") or "Not found in %s as of %s" % (Registers.NAMES["SG"], as_of)
-        provenance.append("fields.regulatory.value.SG.statement")
+        date = as_of or registers.date("SG")
+        status = sg.get("statement") or "Not found in %s as of %s" % (Registers.NAMES["SG"], date)
+        sg_paths = ["fields.regulatory.value.SG.statement", "fields.regulatory.value.SG.productCount"]
+        provenance += carried(record, *sg_paths)
+        provenance += searched(record, sg_paths, Registers.NAMES["SG"], date)
         parts = list(clauses)
         detail = join(parts)
+        # An SG row that names a Misuse of Drugs Act or Poisons Act schedule has found something,
+        # and is not furniture even though the HSA listing holds no product for it.
+        absence = "" if clauses else "not found"
 
     disclosure = {}
     if sg.get("productCount"):
@@ -302,8 +375,19 @@ def line_sg(record, registers):
         disclosure["supplyClassificationNote"] = sg.get("forensicClassificationNote")
     if sg_controlled.get("statement") and not clauses:
         disclosure["controlledStatement"] = sg_controlled["statement"]
-    return status, detail, sg.get("register") or Registers.NAMES["SG"], as_of, provenance, disclosure
+    return (status, detail, sg.get("register") or Registers.NAMES["SG"],
+            as_of or registers.date("SG"), provenance, disclosure, absence)
 
+
+# The values `line_us` reads before it writes "Not found in the United States registers": an
+# application id, a marketing status, a status word. A path here is either cited as the source of
+# what the line says (`carried`) or named as searched and not recorded (`searched`).
+US_ABSENCE_PATHS = [
+    "fields.regulatory.value.US.status",
+    "fields.regulatory.value.US.evidence[].id",
+    "fields.regulatory.value.US.records[].recordId",
+    "fields.regulatory.value.US.marketingStatusesAsRecorded",
+]
 
 US_STATUS_WORDS = {
     "approved": "Approved",
@@ -364,12 +448,12 @@ def line_us(record, registers):
         ident = row.get("id")
         if ident:
             applications.setdefault(ident, []).append(row.get("statement") or "")
-            provenance.append("fields.regulatory.value.US.evidence[].id")
+            provenance += carried(record, "fields.regulatory.value.US.evidence[].id")
     for row in records_:
         ident = row.get("recordId")
         if ident and str(row.get("register") or "").startswith(("Drugs@FDA", "Orange Book")):
             applications.setdefault(ident, []).append(row.get("statusVerbatim") or "")
-            provenance.append("fields.regulatory.value.US.records[].recordId")
+            provenance += carried(record, "fields.regulatory.value.US.records[].recordId")
 
     counts = Counter(categorise_application(statements) for statements in applications.values())
 
@@ -377,7 +461,16 @@ def line_us(record, registers):
     date = registers.date("US")
     if not applications and not status_word:
         statement = "Not found in %s as of %s" % (Registers.NAMES["US"], date)
-        return statement, "", Registers.NAMES["US"], date, ["fields.regulatory.value.US.sources"], us_disclosure(record, us, [])
+        return (
+            statement,
+            "",
+            Registers.NAMES["US"],
+            date,
+            carried(record, *US_ABSENCE_PATHS)
+            + searched(record, US_ABSENCE_PATHS, Registers.NAMES["US"], date),
+            us_disclosure(record, us, []),
+            "not found",
+        )
 
     parts = []
     if applications:
@@ -388,11 +481,11 @@ def line_us(record, registers):
         else:
             breakdown = ", ".join("%d %s" % (counts[name], name) for name in ordered if counts.get(name))
         parts.append("%s: %s" % (summary, breakdown) if breakdown else summary)
-        provenance.append("fields.regulatory.value.US.evidence[].statement")
+        provenance += carried(record, "fields.regulatory.value.US.evidence[].statement")
 
     marketing = strings(us, "marketingStatusesAsRecorded")
     if marketing:
-        provenance.append("fields.regulatory.value.US.marketingStatusesAsRecorded")
+        provenance += carried(record, "fields.regulatory.value.US.marketingStatusesAsRecorded")
     rx_otc = [n for n in ("prescription", "over-the-counter") if any(n in categorise_us(m) for m in marketing)]
     if rx_otc and not counts:
         parts.append(", ".join(rx_otc))
@@ -400,25 +493,28 @@ def line_us(record, registers):
     dea = block(controlled, "US").get("schedule") or us.get("deaSchedule") or us.get("controlledSubstanceSchedule")
     if dea:
         parts.append("United States Drug Enforcement Administration schedule %s" % dea)
-        provenance.append("fields.controlled.value.US.schedule")
+        provenance += carried(
+            record, "fields.controlled.value.US.schedule", "fields.regulatory.value.US.deaSchedule"
+        )
 
     approval = block(us, "approvalDate")
     if approval.get("date"):
         parts.append("first approved %s" % approval["date"])
-        provenance.append("fields.regulatory.value.US.approvalDate.date")
+        provenance += carried(record, "fields.regulatory.value.US.approvalDate.date")
 
     withdrawn_reason = us.get("withdrawnReason")
     if isinstance(withdrawn_reason, dict) and withdrawn_reason.get("reason"):
         parts.append("withdrawal reason recorded: %s" % withdrawn_reason["reason"])
-        provenance.append("fields.regulatory.value.US.withdrawnReason.reason")
+        provenance += carried(record, "fields.regulatory.value.US.withdrawnReason.reason")
     elif isinstance(withdrawn_reason, str) and withdrawn_reason:
         parts.append("withdrawal reason recorded: %s" % withdrawn_reason)
-        provenance.append("fields.regulatory.value.US.withdrawnReason")
+        provenance += carried(record, "fields.regulatory.value.US.withdrawnReason")
 
     parts.append("checked %s" % date if date else None)
     status = status_word or "Recorded in %s" % Registers.NAMES["US"]
-    provenance.append("fields.regulatory.value.US.status")
-    return status, join(parts), Registers.NAMES["US"], date, provenance, us_disclosure(record, us, list(applications))
+    provenance += carried(record, "fields.regulatory.value.US.status")
+    return (status, join(parts), Registers.NAMES["US"], date, provenance,
+            us_disclosure(record, us, list(applications)), "")
 
 
 def us_disclosure(record, us, application_ids):
@@ -472,8 +568,9 @@ def line_au(record, registers):
     artg_note = au.get("artgStatusNote")
     artg_line = "ARTG not checked: the register's terms do not permit reuse"
 
+    absence = ""
     if schedules:
-        provenance.append("fields.controlled.value.AU.schedules[].schedule")
+        provenance += carried(record, "fields.controlled.value.AU.schedules[].schedule")
         ordered = sorted(schedules, key=lambda n: (len(str(n)), str(n)))
         if len(ordered) == 1:
             status = "Schedule %s, %s" % (ordered[0], instrument)
@@ -481,7 +578,15 @@ def line_au(record, registers):
             status = "Schedules %s and %s, %s" % (", ".join(ordered[:-1]), ordered[-1], instrument)
     else:
         status = "Not found in %s as of %s" % (instrument, date)
-        provenance.append("fields.regulatory.value.AU.status")
+        au_paths = [
+            "fields.controlled.value.AU.schedules[].schedule",
+            "fields.regulatory.value.AU.status",
+        ]
+        provenance += carried(record, *au_paths)
+        provenance += searched(record, au_paths, instrument, date)
+        # The ARTG clause on this row says the register was not checked, and the schedule search
+        # found nothing: the whole row is an absence.
+        absence = "not found"
 
     detail = join([artg_line, "checked %s" % date if date else None])
     disclosure = {"artgStatusReason": artg_note} if artg_note else {}
@@ -493,7 +598,13 @@ def line_au(record, registers):
         disclosure["poisonsStandardEntries"] = entries[:20]
     if au_controlled.get("appendixD"):
         disclosure["appendixD"] = True
-    return status, detail, instrument, date, provenance, disclosure
+    return status, detail, instrument, date, provenance, disclosure, absence
+
+
+# The United Kingdom row is the same on every page: the register was not cleared for this run, so
+# nothing was read and nothing can be cited as read. What the record carries is the statement and
+# the reason; what it does not carry is named as searched and not recorded.
+UK_PATHS = ["fields.regulatory.value.UK.statement", "fields.regulatory.value.UK.reason"]
 
 
 def line_uk(record, registers):
@@ -504,8 +615,10 @@ def line_uk(record, registers):
         "",
         "MHRA products database and emc",
         None,
-        ["fields.regulatory.value.UK.statement"],
+        carried(record, *UK_PATHS)
+        + searched(record, UK_PATHS, "MHRA products database and emc", None),
         {"reason": uk.get("reason")} if uk.get("reason") else {},
+        "not cleared",
     )
 
 
@@ -527,18 +640,25 @@ def line_eu(record, registers):
         if word and word not in words:
             words.append(word)
     if words:
-        provenance.append("fields.regulatory.value.EU.evidence[].statement")
+        provenance += carried(record, "fields.regulatory.value.EU.evidence[].statement")
 
     approval = block(eu, "approvalDate")
+    absence = ""
     if not words:
         status = "Not found in %s as of %s" % (Registers.NAMES["EU"], date)
-        provenance.append("fields.regulatory.value.EU.status")
+        eu_paths = [
+            "fields.regulatory.value.EU.status",
+            "fields.regulatory.value.EU.evidence[].statement",
+        ]
+        provenance += carried(record, *eu_paths)
+        provenance += searched(record, eu_paths, Registers.NAMES["EU"], date)
         detail = ""
+        absence = "not found"
     else:
         head = words[0]
         if head.lower() == "authorised" and approval.get("date"):
             status = "Authorised %s (EMA)" % approval["date"]
-            provenance.append("fields.regulatory.value.EU.approvalDate.date")
+            provenance += carried(record, "fields.regulatory.value.EU.approvalDate.date")
         else:
             status = "%s (EMA)" % head
         rest = words[1:]
@@ -558,7 +678,8 @@ def line_eu(record, registers):
     if drug_central:
         disclosure["drugCentral"] = {"status": drug_central.get("status"),
                                      "firstApprovalDate": drug_central.get("first_approval_date")}
-    return status, detail, "EMA register of centrally authorised medicines", date, provenance, disclosure
+    return (status, detail, "EMA register of centrally authorised medicines", date, provenance,
+            disclosure, absence)
 
 
 def line_jp(record, registers):
@@ -589,12 +710,14 @@ def line_jp(record, registers):
         disclosure["drugCentral"] = {"status": drug_central.get("status"),
                                      "firstApprovalDate": drug_central.get("first_approval_date")}
 
+    absence = ""
     if approved:
         years = sorted({str(row.get("year")) for row in approved if row.get("year")})
-        provenance += [
+        provenance += carried(
+            record,
             "fields.regulatory.value.JP.records[].approved",
             "fields.regulatory.value.JP.records[].year",
-        ]
+        )
         status = "Approved (PMDA, %s)" % years[0] if years else "Approved (PMDA)"
         detail = join(
             [
@@ -604,18 +727,28 @@ def line_jp(record, registers):
         )
     else:
         status = "Not found in %s as of %s" % (Registers.NAMES["JP"], date)
-        provenance.append("fields.regulatory.value.JP.status")
+        jp_paths = [
+            "fields.regulatory.value.JP.status",
+            "fields.regulatory.value.JP.records[].approved",
+        ]
+        provenance += carried(record, *jp_paths)
+        provenance += searched(record, jp_paths, Registers.NAMES["JP"], date)
         detail = ""
+        absence = "not found"
         if drug_central.get("status") == "approved":
             detail = (
                 "DrugCentral holds a PMDA approval record for this substance dated %s; the PMDA "
                 "list read on %s does not carry it"
                 % (drug_central.get("first_approval_date") or "an unstated date", date)
             )
-            provenance.append("fields.regulatory.value.JP.drugCentral.status")
+            provenance += carried(record, "fields.regulatory.value.JP.drugCentral.status")
+            # A DrugCentral approval record on the row is a finding about the substance, whatever
+            # the PMDA list holds, so this row is not furniture.
+            absence = ""
     if jp.get("note"):
         disclosure["licenceNote"] = jp["note"]
-    return status, detail, "PMDA List of Approved Products (New Drugs), English", date, provenance, disclosure
+    return (status, detail, "PMDA List of Approved Products (New Drugs), English", date,
+            provenance, disclosure, absence)
 
 
 CA_WORDS = {
@@ -646,8 +779,9 @@ def line_ca(record, registers):
             words.append(word)
         if row.get("id") and row["id"] not in codes:
             codes.append(row["id"])
+    absence = ""
     if words:
-        provenance.append("fields.regulatory.value.CA.evidence[].statement")
+        provenance += carried(record, "fields.regulatory.value.CA.evidence[].statement")
         status = "%s (Health Canada Drug Product Database)" % "; ".join(words)
         detail = join(
             [
@@ -657,10 +791,17 @@ def line_ca(record, registers):
         )
     else:
         status = "Not found in %s as of %s" % (Registers.NAMES["CA"], date)
-        provenance.append("fields.regulatory.value.CA.status")
+        ca_paths = [
+            "fields.regulatory.value.CA.status",
+            "fields.regulatory.value.CA.evidence[].statement",
+        ]
+        provenance += carried(record, *ca_paths)
+        provenance += searched(record, ca_paths, Registers.NAMES["CA"], date)
         detail = ""
+        absence = "not found"
     disclosure = {"drugCodes": codes[:20]} if codes else {}
-    return status, detail, "Health Canada Drug Product Database", date, provenance, disclosure
+    return (status, detail, "Health Canada Drug Product Database", date, provenance, disclosure,
+            absence)
 
 
 LINE_BUILDERS = {
@@ -715,6 +856,7 @@ def other_register_rows(record, unmapped_counter, unmapped_example):
                 "source": "NCATS Inxight Drugs, a curated record of upstream product registers, "
                 "not a national register",
                 "date_checked": merged["sourceDate"],
+                "absence": "",
                 "provenance": ["fields.regulatory.value.curatedMarketingStatusByJurisdiction.%s" % source_string],
                 "disclosure": {
                     "products": merged["products"][:20],
@@ -747,6 +889,7 @@ def patent_row(record, fda_dates):
         "no_record_line": None,
         "reason": None,
         "line": None,
+        "absence": False,
         "source": "FDA Orange Book and FDA Purple Book data files",
         "date_checked": source_date,
         "provenance": json.dumps([]),
@@ -784,14 +927,15 @@ def patent_row(record, fda_dates):
         ]
         row["line"] = join(parts)
         row["provenance"] = json.dumps(
-            [
+            carried(
+                record,
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.reference_listed_drug",
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.patents.earliest_unexpired_expiry",
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.exclusivity",
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.generic_product_count",
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.first_generic_approval_date",
                 "fields.patentStatus.value.orangeBookSummary.all_products_containing_this_substance.therapeutic_equivalence_codes",
-            ]
+            )
         )
         row["disclosure"] = json.dumps(
             {
@@ -831,12 +975,13 @@ def patent_row(record, fda_dates):
             ]
         )
         row["provenance"] = json.dumps(
-            [
+            carried(
+                record,
                 "fields.patentStatus.value.eligibilityBasis",
                 "fields.patentStatus.value.purpleBookSummary.bla_numbers",
                 "fields.patentStatus.value.purpleBookSummary.product_count",
                 "fields.patentStatus.value.purpleBookSummary.exclusivity_expiration_dates",
-            ]
+            )
         )
         row["disclosure"] = json.dumps(
             {
@@ -850,6 +995,10 @@ def patent_row(record, fda_dates):
         return row
 
     basis = value.get("eligibilityBasis") or field.get("note")
+    # §11: the only US-register finding this page carries is that there is none, in fixed words, on
+    # 25,226 pages. The Purple Book branch above carries BLA numbers and an exclusivity date, which
+    # is a finding, and is not marked.
+    row["absence"] = True
     row["no_record_line"] = "No US patent or exclusivity data on record"
     row["reason"] = "not an approved US small molecule"
     orange, purple_date = fda_dates.get("orange"), fda_dates.get("purple")
@@ -863,7 +1012,17 @@ def patent_row(record, fda_dates):
     )
     row["date_checked"] = source_date or orange
     row["line"] = join([row["no_record_line"], row["reason"], read_on or None])
-    row["provenance"] = json.dumps(["fields.patentStatus.state", "fields.patentStatus.value.eligibilityBasis"])
+    # §11: the trace of an absence names the paths that were searched and the register's own read
+    # date. A record with no `patentStatus` field at all carries neither path, and saying it did was
+    # the defect slop draw 1 measured; `searched` names them as absent instead.
+    patent_paths = ["fields.patentStatus.value.eligibilityBasis",
+                    "fields.patentStatus.value.orangeBookSummary",
+                    "fields.patentStatus.value.purpleBookSummary"]
+    row["provenance"] = json.dumps(
+        carried(record, *patent_paths)
+        + searched(record, patent_paths, "FDA Orange Book and FDA Purple Book data files",
+                   orange or purple_date or source_date)
+    )
     row["disclosure"] = json.dumps({"eligibilityBasis": basis} if basis else {})
     return row
 
@@ -946,7 +1105,11 @@ def controlled_rows(record):
                     "statute_url": None,
                     "version_date": None,
                     "source": "openFDA NDC",
-                    "provenance": "fields.regulatory.value.US.deaSchedule",
+                    "provenance": (
+                        "fields.regulatory.value.US.deaSchedule"
+                        if has_path(record, "fields.regulatory.value.US.deaSchedule")
+                        else "fields.regulatory.value.US.controlledSubstanceSchedule"
+                    ),
                 }
             )
     return out
@@ -1028,7 +1191,9 @@ def main(argv=None):
             continue
         order = 0
         for code in JURISDICTION_ORDER:
-            status, detail, source, date, provenance, disclosure = LINE_BUILDERS[code](record, registers)
+            status, detail, source, date, provenance, disclosure, absence = LINE_BUILDERS[code](
+                record, registers
+            )
             registration.append(
                 {
                     "page": key,
@@ -1041,6 +1206,7 @@ def main(argv=None):
                     "date_checked": date,
                     "order": order,
                     "line": join([status, detail]),
+                    "absence": absence,
                     "disclosure": json.dumps(disclosure, ensure_ascii=False) if disclosure else "{}",
                     "provenance": json.dumps(sorted(set(provenance))),
                 }
@@ -1059,6 +1225,7 @@ def main(argv=None):
                     "date_checked": row["date_checked"],
                     "order": order,
                     "line": join([row["status"], row["detail"]]),
+                    "absence": row["absence"],
                     "disclosure": json.dumps(row["disclosure"], ensure_ascii=False),
                     "provenance": json.dumps(row["provenance"]),
                 }
@@ -1072,7 +1239,9 @@ def main(argv=None):
                 continue
             component_name = names.get(component, component)
             for code in JURISDICTION_ORDER:
-                status, detail, source, date, provenance, disclosure = LINE_BUILDERS[code](component_record, registers)
+                status, detail, source, date, provenance, disclosure, absence = LINE_BUILDERS[
+                    code
+                ](component_record, registers)
                 registration.append(
                     {
                         "page": key,
@@ -1085,8 +1254,15 @@ def main(argv=None):
                         "date_checked": date,
                         "order": order,
                         "line": join([status, detail]),
+                        "absence": absence,
                         "disclosure": json.dumps(disclosure, ensure_ascii=False) if disclosure else "{}",
-                        "provenance": json.dumps(sorted(set(provenance))),
+                        # §11: a component's line was read off the component's own record, not off
+                        # this page's, and the trace says whose record it is. Resolving it against
+                        # the combination page would look for a jurisdiction key that page never
+                        # had, which is the defect §11 names.
+                        "provenance": json.dumps(
+                            sorted({"%s · record %s" % (trace, component) for trace in provenance})
+                        ),
                     }
                 )
                 order += 1

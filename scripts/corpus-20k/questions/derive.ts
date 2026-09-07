@@ -856,6 +856,26 @@ export interface RegisterStatus {
  * record none, because the question needs the first and the block's qualification needs the second.
  * Nothing is inferred: a code whose status is "unknown" is unknown, not absent.
  */
+/**
+ * The order §2 of `docs/specs/phase4-generators.md` fixes: Singapore, the United States, Australia,
+ * the United Kingdom, the European Union, Japan, Canada, then anything else by its code.
+ *
+ * Nothing may read a jurisdiction list in the order a record happens to hold it. The stored field
+ * is JSON, and PostgreSQL's `jsonb` does not keep an object's key order, so the page rendered from
+ * the database listed the jurisdictions in one order and the page rendered from the corpus files
+ * in another — the disagreement §11 names. Both now sort through this comparator.
+ */
+export const JURISDICTION_ORDER: readonly string[] = ['SG', 'US', 'AU', 'UK', 'EU', 'JP', 'CA']
+
+export function byJurisdiction(a: string, b: string): number {
+  const left = JURISDICTION_ORDER.indexOf(a)
+  const right = JURISDICTION_ORDER.indexOf(b)
+  if (left >= 0 && right >= 0) return left - right
+  if (left >= 0) return -1
+  if (right >= 0) return 1
+  return a.localeCompare(b)
+}
+
 export function readRegisterStatuses(entry: FieldEntry | undefined): {
   recorded: RegisterStatus[]
   unknown: string[]
@@ -866,7 +886,7 @@ export function readRegisterStatuses(entry: FieldEntry | undefined): {
   const neverCleared: string[] = []
   const value = asObject(entry?.value)
   if (!value) return { recorded, unknown, neverCleared }
-  for (const [code, raw] of Object.entries(value)) {
+  for (const [code, raw] of [...Object.entries(value)].sort(([a], [b]) => byJurisdiction(a, b))) {
     const o = asObject(raw)
     const status = asString(o ? pick(o, 'status') : raw)
     if (!status) continue

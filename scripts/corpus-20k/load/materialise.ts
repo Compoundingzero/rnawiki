@@ -22,7 +22,15 @@
  *   --load-dir <dir>        marker directory, default data/corpus-20k/load
  *   --state-root <dir>      working directory for the batch.ts checkpoint, default the repo root
  *   --no-checkpoint         skip the batch.ts checkpoint call
- *   --indexable-threshold n present-field floor for `indexable`; default: Gate 1b, else 3
+ *   --indexable-threshold n one floor for `indexable`, for every tier; default: Gate 1b, else 3
+ *   --thresholds <file>     the ruler's own per-tier thresholds, e.g.
+ *                           data/revamp/thresholds-v6.json — an object whose `tiers.tier1`,
+ *                           `tiers.tier2` and `tiers.tier3` each carry a `threshold`. A tier whose
+ *                           threshold is null selects no page. Overrides --indexable-threshold.
+ *   --presence <file>       the ruler's present-over-applicable count per page, e.g.
+ *                           data/revamp/presence-applicable-v6.ndjson. Defaults to the file
+ *                           beside --thresholds carrying the same suffix. Without it the load
+ *                           counts present fields and reports that it did.
  *   --allow-working-database  permit writes to rnawiki_corpus_completion (refused by default)
  *   --production-confirmed  required before any write to a remote database (deployment plan)
  *
@@ -82,7 +90,7 @@ import { spawn } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { createReadStream, existsSync } from 'node:fs'
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { createInterface } from 'node:readline'
 import { fileURLToPath } from 'node:url'
 
@@ -91,9 +99,11 @@ import { Client } from 'pg'
 
 import { databaseSslConfig, isLocalDatabaseHost } from '@/db/ssl'
 import {
+  aggregateWithoutMovedStudies,
   checkedSourcesStatement,
   CONTROLLED_WITHHELD_BLOCKS,
   interactionLine,
+  movedTrialsSentence,
   type InteractionRow,
 } from '../render/page-text'
 
@@ -164,6 +174,7 @@ interface SeedRecord {
   key: string
   seed?: number
   values?: unknown
+  slots?: unknown
   sources?: unknown
 }
 
@@ -178,6 +189,8 @@ interface QuestionRow {
   paragraph_2?: string | null
   anchors?: unknown
   revealed?: unknown
+  values?: unknown
+  sources?: unknown
 }
 
 /* ------------------------------------------------------------------------------------------- */
@@ -212,6 +225,7 @@ interface PageRow {
   withdrawn: boolean
   presentFieldCount: number
   applicableFieldCount: number
+  presentApplicableCount: number
   structureInchikey: string | null
   unii: string | null
   chemblId: string | null
@@ -885,7 +899,7 @@ function corpusSources(revamp: boolean): CorpusSources {
     suppression: join(REVAMP, 'suppression', 'assignments-v2.ndjson'),
     loadDir: join(REVAMP, 'load'),
     blocksDir: join(REVAMP, 'page-blocks'),
-    reassignments: join(REVAMP, 'identity', 'trial-reassignments-v3.csv'),
+    reassignments: join(REVAMP, 'identity', 'trial-reassignments-v4.csv'),
     redirectPlan: join(REVAMP, 'identity', 'redirect-plan-v3.csv'),
   }
 }
@@ -905,6 +919,8 @@ interface BlockBundle {
     ordinal?: number
     component?: string | null
     line: string
+    /** `not found`, `not cleared` or `not checked`, on a row that states only an absence (§11). */
+    absence?: string | null
     disclosure?: Record<string, unknown>
     provenance?: string[]
   }>
@@ -1419,8 +1435,9 @@ async function main(): Promise<void> {
      * the role recorded as what it is. A study the target page already holds is not added twice.
      */
     const reassignments = await readTrialReassignments(sources.reassignments)
+    const movedOutByKey = new Map<string, Set<string>>()
     if (reassignments.length > 0) {
-      const movedOut = new Map<string, Set<string>>()
+      const movedOut = movedOutByKey
       const movedIn = new Map<string, TrialReassignment[]>()
       for (const move of reassignments) {
         const out = movedOut.get(move.fromKey) ?? new Set<string>()
@@ -1454,6 +1471,28 @@ async function main(): Promise<void> {
       }
     }
 
+    /*
+     * The registry aggregate each page's question blocks are written from (migration 0027, §11).
+     *
+     * `scripts/revamp/page_text_v5.ts` reads these files and removes the studies Phase 3 moved to
+     * another page before any builder sees them; the same correction is applied here, by the same
+     * function, so the stored aggregate and the rendered one are the same object.
+     */
+    const registryAggregates = new Map<string, Record<string, unknown>>()
+    const aggregatesDir = join(DATA, 'registry', 'aggregates')
+    if (revamp && existsSync(aggregatesDir)) {
+      for (const file of await batchFiles(aggregatesDir, 'batch-')) {
+        for await (const row of readNdjson(file)) {
+          const record = row as Record<string, unknown>
+          const key = typeof record.key === 'string' ? record.key : undefined
+          if (!key || !tierKeys.has(key)) continue
+          const moved = movedOutByKey.get(key)
+          registryAggregates.set(key, moved ? aggregateWithoutMovedStudies(record, moved) : record)
+        }
+      }
+      process.stdout.write(`Registry aggregates read for this tier: ${registryAggregates.size}.\n`)
+    }
+
     /* The Phase 4 blocks for this tier's pages (migration 0026). */
     const blocks = await readBlockBundles(sources.blocksDir, tierKeys, counters)
     if (blocks.size > 0) {
@@ -1477,10 +1516,37 @@ async function main(): Promise<void> {
       redirectsByTargetKey.set(row.key, list)
     }
 
-    /* ---- 6. the indexable threshold -------------------------------------------------------- */
+    /* ---- 6. the indexable threshold, and the count it is read against ----------------------- */
 
-    const threshold = await indexableThreshold(option('indexable-threshold'), counters)
-    process.stdout.write(`Indexable threshold: ${threshold} present fields.\n`)
+    const thresholdsFile = option('thresholds')
+    const presenceFile =
+      option('presence') ?? (thresholdsFile ? presenceFileFor(thresholdsFile) : undefined)
+    let threshold: number | null
+    let presence = new Map<string, number>()
+    if (thresholdsFile) {
+      threshold = (await readTierThresholds(thresholdsFile, counters)).get(tier) ?? null
+      if (presenceFile && existsSync(presenceFile)) {
+        presence = await readPresenceCounts(presenceFile)
+        process.stdout.write(
+          `Present-and-applicable counts read for ${presence.size} pages from ` +
+            `${presenceFile}.\n`,
+        )
+      } else {
+        counters.bump(
+          'no presence file beside the thresholds file; present-and-applicable falls back to the ' +
+            'present-field count',
+        )
+      }
+      process.stdout.write(
+        threshold === null
+          ? `Tier ${tier} has no threshold in ${thresholdsFile}: no page in it is indexable.\n`
+          : `Indexable threshold for tier ${tier}: ${threshold} present-and-applicable fields ` +
+              `(${thresholdsFile}).\n`,
+      )
+    } else {
+      threshold = await indexableThreshold(option('indexable-threshold'), counters)
+      process.stdout.write(`Indexable threshold: ${threshold} present fields.\n`)
+    }
 
     /* ---- 7. batches ------------------------------------------------------------------------ */
 
@@ -1521,6 +1587,8 @@ async function main(): Promise<void> {
         keys,
         tier,
         threshold,
+        presence,
+        registryAggregates,
         identity,
         assignments,
         suppression,
@@ -1708,6 +1776,59 @@ export function loadTargetFingerprint(connectionString: string): string {
   return sha256(`${url.host.toLowerCase()}\n${url.pathname.replace(/^\//, '')}`)
 }
 
+/**
+ * The ruler's numerator and the loader's numerator are one number (§11).
+ *
+ * `derive_threshold.py` writes both halves: `thresholds-<tag>.json` carries a threshold per tier,
+ * and `presence-applicable-<tag>.ndjson` carries, for every page, how many of its fields are
+ * present *and* applicable. A load given the thresholds file reads the presence file beside it, so
+ * a page is called indexable on exactly the count the threshold was derived from.
+ */
+async function readTierThresholds(
+  file: string,
+  counters: Counters,
+): Promise<Map<number, number | null>> {
+  const parsed = JSON.parse(await readFile(file, 'utf8')) as {
+    tiers?: Record<string, { threshold?: number | null }>
+  }
+  const tiers = parsed.tiers
+  if (!tiers) throw new Error(`${file} carries no \`tiers\` object.`)
+  const out = new Map<number, number | null>()
+  for (const tier of [1, 2, 3]) {
+    const held = tiers[`tier${tier}`]
+    if (held === undefined) throw new Error(`${file} carries no threshold for tier ${tier}.`)
+    const value = held.threshold
+    if (value === null || value === undefined) {
+      out.set(tier, null)
+      counters.bump(`tier ${tier} has no threshold in the ruler's file; no page is indexable`)
+    } else if (typeof value === 'number' && Number.isFinite(value)) {
+      out.set(tier, value)
+    } else {
+      throw new Error(`${file} carries a non-numeric threshold for tier ${tier}.`)
+    }
+  }
+  return out
+}
+
+/** page → present-and-applicable count, as the ruler counted it. */
+async function readPresenceCounts(file: string): Promise<Map<string, number>> {
+  const out = new Map<string, number>()
+  for await (const row of readNdjson(file)) {
+    const record = row as { key?: string; present?: number }
+    if (typeof record.key === 'string' && typeof record.present === 'number') {
+      out.set(record.key, record.present)
+    }
+  }
+  return out
+}
+
+/** The presence file that belongs to a thresholds file: the same suffix, the same directory. */
+export function presenceFileFor(thresholdsFile: string): string {
+  const name = thresholdsFile.replace(/\\/g, '/').split('/').pop() ?? thresholdsFile
+  const suffix = /^thresholds(.*)\.json$/.exec(name)?.[1] ?? ''
+  return join(dirname(thresholdsFile), `presence-applicable${suffix}.ndjson`)
+}
+
 async function indexableThreshold(
   override: string | undefined,
   counters: Counters,
@@ -1738,6 +1859,8 @@ async function indexableThreshold(
 interface BuiltBatch {
   keys: string[]
   pages: PageRow[]
+  /** One row per page holding a registry aggregate, migration 0027. Empty outside `--revamp`. */
+  registryAggregateRows: unknown[][]
   synonyms: unknown[][]
   fieldRows: PageFieldRow[]
   seedRows: unknown[][]
@@ -1759,7 +1882,12 @@ interface BuiltBatch {
 function buildBatch(input: {
   keys: string[]
   tier: number
-  threshold: number
+  /** The tier's own floor, or null where the ruler selected no count for it (§11). */
+  threshold: number | null
+  /** page → present-and-applicable count, the ruler's numerator. Empty where none was supplied. */
+  presence: Map<string, number>
+  /** page → the registry aggregate the body builders read. Empty outside `--revamp`. */
+  registryAggregates: Map<string, Record<string, unknown>>
   identity: Map<string, CanonicalRecord>
   assignments: Map<string, ModelAssignment>
   suppression: Map<string, SuppressionAssignment>
@@ -1778,6 +1906,7 @@ function buildBatch(input: {
   counters: Counters
 }): BuiltBatch {
   const { keys, tier, threshold, counters } = input
+  const registryAggregateRows: unknown[][] = []
   const pages: PageRow[] = []
   const synonyms: unknown[][] = []
   const fieldRows: PageFieldRow[] = []
@@ -1873,7 +2002,19 @@ function buildBatch(input: {
       withdrawn: assignment.withdrawn,
       presentFieldCount,
     })
-    const indexable = tier <= 2 && pageType !== 'stub' && presentFieldCount >= threshold
+    /*
+     * §11: present over *applicable*, at this tier's own threshold. The ruler counts a field
+     * present only where it is also applicable — a field no Phase 2 source filled anywhere, and a
+     * field a structural rule removes from this page, leave both halves of the fraction — so a
+     * loader counting present fields against one corpus-wide number was selecting a different set
+     * from the one the threshold was derived on.
+     */
+    const presentApplicableCount = input.presence.get(key) ?? presentFieldCount
+    const indexable =
+      threshold !== null && tier <= 2 && pageType !== 'stub' && presentApplicableCount >= threshold
+
+    const aggregate = input.registryAggregates.get(key)
+    if (aggregate !== undefined) registryAggregateRows.push([key, JSON.stringify(aggregate)])
 
     /* sources, from the present field rows only */
     const perSource = new Map<
@@ -1949,6 +2090,7 @@ function buildBatch(input: {
       withdrawn: assignment.withdrawn,
       presentFieldCount,
       applicableFieldCount,
+      presentApplicableCount,
       structureInchikey: nullIfBlank(record.structure?.inchikey),
       unii: nullIfBlank(record.unii),
       chemblId: nullIfBlank(record.chemblId),
@@ -2028,6 +2170,10 @@ function buildBatch(input: {
         key,
         seed,
         JSON.stringify(row.values ?? {}),
+        // The slots are the named values the question text was written from, and they are not the
+        // values (migration 0029, §11). The page re-derives its question list from what is stored
+        // here; without the slots it derived a different list from the one the render measured.
+        JSON.stringify(row.slots ?? {}),
         JSON.stringify(row.sources ?? []),
       ])
     }
@@ -2054,6 +2200,10 @@ function buildBatch(input: {
         nullIfBlank(question.paragraph2 ?? question.paragraph_2),
         JSON.stringify(question.anchors ?? []),
         JSON.stringify(question.revealed ?? []),
+        // §11: the slot values and the sources the derivation produced. The page answers with
+        // these rather than with a second derivation over a smaller input.
+        JSON.stringify(question.values ?? {}),
+        JSON.stringify(question.sources ?? []),
       ])
     })
 
@@ -2090,6 +2240,7 @@ function buildBatch(input: {
           ordinal,
           nullIfBlank(row.component),
           line,
+          nullIfBlank(row.absence)?.slice(0, 32) ?? null,
           JSON.stringify(row.disclosure ?? {}),
           JSON.stringify(row.provenance ?? []),
         ])
@@ -2141,6 +2292,7 @@ function buildBatch(input: {
             nullIfBlank(patent.noRecordLine),
             nullIfBlank(patent.reason),
             line,
+            patent.absence === true,
             nullIfBlank(patent.source),
             recordedDate(patent.dateChecked, counters),
             JSON.stringify(patent.disclosure ?? {}),
@@ -2281,14 +2433,12 @@ function buildBatch(input: {
           'formOf',
           existing,
           'trials-moved-to-parent',
-          `${moved.count} registered ${moved.count === 1 ? 'trial names' : 'trials name'} ` +
-            `${moved.toName} without this form; ${moved.count === 1 ? 'it is' : 'they are'} ` +
-            `recorded on the ${moved.toName} page.`,
+          movedTrialsSentence(moved),
           JSON.stringify({ count: moved.count, toKey: moved.toKey, toName: moved.toName }),
           JSON.stringify({
             fields: {
               [String(moved.count)]:
-                'data/revamp/identity/trial-reassignments-v3.csv rows with action=move for this page',
+                'data/revamp/identity/trial-reassignments-v4.csv rows with action=move for this page',
             },
           }),
         ])
@@ -2397,6 +2547,7 @@ function buildBatch(input: {
     relationRows,
     sourceRows,
     registryRows,
+    registryAggregateRows,
     redirectRows,
     registrationRows,
     interactionRows,
@@ -2427,6 +2578,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
       'page_relations',
       'page_sources',
       'page_registry_studies',
+      'page_registry_aggregate',
       // Phase 4 blocks (migration 0026). Deleted with the rest of the children, before the page
       // row is written, so a page that has just become a controlled substance loses its withheld
       // blocks inside the same transaction that marks it one.
@@ -2456,6 +2608,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'withdrawn',
         'present_field_count',
         'applicable_field_count',
+        'present_applicable_count',
         'structure_inchikey',
         'unii',
         'chembl_id',
@@ -2488,6 +2641,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         page.withdrawn,
         page.presentFieldCount,
         page.applicableFieldCount,
+        page.presentApplicableCount,
         page.structureInchikey,
         page.unii,
         page.chemblId,
@@ -2519,6 +2673,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
          "withdrawn" = EXCLUDED."withdrawn",
          "present_field_count" = EXCLUDED."present_field_count",
          "applicable_field_count" = EXCLUDED."applicable_field_count",
+         "present_applicable_count" = EXCLUDED."present_applicable_count",
          "structure_inchikey" = EXCLUDED."structure_inchikey",
          "unii" = EXCLUDED."unii",
          "chembl_id" = EXCLUDED."chembl_id",
@@ -2585,7 +2740,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
     await insertRows(
       client,
       'page_seeds',
-      ['key', 'seed', 'values', 'sources'],
+      ['key', 'seed', 'values', 'slots', 'sources'],
       built.seedRows,
       'ON CONFLICT ("key", "seed") DO NOTHING',
     )
@@ -2603,6 +2758,8 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'paragraph_2',
         'anchors',
         'revealed',
+        'values',
+        'sources',
       ],
       built.questionRows,
       'ON CONFLICT ("key", "ordinal") DO NOTHING',
@@ -2632,6 +2789,16 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
       'ON CONFLICT ("id") DO NOTHING',
     )
 
+    // The aggregate the body builders read (migration 0027, §11). Without it the page built from
+    // the database and the page built from the corpus files write different paragraphs.
+    await insertRows(
+      client,
+      'page_registry_aggregate',
+      ['key', 'aggregate'],
+      built.registryAggregateRows,
+      'ON CONFLICT ("key") DO UPDATE SET "aggregate" = EXCLUDED."aggregate"',
+    )
+
     /* ---- Phase 4 blocks (migration 0026) ---------------------------------------------------- */
 
     await insertRows(
@@ -2649,6 +2816,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'ordinal',
         'component',
         'line',
+        'absence',
         'disclosure',
         'provenance',
       ],
@@ -2707,6 +2875,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'no_record_line',
         'reason',
         'line',
+        'absence',
         'source',
         'date_checked',
         'disclosure',

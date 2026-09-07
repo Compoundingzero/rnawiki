@@ -12,6 +12,11 @@
  * resolver does not rewrite a `.js` specifier onto a `.ts` file. `tsx` and Vitest are unaffected.
  */
 export {
+  ABSENCE_COLUMNS,
+  absenceCaption,
+  absenceRowText,
+  absentAsOf,
+  aggregateWithoutMovedStudies,
   anchor,
   buildBlockBody,
   carriesDoseText,
@@ -23,6 +28,7 @@ export {
   CONTROLLED_WITHHELD_BLOCKS,
   CONTROLLED_WITHHELD_SEEDS,
   formOfNoteLines,
+  groupRevealedRows,
   INTERACTION_CONFIDENCE_LABELS,
   INTERACTION_RULE_LABELS,
   INTERACTION_TIER_LABELS,
@@ -35,13 +41,16 @@ export {
   registrationLineText,
   renderPage,
   ROW_CAP,
+  sectionSentenceCounterpart,
   sectionSentenceFields,
   sectionSentenceText,
   sentenceNamesCompound,
   TRIAL_ROWS_INLINE,
+  withdrawnArcRows,
 } from '@/scripts/corpus-20k/render/page-text'
 
 export type {
+  ArcRow,
   BlockBody,
   CheckedSources,
   ControlledRow,
@@ -58,6 +67,7 @@ export type {
   RelationNote,
   RenderedPage,
   RevealedRow,
+  RevealedRowGroup,
   SectionSentence,
   SeedRecord,
   Synonym,

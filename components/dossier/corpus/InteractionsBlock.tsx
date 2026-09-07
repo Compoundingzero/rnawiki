@@ -80,9 +80,20 @@ function Tier({
 export function InteractionsBlock({ interactions }: { interactions: CorpusInteractions }) {
   const { lines, statement, predictedOnly } = interactions
   if (lines.length === 0 && statement === undefined) return null
+  /*
+   * §11: where the page holds no interaction row the statement is an absence in fixed words, on
+   * 25,217 pages, and it is furniture — kept, because Operating Rule 9 requires it, and marked so
+   * the ruler and the duplicate check skip it. Where a row was found the same sentence names what
+   * was checked beside what was found, and it is content.
+   */
   const statementElement =
     statement === undefined ? null : (
-      <p className="cd-paragraph cd-interaction-statement">{statement}</p>
+      <p
+        className="cd-paragraph cd-interaction-statement"
+        {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}
+      >
+        {statement}
+      </p>
     )
   return (
     <section aria-labelledby="cd-interactions-heading" className="cd-interactions-block">
@@ -103,8 +114,18 @@ export function InteractionsBlock({ interactions }: { interactions: CorpusIntera
         <details className="cd-evidence">
           <summary>Show what was checked</summary>
           <ul className="cd-rows">
+            {/*
+              §11: on a page with no interaction row these names are the statement's own evidence
+              and say only where nothing was found — the same three, in the same order, on 25,217
+              pages. They are marked with the statement they belong to, so the ruler and the
+              duplicate check skip both or neither.
+            */}
             {interactions.sourcesChecked.map((source) => (
-              <li className="cd-row" key={source}>
+              <li
+                className="cd-row"
+                key={source}
+                {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}
+              >
                 <div className="cd-row-value">{source}</div>
               </li>
             ))}

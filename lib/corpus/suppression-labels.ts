@@ -43,3 +43,14 @@ export function citedSuppressionLabels(classes: readonly string[]): string[] {
 export function isUnknownClassOnly(classes: readonly string[]): boolean {
   return classes.length > 0 && classes.every((code) => code === 'S10')
 }
+
+/**
+ * The single line an S10-only record carries in place of a block: it has no classification to
+ * state, and saying so is not the same as saying nothing was found to worry about.
+ *
+ * It lives here, in the module that imports nothing, because the corpus-scale renderer under
+ * `scripts/` writes the same line and must not pull the database layer in to get its words.
+ */
+export function unknownClassificationLine(): string {
+  return 'No classification is recorded for this compound in the registers checked.'
+}

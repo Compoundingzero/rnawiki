@@ -653,9 +653,18 @@ def main() -> int:
                         help="directory of per-model field batches (default: the corpus-20k fields)")
     parser.add_argument("--text-dir", default=str(TEXT_DIR),
                         help="directory of rendered page-text batches to measure overlap on "
-                             "(default: the corpus-20k v4 render). The rule, the fold "
+                             "(default: the corpus-20k v4 render). This is the furniture-free "
+                             "text and it is the gate figure "
+                             "(docs/specs/phase4-generators.md §11). The rule, the fold "
                              "construction, the population and both lines are unchanged; only "
                              "which render the text comes from changes.")
+    parser.add_argument("--with-furniture-text-dir", default=None,
+                        help="the same pages rendered with their furniture "
+                             "(scripts/revamp/page_text_v5.ts --with-furniture). Given both, the "
+                             "selected set of each tier is scored a second time on this text and "
+                             "the figure is reported beside the gate figure, so the before/after "
+                             "comparison is stated on both definitions of the page's text and "
+                             "neither is hidden. It never selects a threshold.")
     parser.add_argument("--out", default=str(OUT_DIR / "thresholds.json"),
                         help="thresholds JSON path; the markdown, the presence file and the "
                              "applicable census take the same stem's suffix")
@@ -663,6 +672,7 @@ def main() -> int:
 
     fields_dir = Path(args.fields_dir)
     text_dir = Path(args.text_dir)
+    furniture_dir = Path(args.with_furniture_text_dir) if args.with_furniture_text_dir else None
     out_json = Path(args.out)
     stem = out_json.stem
     tag = stem[len("thresholds"):] if stem.startswith("thresholds") else f"-{stem}"
@@ -691,6 +701,7 @@ def main() -> int:
     tiers = {r["key"]: r["tier"] for r in rows}
     counts_by_key = {r["key"]: r["present"] for r in rows}
     pages = read_pages_text(text_dir)
+    furniture_pages = read_pages_text(furniture_dir) if furniture_dir is not None else None
     questions = read_question_counts()
     WORK_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -721,7 +732,28 @@ def main() -> int:
                 f"`{os.path.relpath(TEXT_DIR, ROOT)}` is the text itself."
             ),
             "pages": len(pages),
+            "furniture": (
+                "furniture-free (docs/specs/phase4-generators.md §11): the register rows whose "
+                "status is an absence, the checked-sources statement on a page with no interaction "
+                "row, the patent no-record line and the S10-only classification line are on the "
+                "page and are not in this text. Before Phase 4 an absence rendered nothing and was "
+                "not in the measured text either, so this is the like-for-like comparison."
+            ),
         },
+        **(
+            {
+                "pageTextWithFurniture": {
+                    "dir": os.path.relpath(furniture_dir, ROOT),
+                    "pages": len(furniture_pages or {}),
+                    "note": (
+                        "the same pages with their furniture, scored on the set the furniture-free "
+                        "text selected. Reported, never used to select."
+                    ),
+                }
+            }
+            if furniture_dir is not None
+            else {}
+        ),
         "rule": "smallest present-field count whose own bucket median positional <= 0.20 and whose "
                 "cumulative set (pages at or above it) also keeps median <= 0.20 "
                 "(scripts/corpus-20k/overlap/gate1b_v3.py:263-268, unchanged; the count is now "
@@ -902,6 +934,31 @@ def main() -> int:
                     "clearsLexical": sms["lexical"]["median"] <= LEXICAL_LINE,
                 }
             )
+            if furniture_pages is not None:
+                # The same set, the same rule, the same lines — the other definition of the page's
+                # text. Cache files are namespaced so the two runs never read one another's scores.
+                # `main` already declares `CACHE_PREFIX` global, above, where it sets the gate
+                # prefix; declaring it a second time inside the same function is a syntax error.
+                gate_prefix = CACHE_PREFIX
+                CACHE_PREFIX = (
+                    os.path.relpath(furniture_dir, ROOT).replace("/", "_").replace(".", "_") + "-"
+                )
+                fap = score_all_pairs(
+                    f"tier{tier}-t{chosen}", set_keys, furniture_pages, tiers, args.refresh
+                )
+                fsms = score_set_size_matched(
+                    f"tier{tier}-t{chosen}", set_keys, furniture_pages, tiers, args.refresh
+                )
+                CACHE_PREFIX = gate_prefix
+                entry["withFurniture"] = {
+                    "positionalAllPairs": fap["positional"]["median"],
+                    "lexicalAllPairs": fap["lexical"]["median"],
+                    "positionalSizeMatched": fsms["positional"]["median"],
+                    "lexicalSizeMatched": fsms["lexical"]["median"],
+                    "sharedWordShareAllPairs": fap["sharedWordShareMedian"],
+                    "clearsPositional": fap["positional"]["median"] <= POSITIONAL_LINE,
+                    "clearsLexical": fsms["lexical"]["median"] <= LEXICAL_LINE,
+                }
         else:
             entry.update(
                 {
@@ -923,6 +980,12 @@ def main() -> int:
             f"  tier {tier}: rule={unguarded} guarded={guarded} final={chosen} "
             f"indexable={entry['indexable']}"
         )
+        if entry.get("withFurniture"):
+            print(
+                f"    with furniture: positional {entry['withFurniture']['positionalAllPairs']} "
+                f"lexical {entry['withFurniture']['lexicalSizeMatched']} "
+                "(reported beside the gate figure, never selecting)"
+            )
 
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8")

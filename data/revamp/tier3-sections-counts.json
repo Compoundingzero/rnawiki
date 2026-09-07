@@ -1,7 +1,7 @@
 {
   "schema": "rnawiki-revamp-tier3-sections/v1",
-  "generatedAt": "2026-09-05T23:07:05Z",
-  "runSeconds": 211.6,
+  "generatedAt": "2026-09-07T13:00:35Z",
+  "runSeconds": 198.3,
   "inputs": {
     "fields": "data/revamp/fields-v2/*/batch-*.ndjson",
     "structures": "data/revamp/identity/canonical-v2.ndjson",
@@ -10,7 +10,7 @@
     "tiers": "data/revamp/identity/spine-attached.parquet",
     "models": "data/corpus-20k/tiers/model-assignment.ndjson",
     "registryPerTrial": "data/corpus-20k/registry/aggregates",
-    "trialReassignments": "data/revamp/identity/trial-reassignments-v3.csv",
+    "trialReassignments": "data/revamp/identity/trial-reassignments-v4.csv",
     "suppression": "data/corpus-20k/suppression/assignments.ndjson"
   },
   "outputs": {
@@ -101,12 +101,12 @@
   },
   "neighbourSubstituentOutcomes": {
     "heavy-atom difference larger than a single substituent": 1301,
-    "maximum common substructure search did not complete": 465,
+    "maximum common substructure search did not complete": 439,
     "molecule larger than the maximum common substructure size limit": 263,
     "named": 1015,
-    "side chains off the common core could not be isolated": 1569,
+    "side chains off the common core could not be isolated": 1592,
     "the differing group is not in the named-substituent table": 396,
-    "the two molecules differ on both sides of the common core, which is not a single added substituent": 3731
+    "the two molecules differ on both sides of the common core, which is not a single added substituent": 3734
   },
   "potency": {
     "comparatorGroups": 773,
@@ -133,7 +133,7 @@
     "8815 of 28832 pages record no structure in canonical-v2.ndjson, so the nearest-approved-neighbour section cannot fire on them; the missing structure is stated on the page rather than filled",
     "822 pages hold a pChEMBL value but record no ChEMBL mechanism target, so they have no primary target and fire no potency rank",
     "`target` is a DEVELOPMENT-model field: 2444 pages record a ChEMBL mechanism target and every one of them is Tier 3, so a primary target — and with it the potency rank and the target sentences — can only be established on a Tier 3 page. CLINICAL and LONGEVITY pages carry UniProt target accessions under identifiers.uniprotTargets; those join the target index as comparators and as approved drugs against the target, but they give those pages no primary target of their own",
-    "465 maximum common substructure searches hit the 2-second limit; those sentences carry the similarity and the neighbour's status without a named substituent",
+    "439 maximum common substructure searches hit the 2-second limit; those sentences carry the similarity and the neighbour's status without a named substituent",
     "5480 pages name more than one sponsor on their earliest dated Inxight marketing record, so no single originating organisation is stated for them"
   ]
 }

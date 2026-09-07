@@ -20,6 +20,17 @@ The three rules, as written:
       `data/revamp/render-v5/text/batch-*.ndjson`, and the share is over pages carrying the
       template, not over occurrences: a template repeated four times on one page is one page.
 
+      `docs/specs/phase4-generators.md` section 11 fixes what (b) is applied to: answer sentences,
+      derived-section sentences, computed-section sentences and hub syntheses - the text whose
+      words a generator chooses. It is not applied to a question heading, which is the corpus-20k
+      template contract and is measured by that contract's own two lines (masked template <= 30 %,
+      most-repeated unmasked string <= 0.5 %); nor to furniture, the fixed-vocabulary statements
+      section 11 marks `data-furniture`; nor to the h1, which is the display name and masks to a
+      bare `<drug>` on every page by construction. Every sentence (b) is not applied to is counted,
+      by the reason it was excluded, in `report.json` under `failBExclusions`: the rule's scope is
+      reported, never silently narrowed. Tests (a) and (c) apply to everything the page paints
+      outside furniture.
+
   (c) no sentence is a label naming the narrative device: "the problem", "the lesson", "the
       takeaway", "the story".
 
@@ -62,7 +73,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 TEXT_DIR = ROOT / "data/revamp/render-v5/text"
-PROVENANCE_DIR = ROOT / "data/revamp/render-v5/provenance"
 FIELDS_DIR = ROOT / "data/revamp/fields-v2"
 QUESTIONS_DIR = ROOT / "data/revamp/questions-v2"
 DERIVED_DIR = ROOT / "data/revamp/derived-v2"
@@ -262,7 +272,36 @@ def load_pages(database_url: str) -> list[Page]:
     return pages
 
 
-def corpus_page_columns(database_url: str) -> set[str]:
+MIGRATIONS_DIR = ROOT / "db/migrations"
+
+
+def corpus_page_columns_from_migrations() -> set[str]:
+    """`corpus_pages`'s columns as the migrations declare them, for a run with no database.
+
+    `tests/test_render_safety.py` resolves the same traces this script resolves and has no database
+    to ask, so the one other place the column list is written down is read instead. A column is
+    declared once in the `CREATE TABLE` and once per `ALTER TABLE ... ADD COLUMN`.
+    """
+    columns: set[str] = set()
+    for path in sorted(MIGRATIONS_DIR.glob("*.sql")):
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(
+            r'CREATE TABLE (?:IF NOT EXISTS )?"corpus_pages" \((.*?)\n\);', text, re.S
+        ):
+            for line in match.group(1).splitlines():
+                name = re.match(r'\s*"([a-z0-9_]+)"', line)
+                if name:
+                    columns.add(name.group(1))
+        for match in re.finditer(
+            r'ALTER TABLE "corpus_pages" ADD COLUMN "([a-z0-9_]+)"', text
+        ):
+            columns.add(match.group(1))
+    return columns
+
+
+def corpus_page_columns(database_url: str | None) -> set[str]:
+    if not database_url:
+        return corpus_page_columns_from_migrations()
     rows = psql(
         database_url,
         "SELECT column_name FROM information_schema.columns WHERE table_name = 'corpus_pages'",
@@ -492,6 +531,10 @@ class PageInputs:
     blocks: dict = dataclass_field(default_factory=dict)
     source_kinds: set[str] = dataclass_field(default_factory=set)
     ddi_records: set[str] = dataclass_field(default_factory=set)
+    # A combination page's component lines were read off the components' own records, and their
+    # traces name whose record each came from (`<path> on <component key>`, section 11). This is
+    # component key -> that page's field entries, shared by every page in the draw.
+    component_fields: dict = dataclass_field(default_factory=dict)
 
 
 SOURCE_LIST_RE = re.compile(r'^\[(?:"[^"]*"(?:,\s*)?)+\]$')
@@ -500,6 +543,17 @@ DDI_RE = re.compile(r"^(?:inxight record )?frdb:ddi:\d+$")
 LEXICON_RE = re.compile(r"^lexicon surface '(?P<surface>[^']*)'(?P<tail>.*)$")
 BAND_RULE_RE = re.compile(r"^band rule (?P<rule>[A-Za-z0-9\-]+) in (?P<spec>\S+)")
 CLASS_RE = re.compile(r"^both pages are members of the (?P<klass>[a-z/\-]+) class$")
+# The trace of an absence (docs/specs/phase4-generators.md section 11), as
+# `scripts/revamp/build_blocks.py` writes it: the field paths that were searched, the register that
+# was read, and the date it was read on. It resolves only if every path named really is absent from
+# this page's own stored record - the claim is executed, not taken on trust.
+# `<trace> · record K1:XXXXXXXX` - a value read off another page's record, which is how a
+# combination page states each component's register line (section 3). The trace inside is an
+# ordinary one of any class and is resolved against that record.
+ON_RECORD_RE = re.compile(r"^(?P<trace>.+) · record (?P<key>\S.*)$")
+SEARCHED_RE = re.compile(
+    r"^searched and not recorded: (?P<paths>[^;]+); register: (?P<register>.+?) as of (?P<date>.+)$"
+)
 
 
 def walk_value(value, path: str) -> bool:
@@ -523,12 +577,50 @@ def walk_value(value, path: str) -> bool:
     return walk_value(value[head], rest)
 
 
+def field_path_resolves(page: PageInputs, path: str) -> bool:
+    """Does `fields.<name>.<rest>` reach a recorded value on this page's own stored record?"""
+    match = FIELD_PATH_RE.match(path.strip())
+    if not match:
+        return False
+    entry = page.fields.get(match.group(1))
+    if entry is None:
+        return False
+    return walk_value(entry, match.group(2) or "")
+
+
 def resolve_trace(trace: str, page: PageInputs, corpus_keys: set[str], columns: set[str],
                   rule_ids: set[str]) -> tuple[str, bool]:
     """Return (class, resolved). `needs-sibling` classes resolve only beside another trace."""
     trace = trace.strip()
     if not trace:
         return "empty", False
+
+    match = ON_RECORD_RE.match(trace)
+    if match:
+        # The component's own record, not this page's. Resolving it against the combination page
+        # would look for a jurisdiction key that page never carried, which is the defect section 11
+        # names. The trace inside is resolved by the ordinary rules, against that record.
+        held = page.component_fields.get(match.group("key"))
+        if held is None:
+            return "another record: not read", False
+        klass, ok = resolve_trace(
+            match.group("trace"),
+            PageInputs(key=match.group("key"), fields=held),
+            corpus_keys,
+            columns,
+            rule_ids,
+        )
+        return f"{klass} on another record", ok
+
+    match = SEARCHED_RE.match(trace)
+    if match:
+        # An absence resolves when what it claims is true of the record: every path it names is
+        # missing, and it names the register that was read and the day it was read on.
+        paths = [part.strip() for part in match.group("paths").split(",") if part.strip()]
+        stated = bool(match.group("register").strip()) and bool(match.group("date").strip())
+        return "absence", bool(paths) and stated and not any(
+            field_path_resolves(page, path) for path in paths
+        )
 
     match = FIELD_PATH_RE.match(trace)
     if match:
@@ -599,22 +691,52 @@ def resolve_trace(trace: str, page: PageInputs, corpus_keys: set[str], columns: 
     return "unrecognised", False
 
 
-def load_page_inputs(keys: set[str], database_url: str) -> dict[str, PageInputs]:
-    inputs = {key: PageInputs(key=key) for key in keys}
+def load_page_inputs(keys: set[str], database_url: str | None = None) -> dict[str, PageInputs]:
+    component_fields: dict = {}
+    inputs = {key: PageInputs(key=key, component_fields=component_fields) for key in keys}
 
+    # The blocks are read first, because a combination page's component lines name the component
+    # pages whose records they were read off and those records have to be read in the same pass
+    # over `fields-v2` as the pages' own.
+    for path in sorted(BLOCKS_DIR.glob("batch-*.ndjson")):
+        for row in read_ndjson(path):
+            held = inputs.get(row.get("key"))
+            if held is None:
+                continue
+            held.blocks = row
+            # The curated interaction record ids, from the blocks the render read. The loader
+            # writes the same ids into `page_interactions`, so a run with a database reads them
+            # there as well and gets a superset; a run without one is not left unable to resolve a
+            # curated line's trace.
+            for tier in ((row.get("interactions") or {}).get("tiers") or {}).values():
+                for line in list(tier.get("inline") or []) + list(tier.get("disclosed") or []):
+                    source_id = line.get("sourceRecordId")
+                    if isinstance(source_id, str) and source_id:
+                        held.ddi_records.add(source_id)
+            for line in row.get("registration") or []:
+                for trace in line.get("provenance") or []:
+                    match = ON_RECORD_RE.match(str(trace))
+                    if match:
+                        component_fields.setdefault(match.group("key"), {})
+
+    wanted = keys | set(component_fields)
     for model in MODEL_DIRS:
         directory = FIELDS_DIR / model
         if not directory.is_dir():
             continue
         for path in sorted(directory.glob("batch-*.ndjson")):
             for row in read_ndjson(path):
-                held = inputs.get(row["key"])
-                if held is None:
+                if row["key"] not in wanted:
                     continue
                 entries = dict(row.get("fields") or {})
                 for name, entry in row.items():
                     if name != "fields" and isinstance(entry, dict) and "state" in entry:
                         entries.setdefault(name, entry)
+                if row["key"] in component_fields:
+                    component_fields[row["key"]] = entries
+                held = inputs.get(row["key"])
+                if held is None:
+                    continue
                 held.fields = entries
                 for entry in entries.values():
                     source = entry.get("source") if isinstance(entry, dict) else None
@@ -654,21 +776,16 @@ def load_page_inputs(keys: set[str], database_url: str) -> dict[str, PageInputs]
         if held is not None:
             held.identity = row
 
-    for path in sorted(BLOCKS_DIR.glob("batch-*.ndjson")):
-        for row in read_ndjson(path):
-            held = inputs.get(row.get("key"))
-            if held is None:
-                continue
-            held.blocks = row
-    rows = psql(
-        database_url,
-        'SELECT "key", source_record_id FROM page_interactions '
-        "WHERE source_record_id IS NOT NULL",
-    )
-    for key, source_id in rows:
-        held = inputs.get(key)
-        if held is not None:
-            held.ddi_records.add(source_id)
+    if database_url:
+        rows = psql(
+            database_url,
+            'SELECT "key", source_record_id FROM page_interactions '
+            "WHERE source_record_id IS NOT NULL",
+        )
+        for key, source_id in rows:
+            held = inputs.get(key)
+            if held is not None:
+                held.ddi_records.add(source_id)
 
     return inputs
 
@@ -824,11 +941,41 @@ def block_of(sentence: str, traces: list[str]) -> str:
         return "derived seed"
     if "tier3-sections" in joined or "RDKit" in joined or "pChEMBL" in joined:
         return "computed section"
+    if "hubs" in joined or any(trace.startswith("hub.") for trace in traces):
+        return "hub synthesis"
     if any(trace.startswith("identity.") for trace in traces) or "display-names" in joined:
         return "header"
     if "fields.regulatory" in joined:
         return "registration"
     return "other"
+
+
+# (b)'s scope, as section 11 fixes it: the blocks whose wording a generator chooses.
+#
+# `question block` is the answer, `derived seed` the derived sections, `computed section` the Tier 3
+# computed sentences and `hub synthesis` the H1-H7 sentences of a hub page. Everything else on the
+# page is either a statement the spec fixes verbatim (the register lines, the checked-sources
+# statement, the no-record patent line), a recorded name (the h1), or furniture.
+TEMPLATE_TEST_BLOCKS = frozenset(
+    {"question block", "derived seed", "computed section", "hub synthesis"}
+)
+
+
+def template_test_applies(entry: dict, block: str) -> tuple[bool, str]:
+    """Does the template test apply to this sentence, and if not, under which exclusion?
+
+    The order is the order section 11 states the exclusions in, and the first that holds is the one
+    reported, so a furniture line that is also outside the four blocks is counted once.
+    """
+    if entry.get("heading") is True:
+        return False, "question heading (the corpus-20k template contract)"
+    if entry.get("furniture") is True:
+        return False, "furniture"
+    if block == "header":
+        return False, "the h1 and the header line"
+    if block not in TEMPLATE_TEST_BLOCKS:
+        return False, f"outside the sentences the generator words: {block}"
+    return True, ""
 
 
 # ----------------------------------------------------------------------------------------------
@@ -844,6 +991,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--per-tier", type=int, default=DEFAULT_PER_TIER)
     parser.add_argument("--out-dir", type=Path, default=ROOT / "data/revamp/slop-draws/draw-1")
     parser.add_argument("--text-dir", type=Path, default=TEXT_DIR)
+    parser.add_argument(
+        "--provenance-dir",
+        type=Path,
+        default=None,
+        help="the provenance map written beside --text-dir by page_text_v5.ts; defaults to the "
+             "`provenance` directory of the same render, so the sentences checked and the traces "
+             "they are checked against always come from one render",
+    )
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY)
     parser.add_argument("--truncate-words", type=int, default=TRUNCATE_WORDS)
     parser.add_argument("--database-url", default=os.environ.get("DATABASE_URL"))
@@ -899,7 +1054,8 @@ def main(argv: list[str] | None = None) -> int:
     # ---- provenance and inputs for the drawn pages --------------------------------------------
     provenance: dict[str, list[dict]] = {}
     render_keys: set[str] = set()
-    for path in sorted(PROVENANCE_DIR.glob("batch-*.ndjson")):
+    provenance_dir: Path = args.provenance_dir or (args.text_dir.parent / "provenance")
+    for path in sorted(provenance_dir.glob("batch-*.ndjson")):
         for row in read_ndjson(path):
             render_keys.add(row["key"])
             if row["key"] in keys:
@@ -909,13 +1065,13 @@ def main(argv: list[str] | None = None) -> int:
     unloaded_render = sorted(render_keys - loaded_keys)
     if without_render:
         issues.append(
-            f"{len(without_render)} loaded pages have no record in {repo_path(PROVENANCE_DIR)}; "
+            f"{len(without_render)} loaded pages have no record in {repo_path(provenance_dir)}; "
             f"the first is {without_render[0]}. A page in the draw with no provenance record is "
             "reported as one page-level failure, not as a failure per line."
         )
     if unloaded_render:
         issues.append(
-            f"{len(unloaded_render)} pages in {repo_path(PROVENANCE_DIR)} are not in the loaded "
+            f"{len(unloaded_render)} pages in {repo_path(provenance_dir)} are not in the loaded "
             f"corpus; the first is {unloaded_render[0]}"
         )
     rendered_text: dict[str, dict] = {}
@@ -939,6 +1095,10 @@ def main(argv: list[str] | None = None) -> int:
     totals = Counter()
     trace_classes = Counter()
     fail_b_by_block = Counter()
+    # Section 11: every sentence the template test was not applied to, by the exclusion that
+    # removed it, so the scope of the rule is on the report beside its failures.
+    fail_b_exclusions = Counter()
+    fail_b_exclusions_by_block = Counter()
     fail_b_examples: dict[str, dict] = {}
 
     for page in rendered:
@@ -1019,10 +1179,15 @@ def main(argv: list[str] | None = None) -> int:
                 failures.append({"check": "a", "sentence": sentence, "block": block,
                                  "reason": f"no recorded trace resolved: {traces[0]}"})
 
-            # (b)
+            # (b), over the sentences section 11 puts in its scope; the rest are counted here
+            # as exclusions and reported.
+            applies, exclusion = template_test_applies(entry, block)
+            if not applies:
+                fail_b_exclusions[exclusion] += 1
+                fail_b_exclusions_by_block[f"{exclusion} · {block}"] += 1
             template = mask(sentence, page.key)
             carrying = census.get(template, 0)
-            if carrying > share_limit:
+            if applies and carrying > share_limit:
                 share = carrying / census_pages
                 failures.append(
                     {
@@ -1096,16 +1261,6 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     # ---- report.json ---------------------------------------------------------------------------
-    # The four blocks whose wording the spec fixes rather than the generator choosing it: the seven
-    # register lines (§3), the checked-sources statement (§4), the no-record patent line (§5), and
-    # the page title, which is the display name and therefore masks to a bare `<drug>` on every
-    # page by construction.
-    fail_b_fixed_blocks = {
-        "registration",
-        "interactions: checked-sources statement",
-        "generic and patent",
-        "header",
-    }
     report = {
         "generated": "scripts/revamp/slop_draw.py",
         "spec": ["docs/specs/revamp-2026-09.md#phase-4", "docs/specs/phase4-generators.md#9"],
@@ -1147,19 +1302,20 @@ def main(argv: list[str] | None = None) -> int:
         "renderRecordsNotLoaded": len(unloaded_render),
         "failBByBlock": dict(fail_b_by_block.most_common()),
         "failBExamplePerBlock": fail_b_examples,
-        "failBOutsideTheFixedStatementBlocks": sum(
-            count for block, count in fail_b_by_block.items() if block not in fail_b_fixed_blocks
-        ),
-        "failBFixedStatementBlocks": sorted(fail_b_fixed_blocks),
-        "failBSensitivityNote": (
-            "the seven register lines (docs/specs/phase4-generators.md §3), the checked-sources "
-            "statement (§4) and the no-record patent line (§5) are statements the spec requires "
-            "verbatim on every page they apply to, and the page title is the display name, which "
-            "masks to a bare <drug> on every page by construction. All four therefore carry a "
-            "template share far above 0.5 % because the spec says they must, not because a "
-            "generator chose the words. Both figures are reported: `failB` is §9's rule applied "
-            "without exception, and `failBOutsideTheFixedStatementBlocks` is the same rule over "
-            "the blocks whose wording the generator does choose. Neither figure excuses the other."
+        "failBScope": sorted(TEMPLATE_TEST_BLOCKS),
+        "failBExclusions": dict(fail_b_exclusions.most_common()),
+        "failBExclusionsByBlock": dict(fail_b_exclusions_by_block.most_common()),
+        "failBScopeNote": (
+            "docs/specs/phase4-generators.md §11 scopes the template test to answer sentences, "
+            "derived-section sentences, computed-section sentences and hub syntheses. A question "
+            "heading is the corpus-20k template contract and is measured by that contract's own "
+            "two lines; furniture is the fixed-vocabulary absence statements §11 marks "
+            "data-furniture; the h1 is the display name and masks to a bare <drug> on every page "
+            "by construction; and the register lines (§3), the checked-sources statement (§4) and "
+            "the no-record patent line (§5) are wordings the spec fixes rather than a generator "
+            "choosing them. `failB` is the rule over its scope; `failBExclusions` counts every "
+            "sentence it was not applied to, by the exclusion that removed it, so the scope is on "
+            "the report beside the result."
         ),
         "traceClasses": dict(trace_classes.most_common()),
         "pages": page_reports,
@@ -1230,7 +1386,9 @@ def main(argv: list[str] | None = None) -> int:
           f"not painted {totals['sentences not painted']}  "
           f"painted lines with no render record {totals['painted lines with no render record']}")
     print(f"fail (a) {totals['fail a']}  fail (b) {totals['fail b']}  fail (c) {totals['fail c']}")
-    print(f"fail (b) outside the spec's fixed statements: {report['failBOutsideTheFixedStatementBlocks']}")
+    print(f"fail (b) scope: {', '.join(report['failBScope'])}")
+    for reason, count in report["failBExclusions"].items():
+        print(f"  (b) not applied to {count} sentences: {reason}")
     rows_left = PRINT_ROWS
 
     def show(line: str) -> None:

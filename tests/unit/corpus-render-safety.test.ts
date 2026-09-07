@@ -494,6 +494,7 @@ describe('the patent, form-of and computed-section blocks', () => {
       React.createElement(PatentBlock, {
         patent: {
           eligible: false,
+          absence: true,
           line: 'No US patent or exclusivity data on record · not an approved US small molecule',
           reason: 'not an approved US small molecule',
           applications: [],
@@ -656,6 +657,7 @@ describe('the whole page (§1 block order)', () => {
       },
       patent: {
         eligible: true,
+        absence: false,
         line: 'RLD: yes · generic available: no · checked 2026-08-14',
         applications: ['NDA004782'],
       },

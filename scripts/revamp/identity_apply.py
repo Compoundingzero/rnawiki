@@ -38,8 +38,19 @@ What it does, in this order:
     parent name. Where two or more pages print the same stripped name, or none does, no study moves
     and the reason is counted.
 
+4.  **Biosimilars (docs/specs/phase4-generators.md section 11).** The FDA Purple Book decides
+    which of the pages carrying a four-letter suffix is a biosimilar and of what: the row whose
+    `proper_name` is the name the page itself prints, licensed under `351(k)`, names the reference
+    product. Where that reference product is the name printed by the one live page the
+    `biosimilar_of` relation points at, the relation's note becomes the sentence the page opens
+    with - `X is a biosimilar of Y` - and a registry study whose every recorded intervention on the
+    biosimilar page names only that reference product moves to the reference page
+    (`R14c-REFERENCE-PRODUCT-TRIAL`). A suffixed page the Purple Book licenses under `351(a)` is a
+    biologic in its own right, not a biosimilar; its note is left exactly as Phase 3 wrote it and
+    no study moves off it.
+
 Outputs, all under `data/revamp/identity/`: `canonical-v3.ndjson`, `relations-v3.parquet`,
-`display-names-v3.csv`, `redirect-plan-v3.csv`, `trial-reassignments-v3.csv`, `hold-list-v3.csv`
+`display-names-v3.csv`, `redirect-plan-v3.csv`, `trial-reassignments-v4.csv`, `hold-list-v3.csv`
 and `apply-summary.json`.
 
     identity_apply.py --out-dir data/revamp/identity
@@ -76,6 +87,7 @@ SPINE_ATTACHED = IDENTITY / "spine-attached.parquet"
 GSRS_SPINE = ROOT / "data/sources/gsrs/spine.parquet"
 DECISIONS = ROOT / "data/revamp/identity-decisions.csv"
 REGISTRY_MATCHES = ROOT / "data/corpus-20k/registry/matches"
+PURPLE_BOOK = ROOT / "data/sources/orange-purple-book/mapped.parquet"
 
 MAX_PRINT_ROWS = 50
 
@@ -497,6 +509,180 @@ def run_trial_moves(pages: dict[str, dict], printed: dict[str, str],
 
 
 # ---------------------------------------------------------------------------------------------
+# biosimilars: the reference product's trials, and the sentence the page opens with
+# ---------------------------------------------------------------------------------------------
+
+def name_key(value) -> str:
+    """One comparable form for a product name: letters and digits, single-spaced, lower case."""
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).split())
+
+
+def load_purple_book(printed: dict[str, str]) -> dict[str, dict]:
+    """Page -> the FDA Purple Book row that licenses *this page's own proper name* as a biosimilar.
+
+    A biosimilar page and the page it is a biosimilar of share one UNII, so the mapped source
+    attaches every Purple Book row of that substance to both. The row that speaks about this page
+    is the one whose `proper_name` is the name the page prints, and only that row is read here.
+    `license_type` is the register's own word: `351(a)` is a biologic licensed in its own right and
+    `351(k)` is a biosimilar, so the distinction is the register's and not this script's.
+    """
+    if not PURPLE_BOOK.exists():
+        return {}
+    frame = pd.read_parquet(PURPLE_BOOK, columns=["key", "field", "value", "source_date",
+                                                  "source_url"])
+    frame = frame[frame["field"] == "purpleBookProducts"]
+    out: dict[str, dict] = {}
+    for key, value, source_date, source_url in zip(frame["key"], frame["value"],
+                                                   frame["source_date"], frame["source_url"]):
+        if key not in printed:
+            continue
+        row = json.loads(value)
+        if name_key(row.get("proper_name")) != name_key(printed[key]):
+            continue
+        licence = str(row.get("license_type") or "")
+        if not licence.startswith("351(k)"):
+            continue
+        reference = {name_key(row.get("reference_product_proper_name")),
+                     name_key(row.get("reference_product_proprietary_name"))}
+        reference.discard("")
+        if not reference:
+            continue
+        held = out.setdefault(key, {"referenceNames": set(), "blaNumbers": [], "licenceTypes": [],
+                                    "properName": row.get("proper_name"),
+                                    "referenceProperName": row.get("reference_product_proper_name"),
+                                    "sourceDate": source_date, "sourceUrl": source_url})
+        held["referenceNames"] |= reference
+        if row.get("bla_number") and row["bla_number"] not in held["blaNumbers"]:
+            held["blaNumbers"].append(row["bla_number"])
+        if licence not in held["licenceTypes"]:
+            held["licenceTypes"].append(licence)
+    return out
+
+
+def biosimilar_pairs(relations: pd.DataFrame, printed: dict[str, str],
+                     purple: dict[str, dict]) -> tuple[dict[str, dict], Counter]:
+    """Biosimilar page -> its reference page, where three things all hold.
+
+    Section 11: "the reference is the one live page printing the INN without a suffix". The three
+    conditions are the register's, not this script's: the Purple Book licenses this page's own
+    proper name under 351(k) against a named reference product; the page the `biosimilar_of`
+    relation points at prints that reference product's name; and no other live page prints it, so
+    "the one live page" is a fact rather than a choice.
+    """
+    printed_count: Counter = Counter(name_key(name) for name in printed.values())
+    out: dict[str, dict] = {}
+    reasons: Counter = Counter()
+    rows = relations[relations["relation"] == "biosimilar_of"].to_dict("records")
+    for row in rows:
+        child, reference = row["page_a"], row["page_b"]
+        if child not in printed or reference not in printed:
+            reasons["one side is not a live page"] += 1
+            continue
+        record = purple.get(child)
+        if record is None:
+            reasons["the Purple Book does not license this page's own name under 351(k)"] += 1
+            continue
+        reference_printed = name_key(printed[reference])
+        if reference_printed not in record["referenceNames"]:
+            reasons["the linked page does not print the reference product's name"] += 1
+            continue
+        if printed_count[reference_printed] != 1:
+            reasons["more than one live page prints the reference product's name"] += 1
+            continue
+        out[child] = {"reference": reference, "referenceNames": record["referenceNames"],
+                      "blaNumbers": record["blaNumbers"], "licenceTypes": record["licenceTypes"],
+                      "sourceDate": record["sourceDate"], "sourceUrl": record["sourceUrl"],
+                      "referenceProperName": record["referenceProperName"]}
+        reasons["licensed as a biosimilar of the page it points at"] += 1
+    return out, reasons
+
+
+def run_biosimilar_trial_moves(confirmed: dict[str, dict], printed: dict[str, str],
+                               registry: dict[str, list[dict]]) -> tuple[list[dict], dict]:
+    """A study that names only the reference product moves to the reference page (section 11).
+
+    The same shape as R14b one section above: every registry intervention recorded for the study on
+    this page is read, and the study moves only when all of them name the reference product. The
+    names that count are the ones the FDA Purple Book records for the reference product - its
+    proper name and its proprietary name - so "names only the reference product" is decided against
+    a register rather than against a guess about what a trade name refers to.
+    """
+    rows: list[dict] = []
+    children = 0
+    for child, link in sorted(confirmed.items()):
+        matches = registry.get(child) or []
+        if not matches:
+            continue
+        by_nct: dict[str, list[dict]] = defaultdict(list)
+        for match in matches:
+            by_nct[match.get("nct")].append(match)
+        moved_here = 0
+        child_name, reference_name = printed[child], printed[link["reference"]]
+        for nct, group in sorted(by_nct.items()):
+            names = [name_key(m.get("matchedName", "")) for m in group]
+            if not nct or not names:
+                continue
+            if any(name not in link["referenceNames"] for name in names):
+                continue
+            rows.append({
+                "nct": nct,
+                "from_key": child,
+                "to_key": link["reference"],
+                "matched_name": group[0].get("matchedName"),
+                "action": "move",
+                "rule": "R14c-REFERENCE-PRODUCT-TRIAL",
+                "reason": (f"every registry intervention recorded for this study on the "
+                           f"{child_name} page names the reference product the FDA Purple Book "
+                           f"licenses {child_name} against ({reference_name}), so the study "
+                           f"belongs to the reference page"),
+            })
+            moved_here += 1
+        if moved_here:
+            children += 1
+    summary = {
+        "biosimilarPagesConfirmedByTheRegister": len(confirmed),
+        "biosimilarPagesWithMovedStudies": children,
+        "studiesMoved": len(rows),
+    }
+    return rows, summary
+
+
+def biosimilar_note(child_name: str, reference_name: str, link: dict) -> str:
+    """The sentence section 11 fixes, with the register that supports it named after it."""
+    licences = ", ".join(sorted(link["licenceTypes"]))
+    blas = ", ".join(link["blaNumbers"][:4])
+    return (f"{child_name} is a biosimilar of {reference_name}. The FDA Purple Book read on "
+            f"{link['sourceDate']} records it as licensed under section 351(k) of the Public "
+            f"Health Service Act against {reference_name}"
+            + (f", entered as {licences}" if licences else "")
+            + (f", biologics licence application {blas}" if blas else "")
+            + ".")
+
+
+def apply_biosimilar_notes(relations: pd.DataFrame, confirmed: dict[str, dict],
+                           printed: dict[str, str]) -> tuple[pd.DataFrame, int]:
+    """Rewrite the `biosimilar_of` note to the sentence the page opens with (section 11).
+
+    Only the confirmed pages are rewritten. A page carrying an FDA four-letter suffix that the
+    Purple Book licenses under 351(a) is a biologic licensed in its own right, not a biosimilar of
+    anything, and its recorded note - which says it carries the suffix, and nothing more - stays as
+    Phase 3 wrote it.
+    """
+    rewritten = 0
+    notes = []
+    for row in relations.to_dict("records"):
+        link = confirmed.get(row["page_a"]) if row["relation"] == "biosimilar_of" else None
+        if link is None or link["reference"] != row["page_b"]:
+            notes.append(row["note"])
+            continue
+        notes.append(biosimilar_note(printed[row["page_a"]], printed[row["page_b"]], link))
+        rewritten += 1
+    out = relations.copy()
+    out["note"] = notes
+    return out, rewritten
+
+
+# ---------------------------------------------------------------------------------------------
 # rebuilding the revision
 # ---------------------------------------------------------------------------------------------
 
@@ -739,7 +925,21 @@ def main() -> int:
     display_kept, display_dropped = rebuild_display_names(display_rows, merge_map)
     relations_v3, relations_dropped = rebuild_relations(relations, merge_map, new_relation_rows)
     trial_new, trial_summary = run_trial_moves(pages, printed, normaliser)
-    trials, trial_counts = rebuild_trials(read_csv_rows(TRIALS), trial_new, merge_map, live_keys)
+
+    # Section 11's biosimilar rule, on the same registry matches R14b reads: the FDA Purple Book
+    # says which pages are biosimilars and of what, the relation says which page the corpus holds
+    # the reference on, and a study naming only the reference product moves there.
+    live_printed = {key: name for key, name in printed.items() if key in live_keys}
+    purple = load_purple_book(live_printed)
+    confirmed, biosimilar_reasons = biosimilar_pairs(relations_v3, live_printed, purple)
+    biosimilar_new, biosimilar_summary = run_biosimilar_trial_moves(
+        confirmed, live_printed, load_registry()
+    )
+    relations_v3, notes_rewritten = apply_biosimilar_notes(relations_v3, confirmed, live_printed)
+
+    trials, trial_counts = rebuild_trials(
+        read_csv_rows(TRIALS), trial_new + biosimilar_new, merge_map, live_keys
+    )
     hold_v3, hold_rekeyed = rekey_hold_list(holds, merge_map)
 
     with (out / "canonical-v3.ndjson").open("w") as handle:
@@ -748,7 +948,7 @@ def main() -> int:
     relations_v3.to_parquet(out / "relations-v3.parquet", index=False)
     write_csv(out / "display-names-v3.csv", display_kept, list(display_rows[0].keys()))
     write_csv(out / "redirect-plan-v3.csv", plan, REDIRECT_COLUMNS)
-    write_csv(out / "trial-reassignments-v3.csv", trials, TRIAL_COLUMNS)
+    write_csv(out / "trial-reassignments-v4.csv", trials, TRIAL_COLUMNS)
     write_csv(out / "hold-list-v3.csv", hold_v3, list(holds[0].keys()))
 
     summary = {
@@ -821,6 +1021,28 @@ def main() -> int:
             "rowsBefore": len(read_csv_rows(TRIALS)),
             "rowsAfter": len(trials),
         },
+        "biosimilars": {
+            **biosimilar_summary,
+            "rule": "R14c-REFERENCE-PRODUCT-TRIAL",
+            "relationRowsRewrittenToTheSection11Sentence": notes_rewritten,
+            "pagesByOutcome": dict(sorted(biosimilar_reasons.items())),
+            "provenance": {
+                "<biosimilar> is a biosimilar of <reference>": [
+                    "data/sources/orange-purple-book/mapped.parquet purpleBookProducts rows whose "
+                    "proper_name is the name this page prints, license_type 351(k)",
+                    "reference_product_proper_name and reference_product_proprietary_name on the "
+                    "same rows",
+                    "relations-v3 biosimilar_of page_b, which must print that reference name and "
+                    "must be the only live page that does",
+                ],
+                "every registry intervention recorded for this study on the <biosimilar> page "
+                "names the reference product": [
+                    "registry/matches/*.ndjson matchedName for every match of that NCT on the "
+                    "biosimilar page",
+                    "the Purple Book reference product names above",
+                ],
+            },
+        },
         "relations": {
             "before": int(len(relations)),
             "after": int(len(relations_v3)),
@@ -844,7 +1066,7 @@ def main() -> int:
             "relations": "data/revamp/identity/relations-v3.parquet",
             "displayNames": "data/revamp/identity/display-names-v3.csv",
             "redirectPlan": "data/revamp/identity/redirect-plan-v3.csv",
-            "trialReassignments": "data/revamp/identity/trial-reassignments-v3.csv",
+            "trialReassignments": "data/revamp/identity/trial-reassignments-v4.csv",
             "holdList": "data/revamp/identity/hold-list-v3.csv",
         },
     }
@@ -859,6 +1081,10 @@ def main() -> int:
           f"{summary['trialReassignment']['rowsAfter']} rows "
           f"({trial_summary['studiesMoved']} studies moved off "
           f"{trial_summary['childPagesWithMovedStudies']} form pages)")
+    print(f"biosimilars: {len(confirmed)} pages licensed under 351(k) against the page they point "
+          f"at; {biosimilar_summary['studiesMoved']} studies naming only the reference product "
+          f"moved off {biosimilar_summary['biosimilarPagesWithMovedStudies']} of them; "
+          f"{notes_rewritten} relation notes now open \"X is a biosimilar of Y\"")
     for row in summary["merges"][:MAX_PRINT_ROWS]:
         print(f"  MERGE   {row['absorbed']} -> {row['survivor']} ({row['survivorName']})")
     for row in summary["formOf"][:MAX_PRINT_ROWS]:

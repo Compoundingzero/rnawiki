@@ -47,6 +47,9 @@ ROOT_CERT = ROOT.parent / "rnawiki-backups" / "railway" / "postgres-root.crt"
 DISPOSITIONS = ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"
 PAGE_SLUGS = ROOT / "data/revamp/identity/page-slugs.csv"
 CANONICAL_V2 = ROOT / "data/revamp/identity/canonical-v2.ndjson"
+# §11: every check recomputes slugs from `canonical-v3`, the revision this run publishes.
+CANONICAL_V3 = ROOT / "data/revamp/identity/canonical-v3.ndjson"
+CANONICAL_DEFAULT = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_V2
 REQUEST_LOG = ROOT / "data/corpus-20k/legal/requests.log"
 
 USER_AGENT = "rnawiki-revamp/1.0 (+https://rnawiki.com; felix360506@gmail.com)"
@@ -104,7 +107,7 @@ def read_plan(path: Path) -> list[tuple[str, str, str]]:
         return [(row["old_slug"], row["new_slug"], row["reason"]) for row in csv.DictReader(handle)]
 
 
-def surviving_slugs(plan: list[tuple[str, str, str]], canonical: Path = CANONICAL_V2) -> set[str]:
+def surviving_slugs(plan: list[tuple[str, str, str]], canonical: Path = CANONICAL_DEFAULT) -> set[str]:
     """The slugs that still serve a page once the merges and adoptions in `canonical` are applied."""
     by_key = read_page_slugs()
     live: set[str] = set()
@@ -274,7 +277,7 @@ def main() -> int:
     parser.add_argument("--base-url", default="https://rnawiki.com")
     parser.add_argument("--plan", type=Path, default=ROOT / "data/revamp/identity/redirect-plan.csv")
     parser.add_argument("--out", type=Path, default=ROOT / "data/revamp/redirect-check.json")
-    parser.add_argument("--canonical", type=Path, default=CANONICAL_V2,
+    parser.add_argument("--canonical", type=Path, default=CANONICAL_DEFAULT,
                         help="the canonical revision whose pages the plan must land on; the merges "
                              "a later revision applies change which slugs still serve a page")
     parser.add_argument("--service", default="Postgres")

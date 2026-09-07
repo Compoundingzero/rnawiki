@@ -7,11 +7,7 @@
  */
 import Link from 'next/link'
 
-import {
-  HUB_MEMBER_ROLES,
-  HUB_MEMBER_ROLE_LABEL,
-  type HubMemberRecord,
-} from '@/lib/hubs/types'
+import { HUB_MEMBER_ROLES, HUB_MEMBER_ROLE_LABEL, type HubMemberRecord } from '@/lib/hubs/types'
 
 export function HubMembers({ members }: { members: HubMemberRecord[] }) {
   const grouped = HUB_MEMBER_ROLES.map((role) => ({

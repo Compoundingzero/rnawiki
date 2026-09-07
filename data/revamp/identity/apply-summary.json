@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T22:33:06Z",
+  "generatedAt": "2026-09-07T13:00:34Z",
   "step": "3.4 application",
   "inputs": {
     "apply": "data/revamp/identity/apply-list.csv",
@@ -375,10 +375,33 @@
     },
     "rowsByRule": {
       "R14-PARENT-NAME-TRIAL": 1682,
-      "R14b-PARENT-NAME-TRIAL-FORM": 10638
+      "R14b-PARENT-NAME-TRIAL-FORM": 10638,
+      "R14c-REFERENCE-PRODUCT-TRIAL": 831
     },
     "rowsBefore": 1682,
-    "rowsAfter": 12320
+    "rowsAfter": 13151
+  },
+  "biosimilars": {
+    "biosimilarPagesConfirmedByTheRegister": 81,
+    "biosimilarPagesWithMovedStudies": 6,
+    "studiesMoved": 831,
+    "rule": "R14c-REFERENCE-PRODUCT-TRIAL",
+    "relationRowsRewrittenToTheSection11Sentence": 81,
+    "pagesByOutcome": {
+      "licensed as a biosimilar of the page it points at": 81,
+      "the Purple Book does not license this page's own name under 351(k)": 77
+    },
+    "provenance": {
+      "<biosimilar> is a biosimilar of <reference>": [
+        "data/sources/orange-purple-book/mapped.parquet purpleBookProducts rows whose proper_name is the name this page prints, license_type 351(k)",
+        "reference_product_proper_name and reference_product_proprietary_name on the same rows",
+        "relations-v3 biosimilar_of page_b, which must print that reference name and must be the only live page that does"
+      ],
+      "every registry intervention recorded for this study on the <biosimilar> page names the reference product": [
+        "registry/matches/*.ndjson matchedName for every match of that NCT on the biosimilar page",
+        "the Purple Book reference product names above"
+      ]
+    }
   },
   "relations": {
     "before": 5392,
@@ -427,7 +450,7 @@
     "relations": "data/revamp/identity/relations-v3.parquet",
     "displayNames": "data/revamp/identity/display-names-v3.csv",
     "redirectPlan": "data/revamp/identity/redirect-plan-v3.csv",
-    "trialReassignments": "data/revamp/identity/trial-reassignments-v3.csv",
+    "trialReassignments": "data/revamp/identity/trial-reassignments-v4.csv",
     "holdList": "data/revamp/identity/hold-list-v3.csv"
   }
 }

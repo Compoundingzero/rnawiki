@@ -2,8 +2,9 @@
 
 `docs/specs/revamp-2026-09.md` 4.1 names this file: the interaction rendering rules "are
 unit-tested in `tests/test_render_safety.py`". It reads what the renderer actually wrote —
-`data/revamp/render-v5/text/batch-*.ndjson` and `data/revamp/render-v5/provenance/*` — rather than
-a fixture, because a rule that holds on a fixture and not on the corpus is not a rule.
+`data/revamp/render-v5-with-furniture/{text,provenance}/batch-*.ndjson`, the page as a browser
+paints it — rather than a fixture, because a rule that holds on a fixture and not on the corpus is
+not a rule.
 
 Run it with the corpus environment:
 
@@ -30,13 +31,23 @@ What is asserted, and where each rule comes from:
   7. No raw class, seed or rule identifier reaches the rendered text (§7).
   8. Every rendered sentence has a provenance entry naming the stored field or computed value it
      came from (4.7(a)).
+  9. Every one of those traces resolves — executed, not assumed (§11). A trace naming a stored
+     field must reach a recorded value on that page's own record, and the trace of an absence must
+     name paths the record really does not carry, beside the register that was read and the date it
+     was read on. The absence rule runs over all 28,832 pages; the whole resolver, over every class
+     of trace the corpus uses, runs over a seeded, tier-stratified sample.
+ 10. The render and the page agree (§11): the text `page_text_v5 --with-furniture` writes is the
+     text a browser paints, in the same order. The comparison itself is
+     `scripts/revamp/dom_parity.py`, which needs a local build; this file asserts its result.
 """
 
 from __future__ import annotations
 
 import json
 import os
+import random
 import re
+import sys
 from collections import Counter
 from typing import Any, Iterator
 
@@ -44,9 +55,33 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v5")
-TEXT_DIR = os.path.join(RENDER_DIR, "text")
-PROVENANCE_DIR = os.path.join(RENDER_DIR, "provenance")
+# §11: the ruler reads the page without its furniture and these rules read it with, because they
+# are rules about what a reader meets. `Not found in [register] as of [date]` is furniture and is
+# still on the page; a test reading the furniture-free text would assert that the page had stopped
+# saying something it says. Where the with-furniture render has not been written, the furniture-free
+# one is read and the furniture rules are exercised on whatever it carries.
+FURNITURE_RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v5-with-furniture")
+PAINTED_DIR = (
+    FURNITURE_RENDER_DIR
+    if os.path.isdir(os.path.join(FURNITURE_RENDER_DIR, "text"))
+    else RENDER_DIR
+)
+TEXT_DIR = os.path.join(PAINTED_DIR, "text")
+PROVENANCE_DIR = os.path.join(PAINTED_DIR, "provenance")
 BLOCKS_DIR = os.path.join(ROOT, "data", "revamp", "page-blocks")
+FIELDS_DIR = os.path.join(ROOT, "data", "revamp", "fields-v2")
+DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
+
+# The resolver is `scripts/revamp/slop_draw.py`'s, imported rather than copied: check 4.7(a) and
+# this file must agree about what "resolves" means, and two implementations of that would drift.
+sys.path.insert(0, os.path.join(ROOT, "scripts", "revamp"))
+import slop_draw  # noqa: E402  (the path is set immediately above)
+
+# How many pages the whole resolver is run over, and the seed that draws them. The absence rule of
+# §11 is checked on every page; running every class of trace over every page would read the four
+# input directories the draw reads for all 28,832 pages, so that half is a stratified sample.
+RESOLVER_SAMPLE = int(os.environ.get("RENDER_SAFETY_SAMPLE", "1000"))
+RESOLVER_SEED = 20260907
 
 TIER_LABELS = ("Label-documented", "Curated", "Predicted from mechanism")
 
@@ -478,3 +513,175 @@ def test_a_recorded_classification_never_reads_as_a_token(pages):
     assert supervision_pages > 0, "no page rendered a supervision block"
     assert stated_in_class_words > 0, "no page stated an R2 class in the spec's words"
     assert stated_by_the_registers > 0, "no page stated the registers' own classification"
+
+
+# ---------------------------------------------------------------------------------------------
+# §11 — every trace resolves, and the render agrees with the page
+
+
+def _field_records() -> Iterator[dict[str, Any]]:
+    """Every page's stored field record, one at a time; nothing is held after it is read."""
+    for model in ("longevity", "clinical", "development"):
+        directory = os.path.join(FIELDS_DIR, model)
+        if not os.path.isdir(directory):
+            continue
+        for path in sorted(os.listdir(directory)):
+            if not re.fullmatch(r"batch-\d+\.ndjson", path):
+                continue
+            with open(os.path.join(directory, path), encoding="utf-8") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if line:
+                        yield json.loads(line)
+
+
+def _page_fields(record: dict[str, Any]) -> dict[str, Any]:
+    """The field entries of one record, in the shape the resolver reads them."""
+    entries = dict(record.get("fields") or {})
+    for name, entry in record.items():
+        if name != "fields" and isinstance(entry, dict) and "state" in entry:
+            entries.setdefault(name, entry)
+    return entries
+
+
+def test_the_trace_of_an_absence_names_paths_the_record_does_not_carry(provenance):
+    """§11, over every page: an absence cites what was searched, and it really is absent.
+
+    "Provenance of an absence cites the field path that was searched and the register's date …
+    never a path the record does not carry." Slop draw 1 measured the opposite: 469 of 1,632 field
+    traces named a jurisdiction key the page's own record does not hold, so an honest sentence was
+    carrying a trace nobody could follow. The claim is executed here — every path the trace names
+    must be missing from that page's stored record, and the register and the date must be stated.
+    """
+    if not provenance:
+        pytest.skip(f"no provenance under {PROVENANCE_DIR}")
+    # Which record each absence is about. A combination page states each component's register
+    # line from the component's own record and the trace says so (`… · record <key>`), so the
+    # claim is resolved against that record and not against the page carrying the line.
+    wanted: dict[str, set[str]] = {}
+    for key, entries in provenance.items():
+        for entry in entries:
+            for trace in entry.get("fields") or []:
+                trace = trace.strip()
+                on_record = slop_draw.ON_RECORD_RE.match(trace)
+                record_key, inner = (
+                    (on_record.group("key"), on_record.group("trace")) if on_record else (key, trace)
+                )
+                if slop_draw.SEARCHED_RE.match(inner):
+                    wanted.setdefault(record_key, set()).add(inner)
+    assert wanted, "no absence carried a searched-and-not-recorded trace anywhere in the corpus"
+
+    failures: list[str] = []
+    checked = 0
+    pages_seen = 0
+    for record in _field_records():
+        traces = wanted.pop(record.get("key"), None)
+        if traces is None:
+            continue
+        pages_seen += 1
+        page = slop_draw.PageInputs(key=record["key"], fields=_page_fields(record))
+        for trace in sorted(traces):
+            checked += 1
+            match = slop_draw.SEARCHED_RE.match(trace)
+            if match is None:
+                failures.append(f"{record['key']}: unreadable absence trace — {trace[:160]}")
+                continue
+            if not match.group("register").strip() or not match.group("date").strip():
+                failures.append(f"{record['key']}: absence with no register or date — {trace[:160]}")
+            for path in (part.strip() for part in match.group("paths").split(",")):
+                if path and slop_draw.field_path_resolves(page, path):
+                    failures.append(
+                        f"{record['key']}: the record carries {path}, which the trace calls absent"
+                    )
+    _report(failures, "absence trace that the record contradicts")
+    _report(sorted(wanted), "record named by an absence trace that has no stored field record")
+    assert checked > 0, "no absence trace was resolved"
+    assert pages_seen > 1000, f"only {pages_seen} records carried an absence trace"
+
+
+def test_every_trace_on_a_sampled_page_resolves(pages, provenance):
+    """§11 and 4.7(a), with `slop_draw`'s own resolver, over a seeded tier-stratified sample.
+
+    Draw 1's check (a) failed on 128 sentences because a trace named something that is not there.
+    The same resolver runs here, over every class of trace the corpus uses — a stored field, an
+    absence, a question template, a derived seed, a repository file, a source record, an
+    interaction rule, a corpus_pages column — so a generator that starts citing a path it did not
+    read fails in the test suite rather than in the next draw.
+    """
+    if not provenance:
+        pytest.skip(f"no provenance under {PROVENANCE_DIR}")
+    by_tier: dict[int, list[str]] = {}
+    for page in pages:
+        by_tier.setdefault(int(page["tier"]), []).append(page["key"])
+    rng = random.Random(RESOLVER_SEED)
+    drawn: list[str] = []
+    per_tier = max(1, RESOLVER_SAMPLE // max(1, len(by_tier)))
+    for tier in sorted(by_tier):
+        held = sorted(by_tier[tier])
+        drawn.extend(rng.sample(held, min(per_tier, len(held))))
+    keys = set(drawn)
+
+    inputs = slop_draw.load_page_inputs(keys)
+    columns = slop_draw.corpus_page_columns(None)
+    rule_ids = slop_draw.interaction_rule_ids()
+    corpus_keys = {page["key"] for page in pages}
+
+    failures: list[str] = []
+    classes: Counter = Counter()
+    checked = 0
+    for key in sorted(keys):
+        page_inputs = inputs.get(key)
+        assert page_inputs is not None, f"{key}: no stored inputs"
+        for entry in provenance.get(key) or []:
+            traces = entry.get("fields") or []
+            if not traces:
+                failures.append(f"{key}: no trace at all — {entry['sentence'][:120]}")
+                continue
+            resolutions = [
+                slop_draw.resolve_trace(trace, page_inputs, corpus_keys, columns, rule_ids)
+                for trace in traces
+            ]
+            for klass, ok in resolutions:
+                classes[f"{klass}: {'resolved' if ok else 'unresolved'}"] += 1
+                checked += 1
+            if not any(ok for _klass, ok in resolutions):
+                failures.append(
+                    f"{key}: no trace resolved ({traces[0][:100]}) — {entry['sentence'][:100]}"
+                )
+    assert checked > 0, "no trace was resolved"
+    _report(failures, f"sentence whose traces do not resolve (classes: {dict(classes)})")
+
+
+def test_the_render_and_the_painted_page_agree(pages):
+    """§11: "a sentence the page paints but the render lacks, or the reverse, fails this file".
+
+    The comparison is `scripts/revamp/dom_parity.py`: it loads the build, renders a seeded
+    200-page sample in headless Chromium with every disclosure opened and the chrome hidden, and
+    compares that text with what `page_text_v5 --with-furniture` wrote for the same pages, in both
+    directions and in order. That needs a database and a server, which a unit test has neither of,
+    so the measurement is a command and this is the assertion on its result:
+
+        npx tsx scripts/revamp/page_text_v5.ts --with-furniture
+        npx tsx scripts/with-disposable-database.ts -- npx tsx scripts/corpus-20k/load/materialise.ts \\
+            --tier 1 --revamp --thresholds data/revamp/thresholds-v6.json
+        npx next start -p 3142
+        .venv-corpus/bin/python scripts/revamp/dom_parity.py --base-url http://127.0.0.1:3142
+    """
+    if not os.path.exists(DOM_PARITY):
+        pytest.skip(
+            f"no parity report at {DOM_PARITY}; run scripts/revamp/dom_parity.py against a local "
+            "build first (the command is in this test's docstring)"
+        )
+    report = json.loads(open(DOM_PARITY, encoding="utf-8").read())
+    totals = report.get("totals") or {}
+    compared = totals.get("pages compared", 0)
+    assert compared >= 200, (
+        f"the parity report compared {compared} pages; §11 asks for a 200-page sample"
+    )
+    failures: list[str] = []
+    for entry in report.get("pages") or []:
+        for name in ("renderLinesNotPainted", "paintedLinesNotInRender", "renderLinesOutOfOrder"):
+            for line in entry.get(name) or []:
+                failures.append(f"{entry['key']} {name}: {line[:160]}")
+    _report(failures, "line on which the render and the painted page disagree")
+    assert totals.get("pages disagreeing", 0) == 0

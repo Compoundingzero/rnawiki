@@ -698,6 +698,53 @@
 }
 
 /*
+ * The absence table (docs/specs/phase4-generators.md §11).
+ *
+ * The registers that hold no record of this substance, written once: the shared words in the
+ * caption and the column headings, each absent register as one cell. It is the same hairline row
+ * as everything above it, in the muted ink, with no box and no colour of its own — it states what
+ * was looked for and not found, and it is not the part of the page a reader came for. The table
+ * scrolls inside its own region rather than pushing the page wider than 320 px.
+ */
+
+.cd-register-absent {
+  border-collapse: collapse;
+  display: block;
+  margin-top: 0.9rem;
+  max-width: 100%;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.cd-register-absent caption {
+  caption-side: top;
+  color: var(--corpus-ink-2);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  padding-bottom: 0.35rem;
+  text-align: left;
+}
+
+.cd-register-absent th,
+.cd-register-absent td {
+  border-top: 1px solid var(--corpus-hairline);
+  color: var(--corpus-ink-2);
+  font-size: 0.82rem;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  padding: 0.4rem 0.9rem 0.4rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.cd-register-absent thead th {
+  color: var(--corpus-ink-3);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*
  * The tier label is the first thing on an interaction line and reads as a word, not a chip: §4
  * makes it "a visible element, not a class", and a reader deciding what to take with what must see
  * whether a line came from a label, from a curated dataset or from a rule.
