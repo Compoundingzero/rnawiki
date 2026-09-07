@@ -1,0 +1,5 @@
+outs:
+- md5: 8b57b8e56b82355957e86207ce5982f0
+  size: 947103
+  hash: md5
+  path: batch-0009.ndjson

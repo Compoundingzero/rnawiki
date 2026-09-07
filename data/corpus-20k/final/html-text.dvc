@@ -1,0 +1,6 @@
+outs:
+- md5: 9936ce8dcec216288e25fef6f68d5ea9.dir
+  size: 18845612
+  nfiles: 1
+  hash: md5
+  path: html-text

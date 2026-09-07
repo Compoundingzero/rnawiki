@@ -1,0 +1,5 @@
+outs:
+- md5: fffebd947cc5bc07808e2de03d7b4d29
+  size: 5601713
+  hash: md5
+  path: new.ndjson

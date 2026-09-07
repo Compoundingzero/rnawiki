@@ -1,0 +1,5 @@
+outs:
+- md5: 178dc69282c69e5bea535a12bc76921c
+  size: 24653824
+  hash: md5
+  path: control-other.duckdb

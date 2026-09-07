@@ -1,0 +1,5 @@
+outs:
+- md5: fd86c2eeb03f117ef0f08a081a352a53
+  size: 14954496
+  hash: md5
+  path: control-self.duckdb

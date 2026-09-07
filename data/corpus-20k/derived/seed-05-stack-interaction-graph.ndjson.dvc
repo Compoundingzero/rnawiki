@@ -1,0 +1,5 @@
+outs:
+- md5: a4175c5a93950c2f9b5c72137e50101d
+  size: 19553121
+  hash: md5
+  path: seed-05-stack-interaction-graph.ndjson

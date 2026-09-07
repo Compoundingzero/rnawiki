@@ -1,0 +1,6 @@
+outs:
+- md5: 47ad4dfbda0fb3205ba33fba3f1b4ba2.dir
+  size: 38378496
+  nfiles: 21
+  hash: md5
+  path: clinical

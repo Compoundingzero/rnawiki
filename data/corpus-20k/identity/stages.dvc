@@ -1,0 +1,6 @@
+outs:
+- md5: 2ebc6c0e6feb95d11c6991cdb122628a.dir
+  size: 73720031
+  nfiles: 8
+  hash: md5
+  path: stages

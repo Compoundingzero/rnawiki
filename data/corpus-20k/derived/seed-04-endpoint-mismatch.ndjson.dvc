@@ -1,0 +1,5 @@
+outs:
+- md5: a57cca6cdc69529c9477dd2806024180
+  size: 4567490
+  hash: md5
+  path: seed-04-endpoint-mismatch.ndjson

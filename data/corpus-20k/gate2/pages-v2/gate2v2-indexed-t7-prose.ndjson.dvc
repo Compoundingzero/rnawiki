@@ -1,0 +1,5 @@
+outs:
+- md5: 7fa4f27c7d3cf0119334d60c326e608b
+  size: 6811699
+  hash: md5
+  path: gate2v2-indexed-t7-prose.ndjson
