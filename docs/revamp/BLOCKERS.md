@@ -664,3 +664,347 @@ which the catalogue search re-run would then find; (2) an explicit reuse permiss
 licence on the MOH subsidised-drugs page, which would make its paginated table retrievable under
 rule 8; (3) Felix obtaining the list directly from MOH under terms that permit reuse on a
 commercial site.
+
+---
+
+## [2026-09-06] Phase 6.4 — DVC offsite remote: BLOCKED-WITH-EVIDENCE (credentials)
+
+Everything DVC needs is in place except the credentials. `dvc push` is the only step that has not
+run, and it is the step that creates the third copy.
+
+### What is done
+
+| Item | State |
+| --- | --- |
+| dvc | 3.67.1 with the `s3` extra, installed into `.venv-corpus` (`.venv-corpus/bin/dvc`) |
+| `dvc init` | done; `.dvc/config`, `.dvc/.gitignore` and `.dvcignore` are staged, uncommitted, for the lead to commit |
+| analytics | off (`core.analytics = false`) — DVC's anonymous usage reporting does not run |
+| cache links | `cache.type = reflink,copy`; APFS clones the files, so the 9.53 GB cache costs no extra disk |
+| remote | `offsite`, default, `s3://rnawiki-corpus-dvc`, endpoint `https://s3.us-west-004.backblazeb2.com`, region `us-west-004` |
+| tracked | 127 paths, 9.53 GB, listed by `scripts/revamp/dvc_add_untracked.py` |
+| pull mechanism | verified end to end against a local remote (below) |
+| `dvc push` to B2 | **fails: no credentials** |
+
+### Why 127 paths and not `dvc add data/corpus-20k data/sources`
+
+`dvc add` refuses a directory that holds any git-tracked file:
+
+```
+$ .venv-corpus/bin/dvc add data/corpus-20k/tiers
+ERROR:  output 'data/corpus-20k/tiers' is already tracked by SCM (e.g. Git).
+    You can remove it from Git, then add to DVC.
+        To stop tracking from Git:
+            git rm -r --cached 'data/corpus-20k/tiers'
+```
+
+Every directory named in step 6.4 except `registry` holds a few git-tracked evidence files — the
+summaries, thresholds, coverage reports, manifests and licence captures the worklog and the specs
+cite, kept in git deliberately (see the comments in `.gitignore`). The escape hatch DVC offers,
+`git rm -r --cached`, would delete that evidence from the repository. Adding those files to
+`.dvcignore` does not lift the check either; that was tried on `data/corpus-20k/tiers` and produced
+the same refusal.
+
+So the boundary drawn is the one that was already true: **git keeps the small evidence files, DVC
+keeps the payload.** `scripts/revamp/dvc_add_untracked.py` walks each root and adds the highest path
+holding no git-tracked file beneath it — 35 directories and 92 loose files, whose union is exactly
+the content of those roots that git does not hold. Re-running it adds anything new and skips what is
+already tracked. Two `.gitignore` blocks were appended so the pointer files themselves survive:
+`!*.dvc` and `!.gitignore` at the end, and a re-include of `data/corpus-20k/gate2/pages/` and
+`pages-v2/`, which were excluded outright so git never descended into them to see a pointer.
+
+`data/revamp` is deliberately not added: two other agents are writing it. Phase 7 adds it.
+
+### The failure, with three attempts and full output
+
+```
+$ for v in B2_KEY_ID B2_APP_KEY R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
+    val=$(printenv "$v"); [ -n "$val" ] && echo "$v set" || echo "$v ABSENT"; done
+B2_KEY_ID ABSENT
+B2_APP_KEY ABSENT
+R2_ACCESS_KEY_ID ABSENT
+R2_SECRET_ACCESS_KEY ABSENT
+AWS_ACCESS_KEY_ID ABSENT
+AWS_SECRET_ACCESS_KEY ABSENT
+
+=== attempt 1 2026-09-06T05:55:59Z ===
+$ .venv-corpus/bin/dvc push data/corpus-20k/registry.dvc
+ERROR: unexpected error - Unable to locate credentials
+=== attempt 2 2026-09-06T05:56:06Z ===   (after 3 s)
+ERROR: unexpected error - Unable to locate credentials
+=== attempt 3 2026-09-06T05:56:15Z ===   (after 6 s)
+ERROR: unexpected error - Unable to locate credentials
+```
+
+There is no alternative source to try: a remote object store cannot be reached without a key.
+
+### What was verified anyway
+
+The pointer files, the remote configuration and the pull path were verified end to end against a
+local filesystem remote, so the only untested link is B2 itself:
+
+```
+$ .venv-corpus/bin/dvc remote add --local localverify /tmp/.../dvc-localremote
+$ .venv-corpus/bin/dvc push -r localverify data/corpus-20k/tiers/model-assignment.ndjson.dvc
+1 file pushed
+$ cd /tmp/.../dvc-verify && git init -q .          # a fresh directory, nothing else in it
+$ cp <repo>/.dvc/config .dvc/config && cp <repo>/.dvcignore .
+$ cp <repo>/data/corpus-20k/tiers/model-assignment.ndjson.dvc data/corpus-20k/tiers/
+$ .venv-corpus/bin/dvc remote add --local localverify /tmp/.../dvc-localremote
+$ .venv-corpus/bin/dvc pull -r localverify data/corpus-20k/tiers/model-assignment.ndjson.dvc
+A       data/corpus-20k/tiers/model-assignment.ndjson
+1 file fetched and 1 file added
+$ shasum -a 256 data/corpus-20k/tiers/model-assignment.ndjson
+41047b8d25979f880ddee009c3da8ec9c6682f49c7510f58d3e08d5c81475220   # identical to the working tree
+```
+
+The `localverify` remote was removed afterwards; it lived in `.dvc/config.local`, which is not
+tracked. A fresh *clone* could not be used for this because the `.dvc` pointer files are not
+committed yet — this slice does not commit. Once they are committed, the clone form below is the
+real check.
+
+### What Felix needs to run
+
+Backblaze B2 — create a bucket (private), then an application key scoped to it. The bucket name and
+region below are placeholders; use the ones B2 shows for your bucket.
+
+```bash
+cd "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion"
+
+# 1. point the remote at the bucket you created
+.venv-corpus/bin/dvc remote modify offsite url s3://<your-bucket-name>
+.venv-corpus/bin/dvc remote modify offsite endpointurl https://s3.<your-region>.backblazeb2.com
+.venv-corpus/bin/dvc remote modify offsite region <your-region>          # e.g. us-west-004
+
+# 2. give it the key. Either in the environment for one session:
+export AWS_ACCESS_KEY_ID="$B2_KEY_ID"
+export AWS_SECRET_ACCESS_KEY="$B2_APP_KEY"
+#    or stored in .dvc/config.local, which is git-ignored and never committed:
+.venv-corpus/bin/dvc remote modify --local offsite access_key_id '<B2 keyID>'
+.venv-corpus/bin/dvc remote modify --local offsite secret_access_key '<B2 applicationKey>'
+
+# 3. push. 9.53 GB over 127 paths; -j 8 keeps eight uploads in flight.
+.venv-corpus/bin/dvc push -j 8
+```
+
+Cloudflare R2 instead of B2 — same three steps, different endpoint:
+
+```bash
+.venv-corpus/bin/dvc remote modify offsite url s3://<your-bucket-name>
+.venv-corpus/bin/dvc remote modify offsite endpointurl https://<account-id>.r2.cloudflarestorage.com
+.venv-corpus/bin/dvc remote modify offsite region auto
+.venv-corpus/bin/dvc remote modify --local offsite access_key_id "$R2_ACCESS_KEY_ID"
+.venv-corpus/bin/dvc remote modify --local offsite secret_access_key "$R2_SECRET_ACCESS_KEY"
+.venv-corpus/bin/dvc push -j 8
+```
+
+### The fresh-clone verification, to run after the push
+
+This is the check that proves the offsite copy is real. Run it after the `.dvc` files are committed
+and pushed to GitHub.
+
+```bash
+cd "$(mktemp -d)"
+git clone --branch revamp/2026-09 \
+  "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion" pull-check
+cd pull-check
+python3 -m venv .venv && .venv/bin/pip install 'dvc[s3]'
+.venv/bin/dvc remote modify --local offsite access_key_id '<keyID>'
+.venv/bin/dvc remote modify --local offsite secret_access_key '<applicationKey>'
+.venv/bin/dvc pull -j 8
+
+# expect: 127 paths restored, 9.53 GB, and this exact digest
+shasum -a 256 data/corpus-20k/tiers/model-assignment.ndjson
+# 41047b8d25979f880ddee009c3da8ec9c6682f49c7510f58d3e08d5c81475220
+du -sh data/corpus-20k data/sources
+cd .. && rm -rf pull-check
+```
+
+### Where the copies are, and the disk
+
+Two of the three copies are on this workstation and on one volume: the working tree, and
+`/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-backups/revamp-2026-09-data/`. The DVC
+cache is a third file set but not a third copy — it is APFS-cloned from the working tree and shares
+its blocks. A disk failure takes all of it.
+
+Production (Railway) holds **none** of the corpus files. It is loaded from this workstation by
+`scripts/corpus-20k/load/materialise.ts`, and `scripts/export/dataset.ts` never reads
+`data/corpus-20k`, so nothing here is recoverable from the deployed site.
+
+The volume is also nearly full: 228 GiB with 6.6 GiB free after this work. That is why the refreshed
+archive leaves out the fetched source payloads (next section).
+
+### The refreshed data tarball
+
+| Item | Value |
+| --- | --- |
+| File | `/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-backups/revamp-2026-09-data/revamp-2026-09-data.tar.zst` |
+| Bytes | 2,258,362,747 (2.10 GiB compressed, 4.62 GiB uncompressed) |
+| sha256 | `2e5e773ae490f2d61a76c8fc4986a4f341297ce6f59c69c1908f5be9653825d8` |
+| Entries | 1,826 |
+| Inside | `data/corpus-20k` (without `raw/` and `render/`), `data/sources`, `data/validation` |
+| Excluded | `corpus-20k/raw/` (1.3 GB, each batch sha256-recorded in `state.json`), `corpus-20k/render/` (636 MB, regenerable), `sources/*/*/raw/` (3.4 GB of fetched `.gz`/`.zip`/`.sql` archives, each recorded with its URL and sha256 in the source's `manifest.json`, each re-fetchable, and all now under DVC) |
+| README | `rnawiki-backups/revamp-2026-09-data/README.md`, with the restore command |
+
+Step 6.4 asks for `data/sources` with nothing excluded. The complete archive was built first and
+measured: 6.90 GiB, which left the workstation at 1.8 GiB free and would have stopped the two agents
+working alongside this one. The payloads left out are fetched bytes that are content-addressed in
+their manifests and now in DVC; nothing derived, curated, licensed or measured is missing. To build
+the complete archive on a disk with room, or onto an external volume:
+
+```bash
+cd "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data"
+tar --exclude=corpus-20k/raw --exclude=corpus-20k/render --exclude='.DS_Store' \
+  -cf - corpus-20k sources validation \
+  | zstd -T0 -3 -o /Volumes/<external>/revamp-2026-09-data-complete.tar.zst
+```
+
+---
+
+## [2026-09-06] Phase 6.5 — Open corpus release candidate: built; the upload is Felix's
+
+The release candidate is built and checksummed. Publishing it — the DOI, the citable record, the
+open-corpus positioning — needs an account action.
+
+| Item | Value |
+| --- | --- |
+| Directory | `data/release/rnawiki-corpus-2026-09-06/` |
+| Tarball | `data/release/rnawiki-corpus-2026-09-06.tar.zst`, 72,209,327 bytes |
+| sha256 | `48e91f40c6767aeb04f46f00937efb92fb3de763f8bd350b1afd4e27a18ca845` |
+| Licence | CC BY-SA 4.0 for the compilation; every upstream record keeps its own, named per value |
+| Contents | `pages.ndjson` (28,818), `fields.ndjson` (28,832 pages, 498,067 values), `interactions.parquet` (535,118 rows: A 338,528, B 18,297, C 178,293), `blocks/` (registration 220,877, patent 28,832, controlled 8,738), `tier3-sections.parquet` (30,036), `derived/` (17 seeds, 46,918 records), `README.md`, `LICENSES.md`, `CITATION.cff`, `SHA256SUMS` |
+| Built by | `scripts/revamp/build_release.py` |
+
+### Zenodo — the DOI
+
+1. Sign in at <https://zenodo.org> (GitHub or ORCID both work).
+2. **New upload** → **Upload files** → drag `data/release/rnawiki-corpus-2026-09-06.tar.zst`.
+   Check the size afterwards: 72,209,327 bytes. Zenodo's per-record limit is 50 GB, so this is
+   nowhere near it.
+3. Fill in:
+   - Resource type: **Dataset**
+   - Title: **RNAWiki open drug corpus, 2026-09-06**
+   - Creators: **Felix**, affiliation **RNAWiki**
+   - Description: the first two paragraphs of `data/release/rnawiki-corpus-2026-09-06/README.md`
+   - Licence: **Creative Commons Attribution-ShareAlike 4.0 International**
+   - Version: **2026-09-06**
+   - Language: **eng**
+   - Keywords: drug interactions, pharmacology, drug regulation, longevity, open data, Singapore
+4. **Related/alternate identifiers**: `https://rnawiki.com` as *is supplement to*; the source DOIs
+   named in `LICENSES.md` (ChEMBL, DrugCentral, IUPHAR, UniProt) as *is derived from*.
+5. **Publish**. Zenodo issues two DOIs: a version DOI for this upload and a concept DOI that always
+   resolves to the newest version. Cite the concept DOI.
+6. Bring the DOI back into the repository: add `doi:` to
+   `data/release/rnawiki-corpus-2026-09-06/CITATION.cff`, and a line to `docs/data/LICENSES.md`
+   recording where the release is published. `SHA256SUMS` changes when `CITATION.cff` does, so
+   re-run `scripts/revamp/build_release.py` after editing, or update the one line by hand.
+
+### Hugging Face — the working copy people will actually load
+
+1. <https://huggingface.co/new-dataset> → owner, name **rnawiki-corpus**, licence
+   **cc-by-sa-4.0**, visibility **public**.
+2. Authenticate once, with a **write** token from <https://huggingface.co/settings/tokens>:
+   ```bash
+   .venv-corpus/bin/pip install huggingface_hub
+   .venv-corpus/bin/huggingface-cli login
+   ```
+3. Upload the directory, not the tarball — the files are what `datasets` loads:
+   ```bash
+   cd "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion"
+   .venv-corpus/bin/huggingface-cli upload <your-username>/rnawiki-corpus \
+     data/release/rnawiki-corpus-2026-09-06 . --repo-type dataset
+   ```
+   The largest file is `fields.ndjson` at 668 MB; the CLI puts anything over 10 MB through LFS
+   automatically.
+4. The uploaded `README.md` becomes the dataset card. Add YAML front matter at the top of it on the
+   Hub (or before uploading) so the card renders and the licence is machine-readable:
+   ```yaml
+   ---
+   license: cc-by-sa-4.0
+   pretty_name: RNAWiki open drug corpus
+   tags: [pharmacology, drug-interactions, drug-regulation, longevity, singapore]
+   ---
+   ```
+5. Add the Zenodo DOI to the card once step 5 above is done, so the two records point at each other.
+
+### Licence decisions inside the release, in case you read one differently
+
+- **Included beyond the three licence families the step names**: the Singapore Open Data Licence 1.0
+  (HSA), the AGC clause-13 permission (Singapore Statutes Online), the EMA reproduction notice,
+  Japan's Public Data License 1.0 (PMDA), the Open Government Licence – Canada 2.0 (Health Canada),
+  and the JAX Mouse Phenome Database terms (NIA ITP). Each grants redistribution *and* commercial
+  use in its own words. Dropping them would remove Singapore registration status, which is the gap
+  this run existed to close.
+- **Excluded**: DDInter (CC BY-NC-SA, never joined to the corpus), ClinPGx/PharmGKB (CC BY-SA plus a
+  no-sale and a research-purpose condition; those rows live in `data/revamp/fields-v2-gated`, which
+  the build never opens), MHRA/emc (no licence, nothing retrieved), the TGA ARTG register (all
+  rights reserved, nothing retrieved — the Australian scheduling data in the corpus is the Poisons
+  Standard from the Federal Register of Legislation, CC BY 4.0, which is included), the WITHDRAWN
+  database (licence not established, nothing retrieved — the withdrawal reasons are ChEMBL
+  drug_warning records), DrugBank identifiers (no licence held; 12,244 dropped from `pages.ndjson`),
+  and **Europe PMC**.
+- **Europe PMC is the one worth your judgment.** The corpus stores abstract sentences only, enforced
+  at fetch time (`scripts/corpus-20k/fields/epmc.py`, legal gate `CLEAR_FOR_METADATA_ONLY`), and
+  Europe PMC's terms make abstracts reusable. But the sentence's copyright is the publisher's and
+  varies per article, and `LICENSES.md` records the grant as covering metadata, so it is not one of
+  the three families and the release leaves it out. The cost, exactly: 3,847 values dropped, plus
+  1,080 `endpointType` values computed from them — `organismLadder` (1,080), `doseResponse` (775),
+  `interactions` (683), `pathway` (668), `hallmark` (545), `clocks` (96) — and 674 derived-section
+  records, concentrated in Tier 1. If you read Europe PMC's abstract terms as a redistribution
+  grant, move `"europepmc"` in `SOURCE_LICENCES` (`scripts/revamp/build_release.py`) from `EXCLUDED`
+  to `OPEN_ATTRIBUTION` and rebuild; nothing else changes.
+
+## [2026-09-07] Phase 6.4 — fresh-clone `dvc pull` verified end to end (still BLOCKED on B2 credentials)
+
+The earlier 6.4 entry verified the pull path with one file against a local filesystem remote and
+noted that a fresh *clone* could not be used because the `.dvc` pointer files are not committed.
+This run redid that check in clone form and widened the sample, so the only untested link remains
+B2 authentication itself.
+
+Five paths were chosen to cover both tracked trees and four different `data/corpus-20k`
+subdirectories, pushed to a filesystem remote, then pulled into a git clone that started with none
+of the data present:
+
+```
+$ dvc remote add --local localverify <scratch>/remote
+$ dvc push -r localverify \
+    data/corpus-20k/tiers/model-assignment.ndjson.dvc \
+    data/corpus-20k/suppression/assignments.ndjson.dvc \
+    data/corpus-20k/reconciliation/not-found.ndjson.dvc \
+    data/corpus-20k/identity/canonical.ndjson.dvc \
+    data/sources/withdrawn/2026-09-05/requests.log.dvc
+5 files pushed
+
+$ git clone --branch revamp/2026-09 <repo> pull-check && cd pull-check
+$ cp <repo>/.dvcignore . && cp <repo>/.dvc/config .dvc/config
+$ cp <repo>/<each>.dvc <same path>          # the lead commits these; this slice does not
+$ ls data/corpus-20k/tiers/model-assignment.ndjson
+ls: No such file or directory                # nothing present before the pull
+$ dvc pull -r localverify -j 4
+A       data/corpus-20k/identity/canonical.ndjson
+A       data/corpus-20k/reconciliation/not-found.ndjson
+A       data/corpus-20k/suppression/assignments.ndjson
+A       data/corpus-20k/tiers/model-assignment.ndjson
+A       data/sources/withdrawn/2026-09-05/requests.log
+5 files fetched and 5 files added
+```
+
+Every digest restored in the clone equals the working tree's, byte for byte:
+
+```
+41047b8d25979f880ddee009c3da8ec9c6682f49c7510f58d3e08d5c81475220  data/corpus-20k/tiers/model-assignment.ndjson
+b46e4e9434d86aedc5c48e3b03e735c52bb4ed307775751b9e06870f0ded9612  data/corpus-20k/suppression/assignments.ndjson
+66ad7deb2beab758684d4dff7d17cb704a7267fac2fd4cda04831ff3f1a1d93d  data/corpus-20k/reconciliation/not-found.ndjson
+6378e1215fe89dc6ed338749fff4bd95b9a9b2f1fc8b546d182345d170f73611  data/corpus-20k/identity/canonical.ndjson
+e06d31edbf9f2ea2097b73ea709c5dc024315a869c7717a5ec8e94d7cb0a2b8c  data/sources/withdrawn/2026-09-05/requests.log
+```
+
+The `localverify` remote was removed afterwards; `.dvc/config.local` is empty again and is
+git-ignored. `.dvc/config` still names exactly one remote, `offsite`, and the `dvc-s3` backend
+resolves for it (`S3FileSystem`, endpoint `https://s3.us-west-004.backblazeb2.com`), so the push
+commands in the earlier 6.4 entry will run as written once a key exists. The tracked set is 127
+paths totalling 9.53 GB, which matches the figures quoted there.
+
+What is still blocked is unchanged: `B2_KEY_ID` / `B2_APP_KEY` (or `R2_ACCESS_KEY_ID` /
+`R2_SECRET_ACCESS_KEY`) are absent from the environment, so nothing has been pushed offsite. Until
+that push runs, the workstation holds two of the three copies on one volume and production
+(Railway) holds none of the corpus files.

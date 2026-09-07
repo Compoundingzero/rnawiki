@@ -86,10 +86,17 @@
       "updated": "2026-09-05T05:13:47+00:00"
     },
     "6": {
-      "status": "PENDING",
-      "steps": {},
+      "status": "IN_PROGRESS",
+      "steps": {
+        "6.4": "BLOCKED-WITH-EVIDENCE (credentials); pointers committed; local pull verified",
+        "6.5": "release candidate built; upload BLOCKED (Felix's accounts)",
+        "6.6": "scripts + tests done; band empty until thresholds-v6",
+        "6.1": "pending (after the render fix)",
+        "6.2": "pending",
+        "6.3": "pending"
+      },
       "gate_evidence": null,
-      "updated": "2026-09-05T05:13:47+00:00"
+      "updated": "2026-09-07T12:34:25+00:00"
     },
     "7": {
       "status": "PENDING",

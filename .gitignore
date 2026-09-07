@@ -177,3 +177,38 @@ data/revamp/slop-draws/**/pages-full/
 data/revamp/page-blocks/
 data/revamp/questions-v2/
 data/revamp/load/
+
+# DVC pointer files, Phase 6.4 (docs/revamp/BLOCKERS.md, heading 6.4). The corpus payload under
+# data/corpus-20k and data/sources moved into DVC; a `.dvc` file is the only record of which
+# content hash the remote holds for a path, so every one of them belongs in git even where the
+# bytes beside it are ignored above. Several of those exclusions are `dir/*` globs, which would
+# otherwise swallow the pointer file written next to the data and make `dvc add` refuse with
+# "bad DVC file name ... is git-ignored". These two lines are last so they win over every rule
+# above; a directory excluded outright (`dir/`) is never descended into and holds no pointer file.
+!*.dvc
+!.gitignore
+
+# Two of the excluded directories above are excluded outright, so git does not descend into them
+# and the `!*.dvc` rule cannot reach a pointer file written inside. Re-include the directory,
+# re-exclude its contents, and let the final `!*.dvc` rule take the pointer files. The measurement
+# files themselves stay ignored exactly as before; the six that were negated above are tracked
+# already, and .gitignore does not apply to a tracked file.
+!data/corpus-20k/gate2/pages/
+data/corpus-20k/gate2/pages/*
+!data/corpus-20k/gate2/pages-v2/
+data/corpus-20k/gate2/pages-v2/*
+!*.dvc
+
+# Open corpus release candidate, Phase 6.5 (scripts/revamp/build_release.py). The built dataset and
+# its tarball are large, regenerable from data/revamp, and destined for Zenodo or Hugging Face, so
+# they stay on the workstation. The four files that describe the release are tracked: the README
+# with the schema and per-field provenance, the citation metadata, the licence record and the
+# checksums. The `!data/release/**/` line re-includes the directories themselves so git descends
+# into them to find those four.
+data/release/**
+!data/release/**/
+!data/release/**/README.md
+!data/release/**/CITATION.cff
+!data/release/**/LICENSES.md
+!data/release/**/SHA256SUMS
+data/revamp/promotion/*.out
