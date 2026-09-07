@@ -1,0 +1,25 @@
+{
+ "set": "all",
+ "method": "scripts/corpus-20k/gate2/folds.py --fold-size 324 (seeded size-matched folds, every pair inside a fold scored)",
+ "pages": 972,
+ "folds": [
+  324,
+  324,
+  324
+ ],
+ "positional": {
+  "median": 0.125,
+  "p90": 0.2875,
+  "max": 0.6375,
+  "line": 0.2,
+  "pass": true
+ },
+ "lexical": {
+  "median": 0.326632,
+  "p90": 0.482759,
+  "max": 0.714286,
+  "line": 0.353,
+  "pass": true
+ },
+ "pass": true
+}

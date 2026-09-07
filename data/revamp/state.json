@@ -80,10 +80,15 @@
       "updated": "2026-09-06T05:35:15+00:00"
     },
     "5": {
-      "status": "PENDING",
-      "steps": {},
+      "status": "IN_PROGRESS",
+      "steps": {
+        "5.1": "done (972 hubs)",
+        "5.2": "done (tables + syntheses with provenance)",
+        "5.3": "pages built; integration into member pages and sitemap pending; link-graph data-only PASS",
+        "5.4": "first batch 0.079/0.335 PASS; all 0.125/0.327 PASS"
+      },
       "gate_evidence": null,
-      "updated": "2026-09-05T05:13:47+00:00"
+      "updated": "2026-09-07T13:08:28+00:00"
     },
     "6": {
       "status": "IN_PROGRESS",

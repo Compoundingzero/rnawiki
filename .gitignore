@@ -212,3 +212,5 @@ data/release/**
 !data/release/**/LICENSES.md
 !data/release/**/SHA256SUMS
 data/revamp/promotion/*.out
+data/revamp/hubs/text/
+data/revamp/hubs/load/

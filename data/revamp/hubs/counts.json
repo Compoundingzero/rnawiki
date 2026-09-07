@@ -1,0 +1,63 @@
+{
+  "generatedBy": "scripts/revamp/hubs_build.py",
+  "publishedRoutes": {
+    "pagesWithPublishedRoute": 28832,
+    "pagesWithNoPrintableName": 0
+  },
+  "membershipReasons": {
+    "pagesWithARecordedReason": 2069,
+    "groupsRejected": 5434
+  },
+  "spec": "docs/specs/hubs.md",
+  "hubsPerType": {
+    "target": 830,
+    "class": 135,
+    "pathway": 7
+  },
+  "hubs": 972,
+  "members": 14306,
+  "distinctMemberPages": 6124,
+  "firstBatch": {
+    "hubs": 30,
+    "target": 23,
+    "pathway": 7,
+    "note": "docs/specs/hubs.md section 4 asks for 20 target and 10 pathway hubs. The corpus holds 7 pathway hubs meeting section 1, so the batch takes every one of them and 23 target hubs to reach 30."
+  },
+  "synthesesPerTemplate": {
+    "H1": 556,
+    "H2": 654,
+    "H3": 281,
+    "H4": 214,
+    "H5": 935,
+    "H6": 277,
+    "H7": 7
+  },
+  "syntheses": 2924,
+  "memberRoles": {
+    "approved": 3872,
+    "withdrawn": 103,
+    "development": 2534,
+    "clinical": 7797
+  },
+  "pathwayNamingRule": {
+    "pathwayStatementsKept": 2027,
+    "pathwayStatementsDropped": 101,
+    "rule": "docs/specs/phase4-generators.md section 7 \u2014 a stored Europe PMC sentence counts only when it names the page's display name or a recorded synonym"
+  },
+  "vocabulariesNotUsed": {
+    "iuphar-ligand-class": "the IUPHAR rows this corpus holds record a ligand action against one target (Inhibition, Antagonist, Agonist), not a class of compounds; grouping on them would put every inhibitor of anything in one hub",
+    "chebi-has-role": "CHEBI roles recorded here are chemical and organism roles (Homo sapiens metabolite, environmental contaminants), not a pharmacologic class"
+  },
+  "inputs": {
+    "fields": "data/revamp/fields-v2",
+    "identity": "data/revamp/identity/canonical-v3.ndjson",
+    "tiers": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
+    "patent": "data/revamp/blocks/patent.parquet",
+    "interactions": "data/revamp/interactions/interactions.parquet",
+    "seeds": [
+      "data/revamp/derived-v2/seed-03-failure-autopsy.ndjson",
+      "data/revamp/derived-v2/seed-12-registry-to-publication-gap.ndjson"
+    ],
+    "questions": "data/revamp/questions-v2"
+  }
+}
