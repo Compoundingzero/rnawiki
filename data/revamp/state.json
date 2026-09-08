@@ -98,10 +98,10 @@
         "6.6": "scripts + tests done; band empty until thresholds-v6",
         "6.1": "done: server-written documents, RSC 0.0, text-to-HTML 0.155 (floor met; 0.25 out of reach, evidence kept on page)",
         "6.2": "pending",
-        "6.3": "pending"
+        "6.3": "done: revamp-checks.yml (4 required pre-merge on committed data, 1 required post-deploy live, 2 advisory)"
       },
       "gate_evidence": null,
-      "updated": "2026-09-07T12:34:25+00:00"
+      "updated": "2026-09-08T13:55:06+00:00"
     },
     "7": {
       "status": "PENDING",

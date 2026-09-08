@@ -1,0 +1,126 @@
+{
+ "recordedAt": "2026-09-08T13:52:01Z",
+ "step": "docs/specs/revamp-2026-09.md phase 6.3",
+ "what": "The required pre-merge checks of .github/workflows/revamp-checks.yml, run the way the workflow runs them: `git archive HEAD` into a temporary directory, the files this change adds copied in beside it, a fresh virtual environment built from scripts/revamp/requirements-ci.txt, and nothing else. The corpus is absent there, as it is on a runner: data/revamp/{fields-v2,render-v8,page-blocks} do not exist in the tree the checks ran against. `act` is not installed on this machine.",
+ "cleanRoom": "/private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom",
+ "python": "Python 3.13.7",
+ "node": "v20.20.2",
+ "nodeModules": "symlinked from the working copy; the workflow runs `npm ci` instead",
+ "corpusPresentInCleanRoom": {
+  "data/revamp/fields-v2": false,
+  "data/revamp/render-v8": false,
+  "data/revamp/page-blocks": false
+ },
+ "checks": [
+  {
+   "check": "committed slug union is current",
+   "command": ".venv-ci/bin/python scripts/revamp/ci_slug_union.py --check",
+   "exitCode": 0,
+   "seconds": 0.06,
+   "lastLine": "slug union current: 9907 slugs in data/revamp/ci-sample/slug-union.csv"
+  },
+  {
+   "check": "redirect plan over the committed slug union",
+   "command": ".venv-ci/bin/python scripts/revamp/ci_redirect_check.py --plan",
+   "exitCode": 0,
+   "seconds": 0.28,
+   "lastLine": "written to data/revamp/redirect-check-ci.json"
+  },
+  {
+   "check": "hub link graph, data files only",
+   "command": ".venv-ci/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds data/revamp/ci-sample/thresholds-v8.json --presence data/revamp/ci-sample/presence-applicable-v8-hub-members.ndjson",
+   "exitCode": 0,
+   "seconds": 0.51,
+   "lastLine": "}"
+  },
+  {
+   "check": "sitemap, noindex and robots invariants",
+   "command": "npx vitest run tests/unit/ci-sitemap-invariants.test.ts",
+   "exitCode": 0,
+   "seconds": 0.68,
+   "lastLine": "   Duration  311ms (transform 109ms, setup 13ms, collect 125ms, tests 9ms, environment 0ms, prepare 29ms)"
+  },
+  {
+   "check": "rendering rules over the committed sample",
+   "command": ".venv-ci/bin/python -m pytest tests/test_render_safety.py --sample data/revamp/ci-sample/render -q",
+   "exitCode": 0,
+   "seconds": 1.24,
+   "lastLine": "22 passed, 3 skipped in 1.09s"
+  }
+ ],
+ "result": "pass",
+ "negativeProbes": [
+  {
+   "probe": "a slug in the union that no page and no redirect serves",
+   "check": "redirect plan",
+   "exitCode": 1,
+   "message": "ORPHAN zzz-slug-nothing-serves: not a live page slug and no redirect covers it"
+  },
+  {
+   "probe": "the committed union no longer matches its inputs",
+   "check": "committed slug union",
+   "exitCode": 1,
+   "message": "EXTRA zzz-slug-nothing-serves: the committed union names it and the inputs do not"
+  },
+  {
+   "probe": "an indexable leaf that is in no hub",
+   "check": "hub link graph",
+   "exitCode": 1,
+   "message": "KEY:NOT-IN-ANY-HUB is indexable and has no stored field record"
+  },
+  {
+   "probe": "a line appended to app/robots.ts",
+   "check": "sitemap invariants",
+   "exitCode": 1,
+   "message": "app/robots.ts differs from data/revamp/ci-sample/robots.ts.snapshot"
+  },
+  {
+   "probe": "the sample's provenance stream emptied",
+   "check": "rendering rules",
+   "exitCode": 1,
+   "message": "5 failed, 17 passed, 3 skipped \u2014 the rules that would have skipped themselves were turned into failures by tests/conftest.py"
+  }
+ ],
+ "committedSample": {
+  "bytes": 2028296,
+  "renderBytes": 1646499,
+  "files": {
+   "presence-applicable-v8-hub-members.ndjson": {
+    "bytes": 29656,
+    "sha256": "41912c6dedebf2856792c56553ec6278cc77168a010d883e9a18908f272c08e4"
+   },
+   "render/blocks.ndjson.gz": {
+    "bytes": 408456,
+    "sha256": "a40d50371424534c7dcd2807888e344f50f28c0f9c25d004f591b5c525f7bdfd"
+   },
+   "render/manifest.json": {
+    "bytes": 9667,
+    "sha256": "7395fd3505094fadb54280ad842f25aef9f04b03db7d334c5735b98e9e7337d4"
+   },
+   "render/provenance-with-furniture.ndjson.gz": {
+    "bytes": 490974,
+    "sha256": "33b72a266df868df943018a07c0c42eb71c0c0c813927987e76f3695daf09e98"
+   },
+   "render/text-with-furniture.ndjson.gz": {
+    "bytes": 376070,
+    "sha256": "14bfeb3df9ba8a89bffe924c855a6c8c1b850c0f1aab86304e56f38f846d7cbf"
+   },
+   "render/text.ndjson.gz": {
+    "bytes": 361332,
+    "sha256": "7a770c743754c368d5c039957ad1b6a1eb04e273fc1cd0a8e226a6799931d376"
+   },
+   "robots.ts.snapshot": {
+    "bytes": 1946,
+    "sha256": "ddab2a82a65622e08d12e8f2c89c698be3684a70301b2c141d11ed148a22f9ed"
+   },
+   "slug-union.csv": {
+    "bytes": 311039,
+    "sha256": "9d4bc61adf3367e0be993f14eeef34f22e6a4d60344d0b9194831554e82383d7"
+   },
+   "thresholds-v8.json": {
+    "bytes": 39156,
+    "sha256": "b56407113890918e6c8e9c94bf1d6e06d075504674c077c1eabad83777d57246"
+   }
+  }
+ }
+}

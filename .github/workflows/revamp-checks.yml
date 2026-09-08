@@ -1,0 +1,307 @@
+# Phase 6.3 of docs/specs/revamp-2026-09.md. Every check here is documented in
+# docs/specs/ci-checks.md: what it reads, whether it is required, and the exact command.
+#
+# This is a separate workflow from ci.yml on purpose. The release gate there runs the whole
+# `npm run gate` contract against a PostgreSQL service and is untouched by this run; the checks
+# below read the corpus artefacts this repository carries and need no database.
+#
+# The corpus itself is not in CI. data/revamp/render-*, data/revamp/fields-v2, data/revamp/page-blocks
+# and the raw source pulls are gitignored, and the DVC remote is not reachable without Felix's
+# credentials, so every pre-merge check reads a committed input: the hub parquet files, the identity
+# revision, the redirect plan, and the small samples scripts/revamp/ci_sample.py and
+# scripts/revamp/ci_slug_union.py write. Each of those scripts has a --check mode that fails when a
+# committed sample no longer matches the corpus it was drawn from.
+name: Revamp checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'revamp/2026-09']
+  workflow_dispatch:
+  # Railway reports a finished deployment as a deployment_status event. Where it does not, the
+  # nightly schedule runs the same post-deploy checks against the live site.
+  deployment_status:
+  schedule:
+    - cron: '25 2 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: revamp-checks-${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.13'
+  NODE_VERSION: '20'
+
+jobs:
+  # -------------------------------------------------------------------------------------------
+  # Required, pre-merge
+
+  redirect-plan:
+    name: 'Required: redirect plan over the committed slug union'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+
+      # The universe redirect_check.py builds from the live production table is committed as
+      # data/revamp/ci-sample/slug-union.csv. This fails, naming the slug, if the committed file is
+      # no longer what the dispositions, the recorded redirect rows and the plan produce.
+      - name: The committed slug union is current
+        run: python scripts/revamp/ci_slug_union.py --check
+
+      # Orphans, two-hop chains and plan-versus-production conflicts, over every slug the site has
+      # published. The failing slug is named on stderr.
+      - name: Simulate the redirect plan
+        run: python scripts/revamp/ci_redirect_check.py --plan
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redirect-plan
+          path: data/revamp/redirect-check-ci.json
+          if-no-files-found: warn
+
+  link-graph:
+    name: 'Required: hub link graph'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+
+      # Rules 1, 3 and 4 read data/revamp/hubs/*.parquet in full: no hub under five leaves, no hub
+      # the /h route cannot resolve, every member link on a published slug. Rule 2 reads the
+      # committed ruler pair, whose presence rows are the indexable leaves the hub build recorded as
+      # members; docs/specs/ci-checks.md records what the workstation adds to rule 2 and that
+      # Phase 7 refreshes the pair. The paths are absolute because the check reports them relative
+      # to the repository root.
+      - name: Check the hub link graph against the built data files
+        run: |
+          python scripts/revamp/link_graph_check.py --data-only \
+            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v8.json" \
+            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v8-hub-members.ndjson" \
+            --out "${GITHUB_WORKSPACE}/link-graph-ci.json"
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-graph
+          path: link-graph-ci.json
+          if-no-files-found: warn
+
+  sitemap-invariants:
+    name: 'Required: sitemap, noindex and robots invariants'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+
+      # Tier 3 in no sitemap child; the hubs child carrying hubs and nothing else, and advertised
+      # only where hubs exist; no child over the protocol's 50,000 URLs; app/robots.ts byte-identical
+      # to the committed snapshot.
+      - name: Sitemap and noindex invariants
+        run: npx vitest run tests/unit/ci-sitemap-invariants.test.ts
+
+  render-safety:
+    name: 'Required: rendering rules over the committed sample'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+
+      # tests/conftest.py points the rules at data/revamp/ci-sample/render, 200 drawn pages of the
+      # current render with their provenance and blocks. It prints the three rules that need the
+      # whole corpus or a running build and turns any other skip into a failure, so a sample that
+      # lost a stream reports red rather than green over nothing.
+      - name: Rendering rules (Operating Rule 9, phase 4 generators)
+        run: python -m pytest tests/test_render_safety.py --sample data/revamp/ci-sample/render -q
+
+  # -------------------------------------------------------------------------------------------
+  # Required, after a deployment
+
+  post-deploy:
+    name: 'Required after deploy: live duplicates, redirects and link graph'
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
+      (github.event_name == 'deployment_status' &&
+       github.event.deployment_status.state == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      BASE_URL: https://rnawiki.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+      - name: Install Chromium for the rendered checks
+        run: python -m playwright install --with-deps chromium
+
+      # Every slug the site has ever published, requested against the live site, redirect not
+      # followed, four at a time. A slug that answers anything but 200, 301 or 308 is named.
+      - name: Redirects, live half
+        run: python scripts/revamp/ci_redirect_check.py --live --base-url "$BASE_URL"
+
+      # The indexable set is read from the live sitemap children; --fail-on-indexable exits
+      # non-zero naming the first indexable pair at or above the 0.5 threshold. The noindex draw is
+      # seeded, so a re-run measures the same pages.
+      - name: Rendered duplicates over the live indexable set
+        run: |
+          python scripts/revamp/rendered_dup_check.py \
+            --base-url "$BASE_URL" \
+            --fail-on-indexable \
+            --sample 200 \
+            --concurrency 4
+
+      # Against the deployed site this adds the three build rules to the data rules: /h links every
+      # hub it publishes, every published hub answers 200, every member link a hub carries answers
+      # 200.
+      - name: Hub link graph against the live site
+        run: |
+          python scripts/revamp/link_graph_check.py --base-url "$BASE_URL" \
+            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v8.json" \
+            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v8-hub-members.ndjson" \
+            --out "${GITHUB_WORKSPACE}/link-graph-live.json"
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-deploy
+          path: |
+            data/revamp/redirect-check-ci.json
+            data/revamp/rendered-dups.csv
+            data/revamp/rendered-dups-summary.json
+            link-graph-live.json
+            data/corpus-20k/legal/requests.log
+          if-no-files-found: warn
+
+  # -------------------------------------------------------------------------------------------
+  # Advisory. These report; they do not block a merge.
+
+  slop-draw:
+    name: 'Advisory: slop draw against the live site'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    continue-on-error: true
+    env:
+      DATABASE_URL: ${{ secrets.CORPUS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+      - name: Install Chromium for the rendered checks
+        run: python -m playwright install --with-deps chromium
+
+      # The draw needs two things a runner does not have by default: the loaded corpus page list,
+      # read from corpus_pages over DATABASE_URL, and the render whose text the corpus-wide template
+      # census is computed from. Where either is missing the job says which and stops; the draw
+      # itself runs on the workstation, where both are present.
+      - name: 15 pages, five per tier
+        run: |
+          set -u
+          if [ -z "${DATABASE_URL:-}" ]; then
+            echo "Not run: the CORPUS_DATABASE_URL secret is not set, and the draw reads the"
+            echo "loaded page list from corpus_pages. Add the secret, or run the draw on the"
+            echo "workstation:"
+            echo "  .venv-corpus/bin/python scripts/revamp/slop_draw.py --base-url https://rnawiki.com --per-tier 5"
+            exit 0
+          fi
+          if [ ! -d data/revamp/render-v8/text ]; then
+            echo "Not run: data/revamp/render-v8/text is gitignored and absent here, and the"
+            echo "corpus-wide template census of check (b) is computed from it. Run the draw on the"
+            echo "workstation after: npx tsx scripts/revamp/page_text_v5.ts"
+            exit 0
+          fi
+          python scripts/revamp/slop_draw.py \
+            --base-url https://rnawiki.com \
+            --per-tier 5 \
+            --out-dir "${GITHUB_WORKSPACE}/slop-draw-ci"
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: slop-draw
+          path: slop-draw-ci
+          if-no-files-found: ignore
+
+  field-census-delta:
+    name: 'Advisory: field census delta'
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install the Python packages the checks import
+        run: pip install -r scripts/revamp/requirements-ci.txt
+
+      # The delta is reported only when the change touches a census file, because that is the only
+      # time the numbers moved. census_delta.py reads the two committed census CSVs and the field
+      # integration's own summary of which source filled which field; that summary lives under
+      # data/revamp/fields-v2/, which is gitignored, so where it is absent the job says so.
+      - name: Report the delta when a census file changed
+        run: |
+          set -eu
+          # The checkout above fetched every branch, so the base ref is already here.
+          base="origin/${GITHUB_BASE_REF}"
+          changed=$(git diff --name-only "${base}...HEAD" -- 'data/revamp/field-census-*.csv')
+          if [ -z "$changed" ]; then
+            echo "No data/revamp/field-census-*.csv changed in this diff; nothing to compare."
+            exit 0
+          fi
+          echo "Changed census files:"
+          echo "$changed"
+          summary=data/revamp/fields-v2/integration-summary.json
+          if [ ! -f "$summary" ]; then
+            echo "Not run: census_delta.py reads ${summary}, which the field integration writes"
+            echo "on the workstation and which data/revamp/fields-v2/ keeps out of the repository."
+            echo "Report the delta there:"
+            echo "  .venv-corpus/bin/python scripts/revamp/census_delta.py"
+            exit 0
+          fi
+          python scripts/revamp/census_delta.py --out "${GITHUB_WORKSPACE}/field-census-delta-ci.csv"
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: field-census-delta
+          path: field-census-delta-ci.csv
+          if-no-files-found: ignore
