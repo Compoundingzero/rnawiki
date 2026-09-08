@@ -79,8 +79,11 @@ applied, 453 "separate" changed nothing, 150 recorded merges already in force, a
 held for Felix** in `data/revamp/identity-review.md` (23 touching indexable pages; about 64
 minutes). Trial reassignment moved 12,320 registry studies off stereo, salt and ester form pages to
 their parents (largest: dexamethasone acetate 2,237), plus 831 reference-product trials off six
-biosimilar pages. Redirect plan: 65 rows; live and plan checks 0 orphans, ≤ 1 hop. [Phase 7: add
-the 351(a) merges and the same-name partition counts from fix round 2.]
+biosimilar pages. Redirect plan: 65 rows; live and plan checks 0 orphans, ≤ 1 hop. Fix round 2 added: 109 suffixed biologics licensed under 351(a) merged into their INN pages (the
+suffix is the FDA proper name of the same substance; 81 biosimilar edges kept, 351(k) only), 189
+same-name pairs and 149 combination pairs had their registry studies partitioned to the page the
+registers rank first, and the redirect plan grew to 174 rows (v5), plan check PASS. A trial that
+names only a reference product moves to that product (831 studies off six biosimilar pages).
 
 ## Hubs
 
