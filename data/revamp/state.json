@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draws 6/7: a 0, c 0, parity 60/60, b 4+4 on two shapes \u2192 fix round 5, draws 8 and 9"
+        "4.7": "draw 6 read (\u00a715); fix round 5, then ruler v10 and draws 8 and 9"
       },
       "gate_evidence": null,
-      "updated": "2026-09-08T21:13:01+00:00"
+      "updated": "2026-09-08T21:14:21+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",

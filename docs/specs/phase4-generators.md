@@ -403,3 +403,40 @@ and on the supervision answer's notion of "classification".
     block; no painted key or record id; lists ≤ 6; provenance only in closed details; event
     order; one relation per pair; whitespace between spans) and adds each mechanical rule to
     `tests/test_render_safety.py`.
+
+## 15. The lead's reading of slop draw 6 (2026-09-08, Fable) — rules for fix round 5
+
+Read: Tier 1 (acetyldigitoxin, selank, voxtalisib, hexylcaine, chloroxine, technetium
+arcitumomab), Tier 2 (interferon gamma-1b, palovarotene, sophora root, mecillinam). Pages now
+read in sequence; render and DOM agree; the furniture tables carry the absences. What remains:
+
+1. **The supervision answer names the specific class with the source of that class.** "A register
+   records X under medical supervision: a World Health Organization therapeutic class such as
+   cancer medicines, immune suppressants, opioids or general anaesthetics · tga-artg ·
+   schedule-4" states a generic label list and cites a prescription-schedule row as its evidence.
+   One clause per recorded class, each with its own evidence: "Its ATC class is C01AA, cardiac
+   glycosides (ChEMBL 37)"; "Its US label carries a boxed warning (DailyMed label …, 2025-03-18)";
+   "It is under a pregnancy-prevention programme (…)". A clause without a matching source does not
+   render.
+2. **Label mapping requires the page's UNII among the label's active ingredients and excludes
+   unapproved product categories:** homeopathic labels (ingredient names carrying "[HPUS]" or
+   the openFDA homeopathic marker), cosmetics-like and "unapproved drug other" SPLs. Acetyldigitoxin
+   quoting a cosmetology-symptom label and a nail liquid's directions rendered as an indication
+   are mapping errors, corrected at the source mapping and re-integrated.
+3. **CLINICAL requires a register approval.** A page whose only clinical evidence is a DailyMed
+   SPL with no application number is not CLINICAL; it stays DEVELOPMENT (or the supplement class
+   its record holds). Re-run the model assignment with that rule, report the tier sizes before
+   and after, and re-derive the ruler on the result.
+4. **The two (b) shapes:** the register status value line leaves the question blocks entirely (the
+   registration block is the only place; §14(2)), and the mechanism quotation renders as a row
+   ("Mechanism (ChEMBL): "<register wording>"") per §13(7).
+5. **Seed 9 ("which running trial could settle …")** fires only when the running trial's primary
+   endpoint is in the ageing-endpoint vocabulary; otherwise its question is "Which running trial
+   of X reads out next?" and the answer names the endpoint verbatim without "lifespan".
+6. **Stereo wording:** when one record's InChIKey has an undefined stereo layer (UHFFFAOYSA) and
+   the other's is defined, the note reads "the same connectivity, recorded without stereochemistry",
+   never "diastereomer" or "enantiomer" (mecillinam / amdinocillin).
+7. **Status rows keep their labels** (the phase question's status list painted bare counts).
+8. **Whitespace between every label and value pair** across all components (the organism-ladder
+   interpretation row painted "INTERPRETATIONno human trial recorded").
+9. **Self-audit** per §14(16) extended with rules 1, 5, 6, 7, 8 as mechanical checks.
