@@ -140,6 +140,20 @@
   padding: 0.15rem 0.6rem;
 }
 
+/*
+ * The duplicate hold (§13 item 14): a note at the head of a page held against another, saying so
+ * and linking to it. It is a statement about the record, not a warning, so it takes the surface's
+ * ordinary hairline and no colour of its own.
+ */
+.cd-duplicate-hold {
+  margin: 1.25rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--corpus-hairline);
+  background: var(--corpus-surface-2);
+  font-size: 0.9rem;
+  color: var(--corpus-ink-1);
+}
+
 /* ------------------------------------------------------------ region glyph */
 
 .cd-glyph {
@@ -149,6 +163,55 @@
   line-height: 1;
   margin: 2.75rem 0;
   border: 0;
+}
+
+/*
+ * §13(11): the ornament is content of a pseudo-element, so it is painted and is not a text node.
+ * The uniqueness ruler and a crawler both read `innerText`, and both read a decorative "~" as a
+ * word on every page in the corpus until this moved out of the markup.
+ */
+.cd-glyph::before {
+  content: '~';
+}
+
+/*
+ * The fact rows (§13 item 7): the block's own values, under the question and above the prose. A
+ * label and a value, on one line at a reading width and stacked below 480 px.
+ */
+.cd-facts {
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.cd-fact {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: baseline;
+  border-top: 1px solid var(--corpus-hairline);
+  padding-top: 0.35rem;
+}
+
+.cd-fact dt {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+.cd-fact dd {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--corpus-ink-1);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .cd-fact {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.15rem;
+  }
 }
 
 /* ---------------------------------------------------------- question block */
@@ -235,6 +298,11 @@
   color: var(--corpus-ink-3);
 }
 
+/* §13(11): the provenance mark is drawn, never written; nothing reads "\25c7" as a word. */
+.cd-anchor-glyph::before {
+  content: '\25c7';
+}
+
 .cd-interpretation {
   font-size: 0.75rem;
   letter-spacing: 0.04em;
@@ -303,17 +371,10 @@
   padding: 0;
 }
 
-.cd-row {
+.cd-rows > li {
   border-top: 1px solid var(--corpus-hairline);
   padding: 0.55rem 0;
   font-size: 0.92rem;
-}
-
-.cd-row-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
 }
 
 .cd-row-label {
@@ -322,11 +383,15 @@
   /*
    * The other 320 px overflow Gate 2 found: carbidopa-levodopa's revealed rows are labelled with a
    * register's own product string, which has no space to break at. Same reasoning as the synonyms
-   * cell — this is a flex item inside `.cd-row-head`.
+   * cell.
    */
-  min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+/* The half-rem that separated the two flex items separates the two inline ones. */
+.cd-row-label + .cd-row-id {
+  margin-left: 0.5rem;
 }
 
 .cd-row-id {
@@ -339,6 +404,7 @@
 }
 
 .cd-row-value {
+  display: block;
   color: var(--corpus-ink-1);
   min-width: 0;
   overflow-wrap: anywhere;
@@ -374,38 +440,6 @@
 
 .cd-ladder-scroll svg {
   display: block;
-}
-
-/* ------------------------------------------------------------- dated rows */
-
-.cd-arc {
-  margin: 0 0 2.5rem;
-}
-
-.cd-arc-row {
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: 0.75rem;
-  border-top: 1px solid var(--corpus-hairline);
-  padding: 0.6rem 0;
-  font-size: 0.95rem;
-}
-
-.cd-arc-date {
-  color: var(--corpus-ink-2);
-  font-variant-numeric: tabular-nums;
-}
-
-.cd-arc-row > :last-child {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 479px) {
-  .cd-arc-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.15rem;
-  }
 }
 
 /* ------------------------------------------------------- the exact record */
@@ -535,7 +569,8 @@
   padding: 0;
 }
 
-.cd-rail-link {
+.cd-rail a,
+.cd-contents a {
   display: block;
   border-left: 2px solid transparent;
   padding: 0.28rem 0 0.28rem 0.7rem;
@@ -545,16 +580,19 @@
   overflow-wrap: break-word;
 }
 
-.cd-rail-link:hover {
+.cd-rail a:hover,
+.cd-contents a:hover {
   color: var(--corpus-ink-0);
 }
 
-.cd-rail-link[aria-current='true'] {
+.cd-rail a[aria-current='true'],
+.cd-contents a[aria-current='true'] {
   border-left-color: var(--corpus-accent);
   color: var(--corpus-ink-0);
 }
 
-.cd-rail-sub .cd-rail-link {
+.cd-rail-sub .cd-rail a,
+.cd-contents a {
   padding-left: 1.5rem;
   color: var(--corpus-ink-2);
 }
@@ -748,14 +786,10 @@
  * The tier label is the first thing on an interaction line and reads as a word, not a chip: §4
  * makes it "a visible element, not a class", and a reader deciding what to take with what must see
  * whether a line came from a label, from a curated dataset or from a rule.
+ *
+ * §13(3): it is the line's own first word and nothing else on the line repeats it. The badge that
+ * stood beside it, and the heading that stood above the group, are gone.
  */
-.cd-interaction-tier {
-  color: var(--corpus-ink-2);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 .cd-interaction-line {
   color: var(--corpus-ink-1);
   overflow-wrap: anywhere;

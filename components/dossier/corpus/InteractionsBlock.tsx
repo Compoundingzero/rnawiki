@@ -6,6 +6,13 @@
  * to take with what must be able to see, without hovering anything, whether a line comes from an
  * approved label, from a curated dataset, or from a rule this site applied.
  *
+ * §13(3): one visible tier label per line, and never a second badge. The block painted the tier
+ * three times over — as a heading above the group, as a badge on every line, and as the line's own
+ * first word — and the enzyme rows painted nine near-identical lines with a record id on each. The
+ * badge and the heading are gone; the line carries the label, the curated enzyme rows arrive
+ * already grouped by role from `scripts/revamp/page_blocks.py`, and the record ids are in the
+ * closed disclosure at the foot of the block and nowhere above it.
+ *
  * The page-level statement is always here, whether or not a line is. Where nothing was found it
  * reads "No interaction found in [the registers checked] as of [date]"; the words "safe" and "no
  * interaction" never stand on their own, because an absence of evidence in three registers is not
@@ -15,8 +22,6 @@
  * The first six lines of each tier read inline; the rest sit in one disclosure with a count, and
  * where a tier holds more counterparts than are stored the line above the disclosure says how many.
  */
-import Link from 'next/link'
-
 import type { CorpusInteractionLine, CorpusInteractions } from '@/lib/corpus/dossier-page'
 
 const TIER_ORDER: Array<'A' | 'B' | 'C'> = ['A', 'B', 'C']
@@ -24,7 +29,6 @@ const TIER_ORDER: Array<'A' | 'B' | 'C'> = ['A', 'B', 'C']
 function Line({ line }: { line: CorpusInteractionLine }) {
   return (
     <li className="cd-interaction">
-      <span className="cd-interaction-tier">{line.tierLabel}</span>
       <span className="cd-interaction-line">{line.line}</span>
     </li>
   )
@@ -46,9 +50,6 @@ function Tier({
   const label = lines[0]?.tierLabel ?? tier
   return (
     <>
-      <h3 className="cd-group-heading" id={`cd-interactions-${tier.toLowerCase()}`}>
-        {label}
-      </h3>
       <ul className="cd-interactions">
         {inline.map((line) => (
           <Line key={line.id} line={line} />
@@ -78,7 +79,15 @@ function Tier({
 }
 
 export function InteractionsBlock({ interactions }: { interactions: CorpusInteractions }) {
-  const { lines, statement, predictedOnly } = interactions
+  const { statement, predictedOnly } = interactions
+  // §13(3): the visible block never repeats a line. Two stored rows that render the same words are
+  // the same statement, and the page states it once.
+  const seen = new Set<string>()
+  const lines = interactions.lines.filter((line) => {
+    if (seen.has(line.line)) return false
+    seen.add(line.line)
+    return true
+  })
   if (lines.length === 0 && statement === undefined) return null
   /*
    * §11: where the page holds no interaction row the statement is an absence in fixed words, on
@@ -121,29 +130,23 @@ export function InteractionsBlock({ interactions }: { interactions: CorpusIntera
               duplicate check skip both or neither.
             */}
             {interactions.sourcesChecked.map((source) => (
-              <li
-                className="cd-row"
-                key={source}
-                {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}
-              >
+              <li key={source} {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}>
                 <div className="cd-row-value">{source}</div>
               </li>
             ))}
             {lines
               .filter((line) => line.ruleId !== undefined || line.setId !== undefined)
               .map((line) => (
-                <li className="cd-row" key={`${line.id}-record`}>
-                  <div className="cd-row-head">
-                    <span className="cd-row-label">{line.counterpartName ?? line.tierLabel}</span>
-                    <span className="cd-row-id">
-                      {[line.ruleId, line.setId ?? line.sourceRecordId]
-                        .filter((value): value is string => Boolean(value))
-                        .join(' · ')}
-                    </span>
-                  </div>
+                <li key={`${line.id}-record`}>
+                  <span className="cd-row-label">{line.counterpartName ?? line.tierLabel}</span>
+                  <span className="cd-row-id">
+                    {[line.ruleId, line.setId ?? line.sourceRecordId]
+                      .filter((value): value is string => Boolean(value))
+                      .join(' · ')}
+                  </span>
                   {line.counterpartSlug && line.counterpartName ? (
                     <div className="cd-row-value">
-                      <Link href={`/d/${line.counterpartSlug}`}>{line.counterpartName}</Link>
+                      <a href={`/d/${line.counterpartSlug}`}>{line.counterpartName}</a>
                     </div>
                   ) : null}
                 </li>

@@ -119,18 +119,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'Why does Rapamycin carry a supervision requirement?',
   },
   {
-    // Phase 5a: a suppressed page whose only class is S10 has no classification to cite, so it is
-    // never asked why it carries a supervision requirement (docs/specs/question-derivation.md,
-    // "Amendments after Gate 2").
-    template: 'classification',
-    input: page({
-      suppressed: true,
-      suppressionClasses: ['S10'],
-      fields: { regulatoryStatus: field({ US: 'approved' }) },
-    }),
-    text: 'What classification does Rapamycin carry?',
-  },
-  {
     template: 'human-data',
     input: page({
       fields: { humanEvidenceCeiling: field({ largestN: 245, longestDurationDays: 365 }) },

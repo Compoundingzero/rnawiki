@@ -5,8 +5,6 @@
  * question as its one-line description. The list is what makes a leaf below its tier's indexing
  * threshold reachable: the hub links every member, and the member page carries the hub back.
  */
-import Link from 'next/link'
-
 import { HUB_MEMBER_ROLES, HUB_MEMBER_ROLE_LABEL, type HubMemberRecord } from '@/lib/hubs/types'
 
 export function HubMembers({ members }: { members: HubMemberRecord[] }) {
@@ -30,12 +28,12 @@ export function HubMembers({ members }: { members: HubMemberRecord[] }) {
             {group.rows.map((member) => (
               <li className="text-sm leading-relaxed" key={member.key}>
                 {member.slug ? (
-                  <Link
+                  <a
                     className="font-medium text-[#0B5FFF] underline underline-offset-2 focus-visible:outline focus-visible:outline-2"
                     href={`/d/${member.slug}`}
                   >
                     {member.name}
-                  </Link>
+                  </a>
                 ) : (
                   <span className="font-medium">{member.name}</span>
                 )}

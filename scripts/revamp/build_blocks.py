@@ -285,40 +285,38 @@ def merge_curated(records):
 # --------------------------------------------------------------------------- SG schedule clause
 
 
-def schedule_clauses(controlled_sg):
-    """The Singapore line's schedule clauses, at most one per statute (§3).
+SEE_SCHEDULES = "see the controlled-substance schedules below"
 
-    A Misuse of Drugs Act match reads in the shape §3 fixes: `Class B controlled drug, First
-    Schedule Part 2, Misuse of Drugs Act 1973 (version 2026-05-01)`. The schedule name the statute
-    itself carries is split on its em dash — the part before it is the schedule, the part after it
-    the class — and neither half is reworded. A Poisons Act or Poisons Rules match names the
-    statutes and how many of their schedules the substance is listed in; the schedules themselves
-    are rows in `controlled.parquet` and in this row's disclosure, which is where the regulatory
-    field's own `controlledDetail` says to look for them.
+
+def schedule_clauses(controlled_sg):
+    """The Singapore line's class words, and a pointer to the schedules themselves (§3, §13(4)).
+
+    §13(4): the schedules render once, in the controlled-substance schedules table, and this line
+    names the class and then says where to read them. It carried the statute, its version and the
+    count of Poisons Rules schedules as well, and every one of those was printed again, in full, a
+    few rows below. The schedule name the statute itself carries is split on its em dash — the part
+    before it is the schedule, the part after it the class — and the class is what a reader needs
+    here; neither half is reworded.
     """
     entries = rows(controlled_sg, "schedules")
-    versions = sorted({e.get("statuteVersionDate") for e in entries if e.get("statuteVersionDate")})
-    version = " (version %s)" % versions[-1] if versions else ""
 
     out = []
     for item in entries:
         if "Misuse of Drugs" not in str(item.get("statute") or ""):
             continue
         schedule = str(item.get("schedule") or "")
-        head, _, tail = schedule.partition(" \u2014 ")
-        clause = ", ".join([p for p in (tail.strip(), head.strip(), item.get("statute")) if p]) + version
-        if clause not in out:
+        _, _, tail = schedule.partition(" \u2014 ")
+        clause = tail.strip() or schedule.strip()
+        if clause and clause not in out:
             out.append(clause)
 
-    poisons_act = sum(1 for e in entries if str(e.get("statute") or "") == "Poisons Act 1938")
-    poisons_rules = sum(1 for e in entries if str(e.get("statute") or "") == "Poisons Rules")
-    parts = []
-    if poisons_act:
-        parts.append("the Poisons Act 1938 Schedule")
-    if poisons_rules:
-        parts.append(plural(poisons_rules, "Poisons Rules schedule"))
-    if parts:
-        out.append("listed in %s%s" % (" and ".join(parts), version))
+    poisons = any(
+        str(e.get("statute") or "") in ("Poisons Act 1938", "Poisons Rules") for e in entries
+    )
+    if poisons and not out:
+        out.append("on a Singapore poisons schedule")
+    if out:
+        out.append(SEE_SCHEDULES)
     return out
 
 
@@ -572,10 +570,16 @@ def line_au(record, registers):
     if schedules:
         provenance += carried(record, "fields.controlled.value.AU.schedules[].schedule")
         ordered = sorted(schedules, key=lambda n: (len(str(n)), str(n)))
+        # §13(4): the schedule is the class, and the instrument, its version and the substance as
+        # listed are written once, in the schedules table below.
         if len(ordered) == 1:
-            status = "Schedule %s, %s" % (ordered[0], instrument)
+            status = "Schedule %s, %s" % (ordered[0], SEE_SCHEDULES)
         else:
-            status = "Schedules %s and %s, %s" % (", ".join(ordered[:-1]), ordered[-1], instrument)
+            status = "Schedules %s and %s, %s" % (
+                ", ".join(ordered[:-1]),
+                ordered[-1],
+                SEE_SCHEDULES,
+            )
     else:
         status = "Not found in %s as of %s" % (instrument, date)
         au_paths = [
@@ -825,6 +829,10 @@ def other_register_rows(record, unmapped_counter, unmapped_example):
     for source_string, records_ in curated.items():
         if resolve_jurisdiction(source_string) is not None:
             continue
+        # §13(6): a curated record filed under "unspecified" names no jurisdiction and no register,
+        # so it is not a register line. It is kept, in the row's technical disclosure, and marked
+        # so the page paints it only there.
+        disclosed = str(source_string).strip().lower() == "unspecified"
         unmapped_counter[source_string] += 1
         unmapped_example.setdefault(source_string, record.get("key"))
         merged = merge_curated([r for r in records_ if isinstance(r, dict)])
@@ -841,11 +849,12 @@ def other_register_rows(record, unmapped_counter, unmapped_example):
                 "jurisdiction": "OTHER",
                 "label": source_string,
                 "status": "%s (NCATS Inxight Drugs curated record)" % statuses,
+                "disclosed": disclosed,
+                # §13(6): "upstream registers: ClinicalTrials, February 2021 …" names the files
+                # NCATS stitched, not a register that recorded this substance. It is technical
+                # provenance and lives in the disclosure.
                 "detail": join(
                     [
-                        "upstream registers: %s" % ", ".join(merged["upstreamRegisters"][:4])
-                        if merged["upstreamRegisters"]
-                        else None,
                         "recorded %s" % span if span else None,
                         "%s merged" % plural(merged["recordsMerged"], "stitched record")
                         if merged["recordsMerged"] > 1
@@ -862,6 +871,7 @@ def other_register_rows(record, unmapped_counter, unmapped_example):
                     "products": merged["products"][:20],
                     "sponsors": merged["sponsors"][:20],
                     "recordsMerged": merged["recordsMerged"],
+                    "upstreamRegisters": merged["upstreamRegisters"][:8],
                 },
             }
         )
@@ -1207,6 +1217,7 @@ def main(argv=None):
                     "order": order,
                     "line": join([status, detail]),
                     "absence": absence,
+                    "disclosed": False,
                     "disclosure": json.dumps(disclosure, ensure_ascii=False) if disclosure else "{}",
                     "provenance": json.dumps(sorted(set(provenance))),
                 }
@@ -1226,6 +1237,7 @@ def main(argv=None):
                     "order": order,
                     "line": join([row["status"], row["detail"]]),
                     "absence": row["absence"],
+                    "disclosed": bool(row["disclosed"]),
                     "disclosure": json.dumps(row["disclosure"], ensure_ascii=False),
                     "provenance": json.dumps(row["provenance"]),
                 }
@@ -1255,6 +1267,7 @@ def main(argv=None):
                         "order": order,
                         "line": join([status, detail]),
                         "absence": absence,
+                        "disclosed": False,
                         "disclosure": json.dumps(disclosure, ensure_ascii=False) if disclosure else "{}",
                         # §11: a component's line was read off the component's own record, not off
                         # this page's, and the trace says whose record it is. Resolving it against

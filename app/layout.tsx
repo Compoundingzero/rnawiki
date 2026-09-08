@@ -1,25 +1,14 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { fontVariableClassName } from '@/lib/fonts'
 import { googleAnalyticsMeasurementId } from '@/lib/google-analytics'
 import { configuredPublicUrl, configuredSiteOrigin, rootRobotsMetadata } from '@/lib/seo/deployment'
 import { HOME_METADATA } from '@/lib/seo/metadata'
 import './globals.css'
-
-// next/font serves these from the application origin.
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-plus-jakarta',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-})
+// The corpus stylesheets belong to the layout, not to a page: the plain corpus document links the
+// layout's stylesheet and has no page entry of its own to carry them.
+import '@/lib/corpus/tokens.css'
+import '@/lib/corpus/dossier.css'
 
 const siteOrigin = configuredSiteOrigin()
 const analyticsMeasurementId = googleAnalyticsMeasurementId(
@@ -58,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={fontVariableClassName}>
       <body className="bg-[#F5F5F7] text-[#1D1D1F] antialiased">
         <a
           href="#main"

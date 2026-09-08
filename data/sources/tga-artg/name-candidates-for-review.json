@@ -2,7 +2,7 @@
   "source": "tga-artg",
   "generated": "2026-09-06",
   "rule": "revamp-2026-09 Phase 2 mapping rule (d): a normalised-name match is a candidate until a UNII or InChIKey confirms it. Every entry below is unconfirmed. classEntry marks a Poisons Standard entry that names a class of substances rather than one substance; shortName marks a normalised name of four characters or fewer, where a collision is more likely.",
-  "count": 146,
+  "count": 132,
   "candidates": [
     {
       "substance": "ACETONE",
@@ -19,7 +19,7 @@
     },
     {
       "substance": "ACLIDINIUM BROMIDE",
-      "normalised": "aclidinium",
+      "normalised": "aclidinium bromide",
       "candidate_page_keys": [
         "K1:K17VY42F6C"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "substance": "ACRIFLAVINIUM CHLORIDE",
-      "normalised": "acriflavinium",
+      "normalised": "acriflavinium chloride",
       "candidate_page_keys": [
         "K1:1T3A50395T"
       ],
@@ -48,7 +48,6 @@
       "substance": "ADRENALINE",
       "normalised": "adrenaline",
       "candidate_page_keys": [
-        "K1:GR0L9S3J0F",
         "K1:NA71GR3TNV"
       ],
       "entries": [
@@ -61,7 +60,7 @@
     },
     {
       "substance": "AFATINIB DIMALEATE",
-      "normalised": "afatinib",
+      "normalised": "afatinib dimaleate",
       "candidate_page_keys": [
         "K1:41UD74L59M"
       ],
@@ -157,7 +156,7 @@
     },
     {
       "substance": "ASTODRIMER SODIUM",
-      "normalised": "astodrimer",
+      "normalised": "astodrimer sodium",
       "candidate_page_keys": [
         "K1:F8H3J9KSY9"
       ],
@@ -242,7 +241,7 @@
     },
     {
       "substance": "BETHANECHOL CHLORIDE",
-      "normalised": "bethanechol",
+      "normalised": "bethanechol chloride",
       "candidate_page_keys": [
         "K1:004F72P8F4"
       ],
@@ -398,25 +397,10 @@
       "shortName": false
     },
     {
-      "substance": "CLOBETASONE",
-      "normalised": "clobetasone",
-      "candidate_page_keys": [
-        "K2:FBRAWBYQGRLCEK-RJFLZJKCSA-N"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-3:0021",
-        "frl:F2026L00633:schedule-4:0501"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
       "substance": "CLOCORTOLONE",
       "normalised": "clocortolone",
       "candidate_page_keys": [
-        "K1:85061HTR8T",
-        "K1:QBL8IZH14X"
+        "K1:85061HTR8T"
       ],
       "entries": [
         "frl:F2026L00633:schedule-4:0502"
@@ -435,19 +419,6 @@
         "frl:F2026L00633:schedule-4:0515"
       ],
       "reason": "ambiguous_unii_name_match",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "CO-DERGOCRINE",
-      "normalised": "co dergocrine",
-      "candidate_page_keys": [
-        "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-4:0527"
-      ],
-      "reason": "no_unii_name_match",
       "classEntry": false,
       "shortName": false
     },
@@ -489,45 +460,6 @@
         "frl:F2026L00633:schedule-4:0534"
       ],
       "reason": "no_unii_name_match",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "COPPER HYDROXIDE",
-      "normalised": "copper",
-      "candidate_page_keys": [
-        "K1:789U1901C5",
-        "K1:E9FOJND1LV",
-        "K1:GIK928GH0Y",
-        "K1:LRX7AJ16DT",
-        "K1:RV823G6G67",
-        "K1:S2QG84156O",
-        "K1:V1XJQ704R4"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-5:0089",
-        "frl:F2026L00633:schedule-6:0138"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "COPPER NITRATE",
-      "normalised": "copper",
-      "candidate_page_keys": [
-        "K1:789U1901C5",
-        "K1:E9FOJND1LV",
-        "K1:GIK928GH0Y",
-        "K1:LRX7AJ16DT",
-        "K1:RV823G6G67",
-        "K1:S2QG84156O",
-        "K1:V1XJQ704R4"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-6:0139"
-      ],
-      "reason": "unii_name_exact",
       "classEntry": false,
       "shortName": false
     },
@@ -574,7 +506,6 @@
       "substance": "CYCLOPHOSPHAMIDE",
       "normalised": "cyclophosphamide",
       "candidate_page_keys": [
-        "K1:6UXW23996M",
         "K1:ER09126G7A"
       ],
       "entries": [
@@ -608,32 +539,6 @@
         "frl:F2026L00633:schedule-4:0634"
       ],
       "reason": "ambiguous_unii_name_match",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "DIHYDROERGOTOXINE",
-      "normalised": "dihydroergotoxine",
-      "candidate_page_keys": [
-        "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-4:0679"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "DIMETHYL SULFATE",
-      "normalised": "dimethyl",
-      "candidate_page_keys": [
-        "K1:FO2303MNI2"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-7:0086"
-      ],
-      "reason": "unii_name_exact",
       "classEntry": false,
       "shortName": false
     },
@@ -707,7 +612,7 @@
     },
     {
       "substance": "ESTETROL MONOHYDRATE",
-      "normalised": "estetrol",
+      "normalised": "estetrol monohydrate",
       "candidate_page_keys": [
         "K1:ENB39R14VF"
       ],
@@ -729,51 +634,6 @@
         "frl:F2026L00633:schedule-4:0850"
       ],
       "reason": "ambiguous_unii_name_match",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "ETHYL BROMIDE",
-      "normalised": "ethyl",
-      "candidate_page_keys": [
-        "K1:46U771ERWK",
-        "K1:555U6TZ2MV",
-        "K1:UFD2LZ005D",
-        "K2:QUPDWYMUPZLYJZ-UHFFFAOYSA-N"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-6:0231"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "ETHYLENE OXIDE",
-      "normalised": "ethylene",
-      "candidate_page_keys": [
-        "K1:55163IJI47",
-        "K1:91GW059KN7",
-        "K1:WD06X94M2D",
-        "K1:YQQ2QQ3URK"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-7:0109"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "FLUNIXIN MEGLUMINE",
-      "normalised": "flunixin",
-      "candidate_page_keys": [
-        "K1:356IB1O400"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-4:0927"
-      ],
-      "reason": "unii_name_exact",
       "classEntry": false,
       "shortName": false
     },
@@ -873,7 +733,6 @@
       "substance": "HYOSCYAMINE",
       "normalised": "hyoscyamine",
       "candidate_page_keys": [
-        "K1:03J5ZE7KA5",
         "K1:PX44XO846X",
         "K1:V3203SI72M"
       ],
@@ -889,7 +748,6 @@
       "substance": "IBUPROFEN",
       "normalised": "ibuprofen",
       "candidate_page_keys": [
-        "K1:671DKG7P5S",
         "K1:99W8H60N62",
         "K1:WK2XYI10QM"
       ],
@@ -1119,7 +977,6 @@
       "substance": "METENOLONE",
       "normalised": "metenolone",
       "candidate_page_keys": [
-        "K1:0SPD480WFH",
         "K1:W75590VPKQ"
       ],
       "entries": [
@@ -1133,25 +990,10 @@
       "substance": "METHENOLONE",
       "normalised": "methenolone",
       "candidate_page_keys": [
-        "K1:0SPD480WFH",
         "K1:W75590VPKQ"
       ],
       "entries": [
         "frl:F2026L00633:schedule-4:1365"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "METHYL BROMIDE",
-      "normalised": "methyl",
-      "candidate_page_keys": [
-        "K1:6ADD3H8MFZ",
-        "K1:LAV5U5022Y"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-7:0158"
       ],
       "reason": "unii_name_exact",
       "classEntry": false,
@@ -1270,19 +1112,6 @@
       "shortName": false
     },
     {
-      "substance": "OXANTEL EMBONATE",
-      "normalised": "oxantel",
-      "candidate_page_keys": [
-        "K1:94AJJ30D9E"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-5:0324"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
       "substance": "OXEDRINE",
       "normalised": "oxedrine",
       "candidate_page_keys": [
@@ -1379,7 +1208,7 @@
     },
     {
       "substance": "PENTOSAN POLYSULFATE SODIUM",
-      "normalised": "pentosan polysulfate",
+      "normalised": "pentosan polysulfate sodium",
       "candidate_page_keys": [
         "K1:F59P8B75R4"
       ],
@@ -1420,7 +1249,6 @@
       "substance": "PHENYLPROPANOLAMINE",
       "normalised": "phenylpropanolamine",
       "candidate_page_keys": [
-        "K1:33RU150WUN",
         "K1:57B9YG5Y1E",
         "K1:7875H6443P",
         "K2:DLNKOYKMWOXYQA-UHFFFAOYSA-N"
@@ -1462,7 +1290,6 @@
       "substance": "PINACIDIL",
       "normalised": "pinacidil",
       "candidate_page_keys": [
-        "K1:BB4UGO5K0D",
         "K1:Y08IPB8MZH"
       ],
       "entries": [
@@ -1474,7 +1301,7 @@
     },
     {
       "substance": "PINAVERIUM BROMIDE",
-      "normalised": "pinaverium",
+      "normalised": "pinaverium bromide",
       "candidate_page_keys": [
         "K2:DDHUTBKXLWCZCO-UHFFFAOYSA-N"
       ],
@@ -1508,19 +1335,6 @@
         "frl:F2026L00633:schedule-4:1758"
       ],
       "reason": "no_unii_name_match",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
-      "substance": "POLIDEXIDE",
-      "normalised": "polidexide",
-      "candidate_page_keys": [
-        "K1:184QRS62JD"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-4:1762"
-      ],
-      "reason": "unii_name_exact",
       "classEntry": false,
       "shortName": false
     },
@@ -1580,7 +1394,7 @@
     },
     {
       "substance": "PYRITHIONE ZINC",
-      "normalised": "pyrithione",
+      "normalised": "pyrithione zinc",
       "candidate_page_keys": [
         "K1:6GK82EC25D"
       ],
@@ -1620,63 +1434,8 @@
       "shortName": false
     },
     {
-      "substance": "SODIUM DIACETATE",
-      "normalised": "sodium",
-      "candidate_page_keys": [
-        "HOLD:existing:anhydrous-citric-acid",
-        "HOLD:existing:potassium-citrate",
-        "HOLD:existing:sodium-succinate",
-        "K1:0YPR65R21J",
-        "K1:1699G8679Z",
-        "K1:22ADO53M6F",
-        "K1:3075U8R23D",
-        "K1:36KCS0R750",
-        "K1:40UIR9Q29H",
-        "K1:411VRN1TV4",
-        "K1:451W47IQ8X",
-        "K1:45P3261C7T",
-        "K1:50LH4BZ6MD",
-        "K1:55X04QC32I",
-        "K1:6326W0DRHY",
-        "K1:7UJQ5OPE7D",
-        "K1:8M4L3H2ZVZ",
-        "K1:8MDF5V39QO",
-        "K1:8ZYQ1474W7",
-        "K1:B22547B95K",
-        "K1:CI71S98N1Z",
-        "K1:D888C394VO",
-        "K1:F5WR8N145C",
-        "K1:JHU490RVYR",
-        "K1:KH7I04HPUU",
-        "K1:LC1V549NOM",
-        "K1:LYR4M0NH37",
-        "K1:M7Y086VB5G",
-        "K1:NPT6P8P3UU",
-        "K1:NVG71ZZ7P0",
-        "K1:OBL58JN025",
-        "K1:OJ245FE5EU",
-        "K1:P2Y1C6M9PS",
-        "K1:P699N4QOWE",
-        "K1:PQ6CK8PD0R",
-        "K1:QTO9JB4MDD",
-        "K1:R4R8J0Q44B",
-        "K1:RS7A450LGA",
-        "K1:SX01TZO3QZ",
-        "K1:TU7HW0W0QT",
-        "K1:WIQ1H85SYP",
-        "K1:X6T6YN87SU",
-        "K4:trisodium"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-5:0404"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": false
-    },
-    {
       "substance": "SODIUM HYDROGEN SULFATE",
-      "normalised": "sodium hydrogen",
+      "normalised": "sodium hydrogen sulfate",
       "candidate_page_keys": [
         "K1:0YPR65R21J"
       ],
@@ -1702,51 +1461,10 @@
     },
     {
       "substance": "SODIUM PHOSPHATE",
-      "normalised": "sodium",
+      "normalised": "sodium phosphate",
       "candidate_page_keys": [
-        "HOLD:existing:anhydrous-citric-acid",
-        "HOLD:existing:potassium-citrate",
-        "HOLD:existing:sodium-succinate",
-        "K1:0YPR65R21J",
-        "K1:1699G8679Z",
         "K1:22ADO53M6F",
-        "K1:3075U8R23D",
-        "K1:36KCS0R750",
-        "K1:40UIR9Q29H",
-        "K1:411VRN1TV4",
-        "K1:451W47IQ8X",
-        "K1:45P3261C7T",
-        "K1:50LH4BZ6MD",
-        "K1:55X04QC32I",
-        "K1:6326W0DRHY",
-        "K1:7UJQ5OPE7D",
-        "K1:8M4L3H2ZVZ",
-        "K1:8MDF5V39QO",
-        "K1:8ZYQ1474W7",
-        "K1:B22547B95K",
-        "K1:CI71S98N1Z",
-        "K1:D888C394VO",
-        "K1:F5WR8N145C",
-        "K1:JHU490RVYR",
-        "K1:KH7I04HPUU",
-        "K1:LC1V549NOM",
-        "K1:LYR4M0NH37",
-        "K1:M7Y086VB5G",
-        "K1:NPT6P8P3UU",
-        "K1:NVG71ZZ7P0",
-        "K1:OBL58JN025",
-        "K1:OJ245FE5EU",
-        "K1:P2Y1C6M9PS",
-        "K1:P699N4QOWE",
-        "K1:PQ6CK8PD0R",
-        "K1:QTO9JB4MDD",
-        "K1:R4R8J0Q44B",
-        "K1:RS7A450LGA",
-        "K1:SX01TZO3QZ",
-        "K1:TU7HW0W0QT",
-        "K1:WIQ1H85SYP",
-        "K1:X6T6YN87SU",
-        "K4:trisodium"
+        "K1:SX01TZO3QZ"
       ],
       "entries": [
         "frl:F2026L00633:schedule-3:0089",
@@ -1771,7 +1489,7 @@
     },
     {
       "substance": "SODIUM THIOSULFATE ANHYDROUS",
-      "normalised": "sodium thiosulfate",
+      "normalised": "sodium thiosulfate anhydrous",
       "candidate_page_keys": [
         "K1:HX1032V43M"
       ],
@@ -1838,7 +1556,7 @@
     },
     {
       "substance": "TAFENOQUINE SUCCINATE",
-      "normalised": "tafenoquine",
+      "normalised": "tafenoquine succinate",
       "candidate_page_keys": [
         "K1:262P8GS9L9"
       ],
@@ -1894,7 +1612,6 @@
       "substance": "THEOPHYLLINE",
       "normalised": "theophylline",
       "candidate_page_keys": [
-        "COMBO:{K1:0I55128JYK,K1:TE7660XO1C}",
         "K1:0I55128JYK"
       ],
       "entries": [
@@ -1988,7 +1705,7 @@
     },
     {
       "substance": "VATINOXAN HYDROCHLORIDE",
-      "normalised": "vatinoxan",
+      "normalised": "vatinoxan hydrochloride",
       "candidate_page_keys": [
         "K1:342EYN0QFD"
       ],
@@ -2066,32 +1783,6 @@
       "reason": "no_unii_name_match",
       "classEntry": false,
       "shortName": false
-    },
-    {
-      "substance": "ZINC LACTATE",
-      "normalised": "zinc",
-      "candidate_page_keys": [
-        "K1:0J6Z13X3WO",
-        "K1:762R7A0O0B",
-        "K1:86Q357L16B",
-        "K1:89DS0H96TB",
-        "K1:EQR32Y7H0M",
-        "K1:FM5526K07A",
-        "K1:GZK92PJM7B",
-        "K1:H2ZEY72PME",
-        "K1:J41CSQ7QDS",
-        "K1:K72I3DEX9B",
-        "K1:N57JI2K7WP",
-        "K1:OO7ZBU9703",
-        "K1:SOI2LOH54Z",
-        "K1:U6WSN5SQ1Z"
-      ],
-      "entries": [
-        "frl:F2026L00633:schedule-6:0570"
-      ],
-      "reason": "unii_name_exact",
-      "classEntry": false,
-      "shortName": true
     }
   ],
   "ambiguousUniiResolutions": [

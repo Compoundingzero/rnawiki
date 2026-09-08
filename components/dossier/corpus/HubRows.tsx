@@ -6,8 +6,6 @@
  * the relations row style, so a hub name is markup on the member page and the overlap ruler does
  * not read every member of one hub as sharing a word.
  */
-import Link from 'next/link'
-
 import type { CorpusHubRow } from '@/lib/corpus/dossier-page'
 
 export function HubRows({ hubs }: { hubs: CorpusHubRow[] }) {
@@ -21,7 +19,7 @@ export function HubRows({ hubs }: { hubs: CorpusHubRow[] }) {
         {hubs.map((hub) => (
           <li key={hub.path}>
             <span>{hub.label}</span>
-            <Link href={hub.path}>{hub.name}</Link>
+            <a href={hub.path}>{hub.name}</a>
           </li>
         ))}
       </ul>

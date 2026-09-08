@@ -87,3 +87,65 @@ count `data/revamp/hubs/counts.json` records, or fewer with the skip counted in 
 output; `/sitemap.xml` lists `sitemaps/hubs.xml`; `/h` answers 200 and is linked from the site
 footer; a member page — `/d/bicalutamide` is in `target/ar` — shows a Hubs row whose link answers
 200. Tier 3 slugs appear in no sitemap child, `hubs.xml` included.
+
+## The corpus document (step 6.1): what deploying `/d/*` and `/h/*` now involves
+
+Step 6.1 measured what an App Router page costs on this corpus. On the 108-page set of
+`data/revamp/payload-audit-before.json` the React Server Components stream Next.js inlines into
+every page was a median **54.5 %** of the served document's bytes and repeated **100 %** of the
+rendered record's text, and live text-to-HTML was **0.048** against the step's 0.15 floor. No
+configuration removes that second copy: `createInlinedDataReadableStream` is called unconditionally
+in `next/dist/server/app-render/app-render.js` on every render path a page can take. Removing it
+alone would still not have reached the floor — the counterfactual, measured page by page on the
+same set, was **0.108** — so the markup was cut as well.
+
+`/d/<slug>` and `/h/**` are therefore no longer pages. They are route handlers that render the
+record on the server once and write the whole document themselves
+(`lib/corpus/document.tsx`, `lib/hubs/document.tsx`, `components/document/DocumentShell.tsx`). The
+result is **0.15517** on the same 108 pages, **0.15399** on the 100-page indexable draw and
+**0.17639** on the eight named samples, with the flight stream at **0**
+(`data/revamp/payload-audit-after.json`).
+
+**The build step.** `npm run build` runs `scripts/build-island.mjs` first, through `prebuild`;
+`npm run dev` runs it through `predev`. It bundles `lib/island/` with esbuild to
+`public/island/rnawiki-document.js` — the one script a corpus document loads, carrying the header
+search field, the contents rail's active marker and the analytics choice. It is a build artefact,
+gitignored, and **a deploy that skips it serves documents whose search field does not answer, whose
+rail marker does not move and which never offer the analytics choice**. Nothing else in the build
+changes; Railway's build command is still `npm run build`.
+
+**What the deployment must now be true of.**
+
+- **The build directory must be present and readable at run time.** The document reads
+  `.next/app-build-manifest.json` once per process to find the stylesheets the root layout emits,
+  which are the same files the React shell links (`lib/document/stylesheets.ts`). A server started
+  against a stale or absent `.next` raises the failure by name rather than serving an unstyled
+  page. Build and serve from the same directory, as `next start` already requires.
+- **`PORT` must be set, or the server must be reached on loopback.** A medicine the corpus does not
+  hold — 29 slugs on the 2026-09-08 load, and every fixture the end-to-end suite installs — is
+  still the React dossier with its comment thread, its correction controls and its programme
+  selector, and a route handler cannot render an App Router page. `/d/<slug>` forwards those to
+  `/legacy-record/<slug>` over the loopback interface and returns exactly what that page answered,
+  including its 308 to a canonical slug and its 404 (`lib/document/legacy-forward.ts`). The
+  loopback address comes from the `host` header when the request arrived on loopback, and from
+  `PORT` otherwise. Railway sets `PORT`; `npm run start` passes it to `next start`. With `PORT`
+  unset behind a proxy the forward would target port 3000 and those 29 URLs would fail while every
+  corpus record kept working.
+- **`/legacy-record/*` is not a public URL.** It is in no sitemap, is linked from nothing, and
+  answers 404 unless the request carries the token the route handler mints for the forward. Its
+  canonical, its indexing decision and its redirects are all about `/d/<slug>`.
+- **The corpus document is the same bytes for every reader.** It carries no account control and no
+  session read, so it can be cached whole. The header's account and feedback controls belong to the
+  React shell; the document's footer links to the front page, where signing in is one click. A
+  reader signed in on another page is not named in a corpus document's header.
+- **Analytics is unchanged in policy and different in code path.** `lib/island/analytics.ts` and
+  `components/GoogleAnalytics.tsx` read the same rules from `lib/google-analytics.ts` — the stored
+  consent key, the measurement-id shape, the path sanitiser and the paths never measured — so a
+  reader's choice, the cookie names and the fields sent are one policy. No tag loads and no cookie
+  is written before a reader has allowed it.
+
+**Check it landed**, against the deployed host: `/d/<an indexable slug>` contains no
+`self.__next_f.push`; `/island/rnawiki-document.js` answers 200; `/d/<a legacy-only slug>` answers
+200 and `/legacy-record/<the same slug>` answers 404; `/h` and `/h/<type>/<slug>` answer 200 and an
+absorbed hub slug answers 308; `scripts/revamp/payload_audit.py --base-url <host>` reports a live
+text-to-HTML median at or above 0.15 and an RSC share of 0.

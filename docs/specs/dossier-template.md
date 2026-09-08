@@ -12,7 +12,7 @@ passes on the seven samples.
 | ------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Longevity dossier  | LONGEVITY                                        | question blocks from the derivation rules; the organism ladder is always the second block when present                                     |
 | Clinical dossier   | CLINICAL                                         | question blocks; the withdrawn block leads when withdrawn                                                                                  |
-| Withdrawn arc      | any model with `withdrawn:true` (Tier 1 by rule) | a dated arc first (approval → signal → withdrawal decision → jurisdictions → what replaced it, each row sourced), then the ordinary blocks |
+| Withdrawn record   | any model with `withdrawn:true` (Tier 1 by rule) | the register events inside "Where it's registered" — one sentence per dated event, in words, with every register that recorded it named on the same line (`docs/specs/phase4-generators.md` §13 item 2) — then the ordinary blocks. The separate dated-arc block is retired: its rows duplicated the registration block and printed the registers' own column names |
 | Development record | DEVELOPMENT                                      | question blocks (highest phase, why stopped, ever dosed, same-target lineage as markup)                                                    |
 | Stub               | any tier with < 3 present fields                 | identity rows + relations + the sentence "This record holds {n} fields" as markup; no questions; noindex                                   |
 

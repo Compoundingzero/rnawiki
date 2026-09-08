@@ -9,7 +9,7 @@
  *
  *   npx tsx scripts/revamp/page_text_v5.ts
  *   npx tsx scripts/revamp/page_text_v5.ts --with-furniture
- *   npx tsx scripts/revamp/page_text_v5.ts --limit 200 --out data/revamp/render-v7-smoke
+ *   npx tsx scripts/revamp/page_text_v5.ts --limit 200 --out data/revamp/render-v8-smoke
  *
  * Furniture (docs/specs/phase4-generators.md §11). By default the text is written without it: the
  * register rows whose status is an absence, the checked-sources statement on a page holding no
@@ -19,7 +19,8 @@
  * is what the DOM parity check and the rendering-safety rules read; its default output directory is
  * `data/revamp/render-v7-with-furniture`, so the two runs never overwrite one another.
  *
- * Outputs, under `--out` (default `data/revamp/render-v7`):
+ * Outputs, under `--out` (default `data/revamp/render-v8`), with `-with-furniture` appended to
+ * every name on the furniture run:
  *   text/batch-0001.ndjson …   one `RenderedPage` per line, the shape the overlap ruler reads
  *   pages-all.ndjson           every rendered page in one file, key-sorted
  *   provenance/batch-0001.ndjson …  `{key, provenance: [{sentence, fields}]}` per page (4.7)
@@ -193,8 +194,15 @@ async function main(): Promise<void> {
     arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v5.csv'
   const displayNamesFile = arg('display-names') ?? 'data/revamp/identity/display-names-v5.csv'
   const withFurniture = process.argv.includes('--with-furniture')
-  const outDir =
-    arg('out') ?? (withFurniture ? 'data/revamp/render-v7-with-furniture' : 'data/revamp/render-v7')
+  const outDir = arg('out') ?? 'data/revamp/render-v8'
+  /*
+   * The two runs share one output directory and never overwrite one another: the furniture run
+   * writes `text-with-furniture`, `provenance-with-furniture`, `pages-all-with-furniture.ndjson`
+   * and `summary-with-furniture.json` beside the furniture-free ones. `tests/test_render_safety.py`
+   * reads both out of the same directory, and until this was here the two names were produced by
+   * moving files by hand after the run.
+   */
+  const suffix = withFurniture ? '-with-furniture' : ''
   const shards = Number(arg('shards') ?? 8)
   const batchSize = Number(arg('batch-size') ?? 1000)
   const limit = arg('limit') ? Number(arg('limit')) : undefined
@@ -336,8 +344,8 @@ async function main(): Promise<void> {
     .sort()
     .map((name) => path.join(questionsDir, name))
 
-  const textDir = path.join(outDir, 'text')
-  const provenanceDir = path.join(outDir, 'provenance')
+  const textDir = path.join(outDir, `text${suffix}`)
+  const provenanceDir = path.join(outDir, `provenance${suffix}`)
   await fs.mkdir(textDir, { recursive: true })
   await fs.mkdir(provenanceDir, { recursive: true })
   for (const directory of [textDir, provenanceDir]) {
@@ -345,7 +353,7 @@ async function main(): Promise<void> {
       if (/^batch-\d+\.ndjson$/.test(name)) await fs.rm(path.join(directory, name))
     }
   }
-  const allFile = path.join(outDir, 'pages-all.ndjson')
+  const allFile = path.join(outDir, `pages-all${suffix}.ndjson`)
   await fs.rm(allFile, { force: true })
 
   const shardSize = Math.ceil(allKeys.length / shards)
@@ -591,7 +599,7 @@ async function main(): Promise<void> {
     notes: Object.fromEntries([...notes.entries()].sort()),
   }
   await fs.writeFile(
-    path.join(outDir, 'summary.json'),
+    path.join(outDir, `summary${suffix}.json`),
     `${JSON.stringify(summary, null, 2)}\n`,
     'utf8',
   )

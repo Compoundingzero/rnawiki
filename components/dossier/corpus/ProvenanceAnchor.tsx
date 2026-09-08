@@ -8,9 +8,8 @@ import type { CorpusAnchor } from '@/lib/corpus/dossier-page'
 export function ProvenanceAnchor({ anchor }: { anchor: CorpusAnchor }) {
   const label = (
     <>
-      <span className="cd-anchor-glyph" aria-hidden="true">
-        ◇
-      </span>
+      {/* §13(11): the mark is a CSS pseudo-element, so no ruler and no crawler reads it. */}
+      <span className="cd-anchor-glyph" aria-hidden="true" />
       {anchor.text}
     </>
   )

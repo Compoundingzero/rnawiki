@@ -4714,6 +4714,15 @@ export const corpusPages = pgTable(
     pageType: corpusPageTypeEnum('page_type').notNull(),
     /** tier in (1,2) and page_type <> 'stub' and present_field_count >= the Gate 1b threshold. */
     indexable: boolean('indexable').notNull().default(false),
+    /**
+     * The page this record is held against as a rendered duplicate (§13 item 14).
+     *
+     * Where two indexable pages measure at or above 0.5 on the rendered duplicate check after every
+     * generator rule has been applied, the page with fewer own facts carries `noindex,follow` and a
+     * link to the other until Felix decides which of the two the corpus keeps. The slug named here
+     * is that other page; `indexable` is false on this row for as long as it stands.
+     */
+    duplicateHoldOf: varchar('duplicate_hold_of', { length: 200 }),
     suppressed: boolean('suppressed').notNull().default(false),
     suppressionClasses: text('suppression_classes')
       .array()
@@ -5165,6 +5174,14 @@ export const pageRegistration = pgTable(
      * prints these rows as one table of furniture; the ruler and the duplicate check skip them.
      */
     absence: varchar('absence', { length: 32 }),
+    /**
+     * True where the row belongs to the technical disclosure and never to a visible line (§13(6)).
+     *
+     * NCATS Inxight files a curated marketing record under the jurisdiction "unspecified". It names
+     * no jurisdiction and no register, so it is not a register line; it is kept, and the page
+     * paints it inside the block's closed disclosure.
+     */
+    disclosed: boolean('disclosed').notNull().default(false),
     /** The register application ids and curated marketing rows the summary line stands for. */
     disclosure: jsonb('disclosure')
       .notNull()
@@ -5473,6 +5490,42 @@ export const hubs = pgTable(
     check('hubs_member_count', sql`${table.memberCount} >= 5`),
     check('hubs_approved_count', sql`${table.approvedCount} >= 0`),
     check('hubs_slug_shape', sql`${table.slug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+  ],
+)
+
+/**
+ * A hub slug that redirects to the hub that absorbed it (§13 item 13).
+ *
+ * The rendered duplicate check found 1,865 hub-to-hub pairs at or above 0.5 Jaccard: a hub page is
+ * its members' comparison table and a synthesis generated from that table, so two hubs over nearly
+ * the same members are nearly the same page. `scripts/revamp/hubs_build.py` groups hubs whose
+ * member sets overlap at 0.5 Jaccard by complete linkage; the largest member set survives and the
+ * others are rows here. `/h/<alias_type>/<alias_slug>` answers with a permanent redirect to the
+ * survivor, whose definition line names what it is also known by, so no link into the corpus dies
+ * and no reader lands on a page that does not say why it answered.
+ */
+export const hubAliases = pgTable(
+  'hub_aliases',
+  {
+    aliasType: corpusHubTypeEnum('alias_type').notNull(),
+    aliasSlug: varchar('alias_slug', { length: 200 }).notNull(),
+    /** The name the absorbed hub carried, named in the survivor's definition line. */
+    aliasName: text('alias_name').notNull(),
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    /** How many pages the two member sets shared, and how many the alias held. */
+    sharedMembers: integer('shared_members').notNull(),
+    aliasMemberCount: integer('alias_member_count').notNull(),
+  },
+  (table) => [
+    primaryKey({
+      name: 'hub_aliases_type_slug_pk',
+      columns: [table.aliasType, table.aliasSlug],
+    }),
+    index('hub_aliases_hub_idx').on(table.hubId),
+    check('hub_aliases_slug_shape', sql`${table.aliasSlug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+    check('hub_aliases_shared_members', sql`${table.sharedMembers} >= 0`),
   ],
 )
 

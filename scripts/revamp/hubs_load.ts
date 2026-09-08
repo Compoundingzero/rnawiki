@@ -96,6 +96,16 @@ const MEMBER_COLUMNS = [
 
 const SYNTHESIS_COLUMNS = ['hub_id', 'ordinal', 'template_id', 'sentence', 'provenance'] as const
 
+/** §13(13): the slugs the member-set dedupe absorbed, and the hub each one redirects to. */
+const ALIAS_COLUMNS = [
+  'alias_type',
+  'alias_slug',
+  'alias_name',
+  'hub_id',
+  'shared_members',
+  'alias_member_count',
+] as const
+
 function flag(name: string): boolean {
   return process.argv.includes(`--${name}`)
 }
@@ -175,6 +185,7 @@ async function main(): Promise<void> {
   const hubsFile = join(inputDir, 'hubs.ndjson')
   const membersFile = join(inputDir, 'hub-members.ndjson')
   const synthesesFile = join(inputDir, 'hub-syntheses.ndjson')
+  const aliasesFile = join(inputDir, 'hub-aliases.ndjson')
 
   const connectionString = process.env.DATABASE_URL
   if (!connectionString) throw new Error('DATABASE_URL is not set.')
@@ -195,7 +206,8 @@ async function main(): Promise<void> {
   const hubRows = await readRows(hubsFile)
   const memberRowsRaw = await readRows(membersFile)
   const synthesisRows = await readRows(synthesesFile)
-  const digest = await digestOf([hubsFile, membersFile, synthesesFile])
+  const aliasRows = await readRows(aliasesFile)
+  const digest = await digestOf([hubsFile, membersFile, synthesesFile, aliasesFile])
   const target = loadTargetFingerprint(connectionString)
   const markerPath = join(loadDir, 'hubs.json')
 
@@ -212,7 +224,15 @@ async function main(): Promise<void> {
 
   const client = new Client({ connectionString, ssl: databaseSslConfig(connectionString) })
   await client.connect()
-  const counters = { hubs: 0, members: 0, syntheses: 0, skippedMembers: 0, skippedHubs: 0 }
+  const counters = {
+    hubs: 0,
+    members: 0,
+    syntheses: 0,
+    aliases: 0,
+    skippedMembers: 0,
+    skippedHubs: 0,
+    skippedAliases: 0,
+  }
   try {
     // A member whose page is not in this database cannot be linked, and a link that 404s is worse
     // than a shorter table. The rows are filtered here rather than at build time, because the build
@@ -254,6 +274,11 @@ async function main(): Promise<void> {
     counters.hubs = hubsToWrite.length
     counters.members = membersToWrite.length
     counters.syntheses = synthesesToWrite.length
+    // An alias whose survivor this database does not carry would redirect to a 404, so it is
+    // dropped and counted rather than written.
+    const aliasesToWrite = aliasRows.filter((row) => kept.has(String(row.hub_id)))
+    counters.aliases = aliasesToWrite.length
+    counters.skippedAliases = aliasRows.length - aliasesToWrite.length
 
     if (dryRun) {
       process.stdout.write(`${JSON.stringify({ dryRun: true, ...counters }, null, 1)}\n`)
@@ -265,6 +290,7 @@ async function main(): Promise<void> {
     await insertRows(client, 'hubs', HUB_COLUMNS, hubsToWrite, batchSize)
     await insertRows(client, 'hub_members', MEMBER_COLUMNS, membersToWrite, batchSize)
     await insertRows(client, 'hub_syntheses', SYNTHESIS_COLUMNS, synthesesToWrite, batchSize)
+    await insertRows(client, 'hub_aliases', ALIAS_COLUMNS, aliasesToWrite, batchSize)
     await client.query('COMMIT')
 
     await mkdir(loadDir, { recursive: true })

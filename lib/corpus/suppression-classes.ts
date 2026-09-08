@@ -78,6 +78,7 @@ export function supervisionBlock(
       text: sentence,
       interpretation: false,
     })),
+    facts: [],
     groups: [],
   }
 }

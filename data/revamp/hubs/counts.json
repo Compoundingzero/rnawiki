@@ -11,34 +11,41 @@
   },
   "spec": "docs/specs/hubs.md",
   "hubsPerType": {
-    "target": 830,
-    "class": 135,
-    "pathway": 7
+    "target": 790,
+    "class": 128,
+    "pathway": 5
   },
-  "hubs": 972,
-  "members": 14306,
+  "hubs": 923,
+  "hubsBuiltBeforeDedupe": 972,
+  "hubAliases": 49,
+  "hubDedupe": {
+    "line": 0.5,
+    "linkage": "complete",
+    "rule": "docs/specs/phase4-generators.md section 13 item 13 \u2014 hubs whose member sets overlap at Jaccard >= 0.5 form complete-linkage groups; the largest member set survives and the others redirect to it"
+  },
+  "members": 13121,
   "distinctMemberPages": 6124,
   "firstBatch": {
-    "hubs": 30,
+    "hubs": 28,
     "target": 23,
-    "pathway": 7,
-    "note": "docs/specs/hubs.md section 4 asks for 20 target and 10 pathway hubs. The corpus holds 7 pathway hubs meeting section 1, so the batch takes every one of them and 23 target hubs to reach 30."
+    "pathway": 5,
+    "note": "docs/specs/hubs.md section 4 asks for 20 target and 10 pathway hubs. The corpus holds 5 pathway hubs meeting section 1, so the batch takes every one of them and 23 target hubs to reach 30."
   },
   "synthesesPerTemplate": {
-    "H1": 556,
-    "H2": 654,
-    "H3": 281,
-    "H4": 214,
-    "H5": 935,
-    "H6": 277,
-    "H7": 7
+    "H1": 534,
+    "H2": 618,
+    "H3": 270,
+    "H4": 202,
+    "H5": 886,
+    "H6": 272,
+    "H7": 5
   },
-  "syntheses": 2924,
+  "syntheses": 2787,
   "memberRoles": {
-    "approved": 3872,
-    "withdrawn": 103,
-    "development": 2534,
-    "clinical": 7797
+    "approved": 3306,
+    "withdrawn": 81,
+    "development": 2242,
+    "clinical": 7492
   },
   "pathwayNamingRule": {
     "pathwayStatementsKept": 2027,

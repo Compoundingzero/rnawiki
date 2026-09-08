@@ -13,26 +13,40 @@
 export function RegisterSummary({
   applications,
   label,
+  upstreamRegisters = [],
 }: {
   applications: string[]
   label: string
+  /**
+   * §13(6): the upstream files NCATS stitched to build a curated row — "ClinicalTrials, February
+   * 2021, FRDB, October 2021". They name where the curator read something, not a register that
+   * recorded this substance, so they are technical provenance and belong in here.
+   */
+  upstreamRegisters?: string[]
 }) {
-  if (applications.length === 0) return null
+  if (applications.length === 0 && upstreamRegisters.length === 0) return null
   const count = applications.length
+  const summary =
+    count === 0
+      ? `Show what the curated record for ${label} was built from`
+      : `Show the ${count === 1 ? 'application identifier' : `${count} application identifiers`} for ${label}`
   return (
     <details className="cd-evidence cd-register-applications">
-      <summary>
-        Show the {count === 1 ? 'application identifier' : `${count} application identifiers`} for{' '}
-        {label}
-      </summary>
+      <summary>{summary}</summary>
       <ul className="cd-rows">
         {applications.map((application) => (
-          <li className="cd-row" key={application}>
+          <li key={application}>
             <div className="cd-row-value">
               <span className="cd-row-id">{application}</span>
             </div>
           </li>
         ))}
+        {upstreamRegisters.length > 0 ? (
+          <li key="upstream">
+            <span className="cd-row-label">Upstream registers</span>
+            <div className="cd-row-value">{upstreamRegisters.join(', ')}</div>
+          </li>
+        ) : null}
       </ul>
     </details>
   )

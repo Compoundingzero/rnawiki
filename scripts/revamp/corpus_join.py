@@ -64,6 +64,21 @@ def normalise_name(raw: str, salts: list[str]) -> str:
     return re.sub(r"\s+", " ", name).strip()
 
 
+def full_normalise_name(raw: str) -> str:
+    """Lowercase, punctuation to spaces, whitespace collapsed — and nothing removed.
+
+    `normalise_name` strips trailing counter-ion words so that "amlodipine besylate" and
+    "amlodipine" meet. That is right for a salt and wrong for a name whose head is the counter-ion:
+    "SODIUM PHOSPHATE", "SODIUM DIACETATE" and "SODIUM CITRATE" all normalise to "sodium", and the
+    Poisons Standard's phosphate and diacetate entries landed on the trisodium citrate page
+    (docs/specs/phase4-generators.md §13 item 12). A full normalised name is the whole name, so a
+    shared token cannot match.
+    """
+    if not raw:
+        return ""
+    return re.sub(r"\s+", " ", _PUNCT.sub(" ", raw.strip().lower())).strip()
+
+
 @dataclass
 class CorpusIndex:
     tier: dict[str, int] = field(default_factory=dict)
@@ -74,6 +89,8 @@ class CorpusIndex:
     inchikey_to_keys: dict[str, list[str]] = field(default_factory=dict)
     skeleton_to_keys: dict[str, list[str]] = field(default_factory=dict)
     name_to_keys: dict[str, list[str]] = field(default_factory=dict)
+    #: The page's names normalised without salt stripping, for a rule that requires a whole name.
+    full_name_to_keys: dict[str, list[str]] = field(default_factory=dict)
     chembl_to_keys: dict[str, list[str]] = field(default_factory=dict)
     key_unii: dict[str, str] = field(default_factory=dict)
     combination_components: dict[str, frozenset] = field(default_factory=dict)
@@ -145,6 +162,9 @@ def load_corpus_index() -> CorpusIndex:
             norm = normalise_name(name, salts)
             if len(norm) >= 3:
                 _add(idx.name_to_keys, norm, key)
+            full = full_normalise_name(name)
+            if len(full) >= 3:
+                _add(idx.full_name_to_keys, full, key)
         contains = [
             r["targetKey"]
             for r in (rec.get("relations") or [])

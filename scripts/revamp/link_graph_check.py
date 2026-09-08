@@ -53,15 +53,27 @@ FIELDS = ROOT / "data/revamp/fields-v2"
 # Rule 2 reads the ruler this run publishes. Each measure round writes a new pair of files and the
 # older pair stays readable beside it, so the default is the newest pair on disk and `--thresholds`
 # names an older one explicitly.
-THRESHOLD_REVISIONS = ("v7", "v6", "v5")
-THRESHOLDS = next(
-    (
-        path
-        for path in (ROOT / f"data/revamp/thresholds-{rev}.json" for rev in THRESHOLD_REVISIONS)
-        if path.exists()
-    ),
-    ROOT / "data/revamp/thresholds-v5.json",
-)
+def _newest_ruler() -> Path:
+    """The highest-numbered `thresholds-v<n>.json` that has its presence file beside it.
+
+    Naming the revisions one by one means the next measure round reads the previous round's ruler
+    until someone remembers to edit this line — silently, because the older file is still there and
+    still valid. Reading the highest revision on disk keeps rule 2 on the ruler the run publishes,
+    and the report records which pair was used.
+    """
+    found: list[tuple[int, Path]] = []
+    for path in sorted((ROOT / "data/revamp").glob("thresholds-v*.json")):
+        revision = path.stem[len("thresholds-v"):]
+        if revision.isdigit() and (
+            ROOT / f"data/revamp/presence-applicable-v{revision}.ndjson"
+        ).exists():
+            found.append((int(revision), path))
+    if found:
+        return max(found)[1]
+    return ROOT / "data/revamp/thresholds-v5.json"
+
+
+THRESHOLDS = _newest_ruler()
 PRESENCE = ROOT / f"data/revamp/presence-applicable-{THRESHOLDS.stem.rsplit('-', 1)[1]}.ndjson"
 SLUGS = ROOT / "data/revamp/identity/page-slugs.csv"
 REASONS = HUBS / "membership-reasons.ndjson"

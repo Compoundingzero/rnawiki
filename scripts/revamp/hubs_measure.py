@@ -162,19 +162,27 @@ def measure_all(work: Path) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--set", choices=("first-batch", "all", "both"), default="both")
+    parser.add_argument(
+        "--suffix",
+        default="",
+        help=(
+            "appended to each output file name, so a re-measure never overwrites the one it is "
+            "compared against: --suffix -v2 writes measure-all-v2.json"
+        ),
+    )
     args = parser.parse_args()
     written: list[str] = []
     with tempfile.TemporaryDirectory(prefix="hubs-measure-") as temporary:
         work = Path(temporary)
         if args.set in ("first-batch", "both"):
             record = measure_first_batch(work)
-            path = HUBS / "measure-first-batch.json"
+            path = HUBS / f"measure-first-batch{args.suffix}.json"
             path.write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8")
             written.append(str(path.relative_to(ROOT)))
             print(json.dumps(record, indent=1))
         if args.set in ("all", "both"):
             record = measure_all(work)
-            path = HUBS / "measure-all.json"
+            path = HUBS / f"measure-all{args.suffix}.json"
             path.write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8")
             written.append(str(path.relative_to(ROOT)))
             print(json.dumps(record, indent=1))

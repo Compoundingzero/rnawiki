@@ -1,14 +1,18 @@
-// The canonical medicine dossier route. It prefers the single authoritative published programme
-// revision, selected through a shareable query parameter, and falls back honestly for legacy or
-// identified-but-unpublished programmes.
+// The medicine records the corpus does not hold, served as the React dossier they have always been.
+//
+// The public URL is `/d/<slug>`: `app/d/[slug]/route.ts` writes a corpus record as a plain HTML
+// document and forwards everything else here over the loopback interface (step 6.1,
+// lib/document/legacy-forward.ts). Nothing links to this path and nothing may reach it directly,
+// so a request without the forwarding token is a 404. Every canonical, redirect and indexing
+// decision below is still made about `/d/<slug>`.
 
 import { cache } from 'react'
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { AppShell } from '@/components/AppShell'
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
-import { CorpusDossierPage } from '@/components/dossier/corpus/CorpusDossierPage'
-import { corpusMetaDescription, loadCorpusDossier } from '@/lib/corpus/dossier-page'
+import { LEGACY_FORWARD_HEADER, legacyForwardToken } from '@/lib/document/legacy-forward'
 import {
   getDrugBySlug,
   getPublicDrugBySlug,
@@ -20,7 +24,7 @@ import {
   programmeReferenceExists,
 } from '@/lib/queries/programme-evidence'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
-import { corpusDossierJsonLdGraph, dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
+import { dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin, pageRobotsMetadata } from '@/lib/seo/deployment'
 import { decideDossierIndexability } from '@/lib/seo/dossier-indexability'
 import {
@@ -38,14 +42,13 @@ const siteOrigin = configuredSiteOrigin()
 const loadViewer = cache(getCurrentUser)
 const loadCanonicalRoute = cache(resolvePublicMedicineRoute)
 
-/**
- * The corpus template branch. A slug that has a `corpus_pages` row is served by the new question
- * template; a slug that has none is served by the existing dossier exactly as before, so every URL
- * the site already publishes keeps working while the corpus lands tier by tier. The load is cached
- * per request because the metadata and the body both need it.
- */
-const loadCorpusPage = cache(loadCorpusDossier)
 const loadPublicDossier = cache(getPublicDrugBySlug)
+
+/** A request that did not come from `/d/<slug>`'s own route handler is not answered at all. */
+async function forwardedFromDossierRoute(): Promise<boolean> {
+  const requestHeaders = await headers()
+  return requestHeaders.get(LEGACY_FORWARD_HEADER) === legacyForwardToken()
+}
 
 const loadDossier = cache((slug: string, viewerUserId: string | undefined) =>
   getDrugBySlug(slug, viewerUserId),
@@ -72,25 +75,6 @@ export async function generateMetadata({
 }: DossierPageProps): Promise<Metadata> {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
-
-  const corpus = await loadCorpusPage(slug)
-  if (corpus) {
-    const description = corpusMetaDescription(corpus)
-    const path = `/d/${corpus.slug}`
-    return {
-      title: corpus.displayName,
-      ...(description ? { description } : {}),
-      alternates: { canonical: path },
-      // A Tier 3 or below-threshold record is reachable and crawlable but not indexed (R6).
-      robots: pageRobotsMetadata({ index: corpus.indexable, follow: true }),
-      openGraph: {
-        type: 'article',
-        title: `${corpus.displayName} | RNAWiki`,
-        ...(description ? { description } : {}),
-        url: path,
-      },
-    }
-  }
 
   const route = await loadCanonicalRoute(slug)
   if (!route) {
@@ -147,6 +131,9 @@ export async function generateMetadata({
       title: `${title} | RNAWiki`,
       description,
       url: path,
+      // The card is a route of the public path, not of this internal one, so it is named here
+      // rather than discovered from a metadata file beside this page.
+      images: [{ url: `${path}/opengraph-image`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -156,33 +143,11 @@ export async function generateMetadata({
   }
 }
 
-export default async function DossierPage({ params, searchParams }: DossierPageProps) {
+export default async function LegacyMedicineRecordPage({ params, searchParams }: DossierPageProps) {
+  if (!(await forwardedFromDossierRoute())) notFound()
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
-  const [viewer, corpus] = await Promise.all([loadViewer(), loadCorpusPage(slug)])
-  if (corpus) {
-    // A corpus record carries the same kind of structured data the legacy branch emits: what the
-    // record is, the names and identifiers the page already shows, and where the page sits in the
-    // site. `corpusDossierJsonLdGraph` returns null for a record the corpus does not index.
-    const corpusJsonLd = corpusDossierJsonLdGraph(corpus, {
-      siteUrl: siteOrigin,
-      url: configuredPublicUrl(`/d/${corpus.slug}`),
-    })
-    return (
-      <>
-        {corpusJsonLd && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: serialiseJsonLd(corpusJsonLd) }}
-          />
-        )}
-        <AppShell initialUser={viewer}>
-          <CorpusDossierPage dossier={corpus} />
-        </AppShell>
-      </>
-    )
-  }
-
+  const viewer = await loadViewer()
   const route = await loadCanonicalRoute(slug)
   if (!route) notFound()
   if (route.canonicalSlug !== slug) {

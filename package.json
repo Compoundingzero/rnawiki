@@ -6,7 +6,9 @@
   "description": "A public, programme-scoped record of medicine evidence and its sources.",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/build-island.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-island.mjs",
     "build": "next build",
     "start": "next start -p ${PORT:-3000}",
     "lint": "eslint .",

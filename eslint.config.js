@@ -36,6 +36,25 @@ const eslintConfig = [
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
+  {
+    // The corpus document (step 6.1). `/d/*` and `/h/*` are served as plain HTML with no client
+    // router and no React Server Components stream, so both of these rules describe a page this
+    // code is deliberately not: `<Link>` needs the router these documents do not load, and
+    // `next/head` belongs to a page whose `<head>` Next.js writes. Here the document writes its
+    // own head and its links are ordinary navigations. Every other file keeps both rules.
+    files: [
+      'components/document/**/*.tsx',
+      'components/dossier/corpus/**/*.tsx',
+      'components/hubs/**/*.tsx',
+      'lib/corpus/document.tsx',
+      'lib/document/**/*.tsx',
+      'lib/hubs/document.tsx',
+    ],
+    rules: {
+      '@next/next/no-html-link-for-pages': 'off',
+      '@next/next/no-head-element': 'off',
+    },
+  },
 ]
 
 export default eslintConfig

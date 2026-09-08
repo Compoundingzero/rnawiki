@@ -74,17 +74,17 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draw 3 not clean (b 67; lead reading found generator faults \u00a713); fix round 3, then draws 4 and 5"
+        "4.7": "draws 4/5 not clean (a: trace list class; b: 3 one-value blocks; parity regression from 6.1); round 4 then draws 6/7"
       },
       "gate_evidence": null,
-      "updated": "2026-09-08T05:44:49+00:00"
+      "updated": "2026-09-08T13:23:31+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",
       "steps": {
         "5.1": "done (972 hubs)",
         "5.2": "done (tables + syntheses with provenance)",
-        "5.3": "integrated (Hubs row, hubs.xml, footer link); 1,865 hub-to-hub duplicate pairs \u2192 dedupe rule \u00a713",
+        "5.3": "hubs 923 (49 aliases), link graph PASS; 1,472 hub-to-hub rendered pairs \u2192 \u00a714",
         "5.4": "first batch 0.079/0.335 PASS; all 0.125/0.327 PASS"
       },
       "gate_evidence": null,
@@ -96,7 +96,7 @@
         "6.4": "BLOCKED-WITH-EVIDENCE (credentials); pointers committed; local pull verified",
         "6.5": "release candidate built; upload BLOCKED (Felix's accounts)",
         "6.6": "scripts + tests done; band empty until thresholds-v6",
-        "6.1": "measured: text-to-HTML 0.048 vs floor 0.15; RSC 54.5 %; fix after round 3",
+        "6.1": "done: server-written documents, RSC 0.0, text-to-HTML 0.155 (floor met; 0.25 out of reach, evidence kept on page)",
         "6.2": "pending",
         "6.3": "pending"
       },

@@ -174,6 +174,12 @@ data/revamp/render-v7/provenance/
 data/revamp/render-v7/provenance-with-furniture/
 data/revamp/render-v7/pages-all.ndjson
 data/revamp/render-v7/pages-all-with-furniture.ndjson
+data/revamp/render-v8/text/
+data/revamp/render-v8/text-with-furniture/
+data/revamp/render-v8/provenance/
+data/revamp/render-v8/provenance-with-furniture/
+data/revamp/render-v8/pages-all.ndjson
+data/revamp/render-v8/pages-all-with-furniture.ndjson
 data/revamp/derived-v2/
 data/revamp/slop-draws/**/pages-full/
 data/revamp/page-blocks/
@@ -220,3 +226,6 @@ data/revamp/render-v5/
 data/revamp/render-v5-with-furniture/
 data/revamp/render-v6/
 data/revamp/render-v6-fresh/
+
+# The corpus document island, bundled by scripts/build-island.mjs before every build.
+/public/island/

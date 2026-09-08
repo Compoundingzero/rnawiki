@@ -9,10 +9,18 @@ import {
   type DossierSocialPreview,
 } from '@/lib/seo/metadata'
 
-export const alt = 'RNAWiki medicine evidence record'
-export const size = { width: 1200, height: 630 }
-export const contentType = 'image/png'
+/**
+ * `/d/<slug>/opengraph-image` — the generated social card.
+ *
+ * It was the `opengraph-image` metadata file of the `/d/[slug]` page. Step 6.1 replaced that page
+ * with a route handler that writes the whole document itself, and a metadata file belongs to a
+ * page, so the same image is now an explicit route at the same URL, named by the document's own
+ * `og:image` tag.
+ */
 export const dynamic = 'force-dynamic'
+
+const ALT = 'RNAWiki medicine evidence record'
+const SIZE = { width: 1200, height: 630 }
 
 const FALLBACK_PREVIEW: DossierSocialPreview = {
   reviewedAnswer: false,
@@ -47,11 +55,7 @@ async function loadSocialPreview(
   }
 }
 
-export default async function DossierOpenGraphImage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const { name, preview } = await loadSocialPreview(slug)
 
@@ -93,10 +97,10 @@ export default async function DossierOpenGraphImage({
           {preview.finding ?? 'What the evidence shows — and what it does not yet prove.'}
         </div>
       </div>
-      <div style={{ color: '#6e6e73', fontSize: 22 }}>
+      <div aria-label={ALT} style={{ color: '#6e6e73', fontSize: 22 }}>
         Evidence, trial results &amp; what remains unknown · rnawiki.com
       </div>
     </div>,
-    size,
+    { ...SIZE, headers: { 'content-type': 'image/png' } },
   )
 }

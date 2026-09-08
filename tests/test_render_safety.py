@@ -54,7 +54,7 @@ from typing import Any, Iterator
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v7")
+RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v8")
 # §11: the ruler reads the page without its furniture and these rules read it with, because they
 # are rules about what a reader meets. `Not found in [register] as of [date]` is furniture and is
 # still on the page; a test reading the furniture-free text would assert that the page had stopped
@@ -71,6 +71,7 @@ PROVENANCE_DIR = (
 # The furniture-free text, which the ruler reads and from which every furniture line is absent.
 FREE_TEXT_DIR = os.path.join(RENDER_DIR, "text")
 BLOCKS_DIR = os.path.join(ROOT, "data", "revamp", "page-blocks")
+CANONICAL = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v5.ndjson")
 FIELDS_DIR = os.path.join(ROOT, "data", "revamp", "fields-v2")
 DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
 
@@ -78,6 +79,9 @@ DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
 # question block included, so it leaves the ruler, the duplicate check skips it and the slop draw's
 # template test does not apply to it — and the page still says it.
 CLASSIFICATION_ABSENCE = "No regulator classification is recorded for"
+
+# §13(1): where that answer used to be, the registration block's absence table states the absence.
+ABSENCE_TABLE_CAPTION = "Registers holding no record of this substance"
 
 # The resolver is `scripts/revamp/slop_draw.py`'s, imported rather than copied: check 4.7(a) and
 # this file must agree about what "resolves" means, and two implementations of that would drift.
@@ -659,48 +663,41 @@ def test_every_trace_on_a_sampled_page_resolves(pages, provenance):
     _report(failures, f"sentence whose traces do not resolve (classes: {dict(classes)})")
 
 
-def test_the_classification_absence_answer_is_furniture_wherever_it_renders(pages, provenance):
-    """§12: "No regulator classification is recorded for X" is furniture, question block included.
+def test_the_classification_absence_answer_is_retired(pages, provenance):
+    """§13(1): "the questions … fire only when an affirmative classification exists".
 
-    Three things follow from that one decision and all three are asserted here, because marking it
-    in one place and not the others is exactly the state §12 was written to correct — it was
-    furniture in the stub record and prose in the question block.
+    "No regulator classification is recorded for X" was the whole answer to "What classification
+    does X carry?", on 16,814 pages — an absence offered as a finding, which is the non-sequitur
+    §13 item 1 names. The question is no longer derived and the answer no longer has a builder, so
+    the statement renders nowhere; the registration block's absence table states the same thing,
+    once, as furniture, on every page that has an absent register.
 
-      1. Every recorded instance of the statement is marked `furniture` in the provenance map.
-      2. The page still says it: the statement is in the painted text.
-      3. The ruler does not read it: no line of the furniture-free render carries it.
+    Both halves are asserted, because retiring the answer without keeping the statement would drop
+    a fact Operating Rule 9 requires the page to make.
     """
-    unmarked: list[str] = []
-    marked = 0
-    for key, entries in provenance.items():
-        for entry in entries:
-            if CLASSIFICATION_ABSENCE not in entry["sentence"]:
-                continue
-            if entry.get("furniture") is True:
-                marked += 1
-            else:
-                unmarked.append(f"{key}: {entry['sentence'][:120]}")
-    _report(unmarked, "classification-absence answer rendered as prose rather than furniture")
-
-    painted = sum(
-        1 for page in pages if CLASSIFICATION_ABSENCE in page["text"]
-    )
-    if PAINTED:
-        assert marked > 0, "no page records the classification-absence statement at all"
-        assert painted > 0, (
-            "the statement is marked furniture but no page paints it; Operating Rule 9 requires "
-            "the page to state the absence"
-        )
+    rendered = [
+        f"{key}: {entry['sentence'][:120]}"
+        for key, entries in provenance.items()
+        for entry in entries
+        if CLASSIFICATION_ABSENCE in entry["sentence"]
+    ]
+    _report(rendered, "retired classification-absence answer still rendering (§13 item 1)")
 
     in_the_ruler = [
-        row["key"]
-        for row in _read(FREE_TEXT_DIR)
-        if CLASSIFICATION_ABSENCE in row["text"]
+        row["key"] for row in _read(FREE_TEXT_DIR) if CLASSIFICATION_ABSENCE in row["text"]
     ]
     assert not in_the_ruler, (
         f"{len(in_the_ruler)} pages carry the classification-absence statement in the "
         f"furniture-free text the ruler reads; the first is {in_the_ruler[0]}"
     )
+
+    if PAINTED:
+        # The absence itself is still stated, in the one place §13 item 1 puts it.
+        stating = sum(1 for page in pages if ABSENCE_TABLE_CAPTION in page["text"])
+        assert stating > 0, (
+            "no page paints the registration block's absence table; Operating Rule 9 requires the "
+            "page to state that a register holds no record"
+        )
 
 
 def test_the_render_and_the_painted_page_agree(pages):
@@ -738,3 +735,317 @@ def test_the_render_and_the_painted_page_agree(pages):
                 failures.append(f"{entry['key']} {name}: {line[:160]}")
     _report(failures, "line on which the render and the painted page disagree")
     assert totals.get("pages disagreeing", 0) == 0
+
+
+# ---------------------------------------------------------------------------------------------
+# §13 — the rules the lead's reading of slop draw 3 added (docs/specs/phase4-generators.md §13)
+# ---------------------------------------------------------------------------------------------
+
+# §13(1): the words a register uses to say it holds nothing. An absence is not an answer, and it
+# never appears inside a prose answer; the registration block's absence table states it, once.
+ABSENCE_IN_PROSE = re.compile(
+    r"\b(?:not\s+(?:found|cleared|checked|listed)\b|no\s+(?:record|status|entry)\s+(?:in|for)\b)",
+    re.IGNORECASE,
+)
+
+# The one absence Operating Rule 9 requires as a sentence: "the absence of a found interaction
+# renders as 'no interaction found in [sources checked, date]', never as 'safe'". It is furniture,
+# and it is named here so the rule above cannot be read as forbidding it.
+REQUIRED_ABSENCE_SENTENCES = (
+    "No interaction found in ",
+    CLASSIFICATION_ABSENCE,
+    "has no recorded human exposure",
+)
+
+# §13(1) and §13(2): storage vocabulary. A field path and a register's own column name are how a
+# value is filed, not what it says, and neither reaches a line a reader meets. The shapes are
+# multi-word: a single lowercase word ("regulatory", "indication") is also English and is not a
+# token by itself, so only a snake_case token or a camelCase name with a hump is checked.
+STORAGE_TOKEN = re.compile(r"\b(?:[a-z][a-z0-9]*(?:_[a-z0-9]+)+|[a-z][a-z0-9]*(?:[A-Z][a-z0-9]+)+)\b")
+
+# The tokens the reading actually found on the page, kept as a floor under the shape rule above so
+# a regression names the thing it reintroduced.
+NAMED_STORAGE_TOKENS = (
+    "curatedMarketingStatusNote",
+    "curatedMarketingStatusByJurisdiction",
+    "drug_warning",
+    "withdrawn_flag",
+    "warningType",
+    "warning_type",
+    "statusVerbatim",
+    "source_record_id",
+)
+
+# §13(3): a stored dataset record. Its place is the closed disclosure, never a line.
+RECORD_ID = re.compile(r"\b(?:frdb:ddi:\d+|inxight-stitch:[0-9]+:[a-z]+:[A-Za-z]+)\b")
+
+# §13(4): the instruments whose rows belong in the controlled-substance schedules table and in no
+# other line on the page.
+STATUTE_NAMES = (
+    "Misuse of Drugs Act",
+    "Poisons Rules",
+    "Poisons Act 1938",
+    "Standard for the Uniform Scheduling of Medicines and Poisons",
+)
+
+# §13(11): the decorative marks. They are CSS pseudo-element content, so no rendered text and no
+# extraction carries them as words.
+# A tilde inside a source's own words is the source's — a label writing "~180 h", a registry
+# writing "N~15 subjects", a UniProt protein name — so the rule is about the mark standing alone as
+# an ornament, which is the only shape the template ever painted it in.
+DECORATIVE_GLYPHS = ("◇", "~")
+# The diamond only ever came from the template, so any occurrence of it is the ornament. The tilde
+# is a character a source uses, so the ornament is the line the template painted: the mark alone.
+STANDALONE_GLYPH = {
+    "◇": re.compile("◇"),
+    "~": re.compile(r"^~$"),
+}
+
+_WORDS = re.compile(r"[^a-z0-9]+")
+
+# The trailing provenance anchor: the register that stated the value, its own record id and the
+# date it was read, joined by middle dots. It is a citation, not a sentence, and every rule in this
+# file about what the site *says* reads the sentence without it — a register's record id is the
+# register's, and `ChEMBL:drug_warning:4085` is how ChEMBL numbers its own row.
+ANCHOR_TAIL = re.compile(r"\s+[^·]+(?:\s·\s[^·]+)+\s*$")
+
+# §13(1): the blocks that answer a question. The registration block is the one place a register's
+# absence is stated, in the words Operating Rule 9 fixes, so it is not in this rule's scope.
+ANSWER_GROUPS = ("computed", "form-of", "stub-record")
+
+
+def _without_anchor(sentence: str) -> str:
+    return ANCHOR_TAIL.sub("", sentence).strip()
+
+
+def _is_answer(entry: dict[str, Any]) -> bool:
+    group = str(entry.get("group") or "")
+    return group.startswith("question:") or group in ANSWER_GROUPS
+
+
+def _full_normalised(name: str) -> str:
+    """The whole name, lowercased, punctuation collapsed — and nothing removed (§13(12))."""
+    return _WORDS.sub(" ", name.lower()).strip()
+
+
+def _prose_entries(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The prose answers: composed sentences that are neither furniture nor a question heading."""
+    return [
+        entry
+        for entry in entries
+        if entry.get("kind", "sentence") == "sentence"
+        and entry.get("furniture") is not True
+        and entry.get("heading") is not True
+    ]
+
+
+def test_no_absence_reaches_a_prose_answer(provenance):
+    """§13(1): "absences never appear in a prose answer".
+
+    The corpus-20k regulatory answer read "SG not found, AU scheduled in the Poisons Standard and
+    UK not cleared: the registers' classification of X", and the label question's second paragraph
+    read "SG not found; US approved (…); UK not cleared". Both offered a register's absence as a
+    finding about the compound, which does not follow from it. The registration block's absence
+    table is where the page states an absence, and it is furniture there.
+
+    The two absences that are sentences by rule are excluded by name: Operating Rule 9 requires
+    "no interaction found in [sources checked] as of [date]", and §13(7) makes "X has no recorded
+    human exposure" furniture, which this rule already skips.
+    """
+    failures: list[str] = []
+    scanned = 0
+    for key, entries in provenance.items():
+        for entry in _prose_entries(entries):
+            if not _is_answer(entry):
+                continue
+            sentence = entry["sentence"]
+            if any(allowed in sentence for allowed in REQUIRED_ABSENCE_SENTENCES):
+                continue
+            scanned += 1
+            if ABSENCE_IN_PROSE.search(_unquoted(_without_anchor(sentence))):
+                failures.append(f"{key} [{entry.get('group')}]: {sentence[:150]}")
+    assert scanned > 0, "no prose answer was read"
+    _report(failures, "prose answer carrying a register's absence (§13 item 1)")
+
+
+def test_no_field_name_or_enum_string_reaches_visible_text(pages):
+    """§13(1) and §13(2): storage vocabulary never reaches a line a reader meets.
+
+    "curatedMarketingStatusNote NCATS Inxight Drugs records marketing events …" put a stored field
+    name in front of a reader inside a sentence about a label's indication, and the retired "What
+    the registers record" block printed "drug_warning warningType Withdrawn" as a row. Both are how
+    a value is filed. The register that stated something is named; the column it was filed in is
+    not.
+
+    Every line of the painted page is read, because a row is as visible as a sentence. A quoted
+    span is a source speaking verbatim and is excluded exactly as it is everywhere else in this
+    file — a label paragraph may contain anything the label wrote.
+    """
+    failures: list[str] = []
+    for page in pages:
+        for line in _lines(page):
+            body = _unquoted(_without_anchor(line))
+            for token in STORAGE_TOKEN.findall(body):
+                if token in NAMED_STORAGE_TOKENS:
+                    failures.append(f"{page['key']}: {token} — {line[:120]}")
+    _report(failures, "storage token in visible text (§13 items 1 and 2)")
+
+
+def test_a_tier_label_appears_once_on_an_interaction_line(pages):
+    """§13(3): "the tier label is one visible element per line, never a second badge".
+
+    The block painted the tier three times over: as a heading above the group, as a badge on every
+    line, and as the line's own first word. The heading and the badge are gone and the line carries
+    it once, so this counts the occurrences in the line the render and the page share.
+    """
+    failures: list[str] = []
+    seen = 0
+    for page in pages:
+        for line in _interaction_lines(page):
+            seen += 1
+            occurrences = sum(line.count(label) for label in TIER_LABELS)
+            if occurrences != 1:
+                failures.append(f"{page['key']}: {occurrences} tier labels — {line[:120]}")
+    assert seen > 0, "no interaction line was read"
+    _report(failures, "interaction line carrying its tier label more or less than once")
+
+
+def test_no_dataset_record_id_reaches_a_prose_line(provenance):
+    """§13(3): "record ids (frdb:ddi:12049) … live only inside the closed disclosure".
+
+    A curated line read "Curated · Cytochrome P450 1A2: substrate · Inxight frdb:ddi:12049", and
+    nine of them sat one under another. The lines are grouped by role now and cite the dataset by
+    name; the record behind each grouped target is a row in the block's disclosure, which the
+    provenance map marks `row`.
+    """
+    failures: list[str] = []
+    for key, entries in provenance.items():
+        for entry in entries:
+            if entry.get("kind", "sentence") != "sentence":
+                continue
+            found = RECORD_ID.search(_without_anchor(entry["sentence"]))
+            if found:
+                failures.append(f"{key}: {found.group(0)} — {entry['sentence'][:120]}")
+    _report(failures, "dataset record id on a prose line (§13 item 3)")
+
+
+def test_a_schedule_row_renders_once(pages, blocks):
+    """§13(4): "the controlled-substance schedules table is the one place a statute row appears".
+
+    The Singapore line carried "Class C controlled drug, First Schedule Part 3, Misuse of Drugs Act
+    1973 (version 2026-06-01) · listed in the Poisons Act 1938 Schedule and 2 Poisons Rules
+    schedules", and every one of those rows was printed again, in full, a few lines below. The line
+    names the class and says "see schedules"; the statutes are written once, in the table.
+    """
+    failures: list[str] = []
+    checked = 0
+    for page in pages:
+        bundle = blocks.get(page["key"])
+        if not bundle or not (bundle.get("controlledSchedules") or []):
+            continue
+        checked += 1
+        for row in bundle.get("registration") or []:
+            line = str(row.get("line") or "")
+            for statute in STATUTE_NAMES:
+                if statute in line:
+                    failures.append(f"{page['key']}: {statute} on a register line — {line[:140]}")
+    assert checked > 0, "no page with a controlled-substance schedule was read"
+    _report(failures, "statute row repeated on a registration line (§13 item 4)")
+
+
+def test_a_trial_list_shows_at_most_six_rows(provenance):
+    """§13(5): "trial lists cap at six visible rows".
+
+    The rest are one group, labelled "14 further recorded trials", and the template paints that
+    group as a closed `<details>` of its own, so its rows are not painted until a reader opens
+    them. What this asserts is the count the group label is derived from: at most six rows carry
+    the plain "Trial" label, and every row beyond them carries the further-trials label instead.
+    """
+    further = re.compile(r"^\d+ further recorded trials?\b")
+    failures: list[str] = []
+    seen = 0
+    for key, entries in provenance.items():
+        inline: Counter[str] = Counter()
+        for entry in entries:
+            if entry.get("kind") != "row":
+                continue
+            sentence = entry["sentence"]
+            if sentence.startswith("Trial "):
+                inline[entry.get("group", "")] += 1
+            elif further.match(sentence):
+                seen += 1
+        for group, count in inline.items():
+            seen += 1
+            if count > 6:
+                failures.append(f"{key} [{group}]: {count} visible trial rows")
+    assert seen > 0, "no trial row was read"
+    _report(failures, "trial list showing more than six rows (§13 item 5)")
+
+
+def test_no_decorative_glyph_reaches_the_rendered_text(pages):
+    """§13(11): the provenance mark and the section separator are drawn, never written.
+
+    `.cd-glyph::before` and `.cd-anchor-glyph::before` carry them as CSS content, so they are not
+    text nodes: neither the uniqueness ruler nor a crawler reads "◇" or "~" as a word. The render
+    never wrote them, and this asserts that it still does not, on both texts.
+    """
+    failures: list[str] = []
+    for page in pages:
+        for line in _lines(page):
+            for glyph in DECORATIVE_GLYPHS:
+                if STANDALONE_GLYPH[glyph].search(line.strip()):
+                    failures.append(f"{page['key']}: {glyph!r} — {line[:80]}")
+    _report(failures, "decorative glyph in the rendered text (§13 item 11)")
+
+
+def _canonical_synonyms() -> dict[str, set[str]]:
+    """Every page's full normalised names, from the identity revision the corpus was built on."""
+    out: dict[str, set[str]] = {}
+    with open(CANONICAL, encoding="utf-8") as handle:
+        for line in handle:
+            record = json.loads(line)
+            names = {record.get("displayName") or ""}
+            for synonym in record.get("synonyms") or []:
+                names.add(synonym.get("name") or "")
+            out[record["key"]] = {
+                _full_normalised(name) for name in names if len(_full_normalised(name)) >= 3
+            }
+    return out
+
+
+def test_a_susmp_row_matches_a_full_synonym_of_its_page(blocks):
+    """§13(12): "SUSMP matching requires the substance-as-listed to equal a full normalised synonym".
+
+    `normalise_name` strips trailing counter-ion words so that "amlodipine besylate" and
+    "amlodipine" meet. On a name whose head is the counter-ion that is wrong: "SODIUM PHOSPHATE",
+    "SODIUM DIACETATE" and "SODIUM CITRATE" all reduce to "sodium", and the Poisons Standard's
+    phosphate and diacetate entries were rendered on the trisodium citrate page as Schedules 3, 4
+    and 5. A shared token never matches; the whole name must.
+
+    Only the name-matched rows are asserted. A row matched on a UNII, an InChIKey or a skeleton is
+    confirmed by a chemical identifier and is not required to carry a matching name.
+    """
+    if not os.path.exists(CANONICAL):
+        pytest.skip(f"no identity revision at {CANONICAL}")
+    synonyms = _canonical_synonyms()
+    failures: list[str] = []
+    checked = 0
+    for key, bundle in blocks.items():
+        names = synonyms.get(key)
+        if not names:
+            continue
+        for row in bundle.get("controlledSchedules") or []:
+            if row.get("jurisdiction") != "AU":
+                continue
+            listed = row.get("substanceAsListed")
+            if not listed:
+                continue
+            checked += 1
+            normalised = _full_normalised(str(listed).lstrip("# "))
+            if normalised and normalised not in names:
+                # A UNII- or structure-confirmed row states the register's own name, which need not
+                # be one of this page's; only a name-matched row is bound by the rule.
+                if str(row.get("provenance") or "").endswith("name-candidate"):
+                    failures.append(f"{key}: listed as {listed!r}")
+    assert checked > 0, "no Poisons Standard row was read"
+    _report(failures, "Poisons Standard row matched on a shared token (§13 item 12)")

@@ -49,7 +49,7 @@ function suppressedStub(classes: string[]): CorpusDossier {
     humanData: false,
     ladder: [],
     blocks: block ? [block] : [],
-    arc: [],
+    registerEvents: [],
     identifiers: [{ field: 'unii', label: 'UNII', value: '027828ZV5Q' }],
     relations: [],
     hubs: [],

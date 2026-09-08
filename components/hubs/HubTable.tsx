@@ -11,8 +11,6 @@
  *
  * The table scrolls inside its own container. At 320 px the page itself never scrolls sideways.
  */
-import Link from 'next/link'
-
 import { HUB_JURISDICTION_COLUMNS, type HubMemberRecord, type HubType } from '@/lib/hubs/types'
 
 const CELL = 'px-2 py-2 align-top border-b border-black/[0.06] whitespace-nowrap'
@@ -83,12 +81,12 @@ export function HubTable({
               <tr key={member.key}>
                 <th className={`${CELL} text-left font-medium`} scope="row">
                   {member.slug ? (
-                    <Link
+                    <a
                       className="text-[#0B5FFF] underline underline-offset-2 focus-visible:outline focus-visible:outline-2"
                       href={`/d/${member.slug}`}
                     >
                       {member.name}
-                    </Link>
+                    </a>
                   ) : (
                     member.name
                   )}

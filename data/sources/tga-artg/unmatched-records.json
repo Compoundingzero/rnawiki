@@ -1,7 +1,7 @@
 {
   "source": "tga-artg",
   "generated": "2026-09-06",
-  "count": 1150,
+  "count": 1166,
   "records": [
     {
       "schedule": "2",
@@ -100,6 +100,13 @@
       "name": "CHLORBUTANOL",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "CHLORBUTANOL in preparations for human use except:"
+    },
+    {
+      "schedule": "3",
+      "sourceRecordId": "frl:F2026L00633:schedule-3:0021",
+      "name": "CLOBETASONE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "CLOBETASONE (clobetasone-17-butyrate) as the only therapeutically active substance in preparations for dermal use containing 0.05% or less of clobetasone in packs containing 30 g or less of the preparation."
     },
     {
       "schedule": "3",
@@ -432,6 +439,20 @@
     },
     {
       "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:0501",
+      "name": "CLOBETASONE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "CLOBETASONE (clobetasone-17-butyrate) except when included in Schedule 3."
+    },
+    {
+      "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:0527",
+      "name": "CO-DERGOCRINE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "CO-DERGOCRINE."
+    },
+    {
+      "schedule": "4",
       "sourceRecordId": "frl:F2026L00633:schedule-4:0538",
       "name": "CONVALLARIA KEISKI",
       "reason": "no_corpus_page_for_this_substance",
@@ -513,6 +534,13 @@
       "name": "DIGOXIN-SPECIFIC ANTIBODY FRAGMENT F",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "DIGOXIN-SPECIFIC ANTIBODY FRAGMENT F (Ab)."
+    },
+    {
+      "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:0679",
+      "name": "DIHYDROERGOTOXINE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "DIHYDROERGOTOXINE."
     },
     {
       "schedule": "4",
@@ -646,6 +674,13 @@
       "name": "FIBROBLAST GROWTH FACTORS",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "# FIBROBLAST GROWTH FACTORS."
+    },
+    {
+      "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:0927",
+      "name": "FLUNIXIN MEGLUMINE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "FLUNIXIN MEGLUMINE."
     },
     {
       "schedule": "4",
@@ -1045,6 +1080,13 @@
       "name": "PODOPHYLLUM EMODI",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "PODOPHYLLUM EMODI (podophyllin) for human use:"
+    },
+    {
+      "schedule": "4",
+      "sourceRecordId": "frl:F2026L00633:schedule-4:1762",
+      "name": "POLIDEXIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "POLIDEXIDE."
     },
     {
       "schedule": "4",
@@ -1703,6 +1745,13 @@
       "name": "COPPER COMPOUNDS",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "COPPER COMPOUNDS in animal feed additives containing 5% or less of copper except in preparations containing 1% or less of copper."
+    },
+    {
+      "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0089",
+      "name": "COPPER HYDROXIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "COPPER HYDROXIDE in preparations containing 50% or less of copper hydroxide except in preparations containing 12.5% or less of copper hydroxide."
     },
     {
       "schedule": "5",
@@ -2770,6 +2819,13 @@
     },
     {
       "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0324",
+      "name": "OXANTEL EMBONATE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "OXANTEL EMBONATE for the treatment of animals."
+    },
+    {
+      "schedule": "5",
       "sourceRecordId": "frl:F2026L00633:schedule-5:0327",
       "name": "OXYCARBOXIN",
       "reason": "no_corpus_page_for_this_substance",
@@ -3124,6 +3180,13 @@
       "name": "SODIUM CHLORATE",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "SODIUM CHLORATE except in preparations containing 10% or less of sodium chlorate."
+    },
+    {
+      "schedule": "5",
+      "sourceRecordId": "frl:F2026L00633:schedule-5:0404",
+      "name": "SODIUM DIACETATE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "SODIUM DIACETATE except in preparations containing 60% or less of sodium diacetate."
     },
     {
       "schedule": "5",
@@ -4093,6 +4156,20 @@
     },
     {
       "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0138",
+      "name": "COPPER HYDROXIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "COPPER HYDROXIDE except:"
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0139",
+      "name": "COPPER NITRATE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "COPPER NITRATE in preparations containing copper chloride for the treatment of footrot in sheep."
+    },
+    {
+      "schedule": "6",
       "sourceRecordId": "frl:F2026L00633:schedule-6:0140",
       "name": "COPPER OXIDES",
       "reason": "no_corpus_page_for_this_substance",
@@ -4482,6 +4559,13 @@
       "name": "ETHOPROPHOS",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "ETHOPROPHOS in granular formulations containing 10% or less of ethoprophos and 2% of linseed oil."
+    },
+    {
+      "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0231",
+      "name": "ETHYL BROMIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "ETHYL BROMIDE."
     },
     {
       "schedule": "6",
@@ -5948,6 +6032,13 @@
     },
     {
       "schedule": "6",
+      "sourceRecordId": "frl:F2026L00633:schedule-6:0570",
+      "name": "ZINC LACTATE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "ZINC LACTATE in toothpaste except in toothpaste preparations containing 2.5% or less of zinc lactate and labelled with the statement:"
+    },
+    {
+      "schedule": "6",
       "sourceRecordId": "frl:F2026L00633:schedule-6:0572",
       "name": "ZIRAM",
       "reason": "no_corpus_page_for_this_substance",
@@ -6368,6 +6459,13 @@
     },
     {
       "schedule": "7",
+      "sourceRecordId": "frl:F2026L00633:schedule-7:0086",
+      "name": "DIMETHYL SULFATE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "DIMETHYL SULFATE."
+    },
+    {
+      "schedule": "7",
       "sourceRecordId": "frl:F2026L00633:schedule-7:0087",
       "name": "DIMETILAN",
       "reason": "no_corpus_page_for_this_substance",
@@ -6456,6 +6554,13 @@
       "name": "ETHOPROPHOS",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "ETHOPROPHOS except when included in Schedule 6."
+    },
+    {
+      "schedule": "7",
+      "sourceRecordId": "frl:F2026L00633:schedule-7:0109",
+      "name": "ETHYLENE OXIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "ETHYLENE OXIDE."
     },
     {
       "schedule": "7",
@@ -6694,6 +6799,13 @@
       "name": "METHOXYETHYLMERCURIC CHLORIDE",
       "reason": "no_corpus_page_for_this_substance",
       "entryText": "METHOXYETHYLMERCURIC CHLORIDE."
+    },
+    {
+      "schedule": "7",
+      "sourceRecordId": "frl:F2026L00633:schedule-7:0158",
+      "name": "METHYL BROMIDE",
+      "reason": "no_corpus_page_for_this_substance",
+      "entryText": "METHYL BROMIDE."
     },
     {
       "schedule": "7",

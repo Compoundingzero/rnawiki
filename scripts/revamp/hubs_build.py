@@ -1287,6 +1287,75 @@ def build_pathway_hubs(members: dict[str, Member]) -> list[Hub]:
     return hubs
 
 
+HUB_DEDUPE_JACCARD = 0.5
+
+
+def dedupe_hubs_by_member_set(hubs: list[Hub]) -> tuple[list[Hub], list[dict[str, Any]]]:
+    """Hubs whose member sets overlap at Jaccard >= 0.5 collapse to one (§13 item 13).
+
+    The rendered duplicate check read the hub pages for the first time at measure 3 and found
+    **1,865 hub-to-hub pairs** at or above 0.5 Jaccard on the rendered text. A hub page is its
+    members' comparison table and a synthesis generated from that table, so two hubs over nearly
+    the same members are nearly the same page — and both were indexable and both were in the
+    sitemap.
+
+    The rule is the one `merge_by_member_overlap` already applies inside the target build, lifted to
+    the finished hubs and across every type: complete linkage, so a chain of 0.5 edges cannot fuse
+    unrelated groups. The hub with the largest member set survives and is what the page is named
+    for; the others become aliases that redirect to it and are named in its definition line.
+
+    An absorbed hub's members that the survivor did not already hold join it. Two things require
+    that. `docs/specs/hubs.md` section 3 forbids an indexable leaf with no hub, and a page whose only
+    group was absorbed would have none; and a reader who followed the alias came for the members the
+    alias listed, so the page they land on has to carry them. The membership evidence on such a
+    member records which absorbed group put it there, so the join is traceable to the row that made
+    it.
+    """
+    groups = {hub.hub_id: {member.key for member in hub.members} for hub in hubs}
+    by_id = {hub.hub_id: hub for hub in hubs}
+    survivors: list[Hub] = []
+    aliases: list[dict[str, Any]] = []
+    for _pooled, component in merge_by_member_overlap(groups, HUB_DEDUPE_JACCARD):
+        # `merge_by_member_overlap` orders a component with the largest member set first.
+        survivor = by_id[component[0]]
+        survivors.append(survivor)
+        absorbed = [by_id[hub_id] for hub_id in component[1:]]
+        if not absorbed:
+            continue
+        held = {member.key for member in survivor.members}
+        for other in sorted(absorbed, key=lambda item: item.name.casefold()):
+            aliases.append(
+                {
+                    "alias_type": other.type,
+                    "alias_slug": other.slug,
+                    "alias_name": other.name,
+                    "hub_id": survivor.hub_id,
+                    "shared_members": len(groups[other.hub_id] & groups[survivor.hub_id]),
+                    "alias_member_count": len(groups[other.hub_id]),
+                }
+            )
+            for member in other.members:
+                if member.key in held:
+                    continue
+                held.add(member.key)
+                survivor.members.append(member)
+                survivor.evidence[member.key] = "%s; joined from %s, which redirects here" % (
+                    other.evidence.get(member.key, "member of %s" % other.name),
+                    other.name,
+                )
+            survivor.chembl_targets.extend(
+                target for target in other.chembl_targets if target not in survivor.chembl_targets
+            )
+        named = join_names(
+            sorted((other.name for other in absorbed), key=str.casefold), len(absorbed)
+        )
+        # §13(13): the survivor's definition line names what it is also known by, so a reader who
+        # followed an alias reads why this page answered.
+        survivor.definition = "%s Also known by %s." % (survivor.definition.rstrip(), named)
+    survivors.sort(key=lambda item: (item.type, item.name.casefold()))
+    return survivors, aliases
+
+
 def rank_hubs(hubs: list[Hub]) -> None:
     for hub in hubs:
         if hub.type == "target":
@@ -1891,8 +1960,10 @@ def main() -> int:
     attach_seed_twelve(members)
 
     hubs = build_target_hubs(members) + build_class_hubs(members) + build_pathway_hubs(members)
-    rank_hubs(hubs)
     hubs.sort(key=lambda item: (item.type, item.name.casefold()))
+    built = len(hubs)
+    hubs, hub_aliases = dedupe_hubs_by_member_set(hubs)
+    rank_hubs(hubs)
 
     additive, documented = load_interaction_pairs()
 
@@ -1951,6 +2022,10 @@ def main() -> int:
     write_parquet(args.out / "tables.parquet", comparison_rows, TABLES_SCHEMA)
     write_parquet(args.out / "syntheses.parquet", synthesis_rows, SYNTHESES_SCHEMA)
     write_load_ndjson(args.out / "load", hub_rows, comparison_rows, member_rows, synthesis_rows)
+    # §13(13): the aliases, for the route that redirects them and for the record of what merged.
+    with (args.out / "load" / "hub-aliases.ndjson").open("w", encoding="utf-8") as handle:
+        for row in sorted(hub_aliases, key=lambda item: (item["alias_type"], item["alias_slug"])):
+            handle.write(json.dumps(row, sort_keys=True) + "\n")
     reasons = write_membership_reasons(
         args.out / "membership-reasons.ndjson",
         members,
@@ -1965,6 +2040,18 @@ def main() -> int:
         "spec": "docs/specs/hubs.md",
         "hubsPerType": {name: by_type.get(name, 0) for name in ("target", "class", "pathway")},
         "hubs": len(hubs),
+        # §13(13): hubs built, hubs surviving the member-set dedupe, and the aliases that redirect.
+        "hubsBuiltBeforeDedupe": built,
+        "hubAliases": len(hub_aliases),
+        "hubDedupe": {
+            "line": HUB_DEDUPE_JACCARD,
+            "linkage": "complete",
+            "rule": (
+                "docs/specs/phase4-generators.md section 13 item 13 — hubs whose member sets "
+                "overlap at Jaccard >= 0.5 form complete-linkage groups; the largest member set "
+                "survives and the others redirect to it"
+            ),
+        },
         "members": len(member_rows),
         "distinctMemberPages": len({row["page"] for row in member_rows}),
         "firstBatch": {

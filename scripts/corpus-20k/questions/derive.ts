@@ -876,6 +876,40 @@ export function byJurisdiction(a: string, b: string): number {
   return a.localeCompare(b)
 }
 
+/* ------------------------------------------- absences and classifications (§13 item 1) */
+
+/**
+ * The words a register uses to say it holds nothing (§13(1)).
+ *
+ * "SG not found, AU scheduled in the Poisons Standard and UK not cleared: the registers'
+ * classification of X" offered three findings as one classification, two of which were absences.
+ * An absence is not a classification and does not follow from one, so it never reaches a prose
+ * answer: the registration block's absence table is where the page states it, once, in a table.
+ */
+const ABSENCE_STATUS =
+  /^(?:not\s+(?:found|cleared|checked|listed|recorded|stated)|no\s+(?:record|status|entry)|unknown|none)\b/i
+
+export function isAbsenceStatus(status: string | undefined): boolean {
+  return status === undefined || ABSENCE_STATUS.test(status.trim())
+}
+
+/**
+ * An affirmative classification (§13(1)): a controlled-substance schedule, a withdrawal, a boxed
+ * warning, a REMS, or a register's own word for what kind of product this is.
+ *
+ * A registration status — approved, registered, marketed — is a register listing, and the
+ * registration block is the single place for it. Only the words below classify the substance, so
+ * only they may open a classification answer.
+ */
+const AFFIRMATIVE_CLASSIFICATION =
+  /\b(controlled|schedul|poisons?\s+standard|misuse\s+of\s+drugs|supplement|withdrawn|withdrawal|boxed\s+warning|rems|restricted|narcotic|psychotropic)/i
+
+export function isAffirmativeClassification(status: string | undefined): boolean {
+  if (status === undefined) return false
+  if (isAbsenceStatus(status)) return false
+  return AFFIRMATIVE_CLASSIFICATION.test(status)
+}
+
 export function readRegisterStatuses(entry: FieldEntry | undefined): {
   recorded: RegisterStatus[]
   unknown: string[]
@@ -887,6 +921,13 @@ export function readRegisterStatuses(entry: FieldEntry | undefined): {
   const value = asObject(entry?.value)
   if (!value) return { recorded, unknown, neverCleared }
   for (const [code, raw] of [...Object.entries(value)].sort(([a], [b]) => byJurisdiction(a, b))) {
+    /*
+     * §13(1): only a two-letter jurisdiction code names a jurisdiction. The stored map also
+     * carries the extractor's own notes — `curatedMarketingStatusNote`, whose value is a paragraph
+     * about what NCATS Inxight Drugs is — and reading them as jurisdictions put a stored field name
+     * and its note inside a sentence about a label's indication.
+     */
+    if (!/^[A-Z]{2}$/.test(code)) continue
     const o = asObject(raw)
     const status = asString(o ? pick(o, 'status') : raw)
     if (!status) continue
@@ -930,7 +971,9 @@ export function readRegisterStatuses(entry: FieldEntry | undefined): {
  * precedence — never a fixed section order, and never a heading with nothing under it.
  */
 export const BLOCK_ORDER = [
-  'classification',
+  // §13(1) retired `classification`: its answer was "No regulator classification is recorded for
+  // X", an absence offered as a finding, on 16,814 pages. The registration block's absence table
+  // states it once, as furniture, and no question is asked.
   'supervision',
   'indication',
   'human-data',
@@ -971,7 +1014,6 @@ export const BLOCK_ORDER = [
 /** Every emitting template in the spec table. `stub` emits nothing and is not listed here. */
 export const TEMPLATE_IDS = [
   'supervision',
-  'classification',
   'human-data',
   'human-data-none',
   'ladder',
@@ -1099,15 +1141,14 @@ export function deriveQuestions(
   if (p.suppressed) {
     const unknownClassOnly =
       p.suppressionClasses.length > 0 && p.suppressionClasses.every((code) => code === 'S10')
-    if (unknownClassOnly) {
-      push(
-        'classification',
-        'classification',
-        `What classification does ${name} carry?`,
-        { name },
-        sourcesOf(present('regulatoryStatus')),
-      )
-    } else {
+    /*
+     * §13(1): "What classification does X carry?" fired only on an S10-only record — the class the
+     * suppression pass assigns when it could read none — and its answer was "No regulator
+     * classification is recorded for X". An absence offered as an answer is a non-sequitur, and it
+     * stood on 16,814 pages. The question is not asked; the registration block's absence table
+     * states the same thing once, as furniture, on every page.
+     */
+    if (!unknownClassOnly) {
       push(
         'supervision',
         'supervision',
@@ -1675,7 +1716,22 @@ export function deriveQuestions(
             )
             .filter((j): j is string => Boolean(j)),
     )
-    if (jurisdictions.length >= 2) {
+    /*
+     * §13(1): the question asks what kind of thing this is, so it is asked only where a register
+     * recorded a classification — a schedule, a withdrawal, a supplement listing. "SG not found and
+     * UK not cleared: the registers' classifications of X" answered it with two absences.
+     */
+    /*
+     * The recorded statuses, in either shape the seed writes them. `values` above merges the seed's
+     * slots over its values, so `jurisdictions` is a list of codes and `statuses` is the
+     * per-jurisdiction rows the block builder reads; a record that carries the statuses as a map
+     * from code to status has them under `jurisdictions` instead, which is the shape `raw` picks up.
+     */
+    const recordedStatuses = rawObject
+      ? Object.values(rawObject).map((status) => asString(status))
+      : asArray(pick(v, 'statuses')).map((item) => asString(pick(asObject(item), 'status')))
+    const classified = recordedStatuses.filter((status) => isAffirmativeClassification(status))
+    if (jurisdictions.length >= 2 && classified.length > 0) {
       const list = joinList(jurisdictions)
       push(
         'jurisdiction',
@@ -1752,7 +1808,12 @@ export function deriveQuestions(
 
   const registers = present('regulatoryStatus')
   const registerStatuses = readRegisterStatuses(registers)
-  if (isClinical && registers && !indication && registerStatuses.recorded.length > 0) {
+  // §13(1): an absence is not an answer to "Where is X approved?", and the registration block
+  // states it. The question is asked only where a register recorded an affirmative status.
+  const affirmativeRegisters = registerStatuses.recorded.filter(
+    (row) => !isAbsenceStatus(row.status),
+  )
+  if (isClinical && registers && !indication && affirmativeRegisters.length > 0) {
     push(
       'regulatory-only',
       'regulatory-only',

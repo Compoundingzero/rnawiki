@@ -108,9 +108,29 @@ CANONICAL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/identity/canonical.ndjson"
 CANONICAL = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_CORPUS_20K
 DISPOSITIONS = REPO_ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"
 LEGACY_STAGE = REPO_ROOT / "data/corpus-20k/identity/stages/existing.ndjson"
-PAGES_ALL_V7 = REPO_ROOT / "data/revamp/render-v7/pages-all.ndjson"
 PAGES_ALL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/render/pages-all.ndjson"
-PAGES_ALL = PAGES_ALL_V7 if PAGES_ALL_V7.exists() else PAGES_ALL_CORPUS_20K
+
+
+def _newest_revamp_pages_all() -> Path:
+    """The tier list of the newest revamp render present, by revision number.
+
+    A fix round writes `data/revamp/render-v<n>/` and deletes the render it replaces, so naming
+    one revision here means the check reads the corpus-20k tiers the moment that revision is
+    deleted — silently, because the corpus-20k file exists. Reading the highest revision on disk
+    keeps the tiers with the render the same run measured, and the summary records which file
+    was read.
+    """
+    candidates: list[tuple[int, Path]] = []
+    for path in sorted((REPO_ROOT / "data/revamp").glob("render-v*/pages-all.ndjson")):
+        revision = path.parent.name[len("render-v"):]
+        if revision.isdigit():
+            candidates.append((int(revision), path))
+    if candidates:
+        return max(candidates)[1]
+    return PAGES_ALL_CORPUS_20K
+
+
+PAGES_ALL = _newest_revamp_pages_all()
 INDEXED_KEYS = REPO_ROOT / "data/corpus-20k/final/lists/indexed.txt"
 SLUG_FACT_FILES = (
     REPO_ROOT / "data/corpus-20k/gate2/html-text/crawl.ndjson",

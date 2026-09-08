@@ -10,9 +10,32 @@
  * parent's name matched, a second sentence says how many went and where, so a reader who wondered
  * where the trials went can follow them.
  */
-import Link from 'next/link'
-
 import type { CorpusSectionSentence } from '@/lib/corpus/dossier-page'
+
+/**
+ * The sentence with the counterpart's name as its link, written once (§13 item 9).
+ *
+ * The note usually names the other record inside its own sentence, and printing the link text
+ * after it printed the name twice in a row. The link goes on the first occurrence of the name in
+ * the sentence; a sentence that does not name it takes the link after it.
+ */
+function LinkedName({ href, name, sentence }: { href: string; name: string; sentence: string }) {
+  const at = sentence.indexOf(name)
+  if (at < 0) {
+    return (
+      <>
+        {sentence} <a href={href}>{name}</a>
+      </>
+    )
+  }
+  return (
+    <>
+      {sentence.slice(0, at)}
+      <a href={href}>{name}</a>
+      {sentence.slice(at + name.length)}
+    </>
+  )
+}
 
 export function FormOfNote({ notes }: { notes: CorpusSectionSentence[] }) {
   if (notes.length === 0) return null
@@ -21,15 +44,21 @@ export function FormOfNote({ notes }: { notes: CorpusSectionSentence[] }) {
       <h2 className="cd-visually-hidden" id="cd-form-of-heading">
         What this record is a form of
       </h2>
+      {/*
+        §13(9): the related record's name is printed once. Where the note already names it the link
+        is on the name inside the sentence; where it does not, the name is the link after it.
+      */}
       {notes.map((note) => (
         <p className="cd-paragraph" key={`${note.section}-${note.ordinal}`}>
-          {note.sentence}
           {note.counterpartSlug && note.counterpartName ? (
-            <>
-              {' '}
-              <Link href={`/d/${note.counterpartSlug}`}>{note.counterpartName}</Link>
-            </>
-          ) : null}
+            <LinkedName
+              href={`/d/${note.counterpartSlug}`}
+              name={note.counterpartName}
+              sentence={note.sentence ?? ''}
+            />
+          ) : (
+            note.sentence
+          )}
         </p>
       ))}
     </section>

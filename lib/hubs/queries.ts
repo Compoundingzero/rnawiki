@@ -9,7 +9,7 @@
 import { and, asc, count, eq } from 'drizzle-orm'
 
 import { db } from '@/db'
-import { corpusPages, hubMembers, hubSyntheses, hubs } from '@/db/schema'
+import { corpusPages, hubAliases, hubMembers, hubSyntheses, hubs } from '@/db/schema'
 import {
   type HubIndexRow,
   type HubMemberRecord,
@@ -116,6 +116,27 @@ export async function loadHubPage(type: HubType, slug: string): Promise<HubPage 
     provenance: (row.provenance ?? {}) as Record<string, unknown>,
   }))
   return { hub: toHubRecord(hub), members, syntheses }
+}
+
+/**
+ * The hub an absorbed slug redirects to (docs/specs/phase4-generators.md §13 item 13).
+ *
+ * Hubs whose member sets overlapped at 0.5 Jaccard were nearly the same page, and only the largest
+ * member set is published. The others answer here, with the survivor's own route, so a link into
+ * the corpus never dies and a reader never lands on two pages listing the same compounds.
+ */
+export async function hubAliasTarget(
+  type: HubType,
+  slug: string,
+): Promise<{ type: HubType; slug: string } | null> {
+  const [row] = await db
+    .select({ type: hubs.type, slug: hubs.slug })
+    .from(hubAliases)
+    .innerJoin(hubs, eq(hubs.hubId, hubAliases.hubId))
+    .where(and(eq(hubAliases.aliasType, type), eq(hubAliases.aliasSlug, slug)))
+    .limit(1)
+  if (!row) return null
+  return { type: row.type as HubType, slug: row.slug }
 }
 
 /** Every hub slug, for the `hubs.xml` sitemap child and for the link-graph check. */

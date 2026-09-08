@@ -49,7 +49,8 @@ import {
   groupRevealedRows,
   INTERACTION_TIER_LABELS,
   registerName,
-  withdrawnArcRows,
+  registerEventLines,
+  sectionSentenceParts,
   type FieldEntry,
   type PageBundle,
   type QuestionBlock,
@@ -107,6 +108,8 @@ export interface CorpusBlock {
   template: string
   question: string
   paragraphs: CorpusParagraph[]
+  /** §13(7): the block's own values, painted under the question heading, above the prose. */
+  facts: RevealedRow[]
   groups: CorpusRowGroup[]
   /** R9: the dates the rows under this block were recorded and last checked. */
   sourceDate?: string
@@ -160,11 +163,9 @@ export interface CorpusSourceRow {
   licence?: string
 }
 
-export interface CorpusArcRow {
-  date?: string
-  label: string
-  value: string
-  anchor?: CorpusAnchor
+/** One register event folded into the registration block (§13(2)): a sentence, in words. */
+export interface CorpusRegisterEvent {
+  sentence: string
 }
 
 export interface CorpusSynonymGroup {
@@ -194,6 +195,16 @@ export interface CorpusRegistrationLine {
   /** The component of a combination product this line belongs to. */
   component?: string
   line: string
+  /**
+   * True where the row belongs to the technical disclosure and never to a visible line (§13(6)).
+   *
+   * NCATS Inxight files a curated marketing record under the jurisdiction "unspecified". It names
+   * no jurisdiction and no register, so it is not a register line; it is kept, and the block paints
+   * it inside its closed disclosure.
+   */
+  disclosed: boolean
+  /** The upstream files NCATS stitched to build a curated row: the disclosure only (§13(6)). */
+  upstreamRegisters: string[]
   /** The application ids the summary line stands for; rendered in a disclosure, never as lines. */
   applications: string[]
 }
@@ -255,11 +266,14 @@ export interface CorpusControlledRow {
   source?: string
 }
 
-/** One computed Tier 3 sentence (§8), with the values behind it for the technical disclosure. */
+/** One computed Tier 3 section (§8), as rows and — where the comparison found one — a sentence. */
 export interface CorpusSectionSentence {
   section: 'neighbour' | 'potency' | 'timeline' | 'formOf'
   ordinal: number
-  sentence: string
+  /** §13(7), §13(8): the values, as labelled rows. Empty where the section is prose only. */
+  rows: RevealedRow[]
+  /** The prose the section states beyond its values, where it states any. */
+  sentence?: string
   /** The linked page a nearest-neighbour or form-of sentence names, where it has one. */
   counterpartSlug?: string
   counterpartName?: string
@@ -273,6 +287,14 @@ export interface CorpusDossier {
   tier: number
   pageType: 'longevity' | 'clinical' | 'withdrawn' | 'development' | 'stub'
   indexable: boolean
+  /**
+   * The page this record is held against as a rendered duplicate (§13 item 14).
+   *
+   * Two indexable pages measuring at or above 0.5 on the rendered check are nearly the same page.
+   * The one with fewer own facts is `noindex,follow` and carries a link to the other, until Felix
+   * decides which of the two the corpus keeps. Absent on every page that is not held.
+   */
+  duplicateHoldOf?: { slug: string; displayName: string }
   suppressed: boolean
   suppressionClasses: string[]
   withdrawn: boolean
@@ -287,7 +309,8 @@ export interface CorpusDossier {
   evidenceTier?: string
   ladder: CorpusLadderRung[]
   blocks: CorpusBlock[]
-  arc: CorpusArcRow[]
+  /** §13(2): the approvals and withdrawals the registers dated, inside the registration block. */
+  registerEvents: CorpusRegisterEvent[]
   identifiers: CorpusIdentifierRow[]
   relations: CorpusRelationRow[]
   hubs: CorpusHubRow[]
@@ -539,26 +562,16 @@ function headerLine(
 }
 
 /**
- * The withdrawn arc (R11), as `withdrawnArcRows` built it, with each row's source resolved to a
- * link this page already carries. The rows themselves are built beside every other body builder,
- * so the measured text and the painted page hold the same rows in the same order.
+ * The register events (§13(2)), as `registerEventLines` built them.
+ *
+ * The "What the registers record" block is retired: its dated rows printed the registers' own
+ * column names ("drug_warning warningType Withdrawn") beside a status the registration block
+ * already carried. The same recorded facts read as one sentence per event, inside the registration
+ * block, and the sentences are built beside every other body builder so the measured text and the
+ * painted page hold the same words in the same order.
  */
-function withdrawnArc(
-  fields: Record<string, FieldEntry>,
-  candidates: AnchorCandidate[],
-): CorpusArcRow[] {
-  return withdrawnArcRows(fields).map((row) => {
-    const label = anchor(row.source ?? {})
-    const found = label
-      ? (candidates.find((candidate) => candidate.text === label) ?? { text: label })
-      : undefined
-    return {
-      ...(row.date ? { date: row.date } : {}),
-      label: row.label,
-      value: row.value,
-      ...(found ? { anchor: found } : {}),
-    }
-  })
+function registerEvents(fields: Record<string, FieldEntry>): CorpusRegisterEvent[] {
+  return registerEventLines(fields).map((event) => ({ sentence: event.sentence }))
 }
 
 /* ------------------------------------------------------------- the load */
@@ -641,6 +654,18 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
           .where(inArray(corpusPages.key, targetKeys))
       : []
   const targetByKey = new Map(targets.map((row) => [row.key, row]))
+
+  /*
+   * §13(14): the page this record is held against, by slug. The loader wrote the slug rather than
+   * the key because the hold is decided on the rendered pages, which the check reaches by slug.
+   */
+  const [duplicateHoldTarget] = page.duplicateHoldOf
+    ? await db
+        .select({ slug: corpusPages.slug, displayName: corpusPages.displayName })
+        .from(corpusPages)
+        .where(eq(corpusPages.slug, page.duplicateHoldOf))
+        .limit(1)
+    : []
 
   /* fields, in the shape the shared builders read */
   const fields: Record<string, FieldEntry> = {}
@@ -830,6 +855,9 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
         template: question.template,
         question: question.text,
         paragraphs,
+        facts: body.facts.filter((row) =>
+          keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`),
+        ),
         groups: groupRows(
           blockId,
           body.rows.filter((row) => keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`)),
@@ -846,7 +874,9 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
      * painted the question and nothing under it, and the parity check read the heading as text the
      * render had not written.
      */
-    .filter((block) => block.paragraphs.length > 0 || block.groups.length > 0)
+    .filter(
+      (block) => block.paragraphs.length > 0 || block.facts.length > 0 || block.groups.length > 0,
+    )
 
   /* header */
   const { register, lastVerified } = headerLine(fieldRows, sourceRows)
@@ -973,6 +1003,14 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ...(row.component ? { component: row.component } : {}),
       line: row.line,
       ...(row.absence ? { absence: row.absence } : {}),
+      // §13(6): a curated record filed under "unspecified" is technical provenance, not a register
+      // line, and the same is true of the upstream files NCATS stitched to build it.
+      disclosed: row.disclosed,
+      upstreamRegisters: Array.isArray(asRecord(row.disclosure)?.upstreamRegisters)
+        ? ((asRecord(row.disclosure)?.upstreamRegisters as unknown[])
+            .map((item) => text(item))
+            .filter((item): item is string => item !== undefined) as string[])
+        : [],
       applications: Array.isArray(asRecord(row.disclosure)?.applications)
         ? ((asRecord(row.disclosure)?.applications as unknown[])
             .map((item) => text(item))
@@ -1099,13 +1137,29 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       const values = asRecord(row.values) ?? {}
       const counterpartKey = text(values.counterpartPage ?? values.neighbourPage ?? values.toKey)
       const target = counterpartKey ? targetByKey.get(counterpartKey) : undefined
+      /*
+       * §13(7) and §13(8): a section whose sentence stated one comparison of stored values is
+       * rendered as those values, in rows. `sectionSentenceParts` decides which of them keep a
+       * sentence, and the corpus renderer calls the same function, so the page and the measured
+       * text carry the same rows and the same prose.
+       */
+      const parts =
+        row.section === 'formOf'
+          ? { rows: [] as RevealedRow[], sentence: row.sentence }
+          : sectionSentenceParts({
+              values,
+              provenance: asRecord(row.provenance) ?? {},
+              ...(row.templateId ? { templateId: row.templateId } : {}),
+            })
       return {
         section: row.section as CorpusSectionSentence['section'],
         ordinal: row.ordinal,
-        sentence: row.sentence,
+        rows: parts.rows.filter((item) => keeps(`${item.label} ${item.value}`)),
+        ...(parts.sentence && keeps(parts.sentence) ? { sentence: parts.sentence } : {}),
         ...(target ? { counterpartSlug: target.slug, counterpartName: target.displayName } : {}),
       }
     })
+    .filter((row) => row.rows.length > 0 || row.sentence !== undefined)
   const formOfNotes = sections.filter((row) => row.section === 'formOf')
   const computedSections = sections.filter((row) => row.section !== 'formOf')
 
@@ -1117,6 +1171,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     tier: page.tier,
     pageType: page.pageType,
     indexable: page.indexable,
+    ...(duplicateHoldTarget ? { duplicateHoldOf: duplicateHoldTarget } : {}),
     suppressed: page.suppressed,
     suppressionClasses: page.suppressionClasses,
     withdrawn: page.withdrawn,
@@ -1130,9 +1185,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     ...(page.evidenceTier ? { evidenceTier: page.evidenceTier } : {}),
     ladder,
     blocks,
-    arc: page.withdrawn
-      ? withdrawnArc(fields, candidates).filter((row) => keeps(`${row.label} ${row.value}`))
-      : [],
+    registerEvents: registerEvents(fields).filter((event) => keeps(event.sentence)),
     identifiers,
     relations,
     hubs: hubRows,

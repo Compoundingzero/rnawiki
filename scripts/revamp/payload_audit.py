@@ -264,6 +264,16 @@ def main(argv: list[str] | None = None) -> int:
         "--out", type=Path, default=ROOT / "data/revamp/payload-audit-before.json"
     )
     parser.add_argument(
+        "--pages",
+        type=Path,
+        default=None,
+        help=(
+            "a file of slugs, one per line, to measure instead of drawing them. Step 6.1 compares "
+            "before and after on one page set, and a build whose indexable set has moved would "
+            "otherwise draw a different hundred pages from the same seed."
+        ),
+    )
+    parser.add_argument(
         "--skip-live",
         action="store_true",
         help="measure the document only; the live figure needs a browser",
@@ -273,10 +283,18 @@ def main(argv: list[str] | None = None) -> int:
     started = time.time()
     issues: list[str] = []
 
-    indexable = sitemap_indexable_slugs(base_url, issues)
     sample_slugs = list(SAMPLES)
+    named_pages = args.pages is not None
+    if named_pages:
+        lines = [line.strip() for line in args.pages.read_text().splitlines() if line.strip()]
+        indexable = [line.rsplit("/d/", 1)[-1] for line in lines]
+    else:
+        indexable = sitemap_indexable_slugs(base_url, issues)
     pool = [slug for slug in indexable if slug not in set(sample_slugs)]
-    if args.random_pages > len(pool):
+
+    if named_pages:
+        drawn = sorted(pool)
+    elif args.random_pages > len(pool):
         issues.append(
             f"--random-pages {args.random_pages} exceeds the {len(pool)}-page indexable pool; "
             "every page was drawn"
@@ -334,7 +352,8 @@ def main(argv: list[str] | None = None) -> int:
                 1 for r in pages.values() if r.get("measured") and r["set"] == "sample"
             ),
             "indexablePoolSize": len(pool),
-            "randomPagesRequested": args.random_pages,
+            "namedPages": str(args.pages) if named_pages else None,
+            "randomPagesRequested": len(drawn) if named_pages else args.random_pages,
             "randomPagesMeasured": sum(
                 1 for r in pages.values() if r.get("measured") and r["set"] == "indexable"
             ),

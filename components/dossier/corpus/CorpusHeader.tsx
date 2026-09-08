@@ -24,7 +24,16 @@ const MODEL_LABELS: Record<string, string> = {
  */
 const EVIDENCE_KIND_LABELS = new Map(EVIDENCE_KINDS.map((kind) => [kind.kind, kind.label]))
 
+/**
+ * The one evidence line (§13(11) item 10).
+ *
+ * The header carried two: "Evidence recorded: no human trial recorded" and, beside it, "No human
+ * study recorded". They are one fact stated twice, and on a record with human data the pair read
+ * "Evidence recorded: human trial" and "Human data recorded". A record with nothing human says so
+ * once; a record with something says what kind of evidence it reached, which already implies it.
+ */
 function evidenceBadge(dossier: CorpusDossier): string {
+  if (!dossier.humanData) return 'No human study recorded'
   const recorded = dossier.evidenceTier
   if (recorded === undefined) return MODEL_LABELS[dossier.model] ?? 'Record'
   return `Evidence recorded: ${EVIDENCE_KIND_LABELS.get(recorded)?.toLowerCase() ?? recorded}`
@@ -81,7 +90,8 @@ export function CorpusHeader({ dossier }: { dossier: CorpusDossier }) {
 
           {dossier.register || dossier.lastVerified ? (
             <p className="cd-source-line">
-              <span aria-hidden="true">◇</span>
+              {/* §13(11): drawn by `.cd-anchor-glyph::before`, never a text node. */}
+              <span aria-hidden="true" className="cd-anchor-glyph" />
               {dossier.register ? <span>{dossier.register}</span> : null}
               {dossier.lastVerified ? (
                 <span>
@@ -92,15 +102,16 @@ export function CorpusHeader({ dossier }: { dossier: CorpusDossier }) {
           ) : null}
 
           {/*
-            The triplet is a fact each time: what kind of evidence the record reached, the highest
-            organism anything recorded used, and whether human data is on file. All three come from
-            the loader's own columns, so a clinical record carries the same triplet as a longevity
-            one. Where nothing recorded an organism the badge is omitted rather than saying "none".
+            Each badge is a fact, and no two of them state the same fact (§13 item 10). The first
+            is the evidence line — what kind of evidence the record reached, or that no human study
+            is recorded — and the second the highest organism anything recorded used. Both come
+            from the loader's own columns, so a clinical record carries the same badges as a
+            longevity one. Where nothing recorded an organism the badge is omitted rather than
+            saying "none".
           */}
           <ul className="cd-badges">
             <li>{evidenceBadge(dossier)}</li>
             {dossier.topRung ? <li>Highest organism tested: {dossier.topRung}</li> : null}
-            <li>{dossier.humanData ? 'Human data recorded' : 'No human study recorded'}</li>
             {dossier.withdrawn ? <li>Withdrawn by a register</li> : null}
           </ul>
         </div>

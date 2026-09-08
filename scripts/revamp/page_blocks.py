@@ -228,6 +228,9 @@ def main() -> None:
                 # §11: "not found", "not cleared" or "not checked" on a row that states only an
                 # absence; empty on a row that states anything affirmative.
                 "absence": row.get("absence") or "",
+                # §13(6): a curated record filed under "unspecified" names no jurisdiction and no
+                # register; it is kept, and the page paints it in the technical disclosure only.
+                "disclosed": bool(row.get("disclosed")),
                 "disclosure": parse_json(row.get("disclosure"), {}),
                 "provenance": parse_json(row.get("provenance"), []),
             }
@@ -416,6 +419,91 @@ def main() -> None:
             }
         )
 
+    # ---- §13(3): the curated enzyme and transporter rows, grouped into one line per role -------
+    #
+    # NCATS Inxight's curated dataset records one row per enzyme, and a benzodiazepine carries nine
+    # of them. Rendered one to a line they were nine near-identical lines, each repeating the tier
+    # word and each carrying a `frdb:ddi:` record id. They are one statement per role — "Substrate
+    # of CYP1A2, 2A6, 2B6, 2C19, 2C8, 2C9, 2D6, 2E1 and 3A4" — and the record ids belong in the
+    # closed disclosure.
+    #
+    # Only a row whose counterpart is not a page in this corpus is grouped: a curated row naming
+    # another drug is an interaction between two records a reader can follow, and it keeps its own
+    # line. Grouping happens here, once, so the render, the loader and the page all read the same
+    # already-grouped rows and cannot word them differently.
+    ROLE_ORDER = ("substrate", "inhibitor", "inducer")
+    grouped_lines = 0
+    grouped_from = 0
+    for page_key, by_tier in interaction_rows.items():
+        rows_b = by_tier.get("B") or []
+        if not rows_b:
+            continue
+        groups: dict[str, dict[str, Any]] = {}
+        kept_rows: list[dict[str, Any]] = []
+        for row in rows_b:
+            derivation = parse_json(row.get("derivation"), None)
+            role = (derivation or {}).get("role") if isinstance(derivation, dict) else None
+            target = (derivation or {}).get("target") if isinstance(derivation, dict) else None
+            if row.get("counterpartKey") or not role or not target:
+                kept_rows.append(row)
+                continue
+            held = groups.setdefault(
+                str(role),
+                {
+                    "targets": [],
+                    "recordIds": [],
+                    "magnitude": False,
+                    "provenance": {},
+                    "source": row.get("source"),
+                    "sourceUrl": row.get("sourceUrl"),
+                    "sourceDate": row.get("sourceDate"),
+                    "licence": row.get("licence"),
+                    "ruleId": row.get("ruleId"),
+                },
+            )
+            if target not in held["targets"]:
+                held["targets"].append(str(target))
+            record_id = row.get("sourceRecordId")
+            if record_id and record_id not in held["recordIds"]:
+                held["recordIds"].append(record_id)
+            if (derivation or {}).get("magnitudeReported") == "yes":
+                held["magnitude"] = True
+            held["provenance"].update(row.get("provenance") or {})
+        if not groups:
+            continue
+        new_rows: list[dict[str, Any]] = []
+        for role in sorted(groups, key=lambda item: (ROLE_ORDER.index(item) if item in ROLE_ORDER else len(ROLE_ORDER), item)):
+            held = groups[role]
+            provenance = dict(held["provenance"])
+            provenance["record"] = "; ".join(held["recordIds"])
+            new_rows.append(
+                {
+                    "direction": "%s of %s" % (role, ", ".join(held["targets"])),
+                    "mechanism": "%s of %s" % (role, ", ".join(held["targets"])),
+                    "source": held["source"],
+                    "sourceUrl": held["sourceUrl"],
+                    "sourceDate": held["sourceDate"],
+                    "licence": held["licence"],
+                    "ruleId": held["ruleId"],
+                    "groupedRole": role,
+                    "groupedTargets": held["targets"],
+                    "groupedMagnitude": bool(held["magnitude"]),
+                    "groupedRecordIds": held["recordIds"],
+                    "provenance": provenance,
+                }
+            )
+        grouped_from += len(rows_b) - len(kept_rows)
+        grouped_lines += len(new_rows)
+        by_tier["B"] = new_rows + kept_rows
+        # The "N counterparts are recorded … M are shown" line counts counterparts, and a grouped
+        # line names every counterpart it stands for. The total is corrected by the same amount so
+        # the page never says a counterpart is missing that its own line has just named.
+        held_total = interaction_totals.get(page_key, {}).get("B")
+        if held_total:
+            interaction_totals[page_key]["B"] = max(
+                len(by_tier["B"]), held_total - (len(rows_b) - len(kept_rows)) + len(new_rows)
+            )
+
     checked: dict[str, dict[str, Any]] = {}
     for row in rows_of(
         con, f"select * from '{os.path.join(interactions_dir, 'checked-sources.parquet')}'"
@@ -530,6 +618,8 @@ def main() -> None:
         "withMovedTrials": 0,
         "interactionRowsWritten": 0,
         "interactionRowsDroppedUnnameableCounterpart": 0,
+        "curatedRowsGrouped": grouped_from,
+        "curatedGroupedLines": grouped_lines,
         "files": [],
     }
 

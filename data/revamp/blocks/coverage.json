@@ -1,19 +1,19 @@
 {
   "controlled": {
-    "pages": 3363,
+    "pages": 3304,
     "pagesPerJurisdiction": {
-      "AU": 2929,
+      "AU": 2861,
       "SG": 1801,
       "US": 68
     },
     "pagesPerTier": {
-      "1": 882,
-      "2": 1657,
-      "3": 824
+      "1": 868,
+      "2": 1616,
+      "3": 820
     },
-    "rows": 8738,
+    "rows": 8545,
     "rowsPerJurisdiction": {
-      "AU": 3549,
+      "AU": 3356,
       "SG": 5121,
       "US": 68
     }
@@ -76,9 +76,9 @@
   "registration": {
     "affirmativePagesPerJurisdictionPerTier": {
       "AU": {
-        "1": 787,
-        "2": 1543,
-        "3": 599
+        "1": 770,
+        "2": 1497,
+        "3": 594
       },
       "CA": {
         "1": 115,
@@ -107,7 +107,7 @@
       }
     },
     "affirmativeRowsPerJurisdiction": {
-      "AU": 2929,
+      "AU": 2861,
       "CA": 2861,
       "EU": 1040,
       "JP": 1276,
@@ -116,7 +116,7 @@
     },
     "componentRows": 3087,
     "notFoundRowsPerJurisdiction": {
-      "AU": 25903,
+      "AU": 25971,
       "CA": 25971,
       "EU": 27792,
       "JP": 27556,

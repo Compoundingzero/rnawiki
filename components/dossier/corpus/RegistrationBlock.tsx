@@ -13,7 +13,9 @@
  * product lists each component's lines under the component's name, as §3 requires.
  *
  * The controlled-substance schedules follow the jurisdiction lines: a schedule is a fact about how
- * a substance is supplied, so it belongs with the registers rather than in a banner.
+ * a substance is supplied, so it belongs with the registers rather than in a banner. A jurisdiction
+ * line names the class and then says "see schedules"; the statute rows themselves are written once,
+ * in the schedules table below it (§13 items 2 and 4).
  *
  * Then the absences, as one table. Seven rows saying a register holds no record were, by
  * measurement, a quarter of every word in the corpus, and repeated on 25,000 pages they are not
@@ -24,7 +26,13 @@
  * they skip the supervision block. An affirmative row — an approval, a withdrawal, a schedule, a
  * class — is never furniture and never enters this table.
  */
-import type { CorpusControlledRow, CorpusRegistrationLine } from '@/lib/corpus/dossier-page'
+import { Fragment } from 'react'
+
+import type {
+  CorpusControlledRow,
+  CorpusRegisterEvent,
+  CorpusRegistrationLine,
+} from '@/lib/corpus/dossier-page'
 import { absenceCaption, absentAsOf, ABSENCE_COLUMNS } from '@/lib/corpus/page-text'
 import { RegisterSummary } from './RegisterSummary'
 
@@ -38,6 +46,7 @@ function Line({ row }: { row: CorpusRegistrationLine }) {
       <RegisterSummary
         applications={row.applications}
         label={row.component ? `${row.component}, ${row.label}` : row.label}
+        upstreamRegisters={row.upstreamRegisters}
       />
     </li>
   )
@@ -100,15 +109,21 @@ function AbsentRegisters({ rows }: { rows: CorpusRegistrationLine[] }) {
 }
 
 export function RegistrationBlock({
+  events,
   registration,
   schedules,
 }: {
+  events: CorpusRegisterEvent[]
   registration: CorpusRegistrationLine[]
   schedules: CorpusControlledRow[]
 }) {
-  if (registration.length === 0 && schedules.length === 0) return null
-  const stated = registration.filter((row) => !row.absence)
-  const absent = registration.filter((row) => Boolean(row.absence))
+  if (registration.length === 0 && schedules.length === 0 && events.length === 0) return null
+  // §13(6): a row the block stage marked disclosed names no jurisdiction and no register, so it is
+  // never a visible line. It is painted inside the block's own closed disclosure below.
+  const visible = registration.filter((row) => !row.disclosed)
+  const disclosedRows = registration.filter((row) => row.disclosed)
+  const stated = visible.filter((row) => !row.absence)
+  const absent = visible.filter((row) => Boolean(row.absence))
   const mapped = stated.filter((row) => row.jurisdiction !== 'OTHER')
   const other = stated.filter((row) => row.jurisdiction === 'OTHER')
   return (
@@ -135,6 +150,16 @@ export function RegistrationBlock({
           </ul>
         </>
       ) : null}
+      {/*
+        §13(2): the register events. The retired "What the registers record" block printed these as
+        dated rows carrying the registers' own column names; here each is one sentence in words,
+        with every register that recorded the same event named on the same line.
+      */}
+      {events.map((event) => (
+        <p className="cd-paragraph" key={event.sentence}>
+          {event.sentence}
+        </p>
+      ))}
       {schedules.length > 0 ? (
         <>
           <h3 className="cd-group-heading" id="cd-registration-schedules">
@@ -148,6 +173,37 @@ export function RegistrationBlock({
         </>
       ) : null}
       <AbsentRegisters rows={absent} />
+      {/*
+        §13(6): the curated records NCATS files under "unspecified", and the upstream files it
+        stitched to build them. Neither names a jurisdiction or a register, so neither is a line;
+        they are technical provenance and this is where the page keeps them.
+      */}
+      {disclosedRows.length > 0 ? (
+        <details className="cd-evidence">
+          <summary>Show the curated records with no jurisdiction</summary>
+          <ul className="cd-rows">
+            {disclosedRows.map((row) => (
+              <Fragment key={row.id}>
+                <li>
+                  <span className="cd-row-label">{row.label}</span>
+                  <div className="cd-row-value">{row.line}</div>
+                </li>
+                {/*
+                  The upstream files are their own row, not a third line inside the row above:
+                  `scripts/corpus-20k/render/page-text.ts` writes them as their own line, and §11
+                  makes the render and the painted page one text.
+                */}
+                {row.upstreamRegisters.length > 0 ? (
+                  <li>
+                    <span className="cd-row-label">Upstream registers</span>
+                    <div className="cd-row-value">{row.upstreamRegisters.join(', ')}</div>
+                  </li>
+                ) : null}
+              </Fragment>
+            ))}
+          </ul>
+        </details>
+      ) : null}
     </section>
   )
 }

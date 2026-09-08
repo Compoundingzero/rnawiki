@@ -18,6 +18,22 @@ Membership is computed by `scripts/revamp/hubs_build.py` from `data/revamp/field
 (hub_id, type, name, page, membership_evidence, member_role: approved | clinical | development |
 withdrawn). A page can belong to many hubs; a hub never lists a page twice.
 
+**One page per member set** (`docs/specs/phase4-generators.md` §13 item 13). A hub page is its
+members' comparison table and a synthesis generated from that table, so two hubs over nearly the
+same members are nearly the same page — and the rendered duplicate check found 1,865 hub-to-hub
+pairs at or above 0.5 Jaccard, on pages that are indexable and in the sitemap. After every hub is
+built, hubs whose member sets overlap at Jaccard ≥ 0.5 form complete-linkage groups, across all
+three kinds: the largest member set survives as the hub, the others become aliases. Complete
+linkage, never single: a chain of 0.5 edges must not fuse unrelated groups.
+
+An alias is a row in `hub_aliases` (`alias_type`, `alias_slug`, `alias_name`, `hub_id`,
+`shared_members`, `alias_member_count`), written by `scripts/revamp/hubs_build.py` to
+`data/revamp/hubs/load/hub-aliases.ndjson` and loaded by `scripts/revamp/hubs_load.ts`.
+`/h/<alias_type>/<alias_slug>` answers with a permanent redirect to the survivor, and the
+survivor's definition line names what it is also known by ("Also known by …"), so no link into the
+corpus dies and no reader lands on a page that does not say why it answered. An alias is not a hub:
+it is absent from `hubs`, from `/h`, and from the `hubs.xml` sitemap child.
+
 ## 2. Page anatomy (in order)
 
 1. Title and one-line definition from the source vocabulary (UniProt name for a target, ATC
@@ -77,7 +93,9 @@ ageing-trial link, else 0.5); pathway hubs by approved-member count (relevance 1
 20 target hubs and 10 pathway hubs first; measure positional and lexical overlap across the 30
 syntheses with the corpus-20k scripts (`scripts/corpus-20k/overlap/measure.py`); both lines
 (0.20 positional, 0.353 lexical) must clear. Then build every hub meeting §1 and re-measure over
-all hubs. Record in `data/revamp/hubs/measure-first-batch.json` and `measure-all.json`.
+all hubs. Record in `data/revamp/hubs/measure-first-batch.json` and `measure-all.json`. A re-measure after
+a rule change writes beside them rather than over them: `hubs_measure.py --suffix=-v2` produces
+`measure-first-batch-v2.json` and `measure-all-v2.json`, so the two runs can be compared.
 
 ## 5. Copy rules
 

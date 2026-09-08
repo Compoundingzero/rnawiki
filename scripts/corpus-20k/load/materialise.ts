@@ -221,6 +221,8 @@ interface PageRow {
   tier: number
   pageType: string
   indexable: boolean
+  /** §13(14): the slug this page duplicates, where the rendered check held it. */
+  duplicateHoldOf: string | null
   suppressed: boolean
   suppressionClasses: string[]
   withdrawn: boolean
@@ -875,6 +877,8 @@ interface CorpusSources {
   blocksDir?: string
   reassignments?: string
   redirectPlan?: string
+  /** §13(14): the pages held against a rendered duplicate. Absent outside `--revamp`. */
+  duplicateHolds?: string
 }
 
 function corpusSources(revamp: boolean): CorpusSources {
@@ -902,6 +906,7 @@ function corpusSources(revamp: boolean): CorpusSources {
     blocksDir: join(REVAMP, 'page-blocks'),
     reassignments: join(REVAMP, 'identity', 'trial-reassignments-v5.csv'),
     redirectPlan: join(REVAMP, 'identity', 'redirect-plan-v5.csv'),
+    duplicateHolds: join(REVAMP, 'identity', 'duplicate-holds.csv'),
   }
 }
 
@@ -922,6 +927,8 @@ interface BlockBundle {
     line: string
     /** `not found`, `not cleared` or `not checked`, on a row that states only an absence (§11). */
     absence?: string | null
+    /** True where the row belongs to the technical disclosure and never to a line (§13(6)). */
+    disclosed?: boolean
     disclosure?: Record<string, unknown>
     provenance?: string[]
   }>
@@ -1517,6 +1524,18 @@ async function main(): Promise<void> {
       redirectsByTargetKey.set(row.key, list)
     }
 
+    /*
+     * §13(14): the pages held against a rendered duplicate. A held page is `noindex,follow` and
+     * links to the page it duplicates, and the decision between the two is Felix's.
+     */
+    const duplicateHolds = await readDuplicateHolds(
+      option('duplicate-holds') ?? sources.duplicateHolds ?? '',
+      counters,
+    )
+    if (duplicateHolds.size > 0) {
+      process.stdout.write(`Duplicate holds: ${duplicateHolds.size} page(s) held noindex,follow.\n`)
+    }
+
     /* ---- 6. the indexable threshold, and the count it is read against ----------------------- */
 
     const thresholdsFile = option('thresholds')
@@ -1589,6 +1608,7 @@ async function main(): Promise<void> {
         tier,
         threshold,
         presence,
+        duplicateHolds,
         registryAggregates,
         identity,
         assignments,
@@ -1812,6 +1832,33 @@ async function readTierThresholds(
 }
 
 /** page → present-and-applicable count, as the ruler counted it. */
+/**
+ * The duplicate holds (docs/specs/phase4-generators.md §13 item 14): page key → the slug it links to.
+ *
+ * Where two indexable pages still measure at or above 0.5 on the rendered duplicate check after
+ * every generator rule has been applied, the page with fewer own facts is held: it carries
+ * `noindex,follow` and a link to the other until Felix decides which page the corpus keeps.
+ * `scripts/revamp/duplicate_holds.py` measures the two sides and writes the file; this reads it.
+ * A missing file is not an error — it means the check found no such pair.
+ */
+async function readDuplicateHolds(file: string, counters: Counters): Promise<Map<string, string>> {
+  const out = new Map<string, string>()
+  let text: string
+  try {
+    text = await readFile(file, 'utf8')
+  } catch {
+    counters.bump('no duplicate-hold file: no indexable pair is held')
+    return out
+  }
+  for (const row of parseCsv(text)) {
+    const key = row.held_key?.trim()
+    const link = row.link_slug?.trim()
+    if (!key || !link) continue
+    out.set(key, link)
+  }
+  return out
+}
+
 async function readPresenceCounts(file: string): Promise<Map<string, number>> {
   const out = new Map<string, number>()
   for await (const row of readNdjson(file)) {
@@ -1887,6 +1934,8 @@ function buildBatch(input: {
   threshold: number | null
   /** page → present-and-applicable count, the ruler's numerator. Empty where none was supplied. */
   presence: Map<string, number>
+  /** §13(14): page → the slug it duplicates. A held page is never indexable. */
+  duplicateHolds: Map<string, string>
   /** page → the registry aggregate the body builders read. Empty outside `--revamp`. */
   registryAggregates: Map<string, Record<string, unknown>>
   identity: Map<string, CanonicalRecord>
@@ -2011,8 +2060,19 @@ function buildBatch(input: {
      * from the one the threshold was derived on.
      */
     const presentApplicableCount = input.presence.get(key) ?? presentFieldCount
+    /*
+     * §13(14): a page held against a rendered duplicate is `noindex,follow` whatever its field
+     * count says. It keeps every link it had — the hold is about what a search engine indexes, not
+     * about what a reader can reach — and it carries a link to the page it duplicates.
+     */
+    const duplicateHoldOf = input.duplicateHolds.get(key) ?? null
+    if (duplicateHoldOf !== null) counters.bump('pages held noindex,follow as a rendered duplicate')
     const indexable =
-      threshold !== null && tier <= 2 && pageType !== 'stub' && presentApplicableCount >= threshold
+      duplicateHoldOf === null &&
+      threshold !== null &&
+      tier <= 2 &&
+      pageType !== 'stub' &&
+      presentApplicableCount >= threshold
 
     const aggregate = input.registryAggregates.get(key)
     if (aggregate !== undefined) registryAggregateRows.push([key, JSON.stringify(aggregate)])
@@ -2094,6 +2154,7 @@ function buildBatch(input: {
       tier,
       pageType,
       indexable,
+      duplicateHoldOf,
       suppressed,
       suppressionClasses: suppressionRow?.classes ?? [],
       controlled,
@@ -2252,6 +2313,9 @@ function buildBatch(input: {
           nullIfBlank(row.component),
           line,
           nullIfBlank(row.absence)?.slice(0, 32) ?? null,
+          // §13(6): a curated record filed under "unspecified" names no jurisdiction and no
+          // register, so the page paints it in the technical disclosure and never as a line.
+          row.disclosed === true,
           JSON.stringify(row.disclosure ?? {}),
           JSON.stringify(row.provenance ?? []),
         ])
@@ -2614,6 +2678,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'tier',
         'page_type',
         'indexable',
+        'duplicate_hold_of',
         'suppressed',
         'suppression_classes',
         'withdrawn',
@@ -2647,6 +2712,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         page.tier,
         page.pageType,
         page.indexable,
+        page.duplicateHoldOf,
         page.suppressed,
         page.suppressionClasses,
         page.withdrawn,
@@ -2679,6 +2745,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
          "tier" = EXCLUDED."tier",
          "page_type" = EXCLUDED."page_type",
          "indexable" = EXCLUDED."indexable",
+         "duplicate_hold_of" = EXCLUDED."duplicate_hold_of",
          "suppressed" = EXCLUDED."suppressed",
          "suppression_classes" = EXCLUDED."suppression_classes",
          "withdrawn" = EXCLUDED."withdrawn",
@@ -2828,6 +2895,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'component',
         'line',
         'absence',
+        'disclosed',
         'disclosure',
         'provenance',
       ],

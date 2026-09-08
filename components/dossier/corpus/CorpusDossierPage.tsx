@@ -15,15 +15,15 @@
  * under the header: on a salt or a biosimilar page it is the answer to the first question a reader
  * has, and §6 asks the page to open with it.
  *
- * Every component here is a server component. The only client code on the page is the rail marker,
- * which takes no props, so the RSC payload carries the page's HTML and no second copy of its data.
+ * Every component here is a server component and none of them is rendered by React in the browser.
+ * The page is served as a plain HTML document (docs/specs/deployment-plan.md, "The corpus
+ * document"): there is no React Server Components stream behind it, so nothing on this page is
+ * shipped a second time as data. The one script the document loads reads the DOM — the rail marker
+ * follows `data-corpus-block` and the fragment in each rail link's own `href`, both of which
+ * are already in the HTML.
  */
-import '@/lib/corpus/tokens.css'
-import '@/lib/corpus/dossier.css'
-
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import { ContentsRail } from './ContentsRail'
-import { ContentsRailMarker } from './ContentsRailMarker'
 import { CorpusHeader } from './CorpusHeader'
 import { ExactRecord } from './ExactRecord'
 import { FormOfNote } from './FormOfNote'
@@ -37,17 +37,19 @@ import { SourceList } from './SourceList'
 import { StubRecord } from './StubRecord'
 import { SupervisionBlock } from './SupervisionBlock'
 import { Tier3Sections } from './Tier3Sections'
-import { WithdrawnArc } from './WithdrawnArc'
 
 const LADDER_BLOCKS = new Set(['ladder', 'ladder-single', 'human-data-none'])
 
-/** The one ornament on the surface, between major regions and never between blocks. */
+/**
+ * The one ornament on the surface, between major regions and never between blocks.
+ *
+ * §13(11): the glyph itself is a CSS pseudo-element (`.cd-glyph::before`), so it is painted and is
+ * not a text node. `aria-hidden` hides it from a screen reader and from nothing else — the
+ * uniqueness ruler and a crawler both read `innerText`, and both were reading "~" as a word on
+ * every page in the corpus.
+ */
 function RegionGlyph() {
-  return (
-    <p className="cd-glyph" aria-hidden="true">
-      ~
-    </p>
-  )
+  return <p className="cd-glyph" aria-hidden="true" />
 }
 
 export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
@@ -64,6 +66,22 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
 
       <div className="cd-layout">
         <div className="cd-column">
+          {/*
+            §13(14): the rendered duplicate check measured this page and one other at or above 0.5
+            on their reading text after every generator rule. This one holds fewer of its own
+            facts, so it is `noindex,follow` until Felix decides which page the corpus keeps, and it
+            says so and links to the other rather than leaving a reader on a near-copy.
+          */}
+          {dossier.duplicateHoldOf ? (
+            <p className="cd-duplicate-hold">
+              This record and{' '}
+              <a href={`/d/${dossier.duplicateHoldOf.slug}`}>
+                {dossier.duplicateHoldOf.displayName}
+              </a>{' '}
+              read almost identically, and that page holds more recorded fields. Which of the two
+              the corpus keeps has not been decided.
+            </p>
+          ) : null}
           {stub ? null : <ContentsRail blocks={dossier.blocks} variant="inline" />}
           {stub ? null : <RegionGlyph />}
 
@@ -77,9 +95,13 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
 
           {supervision ? <SupervisionBlock block={supervision} name={dossier.displayName} /> : null}
 
-          <WithdrawnArc rows={dossier.arc} />
-
+          {/*
+            §13(2): the "What the registers record" block is retired. Its dated rows duplicated the
+            registration block and printed the registers' own column names; the events are
+            sentences inside the registration block below.
+          */}
           <RegistrationBlock
+            events={dossier.registerEvents}
             registration={dossier.registration}
             schedules={dossier.controlledSchedules}
           />
@@ -117,8 +139,6 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
 
         {stub ? null : <ContentsRail blocks={dossier.blocks} variant="rail" />}
       </div>
-
-      <ContentsRailMarker />
     </div>
   )
 }

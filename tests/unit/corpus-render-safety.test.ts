@@ -16,6 +16,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
 import { CorpusDossierPage } from '@/components/dossier/corpus/CorpusDossierPage'
+import { CorpusHeader } from '@/components/dossier/corpus/CorpusHeader'
 import { InteractionsBlock } from '@/components/dossier/corpus/InteractionsBlock'
 import { PatentBlock } from '@/components/dossier/corpus/PatentBlock'
 import { RegistrationBlock } from '@/components/dossier/corpus/RegistrationBlock'
@@ -114,7 +115,9 @@ describe('the interaction line (§4)', () => {
   it('names the curated counterpart, its role and whether a magnitude was reported', () => {
     const line = interactionLine('B', CURATED_ROW)
     expect(line).toContain('Cytochrome P450 3A: substrate, a magnitude is reported')
-    expect(line).toContain('Inxight frdb:ddi:5')
+    // §13(3): the dataset record is named, the record id is not — it is in the closed disclosure.
+    expect(line).toContain('Inxight FRDB')
+    expect(line).not.toContain('frdb:ddi:5')
   })
 
   it('shows the derivation, the direction and the rule in words, never the rule id', () => {
@@ -347,12 +350,14 @@ describe('the registration block (§2, §3)', () => {
     status: 'Not found',
     ordinal: index,
     line: `Not found in the ${JURISDICTION_LABELS[code]} register as of 2026-09-06`,
+    disclosed: false,
+    upstreamRegisters: [],
     applications: [],
   }))
 
   it('renders one line per jurisdiction, in the order §2 fixes', () => {
     const markup = renderToStaticMarkup(
-      React.createElement(RegistrationBlock, { registration: rows, schedules: [] }),
+      React.createElement(RegistrationBlock, { events: [], registration: rows, schedules: [] }),
     )
     const text = visibleText(markup)
     let position = -1
@@ -372,11 +377,17 @@ describe('the registration block (§2, §3)', () => {
         status: 'Approved',
         ordinal: 1,
         line: 'Approved · 8 applications: 5 prescription, 3 discontinued · checked 2026-08-28',
+        disclosed: false,
+        upstreamRegisters: [],
         applications: ['NDA004782', 'NDA010402', 'NDA020216'],
       },
     ]
     const markup = renderToStaticMarkup(
-      React.createElement(RegistrationBlock, { registration: withApplications, schedules: [] }),
+      React.createElement(RegistrationBlock, {
+        events: [],
+        registration: withApplications,
+        schedules: [],
+      }),
     )
     expect(markup).toContain('<details')
     expect(markup.match(/United States/g)?.length).toBeLessThanOrEqual(3)
@@ -385,7 +396,7 @@ describe('the registration block (§2, §3)', () => {
 
   it('renders nothing at all when the record holds no line', () => {
     const markup = renderToStaticMarkup(
-      React.createElement(RegistrationBlock, { registration: [], schedules: [] }),
+      React.createElement(RegistrationBlock, { events: [], registration: [], schedules: [] }),
     )
     expect(markup).toBe('')
   })
@@ -512,6 +523,7 @@ describe('the patent, form-of and computed-section blocks', () => {
           {
             section: 'formOf' as const,
             ordinal: 0,
+            rows: [],
             sentence: 'Heparin calcium is the calcium salt of heparin.',
             counterpartSlug: 'heparin',
             counterpartName: 'Heparin',
@@ -531,7 +543,9 @@ describe('the patent, form-of and computed-section blocks', () => {
           {
             section: 'neighbour' as const,
             ordinal: 0,
-            sentence: 'Closest approved compound: Bexagliflozin (similarity 0.76).',
+            rows: [
+              { label: 'Closest approved compound', value: 'Bexagliflozin · similarity 0.76' },
+            ],
           },
         ],
       }),
@@ -564,121 +578,137 @@ describe('the §7 defect rules', () => {
   })
 })
 
-describe('the whole page (§1 block order)', () => {
-  /** A record holding one of everything, so the order of the blocks can be read off the markup. */
-  function fullDossier(): CorpusDossier {
-    return {
-      key: 'K1:FIXTURE00',
-      slug: 'fixture-compound',
-      displayName: 'Fixture Compound',
-      model: 'CLINICAL',
-      tier: 2,
-      pageType: 'clinical',
-      indexable: true,
-      suppressed: true,
-      suppressionClasses: ['S2'],
-      withdrawn: false,
-      presentFieldCount: 9,
-      applicableFieldCount: 18,
-      synonyms: [],
-      register: 'Drugs@FDA',
-      humanData: true,
-      ladder: [],
-      blocks: [
-        {
-          id: 'q1',
-          badge: 'Q1',
-          ordinal: 0,
-          block: 'supervision',
-          template: 'supervision',
-          question: 'Why does Fixture Compound carry a supervision requirement?',
-          paragraphs: [
-            {
-              text: 'A register records Fixture Compound in one classification given under medical supervision: a controlled-substance schedule in Singapore, the United States, Australia or the United Kingdom.',
-              interpretation: false,
-            },
-          ],
-          groups: [],
-        },
-        {
-          id: 'q2',
-          badge: 'Q2',
-          ordinal: 1,
-          block: 'human-data',
-          template: 'human-data',
-          question: 'What has been measured in people?',
-          paragraphs: [{ text: '91 registered studies.', interpretation: false }],
-          groups: [],
-        },
-      ],
-      arc: [],
-      identifiers: [{ field: 'unii', label: 'UNII', value: '027828ZV5Q' }],
-      relations: [],
-      hubs: [],
-      sources: [],
-      licenceNotes: [],
-      registeredStudies: 91,
-      controlled: true,
-      controlledBasis: ['SG-MDA-POISONS'],
-      registration: [
-        {
-          id: 'reg-sg',
-          jurisdiction: 'SG',
-          label: 'Singapore',
-          status: 'Registered (HSA)',
-          ordinal: 0,
-          line: 'Registered (HSA) · POM · checked 2026-08-07',
-          applications: [],
-        },
-      ],
-      controlledSchedules: [
-        {
-          id: 'ctl-1',
-          jurisdiction: 'SG',
-          list: 'Misuse of Drugs Act 1973 (2020 Rev Ed)',
-          classOrSchedule: 'First Schedule Part 1 — Class A controlled drug',
-          versionDate: '2026-06-01',
-        },
-      ],
-      interactions: {
-        lines: [
+/** A record holding one of everything, so the order of the blocks can be read off the markup. */
+function fullDossier(): CorpusDossier {
+  return {
+    key: 'K1:FIXTURE00',
+    slug: 'fixture-compound',
+    displayName: 'Fixture Compound',
+    model: 'CLINICAL',
+    tier: 2,
+    pageType: 'clinical',
+    indexable: true,
+    suppressed: true,
+    suppressionClasses: ['S2'],
+    withdrawn: false,
+    presentFieldCount: 9,
+    applicableFieldCount: 18,
+    synonyms: [],
+    register: 'Drugs@FDA',
+    humanData: true,
+    ladder: [],
+    blocks: [
+      {
+        id: 'q1',
+        badge: 'Q1',
+        ordinal: 0,
+        block: 'supervision',
+        template: 'supervision',
+        question: 'Why does Fixture Compound carry a supervision requirement?',
+        paragraphs: [
           {
-            id: 'a1',
-            tier: 'A',
-            tierLabel: INTERACTION_TIER_LABELS.A as string,
-            line: interactionLine('A', LABEL_ROW, { controlled: true }),
-            disclosed: false,
+            text: 'A register records Fixture Compound in one classification given under medical supervision: a controlled-substance schedule in Singapore, the United States, Australia or the United Kingdom.',
+            interpretation: false,
           },
         ],
-        statement: 'Checked in openFDA drug labels as of 2026-09-06.',
-        sourcesChecked: ['openFDA drug labels'],
-        date: '2026-09-06',
-        totals: { A: 1 },
-        predictedOnly: false,
+        facts: [],
+        groups: [],
       },
-      patent: {
-        eligible: true,
-        absence: false,
-        line: 'RLD: yes · generic available: no · checked 2026-08-14',
-        applications: ['NDA004782'],
+      {
+        id: 'q2',
+        badge: 'Q2',
+        ordinal: 1,
+        block: 'human-data',
+        template: 'human-data',
+        question: 'What has been measured in people?',
+        paragraphs: [{ text: '91 registered studies.', interpretation: false }],
+        facts: [{ label: 'Posted no result', value: '25 of 29 completed trials' }],
+        groups: [],
       },
-      computedSections: [
+    ],
+    registerEvents: [{ sentence: 'Withdrawn in France, 1996, for "drug misuse" (ChEMBL).' }],
+    identifiers: [{ field: 'unii', label: 'UNII', value: '027828ZV5Q' }],
+    relations: [],
+    hubs: [],
+    sources: [],
+    licenceNotes: [],
+    registeredStudies: 91,
+    controlled: true,
+    controlledBasis: ['SG-MDA-POISONS'],
+    registration: [
+      {
+        id: 'reg-sg',
+        jurisdiction: 'SG',
+        label: 'Singapore',
+        status: 'Registered (HSA)',
+        ordinal: 0,
+        line: 'Registered (HSA) · POM · Class A controlled drug · see the controlled-substance schedules below · checked 2026-08-07',
+        disclosed: false,
+        upstreamRegisters: [],
+        applications: [],
+      },
+      {
+        id: 'reg-other',
+        jurisdiction: 'OTHER',
+        label: 'unspecified',
+        status: 'Clinical, Marketed (NCATS Inxight Drugs curated record)',
+        ordinal: 1,
+        line: 'Clinical, Marketed (NCATS Inxight Drugs curated record) · checked 2026-09-05',
+        disclosed: true,
+        upstreamRegisters: ['ClinicalTrials, February 2021'],
+        applications: [],
+      },
+    ],
+    controlledSchedules: [
+      {
+        id: 'ctl-1',
+        jurisdiction: 'SG',
+        list: 'Misuse of Drugs Act 1973 (2020 Rev Ed)',
+        classOrSchedule: 'First Schedule Part 1 — Class A controlled drug',
+        versionDate: '2026-06-01',
+      },
+    ],
+    interactions: {
+      lines: [
         {
-          section: 'neighbour',
-          ordinal: 0,
-          sentence: 'Closest approved compound: Bexagliflozin (similarity 0.76).',
+          id: 'a1',
+          tier: 'A',
+          tierLabel: INTERACTION_TIER_LABELS.A as string,
+          line: interactionLine('A', LABEL_ROW, { controlled: true }),
+          disclosed: false,
         },
       ],
-      formOfNotes: [
-        {
-          section: 'formOf',
-          ordinal: 0,
-          sentence: 'Fixture Compound is the calcium salt of Fixture.',
-        },
-      ],
-    }
+      statement: 'Checked in openFDA drug labels as of 2026-09-06.',
+      sourcesChecked: ['openFDA drug labels'],
+      date: '2026-09-06',
+      totals: { A: 1 },
+      predictedOnly: false,
+    },
+    patent: {
+      eligible: true,
+      absence: false,
+      line: 'RLD: yes · generic available: no · checked 2026-08-14',
+      applications: ['NDA004782'],
+    },
+    computedSections: [
+      {
+        section: 'neighbour',
+        ordinal: 0,
+        rows: [{ label: 'Closest approved compound', value: 'Bexagliflozin · similarity 0.76' }],
+      },
+    ],
+    formOfNotes: [
+      {
+        section: 'formOf',
+        ordinal: 0,
+        rows: [],
+        sentence: 'Fixture Compound is the calcium salt of Fixture.',
+      },
+    ],
   }
+}
 
+describe('the whole page (§1 block order)', () => {
   it('renders the blocks in the order §1 fixes', () => {
     const markup = renderToStaticMarkup(
       React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
@@ -723,5 +753,351 @@ describe('the whole page (§1 block order)', () => {
     const text = visibleText(markup)
     expect(text).toContain('First Schedule Part 1 — Class A controlled drug')
     expect(carriesDoseText(text)).toBe(false)
+  })
+})
+
+/* ---------------------------------------------------------------------------------------------
+ * §13 — the rules the lead's reading of slop draw 3 added.
+ *
+ * `tests/test_render_safety.py` proves each of these over the whole rendered corpus. These are the
+ * same rules on the components and the shared builders, so a regression fails on a fixture instead
+ * of only after a 1.2 GB render.
+ * ------------------------------------------------------------------------------------------- */
+
+describe('§13(1) — an absence is never an answer', () => {
+  function bundle(
+    regulatory: unknown,
+    questions: PageBundle['questions'],
+    // The suppression pass's own classes are an affirmative classification in their own right
+    // (§13(1) lists a controlled-substance schedule among them), so a case testing what happens
+    // when nothing affirmative is recorded has to hold none of them.
+    suppressionClasses: string[] = ['S2'],
+  ): PageBundle {
+    return {
+      key: 'K1:ABSENCE00',
+      tier: 2,
+      displayName: 'Fixture Compound',
+      presentFields: 4,
+      suppressed: true,
+      suppressionClasses,
+      withdrawn: false,
+      identity: { synonyms: [], relations: [] },
+      names: new Map(),
+      fields: {
+        regulatoryStatus: {
+          state: 'present',
+          value: regulatory,
+          source: [{ kind: 'inxight', id: 'inxight-stitch:1:jurisdiction:US' }],
+        },
+      } as unknown as PageBundle['fields'],
+      seeds: {},
+      questions,
+    } as unknown as PageBundle
+  }
+
+  const supervision = [
+    {
+      id: 'supervision',
+      block: 'supervision',
+      template: 'supervision',
+      badge: 'Q1',
+      text: 'Why does Fixture Compound carry a supervision requirement?',
+      values: {},
+      sources: [],
+    },
+  ] as unknown as PageBundle['questions']
+
+  it('names only an affirmative classification, never a register that recorded nothing', () => {
+    const text = renderPage(
+      bundle(
+        {
+          SG: { status: 'not found' },
+          AU: { status: 'scheduled in the Poisons Standard' },
+          UK: { status: 'not cleared' },
+        },
+        supervision,
+      ),
+      { withFurniture: true },
+    ).text
+    expect(text).toContain('AU scheduled in the Poisons Standard')
+    expect(text).not.toContain('SG not found')
+    expect(text).not.toContain('UK not cleared')
+  })
+
+  it('renders no block at all where every register recorded an absence', () => {
+    const rendered = renderPage(
+      bundle({ SG: { status: 'not found' }, UK: { status: 'not cleared' } }, supervision, []),
+      { withFurniture: true },
+    )
+    expect(rendered.text).not.toContain(
+      'Why does Fixture Compound carry a supervision requirement?',
+    )
+    expect(rendered.text).not.toContain('not found')
+  })
+
+  it('reads no jurisdiction out of a stored note that is not a jurisdiction', () => {
+    const text = renderPage(
+      bundle(
+        {
+          US: { status: 'approved' },
+          curatedMarketingStatusNote: {
+            status: 'NCATS Inxight Drugs records marketing events per jurisdiction.',
+          },
+        },
+        supervision,
+      ),
+      { withFurniture: true },
+    ).text
+    expect(text).not.toContain('curatedMarketingStatusNote')
+  })
+})
+
+describe('§13(2) — the register events sit inside the registration block', () => {
+  it('prints one sentence per event, in words, with no register column name', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(RegistrationBlock, {
+        events: [
+          { sentence: 'Withdrawn in France, 1996, for "drug misuse" (ChEMBL; Open Targets).' },
+        ],
+        registration: [],
+        schedules: [],
+      }),
+    )
+    const text = visibleText(markup)
+    expect(text).toContain('Withdrawn in France, 1996')
+    expect(text).toContain('ChEMBL; Open Targets')
+    expect(text).not.toContain('What the registers record')
+    expect(text).not.toContain('drug_warning')
+    expect(text).not.toContain('warningType')
+  })
+})
+
+describe('§13(3) — an interaction line carries its tier once', () => {
+  const grouped: InteractionRow = {
+    direction: 'substrate of CYP1A2, CYP2A6, CYP3A4',
+    source: 'inxight',
+    ruleId: 'B-inxight-frdb',
+    groupedRole: 'substrate',
+    groupedTargets: ['CYP1A2', 'CYP2A6', 'CYP3A4'],
+    groupedMagnitude: true,
+    groupedRecordIds: ['frdb:ddi:12049', 'frdb:ddi:12045'],
+  }
+
+  it('groups the curated enzyme rows into one line per role, with the family prefix once', () => {
+    const line = interactionLine('B', grouped)
+    expect(line).toBe(
+      'Curated · Substrate of CYP1A2, 2A6 and 3A4, with a reported magnitude · Inxight FRDB',
+    )
+  })
+
+  it('keeps the dataset record id off the line', () => {
+    expect(interactionLine('B', grouped)).not.toContain('frdb:ddi:')
+    expect(interactionLine('B', CURATED_ROW)).not.toContain('frdb:ddi:')
+    expect(interactionLine('B', CURATED_ROW)).toContain('Inxight FRDB')
+  })
+
+  it('paints the tier label once per line and no second badge', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(InteractionsBlock, {
+        interactions: {
+          lines: [
+            {
+              id: 'b1',
+              tier: 'B',
+              tierLabel: INTERACTION_TIER_LABELS.B as string,
+              line: interactionLine('B', grouped),
+              disclosed: false,
+            },
+          ],
+          sourcesChecked: [],
+          totals: {},
+          predictedOnly: false,
+        },
+      }),
+    )
+    expect(markup).not.toContain('cd-interaction-tier')
+    const text = visibleText(markup)
+    expect(text.match(/Curated/g)?.length).toBe(1)
+  })
+
+  it('never paints the same line twice', () => {
+    const one: CorpusInteractionLine = {
+      id: 'b1',
+      tier: 'B',
+      tierLabel: INTERACTION_TIER_LABELS.B as string,
+      line: interactionLine('B', grouped),
+      disclosed: false,
+    }
+    const markup = renderToStaticMarkup(
+      React.createElement(InteractionsBlock, {
+        interactions: {
+          lines: [one, { ...one, id: 'b2' }],
+          sourcesChecked: [],
+          totals: {},
+          predictedOnly: false,
+        },
+      }),
+    )
+    expect(visibleText(markup).match(/Substrate of CYP1A2/g)?.length).toBe(1)
+  })
+})
+
+describe('§13(4) — the schedules render once', () => {
+  it('points the jurisdiction line at the table instead of repeating the statute rows', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    const text = visibleText(markup)
+    expect(text).toContain('see the controlled-substance schedules below')
+    // The instrument is named once, in the schedules table, and nowhere on a register line.
+    expect(text.match(/Misuse of Drugs Act 1973/g)?.length).toBe(1)
+  })
+})
+
+describe('§13(5) — a trial list shows six rows', () => {
+  it('puts the counted remainder in a closed disclosure of its own', () => {
+    const dossier = fullDossier()
+    const block = dossier.blocks[1]
+    if (!block) throw new Error('the fixture holds no question block')
+    block.groups = [
+      {
+        id: 'q2-g1',
+        label: 'Trial',
+        rows: Array.from({ length: 6 }, (_, index) => ({
+          label: 'Trial',
+          identifier: `NCT0000000${index}`,
+          value: 'phase 3; completed',
+        })),
+      },
+      {
+        id: 'q2-g2',
+        label: '14 further recorded trials',
+        rows: Array.from({ length: 14 }, (_, index) => ({
+          label: '14 further recorded trials',
+          identifier: `NCT1000000${index}`,
+          value: 'phase 2; completed',
+        })),
+      },
+    ]
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    // The remainder is a `<details>` whose summary is the group's own label, so the fifteenth row
+    // and everything after it is not painted until a reader opens it.
+    expect(markup).toContain('<summary>14 further recorded trials</summary>')
+    expect(markup).not.toContain('open=""')
+    // The rail also names the group, so the split is on the disclosure's own summary element.
+    const at = markup.indexOf('<summary>14 further recorded trials</summary>')
+    expect(at).toBeGreaterThan(0)
+    expect(markup.slice(at)).toContain('NCT10000000')
+    expect(markup.slice(0, at).match(/NCT0000000\d/g)?.length).toBe(6)
+  })
+})
+
+describe('§13(10) — the header prints one evidence line', () => {
+  it('says a record has no human study once, not twice', () => {
+    const dossier = fullDossier()
+    dossier.humanData = false
+    dossier.evidenceTier = 'none'
+    const text = visibleText(renderToStaticMarkup(React.createElement(CorpusHeader, { dossier })))
+    expect(text.match(/No human study recorded/g)?.length).toBe(1)
+    expect(text).not.toContain('Evidence recorded:')
+  })
+
+  it('names the evidence kind once where the record holds human data', () => {
+    const dossier = fullDossier()
+    dossier.humanData = true
+    dossier.evidenceTier = 'human trial'
+    const text = visibleText(renderToStaticMarkup(React.createElement(CorpusHeader, { dossier })))
+    expect(text).not.toContain('Human data recorded')
+    expect(text).not.toContain('No human study recorded')
+  })
+})
+
+describe('§13(6) — a curated record with no jurisdiction is disclosure only', () => {
+  it('keeps the row and its upstream registers out of the visible lines', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    // The row is on the page, inside a closed disclosure, and never as a register line.
+    expect(markup).toContain('Show the curated records with no jurisdiction')
+    expect(markup).toContain('ClinicalTrials, February 2021')
+    const lines = markup.slice(0, markup.indexOf('Show the curated records with no jurisdiction'))
+    expect(lines).not.toContain('ClinicalTrials, February 2021')
+  })
+})
+
+describe('§13(7) — a single value is a row, not a sentence', () => {
+  it('paints the block’s own values under the question heading', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    const text = visibleText(markup)
+    expect(text).toContain('Posted no result')
+    expect(text).toContain('25 of 29 completed trials')
+    // A row is markup: the label and the value are separate elements, not one sentence.
+    expect(text).not.toContain('Posted no result: 25 of 29 completed trials posted no result')
+  })
+
+  it('renders the nearest-neighbour comparison as rows', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(Tier3Sections, {
+        sections: [
+          {
+            section: 'neighbour' as const,
+            ordinal: 0,
+            rows: [{ label: 'Closest approved compound', value: 'Flurazepam · similarity 0.48' }],
+          },
+        ],
+      }),
+    )
+    expect(markup).toContain('<dt>')
+    expect(visibleText(markup)).toContain('Flurazepam · similarity 0.48')
+  })
+})
+
+describe('§13(9) — a form-of note names the related record once', () => {
+  it('links the name inside the sentence rather than printing it again after it', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(FormOfNote, {
+        notes: [
+          {
+            section: 'formOf' as const,
+            ordinal: 0,
+            rows: [],
+            sentence: 'Heparin calcium is the calcium salt of Heparin.',
+            counterpartSlug: 'heparin',
+            counterpartName: 'Heparin',
+          },
+        ],
+      }),
+    )
+    const text = visibleText(markup)
+    expect(markup).toContain('/d/heparin')
+    expect(text.match(/Heparin(?! calcium)/g)?.length).toBe(1)
+  })
+})
+
+describe('§13(11) — the decorative glyphs are not text', () => {
+  it('paints neither the section separator nor the provenance mark as a text node', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    // `innerText` is what the uniqueness ruler and a crawler read; both marks are CSS content.
+    const text = visibleText(markup)
+    expect(text).not.toContain('◇')
+    expect(text.split(/\s+/)).not.toContain('~')
+  })
+})
+
+describe('§13(14) — a held duplicate says so and links the other page', () => {
+  it('names the page it duplicates', () => {
+    const dossier = fullDossier()
+    dossier.indexable = false
+    dossier.duplicateHoldOf = {
+      slug: 'pertuzumab-trastuzumab-and-hyaluronidase-zzxf',
+      displayName: 'Pertuzumab, Trastuzumab, and Hyaluronidase-Zzxf',
+    }
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    expect(markup).toContain('/d/pertuzumab-trastuzumab-and-hyaluronidase-zzxf')
+    expect(visibleText(markup)).toContain('read almost identically')
   })
 })

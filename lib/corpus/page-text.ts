@@ -38,19 +38,19 @@ export {
   pageProse,
   registerApplicationIds,
   registerName,
+  registerEventLines,
   registrationLineText,
   renderPage,
   ROW_CAP,
   sectionSentenceCounterpart,
   sectionSentenceFields,
+  sectionSentenceParts,
   sectionSentenceText,
   sentenceNamesCompound,
   TRIAL_ROWS_INLINE,
-  withdrawnArcRows,
 } from '@/scripts/corpus-20k/render/page-text'
 
 export type {
-  ArcRow,
   BlockBody,
   CheckedSources,
   ControlledRow,
@@ -65,6 +65,7 @@ export type {
   RegistrationLine,
   Relation,
   RelationNote,
+  RegisterEvent,
   RenderedPage,
   RevealedRow,
   RevealedRowGroup,
@@ -73,7 +74,11 @@ export type {
   Synonym,
 } from '@/scripts/corpus-20k/render/page-text'
 
-export { deriveQuestions } from '@/scripts/corpus-20k/questions/derive'
+export {
+  deriveQuestions,
+  isAbsenceStatus,
+  isAffirmativeClassification,
+} from '@/scripts/corpus-20k/questions/derive'
 
 export type {
   FieldEntry,

@@ -43,6 +43,8 @@ import {
   byJurisdiction,
   canonicalSeedId,
   formatDuration,
+  isAbsenceStatus,
+  isAffirmativeClassification,
   joinList,
   readHighestPhase,
   readMechanisms,
@@ -128,6 +130,16 @@ export interface RevealedRow {
 export interface BlockBody {
   paragraphs: string[]
   rows: RevealedRow[]
+  /**
+   * Rows painted under the question heading, above the revealed layer (§13(7)).
+   *
+   * A statement carrying one value — "25 of 29 completed trials posted no result", "first
+   * publication 2013, last 2013" — is data, and a sentence built around it is a frame the reader
+   * reads past. These are the same values as labelled rows: the label names the bucket, the value
+   * is what the record holds. They are visible without opening anything, and the slop draw's
+   * template test does not apply to them, because a row is markup.
+   */
+  facts: RevealedRow[]
   /**
    * Parallel to `paragraphs`: true where the paragraph is §11 furniture — a fixed-vocabulary
    * statement whose only content is an absence.
@@ -603,9 +615,14 @@ function rowsFromTrials(list: unknown[], cap = ROW_CAP): RevealedRow[] {
  */
 function registerStatusRows(statuses: ReturnType<typeof readRegisterStatuses>): RevealedRow[] {
   const out: RevealedRow[] = []
-  for (const code of statuses.unknown)
-    out.push({ label: code, value: 'consulted, no status recorded' })
+  /*
+   * §13(1): the registration block is the single place for register status, and its absence table
+   * is where a register that holds nothing is stated. A question block's evidence rows carry the
+   * registers that recorded something; repeating "SG not found" and "UK not cleared" under an
+   * answer about a label's indication said the same thing a third time.
+   */
   for (const r of statuses.recorded) {
+    if (isAbsenceStatus(r.status)) continue
     if (r.records.length === 0) {
       out.push({ label: r.code, value: r.status })
       if (out.length >= ROW_CAP) return out
@@ -629,15 +646,23 @@ function registerStatusRows(statuses: ReturnType<typeof readRegisterStatuses>): 
   return out
 }
 
-/** "US approved (NDA 021995, 2005)" — status and the register's own record, per jurisdiction. */
+/**
+ * "US approved (NDA 021995, 2005)" — status and the register's own record, per jurisdiction.
+ *
+ * §13(1): a recorded status whose words are an absence never reaches a prose answer. It is on the
+ * page, in the registration block's absence table, and stating it a second time inside a sentence
+ * about something else was the non-sequitur the reading found.
+ */
 function registerStatusValues(statuses: ReturnType<typeof readRegisterStatuses>): string[] {
-  return statuses.recorded.map((r) => {
-    const first = r.records[0]
-    const detail = first
-      ? [first.id, first.date].filter((b): b is string => Boolean(b && b.trim())).join(', ')
-      : ''
-    return detail ? `${r.code} ${r.status} (${detail})` : `${r.code} ${r.status}`
-  })
+  return statuses.recorded
+    .filter((r) => !isAbsenceStatus(r.status))
+    .map((r) => {
+      const first = r.records[0]
+      const detail = first
+        ? [first.id, first.date].filter((b): b is string => Boolean(b && b.trim())).join(', ')
+        : ''
+      return detail ? `${r.code} ${r.status} (${detail})` : `${r.code} ${r.status}`
+    })
 }
 
 /** A count group: the bucket name is the label, the number is the value. No frame around either. */
@@ -703,6 +728,8 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
   const bare: string[] = []
   const furniture: boolean[] = []
   const rows: RevealedRow[] = []
+  /** §13(7): values painted under the question heading, above the revealed layer. */
+  const facts: RevealedRow[] = []
   const p1 = (s: string, source: SourceRef | undefined = src, isFurniture = false): void => {
     const t = oneFullStop(s)
     bare.push(t)
@@ -719,32 +746,12 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     bits.filter((b): b is string => Boolean(b && b.trim())).join('; ')
 
   switch (q.template) {
-    /* ---------------------------------------------------- classification */
     /*
-     * An S10-only page: the suppression pass recorded no classification it could read, so this
-     * block states that, names the registers that were cleared and could have carried one, and
-     * makes no supervision claim. Paragraph 2 is written only where the page actually holds a
-     * regulatory row, and it carries that row's recorded statuses as values.
+     * §13(1) retired the `classification` block. It asked what classification a record carries and
+     * answered that none is recorded — an absence offered as an answer, on 16,814 pages. The
+     * registration block's absence table states it once, as furniture, and the question is no
+     * longer derived: `scripts/corpus-20k/questions/derive.ts` pushes it for no page.
      */
-    case 'classification': {
-      const reg = f.present('regulatoryStatus')
-      const statuses = readRegisterStatuses(reg)
-      const cleared = [...statuses.recorded.map((r) => r.code), ...statuses.unknown]
-      // §12: this is an absence statement in fixed words, and it is furniture wherever it renders.
-      p1(
-        cleared.length > 0
-          ? `No regulator classification is recorded for ${name} in ${joinList(cleared)}.`
-          : `No regulator classification is recorded for ${name}.`,
-        entrySource(reg),
-        true,
-      )
-      if (reg) {
-        const values = registerStatusValues(statuses)
-        if (values.length > 0) p2(`${joinBits(values)}.`, entrySource(reg))
-      }
-      rows.push(...registerStatusRows(statuses))
-      break
-    }
 
     /* ------------------------------------------------------- supervision */
     case 'supervision': {
@@ -761,8 +768,14 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           const j = asObject(raw)
           const status = asString(pick(j, 'status'))
           const schedule = asString(pick(j, 'deaSchedule', 'controlledSubstanceSchedule'))
-          if (status && status !== 'unknown')
-            classifications.push(`${code} ${status}${schedule ? `, schedule ${schedule}` : ''}`)
+          /*
+           * §13(1): only an affirmative classification — a schedule, a withdrawal, a boxed
+           * warning, a REMS — may be named here, and never a jurisdiction whose register recorded
+           * an absence or a plain registration status. "SG not found, AU scheduled and UK not
+           * cleared" was three registers' findings offered as one classification.
+           */
+          if (schedule) classifications.push(`${code} schedule ${schedule}`)
+          else if (isAffirmativeClassification(status)) classifications.push(`${code} ${status}`)
           for (const r of asArray(pick(j, 'records', 'evidence')).slice(0, ROW_CAP)) {
             const ro = asObject(r)
             const verbatim = asString(pick(ro, 'statusVerbatim', 'statement'))
@@ -792,10 +805,13 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           )}.`,
           entrySource(reg),
         )
-      } else {
-        // §12: the same absence statement, and furniture here too.
-        p1(`No regulator classification is recorded for ${name}.`, entrySource(reg), true)
       }
+      /*
+       * §13(1): where the record holds no affirmative classification the block writes nothing, and
+       * `renderPage` drops a block whose builder wrote nothing. The absence is the registration
+       * block's furniture table, which every page carries.
+       */
+      if (paragraphs.length === 0) break
       // Standing-sentence rule: where the page records no study scope there is nothing of its own
       // to say, so paragraph 2 is not written. "No study record accompanies it." stood verbatim on
       // 378 indexed pages (6.4%) and is exactly the shared sentence the constraints forbid.
@@ -1337,17 +1353,28 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
        * run of fixed words in this paragraph reaches five. The compound's own name does the same
        * work in the middle of the sentence.
        */
-      p1(
-        `${trials.length} of ${completed ?? trials.length} completed trials of ${name} posted no result: ${joinList(ncts.slice(0, 6))}${ncts.length > 6 ? `, and ${ncts.length - 6} more` : ''}.`,
-      )
+      /*
+       * §13(7): "N of M completed trials posted no result: NCT…" is data. The sentence around it
+       * carried no value until its fourth word and read as a frame; the same values as two
+       * labelled rows say the whole of it and the reader meets them without a sentence.
+       */
+      facts.push({
+        label: 'Posted no result',
+        value: `${trials.length} of ${completed ?? trials.length} completed trials`,
+      })
+      if (ncts.length > 0) {
+        facts.push({
+          label: 'Registrations',
+          value: `${joinList(ncts.slice(0, 6))}${ncts.length > 6 ? `, and ${ncts.length - 6} more` : ''}`,
+        })
+      }
       // The seed's cut-off and as-of dates are the same two strings on every firing page, so they
       // are a method note: they belong in the technical disclosure, not in the block's prose.
-      p2(
-        joinBits([
-          dates[0] ? `oldest ${dates[0]}` : undefined,
-          dates.length > 1 ? `newest ${dates[dates.length - 1]}` : undefined,
-        ]),
-      )
+      const span = joinBits([
+        dates[0] ? `oldest ${dates[0]}` : undefined,
+        dates.length > 1 ? `newest ${dates[dates.length - 1]}` : undefined,
+      ])
+      if (span) facts.push({ label: 'Completion dates', value: span })
       rows.push(...rowsFromTrials(trials))
       break
     }
@@ -1579,7 +1606,17 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     case 'jurisdiction': {
       const v = asObject(f.seed('seed17')?.values)
       const statuses = asArray(pick(v, 'statuses'))
-      const words = statuses
+      /*
+       * §13(1): the question asks what kind of thing this is — drug, supplement or controlled —
+       * and only an affirmative classification answers it. A register that recorded nothing, and a
+       * register that recorded an approval, are not classifications: the first is the registration
+       * block's absence table and the second is its status line. `derive.ts` asks the question only
+       * where one of these words was recorded, so this list is never empty when the block renders.
+       */
+      const affirmative = statuses.filter((s) =>
+        isAffirmativeClassification(asString(pick(asObject(s), 'status'))),
+      )
+      const words = affirmative
         .map((s) => {
           const o = asObject(s)
           const j = asString(pick(o, 'jurisdiction'))
@@ -1587,10 +1624,14 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           return j && st ? `${j} ${st}` : undefined
         })
         .filter((w): w is string => Boolean(w))
+      if (words.length === 0) break
       p1(`${joinList(words)}: the registers' classifications of ${name}.`)
-      const dates = unique(statuses.map((s) => asString(pick(asObject(s), 'sourceDate')) ?? ''))
-      p2(joinBits([dates.join(', ') || undefined, `${statuses.length} registers read`]))
-      for (const s of statuses.slice(0, ROW_CAP)) {
+      // §13(7): the read dates and the count of registers read are values, so they are a row.
+      const dates = unique(
+        affirmative.map((s) => asString(pick(asObject(s), 'sourceDate')) ?? ''),
+      ).filter(Boolean)
+      if (dates.length > 0) facts.push({ label: 'Recorded', value: dates.join(', ') })
+      for (const s of affirmative.slice(0, ROW_CAP)) {
         const o = asObject(s)
         const j = asString(pick(o, 'jurisdiction'))
         if (!j) continue
@@ -1646,11 +1687,23 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     /* ------------------------------------------------- provenance (8) */
     case 'provenance': {
       const v = asObject(f.seed('seed8')?.values)
+      /*
+       * A date is a date. Seed 8 records `date` as the source record it read the year from on the
+       * ChEMBL first-approval events — a stringified mapping, which printed as "first approval
+       * {'ch" once `slice(0, 4)` had taken four characters of it. The renderer takes the value only
+       * where it is shaped like a date and falls back to the event's own `year`, so a value that is
+       * not a date never reaches the page under a date's name.
+       */
+      const eventDate = (event: Record<string, unknown> | undefined): string | undefined => {
+        const recorded = asString(pick(event, 'date'))
+        if (recorded && /^\d{4}(-\d{2}(-\d{2})?)?$/.test(recorded)) return recorded
+        return asString(pick(event, 'year'))
+      }
       const events = asArray(pick(v, 'events'))
       const firstEvent = asObject(events[0])
       const lastEvent = asObject(events[events.length - 1])
       p1(
-        `${asString(pick(firstEvent, 'date')) ?? q.values.firstYear ?? ''} ${asString(pick(firstEvent, 'event')) ?? ''} to ${asString(pick(lastEvent, 'date')) ?? ''} ${asString(pick(lastEvent, 'event')) ?? ''}: ${events.length} dated ${events.length === 1 ? 'event' : 'events'} for ${name}.`,
+        `${eventDate(firstEvent) ?? q.values.firstYear ?? ''} ${asString(pick(firstEvent, 'event')) ?? ''} to ${eventDate(lastEvent) ?? ''} ${asString(pick(lastEvent, 'event')) ?? ''}: ${events.length} dated ${events.length === 1 ? 'event' : 'events'} for ${name}.`,
       )
       // The event words alone ("first human trial, first approval; approved") stood on 1,099 indexed
       // pages. Each kind now carries the year the source dates it to, which is the page's own value
@@ -1660,14 +1713,18 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           const o = asObject(e)
           const event = asString(pick(o, 'event'))
           if (!event) return ''
-          const dated = asString(pick(o, 'date')) ?? asString(pick(o, 'year'))
+          const dated = eventDate(o)
           return dated ? `${event} ${dated.slice(0, 4)}` : event
         }),
       ).filter(Boolean)
+      // §13(1): the current register state is named where a register recorded one. "not cleared"
+      // is an absence, and an absence does not follow from a list of dated events; the registration
+      // block states it.
+      const currentState = asString(pick(asObject(pick(v, 'currentState')), 'value'))
       p2(
         joinBits([
           kinds.slice(0, 5).join(', ') || undefined,
-          asString(pick(asObject(pick(v, 'currentState')), 'value')),
+          currentState && !isAbsenceStatus(currentState) ? currentState : undefined,
         ]),
       )
       for (const e of events.slice(0, ROW_CAP)) {
@@ -1676,7 +1733,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         if (!event) continue
         const s = asObject(pick(o, 'source'))
         rows.push({
-          label: asString(pick(o, 'date')) ?? asString(pick(o, 'year')) ?? 'Undated',
+          label: eventDate(o) ?? 'Undated',
           ...(asString(pick(s, 'id')) ? { identifier: asString(pick(s, 'id')) as string } : {}),
           value: joinBits([event, asString(pick(o, 'jurisdiction'))]),
         })
@@ -1709,16 +1766,21 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       // Paragraph 2 states the jurisdictions that recorded a status, as values. The jurisdictions
       // that recorded none are rows or nothing: naming them was the same list of codes on a third
       // of the indexed corpus, and the four never-cleared registers are on /definitions.
-      const statusValues = registerStatusValues(registers)
-      if (statusValues.length > 0) {
-        p2(`${joinBits(statusValues)}.`)
-      } else if (registered !== undefined && posted !== undefined && registered > 0) {
-        p2(
-          `${registered - posted} of ${registered} registered studies of ${name} posted no result.`,
-        )
-      } else {
-        p2(joinBits([section, entry?.sourceDate ? `recorded ${entry.sourceDate}` : undefined]))
+      /*
+       * §13(1) retired the regulatory summary paragraph that stood here. It read "SG not found; US
+       * approved (…); UK not cleared; curatedMarketingStatusNote …" — two absences and a stored
+       * field name, inside an answer about a label's indication. Register status belongs to the
+       * registration block, and only there.
+       */
+      if (registered !== undefined && posted !== undefined && registered > 0) {
+        // §13(7): one value, so a row rather than a sentence built around it.
+        facts.push({
+          label: 'Registered studies posting no result',
+          value: `${registered - posted} of ${registered}`,
+        })
       }
+      // The label section and the date it was recorded are already in paragraph 1 and in the
+      // paragraph's own anchor; a row repeating them is the same fact a third time.
       rows.push(...registerStatusRows(registers))
       break
     }
@@ -1731,8 +1793,14 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       // own record id and date: "US approved (NDA 021995, 2005); CA approved (DIN 02248636,
       // 2026-09-04)". The jurisdictions with no status become rows, and the four registers that
       // were never cleared for this corpus are stated once on /definitions, never here.
+      // §13(1): absences are filtered out of `registerStatusValues`. Where nothing affirmative
+      // remains there is no answer to write, and the block does not render.
       const registerValues = joinBits(registerStatusValues(registers))
-      p1(registerValues ? `${registerValues}.` : `${name}.`, entrySource(entry) ?? src)
+      if (!registerValues) {
+        rows.push(...registerStatusRows(registers))
+        break
+      }
+      p1(`${registerValues}.`, entrySource(entry) ?? src)
       // No paragraph 2. The jurisdictions that were consulted and recorded nothing are the same
       // two or three codes on a sixth of the corpus, so as a sentence they are a standing sentence
       // (the first render of this fix measured "US and EU: consulted, no status recorded." on 17 %
@@ -1925,17 +1993,19 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     case 'never-dosed': {
       const ever = f.present('everDosedInHumans')
       const v = asObject(ever?.value)
+      // §13(7): "X has no recorded human exposure" is an absence in fixed words, so it is
+      // furniture — the reader still meets it, and the ruler and the template test leave it.
       p1(
         `${name} has no recorded human exposure${asString(pick(v, 'basis')) ? `: ${asString(pick(v, 'basis'))}` : ' in the registry or ChEMBL'}.`,
         entrySource(ever) ?? src,
+        true,
       )
-      p2(
-        joinBits([
-          f.topRung ? `highest organism ${f.topRung.organism}` : 'no organism recorded',
-          f.topRung?.kind,
-          `${asNumber(pick(v, 'matchedStudies')) ?? 0} matched studies`,
-        ]),
-      )
+      const qualification = joinBits([
+        f.topRung ? `highest organism ${f.topRung.organism}` : 'no organism recorded',
+        f.topRung?.kind,
+        `${asNumber(pick(v, 'matchedStudies')) ?? 0} matched studies`,
+      ])
+      if (qualification) facts.push({ label: 'What was searched', value: qualification })
       rows.push(...ladderRows(f))
       break
     }
@@ -1955,6 +2025,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     paragraphs: keep.map((i) => paragraphs[i] as string),
     bare: keep.map((i) => bare[i] as string),
     furniture: keep.map((i) => furniture[i] === true),
+    facts,
     rows,
   }
 }
@@ -2259,6 +2330,14 @@ export interface RegistrationLine {
    * Misuse of Drugs Act schedule has found something, and is not furniture.
    */
   absence?: string
+  /**
+   * True where the row belongs to the technical disclosure and never to a visible line (§13(6)).
+   *
+   * NCATS Inxight files a curated marketing record under the jurisdiction "unspecified". It names
+   * no jurisdiction and no register, so it is not a register line; it is kept, and the block paints
+   * it inside its closed disclosure.
+   */
+  disclosed?: boolean
   /** Application ids and curated marketing rows the summary line stands for (§3). */
   disclosure?: Record<string, unknown>
   provenance?: string[]
@@ -2287,6 +2366,17 @@ export interface InteractionRow {
   derivation?: string
   matchBasis?: string
   provenance?: Record<string, unknown>
+  /**
+   * A grouped curated row (§13(3)): one line per role over the enzymes and transporters the
+   * curated dataset recorded, in place of nine lines each naming one enzyme and one record id.
+   * `scripts/revamp/page_blocks.py` groups them, so the render, the loader and the page all read
+   * one already-grouped row and cannot disagree about the wording.
+   */
+  groupedRole?: string
+  groupedTargets?: string[]
+  groupedMagnitude?: boolean
+  /** The dataset record behind each grouped target: the technical disclosure only. */
+  groupedRecordIds?: string[]
 }
 
 export interface InteractionTierBlock {
@@ -2527,6 +2617,37 @@ function classMembershipInputs(derivation: string): string {
     .join(' × ')
 }
 
+/** "Substrate of", "Inhibitor of" — the curated dataset's role, as the line opens it (§13(3)). */
+function curatedRoleWord(role: string): string {
+  const word = role.trim()
+  return `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()} of`
+}
+
+/**
+ * "CYP1A2, 2A6, 2B6 and 3A4" — a shared name prefix written once (§13(3)).
+ *
+ * Nine enzymes of one family each carrying "Cytochrome P450" in full was the wall the reading
+ * found. Where every name in the list starts with the same family prefix the prefix is written on
+ * the first and dropped from the rest; where they do not, every name is written out.
+ */
+function abbreviateSharedPrefix(targets: readonly string[]): string {
+  const names = unique([...targets]).sort()
+  if (names.length === 0) return ''
+  const first = names[0] as string
+  const prefix = /^([A-Za-z]+)/.exec(first)?.[1]
+  if (prefix && prefix.length >= 3 && names.every((name) => name.startsWith(prefix))) {
+    const shortened = names.map((name, index) => (index === 0 ? name : name.slice(prefix.length)))
+    return joinPlainList(shortened.filter((name) => name.length > 0))
+  }
+  return joinPlainList(names)
+}
+
+/** The curated dataset a Tier B line cites, named rather than identified by record (§13(3)). */
+function curatedSourceName(row: InteractionRow): string | undefined {
+  if (row.ruleId === 'B-inxight-frdb' || row.source === 'inxight') return 'Inxight FRDB'
+  return row.source
+}
+
 /**
  * One interaction line, in the shape §4 fixes for its tier.
  *
@@ -2573,12 +2694,28 @@ export function interactionLine(
   }
 
   if (tier === 'B') {
+    /*
+     * §13(3): the enzyme and transporter rows are one line per role — "Substrate of CYP1A2, 2A6,
+     * 2B6, 2C19, 2C8, 2C9, 2D6, 2E1 and 3A4 (Inxight FRDB)" — rather than nine lines each naming
+     * one enzyme and its record id. The record ids are in the closed disclosure.
+     */
+    if (row.groupedRole && (row.groupedTargets ?? []).length > 0) {
+      return joinDots([
+        label,
+        joinCommas([
+          `${curatedRoleWord(row.groupedRole)} ${abbreviateSharedPrefix(row.groupedTargets ?? [])}`,
+          row.groupedMagnitude === true ? 'with a reported magnitude' : undefined,
+        ]),
+        curatedSourceName(row),
+      ])
+    }
     const body = curatedRoleAndMagnitude(row) ?? row.direction
-    const citation = row.sourceRecordId ? `Inxight ${row.sourceRecordId}` : undefined
+    // The dataset record id is a storage token and lives in the disclosure (§13(3)); the line
+    // names the dataset that recorded it.
     return joinDots([
       label,
       counterpart ? `${counterpart}: ${body || 'a curated row is recorded'}` : body,
-      citation || undefined,
+      curatedSourceName(row),
     ])
   }
 
@@ -2754,6 +2891,98 @@ export function printedDisplayName(displayName: string, synonyms: readonly Synon
 /** The recorded sentence of a computed section, exactly as the computing stage wrote it. */
 export function sectionSentenceText(entry: SectionSentence): string | undefined {
   return asString(pick(entry.values, 'sentence'))
+}
+
+/**
+ * A computed section as the page paints it (§13(7), §13(8)).
+ *
+ * The nearest-approved-neighbour section stated one comparison in one sentence — "Closest approved
+ * compound: Flurazepam (similarity 0.48); Flurazepam is approved (US, CA), generic available" —
+ * and the reading found it reading as a template with a name swapped in, because that is what a
+ * sentence built from four values is. The four values are rows. A prose sentence stays only where
+ * the maximum-common-substructure comparison named the substituent that differs, because that is a
+ * finding and not a value.
+ *
+ * The publication span and the originating organisation are one value each and are rows for the
+ * same reason. Everything else the computing stage wrote — the potency rank, target validation,
+ * target headwind — carries several values in one claim and stays prose.
+ */
+export function sectionSentenceParts(entry: SectionSentence): {
+  rows: RevealedRow[]
+  sentence?: string
+} {
+  const values = entry.values
+  const template = entry.templateId ?? ''
+  const rows: RevealedRow[] = []
+
+  if (template.startsWith('t3-neighbour-')) {
+    const neighbour = asString(pick(values, 'neighbourName'))
+    const similarity = asString(pick(values, 'similarityRendered', 'similarity'))
+    if (!neighbour)
+      return {
+        rows,
+        ...(sectionSentenceText(entry) ? { sentence: sectionSentenceText(entry) as string } : {}),
+      }
+    const status = asObject(pick(values, 'status')) ?? {}
+    const approvedIn = asArray(pick(status, 'approvedIn'))
+      .map((item) => asString(item))
+      .filter((item): item is string => Boolean(item))
+    const bits = [
+      approvedIn.length > 0 ? `approved ${approvedIn.join(', ')}` : undefined,
+      pick(status, 'withdrawn') === true ? 'withdrawn' : undefined,
+      pick(status, 'genericAvailable') === true
+        ? 'generic available'
+        : pick(status, 'genericAvailable') === false
+          ? 'no generic recorded'
+          : undefined,
+    ].filter((bit): bit is string => Boolean(bit))
+    rows.push({
+      label: 'Closest approved compound',
+      value: [neighbour, similarity ? `similarity ${similarity}` : undefined, ...bits]
+        .filter((bit): bit is string => Boolean(bit))
+        .join(' · '),
+    })
+    const substituent = asString(pick(values, 'substituent'))
+    const where = asString(pick(values, 'substituentLocation'))
+    if (substituent) {
+      return {
+        rows,
+        sentence: oneFullStop(
+          `It differs from ${neighbour} by a ${substituent} substituent${where ? ` ${where}` : ''}`,
+        ),
+      }
+    }
+    return { rows }
+  }
+
+  if (template === 't3-timeline-publication-span-v1') {
+    const first = asNumber(pick(values, 'firstYear'))
+    const last = asNumber(pick(values, 'lastYear'))
+    if (first !== undefined && last !== undefined) {
+      rows.push({
+        label: 'Publications (ChEMBL)',
+        value: first === last ? String(first) : `${first}\u2013${last}`,
+      })
+      return { rows }
+    }
+  }
+
+  if (template.startsWith('t3-timeline-originator')) {
+    const organisation = asString(pick(values, 'organisationRendered', 'organisation'))
+    if (organisation) {
+      rows.push({
+        label: 'Originating organisation',
+        value:
+          pick(values, 'noRecordAfter2020') === true
+            ? `${organisation} · no record after 2020`
+            : organisation,
+      })
+      return { rows }
+    }
+  }
+
+  const sentence = sectionSentenceText(entry)
+  return { rows, ...(sentence ? { sentence } : {}) }
 }
 
 /** The other record a computed sentence names, where the computing stage recorded one. */
@@ -3068,30 +3297,40 @@ export function groupRevealedRows(rows: readonly RevealedRow[]): RevealedRowGrou
 }
 
 /** One dated row of the withdrawn arc (R11), with the anchor text the template prints after it. */
-export interface ArcRow {
-  date?: string
-  label: string
-  value: string
-  /** The source the row cites, for the template to resolve to a link; the render prints its text. */
-  source?: { kind?: string; id?: string; sourceDate?: string }
+/** One register event, folded into the registration block (§13(2)). */
+export interface RegisterEvent {
+  sentence: string
+  fields: string[]
 }
 
 /**
- * The withdrawn arc (R11): the dated register rows that record what happened, each carrying the
- * register that states it. Nothing is narrated — a row exists only where a register wrote one.
+ * The register's own name, without the release number and without its table names.
  *
- * This lived in the template alone, so a withdrawn record painted rows the measured text did not
- * carry. It is here now, beside every other body builder, and the template calls it.
+ * `Open Targets 26.06 drug_warning` and `ChEMBL 37 molecule withdrawn_flag` name a register, a
+ * release and a column. §13(2) forbids the column: `drug_warning` and `withdrawn_flag` are storage
+ * vocabulary, and a reader meets the register that said it, not the table it was said in.
  */
-export function withdrawnArcRows(fields: Record<string, FieldEntry>): ArcRow[] {
-  const rows: ArcRow[] = []
-  const seen = new Set<string>()
-  const push = (row: ArcRow): void => {
-    const id = `${row.date ?? ''}|${row.label}|${row.value}`
-    if (seen.has(id)) return
-    seen.add(id)
-    rows.push(row)
+function registerNameOnly(source: string): string {
+  const kept: string[] = []
+  for (const token of source.split(/\s+/)) {
+    if (/^[0-9][0-9.]*$/.test(token)) continue
+    if (!/^[A-Z]/.test(token)) break
+    kept.push(token)
   }
+  return kept.join(' ') || source
+}
+
+/**
+ * The register events a page carries, each as one sentence in ordinary words (§13(2)).
+ *
+ * This replaces the "What the registers record" block, whose dated rows ("Open Targets 26.06
+ * drug_warning warningType Withdrawn; France; 1996; drug misuse") printed enum strings and
+ * duplicated the registration block beside them. The same recorded facts read as sentences here,
+ * inside the registration block, and identical events recorded by several registers merge into one
+ * line naming both.
+ */
+export function registerEventLines(fields: Record<string, FieldEntry>): RegisterEvent[] {
+  const out: RegisterEvent[] = []
 
   const approval = fields.approvalDate ?? fields.firstApproval
   if (approval && approval.state === 'present') {
@@ -3099,20 +3338,9 @@ export function withdrawnArcRows(fields: Record<string, FieldEntry>): ArcRow[] {
     const date = asString(value?.date ?? value?.year ?? approval.value)
     const register = asString(value?.register ?? value?.source)
     if (date && register) {
-      const first = asObject(asArray(approval.source)[0])
-      push({
-        date,
-        label: 'First approval',
-        value: register,
-        source: {
-          ...(asString(first?.kind) ? { kind: asString(first?.kind) as string } : {}),
-          ...(asString(first?.id) ? { id: asString(first?.id) as string } : {}),
-          ...((asString(first?.sourceDate) ?? approval.sourceDate)
-            ? {
-                sourceDate: (asString(first?.sourceDate) ?? approval.sourceDate) as string,
-              }
-            : {}),
-        },
+      out.push({
+        sentence: `First approved by ${registerNameOnly(register)} in ${date}.`,
+        fields: ['fields.approvalDate.value.date', 'fields.approvalDate.value.register'],
       })
     }
   }
@@ -3120,67 +3348,91 @@ export function withdrawnArcRows(fields: Record<string, FieldEntry>): ArcRow[] {
   const withdrawal = fields.withdrawal ?? fields.withdrawalStatus ?? fields.withdrawn
   if (withdrawal && withdrawal.state === 'present') {
     const value = asObject(withdrawal.value)
-    for (const item of asArray(value?.evidence).slice(0, 12)) {
+    /*
+     * One event per (where, when, why), with every register that recorded it named on the same
+     * line. Two registers carrying the same withdrawal were two rows in the retired block and are
+     * one sentence here.
+     */
+    const merged = new Map<
+      string,
+      { where?: string; when?: string; why?: string; sources: string[] }
+    >()
+    for (const item of asArray(value?.reasons)) {
       const row = asObject(item)
       if (!row) continue
-      const statement = asString(row.statement ?? row.statusVerbatim)
-      if (!statement) continue
-      const source = asString(row.source ?? row.register)
-      const date = asString(row.sourceDate ?? row.date)
-      push({
-        ...(date ? { date } : {}),
-        label: source ?? 'Register record',
-        value: statement,
-        source: {
-          ...(source ? { kind: source } : {}),
-          ...(asString(row.id) ? { id: asString(row.id) as string } : {}),
-          ...(date ? { sourceDate: date } : {}),
-        },
+      const where = asString(row.country ?? row.jurisdiction)
+      const when = asString(row.year ?? row.date)
+      // The register's own words for the reason, clamped as every other verbatim on the page is:
+      // a recall notice runs to a paragraph, and a paragraph inside a one-line event is a wall.
+      const whyRaw = asString(row.reason ?? row.reasonClass)
+      const why = whyRaw ? clampSentence(whyRaw, 200) : undefined
+      const source = asString(row.source ?? row.assertedBy)
+      const id = `${where ?? ''}|${when ?? ''}|${why ?? ''}`
+      const held = merged.get(id) ?? {
+        ...(where ? { where } : {}),
+        ...(when ? { when } : {}),
+        ...(why ? { why } : {}),
+        sources: [],
+      }
+      const named = source ? registerNameOnly(source) : undefined
+      if (named && !held.sources.includes(named)) held.sources.push(named)
+      merged.set(id, held)
+    }
+    for (const event of [...merged.values()].slice(0, 12)) {
+      const head = ['Withdrawn', event.where ? `in ${event.where}` : undefined]
+        .filter((bit): bit is string => Boolean(bit))
+        .join(' ')
+      /*
+       * The register's stated reason is quoted, because it is the register speaking. Several
+       * withdrawal notices are written as a judgement — "Not safe or effective for intended use" —
+       * and unquoted that reads as this site calling something unsafe, which Operating Rule 9
+       * forbids of generated text. Quoted, it is what the register wrote, exactly as a label's
+       * interaction sentence and a registry trial title are quoted everywhere else on the page.
+       */
+      const sentence = [
+        [head, event.when, event.why ? `for "${event.why}"` : undefined]
+          .filter((bit): bit is string => Boolean(bit))
+          .join(', '),
+        event.sources.length > 0 ? ` (${event.sources.sort().join('; ')})` : '',
+      ].join('')
+      out.push({
+        sentence: oneFullStop(sentence),
+        fields: [
+          'fields.withdrawal.value.reasons[].country',
+          'fields.withdrawal.value.reasons[].year',
+          'fields.withdrawal.value.reasons[].reason',
+          'fields.withdrawal.value.reasons[].source',
+        ],
+      })
+    }
+    if (merged.size === 0 && value?.withdrawn === true) {
+      // A register that raised the flag and published no reason says exactly that, and the page
+      // says it too rather than leaving the withdrawal unexplained or inventing a cause.
+      const sources = unique(
+        asArray(value?.evidence)
+          .map((item) => asString(asObject(item)?.source ?? asObject(item)?.register))
+          .filter((name): name is string => Boolean(name))
+          .map(registerNameOnly),
+      ).sort()
+      const where = unique(
+        asArray(value?.jurisdictions)
+          .map((item) => asString(item))
+          .filter((item): item is string => Boolean(item)),
+      )
+      const when = asString(value?.date)
+      const head = ['Withdrawn', where.length > 0 ? `in ${joinList(where)}` : undefined, when]
+        .filter((bit): bit is string => Boolean(bit))
+        .join(', ')
+      out.push({
+        sentence: oneFullStop(
+          `${head}; no reason is published${sources.length > 0 ? ` (${sources.join('; ')})` : ''}`,
+        ),
+        fields: ['fields.withdrawal.value.withdrawn', 'fields.withdrawal.value.evidence[].source'],
       })
     }
   }
 
-  const regulatory = fields.regulatory ?? fields.regulatoryStatus
-  if (regulatory && regulatory.state === 'present') {
-    const value = asObject(regulatory.value) ?? {}
-    for (const [jurisdiction, raw] of Object.entries(value).sort(([a], [b]) =>
-      byJurisdiction(a, b),
-    )) {
-      const record = asObject(raw)
-      const status = asString(record?.status)
-      if (!status || status === 'unknown') continue
-      const evidence = [...asArray(record?.evidence), ...asArray(record?.records)]
-      for (const item of evidence.slice(0, 4)) {
-        const row = asObject(item)
-        if (!row) continue
-        const verbatim = asString(row.statusVerbatim ?? row.statement)
-        if (!verbatim) continue
-        const date = asString(row.sourceDate)
-        const register = asString(row.register ?? row.source)
-        push({
-          ...(date ? { date } : {}),
-          label: `${jurisdiction}${register ? ` · ${register}` : ''}`,
-          value: verbatim,
-          source: {
-            ...(register ? { kind: register } : {}),
-            ...(asString(row.recordId ?? row.id)
-              ? { id: asString(row.recordId ?? row.id) as string }
-              : {}),
-            ...(date ? { sourceDate: date } : {}),
-          },
-        })
-      }
-    }
-  }
-
-  return rows
-    .sort((a, b) => {
-      if (a.date && b.date) return a.date.localeCompare(b.date)
-      if (a.date) return -1
-      if (b.date) return 1
-      return 0
-    })
-    .slice(0, 16)
+  return out
 }
 
 /* ------------------------------------------------------ page rendering */
@@ -3419,8 +3671,15 @@ export function renderPage(
     // holds a page for it, and the name it prints is that page's own printed name — not the name
     // this sentence was written with. The measured text carries the same words.
     const counterpartName = bundle.names.get(note.counterpartKey ?? '')
+    /*
+     * §13(9): the related record's name is printed once, as the link text. The note's own sentence
+     * already names it in most shapes, and appending the link text after it printed the name
+     * twice in a row — "…on the Heparin sodium page. Heparin sodium".
+     */
     push(
-      counterpartName ? `${note.sentence} ${counterpartName}` : note.sentence,
+      counterpartName && !note.sentence.includes(counterpartName)
+        ? `${note.sentence} ${counterpartName}`
+        : note.sentence,
       false,
       note.fields,
     )
@@ -3436,7 +3695,7 @@ export function renderPage(
     const body = buildBlockBody(q, bundle, recorder.facts)
     // A block whose builder wrote nothing renders nothing: §7 stops a dose-response section whose
     // quotations name a different compound, and a heading over an empty body is forbidden by §1.
-    if (body.paragraphs.length === 0 && body.rows.length === 0) return
+    if (body.paragraphs.length === 0 && body.facts.length === 0 && body.rows.length === 0) return
     questionOrdinal += 1
     // The block instance, numbered in render order (`q1`, `q2`, …), so the draw groups the
     // sentences a reader meets under one question and no others (§12).
@@ -3445,6 +3704,10 @@ export function renderPage(
     // The question itself, marked a heading: it is the block's title, and §11 keeps the slop
     // draw's template test off it while leaving every other check on it.
     push(q.text, false, fields, 'sentence', false, true)
+    // §13(7): the block's own values, as rows, painted under the heading and above the prose.
+    for (const row of body.facts) {
+      push([row.label, row.identifier, row.value].filter(Boolean).join(' '), false, fields, 'row')
+    }
     body.paragraphs.forEach((p, index) =>
       push(p, false, fields, 'sentence', body.furniture[index] === true),
     )
@@ -3470,24 +3733,10 @@ export function renderPage(
   for (const q of supervision) renderQuestion(q)
 
   /*
-   * The withdrawn arc (R11): the dated rows a register wrote, between the supervision block and
-   * the registers, which is exactly where `components/dossier/corpus/CorpusDossierPage.tsx` paints
-   * it. The order here is the painted order, and §11 makes that a tested rule.
+   * §13(2) retired the "What the registers record" block. Its dated rows printed the registers'
+   * own column names beside a status the registration block already carried. The events fold into
+   * that block below, one sentence per event, in words.
    */
-  group = 'withdrawn-arc'
-  const arc = bundle.withdrawn ? withdrawnArcRows(bundle.fields) : []
-  if (arc.length > 0) {
-    push('What the registers record', true)
-    for (const row of arc) {
-      const anchorText = anchor(row.source)
-      push(
-        [row.date, `${row.label} ${row.value}`, anchorText].filter(Boolean).join(' '),
-        false,
-        ['fields.regulatory.value', 'fields.withdrawal.value.evidence[].statement'],
-        'row',
-      )
-    }
-  }
 
   /* ---- Where it's registered (§2, §3): every page, including a Tier 3 stub ------------------ */
   group = 'registration'
@@ -3499,24 +3748,45 @@ export function renderPage(
   )
   if (registration.length > 0) {
     push("Where it's registered", true)
-    const stated = registration.filter((row) => !row.absence)
-    const absent = registration.filter((row) => Boolean(row.absence))
+    // §13(6): a row the block stage marked disclosed is never a visible line; it is painted in the
+    // block's own closed disclosure, below the absence table, exactly as the template paints it.
+    const visible = registration.filter((row) => row.disclosed !== true)
+    const disclosedRows = registration.filter((row) => row.disclosed === true)
+    const stated = visible.filter((row) => !row.absence)
+    const absent = visible.filter((row) => Boolean(row.absence))
     const mapped = stated.filter((row) => row.jurisdiction !== 'OTHER')
     const other = stated.filter((row) => row.jurisdiction === 'OTHER')
-    const line = (row: RegistrationLine): void => {
-      push(registrationLineText(row), false, row.provenance ?? [])
-      // §3: the applications collapse to the one summary line above, and their ids sit in a
-      // disclosure. The disclosure is delivered in the server HTML, so a crawler and this
-      // measurement read the ids; the template prints one per row, and so does this.
+    /**
+     * The rows the register's own disclosure carries: the application ids (§3) and, on a curated
+     * NCATS row, the upstream files it was stitched from (§13(6)). Both are delivered in the server
+     * HTML, so a crawler and this measurement read them; `RegisterSummary` prints the same rows in
+     * the same order.
+     */
+    const disclosureRows = (row: RegistrationLine): void => {
       for (const application of registerApplicationIds(row)) {
         push(application, false, row.provenance ?? [], 'row')
       }
+      const upstream = asArray(pick(row.disclosure, 'upstreamRegisters'))
+        .map((item) => asString(item))
+        .filter((item): item is string => Boolean(item))
+      if (upstream.length > 0) {
+        push(`Upstream registers ${upstream.join(', ')}`, false, row.provenance ?? [], 'row')
+      }
+    }
+    const line = (row: RegistrationLine): void => {
+      push(registrationLineText(row), false, row.provenance ?? [])
+      disclosureRows(row)
     }
     for (const row of mapped) line(row)
     if (other.length > 0) {
       push('Other registers', true)
       for (const row of other) line(row)
     }
+    /*
+     * The register events (§13(2)): an approval or a withdrawal the registers dated, one sentence
+     * each, with every register that recorded the same event named on the same line.
+     */
+    for (const event of registerEventLines(bundle.fields)) push(event.sentence, false, event.fields)
     /*
      * The painted order (§11). `components/dossier/corpus/RegistrationBlock.tsx` reads these rows
      * out of `page_controlled`, which has no order of its own, and sorts them; the render sorts
@@ -3559,26 +3829,49 @@ export function renderPage(
         push(absenceRowText(row), false, row.provenance ?? [], 'row', true)
       }
     }
+    /*
+     * §13(6): the curated records NCATS files under "unspecified", and the upstream files it
+     * stitched to build them. Neither names a jurisdiction or a register. They are delivered in the
+     * server HTML inside a closed disclosure, so a crawler and this measurement read them, and the
+     * template paints them in the same place and the same order.
+     */
+    for (const row of disclosedRows) {
+      push(`${row.label} ${row.line}`, false, row.provenance ?? [], 'row')
+      const upstream = asArray(pick(row.disclosure, 'upstreamRegisters'))
+        .map((item) => asString(item))
+        .filter((item): item is string => Boolean(item))
+      if (upstream.length > 0) {
+        push(`Upstream registers ${upstream.join(', ')}`, false, row.provenance ?? [], 'row')
+      }
+    }
   }
 
   /* ---- Interactions (§4) -------------------------------------------------------------------- */
   group = 'interactions'
   const tiers = blocks?.interactions.tiers ?? {}
   const interactionLines: Array<{ sentence: string; fields: string[] }> = []
+  // §13(3): the visible block never repeats a line. Two stored rows that render the same words are
+  // the same statement, and the page states it once.
+  const interactionSeen = new Set<string>()
+  const pushInteraction = (sentence: string, fields: string[]): void => {
+    if (sentence.trim().length === 0 || interactionSeen.has(sentence)) return
+    interactionSeen.add(sentence)
+    interactionLines.push({ sentence, fields })
+  }
   for (const tier of ['A', 'B', 'C'] as const) {
     const held = tiers[tier]
     if (!held) continue
     for (const row of held.inline) {
-      interactionLines.push({
-        sentence: interactionLine(tier, row, { controlled, quote: true }),
-        fields: interactionProvenance(row),
-      })
+      pushInteraction(
+        interactionLine(tier, row, { controlled, quote: true }),
+        interactionProvenance(row),
+      )
     }
     for (const row of held.disclosed) {
-      interactionLines.push({
-        sentence: interactionLine(tier, row, { controlled, quote: false }),
-        fields: interactionProvenance(row),
-      })
+      pushInteraction(
+        interactionLine(tier, row, { controlled, quote: false }),
+        interactionProvenance(row),
+      )
     }
     const shown = held.inline.length + held.disclosed.length
     if (held.total > shown) {
@@ -3629,14 +3922,18 @@ export function renderPage(
         const held = tiers[tier]
         if (!held) continue
         for (const row of [...held.inline, ...held.disclosed]) {
-          const ids = [row.ruleId, row.setId ?? row.sourceRecordId].filter(Boolean).join(' · ')
+          // §13(3): a grouped curated line stands for several dataset records, and every one of
+          // them is named here, in the closed disclosure, and nowhere above it.
+          const grouped = (row.groupedRecordIds ?? []).join(' · ')
+          const ids =
+            grouped || [row.ruleId, row.setId ?? row.sourceRecordId].filter(Boolean).join(' · ')
           if (!ids) continue
-          push(
-            `${row.counterpartName ?? INTERACTION_TIER_LABELS[tier]} ${ids}`,
-            false,
-            interactionProvenance(row),
-            'row',
-          )
+          const rowLabel =
+            row.counterpartName ??
+            (row.groupedRole
+              ? `${curatedRoleWord(row.groupedRole)} ${abbreviateSharedPrefix(row.groupedTargets ?? [])}`
+              : (INTERACTION_TIER_LABELS[tier] as string))
+          push(`${rowLabel} ${ids}`, false, interactionProvenance(row), 'row')
           if (row.counterpartKey && row.counterpartName && bundle.names.has(row.counterpartKey)) {
             push(row.counterpartName, false, interactionProvenance(row), 'row')
           }
@@ -3694,22 +3991,34 @@ export function renderPage(
 
   /* ---- Tier 3 computed sections (§8) --------------------------------------------------------- */
   group = 'computed'
+  const computedRows: Array<{ row: RevealedRow; fields: string[] }> = []
   const computed: Array<{ sentence: string; fields: string[] }> = []
   for (const section of ['neighbour', 'potency', 'timeline'] as const) {
     for (const entry of blocks?.sections[section] ?? []) {
-      const sentence = sectionSentenceText(entry)
-      if (!sentence) continue
+      const parts = sectionSentenceParts(entry)
+      const fields = sectionSentenceFields(entry)
+      for (const row of parts.rows) computedRows.push({ row, fields })
+      if (!parts.sentence) continue
       const counterpartName = bundle.names.get(
         sectionSentenceCounterpart(entry).counterpartKey ?? '',
       )
+      // §13(9): the counterpart's name is the link text and is printed once. A sentence that
+      // already names it does not have it appended a second time.
       computed.push({
-        sentence: counterpartName ? `${sentence} ${counterpartName}` : sentence,
-        fields: sectionSentenceFields(entry),
+        sentence:
+          counterpartName && !parts.sentence.includes(counterpartName)
+            ? `${parts.sentence} ${counterpartName}`
+            : parts.sentence,
+        fields,
       })
     }
   }
-  if (computed.length > 0) {
+  if (computedRows.length > 0 || computed.length > 0) {
     push('What the structure and the activity record show', true)
+    // §13(7): the values first, as rows; then whatever the comparison found that is not a value.
+    for (const entry of computedRows) {
+      push(`${entry.row.label} ${entry.row.value}`, false, entry.fields, 'row')
+    }
     for (const entry of computed) push(entry.sentence, false, entry.fields)
   }
 

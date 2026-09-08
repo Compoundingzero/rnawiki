@@ -10,6 +10,7 @@
  * value is marked as interpretation instead of being given a manufactured citation (B5).
  */
 import type { CorpusBlock, CorpusLadderRung, CorpusParagraph } from '@/lib/corpus/dossier-page'
+import type { RevealedRow } from '@/lib/corpus/page-text'
 import { EvidenceDisclosure } from './EvidenceDisclosure'
 import { OrganismLadder } from './OrganismLadder'
 import { ProvenanceAnchor } from './ProvenanceAnchor'
@@ -37,7 +38,7 @@ function Paragraph({ paragraph }: { paragraph: CorpusParagraph }) {
     */
     <p
       className="cd-paragraph"
-      data-anchored={paragraph.anchor ? 'true' : 'false'}
+      {...(paragraph.anchor ? { 'data-anchored': 'true' } : {})}
       {...(paragraph.furniture ? { 'data-furniture': 'true' } : {})}
     >
       {paragraph.interpretation ? <span className="cd-interpretation">Interpretation</span> : null}
@@ -49,6 +50,31 @@ function Paragraph({ paragraph }: { paragraph: CorpusParagraph }) {
         </>
       ) : null}
     </p>
+  )
+}
+
+/**
+ * The block's own values, painted under the question and above the prose (§13 item 7).
+ *
+ * "25 of 29 completed trials posted no result: NCT…" and "First publication 2013, last 2013" are
+ * data, and a sentence built around one value is a frame. These are the same values as labelled
+ * rows: visible without opening anything, and markup rather than prose, so the template test does
+ * not apply to them.
+ */
+function Facts({ blockId, rows }: { blockId: string; rows: RevealedRow[] }) {
+  if (rows.length === 0) return null
+  return (
+    <dl className="cd-facts">
+      {rows.map((row, index) => (
+        <div className="cd-fact" key={`${blockId}-f${index}`}>
+          <dt>{row.label}</dt>
+          <dd>
+            {row.identifier ? <span className="cd-row-id">{row.identifier}</span> : null}
+            {row.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
   )
 }
 
@@ -81,6 +107,7 @@ export function QuestionBlock({
           {block.question}
         </h2>
         <hr className="cd-hairline" />
+        <Facts blockId={block.id} rows={block.facts} />
         {block.paragraphs.map((paragraph, index) => (
           <Paragraph key={`${block.id}-p${index}`} paragraph={paragraph} />
         ))}

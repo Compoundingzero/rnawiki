@@ -32,7 +32,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from corpus_join import load_corpus_index, normalise_name  # noqa: E402
+from corpus_join import full_normalise_name, load_corpus_index, normalise_name  # noqa: E402
 from ema_map import UniiResolver, strict_name  # noqa: E402
 
 FIELD = "regulatory.AU"
@@ -214,8 +214,14 @@ def main(pull_date: str) -> int:
                         },
                     )["entries"].append(record_id)
 
-                norm = normalise_name(raw_name, idx.salts)
-                keys = idx.name_to_keys.get(norm) if len(norm) >= 3 else None
+                # Mapping rule (d), tightened by §13 item 12: the substance as listed must equal a
+                # FULL normalised synonym of the page. `normalise_name` strips trailing counter-ion
+                # words, which collapses "SODIUM PHOSPHATE", "SODIUM DIACETATE" and "SODIUM
+                # CITRATE" all to "sodium"; on that rule the Poisons Standard's phosphate and
+                # diacetate entries were rendered on the trisodium citrate page as Schedules 3, 4
+                # and 5. A shared token never matches now: the whole name must match.
+                norm = full_normalise_name(raw_name)
+                keys = idx.full_name_to_keys.get(norm) if len(norm) >= 3 else None
                 if keys:
                     substance_outcome["name-candidate"] += 1
                     for key in keys:

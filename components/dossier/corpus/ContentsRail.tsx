@@ -2,7 +2,8 @@
  * The contents rail (dossier template, "Contents rail"; V2, Vercel V1-V8).
  *
  * 240 px, sticky, at 1024 px and above, listing every question and — one level in — the groups the
- * revealed layer holds. Labels wrap to as many lines as they need and are never truncated, because
+ * revealed layer holds. A rail link carries no class and no data attribute: the CSS reaches it
+ * through the rail it is in, and the document's one script reads the fragment in its own `href`. Labels wrap to as many lines as they need and are never truncated, because
  * a truncated question is a different question. The active marker is a 2 px left bar driven by the
  * block whose top crossed the header line; the script that moves it is the page's only client
  * component and it reads the DOM rather than being handed the page's data.
@@ -25,16 +26,12 @@ function Items({ blocks }: { blocks: CorpusBlock[] }) {
         const groups = block.groups.filter((group) => group.label !== undefined)
         return (
           <li key={block.id}>
-            <a className="cd-rail-link" data-corpus-rail={block.id} href={`#${block.id}`}>
-              {block.question}
-            </a>
+            <a href={`#${block.id}`}>{block.question}</a>
             {groups.length > 0 ? (
               <ol className="cd-rail-sub">
                 {groups.slice(0, 4).map((group) => (
                   <li key={group.id}>
-                    <a className="cd-rail-link" data-corpus-rail={block.id} href={`#${group.id}`}>
-                      {group.label}
-                    </a>
+                    <a href={`#${group.id}`}>{group.label}</a>
                   </li>
                 ))}
               </ol>

@@ -960,10 +960,11 @@ describe('corpus record structured data', () => {
               interpretation: false,
             },
           ],
+          facts: [],
           groups: [],
         },
       ],
-      arc: [],
+      registerEvents: [],
       identifiers: [
         {
           field: 'unii',

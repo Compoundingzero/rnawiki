@@ -5,8 +5,6 @@
  * page that carries the same relation, which is exactly the repetition the overlap harness
  * measures. A relation renders only where the other record exists, so no row points nowhere.
  */
-import Link from 'next/link'
-
 import type { CorpusRelationRow } from '@/lib/corpus/dossier-page'
 
 export function RelationsRows({ relations }: { relations: CorpusRelationRow[] }) {
@@ -21,7 +19,7 @@ export function RelationsRows({ relations }: { relations: CorpusRelationRow[] })
           <li key={`${relation.label}-${relation.name}-${index}`}>
             <span>{relation.label}</span>
             {relation.slug ? (
-              <Link href={`/d/${relation.slug}`}>{relation.name}</Link>
+              <a href={`/d/${relation.slug}`}>{relation.name}</a>
             ) : (
               <span>{relation.name}</span>
             )}
