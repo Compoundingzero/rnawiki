@@ -11,11 +11,14 @@
  *   --in <dir>               input directory, default data/revamp/hubs/load
  *   --load-dir <dir>         marker directory, default data/revamp/hubs/load/markers
  *   --batch-size n           rows per insert statement, default 500
+ *   --duplicate-holds <csv>  the §13(14) hold file, default data/revamp/identity/duplicate-holds.csv
  *   --allow-working-database permit writes to rnawiki_corpus_completion (refused by default)
  *   --production-confirmed   required before any write to a remote database
  *
  * This script moves rows. It decides nothing: every value it writes was produced by
- * `scripts/revamp/hubs_build.py` from stored fields and is copied verbatim. A member whose page has
+ * `scripts/revamp/hubs_build.py` from stored fields, or — for the §13(14) duplicate hold — by
+ * `scripts/revamp/duplicate_holds.py` from the rendered check's own measurement, and is copied
+ * verbatim. A member whose page has
  * no `corpus_pages` row is skipped and counted, never invented; a hub left with fewer than five
  * loadable members is skipped whole, because `docs/specs/hubs.md` §1 sets five as the floor and a
  * four-member hub is not a hub.
@@ -66,6 +69,7 @@ const HUB_COLUMNS = [
   'relevance',
   'rank_score',
   'first_batch',
+  'duplicate_hold_of',
 ] as const
 
 const MEMBER_COLUMNS = [
@@ -105,6 +109,58 @@ const ALIAS_COLUMNS = [
   'shared_members',
   'alias_member_count',
 ] as const
+
+/**
+ * The hub rows of `data/revamp/identity/duplicate-holds.csv` (§13 item 14 as §14 item 14 applies
+ * it to hubs).
+ *
+ * `scripts/revamp/duplicate_holds.py --kind hub` measures the two sides and writes the file; this
+ * reads it and copies the survivor's `hub_id` onto the held hub, exactly as
+ * `scripts/corpus-20k/load/materialise.ts` copies a page's hold. Nothing is decided here. A
+ * missing file is not an error — it means the rendered check flagged no hub pair. A row naming a
+ * hub this load is not writing is counted and dropped, because a hold pointing at a hub the
+ * database does not carry would render a dead link.
+ */
+function readHubDuplicateHolds(text: string): Map<string, string> {
+  const out = new Map<string, string>()
+  const [headerLine, ...rest] = text.split(/\r?\n/).filter((line) => line.trim().length > 0)
+  if (headerLine === undefined) return out
+  const header = splitCsvRow(headerLine)
+  for (const line of rest) {
+    const cells = splitCsvRow(line)
+    const row = new Map(header.map((name, index) => [name, cells[index] ?? '']))
+    if ((row.get('kind') ?? 'page').trim() !== 'hub') continue
+    const held = (row.get('held_key') ?? '').trim()
+    const link = (row.get('link_key') ?? '').trim()
+    if (!held || !link) continue
+    out.set(held, link)
+  }
+  return out
+}
+
+/** One CSV row, with the quoting `csv.DictWriter` produces: doubled quotes inside a quoted cell. */
+function splitCsvRow(line: string): string[] {
+  const cells: string[] = []
+  let cell = ''
+  let quoted = false
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index] as string
+    if (quoted) {
+      if (character === '"') {
+        if (line[index + 1] === '"') {
+          cell += '"'
+          index += 1
+        } else quoted = false
+      } else cell += character
+    } else if (character === '"') quoted = true
+    else if (character === ',') {
+      cells.push(cell)
+      cell = ''
+    } else cell += character
+  }
+  cells.push(cell)
+  return cells
+}
 
 function flag(name: string): boolean {
   return process.argv.includes(`--${name}`)
@@ -186,6 +242,9 @@ async function main(): Promise<void> {
   const membersFile = join(inputDir, 'hub-members.ndjson')
   const synthesesFile = join(inputDir, 'hub-syntheses.ndjson')
   const aliasesFile = join(inputDir, 'hub-aliases.ndjson')
+  const holdsFile = resolve(
+    option('duplicate-holds') ?? join(ROOT, 'data', 'revamp', 'identity', 'duplicate-holds.csv'),
+  )
 
   const connectionString = process.env.DATABASE_URL
   if (!connectionString) throw new Error('DATABASE_URL is not set.')
@@ -207,14 +266,19 @@ async function main(): Promise<void> {
   const memberRowsRaw = await readRows(membersFile)
   const synthesisRows = await readRows(synthesesFile)
   const aliasRows = await readRows(aliasesFile)
+  const holdsText = await readFile(holdsFile, 'utf8').catch(() => '')
+  const holds = readHubDuplicateHolds(holdsText)
+  // The holds file is part of what the load writes, so a hold added after a load is not "already
+  // loaded": it changes the digest and the next run applies it.
   const digest = await digestOf([hubsFile, membersFile, synthesesFile, aliasesFile])
+  const digestWithHolds = createHash('sha256').update(digest).update(holdsText).digest('hex')
   const target = loadTargetFingerprint(connectionString)
   const markerPath = join(loadDir, 'hubs.json')
 
   const existing = await readFile(markerPath, 'utf8').catch(() => null)
   if (existing) {
     const marker = JSON.parse(existing) as { digest?: string; target?: string }
-    if (marker.digest === digest && marker.target === target) {
+    if (marker.digest === digestWithHolds && marker.target === target) {
       process.stdout.write(
         `Hubs already loaded against this database from these inputs (${markerPath}). Nothing to do.\n`,
       )
@@ -232,6 +296,8 @@ async function main(): Promise<void> {
     skippedMembers: 0,
     skippedHubs: 0,
     skippedAliases: 0,
+    hubsHeldNoindexFollow: 0,
+    skippedHolds: 0,
   }
   try {
     // A member whose page is not in this database cannot be linked, and a link that 404s is worse
@@ -264,11 +330,18 @@ async function main(): Promise<void> {
       const hubId = String(row.hub_id)
       approvedPerHub.set(hubId, (approvedPerHub.get(hubId) ?? 0) + 1)
     }
-    const hubsToWrite = keptHubs.map((row) => ({
-      ...row,
-      member_count: perHub.get(String(row.hub_id)) ?? 0,
-      approved_count: approvedPerHub.get(String(row.hub_id)) ?? 0,
-    }))
+    const hubsToWrite = keptHubs.map((row) => {
+      const survivor = holds.get(String(row.hub_id)) ?? null
+      const carried = survivor !== null && kept.has(survivor) ? survivor : null
+      if (survivor !== null && carried === null) counters.skippedHolds += 1
+      if (carried !== null) counters.hubsHeldNoindexFollow += 1
+      return {
+        ...row,
+        member_count: perHub.get(String(row.hub_id)) ?? 0,
+        approved_count: approvedPerHub.get(String(row.hub_id)) ?? 0,
+        duplicate_hold_of: carried,
+      }
+    })
     const membersToWrite = loadable.filter((row) => kept.has(String(row.hub_id)))
     const synthesesToWrite = synthesisRows.filter((row) => kept.has(String(row.hub_id)))
     counters.hubs = hubsToWrite.length
@@ -297,7 +370,7 @@ async function main(): Promise<void> {
     await writeFile(
       markerPath,
       `${JSON.stringify(
-        { digest, target, written: new Date().toISOString(), ...counters },
+        { digest: digestWithHolds, target, written: new Date().toISOString(), ...counters },
         null,
         1,
       )}\n`,

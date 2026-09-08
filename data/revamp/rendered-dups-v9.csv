@@ -8121,7 +8121,6 @@ chembl93687,xr-11576,390,0.5705,false,false,noindex-sample,noindex-sample
 cmpd-25,thiolactomycin,390,0.5705,false,false,noindex-sample,noindex-sample
 gsk-864,microxine,390,0.5705,false,false,noindex-sample,noindex-sample
 microxine,xr-11576,390,0.5705,false,false,noindex-sample,noindex-sample
-target/hdac8,target/histone-deacetylase-1-histone-deacetylase-1,390,0.5703,false,false,hub,hub
 2-methylamino-triazine-63,chembl105570,390,0.5695,false,false,noindex-sample,noindex-sample
 2-methylamino-triazine-63,chembl1087014,390,0.5695,false,false,noindex-sample,noindex-sample
 2-methylamino-triazine-63,chembl1094838,390,0.5695,false,false,noindex-sample,noindex-sample
@@ -23856,7 +23855,6 @@ chembl93687,xr-11576,1280,0.5705,false,false,noindex-sample,noindex-sample
 cmpd-25,thiolactomycin,1280,0.5705,false,false,noindex-sample,noindex-sample
 gsk-864,microxine,1280,0.5705,false,false,noindex-sample,noindex-sample
 microxine,xr-11576,1280,0.5705,false,false,noindex-sample,noindex-sample
-target/hdac8,target/histone-deacetylase-1-histone-deacetylase-1,1280,0.5703,false,false,hub,hub
 2-methylamino-triazine-63,chembl105570,1280,0.5695,false,false,noindex-sample,noindex-sample
 2-methylamino-triazine-63,chembl1087014,1280,0.5695,false,false,noindex-sample,noindex-sample
 2-methylamino-triazine-63,chembl1094838,1280,0.5695,false,false,noindex-sample,noindex-sample

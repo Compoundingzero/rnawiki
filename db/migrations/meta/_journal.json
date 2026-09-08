@@ -225,6 +225,13 @@
       "when": 1788848974876,
       "tag": "0031_corpus_duplicate_holds_and_hub_aliases",
       "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1788896972447,
+      "tag": "0032_hub_duplicate_holds",
+      "breakpoints": true
     }
   ]
 }

@@ -1851,6 +1851,9 @@ async function readDuplicateHolds(file: string, counters: Counters): Promise<Map
     return out
   }
   for (const row of parseCsv(text)) {
+    // The same file carries the hub holds §14(14) adds; `scripts/revamp/hubs_load.ts` reads those.
+    // A hub id is never a page key, but the kind is read rather than relied on not to collide.
+    if ((row.kind?.trim() || 'page') !== 'page') continue
     const key = row.held_key?.trim()
     const link = row.link_slug?.trim()
     if (!key || !link) continue

@@ -1,8 +1,8 @@
 {
   "schema": "rnawiki-revamp-rendered-dup-check/v1",
   "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
-  "at": "2026-09-08T17:42:58Z",
-  "baseUrl": "http://127.0.0.1:3199",
+  "at": "2026-09-08T20:45:36Z",
+  "baseUrl": "http://127.0.0.1:3207",
   "widths": [
     390,
     1280
@@ -20,11 +20,11 @@
   "rendered": {
     "indexable": 1041,
     "noindexSample": 997,
-    "hubs": 710
+    "hubs": 709
   },
   "sets": {
     "indexableRequested": 1048,
-    "hubsRequested": 710,
+    "hubsRequested": 709,
     "noindexSampleRequested": 1000,
     "noindexFrame": 27636,
     "sitemapChildren": [
@@ -46,17 +46,17 @@
   },
   "pagesDroppedOnIdentityCheck": 2,
   "pagesRenderedThisRun": 1686,
-  "pagesFromCache": 1064,
+  "pagesFromCache": 1063,
   "renderCounters": {
-    "cached": 1064,
+    "cached": 1063,
     "pages dropped: no 200 response at both widths": 8,
     "rendered": 1686,
     "requests logged": 3380
   },
   "perWidth": {
     "390": {
-      "pagesScored": 2748,
-      "pairsFlagged": 19827,
+      "pagesScored": 2747,
+      "pairsFlagged": 19826,
       "indexablePairsFlagged": 41,
       "namedClassProbe": {
         "biosimilar": {
@@ -74,8 +74,8 @@
       }
     },
     "1280": {
-      "pagesScored": 2748,
-      "pairsFlagged": 19827,
+      "pagesScored": 2747,
+      "pairsFlagged": 19826,
       "indexablePairsFlagged": 41,
       "namedClassProbe": {
         "biosimilar": {
@@ -93,9 +93,9 @@
       }
     }
   },
-  "pairsFlagged": 39654,
+  "pairsFlagged": 39652,
   "indexablePairsFlagged": 82,
-  "hubPairsFlagged": 2,
+  "hubPairsFlagged": 0,
   "hubToPagePairsFlagged": 0,
   "reasons": {
     "stub-template": {
@@ -103,7 +103,7 @@
       "indexablePairs": 6
     },
     "identical-trial-set": {
-      "pairs": 34,
+      "pairs": 32,
       "indexablePairs": 30
     },
     "biosimilar": {
@@ -116,7 +116,7 @@
     }
   },
   "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision, [data-furniture]",
-  "runtimeMinutes": 4.11,
+  "runtimeMinutes": 7.6,
   "outputs": {
     "pairs": "data/revamp/rendered-dups-v9-prior-set.csv",
     "cache": "data/revamp/rendered-text",

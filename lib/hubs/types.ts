@@ -57,6 +57,15 @@ export interface HubRecord {
   relevance: number
   rankScore: number
   firstBatch: boolean
+  /**
+   * The hub this one is held against as a rendered duplicate (§13 item 14, §14 item 14).
+   *
+   * Two hubs measuring at or above 0.5 on the rendered check are nearly the same page. The one
+   * with the smaller member set is `noindex,follow`, is out of the hubs sitemap and carries a link
+   * to the other, until Felix decides which of the two the corpus keeps. Absent on every hub that
+   * is not held.
+   */
+  duplicateHoldOf?: { type: HubType; slug: string; name: string }
 }
 
 /** One comparison-table row: values only, in the §2 item 2 column order. */

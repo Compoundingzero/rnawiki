@@ -32,13 +32,21 @@ export function hubDocumentResponse(page: HubPage): Promise<Response> {
   const description =
     `${hub.definition} ${hub.memberCount} records in this corpus, ` +
     `${hub.approvedCount} approved in at least one register.`
+  /*
+   * §13(14) applied to hubs by §14(14): the rendered duplicate check measured this group and one
+   * other at or above 0.5 on their reading text after the member-set dedupe. This one holds the
+   * smaller member set, so it is `noindex,follow` until Felix decides which of the two the corpus
+   * keeps. It keeps every link it carries — the hold is about what a search engine indexes, not
+   * about what a reader can reach.
+   */
+  const held = hub.duplicateHoldOf
   return documentResponse(
     <DocumentShell
       analyticsMeasurementId={measurementId()}
       canonicalPath={`/h/${hub.type}/${hub.slug}`}
       description={description}
       ogType="website"
-      robots={{ index: true, follow: true }}
+      robots={{ index: held === undefined, follow: true }}
       title={`${hub.name}: ${hub.memberCount} records | RNAWiki`}
     >
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-10">
@@ -63,6 +71,14 @@ export function hubDocumentResponse(page: HubPage): Promise<Response> {
             <span className="text-[#6E6E73]"> — {hub.definitionSource}</span>
           </p>
         </header>
+
+        {held ? (
+          <p className="cd-duplicate-hold">
+            This group and <a href={`/h/${held.type}/${held.slug}`}>{held.name}</a> list almost the
+            same records, and that group holds more of them. Which of the two the corpus keeps has
+            not been decided.
+          </p>
+        ) : null}
 
         <HubTable hubName={hub.name} hubType={hub.type} members={members} />
 

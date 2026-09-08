@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { HubMembers } from '@/components/hubs/HubMembers'
 import { HubSynthesis } from '@/components/hubs/HubSynthesis'
@@ -8,11 +8,20 @@ import { HubTable } from '@/components/hubs/HubTable'
 import {
   HUB_JURISDICTION_COLUMNS,
   type HubMemberRecord,
+  type HubRecord,
   type HubSynthesisRecord,
 } from '@/lib/hubs/types'
 
 // Next preserves JSX for its own compiler; Vitest's direct server render uses the classic runtime.
 ;(globalThis as typeof globalThis & { React: typeof React }).React = React
+
+// `next/font/google` is a compiler transform, not a runtime module: outside `next build` the named
+// exports are not callable. The whole document shell loads it, and the two variables are all the
+// shell reads off it.
+vi.mock('next/font/google', () => ({
+  Plus_Jakarta_Sans: () => ({ variable: '--font-test-sans' }),
+  JetBrains_Mono: () => ({ variable: '--font-test-mono' }),
+}))
 
 /**
  * The properties under test are the three the hub spec makes non-negotiable
@@ -259,5 +268,82 @@ describe('hub copy safety', () => {
     for (const pattern of BANNED) {
       expect(html).not.toMatch(pattern)
     }
+  })
+})
+
+/* ---------------------------------------------------------------------------------------------
+ * §14 item 14 — a hub held against a rendered duplicate.
+ *
+ * The member-set dedupe of §13 item 13 runs first and absorbs a hub whose members a larger hub
+ * already holds. Complete linkage does not fuse every pair the rendered check measures at or above
+ * 0.5, and §14 item 14 sends what is left down the same road as a held record page: the smaller
+ * member set is `noindex,follow`, says so, and links the larger. These are that rule's mechanical
+ * consequences on the document itself.
+ * ------------------------------------------------------------------------------------------- */
+
+function hubRecord(overrides: Partial<HubRecord> = {}): HubRecord {
+  return {
+    hubId: 'target/hdac8',
+    type: 'target',
+    name: 'HDAC8',
+    slug: 'hdac8',
+    definition: 'Histone deacetylase 8, the protein the members’ stored target field names.',
+    definitionSource: 'UniProt Q9BY41, read 2026-09-04',
+    memberCount: 19,
+    approvedCount: 1,
+    relevance: 0.5,
+    rankScore: 0.5,
+    firstBatch: false,
+    ...overrides,
+  }
+}
+
+const HELD: HubRecord['duplicateHoldOf'] = {
+  type: 'target',
+  slug: 'histone-deacetylase-1-histone-deacetylase-1',
+  name: 'Histone deacetylase 1',
+}
+
+async function hubHtml(hub: HubRecord): Promise<string> {
+  // Imported here rather than at the top of the file: the document modules evaluate JSX at module
+  // load, and a static import would be hoisted above the `globalThis.React` assignment above.
+  const { hubDocumentResponse } = await import('@/lib/hubs/document')
+  const response = await hubDocumentResponse({
+    hub,
+    members: [member()],
+    syntheses: FULL_SYNTHESIS,
+  })
+  return response.text()
+}
+
+describe('§14(14) — a held hub says so, links the other, and leaves the index', () => {
+  // The robots decision fails closed off the canonical production origin, so the indexing half of
+  // this rule is only visible on it. `afterEach` restores whatever the runner had.
+  beforeEach(() => {
+    vi.stubEnv('NODE_ENV', 'production')
+    vi.stubEnv('SEO_DEPLOYMENT_ENV', 'production')
+    vi.stubEnv('SITE_URL', 'https://rnawiki.com')
+  })
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
+  it('carries noindex,follow and a link to the group it duplicates', async () => {
+    const html = await hubHtml(hubRecord({ duplicateHoldOf: HELD }))
+    expect(html).toContain('<meta content="noindex, follow" name="robots"/>')
+    expect(html).toContain('/h/target/histone-deacetylase-1-histone-deacetylase-1')
+    expect(html).toContain('Histone deacetylase 1')
+    expect(html).toContain('list almost the same records')
+  })
+
+  it('keeps every member link it carried: the hold is about indexing, not reach', async () => {
+    const held = await hubHtml(hubRecord({ duplicateHoldOf: HELD }))
+    expect(held).toContain('/d/bicalutamide')
+  })
+
+  it('leaves an unheld hub indexable and prints no hold note', async () => {
+    const html = await hubHtml(hubRecord())
+    expect(html).toContain('<meta content="index, follow" name="robots"/>')
+    expect(html).not.toContain('list almost the same records')
   })
 })

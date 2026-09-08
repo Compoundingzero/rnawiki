@@ -5482,6 +5482,17 @@ export const hubs = pgTable(
     rankScore: numeric('rank_score', { precision: 10, scale: 2 }).notNull(),
     /** True for the 30 hubs measured first (§4). */
     firstBatch: boolean('first_batch').notNull().default(false),
+    /**
+     * The hub this one is held against as a rendered duplicate (§13 item 14, §14 item 14).
+     *
+     * The member-set dedupe of §13(13) absorbs a hub whose members a larger hub already holds. A
+     * pair can still measure at or above 0.5 on the rendered check without complete linkage fusing
+     * it into either group; §14(14) then applies the same survivor rule to the rendered figure.
+     * The smaller member set carries `noindex,follow` and a link to the larger, and the pair goes
+     * to the held list, until Felix decides which of the two the corpus keeps. This holds the
+     * survivor's `hub_id`; it is null on every hub that is not held.
+     */
+    duplicateHoldOf: varchar('duplicate_hold_of', { length: 200 }),
   },
   (table) => [
     unique('hubs_type_slug_unique').on(table.type, table.slug),

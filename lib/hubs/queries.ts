@@ -6,7 +6,7 @@
  * No read here computes a value; every value was written by `scripts/revamp/hubs_load.ts` from
  * `data/revamp/hubs/`.
  */
-import { and, asc, count, eq } from 'drizzle-orm'
+import { and, asc, count, eq, isNull } from 'drizzle-orm'
 
 import { db } from '@/db'
 import { corpusPages, hubAliases, hubMembers, hubSyntheses, hubs } from '@/db/schema'
@@ -20,7 +20,10 @@ import {
   type HubType,
 } from '@/lib/hubs/types'
 
-function toHubRecord(row: typeof hubs.$inferSelect): HubRecord {
+function toHubRecord(
+  row: typeof hubs.$inferSelect,
+  duplicateHoldOf?: { type: HubType; slug: string; name: string },
+): HubRecord {
   return {
     hubId: row.hubId,
     type: row.type,
@@ -33,6 +36,7 @@ function toHubRecord(row: typeof hubs.$inferSelect): HubRecord {
     relevance: Number(row.relevance),
     rankScore: Number(row.rankScore),
     firstBatch: row.firstBatch,
+    ...(duplicateHoldOf ? { duplicateHoldOf } : {}),
   }
 }
 
@@ -105,6 +109,23 @@ export async function loadHubPage(type: HubType, slug: string): Promise<HubPage 
       .orderBy(asc(hubSyntheses.ordinal)),
   ])
 
+  /*
+   * §13(14): the hub this one is held against, read as the survivor's own printed name and route
+   * so the page can link it. A hold whose survivor this database does not carry renders nothing
+   * rather than a dead link; the hub is still `noindex` on the row's own evidence.
+   */
+  let duplicateHoldOf: { type: HubType; slug: string; name: string } | undefined
+  if (hub.duplicateHoldOf) {
+    const [survivor] = await db
+      .select({ type: hubs.type, slug: hubs.slug, name: hubs.name })
+      .from(hubs)
+      .where(eq(hubs.hubId, hub.duplicateHoldOf))
+      .limit(1)
+    if (survivor) {
+      duplicateHoldOf = { type: survivor.type as HubType, slug: survivor.slug, name: survivor.name }
+    }
+  }
+
   const members: HubMemberRecord[] = memberRows.map((row) => ({
     ...row,
     memberRole: row.memberRole as HubMemberRole,
@@ -115,7 +136,7 @@ export async function loadHubPage(type: HubType, slug: string): Promise<HubPage 
     sentence: row.sentence,
     provenance: (row.provenance ?? {}) as Record<string, unknown>,
   }))
-  return { hub: toHubRecord(hub), members, syntheses }
+  return { hub: toHubRecord(hub, duplicateHoldOf), members, syntheses }
 }
 
 /**
@@ -139,11 +160,19 @@ export async function hubAliasTarget(
   return { type: row.type as HubType, slug: row.slug }
 }
 
-/** Every hub slug, for the `hubs.xml` sitemap child and for the link-graph check. */
+/**
+ * Every published hub slug, for the `hubs.xml` sitemap child and for the link-graph check.
+ *
+ * A hub held against a rendered duplicate (§13 item 14) is `noindex,follow`, so it is not
+ * advertised here: a sitemap entry for a URL the page tells a crawler not to index is a
+ * contradiction, and the corpus applies the same rule to a held record page. The held hub keeps
+ * its route, its row on `/h` and every link it carries; only the sitemap entry goes.
+ */
 export async function listHubRoutes(): Promise<Array<{ type: HubType; slug: string }>> {
   const rows = await db
     .select({ type: hubs.type, slug: hubs.slug })
     .from(hubs)
+    .where(isNull(hubs.duplicateHoldOf))
     .orderBy(asc(hubs.type), asc(hubs.slug))
   return rows.map((row) => ({ type: row.type as HubType, slug: row.slug }))
 }
@@ -171,8 +200,13 @@ export async function hubsForPage(key: string): Promise<HubIndexRow[]> {
   return rows.map((row) => ({ ...row, type: row.type as HubType }))
 }
 
-/** How many hubs the database holds, for the sitemap index (docs/specs/hubs.md §3). */
+/**
+ * How many hubs the sitemap child would hold, for the sitemap index (docs/specs/hubs.md §3).
+ *
+ * It counts what `listHubRoutes` publishes, held hubs excluded, so the index never advertises a
+ * child the corpus would write empty.
+ */
 export async function countHubs(): Promise<number> {
-  const [row] = await db.select({ value: count() }).from(hubs)
+  const [row] = await db.select({ value: count() }).from(hubs).where(isNull(hubs.duplicateHoldOf))
   return row?.value ?? 0
 }
