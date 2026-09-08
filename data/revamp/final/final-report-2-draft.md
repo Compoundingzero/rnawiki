@@ -12,7 +12,22 @@ the corpus into version control offsite-ready.
 
 ## Before / after [Phase 7: fill from data/revamp/after.json in the corpus-20k layout]
 
-## Per-tier thresholds and indexable counts [Phase 7: thresholds-v7 → deployed]
+## Per-tier thresholds and indexable counts (ruler v9, furniture-free text; deployed figures in [Phase 7])
+
+Same rule as corpus-20k's Gate 1b (smallest present-field bucket whose own and cumulative
+positional medians clear 0.20, then the lines tested on the set itself), applied within each tier
+over applicable fields, on the furniture-free rendered text of the fix-round-4 corpus:
+
+| Tier | Threshold (present over applicable) | Indexable | Positional (all pairs) | Lexical (size-matched) | Before the run (corpus-wide 11) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 Longevity + withdrawn | 20 | 298 | 0.190 | 0.350 | 610 |
+| 2 Clinical | none (a single page clears at 20; not a tier) | 0 | — | — | 26 |
+| 3 Development | none (best count 15: 5 pages at 0.242) | 0 | — | — | 0 |
+
+With furniture counted the same rule selects 21 / 230 on Tier 1 (`thresholds-v9-with-furniture.json`).
+The corrected ruler on the pre-Phase-4 text had selected 12 / 1,061; the Phase 4 content (register
+lines, interactions, patents, computed sections) is what a biohacker asked for, and it costs
+uniqueness under this ruler. Hubs are the new indexable surface: 710 hubs, all under the lines.
 
 ## Field census delta [Phase 7: data/revamp/field-census-delta.csv, final]
 
@@ -107,7 +122,13 @@ identity-review.md and threshold-sanity.md.
 
 ## Decisions for Felix (each with its numbers) [Phase 7: residual band from thresholds-v7]
 
-1. Residual band and the staged loop.
+1. **Residual band and the staged loop.** Under ruler v9 no Tier 1 count clears positional while
+   failing lexical, so the band as `promote_band.py` defines it is empty. The pages just over both
+   lines are the 96 at count 19 (set of 394: positional 0.229 all pairs / 0.197 size-matched,
+   lexical 0.356) and the 94 at count 18 (set of 488: 0.257 / 0.231, 0.359). Tier 2's rule-answer
+   set at 19 holds 68 pages at 0.261 / 0.405. Default: hold them for the 6.6 loop with the band
+   redefined as "the next count below the threshold whose set measures within 0.05 of both lines",
+   promoted in 500-page slices on the Search Console rule; reversible.
 2. Hub expansion beyond the first batch (all 972 already measured under the lines; the decision
    is whether every hub enters the sitemap at once or in the 6.6 slices).
 3. ClinPGx/CPIC: render the pharmacogenomics block under CC BY-SA with the no-sale reading, or keep
