@@ -92,7 +92,8 @@ export function CorpusHeader({ dossier }: { dossier: CorpusDossier }) {
             <p className="cd-source-line">
               {/* §13(11): drawn by `.cd-anchor-glyph::before`, never a text node. */}
               <span aria-hidden="true" className="cd-anchor-glyph" />
-              {dossier.register ? <span>{dossier.register}</span> : null}
+              {dossier.register ? <span>{dossier.register}</span> : null}{' '}
+              {/* §14(7): a text node between the register and the date it was last checked. */}
               {dossier.lastVerified ? (
                 <span>
                   last checked <time dateTime={dossier.lastVerified}>{dossier.lastVerified}</time>

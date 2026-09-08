@@ -895,7 +895,7 @@ function corpusSources(revamp: boolean): CorpusSources {
   }
   return {
     label: 'revamp-2026-09',
-    identity: join(REVAMP, 'identity', 'canonical-v5.ndjson'),
+    identity: join(REVAMP, 'identity', 'canonical-v6.ndjson'),
     fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
       join(REVAMP, 'fields-v2', directory),
     ),
@@ -2299,6 +2299,22 @@ function buildBatch(input: {
         if (line === null) {
           counters.bump('registration rows skipped: the block stage recorded no line')
           continue
+        }
+        /*
+         * §14(3): the United States status word derives from the application set, and
+         * `scripts/revamp/build_blocks.py` derives it. The loader publishes what that stage wrote,
+         * so it does not rewrite the word here — it counts the contradiction the rule names, so a
+         * load from a stale block file says so in its own output rather than publishing "Approved ·
+         * 4 applications: all discontinued" silently.
+         */
+        if (
+          row.jurisdiction === 'US' &&
+          /^Approved\b/.test(row.status) &&
+          /\ball discontinued\b/.test(line)
+        ) {
+          counters.bump(
+            'US registration lines whose status word contradicts their application breakdown',
+          )
         }
         registrationRows.push([
           sha256(`${key} ${row.jurisdiction} ${row.component ?? ''} ${order}`),

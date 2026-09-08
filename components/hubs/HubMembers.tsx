@@ -36,9 +36,11 @@ export function HubMembers({ members }: { members: HubMemberRecord[] }) {
                   </a>
                 ) : (
                   <span className="font-medium">{member.name}</span>
-                )}
+                )}{' '}
+                {/* §14(7): a text node between the name and the question, so no extractor reads
+                    "Golcadomide— Which 2 trials…" as one word. */}
                 {member.firstQuestion ? (
-                  <span className="text-[#6E6E73]"> — {member.firstQuestion}</span>
+                  <span className="text-[#6E6E73]">— {member.firstQuestion}</span>
                 ) : null}
               </li>
             ))}

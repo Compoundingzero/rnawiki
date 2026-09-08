@@ -33,7 +33,7 @@ import type {
   CorpusRegisterEvent,
   CorpusRegistrationLine,
 } from '@/lib/corpus/dossier-page'
-import { absenceCaption, absentAsOf, ABSENCE_COLUMNS } from '@/lib/corpus/page-text'
+import { absenceCaption, absentAsOf, ABSENCE_COLUMNS, VISIBLE_ROWS } from '@/lib/corpus/page-text'
 import { RegisterSummary } from './RegisterSummary'
 
 function Line({ row }: { row: CorpusRegistrationLine }) {
@@ -41,7 +41,12 @@ function Line({ row }: { row: CorpusRegistrationLine }) {
     <li>
       <span className="cd-register-label">
         {row.component ? `${row.component} — ${row.label}` : row.label}
-      </span>
+      </span>{' '}
+      {/*
+        §14(7): the space between the jurisdiction and its status is a text node. The stylesheet
+        already separated them for a reader; every text extraction read
+        "EUEMEA/H/C/005413" as one word, and a crawler reads two fields as one.
+      */}
       <span className="cd-register-status">{row.line}</span>
       <RegisterSummary
         applications={row.applications}
@@ -56,7 +61,7 @@ function Schedule({ row }: { row: CorpusControlledRow }) {
   const version = row.versionDate ? `version ${row.versionDate}` : undefined
   return (
     <li>
-      <span className="cd-register-label">{row.classOrSchedule}</span>
+      <span className="cd-register-label">{row.classOrSchedule}</span>{' '}
       <span className="cd-register-status">
         {row.statuteUrl ? (
           <a href={row.statuteUrl} rel="nofollow noopener" target="_blank">
@@ -138,16 +143,35 @@ export function RegistrationBlock({
           ))}
         </ul>
       ) : null}
+      {/*
+        §14(9): the seven jurisdiction lines above are a fixed list the register map decides, and
+        every one of them is the block's answer. "Other registers" is not fixed — it is one line
+        per source string the map does not carry — so it takes the six-row cap, with the counted
+        rest inside a control of its own.
+      */}
       {other.length > 0 ? (
         <>
           <h3 className="cd-group-heading" id="cd-registration-other">
             Other registers
           </h3>
-          <ul className="cd-register-rows">
-            {other.map((row) => (
+          <ul className="cd-register-rows cd-other-registers">
+            {other.slice(0, VISIBLE_ROWS).map((row) => (
               <Line key={row.id} row={row} />
             ))}
           </ul>
+          {other.length > VISIBLE_ROWS ? (
+            <details className="cd-evidence cd-further-rows" id="cd-registration-other-more">
+              <summary>
+                {other.length - VISIBLE_ROWS} more recorded{' '}
+                {other.length - VISIBLE_ROWS === 1 ? 'register' : 'registers'}
+              </summary>
+              <ul className="cd-register-rows">
+                {other.slice(VISIBLE_ROWS).map((row) => (
+                  <Line key={row.id} row={row} />
+                ))}
+              </ul>
+            </details>
+          ) : null}
         </>
       ) : null}
       {/*
@@ -185,7 +209,7 @@ export function RegistrationBlock({
             {disclosedRows.map((row) => (
               <Fragment key={row.id}>
                 <li>
-                  <span className="cd-row-label">{row.label}</span>
+                  <span className="cd-row-label">{row.label}</span>{' '}
                   <div className="cd-row-value">{row.line}</div>
                 </li>
                 {/*
@@ -195,7 +219,7 @@ export function RegistrationBlock({
                 */}
                 {row.upstreamRegisters.length > 0 ? (
                   <li>
-                    <span className="cd-row-label">Upstream registers</span>
+                    <span className="cd-row-label">Upstream registers</span>{' '}
                     <div className="cd-row-value">{row.upstreamRegisters.join(', ')}</div>
                   </li>
                 ) : null}

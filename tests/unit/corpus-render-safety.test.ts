@@ -22,6 +22,8 @@ import { PatentBlock } from '@/components/dossier/corpus/PatentBlock'
 import { RegistrationBlock } from '@/components/dossier/corpus/RegistrationBlock'
 import { Tier3Sections } from '@/components/dossier/corpus/Tier3Sections'
 import { FormOfNote } from '@/components/dossier/corpus/FormOfNote'
+import { HubTable } from '@/components/hubs/HubTable'
+import type { HubMemberRecord } from '@/lib/hubs/types'
 import { JURISDICTION_LABELS, JURISDICTION_ORDER } from '@/lib/corpus/jurisdictions'
 import type {
   CorpusDossier,
@@ -35,11 +37,20 @@ import {
   INTERACTION_RULE_LABELS,
   INTERACTION_TIER_LABELS,
   TRIAL_ROWS_INLINE,
+  VISIBLE_ROWS,
+  anchor,
+  buildBlockBody,
   carriesDoseText,
   checkedSourceNames,
   checkedSourcesStatement,
+  deriveQuestions,
+  groupRevealedRows,
+  interactionDisclosureLabel,
   interactionLine,
+  interactionRecordIds,
+  looksLikePageKey,
   registerApplicationIds,
+  registerName,
   registrationLineText,
   sentenceNamesCompound,
   type InteractionRow,
@@ -807,7 +818,7 @@ describe('§13(1) — an absence is never an answer', () => {
     },
   ] as unknown as PageBundle['questions']
 
-  it('names only an affirmative classification, never a register that recorded nothing', () => {
+  it('names the suppression evidence and no register status at all (§14(1))', () => {
     const text = renderPage(
       bundle(
         {
@@ -819,7 +830,15 @@ describe('§13(1) — an absence is never an answer', () => {
       ),
       { withFurniture: true },
     ).text
-    expect(text).toContain('AU scheduled in the Poisons Standard')
+    // §13(1) let an affirmative register status stand as the answer, and §14(1) takes that away
+    // too: an Australian Schedule 4 entry is a prescription class, not a supervision reason, and
+    // the sentence's provenance named registers the sentence itself did not. The answer is the
+    // recorded class, in the words the spec fixes.
+    expect(text).toContain(
+      'A register records Fixture Compound under medical supervision: a controlled-substance ' +
+        'schedule in Singapore, the United States, Australia or the United Kingdom.',
+    )
+    expect(text).not.toContain('scheduled in the Poisons Standard')
     expect(text).not.toContain('SG not found')
     expect(text).not.toContain('UK not cleared')
   })
@@ -1099,5 +1118,418 @@ describe('§13(14) — a held duplicate says so and links the other page', () =>
     const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
     expect(markup).toContain('/d/pertuzumab-trastuzumab-and-hyaluronidase-zzxf')
     expect(visibleText(markup)).toContain('read almost identically')
+  })
+})
+
+/* ---------------------------------------------------------------------------------------------
+ * §14 — the rules the lead's reading of slop draw 4 added, on the components and the builders.
+ *
+ * Item 16 requires each mechanical rule to be asserted. `tests/test_render_safety.py` asserts the
+ * ones the render itself decides, over all 28,832 pages; these are the ones the served DOM decides
+ * — the whitespace between two inline spans, a record id inside a closed disclosure, a visible list
+ * of six — plus the builder rules, so a fault fails on a fixture rather than after a 500 MB render.
+ * ------------------------------------------------------------------------------------------- */
+
+/** Every `<details>` in the markup is closed: none of them carries the `open` attribute. */
+function everyDetailsIsClosed(markup: string): boolean {
+  return !/<details[^>]*\sopen(?:[\s>=])/.test(markup)
+}
+
+/** The markup with every closed `<details>` element removed, tag and contents. */
+function withoutClosedDisclosures(markup: string): string {
+  let out = markup
+  for (;;) {
+    const start = out.search(/<details\b(?![^>]*\sopen[\s>=])/)
+    if (start < 0) return out
+    const end = out.indexOf('</details>', start)
+    if (end < 0) return out.slice(0, start)
+    out = out.slice(0, start) + out.slice(end + '</details>'.length)
+  }
+}
+
+const GROUPED_LABEL_ROW: InteractionRow = {
+  direction: 'avoid or monitor',
+  source: 'openfda-label',
+  setId: '1cd10ca2-f0a5-4b3a-bc5f-e25aba1f903c',
+  effectiveTime: '2024-03-11',
+  ruleId: 'A-label-statement',
+  sourceRecordId: '1cd10ca2-f0a5-4b3a-bc5f-e25aba1f903c',
+  groupedDirection: 'avoid or monitor',
+  groupedCounterparts: ['antiplatelet drugs', 'Aspirin', 'Diclofenac'],
+  groupedCounterpartsBeyond: 4,
+  groupedRecordIds: ['1cd10ca2-f0a5-4b3a-bc5f-e25aba1f903c'],
+}
+
+describe('§14(5) — label interactions group by label and direction', () => {
+  it('names the label once, the direction once and every counterpart it stands for', () => {
+    const line = interactionLine('A', GROUPED_LABEL_ROW)
+    expect(line).toBe(
+      'Label-documented (DailyMed label 1cd10ca2-f0a5-4b3a-bc5f-e25aba1f903c · 2024-03-11): ' +
+        'avoid or monitor with antiplatelet drugs, Aspirin and Diclofenac and 4 more',
+    )
+    // One label id on the line, not one per counterpart.
+    expect(line.match(/1cd10ca2/g)).toHaveLength(1)
+  })
+
+  it('leaves an ungrouped label row exactly as §4 fixes it', () => {
+    expect(interactionLine('A', LABEL_ROW).startsWith('Label-documented · Topiramate:')).toBe(true)
+  })
+})
+
+describe('§14(6) — a record id is painted only inside a closed disclosure', () => {
+  it('paints no row identifier outside a closed <details> anywhere on the page', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    expect(everyDetailsIsClosed(markup)).toBe(true)
+    expect(withoutClosedDisclosures(markup)).not.toContain('cd-row-id')
+  })
+
+  it('builds the disclosure row from the same two functions the corpus renderer calls', () => {
+    const source = {
+      tierLabel: INTERACTION_TIER_LABELS.B as string,
+      line: interactionLine('B', {
+        ...CURATED_ROW,
+        counterpartName: undefined,
+        groupedRole: 'substrate',
+        groupedTargets: ['CYP1A1', 'CYP1A2', 'CYP2E1'],
+        groupedRecordIds: ['frdb:ddi:12474', 'frdb:ddi:12473'],
+      }),
+      groupedRecordIds: ['frdb:ddi:12474', 'frdb:ddi:12473'],
+    }
+    expect(interactionRecordIds(source)).toEqual(['frdb:ddi:12474', 'frdb:ddi:12473'])
+    // The tier word and the dataset name are on the line already; the row's label is what the
+    // line says the records are about.
+    expect(interactionDisclosureLabel(source)).toBe('Substrate of CYP1A1, 1A2 and 2E1')
+  })
+
+  it('reads a grouped line’s records out of the provenance the loader stores', () => {
+    expect(
+      interactionRecordIds({
+        ruleId: 'B-inxight-frdb',
+        provenance: { record: 'frdb:ddi:1; frdb:ddi:2; frdb:ddi:3' },
+      }),
+    ).toEqual(['frdb:ddi:1', 'frdb:ddi:2', 'frdb:ddi:3'])
+  })
+})
+
+/**
+ * Two inline elements that both carry text, meeting with nothing between them.
+ *
+ * An empty element is not the defect: the anchor mark and the region glyph are empty spans whose
+ * content is a CSS pseudo-element (§13(11)), and nothing reads them as words. What produced
+ * "EUEMEA/H/C/005413" and "KetoconazoleA-label-statement" is two elements with text in both.
+ */
+const JOINED_INLINE =
+  /<(?:span|a|abbr|time)\b[^>]*>([^<>]+)<\/(?:span|a|abbr|time)><(?:span|a|abbr|time)\b[^>]*>([^<>]+)</g
+
+/** One hub comparison-table row, with every column the spec fixes and every absence in it. */
+const hubMember = (over: Partial<HubMemberRecord> = {}): HubMemberRecord =>
+  ({
+    key: 'K1:FIXTURE',
+    slug: 'fixture',
+    name: 'Fixture',
+    ordinal: 0,
+    memberRole: 'approved',
+    membershipEvidence: 'a stored target row names AR',
+    approvalSg: 'Registered (HSA)',
+    approvalUs: 'not found',
+    approvalAu: 'not checked',
+    approvalUk: 'not cleared',
+    approvalEu: 'not found',
+    approvalJp: 'not found',
+    approvalCa: 'not found',
+    sgForensicClass: 'POM',
+    genericAvailable: '',
+    potency: '',
+    indications: '',
+    indicationCount: 0,
+    withdrawnReason: '',
+    withdrawnWhere: '',
+    trialsCount: 4,
+    resultsPostedShare: '1 of 4',
+    tier: 1,
+    firstQuestion: 'What does the label indicate Fixture for?',
+    ...over,
+  }) as HubMemberRecord
+
+describe('§14(7) — adjacent inline spans are separated by a text node', () => {
+  it('joins no two inline elements that both carry text', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    const joined = [...markup.matchAll(JOINED_INLINE)].map((match) => `${match[1]}|${match[2]}`)
+    expect(joined, `two inline elements meet with no text node: ${joined[0] ?? ''}`).toEqual([])
+  })
+
+  it('holds on a hub page too', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(HubTable, {
+        members: [hubMember()],
+        hubType: 'target' as const,
+        hubName: 'AR',
+      }),
+    )
+    expect([...markup.matchAll(JOINED_INLINE)].map((match) => match[0])).toEqual([])
+  })
+})
+
+describe('§14(9) — every visible list caps at six rows', () => {
+  it('splits a longer run into six rows and a counted, closed remainder', () => {
+    const rows = Array.from({ length: 14 }, (_, index) => ({
+      label: 'Trial',
+      value: `endpoint ${index}`,
+    }))
+    const groups = groupRevealedRows(rows)
+    expect(groups).toHaveLength(2)
+    expect(groups[0]?.rows).toHaveLength(VISIBLE_ROWS)
+    expect(groups[0]?.disclosed).toBeUndefined()
+    expect(groups[1]?.rows).toHaveLength(14 - VISIBLE_ROWS)
+    expect(groups[1]?.disclosed).toBe(true)
+    expect(groups[1]?.label).toBe('8 more recorded rows')
+  })
+
+  it('leaves a run of six alone', () => {
+    const rows = Array.from({ length: 6 }, () => ({ label: 'Trial', value: 'x' }))
+    const groups = groupRevealedRows(rows)
+    expect(groups).toHaveLength(1)
+    expect(groups[0]?.disclosed).toBeUndefined()
+  })
+
+  it('paints at most six of anything a reader meets without opening a control', () => {
+    const dossier = fullDossier()
+    dossier.blocks = dossier.blocks.map((block) => ({
+      ...block,
+      facts: Array.from({ length: 11 }, (_, index) => ({
+        label: `Fact ${index}`,
+        value: String(index),
+      })),
+    }))
+    dossier.relations = Array.from({ length: 9 }, (_, index) => ({
+      label: 'Ester of',
+      name: `Relative ${index}`,
+      slug: `relative-${index}`,
+    }))
+    dossier.hubs = Array.from({ length: 8 }, (_, index) => ({
+      label: 'Target',
+      name: `T${index}`,
+      path: `/h/target/t${index}`,
+    }))
+    dossier.sources = Array.from({ length: 10 }, (_, index) => ({
+      kind: 'chembl',
+      register: 'ChEMBL',
+      id: `CHEMBL${index}`,
+    }))
+    const painted = withoutClosedDisclosures(
+      renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier })),
+    )
+    // Every painted value list, counted list by list: two question blocks, the computed section,
+    // the relations, the hubs and the sources are six lists and not one.
+    for (const list of painted.match(/<dl class="cd-facts">[\s\S]*?<\/dl>/g) ?? []) {
+      expect((list.match(/class="cd-fact"/g) ?? []).length).toBeLessThanOrEqual(VISIBLE_ROWS)
+    }
+    // The relation and hub lists are two `<ul class="cd-relations">`, each capped.
+    for (const list of painted.match(/<ul class="cd-relations">[\s\S]*?<\/ul>/g) ?? []) {
+      expect((list.match(/<li>/g) ?? []).length).toBeLessThanOrEqual(VISIBLE_ROWS)
+    }
+    for (const list of painted.match(/<ul class="cd-source-rows">[\s\S]*?<\/ul>/g) ?? []) {
+      expect((list.match(/<li>/g) ?? []).length).toBeLessThanOrEqual(VISIBLE_ROWS)
+    }
+  })
+})
+
+describe('§14(8) — a storage key is never painted', () => {
+  it('recognises every shape the corpus writes a key in', () => {
+    for (const key of [
+      'K1:3J962UJT8H',
+      'K2:XUFXOAAUWZOOIT-UHFFFAOYSA-N',
+      'COMBO:NAME:conjugated estrogens',
+      'PRODUCT:NAME:Pneumovax 23',
+      'HOLD:existing:cisapride',
+    ]) {
+      expect(looksLikePageKey(key), key).toBe(true)
+    }
+    for (const notAKey of ['NDA021929', 'NCT00117520', 'CHEMBL25', 'frdb:ddi:5', undefined]) {
+      expect(looksLikePageKey(notAKey), String(notAKey)).toBe(false)
+    }
+  })
+
+  it('keeps a key out of a block’s rows and out of an anchor', () => {
+    const body = buildBlockBody(
+      {
+        id: 'provenance',
+        text: 'How did Fixture get from first publication in 2001 to first approval in 2009?',
+        badge: 'Q1',
+        block: 'provenance',
+        template: 'provenance',
+        values: {},
+        sources: [],
+      },
+      {
+        key: 'K1:76LA80IG2G',
+        displayName: 'Fixture',
+        model: 'LONGEVITY',
+        tier: 1,
+        withdrawn: false,
+        suppressed: false,
+        suppressionClasses: [],
+        stub: false,
+        presentFields: 4,
+        fields: {},
+        seeds: {
+          seed8: {
+            fires: true,
+            values: {
+              events: [
+                { event: 'first publication', year: '2001', source: { id: 'K1:76LA80IG2G' } },
+                { event: 'first human trial', year: '2005', source: { id: 'NCT00117520' } },
+                { event: 'first approval', year: '2009', source: { id: 'K1:76LA80IG2G' } },
+              ],
+            },
+          },
+        },
+        identity: { displayName: 'Fixture', synonyms: [], relations: [] },
+        questions: [],
+        names: new Map(),
+      } as unknown as PageBundle,
+    )
+    const painted = [...body.rows, ...body.facts]
+      .map((row) => `${row.label} ${row.identifier ?? ''} ${row.value}`)
+      .join(' ')
+    expect(painted).not.toContain('K1:76LA80IG2G')
+    expect(painted).toContain('NCT00117520')
+    // The anchor keeps the register and the date and drops the key that stood where a register's
+    // record number belongs.
+    const register = registerName('chembl') as string
+    expect(anchor({ kind: 'chembl', id: 'COMBO:NAME:x', sourceDate: '2026-08-28' })).toBe(
+      `${register} · 2026-08-28`,
+    )
+    expect(anchor({ kind: 'chembl', id: 'CHEMBL25', sourceDate: '2026-08-28' })).toBe(
+      `${register} · CHEMBL25 · 2026-08-28`,
+    )
+  })
+})
+
+describe('§14(10) — the provenance timeline', () => {
+  const timelinePage = (events: Array<{ event: string; year: string }>) =>
+    ({
+      key: 'K1:FIXTURE',
+      displayName: 'Fixture',
+      model: 'LONGEVITY',
+      suppressed: false,
+      fields: {},
+      seeds: { seed8: { fires: true, values: { events, currentState: 'approved' } } },
+      tier: 1,
+    }) as never
+
+  it('fires only with three or more dated events, and names the first and last kinds', () => {
+    const three = deriveQuestions(
+      timelinePage([
+        { event: 'first approval', year: '1989' },
+        { event: 'first publication', year: '1996' },
+        { event: 'first human trial', year: '2004' },
+      ]),
+    )
+    const question = three.find((entry) => entry.block === 'provenance')
+    expect(question?.text).toBe(
+      'How did Fixture get from first approval in 1989 to first human trial in 2004?',
+    )
+    expect(question?.values.firstEvent).toBe('first approval')
+    expect(question?.values.lastEvent).toBe('first human trial')
+  })
+
+  it('does not fire on two dated events', () => {
+    const two = deriveQuestions(
+      timelinePage([
+        { event: 'first approval', year: '1989' },
+        { event: 'first human trial', year: '2004' },
+      ]),
+    )
+    expect(two.find((entry) => entry.block === 'provenance')).toBeUndefined()
+  })
+
+  it('never phrases a later event as leading to an earlier one', () => {
+    const unsorted = deriveQuestions(
+      timelinePage([
+        { event: 'first human trial', year: '2004' },
+        { event: 'first approval', year: '1989' },
+        { event: 'first publication', year: '1996' },
+      ]),
+    )
+    const question = unsorted.find((entry) => entry.block === 'provenance')
+    expect(question?.values.firstYear).toBe('1989')
+    expect(question?.values.lastYear).toBe('2004')
+  })
+})
+
+describe('§14(11) — an absence question does not fire', () => {
+  it('asks nothing where the record says no one has been dosed', () => {
+    const questions = deriveQuestions({
+      key: 'K1:FIXTURE',
+      displayName: 'Fixture',
+      model: 'DEVELOPMENT',
+      suppressed: false,
+      tier: 3,
+      fields: {
+        everDosedInHumans: {
+          state: 'present',
+          value: { everDosedInHumans: false, basis: 'no registry study matched this page' },
+        },
+        molecularTarget: { state: 'present', value: { targets: [{ symbol: 'EGFR' }] } },
+      },
+      seeds: {},
+    } as never)
+    expect(questions.map((entry) => entry.block)).not.toContain('never-dosed')
+    expect(questions.every((entry) => !/ever reached a person/.test(entry.text))).toBe(true)
+  })
+})
+
+describe('§14(13) — the field-count line is furniture', () => {
+  it('marks the stub’s own count so the ruler and the duplicate check skip it', () => {
+    const dossier = fullDossier()
+    dossier.blocks = []
+    dossier.pageType = 'stub'
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    const line = /<p class="cd-stub-count"[^>]*>/.exec(markup)?.[0] ?? ''
+    expect(line).toContain('data-furniture="true"')
+  })
+})
+
+describe('§14(14) — a hub table’s absence cells are furniture', () => {
+  it('marks every cell whose content is an absence, and no cell that states a value', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(HubTable, {
+        members: [hubMember()],
+        hubType: 'target' as const,
+        hubName: 'AR',
+      }),
+    )
+    const cells = markup.match(/<td[^>]*>[\s\S]*?<\/td>/g) ?? []
+    expect(cells.length).toBeGreaterThan(0)
+    for (const cell of cells) {
+      const text = visibleText(cell)
+      const absence = [
+        '—',
+        'not found',
+        'not cleared',
+        'not checked',
+        'no label indication on record',
+      ].includes(text)
+      const marked = cell.includes('data-furniture="true"')
+      expect(marked, `cell ${JSON.stringify(text)}`).toBe(absence || text === '')
+    }
+    expect(markup).toContain('no label indication on record')
+  })
+
+  it('leaves a stated value unmarked', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(HubTable, {
+        members: [hubMember({ approvalUs: 'Approved', genericAvailable: 'yes' })],
+        hubType: 'class' as const,
+        hubName: 'L02BB',
+      }),
+    )
+    const approved = (markup.match(/<td[^>]*>Approved<\/td>/g) ?? [])[0] ?? ''
+    expect(approved).not.toContain('data-furniture')
   })
 })

@@ -123,11 +123,11 @@ ROOT = Path(__file__).resolve().parents[2]
 
 FIELDS_GLOB = "data/revamp/fields-v2/*/batch-*.ndjson"
 CANONICAL = Path("data/revamp/identity/canonical-v2.ndjson")
-CANONICAL_SUCCESSOR = Path("data/revamp/identity/canonical-v5.ndjson")
+CANONICAL_SUCCESSOR = Path("data/revamp/identity/canonical-v6.ndjson")
 DISPLAY_NAMES = Path("data/revamp/identity/display-names.csv")
 # Section 12 publishes the v5 revision; v3 stays readable beside it and is the fallback.
-RELATIONS = Path("data/revamp/identity/relations-v5.parquet")
-RELATIONS_FALLBACK = Path("data/revamp/identity/relations-v3.parquet")
+RELATIONS = Path("data/revamp/identity/relations-v6.parquet")
+RELATIONS_FALLBACK = Path("data/revamp/identity/relations-v5.parquet")
 SPINE = Path("data/revamp/identity/spine-attached.parquet")
 TRIAL_REASSIGNMENTS = Path("data/revamp/identity/trial-reassignments-v5.csv")
 TRIAL_REASSIGNMENTS_FALLBACK = Path("data/revamp/identity/trial-reassignments-v4.csv")

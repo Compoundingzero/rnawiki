@@ -1,10 +1,10 @@
 """Phase 4 rendering rules, checked over every rendered page.
 
 `docs/specs/revamp-2026-09.md` 4.1 names this file: the interaction rendering rules "are
-unit-tested in `tests/test_render_safety.py`". It reads what the renderer actually wrote —
-`data/revamp/render-v7/{text-with-furniture,provenance-with-furniture}/batch-*.ndjson`, the page as
-a browser paints it — rather than a fixture, because a rule that holds on a fixture and not on the
-corpus is not a rule.
+unit-tested in `tests/test_render_safety.py`". It reads what the renderer actually wrote — the
+highest `data/revamp/render-v*/{text-with-furniture,provenance}/batch-*.ndjson` revision on disk,
+the page as a browser paints it — rather than a fixture, because a rule that holds on a fixture and
+not on the corpus is not a rule.
 
 Run it with the corpus environment:
 
@@ -39,6 +39,15 @@ What is asserted, and where each rule comes from:
  10. The render and the page agree (§11): the text `page_text_v5 --with-furniture` writes is the
      text a browser paints, in the same order. The comparison itself is
      `scripts/revamp/dom_parity.py`, which needs a local build; this file asserts its result.
+ 11. The §13 rules from the reading of slop draw 3, and the §14 rules from the reading of draw 4 —
+     the supervision answer's shape, no register application row under a question, no storage key
+     painted, the timeline's three dated events in order, no absence question, one relation per
+     pair, the field-count line as furniture, the United States status word against its own
+     applications, the label-documented lines grouped by label and direction, and no
+     entity-linking artefact as a counterpart. The rules that only the served DOM can decide —
+     the whitespace between two inline elements, a record id inside a closed disclosure, a visible
+     list of six — are asserted on the components in `tests/unit/corpus-render-safety.test.ts` and
+     against a painted build by `scripts/revamp/self_audit.py` (§14 item 16).
 """
 
 from __future__ import annotations
@@ -54,7 +63,28 @@ from typing import Any, Iterator
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v8")
+
+
+def _latest_render_dir() -> str:
+    """The highest render revision on disk.
+
+    Naming a revision by hand is how `rendered_dup_check.py` and `link_graph_check.py` came to
+    measure a superseded file the moment the run they were written for ended (measure v8). One
+    render revision is kept at a time; this file reads whichever it is.
+    """
+    revamp = os.path.join(ROOT, "data", "revamp")
+    present = [
+        name
+        for name in (os.listdir(revamp) if os.path.isdir(revamp) else [])
+        if re.fullmatch(r"render-v\d+", name)
+        and os.path.isdir(os.path.join(revamp, name, "text"))
+    ]
+    if not present:
+        return os.path.join(revamp, "render-v9")
+    return os.path.join(revamp, max(present, key=lambda name: int(name.split("v")[-1])))
+
+
+RENDER_DIR = _latest_render_dir()
 # §11: the ruler reads the page without its furniture and these rules read it with, because they
 # are rules about what a reader meets. `Not found in [register] as of [date]` is furniture and is
 # still on the page; a test reading the furniture-free text would assert that the page had stopped
@@ -62,16 +92,17 @@ RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v8")
 # furniture-free one, and where it has not been written the furniture-free render is read and the
 # furniture rules are exercised on whatever it carries.
 FURNITURE_TEXT_DIR = os.path.join(RENDER_DIR, "text-with-furniture")
-FURNITURE_PROVENANCE_DIR = os.path.join(RENDER_DIR, "provenance-with-furniture")
 PAINTED = os.path.isdir(FURNITURE_TEXT_DIR)
 TEXT_DIR = FURNITURE_TEXT_DIR if PAINTED else os.path.join(RENDER_DIR, "text")
-PROVENANCE_DIR = (
-    FURNITURE_PROVENANCE_DIR if PAINTED else os.path.join(RENDER_DIR, "provenance")
-)
+# One provenance directory, because there is only one provenance map. `renderPage` records every
+# line it wrote, furniture included and marked `furniture: true`; the `--with-furniture` flag
+# decides only what `text` and `proseText` carry. The two directories the render used to write were
+# byte-identical, and 264 MB of the second of them.
+PROVENANCE_DIR = os.path.join(RENDER_DIR, "provenance")
 # The furniture-free text, which the ruler reads and from which every furniture line is absent.
 FREE_TEXT_DIR = os.path.join(RENDER_DIR, "text")
 BLOCKS_DIR = os.path.join(ROOT, "data", "revamp", "page-blocks")
-CANONICAL = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v5.ndjson")
+CANONICAL = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v6.ndjson")
 FIELDS_DIR = os.path.join(ROOT, "data", "revamp", "fields-v2")
 DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
 
@@ -1049,3 +1080,350 @@ def test_a_susmp_row_matches_a_full_synonym_of_its_page(blocks):
                     failures.append(f"{key}: listed as {listed!r}")
     assert checked > 0, "no Poisons Standard row was read"
     _report(failures, "Poisons Standard row matched on a shared token (§13 item 12)")
+
+
+# =============================================================================================
+# §14 — the rules from the lead's reading of slop draw 4, each asserted mechanically.
+#
+# Item 16 requires it: "the fix agent renders 30 random pages (10 per tier) on its build and checks
+# every rule in §13 and §14 mechanically where a rule is mechanical … and adds each mechanical rule
+# to `tests/test_render_safety.py`." The rules that are about the served DOM — whitespace between
+# adjacent spans, a provenance row inside a closed disclosure, a visible list of six — are asserted
+# on the components in `tests/unit/corpus-render-safety.test.ts` and against a painted build by
+# `scripts/revamp/self_audit.py`; what is asserted here is what the render itself wrote, over every
+# page of the corpus.
+# =============================================================================================
+
+# §14(2): a register application identifier, in every shape the registers write one. A question's
+# answer that names one is the registration block's row painted a second time.
+APPLICATION_ID = re.compile(
+    r"\b(?:NDA|ANDA|BLA)\s?\d{5,}\b|\bEMEA/H/C/\d+\b|\bdrug code \d+\b", re.IGNORECASE
+)
+
+# §14(8): a storage key, in every shape the corpus writes one.
+PAGE_KEY = re.compile(r"\b(?:K[1-4]:[0-9A-Za-z]|COMBO:|PRODUCT:|HOLD:|IK:[A-Z])")
+
+# §14(1): the one shape the supervision answer takes. The words themselves are
+# `docs/specs/suppression-classes.md`'s and are built by `citedSuppressionLabels`.
+SUPERVISION_ANSWER = re.compile(r"^A register records .+ under medical supervision: .+\.")
+
+# §14(1): a prescription classification is not a supervision reason. These are the words the
+# registers use for one, and none of them may appear in the answer.
+PRESCRIPTION_ONLY = re.compile(
+    r"\b(?:poisons standard|poisons act|poisons rules|prescription[ -]only|schedule 4|POM"
+    r"|forensic class)\b"
+)
+
+# §14(11): the question the retired `never-dosed` block asked.
+ABSENCE_QUESTION = re.compile(r"^Has .+ ever reached a person\?$")
+
+
+def _strip_provenance_anchor(sentence: str) -> str:
+    """The sentence without the citation `withAnchor` appended to it.
+
+    `_without_anchor` above cannot be used for this: its pattern is greedy from the first space, so
+    on "A register records X under medical supervision: … . Drugs@FDA · NDA021929 · 2026-08-28" it
+    returns "A". The anchor is appended after the sentence's own final full stop and is a dotted
+    list of a register, a record and a date, so the last ". " in the string is where it begins.
+    """
+    text = sentence.strip()
+    at = text.rfind(". ")
+    if at < 0:
+        return text
+    tail = text[at + 2 :]
+    return text[: at + 1].strip() if " · " in tail else text
+
+
+def _supervision_entries(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The prose the supervision question answered, by the template its trace names."""
+    return [
+        entry
+        for entry in _prose_entries(entries)
+        if "page_questions.supervision" in (entry.get("fields") or [])
+    ]
+
+
+def test_the_supervision_answer_names_no_register_status(provenance):
+    """§14(1): the answer names the suppression evidence, never a register status.
+
+    "AU scheduled in the Poisons Standard: the registers' classification of Piroxicam" is wrong
+    twice: an Australian Schedule 4 entry is a prescription class and not a reason for supervision,
+    and the sentence's provenance named registers the sentence itself did not. The answer is built
+    from the S1-S9 classes the suppression pass recorded, in the words the spec fixes, and from
+    nothing else — so its first sentence has one shape, and a prescription classification's words
+    never appear in it.
+    """
+    failures: list[str] = []
+    checked = 0
+    for key, entries in provenance.items():
+        held = _supervision_entries(entries)
+        if not held:
+            continue
+        checked += 1
+        first = _strip_provenance_anchor(str(held[0]["sentence"]))
+        if not SUPERVISION_ANSWER.match(first):
+            failures.append(f"{key}: {first[:140]}")
+            continue
+        named = PRESCRIPTION_ONLY.search(first)
+        if named:
+            failures.append(
+                f"{key}: names a prescription class ({named.group(0)!r}): {first[:120]}"
+            )
+    assert checked > 0, "no supervision answer was rendered"
+    _report(failures, "supervision answer naming a register status (§14 item 1)")
+
+
+def test_no_register_application_row_renders_under_a_question(provenance):
+    """§14(2): register application rows leave every question block.
+
+    The rows painted under the supervision question (US NDA… Prescription, EU EMEA/H/C/… Withdrawn,
+    CA drug code … APPROVED) and under the label question are the corpus-20k register data rows.
+    The registration block and its disclosure hold them once.
+
+    Scope: what a question block paints without a reader opening anything — its answer sentences
+    and the values under its heading. A revealed row inside the block's closed disclosure is the
+    answer's own evidence and may name the record it was read from; the contradiction block's two
+    rows name the two registers that disagree, which is the answer and not a duplicate of the
+    registration block's line.
+    """
+    failures: list[str] = []
+    for key, entries in provenance.items():
+        for entry in entries:
+            group = str(entry.get("group") or "")
+            if not group.startswith("question:"):
+                continue
+            if entry.get("kind") == "row":
+                continue
+            # The register's own words, quoted, are the register speaking: a withdrawal notice that
+            # names a lot number or an application is the notice, not this page citing a row. What
+            # is scanned is what this site wrote, and the citation it appended is its provenance.
+            scanned = _unquoted(_strip_provenance_anchor(str(entry.get("sentence") or "")))
+            match = APPLICATION_ID.search(scanned)
+            if match:
+                failures.append(f"{key} {group}: {scanned[:140]}")
+    _report(failures, "register application row under a question block (§14 item 2)")
+
+
+def test_no_storage_key_is_painted(pages):
+    """§14(8): "Page keys are never painted" ("1989-12-11 K1:3J962UJT8H first approval").
+
+    Seed 8 recorded the ChEMBL approval event's source id as the page's own key, and the timeline
+    block printed it in the identifier position of a row, where a register's record number belongs.
+    `buildBlockBody` strips a key from every row and fact it returns; this asserts it over the whole
+    rendered corpus, on the text a browser paints.
+    """
+    failures: list[str] = []
+    for page in pages:
+        for line in _lines(page):
+            if PAGE_KEY.search(line):
+                failures.append(f"{page['key']}: {line[:140]}")
+    _report(failures, "a storage key painted on the page (§14 item 8)")
+
+
+def test_the_provenance_timeline_fires_only_on_three_dated_events_in_order():
+    """§14(10): three or more dated events, in chronological order, first and last kinds named.
+
+    "How did X get from 1989 to approved?" over the events "1989 first approval, 2004 first human
+    trial" phrases a later event as leading to an earlier one, and two dated points are not a
+    timeline at all. Asserted on seed 8's own records, which is where both rules live.
+    """
+    seeds = os.path.join(ROOT, "data", "revamp", "derived-v2")
+    path = os.path.join(seeds, "seed-08.ndjson")
+    if not os.path.exists(path):
+        candidates = [
+            name
+            for name in (os.listdir(seeds) if os.path.isdir(seeds) else [])
+            if name.startswith("seed-08") or name.startswith("seed8")
+        ]
+        if not candidates:
+            pytest.skip("seed 8 was discarded by the 40-page floor and wrote no records")
+        path = os.path.join(seeds, candidates[0])
+    failures: list[str] = []
+    read = 0
+    with open(path, encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if not line:
+                continue
+            record = json.loads(line)
+            values = record.get("values") or {}
+            slots = record.get("slots") or {}
+            events = [event for event in (values.get("events") or []) if event.get("year")]
+            read += 1
+            if len(events) < 3:
+                failures.append(f"{record.get('key')}: {len(events)} dated events")
+                continue
+            years = [str(event["year"]) for event in events]
+            if years != sorted(years):
+                failures.append(f"{record.get('key')}: events out of order {years}")
+            if slots.get("firstEvent") != events[0].get("event"):
+                failures.append(f"{record.get('key')}: first event kind not named")
+            if slots.get("lastEvent") != events[-1].get("event"):
+                failures.append(f"{record.get('key')}: last event kind not named")
+    _report(failures, "provenance timeline shorter than three events or out of order (§14 item 10)")
+
+
+def test_no_absence_question_fires(pages):
+    """§14(11): "Has X ever reached a person?" renders nothing when the answer is an absence.
+
+    The question fired only where the record says no one has, so its answer was that absence — the
+    shape §13(1) took out of the classification question. The header line "No human study recorded"
+    carries it, once.
+    """
+    failures: list[str] = []
+    for page in pages:
+        for line in _lines(page):
+            if ABSENCE_QUESTION.match(line.strip()):
+                failures.append(f"{page['key']}: {line[:120]}")
+    _report(failures, "an absence question rendered (§14 item 11)")
+
+
+def test_one_relation_per_pair():
+    """§14(12): one relation per pair, the most specific ("stereoisomer of", never also "same
+    structure as").
+
+    Phase 3 resolved a pair by every rule that applied to it and recorded each result, so a
+    stereoisomer pair carried `stereoisomer_of` and `form_of` both, and the page painted both.
+    `scripts/revamp/identity_relations_v6.py` keeps the most specific; this asserts the revision the
+    loader and the renderer actually read.
+    """
+    if not os.path.exists(CANONICAL):
+        pytest.skip(f"no identity revision at {CANONICAL}")
+    failures: list[str] = []
+    pairs = 0
+    with open(CANONICAL, encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if not line:
+                continue
+            record = json.loads(line)
+            seen: dict[str, set[str]] = {}
+            for relation in record.get("relations") or []:
+                target = relation.get("targetKey")
+                if not target:
+                    continue
+                kind = str(relation.get("type") or "").replace("_", "-").lower()
+                seen.setdefault(target, set()).add(kind)
+            for target, kinds in seen.items():
+                pairs += 1
+                if len(kinds) > 1:
+                    failures.append(f"{record['key']} -> {target}: {sorted(kinds)}")
+    assert pairs > 0, "the identity revision carries no relation"
+    _report(failures, "more than one relation on one pair (§14 item 12)")
+
+
+def test_the_record_holds_n_fields_line_is_furniture(provenance):
+    """§14(13): "This record holds N fields" is furniture.
+
+    It states how much of the record is filled in, in fixed words, on every stub in the corpus —
+    the footing §11 gives the register absence table and the patent no-record line.
+    """
+    failures: list[str] = []
+    seen = 0
+    for key, entries in provenance.items():
+        for entry in entries:
+            sentence = str(entry.get("sentence") or "")
+            if not sentence.startswith("This record holds "):
+                continue
+            seen += 1
+            if entry.get("furniture") is not True:
+                failures.append(f"{key}: {sentence}")
+    assert seen > 0, "no stub field-count line was rendered"
+    _report(failures, "the field-count line not marked furniture (§14 item 13)")
+
+
+# §14(3): what the applications say about the status word.
+US_ACTIVE = ("prescription", "over-the-counter")
+
+
+def test_the_us_status_word_agrees_with_its_applications(blocks):
+    """§14(3): "Approved · 4 applications: all discontinued" is a contradiction.
+
+    Any active prescription or over-the-counter application makes the word Approved; every
+    application discontinued makes it Discontinued; tentative approvals alone make it Tentative
+    approval. A recorded withdrawal is a statement about the substance and keeps its own word.
+    """
+    failures: list[str] = []
+    checked = 0
+    for key, bundle in blocks.items():
+        for row in bundle.get("registration") or []:
+            if row.get("jurisdiction") != "US":
+                continue
+            line = str(row.get("line") or "")
+            status = str(row.get("status") or "")
+            if " application" not in line:
+                continue
+            checked += 1
+            lowered = line.lower()
+            active = any(word in lowered for word in US_ACTIVE)
+            tentative = "tentative approval" in lowered
+            if status.startswith("Approved") and not active and ("all discontinued" in lowered or tentative):
+                failures.append(f"{key}: {status} / {line[:120]}")
+            if status == "Discontinued" and active:
+                failures.append(f"{key}: {status} / {line[:120]}")
+            if status == "Tentative approval" and active:
+                failures.append(f"{key}: {status} / {line[:120]}")
+    assert checked > 0, "no United States registration line named an application"
+    _report(failures, "a United States status word contradicting its applications (§14 item 3)")
+
+
+def test_label_interactions_are_grouped_by_label_and_direction(blocks):
+    """§14(5): one line per (label, direction class), never twenty-one repeating the label id.
+
+    Piroxicam's page carried twenty-one label-documented lines, each repeating the same DailyMed set
+    id and the same effective date and differing only in the counterpart's name and one of three
+    direction phrases.
+    """
+    failures: list[str] = []
+    grouped = 0
+    for key, bundle in blocks.items():
+        held = ((bundle.get("interactions") or {}).get("tiers") or {}).get("A")
+        if not held:
+            continue
+        rows = list(held.get("inline") or []) + list(held.get("disclosed") or [])
+        seen: dict[tuple[str, str, str], int] = {}
+        for row in rows:
+            if row.get("groupedCounterparts"):
+                grouped += 1
+            group = (
+                str(row.get("setId") or ""),
+                str(row.get("effectiveTime") or ""),
+                str(row.get("groupedDirection") or row.get("direction") or ""),
+            )
+            seen[group] = seen.get(group, 0) + 1
+        for group, count in seen.items():
+            if count > 1:
+                failures.append(f"{key}: {count} lines for {group}")
+    assert grouped > 0, "no label-documented line was grouped"
+    _report(failures, "two label-documented lines for one label and direction (§14 item 5)")
+
+
+def test_no_interaction_counterpart_is_an_entity_linking_artefact(blocks):
+    """§14(5): "PLATELETS" and bare "ASA" are entity-linking artefacts and are dropped.
+
+    `scripts/revamp/counterpart_artefacts.py` decides them from the registers' own records — a GSRS
+    substance class of `structurallyDiverse` (a cell, a tissue, a material and not a medicine) and a
+    printed name that is a bare abbreviation — and `page_blocks.py` drops every row naming one and
+    counts it.
+    """
+    path = os.path.join(ROOT, "data", "revamp", "interactions", "counterpart-artefacts.csv")
+    if not os.path.exists(path):
+        pytest.skip("no counterpart artefact file; run counterpart_artefacts.py")
+    import csv
+
+    artefacts: dict[str, str] = {}
+    with open(path, encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            artefacts[row["key"]] = row["printed_name"]
+    assert artefacts, "the artefact file names no page"
+    failures: list[str] = []
+    for key, bundle in blocks.items():
+        for tier in ((bundle.get("interactions") or {}).get("tiers") or {}).values():
+            for row in list(tier.get("inline") or []) + list(tier.get("disclosed") or []):
+                counterpart = row.get("counterpartKey")
+                if counterpart and counterpart in artefacts:
+                    failures.append(f"{key}: names {artefacts[counterpart]}")
+                for held in row.get("groupedCounterpartKeys") or []:
+                    if held in artefacts:
+                        failures.append(f"{key}: group names {artefacts[held]}")
+    _report(failures, "an entity-linking artefact rendered as a counterpart (§14 item 5)")

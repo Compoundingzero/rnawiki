@@ -74,17 +74,17 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draw 4 read by the lead (\u00a714); fix round 4, then draws 6 and 7"
+        "4.7": "fix round 4 done (self-audit 30/30); measure 5 resuming: draws 6 and 7"
       },
       "gate_evidence": null,
-      "updated": "2026-09-08T13:25:06+00:00"
+      "updated": "2026-09-08T19:04:27+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",
       "steps": {
         "5.1": "done (972 hubs)",
         "5.2": "done (tables + syntheses with provenance)",
-        "5.3": "hubs 923 (49 aliases), link graph PASS; 1,472 hub-to-hub rendered pairs \u2192 \u00a714",
+        "5.3": "710 hubs + 258 aliases; one held pair (HDAC8/HDAC1)",
         "5.4": "first batch 0.079/0.335 PASS; all 0.125/0.327 PASS"
       },
       "gate_evidence": null,

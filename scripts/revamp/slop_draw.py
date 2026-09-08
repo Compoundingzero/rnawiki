@@ -103,7 +103,7 @@ FIELDS_DIR = ROOT / "data/revamp/fields-v2"
 QUESTIONS_DIR = ROOT / "data/revamp/questions-v2"
 DERIVED_DIR = ROOT / "data/revamp/derived-v2"
 BLOCKS_DIR = ROOT / "data/revamp/page-blocks"
-CANONICAL = ROOT / "data/revamp/identity/canonical-v5.ndjson"
+CANONICAL = ROOT / "data/revamp/identity/canonical-v6.ndjson"
 CANONICAL_V2 = ROOT / "data/revamp/identity/canonical-v2.ndjson"
 INTERACTION_RULES = ROOT / "docs/specs/interaction-rules.md"
 SOURCES_DIR = ROOT / "data/sources"
@@ -696,6 +696,28 @@ def resolve_trace(trace: str, page: PageInputs, corpus_keys: set[str], columns: 
             field_path_resolves(page, path) for path in paths
         )
 
+    # A grouped line's trace is a list (docs/specs/phase4-generators.md section 14 item 15).
+    #
+    # Section 13 item 3 grouped the curated enzyme rows into one line per role and item 5 grouped
+    # the label-documented rows by label and direction, and a grouped line stands for several
+    # stored records: its trace is "frdb:ddi:16659; frdb:ddi:16660; ..." or the several lexicon
+    # surfaces its counterparts were resolved by. Draws 4 and 5 failed check (a) 16 and 13 times on
+    # exactly that, because the classifier had no class for a list. A list resolves when every one
+    # of its elements resolves and they are all of one class - the claim is still executed, once per
+    # element, and nothing is taken on trust. The two traces above this one are read first: an
+    # absence's trace carries its own semicolon ("...; register: X as of Y") and is one trace, not
+    # a list.
+    for separator in ("; ", " \u00b7 "):
+        if separator not in trace:
+            continue
+        parts = [part.strip() for part in trace.split(separator) if part.strip()]
+        if len(parts) < 2:
+            continue
+        resolved = [resolve_trace(part, page, corpus_keys, columns, rule_ids) for part in parts]
+        classes = {klass for klass, _ok in resolved}
+        if len(classes) == 1 and "unrecognised" not in classes:
+            return "%s list" % next(iter(classes)), all(ok for _klass, ok in resolved)
+
     match = FIELD_PATH_RE.match(trace)
     if match:
         name, rest = match.group(1), match.group(2) or ""
@@ -787,6 +809,11 @@ def load_page_inputs(keys: set[str], database_url: str | None = None) -> dict[st
                     source_id = line.get("sourceRecordId")
                     if isinstance(source_id, str) and source_id:
                         held.ddi_records.add(source_id)
+                    # Section 14 item 15: a grouped line carries the records it stands for as a
+                    # list, and the row it was built from no longer carries one of its own.
+                    for grouped in line.get("groupedRecordIds") or []:
+                        if isinstance(grouped, str) and grouped:
+                            held.ddi_records.add(grouped)
             for line in row.get("registration") or []:
                 for trace in line.get("provenance") or []:
                     match = ON_RECORD_RE.match(str(trace))

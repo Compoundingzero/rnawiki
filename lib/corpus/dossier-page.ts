@@ -48,6 +48,7 @@ import {
   deriveQuestions,
   groupRevealedRows,
   INTERACTION_TIER_LABELS,
+  interactionRecordIds,
   registerName,
   registerEventLines,
   sectionSentenceParts,
@@ -98,6 +99,11 @@ export interface CorpusRowGroup {
   id: string
   label?: string
   rows: RevealedRow[]
+  /**
+   * §14(9): true where this group is the counted remainder of a list longer than six rows, and the
+   * template paints it inside a closed `<details>` of its own rather than on the page.
+   */
+  disclosed?: boolean
 }
 
 export interface CorpusBlock {
@@ -225,6 +231,14 @@ export interface CorpusInteractionLine {
   ruleId?: string
   setId?: string
   sourceRecordId?: string
+  /** §14(5): the direction class a grouped label-documented line states, for its disclosure row. */
+  groupedDirection?: string
+  /**
+   * §14(6): the dataset records behind this line, for the closed disclosure and nowhere above it.
+   * A grouped line stands for several, and the render and the page read the same list through
+   * `interactionRecordIds` so they cannot paint two different rows for one line.
+   */
+  recordIds?: string[]
 }
 
 export interface CorpusInteractions {
@@ -532,6 +546,7 @@ function groupRows(blockId: string, rows: RevealedRow[]): CorpusRowGroup[] {
     id: `${blockId}-g${index + 1}`,
     ...(group.label === undefined ? {} : { label: group.label }),
     rows: group.rows,
+    ...(group.disclosed === true ? { disclosed: true as const } : {}),
   }))
 }
 
@@ -1029,22 +1044,34 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     .map((row) => {
       const tier = (row.tier ?? 'C') as 'A' | 'B' | 'C'
       const target = row.counterpartKey ? targetByKey.get(row.counterpartKey) : undefined
+      const counterpartName = row.counterpartName ?? target?.displayName
+      /*
+       * §14(5), §14(6): a grouped label-documented line names several counterparts, so the loader
+       * stored no counterpart against it and its direction is the group's direction class. That
+       * is what its disclosure row is labelled with, and the record ids behind it come from the
+       * build's own provenance map — the same two values `renderPage` reads, through the same two
+       * functions, so the render and the painted page carry one row.
+       */
+      const grouped = counterpartName === undefined && tier === 'A' ? row.direction : null
       return {
         id: row.id,
         tier,
         tierLabel: INTERACTION_TIER_LABELS[tier] as string,
         line: row.line,
         ...(target ? { counterpartSlug: target.slug } : {}),
-        ...(row.counterpartName
-          ? { counterpartName: row.counterpartName }
-          : target
-            ? { counterpartName: target.displayName }
-            : {}),
+        ...(counterpartName ? { counterpartName } : {}),
         disclosed: row.disclosed,
         ...(row.sourceUrl ? { sourceUrl: row.sourceUrl } : {}),
         ...(row.ruleId ? { ruleId: row.ruleId } : {}),
         ...(row.setId ? { setId: row.setId } : {}),
         ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+        ...(grouped ? { groupedDirection: grouped } : {}),
+        recordIds: interactionRecordIds({
+          ...(row.ruleId ? { ruleId: row.ruleId } : {}),
+          ...(row.setId ? { setId: row.setId } : {}),
+          ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+          ...(asRecord(row.provenance) ? { provenance: asRecord(row.provenance) } : {}),
+        }),
       }
     })
   const interactionTotals: CorpusInteractions['totals'] = {}

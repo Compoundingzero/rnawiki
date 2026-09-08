@@ -18,13 +18,15 @@
  * component carry the same rows and the same prose.
  */
 import type { CorpusSectionSentence } from '@/lib/corpus/dossier-page'
+import { VISIBLE_ROWS } from '@/lib/corpus/page-text'
 
-function SectionRows({ row }: { row: CorpusSectionSentence }) {
-  if (row.rows.length === 0) return null
+function SectionRows({ row, from = 0 }: { row: CorpusSectionSentence; from?: number }) {
+  const rows = row.rows.slice(from, from + VISIBLE_ROWS)
+  if (rows.length === 0) return null
   return (
     <dl className="cd-facts">
-      {row.rows.map((item, index) => (
-        <div className="cd-fact" key={`${row.section}-${row.ordinal}-${index}`}>
+      {rows.map((item, index) => (
+        <div className="cd-fact" key={`${row.section}-${row.ordinal}-${from + index}`}>
           <dt>{item.label}</dt>
           <dd>
             {row.counterpartSlug &&
@@ -51,9 +53,26 @@ export function Tier3Sections({ sections }: { sections: CorpusSectionSentence[] 
       <h2 className="cd-section-heading" id="cd-computed-heading">
         What the structure and the activity record show
       </h2>
+      {/*
+        §14(9): six rows on the page, the counted rest inside a control of its own. A computed
+        section holds four or five values today; the cap is the one rule, applied to every list the
+        page paints, rather than a rule that holds where a list happens to be short.
+      */}
       {sections.map((row) => (
         <div key={`${row.section}-${row.ordinal}`}>
           <SectionRows row={row} />
+          {row.rows.length > VISIBLE_ROWS ? (
+            <details
+              className="cd-evidence cd-further-rows"
+              id={`cd-computed-${row.section}-${row.ordinal}-more`}
+            >
+              <summary>
+                {row.rows.length - VISIBLE_ROWS} more recorded{' '}
+                {row.rows.length - VISIBLE_ROWS === 1 ? 'row' : 'rows'}
+              </summary>
+              <SectionRows from={VISIBLE_ROWS} row={row} />
+            </details>
+          ) : null}
           {row.sentence ? <p className="cd-paragraph">{row.sentence}</p> : null}
         </div>
       ))}

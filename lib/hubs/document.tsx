@@ -49,8 +49,10 @@ export function hubDocumentResponse(page: HubPage): Promise<Response> {
               href="/h"
             >
               Groups
-            </a>
-            <span className="text-[#6E6E73]"> · {HUB_TYPE_LABEL[hub.type]}</span>
+            </a>{' '}
+            {/* §14(7): a text node between the two inline elements, so no extractor reads
+                "Groups· Target" as one word. */}
+            <span className="text-[#6E6E73]">· {HUB_TYPE_LABEL[hub.type]}</span>
           </nav>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1D1D1F] tracking-tight">
             {hub.name}

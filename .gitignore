@@ -174,12 +174,12 @@ data/revamp/render-v7/provenance/
 data/revamp/render-v7/provenance-with-furniture/
 data/revamp/render-v7/pages-all.ndjson
 data/revamp/render-v7/pages-all-with-furniture.ndjson
-data/revamp/render-v8/text/
-data/revamp/render-v8/text-with-furniture/
-data/revamp/render-v8/provenance/
-data/revamp/render-v8/provenance-with-furniture/
-data/revamp/render-v8/pages-all.ndjson
-data/revamp/render-v8/pages-all-with-furniture.ndjson
+data/revamp/render-v9/text/
+data/revamp/render-v9/text-with-furniture/
+data/revamp/render-v9/provenance/
+data/revamp/render-v9/pages-all.ndjson
+# The rendered-page cache the duplicate check writes: regenerated on every run, never in git.
+data/revamp/rendered-text/
 data/revamp/derived-v2/
 data/revamp/slop-draws/**/pages-full/
 data/revamp/page-blocks/

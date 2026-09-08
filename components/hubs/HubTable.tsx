@@ -17,7 +17,45 @@ const CELL = 'px-2 py-2 align-top border-b border-black/[0.06] whitespace-nowrap
 const HEAD = 'px-2 py-2 text-left font-semibold text-[#1D1D1F] border-b border-black/[0.12]'
 
 function value(text: string): string {
-  return text.trim() === '' ? '—' : text
+  return text.trim() === '' ? '\u2014' : text
+}
+
+/**
+ * §14(14): a cell that states an absence is furniture.
+ *
+ * Nine hundred hub tables share the same absence words. "not found" in six jurisdiction columns,
+ * "no record", the em dash a blank cell renders — measured, that is most of what two hubs over
+ * different members have in common, and the rendered duplicate check was reading it as shared
+ * content: 1,472 hub-to-hub pairs sat at or above 0.5 Jaccard after the member-set dedupe. The
+ * cell stays on the page, because a reader has to tell a register that was checked and found
+ * nothing from one this run could not check; it carries `data-furniture` so the check and the
+ * ruler read what the hub says rather than what every hub says.
+ */
+const ABSENCE_CELL = new Set([
+  '\u2014',
+  'not found',
+  'not cleared',
+  'not checked',
+  'no record',
+  'no record recorded',
+  'not listed',
+  'no label indication on record',
+  'no generic recorded',
+])
+
+function isAbsenceCell(text: string): boolean {
+  const cleaned = text.trim().toLowerCase()
+  return cleaned === '' || ABSENCE_CELL.has(cleaned)
+}
+
+/** One cell, marked where its content is an absence. */
+function Cell({ className, text }: { className: string; text: string }) {
+  const painted = value(text)
+  return (
+    <td className={className} {...(isAbsenceCell(painted) ? { 'data-furniture': 'true' } : {})}>
+      {painted}
+    </td>
+  )
 }
 
 export function HubTable({
@@ -92,25 +130,33 @@ export function HubTable({
                   )}
                 </th>
                 {HUB_JURISDICTION_COLUMNS.map((column) => (
-                  <td className={CELL} key={column.code}>
-                    {value(String(member[column.field] ?? ''))}
-                  </td>
+                  <Cell
+                    className={CELL}
+                    key={column.code}
+                    text={String(member[column.field] ?? '')}
+                  />
                 ))}
-                <td className={CELL}>{value(member.sgForensicClass)}</td>
-                <td className={CELL}>{value(member.genericAvailable)}</td>
-                {showPotency ? <td className={CELL}>{value(member.potency)}</td> : null}
-                <td className={`${CELL} whitespace-normal min-w-[14rem]`}>
-                  {member.indicationCount === 0
-                    ? 'no label indication on record'
-                    : `${member.indications} (${member.indicationCount})`}
-                </td>
-                <td className={`${CELL} whitespace-normal min-w-[10rem]`}>
-                  {member.withdrawnReason === '' && member.withdrawnWhere === ''
-                    ? '—'
-                    : `${value(member.withdrawnReason)}${
-                        member.withdrawnWhere ? ` · ${member.withdrawnWhere}` : ''
-                      }`}
-                </td>
+                <Cell className={CELL} text={member.sgForensicClass} />
+                <Cell className={CELL} text={member.genericAvailable} />
+                {showPotency ? <Cell className={CELL} text={member.potency} /> : null}
+                <Cell
+                  className={`${CELL} whitespace-normal min-w-[14rem]`}
+                  text={
+                    member.indicationCount === 0
+                      ? 'no label indication on record'
+                      : `${member.indications} (${member.indicationCount})`
+                  }
+                />
+                <Cell
+                  className={`${CELL} whitespace-normal min-w-[10rem]`}
+                  text={
+                    member.withdrawnReason === '' && member.withdrawnWhere === ''
+                      ? ''
+                      : `${value(member.withdrawnReason)}${
+                          member.withdrawnWhere ? ` · ${member.withdrawnWhere}` : ''
+                        }`
+                  }
+                />
                 <td className={CELL}>
                   {member.trialsCount} · {value(member.resultsPostedShare)}
                 </td>

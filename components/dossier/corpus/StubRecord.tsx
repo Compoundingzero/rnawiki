@@ -20,7 +20,13 @@ export function StubRecord({ dossier }: { dossier: CorpusDossier }) {
   const fields = dossier.presentFieldCount
   return (
     <div>
-      <p className="cd-stub-count">
+      {/*
+        §14(13): "This record holds N fields" is furniture. It is a statement about how much of the
+        record is filled in, in fixed words, on every stub in the corpus — the same footing §11
+        gives the register absence table and the patent no-record line. The reader still meets it;
+        the ruler, the rendered duplicate check and the template test all skip it.
+      */}
+      <p className="cd-stub-count" data-furniture="true">
         This record holds {fields} {fields === 1 ? 'field' : 'fields'}.
       </p>
       {/*

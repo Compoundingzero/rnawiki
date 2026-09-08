@@ -103,7 +103,7 @@ import harness  # noqa: E402  (path is set immediately above)
 # the corpus-20k canonical would name pages the merges of Phase 3 no longer keep, and would print a
 # display name four merged pages no longer carry. The corpus-20k file stays as the fallback for a
 # checkout that has not run Phase 3, and which file was read is recorded in the summary.
-CANONICAL_V3 = REPO_ROOT / "data/revamp/identity/canonical-v5.ndjson"
+CANONICAL_V3 = REPO_ROOT / "data/revamp/identity/canonical-v6.ndjson"
 CANONICAL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/identity/canonical.ndjson"
 CANONICAL = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_CORPUS_20K
 DISPOSITIONS = REPO_ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"

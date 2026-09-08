@@ -184,47 +184,57 @@ describe('CLINICAL bodies state the page’s own values and its own limits', () 
     expect(b.paragraphs).toHaveLength(1)
   })
 
-  it('states the trials that posted no result as a row, not as a sentence', () => {
+  it('states the trials that posted no result under the trials question, as a row', () => {
     // §13(7): a statement carrying one value is data, and the row says the whole of it.
-    const b = body(
+    // §14(4): the row belongs to the question about the trials, not to the question about what
+    // the label indicates. The label block writes it no longer.
+    const label = body(
       bundle({ fields: { indication: INDICATION, trialHistory: HISTORY } }),
       question({ block: 'indication', template: 'indication' }),
     )
-    expect(b.paragraphs).toHaveLength(1)
-    expect(b.facts).toContainEqual({
+    expect(label.paragraphs).toHaveLength(1)
+    expect(label.facts).toEqual([])
+
+    const trials = body(
+      bundle({ fields: { trialHistory: HISTORY } }),
+      question({ block: 'trial-history', template: 'trial-history' }),
+    )
+    expect(trials.facts).toContainEqual({
       label: 'Registered studies posting no result',
       value: '12 of 18',
     })
   })
 
-  it('renders the register statuses as rows and names no never-cleared jurisdiction', () => {
+  it('names the affirmative statuses and paints no register application row', () => {
     const b = body(
       bundle({ fields: { regulatoryStatus: REGISTERS } }),
       question({ block: 'regulatory-only', template: 'regulatory-only' }),
     )
-    expect(b.paragraphs[0]).toContain('US approved (NDA012345, 2026-09-04)')
+    // §14(2): the register's application id is a register data row. The registration block and
+    // its disclosure hold every one of them once, so the answer names the status and the date.
+    expect(b.paragraphs[0]).toContain('US approved (2026-09-04)')
+    expect(b.paragraphs[0]).not.toContain('NDA012345')
     // No paragraph 2: counting the silent registers was the same sentence on a sixth of the corpus.
     expect(b.paragraphs).toHaveLength(1)
-    // §13(1): the registration block's absence table is the one place a register that recorded
-    // nothing is stated, so "EU consulted, no status recorded" is no longer a row here either.
-    expect(b.rows).toEqual([
-      {
-        label: 'US',
-        identifier: 'NDA012345',
-        value: 'approved · Drugs@FDA · application NDA012345: Prescription · 2026-09-04',
-      },
-    ])
+    // §14(2): and no rows at all. §13(1) had already taken the absences out of them; what was
+    // left was the corpus-20k register data rows, painted a second time under a question.
+    expect(b.rows).toEqual([])
     // JP was never cleared for this corpus; that fact lives on /definitions, never in a body.
     expect(JSON.stringify(b)).not.toContain('JP')
   })
 
-  it('states how many registered studies posted no result', () => {
+  it('states how many registered studies posted no result, as the block\u2019s own value', () => {
     const b = body(
       bundle({ fields: { trialHistory: HISTORY } }),
       question({ block: 'trial-history', template: 'trial-history' }),
     )
     expect(b.paragraphs[0]).toContain('18 registered studies of Theophylline')
-    expect(b.paragraphs[1]).toContain('12 of 18 posted no result')
+    // §13(7), §14(4): one ratio is a row under the heading, not a clause in a sentence.
+    expect(b.facts).toContainEqual({
+      label: 'Registered studies posting no result',
+      value: '12 of 18',
+    })
+    expect(b.paragraphs.join(' ')).not.toContain('12 of 18 posted no result')
   })
 
   it('never writes an answer that would read the same on another page', () => {

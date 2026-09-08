@@ -32,8 +32,11 @@ export {
   INTERACTION_CONFIDENCE_LABELS,
   INTERACTION_RULE_LABELS,
   INTERACTION_TIER_LABELS,
+  interactionDisclosureLabel,
   interactionLine,
   interactionProvenance,
+  interactionRecordIds,
+  looksLikePageKey,
   organismPlural,
   pageProse,
   registerApplicationIds,
@@ -48,10 +51,12 @@ export {
   sectionSentenceText,
   sentenceNamesCompound,
   TRIAL_ROWS_INLINE,
+  VISIBLE_ROWS,
 } from '@/scripts/corpus-20k/render/page-text'
 
 export type {
   BlockBody,
+  InteractionDisclosureSource,
   CheckedSources,
   ControlledRow,
   IdentityRecord,

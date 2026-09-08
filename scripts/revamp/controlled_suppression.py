@@ -212,11 +212,24 @@ def main(argv=None):
                     newly_by_tier[tiers.get(key, 0)] += 1
                 record["suppressed"] = True
                 classes = list(record.get("classes") or [])
-                if "S2" not in classes:
+                # docs/specs/phase4-generators.md section 14 item 1: the supervision answer is
+                # built from the S1-S9 classes and names a controlled schedule under the Singapore
+                # Misuse of Drugs Act, a United States DEA schedule or an Australian Poisons
+                # Standard Schedule 8 or 9. A Singapore Poisons Act or Poisons Rules schedule is a
+                # prescription classification (section 10 measured 1,836 pages with it against 241
+                # without), and offering it as a reason for supervision is the non-sequitur the
+                # reading of draw 4 found on Piroxicam: "AU scheduled in the Poisons Standard: the
+                # registers' classification of Piroxicam". S2 is therefore recorded only on the
+                # narrow test. The page keeps `suppressed` and the controlled trigger either way,
+                # so no dose, timing or route text is written for it; what changes is that a
+                # prescription class is no longer stated as a supervision reason, and the schedule
+                # renders in the registration block, which is where section 13 item 4 puts it.
+                if key in narrow and "S2" not in classes:
                     classes.append("S2")
                 record["classes"] = classes
                 rows = list(record.get("evidence") or [])
-                rows.extend(evidence)
+                if key in narrow:
+                    rows.extend(evidence)
                 record["evidence"] = rows
                 record["controlledTrigger"] = True
                 record["controlledTriggerBasis"] = basis
@@ -252,6 +265,14 @@ def main(argv=None):
             "definition": "the Misuse of Drugs Act 1973 schedules only, without the Poisons Act 1938 "
             "Schedule and the Poisons Rules schedules, plus the same US DEA and AU SUSMP 8/9 tests",
             "pagesFiring": len(narrow),
+            # section 14 item 1: this is the test that records the S2 class and its evidence. The
+            # wider test above still sets `suppressed` and the controlled trigger, so a page
+            # carrying only a prescription schedule keeps its no-dose path and states the schedule
+            # in the registration block instead of offering it as a supervision reason.
+            "recordsClassS2": True,
+            "pagesSuppressedWithoutClassS2": len(set(triggers) & keys_in_assignments) - len(
+                narrow & keys_in_assignments
+            ),
         },
         "triggeredKeysNotInAssignments": missing,
     }

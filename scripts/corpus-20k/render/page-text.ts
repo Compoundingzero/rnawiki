@@ -40,7 +40,6 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import {
-  byJurisdiction,
   canonicalSeedId,
   formatDuration,
   isAbsenceStatus,
@@ -339,7 +338,18 @@ export function anchor(source: SourceRef | undefined): string {
   // A corpus-wide snapshot label ("ClinicalTrials.gov API v2 snapshot 2026-09-01T09:00:05") is the
   // same string on thousands of pages and identifies no record. The register name and the date say
   // the same thing in three words; a real record id (an NCT, an NDA, a set id) is kept.
-  if (source.id && source.id !== reg && !/snapshot/i.test(source.id)) parts.push(source.id)
+  //
+  // §14(8): a storage key is not a record id either. Where an ingest recorded no identifier of the
+  // register's own it wrote this page's key in its place, and the anchor then read "Drugs@FDA ·
+  // COMBO:NAME:conjugated estrogens medroxyprogesterone · 2026-08-28" — the corpus's own storage
+  // address, in the position a register's record number belongs. The register and the date stay.
+  if (
+    source.id &&
+    source.id !== reg &&
+    !/snapshot/i.test(source.id) &&
+    !looksLikePageKey(source.id)
+  )
+    parts.push(source.id)
   if (source.sourceDate) parts.push(source.sourceDate)
   return parts.join(' · ')
 }
@@ -603,65 +613,36 @@ function rowsFromTrials(list: unknown[], cap = ROW_CAP): RevealedRow[] {
 }
 
 /**
- * The register statuses a page holds, as ROWS and as VALUES.
+ * The register statuses a page holds, as VALUES.
  *
  * Gate 2's repeated-frame audit charged three of the CLINICAL blocks with the same two phrases:
  * "jurisdictions record no status for" (32.7 % of indexed pages) and the constant never-cleared
  * list. Both were sentences carrying no value of this page's own. The fix is structural, not
- * lexical: a per-jurisdiction status is a row (register, status, record id, date), and the prose
- * names only the jurisdictions that recorded a status, as values. The four registers that were
- * never cleared for this corpus (UK, AU, JP, SG) are a property of the corpus and are stated once,
- * on /definitions.
+ * lexical: the prose names only the jurisdictions that recorded a status, as values, and the four
+ * registers that were never cleared for this corpus (UK, AU, JP, SG) are a property of the corpus
+ * and are stated once, on /definitions.
+ *
+ * The rows that stood beside them are gone. §14(2) retires the register application rows from
+ * every question block: a per-jurisdiction row carrying the register, its record id and its date
+ * is a register data row, and the registration block and its disclosure hold each of them once.
  */
-function registerStatusRows(statuses: ReturnType<typeof readRegisterStatuses>): RevealedRow[] {
-  const out: RevealedRow[] = []
-  /*
-   * §13(1): the registration block is the single place for register status, and its absence table
-   * is where a register that holds nothing is stated. A question block's evidence rows carry the
-   * registers that recorded something; repeating "SG not found" and "UK not cleared" under an
-   * answer about a label's indication said the same thing a third time.
-   */
-  for (const r of statuses.recorded) {
-    if (isAbsenceStatus(r.status)) continue
-    if (r.records.length === 0) {
-      out.push({ label: r.code, value: r.status })
-      if (out.length >= ROW_CAP) return out
-      continue
-    }
-    for (const rec of r.records) {
-      const bits = [
-        r.status,
-        rec.register,
-        rec.statement ? clampSentence(rec.statement, 240) : undefined,
-        rec.date,
-      ]
-      out.push({
-        label: r.code,
-        ...(rec.id ? { identifier: rec.id } : {}),
-        value: bits.filter((b): b is string => Boolean(b && b.trim())).join(' · '),
-      })
-      if (out.length >= ROW_CAP) return out
-    }
-  }
-  return out
-}
-
 /**
- * "US approved (NDA 021995, 2005)" — status and the register's own record, per jurisdiction.
+ * "US approved (2005)" — the affirmative status a register recorded, per jurisdiction.
  *
  * §13(1): a recorded status whose words are an absence never reaches a prose answer. It is on the
  * page, in the registration block's absence table, and stating it a second time inside a sentence
  * about something else was the non-sequitur the reading found.
+ *
+ * §14(2): the register's application id is not carried here either. An application id is a
+ * register data row, the registration block's disclosure holds every one of them once, and a
+ * question's answer that names one is the same row painted twice.
  */
 function registerStatusValues(statuses: ReturnType<typeof readRegisterStatuses>): string[] {
   return statuses.recorded
     .filter((r) => !isAbsenceStatus(r.status))
     .map((r) => {
-      const first = r.records[0]
-      const detail = first
-        ? [first.id, first.date].filter((b): b is string => Boolean(b && b.trim())).join(', ')
-        : ''
-      return detail ? `${r.code} ${r.status} (${detail})` : `${r.code} ${r.status}`
+      const date = r.records[0]?.date
+      return date && date.trim() ? `${r.code} ${r.status} (${date})` : `${r.code} ${r.status}`
     })
 }
 
@@ -754,64 +735,46 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
      */
 
     /* ------------------------------------------------------- supervision */
+    /*
+     * §14(1): the answer names the suppression evidence and never a register status.
+     *
+     * It used to read the `regulatory` field jurisdiction by jurisdiction and offer whatever it
+     * found there as "the registers' classification of X". On Piroxicam that produced "AU
+     * scheduled in the Poisons Standard: the registers' classification of Piroxicam", which is
+     * wrong twice over: an Australian Schedule 4 entry is a prescription class and not a reason
+     * for supervision, and the sentence's provenance named registers the sentence itself did not.
+     * The register application rows the same loop painted under the question — US NDA…
+     * Prescription, CA drug code … APPROVED — are the corpus-20k register data rows, which §14(2)
+     * retires from every question block: the registration block and its disclosure hold them once.
+     *
+     * What is left is the only thing that answers the question. The suppression pass recorded, per
+     * page, which of the classes S1–S9 a register positively stated — a controlled schedule under
+     * the Singapore Misuse of Drugs Act, a United States DEA schedule or an Australian Poisons
+     * Standard Schedule 8 or 9; a withdrawal; a boxed warning; a REMS; a cytotoxic or teratogen
+     * listing; a clinician-administered route — and `citedSuppressionLabels` turns those codes
+     * into the words `docs/specs/suppression-classes.md` fixes. A prescription-only class (SUSMP
+     * Schedule 4, a Singapore Poisons Act schedule, "prescription only") is not among them:
+     * `scripts/revamp/controlled_suppression.py` records S2 only on the narrow controlled test.
+     */
     case 'supervision': {
-      const reg = f.present('regulatoryStatus')
-      const classifications: string[] = []
-      const regValue = asObject(reg?.value)
-      if (regValue) {
-        // §11: the page reads this map out of a `jsonb` column, which stores an object's keys in
-        // PostgreSQL's canonical order, and the corpus renderer reads it out of a JSON file, which
-        // keeps the order the ingest wrote. The registers are named in §2's fixed order on both.
-        for (const [code, raw] of Object.entries(regValue).sort(([a], [b]) =>
-          byJurisdiction(a, b),
-        )) {
-          const j = asObject(raw)
-          const status = asString(pick(j, 'status'))
-          const schedule = asString(pick(j, 'deaSchedule', 'controlledSubstanceSchedule'))
-          /*
-           * §13(1): only an affirmative classification — a schedule, a withdrawal, a boxed
-           * warning, a REMS — may be named here, and never a jurisdiction whose register recorded
-           * an absence or a plain registration status. "SG not found, AU scheduled and UK not
-           * cleared" was three registers' findings offered as one classification.
-           */
-          if (schedule) classifications.push(`${code} schedule ${schedule}`)
-          else if (isAffirmativeClassification(status)) classifications.push(`${code} ${status}`)
-          for (const r of asArray(pick(j, 'records', 'evidence')).slice(0, ROW_CAP)) {
-            const ro = asObject(r)
-            const verbatim = asString(pick(ro, 'statusVerbatim', 'statement'))
-            if (verbatim)
-              rows.push({
-                label: code,
-                ...(asString(pick(ro, 'recordId', 'id'))
-                  ? { identifier: asString(pick(ro, 'recordId', 'id')) as string }
-                  : {}),
-                value: clampSentence(verbatim),
-              })
-          }
-        }
-      }
-      if (classifications.length > 0) {
-        p1(
-          `${joinList(classifications)}: the registers' classification of ${name}.`,
-          entrySource(reg),
-        )
-      } else if (citedSuppressionLabels(page.suppressionClasses).length > 0) {
-        // §7: the class is `S2` in storage and "a controlled-substance schedule in Singapore,
-        // the United States, Australia or the United Kingdom" on the page. Printing the token put
-        // a storage identifier in front of a reader on 2,800 pages.
-        p1(
-          `A register records ${name} under medical supervision: ${joinList(
-            citedSuppressionLabels(page.suppressionClasses),
-          )}.`,
-          entrySource(reg),
-        )
-      }
+      const cited = citedSuppressionLabels(page.suppressionClasses)
+      if (cited.length === 0) break
       /*
-       * §13(1): where the record holds no affirmative classification the block writes nothing, and
-       * `renderPage` drops a block whose builder wrote nothing. The absence is the registration
-       * block's furniture table, which every page carries.
+       * The source is the recorded field the class evidence was read from, in the order the
+       * classes are recorded in: the controlled-substance schedules first, then the label's boxed
+       * warning, then the register's own record of a withdrawal or a restricted supply programme.
+       * Reading them here is also what puts them in the block's provenance trace, so the sentence
+       * names the field it was built from rather than a register it does not mention.
        */
-      if (paragraphs.length === 0) break
+      const classSource =
+        entrySource(f.present('controlled')) ??
+        entrySource(f.present('boxedWarning')) ??
+        entrySource(f.present('regulatoryStatus')) ??
+        src
+      // §7: the class is `S2` in storage and "a controlled-substance schedule in Singapore, the
+      // United States, Australia or the United Kingdom" on the page. Printing the token put a
+      // storage identifier in front of a reader on 2,800 pages.
+      p1(`A register records ${name} under medical supervision: ${joinList(cited)}.`, classSource)
       // Standing-sentence rule: where the page records no study scope there is nothing of its own
       // to say, so paragraph 2 is not written. "No study record accompanies it." stood verbatim on
       // 378 indexed pages (6.4%) and is exactly the shared sentence the constraints forbid.
@@ -833,6 +796,20 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       )
       const phases = asObject(pick(c, 'byPhase'))
       const phaseWords = countWords(phases)
+      /*
+       * §14(4): the ratio of registered studies that posted no result is an answer about the
+       * trials, and this is the trials question on a record whose evidence ceiling was filled. It
+       * was painted under the label question, which asks what the label indicates.
+       */
+      const humanHistory = asObject(f.present('trialHistory')?.value)
+      const humanRegistered = asNumber(pick(humanHistory, 'registeredStudies', 'studies'))
+      const humanPosted = asNumber(pick(humanHistory, 'studiesWithPostedResults'))
+      if (humanRegistered !== undefined && humanPosted !== undefined && humanRegistered > 0) {
+        facts.push({
+          label: 'Registered studies posting no result',
+          value: `${humanRegistered - humanPosted} of ${humanRegistered}`,
+        })
+      }
       // docs/specs/derived-content.md seed 15, amended 2026-09-04: evidence age is a VALUE that
       // renders here, never a block of its own. The sentence is written only where seed 15 holds
       // this page's own year and record; the revealed row is that record and its completion date,
@@ -1381,20 +1358,28 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
 
     /* ----------------------------------------------------- trial-size (16) */
     case 'trial-size': {
+      /*
+       * §14(15), applying §13(7): three recorded enrolment numbers are three values, and a
+       * sentence built around them — "N at the median, M at the largest, across K registered
+       * trials of X" — is a frame with the numbers dropped into it. The block census measured that
+       * frame on 411 pages (1.43 %), over the 0.5 % line, because that is what a template with a
+       * name and three numbers swapped in does. The numbers are rows; what is left of the answer
+       * is the recorded status spread, which is a claim about this record's trials.
+       */
       const v = asObject(f.seed('seed16')?.values)
       const reg = asObject(page.registry)
-      p1(
-        `${asNumber(pick(v, 'medianN')) ?? q.values.median ?? ''} at the median, ${asNumber(pick(v, 'maxN')) ?? '—'} at the largest, across ${asNumber(pick(v, 'trialCount')) ?? 0} registered trials of ${name}.`,
-      )
+      const median = asNumber(pick(v, 'medianN')) ?? asNumber(q.values.median)
+      const largest = asNumber(pick(v, 'maxN'))
+      const counted = asNumber(pick(v, 'trialCount'))
+      if (median !== undefined) facts.push({ label: 'Median enrolment', value: String(median) })
+      if (largest !== undefined) facts.push({ label: 'Largest enrolment', value: String(largest) })
+      if (counted !== undefined)
+        facts.push({ label: 'Registered trials counted', value: String(counted) })
       const statuses = asObject(pick(reg, 'byOverallStatus'))
-      p2(
-        joinBits([
-          countWords(statuses),
-          asNumber(pick(reg, 'hasResults')) !== undefined
-            ? `${asNumber(pick(reg, 'hasResults'))} with posted results`
-            : undefined,
-        ]) || `${asNumber(pick(v, 'trialCount')) ?? 0} counted.`,
-      )
+      const posted = asNumber(pick(reg, 'hasResults'))
+      const statusWords = countWords(statuses)
+      if (statusWords) facts.push({ label: 'Recorded status', value: statusWords })
+      if (posted !== undefined) facts.push({ label: 'With posted results', value: String(posted) })
       rows.push(...countRows(asObject(pick(reg, 'byPhase'))))
       rows.push(...countRows(statuses))
       break
@@ -1699,9 +1684,25 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
         if (recorded && /^\d{4}(-\d{2}(-\d{2})?)?$/.test(recorded)) return recorded
         return asString(pick(event, 'year'))
       }
+      /*
+       * §14(10): chronological order, here as well as in the seed.
+       *
+       * The seed sorts its events before it records them, and the page must not depend on that:
+       * a record written before the rule, or read back out of a `jsonb` column, would otherwise
+       * let the block phrase a later event as leading to an earlier one — "How did X get from
+       * 1989 to approved?" over "1989 first approval, 2004 first human trial". Sorting here makes
+       * the first event the earliest on every input, and the question the derivation writes names
+       * the first and last event kinds rather than a current state read from another source.
+       */
       const events = asArray(pick(v, 'events'))
-      const firstEvent = asObject(events[0])
-      const lastEvent = asObject(events[events.length - 1])
+        .map((event) => asObject(event))
+        .filter((event): event is Record<string, unknown> => event !== undefined)
+        .sort((a, b) => (eventDate(a) ?? '').localeCompare(eventDate(b) ?? ''))
+      // §14(10): a timeline is three dated events or it is not a timeline. The seed records none
+      // shorter; a record written before that rule renders nothing here rather than two points.
+      if (events.length < 3) break
+      const firstEvent = events[0]
+      const lastEvent = events[events.length - 1]
       p1(
         `${eventDate(firstEvent) ?? q.values.firstYear ?? ''} ${asString(pick(firstEvent, 'event')) ?? ''} to ${eventDate(lastEvent) ?? ''} ${asString(pick(lastEvent, 'event')) ?? ''}: ${events.length} dated ${events.length === 1 ? 'event' : 'events'} for ${name}.`,
       )
@@ -1759,29 +1760,24 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       )
       const section = (asString(pick(v, 'labelSection')) ?? 'indications').replace(/_/g, ' ')
       p1(`"${statement}": ${section} on ${name}'s label.`, entrySource(entry) ?? src)
-      const registers = readRegisterStatuses(f.present('regulatoryStatus'))
-      const history = asObject(f.present('trialHistory')?.value)
-      const registered = asNumber(pick(history, 'registeredStudies', 'studies'))
-      const posted = asNumber(pick(history, 'studiesWithPostedResults'))
-      // Paragraph 2 states the jurisdictions that recorded a status, as values. The jurisdictions
-      // that recorded none are rows or nothing: naming them was the same list of codes on a third
-      // of the indexed corpus, and the four never-cleared registers are on /definitions.
       /*
        * §13(1) retired the regulatory summary paragraph that stood here. It read "SG not found; US
        * approved (…); UK not cleared; curatedMarketingStatusNote …" — two absences and a stored
        * field name, inside an answer about a label's indication. Register status belongs to the
        * registration block, and only there.
+       *
+       * §14(2) retires what was left of it: the register application rows this block painted (SG
+       * registered, US … approved · Drugs@FDA …, JP approved, CA …) are the same register data
+       * rows the registration block and its disclosure already hold, once.
+       *
+       * §14(4) moves the one row that is not about registers at all. "Registered studies posting
+       * no result: 103 of 163" is an answer about the trial record, and it is rendered under the
+       * questions that ask about the trials — `trial-history` and `human-data` — not under the
+       * question about what the label indicates.
+       *
+       * The label section and the date it was recorded are already in paragraph 1 and in the
+       * paragraph's own anchor, so this block writes no row at all.
        */
-      if (registered !== undefined && posted !== undefined && registered > 0) {
-        // §13(7): one value, so a row rather than a sentence built around it.
-        facts.push({
-          label: 'Registered studies posting no result',
-          value: `${registered - posted} of ${registered}`,
-        })
-      }
-      // The label section and the date it was recorded are already in paragraph 1 and in the
-      // paragraph's own anchor; a row repeating them is the same fact a third time.
-      rows.push(...registerStatusRows(registers))
       break
     }
 
@@ -1795,18 +1791,18 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       // were never cleared for this corpus are stated once on /definitions, never here.
       // §13(1): absences are filtered out of `registerStatusValues`. Where nothing affirmative
       // remains there is no answer to write, and the block does not render.
+      //
+      // §14(2): the register application rows this block painted are retired with the ones under
+      // the supervision and label questions. The registration block and its disclosure hold every
+      // application id once; a second copy under a question was the repetition the reading found.
       const registerValues = joinBits(registerStatusValues(registers))
-      if (!registerValues) {
-        rows.push(...registerStatusRows(registers))
-        break
-      }
+      if (!registerValues) break
       p1(`${registerValues}.`, entrySource(entry) ?? src)
       // No paragraph 2. The jurisdictions that were consulted and recorded nothing are the same
       // two or three codes on a sixth of the corpus, so as a sentence they are a standing sentence
       // (the first render of this fix measured "US and EU: consulted, no status recorded." on 17 %
-      // of indexed pages). They are rows instead, which the audit counts as markup, and the reason
-      // some registers were never consulted at all is on /definitions.
-      rows.push(...registerStatusRows(registers))
+      // of indexed pages). The reason some registers were never consulted at all is on
+      // /definitions.
       break
     }
 
@@ -1824,11 +1820,19 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       )
       const posted = asNumber(pick(v, 'studiesWithPostedResults'))
       const pubmed = asNumber(pick(asObject(pick(v, 'pubmedClinicalTrialCount')), 'count'))
+      /*
+       * §14(4): the trials question is where this row belongs. It was painted under the label
+       * question, which asks what the label indicates and has nothing to say about who posted a
+       * result. §13(7) makes it a row rather than a clause in a sentence: it is one ratio.
+       */
+      if (posted !== undefined && registered > 0) {
+        facts.push({
+          label: 'Registered studies posting no result',
+          value: `${registered - posted} of ${registered}`,
+        })
+      }
       p2(
         joinBits([
-          posted !== undefined
-            ? `${registered - posted} of ${registered} posted no result`
-            : undefined,
           // "carry a PubMed clinical-trial record" was five fixed words on 36.9 % of indexed
           // pages — the largest repeated frame the audit found. Four words, count first.
           pubmed !== undefined ? `${pubmed} with a PubMed record` : undefined,
@@ -1883,23 +1887,34 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       const targets = readTargetNames(targetEntry)
       const actions = unique(mechanisms.map((m) => m.action ?? '').filter(Boolean))
       const firstMechanism = mechanisms.find((m) => m.mechanism)?.mechanism
-      p1(
-        joinBits([
-          actions.length > 0
-            ? `${joinList(actions.map((a) => a.toLowerCase()))} on ${joinList(targets.slice(0, 3))}`
-            : `${mechanisms.length} recorded ${mechanisms.length === 1 ? 'mechanism' : 'mechanisms'} on ${joinList(targets.slice(0, 3))}`,
-          firstMechanism ? `the record reads "${clampSentence(firstMechanism, 300)}"` : undefined,
-        ]) + '.',
-        entrySource(mechanismEntry) ?? src,
-      )
+      /*
+       * §14(15), applying §13(7): "<action> on <target>. <n> recorded mechanism rows" is a stored
+       * action, a stored target and a count in a fixed frame, and the block census measured that
+       * frame on 220 pages (0.77 %). Each of the three is a value, so each is a labelled row. The
+       * one thing here that is not a value is the register's own wording of the mechanism, which
+       * is quoted as the register's sentence rather than restated as this site's.
+       */
+      if (actions.length > 0)
+        facts.push({
+          label: actions.length === 1 ? 'Recorded action' : 'Recorded actions',
+          value: joinList(actions.map((a) => a.toLowerCase())),
+        })
+      if (targets.length > 0)
+        facts.push({
+          label: targets.length === 1 ? 'Recorded target' : 'Recorded targets',
+          value: joinList(targets.slice(0, 3)),
+        })
+      facts.push({
+        label: 'Recorded mechanism rows',
+        value: String(mechanisms.length),
+      })
       const gaps = developmentGaps(f, page, ['dose', 'trial'])
-      p2(
-        joinBits([
-          `${mechanisms.length} recorded mechanism ${mechanisms.length === 1 ? 'row' : 'rows'}`,
-          gaps.length > 0 ? `not recorded here: ${joinList(gaps)}` : undefined,
-        ]),
-        entrySource(targetEntry),
-      )
+      if (gaps.length > 0) facts.push({ label: 'Not recorded here', value: joinList(gaps) })
+      if (firstMechanism)
+        p1(
+          `The mechanism record reads "${clampSentence(firstMechanism, 300)}".`,
+          entrySource(mechanismEntry) ?? src,
+        )
       for (const m of mechanisms.slice(0, ROW_CAP)) {
         const value = [m.mechanism, m.action ? m.action.toLowerCase() : undefined]
           .filter(Boolean)
@@ -1990,25 +2005,15 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     }
 
     /* ------------------------------------------------------ never-dosed */
-    case 'never-dosed': {
-      const ever = f.present('everDosedInHumans')
-      const v = asObject(ever?.value)
-      // §13(7): "X has no recorded human exposure" is an absence in fixed words, so it is
-      // furniture — the reader still meets it, and the ruler and the template test leave it.
-      p1(
-        `${name} has no recorded human exposure${asString(pick(v, 'basis')) ? `: ${asString(pick(v, 'basis'))}` : ' in the registry or ChEMBL'}.`,
-        entrySource(ever) ?? src,
-        true,
-      )
-      const qualification = joinBits([
-        f.topRung ? `highest organism ${f.topRung.organism}` : 'no organism recorded',
-        f.topRung?.kind,
-        `${asNumber(pick(v, 'matchedStudies')) ?? 0} matched studies`,
-      ])
-      if (qualification) facts.push({ label: 'What was searched', value: qualification })
-      rows.push(...ladderRows(f))
-      break
-    }
+    /*
+     * §14(11): `never-dosed` is retired.
+     *
+     * "Has X ever reached a person?" answered "X has no recorded human exposure", which is an
+     * absence offered as an answer — the shape §13(1) retired from the classification question.
+     * The header already carries it, once, as the evidence line "No human study recorded", and
+     * `scripts/corpus-20k/questions/derive.ts` no longer pushes the question for any page. The
+     * recorded ladder and the count of matched studies are on the page in the record's own rows.
+     */
 
     default: {
       // A template with no builder must not silently render an empty block.
@@ -2025,9 +2030,45 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     paragraphs: keep.map((i) => paragraphs[i] as string),
     bare: keep.map((i) => bare[i] as string),
     furniture: keep.map((i) => furniture[i] === true),
-    facts,
-    rows,
+    // §14(8): applied once, over everything a block puts on the page, rather than at each of the
+    // twenty places a row is built.
+    //
+    // §14(6): a fact row is painted on the page, above the prose, and a dataset record id is
+    // technical provenance that belongs inside the closed disclosure. A fact therefore carries a
+    // label and a value and never an identifier — enforced here rather than left to each of the
+    // eleven builders that make one.
+    facts: withoutPageKeys(facts).map(withoutIdentifier),
+    rows: withoutPageKeys(rows),
   }
+}
+
+/**
+ * A storage key, in every shape the corpus writes one (§14(8)).
+ *
+ * `K1:` through `K4:` are the identity revision's own keys, and `COMBO:`, `PRODUCT:` and `HOLD:`
+ * the composite keys Phase 3 builds over them. None of them is a fact about a compound: the
+ * timeline block painted "1989-12-11 K1:3J962UJT8H first approval", which puts the page's own
+ * storage address in front of a reader as though it were the register's record number.
+ */
+const PAGE_KEY = /^(?:K[1-4]:|COMBO:|PRODUCT:|HOLD:|IK:)/
+
+export function looksLikePageKey(value: string | undefined): boolean {
+  return value !== undefined && PAGE_KEY.test(value.trim())
+}
+
+/** One row without its identifier: the label and the value, which is all a painted row carries. */
+function withoutIdentifier(row: RevealedRow): RevealedRow {
+  return { label: row.label, value: row.value }
+}
+
+/** The same rows with every storage key removed: the identifier dropped, the row kept. */
+function withoutPageKeys(rows: readonly RevealedRow[]): RevealedRow[] {
+  const out: RevealedRow[] = []
+  for (const row of rows) {
+    if (looksLikePageKey(row.label) || looksLikePageKey(row.value)) continue
+    out.push(looksLikePageKey(row.identifier) ? withoutIdentifier(row) : row)
+  }
+  return out
 }
 
 /** The recorded target rows: the source's own symbol or preferred name, with its record id. */
@@ -2377,6 +2418,17 @@ export interface InteractionRow {
   groupedMagnitude?: boolean
   /** The dataset record behind each grouped target: the technical disclosure only. */
   groupedRecordIds?: string[]
+  /**
+   * A grouped label-documented row (§14(5)): one line per label and direction class, naming every
+   * counterpart that label states that direction for, in place of twenty-one lines each repeating
+   * the label's set id and effective date. `scripts/revamp/page_blocks.py` groups them, so the
+   * render, the loader and the page read one already-grouped row.
+   */
+  groupedCounterparts?: string[]
+  /** How many counterparts the group holds beyond the ones the line names. */
+  groupedCounterpartsBeyond?: number
+  /** The direction class, in the words §14(5) uses: "avoid or monitor", "interaction stated". */
+  groupedDirection?: string
 }
 
 export interface InteractionTierBlock {
@@ -2680,6 +2732,23 @@ export function interactionLine(
       row.setId ? `DailyMed label ${row.setId}` : undefined,
       row.effectiveTime,
     ])
+    /*
+     * §14(5): one line per label and direction class.
+     *
+     * Piroxicam's page carried twenty-one label-documented lines, every one of them repeating the
+     * same DailyMed set id and the same effective date, and differing only in the counterpart's
+     * name and one of three direction phrases. That is a table written as sentences. The line
+     * names the label once, the direction once, and every counterpart the label states that
+     * direction for.
+     */
+    const counterparts = row.groupedCounterparts ?? []
+    if (counterparts.length > 0) {
+      const beyond = row.groupedCounterpartsBeyond ?? 0
+      const named = joinPlainList([...counterparts])
+      const withMore = beyond > 0 ? `${named} and ${beyond} more` : named
+      const direction = row.groupedDirection ?? row.direction ?? 'an interaction is stated'
+      return `${label}${citation ? ` (${citation})` : ''}: ${direction} with ${withMore}`
+    }
     const body =
       controlled || !quote
         ? joinCommas([row.direction, row.mechanism])
@@ -2755,6 +2824,60 @@ export function controlledLine(row: ControlledRow): string {
     row.versionDate ? `version ${row.versionDate}` : undefined,
     heldName,
   ])
+}
+
+/**
+ * The dataset records behind one interaction line, for the closed disclosure and nowhere above it.
+ *
+ * §13(3) put the record ids inside the disclosure and grouped the curated enzyme rows, and the
+ * grouped line then stood for several records at once. §14(6) is what makes this one function: the
+ * corpus renderer wrote "Substrate of CYP1A1, 1A2 and 2E1 frdb:ddi:12474 · frdb:ddi:12473 · …" and
+ * the template painted "CuratedB-inxight-frdb", because each had its own idea of what a disclosure
+ * row says. They read this instead, so the render and the page carry one row.
+ */
+export interface InteractionDisclosureSource {
+  tierLabel?: string
+  line?: string
+  counterpartName?: string
+  ruleId?: string
+  setId?: string
+  sourceRecordId?: string
+  groupedRecordIds?: readonly string[]
+  /** The direction class a grouped label-documented line states (§14(5)). */
+  groupedDirection?: string
+  provenance?: Record<string, unknown>
+}
+
+export function interactionRecordIds(row: InteractionDisclosureSource): string[] {
+  const grouped = [...(row.groupedRecordIds ?? [])].filter((id) => id.trim().length > 0)
+  if (grouped.length > 0) return grouped
+  // The loader stores the build's own provenance map, whose `record` entry is the dataset record
+  // (or the semicolon-joined records of a grouped line). It is the same value on both sides.
+  const recorded = row.provenance?.record
+  const fromProvenance =
+    typeof recorded === 'string'
+      ? recorded
+          .split(';')
+          .map((id) => id.trim())
+          .filter((id) => id.length > 0)
+      : []
+  if (fromProvenance.length > 1) return fromProvenance
+  return [row.ruleId, row.setId ?? row.sourceRecordId].filter((value): value is string =>
+    Boolean(value && value.trim()),
+  )
+}
+
+/** The label a disclosure row carries: the counterpart it names, else the line's own words. */
+export function interactionDisclosureLabel(row: InteractionDisclosureSource): string {
+  if (row.counterpartName && row.counterpartName.trim().length > 0) return row.counterpartName
+  if (row.groupedDirection && row.groupedDirection.trim().length > 0) return row.groupedDirection
+  const line = (row.line ?? '').trim()
+  const prefix = `${row.tierLabel ?? ''} · `
+  const body = row.tierLabel && line.startsWith(prefix) ? line.slice(prefix.length) : line
+  // A grouped curated line reads "Substrate of CYP1A2, 2A6 … · Inxight FRDB"; the dataset name at
+  // the end is the same word on every such line and the row's ids say it already.
+  const withoutSource = body.split(' · ')[0] ?? body
+  return withoutSource.length > 0 ? withoutSource : (row.tierLabel ?? '')
 }
 
 /** The field paths behind one interaction row, as the interaction build recorded them. */
@@ -2942,15 +3065,22 @@ export function sectionSentenceParts(entry: SectionSentence): {
         .filter((bit): bit is string => Boolean(bit))
         .join(' · '),
     })
+    /*
+     * §14(15): the substituent comparison is a row too.
+     *
+     * §13(8) kept it as prose because the maximum-common-substructure difference is a finding
+     * rather than a stored value. The block census then measured the sentence it produces on 168
+     * pages (0.59 %), over the 0.5 % line, and for the reason §13(7) gives: "It differs from X by
+     * a methyl substituent on the aromatic ring" is one computed value inside a fixed frame. The
+     * value keeps its own labelled row beside the similarity it belongs to.
+     */
     const substituent = asString(pick(values, 'substituent'))
     const where = asString(pick(values, 'substituentLocation'))
     if (substituent) {
-      return {
-        rows,
-        sentence: oneFullStop(
-          `It differs from ${neighbour} by a ${substituent} substituent${where ? ` ${where}` : ''}`,
-        ),
-      }
+      rows.push({
+        label: 'Structural difference',
+        value: `${substituent} substituent${where ? ` ${where}` : ''}`,
+      })
     }
     return { rows }
   }
@@ -3273,10 +3403,28 @@ export function aggregateWithoutMovedStudies(
 export interface RevealedRowGroup {
   label?: string
   rows: RevealedRow[]
+  /**
+   * §14(9): true where this group is the counted remainder of a longer list and the template paints
+   * it inside a closed `<details>` of its own rather than on the page.
+   */
+  disclosed?: boolean
 }
 
+/**
+ * §14(9): how many rows of one list a reader meets before the rest are behind a control.
+ *
+ * §7 fixed six for a trial list and §13(5) made the remainder a closed disclosure; the reading of
+ * draw 4 found the endpoint list under the largest-trial question painting fourteen, because the
+ * rule was written into the one builder that makes trial rows and not into the grouping every
+ * other list goes through. It is one number, applied once, here.
+ */
+export const VISIBLE_ROWS = 6
+
+/** The label `rowsFromTrials` gives the rows past the sixth; it is already a counted remainder. */
+const FURTHER_ROWS = /^\d+ (?:further recorded trials?|more recorded rows?)$/
+
 export function groupRevealedRows(rows: readonly RevealedRow[]): RevealedRowGroup[] {
-  const groups: RevealedRowGroup[] = []
+  const grouped: RevealedRowGroup[] = []
   let index = 0
   while (index < rows.length) {
     const current = rows[index]
@@ -3285,15 +3433,35 @@ export function groupRevealedRows(rows: readonly RevealedRow[]): RevealedRowGrou
     while (end < rows.length && rows[end]?.label === current.label) end += 1
     const run = rows.slice(index, end)
     if (run.length > 1) {
-      groups.push({ label: current.label, rows: run })
+      grouped.push({ label: current.label, rows: run })
     } else {
-      const previous = groups[groups.length - 1]
-      if (previous && previous.label === undefined) previous.rows.push(...run)
-      else groups.push({ rows: run })
+      const previous = grouped[grouped.length - 1]
+      if (previous && previous.label === undefined && previous.disclosed !== true)
+        previous.rows.push(...run)
+      else grouped.push({ rows: run })
     }
     index = end
   }
-  return groups
+  // The cap, over the finished groups: six rows on the page, the counted rest inside a control.
+  const out: RevealedRowGroup[] = []
+  for (const group of grouped) {
+    if (group.label !== undefined && FURTHER_ROWS.test(group.label)) {
+      out.push({ ...group, disclosed: true })
+      continue
+    }
+    if (group.rows.length <= VISIBLE_ROWS) {
+      out.push(group)
+      continue
+    }
+    const rest = group.rows.slice(VISIBLE_ROWS)
+    out.push({ ...group, rows: group.rows.slice(0, VISIBLE_ROWS) })
+    out.push({
+      label: `${rest.length} more recorded ${rest.length === 1 ? 'row' : 'rows'}`,
+      rows: rest,
+      disclosed: true,
+    })
+  }
+  return out
 }
 
 /** One dated row of the withdrawn arc (R11), with the anchor text the template prints after it. */
@@ -3450,8 +3618,13 @@ export interface ProvenanceEntry {
    * labels are counted and reported beside it, because a label is markup" — and
    * `tests/test_render_safety.py` reads it, so a rule about what this site says is not applied to
    * what a register called one of its own columns.
+   *
+   * `fact` is the third: a block's own value, painted under the question heading and above the
+   * prose (§13(7)). It is a row by the rule above — the template test does not apply to it — and it
+   * is on the page rather than inside the closed disclosure, which is the difference §14(6) turns
+   * on: a record id may sit in a disclosure row and may not sit in a fact.
    */
-  kind: 'sentence' | 'row'
+  kind: 'sentence' | 'row' | 'fact'
   /**
    * True where the line is page furniture (§11): a fixed-vocabulary statement whose only content is
    * an absence — a register row reading "not found", "not cleared" or "not checked", the
@@ -3705,8 +3878,10 @@ export function renderPage(
     // draw's template test off it while leaving every other check on it.
     push(q.text, false, fields, 'sentence', false, true)
     // §13(7): the block's own values, as rows, painted under the heading and above the prose.
+    // They are marked `fact` and not `row`: both are markup, and only one of them is painted
+    // without a reader opening anything (§14(6)).
     for (const row of body.facts) {
-      push([row.label, row.identifier, row.value].filter(Boolean).join(' '), false, fields, 'row')
+      push([row.label, row.identifier, row.value].filter(Boolean).join(' '), false, fields, 'fact')
     }
     body.paragraphs.forEach((p, index) =>
       push(p, false, fields, 'sentence', body.furniture[index] === true),
@@ -3922,18 +4097,34 @@ export function renderPage(
         const held = tiers[tier]
         if (!held) continue
         for (const row of [...held.inline, ...held.disclosed]) {
-          // §13(3): a grouped curated line stands for several dataset records, and every one of
-          // them is named here, in the closed disclosure, and nowhere above it.
-          const grouped = (row.groupedRecordIds ?? []).join(' · ')
-          const ids =
-            grouped || [row.ruleId, row.setId ?? row.sourceRecordId].filter(Boolean).join(' · ')
+          // §13(3), §14(6): a grouped line stands for several dataset records, and every one of
+          // them is named here, in the closed disclosure, and nowhere above it. The label and the
+          // ids are built by the two functions the template also calls, so the render and the
+          // painted page carry one row (§11).
+          const source: InteractionDisclosureSource = {
+            tierLabel: INTERACTION_TIER_LABELS[tier] as string,
+            line: interactionLine(tier, row, { controlled, quote: false }),
+            ...(row.counterpartName ? { counterpartName: row.counterpartName } : {}),
+            ...(row.ruleId ? { ruleId: row.ruleId } : {}),
+            ...(row.setId ? { setId: row.setId } : {}),
+            ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+            ...(row.groupedDirection ? { groupedDirection: row.groupedDirection } : {}),
+            /*
+             * The grouped record ids are read out of the build's `provenance.record` and not out
+             * of `groupedRecordIds`, even though this side holds both: the page has only the
+             * first, because that is what the loader stores, and §11 makes the two texts one. Both
+             * sides therefore run the same branch of `interactionRecordIds` over the same value.
+             */
+            ...(row.provenance ? { provenance: row.provenance } : {}),
+          }
+          const ids = interactionRecordIds(source).join(' · ')
           if (!ids) continue
-          const rowLabel =
-            row.counterpartName ??
-            (row.groupedRole
-              ? `${curatedRoleWord(row.groupedRole)} ${abbreviateSharedPrefix(row.groupedTargets ?? [])}`
-              : (INTERACTION_TIER_LABELS[tier] as string))
-          push(`${rowLabel} ${ids}`, false, interactionProvenance(row), 'row')
+          push(
+            `${interactionDisclosureLabel(source)} ${ids}`,
+            false,
+            interactionProvenance(row),
+            'row',
+          )
           if (row.counterpartKey && row.counterpartName && bundle.names.has(row.counterpartKey)) {
             push(row.counterpartName, false, interactionProvenance(row), 'row')
           }
@@ -3959,10 +4150,20 @@ export function renderPage(
   /* question blocks, or the stub sentence */
   group = 'stub-record'
   if (answers.length === 0 && supervision.length === 0) {
+    /*
+     * §14(13): "This record holds N fields" is furniture.
+     *
+     * It is a statement about how much of the record is filled in, in fixed words, on every stub
+     * in the corpus — the same footing §11 gives the register absence table and the patent
+     * no-record line. The reader still meets it; the ruler, the rendered duplicate check and the
+     * slop draw's template test all skip it.
+     */
     push(
       `This record holds ${bundle.presentFields} ${bundle.presentFields === 1 ? 'field' : 'fields'}.`,
       false,
       ['corpus_pages.present_field_count'],
+      'sentence',
+      true,
     )
     // Question-derivation amendment: a stub carries a supervision line only where a class S1–S9 was
     // matched; where the only class is S10 (unknown) it says so, and never a supervision claim
@@ -3991,35 +4192,54 @@ export function renderPage(
 
   /* ---- Tier 3 computed sections (§8) --------------------------------------------------------- */
   group = 'computed'
-  const computedRows: Array<{ row: RevealedRow; fields: string[] }> = []
-  const computed: Array<{ sentence: string; fields: string[] }> = []
+  /*
+   * §11: the render's order is the painted order, section by section.
+   *
+   * `components/dossier/corpus/Tier3Sections.tsx` renders one `<div>` per computed section — its
+   * rows, then its sentence — so a page holding a neighbour comparison and a potency rank paints
+   * the neighbour's rows, the neighbour's sentence, the potency rows, the potency sentence. The
+   * render used to write every row of every section and then every sentence, and the parity check
+   * read the potency sentence as out of order on any page carrying both.
+   */
+  const computedSections: Array<{
+    rows: Array<{ row: RevealedRow; fields: string[] }>
+    sentence?: { sentence: string; fields: string[] }
+  }> = []
   for (const section of ['neighbour', 'potency', 'timeline'] as const) {
     for (const entry of blocks?.sections[section] ?? []) {
       const parts = sectionSentenceParts(entry)
       const fields = sectionSentenceFields(entry)
-      for (const row of parts.rows) computedRows.push({ row, fields })
-      if (!parts.sentence) continue
-      const counterpartName = bundle.names.get(
-        sectionSentenceCounterpart(entry).counterpartKey ?? '',
-      )
-      // §13(9): the counterpart's name is the link text and is printed once. A sentence that
-      // already names it does not have it appended a second time.
-      computed.push({
-        sentence:
-          counterpartName && !parts.sentence.includes(counterpartName)
-            ? `${parts.sentence} ${counterpartName}`
-            : parts.sentence,
-        fields,
-      })
+      const held: (typeof computedSections)[number] = {
+        rows: parts.rows.map((row) => ({ row, fields })),
+      }
+      if (parts.sentence) {
+        const counterpartName = bundle.names.get(
+          sectionSentenceCounterpart(entry).counterpartKey ?? '',
+        )
+        // §13(9): the counterpart's name is the link text and is printed once. A sentence that
+        // already names it does not have it appended a second time.
+        held.sentence = {
+          sentence:
+            counterpartName && !parts.sentence.includes(counterpartName)
+              ? `${parts.sentence} ${counterpartName}`
+              : parts.sentence,
+          fields,
+        }
+      }
+      computedSections.push(held)
     }
   }
-  if (computedRows.length > 0 || computed.length > 0) {
+  if (computedSections.some((section) => section.rows.length > 0 || section.sentence)) {
     push('What the structure and the activity record show', true)
-    // §13(7): the values first, as rows; then whatever the comparison found that is not a value.
-    for (const entry of computedRows) {
-      push(`${entry.row.label} ${entry.row.value}`, false, entry.fields, 'row')
+    for (const section of computedSections) {
+      // §13(7): the values first, as rows; then whatever the comparison found that is not a value.
+      for (const entry of section.rows) {
+        push(`${entry.row.label} ${entry.row.value}`, false, entry.fields, 'row')
+      }
+      if (section.sentence) {
+        push(section.sentence.sentence, false, section.sentence.fields)
+      }
     }
-    for (const entry of computed) push(entry.sentence, false, entry.fields)
   }
 
   /* the exact record: identifiers panel, then the relations rows (R10) */

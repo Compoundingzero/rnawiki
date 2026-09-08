@@ -61,7 +61,7 @@ FIELDS = ROOT / "data/revamp/fields-v2"
 DERIVED = ROOT / "data/revamp/derived-v2"
 QUESTIONS_V2 = ROOT / "data/revamp/questions-v2"
 QUESTIONS_V1 = ROOT / "data/corpus-20k/questions"
-IDENTITY = ROOT / "data/revamp/identity/canonical-v5.ndjson"
+IDENTITY = ROOT / "data/revamp/identity/canonical-v6.ndjson"
 RELATIONS = ROOT / "data/revamp/identity/relations-v3.parquet"
 TIERS = ROOT / "data/corpus-20k/tiers/model-assignment.ndjson"
 INTERACTIONS = ROOT / "data/revamp/interactions/interactions.parquet"
@@ -970,7 +970,7 @@ def target_group_key(fact: dict[str, Any], raw_key: str) -> str:
 
 
 def merge_by_member_overlap(
-    groups: dict[str, set[str]], line: float
+    groups: dict[str, set[str]], line: float, extra_edges: set[frozenset[str]] | None = None
 ) -> list[tuple[frozenset[str], list[str]]]:
     """Complete-linkage components: every pair inside a component meets ``line`` Jaccard.
 
@@ -1002,6 +1002,19 @@ def merge_by_member_overlap(
                 if len(a & b) / len(a | b) >= line:
                     neighbours[left].add(right)
                     neighbours[right].add(left)
+
+    # section 14 item 14: an edge the rendered check measured, on the pages themselves. Two hubs
+    # whose member sets barely overlap can still render the same page, and the rendered Jaccard is
+    # the measurement of that. It joins the same complete-linkage graph, so it cannot chain either.
+    for pair in extra_edges or ():
+        left_right = sorted(pair)
+        if len(left_right) != 2:
+            continue
+        left, right = left_right
+        if left not in groups or right not in groups:
+            continue
+        neighbours[left].add(right)
+        neighbours[right].add(left)
 
     assigned: set[str] = set()
     merged: list[tuple[frozenset[str], list[str]]] = []
@@ -1290,7 +1303,38 @@ def build_pathway_hubs(members: dict[str, Member]) -> list[Hub]:
 HUB_DEDUPE_JACCARD = 0.5
 
 
-def dedupe_hubs_by_member_set(hubs: list[Hub]) -> tuple[list[Hub], list[dict[str, Any]]]:
+def read_rendered_hub_pairs(path: Path, hubs: list[Hub]) -> set[frozenset[str]]:
+    """Hub-to-hub pairs the rendered duplicate check measured at or above 0.5 (section 14 item 14).
+
+    The check writes one row per flagged pair: `page_a`, `page_b`, the width it rendered at, the
+    Jaccard it measured, and which set each side came from. A hub row names the hub by
+    `<type>/<slug>`, which is what its `/h/` route is built from. Only rows where both sides are
+    hubs this build produced are read; anything else is a page pair and belongs to the page rules.
+    """
+    if not path.exists():
+        return set()
+    by_route = {"%s/%s" % (hub.type, hub.slug): hub.hub_id for hub in hubs}
+    edges: set[frozenset[str]] = set()
+    with path.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            if (row.get("set_a") or "") != "hub" or (row.get("set_b") or "") != "hub":
+                continue
+            try:
+                if float(row.get("jaccard") or 0) < HUB_DEDUPE_JACCARD:
+                    continue
+            except ValueError:
+                continue
+            left = by_route.get((row.get("page_a") or "").strip().lstrip("/").removeprefix("h/"))
+            right = by_route.get((row.get("page_b") or "").strip().lstrip("/").removeprefix("h/"))
+            if left is None or right is None or left == right:
+                continue
+            edges.add(frozenset((left, right)))
+    return edges
+
+
+def dedupe_hubs_by_member_set(
+    hubs: list[Hub], rendered_edges: set[frozenset[str]] | None = None
+) -> tuple[list[Hub], list[dict[str, Any]]]:
     """Hubs whose member sets overlap at Jaccard >= 0.5 collapse to one (§13 item 13).
 
     The rendered duplicate check read the hub pages for the first time at measure 3 and found
@@ -1315,7 +1359,9 @@ def dedupe_hubs_by_member_set(hubs: list[Hub]) -> tuple[list[Hub], list[dict[str
     by_id = {hub.hub_id: hub for hub in hubs}
     survivors: list[Hub] = []
     aliases: list[dict[str, Any]] = []
-    for _pooled, component in merge_by_member_overlap(groups, HUB_DEDUPE_JACCARD):
+    for _pooled, component in merge_by_member_overlap(
+        groups, HUB_DEDUPE_JACCARD, rendered_edges
+    ):
         # `merge_by_member_overlap` orders a component with the largest member set first.
         survivor = by_id[component[0]]
         survivors.append(survivor)
@@ -1945,6 +1991,14 @@ def write_load_ndjson(
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=OUT)
+    # section 14 item 14: the hub-to-hub pairs the rendered duplicate check measured at or above
+    # 0.5 on a build. They are extra edges in the same complete-linkage graph the member-set rule
+    # uses, so a pair that renders the same page collapses even where its member sets do not.
+    parser.add_argument(
+        "--rendered-pairs",
+        type=Path,
+        default=ROOT / "data/revamp/hubs/rendered-hub-pairs.csv",
+    )
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
 
@@ -1962,7 +2016,8 @@ def main() -> int:
     hubs = build_target_hubs(members) + build_class_hubs(members) + build_pathway_hubs(members)
     hubs.sort(key=lambda item: (item.type, item.name.casefold()))
     built = len(hubs)
-    hubs, hub_aliases = dedupe_hubs_by_member_set(hubs)
+    rendered_edges = read_rendered_hub_pairs(args.rendered_pairs, hubs)
+    hubs, hub_aliases = dedupe_hubs_by_member_set(hubs, rendered_edges)
     rank_hubs(hubs)
 
     additive, documented = load_interaction_pairs()
@@ -2043,6 +2098,7 @@ def main() -> int:
         # §13(13): hubs built, hubs surviving the member-set dedupe, and the aliases that redirect.
         "hubsBuiltBeforeDedupe": built,
         "hubAliases": len(hub_aliases),
+        "renderedHubPairsRead": len(rendered_edges),
         "hubDedupe": {
             "line": HUB_DEDUPE_JACCARD,
             "linkage": "complete",

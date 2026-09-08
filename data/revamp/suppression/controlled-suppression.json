@@ -8,7 +8,9 @@
   },
   "narrowerReading": {
     "definition": "the Misuse of Drugs Act 1973 schedules only, without the Poisons Act 1938 Schedule and the Poisons Rules schedules, plus the same US DEA and AU SUSMP 8/9 tests",
-    "pagesFiring": 241
+    "pagesFiring": 241,
+    "pagesSuppressedWithoutClassS2": 1595,
+    "recordsClassS2": true
   },
   "output": "data/revamp/suppression/assignments-v2.ndjson",
   "spec": [

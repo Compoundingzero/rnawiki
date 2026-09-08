@@ -23,8 +23,27 @@
  * where a tier holds more counterparts than are stored the line above the disclosure says how many.
  */
 import type { CorpusInteractionLine, CorpusInteractions } from '@/lib/corpus/dossier-page'
+import {
+  interactionDisclosureLabel,
+  interactionRecordIds,
+  type InteractionDisclosureSource,
+} from '@/lib/corpus/page-text'
 
 const TIER_ORDER: Array<'A' | 'B' | 'C'> = ['A', 'B', 'C']
+
+/** One stored line, in the shape the two shared disclosure builders read (§14(6)). */
+function disclosureSource(line: CorpusInteractionLine): InteractionDisclosureSource {
+  return {
+    tierLabel: line.tierLabel,
+    line: line.line,
+    ...(line.counterpartName ? { counterpartName: line.counterpartName } : {}),
+    ...(line.ruleId ? { ruleId: line.ruleId } : {}),
+    ...(line.setId ? { setId: line.setId } : {}),
+    ...(line.sourceRecordId ? { sourceRecordId: line.sourceRecordId } : {}),
+    ...(line.groupedDirection ? { groupedDirection: line.groupedDirection } : {}),
+    ...(line.recordIds ? { groupedRecordIds: line.recordIds } : {}),
+  }
+}
 
 function Line({ line }: { line: CorpusInteractionLine }) {
   return (
@@ -134,16 +153,23 @@ export function InteractionsBlock({ interactions }: { interactions: CorpusIntera
                 <div className="cd-row-value">{source}</div>
               </li>
             ))}
+            {/*
+              §14(6): the dataset records behind every line, here and nowhere above. The label and
+              the ids are built by the two functions the corpus renderer also calls
+              (`interactionDisclosureLabel`, `interactionRecordIds`), because each had its own idea
+              of what this row says: the render wrote "Substrate of CYP1A1, 1A2 and 2E1
+              frdb:ddi:12474 · …" and this component painted "CuratedB-inxight-frdb". §14(7): the
+              space between the two spans is a text node.
+            */}
             {lines
-              .filter((line) => line.ruleId !== undefined || line.setId !== undefined)
-              .map((line) => (
+              .map((line) => ({ line, ids: interactionRecordIds(disclosureSource(line)) }))
+              .filter((entry) => entry.ids.length > 0)
+              .map(({ line, ids }) => (
                 <li key={`${line.id}-record`}>
-                  <span className="cd-row-label">{line.counterpartName ?? line.tierLabel}</span>
-                  <span className="cd-row-id">
-                    {[line.ruleId, line.setId ?? line.sourceRecordId]
-                      .filter((value): value is string => Boolean(value))
-                      .join(' · ')}
-                  </span>
+                  <span className="cd-row-label">
+                    {interactionDisclosureLabel(disclosureSource(line))}
+                  </span>{' '}
+                  <span className="cd-row-id">{ids.join(' · ')}</span>
                   {line.counterpartSlug && line.counterpartName ? (
                     <div className="cd-row-value">
                       <a href={`/d/${line.counterpartSlug}`}>{line.counterpartName}</a>

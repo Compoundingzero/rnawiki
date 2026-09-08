@@ -2606,12 +2606,27 @@ def seed_08(ctx, page):
     if current_state is None:
         return None
 
+    # docs/specs/phase4-generators.md section 14 item 10: a provenance timeline is three or more
+    # dated events in chronological order, or it is not a timeline. Two points are a pair of dates,
+    # and the question the derivation writes over them ("How did X get from A to B?") asserts a
+    # path between them that two events do not record. The events are sorted here, once, and the
+    # question names the first and last event kinds rather than a current state read from a
+    # register: on a record whose earliest dated event is its approval, naming a current state
+    # phrased the earlier event as the destination.
     dated = [e for e in events if e.get("year") is not None]
-    if len(dated) < 2:
+    if len(dated) < 3:
         return None
     dated.sort(key=lambda e: (e["year"], e["event"]))
+    if dated[0]["event"] == dated[-1]["event"]:
+        return None
     return {
-        "slots": {"firstYear": dated[0]["year"], "currentState": current_state},
+        "slots": {
+            "firstYear": dated[0]["year"],
+            "firstEvent": dated[0]["event"],
+            "lastYear": dated[-1]["year"],
+            "lastEvent": dated[-1]["event"],
+            "currentState": current_state,
+        },
         "values": {"events": dated, "currentState": {"value": current_state, "source": current_source}},
     }
 

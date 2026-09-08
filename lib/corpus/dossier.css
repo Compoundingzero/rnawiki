@@ -389,12 +389,19 @@
   word-break: break-word;
 }
 
-/* The half-rem that separated the two flex items separates the two inline ones. */
+/*
+ * The gap between a row's label and its identifier.
+ *
+ * §14(7): the markup now carries a text node between the two spans, because a reader saw the gap
+ * the stylesheet made and every text extraction read "KetoconazoleA-label-statement" as one word.
+ * The space is a quarter of an em, so the rule adds the rest rather than the whole half-rem.
+ */
 .cd-row-label + .cd-row-id {
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
 }
 
-.cd-row-id {
+.cd-row-id,
+.cd-source-id {
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.78rem;
   color: var(--corpus-ink-2);

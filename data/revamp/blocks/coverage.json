@@ -114,7 +114,7 @@
       "SG": 1594,
       "US": 3827
     },
-    "componentRows": 3087,
+    "componentRows": 3073,
     "notFoundRowsPerJurisdiction": {
       "AU": 25971,
       "CA": 25971,
@@ -130,7 +130,7 @@
       "2": 4477,
       "3": 22636
     },
-    "rows": 220877,
+    "rows": 220863,
     "rowsPerJurisdiction": {
       "AU": 28832,
       "CA": 28832,

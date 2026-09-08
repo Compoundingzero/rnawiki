@@ -387,16 +387,25 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'Where do the label and the trials disagree about Rapamycin?',
   },
   {
+    // §14(10): three or more dated events, in chronological order, and the question names the
+    // first and the last event kind. Two dated points are not a timeline, and reading a current
+    // state off a register let the question phrase a later event as leading to an earlier one.
     template: 'provenance',
     input: page({
       seeds: {
         seed8: {
           fires: true,
-          values: { firstYear: 1975, currentState: 'an approved transplant medicine' },
+          values: {
+            events: [
+              { event: 'first publication', year: 1975 },
+              { event: 'first human trial', year: 1989 },
+              { event: 'first approval', year: 1999 },
+            ],
+          },
         },
       },
     }),
-    text: 'How did Rapamycin get from 1975 to an approved transplant medicine?',
+    text: 'How did Rapamycin get from first publication in 1975 to first approval in 1999?',
   },
   {
     template: 'target-phase',
@@ -490,16 +499,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
       },
     }),
     text: '18 registered trials of Sennosides — at which phases?',
-  },
-  {
-    template: 'never-dosed',
-    input: page({
-      key: 'example-preclinical',
-      displayName: 'XY-2200',
-      model: 'DEVELOPMENT',
-      fields: { everDosedInHumans: field({ bool: false }), molecularTarget: field('SIRT6') },
-    }),
-    text: 'Has XY-2200 ever reached a person?',
   },
 ]
 
@@ -705,7 +704,10 @@ describe('stub rule (R15)', () => {
       fields: { ...twoFields, highestPhase: field(1), everDosedInHumans: field({ bool: false }) },
     })
     expect(isStub(p)).toBe(false)
-    expect(deriveQuestions(p).map((q) => q.template)).toContain('never-dosed')
+    // §14(11): `never-dosed` is retired — its answer was an absence — so a page whose only other
+    // recorded field is the phase asks about the phase.
+    expect(deriveQuestions(p).map((q) => q.template)).not.toContain('never-dosed')
+    expect(deriveQuestions(p).length).toBeGreaterThan(0)
   })
 
   it('never stubs Tier 1 or Tier 2, and falls back to the field count when no tier is recorded', () => {
@@ -914,7 +916,9 @@ describe('recorded input shapes', () => {
     })
     const templates = deriveQuestions(p).map((q) => q.template)
     expect(textFor('development-stop', p)).toBe('Development of XY-3000 stopped at phase 2 — why?')
-    expect(templates).toContain('never-dosed')
+    // §14(11): "Has X ever reached a person?" answered its own absence, and is retired. The
+    // recorded flag still decides what the header's evidence line says.
+    expect(templates).not.toContain('never-dosed')
   })
 })
 

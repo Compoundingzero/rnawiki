@@ -11,19 +11,20 @@
   },
   "spec": "docs/specs/hubs.md",
   "hubsPerType": {
-    "target": 790,
-    "class": 128,
+    "target": 584,
+    "class": 125,
     "pathway": 5
   },
-  "hubs": 923,
+  "hubs": 714,
   "hubsBuiltBeforeDedupe": 972,
-  "hubAliases": 49,
+  "hubAliases": 258,
+  "renderedHubPairsRead": 5960,
   "hubDedupe": {
     "line": 0.5,
     "linkage": "complete",
     "rule": "docs/specs/phase4-generators.md section 13 item 13 \u2014 hubs whose member sets overlap at Jaccard >= 0.5 form complete-linkage groups; the largest member set survives and the others redirect to it"
   },
-  "members": 13121,
+  "members": 12607,
   "distinctMemberPages": 6124,
   "firstBatch": {
     "hubs": 28,
@@ -32,20 +33,20 @@
     "note": "docs/specs/hubs.md section 4 asks for 20 target and 10 pathway hubs. The corpus holds 5 pathway hubs meeting section 1, so the batch takes every one of them and 23 target hubs to reach 30."
   },
   "synthesesPerTemplate": {
-    "H1": 534,
-    "H2": 618,
-    "H3": 270,
-    "H4": 202,
-    "H5": 886,
-    "H6": 272,
+    "H1": 458,
+    "H2": 554,
+    "H3": 261,
+    "H4": 189,
+    "H5": 708,
+    "H6": 248,
     "H7": 5
   },
-  "syntheses": 2787,
+  "syntheses": 2423,
   "memberRoles": {
-    "approved": 3306,
+    "approved": 3233,
     "withdrawn": 81,
-    "development": 2242,
-    "clinical": 7492
+    "development": 2181,
+    "clinical": 7112
   },
   "pathwayNamingRule": {
     "pathwayStatementsKept": 2027,
@@ -58,7 +59,7 @@
   },
   "inputs": {
     "fields": "data/revamp/fields-v2",
-    "identity": "data/revamp/identity/canonical-v5.ndjson",
+    "identity": "data/revamp/identity/canonical-v6.ndjson",
     "tiers": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
     "patent": "data/revamp/blocks/patent.parquet",
     "interactions": "data/revamp/interactions/interactions.parquet",

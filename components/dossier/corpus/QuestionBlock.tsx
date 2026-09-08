@@ -10,7 +10,7 @@
  * value is marked as interpretation instead of being given a manufactured citation (B5).
  */
 import type { CorpusBlock, CorpusLadderRung, CorpusParagraph } from '@/lib/corpus/dossier-page'
-import type { RevealedRow } from '@/lib/corpus/page-text'
+import { VISIBLE_ROWS, type RevealedRow } from '@/lib/corpus/page-text'
 import { EvidenceDisclosure } from './EvidenceDisclosure'
 import { OrganismLadder } from './OrganismLadder'
 import { ProvenanceAnchor } from './ProvenanceAnchor'
@@ -61,20 +61,46 @@ function Paragraph({ paragraph }: { paragraph: CorpusParagraph }) {
  * rows: visible without opening anything, and markup rather than prose, so the template test does
  * not apply to them.
  */
-function Facts({ blockId, rows }: { blockId: string; rows: RevealedRow[] }) {
-  if (rows.length === 0) return null
+function FactRows({ blockId, rows, from }: { blockId: string; rows: RevealedRow[]; from: number }) {
   return (
     <dl className="cd-facts">
       {rows.map((row, index) => (
-        <div className="cd-fact" key={`${blockId}-f${index}`}>
+        <div className="cd-fact" key={`${blockId}-f${from + index}`}>
           <dt>{row.label}</dt>
-          <dd>
-            {row.identifier ? <span className="cd-row-id">{row.identifier}</span> : null}
-            {row.value}
-          </dd>
+          {/*
+            §14(6): a fact is a label and a value. A dataset record id is technical provenance and
+            is painted only inside a closed disclosure, so `buildBlockBody` strips an identifier
+            from a fact before it ever reaches here.
+          */}
+          <dd>{row.value}</dd>
         </div>
       ))}
     </dl>
+  )
+}
+
+function Facts({ blockId, rows }: { blockId: string; rows: RevealedRow[] }) {
+  if (rows.length === 0) return null
+  /*
+   * §14(9): six rows on the page, the counted rest inside a control. The endpoint list under the
+   * largest-trial question painted fourteen, and a list that long stops being a list a reader
+   * reads. The number is `VISIBLE_ROWS`, which the corpus renderer's grouping uses for every other
+   * list on the page.
+   */
+  const visible = rows.slice(0, VISIBLE_ROWS)
+  const rest = rows.slice(VISIBLE_ROWS)
+  return (
+    <>
+      <FactRows blockId={blockId} from={0} rows={visible} />
+      {rest.length > 0 ? (
+        <details className="cd-evidence cd-further-rows" id={`${blockId}-more-facts`}>
+          <summary>
+            {rest.length} more recorded {rest.length === 1 ? 'row' : 'rows'}
+          </summary>
+          <FactRows blockId={blockId} from={VISIBLE_ROWS} rows={rest} />
+        </details>
+      ) : null}
+    </>
   )
 }
 

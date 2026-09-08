@@ -185,7 +185,7 @@ async function main(): Promise<void> {
   const fieldsDir = arg('fields') ?? 'data/revamp/fields-v2'
   const seedsDir = arg('seeds') ?? 'data/revamp/derived-v2'
   const questionsDir = arg('questions') ?? 'data/revamp/questions-v2'
-  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v5.ndjson'
+  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v6.ndjson'
   const tiersFile = arg('tiers') ?? 'data/corpus-20k/tiers/model-assignment.ndjson'
   const suppressionFile = arg('suppression') ?? 'data/revamp/suppression/assignments-v2.ndjson'
   const registryDir = arg('registry') ?? 'data/corpus-20k/registry/aggregates'
@@ -194,15 +194,22 @@ async function main(): Promise<void> {
     arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v5.csv'
   const displayNamesFile = arg('display-names') ?? 'data/revamp/identity/display-names-v5.csv'
   const withFurniture = process.argv.includes('--with-furniture')
-  const outDir = arg('out') ?? 'data/revamp/render-v8'
+  const outDir = arg('out') ?? 'data/revamp/render-v9'
   /*
    * The two runs share one output directory and never overwrite one another: the furniture run
-   * writes `text-with-furniture`, `provenance-with-furniture`, `pages-all-with-furniture.ndjson`
-   * and `summary-with-furniture.json` beside the furniture-free ones. `tests/test_render_safety.py`
-   * reads both out of the same directory, and until this was here the two names were produced by
-   * moving files by hand after the run.
+   * writes `text-with-furniture` and `summary-with-furniture.json` beside the furniture-free ones.
+   * `tests/test_render_safety.py` reads both out of the same directory, and until this was here
+   * the two names were produced by moving files by hand after the run.
+   *
+   * The provenance map is written once, by the furniture-free run, and the furniture run does not
+   * write a second copy. `renderPage` records every line it wrote in the map, furniture included
+   * and marked `furniture: true`; `--with-furniture` decides only what `text` and `proseText`
+   * carry. The two directories were byte-identical over all 28,832 pages and the second was 264 MB.
+   * `pages-all` is likewise the furniture-free run's, because it is the file the duplicate check
+   * resolves page tiers from and that check reads the furniture-free text.
    */
   const suffix = withFurniture ? '-with-furniture' : ''
+  const writeProvenance = !withFurniture
   const shards = Number(arg('shards') ?? 8)
   const batchSize = Number(arg('batch-size') ?? 1000)
   const limit = arg('limit') ? Number(arg('limit')) : undefined
@@ -345,16 +352,16 @@ async function main(): Promise<void> {
     .map((name) => path.join(questionsDir, name))
 
   const textDir = path.join(outDir, `text${suffix}`)
-  const provenanceDir = path.join(outDir, `provenance${suffix}`)
+  const provenanceDir = path.join(outDir, 'provenance')
   await fs.mkdir(textDir, { recursive: true })
-  await fs.mkdir(provenanceDir, { recursive: true })
-  for (const directory of [textDir, provenanceDir]) {
+  if (writeProvenance) await fs.mkdir(provenanceDir, { recursive: true })
+  for (const directory of writeProvenance ? [textDir, provenanceDir] : [textDir]) {
     for (const name of await fs.readdir(directory).catch(() => [])) {
       if (/^batch-\d+\.ndjson$/.test(name)) await fs.rm(path.join(directory, name))
     }
   }
-  const allFile = path.join(outDir, `pages-all${suffix}.ndjson`)
-  await fs.rm(allFile, { force: true })
+  const allFile = path.join(outDir, 'pages-all.ndjson')
+  if (writeProvenance) await fs.rm(allFile, { force: true })
 
   const shardSize = Math.ceil(allKeys.length / shards)
   const textBuffer: RenderedPage[] = []
@@ -395,19 +402,23 @@ async function main(): Promise<void> {
         `${textSlice.map((record) => JSON.stringify(record)).join('\n')}\n`,
         'utf8',
       )
-      await fs.appendFile(
-        allFile,
-        `${textSlice.map((record) => JSON.stringify(record)).join('\n')}\n`,
-        'utf8',
-      )
+      if (writeProvenance) {
+        await fs.appendFile(
+          allFile,
+          `${textSlice.map((record) => JSON.stringify(record)).join('\n')}\n`,
+          'utf8',
+        )
+      }
       textFiles.push({ file: textFile, records: textSlice.length })
-      const provenanceFile = path.join(provenanceDir, suffix)
-      await fs.writeFile(
-        provenanceFile,
-        `${provenanceSlice.map((record) => JSON.stringify(record)).join('\n')}\n`,
-        'utf8',
-      )
-      provenanceFiles.push({ file: provenanceFile, records: provenanceSlice.length })
+      if (writeProvenance) {
+        const provenanceFile = path.join(provenanceDir, suffix)
+        await fs.writeFile(
+          provenanceFile,
+          `${provenanceSlice.map((record) => JSON.stringify(record)).join('\n')}\n`,
+          'utf8',
+        )
+        provenanceFiles.push({ file: provenanceFile, records: provenanceSlice.length })
+      }
     }
   }
 

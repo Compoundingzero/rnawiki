@@ -48,7 +48,7 @@ import json
 import math
 import os
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from typing import Any
 
 import duckdb
@@ -122,6 +122,16 @@ def main() -> None:
     parser.add_argument("--inline-cap", type=int, default=6)
     parser.add_argument("--disclosed-cap", type=int, default=24)
     parser.add_argument("--batch-size", type=int, default=2000)
+    # section 14 item 5: the label-documented rows are grouped by label and direction after they
+    # are read, so the read has to see every counterpart a page holds and not the first thirty.
+    parser.add_argument("--label-counterpart-cap", type=int, default=400)
+    # How many counterparts one grouped label line names before the rest are counted (item 9's
+    # six is a rule about rows; a line naming forty names is the wall item 5 is removing).
+    parser.add_argument("--named-counterparts", type=int, default=12)
+    parser.add_argument(
+        "--counterpart-artefacts",
+        default=repo("data", "revamp", "interactions", "counterpart-artefacts.csv"),
+    )
     args = parser.parse_args()
 
     con = duckdb.connect()
@@ -292,6 +302,26 @@ def main() -> None:
     kept = args.inline_cap + args.disclosed_cap
     interactions_file = os.path.join(interactions_dir, "interactions.parquet")
 
+    # ---- section 14 item 5: the counterparts that are entity-linking artefacts ----------------
+    #
+    # `scripts/revamp/counterpart_artefacts.py` decides them from the registers' own records — a
+    # GSRS substance class of `structurallyDiverse` (a cell, a tissue, a material, not a medicine)
+    # and a printed name that is a bare abbreviation. A row naming one is dropped and counted; the
+    # page it named keeps its own page and everything else on it.
+    artefacts: dict[str, dict[str, str]] = {}
+    if os.path.exists(args.counterpart_artefacts):
+        for row in rows_of(
+            con,
+            "select * from read_csv_auto('%s', header=true, all_varchar=true)"
+            % args.counterpart_artefacts,
+        ):
+            key = row.get("key")
+            if key:
+                artefacts[key] = {
+                    "printedName": row.get("printed_name") or key,
+                    "reason": row.get("reason") or "",
+                }
+
     # One line per counterpart, not one per stored row.
     #
     # A label states the same interaction in five places — a table of clinically relevant
@@ -332,12 +362,12 @@ def main() -> None:
         from (
           select *, row_number() over (
             partition by page_a, tier
-            order by counterpart, first_of_counterpart
+            order by counterpart, direction_class, first_of_counterpart
           ) as rank
           from (
             select *,
                    row_number() over (
-                     partition by page_a, tier, counterpart
+                     partition by page_a, tier, counterpart, direction_class
                      order by coalesce(nullif(source_record_id, 'nan'), ''),
                               coalesce(nullif(page_b, 'nan'), '')
                    ) as first_of_counterpart
@@ -345,13 +375,19 @@ def main() -> None:
               select *,
                      lower(coalesce(nullif(counterpart_name, 'nan'),
                                     nullif(page_b_display, 'nan'),
-                                    nullif(page_b, 'nan'), '')) as counterpart
+                                    nullif(page_b, 'nan'), '')) as counterpart,
+                     -- section 14 item 5: a label states one of a few directions for a
+                     -- counterpart, and the page's line is one per label and direction. Every
+                     -- other tier keeps one row per counterpart, as section 13 item 3 left it.
+                     case when tier = 'A'
+                          then coalesce(nullif(direction, 'nan'), '')
+                          else '' end as direction_class
               from '{interactions_file}'
             )
           )
           where first_of_counterpart = 1
         )
-        where rank <= {kept}
+        where rank <= (case when tier = 'A' then {args.label_counterpart_cap} else {kept} end)
         order by page_a, tier, rank
         """
     ).fetchdf()
@@ -389,8 +425,25 @@ def main() -> None:
 
     columns = list(selected.columns)
     unnameable = 0
+    artefact_dropped = 0
+    artefact_reasons: Counter = Counter()
+    dropped_counterparts: dict[str, dict[str, int]] = defaultdict(
+        lambda: {"A": 0, "B": 0, "C": 0}
+    )
     for values in selected.itertuples(index=False, name=None):
         row = {column: clean(value) for column, value in zip(columns, values)}
+        # section 14 item 5: a counterpart must resolve to a substance page or a recognised drug
+        # class. The rows naming a material's record or a bare abbreviation are dropped here, once,
+        # with the reason the artefact file recorded and the count in the summary.
+        held_artefact = artefacts.get(row.get("page_b") or "")
+        if held_artefact is not None:
+            artefact_dropped += 1
+            artefact_reasons[held_artefact["reason"]] += 1
+            # The tier's total counts counterparts, and a dropped one is not a counterpart this
+            # page holds. Without this the page said "1 counterparts are recorded … 0 are shown"
+            # and had no line to show, which reads as a page hiding something.
+            dropped_counterparts[row["page_a"]][row["tier"]] += 1
+            continue
         counterpart = counterpart_name_of(row)
         if counterpart is None:
             unnameable += 1
@@ -504,6 +557,107 @@ def main() -> None:
                 len(by_tier["B"]), held_total - (len(rows_b) - len(kept_rows)) + len(new_rows)
             )
 
+    # ---- section 14 item 5: the label-documented rows, grouped by label and direction ----------
+    #
+    # A DailyMed label states an interaction for twenty-one counterparts, and the build stored one
+    # row per counterpart. Rendered a row to a line, Piroxicam's page carried twenty-one
+    # label-documented lines, every one of them repeating the same set id and the same effective
+    # date and differing only in the counterpart's name and one of three direction phrases. That is
+    # a table written as sentences. The page's line is one per (label, direction class), naming
+    # every counterpart the label states that direction for.
+    #
+    # The direction is the label's own phrase with the "; direction not stated" clause taken off:
+    # "interaction stated with X, Y and Z" reads as the label's finding, where "interaction stated;
+    # direction not stated with X" does not read as English at all.
+    label_grouped_lines = 0
+    label_grouped_from = 0
+    for page_key, by_tier in interaction_rows.items():
+        rows_a = by_tier.get("A") or []
+        if len(rows_a) < 2:
+            continue
+        groups: dict[tuple[str, str, str], dict[str, Any]] = {}
+        order: list[tuple[str, str, str]] = []
+        for row in rows_a:
+            direction = (row.get("direction") or "an interaction is stated").strip()
+            direction = re.sub(r"\s*;\s*direction not stated\s*$", "", direction)
+            group_key = (
+                str(row.get("setId") or row.get("sourceRecordId") or ""),
+                str(row.get("effectiveTime") or ""),
+                direction,
+            )
+            held = groups.get(group_key)
+            if held is None:
+                order.append(group_key)
+                held = groups[group_key] = {
+                    "counterparts": [],
+                    "counterpartKeys": [],
+                    "counterpartTraces": [],
+                    "recordIds": [],
+                    "row": row,
+                    "direction": direction,
+                }
+            trace = (row.get("provenance") or {}).get("counterpart")
+            if trace and trace not in held["counterpartTraces"]:
+                held["counterpartTraces"].append(trace)
+            name = row.get("counterpartName")
+            if name and name not in held["counterparts"]:
+                held["counterparts"].append(name)
+            counterpart_key = row.get("counterpartKey")
+            if counterpart_key and counterpart_key not in held["counterpartKeys"]:
+                held["counterpartKeys"].append(counterpart_key)
+            record_id = row.get("sourceRecordId")
+            if record_id and record_id not in held["recordIds"]:
+                held["recordIds"].append(record_id)
+        if len(groups) >= len(rows_a):
+            continue
+        new_rows: list[dict[str, Any]] = []
+        for group_key in order:
+            held = groups[group_key]
+            base = dict(held["row"])
+            names = sorted(held["counterparts"], key=lambda value: value.lower())
+            named = names[: args.named_counterparts]
+            provenance = dict(base.get("provenance") or {})
+            # No `record` entry: every row in a group shares one label, so the group's record is the
+            # set id the row already names in its `sentence` trace ("openfda-label mapped.parquet
+            # field=drug_interactions set_id=..."). Writing the bare set id under `record` gave the
+            # trace classifier a value of no recognised class, which is check (a) failing on a
+            # trace that says nothing the row does not already say.
+            #
+            # The group's counterpart trace is the list of the traces its own rows carried, joined
+            # with a middle dot, so the classifier resolves each of them against this page's own
+            # record exactly as it resolves a single row's (section 14 item 15). The middle dot and
+            # not a semicolon: one lexicon trace reads "lexicon surface 'x'; the corpus holds no
+            # page for it", and splitting a joined list on the semicolon would cut that trace in
+            # half.
+            if held["counterpartTraces"]:
+                provenance["counterpart"] = " \u00b7 ".join(held["counterpartTraces"])
+            base.update(
+                {
+                    # A grouped line names several counterparts, so it names no single one: the
+                    # counterpart columns would otherwise link the whole group to the first name.
+                    "counterpartKey": None,
+                    "counterpartName": None,
+                    "sourceRecordId": held["recordIds"][0] if held["recordIds"] else None,
+                    "direction": held["direction"],
+                    "groupedDirection": held["direction"],
+                    "groupedCounterparts": named,
+                    "groupedCounterpartsBeyond": max(0, len(names) - len(named)),
+                    "groupedCounterpartKeys": held["counterpartKeys"],
+                    "groupedRecordIds": held["recordIds"],
+                    "provenance": provenance,
+                }
+            )
+            new_rows.append(base)
+        label_grouped_from += len(rows_a)
+        label_grouped_lines += len(new_rows)
+        by_tier["A"] = new_rows
+        # The "N counterparts are recorded … M are shown" line counts counterparts, and a grouped
+        # line names every counterpart it stands for. The total is the number this page's lines
+        # actually name, so the page never says a counterpart is missing that it has just named.
+        named_total = len({name for row in new_rows for name in (row["groupedCounterparts"] or [])})
+        beyond = sum(row["groupedCounterpartsBeyond"] for row in new_rows)
+        interaction_totals[page_key]["A"] = named_total + beyond
+
     checked: dict[str, dict[str, Any]] = {}
     for row in rows_of(
         con, f"select * from '{os.path.join(interactions_dir, 'checked-sources.parquet')}'"
@@ -578,7 +732,9 @@ def main() -> None:
 
     # ---- identity relations (form-of, biosimilar-of, component-of and the rest) ---------------
     relations: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    relations_file = os.path.join(args.identity_dir, "relations-v5.parquet")
+    relations_file = os.path.join(args.identity_dir, "relations-v6.parquet")
+    if not os.path.exists(relations_file):
+        relations_file = os.path.join(args.identity_dir, "relations-v5.parquet")
     for row in rows_of(con, f"select * from '{relations_file}' order by page_a, relation, page_b"):
         page = row["page_a"]
         counterpart = row.get("page_b")
@@ -620,6 +776,10 @@ def main() -> None:
         "interactionRowsDroppedUnnameableCounterpart": 0,
         "curatedRowsGrouped": grouped_from,
         "curatedGroupedLines": grouped_lines,
+        "labelRowsGrouped": label_grouped_from,
+        "labelGroupedLines": label_grouped_lines,
+        "counterpartsDroppedAsArtefacts": artefact_dropped,
+        "counterpartsDroppedByReason": dict(sorted(artefact_reasons.items())),
         "files": [],
     }
 
@@ -650,8 +810,13 @@ def main() -> None:
         tiers: dict[str, Any] = {}
         for tier in TIER_ORDER:
             rows = interaction_rows.get(key, {}).get(tier, [])
-            total = interaction_totals.get(key, {}).get(tier, 0)
-            if total == 0:
+            total = interaction_totals.get(key, {}).get(tier, 0) - dropped_counterparts.get(
+                key, {}
+            ).get(tier, 0)
+            # A tier with no line left is not a tier this page holds. It used to be written with a
+            # total and an empty row list, and the page then said how many counterparts were
+            # recorded and showed none of them.
+            if total <= 0 or not rows:
                 continue
             tiers[tier] = {
                 "inline": rows[: args.inline_cap],

@@ -424,6 +424,45 @@ def categorise_application(statements):
     return US_CATEGORY_NOT_STATED
 
 
+# section 14 item 3: the categories that mean an application is on the market today.
+US_ACTIVE_CATEGORIES = ("prescription", "over-the-counter")
+
+
+def us_status_word(counts, applications, recorded_status_word):
+    """The status word the application set supports (`docs/specs/phase4-generators.md` 14.3).
+
+    "Approved · 4 applications: all discontinued" is a contradiction: the status came from the
+    register's own `status` field, which records that the substance was once approved, and the
+    breakdown came from the applications, which record that none of them is on the market. A reader
+    meets the two in one line and cannot tell which is true of the medicine now.
+
+    The rule the spec fixes: any active prescription or over-the-counter application makes the word
+    Approved; every application discontinued makes it Discontinued; tentative approvals alone make
+    it Tentative approval. A withdrawal is a statement about the substance rather than about an
+    application, so a recorded withdrawal keeps its own word. Where the set supports none of these —
+    no application, or a set whose statuses the register did not state — the recorded word stands,
+    because then the applications say nothing to contradict it.
+    """
+    if recorded_status_word == US_STATUS_WORDS["withdrawn"]:
+        return recorded_status_word
+    if not applications:
+        return recorded_status_word
+    active = sum(counts.get(name, 0) for name in US_ACTIVE_CATEGORIES)
+    if active > 0:
+        return US_STATUS_WORDS["approved"]
+    discontinued = counts.get("discontinued", 0)
+    tentative = counts.get("tentative approval", 0)
+    # No application is on the market. A tentative approval is the furthest the set has gone, so
+    # that is the word, whether or not discontinued applications sit beside it: "Approved · 9
+    # applications: 3 discontinued, 6 tentative approval" says the substance is approved and then
+    # lists nine applications none of which is.
+    if tentative > 0:
+        return "Tentative approval"
+    if discontinued > 0 and discontinued == len(applications):
+        return "Discontinued"
+    return recorded_status_word
+
+
 def line_us(record, registers):
     regulatory = value_of(record, "regulatory")
     controlled = value_of(record, "controlled")
@@ -509,8 +548,13 @@ def line_us(record, registers):
         provenance += carried(record, "fields.regulatory.value.US.withdrawnReason")
 
     parts.append("checked %s" % date if date else None)
-    status = status_word or "Recorded in %s" % Registers.NAMES["US"]
+    # section 14 item 3: the word the applications support, not the word the register's own status
+    # field holds where the two disagree.
+    derived = us_status_word(counts, applications, status_word)
+    status = derived or "Recorded in %s" % Registers.NAMES["US"]
     provenance += carried(record, "fields.regulatory.value.US.status")
+    if applications:
+        provenance += carried(record, "fields.regulatory.value.US.evidence[].statement")
     return (status, join(parts), Registers.NAMES["US"], date, provenance,
             us_disclosure(record, us, list(applications)), "")
 

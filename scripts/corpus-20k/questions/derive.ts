@@ -1008,7 +1008,6 @@ export const BLOCK_ORDER = [
   'mechanism-action',
   'sponsor-phase',
   'development-stop',
-  'never-dosed',
 ] as const
 
 /** Every emitting template in the spec table. `stub` emits nothing and is not listed here. */
@@ -1052,7 +1051,6 @@ export const TEMPLATE_IDS = [
   'mechanism-action',
   'sponsor-phase',
   'development-stop',
-  'never-dosed',
 ] as const
 
 export type TemplateId = (typeof TEMPLATE_IDS)[number]
@@ -1755,19 +1753,43 @@ export function deriveQuestions(
   }
 
   /* -- provenance (seed 8) ---------------------------------------------------------------------- */
+  /*
+   * §14(10): the question names the first and last event kinds, in that order, and fires only on
+   * three or more dated events.
+   *
+   * It used to read "How did X get from {firstYear} to {currentState}?", where the current state
+   * came from a register and the year from the earliest event. On a record whose earliest dated
+   * event is its approval, that asked how the compound got from its approval to being approved,
+   * and the draw found one reading "How did X get from 1989 to approved?" over the events "1989
+   * first approval, 2004 first human trial". Naming both ends makes the question the timeline's
+   * own shape, and sorting the events makes the first end the earliest one.
+   */
   const seed8 = seed('seed8')
   if (seed8) {
     const v = asObject(seed8.values)
-    const firstYear = year(
-      pick(v, 'firstYear', 'firstEventYear', 'firstPublicationYear', 'firstEvent'),
-    )
-    const currentState = asString(pick(v, 'currentState', 'current', 'state'))
-    if (firstYear && currentState) {
+    const events = asArray(pick(v, 'events'))
+      .map((event) => asObject(event))
+      .filter((event): event is Record<string, unknown> => event !== undefined)
+      .map((event) => ({
+        kind: asString(pick(event, 'event')),
+        year: year(pick(event, 'year', 'date')),
+      }))
+      .filter((event): event is { kind: string; year: string } => Boolean(event.kind && event.year))
+      .sort((a, b) => a.year.localeCompare(b.year))
+    const first = events[0]
+    const last = events[events.length - 1]
+    if (events.length >= 3 && first && last && !(first.kind === last.kind)) {
       push(
         'provenance',
         'provenance',
-        `How did ${name} get from ${firstYear} to ${currentState}?`,
-        { name, firstYear, currentState },
+        `How did ${name} get from ${first.kind} in ${first.year} to ${last.kind} in ${last.year}?`,
+        {
+          name,
+          firstYear: first.year,
+          firstEvent: first.kind,
+          lastYear: last.year,
+          lastEvent: last.kind,
+        },
         seedSources(seed8.values),
       )
     }
@@ -1930,21 +1952,11 @@ export function deriveQuestions(
     }
   }
 
-  /* -- never-dosed ----------------------------------------------------------------------------------- */
-  const everDosed = present('everDosedInHumans')
-  if (p.model === 'DEVELOPMENT' && everDosed) {
-    const e = asObject(everDosed.value)
-    const flag = e ? pick(e, 'bool', 'everDosed', 'everDosedInHumans', 'value') : everDosed.value
-    if (flag === false) {
-      push(
-        'never-dosed',
-        'never-dosed',
-        `Has ${name} ever reached a person?`,
-        { name },
-        sourcesOf(everDosed),
-      )
-    }
-  }
+  /*
+   * §14(11): `never-dosed` is retired. "Has X ever reached a person?" fired only where the record
+   * says no one has, and its answer was that absence — the shape §13(1) took out of the
+   * classification question. The header line "No human study recorded" carries it, once.
+   */
 
   /* -- suppression, one-per-block, §4 order ---------------------------------------------------------- */
   const kept = new Map<string, Draft>()

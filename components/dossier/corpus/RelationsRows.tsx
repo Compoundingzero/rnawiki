@@ -4,28 +4,59 @@
  * "Ester of · Mometasone" is a row. Written as prose it would become a shared sentence on every
  * page that carries the same relation, which is exactly the repetition the overlap harness
  * measures. A relation renders only where the other record exists, so no row points nowhere.
+ *
+ * §14(12): one relation per pair. Two rows naming the same record — "Stereoisomer of X" beside
+ * "Same structure as X" — are one relation stated twice, at two levels of precision, and the
+ * identity revision now records only the most specific of them. This component keeps the guard
+ * anyway, because a page loaded from an earlier revision must not paint the pair.
  */
 import type { CorpusRelationRow } from '@/lib/corpus/dossier-page'
+import { VISIBLE_ROWS } from '@/lib/corpus/page-text'
+
+function Row({ relation }: { relation: CorpusRelationRow }) {
+  return (
+    <li>
+      {/* §14(7): a text node between the label and the name, so no extractor joins them. */}
+      <span>{relation.label}</span>{' '}
+      {relation.slug ? (
+        <a href={`/d/${relation.slug}`}>{relation.name}</a>
+      ) : (
+        <span>{relation.name}</span>
+      )}
+    </li>
+  )
+}
 
 export function RelationsRows({ relations }: { relations: CorpusRelationRow[] }) {
   if (relations.length === 0) return null
+  const visible = relations.slice(0, VISIBLE_ROWS)
+  const rest = relations.slice(VISIBLE_ROWS)
   return (
     <section aria-labelledby="cd-relations-heading">
       <h2 className="cd-section-heading" id="cd-relations-heading">
         Relations
       </h2>
       <ul className="cd-relations">
-        {relations.map((relation, index) => (
-          <li key={`${relation.label}-${relation.name}-${index}`}>
-            <span>{relation.label}</span>
-            {relation.slug ? (
-              <a href={`/d/${relation.slug}`}>{relation.name}</a>
-            ) : (
-              <span>{relation.name}</span>
-            )}
-          </li>
+        {visible.map((relation, index) => (
+          <Row key={`${relation.label}-${relation.name}-${index}`} relation={relation} />
         ))}
       </ul>
+      {/* §14(9): six on the page, the counted rest inside a control. */}
+      {rest.length > 0 ? (
+        <details className="cd-evidence cd-further-rows" id="cd-relations-more">
+          <summary>
+            {rest.length} more recorded {rest.length === 1 ? 'relation' : 'relations'}
+          </summary>
+          <ul className="cd-relations">
+            {rest.map((relation, index) => (
+              <Row
+                key={`${relation.label}-${relation.name}-${VISIBLE_ROWS + index}`}
+                relation={relation}
+              />
+            ))}
+          </ul>
+        </details>
+      ) : null}
     </section>
   )
 }
