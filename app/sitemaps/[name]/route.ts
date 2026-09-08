@@ -1,7 +1,7 @@
 /**
  * The children of the sitemap index: `/sitemaps/tier-1.xml`, `/sitemaps/tier-2.xml`,
- * `/sitemaps/browse.xml` and `/sitemaps/pages.xml`. Any other name is not found, so `tier-3.xml`
- * cannot exist even as an empty document.
+ * `/sitemaps/browse.xml`, `/sitemaps/hubs.xml` (docs/specs/hubs.md §3) and `/sitemaps/pages.xml`.
+ * Any other name is not found, so `tier-3.xml` cannot exist even as an empty document.
  */
 import {
   cappedEntries,

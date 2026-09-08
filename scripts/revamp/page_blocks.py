@@ -7,8 +7,8 @@ reads. Four separate stages produced that content as columnar tables:
   * `scripts/revamp/build_blocks.py`  -> `data/revamp/blocks/{registration,patent,controlled}.parquet`
   * `scripts/revamp/interactions_build.py` -> `data/revamp/interactions/{interactions,checked-sources}.parquet`
   * `scripts/revamp/tier3_sections.py` -> `data/revamp/tier3-sections.parquet`
-  * `scripts/revamp/identity_apply.py`  -> `data/revamp/identity/{relations-v3.parquet,
-    display-names-v3.csv, trial-reassignments-v4.csv}`
+  * `scripts/revamp/identity_apply.py`  -> `data/revamp/identity/{relations-v5.parquet,
+    display-names-v5.csv, trial-reassignments-v5.csv, combination-components-v5.csv}`
 
 Neither the loader (`scripts/corpus-20k/load/materialise.ts`) nor the renderer
 (`scripts/revamp/page_text_v5.ts`) reads Parquet, and neither should hold 535,118 interaction rows
@@ -159,7 +159,7 @@ def main() -> None:
 
     # ---- display-name disambiguation (§6, the same-name pairs) --------------------------------
     disambiguation: dict[str, dict[str, Any]] = {}
-    display_names = os.path.join(args.identity_dir, "display-names-v3.csv")
+    display_names = os.path.join(args.identity_dir, "display-names-v5.csv")
     if os.path.exists(display_names):
         for row in rows_of(
             con, f"select * from read_csv_auto('{display_names}', header=true, all_varchar=true)"
@@ -179,7 +179,7 @@ def main() -> None:
 
     # ---- trials moved to another page (§6 form pairs; R14 extended to salts and esters) --------
     moved: dict[str, dict[str, Any]] = {}
-    reassignments = os.path.join(args.identity_dir, "trial-reassignments-v4.csv")
+    reassignments = os.path.join(args.identity_dir, "trial-reassignments-v5.csv")
     if os.path.exists(reassignments):
         grouped: dict[tuple[str, str], set[str]] = defaultdict(set)
         rules: dict[tuple[str, str], str] = {}
@@ -444,9 +444,53 @@ def main() -> None:
             }
         )
 
+    # ---- the combination product's component list (section 12) --------------------------------
+    #
+    # "The page opens with its component list." Two products built from one substance render nearly
+    # the same page, and the first thing that tells them apart is what each is made of. The list is
+    # the one `identity_apply.py` recorded from the register's own proper name (or from the
+    # combination key's component pages); nothing here parses a name. It leads the form-of notes, so
+    # it is the first sentence under the title.
+    components_file = os.path.join(args.identity_dir, "combination-components-v5.csv")
+    component_notes = 0
+    if os.path.exists(components_file):
+        for row in rows_of(
+            con,
+            f"select * from read_csv_auto('{components_file}', header=true, all_varchar=true)",
+        ):
+            key = row.get("key")
+            names = [name for name in (row.get("components") or "").split(" + ") if name]
+            if not key or len(names) < 2:
+                continue
+            sentence = f"Recorded components: {' · '.join(names)}."
+            sections[key]["formOf"].insert(
+                0,
+                {
+                    "values": {
+                        "sentence": sentence,
+                        "components": names,
+                        "sharesComponentWith": [
+                            other
+                            for other in (row.get("shares_component_with") or "").split(";")
+                            if other
+                        ],
+                    },
+                    "provenance": {
+                        "sentence": sentence,
+                        "fields": {
+                            "components": "data/revamp/identity/combination-components-v5.csv "
+                                          "components, from the register's proper name for the "
+                                          "product or the component pages its combination key names"
+                        },
+                    },
+                    "templateId": "COMPONENT-LIST",
+                },
+            )
+            component_notes += 1
+
     # ---- identity relations (form-of, biosimilar-of, component-of and the rest) ---------------
     relations: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    relations_file = os.path.join(args.identity_dir, "relations-v3.parquet")
+    relations_file = os.path.join(args.identity_dir, "relations-v5.parquet")
     for row in rows_of(con, f"select * from '{relations_file}' order by page_a, relation, page_b"):
         page = row["page_a"]
         counterpart = row.get("page_b")
@@ -481,6 +525,7 @@ def main() -> None:
         "withoutCheckedSources": 0,
         "withSections": {"neighbour": 0, "potency": 0, "timeline": 0, "formOf": 0},
         "sectionSentences": {"neighbour": 0, "potency": 0, "timeline": 0, "formOf": 0},
+        "withComponentList": component_notes,
         "withDisambiguation": 0,
         "withMovedTrials": 0,
         "interactionRowsWritten": 0,

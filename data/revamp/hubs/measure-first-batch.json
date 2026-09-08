@@ -5,9 +5,9 @@
  "pairs": 435,
  "medianTokens": 187,
  "positional": {
-  "median": 0.07928,
-  "p90": 0.211779,
-  "max": 0.252101,
+  "median": 0.081742,
+  "p90": 0.21079,
+  "max": 0.243697,
   "line": 0.2,
   "pass": true
  },
@@ -21,22 +21,22 @@
  "expectedNearestNeighbour": {
   "full": {
    "pages": 30,
-   "positional": 0.119796,
-   "lexical": 0.427784
+   "positional": 0.119279,
+   "lexical": 0.427732
   },
   "matched": [
    {
     "pages": 324,
-    "positional": 0.227197,
+    "positional": 0.222433,
     "lexical": 0.600106
    },
    {
     "pages": 803,
-    "positional": 0.244466,
+    "positional": 0.237417,
     "lexical": 0.614931
    }
   ]
  },
- "sharedWordShare": 0.113188,
+ "sharedWordShare": 0.112879,
  "pass": true
 }

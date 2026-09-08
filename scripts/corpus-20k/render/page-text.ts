@@ -129,6 +129,17 @@ export interface BlockBody {
   paragraphs: string[]
   rows: RevealedRow[]
   /**
+   * Parallel to `paragraphs`: true where the paragraph is §11 furniture — a fixed-vocabulary
+   * statement whose only content is an absence.
+   *
+   * §12 names the one answer that is: "No regulator classification is recorded for X". It states
+   * that the registers this run cleared returned no classification, in the same words on every page
+   * that has none, and it was marked furniture only in the stub record. Here it is furniture
+   * wherever it renders, the question block included: it leaves the measured text, the duplicate
+   * check skips it, the template test does not apply to it, and the page still says it.
+   */
+  furniture: boolean[]
+  /**
    * The same paragraphs without their provenance anchor. A citation ("DailyMed label · <id> ·
    * <date>", or a bare register name where the source records no id) is not a sentence the page
    * asserts, and counting it as one would report every page that cites ClinicalTrials.gov as
@@ -690,15 +701,18 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
   const src = firstSource(q)
   const paragraphs: string[] = []
   const bare: string[] = []
+  const furniture: boolean[] = []
   const rows: RevealedRow[] = []
-  const p1 = (s: string, source: SourceRef | undefined = src): void => {
+  const p1 = (s: string, source: SourceRef | undefined = src, isFurniture = false): void => {
     const t = oneFullStop(s)
     bare.push(t)
+    furniture.push(isFurniture)
     paragraphs.push(withAnchor(t, source))
   }
   const p2 = (s: string, source?: SourceRef): void => {
     const t = oneFullStop(s)
     bare.push(t)
+    furniture.push(false)
     paragraphs.push(source ? withAnchor(t, source) : t)
   }
   const joinBits = (bits: Array<string | undefined>): string =>
@@ -716,11 +730,13 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       const reg = f.present('regulatoryStatus')
       const statuses = readRegisterStatuses(reg)
       const cleared = [...statuses.recorded.map((r) => r.code), ...statuses.unknown]
+      // §12: this is an absence statement in fixed words, and it is furniture wherever it renders.
       p1(
         cleared.length > 0
           ? `No regulator classification is recorded for ${name} in ${joinList(cleared)}.`
           : `No regulator classification is recorded for ${name}.`,
         entrySource(reg),
+        true,
       )
       if (reg) {
         const values = registerStatusValues(statuses)
@@ -777,7 +793,8 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           entrySource(reg),
         )
       } else {
-        p1(`No regulator classification is recorded for ${name}.`, entrySource(reg))
+        // §12: the same absence statement, and furniture here too.
+        p1(`No regulator classification is recorded for ${name}.`, entrySource(reg), true)
       }
       // Standing-sentence rule: where the page records no study scope there is nothing of its own
       // to say, so paragraph 2 is not written. "No study record accompanies it." stood verbatim on
@@ -1937,6 +1954,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
   return {
     paragraphs: keep.map((i) => paragraphs[i] as string),
     bare: keep.map((i) => bare[i] as string),
+    furniture: keep.map((i) => furniture[i] === true),
     rows,
   }
 }
@@ -2673,6 +2691,66 @@ export function registerApplicationIds(row: RegistrationLine | PatentLine): stri
   )
 }
 
+/**
+ * The name a page prints, under §10's rule: never an all-caps register string where a readable
+ * synonym of the same record exists.
+ *
+ * Registers write a substance name in full capitals — CLOBETASOL, POTASSIUM CITRATE ANHYDROUS,
+ * EPITESTOSTERONE — and inside a sentence it reads as shouting. §10: "the printed name is never an
+ * all-caps register string when a title-case synonym of kind common or INN exists". Two candidate
+ * shapes qualify, and both name this same record:
+ *
+ *  - a `common` or `inn` synonym that is the same name in readable case. The vocabulary tag a
+ *    register appends is removed first, because `Clobetasol [WHO-DD]` and `CLOBETASOL` are one
+ *    name and the tag is the register's, not the substance's.
+ *  - a `merged-page` synonym whose name is the display name with the register's trailing qualifier
+ *    removed — `Potassium Citrate` for `POTASSIUM CITRATE ANHYDROUS`. It qualifies because this
+ *    page absorbed that record, so it is this page's own name and not another substance's. A
+ *    `merged-page` name that is not that prefix is a different printed form (a suffixed biological
+ *    proper name, say) and is left as a synonym.
+ *
+ * Nothing else replaces a register string: a `common` synonym naming a shorter substance —
+ * `Dapagliflozin` on `DAPAGLIFLOZIN PROPANEDIOL` — is a different record and printing it would put
+ * the parent's name on the salt's page, which is the defect §6 exists to remove.
+ *
+ * Slugs do not change (§10); this is the printed name only.
+ */
+const VOCABULARY_TAG = /\s*\[[^\]]*\]\s*$/
+
+function isAllCapsRegisterString(name: string): boolean {
+  return name === name.toUpperCase() && (name.match(/[A-Za-z]/g)?.length ?? 0) >= 2
+}
+
+function nameToken(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+export function printedDisplayName(displayName: string, synonyms: readonly Synonym[]): string {
+  const name = displayName.trim()
+  if (name.length === 0 || !isAllCapsRegisterString(name)) return displayName
+  const target = nameToken(name)
+  const sameName: string[] = []
+  const absorbed: string[] = []
+  for (const synonym of synonyms) {
+    const kind = (synonym.kind ?? '').toLowerCase()
+    if (kind !== 'common' && kind !== 'inn' && kind !== 'merged-page') continue
+    const candidate = (synonym.name ?? '').replace(VOCABULARY_TAG, '').trim()
+    if (candidate.length === 0 || !/[a-z]/.test(candidate) || isAllCapsRegisterString(candidate))
+      continue
+    const token = nameToken(candidate)
+    if (token === target) sameName.push(candidate)
+    else if (kind === 'merged-page' && target.startsWith(`${token} `)) absorbed.push(candidate)
+  }
+  // Deterministic in both lists: the same record must print the same name on every run.
+  if (sameName.length > 0) return [...sameName].sort()[0] as string
+  if (absorbed.length > 0)
+    return [...absorbed].sort((a, b) => b.length - a.length || a.localeCompare(b))[0] as string
+  return displayName
+}
+
 /** The recorded sentence of a computed section, exactly as the computing stage wrote it. */
 export function sectionSentenceText(entry: SectionSentence): string | undefined {
   return asString(pick(entry.values, 'sentence'))
@@ -2711,24 +2789,47 @@ export function sectionSentenceFields(entry: SectionSentence): string[] {
  * module writes it into the measured text, so it is built here once: two copies of the words drift,
  * and §11 makes the render and the page's own text a tested identity.
  *
- * What the studies named decides the wording, because the two rules move studies for two different
- * reasons. R14 and R14b move a study whose interventions name the parent compound without this
- * salt, ester or stereo descriptor. R14c (§11) moves a study whose interventions name only the
- * reference product this page is a biosimilar of. Saying "without this form" of the second would
- * describe something the registry did not record.
+ * What the studies named decides the wording, because the four rules move studies for four
+ * different reasons and one wording for all of them would describe something the registry did not
+ * record.
+ *
+ *   R14 / R14b   the interventions name the parent compound without this salt, ester or stereo
+ *                descriptor.
+ *   R14c (§11)   the interventions name only the reference product this page is a biosimilar of.
+ *   R14d (§12)   the interventions name only the name this record and one other both print, and
+ *                the registers rank the other record's key first.
+ *   R14e (§12)   the interventions do not name this product's full component set, so the study is
+ *                not this combination's; it is recorded where its interventions were matched.
  */
 export function movedTrialsSentence(moved: {
   count: number
   toName: string
   rule?: string
 }): string {
-  const names = moved.count === 1 ? 'trial names' : 'trials name'
+  const studies = moved.count === 1 ? 'study' : 'studies'
+  const names = moved.count === 1 ? 'names' : 'name'
   const carried = moved.count === 1 ? 'it is' : 'they are'
-  return moved.rule?.startsWith('R14c') === true
-    ? `${moved.count} registered ${names} only the reference product ${moved.toName}; ` +
-        `${carried} recorded on the ${moved.toName} page.`
-    : `${moved.count} registered ${names} ${moved.toName} without this form; ` +
-        `${carried} recorded on the ${moved.toName} page.`
+  const rule = moved.rule ?? ''
+  if (rule.startsWith('R14c'))
+    return (
+      `${moved.count} registered ${studies} ${names} only the reference product ${moved.toName}; ` +
+      `${carried} recorded on the ${moved.toName} page.`
+    )
+  if (rule.startsWith('R14d'))
+    return (
+      `${moved.count} registered ${studies} ${names} only the name this record and one other ` +
+      `both print; the registers key the other record first, so ${carried} recorded there:`
+    )
+  if (rule.startsWith('R14e'))
+    return (
+      `${moved.count} registered ${studies} ${names} interventions that do not cover this ` +
+      `product's whole component set; ${carried} recorded where those interventions were ` +
+      `matched, on the ${moved.toName} page.`
+    )
+  return (
+    `${moved.count} registered ${studies} ${names} ${moved.toName} without this form; ` +
+    `${carried} recorded on the ${moved.toName} page.`
+  )
 }
 
 export function formOfNoteLines(blocks: PageBlocks | undefined): Array<{
@@ -2757,7 +2858,7 @@ export function formOfNoteLines(blocks: PageBlocks | undefined): Array<{
   if (moved && moved.count > 0) {
     out.push({
       sentence: movedTrialsSentence(moved),
-      fields: ['data/revamp/identity/trial-reassignments-v4.csv action=move'],
+      fields: ['data/revamp/identity/trial-reassignments-v5.csv action=move'],
       // The template links the page the studies went to, from the same `toKey`; the measured text
       // carries the same words after the sentence.
       counterpartKey: moved.toKey,
@@ -3116,6 +3217,17 @@ export interface ProvenanceEntry {
    * sentences under the heading are in its scope.
    */
   heading?: true
+  /**
+   * The rendered block this line belongs to, as one identifier per block *instance* on the page:
+   * `question:q3`, `registration`, `interactions`, `patent`, `computed`, `header`, `form-of`,
+   * `withdrawn-arc`, `exact-record`, `relations`, `sources`.
+   *
+   * §12 evaluates the slop draw's template test over the masked block — every sentence of a
+   * question, derived, computed or hub block, in order — because that is the unit a reader meets.
+   * Grouping by a sentence's shape would decide the unit from the thing being measured; this names
+   * it from the render itself, so the draw and the page agree on where one block ends.
+   */
+  group: string
 }
 
 export interface RenderedPage {
@@ -3211,7 +3323,9 @@ export function renderPage(
    * "Vasopressin Tannate (small molecule)", not "Vasopressin Tannate". §11 makes the measured text
    * carry the same name.
    */
-  const printedName = blocks?.disambiguation?.displayName ?? page.displayName
+  const printedName =
+    blocks?.disambiguation?.displayName ??
+    printedDisplayName(page.displayName, page.identity.synonyms)
   const bundle: PageBundle = controlled
     ? {
         ...page,
@@ -3232,6 +3346,11 @@ export function renderPage(
   const provenance: ProvenanceEntry[] = []
   let dropped = 0
   let furnitureLines = 0
+  /**
+   * The block every following `push` belongs to. Set once at each region boundary below, so a
+   * provenance entry names its block without every call site carrying the name (§12).
+   */
+  let group = 'header'
   const push = (
     line: string,
     markup = false,
@@ -3255,6 +3374,7 @@ export function renderPage(
         sentence: line.replace(/\s+/g, ' ').trim(),
         fields,
         kind,
+        group,
         ...(furniture ? { furniture: true as const } : {}),
         ...(heading ? { heading: true as const } : {}),
       })
@@ -3265,7 +3385,7 @@ export function renderPage(
   const displayName = printedName
   push(displayName, false, [
     blocks?.disambiguation
-      ? `data/revamp/identity/display-names-v3.csv disambiguated_display_name (${
+      ? `data/revamp/identity/display-names-v5.csv disambiguated_display_name (${
           blocks.disambiguation.basis ?? 'recorded basis'
         })`
       : // 14 of the 28,832 pages are not in the identity revision, and their name is the one the
@@ -3293,6 +3413,7 @@ export function renderPage(
    * duplicate check found the pages failing to state. §1 lists the note among the Tier 3 computed
    * sections; §6 says the page opens with it, and the reader is served by meeting it here.
    */
+  group = 'form-of'
   for (const note of formOfNoteLines(blocks)) {
     // The template prints the counterpart's name as a link after the sentence, where the corpus
     // holds a page for it, and the name it prints is that page's own printed name — not the name
@@ -3309,17 +3430,24 @@ export function renderPage(
   const supervision = bundle.questions.filter((q) => q.block === 'supervision')
   const answers = bundle.questions.filter((q) => q.block !== 'supervision')
 
+  let questionOrdinal = 0
   const renderQuestion = (q: QuestionBlock): void => {
     const recorder = recordingFacts(f)
     const body = buildBlockBody(q, bundle, recorder.facts)
     // A block whose builder wrote nothing renders nothing: §7 stops a dose-response section whose
     // quotations name a different compound, and a heading over an empty body is forbidden by §1.
     if (body.paragraphs.length === 0 && body.rows.length === 0) return
+    questionOrdinal += 1
+    // The block instance, numbered in render order (`q1`, `q2`, …), so the draw groups the
+    // sentences a reader meets under one question and no others (§12).
+    group = `question:q${questionOrdinal}`
     const fields = [`page_questions.${q.template}`, ...recorder.touched()]
     // The question itself, marked a heading: it is the block's title, and §11 keeps the slop
     // draw's template test off it while leaving every other check on it.
     push(q.text, false, fields, 'sentence', false, true)
-    for (const p of body.paragraphs) push(p, false, fields)
+    body.paragraphs.forEach((p, index) =>
+      push(p, false, fields, 'sentence', body.furniture[index] === true),
+    )
     if (body.rows.length > 0) {
       // The `<summary>` reads "Show the evidence" on every block of every page. It is a control
       // label, so it is a repeated element and excluded with the rest of the chrome; the rows it
@@ -3346,6 +3474,7 @@ export function renderPage(
    * the registers, which is exactly where `components/dossier/corpus/CorpusDossierPage.tsx` paints
    * it. The order here is the painted order, and §11 makes that a tested rule.
    */
+  group = 'withdrawn-arc'
   const arc = bundle.withdrawn ? withdrawnArcRows(bundle.fields) : []
   if (arc.length > 0) {
     push('What the registers record', true)
@@ -3361,6 +3490,7 @@ export function renderPage(
   }
 
   /* ---- Where it's registered (§2, §3): every page, including a Tier 3 stub ------------------ */
+  group = 'registration'
   const registration = [...(blocks?.registration ?? [])].sort(
     (a, b) =>
       a.ordinal - b.ordinal ||
@@ -3387,7 +3517,25 @@ export function renderPage(
       push('Other registers', true)
       for (const row of other) line(row)
     }
-    const schedules = blocks?.controlledSchedules ?? []
+    /*
+     * The painted order (§11). `components/dossier/corpus/RegistrationBlock.tsx` reads these rows
+     * out of `page_controlled`, which has no order of its own, and sorts them; the render sorts
+     * them the same way, or a page carrying two schedules paints them in one order and the render
+     * writes them in another.
+     *
+     * The sort has to be total, which sorting on jurisdiction, list and schedule alone was not:
+     * levonorgestrel carries two Poisons List rows under one schedule, differing only in the name
+     * the register listed ("Levonorgestrel", "Norgestrel"), and a stable sort then keeps whatever
+     * order its input had — the parquet's here, the database's there.
+     */
+    const schedules = [...(blocks?.controlledSchedules ?? [])].sort(
+      (a, b) =>
+        a.jurisdiction.localeCompare(b.jurisdiction) ||
+        a.list.localeCompare(b.list) ||
+        a.classOrSchedule.localeCompare(b.classOrSchedule) ||
+        (a.substanceAsListed ?? '').localeCompare(b.substanceAsListed ?? '') ||
+        (a.versionDate ?? '').localeCompare(b.versionDate ?? ''),
+    )
     if (schedules.length > 0) {
       push('Controlled-substance schedules', true)
       for (const row of schedules) {
@@ -3414,6 +3562,7 @@ export function renderPage(
   }
 
   /* ---- Interactions (§4) -------------------------------------------------------------------- */
+  group = 'interactions'
   const tiers = blocks?.interactions.tiers ?? {}
   const interactionLines: Array<{ sentence: string; fields: string[] }> = []
   for (const tier of ['A', 'B', 'C'] as const) {
@@ -3497,6 +3646,7 @@ export function renderPage(
   }
 
   /* ---- Generic and patent (§5) -------------------------------------------------------------- */
+  group = 'patent'
   const patent = blocks?.patent
   if (patent) {
     push('Generic and patent', true)
@@ -3510,6 +3660,7 @@ export function renderPage(
   }
 
   /* question blocks, or the stub sentence */
+  group = 'stub-record'
   if (answers.length === 0 && supervision.length === 0) {
     push(
       `This record holds ${bundle.presentFields} ${bundle.presentFields === 1 ? 'field' : 'fields'}.`,
@@ -3542,6 +3693,7 @@ export function renderPage(
   }
 
   /* ---- Tier 3 computed sections (§8) --------------------------------------------------------- */
+  group = 'computed'
   const computed: Array<{ sentence: string; fields: string[] }> = []
   for (const section of ['neighbour', 'potency', 'timeline'] as const) {
     for (const entry of blocks?.sections[section] ?? []) {
@@ -3562,6 +3714,7 @@ export function renderPage(
   }
 
   /* the exact record: identifiers panel, then the relations rows (R10) */
+  group = 'exact-record'
   const identifierRows: string[] = []
   for (const [key, label] of IDENTIFIER_LABELS) {
     const value = asString(bundle.identity[key] as unknown)
@@ -3571,6 +3724,7 @@ export function renderPage(
     push('The exact record', true)
     for (const row of identifierRows) push(row, true)
   }
+  group = 'relations'
   const relationRows = bundle.identity.relations
     .map((r) => {
       const label = RELATION_LABELS[r.type] ?? r.type.replace(/-/g, ' ')
@@ -3584,6 +3738,7 @@ export function renderPage(
   }
 
   /* the source list: every anchor's source, once */
+  group = 'sources'
   const sources = new Map<string, string>()
   for (const q of bundle.questions) {
     for (const s of q.sources) {

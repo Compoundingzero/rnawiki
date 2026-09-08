@@ -13,6 +13,7 @@
  */
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import { ExactRecord } from './ExactRecord'
+import { HubRows } from './HubRows'
 import { RelationsRows } from './RelationsRows'
 
 export function StubRecord({ dossier }: { dossier: CorpusDossier }) {
@@ -34,6 +35,11 @@ export function StubRecord({ dossier }: { dossier: CorpusDossier }) {
       ) : null}
       <ExactRecord identifiers={dossier.identifiers} />
       <RelationsRows relations={dossier.relations} />
+      {/*
+        docs/specs/hubs.md §3: a stub is exactly the page the hub row is for. It is below its
+        tier's threshold, so it is noindex,follow, and these links are how it stays reachable.
+      */}
+      <HubRows hubs={dossier.hubs} />
     </div>
   )
 }

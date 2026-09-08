@@ -705,9 +705,27 @@ def main() -> int:
     questions = read_question_counts()
     WORK_DIR.mkdir(parents=True, exist_ok=True)
 
-    missing_text = [k for k in by_key if k not in pages]
-    if missing_text:
-        raise SystemExit(f"{len(missing_text)} pages have no rendered text; first: {missing_text[:3]}")
+    # A page the render does not cover is not a page this run publishes. `page_text_v5.ts` renders
+    # exactly the keys the identity revision holds, and the corpus loader loads exactly those keys,
+    # so a field record left over from a page a merge absorbed has no text and no URL. It leaves the
+    # ruler with the reason recorded, rather than stopping the measurement or being counted as a
+    # page that measures nothing.
+    absorbed = sorted(k for k in by_key if k not in pages)
+    if absorbed:
+        print(
+            f"{len(absorbed)} pages hold a field record but no rendered text and are not in this "
+            f"run's corpus; first: {absorbed[:3]}"
+        )
+        for key in absorbed:
+            by_key.pop(key, None)
+            tiers.pop(key, None)
+            counts_by_key.pop(key, None)
+        rows = [r for r in rows if r["key"] in by_key]
+        # The presence file is what the loader reads to decide `indexable`, so it describes the
+        # same corpus the thresholds were derived over and not one page more.
+        presence_path = write_presence(rows, tag)
+        print(f"presence rewritten over this run's corpus -> "
+              f"{os.path.relpath(presence_path, ROOT)}")
 
     final = json.loads(FINAL_SUMMARY.read_text(encoding="utf-8"))
     recorded_null_lexical = final["lexical"]["nullExpected"]

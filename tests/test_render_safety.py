@@ -2,9 +2,9 @@
 
 `docs/specs/revamp-2026-09.md` 4.1 names this file: the interaction rendering rules "are
 unit-tested in `tests/test_render_safety.py`". It reads what the renderer actually wrote —
-`data/revamp/render-v5-with-furniture/{text,provenance}/batch-*.ndjson`, the page as a browser
-paints it — rather than a fixture, because a rule that holds on a fixture and not on the corpus is
-not a rule.
+`data/revamp/render-v7/{text-with-furniture,provenance-with-furniture}/batch-*.ndjson`, the page as
+a browser paints it — rather than a fixture, because a rule that holds on a fixture and not on the
+corpus is not a rule.
 
 Run it with the corpus environment:
 
@@ -54,23 +54,30 @@ from typing import Any, Iterator
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v5")
+RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v7")
 # §11: the ruler reads the page without its furniture and these rules read it with, because they
 # are rules about what a reader meets. `Not found in [register] as of [date]` is furniture and is
 # still on the page; a test reading the furniture-free text would assert that the page had stopped
-# saying something it says. Where the with-furniture render has not been written, the furniture-free
-# one is read and the furniture rules are exercised on whatever it carries.
-FURNITURE_RENDER_DIR = os.path.join(ROOT, "data", "revamp", "render-v5-with-furniture")
-PAINTED_DIR = (
-    FURNITURE_RENDER_DIR
-    if os.path.isdir(os.path.join(FURNITURE_RENDER_DIR, "text"))
-    else RENDER_DIR
+# saying something it says. `page_text_v5 --with-furniture` writes the painted text beside the
+# furniture-free one, and where it has not been written the furniture-free render is read and the
+# furniture rules are exercised on whatever it carries.
+FURNITURE_TEXT_DIR = os.path.join(RENDER_DIR, "text-with-furniture")
+FURNITURE_PROVENANCE_DIR = os.path.join(RENDER_DIR, "provenance-with-furniture")
+PAINTED = os.path.isdir(FURNITURE_TEXT_DIR)
+TEXT_DIR = FURNITURE_TEXT_DIR if PAINTED else os.path.join(RENDER_DIR, "text")
+PROVENANCE_DIR = (
+    FURNITURE_PROVENANCE_DIR if PAINTED else os.path.join(RENDER_DIR, "provenance")
 )
-TEXT_DIR = os.path.join(PAINTED_DIR, "text")
-PROVENANCE_DIR = os.path.join(PAINTED_DIR, "provenance")
+# The furniture-free text, which the ruler reads and from which every furniture line is absent.
+FREE_TEXT_DIR = os.path.join(RENDER_DIR, "text")
 BLOCKS_DIR = os.path.join(ROOT, "data", "revamp", "page-blocks")
 FIELDS_DIR = os.path.join(ROOT, "data", "revamp", "fields-v2")
 DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
+
+# §12: the one answer that is an absence statement. It is furniture wherever it renders, the
+# question block included, so it leaves the ruler, the duplicate check skips it and the slop draw's
+# template test does not apply to it — and the page still says it.
+CLASSIFICATION_ABSENCE = "No regulator classification is recorded for"
 
 # The resolver is `scripts/revamp/slop_draw.py`'s, imported rather than copied: check 4.7(a) and
 # this file must agree about what "resolves" means, and two implementations of that would drift.
@@ -652,18 +659,64 @@ def test_every_trace_on_a_sampled_page_resolves(pages, provenance):
     _report(failures, f"sentence whose traces do not resolve (classes: {dict(classes)})")
 
 
+def test_the_classification_absence_answer_is_furniture_wherever_it_renders(pages, provenance):
+    """§12: "No regulator classification is recorded for X" is furniture, question block included.
+
+    Three things follow from that one decision and all three are asserted here, because marking it
+    in one place and not the others is exactly the state §12 was written to correct — it was
+    furniture in the stub record and prose in the question block.
+
+      1. Every recorded instance of the statement is marked `furniture` in the provenance map.
+      2. The page still says it: the statement is in the painted text.
+      3. The ruler does not read it: no line of the furniture-free render carries it.
+    """
+    unmarked: list[str] = []
+    marked = 0
+    for key, entries in provenance.items():
+        for entry in entries:
+            if CLASSIFICATION_ABSENCE not in entry["sentence"]:
+                continue
+            if entry.get("furniture") is True:
+                marked += 1
+            else:
+                unmarked.append(f"{key}: {entry['sentence'][:120]}")
+    _report(unmarked, "classification-absence answer rendered as prose rather than furniture")
+
+    painted = sum(
+        1 for page in pages if CLASSIFICATION_ABSENCE in page["text"]
+    )
+    if PAINTED:
+        assert marked > 0, "no page records the classification-absence statement at all"
+        assert painted > 0, (
+            "the statement is marked furniture but no page paints it; Operating Rule 9 requires "
+            "the page to state the absence"
+        )
+
+    in_the_ruler = [
+        row["key"]
+        for row in _read(FREE_TEXT_DIR)
+        if CLASSIFICATION_ABSENCE in row["text"]
+    ]
+    assert not in_the_ruler, (
+        f"{len(in_the_ruler)} pages carry the classification-absence statement in the "
+        f"furniture-free text the ruler reads; the first is {in_the_ruler[0]}"
+    )
+
+
 def test_the_render_and_the_painted_page_agree(pages):
     """§11: "a sentence the page paints but the render lacks, or the reverse, fails this file".
 
     The comparison is `scripts/revamp/dom_parity.py`: it loads the build, renders a seeded
-    200-page sample in headless Chromium with every disclosure opened and the chrome hidden, and
-    compares that text with what `page_text_v5 --with-furniture` wrote for the same pages, in both
-    directions and in order. That needs a database and a server, which a unit test has neither of,
-    so the measurement is a command and this is the assertion on its result:
+    200-page sample in headless Chromium with every disclosure opened, the chrome, the template
+    markup and the furniture hidden, and compares that text with what `page_text_v5` wrote for the
+    same pages, in both directions and in order. §12 fixes that unit — main-region text lines
+    outside furniture — and `scripts/revamp/slop_draw.py` imports the same extraction, so one
+    number describes parity. It needs a database and a server, which a unit test has neither of, so
+    the measurement is a command and this is the assertion on its result:
 
-        npx tsx scripts/revamp/page_text_v5.ts --with-furniture
+        npx tsx scripts/revamp/page_text_v5.ts
         npx tsx scripts/with-disposable-database.ts -- npx tsx scripts/corpus-20k/load/materialise.ts \\
-            --tier 1 --revamp --thresholds data/revamp/thresholds-v6.json
+            --tier 1 --revamp --thresholds data/revamp/thresholds-v7.json
         npx next start -p 3142
         .venv-corpus/bin/python scripts/revamp/dom_parity.py --base-url http://127.0.0.1:3142
     """

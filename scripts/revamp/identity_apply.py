@@ -49,9 +49,34 @@ What it does, in this order:
     biologic in its own right, not a biosimilar; its note is left exactly as Phase 3 wrote it and
     no study moves off it.
 
-Outputs, all under `data/revamp/identity/`: `canonical-v3.ndjson`, `relations-v3.parquet`,
-`display-names-v3.csv`, `redirect-plan-v3.csv`, `trial-reassignments-v4.csv`, `hold-list-v3.csv`
-and `apply-summary.json`.
+5.  **The section 12 corrections, written as the v5 revision.** Three things measure 2 found, all
+    of them decided by a register and none of them by this script:
+
+    *   **351(a) merges.** The FDA gives every biological proper name a four-letter suffix, and
+        Phase 3 read the suffix as the mark of a biosimilar. Where the Purple Book licenses the
+        page's own proper name under `351(a)` and the page's UNII is the unsuffixed INN page's, the
+        two are one substance: R1 (identical UNII) licenses the merge and the biosimilar exception
+        does not apply. The INN page survives, the suffixed proper name becomes a synonym and the
+        suffixed slug redirects. `biosimilar_of` is kept only where a `351(k)` row licenses the
+        page: the suffix alone never makes a biosimilar.
+    *   **Same-name pairs.** Two live pages that print one name and serve `<slug>` and `<slug>-<n>`
+        are partitioned: a registry study whose every recorded intervention on the losing page is
+        that shared name belongs to the page the registers rank first (K1 over K2 over K3 over K4,
+        the unsuffixed slug). The other page keeps only what it holds against its own identifiers,
+        and a page left with nothing of its own falls below its tier's threshold, which is the
+        honest state of a record holding no independent fact.
+    *   **Combination products sharing a component.** Two products built from one substance share
+        that substance's recorded synonyms, so the registry matcher put the same studies on both.
+        A study belongs to the combination whose full component set its recorded interventions
+        name; where they name neither product in full it goes to the component page that records
+        the same study; where none of those holds nothing moves and the reason is counted.
+
+Outputs, all under `data/revamp/identity/`. The v3 revision — `canonical-v3.ndjson`,
+`relations-v3.parquet`, `display-names-v3.csv`, `redirect-plan-v3.csv`,
+`trial-reassignments-v4.csv`, `hold-list-v3.csv` — is written unchanged, and the revision this run
+publishes is the v5 one beside it: `canonical-v5.ndjson`, `relations-v5.parquet`,
+`display-names-v5.csv`, `redirect-plan-v5.csv`, `trial-reassignments-v5.csv`, `hold-list-v5.csv`
+and `combination-components-v5.csv`. Both are summarised in `apply-summary.json`.
 
     identity_apply.py --out-dir data/revamp/identity
 """
@@ -99,6 +124,8 @@ FORM_PREFIX = re.compile(r"^(hemi|mono|di|tri|tetra|penta|sesqui|bis|tris)(.+)$"
 TRIAL_COLUMNS = ["nct", "from_key", "to_key", "matched_name", "action", "rule", "reason"]
 REDIRECT_COLUMNS = ["old_slug", "new_slug", "reason"]
 RELATION_COLUMNS = ["page_a", "page_b", "relation", "note", "rule", "evidence"]
+COMPONENT_COLUMNS = ["key", "slug", "printed_name", "components", "component_keys",
+                     "shares_component_with"]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -683,6 +710,463 @@ def apply_biosimilar_notes(relations: pd.DataFrame, confirmed: dict[str, dict],
 
 
 # ---------------------------------------------------------------------------------------------
+# section 12 — the two partitions, the 351(a) merges, and the combination component list (v5)
+# ---------------------------------------------------------------------------------------------
+
+# The register ranks, best first. `docs/specs/phase4-generators.md` section 12: "the page whose key
+# the registers rank first (K1 over K2 over K3 over K4; the unsuffixed slug)". K1 is an FDA UNII,
+# K2 an InChIKey, K3 a ChEMBL id and K4 a normalised name; the three keys that are none of those —
+# a combination, a held record, an unkeyed one — rank after them, in the order written here, and
+# never ahead of a register key.
+KEY_RANK_ORDER = ("K1", "K2", "K3", "K4", "COMBO", "HOLD", "UNKEYED")
+
+NUMBERED_SLUG = re.compile(r"^(?P<stem>.+)-(?P<ordinal>\d+)$")
+# An FDA four-letter suffix on a proper name: "Trastuzumab-Anns", "Faricimab-Svoa".
+FDA_SUFFIX = re.compile(r"^(?P<stem>.+?)[-‐]([A-Za-z]{4})$")
+# The separators a combination product's proper name uses between its components. The FDA writes
+# them as a comma list ending in "and", or as two names joined by "and": "Pertuzumab, Trastuzumab,
+# and Hyaluronidase-Zzxf", "Trastuzumab and Hyaluronidase-Oysk".
+COMPONENT_SPLIT = re.compile(r"\s*,\s*|\s+and\s+|\s*/\s*", re.IGNORECASE)
+LEADING_AND = re.compile(r"^and\s+", re.IGNORECASE)
+# A comma inside a register's own inverted name ("PROPAFENONE, (R)-", "Starch, Rice") is not a
+# component separator. A combination product's proper name carries the conjunction, and a name
+# without one is one substance whose register wrote its qualifier after a comma.
+COMPONENT_CONJUNCTION = re.compile(r"(?:,\s*and\s+|\s+and\s+|\s*/\s*)", re.IGNORECASE)
+COMBO_KEY = "COMBO:{"
+
+
+def page_unii(page: dict) -> str | None:
+    """The UNII the identity record holds for this page.
+
+    `spine-attached.parquet` carries the page key's own identifier, which for a suffixed biological
+    is the UNII with the suffix marker on it (`QC4F7FKK7I#svoa`). The substance's UNII is the one
+    the canonical record holds, and it is the one an identity comparison is made on.
+    """
+    recorded = IR.clean(page["record"].get("unii"))
+    if recorded:
+        return recorded
+    attached = IR.clean(page.get("unii"))
+    return attached.split("#", 1)[0] if attached else None
+
+
+def key_rank_index(key: str) -> int:
+    prefix = key.split(":", 1)[0]
+    return KEY_RANK_ORDER.index(prefix) if prefix in KEY_RANK_ORDER else len(KEY_RANK_ORDER)
+
+
+def slug_stem(slug: str | None) -> tuple[str, bool]:
+    """`("nebivolol", True)` for `nebivolol-2`; `("nebivolol", False)` for `nebivolol`."""
+    if not slug:
+        return "", False
+    match = NUMBERED_SLUG.match(slug)
+    return (match.group("stem"), True) if match else (slug, False)
+
+
+def same_name_families(pages: dict[str, dict], printed: dict[str, str],
+                       live: set[str]) -> list[dict]:
+    """Live pages that print one name and serve `<slug>` and `<slug>-<n>` (section 12).
+
+    The family is decided by two recorded facts and nothing else: the name the page prints, and the
+    slug the route map publishes. A page that prints a different name is a different record even
+    where its slug is numbered, and a numbered slug whose stem no live page serves is not a pair.
+    """
+    by_name: dict[str, list[str]] = defaultdict(list)
+    for key in live:
+        by_name[name_key(printed[key])].append(key)
+
+    families: list[dict] = []
+    for shared, keys in sorted(by_name.items()):
+        if len(keys) < 2 or not shared:
+            continue
+        by_stem: dict[str, list[str]] = defaultdict(list)
+        for key in keys:
+            stem, _numbered = slug_stem(live_slug(pages[key]))
+            by_stem[stem].append(key)
+        for stem, members in sorted(by_stem.items()):
+            if len(members) < 2:
+                continue
+            numbered = [k for k in members if slug_stem(live_slug(pages[k]))[1]]
+            if not numbered:
+                continue
+            ranked = sorted(
+                members,
+                key=lambda k: (key_rank_index(k), slug_stem(live_slug(pages[k]))[1],
+                               live_slug(pages[k]) or "", k),
+            )
+            families.append({
+                "sharedName": shared,
+                "slugStem": stem,
+                "winner": ranked[0],
+                "losers": ranked[1:],
+                "ranking": [
+                    {"key": k, "keyRank": k.split(":", 1)[0], "slug": live_slug(pages[k]),
+                     "printedName": printed[k]}
+                    for k in ranked
+                ],
+            })
+    return families
+
+
+def run_same_name_partition(pages: dict[str, dict], printed: dict[str, str], live: set[str],
+                            registry: dict[str, list[dict]]) -> tuple[list[dict], dict]:
+    """Studies naming only the shared name go to the register-ranked page (section 12).
+
+    A study is moved only when every registry intervention recorded for it on the losing page is
+    the shared name itself. A study that named something recorded against this page alone — its own
+    InChIKey-derived synonym, its own brand — names a fact the page holds on its own, and stays.
+    """
+    families = same_name_families(pages, printed, live)
+    rows: list[dict] = []
+    reasons: Counter = Counter()
+    losers_with_moves = 0
+    for family in families:
+        winner = family["winner"]
+        shared = family["sharedName"]
+        for loser in family["losers"]:
+            matches = registry.get(loser) or []
+            if not matches:
+                reasons["the page records no registry study"] += 1
+                continue
+            by_nct: dict[str, list[dict]] = defaultdict(list)
+            for match in matches:
+                by_nct[match.get("nct")].append(match)
+            moved_here = 0
+            for nct, group in sorted(by_nct.items()):
+                if not nct:
+                    continue
+                names = [name_key(m.get("matchedName", "")) for m in group]
+                if not names or any(name != shared for name in names):
+                    reasons["the study's interventions name more than the shared name"] += 1
+                    continue
+                rows.append({
+                    "nct": nct,
+                    "from_key": loser,
+                    "to_key": winner,
+                    "matched_name": group[0].get("matchedName"),
+                    "action": "move",
+                    "rule": "R14d-SAME-NAME-REGISTER-RANK",
+                    "reason": (f"every registry intervention recorded for this study on the "
+                               f"{printed[loser]} page is the name both pages print; the registers "
+                               f"rank {winner.split(':', 1)[0]} ahead of "
+                               f"{loser.split(':', 1)[0]} and "
+                               f"{live_slug(pages[winner])} is the unsuffixed slug, so the study "
+                               f"belongs to that page"),
+                })
+                moved_here += 1
+            if moved_here:
+                losers_with_moves += 1
+                reasons["studies moved to the register-ranked page"] += moved_here
+    summary = {
+        "families": len(families),
+        "pagesPartitioned": sum(len(f["losers"]) for f in families),
+        "pagesWithMovedStudies": losers_with_moves,
+        "studiesMoved": len(rows),
+        "studiesByOutcome": dict(sorted(reasons.items())),
+    }
+    return rows, summary, families
+
+
+def component_names(display_name: str) -> list[str]:
+    """The component names inside a combination product's proper name, in the register's order."""
+    parts = [LEADING_AND.sub("", part.strip(" .")) for part in COMPONENT_SPLIT.split(display_name or "")]
+    return [part.strip() for part in parts if part.strip() and name_key(part) not in ("", "and")]
+
+
+def combination_pages(pages: dict[str, dict], printed: dict[str, str],
+                      live: set[str]) -> dict[str, dict]:
+    """Live pages that are a combination of two or more recorded components (section 12).
+
+    Two shapes, both read off what the corpus already stores and neither of them inferred:
+
+    *   a `COMBO:{...}` key names its components as page keys, which is the resolution itself;
+    *   otherwise the printed name is the register's own proper name for the product, and it is a
+        combination only when it carries the conjunction the FDA writes between components
+        ("Trastuzumab and Hyaluronidase-Oysk", "Pertuzumab, Trastuzumab, and Hyaluronidase-Zzxf").
+        A comma with no conjunction is a register's inverted name for one substance — "Starch,
+        Rice", "PROPAFENONE, (R)-" — and is never split.
+
+    A component resolves to a page when exactly one live page prints that name, or prints it with
+    the FDA four-letter suffix removed. A component the corpus holds no page for keeps its name and
+    is recorded as unresolved; at least one component must resolve, or there is no page a study
+    could be partitioned to.
+    """
+    by_name: dict[str, list[str]] = defaultdict(list)
+    for key in live:
+        by_name[name_key(printed[key])].append(key)
+
+    def resolve(name: str, key: str) -> str | None:
+        token = name_key(name)
+        found = [k for k in by_name.get(token, []) if k != key]
+        if not found:
+            suffixless = FDA_SUFFIX.match(name.strip())
+            if suffixless:
+                found = [k for k in by_name.get(name_key(suffixless.group("stem")), [])
+                         if k != key]
+        return found[0] if len(found) == 1 else None
+
+    out: dict[str, dict] = {}
+    for key in sorted(live):
+        components: list[dict] = []
+        if key.startswith(COMBO_KEY):
+            for token in key[len(COMBO_KEY):-1].split(","):
+                token = token.strip()
+                if token in live and token != key:
+                    components.append({"name": printed[token],
+                                       "normalised": name_key(printed[token]),
+                                       "page": token})
+        elif COMPONENT_CONJUNCTION.search(printed[key]):
+            names = component_names(printed[key])
+            if any(len(name) < 3 or not re.search(r"[A-Za-z]", name) for name in names):
+                continue
+            components = [{"name": name, "normalised": name_key(name),
+                           "page": resolve(name, key)} for name in names]
+        if len(components) < 2 or not any(c["page"] for c in components):
+            continue
+        out[key] = {"components": components,
+                    "normalised": [c["normalised"] for c in components]}
+    return out
+
+
+def combination_families(combinations: dict[str, dict]) -> dict[str, list[str]]:
+    """Combination page -> the other combination pages that share at least one component."""
+    holders: dict[str, list[str]] = defaultdict(list)
+    for key, record in combinations.items():
+        for token in set(record["normalised"]):
+            holders[token].append(key)
+    siblings: dict[str, set[str]] = defaultdict(set)
+    for token, keys in holders.items():
+        if len(keys) < 2:
+            continue
+        for key in keys:
+            siblings[key] |= {other for other in keys if other != key}
+    return {key: sorted(value) for key, value in siblings.items() if value}
+
+
+def names_full_component_set(matched: str, key: str, record: dict, exclusive: set[str]) -> bool:
+    """Does this recorded intervention name every component of this product?
+
+    Two ways, both from stored strings: the intervention contains each component name (the FDA's
+    own proper name for the product does), or it carries a name the corpus records against this
+    product and against no product it shares a component with — its brand. The brand is matched on
+    word boundaries inside the intervention, because a registry writes it with a gloss after it
+    ("Phesgo (trastuzumab og pertuzumab)"), and only from four characters up, so a short recorded
+    string cannot claim a study by appearing inside a longer word."""
+    token = name_key(matched)
+    if not token:
+        return False
+    for name in exclusive:
+        if len(name) >= 4 and re.search(rf"(?<![a-z0-9]){re.escape(name)}(?![a-z0-9])", token):
+            return True
+    return all(component in token for component in record["normalised"])
+
+
+def run_combination_partition(pages: dict[str, dict], printed: dict[str, str], live: set[str],
+                              registry: dict[str, list[dict]]) -> tuple[list[dict], dict, dict]:
+    """A trial belongs to the combination whose full component set its interventions name (section 12).
+
+    Two combination products that share a component also share the component's recorded synonyms —
+    a development code such as `ABP 980` sits on the trastuzumab UNII and therefore on every product
+    built from it — and the registry matcher put the same 43 studies on both Phesgo and Herceptin
+    Hylecta because of it. The rule reads each study's own recorded interventions: the study stays
+    on the product whose whole component set they name, moves to the sibling product whose whole set
+    they name, or, where they name neither product in full, goes to the component page that records
+    the same study. Where none of the three holds, nothing moves and the reason is counted.
+    """
+    combinations = combination_pages(pages, printed, live)
+    siblings = combination_families(combinations)
+    exclusive: dict[str, set[str]] = {}
+    for key in siblings:
+        family = set(siblings[key])
+        own = {name_key(printed[key])}
+        for synonym in pages[key]["record"].get("synonyms") or []:
+            if synonym.get("kind") in ("brand", "common", "display"):
+                own.add(name_key(synonym.get("name")))
+        shared_elsewhere: set[str] = set()
+        for other in family:
+            shared_elsewhere.add(name_key(printed[other]))
+            for synonym in pages[other]["record"].get("synonyms") or []:
+                shared_elsewhere.add(name_key(synonym.get("name")))
+        exclusive[key] = {token for token in own if token and token not in shared_elsewhere}
+
+    rows: list[dict] = []
+    reasons: Counter = Counter()
+    pages_with_moves = 0
+    for key in sorted(siblings):
+        matches = registry.get(key) or []
+        if not matches:
+            continue
+        record = combinations[key]
+        by_nct: dict[str, list[dict]] = defaultdict(list)
+        for match in matches:
+            by_nct[match.get("nct")].append(match)
+        moved_here = 0
+        for nct, group in sorted(by_nct.items()):
+            if not nct:
+                continue
+            names = [m.get("matchedName", "") for m in group]
+            if any(names_full_component_set(name, key, record, exclusive[key]) for name in names):
+                reasons["the study's interventions name this product's full component set"] += 1
+                continue
+            target = None
+            ground = ""
+            for other in siblings[key]:
+                other_matches = [m for m in (registry.get(other) or []) if m.get("nct") == nct]
+                if other_matches and any(
+                    names_full_component_set(m.get("matchedName", ""), other, combinations[other],
+                                             exclusive.get(other, set()))
+                    for m in other_matches
+                ):
+                    target, ground = other, "names that product's full component set"
+                    break
+            if target is None:
+                holders = [
+                    component["page"]
+                    for component in record["components"]
+                    if component["page"]
+                    and any(m.get("nct") == nct for m in registry.get(component["page"]) or [])
+                ]
+                holders = sorted(set(holders))
+                if len(holders) == 1:
+                    target, ground = holders[0], "records the same study against its own name"
+            if target is None:
+                reasons["no page names the study's interventions in full, so nothing moved"] += 1
+                continue
+            rows.append({
+                "nct": nct,
+                "from_key": key,
+                "to_key": target,
+                "matched_name": names[0],
+                "action": "move",
+                "rule": "R14e-COMBINATION-COMPONENT-SET",
+                "reason": (f"the registry interventions recorded for this study on the "
+                           f"{printed[key]} page do not name its full component set "
+                           f"({' + '.join(c['name'] for c in record['components'])}); "
+                           f"{printed[target]} {ground}"),
+            })
+            moved_here += 1
+        if moved_here:
+            pages_with_moves += 1
+    summary = {
+        "combinationPages": len(combinations),
+        "combinationPagesSharingAComponent": len(siblings),
+        "pairsSharingAComponent": len({frozenset((key, other))
+                                       for key, others in siblings.items() for other in others}),
+        "pagesWithMovedStudies": pages_with_moves,
+        "studiesMoved": len(rows),
+        "studiesByOutcome": dict(sorted(reasons.items())),
+    }
+    return rows, summary, {key: {**combinations[key], "siblings": siblings[key]}
+                           for key in siblings}
+
+
+def purple_book_own_rows(printed: dict[str, str]) -> dict[str, list[dict]]:
+    """Page -> every Purple Book row whose `proper_name` is the name that page prints.
+
+    The same substance's rows are attached to every page carrying its UNII, so a page's own licence
+    is the row that names it. `license_type` is the register's own word and is not interpreted here.
+    """
+    if not PURPLE_BOOK.exists():
+        return {}
+    frame = pd.read_parquet(PURPLE_BOOK, columns=["key", "field", "value", "source_date",
+                                                  "source_url"])
+    frame = frame[frame["field"] == "purpleBookProducts"]
+    out: dict[str, list[dict]] = defaultdict(list)
+    for key, value, source_date, source_url in zip(frame["key"], frame["value"],
+                                                   frame["source_date"], frame["source_url"]):
+        if key not in printed:
+            continue
+        row = json.loads(value)
+        if name_key(row.get("proper_name")) != name_key(printed[key]):
+            continue
+        out[key].append({**row, "sourceDate": source_date, "sourceUrl": source_url})
+    return dict(out)
+
+
+def run_351a_merges(pages: dict[str, dict], printed: dict[str, str], live: set[str],
+                    own_rows: dict[str, list[dict]]) -> tuple[dict[str, str], list[dict], Counter]:
+    """A suffixed proper name licensed under 351(a) with the INN page's UNII is that page (section 12).
+
+    The FDA gives a four-letter suffix to every biological proper name, biosimilar or not. Phase 3
+    read the suffix as the marker of a biosimilar, which put a licensed-in-its-own-right biologic on
+    a page of its own carrying the reference product's UNII. Section 12 corrects it: where the
+    Purple Book licenses the page's own proper name under 351(a) and the page's UNII is the
+    unsuffixed INN page's, R1 — identical UNII — licenses the merge, and the biosimilar exception
+    does not apply. Where any row licenses the page under 351(k) the pages stay apart.
+    """
+    by_name: dict[str, list[str]] = defaultdict(list)
+    for key in live:
+        by_name[name_key(printed[key])].append(key)
+
+    merge_map: dict[str, str] = {}
+    applied: list[dict] = []
+    reasons: Counter = Counter()
+    for key in sorted(own_rows):
+        if key not in live:
+            continue
+        licences = sorted({str(row.get("license_type") or "") for row in own_rows[key]})
+        suffix = FDA_SUFFIX.match(printed[key].strip())
+        if not suffix:
+            continue
+        if any(licence.startswith("351(k)") for licence in licences):
+            reasons["the Purple Book licenses this proper name under 351(k)"] += 1
+            continue
+        if not any(licence.startswith("351(a)") for licence in licences):
+            reasons["the Purple Book records no 351(a) or 351(k) licence for this proper name"] += 1
+            continue
+        unii = page_unii(pages[key])
+        if not unii:
+            reasons["the suffixed page records no UNII"] += 1
+            continue
+        candidates = [
+            other for other in by_name.get(name_key(suffix.group("stem")), [])
+            if other != key and page_unii(pages[other]) == unii
+        ]
+        if len(candidates) != 1:
+            reasons["no single live page prints the unsuffixed name with the same UNII"] += 1
+            continue
+        inn = candidates[0]
+        merge_map[key] = inn
+        applied.append({
+            "suffixed": key,
+            "suffixedName": printed[key],
+            "inn": inn,
+            "innName": printed[inn],
+            "unii": unii,
+            "licenceTypes": licences,
+            "blaNumbers": sorted({str(row.get("bla_number")) for row in own_rows[key]
+                                  if row.get("bla_number")}),
+            "sourceDate": own_rows[key][0].get("sourceDate"),
+            "suffixedSlug": live_slug(pages[key]),
+            "innSlug": live_slug(pages[inn]),
+        })
+        reasons["merged into the unsuffixed INN page under R1 (identical UNII)"] += 1
+    return merge_map, applied, reasons
+
+
+def keep_only_351k_biosimilar_edges(relations: pd.DataFrame,
+                                    own_rows: dict[str, list[dict]]) -> tuple[pd.DataFrame, dict]:
+    """`biosimilar_of` is kept only where the register licenses the page under 351(k) (section 12)."""
+    licensed = {
+        key for key, rows in own_rows.items()
+        if any(str(row.get("license_type") or "").startswith("351(k)") for row in rows)
+    }
+    kept: list[dict] = []
+    dropped: list[dict] = []
+    for row in relations.to_dict("records"):
+        if row["relation"] == "biosimilar_of" and row["page_a"] not in licensed:
+            dropped.append(row)
+            continue
+        kept.append(row)
+    summary = {
+        "edgesBefore": int((relations["relation"] == "biosimilar_of").sum()),
+        "edgesKept": sum(1 for row in kept if row["relation"] == "biosimilar_of"),
+        "edgesDropped": len(dropped),
+        "droppedPages": sorted({row["page_a"] for row in dropped})[:MAX_PRINT_ROWS],
+    }
+    return pd.DataFrame(kept, columns=RELATION_COLUMNS), summary
+
+
+# ---------------------------------------------------------------------------------------------
 # rebuilding the revision
 # ---------------------------------------------------------------------------------------------
 
@@ -942,6 +1426,67 @@ def main() -> int:
     )
     hold_v3, hold_rekeyed = rekey_hold_list(holds, merge_map)
 
+    # ---- section 12: the v5 revision ---------------------------------------------------------
+    #
+    # Three corrections the rendered duplicate check and measure 2 found, applied on top of v3:
+    # the 351(a) merges (a suffixed proper name licensed in its own right is the INN page), the
+    # same-name partition, and the combination-component partition. v3 is written unchanged above
+    # so the revision this run replaces stays readable beside the one it publishes.
+    registry_matches = load_registry()
+    own_rows = purple_book_own_rows(live_printed)
+    merges_351a, merges_351a_applied, merges_351a_reasons = run_351a_merges(
+        pages, printed, live_keys, own_rows
+    )
+    merge_map_v5 = {**merge_map, **merges_351a}
+    for absorbed in list(merge_map_v5):
+        survivor = merge_map_v5[absorbed]
+        seen = {absorbed}
+        while survivor in merge_map_v5 and survivor not in seen:
+            seen.add(survivor)
+            survivor = merge_map_v5[survivor]
+        merge_map_v5[absorbed] = survivor
+
+    records_v5, redirects_v5 = build_canonical_v3(pages, merge_map_v5, printed, new_relation_rows)
+    live_v5 = {record["key"] for record in records_v5}
+    printed_v5 = {key: name for key, name in printed.items() if key in live_v5}
+    plan_v5 = merge_redirect_plan(read_csv_rows(REDIRECT_PLAN), redirects_v5)
+    display_v5, display_v5_dropped = rebuild_display_names(display_rows, merge_map_v5)
+    relations_v5, relations_v5_dropped = rebuild_relations(relations, merge_map_v5,
+                                                           new_relation_rows)
+    relations_v5, biosimilar_edges = keep_only_351k_biosimilar_edges(relations_v5, own_rows)
+    confirmed_v5, biosimilar_reasons_v5 = biosimilar_pairs(
+        relations_v5, printed_v5, load_purple_book(printed_v5)
+    )
+    biosimilar_new_v5, biosimilar_summary_v5 = run_biosimilar_trial_moves(
+        confirmed_v5, printed_v5, registry_matches
+    )
+    relations_v5, notes_rewritten_v5 = apply_biosimilar_notes(relations_v5, confirmed_v5,
+                                                              printed_v5)
+    same_new, same_summary, same_families = run_same_name_partition(
+        pages, printed, live_v5, registry_matches
+    )
+    combo_new, combo_summary, combo_records = run_combination_partition(
+        pages, printed, live_v5, registry_matches
+    )
+    trials_v5, trial_counts_v5 = rebuild_trials(
+        read_csv_rows(TRIALS),
+        trial_new + biosimilar_new_v5 + same_new + combo_new,
+        merge_map_v5,
+        live_v5,
+    )
+    hold_v5, hold_v5_rekeyed = rekey_hold_list(holds, merge_map_v5)
+    component_rows = [
+        {
+            "key": key,
+            "slug": live_slug(pages[key]) or "",
+            "printed_name": printed[key],
+            "components": " + ".join(component["name"] for component in record["components"]),
+            "component_keys": ";".join(component["page"] or "" for component in record["components"]),
+            "shares_component_with": ";".join(record["siblings"]),
+        }
+        for key, record in sorted(combo_records.items())
+    ]
+
     with (out / "canonical-v3.ndjson").open("w") as handle:
         for record in records:
             handle.write(json.dumps(record, sort_keys=True) + "\n")
@@ -950,6 +1495,16 @@ def main() -> int:
     write_csv(out / "redirect-plan-v3.csv", plan, REDIRECT_COLUMNS)
     write_csv(out / "trial-reassignments-v4.csv", trials, TRIAL_COLUMNS)
     write_csv(out / "hold-list-v3.csv", hold_v3, list(holds[0].keys()))
+
+    with (out / "canonical-v5.ndjson").open("w") as handle:
+        for record in records_v5:
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+    relations_v5.to_parquet(out / "relations-v5.parquet", index=False)
+    write_csv(out / "display-names-v5.csv", display_v5, list(display_rows[0].keys()))
+    write_csv(out / "redirect-plan-v5.csv", plan_v5, REDIRECT_COLUMNS)
+    write_csv(out / "trial-reassignments-v5.csv", trials_v5, TRIAL_COLUMNS)
+    write_csv(out / "hold-list-v5.csv", hold_v5, list(holds[0].keys()))
+    write_csv(out / "combination-components-v5.csv", component_rows, COMPONENT_COLUMNS)
 
     summary = {
         "generatedAt": pd.Timestamp.now('UTC').strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -1061,6 +1616,83 @@ def main() -> int:
                         if row["old_slug"] not in {r["old_slug"]
                                                    for r in read_csv_rows(REDIRECT_PLAN)}],
         },
+        "v5": {
+            "spec": "docs/specs/phase4-generators.md#12",
+            "pages": {"v3": len(records), "v5": len(records_v5),
+                      "mergedAway": len(merge_map_v5)},
+            "merges351a": {
+                "rule": "R1-IDENTICAL-UNII over an FDA 351(a) licence; the biosimilar exception "
+                        "does not apply (section 12)",
+                "merged": len(merges_351a),
+                "pagesByOutcome": dict(sorted(merges_351a_reasons.items())),
+                "applied": merges_351a_applied[:MAX_PRINT_ROWS],
+                "provenance": {
+                    "<suffixed proper name> is the same substance as <INN>": [
+                        "data/sources/orange-purple-book/mapped.parquet purpleBookProducts rows "
+                        "whose proper_name is the name this page prints, license_type 351(a)",
+                        "canonical-v2 unii on both pages, identical",
+                        "the unsuffixed name is printed by exactly one other live page",
+                    ]
+                },
+            },
+            "biosimilarEdges": biosimilar_edges,
+            "biosimilars": {
+                **biosimilar_summary_v5,
+                "relationRowsRewrittenToTheSection12Sentence": notes_rewritten_v5,
+                "pagesByOutcome": dict(sorted(biosimilar_reasons_v5.items())),
+            },
+            "sameNamePartition": {
+                "rule": "R14d-SAME-NAME-REGISTER-RANK",
+                **same_summary,
+                "familiesListed": [
+                    {"sharedName": family["sharedName"], "slugStem": family["slugStem"],
+                     "winner": family["winner"], "losers": family["losers"],
+                     "ranking": family["ranking"]}
+                    for family in same_families[:MAX_PRINT_ROWS]
+                ],
+                "provenance": {
+                    "every registry intervention recorded for this study on the <page> page is "
+                    "the name both pages print": [
+                        "registry/matches/*.ndjson matchedName for every match of that NCT on the "
+                        "losing page",
+                        "page-slugs.csv display_name on both pages (the shared name)",
+                        "page-slugs.csv slug on both pages (the unsuffixed slug)",
+                        "canonical-v2 key prefix on both pages (the register rank)",
+                    ]
+                },
+            },
+            "combinationPartition": {
+                "rule": "R14e-COMBINATION-COMPONENT-SET",
+                **combo_summary,
+                "provenance": {
+                    "the registry interventions recorded for this study on the <product> page do "
+                    "not name its full component set": [
+                        "registry/matches/*.ndjson matchedName for every match of that NCT on the "
+                        "combination page",
+                        "page-slugs.csv display_name, split on the register's own component "
+                        "separators",
+                        "canonical-v2 synonyms of kind brand, common or display on the product and "
+                        "on every product it shares a component with",
+                    ]
+                },
+            },
+            "relations": {"before": int(len(relations)), "after": int(len(relations_v5)),
+                          "droppedOrRetargetedByMerges": relations_v5_dropped},
+            "displayNames": {"after": len(display_v5), "dropped": display_v5_dropped},
+            "redirectPlan": {"v3Rows": len(plan), "v5Rows": len(plan_v5)},
+            "trialReassignments": {"rowsAfter": len(trials_v5), "rowsByRule": trial_counts_v5},
+            "heldPairsRekeyed": hold_v5_rekeyed,
+            "outputs": {
+                "canonical": "data/revamp/identity/canonical-v5.ndjson",
+                "relations": "data/revamp/identity/relations-v5.parquet",
+                "displayNames": "data/revamp/identity/display-names-v5.csv",
+                "redirectPlan": "data/revamp/identity/redirect-plan-v5.csv",
+                "trialReassignments": "data/revamp/identity/trial-reassignments-v5.csv",
+                "holdList": "data/revamp/identity/hold-list-v5.csv",
+                "combinationComponents":
+                    "data/revamp/identity/combination-components-v5.csv",
+            },
+        },
         "outputs": {
             "canonical": "data/revamp/identity/canonical-v3.ndjson",
             "relations": "data/revamp/identity/relations-v3.parquet",
@@ -1091,6 +1723,17 @@ def main() -> int:
         print(f"  FORM_OF {row['child']} {row['relation']} {row['parent']}: {row['note']}")
     for row in summary["refused"][:MAX_PRINT_ROWS]:
         print(f"  REFUSED {row['pair']}: {row['reason']}", file=sys.stderr)
+    print(f"v5 (section 12): {len(merges_351a)} suffixed 351(a) pages merged into their INN page; "
+          f"{biosimilar_edges['edgesKept']} biosimilar_of edges kept of "
+          f"{biosimilar_edges['edgesBefore']}; "
+          f"{same_summary['pagesPartitioned']} same-name pages partitioned "
+          f"({same_summary['studiesMoved']} studies moved); "
+          f"{combo_summary['combinationPagesSharingAComponent']} combination pages sharing a "
+          f"component partitioned ({combo_summary['studiesMoved']} studies moved); "
+          f"redirect plan {len(plan_v5)} rows; trial reassignments {len(trials_v5)} rows")
+    for row in merges_351a_applied[:MAX_PRINT_ROWS]:
+        print(f"  351(a) {row['suffixed']} ({row['suffixedName']}) -> {row['inn']} "
+              f"({row['innName']}), UNII {row['unii']}")
     print(f"written to {(out / 'apply-summary.json').relative_to(ROOT)}")
     return 0
 

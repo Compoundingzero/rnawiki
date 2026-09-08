@@ -28,7 +28,18 @@ function Paragraph({ paragraph }: { paragraph: CorpusParagraph }) {
     text
   )
   return (
-    <p className="cd-paragraph" data-anchored={paragraph.anchor ? 'true' : 'false'}>
+    /*
+      §12: "No regulator classification is recorded for X" is an absence statement in fixed words.
+      It is furniture wherever it renders, the question block included, so it carries the same
+      `data-furniture` marker the register absence table and the patent no-record line carry. The
+      reader still meets it; the ruler, the rendered duplicate check and the slop draw's template
+      test all skip it.
+    */
+    <p
+      className="cd-paragraph"
+      data-anchored={paragraph.anchor ? 'true' : 'false'}
+      {...(paragraph.furniture ? { 'data-furniture': 'true' } : {})}
+    >
       {paragraph.interpretation ? <span className="cd-interpretation">Interpretation</span> : null}
       {body}
       {paragraph.anchor ? (

@@ -62,6 +62,8 @@ import {
   supervisionBlock,
   unknownClassificationLine,
 } from '@/lib/corpus/suppression-classes'
+import { hubsForPage } from '@/lib/hubs/queries'
+import { HUB_TYPE_LABEL } from '@/lib/hubs/types'
 
 /* ------------------------------------------------------------------ types */
 
@@ -81,6 +83,13 @@ export interface CorpusParagraph {
   anchor?: CorpusAnchor
   /** A second paragraph that states no sourced value is marked, not given a manufactured source. */
   interpretation: boolean
+  /**
+   * §12: true where the paragraph is page furniture — an absence stated in fixed words. The one
+   * answer that is, "No regulator classification is recorded for X", carries `data-furniture` here
+   * exactly as the register absence table and the patent no-record line do, so the ruler, the
+   * rendered duplicate check and the slop draw's template test all skip the same statement.
+   */
+  furniture?: true
 }
 
 /** Consecutive revealed rows that share a label are one group; the label becomes its heading. */
@@ -124,6 +133,21 @@ export interface CorpusRelationRow {
   label: string
   name: string
   slug?: string
+}
+
+/**
+ * One hub this page belongs to (docs/specs/hubs.md §3). A row, never a sentence.
+ *
+ * A leaf below its tier's indexing threshold is `noindex,follow`; these links are how it stays
+ * reachable, and how a reader moves from one compound to the group it belongs to.
+ */
+export interface CorpusHubRow {
+  /** 'Target' | 'Mechanism class' | 'Pathway' */
+  label: string
+  /** The hub's own name: AR, L02BB, mTOR. */
+  name: string
+  /** /h/<type>/<slug> */
+  path: string
 }
 
 export interface CorpusSourceRow {
@@ -266,6 +290,7 @@ export interface CorpusDossier {
   arc: CorpusArcRow[]
   identifiers: CorpusIdentifierRow[]
   relations: CorpusRelationRow[]
+  hubs: CorpusHubRow[]
   sources: CorpusSourceRow[]
   licenceNotes: string[]
   registeredStudies: number
@@ -558,6 +583,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     controlledRows,
     sectionRows,
     displayNameRows,
+    hubMemberships,
   ] = await Promise.all([
     db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
     db.select().from(pageFields).where(eq(pageFields.key, key)),
@@ -576,6 +602,9 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     db.select().from(pageControlled).where(eq(pageControlled.key, key)),
     db.select().from(pageSections).where(eq(pageSections.key, key)),
     db.select().from(pageDisplayNames).where(eq(pageDisplayNames.key, key)),
+    // docs/specs/hubs.md §3, joining the fan-out that is already open rather than adding a round
+    // trip. `lib/hubs/queries.ts` `hubsForPage` is this query.
+    hubsForPage(key),
   ])
 
   // The three names the computing stages give "the other page this sentence names", read in the
@@ -760,49 +789,64 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   const withholdsDoseText = page.controlled
   const keeps = (text: string): boolean => !withholdsDoseText || !carriesDoseText(text)
 
-  const blocks: CorpusBlock[] = questions.map((question, index) => {
-    const body = buildBlockBody(question, bundle)
-    const paragraphs: CorpusParagraph[] = body.paragraphs
-      .filter(keeps)
-      .map((raw, position) => {
-        const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
-        if (withoutAnchor.length === 0) return undefined
-        const emphasis = position === 0 ? emphasisRange(withoutAnchor, question.values) : undefined
-        // B5: an unanchored paragraph is marked rather than given a manufactured citation — but
-        // only where it states no recorded value. The builder's second paragraph usually carries
-        // this record's own counts, durations and registry wording with no anchor of its own;
-        // calling those an interpretation would be a second untruth in place of the first.
-        const paragraph: CorpusParagraph = {
-          text: withoutAnchor,
-          interpretation: position > 0 && !found && !/\d/.test(withoutAnchor),
-          ...(found ? { anchor: found } : {}),
-          ...(emphasis ? { emphasis } : {}),
-        }
-        return paragraph
-      })
-      .filter((paragraph): paragraph is CorpusParagraph => paragraph !== undefined)
-    const blockId = `q${index + 1}`
-    const dates = paragraphs
-      .map((paragraph) => paragraph.anchor)
-      .filter((item): item is CorpusAnchor => item !== undefined)
-    const sourceDate = dates.map((item) => item.sourceDate).find((value) => Boolean(value))
-    const lastVerified = dates.map((item) => item.lastVerified).find((value) => Boolean(value))
-    return {
-      id: blockId,
-      badge: `Q${index + 1}`,
-      ordinal: index,
-      block: question.block,
-      template: question.template,
-      question: question.text,
-      paragraphs,
-      groups: groupRows(
-        blockId,
-        body.rows.filter((row) => keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`)),
-      ),
-      ...(sourceDate ? { sourceDate } : {}),
-      ...(lastVerified ? { lastVerified } : {}),
-    }
-  })
+  const blocks: CorpusBlock[] = questions
+    .map((question, index) => {
+      const body = buildBlockBody(question, bundle)
+      const paragraphs: CorpusParagraph[] = body.paragraphs
+        // The furniture flag is parallel to `body.paragraphs`, so the dose filter below is applied
+        // with the flag carried beside the text rather than by index into a filtered list.
+        .map((raw, index) => ({ raw, furniture: body.furniture[index] === true }))
+        .filter((entry) => keeps(entry.raw))
+        .map(({ raw, furniture }, position) => {
+          const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
+          if (withoutAnchor.length === 0) return undefined
+          const emphasis =
+            position === 0 ? emphasisRange(withoutAnchor, question.values) : undefined
+          // B5: an unanchored paragraph is marked rather than given a manufactured citation — but
+          // only where it states no recorded value. The builder's second paragraph usually carries
+          // this record's own counts, durations and registry wording with no anchor of its own;
+          // calling those an interpretation would be a second untruth in place of the first.
+          const paragraph: CorpusParagraph = {
+            text: withoutAnchor,
+            interpretation: position > 0 && !found && !/\d/.test(withoutAnchor),
+            ...(found ? { anchor: found } : {}),
+            ...(emphasis ? { emphasis } : {}),
+            ...(furniture ? { furniture: true as const } : {}),
+          }
+          return paragraph
+        })
+        .filter((paragraph): paragraph is CorpusParagraph => paragraph !== undefined)
+      const blockId = `q${index + 1}`
+      const dates = paragraphs
+        .map((paragraph) => paragraph.anchor)
+        .filter((item): item is CorpusAnchor => item !== undefined)
+      const sourceDate = dates.map((item) => item.sourceDate).find((value) => Boolean(value))
+      const lastVerified = dates.map((item) => item.lastVerified).find((value) => Boolean(value))
+      return {
+        id: blockId,
+        badge: `Q${index + 1}`,
+        ordinal: index,
+        block: question.block,
+        template: question.template,
+        question: question.text,
+        paragraphs,
+        groups: groupRows(
+          blockId,
+          body.rows.filter((row) => keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`)),
+        ),
+        ...(sourceDate ? { sourceDate } : {}),
+        ...(lastVerified ? { lastVerified } : {}),
+      }
+    })
+    /*
+     * §1: "a block never renders a heading over an empty body", and §11 makes the render and the
+     * page one text. `renderPage` drops a block whose builder wrote no paragraph and no row — §7
+     * stops a dose-response section whose quotations name a different compound, and that leaves
+     * the block empty — so the page has to drop the same block. Until this was here the page
+     * painted the question and nothing under it, and the parity check read the heading as text the
+     * render had not written.
+     */
+    .filter((block) => block.paragraphs.length > 0 || block.groups.length > 0)
 
   /* header */
   const { register, lastVerified } = headerLine(fieldRows, sourceRows)
@@ -844,6 +888,14 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     const href = IDENTIFIER_LINKS[field]?.(value)
     identifiers.push({ field, label, value, ...(href ? { href } : {}) })
   }
+
+  // docs/specs/hubs.md §3: rows, never sentences, so the hub names are markup and no member of a
+  // hub gains the same word as every other member.
+  const hubRows: CorpusHubRow[] = hubMemberships.map((row) => ({
+    label: HUB_TYPE_LABEL[row.type],
+    name: row.name,
+    path: `/h/${row.type}/${encodeURIComponent(row.slug)}`,
+  }))
 
   const relations: CorpusRelationRow[] = []
   for (const row of relationRows) {
@@ -1010,11 +1062,19 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
 
   const controlledSchedules: CorpusControlledRow[] = [...controlledRows]
     .filter((row) => keeps(`${row.classOrSchedule} ${row.list} ${row.substanceAsListed ?? ''}`))
+    /*
+     * A total order (§11): `page_controlled` has no order of its own, and jurisdiction, list and
+     * schedule do not separate every row — levonorgestrel carries two Poisons List rows under one
+     * schedule, differing only in the name the register listed. `scripts/corpus-20k/render/
+     * page-text.ts` sorts on the same five values, so the page and the render paint one order.
+     */
     .sort(
       (a, b) =>
         a.jurisdiction.localeCompare(b.jurisdiction) ||
         a.list.localeCompare(b.list) ||
-        a.classOrSchedule.localeCompare(b.classOrSchedule),
+        a.classOrSchedule.localeCompare(b.classOrSchedule) ||
+        (a.substanceAsListed ?? '').localeCompare(b.substanceAsListed ?? '') ||
+        (a.versionDate ?? '').localeCompare(b.versionDate ?? ''),
     )
     .map((row) => ({
       id: row.id,
@@ -1075,6 +1135,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       : [],
     identifiers,
     relations,
+    hubs: hubRows,
     sources,
     licenceNotes: page.licenceNotes,
     registeredStudies,

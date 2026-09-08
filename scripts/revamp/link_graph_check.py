@@ -14,10 +14,17 @@ build when ``--base-url`` is given:
      fields do name holds fewer than five members, which is the section 1 floor.
   3. No hub is unreachable from ``/h``. The index lists every hub row, so this is the check that
      every hub has a distinct, well-formed ``(type, slug)`` pair that the route can resolve, and,
-     with ``--base-url``, that ``/h`` answers 200 and its markup carries every hub's path.
+     with ``--base-url``, that ``/h`` answers 200 and its markup carries every published hub's path.
   4. Every member link answers 200. Without ``--base-url`` this is checked as far as the data can
      check it — every member has a slug and every slug is one the corpus publishes; with it, the
-     member links are requested.
+     links the published hub pages carry are requested.
+
+With ``--base-url`` the last three rules are about the build, so they read the hubs the build
+publishes (its hubs sitemap child) and the member links its hub pages actually carry. The data
+files can hold more: ``hubs_load.ts`` refuses a hub left under five loadable members once the
+identity revision has absorbed some of its pages. That difference is reported under ``published``
+as a named list, so a hub missing from the site is visible rather than either failing the run or
+passing unseen.
 
 Exit status is 0 when every rule passes and 1 when any fails. Failures print with the hub or page
 they belong to, capped at 20 examples per rule so a broken build reports in one screen.
@@ -36,18 +43,32 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterator
+from xml.etree import ElementTree
 
 import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[2]
 HUBS = ROOT / "data/revamp/hubs"
 FIELDS = ROOT / "data/revamp/fields-v2"
-THRESHOLDS = ROOT / "data/revamp/thresholds-v5.json"
-PRESENCE = ROOT / "data/revamp/presence-applicable-v5.ndjson"
+# Rule 2 reads the ruler this run publishes. Each measure round writes a new pair of files and the
+# older pair stays readable beside it, so the default is the newest pair on disk and `--thresholds`
+# names an older one explicitly.
+THRESHOLD_REVISIONS = ("v7", "v6", "v5")
+THRESHOLDS = next(
+    (
+        path
+        for path in (ROOT / f"data/revamp/thresholds-{rev}.json" for rev in THRESHOLD_REVISIONS)
+        if path.exists()
+    ),
+    ROOT / "data/revamp/thresholds-v5.json",
+)
+PRESENCE = ROOT / f"data/revamp/presence-applicable-{THRESHOLDS.stem.rsplit('-', 1)[1]}.ndjson"
 SLUGS = ROOT / "data/revamp/identity/page-slugs.csv"
 REASONS = HUBS / "membership-reasons.ndjson"
 MINIMUM_MEMBERS = 5
 SLUG_SHAPE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+MEMBER_HREF = re.compile(r'href="/d/([^"#?]+)"')
 HUB_TYPES = ("target", "class", "pathway")
 EXAMPLE_CAP = 20
 ATC_LEVEL4 = re.compile(r"^[A-Z]\d{2}[A-Z]{2}$")
@@ -101,15 +122,17 @@ def grouping_fields(page: dict[str, Any]) -> dict[str, list[str]]:
     return {"target": targets, "class": classes, "pathway": pathways}
 
 
-def indexable_keys() -> set[str]:
+def indexable_keys(
+    thresholds_file: Path = THRESHOLDS, presence_file: Path = PRESENCE
+) -> set[str]:
     """The leaves the ruler admits: present-over-applicable at the tier's own threshold (section 11)."""
-    thresholds = json.loads(THRESHOLDS.read_text(encoding="utf-8"))["tiers"]
+    thresholds = json.loads(thresholds_file.read_text(encoding="utf-8"))["tiers"]
     per_tier = {
         int(name.removeprefix("tier")): record.get("threshold")
         for name, record in thresholds.items()
     }
     keys: set[str] = set()
-    for row in read_ndjson(PRESENCE):
+    for row in read_ndjson(presence_file):
         threshold = per_tier.get(int(row["tier"]))
         if threshold is None:
             continue
@@ -147,6 +170,35 @@ def http_status(url: str, timeout: float) -> int:
         return int(error.code)
     except (urllib.error.URLError, TimeoutError, ConnectionError):
         return 0
+
+
+def sitemap_hub_paths(base: str, timeout: float) -> set[str]:
+    """The hub paths the build publishes, from its hubs sitemap child.
+
+    An empty set means the build advertises no hubs sitemap; the caller then falls back to the data
+    files and says so in the report, rather than reporting a pass over nothing.
+    """
+    status, body = fetch_text(f"{base}/sitemap.xml", timeout)
+    if status != 200 or not body:
+        return set()
+    children = [
+        loc.text.strip()
+        for loc in ElementTree.fromstring(body).iter(f"{SITEMAP_NS}loc")
+        if (loc.text or "").strip().endswith(".xml")
+    ]
+    paths: set[str] = set()
+    for child in children:
+        name = child.rsplit("/", 1)[1][: -len(".xml")]
+        if "hub" not in name:
+            continue
+        status, body = fetch_text(f"{base}/sitemaps/{name}.xml", timeout)
+        if status != 200 or not body:
+            continue
+        for loc in ElementTree.fromstring(body).iter(f"{SITEMAP_NS}loc"):
+            location = (loc.text or "").strip()
+            if "/h/" in location:
+                paths.add("/h/" + location.rsplit("/h/", 1)[1].split("?", 1)[0].split("#", 1)[0])
+    return paths
 
 
 def fetch_text(url: str, timeout: float) -> tuple[int, str]:
@@ -197,7 +249,27 @@ def main() -> int:
         help="request only this many member links (0 requests every one)",
     )
     parser.add_argument("--out", type=Path, help="write the report as JSON here as well")
+    parser.add_argument(
+        "--thresholds",
+        type=Path,
+        default=THRESHOLDS,
+        help="the ruler whose per-tier thresholds name the indexable leaves rule 2 checks",
+    )
+    parser.add_argument(
+        "--presence",
+        type=Path,
+        default=None,
+        help="the present-over-applicable count per page; defaults to the file carrying the "
+             "same revision suffix as --thresholds",
+    )
     args = parser.parse_args()
+    presence_file = args.presence
+    if presence_file is None:
+        revision = args.thresholds.stem.rsplit("-", 1)[1]
+        presence_file = ROOT / f"data/revamp/presence-applicable-{revision}.ndjson"
+    for path in (args.thresholds, presence_file):
+        if not path.exists():
+            parser.error(f"{path} does not exist")
     if not args.data_only and not args.base_url:
         parser.error("pass --data-only, or --base-url with a running build.")
 
@@ -241,7 +313,7 @@ def main() -> int:
     report.add("no hub unreachable from /h", unreachable, len(hubs))
 
     # --- rule 2: an indexable leaf has a hub, or a recorded reason ---------------------------
-    indexable = indexable_keys()
+    indexable = indexable_keys(args.thresholds, presence_file)
     group_sizes: dict[tuple[str, str], int] = defaultdict(int)
     page_groups: dict[str, dict[str, list[str]]] = {}
     for page in read_ndjson_dir(FIELDS):
@@ -306,28 +378,59 @@ def main() -> int:
         len(tables),
     )
 
+    published: dict[str, Any] = {}
     if args.base_url:
         base = args.base_url.rstrip("/")
+
+        # The build's own answer about which hubs it publishes. `hubs_load.ts` refuses a hub left
+        # under five loadable members after the identity revision absorbed some of its pages, and
+        # counts the refusal; those hubs are in the data files and are deliberately not on the
+        # site. Reading the built set here keeps the three rules below about the build. The
+        # difference between the two sets is reported as a number, never as a silent pass.
+        built_paths = sitemap_hub_paths(base, args.timeout)
+        data_paths = {f"/h/{hub['type']}/{hub['slug']}" for hub in hubs}
+        if built_paths:
+            check_paths = sorted(built_paths)
+        else:
+            check_paths = sorted(data_paths)
+        published = {
+            "source": "sitemaps/hubs.xml" if built_paths else "the data files (no hubs sitemap)",
+            "hubsPublished": len(check_paths),
+            "hubsInDataFiles": len(data_paths),
+            "inDataFilesNotPublished": sorted(data_paths - set(check_paths)),
+            "publishedNotInDataFiles": sorted(set(check_paths) - data_paths),
+        }
+
         index_status, index_html = fetch_text(f"{base}/h", args.timeout)
         index_failures: list[str] = []
         if index_status != 200:
             index_failures.append(f"GET {base}/h answered {index_status}")
         else:
-            for hub in hubs:
-                path = f"/h/{hub['type']}/{hub['slug']}"
+            for path in check_paths:
                 if path not in index_html:
                     index_failures.append(f"{path} is not linked from /h")
-        report.add("/h links every hub", index_failures, len(hubs))
+        report.add("/h links every hub it publishes", index_failures, len(check_paths))
 
         hub_failures = []
-        for hub in hubs:
-            url = f"{base}/h/{hub['type']}/{hub['slug']}"
-            status = http_status(url, args.timeout)
+        hub_html: dict[str, str] = {}
+        for path in check_paths:
+            status, body = fetch_text(f"{base}{path}", args.timeout)
             if status != 200:
-                hub_failures.append(f"GET {url} answered {status}")
-        report.add("every hub page answers 200", hub_failures, len(hubs))
+                hub_failures.append(f"GET {base}{path} answered {status}")
+            else:
+                hub_html[path] = body
+        report.add("every published hub page answers 200", hub_failures, len(check_paths))
 
-        links = sorted({str(row["slug"]) for row in tables if str(row.get("slug") or "")})
+        # Rule 4 against a build asks whether the links a reader can follow work. Those are the
+        # links the published pages carry, read off the pages themselves rather than recomputed
+        # from a route map the build may not share.
+        links = sorted(
+            {
+                match
+                for body in hub_html.values()
+                for match in MEMBER_HREF.findall(body)
+            }
+        )
         if args.member_sample > 0:
             links = links[: args.member_sample]
         member_failures = []
@@ -336,14 +439,23 @@ def main() -> int:
             status = http_status(url, args.timeout)
             if status != 200:
                 member_failures.append(f"GET {url} answered {status}")
-        report.add("every member link answers 200", member_failures, len(links))
+        report.add(
+            "every member link a published hub carries answers 200", member_failures, len(links)
+        )
+        published["memberLinksOnPublishedHubs"] = len(links)
 
     payload = {
         "checkedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "mode": "data-only" if args.data_only and not args.base_url else "build",
         "baseUrl": args.base_url,
+        "ruler": {
+            "thresholds": str(args.thresholds.relative_to(ROOT)),
+            "presence": str(presence_file.relative_to(ROOT)),
+            "indexableLeaves": len(indexable),
+        },
         "hubs": len(hubs),
         "members": len(members),
+        **({"published": published} if published else {}),
         "rules": report.rules,
         "pass": report.passed,
     }

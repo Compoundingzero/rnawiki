@@ -6,7 +6,7 @@
  * No read here computes a value; every value was written by `scripts/revamp/hubs_load.ts` from
  * `data/revamp/hubs/`.
  */
-import { and, asc, eq } from 'drizzle-orm'
+import { and, asc, count, eq } from 'drizzle-orm'
 
 import { db } from '@/db'
 import { corpusPages, hubMembers, hubSyntheses, hubs } from '@/db/schema'
@@ -148,4 +148,10 @@ export async function hubsForPage(key: string): Promise<HubIndexRow[]> {
     .where(eq(hubMembers.key, key))
     .orderBy(asc(hubs.type), asc(hubs.name))
   return rows.map((row) => ({ ...row, type: row.type as HubType }))
+}
+
+/** How many hubs the database holds, for the sitemap index (docs/specs/hubs.md §3). */
+export async function countHubs(): Promise<number> {
+  const [row] = await db.select({ value: count() }).from(hubs)
+  return row?.value ?? 0
 }

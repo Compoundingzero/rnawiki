@@ -9,7 +9,7 @@
  *
  *   npx tsx scripts/revamp/page_text_v5.ts
  *   npx tsx scripts/revamp/page_text_v5.ts --with-furniture
- *   npx tsx scripts/revamp/page_text_v5.ts --limit 200 --out data/revamp/render-v5-smoke
+ *   npx tsx scripts/revamp/page_text_v5.ts --limit 200 --out data/revamp/render-v7-smoke
  *
  * Furniture (docs/specs/phase4-generators.md §11). By default the text is written without it: the
  * register rows whose status is an absence, the checked-sources statement on a page holding no
@@ -17,15 +17,15 @@
  * and are not in the measured text, because before Phase 4 an absence rendered nothing and was not
  * in the measured text either. `--with-furniture` writes the page as the browser paints it, which
  * is what the DOM parity check and the rendering-safety rules read; its default output directory is
- * `data/revamp/render-v5-with-furniture`, so the two runs never overwrite one another.
+ * `data/revamp/render-v7-with-furniture`, so the two runs never overwrite one another.
  *
- * Outputs, under `--out` (default `data/revamp/render-v5`):
+ * Outputs, under `--out` (default `data/revamp/render-v7`):
  *   text/batch-0001.ndjson …   one `RenderedPage` per line, the shape the overlap ruler reads
  *   pages-all.ndjson           every rendered page in one file, key-sorted
  *   provenance/batch-0001.ndjson …  `{key, provenance: [{sentence, fields}]}` per page (4.7)
  *   summary.json               counts, and what the inputs did not supply
  *
- * Trial reassignment. `data/revamp/identity/trial-reassignments-v4.csv` moves a registry study from
+ * Trial reassignment. `data/revamp/identity/trial-reassignments-v5.csv` moves a registry study from
  * a salt, ester or stereoisomer page to the parent the registry actually named (Phase 3 R14, extended
  * in §6). The registry aggregate this renderer reads was computed before that move, so a moved study
  * is removed here: every per-trial list is filtered by NCT identifier, and the counts that can be
@@ -47,6 +47,7 @@ import {
 } from '../corpus-20k/questions/derive'
 import {
   aggregateWithoutMovedStudies,
+  printedDisplayName,
   renderPage,
   type PageBlocks,
   type PageBundle,
@@ -183,17 +184,17 @@ async function main(): Promise<void> {
   const fieldsDir = arg('fields') ?? 'data/revamp/fields-v2'
   const seedsDir = arg('seeds') ?? 'data/revamp/derived-v2'
   const questionsDir = arg('questions') ?? 'data/revamp/questions-v2'
-  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v3.ndjson'
+  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v5.ndjson'
   const tiersFile = arg('tiers') ?? 'data/corpus-20k/tiers/model-assignment.ndjson'
   const suppressionFile = arg('suppression') ?? 'data/revamp/suppression/assignments-v2.ndjson'
   const registryDir = arg('registry') ?? 'data/corpus-20k/registry/aggregates'
   const blocksDir = arg('blocks') ?? 'data/revamp/page-blocks'
   const reassignmentsFile =
-    arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v4.csv'
-  const displayNamesFile = arg('display-names') ?? 'data/revamp/identity/display-names-v3.csv'
+    arg('reassignments') ?? 'data/revamp/identity/trial-reassignments-v5.csv'
+  const displayNamesFile = arg('display-names') ?? 'data/revamp/identity/display-names-v5.csv'
   const withFurniture = process.argv.includes('--with-furniture')
   const outDir =
-    arg('out') ?? (withFurniture ? 'data/revamp/render-v5-with-furniture' : 'data/revamp/render-v5')
+    arg('out') ?? (withFurniture ? 'data/revamp/render-v7-with-furniture' : 'data/revamp/render-v7')
   const shards = Number(arg('shards') ?? 8)
   const batchSize = Number(arg('batch-size') ?? 1000)
   const limit = arg('limit') ? Number(arg('limit')) : undefined
@@ -226,6 +227,36 @@ async function main(): Promise<void> {
    * links a counterpart by that name; this map is what the measured text names it by, and the two
    * have to be the same name.
    */
+  /*
+   * §10, applied here as well as in the loader: a page whose recorded name is an all-caps register
+   * string prints the readable synonym of the same record instead. The loader writes the same name
+   * into `corpus_pages.display_name`, so the page, the hub and this measured text all print one
+   * name; doing it in only one of them was tried in Phase 5 and made the hub print "clobetasol"
+   * while the page it linked printed "CLOBETASOL".
+   *
+   * This map is what every page's *counterparts* are named by, so the rule is applied to the whole
+   * map before any page renders, not per shard.
+   */
+  let readableNames = 0
+  await eachLine(identityFile, (line, key) => {
+    if (!key) return
+    const row = JSON.parse(line) as Record<string, unknown>
+    const recorded = names.get(key) ?? asString(row.displayName)
+    if (!recorded) return
+    const synonyms = asArray(row.synonyms)
+      .map((item) => {
+        const record = asObject(item)
+        const name = asString(record?.name)
+        const kind = asString(record?.kind)
+        return name ? { name, ...(kind ? { kind } : {}) } : undefined
+      })
+      .filter((item): item is Synonym => item !== undefined)
+    const printed = printedDisplayName(recorded, synonyms)
+    if (printed !== recorded) readableNames += 1
+    names.set(key, printed)
+  })
+  note(`${readableNames} pages print a readable synonym in place of an all-caps register string`)
+
   try {
     for (const row of readCsv(await fs.readFile(displayNamesFile, 'utf8'))) {
       const disambiguated = row.disambiguated_display_name
@@ -273,7 +304,27 @@ async function main(): Promise<void> {
   }
   if (blocksByKey.size === 0) note('Phase 4 block bundles absent; no block was rendered')
 
-  const allKeys = [...tier.keys()].sort().slice(0, limit ?? Number.MAX_SAFE_INTEGER)
+  /*
+   * The corpus this render covers is the corpus the loader loads: every key `--identity` holds.
+   *
+   * `data/corpus-20k/tiers/model-assignment.ndjson` is the tier map and still names every page the
+   * corpus-20k run created, including the 123 the Phase 3 and §12 merges have since absorbed. The
+   * loader writes `corpus_pages` from the identity revision, so a page absent from that revision is
+   * not served, is not linked, and must not be in the measured text or in a counterpart name — the
+   * parity check found the render naming `Insulin Lispro-Aabc` as an interaction counterpart on a
+   * page whose own record had merged into `Insulin lispro`.
+   */
+  const liveKeys = new Set<string>()
+  await eachLine(identityFile, (_line, key) => {
+    if (key) liveKeys.add(key)
+  })
+  const absorbed = [...tier.keys()].filter((key) => !liveKeys.has(key)).length
+  if (absorbed > 0) note(`${absorbed} pages in the tier map are absent from ${identityFile}`)
+  const allKeys = [...tier.keys()]
+    .filter((key) => liveKeys.has(key))
+    .sort()
+    .slice(0, limit ?? Number.MAX_SAFE_INTEGER)
+  for (const key of [...names.keys()]) if (!liveKeys.has(key)) names.delete(key)
   const seedFiles = (await fs.readdir(seedsDir, { withFileTypes: true }).catch(() => []))
     .filter((entry) => entry.isFile() && entry.name.endsWith('.ndjson'))
     .map((entry) => path.join(seedsDir, entry.name))

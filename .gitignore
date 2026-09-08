@@ -168,11 +168,13 @@ data/revamp/fields-v2-gated/
 # counts without the corpus.
 data/revamp/page-blocks/batch-*.ndjson
 data/revamp/questions-v2/batch-*.ndjson
-data/revamp/render-v5/text/
-data/revamp/render-v5/provenance/
-data/revamp/render-v5/pages-all.ndjson
+data/revamp/render-v7/text/
+data/revamp/render-v7/text-with-furniture/
+data/revamp/render-v7/provenance/
+data/revamp/render-v7/provenance-with-furniture/
+data/revamp/render-v7/pages-all.ndjson
+data/revamp/render-v7/pages-all-with-furniture.ndjson
 data/revamp/derived-v2/
-data/revamp/render-v5/
 data/revamp/slop-draws/**/pages-full/
 data/revamp/page-blocks/
 data/revamp/questions-v2/
@@ -214,6 +216,7 @@ data/release/**
 data/revamp/promotion/*.out
 data/revamp/hubs/text/
 data/revamp/hubs/load/
+data/revamp/render-v5/
 data/revamp/render-v5-with-furniture/
 data/revamp/render-v6/
 data/revamp/render-v6-fresh/

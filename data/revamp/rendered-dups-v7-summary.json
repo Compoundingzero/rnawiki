@@ -1,0 +1,128 @@
+{
+  "schema": "rnawiki-revamp-rendered-dup-check/v1",
+  "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
+  "at": "2026-09-08T02:37:34Z",
+  "baseUrl": "http://127.0.0.1:3197",
+  "widths": [
+    390,
+    1280
+  ],
+  "threshold": 0.5,
+  "sampleSeed": 20260905,
+  "minhash": {
+    "permutations": 128,
+    "shingleWords": 5,
+    "permutationSeed": 20260904,
+    "permutationFamily": "splitmix64(shingle XOR seed_i), scripts/corpus-20k/overlap/harness.py",
+    "screenMargin": 0.1,
+    "scoring": "MinHash screens; the reported jaccard is the exact shingle-set Jaccard"
+  },
+  "rendered": {
+    "indexable": 301,
+    "noindexSample": 996,
+    "hubs": 968
+  },
+  "sets": {
+    "indexableRequested": 301,
+    "hubsRequested": 968,
+    "noindexSampleRequested": 1000,
+    "noindexFrame": 28076,
+    "sitemapChildren": [
+      "tier-1",
+      "tier-2",
+      "browse",
+      "hubs",
+      "pages"
+    ],
+    "hubSitemapChildren": [
+      "hubs"
+    ]
+  },
+  "slugSources": {
+    "recorded": 9142,
+    "recomputed": 19567,
+    "canonical": "data/revamp/identity/canonical-v5.ndjson",
+    "tiers": "data/revamp/render-v7/pages-all.ndjson"
+  },
+  "pagesDroppedOnIdentityCheck": 0,
+  "pagesRenderedThisRun": 0,
+  "pagesFromCache": 2265,
+  "renderCounters": {
+    "cached": 2265,
+    "pages dropped: no 200 response at both widths": 4,
+    "rendered": 0,
+    "requests logged": 4
+  },
+  "perWidth": {
+    "390": {
+      "pagesScored": 2265,
+      "pairsFlagged": 14853,
+      "indexablePairsFlagged": 1,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 2,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2317,
+          "medianJaccard": 0.2095
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 16,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2783,
+          "medianJaccard": 0.1699
+        }
+      }
+    },
+    "1280": {
+      "pagesScored": 2265,
+      "pairsFlagged": 14853,
+      "indexablePairsFlagged": 1,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 2,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2317,
+          "medianJaccard": 0.2095
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 16,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2783,
+          "medianJaccard": 0.1699
+        }
+      }
+    }
+  },
+  "pairsFlagged": 29706,
+  "indexablePairsFlagged": 2,
+  "hubPairsFlagged": 3730,
+  "hubToPagePairsFlagged": 0,
+  "reasons": {
+    "unclassified-overlap": {
+      "pairs": 21856,
+      "indexablePairs": 0
+    },
+    "stub-template": {
+      "pairs": 7754,
+      "indexablePairs": 0
+    },
+    "identical-trial-set": {
+      "pairs": 94,
+      "indexablePairs": 0
+    },
+    "biosimilar": {
+      "pairs": 2,
+      "indexablePairs": 2
+    }
+  },
+  "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision, [data-furniture]",
+  "runtimeMinutes": 0.43,
+  "outputs": {
+    "pairs": "data/revamp/rendered-dups-v7.csv",
+    "cache": "data/revamp/rendered-text",
+    "requestLog": "data/corpus-20k/legal/requests.log"
+  },
+  "issues": [
+    "1 indexable slugs have no key in the corpus records"
+  ]
+}

@@ -47,9 +47,13 @@ ROOT_CERT = ROOT.parent / "rnawiki-backups" / "railway" / "postgres-root.crt"
 DISPOSITIONS = ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"
 PAGE_SLUGS = ROOT / "data/revamp/identity/page-slugs.csv"
 CANONICAL_V2 = ROOT / "data/revamp/identity/canonical-v2.ndjson"
-# §11: every check recomputes slugs from `canonical-v3`, the revision this run publishes.
+# §11: every check recomputes slugs from the revision this run publishes. Section 12 makes that
+# `canonical-v5` — v3 with the 351(a) merges applied — and the v3 file stays readable beside it.
 CANONICAL_V3 = ROOT / "data/revamp/identity/canonical-v3.ndjson"
-CANONICAL_DEFAULT = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_V2
+CANONICAL_V5 = ROOT / "data/revamp/identity/canonical-v5.ndjson"
+CANONICAL_DEFAULT = next(
+    (path for path in (CANONICAL_V5, CANONICAL_V3, CANONICAL_V2) if path.exists()), CANONICAL_V2
+)
 REQUEST_LOG = ROOT / "data/corpus-20k/legal/requests.log"
 
 USER_AGENT = "rnawiki-revamp/1.0 (+https://rnawiki.com; felix360506@gmail.com)"
@@ -275,7 +279,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--base-url", default="https://rnawiki.com")
-    parser.add_argument("--plan", type=Path, default=ROOT / "data/revamp/identity/redirect-plan.csv")
+    parser.add_argument("--plan", type=Path,
+                        default=ROOT / "data/revamp/identity/redirect-plan-v5.csv")
     parser.add_argument("--out", type=Path, default=ROOT / "data/revamp/redirect-check.json")
     parser.add_argument("--canonical", type=Path, default=CANONICAL_DEFAULT,
                         help="the canonical revision whose pages the plan must land on; the merges "

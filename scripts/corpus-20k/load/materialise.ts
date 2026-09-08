@@ -12,7 +12,7 @@
  *
  * Flags:
  *   --tier 1|2|3            required; the deployment tier to load (tiers/promotion-rule.md)
- *   --revamp                load the revamp 2026-09 corpus: canonical-v3, fields-v2, derived-v2,
+ *   --revamp                load the revamp 2026-09 corpus: canonical-v5, fields-v2, derived-v2,
  *                           questions-v2, the controlled-substance suppression assignments, and the
  *                           Phase 4 blocks migration 0026 adds (docs/specs/phase4-generators.md).
  *                           Without it the corpus-20k inputs load exactly as before.
@@ -104,6 +104,7 @@ import {
   CONTROLLED_WITHHELD_BLOCKS,
   interactionLine,
   movedTrialsSentence,
+  printedDisplayName,
   type InteractionRow,
 } from '../render/page-text'
 
@@ -850,14 +851,14 @@ export async function writeRedirectRepairs(
  * `--revamp` points every input at the Phase 2–4 outputs and loads five more tables.
  *
  * The corpus-20k inputs stay the default, so a re-run of the original load is unchanged. What the
- * flag does is swap the identity spine for `canonical-v3`, the fields for `fields-v2`, the seeds
+ * flag does is swap the identity spine for `canonical-v5`, the fields for `fields-v2`, the seeds
  * for `derived-v2`, the questions for `questions-v2` and the suppression assignments for the file
  * that carries the controlled-substance trigger, and then load the Phase 4 blocks
  * (`docs/specs/phase4-generators.md`) from `data/revamp/page-blocks`.
  *
  * Every safety this script already had holds: the production guard, the working-database refusal,
  * the fingerprinted markers, the child-rows-first delete order, and the redirect chain repair. The
- * redirect plan `data/revamp/identity/redirect-plan-v3.csv` joins the recorded dispositions and
+ * redirect plan `data/revamp/identity/redirect-plan-v5.csv` joins the recorded dispositions and
  * goes through the same chain walk, so a Phase 3 merge cannot write a two-hop redirect either.
  */
 const REVAMP = join(ROOT, 'data', 'revamp')
@@ -890,7 +891,7 @@ function corpusSources(revamp: boolean): CorpusSources {
   }
   return {
     label: 'revamp-2026-09',
-    identity: join(REVAMP, 'identity', 'canonical-v3.ndjson'),
+    identity: join(REVAMP, 'identity', 'canonical-v5.ndjson'),
     fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
       join(REVAMP, 'fields-v2', directory),
     ),
@@ -899,8 +900,8 @@ function corpusSources(revamp: boolean): CorpusSources {
     suppression: join(REVAMP, 'suppression', 'assignments-v2.ndjson'),
     loadDir: join(REVAMP, 'load'),
     blocksDir: join(REVAMP, 'page-blocks'),
-    reassignments: join(REVAMP, 'identity', 'trial-reassignments-v4.csv'),
-    redirectPlan: join(REVAMP, 'identity', 'redirect-plan-v3.csv'),
+    reassignments: join(REVAMP, 'identity', 'trial-reassignments-v5.csv'),
+    redirectPlan: join(REVAMP, 'identity', 'redirect-plan-v5.csv'),
   }
 }
 
@@ -1019,7 +1020,7 @@ async function readTrialReassignments(path: string | undefined): Promise<TrialRe
 /**
  * The Phase 3 redirect plan, as dispositions the existing REDIRECT path already knows how to write.
  *
- * `redirect-plan-v3.csv` records the "-2" slugs a merge retired (`abarelix-2 -> abarelix`). Turning
+ * `redirect-plan-v5.csv` records the "-2" slugs a merge retired (`abarelix-2 -> abarelix`). Turning
  * them into `Disposition` rows means they go through `pushRedirect`, the ledger chain walk and the
  * one-hop rule with every other redirect this load writes, rather than through a second path that
  * would have to repeat those three protections.
@@ -2075,10 +2076,20 @@ function buildBatch(input: {
       ])
     }
 
+    /*
+     * §10: the printed name is never an all-caps register string where a readable synonym of this
+     * same record exists. `scripts/revamp/page_text_v5.ts` applies the same function to the same
+     * records, so the dossier, the hub that links it and the measured text print one name. The slug
+     * is computed from the recorded name above and does not change (§10); only what is printed does.
+     */
+    const printed = printedDisplayName(record.displayName ?? '', record.synonyms ?? [])
+    if (printed !== record.displayName)
+      counters.bump('pages printing a readable synonym in place of an all-caps register string')
+
     pages.push({
       key,
       slug,
-      displayName: stripControlCharacters(record.displayName, counters) ?? key,
+      displayName: stripControlCharacters(printed, counters) ?? key,
       model: assignment.model,
       tier,
       pageType,
@@ -2438,7 +2449,7 @@ function buildBatch(input: {
           JSON.stringify({
             fields: {
               [String(moved.count)]:
-                'data/revamp/identity/trial-reassignments-v4.csv rows with action=move for this page',
+                'data/revamp/identity/trial-reassignments-v5.csv rows with action=move for this page',
             },
           }),
         ])

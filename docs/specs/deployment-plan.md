@@ -54,3 +54,36 @@ rolls back an earlier one.
 Any suppressed page rendering a seed 1/2/6 block; any page with a placeholder or empty heading; any
 vendor/retailer/affiliate host in a link; any Tier 3 URL in a sitemap; any previously indexed slug
 without a 200, 301 or 308; render throughput below 1 page/second (investigate before scaling).
+
+## Phase 7 (revamp 2026-09): the load procedure, with the hub tables
+
+**Status:** fixed 2026-09-08 by the lead (Fable), from `data/revamp/hubs/integration-plan.md` §3.
+
+The revamp load is the same procedure with one more step, and the step has an order it cannot be
+run out of. `hub_members.key` is a foreign key onto `corpus_pages.key`, so a hub loaded before its
+members' pages exist would drop every member it names.
+
+Run, per database, in this order:
+
+1. `npm run db:migrate` — migrations `0026`–`0030` (the Phase 4 block tables, the ruler numerator,
+   the hub tables, the seed-slot parity and the question-value parity).
+2. `npx tsx scripts/corpus-20k/load/materialise.ts --tier 1 --revamp --thresholds
+   data/revamp/thresholds-v7.json`, then `--tier 3`, then `--tier 2`. Tier 3 loads before Tier 2
+   because a Tier 2 page's relations name Tier 3 records.
+3. `npx tsx scripts/revamp/hubs_load.ts` — **after** every tier, never before or between them.
+   A member whose page is not loaded is skipped and counted; a hub left under five loadable members
+   is skipped whole rather than published short. Re-running it prints "already loaded" and does no
+   database work.
+
+The hub loader is kept separate from `materialise.ts` rather than spawned by it. `materialise.ts`
+runs once per tier and the hub load runs once for the corpus, so calling it from inside the tier
+loader would either run it three times or make one tier's invocation special. The ordering
+constraint is stated here, in the runbook that already sequences the tiers, and the loader's own
+guards — the working-database refusal, the `--production-confirmed` refusal for any non-local host,
+the fingerprinted marker, the single transaction — are the same ones `materialise.ts` applies.
+
+**Check it landed**, against a disposable database: `select count(*) from hubs` returns the hub
+count `data/revamp/hubs/counts.json` records, or fewer with the skip counted in the loader's own
+output; `/sitemap.xml` lists `sitemaps/hubs.xml`; `/h` answers 200 and is linked from the site
+footer; a member page — `/d/bicalutamide` is in `target/ar` — shows a Hubs row whose link answers
+200. Tier 3 slugs appear in no sitemap child, `hubs.xml` included.

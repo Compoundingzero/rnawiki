@@ -2,7 +2,8 @@
   "generatedBy": "scripts/revamp/hubs_build.py",
   "publishedRoutes": {
     "pagesWithPublishedRoute": 28832,
-    "pagesWithNoPrintableName": 0
+    "pagesWithNoPrintableName": 0,
+    "pagesPrintingAReadableSynonym": 645
   },
   "membershipReasons": {
     "pagesWithARecordedReason": 2069,
@@ -50,7 +51,7 @@
   },
   "inputs": {
     "fields": "data/revamp/fields-v2",
-    "identity": "data/revamp/identity/canonical-v3.ndjson",
+    "identity": "data/revamp/identity/canonical-v5.ndjson",
     "tiers": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
     "patent": "data/revamp/blocks/patent.parquet",
     "interactions": "data/revamp/interactions/interactions.parquet",

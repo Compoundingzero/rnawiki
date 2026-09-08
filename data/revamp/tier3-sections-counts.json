@@ -1,16 +1,16 @@
 {
   "schema": "rnawiki-revamp-tier3-sections/v1",
-  "generatedAt": "2026-09-07T13:00:35Z",
-  "runSeconds": 198.3,
+  "generatedAt": "2026-09-07T21:39:58Z",
+  "runSeconds": 254.0,
   "inputs": {
     "fields": "data/revamp/fields-v2/*/batch-*.ndjson",
     "structures": "data/revamp/identity/canonical-v2.ndjson",
     "displayNames": "data/revamp/identity/display-names.csv",
-    "relations": "data/revamp/identity/relations-v3.parquet",
+    "relations": "data/revamp/identity/relations-v5.parquet",
     "tiers": "data/revamp/identity/spine-attached.parquet",
     "models": "data/corpus-20k/tiers/model-assignment.ndjson",
     "registryPerTrial": "data/corpus-20k/registry/aggregates",
-    "trialReassignments": "data/revamp/identity/trial-reassignments-v4.csv",
+    "trialReassignments": "data/revamp/identity/trial-reassignments-v5.csv",
     "suppression": "data/corpus-20k/suppression/assignments.ndjson"
   },
   "outputs": {
@@ -58,16 +58,16 @@
       "suppressedPages": 12567
     },
     "formOf": {
-      "tier1": 474,
-      "tier2": 1218,
-      "tier3": 1343,
-      "other": 1692,
-      "total": 3035,
-      "suppressedPages": 1580
+      "tier1": 459,
+      "tier2": 1101,
+      "tier3": 1342,
+      "other": 1560,
+      "total": 2902,
+      "suppressedPages": 1472
     }
   },
   "sentences": {
-    "t3-form-of-note-v1": 3955,
+    "t3-form-of-note-v1": 3822,
     "t3-neighbour-similarity-v1": 7725,
     "t3-neighbour-substituent-v1": 1015,
     "t3-potency-rank-v1": 466,
@@ -101,12 +101,12 @@
   },
   "neighbourSubstituentOutcomes": {
     "heavy-atom difference larger than a single substituent": 1301,
-    "maximum common substructure search did not complete": 439,
+    "maximum common substructure search did not complete": 539,
     "molecule larger than the maximum common substructure size limit": 263,
     "named": 1015,
-    "side chains off the common core could not be isolated": 1592,
+    "side chains off the common core could not be isolated": 1511,
     "the differing group is not in the named-substituent table": 396,
-    "the two molecules differ on both sides of the common core, which is not a single added substituent": 3734
+    "the two molecules differ on both sides of the common core, which is not a single added substituent": 3715
   },
   "potency": {
     "comparatorGroups": 773,
@@ -120,8 +120,8 @@
     "firesUnderStricterFiveComparatorReading": 426
   },
   "formOf": {
-    "relationsInIsFormDirection": 4635,
-    "notesWithheldForARecordIdInProse": 452
+    "relationsInIsFormDirection": 4496,
+    "notesWithheldForARecordIdInProse": 446
   },
   "decisions": {
     "D1_top_match_changed_by_relation_exclusion": 811,
@@ -129,11 +129,11 @@
     "D6_packed_sponsor_string_on_earliest_record": 41
   },
   "issues": [
-    "page identity is read from data/revamp/identity/canonical-v2.ndjson, which the rest of Phase 4 reads; data/revamp/identity/canonical-v3.ndjson exists and carries 28818 keys against 28822, dropping 4 of them and adding 0. Trial reassignments already read the v3 file. Re-running this step against the v3 spine is a one-command change and the counts above name what it would move",
+    "page identity is read from data/revamp/identity/canonical-v2.ndjson, which the rest of Phase 4 reads; data/revamp/identity/canonical-v5.ndjson exists and carries 28709 keys against 28822, dropping 113 of them and adding 0. Trial reassignments already read the v5 file. Re-running this step against the v5 spine is a one-command change and the counts above name what it would move",
     "8815 of 28832 pages record no structure in canonical-v2.ndjson, so the nearest-approved-neighbour section cannot fire on them; the missing structure is stated on the page rather than filled",
     "822 pages hold a pChEMBL value but record no ChEMBL mechanism target, so they have no primary target and fire no potency rank",
     "`target` is a DEVELOPMENT-model field: 2444 pages record a ChEMBL mechanism target and every one of them is Tier 3, so a primary target — and with it the potency rank and the target sentences — can only be established on a Tier 3 page. CLINICAL and LONGEVITY pages carry UniProt target accessions under identifiers.uniprotTargets; those join the target index as comparators and as approved drugs against the target, but they give those pages no primary target of their own",
-    "439 maximum common substructure searches hit the 2-second limit; those sentences carry the similarity and the neighbour's status without a named substituent",
+    "539 maximum common substructure searches hit the 2-second limit; those sentences carry the similarity and the neighbour's status without a named substituent",
     "5480 pages name more than one sponsor on their earliest dated Inxight marketing record, so no single originating organisation is stated for them"
   ]
 }

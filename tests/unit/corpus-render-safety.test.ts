@@ -614,6 +614,7 @@ describe('the whole page (§1 block order)', () => {
       arc: [],
       identifiers: [{ field: 'unii', label: 'UNII', value: '027828ZV5Q' }],
       relations: [],
+      hubs: [],
       sources: [],
       licenceNotes: [],
       registeredStudies: 91,

@@ -103,14 +103,14 @@ import harness  # noqa: E402  (path is set immediately above)
 # the corpus-20k canonical would name pages the merges of Phase 3 no longer keep, and would print a
 # display name four merged pages no longer carry. The corpus-20k file stays as the fallback for a
 # checkout that has not run Phase 3, and which file was read is recorded in the summary.
-CANONICAL_V3 = REPO_ROOT / "data/revamp/identity/canonical-v3.ndjson"
+CANONICAL_V3 = REPO_ROOT / "data/revamp/identity/canonical-v5.ndjson"
 CANONICAL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/identity/canonical.ndjson"
 CANONICAL = CANONICAL_V3 if CANONICAL_V3.exists() else CANONICAL_CORPUS_20K
 DISPOSITIONS = REPO_ROOT / "data/corpus-20k/reconciliation/dispositions.ndjson"
 LEGACY_STAGE = REPO_ROOT / "data/corpus-20k/identity/stages/existing.ndjson"
-PAGES_ALL_V5 = REPO_ROOT / "data/revamp/render-v5/pages-all.ndjson"
+PAGES_ALL_V7 = REPO_ROOT / "data/revamp/render-v7/pages-all.ndjson"
 PAGES_ALL_CORPUS_20K = REPO_ROOT / "data/corpus-20k/render/pages-all.ndjson"
-PAGES_ALL = PAGES_ALL_V5 if PAGES_ALL_V5.exists() else PAGES_ALL_CORPUS_20K
+PAGES_ALL = PAGES_ALL_V7 if PAGES_ALL_V7.exists() else PAGES_ALL_CORPUS_20K
 INDEXED_KEYS = REPO_ROOT / "data/corpus-20k/final/lists/indexed.txt"
 SLUG_FACT_FILES = (
     REPO_ROOT / "data/corpus-20k/gate2/html-text/crawl.ndjson",
@@ -125,9 +125,11 @@ OUT_SUMMARY = REPO_ROOT / "data/revamp/rendered-dups-summary.json"
 
 SITEMAP_INDEX = "/sitemap.xml"
 INDEXABLE_SITEMAPS = ("tier-1", "tier-2")
-# `lib/corpus/sitemap.ts:35` — the sitemap index has exactly these four children. None of them is a
-# hub sitemap, and `app/` has no hub route: Phase 5 has not run.
-KNOWN_SITEMAP_CHILDREN = ("tier-1", "tier-2", "browse", "pages")
+# `lib/corpus/sitemap.ts` — the sitemap index's children. Phase 5 added `hubs`, whose URLs are
+# `/h/<type>/<slug>` and the `/h` index; every other child carries `/d/<slug>` medicine pages.
+KNOWN_SITEMAP_CHILDREN = ("tier-1", "tier-2", "browse", "hubs", "pages")
+HUB_PREFIX = "/h/"
+PAGE_PREFIX = "/d/"
 
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 USER_AGENT = "rnawiki-revamp/1.0 (+https://rnawiki.com; felix360506@gmail.com)"
@@ -331,10 +333,13 @@ class PageTarget:
     key: str | None
     set_name: str  # indexable | noindex-sample | hub
     tier: str | None = None
+    # `/d/` for a medicine page, `/h/` for a hub; the hub's slug carries its type segment, so the
+    # two together are the path the sitemap published.
+    path_prefix: str = PAGE_PREFIX
 
     @property
     def path(self) -> str:
-        return f"/d/{self.slug}"
+        return f"{self.path_prefix}{self.slug}"
 
 
 def fetch_text(url: str, timeout: int = 60, attempts: int = 3) -> tuple[int, str]:
@@ -360,7 +365,15 @@ def fetch_text(url: str, timeout: int = 60, attempts: int = 3) -> tuple[int, str
     return 0, ""
 
 
-def sitemap_slugs(base_url: str, child: str, issues: list[str]) -> list[str]:
+def sitemap_slugs(
+    base_url: str, child: str, issues: list[str], prefix: str = PAGE_PREFIX
+) -> list[str]:
+    """The slugs a sitemap child publishes under `prefix`.
+
+    A URL that does not carry the prefix is not of this kind and is skipped: the hubs child lists
+    the `/h` index beside its `/h/<type>/<slug>` pages, and the index is the navigation page, not a
+    hub with members to compare.
+    """
     url = f"{base_url}/sitemaps/{child}.xml"
     status, body = fetch_text(url)
     if status != 200 or not body:
@@ -370,9 +383,9 @@ def sitemap_slugs(base_url: str, child: str, issues: list[str]) -> list[str]:
     root = ElementTree.fromstring(body)
     for loc in root.iter(f"{SITEMAP_NS}loc"):
         location = (loc.text or "").strip()
-        if "/d/" not in location:
+        if prefix not in location:
             continue
-        slugs.append(location.rsplit("/d/", 1)[1].split("?", 1)[0].split("#", 1)[0])
+        slugs.append(location.rsplit(prefix, 1)[1].split("?", 1)[0].split("#", 1)[0])
     return slugs
 
 
@@ -476,8 +489,10 @@ def build_targets(
 
     hubs: list[PageTarget] = []
     for child in hub_children:
-        for slug in sitemap_slugs(base_url, child, issues):
-            hubs.append(PageTarget(slug=slug, key=None, set_name="hub"))
+        for slug in sitemap_slugs(base_url, child, issues, prefix=HUB_PREFIX):
+            hubs.append(
+                PageTarget(slug=slug, key=None, set_name="hub", path_prefix=HUB_PREFIX)
+            )
 
     indexable_keys = {t.key for t in indexable if t.key}
     if INDEXED_KEYS.exists():
@@ -1004,6 +1019,8 @@ def main(argv: list[str] | None = None) -> int:
                     "jaccard": round(value, 4),
                     "indexable_a": "true" if a.set_name == "indexable" else "false",
                     "indexable_b": "true" if b.set_name == "indexable" else "false",
+                    "set_a": a.set_name,
+                    "set_b": b.set_name,
                     "_reason": reason,
                 }
             )
@@ -1027,10 +1044,21 @@ def main(argv: list[str] | None = None) -> int:
     args.csv.parent.mkdir(parents=True, exist_ok=True)
     with args.csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["page_a", "page_b", "width", "jaccard", "indexable_a", "indexable_b"])
+        writer.writerow(
+            ["page_a", "page_b", "width", "jaccard", "indexable_a", "indexable_b", "set_a", "set_b"]
+        )
         for row in rows_out:
             writer.writerow(
-                [row["page_a"], row["page_b"], row["width"], row["jaccard"], row["indexable_a"], row["indexable_b"]]
+                [
+                    row["page_a"],
+                    row["page_b"],
+                    row["width"],
+                    row["jaccard"],
+                    row["indexable_a"],
+                    row["indexable_b"],
+                    row["set_a"],
+                    row["set_b"],
+                ]
             )
 
     rendered_slugs = {row.set_name: set() for row in rendered}
@@ -1038,6 +1066,12 @@ def main(argv: list[str] | None = None) -> int:
         rendered_slugs[row.set_name].add(row.slug)
     pairs_flagged = len(rows_out)
     indexable_pairs = sum(1 for row in rows_out if row["indexable_a"] == "true" and row["indexable_b"] == "true")
+    # A hub is indexable by Phase 5's rule but is not a medicine page, so it is counted on its own
+    # line rather than folded into the indexable-to-indexable figure the gate reads.
+    hub_pairs = sum(1 for row in rows_out if row["set_a"] == "hub" and row["set_b"] == "hub")
+    hub_to_page_pairs = sum(
+        1 for row in rows_out if (row["set_a"] == "hub") != (row["set_b"] == "hub")
+    )
     runtime_minutes = round((time.time() - started) / 60.0, 2)
 
     summary = {
@@ -1079,6 +1113,8 @@ def main(argv: list[str] | None = None) -> int:
         "perWidth": per_width,
         "pairsFlagged": pairs_flagged,
         "indexablePairsFlagged": indexable_pairs,
+        "hubPairsFlagged": hub_pairs,
+        "hubToPagePairsFlagged": hub_to_page_pairs,
         "reasons": {k: v for k, v in sorted(reason_counts.items(), key=lambda kv: -kv[1]["pairs"])},
         "exclusions": EXCLUDE_SELECTOR,
         "runtimeMinutes": runtime_minutes,
@@ -1101,6 +1137,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{w['indexablePairsFlagged']} of them indexable-to-indexable"
         )
     print(f"pairs flagged at >= {args.threshold}: {pairs_flagged} ({indexable_pairs} indexable)")
+    print(f"  hub-to-hub: {hub_pairs}; hub-to-page: {hub_to_page_pairs}")
     for reason, counts in summary["reasons"].items():
         print(f"  {reason}: {counts['pairs']} pairs, {counts['indexablePairs']} indexable")
     for width in sorted(per_width):

@@ -86,8 +86,8 @@ REVAMP = REPO_ROOT / "data" / "revamp"
 RELEASE_ROOT = REPO_ROOT / "data" / "release"
 LICENSES_MD = REPO_ROOT / "docs" / "data" / "LICENSES.md"
 
-CANONICAL = REVAMP / "identity" / "canonical-v3.ndjson"
-RELATIONS = REVAMP / "identity" / "relations-v3.parquet"
+CANONICAL = REVAMP / "identity" / "canonical-v5.ndjson"
+RELATIONS = REVAMP / "identity" / "relations-v5.parquet"
 PRESENCE = REVAMP / "presence-applicable-v5.ndjson"
 FIELDS_DIR = REVAMP / "fields-v2"
 INTERACTIONS = REVAMP / "interactions" / "interactions.parquet"
@@ -779,7 +779,7 @@ def write_readme(out_dir: Path, release_date: str, summary: dict, field_licences
     lines.append("")
     lines.append(
         f"`scripts/revamp/build_release.py`, run on {summary['builtAt']} against git commit "
-        f"`{summary['commit']}`. Inputs: `data/revamp/identity/canonical-v3.ndjson`, "
+        f"`{summary['commit']}`. Inputs: `data/revamp/identity/canonical-v5.ndjson`, "
         "`data/revamp/fields-v2`, `data/revamp/interactions/interactions.parquet`, "
         "`data/revamp/blocks`, `data/revamp/tier3-sections.parquet` and `data/revamp/derived-v2`."
     )

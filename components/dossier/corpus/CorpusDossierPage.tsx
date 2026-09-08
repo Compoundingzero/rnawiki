@@ -27,6 +27,7 @@ import { ContentsRailMarker } from './ContentsRailMarker'
 import { CorpusHeader } from './CorpusHeader'
 import { ExactRecord } from './ExactRecord'
 import { FormOfNote } from './FormOfNote'
+import { HubRows } from './HubRows'
 import { InteractionsBlock } from './InteractionsBlock'
 import { PatentBlock } from './PatentBlock'
 import { QuestionBlock } from './QuestionBlock'
@@ -107,6 +108,7 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
               <RegionGlyph />
               <ExactRecord identifiers={dossier.identifiers} />
               <RelationsRows relations={dossier.relations} />
+              <HubRows hubs={dossier.hubs} />
             </>
           )}
 

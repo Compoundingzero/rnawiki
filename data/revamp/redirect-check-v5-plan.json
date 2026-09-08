@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-07T21:24:28Z",
+  "step": "3.5",
+  "inputs": {
+    "dispositions": "data/corpus-20k/reconciliation/dispositions.ndjson",
+    "productionRedirectTable": "medicine_slug_redirects (CA-pinned read)",
+    "plan": "data/revamp/identity/redirect-plan-v5.csv",
+    "canonical": "data/revamp/identity/canonical-v5.ndjson"
+  },
+  "plan": {
+    "universe": 9857,
+    "redirectRows": 1044,
+    "productionRows": 870,
+    "planRows": 174,
+    "liveSlugsAfterPlan": 28657,
+    "servedDirectly": 8863,
+    "servedByOneHop": 1044,
+    "orphans": [],
+    "orphanCount": 0,
+    "chains": [],
+    "chainCount": 0,
+    "conflicts": [],
+    "conflictCount": 0,
+    "pass": true
+  },
+  "live": {
+    "pass": null,
+    "note": "skipped with --skip-live"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T13:00:34Z",
+  "generatedAt": "2026-09-07T21:23:33Z",
   "step": "3.4 application",
   "inputs": {
     "apply": "data/revamp/identity/apply-list.csv",
@@ -444,6 +444,2105 @@
         "reason": "MERGED into K1:P699N4QOWE by the adjudicated identity decisions (3.4)"
       }
     ]
+  },
+  "v5": {
+    "spec": "docs/specs/phase4-generators.md#12",
+    "pages": {
+      "v3": 28818,
+      "v5": 28709,
+      "mergedAway": 113
+    },
+    "merges351a": {
+      "rule": "R1-IDENTICAL-UNII over an FDA 351(a) licence; the biosimilar exception does not apply (section 12)",
+      "merged": 109,
+      "pagesByOutcome": {
+        "merged into the unsuffixed INN page under R1 (identical UNII)": 109,
+        "no single live page prints the unsuffixed name with the same UNII": 5,
+        "the Purple Book licenses this proper name under 351(k)": 88
+      },
+      "applied": [
+        {
+          "suffixed": "K1:06P3KLK2J8#gxbm",
+          "suffixedName": "Glofitamab-Gxbm",
+          "inn": "K1:06P3KLK2J8",
+          "innName": "Glofitamab",
+          "unii": "06P3KLK2J8",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761309"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "glofitamab-gxbm",
+          "innSlug": "glofitamab"
+        },
+        {
+          "suffixed": "K1:09495UIM6V#bkzx",
+          "suffixedName": "Bimekizumab-Bkzx",
+          "inn": "K1:09495UIM6V",
+          "innName": "Bimekizumab",
+          "unii": "09495UIM6V",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761151"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "bimekizumab-bkzx",
+          "innSlug": "bimekizumab"
+        },
+        {
+          "suffixed": "K1:0JJ21K6L2I#bbfg",
+          "suffixedName": "Pozelimab-Bbfg",
+          "inn": "K1:0JJ21K6L2I",
+          "innName": "Pozelimab",
+          "unii": "0JJ21K6L2I",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761339"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "pozelimab-bbfg",
+          "innSlug": "pozelimab"
+        },
+        {
+          "suffixed": "K1:0JSR7Z0NB6#vmjw",
+          "suffixedName": "Amivantamab-Vmjw",
+          "inn": "K1:0JSR7Z0NB6",
+          "innName": "Amivantamab",
+          "unii": "0JSR7Z0NB6",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761210"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "amivantamab-vmjw",
+          "innSlug": "amivantamab"
+        },
+        {
+          "suffixed": "K1:0KVO411B3N#jsgr",
+          "suffixedName": "Tislelizumab-Jsgr",
+          "inn": "K1:0KVO411B3N",
+          "innName": "Tislelizumab",
+          "unii": "0KVO411B3N",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761232"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "tislelizumab-jsgr",
+          "innSlug": "tislelizumab"
+        },
+        {
+          "suffixed": "K1:0QI90BTJ37#csrk",
+          "suffixedName": "Sotatercept-Csrk",
+          "inn": "K1:0QI90BTJ37",
+          "innName": "Sotatercept",
+          "unii": "0QI90BTJ37",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761363"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "sotatercept-csrk",
+          "innSlug": "sotatercept"
+        },
+        {
+          "suffixed": "K1:0UB3OA67O7#hncq",
+          "suffixedName": "Marstacimab-Hncq",
+          "inn": "K1:0UB3OA67O7",
+          "innName": "Marstacimab",
+          "unii": "0UB3OA67O7",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761369"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "marstacimab-hncq",
+          "innSlug": "marstacimab"
+        },
+        {
+          "suffixed": "K1:105J35OE21#avwa",
+          "suffixedName": "Aducanumab-avwa",
+          "inn": "K1:105J35OE21",
+          "innName": "Aducanumab",
+          "unii": "105J35OE21",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761178"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "aducanumab-avwa",
+          "innSlug": "aducanumab"
+        },
+        {
+          "suffixed": "K1:12PYH0FTU9#irmb",
+          "suffixedName": "Lecanemab-Irmb",
+          "inn": "K1:12PYH0FTU9",
+          "innName": "Lecanemab",
+          "unii": "12PYH0FTU9",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761269",
+            "761375"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "lecanemab-irmb",
+          "innSlug": "lecanemab"
+        },
+        {
+          "suffixed": "K1:1ADB65P1KK#azbt",
+          "suffixedName": "Donanemab-Azbt",
+          "inn": "K1:1ADB65P1KK",
+          "innName": "Donanemab",
+          "unii": "1ADB65P1KK",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761248"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "donanemab-azbt",
+          "innSlug": "donanemab"
+        },
+        {
+          "suffixed": "K1:1PHP3QG5PZ#liga",
+          "suffixedName": "Lerodalcibep-Liga",
+          "inn": "K1:1PHP3QG5PZ",
+          "innName": "Lerodalcibep",
+          "unii": "1PHP3QG5PZ",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761427"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "lerodalcibep-liga",
+          "innSlug": "lerodalcibep"
+        },
+        {
+          "suffixed": "K1:2372V1TKXK#flyo",
+          "suffixedName": "Lanadelumab-Flyo",
+          "inn": "K1:2372V1TKXK",
+          "innName": "Lanadelumab",
+          "unii": "2372V1TKXK",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761090"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "lanadelumab-flyo",
+          "innSlug": "lanadelumab"
+        },
+        {
+          "suffixed": "K1:25E79B5CTM#cxdl",
+          "suffixedName": "Denileukin Diftitox-Cxdl",
+          "inn": "K1:25E79B5CTM",
+          "innName": "Denileukin diftitox",
+          "unii": "25E79B5CTM",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761312"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "denileukin-diftitox-cxdl",
+          "innSlug": "denileukin-diftitox"
+        },
+        {
+          "suffixed": "K1:2NDX4B6N8F#tdfk",
+          "suffixedName": "Moxetumomab Pasudotox-Tdfk",
+          "inn": "K1:2NDX4B6N8F",
+          "innName": "Moxetumomab pasudotox",
+          "unii": "2NDX4B6N8F",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761104"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "moxetumomab-pasudotox-tdfk",
+          "innSlug": "moxetumomab-pasudotox"
+        },
+        {
+          "suffixed": "K1:2S9ZZM9Q9V#vikg",
+          "suffixedName": "Bevacizumab-Vikg",
+          "inn": "K1:2S9ZZM9Q9V",
+          "innName": "Bevacizumab",
+          "unii": "2S9ZZM9Q9V",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761320"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "bevacizumab-vikg",
+          "innSlug": "bevacizumab"
+        },
+        {
+          "suffixed": "K1:2Y3T5IF01Z#dlwr",
+          "suffixedName": "Retifanlimab-Dlwr",
+          "inn": "K1:2Y3T5IF01Z",
+          "innName": "Retifanlimab",
+          "unii": "2Y3T5IF01Z",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761334"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "retifanlimab-dlwr",
+          "innSlug": "retifanlimab"
+        },
+        {
+          "suffixed": "K1:32W6AJL0DY#gxii",
+          "suffixedName": "Garadacimab-Gxii",
+          "inn": "K1:32W6AJL0DY",
+          "innName": "Garadacimab",
+          "unii": "32W6AJL0DY",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761367"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "garadacimab-gxii",
+          "innSlug": "garadacimab"
+        },
+        {
+          "suffixed": "K1:38RL9AE51Q#fnia",
+          "suffixedName": "Anifrolumab-Fnia",
+          "inn": "K1:38RL9AE51Q",
+          "innName": "Anifrolumab",
+          "unii": "38RL9AE51Q",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761123",
+            "761451"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "anifrolumab-fnia",
+          "innSlug": "anifrolumab"
+        },
+        {
+          "suffixed": "K1:3S252O2Z4X#lzsg",
+          "suffixedName": "Emapalumab-Lzsg",
+          "inn": "K1:3S252O2Z4X",
+          "innName": "Emapalumab",
+          "unii": "3S252O2Z4X",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761107"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "emapalumab-lzsg",
+          "innSlug": "emapalumab"
+        },
+        {
+          "suffixed": "K1:3VHF2ZD92J#aqqg",
+          "suffixedName": "Romosozumab-Aqqg",
+          "inn": "K1:3VHF2ZD92J",
+          "innName": "Romosozumab",
+          "unii": "3VHF2ZD92J",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761062"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "romosozumab-aqqg",
+          "innSlug": "romosozumab"
+        },
+        {
+          "suffixed": "K1:4SED7F4BSG#atga",
+          "suffixedName": "Cipaglucosidase Alfa-Atga",
+          "inn": "K1:4SED7F4BSG",
+          "innName": "Cipaglucosidase alfa",
+          "unii": "4SED7F4BSG",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761204"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "cipaglucosidase-alfa-atga",
+          "innSlug": "cipaglucosidase-alfa"
+        },
+        {
+          "suffixed": "K1:4W3KFI3TN3#tgvs",
+          "suffixedName": "Talquetamab-Tgvs",
+          "inn": "K1:4W3KFI3TN3",
+          "innName": "Talquetamab",
+          "unii": "4W3KFI3TN3",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761342"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "talquetamab-tgvs",
+          "innSlug": "talquetamab"
+        },
+        {
+          "suffixed": "K1:4YV4KW88GD#nbln",
+          "suffixedName": "Pegzilarginase-Nbln",
+          "inn": "K1:4YV4KW88GD",
+          "innName": "Pegzilarginase",
+          "unii": "4YV4KW88GD",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761211"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "pegzilarginase-nbln",
+          "innSlug": "pegzilarginase"
+        },
+        {
+          "suffixed": "K1:54534MX6Z9#cqyv",
+          "suffixedName": "Teclistamab-Cqyv",
+          "inn": "K1:54534MX6Z9",
+          "innName": "Teclistamab",
+          "unii": "54534MX6Z9",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761291"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "teclistamab-cqyv",
+          "innSlug": "teclistamab"
+        },
+        {
+          "suffixed": "K1:55KHL3P693#gnlm",
+          "suffixedName": "Galcanezumab-Gnlm",
+          "inn": "K1:55KHL3P693",
+          "innName": "Galcanezumab",
+          "unii": "55KHL3P693",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761063"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "galcanezumab-gnlm",
+          "innSlug": "galcanezumab"
+        },
+        {
+          "suffixed": "K1:5IB2J79MCX#sbzo",
+          "suffixedName": "Spesolimab-Sbzo",
+          "inn": "K1:5IB2J79MCX",
+          "innName": "Spesolimab",
+          "unii": "5IB2J79MCX",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761244"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "spesolimab-sbzo",
+          "innSlug": "spesolimab"
+        },
+        {
+          "suffixed": "K1:5UPW5HJW3O#vuxw",
+          "suffixedName": "Efbemalenograstim Alfa-Vuxw",
+          "inn": "K1:5UPW5HJW3O",
+          "innName": "Efbemalenograstim alfa",
+          "unii": "5UPW5HJW3O",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761134"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "efbemalenograstim-alfa-vuxw",
+          "innSlug": "efbemalenograstim-alfa"
+        },
+        {
+          "suffixed": "K1:68603V9EAF#mtci",
+          "suffixedName": "Concizumab-Mtci",
+          "inn": "K1:68603V9EAF",
+          "innName": "Concizumab",
+          "unii": "68603V9EAF",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761315"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "concizumab-mtci",
+          "innSlug": "concizumab"
+        },
+        {
+          "suffixed": "K1:6D5766Q4OP#rpcp",
+          "suffixedName": "Olipudase Alfa-Rpcp",
+          "inn": "K1:6D5766Q4OP",
+          "innName": "Olipudase alfa",
+          "unii": "6D5766Q4OP",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761261"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "olipudase-alfa-rpcp",
+          "innSlug": "olipudase-alfa"
+        },
+        {
+          "suffixed": "K1:6D848RA61B#ghla",
+          "suffixedName": "Somatrogon-Ghla",
+          "inn": "K1:6D848RA61B",
+          "innName": "Somatrogon",
+          "unii": "6D848RA61B",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761184"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "somatrogon-ghla",
+          "innSlug": "somatrogon"
+        },
+        {
+          "suffixed": "K1:6QVL057INT#rwlc",
+          "suffixedName": "Cemiplimab-Rwlc",
+          "inn": "K1:6QVL057INT",
+          "innName": "Cemiplimab",
+          "unii": "6QVL057INT",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761097"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "cemiplimab-rwlc",
+          "innSlug": "cemiplimab"
+        },
+        {
+          "suffixed": "K1:74T7185BMM#cdon",
+          "suffixedName": "Inebilizumab-Cdon",
+          "inn": "K1:74T7185BMM",
+          "innName": "Inebilizumab",
+          "unii": "74T7185BMM",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761142"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "inebilizumab-cdon",
+          "innSlug": "inebilizumab"
+        },
+        {
+          "suffixed": "K1:74X82ST8Q1#dlle",
+          "suffixedName": "Tarlatamab-Dlle",
+          "inn": "K1:74X82ST8Q1",
+          "innName": "TARLATAMAB",
+          "unii": "74X82ST8Q1",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761344"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "tarlatamab-dlle",
+          "innSlug": "tarlatamab"
+        },
+        {
+          "suffixed": "K1:7K5O7P6QIU#lpyl",
+          "suffixedName": "Loncastuximab Tesirine-Lpyl",
+          "inn": "K1:7K5O7P6QIU",
+          "innName": "Loncastuximab tesirine",
+          "unii": "7K5O7P6QIU",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761196"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "loncastuximab-tesirine-lpyl",
+          "innSlug": "loncastuximab-tesirine"
+        },
+        {
+          "suffixed": "K1:7TK323DLA0#pmln",
+          "suffixedName": "Nogapendekin alfa Inbakicept-Pmln",
+          "inn": "K1:7TK323DLA0",
+          "innName": "NOGAPENDEKIN ALFA INBAKICEPT",
+          "unii": "7TK323DLA0",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761336"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "nogapendekin-alfa-inbakicept-pmln",
+          "innSlug": "nogapendekin-alfa-inbakicept"
+        },
+        {
+          "suffixed": "K1:7XZ4062R17#vjbk",
+          "suffixedName": "Vestronidase Alfa-Vjbk",
+          "inn": "K1:7XZ4062R17",
+          "innName": "Vestronidase alfa",
+          "unii": "7XZ4062R17",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761047"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "vestronidase-alfa-vjbk",
+          "innSlug": "vestronidase-alfa"
+        },
+        {
+          "suffixed": "K1:8202AY8I7H#jjmr",
+          "suffixedName": "Eptinezumab-Jjmr",
+          "inn": "K1:8202AY8I7H",
+          "innName": "Eptinezumab",
+          "unii": "8202AY8I7H",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761119"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "eptinezumab-jjmr",
+          "innSlug": "eptinezumab"
+        },
+        {
+          "suffixed": "K1:87M90CV8NC#aahu",
+          "suffixedName": "Nipocalimab-Aahu",
+          "inn": "K1:87M90CV8NC",
+          "innName": "Nipocalimab",
+          "unii": "87M90CV8NC",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761430"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "nipocalimab-aahu",
+          "innSlug": "nipocalimab"
+        },
+        {
+          "suffixed": "K1:8FOJ430U94#beco",
+          "suffixedName": "Somapacitan-Beco",
+          "inn": "K2:NAKSIOUBFDBTSW-ITMZJIMRSA-N",
+          "innName": "Somapacitan",
+          "unii": "8FOJ430U94",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761156"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "somapacitan-beco",
+          "innSlug": "somapacitan"
+        },
+        {
+          "suffixed": "K1:8JXN261VVA#tpzi",
+          "suffixedName": "Toripalimab-Tpzi",
+          "inn": "K1:8JXN261VVA",
+          "innName": "Toripalimab",
+          "unii": "8JXN261VVA",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761240"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "toripalimab-tpzi",
+          "innSlug": "toripalimab"
+        },
+        {
+          "suffixed": "K1:8M7V7Q6537#iwxj",
+          "suffixedName": "Pegunigalsidase Alfa-Iwxj",
+          "inn": "K1:8M7V7Q6537",
+          "innName": "Pegunigalsidase alfa",
+          "unii": "8M7V7Q6537",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761161"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "pegunigalsidase-alfa-iwxj",
+          "innSlug": "pegunigalsidase-alfa"
+        },
+        {
+          "suffixed": "K1:8ZHS5657EH#erzs",
+          "suffixedName": "Tagraxofusp-Erzs",
+          "inn": "K1:8ZHS5657EH",
+          "innName": "Tagraxofusp",
+          "unii": "8ZHS5657EH",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761116"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "tagraxofusp-erzs",
+          "innSlug": "tagraxofusp"
+        },
+        {
+          "suffixed": "K1:90ZX3Q3FR7#rzaa",
+          "suffixedName": "Risankizumab-Rzaa",
+          "inn": "K1:90ZX3Q3FR7",
+          "innName": "Risankizumab",
+          "unii": "90ZX3Q3FR7",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761105",
+            "761262"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "risankizumab-rzaa",
+          "innSlug": "risankizumab"
+        },
+        {
+          "suffixed": "K1:976X9VXC3Z#tllv",
+          "suffixedName": "Telisotuzumab Vedotin-Tllv",
+          "inn": "K1:976X9VXC3Z",
+          "innName": "Telisotuzumab vedotin",
+          "unii": "976X9VXC3Z",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761384"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "telisotuzumab-vedotin-tllv",
+          "innSlug": "telisotuzumab-vedotin"
+        },
+        {
+          "suffixed": "K1:98DE7VN88D#gynx",
+          "suffixedName": "Mirvetuximab Soravtansine-Gynx",
+          "inn": "K1:98DE7VN88D",
+          "innName": "Mirvetuximab soravtansine",
+          "unii": "98DE7VN88D",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761310"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "mirvetuximab-soravtansine-gynx",
+          "innSlug": "mirvetuximab-soravtansine"
+        },
+        {
+          "suffixed": "K1:9K8GNJ2874#gqgk",
+          "suffixedName": "Naxitamab-Gqgk",
+          "inn": "K1:9K8GNJ2874",
+          "innName": "Naxitamab",
+          "unii": "9K8GNJ2874",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761171"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "naxitamab-gqgk",
+          "innSlug": "naxitamab"
+        },
+        {
+          "suffixed": "K1:9R3D3Y0UHS#lvlr",
+          "suffixedName": "Elapegademase-Lvlr",
+          "inn": "K1:9R3D3Y0UHS",
+          "innName": "Elapegademase",
+          "unii": "9R3D3Y0UHS",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761092"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "elapegademase-lvlr",
+          "innSlug": "elapegademase"
+        },
+        {
+          "suffixed": "K1:AE72RB1W1X#zbco",
+          "suffixedName": "Zenocutuzumab-Zbco",
+          "inn": "K1:AE72RB1W1X",
+          "innName": "Zenocutuzumab",
+          "unii": "AE72RB1W1X",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761352"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "zenocutuzumab-zbco",
+          "innSlug": "zenocutuzumab"
+        },
+        {
+          "suffixed": "K1:AQK7UBA1LS#aamt",
+          "suffixedName": "Luspatercept-Aamt",
+          "inn": "K1:AQK7UBA1LS",
+          "innName": "Luspatercept",
+          "unii": "AQK7UBA1LS",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761136"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "luspatercept-aamt",
+          "innSlug": "luspatercept"
+        },
+        {
+          "suffixed": "K1:B6E7K36KT8#bkbj",
+          "suffixedName": "Cenegermin-Bkbj",
+          "inn": "K1:B6E7K36KT8",
+          "innName": "Cenegermin",
+          "unii": "B6E7K36KT8",
+          "licenceTypes": [
+            "351(a)"
+          ],
+          "blaNumbers": [
+            "761094"
+          ],
+          "sourceDate": "2026-08-31",
+          "suffixedSlug": "cenegermin-bkbj",
+          "innSlug": "cenegermin"
+        }
+      ],
+      "provenance": {
+        "<suffixed proper name> is the same substance as <INN>": [
+          "data/sources/orange-purple-book/mapped.parquet purpleBookProducts rows whose proper_name is the name this page prints, license_type 351(a)",
+          "canonical-v2 unii on both pages, identical",
+          "the unsuffixed name is printed by exactly one other live page"
+        ]
+      }
+    },
+    "biosimilarEdges": {
+      "edgesBefore": 82,
+      "edgesKept": 81,
+      "edgesDropped": 1,
+      "droppedPages": [
+        "K1:AF75XOF6W3#rmbw"
+      ]
+    },
+    "biosimilars": {
+      "biosimilarPagesConfirmedByTheRegister": 81,
+      "biosimilarPagesWithMovedStudies": 6,
+      "studiesMoved": 831,
+      "relationRowsRewrittenToTheSection12Sentence": 81,
+      "pagesByOutcome": {
+        "licensed as a biosimilar of the page it points at": 81
+      }
+    },
+    "sameNamePartition": {
+      "rule": "R14d-SAME-NAME-REGISTER-RANK",
+      "families": 189,
+      "pagesPartitioned": 200,
+      "pagesWithMovedStudies": 102,
+      "studiesMoved": 5281,
+      "studiesByOutcome": {
+        "studies moved to the register-ranked page": 5281,
+        "the page records no registry study": 78,
+        "the study's interventions name more than the shared name": 2799
+      },
+      "familiesListed": [
+        {
+          "sharedName": "7 keto dehydroepiandrosterone",
+          "slugStem": "7-keto-dehydroepiandrosterone",
+          "winner": "K1:2334LJD2E9",
+          "losers": [
+            "K2:KPRGOTLNGIBVFL-VYLIMTTQSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:2334LJD2E9",
+              "keyRank": "K1",
+              "slug": "7-keto-dehydroepiandrosterone",
+              "printedName": "7-KETO-DEHYDROEPIANDROSTERONE"
+            },
+            {
+              "key": "K2:KPRGOTLNGIBVFL-VYLIMTTQSA-N",
+              "keyRank": "K2",
+              "slug": "7-keto-dehydroepiandrosterone-2",
+              "printedName": "7-KETO-DEHYDROEPIANDROSTERONE"
+            }
+          ]
+        },
+        {
+          "sharedName": "acarbose",
+          "slugStem": "acarbose",
+          "winner": "K1:T58MSI464G",
+          "losers": [
+            "K2:XUFXOAAUWZOOIT-UGEKTDRHSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:T58MSI464G",
+              "keyRank": "K1",
+              "slug": "acarbose",
+              "printedName": "Acarbose"
+            },
+            {
+              "key": "K2:XUFXOAAUWZOOIT-UGEKTDRHSA-N",
+              "keyRank": "K2",
+              "slug": "acarbose-2",
+              "printedName": "Acarbose"
+            }
+          ]
+        },
+        {
+          "sharedName": "acebutolol",
+          "slugStem": "acebutolol",
+          "winner": "K1:856NOF5HE9",
+          "losers": [
+            "K1:67P356D8GH"
+          ],
+          "ranking": [
+            {
+              "key": "K1:856NOF5HE9",
+              "keyRank": "K1",
+              "slug": "acebutolol",
+              "printedName": "Acebutolol"
+            },
+            {
+              "key": "K1:67P356D8GH",
+              "keyRank": "K1",
+              "slug": "acebutolol-2",
+              "printedName": "Acebutolol"
+            }
+          ]
+        },
+        {
+          "sharedName": "aceneuramic acid",
+          "slugStem": "aceneuramic-acid",
+          "winner": "K1:GZP2782OP0",
+          "losers": [
+            "K2:SQVRNKJHWKZAKO-USOVHJGOSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:GZP2782OP0",
+              "keyRank": "K1",
+              "slug": "aceneuramic-acid",
+              "printedName": "Aceneuramic acid"
+            },
+            {
+              "key": "K2:SQVRNKJHWKZAKO-USOVHJGOSA-N",
+              "keyRank": "K2",
+              "slug": "aceneuramic-acid-2",
+              "printedName": "Aceneuramic acid"
+            }
+          ]
+        },
+        {
+          "sharedName": "alclometasone",
+          "slugStem": "alclometasone",
+          "winner": "K1:136H45TB7B",
+          "losers": [
+            "HOLD:existing:alclometasone"
+          ],
+          "ranking": [
+            {
+              "key": "K1:136H45TB7B",
+              "keyRank": "K1",
+              "slug": "alclometasone-2",
+              "printedName": "ALCLOMETASONE"
+            },
+            {
+              "key": "HOLD:existing:alclometasone",
+              "keyRank": "HOLD",
+              "slug": "alclometasone",
+              "printedName": "Alclometasone"
+            }
+          ]
+        },
+        {
+          "sharedName": "alfuzosin",
+          "slugStem": "alfuzosin",
+          "winner": "K1:H9XPE51RF2",
+          "losers": [
+            "K1:90347YTW5F"
+          ],
+          "ranking": [
+            {
+              "key": "K1:H9XPE51RF2",
+              "keyRank": "K1",
+              "slug": "alfuzosin",
+              "printedName": "Alfuzosin"
+            },
+            {
+              "key": "K1:90347YTW5F",
+              "keyRank": "K1",
+              "slug": "alfuzosin-2",
+              "printedName": "Alfuzosin"
+            }
+          ]
+        },
+        {
+          "sharedName": "alpha pinene",
+          "slugStem": "alpha-pinene",
+          "winner": "K1:H6CM4TWH1W",
+          "losers": [
+            "K2:GRWFGVWFFZKLTI-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:H6CM4TWH1W",
+              "keyRank": "K1",
+              "slug": "alpha-pinene",
+              "printedName": "Alpha-Pinene"
+            },
+            {
+              "key": "K2:GRWFGVWFFZKLTI-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "alpha-pinene-2",
+              "printedName": "ALPHA-PINENE"
+            }
+          ]
+        },
+        {
+          "sharedName": "alpha terpineol",
+          "slugStem": "alpha-terpineol",
+          "winner": "K1:21M14KDA67",
+          "losers": [
+            "K1:21334LVV8W",
+            "K1:N9K6X87HU9"
+          ],
+          "ranking": [
+            {
+              "key": "K1:21M14KDA67",
+              "keyRank": "K1",
+              "slug": "alpha-terpineol",
+              "printedName": "Alpha-Terpineol"
+            },
+            {
+              "key": "K1:21334LVV8W",
+              "keyRank": "K1",
+              "slug": "alpha-terpineol-2",
+              "printedName": ".ALPHA.-TERPINEOL"
+            },
+            {
+              "key": "K1:N9K6X87HU9",
+              "keyRank": "K1",
+              "slug": "alpha-terpineol-3",
+              "printedName": "ALPHA-TERPINEOL"
+            }
+          ]
+        },
+        {
+          "sharedName": "amdinocillin",
+          "slugStem": "amdinocillin",
+          "winner": "K1:V10579P3QZ",
+          "losers": [
+            "HOLD:existing:amdinocillin"
+          ],
+          "ranking": [
+            {
+              "key": "K1:V10579P3QZ",
+              "keyRank": "K1",
+              "slug": "amdinocillin-2",
+              "printedName": "Amdinocillin"
+            },
+            {
+              "key": "HOLD:existing:amdinocillin",
+              "keyRank": "HOLD",
+              "slug": "amdinocillin",
+              "printedName": "Amdinocillin"
+            }
+          ]
+        },
+        {
+          "sharedName": "aminoglutethimide",
+          "slugStem": "aminoglutethimide",
+          "winner": "K1:LUC985IS6T",
+          "losers": [
+            "K1:0O54ZQ14I9"
+          ],
+          "ranking": [
+            {
+              "key": "K1:LUC985IS6T",
+              "keyRank": "K1",
+              "slug": "aminoglutethimide",
+              "printedName": "Aminoglutethimide"
+            },
+            {
+              "key": "K1:0O54ZQ14I9",
+              "keyRank": "K1",
+              "slug": "aminoglutethimide-2",
+              "printedName": "Aminoglutethimide"
+            }
+          ]
+        },
+        {
+          "sharedName": "angiotensin ii",
+          "slugStem": "angiotensin-ii",
+          "winner": "K1:M089EFU921",
+          "losers": [
+            "K2:CUKWUWBLQQDQAC-VEQWQPCFSA-N",
+            "K2:CZGUSIXMZVURDU-JZXHSEFVSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:M089EFU921",
+              "keyRank": "K1",
+              "slug": "angiotensin-ii",
+              "printedName": "Angiotensin II"
+            },
+            {
+              "key": "K2:CUKWUWBLQQDQAC-VEQWQPCFSA-N",
+              "keyRank": "K2",
+              "slug": "angiotensin-ii-2",
+              "printedName": "ANGIOTENSIN-II"
+            },
+            {
+              "key": "K2:CZGUSIXMZVURDU-JZXHSEFVSA-N",
+              "keyRank": "K2",
+              "slug": "angiotensin-ii-3",
+              "printedName": "Angiotensin ii"
+            }
+          ]
+        },
+        {
+          "sharedName": "apilimod",
+          "slugStem": "apilimod",
+          "winner": "K1:GFW2K84S4L",
+          "losers": [
+            "K2:VIUWNARVSJPVFA-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:GFW2K84S4L",
+              "keyRank": "K1",
+              "slug": "apilimod",
+              "printedName": "Apilimod"
+            },
+            {
+              "key": "K2:VIUWNARVSJPVFA-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "apilimod-2",
+              "printedName": "APILIMOD"
+            }
+          ]
+        },
+        {
+          "sharedName": "apramycin",
+          "slugStem": "apramycin",
+          "winner": "K1:388K3TR36Z",
+          "losers": [
+            "K2:XZNUGFQTQHRASN-PSDDYZKFSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:388K3TR36Z",
+              "keyRank": "K1",
+              "slug": "apramycin",
+              "printedName": "Apramycin"
+            },
+            {
+              "key": "K2:XZNUGFQTQHRASN-PSDDYZKFSA-N",
+              "keyRank": "K2",
+              "slug": "apramycin-2",
+              "printedName": "Apramycin"
+            }
+          ]
+        },
+        {
+          "sharedName": "arimoclomol",
+          "slugStem": "arimoclomol",
+          "winner": "K1:EUT3557RT5",
+          "losers": [
+            "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N",
+            "HOLD:existing:arimoclomol"
+          ],
+          "ranking": [
+            {
+              "key": "K1:EUT3557RT5",
+              "keyRank": "K1",
+              "slug": "arimoclomol-2",
+              "printedName": "Arimoclomol"
+            },
+            {
+              "key": "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N",
+              "keyRank": "K2",
+              "slug": "arimoclomol-3",
+              "printedName": "Arimoclomol"
+            },
+            {
+              "key": "HOLD:existing:arimoclomol",
+              "keyRank": "HOLD",
+              "slug": "arimoclomol",
+              "printedName": "Arimoclomol"
+            }
+          ]
+        },
+        {
+          "sharedName": "arsenic trioxide",
+          "slugStem": "arsenic-trioxide",
+          "winner": "K1:S7V92P67HO",
+          "losers": [
+            "K2:MOQADKPFYVWPSE-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:S7V92P67HO",
+              "keyRank": "K1",
+              "slug": "arsenic-trioxide",
+              "printedName": "Arsenic Trioxide"
+            },
+            {
+              "key": "K2:MOQADKPFYVWPSE-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "arsenic-trioxide-2",
+              "printedName": "ARSENIC TRIOXIDE"
+            }
+          ]
+        },
+        {
+          "sharedName": "arterolane",
+          "slugStem": "arterolane",
+          "winner": "K1:3N1TN351VB",
+          "losers": [
+            "K2:VXYZBLXGCYNIHP-CAGINOIPSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:3N1TN351VB",
+              "keyRank": "K1",
+              "slug": "arterolane",
+              "printedName": "Arterolane"
+            },
+            {
+              "key": "K2:VXYZBLXGCYNIHP-CAGINOIPSA-N",
+              "keyRank": "K2",
+              "slug": "arterolane-2",
+              "printedName": "Arterolane"
+            }
+          ]
+        },
+        {
+          "sharedName": "asenapine",
+          "slugStem": "asenapine",
+          "winner": "K1:JKZ19V908O",
+          "losers": [
+            "K2:VSWBSWWIRNCQIJ-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:JKZ19V908O",
+              "keyRank": "K1",
+              "slug": "asenapine",
+              "printedName": "Asenapine"
+            },
+            {
+              "key": "K2:VSWBSWWIRNCQIJ-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "asenapine-2",
+              "printedName": "Asenapine"
+            }
+          ]
+        },
+        {
+          "sharedName": "asiaticoside",
+          "slugStem": "asiaticoside",
+          "winner": "K1:PKO39VY215",
+          "losers": [
+            "K2:WYQVAPGDARQUBT-JVGKFWCXSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:PKO39VY215",
+              "keyRank": "K1",
+              "slug": "asiaticoside",
+              "printedName": "Asiaticoside"
+            },
+            {
+              "key": "K2:WYQVAPGDARQUBT-JVGKFWCXSA-N",
+              "keyRank": "K2",
+              "slug": "asiaticoside-2",
+              "printedName": "ASIATICOSIDE"
+            }
+          ]
+        },
+        {
+          "sharedName": "atenolol",
+          "slugStem": "atenolol",
+          "winner": "K1:50VV3VW0TI",
+          "losers": [
+            "K1:YG132I00WY"
+          ],
+          "ranking": [
+            {
+              "key": "K1:50VV3VW0TI",
+              "keyRank": "K1",
+              "slug": "atenolol",
+              "printedName": "Atenolol"
+            },
+            {
+              "key": "K1:YG132I00WY",
+              "keyRank": "K1",
+              "slug": "atenolol-2",
+              "printedName": "ATENOLOL, (+)-"
+            }
+          ]
+        },
+        {
+          "sharedName": "becampanel",
+          "slugStem": "becampanel",
+          "winner": "K1:X3D0O800AJ",
+          "losers": [
+            "K2:DDOAQMGXVXFNSH-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:X3D0O800AJ",
+              "keyRank": "K1",
+              "slug": "becampanel",
+              "printedName": "Becampanel"
+            },
+            {
+              "key": "K2:DDOAQMGXVXFNSH-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "becampanel-2",
+              "printedName": "Becampanel"
+            }
+          ]
+        },
+        {
+          "sharedName": "benfotiamine",
+          "slugStem": "benfotiamine",
+          "winner": "K1:Y92OUS2H9B",
+          "losers": [
+            "K2:BTNNPSLJPBRMLZ-LGMDPLHJSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:Y92OUS2H9B",
+              "keyRank": "K1",
+              "slug": "benfotiamine",
+              "printedName": "Benfotiamine"
+            },
+            {
+              "key": "K2:BTNNPSLJPBRMLZ-LGMDPLHJSA-N",
+              "keyRank": "K2",
+              "slug": "benfotiamine-2",
+              "printedName": "Benfotiamine"
+            }
+          ]
+        },
+        {
+          "sharedName": "benzoin",
+          "slugStem": "benzoin",
+          "winner": "K1:BG0X2899M2",
+          "losers": [
+            "K1:L7J6A1NE81"
+          ],
+          "ranking": [
+            {
+              "key": "K1:BG0X2899M2",
+              "keyRank": "K1",
+              "slug": "benzoin",
+              "printedName": "Benzoin"
+            },
+            {
+              "key": "K1:L7J6A1NE81",
+              "keyRank": "K1",
+              "slug": "benzoin-2",
+              "printedName": "BENZOIN"
+            }
+          ]
+        },
+        {
+          "sharedName": "bepridil",
+          "slugStem": "bepridil",
+          "winner": "K1:M55RUL8T9C",
+          "losers": [
+            "K1:755BO701MA"
+          ],
+          "ranking": [
+            {
+              "key": "K1:M55RUL8T9C",
+              "keyRank": "K1",
+              "slug": "bepridil",
+              "printedName": "Bepridil"
+            },
+            {
+              "key": "K1:755BO701MA",
+              "keyRank": "K1",
+              "slug": "bepridil-2",
+              "printedName": "Bepridil"
+            }
+          ]
+        },
+        {
+          "sharedName": "beta pinene",
+          "slugStem": "beta-pinene",
+          "winner": "K1:IGO73S04D5",
+          "losers": [
+            "K2:WTARULDDTDQWMU-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:IGO73S04D5",
+              "keyRank": "K1",
+              "slug": "beta-pinene",
+              "printedName": "Beta-Pinene"
+            },
+            {
+              "key": "K2:WTARULDDTDQWMU-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "beta-pinene-2",
+              "printedName": "BETA-PINENE"
+            }
+          ]
+        },
+        {
+          "sharedName": "bisbentiamine",
+          "slugStem": "bisbentiamine",
+          "winner": "K1:MEI78CAM16",
+          "losers": [
+            "K2:IWXAZSAGYJHXPX-LYWFMZLMSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:MEI78CAM16",
+              "keyRank": "K1",
+              "slug": "bisbentiamine",
+              "printedName": "Bisbentiamine"
+            },
+            {
+              "key": "K2:IWXAZSAGYJHXPX-LYWFMZLMSA-N",
+              "keyRank": "K2",
+              "slug": "bisbentiamine-2",
+              "printedName": "Bisbentiamine"
+            }
+          ]
+        },
+        {
+          "sharedName": "bolandiol",
+          "slugStem": "bolandiol",
+          "winner": "K1:49SD6G16U5",
+          "losers": [
+            "K2:JFAXVZXNIGIDDA-ABBKQRNASA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:49SD6G16U5",
+              "keyRank": "K1",
+              "slug": "bolandiol",
+              "printedName": "Bolandiol"
+            },
+            {
+              "key": "K2:JFAXVZXNIGIDDA-ABBKQRNASA-N",
+              "keyRank": "K2",
+              "slug": "bolandiol-2",
+              "printedName": "Bolandiol"
+            }
+          ]
+        },
+        {
+          "sharedName": "boldenone",
+          "slugStem": "boldenone",
+          "winner": "K1:5H7I2IP58X",
+          "losers": [
+            "HOLD:existing:boldenone"
+          ],
+          "ranking": [
+            {
+              "key": "K1:5H7I2IP58X",
+              "keyRank": "K1",
+              "slug": "boldenone-2",
+              "printedName": "Boldenone"
+            },
+            {
+              "key": "HOLD:existing:boldenone",
+              "keyRank": "HOLD",
+              "slug": "boldenone",
+              "printedName": "Boldenone"
+            }
+          ]
+        },
+        {
+          "sharedName": "borneol",
+          "slugStem": "borneol",
+          "winner": "K1:1Y84986J9Q",
+          "losers": [
+            "K2:DTGKSKDOIYIVQL-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:1Y84986J9Q",
+              "keyRank": "K1",
+              "slug": "borneol",
+              "printedName": "Borneol"
+            },
+            {
+              "key": "K2:DTGKSKDOIYIVQL-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "borneol-2",
+              "printedName": "BORNEOL"
+            }
+          ]
+        },
+        {
+          "sharedName": "brompheniramine",
+          "slugStem": "brompheniramine",
+          "winner": "K1:Z4L2A7J0MC",
+          "losers": [
+            "K1:H57G17P2FN"
+          ],
+          "ranking": [
+            {
+              "key": "K1:Z4L2A7J0MC",
+              "keyRank": "K1",
+              "slug": "brompheniramine",
+              "printedName": "Brompheniramine"
+            },
+            {
+              "key": "K1:H57G17P2FN",
+              "keyRank": "K1",
+              "slug": "brompheniramine-2",
+              "printedName": "Brompheniramine"
+            }
+          ]
+        },
+        {
+          "sharedName": "buprenorphine",
+          "slugStem": "buprenorphine",
+          "winner": "K1:40D3SCR4GZ",
+          "losers": [
+            "K2:RMRJXGBAOAMLHD-CTAPUXPBSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:40D3SCR4GZ",
+              "keyRank": "K1",
+              "slug": "buprenorphine",
+              "printedName": "Buprenorphine"
+            },
+            {
+              "key": "K2:RMRJXGBAOAMLHD-CTAPUXPBSA-N",
+              "keyRank": "K2",
+              "slug": "buprenorphine-2",
+              "printedName": "Buprenorphine"
+            }
+          ]
+        },
+        {
+          "sharedName": "calanolide a",
+          "slugStem": "calanolide-a",
+          "winner": "K1:S5A9TQN46W",
+          "losers": [
+            "K2:NIDRYBLTWYFCFV-OAVHHTNSSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:S5A9TQN46W",
+              "keyRank": "K1",
+              "slug": "calanolide-a",
+              "printedName": "CALANOLIDE A"
+            },
+            {
+              "key": "K2:NIDRYBLTWYFCFV-OAVHHTNSSA-N",
+              "keyRank": "K2",
+              "slug": "calanolide-a-2",
+              "printedName": "(-)-CALANOLIDE A"
+            }
+          ]
+        },
+        {
+          "sharedName": "camphor",
+          "slugStem": "camphor",
+          "winner": "K1:N20HL7Q941",
+          "losers": [
+            "K1:213N3S8275",
+            "K2:DSSYKIVIOFKYAU-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:N20HL7Q941",
+              "keyRank": "K1",
+              "slug": "camphor",
+              "printedName": "Camphor"
+            },
+            {
+              "key": "K1:213N3S8275",
+              "keyRank": "K1",
+              "slug": "camphor-2",
+              "printedName": "(-)-CAMPHOR"
+            },
+            {
+              "key": "K2:DSSYKIVIOFKYAU-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "camphor-3",
+              "printedName": "CAMPHOR"
+            }
+          ]
+        },
+        {
+          "sharedName": "carnitine",
+          "slugStem": "carnitine",
+          "winner": "K1:U9VY0ZOK7A",
+          "losers": [
+            "K1:S7UI8SM58A"
+          ],
+          "ranking": [
+            {
+              "key": "K1:U9VY0ZOK7A",
+              "keyRank": "K1",
+              "slug": "carnitine",
+              "printedName": "Carnitine"
+            },
+            {
+              "key": "K1:S7UI8SM58A",
+              "keyRank": "K1",
+              "slug": "carnitine-2",
+              "printedName": "Carnitine"
+            }
+          ]
+        },
+        {
+          "sharedName": "carteolol",
+          "slugStem": "carteolol",
+          "winner": "K1:7Q2Q6Q87SS",
+          "losers": [
+            "K1:8NF31401XG"
+          ],
+          "ranking": [
+            {
+              "key": "K1:7Q2Q6Q87SS",
+              "keyRank": "K1",
+              "slug": "carteolol",
+              "printedName": "Carteolol"
+            },
+            {
+              "key": "K1:8NF31401XG",
+              "keyRank": "K1",
+              "slug": "carteolol-2",
+              "printedName": "Carteolol"
+            }
+          ]
+        },
+        {
+          "sharedName": "cenisertib",
+          "slugStem": "cenisertib",
+          "winner": "K1:5277GPA358",
+          "losers": [
+            "K2:KSOVGRCOLZZTPF-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:5277GPA358",
+              "keyRank": "K1",
+              "slug": "cenisertib",
+              "printedName": "Cenisertib"
+            },
+            {
+              "key": "K2:KSOVGRCOLZZTPF-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "cenisertib-2",
+              "printedName": "Cenisertib"
+            }
+          ]
+        },
+        {
+          "sharedName": "chlorcyclizine",
+          "slugStem": "chlorcyclizine",
+          "winner": "K1:5IY3F5T1FH",
+          "losers": [
+            "K1:M26C4IP44P"
+          ],
+          "ranking": [
+            {
+              "key": "K1:5IY3F5T1FH",
+              "keyRank": "K1",
+              "slug": "chlorcyclizine",
+              "printedName": "Chlorcyclizine"
+            },
+            {
+              "key": "K1:M26C4IP44P",
+              "keyRank": "K1",
+              "slug": "chlorcyclizine-2",
+              "printedName": "Chlorcyclizine"
+            }
+          ]
+        },
+        {
+          "sharedName": "chloroquine",
+          "slugStem": "chloroquine",
+          "winner": "K1:34P96M7C4K",
+          "losers": [
+            "K1:886U3H6UFF"
+          ],
+          "ranking": [
+            {
+              "key": "K1:34P96M7C4K",
+              "keyRank": "K1",
+              "slug": "chloroquine",
+              "printedName": "Chloroquine"
+            },
+            {
+              "key": "K1:886U3H6UFF",
+              "keyRank": "K1",
+              "slug": "chloroquine-2",
+              "printedName": "Chloroquine"
+            }
+          ]
+        },
+        {
+          "sharedName": "cisapride",
+          "slugStem": "cisapride",
+          "winner": "K1:UVL329170W",
+          "losers": [
+            "K2:DCSUBABJRXZOMT-UHFFFAOYSA-N",
+            "HOLD:existing:cisapride"
+          ],
+          "ranking": [
+            {
+              "key": "K1:UVL329170W",
+              "keyRank": "K1",
+              "slug": "cisapride-2",
+              "printedName": "Cisapride"
+            },
+            {
+              "key": "K2:DCSUBABJRXZOMT-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "cisapride-3",
+              "printedName": "Cisapride"
+            },
+            {
+              "key": "HOLD:existing:cisapride",
+              "keyRank": "HOLD",
+              "slug": "cisapride",
+              "printedName": "Cisapride"
+            }
+          ]
+        },
+        {
+          "sharedName": "clenbuterol",
+          "slugStem": "clenbuterol",
+          "winner": "K1:32SXB5VH2O",
+          "losers": [
+            "K1:XTZ6AXU7KN"
+          ],
+          "ranking": [
+            {
+              "key": "K1:32SXB5VH2O",
+              "keyRank": "K1",
+              "slug": "clenbuterol",
+              "printedName": "Clenbuterol"
+            },
+            {
+              "key": "K1:XTZ6AXU7KN",
+              "keyRank": "K1",
+              "slug": "clenbuterol-2",
+              "printedName": "Clenbuterol"
+            }
+          ]
+        },
+        {
+          "sharedName": "clobetasol",
+          "slugStem": "clobetasol",
+          "winner": "K1:ADN79D536H",
+          "losers": [
+            "HOLD:existing:clobetasol"
+          ],
+          "ranking": [
+            {
+              "key": "K1:ADN79D536H",
+              "keyRank": "K1",
+              "slug": "clobetasol-2",
+              "printedName": "CLOBETASOL"
+            },
+            {
+              "key": "HOLD:existing:clobetasol",
+              "keyRank": "HOLD",
+              "slug": "clobetasol",
+              "printedName": "Clobetasol"
+            }
+          ]
+        },
+        {
+          "sharedName": "clovoxamine",
+          "slugStem": "clovoxamine",
+          "winner": "K1:7I22J7RY2A",
+          "losers": [
+            "K2:XXPVSQRPGBUFKM-VKAVYKQESA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:7I22J7RY2A",
+              "keyRank": "K1",
+              "slug": "clovoxamine",
+              "printedName": "Clovoxamine"
+            },
+            {
+              "key": "K2:XXPVSQRPGBUFKM-VKAVYKQESA-N",
+              "keyRank": "K2",
+              "slug": "clovoxamine-2",
+              "printedName": "Clovoxamine"
+            }
+          ]
+        },
+        {
+          "sharedName": "cortisone",
+          "slugStem": "cortisone",
+          "winner": "K1:V27W9254FZ",
+          "losers": [
+            "HOLD:existing:cortisone"
+          ],
+          "ranking": [
+            {
+              "key": "K1:V27W9254FZ",
+              "keyRank": "K1",
+              "slug": "cortisone-2",
+              "printedName": "Cortisone"
+            },
+            {
+              "key": "HOLD:existing:cortisone",
+              "keyRank": "HOLD",
+              "slug": "cortisone",
+              "printedName": "Cortisone"
+            }
+          ]
+        },
+        {
+          "sharedName": "cpd 2",
+          "slugStem": "cpd-2",
+          "winner": "K2:FYMVGXGSNIVSKY-NRFANRHFSA-N",
+          "losers": [
+            "K2:JGQPZPLJOBHHBK-UFXYQILXSA-N",
+            "K2:QUQTXFIMYFMULC-OGOZKGDESA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K2:FYMVGXGSNIVSKY-NRFANRHFSA-N",
+              "keyRank": "K2",
+              "slug": "cpd-2-2",
+              "printedName": "CPD-2"
+            },
+            {
+              "key": "K2:JGQPZPLJOBHHBK-UFXYQILXSA-N",
+              "keyRank": "K2",
+              "slug": "cpd-2-3",
+              "printedName": "CPD 2"
+            },
+            {
+              "key": "K2:QUQTXFIMYFMULC-OGOZKGDESA-N",
+              "keyRank": "K2",
+              "slug": "cpd-2-4",
+              "printedName": "CPD 2"
+            }
+          ]
+        },
+        {
+          "sharedName": "crotoniazide",
+          "slugStem": "crotoniazide",
+          "winner": "K1:C4DT7VL6FU",
+          "losers": [
+            "K2:YLWYNCPRXFCNLQ-OBBGFGQDSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:C4DT7VL6FU",
+              "keyRank": "K1",
+              "slug": "crotoniazide",
+              "printedName": "Crotoniazide"
+            },
+            {
+              "key": "K2:YLWYNCPRXFCNLQ-OBBGFGQDSA-N",
+              "keyRank": "K2",
+              "slug": "crotoniazide-2",
+              "printedName": "Crotoniazide"
+            }
+          ]
+        },
+        {
+          "sharedName": "cyprolidol",
+          "slugStem": "cyprolidol",
+          "winner": "K1:321552050N",
+          "losers": [
+            "K2:KPUSUIKQQCFQCX-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:321552050N",
+              "keyRank": "K1",
+              "slug": "cyprolidol",
+              "printedName": "Cyprolidol"
+            },
+            {
+              "key": "K2:KPUSUIKQQCFQCX-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "cyprolidol-2",
+              "printedName": "Cyprolidol"
+            }
+          ]
+        },
+        {
+          "sharedName": "daglutril",
+          "slugStem": "daglutril",
+          "winner": "K1:KKV299446X",
+          "losers": [
+            "K2:FVWPYVZWVOLAOP-DQEYMECFSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:KKV299446X",
+              "keyRank": "K1",
+              "slug": "daglutril",
+              "printedName": "Daglutril"
+            },
+            {
+              "key": "K2:FVWPYVZWVOLAOP-DQEYMECFSA-N",
+              "keyRank": "K2",
+              "slug": "daglutril-2",
+              "printedName": "Daglutril"
+            }
+          ]
+        },
+        {
+          "sharedName": "daptomycin",
+          "slugStem": "daptomycin",
+          "winner": "K1:NWQ5N31VKK",
+          "losers": [
+            "K2:DOAKLVKFURWEDJ-RWDRXURGSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:NWQ5N31VKK",
+              "keyRank": "K1",
+              "slug": "daptomycin",
+              "printedName": "Daptomycin"
+            },
+            {
+              "key": "K2:DOAKLVKFURWEDJ-RWDRXURGSA-N",
+              "keyRank": "K2",
+              "slug": "daptomycin-2",
+              "printedName": "Daptomycin"
+            }
+          ]
+        },
+        {
+          "sharedName": "demoxytocin",
+          "slugStem": "demoxytocin",
+          "winner": "K1:2N9HM3X95F",
+          "losers": [
+            "K2:GTYWGUNQAMYZPF-FAJKJHJLSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:2N9HM3X95F",
+              "keyRank": "K1",
+              "slug": "demoxytocin",
+              "printedName": "Demoxytocin"
+            },
+            {
+              "key": "K2:GTYWGUNQAMYZPF-FAJKJHJLSA-N",
+              "keyRank": "K2",
+              "slug": "demoxytocin-2",
+              "printedName": "Demoxytocin"
+            }
+          ]
+        },
+        {
+          "sharedName": "derenofylline",
+          "slugStem": "derenofylline",
+          "winner": "K1:O1Q96UZ63W",
+          "losers": [
+            "K2:RBZNJGHIKXAKQE-UHFFFAOYSA-N"
+          ],
+          "ranking": [
+            {
+              "key": "K1:O1Q96UZ63W",
+              "keyRank": "K1",
+              "slug": "derenofylline",
+              "printedName": "Derenofylline"
+            },
+            {
+              "key": "K2:RBZNJGHIKXAKQE-UHFFFAOYSA-N",
+              "keyRank": "K2",
+              "slug": "derenofylline-2",
+              "printedName": "Derenofylline"
+            }
+          ]
+        },
+        {
+          "sharedName": "desvenlafaxine",
+          "slugStem": "desvenlafaxine",
+          "winner": "K1:189BFR45S0",
+          "losers": [
+            "K1:NG99554ANW"
+          ],
+          "ranking": [
+            {
+              "key": "K1:189BFR45S0",
+              "keyRank": "K1",
+              "slug": "desvenlafaxine",
+              "printedName": "Desvenlafaxine"
+            },
+            {
+              "key": "K1:NG99554ANW",
+              "keyRank": "K1",
+              "slug": "desvenlafaxine-2",
+              "printedName": "Desvenlafaxine"
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "every registry intervention recorded for this study on the <page> page is the name both pages print": [
+          "registry/matches/*.ndjson matchedName for every match of that NCT on the losing page",
+          "page-slugs.csv display_name on both pages (the shared name)",
+          "page-slugs.csv slug on both pages (the unsuffixed slug)",
+          "canonical-v2 key prefix on both pages (the register rank)"
+        ]
+      }
+    },
+    "combinationPartition": {
+      "rule": "R14e-COMBINATION-COMPONENT-SET",
+      "combinationPages": 119,
+      "combinationPagesSharingAComponent": 71,
+      "pairsSharingAComponent": 149,
+      "pagesWithMovedStudies": 8,
+      "studiesMoved": 821,
+      "studiesByOutcome": {
+        "no page names the study's interventions in full, so nothing moved": 35,
+        "the study's interventions name this product's full component set": 553
+      },
+      "provenance": {
+        "the registry interventions recorded for this study on the <product> page do not name its full component set": [
+          "registry/matches/*.ndjson matchedName for every match of that NCT on the combination page",
+          "page-slugs.csv display_name, split on the register's own component separators",
+          "canonical-v2 synonyms of kind brand, common or display on the product and on every product it shares a component with"
+        ]
+      }
+    },
+    "relations": {
+      "before": 5392,
+      "after": 5149,
+      "droppedOrRetargetedByMerges": 244
+    },
+    "displayNames": {
+      "after": 409,
+      "dropped": [
+        {
+          "key": "HOLD:existing:sodium-succinate",
+          "why": "the page merged into K1:P699N4QOWE"
+        }
+      ]
+    },
+    "redirectPlan": {
+      "v3Rows": 65,
+      "v5Rows": 174
+    },
+    "trialReassignments": {
+      "rowsAfter": 19219,
+      "rowsByRule": {
+        "R14-PARENT-NAME-TRIAL": 1682,
+        "R14b-PARENT-NAME-TRIAL-FORM": 10638,
+        "R14c-REFERENCE-PRODUCT-TRIAL": 831,
+        "R14d-SAME-NAME-REGISTER-RANK": 5281,
+        "R14e-COMBINATION-COMPONENT-SET": 787,
+        "dropped: the study already moves off this page": 34
+      }
+    },
+    "heldPairsRekeyed": [
+      {
+        "name_a": "Anhydrous Citric Acid",
+        "name_b": "Citric Acid",
+        "changes": {
+          "page_a": {
+            "before": "HOLD:existing:anhydrous-citric-acid",
+            "after": "K1:XF417D3PSL"
+          }
+        }
+      },
+      {
+        "name_a": "Potassium Citrate",
+        "name_b": "POTASSIUM CITRATE",
+        "changes": {
+          "page_a": {
+            "before": "HOLD:existing:potassium-citrate",
+            "after": "K1:86R1NVR0HW"
+          }
+        }
+      },
+      {
+        "name_a": "POTASSIUM CITRATE",
+        "name_b": "Potassium Citrate",
+        "changes": {
+          "resolved_page_b": {
+            "before": "HOLD:existing:potassium-citrate",
+            "after": "K1:86R1NVR0HW"
+          }
+        }
+      }
+    ],
+    "outputs": {
+      "canonical": "data/revamp/identity/canonical-v5.ndjson",
+      "relations": "data/revamp/identity/relations-v5.parquet",
+      "displayNames": "data/revamp/identity/display-names-v5.csv",
+      "redirectPlan": "data/revamp/identity/redirect-plan-v5.csv",
+      "trialReassignments": "data/revamp/identity/trial-reassignments-v5.csv",
+      "holdList": "data/revamp/identity/hold-list-v5.csv",
+      "combinationComponents": "data/revamp/identity/combination-components-v5.csv"
+    }
   },
   "outputs": {
     "canonical": "data/revamp/identity/canonical-v3.ndjson",

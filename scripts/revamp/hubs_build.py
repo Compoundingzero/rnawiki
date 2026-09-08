@@ -61,7 +61,7 @@ FIELDS = ROOT / "data/revamp/fields-v2"
 DERIVED = ROOT / "data/revamp/derived-v2"
 QUESTIONS_V2 = ROOT / "data/revamp/questions-v2"
 QUESTIONS_V1 = ROOT / "data/corpus-20k/questions"
-IDENTITY = ROOT / "data/revamp/identity/canonical-v3.ndjson"
+IDENTITY = ROOT / "data/revamp/identity/canonical-v5.ndjson"
 RELATIONS = ROOT / "data/revamp/identity/relations-v3.parquet"
 TIERS = ROOT / "data/corpus-20k/tiers/model-assignment.ndjson"
 INTERACTIONS = ROOT / "data/revamp/interactions/interactions.parquet"
@@ -262,6 +262,7 @@ class Member:
         "oldest_unposted",
         "target_names",
         "names",
+        "raw_synonyms",
         "sg_product_count",
     )
 
@@ -272,6 +273,7 @@ class Member:
         self.prose_name = key
         self.slug = ""
         self.tier = 0
+        self.raw_synonyms: list[dict[str, Any]] = []
         self.targets: dict[str, dict[str, Any]] = {}
         self.atc_codes: list[str] = []
         self.atc_as_of = ""
@@ -651,6 +653,9 @@ def attach_identity(members: dict[str, Member]) -> None:
         # Only the synonyms are taken here: the pathway naming rule matches a stored sentence
         # against every recorded name of the page, not only the one it prints.
         synonyms = [row for row in (record.get("synonyms") or []) if isinstance(row, dict)]
+        # Kept in the register's own case: `finalise_names` reads them for section 10's rule, and a
+        # normalised name cannot say whether the register wrote a name in capitals.
+        member.raw_synonyms = synonyms
         if record.get("displayName"):
             normalised = normalise_name(str(record["displayName"]))
             if len(normalised) >= 4:
@@ -662,15 +667,69 @@ def attach_identity(members: dict[str, Member]) -> None:
                     member.names.add(normalised)
 
 
+VOCABULARY_TAG = re.compile(r"\s*\[[^\]]*\]\s*$")
+
+
+def is_all_caps_register_string(name: str) -> bool:
+    return name == name.upper() and sum(1 for c in name if c.isalpha()) >= 2
+
+
+def readable_display_name(display_name: str, synonyms: list[dict[str, Any]]) -> str:
+    """Section 10's rule, the same one `scripts/corpus-20k/render/page-text.ts` applies.
+
+    A register writes a substance name in full capitals and it reads as shouting inside a sentence.
+    Where a `common`, `inn` or `merged-page` synonym is that same record in readable case — the
+    register's bracketed vocabulary tag removed — the hub prints it. Nothing else replaces a
+    register string: a synonym naming a shorter substance is a different record, and printing it
+    would put a parent's name on a salt's page. The loader applies the same rule to
+    `corpus_pages.display_name`, so the hub and the page it links print one name.
+    """
+    name = (display_name or "").strip()
+    if not name or not is_all_caps_register_string(name):
+        return display_name
+    target = normalise_name(name)
+    same: list[str] = []
+    absorbed: list[str] = []
+    for synonym in synonyms:
+        kind = str(synonym.get("kind") or "").lower()
+        if kind not in ("common", "inn", "merged-page"):
+            continue
+        candidate = VOCABULARY_TAG.sub("", str(synonym.get("name") or "")).strip()
+        if (
+            not candidate
+            or is_all_caps_register_string(candidate)
+            or not re.search(r"[a-z]", candidate)
+        ):
+            continue
+        token = normalise_name(candidate)
+        if token == target:
+            same.append(candidate)
+        elif kind == "merged-page" and target.startswith(token + " "):
+            absorbed.append(candidate)
+    if same:
+        return sorted(same)[0]
+    if absorbed:
+        return sorted(absorbed, key=lambda value: (-len(value), value))[0]
+    return display_name
+
+
 def finalise_names(members: dict[str, Member]) -> dict[str, int]:
     """Settle the printed name after the published route map has been read.
 
     A page no register names keeps its identifier in the comparison table, where the column is the
     record, and is left out of the synthesis's named lists, where a bare page key would read as a
     compound name. It is still a member: counted, ranked and linked.
+
+    Section 10's readable-name rule is applied here, on the route map's name, so the hub prints
+    exactly what `corpus_pages.display_name` holds after the load applies the same rule.
     """
     unnamed = 0
+    readable = 0
     for member in members.values():
+        printed = readable_display_name(member.display_name, member.raw_synonyms)
+        if printed != member.display_name:
+            member.display_name = printed
+            readable += 1
         if PAGE_KEY.match(member.display_name):
             member.prose_name = ""
             unnamed += 1
@@ -681,7 +740,10 @@ def finalise_names(members: dict[str, Member]) -> dict[str, int]:
         normalised = normalise_name(member.display_name)
         if len(normalised) >= 4:
             member.names.add(normalised)
-    return {"pagesWithNoPrintableName": unnamed}
+    return {
+        "pagesWithNoPrintableName": unnamed,
+        "pagesPrintingAReadableSynonym": readable,
+    }
 
 
 def filter_pathways_to_named_sentences(members: dict[str, Member]) -> dict[str, int]:

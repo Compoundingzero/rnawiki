@@ -123,13 +123,14 @@ ROOT = Path(__file__).resolve().parents[2]
 
 FIELDS_GLOB = "data/revamp/fields-v2/*/batch-*.ndjson"
 CANONICAL = Path("data/revamp/identity/canonical-v2.ndjson")
-CANONICAL_V3 = Path("data/revamp/identity/canonical-v3.ndjson")
+CANONICAL_SUCCESSOR = Path("data/revamp/identity/canonical-v5.ndjson")
 DISPLAY_NAMES = Path("data/revamp/identity/display-names.csv")
-RELATIONS = Path("data/revamp/identity/relations-v3.parquet")
-RELATIONS_FALLBACK = Path("data/revamp/identity/relations.parquet")
+# Section 12 publishes the v5 revision; v3 stays readable beside it and is the fallback.
+RELATIONS = Path("data/revamp/identity/relations-v5.parquet")
+RELATIONS_FALLBACK = Path("data/revamp/identity/relations-v3.parquet")
 SPINE = Path("data/revamp/identity/spine-attached.parquet")
-TRIAL_REASSIGNMENTS = Path("data/revamp/identity/trial-reassignments-v4.csv")
-TRIAL_REASSIGNMENTS_FALLBACK = Path("data/revamp/identity/trial-reassignments-v3.csv")
+TRIAL_REASSIGNMENTS = Path("data/revamp/identity/trial-reassignments-v5.csv")
+TRIAL_REASSIGNMENTS_FALLBACK = Path("data/revamp/identity/trial-reassignments-v4.csv")
 MODEL_ASSIGNMENT = Path("data/corpus-20k/tiers/model-assignment.ndjson")
 SUPPRESSION = Path("data/corpus-20k/suppression/assignments.ndjson")
 REGISTRY_AGGREGATES = Path("data/corpus-20k/registry/aggregates")
@@ -804,9 +805,9 @@ def main() -> int:
     for key in missing_structure_keys:
         structures.pop(key)
 
-    if CANONICAL_V3.exists():
+    if CANONICAL_SUCCESSOR.exists():
         successor_keys = set()
-        with CANONICAL_V3.open() as handle:
+        with CANONICAL_SUCCESSOR.open() as handle:
             for line in handle:
                 successor_keys.add(json.loads(line)["key"])
         current_keys = set()
@@ -816,10 +817,10 @@ def main() -> int:
         dropped = current_keys - successor_keys
         issues.append(
             f"page identity is read from {CANONICAL}, which the rest of Phase 4 reads; "
-            f"{CANONICAL_V3} exists and carries {len(successor_keys)} keys against "
+            f"{CANONICAL_SUCCESSOR} exists and carries {len(successor_keys)} keys against "
             f"{len(current_keys)}, dropping {len(dropped)} of them and adding "
-            f"{len(successor_keys - current_keys)}. Trial reassignments already read the v3 "
-            "file. Re-running this step against the v3 spine is a one-command change and the "
+            f"{len(successor_keys - current_keys)}. Trial reassignments already read the v5 "
+            "file. Re-running this step against the v5 spine is a one-command change and the "
             "counts above name what it would move"
         )
 

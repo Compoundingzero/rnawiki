@@ -52,6 +52,7 @@ function suppressedStub(classes: string[]): CorpusDossier {
     arc: [],
     identifiers: [{ field: 'unii', label: 'UNII', value: '027828ZV5Q' }],
     relations: [],
+    hubs: [],
     sources: [],
     licenceNotes: [],
     registeredStudies: 0,

@@ -981,6 +981,7 @@ describe('corpus record structured data', () => {
         { field: 'structureInchikey', label: 'InChIKey', value: 'XZWYZXLIPXDOLR-UHFFFAOYSA-N' },
       ],
       relations: [],
+      hubs: [],
       sources: [],
       licenceNotes: [],
       controlled: false,

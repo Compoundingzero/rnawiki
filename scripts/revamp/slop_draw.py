@@ -9,27 +9,41 @@ is not attempted here. This script measures (a), (b) and (c) and lays the readin
 The three rules, as written:
 
   (a) the sentence traces to a stored field or computed value. Each generator emits a provenance
-      map (sentence -> field); `data/revamp/render-v5/provenance/batch-*.ndjson` is that map. A
+      map (sentence -> field); `data/revamp/render-v7/provenance/batch-*.ndjson` is that map. A
       sentence the browser paints that the map does not carry fails (a) as untraceable, and a
       sentence whose every recorded trace fails to resolve against the file, field, question,
       seed, source record or computed derivation it names fails (a) as unresolved. Resolution is
       executed, never assumed: see `resolve_trace`.
 
-  (b) after masking drug, target and number tokens, the sentence template appears on no more than
-      0.5 % of pages corpus-wide. Corpus-wide is every page of
-      `data/revamp/render-v5/text/batch-*.ndjson`, and the share is over pages carrying the
-      template, not over occurrences: a template repeated four times on one page is one page.
+  (b) after masking drug, target and number tokens, the **block** template appears on no more than
+      0.5 % of pages corpus-wide. `docs/specs/phase4-generators.md` section 12 fixes the unit:
+      Felix's definition of slop is "template sentences with a name swapped in" and "a passage where
+      consecutive claims do not follow", and the unit a reader meets is the block's answer - all its
+      sentences, in the order the page paints them. Those sentences are masked, joined in order, and
+      the joined text may appear on at most 0.5 % of pages. A one-sentence block is therefore held
+      to the literal sentence rule, because its block text is its sentence.
 
-      `docs/specs/phase4-generators.md` section 11 fixes what (b) is applied to: answer sentences,
-      derived-section sentences, computed-section sentences and hub syntheses - the text whose
-      words a generator chooses. It is not applied to a question heading, which is the corpus-20k
-      template contract and is measured by that contract's own two lines (masked template <= 30 %,
-      most-repeated unmasked string <= 0.5 %); nor to furniture, the fixed-vocabulary statements
-      section 11 marks `data-furniture`; nor to the h1, which is the display name and masks to a
-      bare `<drug>` on every page by construction. Every sentence (b) is not applied to is counted,
-      by the reason it was excluded, in `report.json` under `failBExclusions`: the rule's scope is
-      reported, never silently narrowed. Tests (a) and (c) apply to everything the page paints
-      outside furniture.
+      The share is over pages carrying the block, not over occurrences. Corpus-wide is every page of
+      the render named by `--text-dir`, read through its provenance map, which is what carries the
+      block each line belongs to.
+
+      The sentence-level literal reading is computed and reported beside it, never as the gate:
+      `failBSentenceLiteral` in `report.json`. Section 12 records why it is not the gate - it fails
+      every deterministic generator, the thirteen corpus-20k seeds included, because a section that
+      fires on 30 % of pages with a fixed skeleton cannot appear on 0.5 % once its slots are masked.
+
+      Section 11 fixes what (b) is applied to: answer sentences, derived-section sentences,
+      computed-section sentences and hub syntheses - the text whose words a generator chooses. It is
+      not applied to a question heading, which is the corpus-20k template contract and is measured
+      by that contract's own two lines (masked template <= 30 %, most-repeated unmasked string
+      <= 0.5 %); nor to furniture, the fixed-vocabulary statements sections 11 and 12 mark
+      `data-furniture` - the register absence rows, the checked-sources statement on a page with no
+      interaction row, the patent no-record line, the S10-only line and the "No regulator
+      classification is recorded for X" answer; nor to the h1, which is the display name and masks
+      to a bare `<drug>` on every page by construction. Every sentence (b) is not applied to is
+      counted, by the reason it was excluded, in `report.json` under `failBExclusions`: the rule's
+      scope is reported, never silently narrowed. Tests (a) and (c) apply to everything the page
+      paints outside furniture.
 
   (c) no sentence is a label naming the narrative device: "the problem", "the lesson", "the
       takeaway", "the story".
@@ -44,6 +58,11 @@ paints. The page list is read from the loaded database (`corpus_pages`), the pag
 headless Chromium at 1280 px with the navigation, the footer, the search control and the contents
 rail hidden — the chrome `scripts/revamp/rendered_dup_check.py` hides, minus the supervision block,
 which is content the lead must read — and the visible text of `main` is what the checks see.
+
+The render/DOM comparison beside the three checks is not written here. Section 12: "the slop draw's
+render/DOM comparison uses the same extraction as `dom_parity.py` (main-region text lines outside
+furniture), so one number describes parity." This module imports that extraction, that fold and that
+comparison from `scripts/revamp/dom_parity.py` and reports its three counts unchanged.
 
 No network access beyond the local build named by `--base-url`.
 
@@ -65,19 +84,26 @@ import re
 import subprocess
 import sys
 import time
-import unicodedata
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field as dataclass_field
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# Section 12: one definition of parity, imported rather than written twice.
+from dom_parity import (                                                     # noqa: E402
+    EXTRACT_JS as PARITY_EXTRACT_JS,
+    compare as parity_compare,
+)
+
 ROOT = Path(__file__).resolve().parents[2]
 
-TEXT_DIR = ROOT / "data/revamp/render-v5/text"
+TEXT_DIR = ROOT / "data/revamp/render-v7/text"
 FIELDS_DIR = ROOT / "data/revamp/fields-v2"
 QUESTIONS_DIR = ROOT / "data/revamp/questions-v2"
 DERIVED_DIR = ROOT / "data/revamp/derived-v2"
 BLOCKS_DIR = ROOT / "data/revamp/page-blocks"
-CANONICAL = ROOT / "data/revamp/identity/canonical-v3.ndjson"
+CANONICAL = ROOT / "data/revamp/identity/canonical-v5.ndjson"
 CANONICAL_V2 = ROOT / "data/revamp/identity/canonical-v2.ndjson"
 INTERACTION_RULES = ROOT / "docs/specs/interaction-rules.md"
 SOURCES_DIR = ROOT / "data/sources"
@@ -90,6 +116,9 @@ DEFAULT_WIDTH = 1280
 DEFAULT_CONCURRENCY = 4
 MAX_CONCURRENCY = 4
 TEMPLATE_SHARE_LINE = 0.005
+# The separator between a block's masked sentences. It is not a word and cannot occur in a
+# sentence, so two blocks joined into one string are never confused with one longer block.
+BLOCK_JOIN = " ¶ "
 TRUNCATE_WORDS = 700
 PAGES_MD_WORD_CAP = 60_000
 FAILURES_LISTED_PER_PAGE = 10
@@ -199,28 +228,6 @@ def read_ndjson(path: Path):
 
 
 def norm(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
-
-
-FOLD_QUOTES = str.maketrans({"\u2019": "'", "\u2018": "'", "\u201c": '"', "\u201d": '"'})
-# The template paints a small diamond before a source citation; the render text writes the citation
-# without it. It is decoration, and it is removed from both sides before they are compared.
-FOLD_DECORATION = "\u25c7"
-
-
-def fold(text: str) -> str:
-    """One comparable form for text the browser painted and text the render wrote.
-
-    The two disagree in ways that carry no meaning: the template paints a register line as a label
-    element above its value, so `Singapore: Not found …` arrives as two DOM lines; it paints a
-    diamond before a source citation that the render text does not write; the page uses a
-    typographic apostrophe where the render file uses a straight one; and `innerText` collapses
-    whitespace its own way. Folding removes exactly those four differences — Unicode compatibility
-    form, straight quotes, no diamond, no colons, whitespace collapsed — and nothing else, so a
-    sentence that is genuinely absent from the page stays absent after folding.
-    """
-    text = unicodedata.normalize("NFKC", text).translate(FOLD_QUOTES)
-    text = text.replace(FOLD_DECORATION, " ").replace(":", " ")
     return re.sub(r"\s+", " ", text).strip()
 
 
@@ -505,6 +512,73 @@ def template_census(text_dir: Path, mask, cache_path: Path, refresh: bool) -> tu
                 line = norm(line)
                 if line:
                     seen.add(mask(line, row["key"]))
+            for template in seen:
+                counts[template] += 1
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(
+        json.dumps({"fingerprint": fingerprint, "pages": pages, "counts": dict(counts)}),
+        encoding="utf-8",
+    )
+    return dict(counts), pages
+
+
+# (b), as section 12 evaluates it: the blocks whose wording a generator chooses, named by the render
+# itself. `question:<n>` is one question block on the page, `computed` the Tier 3 computed section.
+# The other groups the render names — the header, the register block, the interactions, the patent
+# line, the exact record, the relations, the sources — are statements the spec fixes verbatim,
+# recorded names, or markup, and section 11 keeps the template test off them.
+def group_in_scope(group: str) -> bool:
+    return group.startswith("question:") or group == "computed"
+
+
+def in_scope_entry(entry: dict) -> bool:
+    """A provenance entry the template test applies to, before the block is assembled."""
+    return (
+        entry.get("kind") == "sentence"
+        and entry.get("furniture") is not True
+        and entry.get("heading") is not True
+        and group_in_scope(str(entry.get("group") or ""))
+    )
+
+
+def page_blocks_masked(entries: list[dict], key: str, mask) -> list[dict]:
+    """One masked block per in-scope group on this page, its sentences in painted order."""
+    order: list[str] = []
+    held: dict[str, list[str]] = defaultdict(list)
+    for entry in entries:
+        if not in_scope_entry(entry):
+            continue
+        group = str(entry["group"])
+        if group not in held:
+            order.append(group)
+        held[group].append(norm(entry["sentence"]))
+    return [
+        {
+            "group": group,
+            "sentences": held[group],
+            "template": BLOCK_JOIN.join(mask(sentence, key) for sentence in held[group]),
+        }
+        for group in order
+        if held[group]
+    ]
+
+
+def block_census(provenance_dir: Path, mask, cache_path: Path,
+                 refresh: bool) -> tuple[dict[str, int], int]:
+    """masked block -> number of corpus pages carrying it, over every page of the render."""
+    fingerprint = text_dir_fingerprint(provenance_dir)
+    if cache_path.exists() and not refresh:
+        held = json.loads(cache_path.read_text(encoding="utf-8"))
+        if held.get("fingerprint") == fingerprint:
+            return held["counts"], held["pages"]
+
+    counts: Counter[str] = Counter()
+    pages = 0
+    for path in sorted(provenance_dir.glob("batch-*.ndjson")):
+        for row in read_ndjson(path):
+            pages += 1
+            seen = {block["template"]
+                    for block in page_blocks_masked(row.get("provenance") or [], row["key"], mask)}
             for template in seen:
                 counts[template] += 1
     cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -818,6 +892,9 @@ class RenderedPage:
     status: int
     text: str
     h1: str | None
+    # The same page under `dom_parity.py`'s extraction — chrome, template markup and furniture all
+    # hidden — which is the only text the parity comparison reads (section 12).
+    parity_text: str
 
 
 async def render_pages(pages: list[Page], base_url: str, concurrency: int,
@@ -855,6 +932,10 @@ async def render_pages(pages: list[Page], base_url: str, concurrency: int,
                         if status == 200:
                             await tab.wait_for_selector("main", timeout=SELECTOR_TIMEOUT_MS)
                             payload = await tab.evaluate(EXTRACT_JS)
+                            # The parity extraction runs second and hides a superset of what the
+                            # reading extraction hides, so the reading text above is unaffected.
+                            parity = await tab.evaluate(PARITY_EXTRACT_JS)
+                            payload = {**payload, "parityText": (parity or {}).get("text", "")}
                         break
                     except Exception as error:
                         if attempt == NAV_ATTEMPTS - 1:
@@ -889,6 +970,7 @@ async def render_pages(pages: list[Page], base_url: str, concurrency: int,
                                 status=status,
                                 text=payload["text"],
                                 h1=payload["h1"],
+                                parity_text=payload.get("parityText", ""),
                             )
                         )
                     if len(out) % 10 == 0 and out:
@@ -959,6 +1041,13 @@ def block_of(sentence: str, traces: list[str]) -> str:
 TEMPLATE_TEST_BLOCKS = frozenset(
     {"question block", "derived seed", "computed section", "hub synthesis"}
 )
+
+
+PARITY_REASONS = {
+    "renderLinesNotPainted": "the render writes this line and the page does not paint it",
+    "paintedLinesNotInRender": "the browser paints this line and the render does not carry it",
+    "renderLinesOutOfOrder": "the page paints this line, but not where the render puts it",
+}
 
 
 def template_test_applies(entry: dict, block: str) -> tuple[bool, str]:
@@ -1046,15 +1135,24 @@ def main(argv: list[str] | None = None) -> int:
         args.refresh_census,
     )
     share_limit = TEMPLATE_SHARE_LINE * census_pages
-    print(
-        f"census: {len(census)} templates over {census_pages} pages; a template on more than "
-        f"{share_limit:.1f} pages fails (b)"
-    )
 
     # ---- provenance and inputs for the drawn pages --------------------------------------------
     provenance: dict[str, list[dict]] = {}
     render_keys: set[str] = set()
     provenance_dir: Path = args.provenance_dir or (args.text_dir.parent / "provenance")
+    # (b)'s own census, over the blocks section 12 measures.
+    blocks_census, block_census_pages = block_census(
+        provenance_dir,
+        mask,
+        ROOT / "data/revamp/slop-draws/block-census.json",
+        args.refresh_census,
+    )
+    block_share_limit = TEMPLATE_SHARE_LINE * block_census_pages
+    print(
+        f"census: {len(blocks_census)} block templates over {block_census_pages} pages; a block on "
+        f"more than {block_share_limit:.1f} pages fails (b). Reported beside it: "
+        f"{len(census)} sentence templates over {census_pages} pages, the literal reading."
+    )
     for path in sorted(provenance_dir.glob("batch-*.ndjson")):
         for row in read_ndjson(path):
             render_keys.add(row["key"])
@@ -1100,6 +1198,8 @@ def main(argv: list[str] | None = None) -> int:
     fail_b_exclusions = Counter()
     fail_b_exclusions_by_block = Counter()
     fail_b_examples: dict[str, dict] = {}
+    # The sentence-level literal reading of (b), recorded beside the gate (section 12).
+    sentence_literal_by_block = Counter()
 
     for page in rendered:
         if page.key not in provenance:
@@ -1127,9 +1227,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
 
         entries = provenance[page.key]
-        painted = fold(page.text)
         held = rendered_text.get(page.key, {})
-        render_text = fold(held.get("text") or "")
 
         failures: list[dict] = []
         counted = 0
@@ -1141,21 +1239,6 @@ def main(argv: list[str] | None = None) -> int:
             counted += 1
             traces = entry.get("fields") or []
             block = block_of(sentence, traces)
-
-            # The sentence has to be on the page the browser painted, or the map describes a page
-            # nobody sees. This is not one of §4.7's three checks; it is what makes the draw a draw
-            # of rendered pages, and it is counted and reported on its own.
-            if fold(sentence) not in painted:
-                totals["sentences not painted"] += 1
-                failures.append(
-                    {
-                        "check": "rendered",
-                        "sentence": sentence,
-                        "block": block,
-                        "reason": "the provenance map carries this sentence but the rendered page "
-                                  "does not paint it",
-                    }
-                )
 
             # (a)
             resolutions = [
@@ -1179,68 +1262,82 @@ def main(argv: list[str] | None = None) -> int:
                 failures.append({"check": "a", "sentence": sentence, "block": block,
                                  "reason": f"no recorded trace resolved: {traces[0]}"})
 
-            # (b), over the sentences section 11 puts in its scope; the rest are counted here
-            # as exclusions and reported.
+            # (b)'s scope, counted per sentence: section 11 requires every sentence the rule was
+            # not applied to to be reported, by the exclusion that removed it. The rule itself is
+            # evaluated below, over the block (section 12).
             applies, exclusion = template_test_applies(entry, block)
             if not applies:
                 fail_b_exclusions[exclusion] += 1
                 fail_b_exclusions_by_block[f"{exclusion} · {block}"] += 1
-            template = mask(sentence, page.key)
-            carrying = census.get(template, 0)
-            if applies and carrying > share_limit:
-                share = carrying / census_pages
-                failures.append(
-                    {
-                        "check": "b",
-                        "sentence": sentence,
-                        "block": block,
-                        "template": template,
-                        "pagesCarrying": carrying,
-                        "share": round(share, 6),
-                        "reason": f"the masked template is on {carrying} pages ({share:.2%})",
-                    }
-                )
-                fail_b_by_block[block] += 1
-                fail_b_examples.setdefault(
-                    block, {"template": template, "pagesCarrying": carrying, "sentence": sentence}
-                )
+            else:
+                # The literal sentence reading, recorded beside the gate and never as it.
+                literal = census.get(mask(sentence, page.key), 0)
+                if literal > share_limit:
+                    totals["sentence-level literal failures"] += 1
+                    sentence_literal_by_block[block] += 1
 
             # (c)
             if DEVICE_RE.match(sentence):
                 failures.append({"check": "c", "sentence": sentence, "block": block,
                                  "reason": "the sentence is a label naming the narrative device"})
 
-        # Painted prose the render does not account for. A line of five words or more that neither
-        # appears in the render's own text nor carries one of the map's sentences inside it is text
-        # on the page that no recorded stage wrote. It is reported as a rendering divergence rather
-        # than as an (a) failure: (a) is about whether a recorded sentence traces to a stored
-        # value, and this is about the page and the render disagreeing.
-        long_sentences = [
-            fold(entry["sentence"])
-            for entry in entries
-            if len(entry["sentence"].split()) >= 6
-        ]
-        unaccounted: list[str] = []
-        for line in page.text.splitlines():
-            line = norm(line)
-            if len(line.split()) < 5:
+        # (b), over the block (section 12). Every in-scope block on this page is masked whole, in
+        # painted order, and measured against the corpus-wide block census. A one-sentence block is
+        # its own sentence, so it is held to the literal sentence rule by construction.
+        for masked_block in page_blocks_masked(entries, page.key, mask):
+            carrying = blocks_census.get(masked_block["template"], 0)
+            if carrying <= block_share_limit:
                 continue
-            folded = fold(line)
-            if not folded or folded in render_text:
-                continue
-            if any(candidate and candidate in folded for candidate in long_sentences):
-                continue
-            unaccounted.append(line)
-        if unaccounted:
-            totals["painted lines with no render record"] += len(unaccounted)
-            for line in unaccounted[:5]:
+            share = carrying / block_census_pages
+            first = masked_block["sentences"][0]
+            block = block_of(
+                first,
+                next(
+                    ((entry.get("fields") or []) for entry in entries
+                     if norm(entry["sentence"]) == first),
+                    [],
+                ),
+            )
+            share_text = f"{share:.2%}"
+            failures.append(
+                {
+                    "check": "b",
+                    "sentence": " ".join(masked_block["sentences"]),
+                    "block": block,
+                    "group": masked_block["group"],
+                    "sentencesInBlock": len(masked_block["sentences"]),
+                    "template": masked_block["template"],
+                    "pagesCarrying": carrying,
+                    "share": round(share, 6),
+                    "reason": f"the masked block is on {carrying} pages ({share_text})",
+                }
+            )
+            fail_b_by_block[block] += 1
+            fail_b_examples.setdefault(
+                block,
+                {
+                    "template": masked_block["template"],
+                    "pagesCarrying": carrying,
+                    "sentences": masked_block["sentences"],
+                },
+            )
+
+        # The render and the DOM, under `dom_parity.py`'s own extraction, fold and comparison
+        # (section 12). Not one of §4.7's three checks: it is what makes the draw a draw of pages a
+        # reader sees, and its three counts are reported on their own.
+        parity = parity_compare(
+            [line for line in (held.get("proseText") or "").split("\n") if line.strip()],
+            page.parity_text,
+        )
+        for name, lines in parity.items():
+            totals[f"parity: {name}"] += len(lines)
+            for line in lines[:5]:
                 failures.append(
                     {
                         "check": "rendered",
                         "sentence": line,
-                        "block": "painted line with no render record",
-                        "reason": "the browser paints this line and neither the render text nor "
-                                  "the provenance map carries it",
+                        "block": name,
+                        "reason": PARITY_REASONS[name],
                     }
                 )
 
@@ -1255,7 +1352,7 @@ def main(argv: list[str] | None = None) -> int:
                 "url": page.url,
                 "h1": page.h1,
                 "sentences": counted,
-                "paintedLinesWithNoRenderRecord": len(unaccounted),
+                "parity": {name: len(lines) for name, lines in parity.items()},
                 "failures": failures,
             }
         )
@@ -1272,31 +1369,49 @@ def main(argv: list[str] | None = None) -> int:
         "width": DEFAULT_WIDTH,
         "textDir": repo_path(args.text_dir),
         "census": {
-            "pages": census_pages,
-            "templates": len(census),
+            "unit": "block",
+            "pages": block_census_pages,
+            "blockTemplates": len(blocks_census),
             "line": TEMPLATE_SHARE_LINE,
-            "pagesLimit": share_limit,
+            "pagesLimit": block_share_limit,
             "maskedNames": vocabulary.counts,
+            "sentenceLevelLiteral": {
+                "pages": census_pages,
+                "sentenceTemplates": len(census),
+                "pagesLimit": share_limit,
+            },
         },
         "sentences": totals["sentences"],
         "rowLines": totals["row lines"],
-        "sentencesNotPainted": totals["sentences not painted"],
-        "paintedLinesWithNoRenderRecord": totals["painted lines with no render record"],
         "failA": totals["fail a"],
         "failB": totals["fail b"],
         "failC": totals["fail c"],
         "failRendered": totals["fail rendered"],
+        "failBUnit": "block",
+        "failBSentenceLiteral": totals["sentence-level literal failures"],
+        "failBSentenceLiteralByBlock": dict(sentence_literal_by_block.most_common()),
+        "failBSentenceLiteralNote": (
+            "The literal sentence-level reading of (b), reported and never the gate. §12: it fails "
+            "every deterministic generator, the thirteen corpus-20k seeds that shipped included, "
+            "because a section that fires on 30 % of pages with a fixed skeleton cannot appear on "
+            "0.5 % once its slots are masked. `failB` above is the rule over the block, which is "
+            "the unit a reader meets."
+        ),
         "failABreakdown": {
             "pagesWithNoProvenanceRecord": totals["pages with no provenance record"],
         },
+        "parity": {
+            name: totals[f"parity: {name}"]
+            for name in ("renderLinesNotPainted", "paintedLinesNotInRender",
+                         "renderLinesOutOfOrder")
+        },
         "renderDivergenceNote": (
-            "`failRendered` counts the two directions in which the page a browser paints and "
-            "`data/revamp/render-v5` disagree: a sentence the provenance map records that the page "
-            "does not paint, and a line of five words or more the page paints that the render "
-            "neither writes nor carries inside one of its sentences. It is not one of §4.7's three "
-            "checks. It matters because the thresholds and the template census are measured on the "
-            "render text, so where the two disagree those measurements describe text no reader "
-            "sees."
+            "`failRendered` and `parity` are `scripts/revamp/dom_parity.py`'s own comparison, run "
+            "here over the drawn pages: this module imports that extraction, that fold and that "
+            "comparison, so one number describes parity (§12). The unit is main-region text lines "
+            "outside furniture. It is not one of §4.7's three checks. It matters because the "
+            "thresholds and the block census are measured on the render text, so where the two "
+            "disagree those measurements describe text no reader sees."
         ),
         "loadedPagesWithNoRenderRecord": len(without_render),
         "renderRecordsNotLoaded": len(unloaded_render),
@@ -1306,7 +1421,10 @@ def main(argv: list[str] | None = None) -> int:
         "failBExclusions": dict(fail_b_exclusions.most_common()),
         "failBExclusionsByBlock": dict(fail_b_exclusions_by_block.most_common()),
         "failBScopeNote": (
-            "docs/specs/phase4-generators.md §11 scopes the template test to answer sentences, "
+            "docs/specs/phase4-generators.md §12 evaluates the test over the masked block — every "
+            "sentence of a question, derived, computed or hub block, in painted order — and a "
+            "one-sentence block is held to the literal sentence rule by construction. §11 scopes "
+            "the test to answer sentences, "
             "derived-section sentences, computed-section sentences and hub syntheses. A question "
             "heading is the corpus-20k template contract and is measured by that contract's own "
             "two lines; furniture is the fixed-vocabulary absence statements §11 marks "
@@ -1324,7 +1442,12 @@ def main(argv: list[str] | None = None) -> int:
     }
     # ---- pages.md ------------------------------------------------------------------------------
     lines: list[str] = []
-    lines.append("# Slop draw 1 — the 60 pages, as the local build painted them\n")
+    # The draw names itself from the directory it is written to, so a later draw's file does not
+    # carry the first draw's title.
+    draw_name = out_dir.name.replace("-", " ")
+    lines.append(
+        f"# Slop {draw_name} — the {len(rendered)} pages, as the local build painted them\n"
+    )
     lines.append(
         f"Seed {args.seed}, {args.per_tier} pages per tier, rendered at {DEFAULT_WIDTH} px from "
         f"`{base_url}`. Machine-readable twin: `report.json`.\n"
@@ -1382,10 +1505,12 @@ def main(argv: list[str] | None = None) -> int:
     (out_dir / "pages.md").write_text(body, encoding="utf-8")
 
     # ---- printed summary, at most 50 rows -------------------------------------------------------
-    print(f"\nsentences {totals['sentences']}  rows {totals['row lines']}  "
-          f"not painted {totals['sentences not painted']}  "
-          f"painted lines with no render record {totals['painted lines with no render record']}")
-    print(f"fail (a) {totals['fail a']}  fail (b) {totals['fail b']}  fail (c) {totals['fail c']}")
+    print(f"\nsentences {totals['sentences']}  rows {totals['row lines']}")
+    print("parity (dom_parity.py extraction): "
+          + "  ".join(f"{name} {count}" for name, count in report["parity"].items()))
+    print(f"fail (a) {totals['fail a']}  fail (b) {totals['fail b']} blocks  "
+          f"fail (c) {totals['fail c']}")
+    print(f"reported beside (b): {report['failBSentenceLiteral']} sentence-level literal failures")
     print(f"fail (b) scope: {', '.join(report['failBScope'])}")
     for reason, count in report["failBExclusions"].items():
         print(f"  (b) not applied to {count} sentences: {reason}")

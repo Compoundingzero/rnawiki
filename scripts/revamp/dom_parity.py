@@ -8,7 +8,15 @@ lacks, or the reverse, fails `tests/test_render_safety.py`."
 This script is the measurement behind that assertion. It reads the pages a local build actually
 holds, renders a seeded, tier-stratified sample in headless Chromium with every disclosure opened
 and the shared chrome hidden, and compares what the browser painted with the line list
-`scripts/revamp/page_text_v5.ts --with-furniture` wrote for the same page.
+`scripts/revamp/page_text_v5.ts` wrote for the same page.
+
+`docs/specs/phase4-generators.md` section 12 fixes the unit: **main-region text lines outside
+furniture**. Furniture — the register absence table, the checked-sources statement on a page with
+no interaction row, the patent no-record line, the S10-only classification line and the "No
+regulator classification is recorded for X" answer — is hidden in the browser by
+`[data-furniture]` and is absent from the render's furniture-free text, so both sides of the
+comparison hold the same lines and one number describes parity. `scripts/revamp/slop_draw.py`
+imports this module's extraction, fold and comparison rather than writing a second one.
 
 Three things are checked, all of them over the same folded form:
 
@@ -30,7 +38,7 @@ row's cells with tab separators. Containment in the folded whole is exact about 
 order, and indifferent to where the template breaks a line.
 
     .venv-corpus/bin/python scripts/revamp/dom_parity.py --base-url http://127.0.0.1:3142 \
-        --text-dir data/revamp/render-v5-with-furniture/text --sample 200
+        --text-dir data/revamp/render-v7/text --sample 200
 
 No network access beyond the local build named by `--base-url`.
 """
@@ -54,10 +62,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 LEGAL_LOG = ROOT / "data/corpus-20k/legal/requests.log"
 
-# `page_text_v5.ts --with-furniture` writes here by default: the page as the browser paints
-# it, which is the only text a DOM comparison can be made against.
-DEFAULT_TEXT_DIR = ROOT / "data/revamp/render-v5-with-furniture/text"
-DEFAULT_OUT = ROOT / "data/revamp/render-v5/dom-parity.json"
+# `page_text_v5.ts` writes here by default: the page without its furniture, which is what the
+# browser side of this comparison also excludes (section 12).
+DEFAULT_TEXT_DIR = ROOT / "data/revamp/render-v7/text"
+DEFAULT_OUT = ROOT / "data/revamp/render-v7/dom-parity.json"
 DEFAULT_SEED = 20260906
 DEFAULT_SAMPLE = 200
 DEFAULT_WIDTH = 1280
@@ -96,11 +104,15 @@ CHROME_SELECTOR = (
 #   .cd-relations                the relation rows
 #   .cd-source-rows/.cd-licence/.cd-definitions  the source list, its licences and its two links
 #   .cd-glyph                    the one ornament between regions
+#
+# `[data-furniture]` joins them for the reason section 11 gives and section 12 makes one rule: a
+# statement whose only content is an absence, in fixed words, on 25,000 pages. It is on the page and
+# it is not one of the page's own lines, so neither side of the parity comparison carries it.
 MARKUP_SELECTOR = (
     ".cd-synonyms, .cd-more-names, .cd-source-line, .cd-badges, .cd-section-heading, "
     ".cd-group-heading, .cd-badge-cell, .cd-interpretation, .cd-row-dates, .cd-ladder, "
     ".cd-visually-hidden, .cd-record, .cd-relations, .cd-source-rows, .cd-licence, "
-    ".cd-definitions, .cd-glyph"
+    ".cd-definitions, .cd-glyph, [data-furniture]"
 )
 
 EXCLUDE_SELECTOR = f"{CHROME_SELECTOR}, {MARKUP_SELECTOR}"

@@ -42,12 +42,16 @@ import { createReadStream } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { createInterface } from 'node:readline'
+import { fileURLToPath } from 'node:url'
 
 import { Client } from 'pg'
 
 import { databaseSslConfig, isLocalDatabaseHost } from '@/db/ssl'
 
-const ROOT = resolve(dirname(new URL(import.meta.url).pathname), '..', '..')
+// `new URL(import.meta.url).pathname` percent-encodes every space in the path, so a checkout under
+// a directory whose name has one — "Claude Projects" — resolved to a path no file has ever been at
+// and the load failed with ENOENT on `hubs.ndjson`. `fileURLToPath` decodes it.
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const DEFAULT_IN = join(ROOT, 'data', 'revamp', 'hubs', 'load')
 
 const HUB_COLUMNS = [

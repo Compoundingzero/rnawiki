@@ -6,6 +6,9 @@ import { AnalyticsPreferencesButton } from '@/components/GoogleAnalytics'
 
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
+  // docs/specs/hubs.md §3: the `/h` index has to be reachable from the site's own navigation, or
+  // no hub is. The home page keeps its frozen search bar and gains nothing.
+  { href: '/h', label: 'Compare by target, class or pathway' },
   { href: '/datasets', label: 'Public datasets' },
   { href: '/how-it-works', label: 'How this works' },
   { href: '/editorial-policy', label: 'Editorial policy' },

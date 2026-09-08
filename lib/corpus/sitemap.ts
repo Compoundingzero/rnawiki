@@ -1,8 +1,10 @@
 /**
- * The sitemap index and its four children (R6, docs/specs/browse.md, docs/specs/deployment-plan.md).
+ * The sitemap index and its five children (R6, docs/specs/browse.md, docs/specs/hubs.md §3,
+ * docs/specs/deployment-plan.md).
  *
- * `/sitemap.xml` is an index; `/sitemaps/tier-1.xml`, `/sitemaps/tier-2.xml`, `/sitemaps/browse.xml`
- * and `/sitemaps/pages.xml` are its children, each capped at the protocol's 50,000 URLs.
+ * `/sitemap.xml` is an index; `/sitemaps/tier-1.xml`, `/sitemaps/tier-2.xml`, `/sitemaps/browse.xml`,
+ * `/sitemaps/hubs.xml` and `/sitemaps/pages.xml` are its children, each capped at the protocol's
+ * 50,000 URLs.
  *
  * Two rules decide what may appear:
  *
@@ -24,6 +26,7 @@ import {
   recordsForLetter,
   type CorpusFacetRecord,
 } from '@/lib/corpus/facets'
+import { listHubRoutes, countHubs } from '@/lib/hubs/queries'
 import { PUBLIC_DATASET_IDS } from '@/lib/public-datasets'
 import { listDrugs } from '@/lib/queries/drugs'
 import { listIndexableContributorProfilesForSitemap } from '@/lib/queries/users'
@@ -32,7 +35,7 @@ import {
   SITEMAP_MAX_URLS,
 } from '@/lib/seo/publication-indexability'
 
-export const SITEMAP_CHILDREN = ['tier-1', 'tier-2', 'browse', 'pages'] as const
+export const SITEMAP_CHILDREN = ['tier-1', 'tier-2', 'browse', 'hubs', 'pages'] as const
 export type SitemapChildName = (typeof SITEMAP_CHILDREN)[number]
 
 export function isSitemapChildName(value: string): value is SitemapChildName {
@@ -120,6 +123,29 @@ export async function browseSitemapEntries(): Promise<SitemapEntry[]> {
   return entries
 }
 
+/**
+ * Every hub, and the `/h` index (docs/specs/hubs.md §3).
+ *
+ * A hub is indexable by construction: §1 gives it at least five members, and the hub build never
+ * publishes one that is short. Tier 3 remains absent from this child as from every other: a hub
+ * lists its Tier 3 members, but the members' own URLs are not advertised here.
+ *
+ * `/h` is added by this child rather than by `pagesSitemapEntries`, so the hub URLs and their index
+ * sit in one file and the 50,000-URL cap is measured over them together.
+ */
+export async function hubsSitemapEntries(): Promise<SitemapEntry[]> {
+  const routes = await listHubRoutes()
+  if (routes.length === 0) return []
+  return [
+    { path: '/h', changeFrequency: 'weekly' as const, priority: 0.7 },
+    ...routes.map((route) => ({
+      path: `/h/${route.type}/${encodeURIComponent(route.slug)}`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    })),
+  ]
+}
+
 /** The written site: static routes, legacy dossiers the corpus has not replaced, and profiles. */
 export async function pagesSitemapEntries(): Promise<SitemapEntry[]> {
   const [reports, contributorProfiles, records] = await Promise.all([
@@ -172,6 +198,7 @@ export async function sitemapChildEntries(name: SitemapChildName): Promise<Sitem
   if (name === 'tier-1') return tierSitemapEntries(1)
   if (name === 'tier-2') return tierSitemapEntries(2)
   if (name === 'browse') return browseSitemapEntries()
+  if (name === 'hubs') return hubsSitemapEntries()
   return pagesSitemapEntries()
 }
 
@@ -181,7 +208,10 @@ export async function populatedSitemapChildren(): Promise<SitemapChildName[]> {
   const populated: SitemapChildName[] = []
   if (records.some((record) => record.indexable && record.tier === 1)) populated.push('tier-1')
   if (records.some((record) => record.indexable && record.tier === 2)) populated.push('tier-2')
-  populated.push('browse', 'pages')
+  populated.push('browse')
+  // An empty hub table is not advertised as an empty file.
+  if ((await countHubs()) > 0) populated.push('hubs')
+  populated.push('pages')
   return populated
 }
 
