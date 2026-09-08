@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draws 4/5 not clean (a: trace list class; b: 3 one-value blocks; parity regression from 6.1); round 4 then draws 6/7"
+        "4.7": "draw 4 read by the lead (\u00a714); fix round 4, then draws 6 and 7"
       },
       "gate_evidence": null,
-      "updated": "2026-09-08T13:23:31+00:00"
+      "updated": "2026-09-08T13:25:06+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",

@@ -339,3 +339,67 @@ the same faults on every tier, and every one is a generator fault, never a page 
     once, the client island receiving only the search bar's state; if Next.js cannot avoid the
     flight duplicate cleanly, `/d/*` and `/h/*` are static-exported with a single island. Floor:
     live text-to-HTML median ≥ 0.15 on the same 108 pages; target 0.25.
+
+## 14. The lead's reading of slop draw 4 (2026-09-08, Fable) — rules for fix round 4
+
+Read: Tier 1 (pralsetinib, piroxicam, cefmetazole, triacetyldiphenolisatin), Tier 2 (dacarbazine,
+ethynodiol diacetate, palivizumab, indium-111 pentetreotide), Tier 3 (five ChEMBL-only stubs,
+defoslimod, forasartan). Tier 3 stubs now read cleanly. Tiers 1 and 2 still fail the
+logical-sequence test on register material that §13 retired in one place and not in the others,
+and on the supervision answer's notion of "classification".
+
+1. **The supervision answer names the suppression evidence, never a register status.** "AU
+   scheduled in the Poisons Standard: the registers' classification of Piroxicam" is wrong twice:
+   SUSMP Schedule 4 is a prescription class, not a supervision reason, and the provenance names
+   registers the sentence does not. The answer to "Why does X carry a supervision requirement?"
+   is built only from the S1–S9 class evidence recorded for the page (a controlled schedule —
+   SG MDA, US DEA, AU S8/S9; a withdrawal with its reason; a boxed warning; a REMS; the cytotoxic
+   or teratogen class; a monitored route), each with its own source. Prescription-only classes
+   (SUSMP S4, SG POM, Rx) never appear in it.
+2. **Register application rows leave every question block.** The rows painted under the
+   supervision question (US NDA… Prescription, EU EMEA/H/C/… Withdrawn, CA drug code … APPROVED)
+   and under the label question (SG registered, US … approved · Drugs@FDA …, JP approved, CA …)
+   are the corpus-20k register data rows; the registration block and its disclosure hold them
+   once. Retire them from both questions.
+3. **The US status word derives from the application set:** any active prescription or OTC
+   application → Approved; every application discontinued → Discontinued (the count); tentative
+   only → Tentative approval. "Approved · 4 applications: all discontinued" is a contradiction.
+4. **Rows belong to their question:** "Registered studies posting no result: 103 of 163" renders
+   under the trials question, never under the label question.
+5. **Label interactions group by label and direction:** one line per (label, direction class)
+   — "Label-documented (DailyMed label 1cd10ca2…, 2024-03-11): avoid or monitor with antiplatelet
+   drugs, aspirin, diclofenac, …; interaction stated with ACE inhibitors, angiotensin receptor
+   blockers, …" — instead of twenty-one lines repeating the label id and date. A counterpart
+   must resolve to a substance page or a recognised drug class; "PLATELETS" and bare "ASA" are
+   entity-linking artefacts and are dropped with the count recorded.
+6. **Provenance rows are never painted outside the closed disclosure** (the "openFDA drug labels /
+   the NCATS … / CuratedB-inxight-frdb" list under the checked-sources statement is painted
+   today).
+7. **Parity whitespace:** adjacent inline spans (label, id; jurisdiction, id; "Trial", NCT;
+   date, key) are separated by a text node or laid out as blocks, so no extractor reads
+   "EUEMEA/H/C/005413" or "TrialNCT02099240".
+8. **Page keys are never painted** ("1989-12-11 K1:3J962UJT8H first approval").
+9. **Every visible list caps at six rows** with the remainder in a closed disclosure — the trial
+   endpoint list under the largest-trial question painted fourteen.
+10. **The provenance timeline (seed 8)** fires only with three or more dated events in
+    chronological order, its question names the first and last event kinds, and it never
+    phrases a later event as leading to an earlier one ("How did X get from 1989 to approved?"
+    over "1989 first approval, 2004 first human trial").
+11. **Absence questions do not fire:** "Has X ever reached a person?" renders nothing when the
+    answer is an absence; the header line "No human study recorded" carries it.
+12. **One relation per pair,** the most specific ("stereoisomer of", never also "same structure
+    as").
+13. **"This record holds N fields"** is furniture.
+14. **Hub tables:** absence cells ("not found", "no record", "—") carry `data-furniture` so the
+    rendered duplicate check reads hub content, not shared absence; the member-set dedupe at 0.5
+    stays. If hub-to-hub pairs at ≥ 0.5 remain after that, the survivor rule of §13(13) applies
+    at rendered Jaccard ≥ 0.5 as well (alias to the larger hub).
+15. **Trace classifier** accepts a list of record ids for a grouped line; the three one-value
+    prose blocks draw 4 named (the substituent sentence, the trial-size block, the mechanism
+    block) become rows per §13(7).
+16. **Self-audit before returning:** the fix agent renders 30 random pages (10 per tier) on its
+    build and checks every rule in §13 and §14 mechanically where a rule is mechanical (no
+    register status in the supervision answer; no application row outside the registration
+    block; no painted key or record id; lists ≤ 6; provenance only in closed details; event
+    order; one relation per pair; whitespace between spans) and adds each mechanical rule to
+    `tests/test_render_safety.py`.
