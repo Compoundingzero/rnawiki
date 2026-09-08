@@ -274,3 +274,68 @@ no-record line. Two binding rules collide — "unknowns render as Not found in [
   applied now that the renderer is stable, from `data/revamp/hubs/integration-plan.md`.
 - **Tailwind source scan** excludes `data/` and `.dvc/` (`@source not` in `app/globals.css`);
   the build worker was being killed reading 17 GB of measurement output.
+
+## 13. The lead's reading of slop draw 3 (2026-09-08, Fable) — generator rules for fix round 3
+
+Read: Tier 1 (flunitrazepam, ridaforolimus, iberdomide, telbivudine, nonoxynol-9), Tier 2
+(bifonazole, trisodium citrate, hazel flower bud, filgrastim, plumeria), Tier 3 (ABBV-467,
+bavebegene tovacivec, PF-04603629, CHEMBL3094407, cevostamab). The logical-sequence test fails on
+the same faults on every tier, and every one is a generator fault, never a page fault.
+
+1. **Absences never appear in a prose answer.** The corpus-20k regulatory answer ("SG not found, AU
+   scheduled in the Poisons Standard and UK not cleared: the registers' classification of X") and
+   the regulatory summary paragraph inside the label question ("SG not found; US approved (…); UK
+   not cleared; curatedMarketingStatusNote …") both offer absences as a classification, which is a
+   non-sequitur, and the second leaks a field name. Both are retired: the registration block is
+   the single place for register status. The supervision question's answer names only affirmative
+   classifications (a controlled-substance schedule, a withdrawal, a boxed warning, a REMS) with
+   the provenance of that classification, never a jurisdiction read from another source. The
+   questions "What classification does X carry?" and "Drug, supplement or controlled: what is X in
+   …?" fire only when an affirmative classification exists; otherwise no question renders, and
+   the absence is the furniture table.
+2. **The "What the registers record" block is retired.** Its dated rows ("Open Targets 26.06
+   drug_warning warningType Withdrawn; France; 1996; drug misuse") duplicate the registration block
+   and print enum strings. Register events fold into the registration block as one sentence per
+   event in words — "Withdrawn in France, 1996, for drug misuse (ChEMBL drug_warning; Open
+   Targets)" — with identical events from several sources merged into one line naming both.
+3. **Interactions render once, grouped.** The tier label is one visible element per line, never a
+   second badge. Enzyme and transporter rows group into one line per role: "Substrate of CYP1A2,
+   2A6, 2B6, 2C19, 2C8, 2C9, 2D6, 2E1 and 3A4 (Inxight FRDB)"; "Inhibitor of CYP2A6, 2C19, 2C9 and
+   3A4, with a reported magnitude (Inxight FRDB)". Record ids (frdb:ddi:12049) and the per-line
+   provenance list live only inside the closed disclosure; the visible block never repeats a line.
+4. **Schedules render once.** The controlled-substance schedules table is the one place a statute
+   row appears; the Singapore and Australia registration lines say "see schedules" after the
+   class, never the statute rows again.
+5. **Trial lists cap at six visible rows**; "14 further recorded trials" is a closed native
+   `<details>` whose contents are not painted until opened.
+6. **Inxight rows** with the jurisdiction "unspecified", and every "upstream registers:
+   ClinicalTrials, February 2021 …" clause, live in the technical disclosure only (§10).
+7. **Single-value statements are rows, not sentences.** "N of M completed trials posted no result:
+   NCT…", "First publication 2013, last 2013 (ChEMBL)", "X has no recorded human exposure" and the
+   like are data: rendered as labelled rows under the question heading (Posted no result: 25 of
+   29 · NCT…, NCT…; Publications (ChEMBL): 2013–2013). The template test (b) applies to prose
+   paragraphs; rows are markup. "No recorded human exposure" is an absence and is furniture.
+8. **Nearest approved neighbour** renders as rows (Closest approved compound · Flurazepam ·
+   similarity 0.48 · approved US, CA · generic available) and a prose sentence only when the
+   substituent description from the MCS comparison exists.
+9. **Form-of notes** print the related name once, as the link text.
+10. **Header** prints one evidence line ("No human study recorded"), not two.
+11. **Decorative glyphs** (the provenance anchor mark, the section separators) are hidden from
+    text extraction (`aria-hidden`, CSS pseudo-elements), so neither the ruler nor a crawler
+    reads "◇" and "~" as words.
+12. **SUSMP matching** requires the substance-as-listed to equal a full normalised synonym of the
+    page; a shared token never matches (trisodium citrate carried "SODIUM PHOSPHATE" and "SODIUM
+    DIACETATE" rows).
+13. **Hubs deduplicate by member set**: hubs whose member sets overlap at Jaccard ≥ 0.5 form
+    complete-linkage groups; the largest member set survives as the hub, the others become aliases
+    that redirect to it and are named in its definition line ("also known by … "). Re-measure the
+    survivors with the corpus-20k scripts and re-run the rendered check over hubs (1,865 hub pairs
+    were at or above 0.5).
+14. **Duplicate hold**: when two indexable pages measure ≥ 0.5 on the rendered check after the
+    rules above, the page with fewer own facts carries `noindex,follow` and a link to the other
+    until Felix decides; the pair is on the held list with the default "one page per product".
+    (Today: pertuzumab-trastuzumab-hyaluronidase-zzxf ↔ trastuzumab-hyaluronidase-oysk.)
+15. **Payload (6.1)** follows once the rules above land: dossier content rendered on the server
+    once, the client island receiving only the search bar's state; if Next.js cannot avoid the
+    flight duplicate cleanly, `/d/*` and `/h/*` are static-exported with a single island. Floor:
+    live text-to-HTML median ≥ 0.15 on the same 108 pages; target 0.25.

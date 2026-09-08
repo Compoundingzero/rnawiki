@@ -74,17 +74,17 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draw 2: a 0, b 242 (absence answer + block-level rule pending), c 0; fix round 2 then draw 3"
+        "4.7": "draw 3 not clean (b 67; lead reading found generator faults \u00a713); fix round 3, then draws 4 and 5"
       },
       "gate_evidence": null,
-      "updated": "2026-09-07T21:07:40+00:00"
+      "updated": "2026-09-08T05:44:49+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",
       "steps": {
         "5.1": "done (972 hubs)",
         "5.2": "done (tables + syntheses with provenance)",
-        "5.3": "pages built; integration into member pages and sitemap pending; link-graph data-only PASS",
+        "5.3": "integrated (Hubs row, hubs.xml, footer link); 1,865 hub-to-hub duplicate pairs \u2192 dedupe rule \u00a713",
         "5.4": "first batch 0.079/0.335 PASS; all 0.125/0.327 PASS"
       },
       "gate_evidence": null,
@@ -96,7 +96,7 @@
         "6.4": "BLOCKED-WITH-EVIDENCE (credentials); pointers committed; local pull verified",
         "6.5": "release candidate built; upload BLOCKED (Felix's accounts)",
         "6.6": "scripts + tests done; band empty until thresholds-v6",
-        "6.1": "pending (after the render fix)",
+        "6.1": "measured: text-to-HTML 0.048 vs floor 0.15; RSC 54.5 %; fix after round 3",
         "6.2": "pending",
         "6.3": "pending"
       },
