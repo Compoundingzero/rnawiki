@@ -149,3 +149,48 @@ changes; Railway's build command is still `npm run build`.
 200 and `/legacy-record/<the same slug>` answers 404; `/h` and `/h/<type>/<slug>` answer 200 and an
 absorbed hub slug answers 308; `scripts/revamp/payload_audit.py --base-url <host>` reports a live
 text-to-HTML median at or above 0.15 and an RSC share of 0.
+
+## Phase 7 run-book (revamp 2026-09; fixed by the lead 2026-09-09)
+
+Every step produces an artefact path; a step without one did not happen. Order is binding.
+
+0. **Backup.** `pg_dump -Fc` of production over the CA-pinned connection to
+   `rnawiki-backups/revamp-2026-09-deploy/rnawiki-pre-revamp.pgcustom`, size and sha256 recorded;
+   table-data entry count compared with the 2026-09-05 backup (must be ≥ 70 + the corpus tables).
+1. **Code first, rows second.** Open the PR `revamp/2026-09` → `main`; CI green (release gate +
+   revamp-checks); merge; watch the Railway deployment to SUCCESS; `preDeployCommand` replays
+   migrations 0026–0031 (read the count after: 32). `PORT` behind the proxy per §6.1's document
+   architecture (the legacy-record forward needs it) — verify one legacy-only slug answers 200
+   before any load.
+2. **Verify with the old rows.** The corpus tables still hold the corpus-20k load: every one of
+   the eight samples answers 200 on the new document renderer; `verify-live.ts --require-all` on
+   the pre-load state; robots unchanged; frozen bar 0.00 px; JSON-LD one block; sitemap index
+   children present (tier-1, tier-2, browse, hubs (empty until step 4), pages).
+3. **Load tiers in order** from the workstation with `materialise.ts --production-confirmed
+   --thresholds data/revamp/thresholds-v9.json` (the settled ruler), applying redirect plan v5,
+   trial reassignments v5 and duplicate holds, Tier 1 → verify → Tier 2 → verify → Tier 3 →
+   verify; each verify = `verify-live.ts --require-all` after the 15-minute sitemap cache,
+   `redirect_check.py --base-url https://rnawiki.com` (all 9,857 legacy slugs 200/301/308),
+   `rendered_dup_check.py --base-url https://rnawiki.com --fail-on-indexable`, 20 random pages
+   per tier compared with the build output (h1, block count, first block), frozen bar, JSON-LD.
+   Markers carry the production fingerprint; a re-run is a no-op.
+4. **Hubs.** `hubs_load.ts --production-confirmed` (aliases, members, syntheses); verify 10 random
+   hubs against the build; `link_graph_check.py --base-url https://rnawiki.com` (all rules);
+   `hubs.xml` count equals the surviving hub count.
+5. **IndexNow.** `npm run discovery:indexnow -- --tier 1`, `--tier 2`, and `--hubs` (the
+   corpus-aware submitter reads the sitemap children; Tier 3 refused by design); ledger lines in
+   `docs/audits/discovery/indexnow-submissions.ndjson`; `SEO_DEPLOYMENT_ENV=production` for the
+   run.
+6. **Orphan audit.** `discovery:monitor` over the whole index (scoped per child to stay within
+   memory), 0 unreachable, click depth ≤ 3 for every indexed record and hub.
+7. **After.** `data/revamp/after.json` with every `baseline.json` measurement re-run by the same
+   scripts and samples against the live site, plus the Phase 4–6 measures (thresholds v9 on the
+   live text, rendered duplicates on the live indexable set, payload on the 108 pages,
+   text-to-HTML, common-line share, median words); `data/revamp/before-after.md` in the corpus-20k
+   FINAL REPORT layout.
+8. **FINAL REPORT 2** appended to `docs/worklogs/revamp-2026-09.md` from
+   `data/revamp/final/final-report-2-draft.md` with every [Phase 7] slot filled; `state.json`
+   gates set; the records PR opened and merged on green.
+
+Rollback: `pg_restore` of step 0's dump over the CA-pinned connection restores rows; the code
+deploy is reverted by redeploying the previous Railway deployment id (recorded in step 1).
