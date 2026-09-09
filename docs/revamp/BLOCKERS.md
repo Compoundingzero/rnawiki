@@ -1008,3 +1008,10 @@ What is still blocked is unchanged: `B2_KEY_ID` / `B2_APP_KEY` (or `R2_ACCESS_KE
 `R2_SECRET_ACCESS_KEY`) are absent from the environment, so nothing has been pushed offsite. Until
 that push runs, the workstation holds two of the three copies on one volume and production
 (Railway) holds none of the corpus files.
+
+## Phase 8 scheduling (Felix's machine)
+- `scripts/revamp/weekly.sh` is written and dry-runs clean. Installing a weekly job on your machine consumes your Claude usage and edits your crontab/launchd, so it is left for you. Exact line (Sunday 03:00 SGT):
+```
+0 3 * * 0 cd "/Users/admin/ClaudeRepo/Claude Projects/Project RNAwiki/RNAwiki-corpus-completion" && claude -p "run scripts/revamp/weekly.sh and append the result to the worklog" >> data/revamp/promotion/weekly-cron.log 2>&1
+```
+- Until the Search Console export or service account exists (0.4), the weekly run reports "no Search Console data" and promotes nothing, by design.
