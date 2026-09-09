@@ -1,0 +1,1 @@
+ALTER TABLE "corpus_pages" ADD COLUMN "suppression_evidence" jsonb DEFAULT '[]'::jsonb NOT NULL;

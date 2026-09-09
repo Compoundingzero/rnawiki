@@ -75,19 +75,23 @@ QUOTED = re.compile(r'"[^"]*"')
 NO_INTERACTION_FOUND = re.compile(r"^No interaction found in .+ as of \d{4}-\d{2}-\d{2}\.$")
 CHECKED_IN = re.compile(r"^Checked in .+ as of \d{4}-\d{2}-\d{2}\.$")
 ABSENCE_TABLE_CAPTION = "Registers holding no record of this substance"
+# docs/specs/phase4-generators.md §15(1): the supervision answer is one clause per recorded class,
+# each built from that class's own evidence. These are the clauses' own words; the generic labels
+# they replaced said what a class of that kind might be and are on no page.
 CLASS_WORDS = tuple(
     phrase.lower()
     for phrase in (
-        "World Health Organization therapeutic class",
-        "controlled-substance schedule",
-        "harm to a developing baby",
-        "cytotoxic",
-        "restricts how the medicine is supplied",
+        "World Health Organization ATC class",
+        "statute schedules it as a controlled substance",
+        "risk to a developing baby",
+        "pregnancy-prevention programme",
+        "hazardous-medicine class",
+        "Risk Evaluation and Mitigation Strategy",
         "boxed warning",
-        "injection into a vein",
-        "withdrawal or suspension for a safety reason",
-        "long-acting injection",
-        "no classification found in the registers checked",
+        "route of administration is one a clinician gives",
+        "withdrawn or suspended for a safety reason",
+        "long-acting or titrated injected form",
+        "no classification is recorded for this compound",
     )
 )
 FURTHER_TRIALS = re.compile(r"^\d+ further recorded trials?\b")
@@ -180,7 +184,7 @@ class Flags:
         "controlled", "controlled-schedules", "poisons-standard-row",
         "quoted-interaction-span", "interaction-line", "no-interaction-found",
         "checked-in", "not-found-line", "absence-table",
-        "supervision-block", "supervision-in-class-words", "supervision-by-the-registers",
+        "supervision-block", "supervision-in-class-words",
         "trial-row", "composed-sentence",
     )
 
@@ -205,13 +209,11 @@ def scan_text(flags: Flags, directory: Path) -> None:
             flags.mark(key, "absence-table")
         if "Not found in" in text:
             flags.mark(key, "not-found-line")
-        supervision = "carry a supervision requirement?" in text or "A register records " in text
+        supervision = "carry a supervision requirement?" in text
         if supervision:
             flags.mark(key, "supervision-block")
             if any(word in lowered for word in CLASS_WORDS):
                 flags.mark(key, "supervision-in-class-words")
-            if "the registers' classification of" in text or "classifications of" in text:
-                flags.mark(key, "supervision-by-the-registers")
         for line in text.split("\n"):
             line = line.strip()
             if not line:

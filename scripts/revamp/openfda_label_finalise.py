@@ -158,7 +158,14 @@ def main() -> None:
         "superseded_records_dropped": stats["superseded_records"],
         "unmatched_records": stats["unmatched_records"],
         "records_resolved_by_unii": stats["resolved_by_unii"],
-        "records_resolved_by_rxcui": stats["resolved_by_rxcui"],
+        # §15(2): the RxCUI fallback is gone. A page maps only where its own UNII — the one its key
+        # carries or the one its `unii` field carries — is among the label's active ingredients.
+        "records_resolved_by_rxcui": stats.get("resolved_by_rxcui", 0),
+        "records_excluded_as_unapproved_or_homeopathic": stats.get("excluded_labels", 0),
+        "records_excluded_by_reason": stats.get("excluded_by_reason", {}),
+        "pages_reached_before_exclusion": stats.get("pages_reached_before_exclusion"),
+        "pages_losing_every_label": stats.get("pages_losing_every_label"),
+        "pages_losing_some_labels": stats.get("pages_losing_some_labels"),
         "corpus_pages_by_tier": corpus_totals,
         "pages_matched_by_tier": pages_by_tier,
         "pages_matched_pct_by_tier": {

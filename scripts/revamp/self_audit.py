@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Phase 4 section 14 item 16 — the self-audit, against a painted build.
+"""Phase 4 section 14 item 16 and section 15 item 9 — the self-audit, against a painted build.
 
 "The fix agent renders 30 random pages (10 per tier) on its build and checks every rule in section
 13 and section 14 mechanically where a rule is mechanical (no register status in the supervision
 answer; no application row outside the registration block; no painted key or record id; lists <= 6;
 provenance only in closed details; event order; one relation per pair; whitespace between spans)."
+Section 15 item 9 extends it with items 1, 5, 6, 7 and 8: the supervision answer is one sourced
+clause per recorded class and never the generic class-label list; the ageing question fires only on
+an ageing endpoint; a stereochemistry note names no relation the two records do not have; a row in
+a counted remainder keeps its own label; and no inline element is glued to the text beside it.
 
 Every rule here is checked against what the browser painted, not against the render text: the
 render and the page are one text by section 11, and these are the rules that can only be decided on
@@ -66,13 +70,54 @@ APPLICATION_ID = re.compile(
     r"\b(?:NDA|ANDA|BLA)\s?\d{5,}\b|\bEMEA/H/C/\d+\b|\bdrug code \d+\b", re.IGNORECASE
 )
 
-# Section 14 item 1: the one shape the supervision answer takes, and the words of a prescription
-# classification, which is not a supervision reason.
-SUPERVISION_ANSWER = re.compile(r"^A register records .+ under medical supervision: ")
-PRESCRIPTION_ONLY = re.compile(
-    r"\b(?:poisons standard|poisons act|poisons rules|prescription[ -]only|schedule 4|POM"
-    r"|forensic class)\b"
+# Section 15 item 1: the supervision answer is one clause per recorded class, each built from that
+# class's own evidence and carrying that class's own source in brackets. Three things it is never:
+# the section 14 frame that named a class from a list, any of the generic class labels themselves,
+# and a prescription classification offered as a reason for supervision.
+RETIRED_SUPERVISION_FRAME = re.compile(r"^A register records .+ under medical supervision: ")
+GENERIC_CLASS_LABEL = re.compile(
+    r"a World Health Organization therapeutic class such as"
+    r"|a controlled-substance schedule in Singapore, the United States"
+    r"|a label warning about harm to a developing baby"
+    r"|a list of cytotoxic or otherwise hazardous medicines"
+    r"|a United States programme that restricts how the medicine is supplied"
+    r"|a boxed warning, the strongest warning a United States label carries"
+    r"|a route a clinician administers, such as"
+    r"|a register record of withdrawal or suspension for a safety reason"
+    r"|a long-acting injection, an insulin, or another injected hormone",
+    re.IGNORECASE,
 )
+# A prescription classification. The Poisons Standard is named without qualification only where the
+# schedule is 8 or 9, which is a controlled schedule; Schedule 4 and the Singapore Poisons Act and
+# Poisons Rules schedules are prescription classes and are never a supervision reason.
+PRESCRIPTION_ONLY = re.compile(
+    r"\b(?:poisons act|poisons rules|prescription[ -]only|schedule 4|POM|forensic class)\b",
+    re.IGNORECASE,
+)
+# Every clause ends with the source it was built from, in brackets.
+CLAUSE_SOURCE = re.compile(r"\([^()]{3,}\)\s*\.?$")
+
+# Section 15 item 5: the ageing question, and the vocabulary that licenses it. The table is
+# `AGEING_ENDPOINTS` in scripts/corpus-20k/derived/compute.py; these are its keys, which are the
+# only words the question may name.
+AGEING_QUESTION = re.compile(r"^Which running trial of .+ could settle (.+)\?$")
+NEUTRAL_READOUT_QUESTION = re.compile(r"^Which running trial of .+ reads out next\?$")
+AGEING_ENDPOINT_WORDS = {
+    "lifespan",
+    "healthspan",
+    "frailty",
+    "function",
+    "epigenetic age",
+    "vo2max",
+    "grip strength",
+    "insulin sensitivity",
+    "inflammatory markers",
+}
+
+# Section 15 item 6: a note that says one record carries no stereochemistry cannot also name a
+# stereochemical relation between the two.
+NO_STEREOCHEMISTRY = re.compile(r"recorded without stereochemistry", re.IGNORECASE)
+STEREO_RELATION = re.compile(r"\b(?:diastereomer|enantiomer)\b", re.IGNORECASE)
 
 # Section 14 item 11: the question the retired `never-dosed` block asked.
 ABSENCE_QUESTION = re.compile(r"Has .+ ever reached a person\?")
@@ -107,6 +152,11 @@ RULES = (
     "one relation per pair",
     "the United States status word agrees with its applications",
     "a hub table's absence cells carry data-furniture",
+    # Section 15 item 9.
+    "every supervision clause carries its own source",
+    "the ageing question fires only on an ageing endpoint",
+    "a stereochemistry note names no relation the records do not have",
+    "every row in a counted remainder keeps its label",
 )
 
 
@@ -179,6 +229,31 @@ EXTRACT_JS = """() => {
       name: text(row.querySelector('a')) || text(row.querySelectorAll('span')[1]),
     }));
 
+  // Section 15 item 7: every row a reader can reach, with the label the template painted on it
+  // and the heading of the group it sits under. A row inside a counted remainder was painting its
+  // value alone: "6", "1", "1", under "4 more recorded rows".
+  const rows = [];
+  for (const list of main.querySelectorAll('ul.cd-rows')) {
+    const details = list.closest('details');
+    const heading = details
+      ? text(details.querySelector(':scope > summary'))
+      : text(list.previousElementSibling && list.previousElementSibling.matches('h3')
+          ? list.previousElementSibling
+          : null);
+    for (const row of list.querySelectorAll(':scope > li')) {
+      rows.push({
+        heading,
+        label: text(row.querySelector('.cd-row-label')),
+        value: text(row.querySelector('.cd-row-value')) || text(row),
+      });
+    }
+  }
+
+  // Section 15 item 6: the form-of note, which is a sentence about two records' structures.
+  const formOfNotes = [
+    ...main.querySelectorAll('section.cd-form-of p.cd-paragraph'),
+  ].map(text);
+
   // A hub table's cells, with the furniture mark the template put on them.
   const hubCells = [...main.querySelectorAll('table td')].map((cell) => ({
     text: text(cell),
@@ -207,15 +282,36 @@ EXTRACT_JS = """() => {
     questions,
     registration,
     relations,
+    rows,
+    formOfNotes,
     hubCells,
   };
 }""" % {"exclude": json.dumps(EXCLUDE_SELECTOR)}
 
 
+# Section 14 item 7 and section 15 item 8. Two shapes, both of which every text extraction reads as
+# one word: two inline elements meeting with nothing between them ("EUEMEA/H/C/005413"), and an
+# inline element meeting the text beside it ("INTERPRETATIONno human trial recorded").
 JOINED_INLINE = re.compile(
     r"<(?:span|a|abbr|time)\b[^>]*>([^<>]+)</(?:span|a|abbr|time)>"
     r"<(?:span|a|abbr|time)\b[^>]*>([^<>]+)<"
 )
+JOINED_TEXT = re.compile(
+    r"<(span|a|abbr|time)\b[^>]*>([^<>]+)</\1>([A-Za-z0-9][^<>]{0,40})"
+)
+
+
+def glued(markup: str) -> list[str]:
+    """Every pair of things the markup joins with no text node between them (§15 item 8)."""
+    out = [
+        f"{match.group(1).strip()}|{match.group(2).strip()}"
+        for match in JOINED_INLINE.finditer(markup)
+    ]
+    out.extend(
+        f"{match.group(2).strip()}|{match.group(3).strip()}"
+        for match in JOINED_TEXT.finditer(markup)
+    )
+    return out
 
 
 @dataclass
@@ -355,13 +451,35 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
     # The block's first paragraph is the answer; the second states this record's own study scope
     # ("39 registered studies, largest enrolment 491, longest 8.4 years"), which is a fact about
     # the record and not a classification.
-    answer = next((sentence for sentence in payload["supervision"] if sentence), None)
-    if answer is not None:
-        named = PRESCRIPTION_ONLY.search(answer)
+    clauses = [sentence for sentence in payload["supervision"] if sentence]
+    # The last paragraph may be this record's own study scope ("39 registered studies, largest
+    # enrolment 491"), which is a fact about the record and not a classification; it carries no
+    # source of its own and is not a clause. The clauses are the ones that cite something.
+    for sentence in clauses:
+        prescription = PRESCRIPTION_ONLY.search(sentence)
+        generic = GENERIC_CLASS_LABEL.search(sentence)
+        retired = RETIRED_SUPERVISION_FRAME.match(sentence)
+        detail = (
+            f"names {prescription.group(0)!r}"
+            if prescription
+            else f"names the generic label {generic.group(0)!r}"
+            if generic
+            else "uses the retired frame"
+            if retired
+            else ""
+        )
         record(
             RULES[0],
-            bool(SUPERVISION_ANSWER.match(answer)) and named is None,
-            answer[:160] if named is None else f"names {named.group(0)!r}: {answer[:120]}",
+            prescription is None and generic is None and retired is None,
+            f"{detail}: {sentence[:140]}" if detail else sentence[:140],
+        )
+    # Section 15 item 1: "a clause without a matching source does not render". Every clause but the
+    # study-scope sentence ends with the source it was built from, in brackets.
+    for sentence in clauses[: max(0, len(clauses) - 1)] or clauses[:1]:
+        record(
+            RULES[11],
+            bool(CLAUSE_SOURCE.search(sentence)),
+            sentence[:140],
         )
 
     # 2 — no register application row in what a question block paints.
@@ -386,12 +504,8 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
             f"{held['selector']} paints {held['rows']} rows",
         )
 
-    # 6 — two inline elements that both carry text never meet without a text node.
-    joined = [
-        f"{match.group(1).strip()}|{match.group(2).strip()}"
-        for match in JOINED_INLINE.finditer(payload["markup"])
-    ]
-    record(RULES[5], not joined, joined[0][:140] if joined else "")
+    # 6 — an inline element never meets the text or the element beside it without a text node.
+    record(RULES[5], not glued(payload["markup"]), (glued(payload["markup"]) or [""])[0][:140])
 
     # 7 — the provenance timeline names both ends, dated, in order.
     for block in payload["questions"]:
@@ -431,6 +545,51 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
         ) or (lowered.startswith("discontinued") and active)
         record(RULES[9], not contradiction, row["status"][:140])
 
+    # 12 — section 15 item 5: the ageing question fires only on an ageing endpoint, and the
+    # neutral question never names one.
+    for block in payload["questions"]:
+        heading = block["heading"]
+        ageing = AGEING_QUESTION.match(heading)
+        if ageing:
+            record(
+                RULES[12],
+                ageing.group(1).strip().lower() in AGEING_ENDPOINT_WORDS,
+                heading[:140],
+            )
+        elif NEUTRAL_READOUT_QUESTION.match(heading):
+            # The neutral question's answer names the endpoint in the register's own words, and
+            # the ageing reading is exactly what it does not have: "lifespan" is the word seed 9
+            # was writing over an event-free-survival endpoint.
+            body = " ".join(block["visible"]).lower()
+            record(RULES[12], "lifespan" not in body, f"{heading[:60]} — {body[:100]}")
+
+    # 13 — section 15 item 6: a note that records one structure without stereochemistry names no
+    # stereochemical relation between the two.
+    for note in payload["formOfNotes"]:
+        if not NO_STEREOCHEMISTRY.search(note):
+            continue
+        found = STEREO_RELATION.search(note)
+        record(RULES[13], found is None, note[:160])
+
+    # 14 — section 15 item 7: a row under a counted remainder keeps its own label. The rows of a
+    # run that shares one label are headed by it and need none — the trial remainder's rows carry
+    # that heading as their own label — but a heading that counts rows is not the label of a count,
+    # and the phase and status lists under one were painting "6", "1", "1" with nothing to say what
+    # each number counted.
+    for row in payload["rows"]:
+        heading = (row["heading"] or "").strip()
+        counted = bool(re.match(r"^\d+ (?:further recorded trials?|more recorded rows?)$", heading))
+        if not counted:
+            continue
+        value = (row["value"] or "").strip()
+        if not re.fullmatch(r"\d{1,7}", value):
+            continue
+        record(
+            RULES[14],
+            bool(row["label"].strip()),
+            f"{heading} — a row painting {value!r} and no label",
+        )
+
     assert painted is not None
 
 
@@ -445,11 +604,7 @@ def check_hub(target: Target, payload: dict, result: Result) -> None:
             result.failures[rule].append(f"{where}: {detail}")
 
     # The rules a hub shares with a record page.
-    joined = [
-        f"{match.group(1).strip()}|{match.group(2).strip()}"
-        for match in JOINED_INLINE.finditer(payload["markup"])
-    ]
-    record(RULES[5], not joined, joined[0][:140] if joined else "")
+    record(RULES[5], not glued(payload["markup"]), (glued(payload["markup"]) or [""])[0][:140])
     keys = [line for line in payload["opened"].split("\n") if PAGE_KEY.search(line)]
     record(RULES[2], not keys, keys[0][:140] if keys else "")
 
@@ -469,7 +624,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--base-url", required=True)
     parser.add_argument("--database-url", default=os.environ.get("DATABASE_URL"))
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
-    parser.add_argument("--out", default=str(ROOT / "data/revamp/self-audit-round4.json"))
+    parser.add_argument("--out", default=str(ROOT / "data/revamp/self-audit-round5.json"))
     args = parser.parse_args(argv)
     if not args.database_url:
         raise SystemExit("DATABASE_URL is required (or pass --database-url)")
@@ -504,7 +659,7 @@ def main(argv: list[str] | None = None) -> int:
     hubs = [target for target in targets if target.kind == "hub"]
     report = {
         "generatedBy": "scripts/revamp/self_audit.py",
-        "spec": "docs/specs/phase4-generators.md#14",
+        "spec": ["docs/specs/phase4-generators.md#14", "docs/specs/phase4-generators.md#15"],
         "baseUrl": args.base_url,
         "seed": args.seed,
         "drawn": {"pages": len(pages), "hubs": len(hubs), "perTier": PER_TIER},

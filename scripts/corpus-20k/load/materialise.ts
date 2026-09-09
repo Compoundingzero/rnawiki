@@ -138,6 +138,18 @@ interface SuppressionAssignment {
   key: string
   suppressed: boolean
   classes: string[]
+  /**
+   * The evidence rows recorded beside the classes (migration 0033). §15(1) builds the supervision
+   * answer from these and from nothing else, so they travel with the classes into the page row.
+   */
+  evidence: SuppressionEvidenceRow[]
+}
+
+interface SuppressionEvidenceRow {
+  test: string
+  source?: string
+  value?: string
+  label?: string
 }
 
 interface Disposition {
@@ -225,6 +237,7 @@ interface PageRow {
   duplicateHoldOf: string | null
   suppressed: boolean
   suppressionClasses: string[]
+  suppressionEvidence: SuppressionEvidenceRow[]
   withdrawn: boolean
   presentFieldCount: number
   applicableFieldCount: number
@@ -868,6 +881,12 @@ const REVAMP = join(ROOT, 'data', 'revamp')
 interface CorpusSources {
   label: string
   identity: string
+  /**
+   * The tier map (docs/specs/field-models.md "Assignment"). Under `--revamp` this is the v2 file,
+   * which applies §15(3): a page whose only clinical evidence is a DailyMed SPL carrying no
+   * application number is not CLINICAL, because a label is not a register approval.
+   */
+  models: string
   fieldDirs: string[]
   seedsDir: string
   questionsDir: string
@@ -886,6 +905,7 @@ function corpusSources(revamp: boolean): CorpusSources {
     return {
       label: 'corpus-20k',
       identity: join(DATA, 'identity', 'canonical.ndjson'),
+      models: join(DATA, 'tiers', 'model-assignment.ndjson'),
       fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) => join(DATA, 'fields', directory)),
       seedsDir: join(DATA, 'derived'),
       questionsDir: join(DATA, 'questions'),
@@ -896,6 +916,7 @@ function corpusSources(revamp: boolean): CorpusSources {
   return {
     label: 'revamp-2026-09',
     identity: join(REVAMP, 'identity', 'canonical-v6.ndjson'),
+    models: join(REVAMP, 'tiers', 'model-assignment-v2.ndjson'),
     fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
       join(REVAMP, 'fields-v2', directory),
     ),
@@ -1232,7 +1253,7 @@ async function main(): Promise<void> {
     /* ---- 1. assignments, suppression, dispositions ---------------------------------------- */
 
     const assignments = new Map<string, ModelAssignment>()
-    for await (const row of readNdjson(join(DATA, 'tiers', 'model-assignment.ndjson'))) {
+    for await (const row of readNdjson(sources.models)) {
       const record = row as ModelAssignment
       assignments.set(record.key, {
         key: record.key,
@@ -1250,6 +1271,11 @@ async function main(): Promise<void> {
         key: record.key,
         suppressed: Boolean(record.suppressed),
         classes: Array.isArray(record.classes) ? record.classes : [],
+        evidence: Array.isArray(record.evidence)
+          ? (record.evidence as SuppressionEvidenceRow[]).filter(
+              (row) => row !== null && typeof row === 'object' && typeof row.test === 'string',
+            )
+          : [],
       })
     }
 
@@ -2160,6 +2186,7 @@ function buildBatch(input: {
       duplicateHoldOf,
       suppressed,
       suppressionClasses: suppressionRow?.classes ?? [],
+      suppressionEvidence: suppressionRow?.evidence ?? [],
       controlled,
       controlledBasis,
       withdrawn: assignment.withdrawn,
@@ -2700,6 +2727,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         'duplicate_hold_of',
         'suppressed',
         'suppression_classes',
+        'suppression_evidence',
         'withdrawn',
         'present_field_count',
         'applicable_field_count',
@@ -2734,6 +2762,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
         page.duplicateHoldOf,
         page.suppressed,
         page.suppressionClasses,
+        JSON.stringify(page.suppressionEvidence),
         page.withdrawn,
         page.presentFieldCount,
         page.applicableFieldCount,
@@ -2767,6 +2796,7 @@ async function writeBatch(client: Client, built: BuiltBatch): Promise<void> {
          "duplicate_hold_of" = EXCLUDED."duplicate_hold_of",
          "suppressed" = EXCLUDED."suppressed",
          "suppression_classes" = EXCLUDED."suppression_classes",
+         "suppression_evidence" = EXCLUDED."suppression_evidence",
          "withdrawn" = EXCLUDED."withdrawn",
          "present_field_count" = EXCLUDED."present_field_count",
          "applicable_field_count" = EXCLUDED."applicable_field_count",

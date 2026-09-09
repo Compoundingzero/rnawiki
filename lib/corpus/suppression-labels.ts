@@ -54,3 +54,293 @@ export function isUnknownClassOnly(classes: readonly string[]): boolean {
 export function unknownClassificationLine(): string {
   return 'No classification is recorded for this compound in the registers checked.'
 }
+
+/* ------------------------------------------------------------------ the supervision clauses */
+
+/**
+ * One recorded piece of suppression evidence, as `scripts/corpus-20k/suppression/assign.py` and
+ * `scripts/revamp/controlled_suppression.py` write it: the class it answers, the source that
+ * stated it, the value that source carried, and — for the ATC-based classes — the register's own
+ * name for the class code.
+ */
+export interface SuppressionEvidence {
+  test: string
+  source?: string
+  value?: string
+  label?: string
+}
+
+/** A DailyMed label the page holds, as the clause cites it: the SPL set id and its date. */
+export interface SupervisionLabelCitation {
+  id?: string
+  date?: string
+}
+
+/**
+ * What the page itself holds that a clause may cite in place of the evidence row's source words.
+ *
+ * §15(1) asks the boxed-warning clause for "the DailyMed label set id and date", which the
+ * suppression pass did not record and the page's own `boxedWarning` field does.
+ */
+export interface SupervisionContext {
+  boxedWarningLabel?: SupervisionLabelCitation
+  label?: SupervisionLabelCitation
+}
+
+/** One clause of the supervision answer: the class it was built from, and its sentence. */
+export interface SupervisionClause {
+  code: string
+  text: string
+}
+
+/** "a", "a and b", "a, b and c" — the list separator the rest of the corpus text uses. */
+function joinClauseList(items: readonly string[]): string {
+  if (items.length <= 1) return items[0] ?? ''
+  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1] as string}`
+}
+
+/**
+ * A source or value written to sit inside a sentence.
+ *
+ * The recorded strings carry their own brackets ("Misuse of Drugs Act 1973 (2020 Rev Ed)",
+ * "Schedule 8 (Controlled drugs)"), and a clause puts its source in brackets of its own, so a
+ * nested pair would read as a rendering fault. The brackets become commas and nothing else
+ * changes: these are the register's own words.
+ */
+function flatten(text: string | undefined): string {
+  if (!text) return ''
+  return (
+    text
+      // §13(2): a column name is storage vocabulary and a reader never meets one. The registers' own
+      // recorded strings name the column a value was read from — `drug_warning`, `boxed_warning`,
+      // `dea_schedule` — and the underscore is what makes it a column name rather than the words it
+      // is made of.
+      .replace(/_/g, ' ')
+      .replace(/\s*\(\s*/g, ', ')
+      .replace(/\s*\)\s*/g, ' ')
+      .replace(/\s*;\s*$/, '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s+,/g, ',')
+      .replace(/[.,]\s*$/, '')
+      .trim()
+  )
+}
+
+/**
+ * The register's name out of a source string, without the table or column it was read from.
+ *
+ * §13(2): `drug_warning` and `withdrawn_flag` are storage vocabulary. The register's name is the
+ * run of leading tokens that begin with a capital or a digit; the first lowercase token ends it.
+ */
+function registerWords(source: string | undefined): string {
+  const kept: string[] = []
+  for (const token of flatten(source).split(' ')) {
+    if (!token) continue
+    if (!/^[A-Z0-9]/.test(token)) break
+    kept.push(token.replace(/[,;]$/, ''))
+  }
+  return kept.join(' ')
+}
+
+/** "DailyMed label 77108624-…, 2025-01-14", or the evidence row's own source words. */
+function labelCitation(
+  citation: SupervisionLabelCitation | undefined,
+  fallback: string | undefined,
+): string {
+  if (citation?.id) {
+    return citation.date
+      ? `DailyMed label ${citation.id}, ${citation.date}`
+      : `DailyMed label ${citation.id}`
+  }
+  return flatten(fallback)
+}
+
+/** The substantive half of a value that names where it was found before what was found. */
+function foundValue(value: string | undefined): string {
+  const flat = flatten(value)
+  const index = flat.lastIndexOf(': ')
+  return index >= 0 ? flat.slice(index + 2).trim() : flat
+}
+
+const ATC_CODE = /^[A-Z]\d{2}[A-Z]{0,2}\d{0,2}$/
+
+/**
+ * "<value> (<source>)", the shape every clause item takes.
+ *
+ * §15(1): "a clause without a matching source does not render". An item whose evidence row
+ * recorded no source is dropped here, so a clause states nothing this corpus cannot cite.
+ */
+function item(value: string, source: string | undefined): string {
+  const cited = flatten(source)
+  return cited ? `${value} (${cited})` : ''
+}
+
+function clauseFor(
+  code: string,
+  rows: readonly SuppressionEvidence[],
+  context: SupervisionContext,
+): string | undefined {
+  const values = rows.map((row) => flatten(row.value)).filter((value) => value.length > 0)
+  if (rows.length === 0) return undefined
+
+  switch (code) {
+    case 'S1': {
+      // "Its World Health Organization ATC class is C01AA, digitalis glycosides (WHO ATC via
+      // ChEMBL/EMA)": the code and the register's own name for it, never a list of what such a
+      // class might be.
+      const named = rows
+        .map((row) => flatten(row.label) || flatten(row.value))
+        .filter((value) => value.length > 0)
+      const seen = [...new Set(named)]
+      const sources = [...new Set(rows.map((row) => flatten(row.source)).filter(Boolean))]
+      if (seen.length === 0 || sources.length === 0) return undefined
+      return item(
+        `Its World Health Organization ATC ${seen.length === 1 ? 'class is' : 'classes are'} ${joinClauseList(seen)}`,
+        sources.join('; '),
+      )
+    }
+    case 'S2': {
+      const items = rows
+        .map((row) => (flatten(row.value) ? item(flatten(row.value), row.source) : ''))
+        .filter(Boolean)
+      if (items.length === 0) return undefined
+      return `A statute schedules it as a controlled substance: ${items.join('; ')}`
+    }
+    case 'S3': {
+      const programme = rows.find((row) => /REMS|pregnancy-prevention/i.test(row.source ?? ''))
+      if (programme) {
+        return item('It is under a pregnancy-prevention programme', programme.source)
+      }
+      const items = [
+        ...new Set(
+          rows.map((row) =>
+            foundValue(row.value)
+              ? item(foundValue(row.value), registerWords(row.value) || row.source)
+              : '',
+          ),
+        ),
+      ].filter(Boolean)
+      if (items.length === 0) return undefined
+      return `A label or register records a risk to a developing baby: ${items.join('; ')}`
+    }
+    case 'S4': {
+      const items = [
+        ...new Set(
+          rows
+            .map((row) => {
+              const value = flatten(row.value)
+              if (/cytotoxic/i.test(value))
+                return item('the word "cytotoxic" in its label', row.source)
+              const named = flatten(row.label) || value
+              return named ? item(named, row.source) : ''
+            })
+            .filter(Boolean),
+        ),
+      ]
+      if (items.length === 0) return undefined
+      return `A hazardous-medicine class covers it: ${items.join('; ')}`
+    }
+    case 'S5':
+      return item(
+        'A United States Risk Evaluation and Mitigation Strategy is named in its label',
+        labelCitation(context.label, rows[0]?.source),
+      )
+    case 'S6': {
+      const subjects = [...new Set(values.flatMap((value) => value.split(/;\s*/)))].filter(Boolean)
+      const citation = labelCitation(context.boxedWarningLabel, rows[0]?.source)
+      if (subjects.length === 0)
+        return item('Its United States label carries a boxed warning', citation)
+      return item(
+        `Its United States label carries a boxed warning naming ${joinClauseList(subjects)}`,
+        citation,
+      )
+    }
+    case 'S7': {
+      const items = [
+        ...new Set(
+          rows
+            .map((row) => {
+              const value = flatten(row.value)
+              if (ATC_CODE.test(value)) return item(flatten(row.label) || value, row.source)
+              const routes = value
+                .split(/,\s*/)
+                .map((route) => route.toLowerCase())
+                .filter(Boolean)
+              return routes.length > 0 ? item(joinClauseList(routes), row.source) : ''
+            })
+            .filter(Boolean),
+        ),
+      ]
+      if (items.length === 0) return undefined
+      return `Its recorded route of administration is one a clinician gives: ${items.join('; ')}`
+    }
+    case 'S8': {
+      const items = [
+        ...new Set(
+          rows
+            .map((row) => {
+              const raw = row.value ?? ''
+              const detail = /\(([^)]*)\)\s*$/.exec(raw)?.[1]
+              const register = registerWords(raw) || registerWords(row.source)
+              if (detail) return item(flatten(detail).replace(/;\s*/g, ', '), register)
+              return register ? item('no reason recorded with the flag', register) : ''
+            })
+            .filter(Boolean),
+        ),
+      ]
+      if (items.length === 0) return undefined
+      return `A register records it withdrawn or suspended for a safety reason: ${items.join('; ')}`
+    }
+    case 'S9': {
+      const items = [
+        ...new Set(
+          rows
+            .map((row) => {
+              const named = flatten(row.label) || flatten(row.value)
+              return named ? item(named, row.source) : ''
+            })
+            .filter(Boolean),
+        ),
+      ]
+      if (items.length === 0) return undefined
+      return `A long-acting or titrated injected form is recorded for it: ${items.join('; ')}`
+    }
+    default:
+      return undefined
+  }
+}
+
+/**
+ * The supervision answer: one clause per recorded S1–S9 class, each built from that class's own
+ * evidence and its own source (docs/specs/phase4-generators.md §15 item 1).
+ *
+ * The generic label list this module also holds — "a World Health Organization therapeutic class
+ * such as cancer medicines, immune suppressants, opioids or general anaesthetics" — says what a
+ * class of that kind might be, not what this record is in, and the reading of draw 6 found it
+ * printed beside a prescription-schedule row that was not its evidence at all. It is not written
+ * here. A class with no evidence row of its own, or whose evidence carries no value, produces no
+ * clause, and a record left with no clause has no supervision answer and renders no block.
+ */
+export function supervisionClauses(
+  classes: readonly string[],
+  evidence: readonly SuppressionEvidence[],
+  context: SupervisionContext = {},
+): SupervisionClause[] {
+  const byClass = new Map<string, SuppressionEvidence[]>()
+  for (const row of evidence) {
+    const code = String(row?.test ?? '')
+    if (!CITED_CLASS.test(code)) continue
+    const rows = byClass.get(code) ?? []
+    rows.push(row)
+    byClass.set(code, rows)
+  }
+  const recorded = [...new Set(classes.filter((code) => CITED_CLASS.test(code)))].sort(
+    (a, b) => Number(a.slice(1)) - Number(b.slice(1)),
+  )
+  const out: SupervisionClause[] = []
+  for (const code of recorded) {
+    const text = clauseFor(code, byClass.get(code) ?? [], context)
+    if (text) out.push({ code, text: `${text.replace(/\s*\.\s*$/, '')}.` })
+  }
+  return out
+}

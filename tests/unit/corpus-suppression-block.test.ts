@@ -22,15 +22,76 @@ import {
   citedSuppressionLabels,
   isUnknownClassOnly,
   supervisionBlock,
+  supervisionClauses,
   unknownClassificationLine,
+  type SuppressionEvidence,
 } from '@/lib/corpus/suppression-classes'
+
+/**
+ * The evidence the suppression pass records for a class, in the shape §15(1) reads it: the class it
+ * answers, the source that stated it, that source's value and, for an ATC-based class, the
+ * register's own name for the code. One row per class here, so a fixture naming a class also
+ * carries the evidence that class's clause is built from.
+ */
+const EVIDENCE: Record<string, SuppressionEvidence> = {
+  S1: {
+    test: 'S1',
+    source: 'WHO ATC via ChEMBL/EMA',
+    value: 'C01AA04 (cardiac glycoside)',
+    label: 'C01AA, digitalis glycosides',
+  },
+  S2: {
+    test: 'S2',
+    source: 'Misuse of Drugs Act 1973 (2020 Rev Ed)',
+    value: 'First Schedule Part 1 — Class A controlled drug (statute version 2026-05-01)',
+  },
+  S3: {
+    test: 'S3',
+    source: 'pregnancy-prevention REMS roster named in the R2 spec',
+    value: 'iPLEDGE',
+  },
+  S4: {
+    test: 'S4',
+    source: 'WHO ATC L01 (NIOSH list not fetched)',
+    value: 'L01BB05',
+    label: 'L01BB, purine analogues',
+  },
+  S5: {
+    test: 'S5',
+    source: 'openFDA label text (no cleared bulk FDA REMS list)',
+    value: 'openFDA label text mentions REMS',
+  },
+  S6: {
+    test: 'S6',
+    source: 'openFDA label boxed_warning',
+    value: 'death or fatality; embryo-fetal toxicity',
+  },
+  S7: { test: 'S7', source: 'openFDA label/NDC route', value: 'INTRAVENOUS' },
+  S8: {
+    test: 'S8',
+    source: 'ChEMBL / Open Targets drug_warning, EMA register',
+    value: 'Open Targets drug_warning Withdrawn (nephrotoxicity; European Union; 2022)',
+  },
+  S9: {
+    test: 'S9',
+    source: 'WHO ATC A10A (insulin)',
+    value: 'A10AB01',
+    label: 'A10AB, insulins and analogues for injection, fast-acting',
+  },
+}
+
+const evidenceFor = (classes: readonly string[]): SuppressionEvidence[] =>
+  classes
+    .map((code) => EVIDENCE[code])
+    .filter((row): row is SuppressionEvidence => row !== undefined)
 
 // Next preserves JSX for its compiler; this direct server render uses the classic runtime.
 ;(globalThis as typeof globalThis & { React: typeof React }).React = React
 
 /** A record at the shape the 39 pages have: suppressed, below the stub floor, no question rows. */
 function suppressedStub(classes: string[]): CorpusDossier {
-  const block = supervisionBlock('Fixture Compound', classes)
+  const evidence = evidenceFor(classes)
+  const block = supervisionBlock('Fixture Compound', classes, evidence)
   return {
     key: 'K1:FIXTURE00',
     slug: 'fixture-compound',
@@ -41,6 +102,7 @@ function suppressedStub(classes: string[]): CorpusDossier {
     indexable: false,
     suppressed: true,
     suppressionClasses: classes,
+    suppressionEvidence: evidence,
     withdrawn: false,
     presentFieldCount: 2,
     applicableFieldCount: 9,
@@ -119,8 +181,42 @@ describe('a suppressed page with no question rows', () => {
     expect(markup).toContain('cd-supervision')
     const text = visibleText(markup)
     expect(text).toContain('Why does Fixture Compound carry a supervision requirement?')
-    expect(text).toContain(SUPPRESSION_CLASS_LABELS.S1)
-    expect(text).toContain(SUPPRESSION_CLASS_LABELS.S4)
+    /*
+     * §15(1): one clause per recorded class, each built from that class's own evidence and its own
+     * source. The generic label — what a class of that kind might be — is never the answer.
+     */
+    expect(text).toContain('Its World Health Organization ATC class is C01AA, digitalis glycosides')
+    expect(text).toContain('A hazardous-medicine class covers it: L01BB, purine analogues')
+    expect(text).not.toContain(SUPPRESSION_CLASS_LABELS.S1)
+    expect(text).not.toContain(SUPPRESSION_CLASS_LABELS.S4)
+  })
+
+  it('renders one sourced clause per recorded class, and none without a source', () => {
+    const clauses = supervisionClauses(
+      ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9'],
+      evidenceFor(['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9']),
+      { boxedWarningLabel: { id: '77108624-4771-4886-a3e2-b2625c444d1b', date: '2025-01-14' } },
+    )
+    expect(clauses.map((clause) => clause.code)).toEqual([
+      'S1',
+      'S2',
+      'S3',
+      'S5',
+      'S6',
+      'S7',
+      'S8',
+      'S9',
+    ])
+    for (const clause of clauses) expect(clause.text).toMatch(/\([^()]{3,}\)\.$/)
+    expect(clauses.find((clause) => clause.code === 'S6')?.text).toContain(
+      'DailyMed label 77108624-4771-4886-a3e2-b2625c444d1b, 2025-01-14',
+    )
+    expect(clauses.find((clause) => clause.code === 'S3')?.text).toContain(
+      'It is under a pregnancy-prevention programme',
+    )
+    // A class the suppression pass recorded with no evidence row of its own states nothing.
+    expect(supervisionClauses(['S1'], [])).toEqual([])
+    expect(supervisionClauses(['S1'], [{ test: 'S1', value: 'C01AA04' }])).toEqual([])
   })
 
   it('renders the supervision block first, above the record it holds', () => {

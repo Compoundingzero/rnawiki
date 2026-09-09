@@ -57,9 +57,10 @@ export function HubSynthesis({
               data-template={sentence.templateId}
               key={sentence.ordinal}
             >
+              {/* §15(8): a text node between the subject label and the sentence it heads. */}
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73] block">
                 {TEMPLATE_SUBJECT[sentence.templateId] ?? sentence.templateId}
-              </span>
+              </span>{' '}
               {sentence.sentence}
             </p>
           ))}

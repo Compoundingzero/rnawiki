@@ -116,7 +116,7 @@ def main() -> None:
         default=repo("data", "revamp", "suppression", "assignments-v2.ndjson"),
     )
     parser.add_argument(
-        "--models", default=repo("data", "corpus-20k", "tiers", "model-assignment.ndjson")
+        "--models", default=repo("data", "revamp", "tiers", "model-assignment-v2.ndjson")
     )
     parser.add_argument("--out-dir", default=repo("data", "revamp", "page-blocks"))
     parser.add_argument("--inline-cap", type=int, default=6)

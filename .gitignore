@@ -229,3 +229,4 @@ data/revamp/render-v6-fresh/
 
 # The corpus document island, bundled by scripts/build-island.mjs before every build.
 /public/island/
+data/revamp/render-v10/

@@ -933,6 +933,7 @@ describe('corpus record structured data', () => {
       pageType: 'clinical',
       indexable: true,
       suppressed: false,
+      suppressionEvidence: [],
       suppressionClasses: [],
       withdrawn: false,
       presentFieldCount: 14,

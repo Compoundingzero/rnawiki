@@ -373,15 +373,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'What became of the other 3 compounds aimed at MTOR?',
   },
   {
-    template: 'jurisdiction',
-    input: page({
-      seeds: {
-        seed17: { fires: true, values: { jurisdictions: { US: 'approved', SG: 'controlled' } } },
-      },
-    }),
-    text: 'Drug, supplement or controlled: what is Rapamycin in US and SG?',
-  },
-  {
     template: 'contradiction',
     input: page({ seeds: { seed10: { fires: true, values: { field: 'half-life' } } } }),
     text: 'Where do the label and the trials disagree about Rapamycin?',
@@ -465,23 +456,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
       },
     }),
     text: 'On the Theophylline label: indicated for what?',
-  },
-  {
-    template: 'regulatory-only',
-    input: page({
-      key: 'example-clinical-register',
-      displayName: 'Comocladia',
-      model: 'CLINICAL',
-      tier: 2,
-      fields: {
-        regulatoryStatus: field({
-          US: { status: 'unknown' },
-          EU: { status: 'unknown' },
-          CA: { status: 'approved' },
-        }),
-      },
-    }),
-    text: 'Where is Comocladia approved?',
   },
   {
     template: 'trial-history',
@@ -1205,22 +1179,34 @@ describe('CLINICAL indication, register and trial-history templates', () => {
     expect(templates).not.toContain('trial-history')
   })
 
-  it('asks the register question only where the page records no label indication', () => {
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: REGISTERS })).map((q) => q.template),
-    ).toContain('regulatory-only')
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: REGISTERS, indication: INDICATION })).map(
-        (q) => q.template,
-      ),
-    ).not.toContain('regulatory-only')
+  it('asks no register question at all (§15 item 4)', () => {
+    /*
+     * "Where is X approved?" was answered by the register status value line and by nothing else,
+     * and on a page whose only recorded approval is one jurisdiction's that answer is one
+     * register's line in the position of an answer. §15(4) removes the line from every question
+     * block: the registration block states each register's status once, with its date.
+     */
+    const cases: Record<string, FieldEntry>[] = [
+      { regulatoryStatus: REGISTERS },
+      { regulatoryStatus: REGISTERS, indication: INDICATION },
+      { regulatoryStatus: field({ US: { status: 'unknown' }, EU: { status: 'unknown' } }) },
+    ]
+    for (const fields of cases) {
+      expect(deriveQuestions(clinical(fields)).map((q) => q.template)).not.toContain(
+        'regulatory-only',
+      )
+    }
   })
 
-  it('does not ask where a compound is approved when every register records unknown', () => {
-    const allUnknown = field({ US: { status: 'unknown' }, EU: { status: 'unknown' } })
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: allUnknown })).map((q) => q.template),
-    ).not.toContain('regulatory-only')
+  it('asks no jurisdiction question either (§15 item 4)', () => {
+    // "EU withdrawn: the registers' classifications of Rosiglitazone" is the same shape: a
+    // register's own status line, offered as the answer to what the compound is.
+    const withStatuses = page({
+      seeds: {
+        seed17: { fires: true, values: { jurisdictions: { US: 'approved', SG: 'controlled' } } },
+      },
+    })
+    expect(deriveQuestions(withStatuses).map((q) => q.template)).not.toContain('jurisdiction')
   })
 
   it('withholds the trial-history question where the human-data block already fires', () => {

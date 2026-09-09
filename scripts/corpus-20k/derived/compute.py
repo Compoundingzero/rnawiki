@@ -709,6 +709,43 @@ def sentence_effect(text):
     return best
 
 
+# The ageing-endpoint vocabulary (docs/specs/phase4-generators.md §15 item 5).
+#
+# The audience table above maps "survival", "overall survival" and "mortality" onto lifespan,
+# because in a longevity trial those words are lifespan. In an oncology trial they are not: seed 9
+# read "event-free survival" and asked which running trial of the compound could settle *lifespan*,
+# which is a claim the endpoint does not make. The ageing reading of that endpoint is the one the
+# register writes in full — a lifespan, a life span or an all-cause mortality endpoint — so seed 9
+# asks its ageing question only on those, and every other audience endpoint stays exactly as the
+# table has it.
+AGEING_ENDPOINTS = {
+    endpoint: (
+        ["lifespan", "life span", "life-span", "all-cause mortality", "all cause mortality"]
+        if endpoint == "lifespan"
+        else terms
+    )
+    for endpoint, terms in AUDIENCE_ENDPOINTS.items()
+}
+
+
+def endpoint_of(text, table):
+    """Exact-table match of a recorded outcome string onto an endpoint list."""
+    normalized = norm(text)
+    if not normalized:
+        return None
+    padded = " " + normalized + " "
+    for endpoint, terms in table.items():
+        for term in terms:
+            if " " + norm(term) + " " in padded:
+                return endpoint
+    return None
+
+
+def ageing_endpoint_of(text):
+    """The ageing endpoint a recorded outcome string names, or None (§15 item 5)."""
+    return endpoint_of(text, AGEING_ENDPOINTS)
+
+
 def audience_endpoint_of(text):
     """Exact-table match of a recorded outcome string onto the audience endpoint list."""
     normalized = norm(text)
@@ -2656,12 +2693,17 @@ def seed_09(ctx, page):
             endpoint = audience_endpoint_of(endpoint_text)
             if not endpoint:
                 continue
+            # §15 item 5: the ageing endpoint is recorded only where the register's own words are
+            # in the ageing vocabulary. Where they are not, the row keeps the endpoint verbatim and
+            # carries no ageing endpoint, and the question the derivation writes is the neutral one.
+            ageing = ageing_endpoint_of(endpoint_text)
             rows.append({
                 "nct": entry["nct"],
                 "title": entry["title"],
                 "n": entry["n"],
                 "primaryEndpoint": endpoint_text,
                 "audienceEndpoint": endpoint,
+                **({"ageingEndpoint": ageing} if ageing else {}),
                 "readoutDate": entry["completionDate"],
                 "source": entry["source"],
                 "sourceDate": entry["sourceDate"],
@@ -2671,8 +2713,13 @@ def seed_09(ctx, page):
     if not rows:
         return None
     rows.sort(key=lambda r: (str(r["readoutDate"]), str(r["nct"])))
+    first = rows[0]
     return {
-        "slots": {"endpoint": rows[0]["audienceEndpoint"], "n": len(rows)},
+        "slots": {
+            **({"endpoint": first["ageingEndpoint"]} if first.get("ageingEndpoint") else {}),
+            "primaryEndpoint": first["primaryEndpoint"],
+            "n": len(rows),
+        },
         "values": {"trials": rows},
     }
 

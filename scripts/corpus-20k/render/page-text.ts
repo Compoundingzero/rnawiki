@@ -43,11 +43,9 @@ import {
   canonicalSeedId,
   formatDuration,
   isAbsenceStatus,
-  isAffirmativeClassification,
   joinList,
   readHighestPhase,
   readMechanisms,
-  readRegisterStatuses,
   readSponsors,
   readTargetNames,
   type FieldEntry,
@@ -55,9 +53,12 @@ import {
   type SourceRef,
 } from '../questions/derive'
 import {
-  citedSuppressionLabels,
   isUnknownClassOnly,
+  supervisionClauses,
   unknownClassificationLine,
+  type SuppressionEvidence,
+  type SupervisionContext,
+  type SupervisionLabelCitation,
 } from '@/lib/corpus/suppression-labels'
 // The specifier is extensionless so the Next.js build can resolve it: the dossier template imports
 // `buildBlockBody` from here through `lib/corpus/page-text.ts`, and webpack does not rewrite a
@@ -101,6 +102,14 @@ export interface PageBundle {
   withdrawn: boolean
   suppressed: boolean
   suppressionClasses: string[]
+  /**
+   * The evidence the suppression pass recorded beside those classes: the class it answers, the
+   * source that stated it, that source's value and, for an ATC-based class, the register's own
+   * name for the code (§15(1)). The supervision answer is built from these rows and from nothing
+   * else, so a class with no row of its own states nothing. Absent on a bundle assembled from the
+   * corpus-20k inputs, which recorded no evidence rows; the block then has no clause to write.
+   */
+  suppressionEvidence?: SuppressionEvidence[]
   stub: boolean
   presentFields: number
   fields: Record<string, FieldEntry>
@@ -375,6 +384,36 @@ function entrySource(entry: FieldEntry | undefined): SourceRef | undefined {
 }
 
 /** Paragraph 1 ends with its anchor; paragraph 2 carries one only when it states a sourced value. */
+/**
+ * The DailyMed label a supervision clause cites, out of a label-derived field's own source.
+ *
+ * §15(1) asks the boxed-warning clause for "the DailyMed label set id and date". The suppression
+ * pass recorded neither — it recorded that the label carried a boxed warning and what the warning
+ * named — so the citation comes from the page's own field, and a page holding no label field of
+ * its own leaves the clause citing the register in words instead.
+ */
+function labelCitationOf(entry: FieldEntry | undefined): SupervisionLabelCitation | undefined {
+  const source = entrySource(entry)
+  if (!source?.id || looksLikePageKey(source.id)) return undefined
+  return {
+    id: source.id,
+    ...(source.sourceDate ? { date: source.sourceDate } : {}),
+  }
+}
+
+/** What the supervision clauses may cite from the page's own fields (§15(1)). */
+export function supervisionContext(
+  boxed: FieldEntry | undefined,
+  anyLabel: FieldEntry | undefined,
+): SupervisionContext {
+  const boxedLabel = labelCitationOf(boxed)
+  const label = labelCitationOf(anyLabel)
+  return {
+    ...(boxedLabel ? { boxedWarningLabel: boxedLabel } : {}),
+    ...(label ? { label } : {}),
+  }
+}
+
 function withAnchor(sentence: string, source: SourceRef | undefined): string {
   const a = anchor(source)
   return a ? `${sentence} ${a}` : sentence
@@ -626,25 +665,12 @@ function rowsFromTrials(list: unknown[], cap = ROW_CAP): RevealedRow[] {
  * every question block: a per-jurisdiction row carrying the register, its record id and its date
  * is a register data row, and the registration block and its disclosure hold each of them once.
  */
-/**
- * "US approved (2005)" — the affirmative status a register recorded, per jurisdiction.
- *
- * §13(1): a recorded status whose words are an absence never reaches a prose answer. It is on the
- * page, in the registration block's absence table, and stating it a second time inside a sentence
- * about something else was the non-sequitur the reading found.
- *
- * §14(2): the register's application id is not carried here either. An application id is a
- * register data row, the registration block's disclosure holds every one of them once, and a
- * question's answer that names one is the same row painted twice.
+/*
+ * §15(4): `registerStatusValues` is gone with the block that was its last caller. "US approved
+ * (2005)" is a register's own line; the registration block and its disclosure print each of them
+ * once, and no question block states one. The status word itself is derived where the block is
+ * built (`scripts/revamp/build_blocks.py`, §14(3)).
  */
-function registerStatusValues(statuses: ReturnType<typeof readRegisterStatuses>): string[] {
-  return statuses.recorded
-    .filter((r) => !isAbsenceStatus(r.status))
-    .map((r) => {
-      const date = r.records[0]?.date
-      return date && date.trim() ? `${r.code} ${r.status} (${date})` : `${r.code} ${r.status}`
-    })
-}
 
 /** A count group: the bucket name is the label, the number is the value. No frame around either. */
 /**
@@ -757,27 +783,42 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
      * `scripts/revamp/controlled_suppression.py` records S2 only on the narrow controlled test.
      */
     case 'supervision': {
-      const cited = citedSuppressionLabels(page.suppressionClasses)
-      if (cited.length === 0) break
       /*
-       * The source is the recorded field the class evidence was read from, in the order the
-       * classes are recorded in: the controlled-substance schedules first, then the label's boxed
-       * warning, then the register's own record of a withdrawal or a restricted supply programme.
-       * Reading them here is also what puts them in the block's provenance trace, so the sentence
-       * names the field it was built from rather than a register it does not mention.
+       * §15(1): one clause per recorded class, each built from that class's own evidence and its
+       * own source, and a clause without a matching source does not render.
+       *
+       * What stood here before named the class from a generic list — "a World Health Organization
+       * therapeutic class such as cancer medicines, immune suppressants, opioids or general
+       * anaesthetics" — and anchored the sentence on whichever recorded field happened to be
+       * present, which on a page whose evidence was an ATC code cited a prescription-schedule row
+       * that had not put the record in any class. Both halves are replaced by the recorded
+       * evidence: the ATC class with the register's own name for the code, the boxed warning with
+       * the DailyMed set id and date the page's own label field carries, the controlled schedule
+       * with the statute row, the withdrawal with its reason and register, and each of the
+       * remaining classes with the source the suppression pass recorded for it.
+       *
+       * Reading the label fields here is also what puts them in the block's provenance trace, so
+       * the trace names the fields the clauses were built from.
        */
-      const classSource =
-        entrySource(f.present('controlled')) ??
-        entrySource(f.present('boxedWarning')) ??
-        entrySource(f.present('regulatoryStatus')) ??
-        src
-      // §7: the class is `S2` in storage and "a controlled-substance schedule in Singapore, the
-      // United States, Australia or the United Kingdom" on the page. Printing the token put a
-      // storage identifier in front of a reader on 2,800 pages.
-      p1(`A register records ${name} under medical supervision: ${joinList(cited)}.`, classSource)
+      const boxed = f.present('boxedWarning')
+      const anyLabel =
+        boxed ??
+        f.present('indication') ??
+        f.present('adverseEvents') ??
+        f.present('contraindications') ??
+        f.present('labelKinetics')
+      const clauses = supervisionClauses(
+        page.suppressionClasses,
+        page.suppressionEvidence ?? [],
+        supervisionContext(boxed, anyLabel),
+      )
+      if (clauses.length === 0) break
+      // Each clause names its own source inside the sentence, so none of them carries an anchor:
+      // a citation printed twice in one sentence is the repetition §14(6) removed from the page.
+      for (const clause of clauses) p2(clause.text)
       // Standing-sentence rule: where the page records no study scope there is nothing of its own
-      // to say, so paragraph 2 is not written. "No study record accompanies it." stood verbatim on
-      // 378 indexed pages (6.4%) and is exactly the shared sentence the constraints forbid.
+      // to say, so no scope sentence is written. "No study record accompanies it." stood verbatim
+      // on 378 indexed pages (6.4%) and is exactly the shared sentence the constraints forbid.
       const supervisionScope = scopeClause(f)
       if (supervisionScope) p2(`${sentenceCase(supervisionScope)}.`)
       break
@@ -1294,8 +1335,13 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       const v = asObject(f.seed('seed9')?.values)
       const trials = asArray(pick(v, 'trials'))
       const first = asObject(trials[0])
+      /*
+       * §15(5): the endpoint is named in the register's own words, whatever the question asked.
+       * The ageing word — "lifespan" — belongs to the question, and only where the seed recorded
+       * an ageing endpoint; it is never substituted for what the trial says it measures.
+       */
       p1(
-        `${asString(pick(first, 'nct')) ?? ''} measures ${clampSentence(asString(pick(first, 'primaryEndpoint')) ?? q.values.endpoint ?? '', 240)}${asString(pick(first, 'readoutDate')) ? `, reading out ${asString(pick(first, 'readoutDate'))}` : ''}.`,
+        `${asString(pick(first, 'nct')) ?? ''} measures ${clampSentence(asString(pick(first, 'primaryEndpoint')) ?? '', 240)}${asString(pick(first, 'readoutDate')) ? `, reading out ${asString(pick(first, 'readoutDate'))}` : ''}.`,
       )
       p2(
         joinBits([
@@ -1588,48 +1634,13 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     }
 
     /* ----------------------------------------------- jurisdiction (17) */
-    case 'jurisdiction': {
-      const v = asObject(f.seed('seed17')?.values)
-      const statuses = asArray(pick(v, 'statuses'))
-      /*
-       * §13(1): the question asks what kind of thing this is — drug, supplement or controlled —
-       * and only an affirmative classification answers it. A register that recorded nothing, and a
-       * register that recorded an approval, are not classifications: the first is the registration
-       * block's absence table and the second is its status line. `derive.ts` asks the question only
-       * where one of these words was recorded, so this list is never empty when the block renders.
-       */
-      const affirmative = statuses.filter((s) =>
-        isAffirmativeClassification(asString(pick(asObject(s), 'status'))),
-      )
-      const words = affirmative
-        .map((s) => {
-          const o = asObject(s)
-          const j = asString(pick(o, 'jurisdiction'))
-          const st = asString(pick(o, 'status'))
-          return j && st ? `${j} ${st}` : undefined
-        })
-        .filter((w): w is string => Boolean(w))
-      if (words.length === 0) break
-      p1(`${joinList(words)}: the registers' classifications of ${name}.`)
-      // §13(7): the read dates and the count of registers read are values, so they are a row.
-      const dates = unique(
-        affirmative.map((s) => asString(pick(asObject(s), 'sourceDate')) ?? ''),
-      ).filter(Boolean)
-      if (dates.length > 0) facts.push({ label: 'Recorded', value: dates.join(', ') })
-      for (const s of affirmative.slice(0, ROW_CAP)) {
-        const o = asObject(s)
-        const j = asString(pick(o, 'jurisdiction'))
-        if (!j) continue
-        rows.push({
-          label: j,
-          ...(asString(pick(o, 'sourceDate'))
-            ? { identifier: asString(pick(o, 'sourceDate')) as string }
-            : {}),
-          value: asString(pick(o, 'status')) ?? 'not stated',
-        })
-      }
-      break
-    }
+    /*
+     * §15(4) retires the `jurisdiction` block with `regulatory-only`. Its answer was a register
+     * status value line — "EU withdrawn: the registers' classifications of Rosiglitazone" — which
+     * §15(4) removes from every question block: the registration block is the only place a
+     * register's status is stated, and it states each of them once with its date. `derive.ts` asks
+     * the question for no page, and a row stored by an earlier load builds no body here.
+     */
 
     /* --------------------------------------------- contradiction (10) */
     case 'contradiction': {
@@ -1782,29 +1793,14 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     }
 
     /* -------------------------------------- CLINICAL: registers, no label */
-    case 'regulatory-only': {
-      const entry = f.present('regulatoryStatus')
-      const registers = readRegisterStatuses(entry)
-      // Paragraph 1 names only the jurisdictions that recorded a status, each with the register's
-      // own record id and date: "US approved (NDA 021995, 2005); CA approved (DIN 02248636,
-      // 2026-09-04)". The jurisdictions with no status become rows, and the four registers that
-      // were never cleared for this corpus are stated once on /definitions, never here.
-      // §13(1): absences are filtered out of `registerStatusValues`. Where nothing affirmative
-      // remains there is no answer to write, and the block does not render.
-      //
-      // §14(2): the register application rows this block painted are retired with the ones under
-      // the supervision and label questions. The registration block and its disclosure hold every
-      // application id once; a second copy under a question was the repetition the reading found.
-      const registerValues = joinBits(registerStatusValues(registers))
-      if (!registerValues) break
-      p1(`${registerValues}.`, entrySource(entry) ?? src)
-      // No paragraph 2. The jurisdictions that were consulted and recorded nothing are the same
-      // two or three codes on a sixth of the corpus, so as a sentence they are a standing sentence
-      // (the first render of this fix measured "US and EU: consulted, no status recorded." on 17 %
-      // of indexed pages). The reason some registers were never consulted at all is on
-      // /definitions.
-      break
-    }
+    /*
+     * §15(4) retires the `regulatory-only` block. Its whole answer was the register status value
+     * line, which §14(2) had already removed from every other question block: the registration
+     * block and its disclosure hold each jurisdiction's status once, and a page whose only
+     * recorded approval was Canada's answered "Where is X approved?" with that one line, the same
+     * line in the same position on every such page. `derive.ts` asks the question for no page, and
+     * a row stored by an earlier load builds no body here, so the block does not render.
+     */
 
     /* ------------------------------------- CLINICAL: registered trials only */
     case 'trial-history': {
@@ -1910,11 +1906,21 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       })
       const gaps = developmentGaps(f, page, ['dose', 'trial'])
       if (gaps.length > 0) facts.push({ label: 'Not recorded here', value: joinList(gaps) })
-      if (firstMechanism)
-        p1(
-          `The mechanism record reads "${clampSentence(firstMechanism, 300)}".`,
-          entrySource(mechanismEntry) ?? src,
-        )
+      /*
+       * §15(4), applying §13(7): the register's own wording is a value, so it is a row and not a
+       * sentence. The frame around it — "The mechanism record reads …" followed by the register,
+       * the molecule id and the date — was fixed text, so once the quotation and the identifiers
+       * were masked the sentence was the same sentence on 954 pages (3.33 %) in slop draws 6 and
+       * 7. As a row the reader meets the same words, labelled with the register that wrote them,
+       * and the block's template test has one prose sentence fewer to fail.
+       */
+      if (firstMechanism) {
+        const register = registerName(entrySource(mechanismEntry)?.kind ?? src?.kind)
+        facts.push({
+          label: register ? `Mechanism (${register})` : 'Mechanism',
+          value: `"${clampSentence(firstMechanism, 300)}"`,
+        })
+      }
       for (const m of mechanisms.slice(0, ROW_CAP)) {
         const value = [m.mechanism, m.action ? m.action.toLowerCase() : undefined]
           .filter(Boolean)
@@ -2014,6 +2020,15 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
      * `scripts/corpus-20k/questions/derive.ts` no longer pushes the question for any page. The
      * recorded ladder and the count of matched studies are on the page in the record's own rows.
      */
+
+    /*
+     * §15(4): the two retired register blocks. `derive.ts` asks neither question, so no page loaded
+     * from this run holds one; a row stored by an earlier load builds no body and renders nothing,
+     * rather than falling to the default below and painting a line about a missing rule.
+     */
+    case 'regulatory-only':
+    case 'jurisdiction':
+      break
 
     default: {
       // A template with no builder must not silently render an empty block.
@@ -3868,7 +3883,37 @@ export function renderPage(
     const body = buildBlockBody(q, bundle, recorder.facts)
     // A block whose builder wrote nothing renders nothing: §7 stops a dose-response section whose
     // quotations name a different compound, and a heading over an empty body is forbidden by §1.
-    if (body.paragraphs.length === 0 && body.facts.length === 0 && body.rows.length === 0) return
+    //
+    /*
+     * §4 and §11: on a controlled record every dose-bearing line is withheld, and the withholding
+     * happens here, before the rows are grouped and before the heading is written, because that is
+     * where the page does it (`lib/corpus/dossier-page.ts` filters the paragraphs, the facts and
+     * the rows and then groups what is left). `push` also drops such a line, one at a time, and
+     * dropping it there and not here left two texts that disagree twice over: the render wrote a
+     * question heading with nothing under it where the page dropped the whole block
+     * (Buprenorphine, whose one label sentence names a dose), and it grouped rows the page had
+     * already removed, so a run of six on one side was a run of four and a counted remainder on
+     * the other (Sirolimus, Somatropin).
+     */
+    const kept = (line: string): boolean => {
+      if (!controlled || !carriesDoseText(line)) return true
+      // The same count `push` keeps, so a page's withheld-line total is unchanged by where the
+      // filter runs: the number is what the record was refused, not where it was refused.
+      dropped += 1
+      return false
+    }
+    const rowText = (row: RevealedRow): string =>
+      `${row.label} ${row.identifier ?? ''} ${row.value}`
+    const paragraphs: string[] = []
+    const paragraphFurniture: boolean[] = []
+    body.paragraphs.forEach((paragraph, index) => {
+      if (!kept(paragraph)) return
+      paragraphs.push(paragraph)
+      paragraphFurniture.push(body.furniture[index] === true)
+    })
+    const facts = body.facts.filter((row) => kept(rowText(row)))
+    const rows = body.rows.filter((row) => kept(rowText(row)))
+    if (paragraphs.length === 0 && facts.length === 0 && rows.length === 0) return
     questionOrdinal += 1
     // The block instance, numbered in render order (`q1`, `q2`, …), so the draw groups the
     // sentences a reader meets under one question and no others (§12).
@@ -3880,13 +3925,11 @@ export function renderPage(
     // §13(7): the block's own values, as rows, painted under the heading and above the prose.
     // They are marked `fact` and not `row`: both are markup, and only one of them is painted
     // without a reader opening anything (§14(6)).
-    for (const row of body.facts) {
+    for (const row of facts) {
       push([row.label, row.identifier, row.value].filter(Boolean).join(' '), false, fields, 'fact')
     }
-    body.paragraphs.forEach((p, index) =>
-      push(p, false, fields, 'sentence', body.furniture[index] === true),
-    )
-    if (body.rows.length > 0) {
+    paragraphs.forEach((p, index) => push(p, false, fields, 'sentence', paragraphFurniture[index]))
+    if (rows.length > 0) {
       // The `<summary>` reads "Show the evidence" on every block of every page. It is a control
       // label, so it is a repeated element and excluded with the rest of the chrome; the rows it
       // opens are the page's own words and are counted.
@@ -3895,10 +3938,17 @@ export function renderPage(
       // run, exactly as the template prints it. A label written on every row of a twenty-row run
       // is the repetition the disclosure spec removed from the page, and the measured text must
       // not carry what the page does not print.
-      for (const group of groupRevealedRows(body.rows)) {
+      for (const group of groupRevealedRows(rows)) {
         if (group.label !== undefined) push(group.label, true)
         for (const row of group.rows) {
-          const label = group.label === undefined ? row.label : undefined
+          /*
+           * §15(7): a row keeps its own label unless the group's heading *is* that label. A run of
+           * rows sharing one label writes it once, above the run, and the rows below it need it no
+           * more. A counted remainder — "4 more recorded rows" — is not a label at all, and the
+           * rows under it were painting bare counts: "6", "1", "1", where the six rows above them
+           * read "phase3 13" and "completed 18".
+           */
+          const label = group.label === row.label ? undefined : row.label
           push([label, row.identifier, row.value].filter(Boolean).join(' '), false, fields, 'row')
         }
       }
@@ -4168,13 +4218,20 @@ export function renderPage(
     // Question-derivation amendment: a stub carries a supervision line only where a class S1–S9 was
     // matched; where the only class is S10 (unknown) it says so, and never a supervision claim
     // without a classification to cite. S11 is the cleared class and states nothing.
-    const cited = bundle.suppressionClasses.filter((c) => /^S[1-9]$/.test(c))
-    if (cited.length > 0) {
-      push(
-        `A register records this compound under medical supervision: ${citedSuppressionLabels(cited).join('; ')}.`,
-        false,
-        ['corpus_pages.suppression_classes'],
-      )
+    // §15(1): the stub states the same clauses a question block would, one per recorded class,
+    // each from that class's own evidence — never the generic label list.
+    const stubClauses = supervisionClauses(
+      bundle.suppressionClasses,
+      bundle.suppressionEvidence ?? [],
+      supervisionContext(f.present('boxedWarning'), f.present('indication')),
+    )
+    if (stubClauses.length > 0) {
+      for (const clause of stubClauses) {
+        push(clause.text, false, [
+          'corpus_pages.suppression_classes',
+          'corpus_pages.suppression_evidence',
+        ])
+      }
     } else if (isUnknownClassOnly(bundle.suppressionClasses) && bundle.suppressed) {
       // §11: the S10-only line is an absence in fixed words, so it is furniture; and it is the
       // template's own sentence, not a second wording of it.

@@ -6,6 +6,40 @@ section text for the resolved records only, and writes the per-archive row
 shards that `openfda_label_finalise.py` deduplicates into mapped.parquet.
 
     .venv-corpus/bin/python scripts/revamp/openfda_label_map.py
+
+Two rules from `docs/specs/phase4-generators.md` §15 item 2 decide which SPL
+reaches a page, and both are applied here rather than downstream, because a
+label that should never have been joined must not be written into the shards at
+all.
+
+**The page's own UNII has to be among the label's active ingredients.** The
+corpus index holds, per page, the UNII the page's key carries and the UNII its
+`unii` field carries (`corpus_join.load_corpus_index`), and a page is matched
+only when one of those appears in `openfda.unii`. The RxCUI fallback is gone: an
+RxCUI names a clinical drug concept, not the substance the page is, and it
+cannot answer the question this rule asks. A combination page is reached only
+when every one of its components was matched by UNII on the same label, which is
+the same test applied to each component in turn.
+
+**Unapproved product categories are excluded.** Acetyldigitoxin was quoting a
+homeopathic cosmetology label and a nail liquid's directions were rendering as
+an indication, both by way of a correct UNII match onto a product that is not an
+approved medicine. A label is dropped when any of these holds:
+
+  * an active ingredient name or SPL product data element carries ``[HPUS]``
+    (the Homeopathic Pharmacopoeia marker);
+  * an ``openfda.product_type`` or ``openfda.route`` string names a homeopathic
+    product;
+  * the FDA NDC directory's marketing category for this SPL names
+    ``HOMEOPATHIC`` or ``UNAPPROVED`` (``UNAPPROVED HOMEOPATHIC``,
+    ``UNAPPROVED DRUG OTHER``, ``UNAPPROVED MEDICAL GAS``, and the drug-shortage
+    category);
+  * the word "homeopathic" appears in the label's indications or description;
+  * the label carries no ``openfda.application_number`` and its product type is
+    neither ``HUMAN PRESCRIPTION DRUG`` nor ``HUMAN OTC DRUG``.
+
+Every drop is counted by reason in `map-stats.json`, with the pages that lose
+every label and the pages that lose some.
 """
 
 from __future__ import annotations
@@ -26,9 +60,21 @@ from openfda_label_cyp import extract as extract_cyp  # noqa: E402
 from openfda_label_index import SECTIONS, as_list  # noqa: E402
 from openfda_label_stream import iter_label_records  # noqa: E402
 
-ARCHIVE_DIR = Path(
-    "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/rnawiki-ingest-data/openfda"
-)
+def _archive_dir() -> Path:
+    """The bulk-download directory, beside the repository rather than under it.
+
+    The ingest tree is a sibling of the checkout (`../rnawiki-ingest-data`), so a
+    second checkout of the same branch reads the same 2.1 GB of archives instead
+    of a path that names one machine's first checkout.
+    """
+    candidate = Path(__file__).resolve().parents[2].parent / "rnawiki-ingest-data" / "openfda"
+    if candidate.is_dir():
+        return candidate
+    raise SystemExit(f"openFDA label archives not found at {candidate}")
+
+
+ARCHIVE_DIR = _archive_dir()
+NDC_FILE = ARCHIVE_DIR / "drug-ndc-0001-of-0001.json"
 DATE = "2026-09-05"
 BASE = Path("data/sources/openfda-label")
 PARSED = BASE / DATE / "parsed"
@@ -51,15 +97,18 @@ def iso_date(effective_time: int) -> str:
 
 
 def resolve(idx, unii, rxcui, generic, substance) -> tuple[dict[str, str], list[str]]:
-    """Return ({page key: match rule}, [normalised names that only matched by name])."""
+    """Return ({page key: match rule}, [normalised names that only matched by name]).
+
+    §15(2): a page is matched only where the UNII its key or its `unii` field
+    carries is one of the label's own `openfda.unii` values. `idx.unii_to_keys`
+    is built from exactly those two identifiers, so a hit in it *is* that test.
+    A combination page joins only when every component it names was matched by
+    UNII on this label.
+    """
     matched: dict[str, str] = {}
     for u in unii:
         for key in idx.unii_to_keys.get(u.strip().upper(), ()):
             matched.setdefault(key, "unii")
-    if not matched:
-        for r in rxcui:
-            for key in idx.rxcui_to_keys.get(str(r).strip(), ()):
-                matched.setdefault(key, "rxcui")
     candidates: list[str] = []
     if not matched:
         for raw in list(generic) + list(substance):
@@ -68,11 +117,66 @@ def resolve(idx, unii, rxcui, generic, substance) -> tuple[dict[str, str], list[
                 if len(norm) >= 3 and norm in idx.name_to_keys:
                     candidates.append(norm)
     elif len(matched) >= 2:
-        pages = set(matched)
+        pages = {key for key, rule in matched.items() if rule == "unii"}
         for combo_key, components in idx.combination_components.items():
             if combo_key not in matched and components and components <= pages:
                 matched[combo_key] = "unii"
     return matched, sorted(set(candidates))
+
+
+HOMEOPATHIC = re.compile(r"homeopath", re.I)
+HPUS = re.compile(r"\[\s*HPUS\s*\]", re.I)
+HUMAN_DRUG_TYPES = {"HUMAN PRESCRIPTION DRUG", "HUMAN OTC DRUG"}
+
+
+def load_marketing_categories() -> dict[str, set[str]]:
+    """SPL document id -> the marketing categories the NDC directory records for it.
+
+    The label archives carry no marketing category; the NDC directory carries one
+    per product and names the SPL it was listed under, so the join is the
+    register's own link between the two files.
+    """
+    by_spl: dict[str, set[str]] = {}
+    with NDC_FILE.open(encoding="utf-8") as handle:
+        rows = json.load(handle)["results"]
+    for row in rows:
+        category = str(row.get("marketing_category") or "").upper().strip()
+        if not category:
+            continue
+        spl = row.get("spl_id")
+        for value in spl if isinstance(spl, list) else [spl]:
+            if value:
+                by_spl.setdefault(str(value), set()).add(category)
+    return by_spl
+
+
+def index_exclusion(product_type, route, application_number, categories) -> str | None:
+    """The exclusion reason readable from the index row and the NDC categories, or None."""
+    types = {str(p).upper().strip() for p in product_type if p}
+    routes = {str(r).upper().strip() for r in route if r}
+    apps = [a for a in application_number if a]
+    if any(HOMEOPATHIC.search(value) for value in types | routes):
+        return "openFDA product type or route names a homeopathic product"
+    if any("HOMEOPATHIC" in category for category in categories):
+        return "NDC marketing category names a homeopathic product"
+    if any("UNAPPROVED" in category for category in categories):
+        return "NDC marketing category names an unapproved product"
+    if not apps and not (types & HUMAN_DRUG_TYPES):
+        return "no application number and not a human prescription or OTC drug product"
+    return None
+
+
+def record_exclusion(record) -> str | None:
+    """The exclusion reason readable only from the full SPL record, or None."""
+    ingredients = as_list(record.get("spl_product_data_elements")) + as_list(
+        record.get("active_ingredient")
+    )
+    if any(HPUS.search(text) for text in ingredients):
+        return "an active ingredient carries the [HPUS] homeopathic marker"
+    prose = as_list(record.get("indications_and_usage")) + as_list(record.get("description"))
+    if any(HOMEOPATHIC.search(text) for text in prose):
+        return "the indications or description name the product homeopathic"
+    return None
 
 
 SCHEMA = pa.schema(
@@ -112,6 +216,9 @@ def main() -> None:
         if cur is None or rank > (cur[0], cur[1]):
             best[sid] = (rank[0], rank[1], cols["archive"][i], cols["ordinal"][i])
 
+    categories = load_marketing_categories()
+    print(f"NDC marketing categories for {len(categories)} SPL documents", flush=True)
+
     keep: dict[tuple[str, int], dict] = {}
     name_candidates: dict[str, dict] = {}
     stats = {
@@ -119,15 +226,23 @@ def main() -> None:
         "distinct_set_ids": len(best),
         "superseded_records": index_table.num_rows - len(best),
         "resolved_by_unii": 0,
-        "resolved_by_rxcui": 0,
         "unmatched_records": 0,
         "combination_pages_reached": set(),
         "unmatched_by_product_type": {},
         "unmatched_without_any_unii": 0,
         "unmatched_without_any_wanted_section": 0,
         "unmatched_distinct_uniis": 0,
+        "excluded_labels": 0,
+        "excluded_by_reason": {},
+        "pages_reached_before_exclusion": 0,
+        "pages_reached_after_exclusion": 0,
+        "pages_losing_every_label": 0,
+        "pages_losing_some_labels": 0,
     }
     unmatched_uniis: dict[str, dict] = {}
+    pages_before: set[str] = set()
+    pages_after: set[str] = set()
+    excluded_pages: set[str] = set()
 
     for i in range(index_table.num_rows):
         sid = cols["set_id"][i]
@@ -142,11 +257,21 @@ def main() -> None:
             cols["generic_name"][i], cols["substance_name"][i],
         )
         if matched:
-            rules = set(matched.values())
-            if "unii" in rules:
-                stats["resolved_by_unii"] += 1
-            else:
-                stats["resolved_by_rxcui"] += 1
+            stats["resolved_by_unii"] += 1
+            pages_before.update(matched)
+            reason = index_exclusion(
+                cols["product_type"][i],
+                cols["route"][i],
+                cols["application_number"][i],
+                categories.get(cols["spl_id"][i], set()),
+            )
+            if reason is not None:
+                stats["excluded_labels"] += 1
+                stats["excluded_by_reason"][reason] = (
+                    stats["excluded_by_reason"].get(reason, 0) + 1
+                )
+                excluded_pages.update(matched)
+                continue
             for k in matched:
                 if k in idx.combination_components:
                     stats["combination_pages_reached"].add(k)
@@ -220,6 +345,9 @@ def main() -> None:
                 f"{pq.read_metadata(shard).num_rows} rows, not re-extracted",
                 flush=True,
             )
+            stats["shards_reused"] = stats.get("shards_reused", 0) + 1
+            for rec in wanted.values():
+                pages_after.update(rec["matched"])
             continue
         rows = {name: [] for name in SCHEMA.names}
         writer = pq.ParquetWriter(shard, SCHEMA, compression="zstd")
@@ -240,6 +368,15 @@ def main() -> None:
             meta = wanted.get(ordinal)
             if meta is None:
                 continue
+            reason = record_exclusion(rec)
+            if reason is not None:
+                stats["excluded_labels"] += 1
+                stats["excluded_by_reason"][reason] = (
+                    stats["excluded_by_reason"].get(reason, 0) + 1
+                )
+                excluded_pages.update(meta["matched"])
+                continue
+            pages_after.update(meta["matched"])
             sections = {s: as_list(rec.get(s)) for s in SECTIONS}
             entries, unassigned = extract_cyp(sections, meta["names"])
             cyp_unassigned += unassigned
@@ -288,6 +425,10 @@ def main() -> None:
 
     stats["combination_pages_reached"] = sorted(stats["combination_pages_reached"])
     stats["unmatched_distinct_uniis"] = len(unmatched_uniis)
+    stats["pages_reached_before_exclusion"] = len(pages_before)
+    stats["pages_reached_after_exclusion"] = len(pages_after)
+    stats["pages_losing_every_label"] = len(excluded_pages - pages_after)
+    stats["pages_losing_some_labels"] = len(excluded_pages & pages_after)
     with (BASE / "unmatched-uniis.ndjson").open("w") as fh:
         for entry in sorted(unmatched_uniis.values(), key=lambda e: -e["labels"]):
             fh.write(json.dumps(entry) + "\n")

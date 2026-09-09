@@ -46,6 +46,7 @@ import {
   type FieldEntry,
   type QuestionBlock,
 } from '../corpus-20k/questions/derive'
+import type { SuppressionEvidence } from '../../lib/corpus/suppression-labels'
 import {
   aggregateWithoutMovedStudies,
   printedDisplayName,
@@ -186,7 +187,9 @@ async function main(): Promise<void> {
   const seedsDir = arg('seeds') ?? 'data/revamp/derived-v2'
   const questionsDir = arg('questions') ?? 'data/revamp/questions-v2'
   const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v6.ndjson'
-  const tiersFile = arg('tiers') ?? 'data/corpus-20k/tiers/model-assignment.ndjson'
+  // §15(3): the v2 tier map, in which a DailyMed SPL with no application number is not a
+  // register approval and so does not make a page CLINICAL.
+  const tiersFile = arg('tiers') ?? 'data/revamp/tiers/model-assignment-v2.ndjson'
   const suppressionFile = arg('suppression') ?? 'data/revamp/suppression/assignments-v2.ndjson'
   const registryDir = arg('registry') ?? 'data/corpus-20k/registry/aggregates'
   const blocksDir = arg('blocks') ?? 'data/revamp/page-blocks'
@@ -283,6 +286,13 @@ async function main(): Promise<void> {
 
   const suppressed = new Set<string>()
   const classes = new Map<string, string[]>()
+  /*
+   * §15(1): the supervision answer is one clause per recorded class, built from that class's own
+   * evidence. The suppression pass recorded that evidence beside the classes, so it is read here
+   * and put on the bundle; the loader writes the same rows onto `corpus_pages.suppression_evidence`
+   * (migration 0033), and the render and the page therefore build the same clauses.
+   */
+  const evidence = new Map<string, SuppressionEvidence[]>()
   await eachLine(suppressionFile, (line, key) => {
     if (!key) return
     const row = JSON.parse(line) as Record<string, unknown>
@@ -291,6 +301,17 @@ async function main(): Promise<void> {
       .map(asString)
       .filter((value): value is string => Boolean(value))
     if (recorded.length > 0) classes.set(key, recorded)
+    const rows = asArray(row.evidence)
+      .map(asObject)
+      .filter((entry): entry is Record<string, unknown> => entry !== undefined)
+      .map((entry) => ({
+        test: asString(entry.test) ?? '',
+        ...(asString(entry.source) ? { source: asString(entry.source) } : {}),
+        ...(asString(entry.value) ? { value: asString(entry.value) } : {}),
+        ...(asString(entry.label) ? { label: asString(entry.label) } : {}),
+      }))
+      .filter((entry) => entry.test.length > 0)
+    if (rows.length > 0) evidence.set(key, rows)
   })
 
   /* Trials this run moved off a page, so the aggregate can be corrected before it is read. */
@@ -322,7 +343,7 @@ async function main(): Promise<void> {
   /*
    * The corpus this render covers is the corpus the loader loads: every key `--identity` holds.
    *
-   * `data/corpus-20k/tiers/model-assignment.ndjson` is the tier map and still names every page the
+   * `data/revamp/tiers/model-assignment-v2.ndjson` is the tier map and still names every page the
    * corpus-20k run created, including the 123 the Phase 3 and §12 merges have since absorbed. The
    * loader writes `corpus_pages` from the identity revision, so a page absent from that revision is
    * not served, is not linked, and must not be in the measured text or in a counterpart name — the
@@ -437,6 +458,7 @@ async function main(): Promise<void> {
         withdrawn: withdrawn.has(key),
         suppressed: suppressed.has(key),
         suppressionClasses: classes.get(key) ?? [],
+        suppressionEvidence: evidence.get(key) ?? [],
         stub: false,
         presentFields: 0,
         fields: {},

@@ -25,6 +25,26 @@ Supplement ingredients and botanicals that are not in the LONGEVITY set are assi
 they hold a label or monograph, otherwise DEVELOPMENT (treated as "never dosed as a medicine"; the
 DEVELOPMENT fields that do not apply are `not-applicable`).
 
+### CLINICAL requires a register approval (fixed 2026-09-09, `phase4-generators.md` §15 item 3)
+
+A DailyMed Structured Product Label is a label, not an approval: an unapproved drug, a homeopathic
+product and a cosmetic-adjacent OTC product each carry one. A page whose only clinical evidence is
+such a label is not CLINICAL; it stays DEVELOPMENT, or the supplement class its own record holds.
+
+The register's own mark of an approval on a label is the application number openFDA records beside
+it — an NDA, ANDA or BLA, or the OTC monograph part the product is marketed under. So the
+`otc-label` ground in `scripts/corpus-20k/tiers/assign-models.py` stands only where the SPL's set
+id is one the pass-1 label index records an `openfda.application_number` for. Every other CLINICAL
+ground is unchanged: a ChEMBL approval, a Drugs@FDA or Orange Book application, an EMA or Health
+Canada entry, and the curated RNAWiki entity class each state an approval in their own right.
+
+Measured on the 28,832 live pages (`data/revamp/tiers/model-assignment-v2.ndjson` against the file
+it replaces): 5,295 OTC labels carried no application number, and 556 pages whose only CLINICAL
+ground was one of them moved to DEVELOPMENT. Tier sizes: Tier 1 1,719 → 1,717, Tier 2 4,477 →
+3,923, Tier 3 22,636 → 23,192. The three Tier 1 changes are the withdrawn flag, not this rule: a
+register the Phase 2 pulls refreshed now records a remaining active entry for pegaptanib, colistin
+and teriparatide, which the withdrawal rule above guards against.
+
 ## LONGEVITY (15 fields)
 
 | #   | Field                             | Value shape                                                                                                                                                           | Rule                                                                  |

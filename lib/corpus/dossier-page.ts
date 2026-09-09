@@ -52,6 +52,7 @@ import {
   registerName,
   registerEventLines,
   sectionSentenceParts,
+  supervisionContext,
   type FieldEntry,
   type PageBundle,
   type QuestionBlock,
@@ -63,6 +64,7 @@ import {
   isUnknownClassOnly,
   supervisionBlock,
   unknownClassificationLine,
+  type SuppressionEvidence,
 } from '@/lib/corpus/suppression-classes'
 import { hubsForPage } from '@/lib/hubs/queries'
 import { HUB_TYPE_LABEL } from '@/lib/hubs/types'
@@ -311,6 +313,8 @@ export interface CorpusDossier {
   duplicateHoldOf?: { slug: string; displayName: string }
   suppressed: boolean
   suppressionClasses: string[]
+  /** The evidence recorded for those classes; the supervision answer is built from it (§15(1)). */
+  suppressionEvidence: SuppressionEvidence[]
   withdrawn: boolean
   presentFieldCount: number
   applicableFieldCount: number
@@ -682,6 +686,22 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
         .limit(1)
     : []
 
+  /*
+   * The suppression evidence (migration 0033), read as the rows the load wrote: the class each row
+   * answers, the source that stated it, that source's value and, for an ATC-based class, the
+   * register's own name for the code. A page loaded before that column existed carries none, and
+   * the supervision block then has no clause to write, which is the same outcome §15(1) gives a
+   * class with no evidence.
+   */
+  const suppressionEvidence: SuppressionEvidence[] = Array.isArray(page.suppressionEvidence)
+    ? (page.suppressionEvidence as unknown[]).filter(
+        (row): row is SuppressionEvidence =>
+          row !== null &&
+          typeof row === 'object' &&
+          typeof (row as SuppressionEvidence).test === 'string',
+      )
+    : []
+
   /* fields, in the shape the shared builders read */
   const fields: Record<string, FieldEntry> = {}
   for (const row of [...fieldRows].sort((a, b) => a.ordinal - b.ordinal)) {
@@ -722,6 +742,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     withdrawn: page.withdrawn,
     suppressed: page.suppressed,
     suppressionClasses: page.suppressionClasses,
+    suppressionEvidence,
     stub: page.pageType === 'stub',
     presentFields: page.presentFieldCount,
     fields,
@@ -982,7 +1003,12 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
    */
   const stubSupervision =
     page.suppressed && blocks.length === 0
-      ? supervisionBlock(page.displayName, page.suppressionClasses)
+      ? supervisionBlock(
+          page.displayName,
+          page.suppressionClasses,
+          suppressionEvidence,
+          supervisionContext(fields.boxedWarning, fields.indication),
+        )
       : undefined
   if (stubSupervision) blocks.push(stubSupervision)
 
@@ -1201,6 +1227,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     ...(duplicateHoldTarget ? { duplicateHoldOf: duplicateHoldTarget } : {}),
     suppressed: page.suppressed,
     suppressionClasses: page.suppressionClasses,
+    suppressionEvidence,
     withdrawn: page.withdrawn,
     presentFieldCount: page.presentFieldCount,
     applicableFieldCount: page.applicableFieldCount,

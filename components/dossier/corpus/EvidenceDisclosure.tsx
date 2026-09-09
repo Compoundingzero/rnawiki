@@ -47,7 +47,12 @@ function Group({ group }: { group: CorpusRowGroup }) {
   const rows = (
     <ul className="cd-rows">
       {group.rows.map((row, index) => (
-        <Row key={`${group.id}-${index}`} row={row} showLabel={group.label === undefined} />
+        /*
+         * §15(7): the row keeps its own label unless the group's heading is that same label. A
+         * counted remainder ("4 more recorded rows") heads rows that share no label, and hiding
+         * their labels painted the phase and status list as bare numbers.
+         */
+        <Row key={`${group.id}-${index}`} row={row} showLabel={group.label !== row.label} />
       ))}
     </ul>
   )

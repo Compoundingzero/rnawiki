@@ -1,4 +1,10 @@
 {
+  "atcGroupNames": {
+    "evidenceRowsNamed": 1508,
+    "evidenceRowsWithACodeTheRegisterPublishesNoGroupFor": 0,
+    "groupCodesRead": 1193,
+    "source": "data/sources/chembl/2026-09-05/raw/atc_class-*.json"
+  },
   "generatedBy": "scripts/revamp/controlled_suppression.py",
   "inputs": {
     "assignmentLines": 28832,
@@ -21,9 +27,9 @@
     "alreadySuppressedUnderR2": 830,
     "newlySuppressedByControlledField": 1006,
     "newlySuppressedByTier": {
-      "1": 225,
-      "2": 539,
-      "3": 242
+      "1": 224,
+      "2": 535,
+      "3": 247
     }
   },
   "trigger": {
@@ -33,9 +39,9 @@
       "US-DEA": 68
     },
     "byTier": {
-      "1": 527,
-      "2": 807,
-      "3": 502
+      "1": 526,
+      "2": 803,
+      "3": 507
     },
     "pagesFiring": 1836
   },

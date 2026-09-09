@@ -589,18 +589,50 @@ for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*
                         hc_page_status[i].add((s, code))
 
 print("[8/9] openFDA label product types", flush=True)
+# docs/specs/phase4-generators.md §15(3): CLINICAL requires a register approval. A DailyMed SPL is
+# a label, not an approval: an unapproved drug, a homeopathic product and a cosmetic-adjacent OTC
+# product all carry one. The register's own mark of an approval on a label is the application
+# number openFDA records beside it (an NDA, ANDA or BLA, or the OTC monograph part the product is
+# marketed under), so the label ground stands only where the SPL carries one. The set ids that do
+# are read from the pass-1 label index, which is the same bulk export the sections index was built
+# from; without that file the rule cannot be applied and the run stops rather than assigning the
+# model by the old ground.
+LABEL_INDEX = D("data", "sources", "openfda-label", "2026-09-05", "parsed", "label-index.parquet")
+if not os.path.exists(LABEL_INDEX):
+    raise SystemExit(
+        f"{LABEL_INDEX} is missing; it carries the application number per SPL set id, which "
+        "docs/specs/phase4-generators.md §15(3) requires before a label can make a page CLINICAL"
+    )
+import pyarrow.parquet as _pq  # noqa: E402  (only this step needs it)
+
+_label_index = _pq.read_table(LABEL_INDEX, columns=["set_id", "application_number"]).to_pydict()
+SET_IDS_WITH_APPLICATION = {
+    sid
+    for sid, apps in zip(_label_index["set_id"], _label_index["application_number"])
+    if sid and any(str(a).strip() for a in (apps or []))
+}
+del _label_index
+print(f"      SPL set ids carrying an application number: {len(SET_IDS_WITH_APPLICATION)}",
+      flush=True)
+
 si = json.load(open(I("label-sections-index.json"), encoding="utf-8"))
 otc_pages = 0
+otc_labels_without_application = 0
 for e in si["entries"]:
     if int(e.get("declared") or 0) != 1:
         continue
     ptypes = {str(p).upper() for p in (e.get("productTypes") or [])}
     if "HUMAN OTC DRUG" not in ptypes:
         continue
+    if e.get("setId") not in SET_IDS_WITH_APPLICATION:
+        otc_labels_without_application += 1
+        continue
     idxs = match(names=e.get("names") or [])
     for i in idxs:
         otc_pages += 1
-        add(i, "CLINICAL", "otc-label", "openFDA label product type HUMAN OTC DRUG")
+        add(i, "CLINICAL", "otc-label",
+            "openFDA label product type HUMAN OTC DRUG, marketed under an application recorded by "
+            "openFDA")
 del si
 
 class_map = {}
@@ -746,7 +778,7 @@ counts = {"LONGEVITY": 0, "CLINICAL": 0, "DEVELOPMENT": 0}
 per_reason = defaultdict(int)
 withdrawn_total = 0
 withdrawn_with_reason = 0
-out_path = os.path.join(OUT_DIR, "model-assignment.ndjson")
+out_path = os.environ.get("MODEL_OUT_FILE") or os.path.join(OUT_DIR, "model-assignment.ndjson")
 with open(out_path, "w", encoding="utf-8") as out:
     for i, rec in enumerate(records):
         effective = reasons[i]
@@ -809,6 +841,13 @@ summary = {
             "cohortArmCodesSeen": len(observed)},
     "registryAgeingTermPages": lex_pages,
     "pathwayPages": len(pathway_pages),
+    "otcLabelGround": {
+        "pagesWithTheGround": otc_pages,
+        "labelsRefusedForCarryingNoApplicationNumber": otc_labels_without_application,
+        "rule": ("docs/specs/phase4-generators.md §15(3): a DailyMed SPL with no openFDA "
+                 "application number is a label, not a register approval, and does not make a "
+                 "page CLINICAL"),
+    },
     "withdrawn": {"total": withdrawn_total, "withStatedReason": withdrawn_with_reason,
                   "withoutStatedReason": withdrawn_total - withdrawn_with_reason,
                   "pagesWithARemainingActiveRegisterEntry": len(withdrawn_live_registers),

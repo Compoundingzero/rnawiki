@@ -466,27 +466,41 @@ def form_note(child: dict, parent: dict, relation_hint: str | None) -> tuple[str
     if len(child_key) >= 25 and len(parent_key) >= 25 and child_key[:14] == parent_key[:14]:
         child_block, parent_block = child_key[15:25], parent_key[15:25]
         if child_block != parent_block:
+            # docs/specs/phase4-generators.md §15 item 6. A record whose InChIKey carries the
+            # undefined-stereo block (UHFFFAOYSA) states no configuration at all, so no
+            # stereochemical relation to it can be named: neither record is the other's
+            # diastereomer or enantiomer, and the note says what the two records do share and what
+            # one of them does not record.
             child_flat = child_block.startswith("UHFFFAOYSA")
             parent_flat = parent_block.startswith("UHFFFAOYSA")
             if parent_flat and not child_flat:
-                descriptor = name_stereo_descriptor(child_name)
-                if descriptor:
-                    return (f"{child_name} is the {descriptor}-stereoisomer of {parent_name}, which is "
-                            f"recorded without defined stereochemistry."), "stereoisomer_of"
-                return (f"{child_name} carries defined stereochemistry; {parent_name} is recorded "
-                        f"without it."), "stereoisomer_of"
+                return (f"{child_name} and {parent_name} have the same connectivity; "
+                        f"{parent_name} is recorded without stereochemistry."), "stereoisomer_of"
             if child_flat and not parent_flat:
-                return (f"{child_name} is recorded without defined stereochemistry; {parent_name} "
-                        f"carries it."), "stereoisomer_of"
+                return (f"{child_name} and {parent_name} have the same connectivity; "
+                        f"{child_name} is recorded without stereochemistry."), "stereoisomer_of"
             child_codes, parent_codes = stereo_codes(cm), stereo_codes(pm)
             if child_codes and parent_codes and len(child_codes) == len(parent_codes):
-                inverted = all(a[1] != b[1] for a, b in zip(child_codes, parent_codes))
+                differing = [
+                    (a, b) for a, b in zip(child_codes, parent_codes) if a[1] != b[1]
+                ]
+                inverted = len(differing) == len(child_codes)
                 if inverted and len(child_codes) == 1:
                     return (f"{child_name} is the ({child_codes[0][1]})-enantiomer of {parent_name}, "
                             f"the ({parent_codes[0][1]})-enantiomer."), "stereoisomer_of"
                 if inverted:
                     return f"{child_name} is the enantiomer of {parent_name}.", "stereoisomer_of"
-                return f"{child_name} is a diastereomer of {parent_name}.", "stereoisomer_of"
+                if differing:
+                    return f"{child_name} is a diastereomer of {parent_name}.", "stereoisomer_of"
+                # §15 item 6, the case mecillinam and amdinocillin are: every recorded stereocentre
+                # holds the same configuration in both records, so neither is a stereoisomer of the
+                # other in the sense the word carries. The InChIKeys differ elsewhere in the
+                # stereochemistry layer — a double bond's geometry, or a centre one record leaves
+                # undefined — and the note says exactly that rather than naming a relation the
+                # structures do not have.
+                return (f"{child_name} and {parent_name} have the same connectivity and the same "
+                        f"configuration at every recorded stereocentre; their records differ "
+                        f"elsewhere in the InChIKey's stereochemistry layer."), "stereoisomer_of"
             return (f"{child_name} and {parent_name} share the connectivity skeleton "
                     f"{child_key[:14]} and differ in the recorded stereochemistry."), "stereoisomer_of"
         if child_key[-1] != parent_key[-1]:

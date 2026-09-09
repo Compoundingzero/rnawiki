@@ -16,6 +16,8 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
 import { CorpusDossierPage } from '@/components/dossier/corpus/CorpusDossierPage'
+import { EvidenceDisclosure } from '@/components/dossier/corpus/EvidenceDisclosure'
+import { QuestionBlock } from '@/components/dossier/corpus/QuestionBlock'
 import { CorpusHeader } from '@/components/dossier/corpus/CorpusHeader'
 import { InteractionsBlock } from '@/components/dossier/corpus/InteractionsBlock'
 import { PatentBlock } from '@/components/dossier/corpus/PatentBlock'
@@ -601,6 +603,13 @@ function fullDossier(): CorpusDossier {
     indexable: true,
     suppressed: true,
     suppressionClasses: ['S2'],
+    suppressionEvidence: [
+      {
+        test: 'S2',
+        source: 'Misuse of Drugs Act 1973 (2020 Rev Ed)',
+        value: 'First Schedule Part 1 — Class A controlled drug (statute version 2026-05-01)',
+      },
+    ],
     withdrawn: false,
     presentFieldCount: 9,
     applicableFieldCount: 18,
@@ -791,6 +800,17 @@ describe('§13(1) — an absence is never an answer', () => {
       presentFields: 4,
       suppressed: true,
       suppressionClasses,
+      // §15(1): the clause is built from the class's own evidence, so a fixture naming a class
+      // carries the row that class's clause is built from.
+      suppressionEvidence: suppressionClasses.includes('S2')
+        ? [
+            {
+              test: 'S2',
+              source: 'Misuse of Drugs Act 1973 (2020 Rev Ed)',
+              value: 'First Schedule Part 1 — Class A controlled drug (statute version 2026-05-01)',
+            },
+          ]
+        : [],
       withdrawn: false,
       identity: { synonyms: [], relations: [] },
       names: new Map(),
@@ -832,11 +852,16 @@ describe('§13(1) — an absence is never an answer', () => {
     ).text
     // §13(1) let an affirmative register status stand as the answer, and §14(1) takes that away
     // too: an Australian Schedule 4 entry is a prescription class, not a supervision reason, and
-    // the sentence's provenance named registers the sentence itself did not. The answer is the
-    // recorded class, in the words the spec fixes.
+    // the sentence's provenance named registers the sentence itself did not. §15(1) then takes
+    // away the generic label that replaced it: the answer is one clause per recorded class, built
+    // from that class's own evidence and carrying that class's own source.
     expect(text).toContain(
-      'A register records Fixture Compound under medical supervision: a controlled-substance ' +
-        'schedule in Singapore, the United States, Australia or the United Kingdom.',
+      'A statute schedules it as a controlled substance: First Schedule Part 1 — Class A ' +
+        'controlled drug, statute version 2026-05-01 (Misuse of Drugs Act 1973, 2020 Rev Ed).',
+    )
+    expect(text).not.toContain('under medical supervision:')
+    expect(text).not.toContain(
+      'a controlled-substance schedule in Singapore, the United States, Australia',
     )
     expect(text).not.toContain('scheduled in the Poisons Standard')
     expect(text).not.toContain('SG not found')
@@ -1223,6 +1248,13 @@ describe('§14(6) — a record id is painted only inside a closed disclosure', (
 const JOINED_INLINE =
   /<(?:span|a|abbr|time)\b[^>]*>([^<>]+)<\/(?:span|a|abbr|time)><(?:span|a|abbr|time)\b[^>]*>([^<>]+)</g
 
+/**
+ * §15(8): the same defect with a text node on the other side. "INTERPRETATIONno human trial
+ * recorded" is one inline element meeting the sentence it marks, and every text extraction reads
+ * the two as one word. Punctuation after a span is not the defect; a letter or a digit is.
+ */
+const JOINED_TEXT = /<(span|a|abbr|time)\b[^>]*>([^<>]+)<\/\1>([A-Za-z0-9][^<>]{0,40})/g
+
 /** One hub comparison-table row, with every column the spec fixes and every absence in it. */
 const hubMember = (over: Partial<HubMemberRecord> = {}): HubMemberRecord =>
   ({
@@ -1531,5 +1563,104 @@ describe('§14(14) — a hub table’s absence cells are furniture', () => {
     )
     const approved = (markup.match(/<td[^>]*>Approved<\/td>/g) ?? [])[0] ?? ''
     expect(approved).not.toContain('data-furniture')
+  })
+})
+
+describe('§15(7) — a row in a counted remainder keeps its label', () => {
+  it('heads a shared-label run once and leaves the remainder its own labels', () => {
+    const rows = [
+      { label: 'phase3', value: '13' },
+      { label: 'phase4', value: '8' },
+      { label: 'phase2', value: '4' },
+      { label: 'na or unstated', value: '2' },
+      { label: 'phase1', value: '1' },
+      { label: 'completed', value: '18' },
+      { label: 'active not recruiting', value: '6' },
+      { label: 'enrolling by invitation', value: '1' },
+      { label: 'recruiting', value: '1' },
+      { label: 'terminated', value: '1' },
+    ]
+    const groups = groupRevealedRows(rows)
+    const remainder = groups.find((group) => group.disclosed === true)
+    expect(remainder?.label).toBe('4 more recorded rows')
+    const markup = renderToStaticMarkup(
+      React.createElement(EvidenceDisclosure, {
+        block: {
+          id: 'q1',
+          badge: 'Q1',
+          ordinal: 0,
+          block: 'trial-history',
+          template: 'trial-history',
+          question: 'How many registered trials?',
+          paragraphs: [],
+          facts: [],
+          groups: groups.map((group, index) => ({
+            id: `q1-g${index + 1}`,
+            ...(group.label === undefined ? {} : { label: group.label }),
+            rows: group.rows,
+            ...(group.disclosed === true ? { disclosed: true as const } : {}),
+          })),
+        },
+      }),
+    )
+    // Every row a reader can open carries its own label, and no row is a bare number.
+    for (const row of rows) expect(visibleText(markup)).toContain(`${row.label} ${row.value}`)
+  })
+
+  it('writes a shared label once, above the run it heads', () => {
+    const rows = Array.from({ length: 3 }, (_, index) => ({
+      label: 'Trial',
+      value: `NCT0000000${index}`,
+    }))
+    const markup = renderToStaticMarkup(
+      React.createElement(EvidenceDisclosure, {
+        block: {
+          id: 'q1',
+          badge: 'Q1',
+          ordinal: 0,
+          block: 'trial-history',
+          template: 'trial-history',
+          question: 'Which trials?',
+          paragraphs: [],
+          facts: [],
+          groups: [{ id: 'q1-g1', label: 'Trial', rows }],
+        },
+      }),
+    )
+    expect(visibleText(markup).match(/Trial/g) ?? []).toHaveLength(1)
+  })
+})
+
+describe('§15(8) — an inline element is never glued to the text beside it', () => {
+  it('separates the interpretation mark from the sentence it marks', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(QuestionBlock, {
+        block: {
+          id: 'q1',
+          badge: 'Q1',
+          ordinal: 0,
+          block: 'ladder',
+          template: 'ladder',
+          question: 'What has been tested?',
+          paragraphs: [
+            { text: 'Mouse evidence only.', interpretation: false },
+            { text: 'no human trial recorded', interpretation: true },
+          ],
+          facts: [],
+          groups: [],
+        },
+        name: 'Fixture Compound',
+      }),
+    )
+    expect(markup).not.toMatch(/<\/span>[A-Za-z0-9]/)
+    expect(visibleText(markup)).toContain('Interpretation no human trial recorded')
+  })
+
+  it('joins nothing on a full record page, by either shape', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: fullDossier() }),
+    )
+    expect([...markup.matchAll(JOINED_INLINE)].map((match) => match[0])).toEqual([])
+    expect([...markup.matchAll(JOINED_TEXT)].map((match) => match[0])).toEqual([])
   })
 })

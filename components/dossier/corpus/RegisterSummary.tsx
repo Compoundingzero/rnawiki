@@ -43,7 +43,8 @@ export function RegisterSummary({
         ))}
         {upstreamRegisters.length > 0 ? (
           <li key="upstream">
-            <span className="cd-row-label">Upstream registers</span>
+            {/* §15(8): a text node between the label and its value. */}
+            <span className="cd-row-label">Upstream registers</span>{' '}
             <div className="cd-row-value">{upstreamRegisters.join(', ')}</div>
           </li>
         ) : null}

@@ -205,22 +205,24 @@ describe('CLINICAL bodies state the page’s own values and its own limits', () 
     })
   })
 
-  it('names the affirmative statuses and paints no register application row', () => {
-    const b = body(
-      bundle({ fields: { regulatoryStatus: REGISTERS } }),
-      question({ block: 'regulatory-only', template: 'regulatory-only' }),
-    )
-    // §14(2): the register's application id is a register data row. The registration block and
-    // its disclosure hold every one of them once, so the answer names the status and the date.
-    expect(b.paragraphs[0]).toContain('US approved (2026-09-04)')
-    expect(b.paragraphs[0]).not.toContain('NDA012345')
-    // No paragraph 2: counting the silent registers was the same sentence on a sixth of the corpus.
-    expect(b.paragraphs).toHaveLength(1)
-    // §14(2): and no rows at all. §13(1) had already taken the absences out of them; what was
-    // left was the corpus-20k register data rows, painted a second time under a question.
-    expect(b.rows).toEqual([])
-    // JP was never cleared for this corpus; that fact lives on /definitions, never in a body.
-    expect(JSON.stringify(b)).not.toContain('JP')
+  it('builds no body for the retired register blocks (§15 item 4)', () => {
+    /*
+     * §14(2) took the register application rows out of every question block and §14(3) fixed the
+     * status word; the value list survived as this block's whole answer — "US approved
+     * (2026-09-04)" — and on a page whose only recorded approval is one jurisdiction's that is one
+     * register's line standing in the position of an answer. §15(4) removes it: the registration
+     * block states each register's status once, with its date, and a stored row from an earlier
+     * load builds nothing here, so no heading is written over it.
+     */
+    for (const template of ['regulatory-only', 'jurisdiction'] as const) {
+      const b = body(
+        bundle({ fields: { regulatoryStatus: REGISTERS } }),
+        question({ block: template, template }),
+      )
+      expect(b.paragraphs).toEqual([])
+      expect(b.facts).toEqual([])
+      expect(b.rows).toEqual([])
+    }
   })
 
   it('states how many registered studies posted no result, as the block\u2019s own value', () => {

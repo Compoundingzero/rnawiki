@@ -44,6 +44,12 @@ export interface FieldEntry {
 export interface SeedEntry {
   fires: boolean
   values?: unknown
+  /**
+   * The seed's own slot values (migration 0029). The corpus-scale reader merges them into `values`
+   * as it loads the seed files; the database path keeps them apart, so a rule that reads a slot
+   * reads both and lets the slots win, exactly as `compute.py` records them.
+   */
+  slots?: unknown
 }
 
 export interface PageInput {
@@ -1000,8 +1006,9 @@ export const BLOCK_ORDER = [
   'fasting-exercise',
   'pathway',
   'lineage',
-  'regulatory-only',
-  'jurisdiction',
+  // §15(4) retired `regulatory-only` and `jurisdiction` with the register status value line that
+  // was the whole answer of each. The registration block is the only place a register's status is
+  // stated.
   'contradiction',
   'provenance',
   'target-phase',
@@ -1041,11 +1048,9 @@ export const TEMPLATE_IDS = [
   'fasting-exercise',
   'pathway',
   'lineage',
-  'jurisdiction',
   'contradiction',
   'provenance',
   'indication',
-  'regulatory-only',
   'trial-history',
   'target-phase',
   'mechanism-action',
@@ -1511,14 +1516,32 @@ export function deriveQuestions(
   /* -- what-would-settle (seed 9) ---------------------------------------------- */
   const seed9 = seed('seed9')
   if (seed9) {
-    const endpoint = asString(pick(asObject(seed9.values), 'endpoint', 'primaryEndpoint'))
-    if (endpoint) {
+    /*
+     * §15(5): the ageing wording is used only where the running trial's primary endpoint is in
+     * the ageing-endpoint vocabulary. Seed 9 recorded "lifespan" for an event-free-survival
+     * endpoint, and the page then asked which running trial could settle the compound's effect on
+     * lifespan — a question the trial does not answer. Where the seed records no ageing endpoint
+     * the question asks what reads out next and the answer names the endpoint in the register's
+     * own words.
+     */
+    const slots = { ...(asObject(seed9.values) ?? {}), ...(asObject(seed9.slots) ?? {}) }
+    const ageing = asString(pick(slots, 'endpoint'))
+    const verbatim = asString(pick(slots, 'primaryEndpoint'))
+    if (ageing) {
       push(
         'what-would-settle',
         'what-would-settle',
         // "Which running trial could settle" was five fixed words on 15.2 % of indexed pages.
-        `Which running trial of ${name} could settle ${endpoint}?`,
-        { name, endpoint },
+        `Which running trial of ${name} could settle ${ageing}?`,
+        { name, endpoint: ageing },
+        [...seedSources(seed9.values), ...sourcesOf(ongoing)],
+      )
+    } else if (verbatim) {
+      push(
+        'what-would-settle',
+        'what-would-settle',
+        `Which running trial of ${name} reads out next?`,
+        { name },
         [...seedSources(seed9.values), ...sourcesOf(ongoing)],
       )
     }
@@ -1700,46 +1723,14 @@ export function deriveQuestions(
   }
 
   /* -- jurisdiction (seed 17) --------------------------------------------------------------- */
-  const seed17 = seed('seed17')
-  if (seed17) {
-    const v = asObject(seed17.values)
-    const raw = pick(v, 'jurisdictions', 'statuses')
-    const rawObject = asObject(raw)
-    const jurisdictions = unique(
-      rawObject
-        ? Object.keys(rawObject)
-        : asArray(raw)
-            .map((j) =>
-              asString(asObject(j) ? pick(asObject(j), 'jurisdiction', 'code', 'name') : j),
-            )
-            .filter((j): j is string => Boolean(j)),
-    )
-    /*
-     * §13(1): the question asks what kind of thing this is, so it is asked only where a register
-     * recorded a classification — a schedule, a withdrawal, a supplement listing. "SG not found and
-     * UK not cleared: the registers' classifications of X" answered it with two absences.
-     */
-    /*
-     * The recorded statuses, in either shape the seed writes them. `values` above merges the seed's
-     * slots over its values, so `jurisdictions` is a list of codes and `statuses` is the
-     * per-jurisdiction rows the block builder reads; a record that carries the statuses as a map
-     * from code to status has them under `jurisdictions` instead, which is the shape `raw` picks up.
-     */
-    const recordedStatuses = rawObject
-      ? Object.values(rawObject).map((status) => asString(status))
-      : asArray(pick(v, 'statuses')).map((item) => asString(pick(asObject(item), 'status')))
-    const classified = recordedStatuses.filter((status) => isAffirmativeClassification(status))
-    if (jurisdictions.length >= 2 && classified.length > 0) {
-      const list = joinList(jurisdictions)
-      push(
-        'jurisdiction',
-        'jurisdiction',
-        `Drug, supplement or controlled: what is ${name} in ${list}?`,
-        { name, jurisdictions: list },
-        [...seedSources(seed17.values), ...sourcesOf(present('regulatoryStatus'))],
-      )
-    }
-  }
+  /*
+   * §15(4) retires this block with `regulatory-only`. §13(1) had kept it where a register recorded
+   * an affirmative classification, and its answer was that register's own status line — "EU
+   * withdrawn: the registers' classifications of Rosiglitazone" on 160 pages. §15(4) is general:
+   * "the register status value line leaves the question blocks entirely (the registration block is
+   * the only place)". A withdrawal is still stated, once, in the registration block, with the
+   * register that recorded it and the date it was read.
+   */
 
   /* -- contradiction (seed 10) ---------------------------------------------------------------- */
   if (seed('seed10')) {
@@ -1828,22 +1819,15 @@ export function deriveQuestions(
     )
   }
 
-  const registers = present('regulatoryStatus')
-  const registerStatuses = readRegisterStatuses(registers)
-  // §13(1): an absence is not an answer to "Where is X approved?", and the registration block
-  // states it. The question is asked only where a register recorded an affirmative status.
-  const affirmativeRegisters = registerStatuses.recorded.filter(
-    (row) => !isAbsenceStatus(row.status),
-  )
-  if (isClinical && registers && !indication && affirmativeRegisters.length > 0) {
-    push(
-      'regulatory-only',
-      'regulatory-only',
-      `Where is ${name} approved?`,
-      { name },
-      sourcesOf(registers),
-    )
-  }
+  /*
+   * §15(4) retires `regulatory-only`. "Where is X approved?" was answered by the register status
+   * line and by nothing else — "CA approved (2026-09-04). Drugs@FDA · 2026-08-28" — and §14(2)
+   * had already made the registration block the one place a register status is stated. On a page
+   * whose only recorded approval is one jurisdiction's, that answer is one register's line
+   * repeated verbatim in the position of an answer: the measured shape on 182 pages (0.64 %) in
+   * slop draws 6 and 7. The question is not asked, and the registration block answers it once, on
+   * every page, with every jurisdiction it holds.
+   */
 
   const trialHistory = present('trialHistory')
   const trialHistoryValue = asObject(trialHistory?.value)

@@ -4729,6 +4729,20 @@ export const corpusPages = pgTable(
       .notNull()
       .default(sql`'{}'::text[]`),
     /**
+     * The evidence the suppression pass recorded for those classes, one row per statement:
+     * `{ test, source, value, label? }` (migration 0033).
+     *
+     * docs/specs/phase4-generators.md §15 item 1: the supervision answer is one clause per
+     * recorded class, built from that class's own evidence and source — the ATC code with the
+     * register's own name for it, the boxed warning with the label it is on, the controlled
+     * schedule with the statute row, the withdrawal with its reason and register. Without these
+     * rows the page could only name a class from a generic list, which is what the reading of
+     * draw 6 found it doing. A class with no row here states nothing.
+     */
+    suppressionEvidence: jsonb('suppression_evidence')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /**
      * The controlled-substance trigger (docs/specs/phase4-generators.md §4; migration 0026): a
      * recorded entry in the Singapore Misuse of Drugs Act or Poisons Act schedules, a United States
      * DEA schedule, or Australian Poisons Standard Schedule 8 or 9. A page carrying it never holds

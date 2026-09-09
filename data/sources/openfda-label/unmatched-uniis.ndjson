@@ -1,7 +1,7 @@
 {"unii": "TC2D6JAD40", "labels": 755, "names": ["DIPHENHYDRAMINE HYDROCHLORIDE", "NAPROXEN SODIUM", "DIPHENHYDRAMINE HCL", "PHENYLEPHRINE HYDROCHLORIDE", "PRAMOXINE HYDROCHLORIDE"], "product_types": ["HUMAN OTC DRUG", "HUMAN PRESCRIPTION DRUG"]}
 {"unii": "V13007Z41A", "labels": 451, "names": ["LIDOCAINE HYDROCHLORIDE", "EPINEPHRINE HYDROCHLORIDE", "LIDOCAINE HCL", "PHENYLEPHRINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG", "HUMAN OTC DRUG"]}
 {"unii": "8O386558JE", "labels": 412, "names": ["ALUMINUM ZIRCONIUM TETRACHLOROHYDREX GLY"], "product_types": ["HUMAN OTC DRUG"]}
-{"unii": "R953O2RHZ5", "labels": 336, "names": ["PYRITHIONE ZINC", "ZINC PYRITHIONE"], "product_types": ["HUMAN OTC DRUG"]}
+{"unii": "R953O2RHZ5", "labels": 337, "names": ["PYRITHIONE ZINC", "ZINC PYRITHIONE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "QTG126297Q", "labels": 328, "names": ["DICLOFENAC SODIUM"], "product_types": ["HUMAN OTC DRUG", "HUMAN PRESCRIPTION DRUG"]}
 {"unii": "9TN87S3A3C", "labels": 292, "names": ["NAPROXEN SODIUM", "DIPHENHYDRAMINE HYDROCHLORIDE", "SUMATRIPTAN SUCCINATE"], "product_types": ["HUMAN OTC DRUG", "HUMAN PRESCRIPTION DRUG"]}
 {"unii": "VW4H1CYW1K", "labels": 238, "names": ["MICONAZOLE NITRATE"], "product_types": ["HUMAN OTC DRUG", "HUMAN PRESCRIPTION DRUG"]}
@@ -21,6 +21,7 @@
 {"unii": "644VL95AO6", "labels": 131, "names": ["DIVALPROEX SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "R6DXU4WAY9", "labels": 128, "names": ["ESOMEPRAZOLE MAGNESIUM", "ESOMEPRAZOLE MAGNESIUM TRIHYDRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG", "HUMAN OTC DRUG"]}
 {"unii": "26LUD4JO9K", "labels": 121, "names": ["AMITRIPTYLINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "V92SO9WP2I", "labels": 119, "names": ["GLYCOPYRROLATE", "NEOSTIGMINE METHYLSULFATE", "FORMOTEROL FUMARATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "CQ903KQA31", "labels": 119, "names": ["DICYCLOMINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "WY6W63843K", "labels": 118, "names": ["ZOLPIDEM TARTRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "OLH94387TE", "labels": 117, "names": ["DILTIAZEM HYDROCHLORIDE", "DILTIAZEM HCL"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -37,7 +38,6 @@
 {"unii": "4B3SC438HI", "labels": 82, "names": ["METHYLPHENIDATE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "SOD6A38AGA", "labels": 80, "names": ["LEVOCETIRIZINE DIHYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG", "HUMAN OTC DRUG"]}
 {"unii": "T20OQ1YN1W", "labels": 80, "names": ["CLINDAMYCIN HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
-{"unii": "V92SO9WP2I", "labels": 79, "names": ["GLYCOPYRROLATE", "NEOSTIGMINE METHYLSULFATE", "FORMOTEROL FUMARATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "X2ELS050D8", "labels": 78, "names": ["PAROXETINE HYDROCHLORIDE", "PAROXETINE HYDROCHLORIDE HEMIHYDRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "X3P646A2J0", "labels": 73, "names": ["MORPHINE SULFATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "71WO621TJD", "labels": 73, "names": ["VANCOMYCIN HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -259,6 +259,7 @@
 {"unii": "C8A0P8G029", "labels": 3, "names": ["ALISKIREN HEMIFUMARATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "MC34P30298", "labels": 3, "names": ["IMIPRAMINE PAMOATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "5Y9L3636O3", "labels": 3, "names": ["MEFLOQUINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "CU9463U2E2", "labels": 3, "names": ["ASENAPINE MALEATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "C137DTR5RG", "labels": 3, "names": ["THEOPHYLLINE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "JXN40O9Y9B", "labels": 3, "names": ["DIDECYLDIMONIUM CHLORIDE", "BENZETHONIUM CHLORIDE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "KZM8ZRY36A", "labels": 3, "names": ["FERRIC PICRATE"], "product_types": ["HUMAN OTC DRUG"]}
@@ -277,6 +278,7 @@
 {"unii": "NJJ0475N0S", "labels": 2, "names": ["PENTOBARBITAL SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "1DV05410M5", "labels": 2, "names": ["SERTACONAZOLE NITRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "9P9W8GGU78", "labels": 2, "names": ["FOLATE SODIUM", "VITAMIN D"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "EAG4T1459K", "labels": 2, "names": ["RITLECITINIB TOSYLATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "E70G3G5863", "labels": 2, "names": ["BUPROPION HYDROBROMIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "BDT58WJ9WE", "labels": 2, "names": ["LENACAPAVIR SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "4XI6112496", "labels": 2, "names": ["POLIHEXANIDE HYDROCHLORIDE"], "product_types": ["HUMAN OTC DRUG"]}
@@ -308,6 +310,7 @@
 {"unii": "9159UV381P", "labels": 2, "names": ["HYDROXIDE ION"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "65I14TNM33", "labels": 2, "names": ["NALOXEGOL OXALATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "P9YY73LO6J", "labels": 1, "names": ["ALECTINIB HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "VI5M9OZV2X", "labels": 1, "names": ["ORFORGLIPRON CALCIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "YTM763Y5C8", "labels": 1, "names": ["ANAGRELIDE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "QQ67504PXO", "labels": 1, "names": ["APIOLE (PARSLEY)"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "N00W22YO2B", "labels": 1, "names": ["VINBLASTINE SULFATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -330,6 +333,7 @@
 {"unii": "961WP42S65", "labels": 1, "names": ["POTASSIUM FERROCYANIDE TRIHYDRATE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "V1N8F1RVVO", "labels": 1, "names": ["NALDEMEDINE TOSYLATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "7B2Y1932XU", "labels": 1, "names": ["SOFPIRONIUM BROMIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "Y30VEG5PH1", "labels": 1, "names": ["DONIDALORSEN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "W81N5U6R6U", "labels": 1, "names": ["MONOSODIUM GLUTAMATE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "BSB9VJ5TUT", "labels": 1, "names": ["TRAMETINIB DIMETHYL SULFOXIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "48SPP0PA9Q", "labels": 1, "names": ["CEFOTETAN"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -358,6 +362,7 @@
 {"unii": "9ILS801M65", "labels": 1, "names": ["SALSOLINOL"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "03723AG82F", "labels": 1, "names": ["INFLUENZA A VIRUS A/SOUTH AUSTRALIA/55/2014 IVR-175 (H3N2) NEURAMINIDASE ANTIGEN (PROPIOLACTONE INACTIVATED)"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "8ENZ0QJW4H", "labels": 1, "names": ["NAFARELIN ACETATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "WK7Q6ZIZ10", "labels": 1, "names": ["QUIZARTINIB DIHYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "1DWS68PNE6", "labels": 1, "names": ["MOLINDONE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "X41B5W735T", "labels": 1, "names": ["FOSDENOPTERIN HYDROBROMIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "97MMO19FNO", "labels": 1, "names": ["FOSFOMYCIN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -385,6 +390,7 @@
 {"unii": "2TYK3LF8ZN", "labels": 1, "names": ["BERYLLIUM SULFATE TETRAHYDRATE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "8Y164V895Y", "labels": 1, "names": ["CARBACHOL"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "RQ6LP6Z0WY", "labels": 1, "names": ["MAFENIDE ACETATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "K86ENL12I5", "labels": 1, "names": ["AVACINCAPTAD PEGOL SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "VY9C88C2NV", "labels": 1, "names": ["ACORAMIDIS HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "UPH9LRJ9HU", "labels": 1, "names": ["INFLUENZA A VIRUS A/VICTORIA/4897/2022 IVR-238 (H1N1) ANTIGEN (PROPIOLACTONE INACTIVATED)", "INFLUENZA A VIRUS A/CROATIA/10136RV/2023 X-425A (H3N2) ANTIGEN (PROPIOLACTONE INACTIVATED)", "INFLUENZA B VIRUS B/AUSTRIA/1359417/2021 BVR-26 ANTIGEN (PROPIOLACTONE INACTIVATED)"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "L38QVJ42SY", "labels": 1, "names": ["INFLUENZA A VIRUS A/VICTORIA/4897/2022 IVR-238 (H1N1) ANTIGEN (PROPIOLACTONE INACTIVATED)", "INFLUENZA A VIRUS A/CROATIA/10136RV/2023 X-425A (H3N2) ANTIGEN (PROPIOLACTONE INACTIVATED)", "INFLUENZA B VIRUS B/AUSTRIA/1359417/2021 BVR-26 ANTIGEN (PROPIOLACTONE INACTIVATED)"], "product_types": ["HUMAN OTC DRUG"]}
@@ -401,10 +407,12 @@
 {"unii": "O90S49LDHH", "labels": 1, "names": ["LEVOBUNOLOL HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "MQD255M2ZO", "labels": 1, "names": ["POTASSIUM CYANIDE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "PV2WI7495P", "labels": 1, "names": ["BREMELANOTIDE ACETATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "YL4RYN734D", "labels": 1, "names": ["REVUMENIB CITRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "RFO6IL3D3M", "labels": 1, "names": ["METHYLNALTREXONE BROMIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "94NJ818U2W", "labels": 1, "names": ["MECLOFENAMATE SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "IX6J1063HV", "labels": 1, "names": ["INDOCYANINE GREEN"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "TE54T8WC4T", "labels": 1, "names": ["ZIDEBACTAM DIHYDRATE", "CEFEPIME HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "XW5CK7C6YH", "labels": 1, "names": ["IPTACOPAN HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "SYJ0T39LVU", "labels": 1, "names": ["POTASSIUM TETRACHLOROAURATE DIHYDRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "LI8384T9PH", "labels": 1, "names": ["BROMOETHANE"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "FBA31YJ60R", "labels": 1, "names": ["BARIUM ACETATE"], "product_types": ["HUMAN OTC DRUG"]}
@@ -442,6 +450,7 @@
 {"unii": "96R6PU3D8J", "labels": 1, "names": ["PONATINIB HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "XX112XZP0J", "labels": 1, "names": ["TIOTROPIUM BROMIDE ANHYDROUS"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "U289305BKG", "labels": 1, "names": ["DAPAGLIFLOZIN 2,3-BUTANEDIOL MONOHYDRATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "EGR9KYM536", "labels": 1, "names": ["NEDOSIRAN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "7SEV7J4R1U", "labels": 1, "names": ["TALC"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "OQW30I1332", "labels": 1, "names": ["VILOXAZINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "95OX15I8ZU", "labels": 1, "names": ["CALCIUM ARSENATE"], "product_types": ["HUMAN OTC DRUG"]}
@@ -453,6 +462,7 @@
 {"unii": "WO0YM16LKG", "labels": 1, "names": ["PATISIRAN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "QMG7HLD1ZE", "labels": 1, "names": ["HISTRELIN ACETATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "28O0WP6Z1P", "labels": 1, "names": ["VUTRISIRAN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "FZT5Z83JNS", "labels": 1, "names": ["PALTUSOTINE HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "845NU6GJPS", "labels": 1, "names": ["PAROMOMYCIN SULFATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "38X7XS076H", "labels": 1, "names": ["PRALIDOXIME CHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "0W5ETF9M2K", "labels": 1, "names": ["METHACHOLINE CHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
@@ -465,6 +475,8 @@
 {"unii": "GDW7M2P1IS", "labels": 1, "names": ["AVATROMBOPAG MALEATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "08MVT1AQQ9", "labels": 1, "names": ["INFLUENZA A VIRUS A/BRISBANE/59/2007 (H1N1) HEMAGGLUTININ ANTIGEN (FORMALDEHYDE INACTIVATED)"], "product_types": ["HUMAN OTC DRUG"]}
 {"unii": "0127KU7397", "labels": 1, "names": ["BOVINE TYPE I COLLAGEN (SKIN)"], "product_types": ["HUMAN OTC DRUG"]}
+{"unii": "N1429130KR", "labels": 1, "names": ["SELADELPAR LYSINE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "5TXQ76K65T", "labels": 1, "names": ["LEVOLEUCOVORIN DISODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "5SML1T733B", "labels": 1, "names": ["VALBENAZINE TOSYLATE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
+{"unii": "G8HQ634Y17", "labels": 1, "names": ["LANDIOLOL HYDROCHLORIDE"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}
 {"unii": "NSY2BY6PSB", "labels": 1, "names": ["OLEZARSEN SODIUM"], "product_types": ["HUMAN PRESCRIPTION DRUG"]}

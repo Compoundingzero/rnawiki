@@ -45,7 +45,10 @@ import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[2]
 FIELDS_DIR = ROOT / "data/corpus-20k/fields"
-ASSIGNMENT = ROOT / "data/corpus-20k/tiers/model-assignment.ndjson"
+# docs/specs/phase4-generators.md §15(3): the v2 tier map applies the rule that a DailyMed
+# SPL carrying no application number is not a register approval, so a page whose only
+# clinical ground was such a label is DEVELOPMENT and not CLINICAL.
+ASSIGNMENT = ROOT / "data/revamp/tiers/model-assignment-v2.ndjson"
 SOURCES_DIR = ROOT / "data/sources"
 DEFAULT_OUT = ROOT / "data/revamp/fields-v2"
 DEFAULT_GATED_OUT = ROOT / "data/revamp/fields-v2-gated"
@@ -1536,9 +1539,9 @@ def note_consulted(fields: dict, name: str) -> None:
 # driver
 
 
-def read_assignment():
+def read_assignment(path=ASSIGNMENT):
     out = {}
-    with ASSIGNMENT.open(encoding="utf-8") as handle:
+    with Path(path).open(encoding="utf-8") as handle:
         for line in handle:
             if not line.strip():
                 continue
@@ -1602,6 +1605,7 @@ def main() -> int:
     parser.add_argument("--gated-out", default=str(DEFAULT_GATED_OUT))
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE)
     parser.add_argument("--run-date", default=date.today().isoformat())
+    parser.add_argument("--models", default=str(ASSIGNMENT))
     args = parser.parse_args()
 
     fields_in = Path(args.fields_in)
@@ -1609,7 +1613,7 @@ def main() -> int:
     gated_root = Path(args.gated_out)
     run_date = args.run_date
 
-    assignment = read_assignment()
+    assignment = read_assignment(args.models)
     sg_status = read_sg_status()
 
     wanted = {
@@ -1671,6 +1675,7 @@ def main() -> int:
     patent_eligible = 0
     patent_filled = 0
     sg_counts = Counter()
+    remodelled: Counter = Counter()
     unassigned = 0
 
     for model_dir in MODEL_DIRS:
@@ -1790,6 +1795,15 @@ def main() -> int:
                         for c in contributors:
                             fill_sources[name][tier][c] += 1
 
+                    # docs/specs/phase4-generators.md §15(3): the record carries the model the tier
+                    # map assigns, not the one the input batch was filed under. A page whose only
+                    # clinical evidence was a DailyMed SPL with no application number is
+                    # DEVELOPMENT now, and the question derivation reads this field to decide which
+                    # questions a page is asked.
+                    if record.get("model") != meta["model"]:
+                        remodelled[(record.get("model"), meta["model"])] += 1
+                        record["model"] = meta["model"]
+
                     writer.write(record)
                     written += 1
 
@@ -1812,6 +1826,9 @@ def main() -> int:
         "batchSize": args.batch_size,
         "pagesWritten": written,
         "pagesInBatchesNotInAssignment": unassigned,
+        "pagesRemodelledByTheTierMap": {
+            "%s -> %s" % pair: count for pair, count in sorted(remodelled.items())
+        },
         "gatedPagesWritten": gated_pages,
         "sources": {name: {**report, "licence": LICENCE_SHORT.get(name),
                             "licence_full_text_as_published": LICENCE_FULL.get(name, [])}

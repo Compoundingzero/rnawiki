@@ -50,6 +50,7 @@ export {
   sectionSentenceParts,
   sectionSentenceText,
   sentenceNamesCompound,
+  supervisionContext,
   TRIAL_ROWS_INLINE,
   VISIBLE_ROWS,
 } from '@/scripts/corpus-20k/render/page-text'

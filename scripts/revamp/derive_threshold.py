@@ -91,7 +91,9 @@ from harness import (  # noqa: E402
 )
 
 FIELDS_DIR = ROOT / "data/corpus-20k/fields"
-ASSIGNMENT = ROOT / "data/corpus-20k/tiers/model-assignment.ndjson"
+# §15(3): the v2 tier map (a DailyMed SPL with no application number is not a register
+# approval, so the page is not CLINICAL).
+ASSIGNMENT = ROOT / "data/revamp/tiers/model-assignment-v2.ndjson"
 REGISTRY_AGG = ROOT / "data/corpus-20k/registry/aggregates"
 TEXT_DIR = ROOT / "data/corpus-20k/render/text"
 QUESTIONS_DIR = ROOT / "data/corpus-20k/questions"

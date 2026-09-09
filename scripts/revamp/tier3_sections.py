@@ -131,7 +131,8 @@ RELATIONS_FALLBACK = Path("data/revamp/identity/relations-v5.parquet")
 SPINE = Path("data/revamp/identity/spine-attached.parquet")
 TRIAL_REASSIGNMENTS = Path("data/revamp/identity/trial-reassignments-v5.csv")
 TRIAL_REASSIGNMENTS_FALLBACK = Path("data/revamp/identity/trial-reassignments-v4.csv")
-MODEL_ASSIGNMENT = Path("data/corpus-20k/tiers/model-assignment.ndjson")
+# §15(3): the v2 tier map.
+MODEL_ASSIGNMENT = Path("data/revamp/tiers/model-assignment-v2.ndjson")
 SUPPRESSION = Path("data/corpus-20k/suppression/assignments.ndjson")
 REGISTRY_AGGREGATES = Path("data/corpus-20k/registry/aggregates")
 

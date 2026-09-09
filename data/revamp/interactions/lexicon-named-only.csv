@@ -1,48 +1,47 @@
 form,reason,interaction_pages
-corticosteroids,ambiguous: 6 pages carry this name and they are not forms of one substance,472
-immunosuppressants,"names a class or a group, not this page's substance (no variant of 'azathioprine' and no UNII name for it)",178
-tricyclic antidepressants,ambiguous: 2 pages carry this name and they are not forms of one substance,169
-beta blockers,ambiguous: 4 pages carry this name and they are not forms of one substance,149
-ace inhibitors,"names a class or a group, not this page's substance (no variant of 'ramipril' and no UNII name for it)",143
-steroids,ambiguous: 5 pages carry this name and they are not forms of one substance,130
-benzodiazepines,ambiguous: 4 pages carry this name and they are not forms of one substance,124
-ssris,ambiguous: 6 pages carry this name and they are not forms of one substance,112
-systemic corticosteroids,ambiguous: 2 pages carry this name and they are not forms of one substance,111
+corticosteroids,ambiguous: 6 pages carry this name and they are not forms of one substance,461
+immunosuppressants,"names a class or a group, not this page's substance (no variant of 'azathioprine' and no UNII name for it)",177
+tricyclic antidepressants,ambiguous: 2 pages carry this name and they are not forms of one substance,161
+beta blockers,ambiguous: 4 pages carry this name and they are not forms of one substance,143
+ace inhibitors,"names a class or a group, not this page's substance (no variant of 'ramipril' and no UNII name for it)",133
+steroids,ambiguous: 5 pages carry this name and they are not forms of one substance,126
+benzodiazepines,ambiguous: 4 pages carry this name and they are not forms of one substance,122
 protease inhibitors,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",110
-selective serotonin reuptake inhibitors,ambiguous: 4 pages carry this name and they are not forms of one substance,103
-nonsteroidal anti inflammatory drugs,"names a class or a group, not this page's substance (no variant of 'naproxen' and no UNII name for it)",100
+systemic corticosteroids,ambiguous: 2 pages carry this name and they are not forms of one substance,108
+ssris,ambiguous: 6 pages carry this name and they are not forms of one substance,106
+selective serotonin reuptake inhibitors,ambiguous: 4 pages carry this name and they are not forms of one substance,97
+nonsteroidal anti inflammatory drugs,"names a class or a group, not this page's substance (no variant of 'naproxen' and no UNII name for it)",95
 calcium channel blockers,"names a class or a group, not this page's substance (no variant of 'amlodipine' and no UNII name for it)",90
-salicylates,"names a class or a group, not this page's substance (no variant of 'salsalate' and no UNII name for it)",87
-non steroidal anti inflammatory drugs,"names a class or a group, not this page's substance (no variant of 'naproxen' and no UNII name for it)",84
-snris,"names a class or a group, not this page's substance (no variant of 'duloxetine' and no UNII name for it)",72
-angiotensin receptor blockers,"names a class or a group, not this page's substance (no variant of 'losartan' and no UNII name for it)",71
-oral anticoagulants,"names a class or a group, not this page's substance (no variant of 'acenocoumarol' and no UNII name for it)",70
-proton pump inhibitors,ambiguous: 4 pages carry this name and they are not forms of one substance,70
+non steroidal anti inflammatory drugs,"names a class or a group, not this page's substance (no variant of 'naproxen' and no UNII name for it)",83
+salicylates,"names a class or a group, not this page's substance (no variant of 'salsalate' and no UNII name for it)",79
+angiotensin receptor blockers,"names a class or a group, not this page's substance (no variant of 'losartan' and no UNII name for it)",69
+proton pump inhibitors,ambiguous: 4 pages carry this name and they are not forms of one substance,69
+snris,"names a class or a group, not this page's substance (no variant of 'duloxetine' and no UNII name for it)",68
 hmg coa reductase inhibitors,"names a class or a group, not this page's substance (no variant of 'atorvastatin' and no UNII name for it)",64
-macrolide antibiotics,"names a class or a group, not this page's substance (no variant of 'azithromycin anhydrous' and no UNII name for it)",56
+oral anticoagulants,"names a class or a group, not this page's substance (no variant of 'acenocoumarol' and no UNII name for it)",62
+macrolide antibiotics,"names a class or a group, not this page's substance (no variant of 'azithromycin anhydrous' and no UNII name for it)",53
 loop diuretics,ambiguous: 2 pages carry this name and they are not forms of one substance,44
-sulfonylureas,"names a class or a group, not this page's substance (no variant of 'glibenclamide' and no UNII name for it)",44
+sulfonylureas,"names a class or a group, not this page's substance (no variant of 'glibenclamide' and no UNII name for it)",42
 systemic steroids,"names a class or a group, not this page's substance (no variant of 'prednisone' and no UNII name for it)",37
-fluoroquinolones,"names a class or a group, not this page's substance (no variant of 'ciprofloxacin' and no UNII name for it)",32
 magnesium as,ambiguous: 6 pages carry this name and they are not forms of one substance,31
-somatostatin analogs,"names a class or a group, not this page's substance (no variant of 'octreotide' and no UNII name for it)",29
+somatostatin analogs,"names a class or a group, not this page's substance (no variant of 'octreotide' and no UNII name for it)",28
 thiazolidinediones,ambiguous: 2 pages carry this name and they are not forms of one substance,28
 gabapentinoids,"names a class or a group, not this page's substance (no variant of 'pregabalin' and no UNII name for it)",21
 pde5 inhibitors,ambiguous: 2 pages carry this name and they are not forms of one substance,21
 vitamin k antagonists,ambiguous: 2 pages carry this name and they are not forms of one substance,18
-glp 1 receptor agonists,ambiguous: 2 pages carry this name and they are not forms of one substance,16
+fluoroquinolones,"names a class or a group, not this page's substance (no variant of 'ciprofloxacin' and no UNII name for it)",17
 antiplatelet drugs,"names a class or a group, not this page's substance (no variant of 'clopidogrel' and no UNII name for it)",15
+glp 1 receptor agonists,ambiguous: 2 pages carry this name and they are not forms of one substance,15
 doacs,ambiguous: 2 pages carry this name and they are not forms of one substance,14
-fish oils,ambiguous: 2 pages carry this name and they are not forms of one substance,14
 immunoglobulins,"names a class or a group, not this page's substance (no variant of 'human immunoglobulin g' and no UNII name for it)",13
 retinoids,"names a class or a group, not this page's substance (no variant of 'tretinoin' and no UNII name for it)",13
 sglt2 inhibitors,ambiguous: 3 pages carry this name and they are not forms of one substance,13
 calcineurin inhibitors,ambiguous: 2 pages carry this name and they are not forms of one substance,12
 intravenous immunoglobulins,"names a class or a group, not this page's substance (no variant of 'human immunoglobulin g' and no UNII name for it)",12
-jak inhibitors,"names a class or a group, not this page's substance (no variant of 'oclacitinib' and no UNII name for it)",12
-cholinesterase inhibitors,ambiguous: 3 pages carry this name and they are not forms of one substance,11
-esters,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",11
+jak inhibitors,"names a class or a group, not this page's substance (no variant of 'oclacitinib' and no UNII name for it)",11
+cholinesterase inhibitors,ambiguous: 3 pages carry this name and they are not forms of one substance,10
 direct oral anticoagulants,ambiguous: 3 pages carry this name and they are not forms of one substance,10
+esters,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",10
 globulins,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",10
 mtor inhibitors,ambiguous: 2 pages carry this name and they are not forms of one substance,10
 oral steroids,"names a class or a group, not this page's substance (no variant of 'methylprednisolone' and no UNII name for it)",10
@@ -55,8 +54,8 @@ anti cd20 antibodies,"names a class or a group, not this page's substance (no va
 calcium supplements,"names a class or a group, not this page's substance (no variant of 'calcium unii sy7q814vup' and no UNII name for it)",8
 sglt 2 inhibitors,ambiguous: 2 pages carry this name and they are not forms of one substance,8
 eye drops,ambiguous: 2 pages carry this name and they are not forms of one substance,7
-pancreatic enzymes,"names a class or a group, not this page's substance (no variant of 'pancreatin' and no UNII name for it)",7
 blood vessels,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",6
+pancreatic enzymes,"names a class or a group, not this page's substance (no variant of 'pancreatin' and no UNII name for it)",6
 tyrosine kinase inhibitors,"names a class or a group, not this page's substance (no variant of 'dasatinib anhydrous' and no UNII name for it)",6
 artificial tears,"names a class or a group, not this page's substance (no variant of 'carboxymethylcellulose sodium 0 7 carboxymethyl substitution per saccharide 600 mpa s at 2' and no UNII name for it)",5
 metformin hydrochloride extended release tablets,"names a class or a group, not this page's substance (no variant of 'metformin c4h11n5' and no UNII name for it)",5
@@ -66,7 +65,6 @@ fatty acids,"the page carries no UNII and no InChIKey, so the name cannot be res
 pd 1 pd l1 inhibitors,"names a class or a group, not this page's substance (no variant of 'nivolumab' and no UNII name for it)",4
 testes,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",4
 veratrum alkaloids,"names a class or a group, not this page's substance (no variant of 'veratrum viride root' and no UNII name for it)",4
-antithyroid drugs,"names a class or a group, not this page's substance (no variant of 'thiamazole' and no UNII name for it)",3
 dpp4 inhibitors,ambiguous: 2 pages carry this name and they are not forms of one substance,3
 gonadotropins,"names a class or a group, not this page's substance (no variant of 'follitropin' and no UNII name for it)",3
 pegasys,ambiguous: 3 pages carry this name and they are not forms of one substance,3
@@ -74,6 +72,7 @@ progestin only pills,"names a class or a group, not this page's substance (no va
 adenovirus,"names a class or a group, not this page's substance (no variant of 'tasadenoturev' and no UNII name for it)",2
 aldosterone antagonists,"names a class or a group, not this page's substance (no variant of 'spironolactone' and no UNII name for it)",2
 alpha interferons,"names a class or a group, not this page's substance (no variant of 'interferon alfa n3' and no UNII name for it)",2
+antithyroid drugs,"names a class or a group, not this page's substance (no variant of 'thiamazole' and no UNII name for it)",2
 aromatase inhibitors,ambiguous: 3 pages carry this name and they are not forms of one substance,2
 biguanides,"names a class or a group, not this page's substance (no variant of 'metformin c4h11n5' and no UNII name for it)",2
 carbidopa tablets,"names a class or a group, not this page's substance (no variant of 'carbidopa anhydrous' and no UNII name for it)",2
@@ -568,6 +567,7 @@ fibrobacter succinogenes,"the page carries no UNII and no InChIKey, so the name 
 fibroins,"names a class or a group, not this page's substance (no variant of 'silk fibroin' and no UNII name for it)",0
 field penny cress,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",0
 finger cactus,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",0
+fish oils,ambiguous: 2 pages carry this name and they are not forms of one substance,0
 fish peptides,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",0
 flammulina velutipes,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",0
 flammulina velutpies,"the page carries no UNII and no InChIKey, so the name cannot be resolved to a substance",0

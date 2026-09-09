@@ -25,7 +25,7 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import 'dotenv/config'
 import { Client } from 'pg'
 
-import { SUPPRESSION_CLASS_LABELS } from '@/lib/corpus/suppression-classes'
+import { supervisionClauses, type SuppressionEvidence } from '@/lib/corpus/suppression-classes'
 
 const ROOT = resolve(import.meta.dirname, '..', '..')
 const LIST = join(ROOT, 'data', 'revamp', 'suppressed-no-question.csv')
@@ -159,6 +159,7 @@ async function main(): Promise<void> {
     slug: string
     display_name: string
     suppression_classes: string[]
+    suppression_evidence: SuppressionEvidence[]
     page_type: string
     question_rows: string
   }>(
@@ -166,6 +167,7 @@ async function main(): Promise<void> {
             p.slug,
             p.display_name,
             p.suppression_classes,
+            p.suppression_evidence,
             p.page_type,
             (SELECT count(*) FROM page_questions q WHERE q.key = p.key) AS question_rows
        FROM corpus_pages p
@@ -232,14 +234,23 @@ async function main(): Promise<void> {
       }
 
       const text = visibleText(markup)
-      for (const code of row.suppression_classes) {
-        const label = SUPPRESSION_CLASS_LABELS[code]
-        if (label === undefined || code === 'S10') continue
-        if (text.includes(label)) result.labelsRendered.push(label)
-        else result.labelsMissing.push(label)
+      /*
+       * §15(1): the page states one clause per recorded class, each built from that class's own
+       * evidence and carrying that class's own source. The generic label this loop used to look
+       * for — what a class of that kind might be — is exactly what the answer no longer says, so
+       * what is verified is the clause the recorded evidence produces.
+       */
+      for (const clause of supervisionClauses(
+        row.suppression_classes,
+        Array.isArray(row.suppression_evidence) ? row.suppression_evidence : [],
+      )) {
+        if (text.includes(clause.text)) result.labelsRendered.push(clause.text)
+        else result.labelsMissing.push(clause.text)
       }
       if (result.labelsMissing.length > 0) {
-        problems.push(`${String(result.labelsMissing.length)} recorded class label(s) not rendered`)
+        problems.push(
+          `${String(result.labelsMissing.length)} recorded class clause(s) not rendered`,
+        )
       }
 
       const leaked = text.match(new RegExp(CLASS_TOKEN, 'g'))

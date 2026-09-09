@@ -507,54 +507,50 @@ def test_a_recorded_classification_never_reads_as_a_token(pages):
     """§7's positive half: where a class is stated, it is stated in words.
 
     Catching the token in a regular expression is only half the rule; the other half is that the
-    page says something true in its place. A supervision block takes one of two branches. Where the
-    registers themselves classified the record it states their classification ("US approved, EU
-    approved, UK not cleared, AU scheduled in the Poisons Standard and SG not found"). Where only the
-    corpus's own R2 class is on file it states that class in the words
-    `docs/specs/suppression-classes.md` fixes. Both are asserted here, and the stub line that used to
-    print the tokens is asserted gone.
+    page says something true in its place. §15(1) fixes what that is: one clause per recorded
+    class, each naming that class's own evidence — the ATC class with the register's own name for
+    the code, the statute the schedule is in, the label the boxed warning is on. The two branches
+    this test asserted before are both gone: the registers' own classification (retired by §14(1),
+    because a register status is not a supervision reason) and the generic label list (retired by
+    §15(1), because it says what a class of that kind might be and not what this record is in).
     """
-    class_words = tuple(
+    clause_words = tuple(
         phrase.lower()
         for phrase in (
-            "World Health Organization therapeutic class",
-            "controlled-substance schedule",
-            "harm to a developing baby",
-            "cytotoxic",
-            "restricts how the medicine is supplied",
+            "World Health Organization ATC class",
+            "statute schedules it as a controlled substance",
+            "risk to a developing baby",
+            "pregnancy-prevention programme",
+            "hazardous-medicine class",
+            "Risk Evaluation and Mitigation Strategy",
             "boxed warning",
-            "injection into a vein",
-            "withdrawal or suspension for a safety reason",
-            "long-acting injection",
-            "no classification found in the registers checked",
+            "route of administration is one a clinician gives",
+            "withdrawn or suspended for a safety reason",
+            "long-acting or titrated injected form",
+            "no classification is recorded for this compound",
         )
+    )
+    retired = (
+        "the registers' classification of",
+        "a World Health Organization therapeutic class such as",
+        "a controlled-substance schedule in Singapore, the United States",
+        "Regulator classification recorded",
     )
     failures: list[str] = []
     supervision_pages = 0
-    stated_in_class_words = 0
-    stated_by_the_registers = 0
     for page in pages:
         text = page["text"]
-        if "Regulator classification recorded" in text:
-            failures.append(f"{page['key']}: the stub line still names classes as tokens")
-        # The block's own question, not a phrase that can turn up inside a quoted label: a probiotic
-        # label says "intended for use under medical supervision" and that is the label speaking.
-        if "carry a supervision requirement?" not in text and "A register records " not in text:
+        for phrase in retired:
+            if phrase in text:
+                failures.append(f"{page['key']}: still says {phrase!r}")
+        if "carry a supervision requirement?" not in text:
             continue
         supervision_pages += 1
         lowered = text.lower()
-        if any(word in lowered for word in class_words):
-            stated_in_class_words += 1
-        if "the registers' classification of" in text or "classifications of" in text:
-            stated_by_the_registers += 1
-        if not any(word in lowered for word in class_words) and (
-            "the registers' classification of" not in text and "classifications of" not in text
-        ):
-            failures.append(f"{page['key']}: a supervision block stating neither branch")
+        if not any(word in lowered for word in clause_words):
+            failures.append(f"{page['key']}: a supervision block stating no class in words")
     _report(failures, "supervision block that states no classification in words")
     assert supervision_pages > 0, "no page rendered a supervision block"
-    assert stated_in_class_words > 0, "no page stated an R2 class in the spec's words"
-    assert stated_by_the_registers > 0, "no page stated the registers' own classification"
 
 
 # ---------------------------------------------------------------------------------------------
@@ -1103,15 +1099,32 @@ APPLICATION_ID = re.compile(
 # §14(8): a storage key, in every shape the corpus writes one.
 PAGE_KEY = re.compile(r"\b(?:K[1-4]:[0-9A-Za-z]|COMBO:|PRODUCT:|HOLD:|IK:[A-Z])")
 
-# §14(1): the one shape the supervision answer takes. The words themselves are
-# `docs/specs/suppression-classes.md`'s and are built by `citedSuppressionLabels`.
-SUPERVISION_ANSWER = re.compile(r"^A register records .+ under medical supervision: .+\.")
+# §15(1): the supervision answer is one clause per recorded class, each carrying that class's own
+# source in brackets. The §14 frame it replaced named a class from a fixed list; neither that frame
+# nor any of the list's labels may appear.
+RETIRED_SUPERVISION_FRAME = re.compile(r"^A register records .+ under medical supervision: ")
+GENERIC_CLASS_LABEL = re.compile(
+    r"a World Health Organization therapeutic class such as"
+    r"|a controlled-substance schedule in Singapore, the United States"
+    r"|a label warning about harm to a developing baby"
+    r"|a list of cytotoxic or otherwise hazardous medicines"
+    r"|a United States programme that restricts how the medicine is supplied"
+    r"|a boxed warning, the strongest warning a United States label carries"
+    r"|a route a clinician administers, such as"
+    r"|a register record of withdrawal or suspension for a safety reason"
+    r"|a long-acting injection, an insulin, or another injected hormone",
+    re.IGNORECASE,
+)
+CLAUSE_SOURCE = re.compile(r"\([^()]{3,}\)\s*\.$")
 
-# §14(1): a prescription classification is not a supervision reason. These are the words the
-# registers use for one, and none of them may appear in the answer.
+# §14(1) and §15(1): a prescription classification is not a supervision reason. These are the words
+# the registers use for one, and none of them may appear in the answer. The Poisons Standard itself
+# is not among them: a Schedule 8 or 9 entry is a controlled schedule, and §15(1) names the
+# controlled schedule as evidence the answer may cite. Schedule 4 and the Singapore Poisons Act and
+# Poisons Rules schedules are prescription classes.
 PRESCRIPTION_ONLY = re.compile(
-    r"\b(?:poisons standard|poisons act|poisons rules|prescription[ -]only|schedule 4|POM"
-    r"|forensic class)\b"
+    r"\b(?:poisons act|poisons rules|prescription[ -]only|schedule 4|POM|forensic class)\b",
+    re.IGNORECASE,
 )
 
 # §14(11): the question the retired `never-dosed` block asked.
@@ -1144,14 +1157,16 @@ def _supervision_entries(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def test_the_supervision_answer_names_no_register_status(provenance):
-    """§14(1): the answer names the suppression evidence, never a register status.
+    """§14(1) and §15(1): the answer names the class evidence, never a register status.
 
-    "AU scheduled in the Poisons Standard: the registers' classification of Piroxicam" is wrong
+    "AU scheduled in the Poisons Standard: the registers' classification of Piroxicam" was wrong
     twice: an Australian Schedule 4 entry is a prescription class and not a reason for supervision,
-    and the sentence's provenance named registers the sentence itself did not. The answer is built
-    from the S1-S9 classes the suppression pass recorded, in the words the spec fixes, and from
-    nothing else — so its first sentence has one shape, and a prescription classification's words
-    never appear in it.
+    and the sentence's provenance named registers the sentence itself did not. §15(1) then found
+    the replacement naming the class from a generic list — "a World Health Organization therapeutic
+    class such as cancer medicines, immune suppressants, opioids or general anaesthetics" — beside
+    a prescription-schedule row that was not its evidence. The answer is now one clause per
+    recorded class, each built from that class's own evidence: no clause is the retired frame, none
+    is a label from the list, and none names a prescription classification.
     """
     failures: list[str] = []
     checked = 0
@@ -1160,17 +1175,47 @@ def test_the_supervision_answer_names_no_register_status(provenance):
         if not held:
             continue
         checked += 1
-        first = _strip_provenance_anchor(str(held[0]["sentence"]))
-        if not SUPERVISION_ANSWER.match(first):
-            failures.append(f"{key}: {first[:140]}")
-            continue
-        named = PRESCRIPTION_ONLY.search(first)
-        if named:
-            failures.append(
-                f"{key}: names a prescription class ({named.group(0)!r}): {first[:120]}"
-            )
+        for entry in held:
+            sentence = _strip_provenance_anchor(str(entry["sentence"]))
+            if RETIRED_SUPERVISION_FRAME.match(sentence):
+                failures.append(f"{key}: uses the retired frame: {sentence[:120]}")
+                continue
+            generic = GENERIC_CLASS_LABEL.search(sentence)
+            if generic:
+                failures.append(f"{key}: names the generic label {generic.group(0)!r}")
+                continue
+            named = PRESCRIPTION_ONLY.search(sentence)
+            if named:
+                failures.append(
+                    f"{key}: names a prescription class ({named.group(0)!r}): {sentence[:120]}"
+                )
     assert checked > 0, "no supervision answer was rendered"
-    _report(failures, "supervision answer naming a register status (§14 item 1)")
+    _report(failures, "supervision answer naming a register status (§14 item 1, §15 item 1)")
+
+
+def test_every_supervision_clause_carries_its_own_source(provenance):
+    """§15(1): "a clause without a matching source does not render".
+
+    Each clause ends with the source the suppression pass recorded for that class — the register
+    that published the ATC group, the statute the schedule is in, the DailyMed label the boxed
+    warning is on. The last paragraph of the block may be this record's own study scope, which
+    states no classification and carries no citation; every clause before it is checked, and a
+    block of one paragraph is checked as a clause.
+    """
+    failures: list[str] = []
+    checked = 0
+    for key, entries in provenance.items():
+        held = _supervision_entries(entries)
+        if not held:
+            continue
+        sentences = [_strip_provenance_anchor(str(entry["sentence"])) for entry in held]
+        clauses = sentences[:-1] if len(sentences) > 1 else sentences
+        for sentence in clauses:
+            checked += 1
+            if not CLAUSE_SOURCE.search(sentence):
+                failures.append(f"{key}: {sentence[:140]}")
+    assert checked > 0, "no supervision clause was rendered"
+    _report(failures, "supervision clause with no source (§15 item 1)")
 
 
 def test_no_register_application_row_renders_under_a_question(provenance):
@@ -1427,3 +1472,191 @@ def test_no_interaction_counterpart_is_an_entity_linking_artefact(blocks):
                     if held in artefacts:
                         failures.append(f"{key}: group names {artefacts[held]}")
     _report(failures, "an entity-linking artefact rendered as a counterpart (§14 item 5)")
+
+
+# =============================================================================================
+# §15 — the rules from the lead's reading of slop draw 6, each asserted mechanically.
+#
+# Item 9 requires it: "the self-audit per §14(16) extended with rules 1, 5, 6, 7, 8 as mechanical
+# checks". Rule 1 is asserted above, beside the §14 rule it replaces. Rule 8 is about the served
+# DOM — an inline element glued to the text beside it — and is asserted on the components in
+# `tests/unit/corpus-render-safety.test.ts` and against a painted build by
+# `scripts/revamp/self_audit.py`. What follows is what the render itself wrote, over every page.
+# =============================================================================================
+
+# §15(4): the mechanism quotation is a row, so its frame is no longer a sentence anywhere.
+MECHANISM_PROSE = re.compile(r"^The mechanism record reads ")
+
+# §15(4): a register status value line. "CA approved (2026-09-04)" is the registration block's own
+# line and no question block states one.
+REGISTER_STATUS_LINE = re.compile(
+    r"^(?:SG|US|AU|UK|EU|JP|CA) (?:approved|withdrawn|discontinued|registered|suspended"
+    r"|refused|tentative approval|not found)\b",
+    re.IGNORECASE,
+)
+
+# §15(5): the ageing question and the neutral one, and the vocabulary that licenses the first.
+AGEING_QUESTION = re.compile(r"^Which running trial of .+ could settle (.+)\?$")
+NEUTRAL_READOUT_QUESTION = re.compile(r"^Which running trial of .+ reads out next\?$")
+AGEING_ENDPOINT_WORDS = {
+    "lifespan",
+    "healthspan",
+    "frailty",
+    "function",
+    "epigenetic age",
+    "vo2max",
+    "grip strength",
+    "insulin sensitivity",
+    "inflammatory markers",
+}
+
+# §15(6): the words of a stereochemical relation, and of a record that states no stereochemistry.
+STEREO_RELATION = re.compile(r"\b(?:diastereomer|enantiomer)\b", re.IGNORECASE)
+NO_STEREOCHEMISTRY = re.compile(r"recorded without stereochemistry", re.IGNORECASE)
+UNDEFINED_STEREO_BLOCK = "UHFFFAOYSA"
+
+
+def test_the_mechanism_quotation_is_a_row_and_not_a_sentence(provenance):
+    """§15(4): the register's own wording renders as a row.
+
+    "The mechanism record reads "<the register's wording>". ChEMBL 37 · CHEMBL… · 2026-09-04" is a
+    fixed frame around one value, and once the quotation and the identifiers were masked it was the
+    same sentence on 954 pages (3.33 %) in slop draws 6 and 7. §13(7) makes a one-value statement a
+    row; this asserts no page writes it as prose.
+    """
+    failures: list[str] = []
+    for key, entries in provenance.items():
+        for entry in _prose_entries(entries):
+            sentence = str(entry["sentence"]).strip()
+            if MECHANISM_PROSE.match(sentence):
+                failures.append(f"{key}: {sentence[:120]}")
+    _report(failures, "the mechanism quotation rendered as prose (§15 item 4)")
+
+
+def test_no_register_status_line_renders_inside_a_question_block(provenance):
+    """§15(4): the register status value line leaves the question blocks entirely.
+
+    §14(2) retired the register application rows from every question block and §14(3) fixed the
+    status word; the value list survived as the `regulatory-only` block's whole answer, and on a
+    page whose only recorded approval was Canada's it was one register's line, in the position of
+    an answer, on 182 pages (0.64 %). The registration block is the one place a register status is
+    stated.
+    """
+    failures: list[str] = []
+    for key, entries in provenance.items():
+        for entry in entries:
+            fields = entry.get("fields") or []
+            if not any(str(field).startswith("page_questions.") for field in fields):
+                continue
+            if entry.get("kind", "sentence") != "sentence" or entry.get("heading") is True:
+                continue
+            sentence = _strip_provenance_anchor(str(entry["sentence"])).strip()
+            if REGISTER_STATUS_LINE.match(sentence):
+                failures.append(f"{key}: {sentence[:120]}")
+    _report(failures, "a register status line inside a question block (§15 item 4)")
+
+
+def test_the_ageing_question_fires_only_on_an_ageing_endpoint(provenance):
+    """§15(5): seed 9 asks its ageing question only where the endpoint is an ageing endpoint.
+
+    "Which running trial of X could settle lifespan?" over an event-free-survival endpoint is a
+    claim the trial does not make. Where the register's words are not in the ageing vocabulary the
+    question asks what reads out next, and the answer names the endpoint verbatim.
+    """
+    failures: list[str] = []
+    asked = 0
+    for key, entries in provenance.items():
+        headings = [
+            str(entry["sentence"]).strip()
+            for entry in entries
+            if entry.get("heading") is True
+        ]
+        for heading in headings:
+            match = AGEING_QUESTION.match(heading)
+            if match:
+                asked += 1
+                if match.group(1).strip().lower() not in AGEING_ENDPOINT_WORDS:
+                    failures.append(f"{key}: {heading[:140]}")
+            elif NEUTRAL_READOUT_QUESTION.match(heading):
+                asked += 1
+    _report(failures, "the ageing question over a non-ageing endpoint (§15 item 5)")
+
+
+def test_a_stereochemistry_note_names_no_relation_the_records_do_not_have():
+    """§15(6): the wording of a form-of note, against the two records' own InChIKeys.
+
+    Where one record's InChIKey carries the undefined-stereo block (UHFFFAOYSA) and the other's
+    does not, neither is the other's diastereomer or enantiomer: one of them states no
+    configuration at all. The note reads "the same connectivity, recorded without stereochemistry",
+    and never a stereochemical relation. Mecillinam and Amdinocillin were the case that fixed the
+    rule; they carry defined stereochemistry with the same configuration at every centre, which the
+    same rule covers.
+    """
+    relations = os.path.join(ROOT, "data", "revamp", "identity", "relations-v6.parquet")
+    canonical = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v6.ndjson")
+    if not os.path.exists(relations) or not os.path.exists(canonical):
+        pytest.skip("no relations-v6.parquet or canonical-v6.ndjson; run identity_relations_v6.py")
+    import pyarrow.parquet as pq
+
+    keys: dict[str, str] = {}
+    with open(canonical, encoding="utf-8") as handle:
+        for line in handle:
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            structure = record.get("structure") or {}
+            inchikey = str(structure.get("inchikey") or record.get("inchikey") or "")
+            if inchikey:
+                keys[record["key"]] = inchikey.upper()
+
+    table = pq.read_table(relations).to_pydict()
+    failures: list[str] = []
+    checked = 0
+    for page_a, page_b, note in zip(table["page_a"], table["page_b"], table["note"]):
+        text = str(note or "")
+        if not STEREO_RELATION.search(text):
+            continue
+        checked += 1
+        a, b = keys.get(page_a, ""), keys.get(page_b, "")
+        blocks_ = [key.split("-")[1] if key.count("-") >= 1 else "" for key in (a, b)]
+        undefined = [block.startswith(UNDEFINED_STEREO_BLOCK) for block in blocks_ if block]
+        if any(undefined) and not all(undefined):
+            failures.append(f"{page_a} ↔ {page_b}: {text[:120]}")
+        if NO_STEREOCHEMISTRY.search(text):
+            failures.append(f"{page_a} ↔ {page_b}: names both at once: {text[:120]}")
+    assert checked > 0, "no stereochemical relation was written"
+    _report(failures, "a stereochemical relation over an undefined stereo layer (§15 item 6)")
+
+
+def test_every_rendered_row_keeps_its_label(provenance):
+    """§15(7): status rows keep their labels.
+
+    A run of rows sharing one label writes it once, above the run; a counted remainder — "4 more
+    recorded rows" — is not a label, and the rows under it were painting bare counts: "6", "1",
+    "1", under six rows that read "phase3 13" and "completed 18". A count with no label states
+    nothing a reader can use.
+
+    The rule is about the counted remainder, not about every row that prints a number. A run of
+    rows that really do share one label is headed by it once, and the rows under that heading need
+    no label of their own — the FAERS list carries two "Pain" rows from two component records, and
+    the heading is the label both of them have. A register application identifier ("009436") is a
+    number too, inside a disclosure whose summary says what the list is. What is checked here is
+    the group whose heading is a count: those rows share no label, and hiding theirs left the page
+    painting "6", "1", "1".
+    """
+    counted = re.compile(r"^\d+ (?:further recorded trials?|more recorded rows?)$")
+    failures: list[str] = []
+    for key, entries in provenance.items():
+        heading = ""
+        for entry in entries:
+            kind = entry.get("kind", "sentence")
+            sentence = str(entry["sentence"]).strip()
+            if kind != "row":
+                if entry.get("furniture") is True:
+                    heading = sentence
+                continue
+            if not counted.match(heading):
+                continue
+            if re.fullmatch(r"\d{1,7}", sentence):
+                failures.append(f"{key}: {heading!r} heads a row painting {sentence!r}")
+    _report(failures, "a row painting a bare number (§15 item 7)")

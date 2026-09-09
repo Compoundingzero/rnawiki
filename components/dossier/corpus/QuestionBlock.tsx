@@ -41,7 +41,16 @@ function Paragraph({ paragraph }: { paragraph: CorpusParagraph }) {
       {...(paragraph.anchor ? { 'data-anchored': 'true' } : {})}
       {...(paragraph.furniture ? { 'data-furniture': 'true' } : {})}
     >
-      {paragraph.interpretation ? <span className="cd-interpretation">Interpretation</span> : null}
+      {/*
+        §15(8): a text node between the label and what it labels. The mark and the sentence are two
+        inline spans, and every text extraction — this site's ruler, its duplicate check and a
+        crawler's — read them as one word: "INTERPRETATIONno human trial recorded".
+      */}
+      {paragraph.interpretation ? (
+        <>
+          <span className="cd-interpretation">Interpretation</span>{' '}
+        </>
+      ) : null}
       {body}
       {paragraph.anchor ? (
         <>

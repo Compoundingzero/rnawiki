@@ -50,6 +50,17 @@ on a triggered page, `S2` joins `classes` where it is not already there, and the
 rows are appended. Two keys are added for audit: `controlledTrigger` (bool) and
 `controlledTriggerBasis` (the register codes that fired). Every other value on every line is
 copied through unchanged, including lines the trigger does not touch.
+
+The ATC group name
+------------------
+`docs/specs/phase4-generators.md` §15(1) requires the supervision answer to name a therapeutic
+class by its ATC code *and* the register's own name for that code. The suppression pass recorded
+the code alone ("L01FX06 (antineoplastic)"), so this script resolves the name from the ChEMBL
+`atc_class` download — the same release the code was read from — and writes it onto the evidence
+row as `label` ("L01FX06, other antineoplastic agents"). The longest group prefix the register
+publishes wins: level 4, then level 3, then level 2. A code the register does not publish a group
+for keeps its code and gains no name, and the renderer prints what is there. Nothing else on the
+row is touched, and no name is invented.
 """
 
 from __future__ import annotations
@@ -58,8 +69,51 @@ import argparse
 import glob
 import json
 import os
+import re
 import sys
 from collections import Counter
+
+ATC_RAW_GLOB = "data/sources/chembl/2026-09-05/raw/atc_class-*.json"
+ATC_CODE = re.compile(r"\b([A-Z]\d{2}[A-Z]{0,2}\d{0,2})\b")
+#: The classes whose evidence value is an ATC code (docs/specs/suppression-classes.md S1, S4, S7,
+#: S9). S2's values are statute schedules and S6's are the boxed warning's own subjects.
+ATC_CLASSES = {"S1", "S4", "S7", "S9"}
+
+
+def load_atc_group_names():
+    """ATC group code -> the register's own name for it, from the ChEMBL atc_class download."""
+    names = {}
+    for path in sorted(glob.glob(ATC_RAW_GLOB)):
+        with open(path, encoding="utf-8") as handle:
+            payload = json.load(handle)
+        for row in payload.get("atc") or []:
+            for level in ("level1", "level2", "level3", "level4"):
+                code = row.get(level)
+                description = row.get(level + "_description")
+                if code and description:
+                    names.setdefault(str(code).strip().upper(), str(description).strip())
+    return names
+
+
+def atc_label(value, names):
+    """"L01FX06, other antineoplastic agents" for a value carrying an ATC code, else None."""
+    match = ATC_CODE.search(str(value or "").upper())
+    if not match:
+        return None
+    code = match.group(1)
+    for length in range(min(len(code), 5), 0, -1):
+        group = code[:length]
+        name = names.get(group)
+        if name:
+            # The code named is the group the name belongs to, not the substance code inside it:
+            # "L01CA, vinca alkaloids and analogues", never "L01CA02, vinca alkaloids and
+            # analogues", which would read as if the substance code were the class.
+            #
+            # The register writes its top three levels in capitals and its fourth in sentence
+            # case. A capitalised heading inside a sentence reads as shouting, so a wholly
+            # capitalised name is lowercased and every other name is kept exactly as published.
+            return "%s, %s" % (group, name.lower() if name.isupper() else name)
+    return None
 
 
 def iter_ndjson(path):
@@ -92,9 +146,16 @@ def read_trigger(record):
         for entry in schedules:
             if not isinstance(entry, dict):
                 continue
+            # Only the Misuse of Drugs Act schedules are the narrow controlled test (section 14
+            # item 1). A Poisons Act or Poisons Rules entry is a prescription classification, and
+            # docs/specs/phase4-generators.md §15(1) forbids one as evidence in the supervision
+            # answer, so it is not recorded as S2 evidence at all; the registration block states
+            # it, which is where section 13 item 4 puts it.
+            statute = str(entry.get("statute") or entry.get("statuteCitation") or "")
             evidence.append(
                 {
                     "test": "S2",
+                    "narrow": "Misuse of Drugs" in statute,
                     "source": entry.get("statuteCitation") or entry.get("statute") or sg.get("register"),
                     "value": "%s (statute version %s)"
                     % (entry.get("schedule"), entry.get("statuteVersionDate") or "not stated"),
@@ -186,6 +247,10 @@ def main(argv=None):
                 2 if record.get("model") == "CLINICAL" else 3
             )
 
+    atc_names = load_atc_group_names()
+    atc_labelled = 0
+    atc_unnamed = 0
+
     already = 0
     newly = 0
     basis_counts = Counter()
@@ -229,13 +294,30 @@ def main(argv=None):
                 record["classes"] = classes
                 rows = list(record.get("evidence") or [])
                 if key in narrow:
-                    rows.extend(evidence)
+                    # §15(1): the S2 clause is built from these rows, so only the rows the narrow
+                    # test itself rests on are recorded. A Poisons Act or Poisons Rules schedule is
+                    # a prescription classification and never a supervision reason.
+                    rows.extend(
+                        {k: v for k, v in row.items() if k != "narrow"}
+                        for row in evidence
+                        if row.get("narrow", True)
+                    )
                 record["evidence"] = rows
                 record["controlledTrigger"] = True
                 record["controlledTriggerBasis"] = basis
             else:
                 record["controlledTrigger"] = False
                 record["controlledTriggerBasis"] = []
+            # §15(1): the ATC-based classes name the register's own group name beside the code.
+            for row in record.get("evidence") or []:
+                if not isinstance(row, dict) or row.get("test") not in ATC_CLASSES:
+                    continue
+                label = atc_label(row.get("value"), atc_names)
+                if label:
+                    row["label"] = label
+                    atc_labelled += 1
+                elif ATC_CODE.search(str(row.get("value") or "").upper()):
+                    atc_unnamed += 1
             out.write(json.dumps(record, ensure_ascii=False) + "\n")
             lines_written += 1
 
@@ -275,6 +357,12 @@ def main(argv=None):
             ),
         },
         "triggeredKeysNotInAssignments": missing,
+        "atcGroupNames": {
+            "source": ATC_RAW_GLOB,
+            "groupCodesRead": len(atc_names),
+            "evidenceRowsNamed": atc_labelled,
+            "evidenceRowsWithACodeTheRegisterPublishesNoGroupFor": atc_unnamed,
+        },
     }
     with open(args.summary, "w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T21:23:33Z",
+  "generatedAt": "2026-09-09T18:58:23Z",
   "step": "3.4 application",
   "inputs": {
     "apply": "data/revamp/identity/apply-list.csv",
@@ -152,7 +152,7 @@
       "child": "K1:UVL329170W",
       "parent": "K2:DCSUBABJRXZOMT-UHFFFAOYSA-N",
       "relation": "stereoisomer_of",
-      "note": "Cisapride (UNII UVL329170W) carries defined stereochemistry; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without it.",
+      "note": "Cisapride (UNII UVL329170W) and Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) have the same connectivity; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without stereochemistry.",
       "backNote": "Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is the parent form recorded for Cisapride (UNII UVL329170W).",
       "edgesWritten": 2,
       "edgesAlreadyRecorded": [
@@ -160,7 +160,7 @@
         "stereoisomer_of"
       ],
       "provenance": {
-        "Cisapride (UNII UVL329170W) carries defined stereochemistry; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without it.": [
+        "Cisapride (UNII UVL329170W) and Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) have the same connectivity; Cisapride (structure DCSUBABJRXZOMT-UHFFFAOYSA-N) is recorded without stereochemistry.": [
           "canonical-v2.displayName (both pages)",
           "spine-attached.unii or spine-attached.inchikey where two pages print one name",
           "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
@@ -187,7 +187,7 @@
       "child": "K2:BWWVAEOLVKTZFQ-ISVUSNJMSA-N",
       "parent": "K1:V10579P3QZ",
       "relation": "stereoisomer_of",
-      "note": "Mecillinam is a diastereomer of Amdinocillin.",
+      "note": "Mecillinam and Amdinocillin have the same connectivity and the same configuration at every recorded stereocentre; their records differ elsewhere in the InChIKey's stereochemistry layer.",
       "backNote": "Amdinocillin is the parent form recorded for Mecillinam.",
       "edgesWritten": 2,
       "edgesAlreadyRecorded": [
@@ -195,7 +195,7 @@
         "stereoisomer_of"
       ],
       "provenance": {
-        "Mecillinam is a diastereomer of Amdinocillin.": [
+        "Mecillinam and Amdinocillin have the same connectivity and the same configuration at every recorded stereocentre; their records differ elsewhere in the InChIKey's stereochemistry layer.": [
           "canonical-v2.displayName (both pages)",
           "spine-attached.unii or spine-attached.inchikey where two pages print one name",
           "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
@@ -222,12 +222,12 @@
       "child": "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}",
       "parent": "COMBO:{K1:2679MF687A,K1:TN1B5910V2}",
       "relation": "stereoisomer_of",
-      "note": "Xantinol Nicotinate carries defined stereochemistry; XANTHINOL NIACINATE is recorded without it.",
+      "note": "Xantinol Nicotinate and XANTHINOL NIACINATE have the same connectivity; XANTHINOL NIACINATE is recorded without stereochemistry.",
       "backNote": "XANTHINOL NIACINATE is the parent form recorded for Xantinol Nicotinate.",
       "edgesWritten": 2,
       "edgesAlreadyRecorded": [],
       "provenance": {
-        "Xantinol Nicotinate carries defined stereochemistry; XANTHINOL NIACINATE is recorded without it.": [
+        "Xantinol Nicotinate and XANTHINOL NIACINATE have the same connectivity; XANTHINOL NIACINATE is recorded without stereochemistry.": [
           "canonical-v2.displayName (both pages)",
           "spine-attached.unii or spine-attached.inchikey where two pages print one name",
           "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
@@ -254,7 +254,7 @@
       "child": "K2:SGEIEGAXKLMUIZ-XUVDNFPMSA-N",
       "parent": "K1:EUT3557RT5",
       "relation": "stereoisomer_of",
-      "note": "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) is a diastereomer of Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N).",
+      "note": "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) and Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N) have the same connectivity and the same configuration at every recorded stereocentre; their records differ elsewhere in the InChIKey's stereochemistry layer.",
       "backNote": "Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N) is the parent form recorded for Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N).",
       "edgesWritten": 2,
       "edgesAlreadyRecorded": [
@@ -262,7 +262,7 @@
         "stereoisomer_of"
       ],
       "provenance": {
-        "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) is a diastereomer of Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N).": [
+        "Arimoclomol (structure SGEIEGAXKLMUIZ-XUVDNFPMSA-N) and Arimoclomol (structure SGEIEGAXKLMUIZ-CYBMUJFWSA-N) have the same connectivity and the same configuration at every recorded stereocentre; their records differ elsewhere in the InChIKey's stereochemistry layer.": [
           "canonical-v2.displayName (both pages)",
           "spine-attached.unii or spine-attached.inchikey where two pages print one name",
           "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
@@ -289,7 +289,7 @@
       "child": "K1:F4VNO44C09",
       "parent": "K1:D81QY6I88E",
       "relation": "stereoisomer_of",
-      "note": "Linalool (UNII F4VNO44C09) carries defined stereochemistry; LINALOOL (UNII D81QY6I88E) is recorded without it.",
+      "note": "Linalool (UNII F4VNO44C09) and LINALOOL (UNII D81QY6I88E) have the same connectivity; LINALOOL (UNII D81QY6I88E) is recorded without stereochemistry.",
       "backNote": "LINALOOL (UNII D81QY6I88E) is the parent form recorded for Linalool (UNII F4VNO44C09).",
       "edgesWritten": 2,
       "edgesAlreadyRecorded": [
@@ -297,7 +297,7 @@
         "stereoisomer_of"
       ],
       "provenance": {
-        "Linalool (UNII F4VNO44C09) carries defined stereochemistry; LINALOOL (UNII D81QY6I88E) is recorded without it.": [
+        "Linalool (UNII F4VNO44C09) and LINALOOL (UNII D81QY6I88E) have the same connectivity; LINALOOL (UNII D81QY6I88E) is recorded without stereochemistry.": [
           "canonical-v2.displayName (both pages)",
           "spine-attached.unii or spine-attached.inchikey where two pages print one name",
           "spine-attached.inchikey stereo block, characters 15-25 (both pages)",
