@@ -92,6 +92,15 @@ the ATC group's own name from the ChEMBL `atc_class` download); it travels onto 
 | S8 | `A register records it withdrawn or suspended for a safety reason: <reason, where, when> (<register>).` |
 | S9 | `A long-acting or titrated injected form is recorded for it: <ATC class> (<source>).` |
 
+**One clause per fact, not one clause per test.** Where S1 and S4 name the same ATC class code —
+every antineoplastic L01 record, because the ATC group is both the therapeutic class the register
+published and the hazardous-medicine class S4 reads off that code — the two clauses are one clause
+naming the class once and carrying both sources:
+`Its World Health Organization ATC class is L01CA, Vinca alkaloids and analogues (WHO ATC via
+ChEMBL/EMA; hazardous-medicine class, NIOSH list not fetched).` An S4 row that names a class S1 did
+not, or the word "cytotoxic" in a label, is a different fact and keeps its own clause, and a record
+carrying only one of the two classes states exactly what it stated before.
+
 A prescription classification is never among them: a Poisons Act or Poisons Rules schedule, a SUSMP
 Schedule 4 entry, a Singapore POM forensic class and the words "prescription only" are supply
 restrictions and are stated in the registration block, which is where §13 item 4 puts them.

@@ -164,6 +164,35 @@ function foundValue(value: string | undefined): string {
 
 const ATC_CODE = /^[A-Z]\d{2}[A-Z]{0,2}\d{0,2}$/
 
+/** The ATC code a named class opens with: "L01CA, Vinca alkaloids and analogues" → "L01CA". */
+const ATC_PREFIX = /^([A-Z]\d{2}(?:[A-Z]{1,2}\d{0,2})?)\b/
+
+/** The class an evidence row names: the register's own name for it, else the recorded value. */
+function namedClass(row: SuppressionEvidence): string {
+  return flatten(row.label) || flatten(row.value)
+}
+
+/** The ATC code inside a named class, empty where the row names something that is not one. */
+function namedAtcCode(row: SuppressionEvidence): string {
+  return ATC_PREFIX.exec(namedClass(row))?.[1] ?? ''
+}
+
+/**
+ * What an S4 row contributes to the S1 clause it merges into: S4's own ground in words, plus
+ * whatever its recorded source states beyond the ATC basis the clause has already named.
+ *
+ * The recorded source is "WHO ATC L01 (NIOSH list not fetched)", which restates the classification
+ * the merged clause opens with. Repeating it inside the same brackets would cite the same register
+ * twice; what S4 adds is that the class is a hazardous-medicine one and that the NIOSH list itself
+ * was not fetched, so that is what is kept.
+ */
+function hazardousSourceWords(source: string | undefined): string {
+  const qualifier = flatten(source)
+    .replace(/^WHO ATC(\s+[A-Z]\d{2}[A-Z]{0,2}\d{0,2})?\s*,?\s*/i, '')
+    .trim()
+  return qualifier ? `hazardous-medicine class, ${qualifier}` : 'hazardous-medicine class'
+}
+
 /**
  * "<value> (<source>)", the shape every clause item takes.
  *
@@ -179,6 +208,7 @@ function clauseFor(
   code: string,
   rows: readonly SuppressionEvidence[],
   context: SupervisionContext,
+  extraSources: readonly string[] = [],
 ): string | undefined {
   const values = rows.map((row) => flatten(row.value)).filter((value) => value.length > 0)
   if (rows.length === 0) return undefined
@@ -188,11 +218,11 @@ function clauseFor(
       // "Its World Health Organization ATC class is C01AA, digitalis glycosides (WHO ATC via
       // ChEMBL/EMA)": the code and the register's own name for it, never a list of what such a
       // class might be.
-      const named = rows
-        .map((row) => flatten(row.label) || flatten(row.value))
-        .filter((value) => value.length > 0)
+      const named = rows.map(namedClass).filter((value) => value.length > 0)
       const seen = [...new Set(named)]
-      const sources = [...new Set(rows.map((row) => flatten(row.source)).filter(Boolean))]
+      const sources = [
+        ...new Set([...rows.map((row) => flatten(row.source)).filter(Boolean), ...extraSources]),
+      ]
       if (seen.length === 0 || sources.length === 0) return undefined
       return item(
         `Its World Health Organization ATC ${seen.length === 1 ? 'class is' : 'classes are'} ${joinClauseList(seen)}`,
@@ -231,7 +261,7 @@ function clauseFor(
               const value = flatten(row.value)
               if (/cytotoxic/i.test(value))
                 return item('the word "cytotoxic" in its label', row.source)
-              const named = flatten(row.label) || value
+              const named = namedClass(row)
               return named ? item(named, row.source) : ''
             })
             .filter(Boolean),
@@ -320,6 +350,14 @@ function clauseFor(
  * printed beside a prescription-schedule row that was not its evidence at all. It is not written
  * here. A class with no evidence row of its own, or whose evidence carries no value, produces no
  * clause, and a record left with no clause has no supervision answer and renders no block.
+ *
+ * Where S1 and S4 name the same ATC class code — every antineoplastic L01 record does, because the
+ * ATC group is both the therapeutic class the register published and the hazardous-medicine class
+ * the S4 test reads off it — the two clauses are one clause naming the class once and carrying both
+ * sources: "Its World Health Organization ATC class is L01CA, Vinca alkaloids and analogues (WHO
+ * ATC via ChEMBL/EMA; hazardous-medicine class, NIOSH list not fetched)." An S4 row that names a
+ * different class, or the word "cytotoxic" in a label, is not the same fact and keeps its own
+ * clause.
  */
 export function supervisionClauses(
   classes: readonly string[],
@@ -337,9 +375,33 @@ export function supervisionClauses(
   const recorded = [...new Set(classes.filter((code) => CITED_CLASS.test(code)))].sort(
     (a, b) => Number(a.slice(1)) - Number(b.slice(1)),
   )
+
+  // The S1/S4 merge. It runs only where both classes would otherwise print a clause, so a record
+  // carrying just one of them states exactly what it stated before.
+  const mergedSources: string[] = []
+  if (recorded.includes('S1') && recorded.includes('S4')) {
+    const atcOfS1 = new Set(
+      (byClass.get('S1') ?? []).map(namedAtcCode).filter((code) => code.length > 0),
+    )
+    const kept: SuppressionEvidence[] = []
+    for (const row of byClass.get('S4') ?? []) {
+      // A row that reports the word "cytotoxic" in a label states a fact the ATC group does not,
+      // so it is never folded into the class clause however the row is labelled.
+      const code = /cytotoxic/i.test(flatten(row.value)) ? '' : namedAtcCode(row)
+      if (code && atcOfS1.has(code)) mergedSources.push(hazardousSourceWords(row.source))
+      else kept.push(row)
+    }
+    byClass.set('S4', kept)
+  }
+
   const out: SupervisionClause[] = []
   for (const code of recorded) {
-    const text = clauseFor(code, byClass.get(code) ?? [], context)
+    const text = clauseFor(
+      code,
+      byClass.get(code) ?? [],
+      context,
+      code === 'S1' ? [...new Set(mergedSources)] : [],
+    )
     if (text) out.push({ code, text: `${text.replace(/\s*\.\s*$/, '')}.` })
   }
   return out

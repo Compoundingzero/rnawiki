@@ -130,9 +130,9 @@ def tier_of(model: str, withdrawn: bool) -> int | None:
     return None
 
 
-def read_assignment() -> dict[str, dict]:
+def read_assignment(path: Path = ASSIGNMENT) -> dict[str, dict]:
     out: dict[str, dict] = {}
-    with ASSIGNMENT.open(encoding="utf-8") as handle:
+    with path.open(encoding="utf-8") as handle:
         for line in handle:
             if not line.strip():
                 continue
@@ -303,8 +303,9 @@ def classify_page(entries: dict[str, dict], meta: dict, reg: dict, pending: set[
     return applicable, present, structural_na, recorded_na, pending_na, dropped
 
 
-def build_presence(spec: dict, census: dict[str, dict], fields_dir: Path = FIELDS_DIR):
-    assignment = read_assignment()
+def build_presence(spec: dict, census: dict[str, dict], fields_dir: Path = FIELDS_DIR,
+                   assignment_path: Path = ASSIGNMENT):
+    assignment = read_assignment(assignment_path)
     registry = read_registry()
     pending, pending_notes = pending_source_fields(spec, census)
 
@@ -653,6 +654,13 @@ def main() -> int:
     parser.add_argument("--applicability-only", action="store_true")
     parser.add_argument("--fields-dir", default=str(FIELDS_DIR),
                         help="directory of per-model field batches (default: the corpus-20k fields)")
+    parser.add_argument("--assignments", default=str(ASSIGNMENT),
+                        help="the tier map: one NDJSON row per key with its model and withdrawn "
+                             "flag, which tier_of reads to place a page in Tier 1, 2 or 3. The "
+                             "default is the v2 map §15(3) produced (a DailyMed SPL with no "
+                             "application number is not a register approval). Naming it is how a "
+                             "run states which map it measured; the rule that reads it is "
+                             "unchanged.")
     parser.add_argument("--text-dir", default=str(TEXT_DIR),
                         help="directory of rendered page-text batches to measure overlap on "
                              "(default: the corpus-20k v4 render). This is the furniture-free "
@@ -673,6 +681,7 @@ def main() -> int:
     args = parser.parse_args()
 
     fields_dir = Path(args.fields_dir)
+    assignment_path = Path(args.assignments)
     text_dir = Path(args.text_dir)
     furniture_dir = Path(args.with_furniture_text_dir) if args.with_furniture_text_dir else None
     out_json = Path(args.out)
@@ -690,10 +699,11 @@ def main() -> int:
     census = read_census(cpath)
 
     (rows, tally, field_order, dropped_present, pending, pending_notes, unassigned,
-     assignment) = build_presence(spec, census, fields_dir)
+     assignment) = build_presence(spec, census, fields_dir, assignment_path)
     presence_path = write_presence(rows, tag)
     census_out = write_applicable_census(tally, field_order, census, tag)
     print(f"pages={len(rows)} unassigned={unassigned} census={os.path.relpath(cpath, ROOT)}")
+    print(f"tier map -> {os.path.relpath(assignment_path, ROOT)}")
     print(f"presence -> {os.path.relpath(presence_path, ROOT)}")
     print(f"applicable census -> {os.path.relpath(census_out, ROOT)}")
     if args.applicability_only:

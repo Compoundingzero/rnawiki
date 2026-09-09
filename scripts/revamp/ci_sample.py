@@ -95,6 +95,13 @@ CLASS_WORDS = tuple(
     )
 )
 FURTHER_TRIALS = re.compile(r"^\d+ further recorded trials?\b")
+# docs/specs/suppression-classes.md, "One clause per fact": where S1 and S4 name the same ATC code
+# the block writes one clause carrying both sources. The rule that checks it asserts it saw one, so
+# the draw must hold a page that renders it.
+MERGED_ATC_CLAUSE = re.compile(
+    r"^Its World Health Organization ATC (?:class is|classes are) .+; hazardous-medicine class",
+    re.MULTILINE,
+)
 
 
 def newest_ruler() -> tuple[Path, Path, str]:
@@ -111,6 +118,22 @@ def newest_ruler() -> tuple[Path, Path, str]:
     return thresholds, presence, f"v{revision}"
 
 
+def provenance_dir(render: Path) -> Path | None:
+    """Where a render keeps the provenance map of its painted text.
+
+    `page_text_v5.ts` writes the map once, on the furniture-free run, because `renderPage` records
+    every line it wrote — furniture included and marked `furniture: true` — and `--with-furniture`
+    decides only what `text` carries. Older renders carried a second, byte-identical copy under
+    `provenance-with-furniture`; both names are read here so the sample is drawn from whichever the
+    render on disk holds, and the file the sample writes keeps the name `conftest.py` reads.
+    """
+    for name in ("provenance-with-furniture", "provenance"):
+        candidate = render / name
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
 def newest_render() -> Path:
     """The highest `render-v<n>` carrying both the painted text and its provenance map."""
     found: list[tuple[int, Path]] = []
@@ -118,10 +141,10 @@ def newest_render() -> Path:
         revision = path.name[len("render-v"):]
         if not revision.isdigit():
             continue
-        if (path / "text-with-furniture").is_dir() and (path / "provenance-with-furniture").is_dir():
+        if (path / "text-with-furniture").is_dir() and provenance_dir(path) is not None:
             found.append((int(revision), path))
     if not found:
-        raise SystemExit(f"no render-v<n> with text-with-furniture and provenance-with-furniture "
+        raise SystemExit(f"no render-v<n> with text-with-furniture and a provenance map "
                          f"under {REVAMP}; run `npx tsx scripts/revamp/page_text_v5.ts` first")
     return max(found)[1]
 
@@ -184,7 +207,7 @@ class Flags:
         "controlled", "controlled-schedules", "poisons-standard-row",
         "quoted-interaction-span", "interaction-line", "no-interaction-found",
         "checked-in", "not-found-line", "absence-table",
-        "supervision-block", "supervision-in-class-words",
+        "supervision-block", "supervision-in-class-words", "supervision-merged-atc-clause",
         "trial-row", "composed-sentence",
     )
 
@@ -214,6 +237,8 @@ def scan_text(flags: Flags, directory: Path) -> None:
             flags.mark(key, "supervision-block")
             if any(word in lowered for word in CLASS_WORDS):
                 flags.mark(key, "supervision-in-class-words")
+            if MERGED_ATC_CLAUSE.search(text):
+                flags.mark(key, "supervision-merged-atc-clause")
         for line in text.split("\n"):
             line = line.strip()
             if not line:
@@ -299,10 +324,15 @@ def choose(flags: Flags, canonical_keys: set[str], pages: int, per_requirement: 
 
 
 def write_render_sample(render: Path, keys: set[str]) -> list[tuple[Path, bytes]]:
+    provenance = provenance_dir(render)
+    if provenance is None:
+        raise SystemExit(f"{render} holds no provenance map")
     sources = {
         "text": render / "text",
         "text-with-furniture": render / "text-with-furniture",
-        "provenance-with-furniture": render / "provenance-with-furniture",
+        # The sample file keeps this name whichever directory the render holds it under: it is the
+        # name `tests/conftest.py` points `PROVENANCE_DIR` at.
+        "provenance-with-furniture": provenance,
         "blocks": BLOCKS_DIR,
     }
     written: list[tuple[Path, bytes]] = []
@@ -372,7 +402,7 @@ def main() -> int:
     scan_text(flags, render / "text-with-furniture")
     scan_free_text(flags, render / "text")
     scan_blocks(flags, BLOCKS_DIR)
-    scan_provenance(flags, render / "provenance-with-furniture")
+    scan_provenance(flags, provenance_dir(render) or render / "provenance")
     canonical_keys = {
         json.loads(line)["key"]
         for line in CANONICAL.open(encoding="utf-8")

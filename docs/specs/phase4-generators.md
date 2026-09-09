@@ -440,3 +440,17 @@ read in sequence; render and DOM agree; the furniture tables carry the absences.
 8. **Whitespace between every label and value pair** across all components (the organism-ladder
    interpretation row painted "INTERPRETATIONno human trial recorded").
 9. **Self-audit** per §14(16) extended with rules 1, 5, 6, 7, 8 as mechanical checks.
+
+## 16. After measure 6 (2026-09-09, Fable) — fix round 6
+
+1. **The supervision block is never truncated.** The two-paragraph discipline belongs to question
+   answers; the supervision block renders every recorded class clause, one per line as a list, in
+   the order S1–S9, so a page with four classes states all four (glofitamab must state its
+   hazardous-medicine class and its boxed warning). The render and the page apply the same rule.
+2. **Disabled interaction rules publish nothing.** Rule C2 (shared target, same direction) was
+   disabled by validation and must not appear in `interactions.parquet`, `page_interactions` or
+   any rendered line; the build refuses a row whose rule id is in the disabled list. Where a
+   surviving rule cites an action pair, its direction trace names the field paths of the two
+   action rows, never a sentence, and `slop_draw.resolve_trace` has a class for that shape.
+3. Re-render in place, re-derive the ruler (furniture-free), re-run the checks and draws 10 and
+   11; the gate passes on two consecutive draws with (a), (b), (c) at zero and parity exact.

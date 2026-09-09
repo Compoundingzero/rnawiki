@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "fix round 5 done (self-audit 0 failures); measure 6: ruler v10, draws 8 and 9"
+        "4.7": "draws 8/9: b 0, c 0, parity exact; a fails on disabled rule C2 rows + trace shape; supervision cap found; fix round 6 then draws 10/11"
       },
       "gate_evidence": null,
-      "updated": "2026-09-09T20:16:43+00:00"
+      "updated": "2026-09-09T23:00:16+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",

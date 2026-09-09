@@ -2,8 +2,7 @@
 {"applicable": 23, "key": "COMBO:{K1:9100L32L2N,K1:QFP0P1DV7Z}", "model": "LONGEVITY", "present": 22, "share": 0.956522, "tier": 1}
 {"applicable": 23, "key": "K1:169D1260KM", "model": "LONGEVITY", "present": 20, "share": 0.869565, "tier": 1}
 {"applicable": 23, "key": "K1:8DUH1N11BX", "model": "LONGEVITY", "present": 21, "share": 0.913043, "tier": 1}
-{"applicable": 23, "key": "K1:AAN7QOV9EA", "model": "LONGEVITY", "present": 20, "share": 0.869565, "tier": 1}
-{"applicable": 23, "key": "K1:H6241UJ22B", "model": "LONGEVITY", "present": 21, "share": 0.913043, "tier": 1}
+{"applicable": 23, "key": "K1:H6241UJ22B", "model": "LONGEVITY", "present": 20, "share": 0.869565, "tier": 1}
 {"applicable": 23, "key": "K1:HG18B9YRS7", "model": "LONGEVITY", "present": 20, "share": 0.869565, "tier": 1}
 {"applicable": 23, "key": "K1:I0VM4M70GC", "model": "LONGEVITY", "present": 20, "share": 0.869565, "tier": 1}
 {"applicable": 23, "key": "K1:JL5DK93RCL", "model": "LONGEVITY", "present": 21, "share": 0.913043, "tier": 1}
@@ -41,8 +40,8 @@
 {"applicable": 24, "key": "K1:22VKV8053U", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:22X328QOC4", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:241ATL177A", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
-{"applicable": 24, "key": "K1:25X51I8RD4", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
-{"applicable": 24, "key": "K1:2679MF687A", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
+{"applicable": 24, "key": "K1:25X51I8RD4", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
+{"applicable": 24, "key": "K1:2679MF687A", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:2J3YBM1K8C", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:2Z07MYW1AZ", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K1:320T6RNW1F", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
@@ -122,7 +121,7 @@
 {"applicable": 24, "key": "K1:8SSC91326P", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:901AS54I69", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K1:90Y4QC304K", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
-{"applicable": 24, "key": "K1:935E97BOY8", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
+{"applicable": 24, "key": "K1:935E97BOY8", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:93T0T9GKNU", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:94ZLA3W45F", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:95M8R751W8", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
@@ -159,11 +158,9 @@
 {"applicable": 24, "key": "K1:FYS6T7F842", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:G162GK9U4W", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:G22N65IL3O", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
-{"applicable": 24, "key": "K1:G2SH0XKK91", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K1:G9ZF61LE7G", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:GEB06NHM23", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:GMW67QNF9C", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
-{"applicable": 24, "key": "K1:H0G9379FGK", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:HDC1R2M35U", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
 {"applicable": 24, "key": "K1:I031V2H011", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:I42748ELQW", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
@@ -172,7 +169,6 @@
 {"applicable": 24, "key": "K1:ISP4442I3Y", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
 {"applicable": 24, "key": "K1:J06Y7MXW4D", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:J0E2756Z7N", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
-{"applicable": 24, "key": "K1:J41CSQ7QDS", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:JCX84Q7J1L", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
 {"applicable": 24, "key": "K1:JFU09I87TR", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:JHC049LO86", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
@@ -197,7 +193,7 @@
 {"applicable": 24, "key": "K1:P188ANX8CK#oysk", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:P188ANX8CK#zzxf", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K1:P1QW714R7M", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
-{"applicable": 24, "key": "K1:PQ6CK8PD0R", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
+{"applicable": 24, "key": "K1:PQ6CK8PD0R", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K1:PYF7O1FV7F", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 24, "key": "K1:Q16TT9C5BK", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K1:Q3OKS62Q6X", "model": "LONGEVITY", "present": 23, "share": 0.958333, "tier": 1}
@@ -246,7 +242,6 @@
 {"applicable": 24, "key": "K2:GJUHUIXJLZINMA-MJCUULBUSA-N", "model": "LONGEVITY", "present": 21, "share": 0.875, "tier": 1}
 {"applicable": 24, "key": "K2:ODQWQRRAPPTVAG-UHFFFAOYSA-N", "model": "LONGEVITY", "present": 22, "share": 0.916667, "tier": 1}
 {"applicable": 24, "key": "K2:XUFXOAAUWZOOIT-UGEKTDRHSA-N", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
-{"applicable": 24, "key": "K2:ZAKOWWREFLAJOT-ADUHFSDSSA-N", "model": "LONGEVITY", "present": 20, "share": 0.833333, "tier": 1}
 {"applicable": 25, "key": "K1:184SNS8VUH", "model": "LONGEVITY", "present": 23, "share": 0.92, "tier": 1}
 {"applicable": 25, "key": "K1:26NAK24LS8", "model": "LONGEVITY", "present": 22, "share": 0.88, "tier": 1}
 {"applicable": 25, "key": "K1:3L5TQ84570", "model": "LONGEVITY", "present": 22, "share": 0.88, "tier": 1}

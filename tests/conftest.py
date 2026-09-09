@@ -59,6 +59,11 @@ SAMPLE_SKIPS = {
     "test_the_render_and_the_painted_page_agree":
         "asserts the result of scripts/revamp/dom_parity.py, which renders a 200-page sample "
         "against a running build; run it on the workstation after `dom_parity.py --base-url ...`",
+    "test_the_provenance_timeline_fires_only_on_three_dated_events_in_order":
+        "reads seed 8's own records in data/revamp/derived-v2/, which is gitignored and absent "
+        "here; the rule is about what the derivation wrote, not about what a page painted, so no "
+        "render sample can carry it; run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k provenance_timeline`",
 }
 
 # stream -> the file `ci_sample.py` writes it to.

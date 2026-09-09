@@ -1660,3 +1660,59 @@ def test_every_rendered_row_keeps_its_label(provenance):
             if re.fullmatch(r"\d{1,7}", sentence):
                 failures.append(f"{key}: {heading!r} heads a row painting {sentence!r}")
     _report(failures, "a row painting a bare number (§15 item 7)")
+
+
+# The two supervision clause frames that can read the same ATC group off the same record: S1 names
+# the therapeutic class the register published, S4 names the hazardous-medicine class the test
+# reads off that same code.
+S1_CLAUSE = re.compile(r"^Its World Health Organization ATC (?:class is|classes are) ")
+S4_CLAUSE = re.compile(r"^A hazardous-medicine class covers it: ")
+ATC_NAMED = re.compile(r"\b([A-Z]\d{2}(?:[A-Z]{1,2}\d{0,2})?)\b")
+# The merged clause carries S4's ground as a second source inside the S1 clause's own brackets.
+MERGED_S4_SOURCE = "; hazardous-medicine class"
+
+
+def _named_atc_codes(clause: str) -> set[str]:
+    """The ATC codes a clause names, from the class list before its bracketed source."""
+    named = clause.rsplit(" (", 1)[0] if clause.endswith(")") or clause.endswith(").") else clause
+    return set(ATC_NAMED.findall(named))
+
+
+def test_one_atc_class_is_named_by_one_supervision_clause(provenance):
+    """§15(1) as measure v10 applies it: one clause per fact, not one clause per test.
+
+    On every antineoplastic record the ATC group is both the World Health Organization therapeutic
+    class S1 records and the hazardous-medicine class S4 reads off the same code, so the block
+    printed the group twice — "Its World Health Organization ATC class is L01CA, Vinca alkaloids
+    and analogues (WHO ATC via ChEMBL/EMA)." followed by "A hazardous-medicine class covers it:
+    L01CA, Vinca alkaloids and analogues (WHO ATC L01, NIOSH list not fetched)." — which states one
+    recorded classification as two claims and reads as a template with the register swapped.
+
+    The two are one clause naming the class once and carrying both sources: "… (WHO ATC via
+    ChEMBL/EMA; hazardous-medicine class, NIOSH list not fetched)." An S4 row that names a class
+    S1 did not, or the word "cytotoxic" in a label, is a different fact and keeps its own clause.
+    """
+    failures: list[str] = []
+    checked = 0
+    merged = 0
+    for key, entries in provenance.items():
+        held = _supervision_entries(entries)
+        if not held:
+            continue
+        checked += 1
+        sentences = [_strip_provenance_anchor(str(entry["sentence"])) for entry in held]
+        s1_codes: set[str] = set()
+        for line in sentences:
+            if S1_CLAUSE.match(line):
+                s1_codes |= _named_atc_codes(line)
+        for line in sentences:
+            if S1_CLAUSE.match(line) and MERGED_S4_SOURCE in line:
+                merged += 1
+            if not S4_CLAUSE.match(line):
+                continue
+            shared = _named_atc_codes(line) & s1_codes
+            if shared:
+                failures.append(f"{key}: {sorted(shared)} named twice: {line[:140]}")
+    assert checked > 0, "no supervision answer was rendered"
+    _report(failures, "one ATC class named by two supervision clauses (§15 item 1)")
+    assert merged > 0, "no record rendered the merged ATC clause carrying both sources"
