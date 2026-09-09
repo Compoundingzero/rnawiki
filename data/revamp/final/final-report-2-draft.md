@@ -31,6 +31,14 @@ uniqueness under this ruler. Hubs are the new indexable surface: 710 hubs, all u
 
 ## Field census delta [Phase 7: data/revamp/field-census-delta.csv, final]
 
+Two corrections made during the slop rounds change the census and the tiers and are part of the
+delta: (a) label mapping now requires the page's UNII among the label's active ingredients and
+excludes homeopathic and unapproved SPLs — 11,392 labels left the mapping and 3,503 pages lost a
+label-derived value they should never have carried (a cosmetology-symptom homeopathic label had
+been quoted as acetyldigitoxin's indication); (b) CLINICAL requires a register approval, so a page
+whose only clinical evidence was an unapproved SPL is DEVELOPMENT: Tier 1 1,719 → 1,717, Tier 2
+4,477 → 3,923, Tier 3 22,636 → 23,192 (`data/revamp/tiers/model-assignment-v2.ndjson`).
+
 ## Sources and licences
 
 | Source | Licence | Status | Pages matched T1 / T2 / T3 | What it supplied |
@@ -94,11 +102,13 @@ applied, 453 "separate" changed nothing, 150 recorded merges already in force, a
 held for Felix** in `data/revamp/identity-review.md` (23 touching indexable pages; about 64
 minutes). Trial reassignment moved 12,320 registry studies off stereo, salt and ester form pages to
 their parents (largest: dexamethasone acetate 2,237), plus 831 reference-product trials off six
-biosimilar pages. Redirect plan: 65 rows; live and plan checks 0 orphans, ≤ 1 hop. Fix round 2 added: 109 suffixed biologics licensed under 351(a) merged into their INN pages (the
+biosimilar pages. Redirect plan: 65 rows; live and plan checks 0 orphans, ≤ 1 hop. Fix rounds 2–5 added: 109 suffixed biologics licensed under 351(a) merged into their INN pages (the
 suffix is the FDA proper name of the same substance; 81 biosimilar edges kept, 351(k) only), 189
 same-name pairs and 149 combination pairs had their registry studies partitioned to the page the
 registers rank first, and the redirect plan grew to 174 rows (v5), plan check PASS. A trial that
-names only a reference product moves to that product (831 studies off six biosimilar pages).
+names only a reference product moves to that product (831 studies off six biosimilar pages). Round 4
+removed 1,022 doubled relations; round 5 rewrote the note for pairs where one record lacks
+stereochemistry ("the same connectivity, recorded without stereochemistry").
 
 ## Hubs
 
