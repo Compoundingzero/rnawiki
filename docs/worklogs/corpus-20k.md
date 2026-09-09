@@ -526,11 +526,15 @@ intersection (22,636 URLs against the four sitemap children: empty).
 
 ### Before / after, matched sizes (the like-for-like figures)
 
+*Correction 2026-09-10: the two positional rows below were first labelled "803 draw" and "324 draw"; the revamp's Phase 0 baseline reproduced them as the like-for-like 604- and 251-medicine sets, and the seeded draws are listed separately. No number changed.*
+
 | Measure | Before (live, same medicines) | After (live, same medicines) | Rule |
 | --- | ---: | ---: | --- |
-| Positional nearest-neighbour median, 803 draw (798 pages after merges) | 0.799 | **0.278** | — |
-| Positional, 324 draw (322) | 0.786 | **0.263** | — |
+| Positional nearest-neighbour median, like-for-like 604 medicines (the same pages before and after) | 0.799 | **0.278** | — |
+| Positional, like-for-like 251 medicines (second set) | 0.786 | **0.263** | — |
 | Shared-word share (>90 % of pages), 604 medicines | 0.796 | **0.207** | target near zero |
+| Seeded 803 draw (798 pages after merges), positional size-matched to 324 | — | 0.276 (0.300 as measured over 798) | recorded 2026-09-05 by the revamp baseline; not a like-for-like row |
+| Seeded 324 draw (322 pages), positional | — | 0.275 | recorded 2026-09-05 by the revamp baseline |
 | Crawl text-to-HTML, indexed median | 8.3 % | **10.6 %** | must rise ✓ |
 | Live text-to-HTML (innerText/outerHTML), samples | 0.07 % | **3.3–5.5 %** | must rise ✓ |
 
