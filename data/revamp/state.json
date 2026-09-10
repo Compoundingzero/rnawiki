@@ -74,21 +74,21 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "fix round 9 (\u00a719) landed; ruler v14 (293 indexable, identical to v13); draws 16 and 17 clean \u2014 eight consecutive; the lead's reading of draw 16 follows"
+        "4.7": "draw 16 read by the lead (\u00a720: thirty measured rules across registration, interactions, questions, identity; hubs item recorded for Phase 5); fix round 10 then draws 18 and 19"
       },
       "gate_evidence": null,
-      "updated": "2026-09-10T17:56:12+00:00"
+      "updated": "2026-09-10T17:58:06+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",
       "steps": {
         "5.1": "done (972 hubs)",
         "5.2": "done (tables + syntheses with provenance)",
-        "5.3": "710 hubs + 258 aliases; one held pair (HDAC8/HDAC1)",
+        "5.3": "710 hubs + 258 aliases; one held pair (HDAC8/HDAC1); \u00a720(30): 62 proteins carried by 139 target hubs across the UniProt and ChEMBL spines \u2014 re-key on UniProt in the hub re-run",
         "5.4": "first batch 0.079/0.335 PASS; all 0.125/0.327 PASS"
       },
       "gate_evidence": null,
-      "updated": "2026-09-07T13:08:28+00:00"
+      "updated": "2026-09-10T17:58:06+00:00"
     },
     "6": {
       "status": "IN_PROGRESS",

@@ -529,3 +529,187 @@ that §15(2)–(3) did not fully catch:
    sources statement stays visible.
 4. Self-audit extended (DIN-HM never counts; no neighbour on a single-atom key; predicted lines
    ≤ 6 visible); re-render; ruler v14; checks; draws 16 and 17.
+
+## 20. The lead's reading of slop draw 16 (2026-09-10, Fable) — fix round 10
+
+Read: all 60 pages. Tier 1 (manganese sulfate, flortaucipir, sulfisoxazole acetyl, golimumab,
+propiomazine, eldecalcitol, ertugliflozin pidolate, technetium gluceptate, cannabidiol, red clover,
+fosinopril, technetium apcitide, bimekizumab, lecanemab, bulevirtide, canola oil, hypericum oil,
+ezetimibe, encainide, clidinium), Tier 2 (milk thistle, aflibercept-mrbb, clozapine, ethisterone,
+the LP2086 A05 antigen, uva-ursi, acipimox, magnesium salicylate, stearyl alcohol, iodoform,
+hyetellose, okra, solifenacin, propiverine, zeranol, buphenine, perfluorohexyloctane, deferiprone,
+relatlimab-rmbw, gluconic acid) and the twenty Tier 3 records. Checks (a), (b) and (c) are clean
+on every page and the sentences are individually well formed; what fails is the logical-sequence
+test, mostly between two blocks of the same page that read the same fact from two stores. Every
+count below was measured on `render-v14`, `fields-v2`, `interactions.parquet` or the source
+mappings before the rule was written; the page named is the one the draw showed it on.
+
+**Registration block (`build_blocks.py`).**
+
+1. **One application counts once.** The US application set is keyed by the bare number from the
+   Drugs@FDA evidence rows and by the prefixed id from the Orange Book rows, so `019228` and
+   `NDA019228` are two applications: "2 applications: all discontinued" over one NDA (manganese
+   sulfate, flortaucipir, cannabidiol, perfluorohexyloctane, deferiprone). Key by the number with
+   the prefix stripped; print it once with its prefix. **1,295 pages.**
+2. **A marketed application is not discontinued.** `categorise_application` tests the
+   discontinued token first, so an application recorded "Discontinued; Prescription" — some
+   products withdrawn, one on the market — reads discontinued, and Tauvid reads "all
+   discontinued". An active marketing category wins over discontinued. **296 applications on 216
+   pages.**
+3. **The US line and the patent block read one application set.** Clidinium says "Discontinued ·
+   all discontinued" and, four lines down, "generic available: yes, first generic approved
+   2020-07-07" over thirteen ANDAs; manganese sulfate the same with a patent to 2041. The US line
+   reads the substance's own Drugs@FDA rows; the patent block reads every Orange Book row naming
+   the substance, combination products included. The US line takes the Orange Book applications
+   too, and where a product has more than one active ingredient it says so ("as a component of
+   Chlordiazepoxide and Clidinium capsules"); the Purple Book's licensed BLAs are a US record for a
+   biologic, so bimekizumab and the LP2086 antigen stop reading "United States: not found" beside
+   "licensed under BLA 761151". **359 pages** not found beside Purple Book products; **259 pages**
+   not found beside Orange Book products; **180 pages** all discontinued while the Orange Book
+   carries applications the US line does not, or a first-generic date.
+4. **The EU line reads the EMA records.** `integrate_sources.py` writes the EMA register into
+   `regulatory.EU.records` and sets the status; `line_eu` reads only `evidence[].statement`, so a
+   page whose EU block is EMA records alone prints "Not found in the EMA register" — golimumab,
+   lecanemab, bimekizumab, bulevirtide, cannabidiol, flortaucipir, all centrally authorised and all
+   mapped. **561 pages.**
+5. **A status word names its register.** "United States: Approved · checked 2026-08-28" with no
+   application and no Drugs@FDA or Orange Book row (zeranol, D-methionine) rests on a curated
+   status word alone. Without a register row the line reads "not found" and the curated word goes
+   in the technical disclosure. **1,056 pages.**
+6. **Component rows do not contradict the page's own rows.** Ertugliflozin pidolate lists
+   "Australia: not found" and "European Union: not found" directly under "Ertugliflozin — Australia:
+   Schedule 4" and "Ertugliflozin — European Union: Authorised"; hyetellose lists seven "not found"
+   rows for the substance it contains. A jurisdiction is not listed as not found where a component
+   or parent row on the same page holds a record, and component rows that are themselves absences
+   are omitted.
+7. **A biosimilar page carries only its own registrations.** Aflibercept-mrbb, licensed 2024,
+   reads "Japan: Approved (PMDA, 2012)", "Singapore: Registered", "16 licensed products under
+   BLA 125387 …" and "8,590 spontaneous reports name Aflibercept-Mrbb" — every one of them
+   aflibercept's. Register rows matched by the INN, FAERS counts keyed to the substance and the
+   Purple Book product list belong to the reference product; the page prints its own BLA, the
+   substance-level schedules (SUSMP lists the substance), and one line pointing at the reference
+   page for the rest, the way §13 already moves the reference product's trials. **81** pages state
+   "is a biosimilar of"; across the **231** suffix pages, 165 carry a PMDA row, 150 an HSA
+   registration and 149 a FAERS value that arrived by INN.
+
+**Interactions (`interactions_build.py`, `page-text.ts`).**
+
+8. **"contraindicated with with".** The relation phrase already ends in its preposition. **630
+   lines.**
+9. **A two-ingredient label names its product.** Ezetimibe's "contraindicated with itraconazole,
+   ketoconazole … simvastatin" is the Ezetimibe and Simvastatin tablet label; clidinium's
+   indication quote is the Chlordiazepoxide and Clidinium capsule label. A Tier A line or an
+   indication quote from a label whose substance list holds more than one active ingredient says
+   "on the Ezetimibe and Simvastatin label". **4,443** labels map to more than one page; **91,850**
+   Tier A rows on **471 of 1,301** pages cite one. QT-class membership read from a label warning
+   requires a single-ingredient label: citric acid and trans-1,2-diaminocyclohexane carry
+   "a label warning about QT prolongation" from a bowel-preparation label and an oxaliplatin label.
+10. **A ChEBI role is not a pharmacologic class.** Clavulanate's DrugCentral record carries
+    `anti-anxiety agents` as a ChEBI "has role" entry beside its FDA EPC "beta Lactamase Inhibitor",
+    and that one entry puts the amoxicillin/clavulanic acid page into the CNS-depressant class:
+    **378** predicted rows, one of them on propiomazine. Class-statement membership reads FDA
+    EPC, MoA and CS entries and MeSH PA entries; ChEBI role entries (**685** term matches across
+    the corpus) do not establish membership.
+11. **A warnings sentence is an interaction only if it states one.** Relatlimab's "consider a
+    Vogt-Koyanagi-Harada-like syndrome, as this may require treatment with systemic steroids" is
+    painted "Label-documented · systemic steroids". A sentence from `warnings_and_cautions` or
+    `contraindications` enters Tier A only with an interaction cue (concomitant, co-administration,
+    combined, interact, inhibitor, inducer, exposure, plasma concentration, avoid, contraindicated,
+    potentiate, additive, dose adjustment, monitor). **3,960 of 67,048** such rows, on **240
+    pages**, carry none.
+12. **The remainder line counts what it hides.** "2 counterparts are recorded under
+    label-documented for this record; 1 are shown" sits under a line naming three counterparts
+    (deferiprone); golimumab's "7 counterparts … 2 are shown" sits under eight names. The unit is
+    the statement, the count is of statements, and the verb agrees. **1,869** lines; **117** read
+    "1 are shown".
+
+**Questions (`derive.ts`, `compute.py`, `page-text.ts`).**
+
+13. **Two phase buckets do not both read "na".** `NA_OR_UNSTATED` is the registry's empty phase
+    list and `NA` is the registry's own value; the page prints "10 na or unstated" and "1 na" side
+    by side. The first reads "no phase recorded", the second "not applicable (registry NA)"; and a
+    raw bucket enum after a semicolon ("3 of 7 at phase 2; PHASE2") is written in the same words.
+    **2,074** raw enums.
+14. **"58 with a PubMed record" under "14 registered studies"** (milk thistle) counts PubMed
+    clinical-trial articles, not trials. It reads "58 PubMed clinical-trial articles".
+15. **Development has not stopped while a trial recruits.** "Development of IADADEMSTAT stopped at
+    phase 2 — why?" over a status table reading "4 recruiting, 1 active not recruiting". The
+    question fires only where no trial is recruiting, active or not yet recruiting; otherwise the
+    stop entries are reported under "which trials stopped". **562 of 1,762** pages contradict their
+    own table.
+16. **"What became of the other 12 compounds"** over a list of thirteen (BMS-387032). The heading
+    count is the listed count. **406** headings.
+17. **One target counts once.** "ADRB2 and Beta-2 adrenergic receptor: Tulobuterol's recorded
+    targets … 2 recorded targets" is one protein under its gene symbol and its ChEMBL name. Targets
+    are deduplicated by identity (UniProt accession, with the ChEMBL target id mapped to it)
+    before they are counted or listed.
+18. **The dose-shape question's organism is the record's.** "More Red Clover was worse in human"
+    quotes breast-cell-line work and, beside it, phosphatase hormesis in white clover and herbicide
+    dose-response in subterranean clover; "human" came from the ladder's top rung
+    (`?? topRung?.organism`), not from the dose-shape record. The organism comes from the record or
+    the question does not fire; a cell-line sentence is "in human cells"; and §7's name test is
+    applied per species — Trifolium repens does not name Trifolium pratense.
+19. **An outcome term does not begin with a timing clause.** Eldecalcitol's five "outcome terms"
+    are "at month 12 in bmd at the lumbar spine", "at month 12 in bmd at the lumbar spine l1 4",
+    "lumbar spine bone mineral density" and two more: one outcome under three normalisations. The
+    normaliser strips the leading change-from-baseline and timing clauses before terms are counted
+    as distinct.
+20. **The indication quote is an indication.** Aflibercept-mrbb quotes "These highlights do not
+    include all the information needed to use AHZANTIVE safely and effectively" (**1** page);
+    milk thistle quotes "Uses: See symptoms on front panel. Relieves hemorrhoids" from a homeopathic
+    label the mapping refuses. The boilerplate sentence is skipped, and the corpus-20k DailyMed
+    facts read `excluded-set-ids.json` so that a refused label paints no quote: **216 of 1,949**
+    quotes come from a refused label.
+21. **A heading uses the display name.** "2 registered trials of IODOFORM" over "2 registered
+    studies of Iodoform"; ANISODAMINE, LINPERLISIB, HYLAN G-F 20 likewise. **341 pages.**
+
+**Identity and names (`dossier-page.ts`, the synonym stage, `page-text.ts`).**
+
+22. **THE EXACT RECORD prints the page's own UNII.** Encainide (key SY3J0147NB) prints UNII
+    4CH7J36N9S; tulobuterol prints VNC12181T0; stearyl alcohol prints 2DMT128M1S; two pages print
+    the same 0J6Z13X3WO. The `unii` column is another record's. The row prints the key's UNII and
+    any other recorded UNII goes in a labelled row. **1,332 pages.**
+23. **A ChEMBL id is not a name.** "Also called CHEMBL313113 · Component CHEMBL313113" (ONT-093,
+    MPT-0L055, D-methionine). **5,972 pages** carry a bare ChEMBL id in the synonym list.
+24. **A food code is not a development code.** "B2333 [LANGUAL]", "FEMA NO. 2326" (red clover,
+    canola oil, okra). **611 pages.**
+25. **One label, one group.** Two synonym kinds (`common`, `display`) both label "Also called",
+    so almost every page prints the heading twice. Groups sharing a label merge.
+26. **A refused label's product name is not a trade name.** "Guna-Liver", "Bestmade Natural
+    Products Bm52", "Histamine Balancer", "Amoeba/Protozoan Detox 6046", "Chemtox", "Hepatatox"
+    are homeopathic product names carried in from the legacy table. A brand name equal to the
+    brand name of a label in the excluded set is dropped; measured in the round by joining the
+    label index.
+27. **A salt is not a synonym.** "Potassium Gluconate", "Sodium Gluconate", "Choline gluconate"
+    sit under "Also called" on the gluconic acid page. Salt names go under "Salt form" or nowhere.
+    Recorded for Felix, not this round: that page's slug is `calcium-gluconate` and every register
+    row, label and trial on it is calcium gluconate's, while the title is "Gluconic Acid"; the
+    title of a page whose facts are all one salt's is a Phase 3 decision.
+28. **Structure sentences describe recorded structures.** "Technetium TC-99M and TECHNETIUM TC 99M
+    GLUCEPTATE carry different metal centres (Tc against none)"; "Magnesium and Magnesium Salicylate
+    Anhydrous carry different metal centres (Mg against none)" — the substance carries the metal,
+    the recorded structure does not. The sentence states what the recorded structures carry, or is
+    not written; and no "related form of" edge links a salt to its bare metal element page. **374**
+    sentences. "Closest approved compound: Octacosanol · similarity 1.00" for stearyl alcohol, and
+    "DL-Methionine · similarity 1.00" for D-methionine, are fingerprint collisions: where the
+    similarity rounds to 1.00 and the connectivity layers differ, the row says "identical
+    fingerprint; the measure cannot separate them". **278** rows. "Isotopologue of Dl-Methionine"
+    on the D-methionine page: an isotopologue relation requires an isotope label in a recorded
+    SMILES on one side; **74** of the 426 isotopologue pairs have no SMILES recorded and are
+    re-labelled by what the keys show.
+29. **Reasons deduplicate.** Encainide: "2 recorded reasons — cardiotoxicity, cardiotoxicity"
+    (ChEMBL and Open Targets). One reason, two registers.
+
+**Hubs (Phase 5, recorded for the hub re-run rather than this round's render).**
+
+30. Tulobuterol lists hubs "ADRB2" and "Beta-2 adrenergic receptor"; BMS-387032 lists eight hubs
+    for four kinases. Hubs were keyed on two spines, UniProt and ChEMBL. **62 proteins are carried
+    by 139 target hubs.** Hubs key on the UniProt accession, with the ChEMBL target id and name as
+    aliases, and the page lists one hub per protein. The link-graph check passes today because the
+    slugs differ; the reader meets the same target twice.
+
+31. Self-audit extended (one application id per number; no US "not found" beside an Orange or
+    Purple Book row; EU records painted; a two-ingredient label named; no ChEBI-only class
+    membership; no raw phase enum; heading count equals list count; the key's UNII in the exact
+    record; no development-stopped question on a page with a recruiting trial); tests for each
+    rule; re-render; ruler v15; checks; draws 18 and 19.
