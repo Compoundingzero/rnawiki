@@ -454,3 +454,32 @@ read in sequence; render and DOM agree; the furniture tables carry the absences.
    action rows, never a sentence, and `slop_draw.resolve_trace` has a class for that shape.
 3. Re-render in place, re-derive the ruler (furniture-free), re-run the checks and draws 10 and
    11; the gate passes on two consecutive draws with (a), (b), (c) at zero and parity exact.
+
+## 17. The lead's reading of slop draw 10 (2026-09-10, Fable) — fix round 7
+
+Read: Tier 1 (oxygen, buclizine, suprofen, rivaroxaban, urethane), Tier 2 (revefenacin, house
+dust mite, vinflunine, lytta vesicatoria), Tier 3 (naroparcil, ficonalkib, three ChEMBL stubs,
+flumecinol, glutathione misspelling, filenadol). Every page reads in sequence; the checks are
+clean. Five generator faults remain, all fixed in the generator:
+
+1. **Additive-class membership comes from the substance's own class.** The C3 rule paired
+   rivaroxaban with "Compound solution of sodium chloride" and with glycine because a product
+   record carries an anticoagulant ATC code. A counterpart qualifies only through a pharmacologic
+   action or ATC class recorded against the substance itself (DrugCentral action, Inxight class,
+   ChEMBL ATC on the molecule), never through a combination, solution or vehicle product record;
+   counterparts whose entity class is excipient, vehicle, solution, mineral salt or water are
+   excluded. Regenerate the parquet and report rows removed; the validation figures are re-run
+   on the published rows and recorded beside the earlier ones.
+2. **Withdrawal clauses merge identical events across sources and never precede a reasoned event
+   with "no reason recorded":** urethane reads once, "withdrawn for carcinogenicity in Germany,
+   Denmark, Brazil, Egypt, Italy, Cuba, the United States and Japan, 1963 (ChEMBL drug_warning;
+   Open Targets)"; a flag-only source adds nothing when another source records the reason.
+3. **A relation to a page printing the same display name uses that page's disambiguated name**
+   ("Stereoisomer of Suprofen (racemate)"), never the bare shared name.
+4. **Unconfirmed relation notes do not render** ("… neither the structures nor the printed names
+   confirm …" belongs to the technical disclosure only).
+5. **Relation-derived names are never listed as salt forms** ("WATER" under oxygen's salt forms
+   came from a component relation); the synonym-kind mapping excludes component and mixture
+   relations from the salt-form list.
+6. Self-audit extended with mechanical checks for 2, 3, 4, 5; re-render; ruler re-derived; draws
+   12 and 13.

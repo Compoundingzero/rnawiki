@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draws 10 and 11 clean (a/b/c 0, parity exact); lead reading of draw 10 pending"
+        "4.7": "draw 10 read (\u00a717: five generator faults); fix round 7 then draws 12 and 13"
       },
       "gate_evidence": null,
-      "updated": "2026-09-10T01:10:01+00:00"
+      "updated": "2026-09-10T01:11:10+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",
