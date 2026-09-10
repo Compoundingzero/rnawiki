@@ -110,6 +110,27 @@ names only a reference product moves to that product (831 studies off six biosim
 removed 1,022 doubled relations; round 5 rewrote the note for pairs where one record lacks
 stereochemistry ("the same connectivity, recorded without stereochemistry").
 
+## How the slop gate was passed
+
+Phase 4's gate needs two consecutive clean draws of 60 rendered pages and the lead's own reading
+for the logical-sequence test. It took eight generator rounds, each driven by a reading rather
+than by the mechanical checks alone (`docs/specs/phase4-generators.md` §10–§18):
+
+| Round | What the reading found | What changed in the generator |
+| --- | --- | --- |
+| 1 (§11) | Absence statements repeated on 25,000 pages collapsed the uniqueness ruler (Tier 1 to 48 indexable) | Absences became furniture: a bounded table excluded from the ruler, with the with-furniture figure reported beside it |
+| 2 (§12) | One absence answer on 22 % of pages; same-name "-2" pairs and shared-component products duplicating; 77 "biosimilars" that were the reference product itself | Block-level template test; trial partition by register-ranked page; 109 351(a) merges; hub integration |
+| 3 (§13) | Absences offered as classifications; a retired register block duplicating the new one; interaction lines painted twice with record ids; schedules twice; open trial lists; glyphs in text; token-level SUSMP matches | Fourteen rules; hubs deduplicated by member set; duplicate hold for a flagged pair |
+| 4 (§14) | Register statuses as the supervision reason; application rows still in two questions; a US status word contradicting its list; 21 label lines repeating one id; provenance painted outside disclosures; a backwards timeline | Sixteen rules with a mechanical self-audit added to the render-safety tests |
+| 5 (§15) | Generic class labels with the wrong source; homeopathic and unapproved labels mapped by name; Clinical assigned on an unapproved SPL; a lifespan question answered with an oncology endpoint | Sourced clauses per class; label mapping by UNII excluding homeopathic/unapproved SPLs (11,392 labels); Clinical requires an approval (tier map v2) |
+| 6 (§16) | A two-paragraph cap silently dropping third and later supervision clauses; a disabled interaction rule still publishing | Supervision block uncapped; disabled rules refused at build (92,488 rows) |
+| 7 (§17) | Sodium chloride solution and glycine as anticoagulant counterparts via product ATC codes; a withdrawal event repeated from two sources; a relation printed against the page's own name | Substance-level class membership; merged events; disambiguated relation names; unconfirmed notes to the disclosure |
+| 8 (§18) | Registry "other names" that are other drugs listed as synonyms; product strings as salt forms; a structure relation from a single-atom key | Synonym and salt-form rules; structure relations need two heavy atoms |
+
+Draws 10 and 11, then 12 and 13, were clean on every mechanical check with render and DOM
+identical; the lead's reading of 10 and 12 found the round-7 and round-8 faults above. [Phase 7:
+draws 14 and 15 confirm the final generator.]
+
 ## Hubs
 
 972 hubs (830 target, 135 mechanism-class, 7 pathway) over 14306 memberships on 6124 pages; syntheses by template H1 556 … H7 7. First batch (7 pathway + 23 target): positional 0.07928 (p90 0.211779), lexical 0.335372; all hubs: positional 0.125, lexical 0.326632 — both under the lines after two template corrections (never the lines). Link-graph check on the data: PASS. [Phase 7: link graph on the deployed site, hubs in the sitemap, IndexNow.]
