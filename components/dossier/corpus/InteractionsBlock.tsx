@@ -45,12 +45,18 @@ function disclosureSource(line: CorpusInteractionLine): InteractionDisclosureSou
   }
 }
 
+/*
+ * One row, one element (step 6.1).
+ *
+ * The row was `<li class="cd-interaction"><span class="cd-interaction-line">`, and neither part
+ * painted anything the row itself could not: no rule in the stylesheet used `.cd-interaction`, and
+ * `.cd-interaction-line` set an ink the row now sets. Together they were 63 bytes of markup on
+ * every interaction line the corpus publishes, and §17 item 1 published 93,252 more of them. No
+ * check reads either class: `self_audit.py` reads `ul.cd-interactions`, `dom_parity.py` hides
+ * neither, and `browser-checks.ts` measures neither.
+ */
 function Line({ line }: { line: CorpusInteractionLine }) {
-  return (
-    <li className="cd-interaction">
-      <span className="cd-interaction-line">{line.line}</span>
-    </li>
-  )
+  return <li>{line.line}</li>
 }
 
 function Tier({
@@ -69,11 +75,14 @@ function Tier({
   const label = lines[0]?.tierLabel ?? tier
   return (
     <>
-      <ul className="cd-interactions">
-        {inline.map((line) => (
-          <Line key={line.id} line={line} />
-        ))}
-      </ul>
+      {/* A tier whose lines are all disclosed painted an empty list element above the control. */}
+      {inline.length > 0 ? (
+        <ul className="cd-interactions">
+          {inline.map((line) => (
+            <Line key={line.id} line={line} />
+          ))}
+        </ul>
+      ) : null}
       {disclosed.length > 0 ? (
         <details className="cd-evidence">
           <summary>
@@ -124,7 +133,7 @@ export function InteractionsBlock({ interactions }: { interactions: CorpusIntera
       </p>
     )
   return (
-    <section aria-labelledby="cd-interactions-heading" className="cd-interactions-block">
+    <section aria-labelledby="cd-interactions-heading">
       <h2 className="cd-section-heading" id="cd-interactions-heading">
         Interactions
       </h2>
@@ -141,39 +150,44 @@ export function InteractionsBlock({ interactions }: { interactions: CorpusIntera
       {interactions.sourcesChecked.length > 0 ? (
         <details className="cd-evidence">
           <summary>Show what was checked</summary>
-          <ul className="cd-rows">
-            {/*
-              §11: on a page with no interaction row these names are the statement's own evidence
-              and say only where nothing was found — the same three, in the same order, on 25,217
-              pages. They are marked with the statement they belong to, so the ruler and the
-              duplicate check skip both or neither.
-            */}
+          {/*
+            §11: on a page with no interaction row these names are the statement's own evidence and
+            say only where nothing was found — the same three, in the same order, on 25,217 pages.
+            They are marked with the statement they belong to, so the ruler and the duplicate check
+            skip both or neither. The mark sits on the list rather than on each of its rows: a page
+            with no interaction row has no provenance row either, so the list holds nothing but
+            these names, and hiding it hides exactly what hiding each row hid (step 6.1).
+          */}
+          <ul className="cd-rows" {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}>
             {interactions.sourcesChecked.map((source) => (
-              <li key={source} {...(lines.length === 0 ? { 'data-furniture': 'true' } : {})}>
-                <div className="cd-row-value">{source}</div>
-              </li>
+              <li key={source}>{source}</li>
             ))}
             {/*
               §14(6): the dataset records behind every line, here and nowhere above. The label and
               the ids are built by the two functions the corpus renderer also calls
               (`interactionDisclosureLabel`, `interactionRecordIds`), because each had its own idea
               of what this row says: the render wrote "Substrate of CYP1A1, 1A2 and 2E1
-              frdb:ddi:12474 · …" and this component painted "CuratedB-inxight-frdb". §14(7): the
-              space between the two spans is a text node.
+              frdb:ddi:12474 · …" and this component painted "CuratedB-inxight-frdb".
+
+              Step 6.1: one element per record, not three. The label is the row's own first words
+              and the counterpart is the link beside the id, so the element that remains is the one
+              a rule reads — `.cd-row-id`, which `self_audit.py` requires to sit inside a closed
+              control and `corpus-render-safety` requires to appear nowhere else. §14(7): the space
+              before the id and the space before the link are text nodes, so no extraction reads
+              two of these values as one word.
             */}
             {lines
               .map((line) => ({ line, ids: interactionRecordIds(disclosureSource(line)) }))
               .filter((entry) => entry.ids.length > 0)
               .map(({ line, ids }) => (
                 <li key={`${line.id}-record`}>
-                  <span className="cd-row-label">
-                    {interactionDisclosureLabel(disclosureSource(line))}
-                  </span>{' '}
+                  {`${interactionDisclosureLabel(disclosureSource(line))} `}
                   <span className="cd-row-id">{ids.join(' · ')}</span>
                   {line.counterpartSlug && line.counterpartName ? (
-                    <div className="cd-row-value">
+                    <>
+                      {' '}
                       <a href={`/d/${line.counterpartSlug}`}>{line.counterpartName}</a>
-                    </div>
+                    </>
                   ) : null}
                 </li>
               ))}

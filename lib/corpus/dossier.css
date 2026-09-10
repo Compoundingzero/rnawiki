@@ -818,10 +818,12 @@
  *
  * §13(3): it is the line's own first word and nothing else on the line repeats it. The badge that
  * stood beside it, and the heading that stood above the group, are gone.
+ *
+ * Step 6.1: so is the span that carried this ink. The row is the line, the row carries the ink, and
+ * the wrapping is already the shared row rule's `overflow-wrap: anywhere` above.
  */
-.cd-interaction-line {
+.cd-interactions > li {
   color: var(--corpus-ink-1);
-  overflow-wrap: anywhere;
 }
 
 .cd-interaction-statement {
