@@ -125,11 +125,12 @@ than by the mechanical checks alone (`docs/specs/phase4-generators.md` §10–§
 | 5 (§15) | Generic class labels with the wrong source; homeopathic and unapproved labels mapped by name; Clinical assigned on an unapproved SPL; a lifespan question answered with an oncology endpoint | Sourced clauses per class; label mapping by UNII excluding homeopathic/unapproved SPLs (11,392 labels); Clinical requires an approval (tier map v2) |
 | 6 (§16) | A two-paragraph cap silently dropping third and later supervision clauses; a disabled interaction rule still publishing | Supervision block uncapped; disabled rules refused at build (92,488 rows) |
 | 7 (§17) | Sodium chloride solution and glycine as anticoagulant counterparts via product ATC codes; a withdrawal event repeated from two sources; a relation printed against the page's own name | Substance-level class membership; merged events; disambiguated relation names; unconfirmed notes to the disclosure |
-| 8 (§18) | Registry "other names" that are other drugs listed as synonyms; product strings as salt forms; a structure relation from a single-atom key | Synonym and salt-form rules; structure relations need two heavy atoms |
+| 8 (§18) | Registry "other names" that are other drugs listed as synonyms; product strings as salt forms; a structure relation from a single-atom key | Synonym and salt-form rules (3,856 synonyms, 4,890 salt forms); structure relations need two heavy atoms |
+| 9 (§19) | Homeopathic products (Health Canada DIN-HM rows, homeopathic labels) counting as approvals and labels, placing lead and a Bach flower remedy in Clinical; a nearest-neighbour on two empty fingerprints; uncapped predicted-interaction lines | Homeopathic rows are neither approvals nor labels (tier map v3); neighbours need two heavy atoms; predicted lines cap at six visible |
 
-Draws 10 and 11, then 12 and 13, were clean on every mechanical check with render and DOM
-identical; the lead's reading of 10 and 12 found the round-7 and round-8 faults above. [Phase 7:
-draws 14 and 15 confirm the final generator.]
+Draws 10 and 11, 12 and 13, and 14 and 15 were each clean on every mechanical check with render
+and DOM identical; the lead's readings of draws 10, 12 and 14 found the round-7, round-8 and
+round-9 faults above. [Phase 7: draws 16 and 17 and the reading of 16 confirm the final generator.]
 
 ## Hubs
 
