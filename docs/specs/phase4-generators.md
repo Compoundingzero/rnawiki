@@ -504,3 +504,28 @@ checks are clean. Two data-level faults remain in the header and the relations, 
    element (activated charcoal "same structure as tantalum carbide") never makes a relation;
    the rule needs ≥ 2 heavy atoms and identical full keys.
 3. Re-render; ruler v13; rendered duplicate check; parity; draws 14 and 15; CI sample.
+
+## 19. The lead's reading of slop draw 14 (2026-09-10, Fable) — fix round 9
+
+Read: Tier 1 (norgestimate, rescinnamine, robatumumab, benralizumab, psilocybin), Tier 2 (lead,
+adonis vernalis, dihydroergotamine, holly flowering top, fosfestrol), Tier 3 (five records). The
+prose is clean on every tier; three data rules remain, two of them about homeopathic products
+that §15(2)–(3) did not fully catch:
+
+1. **Homeopathic products are neither labels nor approvals.** Lead (Pb), Adonis vernalis and
+   the Bach flower remedy holly sit in Tier 2 because Health Canada's Drug Product Database lists
+   their homeopathic products (DIN-HM) and a DailyMed label reads "for constitutional treatments
+   based on homeopathic and anthroposophic indications". Rules: a Health Canada row whose product
+   class is homeopathic (DIN-HM) is not an approval and does not make a page CLINICAL; a label
+   whose purpose, indications or description contains "homeopathic" or "anthroposophic", whose
+   product names carry potency notation (7X, 30C, 200CK, 6X …), or whose ingredient names carry
+   "[HPUS]" is excluded from mapping. Re-run the label mapping, the tier assignment (v3) and the
+   integration; report tier sizes and labels removed.
+2. **The nearest-neighbour section requires two heavy atoms** on both sides (lead's "closest
+   approved compound: uranium, similarity 1.00" is two empty fingerprints); the same rule as
+   §18(2).
+3. **Predicted interaction lines cap at six visible rows** per rule class, grouped, with the
+   remainder in a closed disclosure (rescinnamine paints twenty hypotensive lines); the checked-
+   sources statement stays visible.
+4. Self-audit extended (DIN-HM never counts; no neighbour on a single-atom key; predicted lines
+   ≤ 6 visible); re-render; ruler v14; checks; draws 16 and 17.
