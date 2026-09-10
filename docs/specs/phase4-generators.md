@@ -483,3 +483,24 @@ clean. Five generator faults remain, all fixed in the generator:
    relations from the salt-form list.
 6. Self-audit extended with mechanical checks for 2, 3, 4, 5; re-render; ruler re-derived; draws
    12 and 13.
+
+## 18. The lead's reading of slop draw 12 (2026-09-10, Fable) — fix round 8 (last, data-level)
+
+Read: Tier 1 (letrozole, esterified estrogens, balsalazide, trifarotene), Tier 2 (activated
+charcoal, quinupristin, acetohydroxamic acid), Tier 3 (seven ChEMBL-only or registry-only
+records). Every page reads in sequence; the supervision clauses are specific and sourced; the
+checks are clean. Two data-level faults remain in the header and the relations, neither a sentence:
+
+1. **Synonyms.** "Also called" lists registry intervention "other names" that are other pages'
+   display names or class terms (letrozole lists anastrozole, exemestane, "aromatase inhibitors",
+   "ai", "nsai"), and "Salt form" lists product and dosage-form strings ("LETROZOLE TABLETS",
+   "estratest tablets", "POISON ADSORBENT"). Rule: a registry-derived name that equals another
+   page's display name or synonym, or a class-vocabulary term (ATC class names, pharmacologic
+   action terms, the words class/inhibitors/agonists/analogues), is excluded; "Salt form" holds
+   only names that strip to the page's own name plus a counter-ion from `scripts/revamp/salts.txt`;
+   dosage-form and product strings (tablets, injection, adsorbent, solution …) are trade names
+   when a register records them as products, otherwise dropped. Counts recorded.
+2. **"Same structure as" requires a structure**: an InChIKey of a single heavy atom or an
+   element (activated charcoal "same structure as tantalum carbide") never makes a relation;
+   the rule needs ≥ 2 heavy atoms and identical full keys.
+3. Re-render; ruler v13; rendered duplicate check; parity; draws 14 and 15; CI sample.
