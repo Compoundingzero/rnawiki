@@ -1672,7 +1672,7 @@ describe('§15(8) — an inline element is never glued to the text beside it', (
  * Each is a rule about what a reader meets on the surface, so each is read off the markup the
  * components produce rather than off the record behind it.
  */
-describe('§17 — relations, their notes, and what a salt form is', () => {
+describe('§17 and §18 — relations, their notes, and what a name is', () => {
   it('prints the disambiguated counterpart name a relation row carries (§17 item 3)', () => {
     const dossier = fullDossier()
     dossier.displayName = 'Suprofen'
@@ -1722,6 +1722,18 @@ describe('§17 — relations, their notes, and what a salt form is', () => {
     expect(formOf).not.toContain('neither the structures nor the printed names confirm')
   })
 
+  it('prints no structure-equality relation row when the page holds none (§18 item 2)', () => {
+    const dossier = fullDossier()
+    dossier.displayName = 'Activated Charcoal'
+    // The relation the identity revision published for this pair was removed: one carbon atom is
+    // not a structure two records share. What the page holds is what the page prints.
+    dossier.relations = [{ label: 'Contains', name: 'Carbo Animalis', slug: 'carbo-animalis' }]
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    const text = visibleText(markup)
+    expect(text).toContain('Contains Carbo Animalis')
+    expect(text).not.toContain('Same structure as')
+  })
+
   it('writes the corrected synonym kind into the measured text (§17 item 5)', () => {
     const bundle = bundleWithControlledSubstance(false)
     bundle.identity.synonyms = [
@@ -1738,6 +1750,50 @@ describe('§17 — relations, their notes, and what a salt form is', () => {
     expect(rendered.text).toContain('WATER (common)')
     expect(rendered.text).toContain('Fixture Compound Sodium (salt)')
     expect(rendered.text).not.toContain('WATER (salt)')
+  })
+
+  it('removes a name §18(1) dropped from the measured text (§18 item 1)', () => {
+    const bundle = bundleWithControlledSubstance(false)
+    bundle.identity.synonyms = [
+      { name: 'anastrozole', kind: 'common' },
+      { name: 'aromatase inhibitors', kind: 'common' },
+      { name: 'FIXTURE COMPOUND TABLETS', kind: 'salt' },
+      { name: 'Fixture Compound Sodium', kind: 'salt' },
+    ]
+    bundle.blocks = {
+      ...(bundle.blocks as NonNullable<PageBundle['blocks']>),
+      synonymKinds: [
+        { name: 'anastrozole', from: 'common', to: 'drop' },
+        { name: 'aromatase inhibitors', from: 'common', to: 'drop' },
+        { name: 'FIXTURE COMPOUND TABLETS', from: 'salt', to: 'drop' },
+      ],
+    }
+    const rendered = renderPage(bundle)
+    // A dropped name is not re-filed under another heading: it is not a name of this substance and
+    // the measured text states none of them. The salt form the record does hold is untouched.
+    expect(rendered.text).toContain('Fixture Compound Sodium (salt)')
+    expect(rendered.text).not.toContain('anastrozole')
+    expect(rendered.text).not.toContain('aromatase inhibitors')
+    expect(rendered.text).not.toContain('FIXTURE COMPOUND TABLETS')
+    expect(rendered.text).not.toContain('(drop)')
+  })
+
+  it('leaves a corrected kind printing and drops only what §18(1) dropped (§18 item 1)', () => {
+    const bundle = bundleWithControlledSubstance(false)
+    bundle.identity.synonyms = [
+      { name: 'WATER', kind: 'salt' },
+      { name: 'POISON ADSORBENT', kind: 'salt' },
+    ]
+    bundle.blocks = {
+      ...(bundle.blocks as NonNullable<PageBundle['blocks']>),
+      synonymKinds: [
+        { name: 'WATER', from: 'salt', to: 'common' },
+        { name: 'POISON ADSORBENT', from: 'salt', to: 'drop' },
+      ],
+    }
+    const rendered = renderPage(bundle)
+    expect(rendered.text).toContain('WATER (common)')
+    expect(rendered.text).not.toContain('POISON ADSORBENT')
   })
 
   it('never heads a component or mixture name "Salt form" (§17 item 5)', () => {

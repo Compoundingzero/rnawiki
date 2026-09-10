@@ -50,7 +50,7 @@ CANONICAL_V2 = ROOT / "data/revamp/identity/canonical-v2.ndjson"
 # §11: every check recomputes slugs from the revision this run publishes. Section 12 makes that
 # `canonical-v5` — v3 with the 351(a) merges applied — and the v3 file stays readable beside it.
 CANONICAL_V3 = ROOT / "data/revamp/identity/canonical-v3.ndjson"
-CANONICAL_V5 = ROOT / "data/revamp/identity/canonical-v6.ndjson"
+CANONICAL_V5 = ROOT / "data/revamp/identity/canonical-v7.ndjson"
 CANONICAL_DEFAULT = next(
     (path for path in (CANONICAL_V5, CANONICAL_V3, CANONICAL_V2) if path.exists()), CANONICAL_V2
 )

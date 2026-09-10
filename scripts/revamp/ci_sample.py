@@ -63,7 +63,7 @@ OUT = REVAMP / "ci-sample"
 RENDER_OUT = OUT / "render"
 HUB_MEMBERS = REVAMP / "hubs/members.parquet"
 BLOCKS_DIR = REVAMP / "page-blocks"
-CANONICAL = REVAMP / "identity/canonical-v5.ndjson"
+CANONICAL = REVAMP / "identity/canonical-v7.ndjson"
 ROBOTS = ROOT / "app/robots.ts"
 
 BATCH = re.compile(r"^batch-\d+\.ndjson$")

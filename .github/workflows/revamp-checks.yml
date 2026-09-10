@@ -92,8 +92,8 @@ jobs:
       - name: Check the hub link graph against the built data files
         run: |
           python scripts/revamp/link_graph_check.py --data-only \
-            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v12.json" \
-            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson" \
+            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v13.json" \
+            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson" \
             --out "${GITHUB_WORKSPACE}/link-graph-ci.json"
 
       - if: always()
@@ -188,8 +188,8 @@ jobs:
       - name: Hub link graph against the live site
         run: |
           python scripts/revamp/link_graph_check.py --base-url "$BASE_URL" \
-            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v12.json" \
-            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson" \
+            --thresholds "${GITHUB_WORKSPACE}/data/revamp/ci-sample/thresholds-v13.json" \
+            --presence "${GITHUB_WORKSPACE}/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson" \
             --out "${GITHUB_WORKSPACE}/link-graph-live.json"
 
       - if: always()
@@ -239,8 +239,8 @@ jobs:
             echo "  .venv-corpus/bin/python scripts/revamp/slop_draw.py --base-url https://rnawiki.com --per-tier 5"
             exit 0
           fi
-          if [ ! -d data/revamp/render-v12/text ]; then
-            echo "Not run: data/revamp/render-v12/text is gitignored and absent here, and the"
+          if [ ! -d data/revamp/render-v13/text ]; then
+            echo "Not run: data/revamp/render-v13/text is gitignored and absent here, and the"
             echo "corpus-wide template census of check (b) is computed from it. Run the draw on the"
             echo "workstation after: npx tsx scripts/revamp/page_text_v5.ts"
             exit 0

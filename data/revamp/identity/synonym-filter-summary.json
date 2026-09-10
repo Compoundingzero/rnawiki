@@ -1,0 +1,306 @@
+{
+  "byKindChange": {
+    "common -> brand": 1,
+    "common -> drop": 2475,
+    "salt -> brand": 78,
+    "salt -> common": 4786,
+    "salt -> drop": 1381
+  },
+  "byRule": {
+    "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE": 2350,
+    "S18-1b-REGISTRY-CLASS-TERM": 28,
+    "S18-1c-NOT-A-SALT-FORM": 4786,
+    "S18-1d-FORM-STRING-IS-A-PRODUCT": 79,
+    "S18-1d-FORM-STRING-NO-PRODUCT": 1478
+  },
+  "corpusPages": 28657,
+  "corrections": 8721,
+  "dropped": 3856,
+  "examples": [
+    {
+      "from": "common",
+      "name": "hes",
+      "page": "HYDROXYETHYL STARCH 130/0.4",
+      "reason": "a registry-derived name that is the recorded name of K1:875Y4127EA",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "antidepressant",
+      "page": "Fluoxetine",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "CAIRINA MOSCHATA HEART/LIVER",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "15% Azelaic Acid Acne Cream",
+      "page": "Taraxacum Officinale Leaf",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "existing",
+      "to": "brand"
+    },
+    {
+      "from": "salt",
+      "name": "CAIRINA MOSCHATA HEART/LIVER AUTOLYSATE PELLET",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "existing",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "hydroxyethyl starch",
+      "page": "HYDROXYETHYL STARCH 130/0.4",
+      "reason": "a registry-derived name that is the recorded name of K1:875Y4127EA",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "gonadotropins",
+      "page": "Follitropin",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "ANAS BARBARIE HEPATIS ET",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "AMMONIA INHALANT",
+      "page": "Ammonium Chloride (UNII 01Q9PC255D)",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "existing",
+      "to": "brand"
+    },
+    {
+      "from": "salt",
+      "name": "DICLOFENAC EPOLAMINE 1.3% PATCH",
+      "page": "DICLOFENAC EPOLAMINE",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "existing",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "hydroxyethylstarch",
+      "page": "HYDROXYETHYL STARCH 130/0.4",
+      "reason": "a registry-derived name that is the recorded name of K1:875Y4127EA",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "tricyclic antidepressant",
+      "page": "Amitriptyline",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "ANAS BARBARIAE HEPATIS ET CORDIS",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "ATROPINE SULFATE INJECTION",
+      "page": "Atropine Sulfate (Muscarinic acetylcholine receptor M1)",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "existing",
+      "to": "brand"
+    },
+    {
+      "from": "common",
+      "name": "sativex oromucosal spray",
+      "page": "NABIXIMOLS",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "cannabidiol",
+      "page": "NABIXIMOLS",
+      "reason": "a registry-derived name that is the recorded name of K1:19GBJ60SN5",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "calcium channel blocker",
+      "page": "Amlodipine",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "ANAS BARBARIAE, HEPATIS ET CORDIS EXTRACTUM",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "Provocholine Inhalation Solution",
+      "page": "Methacholine",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "existing",
+      "to": "brand"
+    },
+    {
+      "from": "common",
+      "name": "thc/cbd spray",
+      "page": "NABIXIMOLS",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "cannabis",
+      "page": "NABIXIMOLS",
+      "reason": "a registry-derived name that is the recorded name of K1:19GBJ60SN5, K1:7J8897W37S, K1:FTS5RM302N",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "calcium channel blockers",
+      "page": "Amlodipine",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "ANAS BARBARIE HEPATIS ET CORDIS EXTRACTUM",
+      "page": "Cairina Moschata Heart/Liver Autolysate",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "emla cream",
+      "page": "Prilocaine",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "open-targets",
+      "to": "brand"
+    },
+    {
+      "from": "salt",
+      "name": "Clobetasol Propionate Cream USP 0.05% Clobetasol Propionate Cream USP 0.05%",
+      "page": "Clobetasol",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "existing",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "cbd",
+      "page": "NABIXIMOLS",
+      "reason": "a registry-derived name that is the recorded name of K1:19GBJ60SN5, K1:7J8897W37S",
+      "rule": "S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "common",
+      "name": "aldosterone antagonists",
+      "page": "Spironolactone",
+      "reason": "a registry-derived name that is a class-vocabulary term",
+      "rule": "S18-1b-REGISTRY-CLASS-TERM",
+      "source": "open-targets",
+      "to": "drop"
+    },
+    {
+      "from": "salt",
+      "name": "HAMAMELIS VIRGIANA",
+      "page": "Hamamelis Virginiana Root Bark/Stem Bark",
+      "reason": "not this record's own name plus a counter-ion",
+      "rule": "S18-1c-NOT-A-SALT-FORM",
+      "source": "existing",
+      "to": "common"
+    },
+    {
+      "from": "salt",
+      "name": "pemetrexed disodium for injection",
+      "page": "Pemetrexed",
+      "reason": "a dosage-form string a register records as a product name",
+      "rule": "S18-1d-FORM-STRING-IS-A-PRODUCT",
+      "source": "open-targets",
+      "to": "brand"
+    },
+    {
+      "from": "salt",
+      "name": "Clobetasol Propionate (Emollient) / Clobetasol Propionate Cream USP 0.05% Clobetasol Propionate Cream USP 0.05% / Temovate / Clobex / Embeline / Impoyz",
+      "page": "Clobetasol",
+      "reason": "a dosage-form string no register records as a product name",
+      "rule": "S18-1d-FORM-STRING-NO-PRODUCT",
+      "source": "existing",
+      "to": "drop"
+    }
+  ],
+  "generatedBy": "scripts/revamp/synonym_filter.py",
+  "pagesTouched": 3001,
+  "reassigned": 4865,
+  "spec": "docs/specs/phase4-generators.md#18",
+  "synonymsRead": 208812,
+  "vocabularies": {
+    "atcClassNames": 898,
+    "dosageFormTokens": 134,
+    "genericClassWords": 14,
+    "pagesWithARegisterProductName": 12155,
+    "pharmacologicActionTerms": 1179,
+    "registrySources": [
+      "open-targets"
+    ]
+  }
+}

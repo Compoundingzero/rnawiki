@@ -186,7 +186,7 @@ async function main(): Promise<void> {
   const fieldsDir = arg('fields') ?? 'data/revamp/fields-v2'
   const seedsDir = arg('seeds') ?? 'data/revamp/derived-v2'
   const questionsDir = arg('questions') ?? 'data/revamp/questions-v2'
-  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v6.ndjson'
+  const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v7.ndjson'
   // §15(3): the v2 tier map, in which a DailyMed SPL with no application number is not a
   // register approval and so does not make a page CLINICAL.
   const tiersFile = arg('tiers') ?? 'data/revamp/tiers/model-assignment-v2.ndjson'

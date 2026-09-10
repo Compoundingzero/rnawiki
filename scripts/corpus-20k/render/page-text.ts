@@ -2566,9 +2566,20 @@ export interface DisclosedRelationNote {
 export interface SynonymKindCorrection {
   name: string
   from: string
+  /**
+   * The kind that describes the name, or `drop` where the name is not a name of this substance at
+   * all (§18(1)): a registry-derived name that is another page's name or a class term, or a
+   * dosage-form string no register prints as a product name. A dropped name leaves both the page
+   * and the measured text; a corrected kind moves the name to a different heading.
+   */
   to: string
   reason?: string
+  /** The rule that decided it, e.g. `S18-1a-REGISTRY-NAME-OF-ANOTHER-PAGE`. */
+  rule?: string
 }
+
+/** §18(1): the correction that removes a name rather than re-filing it. */
+export const SYNONYM_DROP = 'drop'
 
 export interface PageBlocks {
   /** The narrow controlled-substance trigger of §4. Never inferred here. */
@@ -3911,12 +3922,17 @@ export function renderPage(
   }
   const synonyms = bundle.identity.synonyms
     .filter((s) => s.name && s.name.toLowerCase() !== bundle.displayName.toLowerCase())
-    .map((s) => {
-      const kind = s.kind
+    .map((s) => ({
+      name: s.name,
+      // §18(1): `drop` is not a heading. A registry-derived name that is another page's name or a
+      // class term, and a dosage-form string no register prints as a product, is not a name of this
+      // substance and the page states none of them; the render states none of them either.
+      kind: s.kind
         ? (correctedSynonymKind.get(`${s.kind}|${s.name.toLowerCase()}`) ?? s.kind)
-        : undefined
-      return kind ? `${s.name} (${kind})` : s.name
-    })
+        : undefined,
+    }))
+    .filter((s) => s.kind !== SYNONYM_DROP)
+    .map((s) => (s.kind ? `${s.name} (${s.kind})` : s.name))
   if (synonyms.length > 0) push(`Also recorded as ${synonyms.join(', ')}`, true)
   const { register, date } = headerRegister(bundle, f)
   push(`${register} · last verified ${date}`, true)

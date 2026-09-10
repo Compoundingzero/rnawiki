@@ -102,7 +102,7 @@ PROVENANCE_DIR = os.path.join(RENDER_DIR, "provenance")
 # The furniture-free text, which the ruler reads and from which every furniture line is absent.
 FREE_TEXT_DIR = os.path.join(RENDER_DIR, "text")
 BLOCKS_DIR = os.path.join(ROOT, "data", "revamp", "page-blocks")
-CANONICAL = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v6.ndjson")
+CANONICAL = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v7.ndjson")
 FIELDS_DIR = os.path.join(ROOT, "data", "revamp", "fields-v2")
 DOM_PARITY = os.path.join(RENDER_DIR, "dom-parity.json")
 
@@ -1592,8 +1592,8 @@ def test_a_stereochemistry_note_names_no_relation_the_records_do_not_have():
     rule; they carry defined stereochemistry with the same configuration at every centre, which the
     same rule covers.
     """
-    relations = os.path.join(ROOT, "data", "revamp", "identity", "relations-v6.parquet")
-    canonical = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v6.ndjson")
+    relations = os.path.join(ROOT, "data", "revamp", "identity", "relations-v7.parquet")
+    canonical = os.path.join(ROOT, "data", "revamp", "identity", "canonical-v7.ndjson")
     if not os.path.exists(relations) or not os.path.exists(canonical):
         pytest.skip("no relations-v6.parquet or canonical-v6.ndjson; run identity_relations_v6.py")
     import pyarrow.parquet as pq
@@ -2122,3 +2122,229 @@ def test_a_component_or_mixture_name_is_never_a_salt_form(blocks):
             )
     _report(failures, "a component or mixture name listed as a salt form (§17 item 5)")
     assert corrected > 0, "no synonym kind was corrected; the rule cannot be observed"
+
+
+# ------------------------------------------------------------------ §18: the names and the keys
+
+SYNONYM_FILTER_CSV = os.path.join(
+    ROOT, "data", "revamp", "identity", "synonym-filter-v1.csv"
+)
+RELATIONS_V7 = os.path.join(ROOT, "data", "revamp", "identity", "relations-v7.parquet")
+# §18(2): a structure-equality relation needs a structure, and this is the floor it needs.
+MIN_HEAVY_ATOMS = 2
+
+
+def _canonical_records() -> dict[str, dict[str, Any]]:
+    records: dict[str, dict[str, Any]] = {}
+    with open(CANONICAL, encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if line:
+                record = json.loads(line)
+                records[record["key"]] = record
+    return records
+
+
+def _corrections_by_page(blocks: dict[str, dict[str, Any]]) -> dict[str, dict[tuple[str, str], str]]:
+    """The kind each stored name is written under, from the bundles the loader and render read."""
+    out: dict[str, dict[tuple[str, str], str]] = {}
+    for key, bundle in blocks.items():
+        held: dict[tuple[str, str], str] = {}
+        for row in bundle.get("synonymKinds") or []:
+            name = str(row.get("name") or "")
+            if name:
+                held[(str(row.get("from")), name.lower())] = str(row.get("to"))
+        out[key] = held
+    return out
+
+
+def test_no_surviving_registry_name_is_another_pages_name_or_a_class_term(blocks):
+    """§18(1): a registry "other name" that names another page, or a class, is not a name here.
+
+    Letrozole answered to "anastrozole", "exemestane", "aromatase inhibitors", "ai" and "nsai",
+    each of them a name Open Targets records for the molecule because a trial registration or a
+    label carried it in an alias list. None of them is a name of letrozole: the first two are other
+    pages, the third is the ATC class both sit in, and the last two are the abbreviations the same
+    registry rows carry on the other aromatase-inhibitor pages.
+
+    The vocabulary is rebuilt here from the identity records rather than read back from the filter,
+    so the rule and the fix do not share an answer. The check is on what survives: every stored
+    synonym the bundles do not drop.
+    """
+    if not os.path.exists(CANONICAL):
+        pytest.skip(f"{CANONICAL} is absent")
+    sys.path.insert(0, os.path.join(ROOT, "scripts", "revamp"))
+    import synonym_filter  # noqa: E402  (the path is set immediately above)
+
+    records = _canonical_records()
+    corrections = _corrections_by_page(blocks)
+    salts = synonym_filter.load_salts(os.path.join(ROOT, "scripts", "revamp", "salts.txt"))
+
+    def stripped(text: str) -> str:
+        rest, _ = synonym_filter.strip_counter_ions(text.split(), salts)
+        return " ".join(rest)
+
+    # Only a corpus page's names are "another page's name". The identity revision carries records
+    # the tier map holds no page for, and a name recorded against one of those is not printed
+    # anywhere, so it cannot be a name this page is answering to in place of another.
+    by_name: dict[str, set[str]] = {}
+    for key, record in records.items():
+        if key not in blocks:
+            continue
+        names = [record.get("displayName")] + [
+            synonym.get("name")
+            for synonym in record.get("synonyms") or []
+            if synonym.get("kind") in NAME_KINDS
+        ]
+        for name in names:
+            text = synonym_filter.norm(name)
+            for candidate in (text, stripped(text)):
+                if candidate:
+                    by_name.setdefault(candidate, set()).add(key)
+
+    failures: list[str] = []
+    checked = 0
+    dropped = 0
+    for key, record in records.items():
+        if key not in blocks:
+            continue
+        own = synonym_filter.norm(record.get("displayName"))
+        held = corrections.get(key, {})
+        for synonym in record.get("synonyms") or []:
+            kind = str(synonym.get("kind"))
+            name = str(synonym.get("name") or "")
+            if kind == "display" or not name:
+                continue
+            if str(synonym.get("source")) not in synonym_filter.REGISTRY_SOURCES:
+                continue
+            if held.get((kind, name.lower())) == "drop":
+                dropped += 1
+                continue
+            checked += 1
+            text = synonym_filter.norm(name)
+            if not text or text == own:
+                continue
+            own_tokens, tokens = own.split(), text.split()
+            if own_tokens and any(
+                tokens[index : index + len(own_tokens)] == own_tokens
+                for index in range(len(tokens) - len(own_tokens) + 1)
+            ):
+                continue
+            others = (by_name.get(text, set()) | by_name.get(stripped(text), set())) - {key}
+            if others:
+                failures.append(
+                    f"{key}: {name!r} survives and is the recorded name of {sorted(others)[0]}"
+                )
+            elif text in synonym_filter.GENERIC_CLASS_WORDS:
+                failures.append(f"{key}: {name!r} survives and is a class word")
+    assert dropped > 0, "no registry-derived name was dropped; the rule cannot be observed"
+    assert checked > 0, "no registry-derived name survived; the corpus holds none to check"
+    _report(failures, "a registry-derived name of another page or a class (§18 item 1)")
+
+
+def test_every_surviving_salt_form_is_this_records_name_plus_a_counter_ion(blocks):
+    """§18(1): "Salt form" holds only names that strip to this record's name plus a counter-ion.
+
+    "LETROZOLE TABLETS", "estratest tablets" and "POISON ADSORBENT" were under that heading. A
+    tablet is a product, not a form of the substance, and the heading is a statement about what
+    forms of this substance the registers hold. The counter-ion list is `scripts/revamp/salts.txt`,
+    the file Phase 2's mapping rule (d) already normalises names against.
+    """
+    if not os.path.exists(CANONICAL):
+        pytest.skip(f"{CANONICAL} is absent")
+    sys.path.insert(0, os.path.join(ROOT, "scripts", "revamp"))
+    import synonym_filter  # noqa: E402  (the path is set immediately above)
+
+    records = _canonical_records()
+    corrections = _corrections_by_page(blocks)
+    salts = synonym_filter.load_salts(os.path.join(ROOT, "scripts", "revamp", "salts.txt"))
+
+    failures: list[str] = []
+    kept = 0
+    for key, record in records.items():
+        if key not in blocks:
+            continue
+        bundle = blocks[key]
+        own_names = {
+            synonym_filter.norm(record.get("displayName")),
+            synonym_filter.norm(bundle.get("displayName")),
+        } - {""}
+        held = corrections.get(key, {})
+        for synonym in record.get("synonyms") or []:
+            if str(synonym.get("kind")) != "salt":
+                continue
+            name = str(synonym.get("name") or "")
+            if held.get(("salt", name.lower())) is not None:
+                continue
+            text = synonym_filter.norm(name)
+            if not text or text in own_names:
+                continue
+            rest, removed = synonym_filter.strip_counter_ions(text.split(), salts)
+            if removed > 0 and " ".join(rest) in own_names:
+                kept += 1
+                continue
+            failures.append(
+                f"{key}: {name!r} is a salt form of neither {sorted(own_names)[0]!r} "
+                "nor any counter-ion in salts.txt"
+            )
+    assert kept > 0, "no salt form survived; the rule cannot be observed"
+    _report(failures, "a salt-form entry that is not a counter-ion form (§18 item 1)")
+
+
+def test_no_structure_equality_relation_stands_on_a_single_heavy_atom_key(pages):
+    """§18(2): "same structure as" over an element says nothing.
+
+    Activated Charcoal and Tantalum Carbide are both recorded against
+    `OKTJSMMVPCPJKN-UHFFFAOYSA-N`, the InChIKey of one carbon atom. The key is identical and the
+    statement is still empty. The rule needs identical full keys and at least two heavy atoms, and
+    it is checked here on the published relations and on the text the pages print.
+    """
+    if not os.path.exists(RELATIONS_V7) or not os.path.exists(CANONICAL):
+        pytest.skip("relations-v7.parquet or canonical-v7.ndjson is absent")
+    import pyarrow.parquet as pq
+    from rdkit import Chem, RDLogger
+
+    RDLogger.DisableLog("rdApp.*")
+    records = _canonical_records()
+    smiles: dict[str, str] = {}
+    for record in records.values():
+        structure = record.get("structure") or {}
+        if structure.get("inchikey") and structure.get("smiles"):
+            smiles.setdefault(str(structure["inchikey"]), str(structure["smiles"]))
+
+    def heavy(inchikey: str) -> int | None:
+        held = smiles.get(inchikey)
+        if not held:
+            return None
+        molecule = Chem.MolFromSmiles(held, sanitize=False)
+        return None if molecule is None else molecule.GetNumAtoms()
+
+    single = {key for key in smiles if (count := heavy(key)) is not None and count < MIN_HEAVY_ATOMS}
+    assert single, "no single-heavy-atom structure is recorded; the rule cannot be observed"
+
+    table = pq.read_table(RELATIONS_V7).to_pydict()
+    failures: list[str] = []
+    checked = 0
+    for page_a, page_b, relation in zip(table["page_a"], table["page_b"], table["relation"]):
+        if str(relation).replace("_", "-") != "same-structure-as":
+            continue
+        checked += 1
+        key_a = str(((records.get(page_a) or {}).get("structure") or {}).get("inchikey") or "")
+        key_b = str(((records.get(page_b) or {}).get("structure") or {}).get("inchikey") or "")
+        if key_a and key_b and key_a != key_b:
+            failures.append(f"{page_a} ↔ {page_b}: {key_a} and {key_b} are not the same key")
+        for key in (key_a, key_b):
+            if key and key in single:
+                failures.append(f"{page_a} ↔ {page_b}: {key} describes one heavy atom")
+    assert checked > 0, "no structure-equality relation survived; the rule cannot be observed"
+    _report(failures, "a structure-equality relation on a single-atom key (§18 item 2)")
+
+    printed = [
+        f"{page['key']}: {line}"
+        for page in pages
+        for line in _lines(page)
+        if line.startswith("Same structure as")
+        and str(((records.get(page["key"]) or {}).get("structure") or {}).get("inchikey") or "")
+        in single
+    ]
+    _report(printed, "a page printing a structure-equality relation on a single-atom key")

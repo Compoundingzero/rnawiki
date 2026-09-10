@@ -1,0 +1,79 @@
+{
+ "checkedAt": "2026-09-10T12:54:09.512567+00:00",
+ "mode": "build",
+ "baseUrl": "http://127.0.0.1:3213",
+ "ruler": {
+  "thresholds": "data/revamp/thresholds-v13.json",
+  "presence": "data/revamp/presence-applicable-v13.ndjson",
+  "indexableLeaves": 294
+ },
+ "hubs": 714,
+ "members": 12607,
+ "published": {
+  "source": "sitemaps/hubs.xml",
+  "hubsPublished": 709,
+  "hubsInDataFiles": 714,
+  "inDataFilesNotPublished": [
+   "/h/class/h01ac",
+   "/h/class/h01ba",
+   "/h/class/n06dx",
+   "/h/target/hdac8",
+   "/h/target/leg3"
+  ],
+  "publishedNotInDataFiles": [],
+  "memberLinksOnPublishedHubs": 6052
+ },
+ "rules": [
+  {
+   "rule": "no hub under five leaves",
+   "checked": 714,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no hub unreachable from /h",
+   "checked": 714,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no indexable leaf without a hub or a recorded reason",
+   "checked": 294,
+   "failures": 0,
+   "examples": [],
+   "pass": true,
+   "note": "{\"every group it names was rejected, with the reason recorded\": 11, \"in at least one hub\": 266, \"no target, class or pathway field\": 17}"
+  },
+  {
+   "rule": "every member link has a published slug",
+   "checked": 12607,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "/h links every hub it publishes",
+   "checked": 709,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "every published hub page answers 200",
+   "checked": 709,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "every member link a published hub carries answers 200",
+   "checked": 6052,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  }
+ ],
+ "pass": true
+}

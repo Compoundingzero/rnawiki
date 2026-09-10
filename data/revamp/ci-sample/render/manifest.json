@@ -1,8 +1,8 @@
 {
  "generatedBy": "scripts/revamp/ci_sample.py",
- "render": "data/revamp/render-v12",
+ "render": "data/revamp/render-v13",
  "blocks": "data/revamp/page-blocks",
- "canonical": "data/revamp/identity/canonical-v5.ndjson",
+ "canonical": "data/revamp/identity/canonical-v7.ndjson",
  "pages": 200,
  "pagesPerTier": {
   "1": 64,
@@ -105,20 +105,20 @@
  },
  "files": {
   "render/blocks.ndjson.gz": {
-   "bytes": 376197,
-   "sha256": "3e223a0ba7acee53a4ea6fef3ab9399fe5fbcf65798fd829b78b2e2a5fff1bde"
+   "bytes": 384102,
+   "sha256": "e1e5c70245862185d733f8ae2696d04a2de542ae5815bf9d45de6d0285015e82"
   },
   "render/provenance-with-furniture.ndjson.gz": {
-   "bytes": 481688,
-   "sha256": "b027fcef3049f8d79eb6e9942355b5e464dda2e7cdd88a2cd024ca1d42684f04"
+   "bytes": 481543,
+   "sha256": "2799f627dab653f2826c6c2f8abc7a04e350ff9662dea5a0a2b978e4b867bfeb"
   },
   "render/text-with-furniture.ndjson.gz": {
-   "bytes": 367694,
-   "sha256": "8049c1b1251c6af8583fda035ae1714d6c853e3c3a5686fdcd06ee849ef13410"
+   "bytes": 366698,
+   "sha256": "7426f449b328d2a36d266e8b8e6bf6a97f01929b5a1ef386229a8c93ff670480"
   },
   "render/text.ndjson.gz": {
-   "bytes": 353064,
-   "sha256": "8ae3aa28303386a689664b62c8229bff7d647d30e907f8b4829ea94f6e504917"
+   "bytes": 352141,
+   "sha256": "12dc0e56643645aa47bbee57f2524a0b28af844fb1d7375e87b1ea81523f4c1d"
   }
  },
  "keys": [

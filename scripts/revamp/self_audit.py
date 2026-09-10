@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import csv
 import json
 import os
 import random
@@ -44,6 +45,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "revamp"))
 
 from dom_parity import EXCLUDE_SELECTOR, fold  # noqa: E402
+from synonym_filter import load_salts, norm as synonym_norm, strip_counter_ions  # noqa: E402
 
 LEGAL_LOG = ROOT / "data/corpus-20k/legal/requests.log"
 USER_AGENT = "rnawiki-revamp/1.0 (+https://rnawiki.com; felix360506@gmail.com)"
@@ -158,6 +160,20 @@ UNCONFIRMED_RELATION_NOTE = re.compile(
 SALT_FORM_GROUP = "salt form"
 COMPONENT_RELATION_LABELS = {"contains", "component of"}
 
+# Section 18 item 1: the corrections `scripts/revamp/synonym_filter.py` decided over the whole
+# corpus, and the counter-ion list the salt-form rule reads. The page is the surface under audit and
+# these are what it was built from, so a name the filter dropped appearing on the page, or a
+# salt-form entry that is not this record's name plus a counter-ion, is a fault the DOM can decide.
+SYNONYM_FILTER = ROOT / "data/revamp/identity/synonym-filter-v1.csv"
+SALTS = ROOT / "scripts/revamp/salts.txt"
+
+# Section 18 item 2: the relation whose whole claim is that two structures are identical, and the
+# label the template prints it under.
+# Read with `_` and `-` folded to a space, because the relation reaches the page as the stored kind
+# where the template has no label for it.
+STRUCTURE_EQUALITY_LABELS = {"same structure as"}
+IDENTIFIER_INCHIKEY = "inchikey"
+
 RULES = (
     "supervision answer names no register status",
     "no register application row outside the registration block",
@@ -180,6 +196,10 @@ RULES = (
     "a relation row never names the page it is on",
     "an unconfirmed relation note renders only inside a closed disclosure",
     "the salt-form list holds no component or mixture name",
+    # Section 18 item 3.
+    "no name the synonym filter removed is painted",
+    "every salt-form entry is this record's name plus a counter-ion",
+    "no structure-equality relation on a single-heavy-atom key",
 )
 
 
@@ -302,6 +322,13 @@ EXTRACT_JS = """() => {
     }
   }
 
+  // Section 18 item 3: the identifiers the record prints, by their label. The InChIKey row is what
+  // the structure-equality rule reads the page's structure key off.
+  const identifierRows = [...main.querySelectorAll('section.cd-record dl > div')].map((row) => ({
+    label: text(row.querySelector('dt')),
+    value: text(row.querySelector('dd')),
+  }));
+
   // Section 15 item 6: the form-of note, which is a sentence about two records' structures.
   const formOfNotes = [
     ...main.querySelectorAll('section.cd-form-of p.cd-paragraph'),
@@ -337,6 +364,7 @@ EXTRACT_JS = """() => {
     relations,
     rows,
     formOfNotes,
+    identifierRows,
     hubCells,
     title,
     synonymGroups,
@@ -369,6 +397,51 @@ def glued(markup: str) -> list[str]:
         for match in JOINED_TEXT.finditer(markup)
     )
     return out
+
+
+@dataclass
+class Recorded:
+    """What the corpus decided, read once, so the DOM rules have something to check against."""
+
+    dropped: dict[str, set[str]]
+    salts: list[tuple[str, ...]]
+    single_atom_keys: set[str]
+
+
+RECORDED = Recorded(dropped={}, salts=[], single_atom_keys=set())
+
+
+def load_recorded() -> Recorded:
+    """The §18 corrections, the counter-ion list, and the keys that describe one heavy atom."""
+    dropped: dict[str, set[str]] = defaultdict(set)
+    if SYNONYM_FILTER.exists():
+        with SYNONYM_FILTER.open(encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle):
+                if row.get("to_kind") == "drop" and row.get("key") and row.get("name"):
+                    dropped[row["key"]].add(row["name"].strip().casefold())
+
+    # The keys that describe one heavy atom, counted from the structure the identity revision
+    # records for them. Derived here rather than read back from the removal list, so the rule and
+    # the fix do not share an answer.
+    from rdkit import Chem, RDLogger
+
+    RDLogger.DisableLog("rdApp.*")
+    single: set[str] = set()
+    canonical = ROOT / "data/revamp/identity/canonical-v7.ndjson"
+    if canonical.exists():
+        with canonical.open(encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                structure = (json.loads(line).get("structure") or {})
+                key, smiles = structure.get("inchikey"), structure.get("smiles")
+                if not key or not smiles or key in single:
+                    continue
+                molecule = Chem.MolFromSmiles(smiles, sanitize=False)
+                if molecule is not None and molecule.GetNumAtoms() < 2:
+                    single.add(key)
+    return Recorded(dropped=dict(dropped), salts=load_salts(str(SALTS)), single_atom_keys=single)
 
 
 @dataclass
@@ -713,6 +786,51 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
             f"{name!r} is listed as a salt form and as a component or mixture",
         )
 
+    # 19 — section 18 item 1: a name the synonym filter removed is not a name of this substance —
+    # a registry-derived name of another page, a class term, or a dosage-form string no register
+    # prints as a product name — and the page states none of them, under any heading.
+    removed = RECORDED.dropped.get(target.key, set())
+    if removed:
+        painted_names = {
+            (group.get("name") or "").strip().casefold()
+            for group in payload.get("synonymGroups") or []
+        }
+        for name in sorted(removed):
+            record(RULES[19], name not in painted_names,
+                   f"{name!r} was removed by the synonym filter and is painted")
+
+    # 20 — section 18 item 1: "Salt form" holds only names that strip to the page's own name plus a
+    # counter-ion from scripts/revamp/salts.txt. A product string, a dosage form and another
+    # substance's name are none of those, and each one made the heading a false statement.
+    own_forms = {synonym_norm(title)} - {""}
+    for group in payload.get("synonymGroups") or []:
+        if (group.get("label") or "").strip().casefold() != SALT_FORM_GROUP:
+            continue
+        name = (group.get("name") or "").strip()
+        text = synonym_norm(name)
+        if not text or text in own_forms:
+            continue
+        rest, stripped = strip_counter_ions(text.split(), RECORDED.salts)
+        record(RULES[20], stripped > 0 and " ".join(rest) in own_forms,
+               f"{name!r} is under Salt form and is not {title!r} plus a counter-ion")
+
+    # 21 — section 18 item 2: a structure-equality relation needs a structure. An InChIKey of one
+    # heavy atom describes an element, and two records that both reduce to one atom have nothing
+    # structural in common to state.
+    page_key = next(
+        ((row.get("value") or "").strip()
+         for row in payload.get("identifierRows") or []
+         if (row.get("label") or "").strip().casefold() == IDENTIFIER_INCHIKEY),
+        "",
+    )
+    if page_key:
+        for relation in payload["relations"]:
+            label = (relation["label"] or "").strip().casefold().replace("_", " ").replace("-", " ")
+            if label not in STRUCTURE_EQUALITY_LABELS:
+                continue
+            record(RULES[21], page_key not in RECORDED.single_atom_keys,
+                   f"{relation['label']} {relation['name']!r} on {page_key}, one heavy atom")
+
     assert painted is not None
 
 
@@ -752,6 +870,9 @@ def main(argv: list[str] | None = None) -> int:
     if not args.database_url:
         raise SystemExit("DATABASE_URL is required (or pass --database-url)")
 
+    global RECORDED
+    RECORDED = load_recorded()
+
     targets = draw(args.database_url, args.seed)
     issues: list[str] = []
     painted = asyncio.run(render(targets, args.base_url.rstrip("/"), issues))
@@ -782,7 +903,11 @@ def main(argv: list[str] | None = None) -> int:
     hubs = [target for target in targets if target.kind == "hub"]
     report = {
         "generatedBy": "scripts/revamp/self_audit.py",
-        "spec": ["docs/specs/phase4-generators.md#14", "docs/specs/phase4-generators.md#15"],
+        "spec": [
+            "docs/specs/phase4-generators.md#14",
+            "docs/specs/phase4-generators.md#15",
+            "docs/specs/phase4-generators.md#18",
+        ],
         "baseUrl": args.base_url,
         "seed": args.seed,
         "drawn": {"pages": len(pages), "hubs": len(hubs), "perTier": PER_TIER},

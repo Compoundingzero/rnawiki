@@ -61,7 +61,7 @@ FIELDS = ROOT / "data/revamp/fields-v2"
 DERIVED = ROOT / "data/revamp/derived-v2"
 QUESTIONS_V2 = ROOT / "data/revamp/questions-v2"
 QUESTIONS_V1 = ROOT / "data/corpus-20k/questions"
-IDENTITY = ROOT / "data/revamp/identity/canonical-v6.ndjson"
+IDENTITY = ROOT / "data/revamp/identity/canonical-v7.ndjson"
 RELATIONS = ROOT / "data/revamp/identity/relations-v3.parquet"
 # §15(3): the v2 tier map decides which pages are Tier 2, and so which members a hub has.
 TIERS = ROOT / "data/revamp/tiers/model-assignment-v2.ndjson"

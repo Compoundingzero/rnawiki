@@ -22,7 +22,7 @@ them wholesale — and the DVC remote is not reachable until Felix supplies the 
 | `data/revamp/identity/canonical-v5.ndjson`, `page-slugs.csv` | `scripts/revamp/identity_apply.py` | redirects, link graph |
 | `data/corpus-20k/reconciliation/dispositions.ndjson` | the corpus-20k run | redirects |
 | `data/revamp/ci-sample/slug-union.csv` | `scripts/revamp/ci_slug_union.py` | redirects |
-| `data/revamp/ci-sample/thresholds-v12.json` + `presence-applicable-v12-hub-members.ndjson` | `scripts/revamp/ci_sample.py` | link graph |
+| `data/revamp/ci-sample/thresholds-v13.json` + `presence-applicable-v13-hub-members.ndjson` | `scripts/revamp/ci_sample.py` | link graph |
 | `data/revamp/ci-sample/render/*.ndjson.gz` (200 pages) | `scripts/revamp/ci_sample.py` | render safety |
 | `data/revamp/ci-sample/robots.ts.snapshot` | `scripts/revamp/ci_sample.py` | sitemap invariants |
 
@@ -30,9 +30,9 @@ The two writers have a `--check` mode that fails when a committed input no longe
 corpus on the workstation, so a stale sample is a red check rather than a quiet one. The samples are
 regenerated with `npm run revamp:ci:sample`, which reads the corpus and therefore runs on the
 workstation only. **Phase 7 refreshes the ruler pair** when the settled ruler lands, and refreshes the render sample
-from the render that ships with it. Measure 8 (v12) did that: the pair is `thresholds-v12.json` and
-`presence-applicable-v12-hub-members.ndjson`, and the render sample is drawn from
-`data/revamp/render-v12`.
+from the render that ships with it. Measure 9 (v13) did that: the pair is `thresholds-v13.json` and
+`presence-applicable-v13-hub-members.ndjson`, and the render sample is drawn from
+`data/revamp/render-v13`.
 
 Everything each check cannot see from CI is named under it, with the command that checks it on the
 workstation. Nothing required by the spec is quietly reduced to advisory.
@@ -77,8 +77,8 @@ Reads the three hub parquet files in full and the committed ruler pair.
 ```
 npm run revamp:ci:link-graph
 # scripts/revamp/link_graph_check.py --data-only \
-#   --thresholds "$PWD/data/revamp/ci-sample/thresholds-v12.json" \
-#   --presence "$PWD/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson"
+#   --thresholds "$PWD/data/revamp/ci-sample/thresholds-v13.json" \
+#   --presence "$PWD/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson"
 ```
 
 Rules 1, 3 and 4 are checked over every hub and every member: no hub under five leaves (923 hubs),
@@ -149,7 +149,7 @@ its two branches, a not-found register line, an absence table, a trial row — a
 seeded per-tier draw. `render/manifest.json` records which page was drawn for which rule, the seed,
 the tier counts and a SHA256 per file. The draw covers 59 Tier 1, 69 Tier 2 and 72 Tier 3 pages.
 
-The rules of `tests/test_render_safety.py` run here. Four cannot, and `conftest.py` prints each one
+The rules of `tests/test_render_safety.py` run here. Seven cannot, and `conftest.py` prints each one
 with its reason at the start of the run rather than letting it skip quietly. Any other skip is turned into a failure, so a sample
 that lost a stream reports red instead of green over nothing.
 
@@ -159,6 +159,9 @@ that lost a stream reports red instead of green over nothing.
 | `test_every_trace_on_a_sampled_page_resolves` | runs `slop_draw`'s resolver, which loads those same field records and reads `corpus_pages` from a loaded database | the same command with `DATABASE_URL` set |
 | `test_the_render_and_the_painted_page_agree` | asserts the result of `scripts/revamp/dom_parity.py`, which renders against a running build | `dom_parity.py --base-url http://127.0.0.1:3142`, then the same command |
 | `test_the_provenance_timeline_fires_only_on_three_dated_events_in_order` | reads seed 8's own records in `data/revamp/derived-v2/`, which is gitignored; the rule is about what the derivation wrote, not about what a page painted, so no render sample can carry it | `.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k provenance_timeline` |
+| `test_no_surviving_registry_name_is_another_pages_name_or_a_class_term` | asks whether a name on one page is a name of any other page in the corpus, so the index has to hold all 28,657 pages' names; a 200-page sample answers a different question | `.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k surviving_registry_name` |
+| `test_every_surviving_salt_form_is_this_records_name_plus_a_counter_ion` | reads every stored salt-kind synonym in the identity revision against the corrections on every page bundle | `.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k surviving_salt_form` |
+| `test_no_structure_equality_relation_stands_on_a_single_heavy_atom_key` | counts heavy atoms with RDKit, which `requirements-ci.txt` does not install because no other check here reads a molecular structure | `.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k single_heavy_atom` |
 
 Phase 7 runs the whole file, with no `--sample`, from the workstation before the deploy.
 
@@ -175,8 +178,8 @@ python scripts/revamp/ci_redirect_check.py --live --base-url https://rnawiki.com
 python scripts/revamp/rendered_dup_check.py --base-url https://rnawiki.com \
     --fail-on-indexable --sample 200 --concurrency 4
 python scripts/revamp/link_graph_check.py --base-url https://rnawiki.com \
-    --thresholds "$PWD/data/revamp/ci-sample/thresholds-v12.json" \
-    --presence "$PWD/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson"
+    --thresholds "$PWD/data/revamp/ci-sample/thresholds-v13.json" \
+    --presence "$PWD/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson"
 ```
 
 - **Redirects, live half.** Every slug in the committed union requested against the site, four at a

@@ -2,7 +2,7 @@
 
 One option is defined, `--sample`, and one file reads it: `tests/test_render_safety.py`.
 
-Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v12/`,
+Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v13/`,
 `data/revamp/page-blocks/`, `data/revamp/fields-v2/` — which is gitignored and runs to hundreds of
 megabytes, so a GitHub Actions runner has none of it. `scripts/revamp/ci_sample.py` writes a small
 committed sample of exactly those streams for 200 drawn pages, and `--sample` points the rules at
@@ -17,7 +17,7 @@ that each rule which asserts it saw a page of some kind — a controlled-substan
 Standard row, a quoted label sentence, a supervision block on each branch, a not-found register
 line, a trial row — has pages in it; `render/manifest.json` records which page was drawn for which.
 
-Two rules cannot run against a sample, and are skipped by name rather than left to fail or, worse,
+Some rules cannot run against a sample, and are skipped by name rather than left to fail or, worse,
 to pass over nothing:
 
   * `test_the_trace_of_an_absence_names_paths_the_record_does_not_carry` resolves every absence
@@ -29,7 +29,7 @@ to pass over nothing:
 Both run on the workstation, over the whole corpus, with the plain command above and no `--sample`.
 `docs/specs/ci-checks.md` records that split, and the CI job prints it.
 
-A third rule skips itself wherever `data/revamp/render-v12/dom-parity.json` is absent: the parity
+A third rule skips itself wherever `data/revamp/render-v13/dom-parity.json` is absent: the parity
 report is produced by `scripts/revamp/dom_parity.py` against a running build, which CI does not
 have. It is listed below for the same reason — so the skip is a stated one.
 
@@ -64,6 +64,22 @@ SAMPLE_SKIPS = {
         "here; the rule is about what the derivation wrote, not about what a page painted, so no "
         "render sample can carry it; run it on the workstation with "
         "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k provenance_timeline`",
+    # Section 18's three rules. The first two ask whether a name on one page is a name of any other
+    # page in the corpus, which a 200-page sample cannot answer: the index has to hold all 28,657
+    # pages' names or the question means something else. The third counts heavy atoms with RDKit,
+    # which `scripts/revamp/requirements-ci.txt` deliberately does not install.
+    "test_no_surviving_registry_name_is_another_pages_name_or_a_class_term":
+        "builds the corpus-wide name index from every page's own names in data/revamp/page-blocks/; "
+        "a sample of 200 pages answers a different question. Run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k surviving_registry_name`",
+    "test_every_surviving_salt_form_is_this_records_name_plus_a_counter_ion":
+        "reads every stored salt-kind synonym in the identity revision against the corrections on "
+        "every page bundle; run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k surviving_salt_form`",
+    "test_no_structure_equality_relation_stands_on_a_single_heavy_atom_key":
+        "counts heavy atoms with RDKit, which requirements-ci.txt does not install because no other "
+        "check here reads a molecular structure; run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k single_heavy_atom`",
 }
 
 # stream -> the file `ci_sample.py` writes it to.

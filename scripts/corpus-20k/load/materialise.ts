@@ -105,6 +105,7 @@ import {
   interactionLine,
   movedTrialsSentence,
   printedDisplayName,
+  SYNONYM_DROP,
   type InteractionRow,
 } from '../render/page-text'
 
@@ -915,7 +916,7 @@ function corpusSources(revamp: boolean): CorpusSources {
   }
   return {
     label: 'revamp-2026-09',
-    identity: join(REVAMP, 'identity', 'canonical-v6.ndjson'),
+    identity: join(REVAMP, 'identity', 'canonical-v7.ndjson'),
     models: join(REVAMP, 'tiers', 'model-assignment-v2.ndjson'),
     fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
       join(REVAMP, 'fields-v2', directory),
@@ -991,7 +992,14 @@ interface BlockBundle {
    * Synonyms whose recorded kind does not describe what the name is (§17(5)): a component or
    * mixture name filed as a salt form. Each entry names the correction and why it was made.
    */
-  synonymKinds?: Array<{ name: string; from: string; to: string; reason?: string }>
+  synonymKinds?: Array<{
+    name: string
+    from: string
+    /** A kind, or `drop` where §18(1) found the name is not a name of this substance. */
+    to: string
+    reason?: string
+    rule?: string
+  }>
   disambiguation?: {
     displayName?: string
     disambiguator?: string | null
@@ -2245,7 +2253,8 @@ function buildBatch(input: {
      */
     const correctedKind = new Map<string, string>()
     for (const correction of input.blocks.get(key)?.synonymKinds ?? []) {
-      if (!correction.name || !SYNONYM_KINDS.has(correction.to)) continue
+      if (!correction.name) continue
+      if (correction.to !== SYNONYM_DROP && !SYNONYM_KINDS.has(correction.to)) continue
       correctedKind.set(`${correction.from}|${correction.name.toLowerCase()}`, correction.to)
     }
     const seenSynonyms = new Set<string>()
@@ -2257,6 +2266,17 @@ function buildBatch(input: {
         continue
       }
       const kind = correctedKind.get(`${synonym.kind}|${name.toLowerCase()}`) ?? synonym.kind
+      /*
+       * §18(1): a name the corpus does not hold as a name of this substance is not written at all.
+       * A registry-derived "other name" that is another page's display name or synonym, a class
+       * term, and a dosage-form string no register prints as a product name each leave
+       * `page_synonyms`, so the page has no heading to print them under and the search index does
+       * not resolve this page by another substance's name.
+       */
+      if (kind === SYNONYM_DROP) {
+        counters.bump(`synonym names dropped as not a name of this substance (${synonym.kind})`)
+        continue
+      }
       if (kind !== synonym.kind) {
         counters.bump(`synonym kinds corrected from ${synonym.kind} to ${kind}`)
       }

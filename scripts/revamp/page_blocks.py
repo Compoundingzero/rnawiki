@@ -44,6 +44,7 @@ reading it as the flag would suppress dosing on a pharmacy medicine.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
 import os
@@ -219,6 +220,61 @@ def salt_form_corrections(canonical: dict[str, dict[str, Any]],
     return out
 
 
+# §18(1): the strength of a correction, so two rules that reach the same name agree on one answer.
+# A dropped name is gone from every list; a name a register prints as a product is a trade name; a
+# reassigned kind is the weakest change, because the name still prints.
+CORRECTION_STRENGTH = {"drop": 3, "brand": 2}
+
+
+def merge_synonym_corrections(base: dict[str, list[dict]],
+                              filtered: dict[str, list[dict]]) -> dict[str, list[dict]]:
+    """§17(5)'s corrections and §18(1)'s, resolved to one answer per stored name.
+
+    The two rules overlap by construction and neither contains the other. §17(5) takes a name out of
+    the salt-form list because it is another page's component or mixture name; §18(1) takes one out
+    because it is not this record's own name plus a counter-ion, or drops it because it is a
+    registry-derived name of another page or a dosage-form string no register prints as a product.
+    A name both reach takes the stronger answer: a name the registers do not record as a name of
+    this substance is not printed under a different heading instead.
+    """
+    out: dict[str, list[dict]] = {}
+    for key in sorted(set(base) | set(filtered)):
+        chosen: dict[tuple[str, str], dict] = {}
+        for row in list(base.get(key, [])) + list(filtered.get(key, [])):
+            slot = (str(row.get("from")), str(row.get("name")).lower())
+            held = chosen.get(slot)
+            if held is None or (CORRECTION_STRENGTH.get(str(row.get("to")), 1)
+                                > CORRECTION_STRENGTH.get(str(held.get("to")), 1)):
+                chosen[slot] = row
+        if chosen:
+            out[key] = [chosen[slot] for slot in sorted(chosen)]
+    return out
+
+
+def read_synonym_filter(path: str) -> dict[str, list[dict]]:
+    """The §18(1) corrections `scripts/revamp/synonym_filter.py` decided over the whole corpus."""
+    out: dict[str, list[dict]] = defaultdict(list)
+    if not os.path.exists(path):
+        raise SystemExit(
+            "%s is missing: run scripts/revamp/synonym_filter.py first "
+            "(docs/specs/phase4-generators.md#18)" % os.path.relpath(path, ROOT)
+        )
+    with open(path, encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            key = row.get("key")
+            name = row.get("name")
+            if not key or not name:
+                continue
+            out[key].append({
+                "name": name,
+                "from": row.get("from_kind"),
+                "to": row.get("to_kind"),
+                "reason": row.get("reason"),
+                "rule": row.get("rule"),
+            })
+    return dict(out)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--blocks-dir", default=repo("data", "revamp", "blocks"))
@@ -226,7 +282,11 @@ def main() -> None:
     parser.add_argument("--sections", default=repo("data", "revamp", "tier3-sections.parquet"))
     parser.add_argument("--identity-dir", default=repo("data", "revamp", "identity"))
     parser.add_argument(
-        "--canonical", default=repo("data", "revamp", "identity", "canonical-v5.ndjson")
+        "--canonical", default=repo("data", "revamp", "identity", "canonical-v7.ndjson")
+    )
+    parser.add_argument(
+        "--synonym-filter",
+        default=repo("data", "revamp", "identity", "synonym-filter-v1.csv"),
     )
     parser.add_argument(
         "--suppression",
@@ -861,7 +921,7 @@ def main() -> None:
 
     # ---- identity relations (form-of, biosimilar-of, component-of and the rest) ---------------
     relations: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    relations_file = os.path.join(args.identity_dir, "relations-v6.parquet")
+    relations_file = os.path.join(args.identity_dir, "relations-v7.parquet")
     if not os.path.exists(relations_file):
         relations_file = os.path.join(args.identity_dir, "relations-v5.parquet")
     relation_names_disambiguated = 0
@@ -904,7 +964,10 @@ def main() -> None:
     printed_names = {key: (linked_name.get(key, {}).get("displayName")
                            or page.get("displayName") or key)
                      for key, page in pages.items()}
-    synonym_kinds = salt_form_corrections(canonical, printed_names, relations)
+    synonym_kinds = merge_synonym_corrections(
+        salt_form_corrections(canonical, printed_names, relations),
+        read_synonym_filter(args.synonym_filter),
+    )
 
     # ---- write ---------------------------------------------------------------------------------
     os.makedirs(args.out_dir, exist_ok=True)
@@ -931,6 +994,8 @@ def main() -> None:
         "relationNotesWithheldFromTheFormOfNote": 0,
         "pagesWithASynonymKindCorrection": 0,
         "synonymKindCorrections": 0,
+        "synonymNamesDropped": 0,
+        "synonymKindCorrectionsByRule": {},
         "pagesWithARelationNoteDisclosure": 0,
         "relationCounterpartNamesDisambiguated": 0,
         "withDisambiguation": 0,
@@ -1029,6 +1094,13 @@ def main() -> None:
             record["synonymKinds"] = synonym_kinds[key]
             summary["pagesWithASynonymKindCorrection"] += 1
             summary["synonymKindCorrections"] += len(synonym_kinds[key])
+            for correction in synonym_kinds[key]:
+                if correction.get("to") == "drop":
+                    summary["synonymNamesDropped"] += 1
+                rule = correction.get("rule") or "S17-5-COMPONENT-OR-MIXTURE-NAME"
+                summary["synonymKindCorrectionsByRule"][rule] = (
+                    summary["synonymKindCorrectionsByRule"].get(rule, 0) + 1
+                )
         if page_patent is not None:
             record["patent"] = page_patent
         if key in disambiguation:

@@ -88,7 +88,7 @@
     "revamp:ci": "npm run revamp:ci:slug-union && npm run revamp:ci:redirect-plan && npm run revamp:ci:link-graph && npm run revamp:ci:sitemap && npm run revamp:ci:render-safety",
     "revamp:ci:slug-union": ".venv-corpus/bin/python scripts/revamp/ci_slug_union.py --check",
     "revamp:ci:redirect-plan": ".venv-corpus/bin/python scripts/revamp/ci_redirect_check.py --plan",
-    "revamp:ci:link-graph": ".venv-corpus/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds \"$PWD/data/revamp/ci-sample/thresholds-v12.json\" --presence \"$PWD/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson\"",
+    "revamp:ci:link-graph": ".venv-corpus/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds \"$PWD/data/revamp/ci-sample/thresholds-v13.json\" --presence \"$PWD/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson\"",
     "revamp:ci:sitemap": "vitest run tests/unit/ci-sitemap-invariants.test.ts",
     "revamp:ci:render-safety": ".venv-corpus/bin/python -m pytest tests/test_render_safety.py --sample data/revamp/ci-sample/render -q",
     "revamp:ci:sample": ".venv-corpus/bin/python scripts/revamp/ci_sample.py",

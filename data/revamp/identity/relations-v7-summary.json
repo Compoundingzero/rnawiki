@@ -1,0 +1,88 @@
+{
+  "canonicalPagesChanged": 8,
+  "canonicalRecords": 28709,
+  "canonicalRelationsRemoved": 8,
+  "generatedBy": "scripts/revamp/identity_relations_v7.py",
+  "relationRowsRemoved": 10,
+  "relationsIn": 5143,
+  "relationsOut": 5133,
+  "removedByReason": {
+    "DNNSSWSSYDEUBZ-UHFFFAOYSA-N describes 1 heavy atom": 2,
+    "FHNFHKCVQCLJFQ-UHFFFAOYSA-N describes 1 heavy atom": 2,
+    "GKLVYJBZJHMRIY-OUBTZVSYSA-N describes 1 heavy atom": 2,
+    "OKTJSMMVPCPJKN-UHFFFAOYSA-N describes 1 heavy atom": 2,
+    "PTFCDOFLOPIGGS-UHFFFAOYSA-N describes 1 heavy atom": 2
+  },
+  "removedRows": [
+    {
+      "page_a": "HOLD:existing:krypton-kr-81m",
+      "page_b": "K1:5I8I620HVX",
+      "reason": "DNNSSWSSYDEUBZ-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "HOLD:existing:xenon-xe-127",
+      "page_b": "K1:3H3U766W84",
+      "reason": "FHNFHKCVQCLJFQ-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:029JF1SCU8",
+      "page_b": "K1:6EW75241VU",
+      "reason": "GKLVYJBZJHMRIY-OUBTZVSYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:13S1S8SF37",
+      "page_b": "K1:M91TG242P2",
+      "reason": "PTFCDOFLOPIGGS-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:2P3VWU3H10",
+      "page_b": "K1:4ZUXHGUFHH",
+      "reason": "OKTJSMMVPCPJKN-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:3H3U766W84",
+      "page_b": "HOLD:existing:xenon-xe-127",
+      "reason": "FHNFHKCVQCLJFQ-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:4ZUXHGUFHH",
+      "page_b": "K1:2P3VWU3H10",
+      "reason": "OKTJSMMVPCPJKN-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:5I8I620HVX",
+      "page_b": "HOLD:existing:krypton-kr-81m",
+      "reason": "DNNSSWSSYDEUBZ-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:6EW75241VU",
+      "page_b": "K1:029JF1SCU8",
+      "reason": "GKLVYJBZJHMRIY-OUBTZVSYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    },
+    {
+      "page_a": "K1:M91TG242P2",
+      "page_b": "K1:13S1S8SF37",
+      "reason": "PTFCDOFLOPIGGS-UHFFFAOYSA-N describes 1 heavy atom",
+      "relation": "same_structure_as"
+    }
+  ],
+  "spec": "docs/specs/phase4-generators.md#18",
+  "structureEqualityRowsIn": 136,
+  "structureEqualityRowsOut": 126,
+  "test": {
+    "identicalFullInchikeys": true,
+    "minimumHeavyAtoms": 2,
+    "relations": [
+      "same-structure-as"
+    ]
+  }
+}
