@@ -1,66 +1,66 @@
 {
-  "recordedAt": "2026-09-10T00:59:04Z",
-  "step": "docs/specs/revamp-2026-09.md phase 6.3, refreshed by the measure 7 (v11) run",
-  "what": "The required pre-merge checks of .github/workflows/revamp-checks.yml, run the way the workflow runs them: `git archive HEAD` into a temporary directory, the files this change adds copied in beside it, a fresh virtual environment built from scripts/revamp/requirements-ci.txt, and nothing else. The corpus is absent there, as it is on a runner: data/revamp/{fields-v2,render-v11,page-blocks,derived-v2} do not exist in the tree the checks ran against. `act` is not installed on this machine.",
-  "cleanRoom": "/private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v11",
+  "recordedAt": "2026-09-10T08:59:05Z",
+  "step": "docs/specs/revamp-2026-09.md phase 6.3, refreshed by the measure 8 (v12) run",
+  "what": "The required pre-merge checks of .github/workflows/revamp-checks.yml, run the way the workflow runs them: `git archive HEAD` into a temporary directory, the files this change adds copied in beside it, a fresh virtual environment built from scripts/revamp/requirements-ci.txt, and nothing else. The corpus is absent there, as it is on a runner: data/revamp/{fields-v2,render-v12,page-blocks,derived-v2} do not exist in the tree the checks ran against. `act` is not installed on this machine.",
+  "cleanRoom": "/private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v12",
   "python": "Python 3.13.7",
   "node": "v20.20.2",
   "nodeModules": "symlinked from the working copy; the workflow runs `npm ci` instead",
   "corpusPresentInCleanRoom": {
     "data/revamp/fields-v2": false,
-    "data/revamp/render-v11": false,
+    "data/revamp/render-v12": false,
     "data/revamp/page-blocks": false,
     "data/revamp/derived-v2": false
   },
   "committedSample": {
     "ruler": [
-      "data/revamp/ci-sample/thresholds-v11.json",
-      "data/revamp/ci-sample/presence-applicable-v11-hub-members.ndjson"
+      "data/revamp/ci-sample/thresholds-v12.json",
+      "data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson"
     ],
-    "render": "data/revamp/render-v11",
+    "render": "data/revamp/render-v12",
     "pages": 200,
     "pagesPerTier": {
       "1": 64,
       "2": 68,
       "3": 68
     },
-    "bytes": 1936736
+    "bytes": 1973407
   },
   "checks": [
     {
       "check": "committed slug union is current",
       "command": ".venv-ci/bin/python scripts/revamp/ci_slug_union.py --check",
       "exitCode": 0,
-      "seconds": 0.07,
+      "seconds": 0.1,
       "lastLine": "slug union current: 9907 slugs in data/revamp/ci-sample/slug-union.csv"
     },
     {
       "check": "redirect plan over the committed slug union",
       "command": ".venv-ci/bin/python scripts/revamp/ci_redirect_check.py --plan",
       "exitCode": 0,
-      "seconds": 0.33,
+      "seconds": 0.55,
       "lastLine": "written to data/revamp/redirect-check-ci.json"
     },
     {
       "check": "hub link graph, data files only",
-      "command": ".venv-ci/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds /private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v11/data/revamp/ci-sample/thresholds-v11.json --presence /private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v11/data/revamp/ci-sample/presence-applicable-v11-hub-members.ndjson",
+      "command": ".venv-ci/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds /private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v12/data/revamp/ci-sample/thresholds-v12.json --presence /private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/944e8731-0646-45f5-ba76-96bc86e4e6b6/scratchpad/cleanroom-v12/data/revamp/ci-sample/presence-applicable-v12-hub-members.ndjson",
       "exitCode": 0,
-      "seconds": 0.66,
+      "seconds": 43.98,
       "lastLine": "}"
     },
     {
       "check": "sitemap, noindex and robots invariants",
       "command": "npx vitest run tests/unit/ci-sitemap-invariants.test.ts",
       "exitCode": 0,
-      "seconds": 0.79,
-      "lastLine": "Duration  274ms (transform 114ms, setup 14ms, collect 126ms, tests 9ms, environment 0ms, prepare 33ms)"
+      "seconds": 1.19,
+      "lastLine": "Duration  426ms (transform 167ms, setup 21ms, collect 184ms, tests 15ms, environment 0ms, prepare 49ms)"
     },
     {
       "check": "rendering rules over the committed sample",
       "command": ".venv-ci/bin/python -m pytest tests/test_render_safety.py --sample data/revamp/ci-sample/render -q",
       "exitCode": 0,
-      "seconds": 2.07,
-      "lastLine": "41 passed, 4 skipped in 1.87s"
+      "seconds": 4.36,
+      "lastLine": "45 passed, 4 skipped in 4.07s"
     }
   ],
   "result": "all five commands exit 0",
@@ -87,13 +87,13 @@
       "probe": "a line appended to app/robots.ts",
       "check": "sitemap invariants",
       "exitCode": 1,
-      "message": "\u00d7 sitemap and noindex invariants (Operating Rule 7) > keeps app/robots.ts byte-identical to the committed snapshot 4ms"
+      "message": "\u00d7 sitemap and noindex invariants (Operating Rule 7) > keeps app/robots.ts byte-identical to the committed snapshot 6ms"
     },
     {
       "probe": "the sample's provenance stream emptied",
       "check": "rendering rules",
       "exitCode": 1,
-      "message": "10 failed, 31 passed, 4 skipped in 1.81s"
+      "message": "11 failed, 34 passed, 4 skipped in 4.05s"
     }
   ]
 }

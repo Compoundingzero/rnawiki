@@ -10,7 +10,7 @@
  * identity revision now records only the most specific of them. This component keeps the guard
  * anyway, because a page loaded from an earlier revision must not paint the pair.
  */
-import type { CorpusRelationRow } from '@/lib/corpus/dossier-page'
+import type { CorpusRelationRow, CorpusSectionSentence } from '@/lib/corpus/dossier-page'
 import { VISIBLE_ROWS } from '@/lib/corpus/page-text'
 
 function Row({ relation }: { relation: CorpusRelationRow }) {
@@ -27,7 +27,42 @@ function Row({ relation }: { relation: CorpusRelationRow }) {
   )
 }
 
-export function RelationsRows({ relations }: { relations: CorpusRelationRow[] }) {
+/**
+ * §17(4): a relation the identity stage could not confirm, inside the closed control.
+ *
+ * "PRUSSIAN BLUE INSOLUBLE and Hydrogen Cyanide are linked by an FDA salt or solvate relationship,
+ * and neither the structures nor the printed names confirm that one is a salt of the other" opened
+ * the page as its form-of note, where a reader meets the sentence that says what this record is a
+ * form of. It says the opposite: that the corpus cannot say. It is technical vocabulary about how
+ * the record was resolved, so it belongs here, with the identifiers and the record ids, and the
+ * relation row above states the relation itself.
+ */
+function RelationNotes({ notes }: { notes: CorpusSectionSentence[] }) {
+  if (notes.length === 0) return null
+  return (
+    <details className="cd-evidence cd-relation-notes" id="cd-relations-evidence">
+      <summary>Show the evidence</summary>
+      <ul className="cd-rows">
+        {notes.map((note) => (
+          <li key={`${note.section}-${note.ordinal}`}>
+            {note.counterpartName ? (
+              <span className="cd-row-label">{note.counterpartName}</span>
+            ) : null}
+            <div className="cd-row-value">{note.sentence}</div>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}
+
+export function RelationsRows({
+  relations,
+  notes = [],
+}: {
+  relations: CorpusRelationRow[]
+  notes?: CorpusSectionSentence[]
+}) {
   if (relations.length === 0) return null
   const visible = relations.slice(0, VISIBLE_ROWS)
   const rest = relations.slice(VISIBLE_ROWS)
@@ -57,6 +92,7 @@ export function RelationsRows({ relations }: { relations: CorpusRelationRow[] })
           </ul>
         </details>
       ) : null}
+      <RelationNotes notes={notes} />
     </section>
   )
 }

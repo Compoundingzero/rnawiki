@@ -26,7 +26,7 @@ cleared Phase 2 mapped source that fields-v2 itself was built from:
 | openFDA label CYP and transporter extraction | `data/sources/openfda-label/mapped.parquet` field `cyp_profile` | C1 perpetrator strength and substrate roles |
 | NCATS Inxight FRDB drug-drug interaction rows | `data/sources/inxight/mapped.parquet` field `ddi` | Tier B; C1 substrate roles; the "checked, none found" evidence |
 | merged targets and mechanism classes | `data/revamp/fields-v2` fields `target`, `mechanismClass` | C2, C3 |
-| Singapore ATC level-4 codes | `data/revamp/fields-v2` field `regulatory` → `SG.atcCodes` | C3 |
+| ATC level-4 codes ChEMBL records for the molecule | `data/sources/chembl/mapped.parquet` field `atc` (`moleculeChemblId`) | C3 |
 | sources consulted per page | `data/revamp/fields-v2` fields `interactions`, `cyp_profile` (`sourcesChecked`, `consulted`) | `checked-sources.parquet` |
 | identity | `data/revamp/identity/canonical-v2.ndjson`, `spine-attached.parquet`, `relations.parquet`, `display-names.csv` | counterpart resolution and pair exclusion |
 | names | `data/corpus-20k/raw/fda-unii/UNII_Names_4Aug2026.txt` | counterpart name → UNII |
@@ -180,10 +180,38 @@ record and checking that the counterpart is a page the corpus holds.
 
 ### C3 — `additive-class`
 
-Inputs: pages A and B are both members of one additive-effect class. Membership comes from
-pharmacologic action, never from free text: a DrugCentral MeSH pharmacologic action, DrugCentral
-`EPC`/`MoA`/`has role`, an Inxight pharmacologic class or therapeutic function, or an ATC level-4
-code from the HSA product record. `direction` = `additive <class> effect`.
+Inputs: pages A and B are both members of one additive-effect class. Membership comes from a class
+recorded **against the substance itself**, never from free text and never from a product record: a
+DrugCentral MeSH pharmacologic action, DrugCentral `EPC`/`MoA`/`has role`, an Inxight pharmacologic
+class or therapeutic function, or an ATC level-4 code ChEMBL publishes for the molecule.
+`direction` = `additive <class> effect`.
+
+The ATC input was the HSA product record's `atcCodes` until 2026-09-10
+(`docs/specs/phase4-generators.md` §17 item 1). Those codes classify the **product licences** the
+listing holds for a substance, so a saline infusion licensed as a heparin solution put `B01AB51`
+on Sodium Chloride, an aspirin/glycine tablet put `B01AC06` on Glycine, and the additive-
+anticoagulant rule paired both with Rivaroxaban. ChEMBL's rows are published against
+`moleculeChemblId`: a code there classifies the substance and never something it was formulated
+into. A class statement is read only from DrugCentral and Inxight for the same reason — those two
+record a pharmacologic class against the substance record.
+
+**Excluded entity classes.** A page whose own records classify it as an excipient, vehicle,
+solution, mineral salt or water contributes no additive-class row in either direction. Neither
+vocabulary that carries an entity class in this corpus names those five (GSRS's substance class is
+`chemical`, `protein`, `mixture` and five more; the corpus's own `entityClass` is
+`APPROVED_MEDICINE`, `SUPPLEMENT_INGREDIENT` and ten more), and a GSRS class cannot be read per
+page at all, because a page carries every GSRS record its identifiers matched and Alteplase,
+Danaparoid and Doxepin each carry a `mixture` record beside their own. The class is therefore read
+off the same stored evidence membership is read off, by three tests:
+
+| Test | Evidence | Pages excluded (2026-09-10) |
+| --- | --- | --- |
+| a pharmaceutic-aid role | a DrugCentral or Inxight class equal to one of `excipient(s)`, `pharmaceutic aids`, `pharmaceutical vehicles`, `pharmaceutical solutions`, `ophthalmic solutions`, `solvent(s)`, `surfactant(s)`, `sweetening agents`, `sweeteners`, `coloring agents`, `food coloring (agents)`, `flavoring agents`, `food humectants`, `food preservatives`, `preservatives, pharmaceutical`, `food emulsifiers`, `thickening agents`, `aerosol propellants` | 53 |
+| a non-therapeutic ATC class | a ChEMBL molecule ATC under `A12` (mineral supplements), `B05` (blood substitutes and perfusion solutions) or `V07` (all other non-therapeutic products) — the WHO's own words for a mineral salt, a solution and a vehicle | 98 |
+| water | the FDA substance register's UNII `059QF0KO0R` | 1 |
+
+An excluded page keeps every other tier: a label that names it is still label-documented evidence
+about the page it is on.
 
 | Class | Member terms (matched exactly, case-insensitively) | ATC level-4 codes |
 | --- | --- | --- |
@@ -307,6 +335,40 @@ without a label. Those pages keep their checked-sources statement.
 
 DDInter was not used as a second reference. The gate in `docs/revamp/BLOCKERS.md` is not lifted and
 the JSON records that under `ddinter`.
+
+## 7b. The re-measurement of 2026-09-10, after §17 item 1
+
+`docs/specs/phase4-generators.md` §17 item 1 changed two of C3's inputs, so the rules were scored
+again on the rebuilt table. Both runs are in `data/revamp/interaction-validation.json`: the new one
+at the top level, the 2026-09-06 one under `previous_measurements`.
+
+**The bar is met and the disabled list does not change.** `likely` reaches label-adjudicated
+precision **0.9956** over 457 adjudicated pairs against the 0.60 bar; overall precision **0.9799**
+over 1,939 adjudicated pairs; overall recall **0.1209**. No rule the labels adjudicate falls under
+0.40, so the three rules §7 disabled stay disabled for the reasons §7 records and nothing joins
+them.
+
+| Rule | Adjudicated precision | Adjudicated pairs | Recall | Rows | 2026-09-06 precision · pairs · rows |
+| --- | --- | --- | --- | --- | --- |
+| C1-cyp-inhibitor-substrate | 0.9806 | 825 | 0.0515 | 30,604 | 0.9806 · 825 · 30,674 |
+| C1-cyp-inducer-substrate | 1.0 | 358 | 0.0228 | 14,699 | 1.0 · 361 · 14,737 |
+| C3-additive-serotonergic | 1.0 | 39 | 0.0025 | 4,684 | 1.0 · 18 · 2,346 |
+| C3-additive-CNS-depressant | 0.9412 | 34 | 0.0020 | 35,890 | 0.9375 · 16 · 19,724 |
+| C3-additive-anticoagulant-antiplatelet | 1.0 | 49 | 0.0031 | 16,750 | 1.0 · 28 · 7,642 |
+| C3-additive-hypotensive | 0.9298 | 242 | 0.0143 | 125,588 | 0.9444 · 162 · 77,494 |
+| C3-additive-hypoglycaemic | 1.0 | 104 | 0.0066 | 12,840 | 1.0 · 40 · 4,396 |
+| C3-additive-hyperkalaemic | 1.0 | 70 | 0.0045 | 1,402 | 1.0 · 28 · 414 |
+| C3-additive-QT-prolonging | 0.9905 | 421 | 0.0265 | 19,726 | 0.9906 · 424 · 20,866 |
+
+**The published C3 rows: 132,308 → 216,880.** 8,680 rows were removed and 93,252 added. The removals
+are the pages whose only claim to a class was a product licence's ATC code — Sodium Chloride,
+Glycine and the other solution and excipient records — and the 152 pages the entity-class tests
+exclude. The additions are the substances ChEMBL's molecule ATC classifies and the HSA listing does
+not: 4,138 pages carry a ChEMBL molecule ATC against 1,540 with any HSA product ATC, so a
+classification recorded against the substance reaches nearly three times as many records as one
+recorded against the products it is sold in. Every rule's adjudicated precision is within 0.015 of
+its 2026-09-06 value on a larger adjudicated denominator, so the wider membership is not a looser
+one.
 
 ## 8. What the measurement leaves standing
 

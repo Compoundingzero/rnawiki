@@ -38,6 +38,9 @@ IDENTITY = os.path.join(ROOT, "data", "revamp", "identity")
 OUT_DIR = os.path.join(ROOT, "data", "revamp", "interactions")
 OPENFDA_MAPPED = os.path.join(ROOT, "data", "sources", "openfda-label", "mapped.parquet")
 INXIGHT_MAPPED = os.path.join(ROOT, "data", "sources", "inxight", "mapped.parquet")
+# ChEMBL's ATC classification is recorded against the molecule (every row carries the
+# `moleculeChemblId` it was published for), which is what section 17 item 1 licenses C3 to read.
+CHEMBL_MAPPED = os.path.join(ROOT, "data", "sources", "chembl", "mapped.parquet")
 UNII_NAMES = os.path.join(ROOT, "data", "corpus-20k", "raw", "fda-unii", "UNII_Names_4Aug2026.txt")
 SALTS = os.path.join(ROOT, "scripts", "revamp", "salts.txt")
 # The measurement's own record of which rules it disabled, and the only place this build reads
@@ -300,6 +303,52 @@ def name_is_related(form, display, unii_forms):
     return False
 
 
+# The class statements C3 may read membership off (docs/specs/phase4-generators.md section 17
+# item 1: "a pharmacologic action or ATC class recorded against the substance itself (DrugCentral
+# action, Inxight class, ChEMBL ATC on the molecule)"). DrugCentral's pharmacologic action and
+# ChEBI role and Inxight's pharmacologic class and therapeutic function are recorded against the
+# substance record; IUPHAR's ligand action is an action at a target and names no class, and it
+# matched no class term in the corpus when this rule was written.
+SUBSTANCE_CLASS_SOURCES = ("drugcentral", "inxight")
+
+
+def load_molecule_atc():
+    """ATC codes ChEMBL publishes for the molecule, per corpus page.
+
+    Section 17 item 1 replaces the ATC C3 used to read. That was
+    `fields.regulatory.value.SG.atcCodes`, which is the set of codes carried by the **product**
+    licences the HSA listing holds for the substance, so a saline infusion licensed as a heparin
+    solution put `B01AB51` on Sodium Chloride and an aspirin/glycine tablet put `B01AC06` on
+    Glycine, and the additive-anticoagulant rule then paired both with Rivaroxaban. ChEMBL's
+    `atc` rows are published against `moleculeChemblId`, so a code here is a classification of
+    the substance and never of something it was formulated into.
+    """
+    if not os.path.exists(CHEMBL_MAPPED):
+        raise SystemExit(
+            "%s is missing: C3 additive-class membership reads ChEMBL's molecule ATC from it "
+            "(docs/specs/interaction-rules.md section 4)" % os.path.relpath(CHEMBL_MAPPED, ROOT))
+    frame = pd.read_parquet(CHEMBL_MAPPED, columns=["key", "field", "value",
+                                                    "source_record_id", "source_date"])
+    out = defaultdict(dict)
+    for record in frame[frame["field"] == "atc"].itertuples(index=False):
+        try:
+            value = json.loads(record.value)
+        except (TypeError, ValueError):
+            continue
+        code = value.get("code") or value.get("level5")
+        molecule = value.get("moleculeChemblId")
+        if not isinstance(code, str) or not re.match(r"^[A-Z][0-9]{2}[A-Z]{2}", code) or not molecule:
+            continue
+        out[record.key][code[:5]] = {
+            "code": code,
+            "level4": code[:5],
+            "molecule": molecule,
+            "source_record_id": record.source_record_id,
+            "source_date": record.source_date,
+        }
+    return {key: dict(sorted(codes.items())) for key, codes in out.items()}
+
+
 def load_fields():
     """Per page: display name, model, targets, mechanism classes, ATC, consulted lists."""
     pages = {}
@@ -315,7 +364,13 @@ def load_fields():
                         "model": rec.get("model"),
                         "targets": [],
                         "classes": [],
-                        "atc": [],
+                        # The product-licence ATC codes the HSA listing carries for this
+                        # substance. Section 17 item 1 bars C3 from reading them: they classify
+                        # the products the substance appears in, not the substance. They are kept
+                        # here so the build can report how many pages they used to reach.
+                        "hsaProductAtc": [],
+                        # ChEMBL's ATC for the molecule, filled by `load_molecule_atc` below.
+                        "moleculeAtc": {},
                         "consulted": [],
                     }
 
@@ -358,9 +413,9 @@ def load_fields():
                     reg = present("regulatory")
                     if isinstance(reg, dict):
                         sg = reg.get("SG") or {}
-                        page["atc"] = [c for c in (sg.get("atcCodes") or [])
-                                       if isinstance(c, str)
-                                       and re.match(r"^[A-Z][0-9]{2}[A-Z]{2}", c)]
+                        page["hsaProductAtc"] = [c for c in (sg.get("atcCodes") or [])
+                                                 if isinstance(c, str)
+                                                 and re.match(r"^[A-Z][0-9]{2}[A-Z]{2}", c)]
                     consulted = []
                     for name in ("interactions", "cyp_profile"):
                         entry = fields.get(name) or {}
@@ -824,6 +879,57 @@ CLASS_ATC_PREFIX = {
     "hypoglycaemic": ("A10",),
 }
 
+# ---------------------------------------------------------------- excluded entity classes
+#
+# Section 17 item 1: "counterparts whose entity class is excipient, vehicle, solution, mineral
+# salt or water are excluded". Neither vocabulary that carries an entity class in this corpus
+# names those five — GSRS's substance class is `chemical`, `protein`, `mixture` and five more, and
+# the corpus's own `entityClass` is `APPROVED_MEDICINE`, `SUPPLEMENT_INGREDIENT` and ten more —
+# and a GSRS class cannot be read per page at all, because a page carries every GSRS record its
+# identifiers matched and Alteplase, Danaparoid and Doxepin each carry a `mixture` record beside
+# their own. The class is therefore read off the same stored evidence C3 reads membership off,
+# by three tests, each recorded with what it removed:
+#
+#   1. a pharmacologic action or class, from the same DrugCentral and Inxight vocabularies, that
+#      names the substance's role as an excipient, vehicle, solvent, solution or pharmaceutic aid;
+#   2. an ATC class ChEMBL records for the molecule under A12 (mineral supplements), B05 (blood
+#      substitutes and perfusion solutions: intravenous and irrigating solutions and their
+#      additives) or V07 (all other non-therapeutic products) — the WHO's own words for a mineral
+#      salt, a solution and a vehicle;
+#   3. the FDA substance register's UNII for water.
+#
+# A page excluded here contributes no additive-class row in either direction. It keeps every other
+# tier: a label that names it is still label-documented evidence about the page it is on.
+EXCLUDED_ENTITY_CLASS_TERMS = {
+    "excipient", "excipients", "pharmaceutic aids", "pharmaceutical vehicles",
+    "pharmaceutical solutions", "ophthalmic solutions", "solvents", "solvent",
+    "surfactant", "surfactants", "sweetening agents", "sweeteners", "coloring agents",
+    "food coloring agents", "food coloring", "flavoring agents", "food humectants",
+    "food preservatives", "preservatives, pharmaceutical", "food emulsifiers",
+    "thickening agents", "aerosol propellants",
+}
+EXCLUDED_ENTITY_CLASS_ATC_PREFIX = ("A12", "B05", "V07")
+# Water, FDA substance register (UNII). The corpus page is `Aqua`; the register's own name for the
+# substance is WATER and its UNII is the identifier both records are keyed on.
+WATER_UNII = "059QF0KO0R"
+
+
+def excluded_entity_class(key, page, molecule_atc, identity):
+    """Why this page is not an additive-class counterpart, or None."""
+    terms = {(row.get("statement") or "").strip().lower()
+             for row in page["classes"]
+             if row.get("source") in SUBSTANCE_CLASS_SOURCES}
+    named = sorted(terms & EXCLUDED_ENTITY_CLASS_TERMS)
+    if named:
+        return "recorded pharmacologic class: %s" % "; ".join(named)
+    codes = sorted(code for code in (molecule_atc.get(key) or {})
+                   if code.startswith(EXCLUDED_ENTITY_CLASS_ATC_PREFIX))
+    if codes:
+        return "ChEMBL ATC on the molecule: %s" % ", ".join(codes)
+    if (identity["keys"].get(key) or {}).get("unii") == WATER_UNII:
+        return "the FDA substance register records this page as water (UNII %s)" % WATER_UNII
+    return None
+
 
 def cyp_rows(openfda, inxight):
     """Return (perpetrators by (enzyme, role), substrate pages by enzyme)."""
@@ -1043,15 +1149,36 @@ def qt_members(openfda):
     return out
 
 
-def rule_c3(pages, identity, qt):
+def rule_c3(pages, identity, qt, molecule_atc):
+    """Additive-effect classes, from classes recorded against the substance itself.
+
+    Section 17 item 1. Two inputs changed and both narrow the rule:
+
+    * membership from a **class statement** is read only from DrugCentral and Inxight, the two
+      vocabularies that record a pharmacologic action or class against the substance record;
+    * membership from an **ATC code** is read from ChEMBL's molecule ATC and no longer from the
+      HSA product licences, which classify the products a substance is formulated into.
+
+    A counterpart whose own records classify it as an excipient, vehicle, solution, mineral salt
+    or water contributes nothing in either direction (`excluded_entity_class`).
+    """
     membership = defaultdict(dict)
+    stats = Counter()
+    excluded = {}
     for key, page in pages.items():
+        reason = excluded_entity_class(key, page, molecule_atc, identity)
+        if reason:
+            excluded[key] = reason
+            continue
         terms = {}
         for c in page["classes"]:
+            if c.get("source") not in SUBSTANCE_CLASS_SOURCES:
+                stats["class_statements_outside_the_substance_vocabularies"] += 1
+                continue
             statement = (c["statement"] or "").strip().lower()
             if statement:
                 terms.setdefault(statement, c)
-        codes = {c[:5] for c in page["atc"]}
+        codes = molecule_atc.get(key) or {}
         for klass, wanted in CLASS_TERMS.items():
             if set(terms) & CLASS_EXCLUDE.get(klass, set()):
                 continue
@@ -1063,7 +1190,7 @@ def rule_c3(pages, identity, qt):
                         code.startswith(CLASS_ATC_PREFIX.get(klass, ())):
                     atc_hits.append(code)
             if atc_hits:
-                sources.add("atc")
+                sources.add("chembl-atc")
             if not hits and not atc_hits:
                 continue
             membership[klass][key] = {
@@ -1071,7 +1198,13 @@ def rule_c3(pages, identity, qt):
                 "atc": sorted(atc_hits),
                 "sources": sorted(sources),
             }
+    stats["pages_excluded_by_entity_class"] = len(excluded)
+    for reason in excluded.values():
+        stats["excluded:%s" % reason.split(":")[0]] += 1
     for key, info in qt.items():
+        if key in pages and key in excluded:
+            stats["qt_members_excluded_by_entity_class"] += 1
+            continue
         if key in pages:
             membership["QT-prolonging"][key] = {
                 "terms": [], "atc": [], "sources": ["openfda-label"],
@@ -1080,7 +1213,6 @@ def rule_c3(pages, identity, qt):
                 "licence": info["licence"], "cue": info["cue"],
             }
     rows = []
-    stats = Counter()
     related = identity["related"]
     keys = identity["keys"]
     for klass, members in membership.items():
@@ -1128,7 +1260,7 @@ def rule_c3(pages, identity, qt):
                         }),
                     ))
                     stats["rows"] += 1
-    return rows, dict(stats)
+    return rows, dict(stats), excluded
 
 
 # ------------------------------------------------------------------- writing
@@ -1177,6 +1309,12 @@ def main():
     pages = load_fields()
     print("  field records %d" % len(pages), flush=True)
 
+    print("reading ChEMBL's molecule ATC", flush=True)
+    molecule_atc = load_molecule_atc()
+    print("  pages with a molecule ATC code %d (HSA product ATC on %d pages, not read by C3)"
+          % (len(molecule_atc),
+             sum(1 for page in pages.values() if page["hsaProductAtc"])), flush=True)
+
     print("reading mapped sources", flush=True)
     openfda = pd.read_parquet(OPENFDA_MAPPED)
     inxight = pd.read_parquet(INXIGHT_MAPPED)
@@ -1224,7 +1362,7 @@ def main():
     rows_c1, stats_c1 = rule_c1(perpetrators, substrates, identity, pages)
     rows_c2, stats_c2 = rule_c2(pages, identity)
     qt = qt_members(openfda)
-    rows_c3, stats_c3 = rule_c3(pages, identity, qt)
+    rows_c3, stats_c3, c3_excluded = rule_c3(pages, identity, qt, molecule_atc)
     print("  C1 %d, C2 %d, C3 %d" % (len(rows_c1), len(rows_c2), len(rows_c3)), flush=True)
 
     every_row = rows_a + rows_b + rows_c1 + rows_c2 + rows_c3
@@ -1295,6 +1433,16 @@ def main():
         "tier_c1_stats": stats_c1,
         "tier_c2_stats": stats_c2,
         "tier_c3_stats": stats_c3,
+        # Section 17 item 1: what the narrowed membership reads, and what it refuses.
+        "c3_membership_inputs": {
+            "class_statement_sources": list(SUBSTANCE_CLASS_SOURCES),
+            "atc": "data/sources/chembl/mapped.parquet field atc (moleculeChemblId)",
+            "atc_not_read": "fields.regulatory.value.SG.atcCodes (HSA product licences)",
+            "pages_with_molecule_atc": len(molecule_atc),
+            "pages_with_hsa_product_atc":
+                sum(1 for page in pages.values() if page["hsaProductAtc"]),
+        },
+        "c3_excluded_by_entity_class": dict(sorted(c3_excluded.items())),
         "qt_member_pages": len(qt),
         "ddinter": "not read: the non-commercial gate in docs/revamp/BLOCKERS.md is not lifted",
     }

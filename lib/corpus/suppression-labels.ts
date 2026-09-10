@@ -305,21 +305,64 @@ function clauseFor(
       return `Its recorded route of administration is one a clinician gives: ${items.join('; ')}`
     }
     case 'S8': {
-      const items = [
-        ...new Set(
-          rows
-            .map((row) => {
-              const raw = row.value ?? ''
-              const detail = /\(([^)]*)\)\s*$/.exec(raw)?.[1]
-              const register = registerWords(raw) || registerWords(row.source)
-              if (detail) return item(flatten(detail).replace(/;\s*/g, ', '), register)
-              return register ? item('no reason recorded with the flag', register) : ''
-            })
-            .filter(Boolean),
-        ),
-      ]
-      if (items.length === 0) return undefined
-      return `A register records it withdrawn or suspended for a safety reason: ${items.join('; ')}`
+      /*
+       * §17(2): one clause per event, every register that recorded it named on it, and no
+       * flag-only clause where another source recorded the reason.
+       *
+       * Urethane's record carries three S8 rows: ChEMBL's `withdrawn_flag`, which is the flag
+       * alone, and the same withdrawal — carcinogenicity, eight countries, 1963 — from ChEMBL's
+       * `drug_warning` and from Open Targets. Read row by row that printed three clauses, the
+       * first of them "no reason recorded with the flag", ahead of the two that gave the reason
+       * twice. The event is the reason and the countries and the year; the registers are what
+       * recorded it.
+       */
+      const events = new Map<
+        string,
+        { detail: string; where: string; reasoned: boolean; registers: string[] }
+      >()
+      const flagOnly: string[] = []
+      for (const row of rows) {
+        const raw = row.value ?? ''
+        const detail = /\(([^)]*)\)\s*$/.exec(raw)?.[1]
+        const register = registerWords(raw) || registerWords(row.source)
+        if (!detail) {
+          if (register && !flagOnly.includes(register)) flagOnly.push(register)
+          continue
+        }
+        const stated = flatten(detail).replace(/;\s*/g, ', ')
+        if (!stated) continue
+        /*
+         * The register writes the event as `reason; jurisdiction; …; year`, and a source that
+         * recorded no reason writes `reason not recorded` in the first slot. Two rows sharing
+         * everything after the reason are the same withdrawal, so the jurisdictions and the year
+         * identify the event and the reason is what a source did or did not add to it.
+         */
+        const parts = detail.split(';').map((part) => flatten(part))
+        const reason = (parts[0] ?? '').toLowerCase()
+        const where = parts.slice(1).join('|')
+        const reasoned = reason.length > 0 && reason !== 'reason not recorded'
+        const held = events.get(stated) ?? { detail: stated, where, reasoned, registers: [] }
+        if (register && !held.registers.includes(register)) held.registers.push(register)
+        events.set(stated, held)
+      }
+      // A source that recorded no reason adds nothing beside one that did, for the same
+      // withdrawal: "reason not recorded, Norway, 1987" printed beside "carcinogenicity, Norway,
+      // 1987" states the absence of what the line above it states.
+      const reasonedPlaces = new Set(
+        [...events.values()].filter((event) => event.reasoned).map((event) => event.where),
+      )
+      const items = [...events.values()]
+        .filter((event) => event.reasoned || !reasonedPlaces.has(event.where))
+        .map((event) => item(event.detail, event.registers.sort().join('; ')))
+      // The flag on its own is evidence only where no source stated a reason at all.
+      if (items.length === 0) {
+        for (const register of flagOnly.sort()) {
+          items.push(item('no reason recorded with the flag', register))
+        }
+      }
+      const stated = items.filter(Boolean)
+      if (stated.length === 0) return undefined
+      return `A register records it withdrawn or suspended for a safety reason: ${stated.join('; ')}`
     }
     case 'S9': {
       const items = [

@@ -2,7 +2,7 @@
 
 One option is defined, `--sample`, and one file reads it: `tests/test_render_safety.py`.
 
-Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v11/`,
+Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v12/`,
 `data/revamp/page-blocks/`, `data/revamp/fields-v2/` — which is gitignored and runs to hundreds of
 megabytes, so a GitHub Actions runner has none of it. `scripts/revamp/ci_sample.py` writes a small
 committed sample of exactly those streams for 200 drawn pages, and `--sample` points the rules at
@@ -29,7 +29,7 @@ to pass over nothing:
 Both run on the workstation, over the whole corpus, with the plain command above and no `--sample`.
 `docs/specs/ci-checks.md` records that split, and the CI job prints it.
 
-A third rule skips itself wherever `data/revamp/render-v11/dom-parity.json` is absent: the parity
+A third rule skips itself wherever `data/revamp/render-v12/dom-parity.json` is absent: the parity
 report is produced by `scripts/revamp/dom_parity.py` against a running build, which CI does not
 have. It is listed below for the same reason — so the skip is a stated one.
 

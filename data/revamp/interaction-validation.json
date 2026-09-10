@@ -1,6 +1,6 @@
 {
   "bars": {
-    "likely_pairs_the_labels_adjudicate": 458,
+    "likely_pairs_the_labels_adjudicate": 457,
     "likely_precision_at_least": 0.6,
     "likely_precision_measured": 0.9956,
     "likely_precision_meets_the_bar": true,
@@ -9,94 +9,94 @@
   },
   "by_band": {
     "likely": {
-      "both_pages_have_an_interaction_section": 5158,
+      "both_pages_have_an_interaction_section": 5099,
       "label_adjudicated_false": 2,
-      "label_adjudicated_pairs": 458,
+      "label_adjudicated_pairs": 457,
       "label_adjudicated_precision": 0.9956,
-      "label_adjudicated_true": 456,
-      "label_coverage_precision": 0.0884,
-      "label_coverage_precision_over_base_rate": 18.6,
-      "predicted_pairs": 8051,
-      "recall": 0.0286
+      "label_adjudicated_true": 455,
+      "label_coverage_precision": 0.0892,
+      "label_coverage_precision_over_base_rate": 15.8,
+      "predicted_pairs": 9376,
+      "recall": 0.029
     },
     "possible": {
-      "both_pages_have_an_interaction_section": 28221,
-      "label_adjudicated_false": 28,
-      "label_adjudicated_pairs": 1380,
-      "label_adjudicated_precision": 0.9797,
-      "label_adjudicated_true": 1352,
-      "label_coverage_precision": 0.0422,
-      "label_coverage_precision_over_base_rate": 8.9,
-      "predicted_pairs": 142818,
-      "recall": 0.0849
+      "both_pages_have_an_interaction_section": 29366,
+      "label_adjudicated_false": 37,
+      "label_adjudicated_pairs": 1576,
+      "label_adjudicated_precision": 0.9765,
+      "label_adjudicated_true": 1539,
+      "label_coverage_precision": 0.0436,
+      "label_coverage_precision_over_base_rate": 7.7,
+      "predicted_pairs": 182877,
+      "recall": 0.098
     }
   },
   "by_rule": {
     "C1-cyp-inducer-substrate": {
-      "both_pages_have_an_interaction_section": 7138,
+      "both_pages_have_an_interaction_section": 7040,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 361,
+      "label_adjudicated_pairs": 358,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 361,
-      "label_coverage_precision": 0.046,
-      "label_coverage_precision_over_base_rate": 9.7,
-      "predicted_pairs": 13900,
-      "recall": 0.0227
+      "label_adjudicated_true": 358,
+      "label_coverage_precision": 0.0462,
+      "label_coverage_precision_over_base_rate": 8.2,
+      "predicted_pairs": 13864,
+      "recall": 0.0228
     },
     "C1-cyp-inhibitor-substrate": {
-      "both_pages_have_an_interaction_section": 14505,
+      "both_pages_have_an_interaction_section": 14300,
       "label_adjudicated_false": 16,
       "label_adjudicated_pairs": 825,
       "label_adjudicated_precision": 0.9806,
       "label_adjudicated_true": 809,
-      "label_coverage_precision": 0.0496,
-      "label_coverage_precision_over_base_rate": 10.4,
-      "predicted_pairs": 28600,
-      "recall": 0.0508
+      "label_coverage_precision": 0.0502,
+      "label_coverage_precision_over_base_rate": 8.9,
+      "predicted_pairs": 28533,
+      "recall": 0.0515
     },
     "C2-shared-target-same-direction": {
-      "both_pages_have_an_interaction_section": 3,
+      "both_pages_have_an_interaction_section": 0,
       "label_adjudicated_false": 0,
       "label_adjudicated_pairs": 0,
       "label_adjudicated_precision": null,
       "label_adjudicated_true": 0,
-      "label_coverage_precision": 0.0,
-      "label_coverage_precision_over_base_rate": 0.0,
+      "label_coverage_precision": null,
+      "label_coverage_precision_over_base_rate": null,
       "predicted_pairs": 43068,
       "recall": 0.0
     },
     "C3-additive-CNS-depressant": {
-      "both_pages_have_an_interaction_section": 120,
-      "label_adjudicated_false": 1,
-      "label_adjudicated_pairs": 16,
-      "label_adjudicated_precision": 0.9375,
-      "label_adjudicated_true": 15,
-      "label_coverage_precision": 0.1,
-      "label_coverage_precision_over_base_rate": 21.0,
-      "predicted_pairs": 9862,
-      "recall": 0.0009
+      "both_pages_have_an_interaction_section": 406,
+      "label_adjudicated_false": 2,
+      "label_adjudicated_pairs": 34,
+      "label_adjudicated_precision": 0.9412,
+      "label_adjudicated_true": 32,
+      "label_coverage_precision": 0.0567,
+      "label_coverage_precision_over_base_rate": 10.0,
+      "predicted_pairs": 17945,
+      "recall": 0.002
     },
     "C3-additive-QT-prolonging": {
-      "both_pages_have_an_interaction_section": 10433,
+      "both_pages_have_an_interaction_section": 9863,
       "label_adjudicated_false": 4,
-      "label_adjudicated_pairs": 424,
-      "label_adjudicated_precision": 0.9906,
-      "label_adjudicated_true": 420,
-      "label_coverage_precision": 0.0403,
-      "label_coverage_precision_over_base_rate": 8.5,
-      "predicted_pairs": 10433,
-      "recall": 0.0264
+      "label_adjudicated_pairs": 421,
+      "label_adjudicated_precision": 0.9905,
+      "label_adjudicated_true": 417,
+      "label_coverage_precision": 0.0423,
+      "label_coverage_precision_over_base_rate": 7.5,
+      "predicted_pairs": 9863,
+      "recall": 0.0265
     },
     "C3-additive-anticoagulant-antiplatelet": {
-      "both_pages_have_an_interaction_section": 105,
+      "both_pages_have_an_interaction_section": 210,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 28,
+      "label_adjudicated_pairs": 49,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 28,
-      "label_coverage_precision": 0.2381,
-      "label_coverage_precision_over_base_rate": 50.1,
-      "predicted_pairs": 3821,
-      "recall": 0.0018
+      "label_adjudicated_true": 49,
+      "label_coverage_precision": 0.1667,
+      "label_coverage_precision_over_base_rate": 29.5,
+      "predicted_pairs": 8375,
+      "recall": 0.0031
     },
     "C3-additive-hepatotoxic": {
       "both_pages_have_an_interaction_section": 0,
@@ -110,37 +110,37 @@
       "recall": 0.0
     },
     "C3-additive-hyperkalaemic": {
-      "both_pages_have_an_interaction_section": 103,
+      "both_pages_have_an_interaction_section": 188,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 28,
+      "label_adjudicated_pairs": 70,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 28,
-      "label_coverage_precision": 0.2427,
-      "label_coverage_precision_over_base_rate": 51.1,
-      "predicted_pairs": 207,
-      "recall": 0.0018
+      "label_adjudicated_true": 70,
+      "label_coverage_precision": 0.1968,
+      "label_coverage_precision_over_base_rate": 34.8,
+      "predicted_pairs": 701,
+      "recall": 0.0045
     },
     "C3-additive-hypoglycaemic": {
-      "both_pages_have_an_interaction_section": 693,
+      "both_pages_have_an_interaction_section": 1023,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 40,
+      "label_adjudicated_pairs": 104,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 40,
-      "label_coverage_precision": 0.0534,
-      "label_coverage_precision_over_base_rate": 11.2,
-      "predicted_pairs": 2198,
-      "recall": 0.0025
+      "label_adjudicated_true": 104,
+      "label_coverage_precision": 0.088,
+      "label_coverage_precision_over_base_rate": 15.6,
+      "predicted_pairs": 6420,
+      "recall": 0.0066
     },
     "C3-additive-hypotensive": {
-      "both_pages_have_an_interaction_section": 941,
-      "label_adjudicated_false": 9,
-      "label_adjudicated_pairs": 162,
-      "label_adjudicated_precision": 0.9444,
-      "label_adjudicated_true": 153,
-      "label_coverage_precision": 0.1318,
-      "label_coverage_precision_over_base_rate": 27.7,
-      "predicted_pairs": 38747,
-      "recall": 0.0096
+      "both_pages_have_an_interaction_section": 2076,
+      "label_adjudicated_false": 17,
+      "label_adjudicated_pairs": 242,
+      "label_adjudicated_precision": 0.9298,
+      "label_adjudicated_true": 225,
+      "label_coverage_precision": 0.0641,
+      "label_coverage_precision_over_base_rate": 11.3,
+      "predicted_pairs": 62794,
+      "recall": 0.0143
     },
     "C3-additive-nephrotoxic": {
       "both_pages_have_an_interaction_section": 0,
@@ -154,61 +154,61 @@
       "recall": 0.0
     },
     "C3-additive-serotonergic": {
-      "both_pages_have_an_interaction_section": 36,
+      "both_pages_have_an_interaction_section": 136,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 18,
+      "label_adjudicated_pairs": 39,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 18,
-      "label_coverage_precision": 0.3333,
-      "label_coverage_precision_over_base_rate": 70.1,
-      "predicted_pairs": 1173,
-      "recall": 0.0011
+      "label_adjudicated_true": 39,
+      "label_coverage_precision": 0.1985,
+      "label_coverage_precision_over_base_rate": 35.1,
+      "predicted_pairs": 2342,
+      "recall": 0.0025
     }
   },
   "by_rule_and_band": {
     "C1-cyp-inducer-substrate / likely": {
-      "both_pages_have_an_interaction_section": 2832,
+      "both_pages_have_an_interaction_section": 2800,
       "label_adjudicated_false": 0,
       "label_adjudicated_pairs": 196,
       "label_adjudicated_precision": 1.0,
       "label_adjudicated_true": 196,
-      "label_coverage_precision": 0.0692,
-      "label_coverage_precision_over_base_rate": 14.6,
-      "predicted_pairs": 2832,
-      "recall": 0.0123
+      "label_coverage_precision": 0.07,
+      "label_coverage_precision_over_base_rate": 12.4,
+      "predicted_pairs": 2800,
+      "recall": 0.0125
     },
     "C1-cyp-inducer-substrate / possible": {
-      "both_pages_have_an_interaction_section": 4395,
+      "both_pages_have_an_interaction_section": 4329,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 168,
+      "label_adjudicated_pairs": 165,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 168,
-      "label_coverage_precision": 0.0307,
-      "label_coverage_precision_over_base_rate": 6.5,
-      "predicted_pairs": 11157,
+      "label_adjudicated_true": 165,
+      "label_coverage_precision": 0.0305,
+      "label_coverage_precision_over_base_rate": 5.4,
+      "predicted_pairs": 11153,
       "recall": 0.0105
     },
     "C1-cyp-inhibitor-substrate / likely": {
-      "both_pages_have_an_interaction_section": 2708,
+      "both_pages_have_an_interaction_section": 2677,
       "label_adjudicated_false": 2,
-      "label_adjudicated_pairs": 288,
-      "label_adjudicated_precision": 0.9931,
-      "label_adjudicated_true": 286,
-      "label_coverage_precision": 0.1056,
-      "label_coverage_precision_over_base_rate": 22.2,
-      "predicted_pairs": 2708,
-      "recall": 0.018
+      "label_adjudicated_pairs": 287,
+      "label_adjudicated_precision": 0.993,
+      "label_adjudicated_true": 285,
+      "label_coverage_precision": 0.1065,
+      "label_coverage_precision_over_base_rate": 18.8,
+      "predicted_pairs": 2677,
+      "recall": 0.0181
     },
     "C1-cyp-inhibitor-substrate / possible": {
-      "both_pages_have_an_interaction_section": 12346,
+      "both_pages_have_an_interaction_section": 12168,
       "label_adjudicated_false": 14,
-      "label_adjudicated_pairs": 569,
+      "label_adjudicated_pairs": 570,
       "label_adjudicated_precision": 0.9754,
-      "label_adjudicated_true": 555,
-      "label_coverage_precision": 0.0377,
-      "label_coverage_precision_over_base_rate": 7.9,
-      "predicted_pairs": 26441,
-      "recall": 0.0348
+      "label_adjudicated_true": 556,
+      "label_coverage_precision": 0.0382,
+      "label_coverage_precision_over_base_rate": 6.8,
+      "predicted_pairs": 26401,
+      "recall": 0.0354
     },
     "C2-shared-target-same-direction / likely": {
       "both_pages_have_an_interaction_section": 0,
@@ -222,13 +222,13 @@
       "recall": 0.0
     },
     "C2-shared-target-same-direction / possible": {
-      "both_pages_have_an_interaction_section": 3,
+      "both_pages_have_an_interaction_section": 0,
       "label_adjudicated_false": 0,
       "label_adjudicated_pairs": 0,
       "label_adjudicated_precision": null,
       "label_adjudicated_true": 0,
-      "label_coverage_precision": 0.0,
-      "label_coverage_precision_over_base_rate": 0.0,
+      "label_coverage_precision": null,
+      "label_coverage_precision_over_base_rate": null,
       "predicted_pairs": 41416,
       "recall": 0.0
     },
@@ -240,30 +240,30 @@
       "label_adjudicated_true": 0,
       "label_coverage_precision": null,
       "label_coverage_precision_over_base_rate": null,
-      "predicted_pairs": 300,
+      "predicted_pairs": 406,
       "recall": 0.0
     },
     "C3-additive-CNS-depressant / possible": {
-      "both_pages_have_an_interaction_section": 120,
-      "label_adjudicated_false": 1,
-      "label_adjudicated_pairs": 16,
-      "label_adjudicated_precision": 0.9375,
-      "label_adjudicated_true": 15,
-      "label_coverage_precision": 0.1,
-      "label_coverage_precision_over_base_rate": 21.0,
-      "predicted_pairs": 9562,
-      "recall": 0.0009
+      "both_pages_have_an_interaction_section": 406,
+      "label_adjudicated_false": 2,
+      "label_adjudicated_pairs": 34,
+      "label_adjudicated_precision": 0.9412,
+      "label_adjudicated_true": 32,
+      "label_coverage_precision": 0.0567,
+      "label_coverage_precision_over_base_rate": 10.0,
+      "predicted_pairs": 17539,
+      "recall": 0.002
     },
     "C3-additive-QT-prolonging / possible": {
-      "both_pages_have_an_interaction_section": 10433,
+      "both_pages_have_an_interaction_section": 9863,
       "label_adjudicated_false": 4,
-      "label_adjudicated_pairs": 424,
-      "label_adjudicated_precision": 0.9906,
-      "label_adjudicated_true": 420,
-      "label_coverage_precision": 0.0403,
-      "label_coverage_precision_over_base_rate": 8.5,
-      "predicted_pairs": 10433,
-      "recall": 0.0264
+      "label_adjudicated_pairs": 421,
+      "label_adjudicated_precision": 0.9905,
+      "label_adjudicated_true": 417,
+      "label_coverage_precision": 0.0423,
+      "label_coverage_precision_over_base_rate": 7.5,
+      "predicted_pairs": 9863,
+      "recall": 0.0265
     },
     "C3-additive-anticoagulant-antiplatelet / likely": {
       "both_pages_have_an_interaction_section": 0,
@@ -273,19 +273,19 @@
       "label_adjudicated_true": 0,
       "label_coverage_precision": null,
       "label_coverage_precision_over_base_rate": null,
-      "predicted_pairs": 10,
+      "predicted_pairs": 54,
       "recall": 0.0
     },
     "C3-additive-anticoagulant-antiplatelet / possible": {
-      "both_pages_have_an_interaction_section": 105,
+      "both_pages_have_an_interaction_section": 210,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 28,
+      "label_adjudicated_pairs": 49,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 28,
-      "label_coverage_precision": 0.2381,
-      "label_coverage_precision_over_base_rate": 50.1,
-      "predicted_pairs": 3811,
-      "recall": 0.0018
+      "label_adjudicated_true": 49,
+      "label_coverage_precision": 0.1667,
+      "label_coverage_precision_over_base_rate": 29.5,
+      "predicted_pairs": 8321,
+      "recall": 0.0031
     },
     "C3-additive-hepatotoxic / possible": {
       "both_pages_have_an_interaction_section": 0,
@@ -299,26 +299,37 @@
       "recall": 0.0
     },
     "C3-additive-hyperkalaemic / possible": {
-      "both_pages_have_an_interaction_section": 103,
+      "both_pages_have_an_interaction_section": 188,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 28,
+      "label_adjudicated_pairs": 70,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 28,
-      "label_coverage_precision": 0.2427,
-      "label_coverage_precision_over_base_rate": 51.1,
-      "predicted_pairs": 207,
-      "recall": 0.0018
+      "label_adjudicated_true": 70,
+      "label_coverage_precision": 0.1968,
+      "label_coverage_precision_over_base_rate": 34.8,
+      "predicted_pairs": 701,
+      "recall": 0.0045
+    },
+    "C3-additive-hypoglycaemic / likely": {
+      "both_pages_have_an_interaction_section": 0,
+      "label_adjudicated_false": 0,
+      "label_adjudicated_pairs": 0,
+      "label_adjudicated_precision": null,
+      "label_adjudicated_true": 0,
+      "label_coverage_precision": null,
+      "label_coverage_precision_over_base_rate": null,
+      "predicted_pairs": 10,
+      "recall": 0.0
     },
     "C3-additive-hypoglycaemic / possible": {
-      "both_pages_have_an_interaction_section": 693,
+      "both_pages_have_an_interaction_section": 1023,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 40,
+      "label_adjudicated_pairs": 104,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 40,
-      "label_coverage_precision": 0.0534,
-      "label_coverage_precision_over_base_rate": 11.2,
-      "predicted_pairs": 2198,
-      "recall": 0.0025
+      "label_adjudicated_true": 104,
+      "label_coverage_precision": 0.088,
+      "label_coverage_precision_over_base_rate": 15.6,
+      "predicted_pairs": 6410,
+      "recall": 0.0066
     },
     "C3-additive-hypotensive / likely": {
       "both_pages_have_an_interaction_section": 0,
@@ -328,19 +339,19 @@
       "label_adjudicated_true": 0,
       "label_coverage_precision": null,
       "label_coverage_precision_over_base_rate": null,
-      "predicted_pairs": 252,
+      "predicted_pairs": 1484,
       "recall": 0.0
     },
     "C3-additive-hypotensive / possible": {
-      "both_pages_have_an_interaction_section": 941,
-      "label_adjudicated_false": 9,
-      "label_adjudicated_pairs": 162,
-      "label_adjudicated_precision": 0.9444,
-      "label_adjudicated_true": 153,
-      "label_coverage_precision": 0.1318,
-      "label_coverage_precision_over_base_rate": 27.7,
-      "predicted_pairs": 38495,
-      "recall": 0.0096
+      "both_pages_have_an_interaction_section": 2076,
+      "label_adjudicated_false": 17,
+      "label_adjudicated_pairs": 242,
+      "label_adjudicated_precision": 0.9298,
+      "label_adjudicated_true": 225,
+      "label_coverage_precision": 0.0641,
+      "label_coverage_precision_over_base_rate": 11.3,
+      "predicted_pairs": 61310,
+      "recall": 0.0143
     },
     "C3-additive-serotonergic / likely": {
       "both_pages_have_an_interaction_section": 0,
@@ -350,19 +361,19 @@
       "label_adjudicated_true": 0,
       "label_coverage_precision": null,
       "label_coverage_precision_over_base_rate": null,
-      "predicted_pairs": 15,
+      "predicted_pairs": 21,
       "recall": 0.0
     },
     "C3-additive-serotonergic / possible": {
-      "both_pages_have_an_interaction_section": 36,
+      "both_pages_have_an_interaction_section": 136,
       "label_adjudicated_false": 0,
-      "label_adjudicated_pairs": 18,
+      "label_adjudicated_pairs": 39,
       "label_adjudicated_precision": 1.0,
-      "label_adjudicated_true": 18,
-      "label_coverage_precision": 0.3333,
-      "label_coverage_precision_over_base_rate": 70.1,
-      "predicted_pairs": 1158,
-      "recall": 0.0011
+      "label_adjudicated_true": 39,
+      "label_coverage_precision": 0.1985,
+      "label_coverage_precision_over_base_rate": 35.1,
+      "predicted_pairs": 2321,
+      "recall": 0.0025
     }
   },
   "ddinter": "not used. DDInter 2.0 is CC BY-NC-SA and rnawiki.com is commercial; the gate in docs/revamp/BLOCKERS.md is not lifted, so DDInter is neither a second reference here nor joined to any page.",
@@ -388,56 +399,297 @@
       "rule_id": "C3-additive-hepatotoxic"
     }
   ],
+  "measured_at": "2026-09-10T06:04:59Z",
   "method": "docs/specs/interaction-rules.md section 6",
   "notes": [
     "An FDA label prints a fraction of the interactions a medicine has. Aprepitant's label names 23 counterparts while its own statement that it is a strong CYP3A4 inhibitor implicates every CYP3A4 substrate in the corpus. Counting every unmentioned pair as a false positive would therefore measure how much a label prints, not whether a prediction is right, which is why the bars apply to the pairs the labels adjudicate and the coverage measure is reported beside them.",
-    "label_adjudicated_precision rests on a small denominator: the labels state that a pair was studied with no change on 466 pairs corpus-wide. Every rule's adjudicated pair count is reported so the number is read with its evidence.",
+    "label_adjudicated_precision rests on a small denominator: the labels state that a pair was studied with no change on 461 pairs corpus-wide. Every rule's adjudicated pair count is reported so the number is read with its evidence.",
     "Tier A itself is a parsed reading of label prose. Its counterpart links were measured while building them: analyte pages that share a name with a medicine (prothrombin, angiotensin II, norepinephrine) still reach a small share of Tier A rows, recorded in data/revamp/interactions/lexicon-dropped.csv and docs/specs/interaction-rules.md section 1."
   ],
   "overall": {
-    "both_pages_have_an_interaction_section": 32226,
-    "label_adjudicated_false": 30,
-    "label_adjudicated_pairs": 1748,
-    "label_adjudicated_precision": 0.9828,
-    "label_adjudicated_true": 1718,
-    "label_coverage_precision": 0.0483,
-    "label_coverage_precision_over_base_rate": 10.2,
-    "predicted_pairs": 148981,
-    "recall": 0.1079
+    "both_pages_have_an_interaction_section": 33321,
+    "label_adjudicated_false": 39,
+    "label_adjudicated_pairs": 1939,
+    "label_adjudicated_precision": 0.9799,
+    "label_adjudicated_true": 1900,
+    "label_coverage_precision": 0.0492,
+    "label_coverage_precision_over_base_rate": 8.7,
+    "predicted_pairs": 190345,
+    "recall": 0.1209
   },
+  "previous_measurements": [
+    {
+      "bars": {
+        "likely_pairs_the_labels_adjudicate": 458,
+        "likely_precision_at_least": 0.6,
+        "likely_precision_measured": 0.9956,
+        "likely_precision_meets_the_bar": true,
+        "measure_the_bars_apply_to": "label_adjudicated_precision",
+        "rule_disabled_below_precision": 0.4
+      },
+      "by_band": {
+        "likely": {
+          "both_pages_have_an_interaction_section": 5158,
+          "label_adjudicated_false": 2,
+          "label_adjudicated_pairs": 458,
+          "label_adjudicated_precision": 0.9956,
+          "label_adjudicated_true": 456,
+          "label_coverage_precision": 0.0884,
+          "label_coverage_precision_over_base_rate": 18.6,
+          "predicted_pairs": 8051,
+          "recall": 0.0286
+        },
+        "possible": {
+          "both_pages_have_an_interaction_section": 28221,
+          "label_adjudicated_false": 28,
+          "label_adjudicated_pairs": 1380,
+          "label_adjudicated_precision": 0.9797,
+          "label_adjudicated_true": 1352,
+          "label_coverage_precision": 0.0422,
+          "label_coverage_precision_over_base_rate": 8.9,
+          "predicted_pairs": 142818,
+          "recall": 0.0849
+        }
+      },
+      "by_rule": {
+        "C1-cyp-inducer-substrate": {
+          "both_pages_have_an_interaction_section": 7138,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 361,
+          "label_adjudicated_precision": 1.0,
+          "label_adjudicated_true": 361,
+          "label_coverage_precision": 0.046,
+          "label_coverage_precision_over_base_rate": 9.7,
+          "predicted_pairs": 13900,
+          "recall": 0.0227
+        },
+        "C1-cyp-inhibitor-substrate": {
+          "both_pages_have_an_interaction_section": 14505,
+          "label_adjudicated_false": 16,
+          "label_adjudicated_pairs": 825,
+          "label_adjudicated_precision": 0.9806,
+          "label_adjudicated_true": 809,
+          "label_coverage_precision": 0.0496,
+          "label_coverage_precision_over_base_rate": 10.4,
+          "predicted_pairs": 28600,
+          "recall": 0.0508
+        },
+        "C2-shared-target-same-direction": {
+          "both_pages_have_an_interaction_section": 3,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 0,
+          "label_adjudicated_precision": null,
+          "label_adjudicated_true": 0,
+          "label_coverage_precision": 0.0,
+          "label_coverage_precision_over_base_rate": 0.0,
+          "predicted_pairs": 43068,
+          "recall": 0.0
+        },
+        "C3-additive-CNS-depressant": {
+          "both_pages_have_an_interaction_section": 120,
+          "label_adjudicated_false": 1,
+          "label_adjudicated_pairs": 16,
+          "label_adjudicated_precision": 0.9375,
+          "label_adjudicated_true": 15,
+          "label_coverage_precision": 0.1,
+          "label_coverage_precision_over_base_rate": 21.0,
+          "predicted_pairs": 9862,
+          "recall": 0.0009
+        },
+        "C3-additive-QT-prolonging": {
+          "both_pages_have_an_interaction_section": 10433,
+          "label_adjudicated_false": 4,
+          "label_adjudicated_pairs": 424,
+          "label_adjudicated_precision": 0.9906,
+          "label_adjudicated_true": 420,
+          "label_coverage_precision": 0.0403,
+          "label_coverage_precision_over_base_rate": 8.5,
+          "predicted_pairs": 10433,
+          "recall": 0.0264
+        },
+        "C3-additive-anticoagulant-antiplatelet": {
+          "both_pages_have_an_interaction_section": 105,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 28,
+          "label_adjudicated_precision": 1.0,
+          "label_adjudicated_true": 28,
+          "label_coverage_precision": 0.2381,
+          "label_coverage_precision_over_base_rate": 50.1,
+          "predicted_pairs": 3821,
+          "recall": 0.0018
+        },
+        "C3-additive-hepatotoxic": {
+          "both_pages_have_an_interaction_section": 0,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 0,
+          "label_adjudicated_precision": null,
+          "label_adjudicated_true": 0,
+          "label_coverage_precision": null,
+          "label_coverage_precision_over_base_rate": null,
+          "predicted_pairs": 6,
+          "recall": 0.0
+        },
+        "C3-additive-hyperkalaemic": {
+          "both_pages_have_an_interaction_section": 103,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 28,
+          "label_adjudicated_precision": 1.0,
+          "label_adjudicated_true": 28,
+          "label_coverage_precision": 0.2427,
+          "label_coverage_precision_over_base_rate": 51.1,
+          "predicted_pairs": 207,
+          "recall": 0.0018
+        },
+        "C3-additive-hypoglycaemic": {
+          "both_pages_have_an_interaction_section": 693,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 40,
+          "label_adjudicated_precision": 1.0,
+          "label_adjudicated_true": 40,
+          "label_coverage_precision": 0.0534,
+          "label_coverage_precision_over_base_rate": 11.2,
+          "predicted_pairs": 2198,
+          "recall": 0.0025
+        },
+        "C3-additive-hypotensive": {
+          "both_pages_have_an_interaction_section": 941,
+          "label_adjudicated_false": 9,
+          "label_adjudicated_pairs": 162,
+          "label_adjudicated_precision": 0.9444,
+          "label_adjudicated_true": 153,
+          "label_coverage_precision": 0.1318,
+          "label_coverage_precision_over_base_rate": 27.7,
+          "predicted_pairs": 38747,
+          "recall": 0.0096
+        },
+        "C3-additive-nephrotoxic": {
+          "both_pages_have_an_interaction_section": 0,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 0,
+          "label_adjudicated_precision": null,
+          "label_adjudicated_true": 0,
+          "label_coverage_precision": null,
+          "label_coverage_precision_over_base_rate": null,
+          "predicted_pairs": 0,
+          "recall": 0.0
+        },
+        "C3-additive-serotonergic": {
+          "both_pages_have_an_interaction_section": 36,
+          "label_adjudicated_false": 0,
+          "label_adjudicated_pairs": 18,
+          "label_adjudicated_precision": 1.0,
+          "label_adjudicated_true": 18,
+          "label_coverage_precision": 0.3333,
+          "label_coverage_precision_over_base_rate": 70.1,
+          "predicted_pairs": 1173,
+          "recall": 0.0011
+        }
+      },
+      "disabled": [
+        {
+          "label_adjudicated_precision": null,
+          "label_documented_pairs": 0,
+          "predicted_pairs": 43068,
+          "reason": "no label speaks about any of its 43068 predicted pairs and none is label-documented, so the rule cannot be measured and is not published",
+          "rule_id": "C2-shared-target-same-direction"
+        },
+        {
+          "label_adjudicated_precision": null,
+          "predicted_pairs": 0,
+          "reason": "the rule fired on no pair: the cleared pharmacologic-action vocabularies name no member of this class, so the parquet carries no row for it",
+          "rule_id": "C3-additive-nephrotoxic"
+        },
+        {
+          "label_adjudicated_precision": null,
+          "label_documented_pairs": 0,
+          "predicted_pairs": 6,
+          "reason": "no label speaks about any of its 6 predicted pairs and none is label-documented, so the rule cannot be measured and is not published",
+          "rule_id": "C3-additive-hepatotoxic"
+        }
+      ],
+      "measured_at": null,
+      "overall": {
+        "both_pages_have_an_interaction_section": 32226,
+        "label_adjudicated_false": 30,
+        "label_adjudicated_pairs": 1748,
+        "label_adjudicated_precision": 0.9828,
+        "label_adjudicated_true": 1718,
+        "label_coverage_precision": 0.0483,
+        "label_coverage_precision_over_base_rate": 10.2,
+        "predicted_pairs": 148981,
+        "recall": 0.1079
+      },
+      "published": {
+        "measured_table": "data/revamp/interactions/interactions-all-rules.parquet",
+        "parquet": "data/revamp/interactions/interactions.parquet",
+        "rows": 535118,
+        "rows_measured": 627606,
+        "rules_excluded": [
+          "C2-shared-target-same-direction",
+          "C3-additive-hepatotoxic"
+        ]
+      },
+      "rows_per_rule_measured": {
+        "C1-cyp-inducer-substrate": 14737,
+        "C1-cyp-inhibitor-substrate": 30674,
+        "C2-shared-target-same-direction": 92476,
+        "C3-additive-CNS-depressant": 19724,
+        "C3-additive-QT-prolonging": 20866,
+        "C3-additive-anticoagulant-antiplatelet": 7642,
+        "C3-additive-hepatotoxic": 12,
+        "C3-additive-hyperkalaemic": 414,
+        "C3-additive-hypoglycaemic": 4396,
+        "C3-additive-hypotensive": 77494,
+        "C3-additive-serotonergic": 2346
+      },
+      "run": "revamp 2026-09 Phase 4.1 interaction validation",
+      "universe": {
+        "base_rate_a_random_such_pair_is_label_documented": 0.004753,
+        "corpus_pages": 28832,
+        "label_documented_pairs": 15929,
+        "label_documented_pairs_where_both_pages_have_such_a_section": 11062,
+        "label_pairs_studied_with_no_change_stated": 466,
+        "pages_with_an_interaction_bearing_label_section": 2158,
+        "possible_pairs_among_those_pages": 2327403,
+        "tier_c_predicted_pairs": 148981,
+        "tier_c_rows": 270781
+      }
+    }
+  ],
   "published": {
     "measured_table": "data/revamp/interactions/interactions-all-rules.parquet",
     "parquet": "data/revamp/interactions/interactions.parquet",
-    "rows": 535118,
-    "rows_measured": 627606,
+    "rows": 622704,
+    "rows_measured": 715192,
     "rules_excluded": [
       "C2-shared-target-same-direction",
-      "C3-additive-hepatotoxic"
+      "C3-additive-hepatotoxic",
+      "C3-additive-nephrotoxic"
     ]
   },
   "rows_per_rule_measured": {
-    "C1-cyp-inducer-substrate": 14737,
-    "C1-cyp-inhibitor-substrate": 30674,
+    "C1-cyp-inducer-substrate": 14699,
+    "C1-cyp-inhibitor-substrate": 30604,
     "C2-shared-target-same-direction": 92476,
-    "C3-additive-CNS-depressant": 19724,
-    "C3-additive-QT-prolonging": 20866,
-    "C3-additive-anticoagulant-antiplatelet": 7642,
+    "C3-additive-CNS-depressant": 35890,
+    "C3-additive-QT-prolonging": 19726,
+    "C3-additive-anticoagulant-antiplatelet": 16750,
     "C3-additive-hepatotoxic": 12,
-    "C3-additive-hyperkalaemic": 414,
-    "C3-additive-hypoglycaemic": 4396,
-    "C3-additive-hypotensive": 77494,
-    "C3-additive-serotonergic": 2346
+    "C3-additive-hyperkalaemic": 1402,
+    "C3-additive-hypoglycaemic": 12840,
+    "C3-additive-hypotensive": 125588,
+    "C3-additive-serotonergic": 4684
   },
   "run": "revamp 2026-09 Phase 4.1 interaction validation",
   "universe": {
-    "base_rate_a_random_such_pair_is_label_documented": 0.004753,
+    "base_rate_a_random_such_pair_is_label_documented": 0.005652,
     "corpus_pages": 28832,
-    "label_documented_pairs": 15929,
-    "label_documented_pairs_where_both_pages_have_such_a_section": 11062,
-    "label_pairs_studied_with_no_change_stated": 466,
-    "pages_with_an_interaction_bearing_label_section": 2158,
-    "possible_pairs_among_those_pages": 2327403,
-    "tier_c_predicted_pairs": 148981,
-    "tier_c_rows": 270781
+    "label_documented_pairs": 15710,
+    "label_documented_pairs_where_both_pages_have_such_a_section": 10347,
+    "label_pairs_studied_with_no_change_stated": 461,
+    "pages_with_an_interaction_bearing_label_section": 1914,
+    "possible_pairs_among_those_pages": 1830741,
+    "tier_c_predicted_pairs": 190345,
+    "tier_c_rows": 354671
   }
 }

@@ -1,6 +1,6 @@
 {
  "generatedBy": "scripts/revamp/ci_sample.py",
- "render": "data/revamp/render-v11",
+ "render": "data/revamp/render-v12",
  "blocks": "data/revamp/page-blocks",
  "canonical": "data/revamp/identity/canonical-v5.ndjson",
  "pages": 200,
@@ -48,9 +48,9 @@
    "K1:07730V90L6"
   ],
   "interaction-line": [
-   "COMBO:{IK:BRLQWZUYTZBJKN-UHFFFAOYSA-N,K1:506T60A25R}",
    "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
-   "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}"
+   "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}",
+   "COMBO:{K1:01704YP3MO,K1:HN3OFO5036}"
   ],
   "no-interaction-found": [
    "COMBO:NAME:euonymus atropurpureus branch bark root bark",
@@ -58,9 +58,9 @@
    "COMBO:NAME:grindelia camporum flower leaf"
   ],
   "checked-in": [
-   "COMBO:{K1:01704YP3MO,K1:HN3OFO5036}",
    "COMBO:{K1:071P4J77HF,K1:GN5P7K3T8S}",
-   "COMBO:{K1:0I8Y3P32UF,K1:724L30Y2QR}"
+   "COMBO:{K1:0I8Y3P32UF,K1:724L30Y2QR}",
+   "COMBO:{K1:0J48LPH2TH,K1:9G64RSX1XD}"
   ],
   "not-found-line": [
    "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
@@ -105,20 +105,20 @@
  },
  "files": {
   "render/blocks.ndjson.gz": {
-   "bytes": 358165,
-   "sha256": "fc870957f646773799cc3e54a21b443e264e7423e5eda02556fa890e95096207"
+   "bytes": 376197,
+   "sha256": "3e223a0ba7acee53a4ea6fef3ab9399fe5fbcf65798fd829b78b2e2a5fff1bde"
   },
   "render/provenance-with-furniture.ndjson.gz": {
-   "bytes": 473401,
-   "sha256": "29ef04af6d4999c8c7951dffa4d204ec70c5dfcfd0ca1c563b13353971b7d394"
+   "bytes": 481688,
+   "sha256": "b027fcef3049f8d79eb6e9942355b5e464dda2e7cdd88a2cd024ca1d42684f04"
   },
   "render/text-with-furniture.ndjson.gz": {
-   "bytes": 362693,
-   "sha256": "3083e91ebb624693c5147f5c2f69278ba493458d8e2f988c204b485df70e6f6b"
+   "bytes": 367694,
+   "sha256": "8049c1b1251c6af8583fda035ae1714d6c853e3c3a5686fdcd06ee849ef13410"
   },
   "render/text.ndjson.gz": {
-   "bytes": 348347,
-   "sha256": "69f5fb9c4721e938078fc8926e5e11ee887a076634c301152ccd41ee4706eaac"
+   "bytes": 353064,
+   "sha256": "8ae3aa28303386a689664b62c8229bff7d647d30e907f8b4829ea94f6e504917"
   }
  },
  "keys": [
@@ -142,7 +142,6 @@
   "COMBO:NAME:influenza b virus b tokyo eis13 175 2025 antigen",
   "COMBO:NAME:rubella virus strain wistar ra 27 3 live antigen",
   "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
-  "COMBO:{IK:BRLQWZUYTZBJKN-UHFFFAOYSA-N,K1:506T60A25R}",
   "COMBO:{IK:DNIAPMSPPWPWGF-VKHMYHEASA-N,K1:1ULL0QJ8UC}",
   "COMBO:{IK:DSFGXPJYDCSWTA-SECBINFHSA-N,K1:2679MF687A}",
   "COMBO:{IK:DSLZVSRJTYRBFB-AJSXGEPRSA-N,K1:GOO8ZCK7RT}",
@@ -152,6 +151,7 @@
   "COMBO:{K1:071P4J77HF,K1:GN5P7K3T8S}",
   "COMBO:{K1:0I55128JYK,K1:TE7660XO1C}",
   "COMBO:{K1:0I8Y3P32UF,K1:724L30Y2QR}",
+  "COMBO:{K1:0J48LPH2TH,K1:9G64RSX1XD}",
   "COMBO:{K1:0RBV727H71,K1:2K2DJ01BB7,K1:78YC2MAX4O,K1:7S686LQT6T,K1:9KJL21T0QJ,K1:AAN7QOV9EA,K1:HR3EZB17BI,K1:NS3OZT14QT,K1:ZAD9OKH9JC}",
   "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
   "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",

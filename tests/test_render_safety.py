@@ -1835,3 +1835,290 @@ def test_one_atc_class_is_named_by_one_supervision_clause(provenance):
     assert checked > 0, "no supervision answer was rendered"
     _report(failures, "one ATC class named by two supervision clauses (§15 item 1)")
     assert merged > 0, "no record rendered the merged ATC clause carrying both sources"
+
+
+# --------------------------------------------------------------------------------------------
+# §17 items 2 to 5, as mechanical rules (§17 item 6)
+# --------------------------------------------------------------------------------------------
+
+# §17(2): the withdrawal clause. Its items are joined with "; " and each ends with the registers
+# that recorded it, in brackets; the flag-only item is the one the S8 builder writes when no source
+# stated a reason for the withdrawal.
+WITHDRAWAL_CLAUSE = re.compile(
+    r"^A register records it withdrawn or suspended for a safety reason:\s*(.+?)\.?$"
+)
+FLAG_ONLY_ITEM = "no reason recorded with the flag"
+CLAUSE_SOURCE_SUFFIX = re.compile(r"\s*\([^()]{3,}\)\s*\.?$")
+
+# §17(4): the sentence the identity stage writes when it could not confirm a relation.
+UNCONFIRMED_RELATION_NOTE = re.compile(
+    r"neither the structures nor the printed names confirm", re.IGNORECASE
+)
+
+# §17(5): the names that are names of the substance itself, and the relations that record one
+# substance as part of another rather than as a form of it.
+NAME_KINDS = ("display", "common", "inn", "usan", "ban", "jan")
+COMPONENT_AND_MIXTURE_RELATIONS = ("component_of", "contains")
+SYNONYM_NON_ALNUM = re.compile(r"[^a-z0-9]+")
+
+
+def _split_outside_brackets(text: str) -> list[str]:
+    """Split on "; " outside brackets: the bracketed register list uses the same separator."""
+    out: list[str] = []
+    depth = 0
+    held = ""
+    index = 0
+    while index < len(text):
+        character = text[index]
+        if character == "(":
+            depth += 1
+        elif character == ")":
+            depth = max(0, depth - 1)
+        if depth == 0 and text.startswith("; ", index):
+            out.append(held)
+            held = ""
+            index += 2
+            continue
+        held += character
+        index += 1
+    if held:
+        out.append(held)
+    return [item.strip() for item in out if item.strip()]
+
+
+def _withdrawal_items(clause: str) -> list[str]:
+    """The events one withdrawal clause states, without the registers that recorded each."""
+    match = WITHDRAWAL_CLAUSE.match(clause)
+    if not match:
+        return []
+    return [
+        CLAUSE_SOURCE_SUFFIX.sub("", item).strip().rstrip(",")
+        for item in _split_outside_brackets(match.group(1))
+    ]
+
+
+# §17(2): a source that recorded no reason writes this in the reason slot.
+NO_REASON_RECORDED = "reason not recorded"
+
+
+def _withdrawal_place(item: str) -> str:
+    """The jurisdictions and the year an event names: everything after its reason."""
+    parts = [part.strip() for part in item.split(",")]
+    return "|".join(parts[1:])
+
+
+def test_a_withdrawal_clause_states_each_event_once_and_names_every_register(provenance):
+    """§17(2): identical events merge into one clause naming both registers.
+
+    Urethane's record carries three S8 rows — ChEMBL's `withdrawn_flag`, which is the flag alone,
+    and the same withdrawal (carcinogenicity, eight countries, 1963) from ChEMBL's `drug_warning`
+    and from Open Targets. Read row by row the block printed three clauses, the first of them "no
+    reason recorded with the flag", ahead of two that gave the same reason twice. The event is the
+    reason, the countries and the year; the registers are what recorded it, and they belong on the
+    one item that states it.
+    """
+    failures: list[str] = []
+    checked = 0
+    merged = 0
+    for key, entries in provenance.items():
+        for entry in _supervision_entries(entries):
+            clause = _strip_provenance_anchor(str(entry["sentence"]))
+            items = _withdrawal_items(clause)
+            if not items:
+                continue
+            checked += 1
+            repeated = sorted({item for item in items if items.count(item) > 1})
+            unreasoned = [
+                item
+                for item in items
+                if item.lower().startswith(FLAG_ONLY_ITEM)
+                or item.lower().startswith(NO_REASON_RECORDED)
+            ]
+            reasoned_places = {
+                _withdrawal_place(item) for item in items if item not in unreasoned
+            }
+            stranded = [
+                item for item in unreasoned if _withdrawal_place(item) in reasoned_places
+            ] + (
+                [item for item in unreasoned if item.lower().startswith(FLAG_ONLY_ITEM)]
+                if len(items) > len(unreasoned)
+                else []
+            )
+            if repeated:
+                failures.append(f"{key}: states {repeated[0][:80]!r} twice: {clause[:160]}")
+            if stranded:
+                failures.append(
+                    f"{key}: {stranded[0][:60]!r} states the absence of a reason another "
+                    f"source recorded: {clause[:160]}"
+                )
+            # Two registers named on one event is the merge itself: "(ChEMBL; Open Targets)".
+            for raw in _split_outside_brackets(WITHDRAWAL_CLAUSE.match(clause).group(1)):
+                source = CLAUSE_SOURCE_SUFFIX.search(raw)
+                if source and "; " in source.group(0):
+                    merged += 1
+                    break
+    assert checked > 0, "no record rendered a withdrawal clause"
+    _report(failures, "a withdrawal clause repeats an event or offers a bare flag (§17 item 2)")
+    assert merged > 0, (
+        "no withdrawal clause names two registers on one event; the merge cannot be observed"
+    )
+
+
+def test_a_relation_row_never_names_the_page_it_is_on(pages, blocks):
+    """§17(3): a relation to a page printing this page's name uses that page's disambiguated name.
+
+    "Stereoisomer of Suprofen" on the page titled Suprofen names two records with one name, and a
+    reader cannot tell which record the row goes to before following it. The identity stage
+    records a disambiguated name for the counterpart (`display-names-v6.csv`, `applies_to` =
+    `relation-label`) and the row prints that.
+    """
+    failures: list[str] = []
+    checked = 0
+    disambiguated = 0
+    for page in pages:
+        bundle = blocks.get(page["key"])
+        if not bundle:
+            continue
+        # The page's own printed name is the first line the render writes, which is its `h1`.
+        rendered = _lines(page)
+        title = _strip_provenance_anchor(rendered[0]).strip() if rendered else ""
+        if not title:
+            continue
+        for relation in bundle.get("relations") or []:
+            name = str(relation.get("counterpartName") or "").strip()
+            if not name:
+                continue
+            checked += 1
+            if name.casefold() == title.casefold():
+                failures.append(
+                    f"{page['key']}: {relation.get('relation')} names {name!r}, "
+                    "which is this page's own printed name"
+                )
+            elif name.casefold().startswith(title.casefold() + " ("):
+                disambiguated += 1
+    assert checked > 0, "no relation row was rendered"
+    _report(failures, "a relation row names the page it is on (§17 item 3)")
+    assert disambiguated > 0, (
+        "no relation row prints a disambiguated counterpart name; the rule cannot be observed"
+    )
+
+
+def test_an_unconfirmed_relation_note_never_renders_as_a_form_of_note(pages, provenance, blocks):
+    """§17(4): the unconfirmed-relation note belongs to the technical disclosure.
+
+    "PRUSSIAN BLUE INSOLUBLE and Hydrogen Cyanide are linked by an FDA salt or solvate
+    relationship, and neither the structures nor the printed names confirm that one is a salt of
+    the other" opened the page as its form-of note, where the note's whole job is to say what this
+    record is a form of. It says the opposite: that the corpus cannot say. It is not dropped — the
+    disclosure carries it and the render writes it as markup — it leaves the note.
+    """
+    failures: list[str] = []
+    disclosed = 0
+    withheld = 0
+    for page in pages:
+        key = page["key"]
+        # The provenance map records every line the render wrote as prose. A line the template
+        # declares markup — a row, a disclosure row — is not in it, which is where the note now is.
+        for entry in provenance.get(key) or []:
+            sentence = _strip_provenance_anchor(str(entry.get("sentence") or ""))
+            if UNCONFIRMED_RELATION_NOTE.search(sentence):
+                failures.append(
+                    f"{key}: painted as {entry.get('group')} prose: {sentence[:160]}"
+                )
+        notes = (blocks.get(key) or {}).get("relationNotes") or []
+        if not notes:
+            continue
+        withheld += len(notes)
+        # The page still says it: the render carries the sentence as a disclosure row, so a
+        # reader who opens the control meets exactly what the identity stage recorded.
+        text = page["text"]
+        for note in notes:
+            sentence = str(note.get("sentence") or "")
+            if sentence and sentence in text:
+                disclosed += 1
+            else:
+                failures.append(f"{key}: the disclosure lost the note: {sentence[:120]}")
+        # And no form-of note on the page repeats it.
+        for section in ((blocks.get(key) or {}).get("sections") or {}).get("formOf") or []:
+            painted = str((section.get("values") or {}).get("sentence") or "")
+            if UNCONFIRMED_RELATION_NOTE.search(painted):
+                failures.append(f"{key}: still a form-of note: {painted[:160]}")
+    _report(failures, "an unconfirmed relation note rendered as prose (§17 item 4)")
+    assert withheld > 0, "no unconfirmed relation note was withheld; the rule cannot be observed"
+    assert disclosed == withheld, (
+        f"{withheld - disclosed} withheld note(s) are absent from the render's disclosure"
+    )
+
+
+def _synonym_norm(text: str) -> str:
+    return SYNONYM_NON_ALNUM.sub(" ", str(text or "").lower()).strip()
+
+
+def test_a_component_or_mixture_name_is_never_a_salt_form(blocks):
+    """§17(5): the salt-form list holds forms of this substance and nothing else.
+
+    "WATER" printed under Oxygen's salt forms. It is not a form of oxygen: it is the FDA substance
+    register's own name for the page this corpus calls Aqua, and it reached Oxygen's alias list
+    from a product the two share. The corpus-wide rule is decided once by
+    `scripts/revamp/page_blocks.py`; this reads its output against the identity records it was
+    decided from, so a name that leaves the salt-form list can be traced to the page it names.
+    """
+    if not os.path.exists(CANONICAL):
+        pytest.skip(f"{CANONICAL} is absent")
+    canonical: dict[str, dict[str, Any]] = {}
+    with open(CANONICAL, encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if line:
+                record = json.loads(line)
+                canonical[record["key"]] = record
+    by_name: dict[str, set[str]] = {}
+    for key, record in canonical.items():
+        names = [record.get("displayName")] + [
+            synonym.get("name")
+            for synonym in record.get("synonyms") or []
+            if synonym.get("kind") in NAME_KINDS
+        ]
+        for name in names:
+            normalised = _synonym_norm(name)
+            if normalised:
+                by_name.setdefault(normalised, set()).add(key)
+
+    failures: list[str] = []
+    corrected = 0
+    for key, bundle in blocks.items():
+        record = canonical.get(key)
+        if not record:
+            continue
+        edges = {
+            row.get("counterpartKey"): row.get("relation")
+            for row in bundle.get("relations") or []
+        }
+        moved = {
+            _synonym_norm(row.get("name"))
+            for row in bundle.get("synonymKinds") or []
+            if row.get("from") == "salt"
+        }
+        corrected += len(moved)
+        own = _synonym_norm(record.get("displayName"))
+        for synonym in record.get("synonyms") or []:
+            if synonym.get("kind") != "salt":
+                continue
+            name = _synonym_norm(synonym.get("name"))
+            if not name or name == own or name in moved:
+                continue
+            if f" {own} " in f" {name} ":
+                continue
+            others = by_name.get(name, set()) - {key}
+            if not others:
+                continue
+            kinds = {edges.get(other) for other in others} - {None}
+            if kinds - set(COMPONENT_AND_MIXTURE_RELATIONS):
+                continue
+            failures.append(
+                f"{key}: {synonym.get('name')!r} is listed as a salt form and names "
+                f"{sorted(others)[0]}, which this record holds "
+                f"{', '.join(sorted(kinds)) if kinds else 'no form relation'} with"
+            )
+    _report(failures, "a component or mixture name listed as a salt form (§17 item 5)")
+    assert corrected > 0, "no synonym kind was corrected; the rule cannot be observed"

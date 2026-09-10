@@ -102,6 +102,10 @@ CHROME_SELECTOR = (
 #   .cd-row-dates                the recorded/last-checked line under a disclosure's rows
 #   .cd-record                   the identifiers panel
 #   .cd-relations                the relation rows
+#   .cd-relation-notes           §17(4): the identity stage's unconfirmed-relation notes, inside
+#                                the relations block's closed control. The block is markup on both
+#                                sides by the line above it; its notes are the same block's
+#                                technical record and `renderPage` writes them as markup too.
 #   .cd-source-rows/.cd-licence/.cd-definitions  the source list, its licences and its two links
 #   .cd-glyph                    the one ornament between regions
 #
@@ -111,7 +115,8 @@ CHROME_SELECTOR = (
 MARKUP_SELECTOR = (
     ".cd-synonyms, .cd-more-names, .cd-source-line, .cd-badges, .cd-section-heading, "
     ".cd-group-heading, .cd-badge-cell, .cd-interpretation, .cd-row-dates, .cd-ladder, "
-    ".cd-visually-hidden, .cd-record, .cd-relations, .cd-source-rows, .cd-licence, "
+    ".cd-visually-hidden, .cd-record, .cd-relations, .cd-relation-notes, .cd-source-rows, "
+    ".cd-licence, "
     ".cd-definitions, .cd-glyph, [data-furniture]"
 )
 

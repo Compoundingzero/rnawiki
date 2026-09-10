@@ -291,7 +291,7 @@ export interface CorpusControlledRow {
 
 /** One computed Tier 3 section (§8), as rows and — where the comparison found one — a sentence. */
 export interface CorpusSectionSentence {
-  section: 'neighbour' | 'potency' | 'timeline' | 'formOf'
+  section: 'neighbour' | 'potency' | 'timeline' | 'formOf' | 'relationNote'
   ordinal: number
   /** §13(7), §13(8): the values, as labelled rows. Empty where the section is prose only. */
   rows: RevealedRow[]
@@ -367,6 +367,8 @@ export interface CorpusDossier {
    * moved registry studies the parent's name matched — the sentence saying how many went where.
    */
   formOfNotes: CorpusSectionSentence[]
+  /** §17(4): the relation notes that render only inside the relations block's closed control. */
+  relationNotes: CorpusSectionSentence[]
 }
 
 /* --------------------------------------------------------- small helpers */
@@ -986,7 +988,12 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     if (!target || relations.length >= 20) continue
     relations.push({
       label: RELATION_LABELS[row.relation] ?? row.relation.replace(/-/g, ' '),
-      name: target.displayName,
+      /*
+       * §17(3): the counterpart's disambiguated name where the loader stored one. Two pages both
+       * printing "Suprofen" made "Stereoisomer of Suprofen" a row that named neither of them;
+       * the stored label names the record the link goes to.
+       */
+      name: text(row.label) ?? target.displayName,
       slug: target.slug,
     })
   }
@@ -1196,7 +1203,13 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ...(row.source ? { source: row.source } : {}),
     }))
 
-  const SECTION_ORDER: Record<string, number> = { neighbour: 0, potency: 1, timeline: 2, formOf: 3 }
+  const SECTION_ORDER: Record<string, number> = {
+    neighbour: 0,
+    potency: 1,
+    timeline: 2,
+    formOf: 3,
+    relationNote: 4,
+  }
   const sections: CorpusSectionSentence[] = [...sectionRows]
     .sort(
       (a, b) =>
@@ -1214,7 +1227,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
        * text carry the same rows and the same prose.
        */
       const parts =
-        row.section === 'formOf'
+        row.section === 'formOf' || row.section === 'relationNote'
           ? { rows: [] as RevealedRow[], sentence: row.sentence }
           : sectionSentenceParts({
               values,
@@ -1231,7 +1244,16 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     })
     .filter((row) => row.rows.length > 0 || row.sentence !== undefined)
   const formOfNotes = sections.filter((row) => row.section === 'formOf')
-  const computedSections = sections.filter((row) => row.section !== 'formOf')
+  /*
+   * §17(4): a relation the identity stage could not confirm says so inside the relations block's
+   * closed control, and nowhere else. It is not a form-of note — it states that the corpus cannot
+   * say what this record is a form of — and it is not a computed section, so it is filtered out of
+   * both here rather than left to a component to recognise.
+   */
+  const relationNotes = sections.filter((row) => row.section === 'relationNote')
+  const computedSections = sections.filter(
+    (row) => row.section !== 'formOf' && row.section !== 'relationNote',
+  )
 
   return {
     key,
@@ -1272,6 +1294,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     ...(patent ? { patent } : {}),
     computedSections,
     formOfNotes,
+    relationNotes,
   }
 }
 

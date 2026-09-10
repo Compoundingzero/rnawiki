@@ -128,6 +128,7 @@ function suppressedStub(classes: string[]): CorpusDossier {
     interactions: { lines: [], sourcesChecked: [], totals: {}, predictedOnly: false },
     computedSections: [],
     formOfNotes: [],
+    relationNotes: [],
     // What the loader writes: the line exists only where there is no classification to state.
     ...(block === undefined && isUnknownClassOnly(classes)
       ? { supervisionLine: unknownClassificationLine() }
@@ -218,6 +219,101 @@ describe('a suppressed page with no question rows', () => {
     // A class the suppression pass recorded with no evidence row of its own states nothing.
     expect(supervisionClauses(['S1'], [])).toEqual([])
     expect(supervisionClauses(['S1'], [{ test: 'S1', value: 'C01AA04' }])).toEqual([])
+  })
+
+  /*
+   * §17(2). Urethane's record carries three S8 rows: ChEMBL's `withdrawn_flag`, which is the flag
+   * alone, and the same withdrawal — carcinogenicity, eight countries, 1963 — from ChEMBL's
+   * `drug_warning` and from Open Targets. Read row by row the block printed three clauses, the
+   * first of them "no reason recorded with the flag", ahead of two that gave the same reason twice.
+   */
+  const URETHANE_S8: SuppressionEvidence[] = [
+    {
+      test: 'S8',
+      source: 'ChEMBL / Open Targets drug_warning, EMA register',
+      value: 'ChEMBL molecule withdrawn_flag',
+    },
+    {
+      test: 'S8',
+      source: 'ChEMBL / Open Targets drug_warning, EMA register',
+      value:
+        'ChEMBL drug_warning Withdrawn (carcinogenicity; Germany; Denmark; Brazil; Egypt; ' +
+        'Italy; Cuba; United States; Japan; 1963)',
+    },
+    {
+      test: 'S8',
+      source: 'ChEMBL / Open Targets drug_warning, EMA register',
+      value:
+        'Open Targets drug_warning Withdrawn (carcinogenicity; Germany; Denmark; Brazil; Egypt; ' +
+        'Italy; Cuba; United States; Japan; 1963)',
+    },
+  ]
+
+  it('states one withdrawal once, naming every register that recorded it', () => {
+    const [clause] = supervisionClauses(['S8'], URETHANE_S8)
+    expect(clause?.text).toBe(
+      'A register records it withdrawn or suspended for a safety reason: carcinogenicity, ' +
+        'Germany, Denmark, Brazil, Egypt, Italy, Cuba, United States, Japan, 1963 ' +
+        '(ChEMBL; Open Targets).',
+    )
+    // One event, so one item: the clause has no second "; " outside the register brackets.
+    expect(clause?.text.split(') ').length).toBe(1)
+    expect(clause?.text).not.toContain('no reason recorded with the flag')
+  })
+
+  it('drops a source that recorded no reason for a withdrawal another source explains', () => {
+    const zopiclone: SuppressionEvidence[] = [
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'ChEMBL molecule withdrawn_flag',
+      },
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'ChEMBL drug_warning Withdrawn (carcinogenicity; Norway; 1987)',
+      },
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'ChEMBL drug_warning Withdrawn (reason not recorded; Norway; 1987)',
+      },
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'Open Targets drug_warning Withdrawn (reason not recorded; Norway; 1987)',
+      },
+    ]
+    const [clause] = supervisionClauses(['S8'], zopiclone)
+    expect(clause?.text).toBe(
+      'A register records it withdrawn or suspended for a safety reason: carcinogenicity, ' +
+        'Norway, 1987 (ChEMBL).',
+    )
+    expect(clause?.text).not.toContain('reason not recorded')
+  })
+
+  it('keeps two different reasons for one withdrawal, and the bare flag where nothing explains it', () => {
+    const rofecoxib: SuppressionEvidence[] = [
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'ChEMBL drug_warning Withdrawn (cardiotoxicity; Worldwide; 2004)',
+      },
+      {
+        test: 'S8',
+        source: 'ChEMBL / Open Targets drug_warning, EMA register',
+        value: 'Open Targets drug_warning Withdrawn (neurotoxicity; Worldwide; 2004)',
+      },
+    ]
+    const [both] = supervisionClauses(['S8'], rofecoxib)
+    expect(both?.text).toContain('cardiotoxicity, Worldwide, 2004 (ChEMBL)')
+    expect(both?.text).toContain('neurotoxicity, Worldwide, 2004 (Open Targets)')
+
+    const flagOnly = supervisionClauses(['S8'], [URETHANE_S8[0] as SuppressionEvidence])
+    expect(flagOnly[0]?.text).toBe(
+      'A register records it withdrawn or suspended for a safety reason: no reason recorded ' +
+        'with the flag (ChEMBL).',
+    )
   })
 
   it('renders the supervision block first, above the record it holds', () => {

@@ -32,6 +32,7 @@ import json
 import os
 import sys
 from collections import defaultdict
+from datetime import datetime, timezone
 
 import pandas as pd
 
@@ -234,6 +235,22 @@ def main():
              "docs/specs/interaction-rules.md section 1."),
         ],
     }
+
+    # The earlier measurement stays beside the new one. A re-measurement after a rule's inputs
+    # changed is only readable against what the rule scored before, and section 17 item 1 asks for
+    # the figures to be written beside the earlier ones rather than over them. Only the top-level
+    # `disabled` array binds the build; the kept runs are a record.
+    previous = []
+    if os.path.exists(OUT):
+        with open(OUT, encoding="utf-8") as fh:
+            held = json.load(fh)
+        previous = list(held.get("previous_measurements") or [])
+        previous.append({key: held.get(key) for key in
+                         ("run", "measured_at", "bars", "overall", "by_band", "by_rule",
+                          "rows_per_rule_measured", "published", "disabled", "universe")})
+        previous = [entry for entry in previous if entry.get("overall")][-8:]
+    result["previous_measurements"] = previous
+    result["measured_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(result, fh, indent=2, sort_keys=True)

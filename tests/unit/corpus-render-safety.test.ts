@@ -717,6 +717,7 @@ function fullDossier(): CorpusDossier {
         rows: [{ label: 'Closest approved compound', value: 'Bexagliflozin · similarity 0.76' }],
       },
     ],
+    relationNotes: [],
     formOfNotes: [
       {
         section: 'formOf',
@@ -1662,5 +1663,95 @@ describe('§15(8) — an inline element is never glued to the text beside it', (
     )
     expect([...markup.matchAll(JOINED_INLINE)].map((match) => match[0])).toEqual([])
     expect([...markup.matchAll(JOINED_TEXT)].map((match) => match[0])).toEqual([])
+  })
+})
+
+/*
+ * §17 items 3, 4 and 5, as the page renders them.
+ *
+ * Each is a rule about what a reader meets on the surface, so each is read off the markup the
+ * components produce rather than off the record behind it.
+ */
+describe('§17 — relations, their notes, and what a salt form is', () => {
+  it('prints the disambiguated counterpart name a relation row carries (§17 item 3)', () => {
+    const dossier = fullDossier()
+    dossier.displayName = 'Suprofen'
+    dossier.relations = [
+      {
+        label: 'Stereoisomer of',
+        name: 'Suprofen (recorded without stereochemistry)',
+        slug: 'suprofen-2',
+      },
+    ]
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    const text = visibleText(markup)
+    expect(text).toContain('Stereoisomer of Suprofen (recorded without stereochemistry)')
+    // The bare shared name would name this page, and a reader could not tell the two records apart.
+    expect(text).not.toMatch(/Stereoisomer of Suprofen(?! \()/)
+  })
+
+  it('renders an unconfirmed relation note only inside a closed control (§17 item 4)', () => {
+    const dossier = fullDossier()
+    const note =
+      'Fixture Compound and Hydrogen Cyanide are linked by an FDA salt or solvate relationship, ' +
+      'and neither the structures nor the printed names confirm that one is a salt of the other.'
+    dossier.relations = [
+      { label: 'Related form of', name: 'Hydrogen Cyanide', slug: 'hydrogen-cyanide' },
+    ]
+    dossier.relationNotes = [
+      {
+        section: 'relationNote',
+        ordinal: 0,
+        rows: [],
+        sentence: note,
+        counterpartName: 'Hydrogen Cyanide',
+      },
+    ]
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    // The page still says it, and it says it inside the relations block's own closed <details>.
+    expect(markup).toContain(note)
+    const disclosure = markup.slice(markup.indexOf('id="cd-relations-evidence"'))
+    expect(disclosure).toContain(note)
+    expect(disclosure.startsWith('id="cd-relations-evidence"')).toBe(true)
+    // A <details> with no `open` attribute is closed, so nothing above it paints the sentence.
+    expect(markup).not.toContain('<details className="cd-evidence" open')
+    const formOf = markup.slice(
+      markup.indexOf('cd-form-of-heading'),
+      markup.indexOf('data-block="supervision"'),
+    )
+    expect(formOf).not.toContain('neither the structures nor the printed names confirm')
+  })
+
+  it('writes the corrected synonym kind into the measured text (§17 item 5)', () => {
+    const bundle = bundleWithControlledSubstance(false)
+    bundle.identity.synonyms = [
+      { name: 'WATER', kind: 'salt' },
+      { name: 'Fixture Compound Sodium', kind: 'salt' },
+    ]
+    bundle.blocks = {
+      ...(bundle.blocks as NonNullable<PageBundle['blocks']>),
+      synonymKinds: [{ name: 'WATER', from: 'salt', to: 'common' }],
+    }
+    const rendered = renderPage(bundle)
+    // The render and the page read one correction, so the name that leaves the salt-form list on
+    // the page leaves it in the measured text as well — and the name itself is kept on both.
+    expect(rendered.text).toContain('WATER (common)')
+    expect(rendered.text).toContain('Fixture Compound Sodium (salt)')
+    expect(rendered.text).not.toContain('WATER (salt)')
+  })
+
+  it('never heads a component or mixture name "Salt form" (§17 item 5)', () => {
+    const dossier = fullDossier()
+    // The kind the loader stores decides the heading, and the corrected kind is what it stores:
+    // "WATER" is a name of the page this corpus calls Aqua, not a form of oxygen.
+    dossier.synonyms = [
+      { kind: 'common', label: 'Also called', names: ['WATER'] },
+      { kind: 'salt', label: 'Salt form', names: ['Fixture Compound Sodium'] },
+    ]
+    const markup = renderToStaticMarkup(React.createElement(CorpusDossierPage, { dossier }))
+    const text = visibleText(markup)
+    expect(text).toContain('Salt form Fixture Compound Sodium')
+    expect(text).not.toMatch(/Salt form\s+WATER/)
+    expect(text).toContain('Also called WATER')
   })
 })

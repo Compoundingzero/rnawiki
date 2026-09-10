@@ -140,6 +140,24 @@ HUB_ABSENCE_CELL = {
     "no generic recorded",
 }
 
+# Section 17 item 2: the withdrawal clause. Its items are joined with "; " and each ends with the
+# registers that recorded it, in brackets; the flag-only item is the one the S8 builder writes when
+# no source stated a reason.
+WITHDRAWAL_CLAUSE = re.compile(
+    r"^A register records it withdrawn or suspended for a safety reason:\s*(.+)$"
+)
+FLAG_ONLY_ITEM = "no reason recorded with the flag"
+
+# Section 17 item 4: the sentence the identity stage writes when it could not confirm a relation.
+UNCONFIRMED_RELATION_NOTE = re.compile(
+    r"neither the structures nor the printed names confirm", re.IGNORECASE
+)
+
+# Section 17 item 5: the group heading the salt-form list carries, and the relation labels that
+# record one substance as part of another rather than as a form of it.
+SALT_FORM_GROUP = "salt form"
+COMPONENT_RELATION_LABELS = {"contains", "component of"}
+
 RULES = (
     "supervision answer names no register status",
     "no register application row outside the registration block",
@@ -157,6 +175,11 @@ RULES = (
     "the ageing question fires only on an ageing endpoint",
     "a stereochemistry note names no relation the records do not have",
     "every row in a counted remainder keeps its label",
+    # Section 17 item 6.
+    "a withdrawal clause states each event once and no flag beside a reason",
+    "a relation row never names the page it is on",
+    "an unconfirmed relation note renders only inside a closed disclosure",
+    "the salt-form list holds no component or mixture name",
 )
 
 
@@ -255,6 +278,30 @@ EXTRACT_JS = """() => {
     }
   }
 
+  // Section 17 item 4: the identity stage's unconfirmed-relation notes, with the control they sit
+  // in. The parity extraction hides the whole relations block as markup, so the note is read off
+  // the DOM here — text, and whether a closed <details> encloses it.
+  const relationNotes = [
+    ...main.querySelectorAll('.cd-relation-notes li'),
+  ].map((el) => ({ text: text(el), closed: Boolean(closedDisclosure(el)) }));
+
+  // The form-of region, which section 17 item 4 takes the note out of.
+  const formOfRegion = text(main.querySelector('section.cd-form-of'));
+
+  // Section 17 item 3: the name this page prints for itself. A relation row that names it is a
+  // row pointing at another record by this record's name.
+  const title = text(main.querySelector('h1'));
+
+  // Section 17 item 5: the header's name groups, by the label the template heads each with.
+  const synonymGroups = [];
+  for (const list of main.querySelectorAll('dl.cd-synonyms')) {
+    let label = '';
+    for (const child of list.children) {
+      if (child.tagName === 'DT') label = text(child);
+      else if (child.tagName === 'DD') synonymGroups.push({ label, name: text(child) });
+    }
+  }
+
   // Section 15 item 6: the form-of note, which is a sentence about two records' structures.
   const formOfNotes = [
     ...main.querySelectorAll('section.cd-form-of p.cd-paragraph'),
@@ -291,6 +338,10 @@ EXTRACT_JS = """() => {
     rows,
     formOfNotes,
     hubCells,
+    title,
+    synonymGroups,
+    relationNotes,
+    formOfRegion,
   };
 }""" % {"exclude": json.dumps(EXCLUDE_SELECTOR)}
 
@@ -594,6 +645,72 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
             RULES[14],
             bool(row["label"].strip()),
             f"{heading} — a row painting {value!r} and no label",
+        )
+
+    # 15 — section 17 item 2: the withdrawal clause states each event once, names every register
+    # that recorded it on that one item, and never offers a flag with no reason beside an item
+    # that gives one. Urethane painted "no reason recorded with the flag (ChEMBL)" and then the
+    # same carcinogenicity event twice, once per register.
+    for sentence in clauses:
+        match = WITHDRAWAL_CLAUSE.match(sentence)
+        if not match:
+            continue
+        items = [item.strip() for item in match.group(1).split("; ") if item.strip()]
+        details = [CLAUSE_SOURCE.sub("", item).strip().rstrip(",") for item in items]
+        flag_only = [item for item in details if item.lower().startswith(FLAG_ONLY_ITEM)]
+        repeated = [item for item in set(details) if details.count(item) > 1]
+        detail = (
+            "a flag-only item beside %d reasoned item(s)" % (len(details) - len(flag_only))
+            if flag_only and len(details) > len(flag_only)
+            else "repeats %r" % repeated[0][:80]
+            if repeated
+            else ""
+        )
+        record(RULES[15], not detail, f"{detail}: {sentence[:160]}" if detail else sentence[:160])
+
+    # 16 — section 17 item 3: a relation row names the record it links to, never the record it is
+    # on. Two pages both printing "Suprofen" made "Stereoisomer of Suprofen" a row a reader cannot
+    # follow, and the disambiguated name is what the row prints now.
+    title = (payload.get("title") or "").strip()
+    for relation in payload["relations"]:
+        name = (relation["name"] or "").strip()
+        if not name or not title:
+            continue
+        record(
+            RULES[16],
+            name.casefold() != title.casefold(),
+            f"{relation['label']} {name!r} is this page's own printed name",
+        )
+
+    # 17 — section 17 item 4: a relation the identity stage could not confirm says so inside a
+    # closed control, and the form-of note — the sentence that says what this record IS a form of —
+    # never carries it.
+    for note in payload.get("relationNotes") or []:
+        if not UNCONFIRMED_RELATION_NOTE.search(note.get("text") or ""):
+            continue
+        record(RULES[17], bool(note.get("closed")),
+               "painted outside a closed control: %s" % (note.get("text") or "")[:120])
+    region = payload.get("formOfRegion") or ""
+    found = UNCONFIRMED_RELATION_NOTE.search(region)
+    record(RULES[17], found is None,
+           region[max(0, found.start() - 60):found.end() + 40] if found else "")
+
+    # 18 — section 17 item 5: a component or mixture name is not a salt form. The page states both
+    # in its own markup — the name under the "Salt form" heading and the relation row that records
+    # the component or mixture edge — so the contradiction is decidable here.
+    component_names = {
+        (relation["name"] or "").strip().casefold()
+        for relation in payload["relations"]
+        if (relation["label"] or "").strip().casefold() in COMPONENT_RELATION_LABELS
+    } - {""}
+    for group in payload.get("synonymGroups") or []:
+        if (group.get("label") or "").strip().casefold() != SALT_FORM_GROUP:
+            continue
+        name = (group.get("name") or "").strip()
+        record(
+            RULES[18],
+            name.casefold() not in component_names,
+            f"{name!r} is listed as a salt form and as a component or mixture",
         )
 
     assert painted is not None

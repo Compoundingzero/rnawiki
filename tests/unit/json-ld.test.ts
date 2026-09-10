@@ -932,6 +932,7 @@ describe('corpus record structured data', () => {
       tier: 1,
       pageType: 'clinical',
       indexable: true,
+      relationNotes: [],
       suppressed: false,
       suppressionEvidence: [],
       suppressionClasses: [],

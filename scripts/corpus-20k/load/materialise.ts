@@ -966,9 +966,32 @@ interface BlockBundle {
   relations?: Array<{
     relation: string
     counterpartKey?: string
+    /**
+     * The name this page's relation row prints for the counterpart (§17(3)). It is the
+     * counterpart's own display name except where the counterpart prints the name this page
+     * prints, in which case `data/revamp/identity/display-names-v6.csv` disambiguates it.
+     */
+    counterpartName?: string | null
     note?: string | null
     rule?: string | null
   }>
+  /**
+   * The relation notes that render only in the technical disclosure (§17(4)): the identity stage
+   * recorded that it could not confirm the relation, which is not what a form-of note says.
+   */
+  relationNotes?: Array<{
+    sentence?: string
+    rule?: string | null
+    counterpartKey?: string
+    counterpartName?: string
+    provenance?: unknown
+    templateId?: string | null
+  }>
+  /**
+   * Synonyms whose recorded kind does not describe what the name is (§17(5)): a component or
+   * mixture name filed as a salt form. Each entry names the correction and why it was made.
+   */
+  synonymKinds?: Array<{ name: string; from: string; to: string; reason?: string }>
   disambiguation?: {
     displayName?: string
     disambiguator?: string | null
@@ -2212,6 +2235,19 @@ function buildBatch(input: {
     })
 
     /* synonyms */
+    /*
+     * §17(5): a component or mixture name never enters the salt-form list. "WATER" is the FDA
+     * substance register's name for the page this corpus calls Aqua, and it sat under Oxygen's
+     * salt forms, which is the page's statement of what forms of oxygen exist. The correction is
+     * decided once, corpus-wide, by `scripts/revamp/page_blocks.py`, because it needs every page's
+     * names and this loader reads one tier at a time. Here the recorded kind is replaced by the
+     * kind that describes the name; the name itself is kept and the page still prints it.
+     */
+    const correctedKind = new Map<string, string>()
+    for (const correction of input.blocks.get(key)?.synonymKinds ?? []) {
+      if (!correction.name || !SYNONYM_KINDS.has(correction.to)) continue
+      correctedKind.set(`${correction.from}|${correction.name.toLowerCase()}`, correction.to)
+    }
     const seenSynonyms = new Set<string>()
     for (const synonym of record.synonyms ?? []) {
       const name = stripControlCharacters(synonym.name, counters)
@@ -2220,18 +2256,32 @@ function buildBatch(input: {
         counters.bump(`synonym kind outside the recorded vocabulary: ${synonym.kind}`)
         continue
       }
-      const id = sha256(`${key} ${synonym.kind} ${name.toLowerCase()}`)
+      const kind = correctedKind.get(`${synonym.kind}|${name.toLowerCase()}`) ?? synonym.kind
+      if (kind !== synonym.kind) {
+        counters.bump(`synonym kinds corrected from ${synonym.kind} to ${kind}`)
+      }
+      const id = sha256(`${key} ${kind} ${name.toLowerCase()}`)
       if (seenSynonyms.has(id)) continue
       seenSynonyms.add(id)
-      synonyms.push([id, key, name, synonym.kind, (synonym.source ?? '').slice(0, 64)])
+      synonyms.push([id, key, name, kind, (synonym.source ?? '').slice(0, 64)])
     }
 
     /* relations, with the form note Phase 3 recorded against each one (§6) */
     const noteByRelation = new Map<string, string>()
+    /*
+     * §17(3): the name this row prints for the counterpart. The identity stage decided it — a
+     * counterpart printing the name this page prints is named by its disambiguated name — and the
+     * loader copies the decision into `page_relations.label`, so the page and the measured text
+     * print the same words and neither recomputes it.
+     */
+    const labelByRelation = new Map<string, string>()
     for (const recorded of input.blocks.get(key)?.relations ?? []) {
+      if (!recorded.counterpartKey) continue
+      const id = `${relationKind(recorded.relation)}|${recorded.counterpartKey}`
       const note = nullIfBlank(recorded.note)
-      if (!note || !recorded.counterpartKey) continue
-      noteByRelation.set(`${relationKind(recorded.relation)}|${recorded.counterpartKey}`, note)
+      if (note) noteByRelation.set(id, note)
+      const label = nullIfBlank(recorded.counterpartName)
+      if (label) labelByRelation.set(id, label)
     }
     const seenRelations = new Set<string>()
     for (const relation of record.relations ?? []) {
@@ -2252,7 +2302,7 @@ function buildBatch(input: {
         key,
         kind,
         relation.targetKey,
-        null,
+        labelByRelation.get(`${kind}|${relation.targetKey}`) ?? null,
         noteByRelation.get(`${kind}|${relation.targetKey}`) ?? null,
         'identity-resolution',
       ])
@@ -2540,6 +2590,36 @@ function buildBatch(input: {
           ])
           sectionOrdinal += 1
         }
+      }
+
+      /*
+       * §17(4): the relation notes that render only in the technical disclosure. They are stored
+       * as their own section so that neither the form-of note above the page nor the computed
+       * sections below it can paint them; `lib/corpus/dossier-page.ts` reads the section by name
+       * and hands it to the relations block, which shows it inside a closed control.
+       */
+      let relationNoteOrdinal = 0
+      for (const note of bundle.relationNotes ?? []) {
+        const sentence = nullIfBlank(note.sentence)
+        if (sentence === null) {
+          counters.bump('relation notes skipped: the identity stage recorded no sentence')
+          continue
+        }
+        sectionRows.push([
+          key,
+          'relationNote',
+          relationNoteOrdinal,
+          nullIfBlank(note.templateId)?.slice(0, 64) ?? null,
+          sentence,
+          JSON.stringify({
+            sentence,
+            ...(note.rule ? { rule: note.rule } : {}),
+            ...(note.counterpartKey ? { counterpartPage: note.counterpartKey } : {}),
+            ...(note.counterpartName ? { counterpartName: note.counterpartName } : {}),
+          }),
+          JSON.stringify(note.provenance ?? {}),
+        ])
+        relationNoteOrdinal += 1
       }
 
       /*

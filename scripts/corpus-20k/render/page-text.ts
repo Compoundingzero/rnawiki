@@ -2242,6 +2242,14 @@ const IDENTIFIER_LABELS: Array<[keyof IdentityRecord, string]> = [
   ['drugbankId', 'DrugBank id'],
 ]
 
+/**
+ * The identity stage writes `form_of` and the enum stores `form-of`; the loader converts once and
+ * so does this, so a relation looked up by kind here matches the row the loader stored.
+ */
+function relationKindOf(type: string): string {
+  return type.trim().toLowerCase().replace(/_/g, '-')
+}
+
 const RELATION_LABELS: Record<string, string> = {
   'ester-of': 'ester of',
   'prodrug-of': 'prodrug of',
@@ -2546,6 +2554,22 @@ export interface RelationNote {
   rule?: string
 }
 
+/** §17(4): one relation note that renders only inside the relations block's closed control. */
+export interface DisclosedRelationNote {
+  sentence?: string
+  counterpartKey?: string
+  counterpartName?: string
+  rule?: string
+}
+
+/** §17(5): a synonym whose recorded kind does not describe what the name is. */
+export interface SynonymKindCorrection {
+  name: string
+  from: string
+  to: string
+  reason?: string
+}
+
 export interface PageBlocks {
   /** The narrow controlled-substance trigger of §4. Never inferred here. */
   controlled: boolean
@@ -2559,6 +2583,10 @@ export interface PageBlocks {
   }
   sections: Partial<Record<'neighbour' | 'potency' | 'timeline' | 'formOf', SectionSentence[]>>
   relations: RelationNote[]
+  /** §17(4): the notes the relations block discloses and no other region paints. */
+  relationNotes?: DisclosedRelationNote[]
+  /** §17(5): the synonym kinds the identity stage corrected before either surface read them. */
+  synonymKinds?: SynonymKindCorrection[]
   /** The disambiguated `h1` for one half of a same-name pair (§6). */
   disambiguation?: {
     displayName: string
@@ -3870,9 +3898,25 @@ export function renderPage(
         ? 'identity.displayName'
         : 'data/corpus-20k/tiers/model-assignment.ndjson displayName',
   ])
+  /*
+   * §17(5): the kind a synonym is printed under is the corrected one. The page groups its names
+   * by kind and heads the group "Salt form"; the render writes the kind in brackets after the
+   * name. Both read the same correction, so a name the identity stage moved out of the salt-form
+   * list moves in both places or in neither.
+   */
+  const correctedSynonymKind = new Map<string, string>()
+  for (const correction of blocks?.synonymKinds ?? []) {
+    if (!correction.name) continue
+    correctedSynonymKind.set(`${correction.from}|${correction.name.toLowerCase()}`, correction.to)
+  }
   const synonyms = bundle.identity.synonyms
     .filter((s) => s.name && s.name.toLowerCase() !== bundle.displayName.toLowerCase())
-    .map((s) => (s.kind ? `${s.name} (${s.kind})` : s.name))
+    .map((s) => {
+      const kind = s.kind
+        ? (correctedSynonymKind.get(`${s.kind}|${s.name.toLowerCase()}`) ?? s.kind)
+        : undefined
+      return kind ? `${s.name} (${kind})` : s.name
+    })
   if (synonyms.length > 0) push(`Also recorded as ${synonyms.join(', ')}`, true)
   const { register, date } = headerRegister(bundle, f)
   push(`${register} · last verified ${date}`, true)
@@ -4346,16 +4390,44 @@ export function renderPage(
     for (const row of identifierRows) push(row, true)
   }
   group = 'relations'
+  /*
+   * §17(3): the name the row prints for the counterpart. Where the counterpart prints the name
+   * this page prints, the identity stage's disambiguated name is what the loader stored on the
+   * relation and what the page paints, so the measured text reads it from the same place rather
+   * than from the counterpart's own title.
+   */
+  const relationLabelByTarget = new Map<string, string>()
+  for (const recorded of blocks?.relations ?? []) {
+    const name = recorded.counterpartName
+    if (recorded.counterpartKey && name) {
+      relationLabelByTarget.set(
+        `${relationKindOf(recorded.relation)}|${recorded.counterpartKey}`,
+        name,
+      )
+    }
+  }
   const relationRows = bundle.identity.relations
     .map((r) => {
       const label = RELATION_LABELS[r.type] ?? r.type.replace(/-/g, ' ')
-      const target = bundle.names.get(r.targetKey)
+      const target =
+        relationLabelByTarget.get(`${relationKindOf(r.type)}|${r.targetKey}`) ??
+        bundle.names.get(r.targetKey)
       return target ? `${label} ${target}` : undefined
     })
     .filter((r): r is string => Boolean(r))
   if (relationRows.length > 0) {
     push('Relations', true)
     for (const row of unique(relationRows).slice(0, ROW_CAP)) push(row, true)
+    /*
+     * §17(4): the identity stage's unconfirmed-relation notes, inside the block's closed control.
+     * They are markup here for the reason every revealed row is: the page shows them as a label
+     * and a value under "Show the evidence", not as a sentence a reader meets while reading.
+     */
+    for (const note of blocks?.relationNotes ?? []) {
+      if (!note.sentence) continue
+      if (note.counterpartName) push(note.counterpartName, true)
+      push(note.sentence, true)
+    }
   }
 
   /* the source list: every anchor's source, once */

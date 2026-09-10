@@ -105,12 +105,129 @@ def rows_of(con: duckdb.DuckDBPyConnection, sql: str) -> list[dict[str, Any]]:
     return out
 
 
+# ---------------------------------------------------------------- §17(4) relation notes
+
+# The identity rules that record a relation the corpus could not confirm. `R6-GSRS-SALT-UNCONFIRMED`
+# is the one the stage writes today: the FDA substance register links two records by a salt or
+# solvate relationship and neither the structures nor the printed names confirm that one is a salt
+# of the other, so §3.1 does not license a merge and both pages stand. Any later rule whose id ends
+# in `-UNCONFIRMED` is the same shape and is read the same way.
+UNCONFIRMED_RELATION_RULES = ("R6-GSRS-SALT-UNCONFIRMED",)
+
+
+def is_unconfirmed_relation_note(row: dict[str, Any]) -> bool:
+    rule = str((row.get("values") or {}).get("rule") or "")
+    return rule in UNCONFIRMED_RELATION_RULES or rule.endswith("-UNCONFIRMED")
+
+
+def relation_note_row(row: dict[str, Any]) -> dict[str, Any]:
+    """One withheld note, as the disclosure row the page and the render both write."""
+    values = row.get("values") or {}
+    out: dict[str, Any] = {
+        "sentence": values.get("sentence") or values.get("noteVerbatim") or "",
+        "rule": values.get("rule"),
+    }
+    if values.get("counterpartPage"):
+        out["counterpartKey"] = values["counterpartPage"]
+    if values.get("counterpartName"):
+        out["counterpartName"] = values["counterpartName"]
+    if row.get("provenance"):
+        out["provenance"] = row["provenance"]
+    if row.get("templateId"):
+        out["templateId"] = row["templateId"]
+    return out
+
+
+# ---------------------------------------------------------------- §17(5) synonym kinds
+
+# The kinds that are names of the substance itself, used to decide whether a name belongs to
+# another corpus page. `brand`, `code`, `fragment` and `merged-page` are excluded for the reason
+# `docs/specs/interaction-rules.md` §1 excludes them: a brand is a product, a code is a token.
+NAME_KINDS = ("display", "common", "inn", "usan", "ban", "jan")
+# The relations that record one substance as part of another rather than as a form of it.
+COMPONENT_AND_MIXTURE_RELATIONS = ("component_of", "contains")
+SYNONYM_NON_ALNUM = re.compile(r"[^a-z0-9]+")
+
+
+def synonym_norm(text: Any) -> str:
+    return SYNONYM_NON_ALNUM.sub(" ", str(text or "").lower()).strip()
+
+
+def carries(name: str, own: str) -> bool:
+    """Does this name carry the record's own name, at token boundaries?"""
+    return bool(own) and f" {own} " in f" {name} "
+
+
+def salt_form_corrections(canonical: dict[str, dict[str, Any]],
+                          printed: dict[str, str],
+                          relations: dict[str, list[dict[str, Any]]]) -> dict[str, list[dict]]:
+    """Names that leave the salt-form list because they are component or mixture names (§17(5)).
+
+    "WATER" printed under Oxygen's salt forms. It is not a form of oxygen: it is the FDA substance
+    register's own name for the page this corpus calls Aqua, and it reached Oxygen's alias list
+    from a product the two share. The salt-form list is the page's statement of what forms of
+    **this** substance exist, so a name that names another substance the corpus holds, that this
+    record carries no form relation with, and that does not carry this record's own name, is a
+    component or mixture name and leaves the list. It keeps its place under "Also called": the
+    register recorded the name against this record and the page still says so.
+
+    A name that carries the record's own name is never touched — "Vincristine Sulfate" under
+    Vincristine and "Cisapride Monohydrate" under Cisapride are salt and hydrate forms, and the
+    corpus has no page for either. Nor is a name whose page this record holds a salt, ester,
+    stereoisomer, parent or active-moiety edge with: that edge is the corpus saying the two are
+    forms of one substance.
+    """
+    by_name: dict[str, set[str]] = defaultdict(set)
+    for key, record in canonical.items():
+        by_name[synonym_norm(printed.get(key) or record.get("displayName"))].add(key)
+        for synonym in record.get("synonyms") or []:
+            if synonym.get("kind") in NAME_KINDS:
+                by_name[synonym_norm(synonym.get("name"))].add(key)
+    by_name.pop("", None)
+
+    out: dict[str, list[dict]] = {}
+    for key, record in canonical.items():
+        own = synonym_norm(record.get("displayName"))
+        shown = synonym_norm(printed.get(key))
+        edges = {row.get("counterpartKey"): row.get("relation")
+                 for row in relations.get(key, [])}
+        moved: list[dict] = []
+        for synonym in record.get("synonyms") or []:
+            if synonym.get("kind") != "salt":
+                continue
+            name = synonym_norm(synonym.get("name"))
+            if not name or name in (own, shown):
+                continue
+            if carries(name, own) or carries(name, shown):
+                continue
+            others = by_name.get(name, set()) - {key}
+            if not others:
+                continue
+            kinds = {edges.get(other) for other in others} - {None}
+            if kinds - set(COMPONENT_AND_MIXTURE_RELATIONS):
+                continue
+            moved.append({
+                "name": synonym.get("name"),
+                "from": "salt",
+                "to": "common",
+                "reason": ("a component or mixture name: it names %s and this record holds %s"
+                           % (", ".join(sorted(others)[:3]),
+                              ", ".join(sorted(kinds)) if kinds else "no form relation with it")),
+            })
+        if moved:
+            out[key] = moved
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--blocks-dir", default=repo("data", "revamp", "blocks"))
     parser.add_argument("--interactions-dir", default=repo("data", "revamp", "interactions"))
     parser.add_argument("--sections", default=repo("data", "revamp", "tier3-sections.parquet"))
     parser.add_argument("--identity-dir", default=repo("data", "revamp", "identity"))
+    parser.add_argument(
+        "--canonical", default=repo("data", "revamp", "identity", "canonical-v5.ndjson")
+    )
     parser.add_argument(
         "--suppression",
         default=repo("data", "revamp", "suppression", "assignments-v2.ndjson"),
@@ -167,9 +284,18 @@ def main() -> None:
             if record.get("controlledTrigger"):
                 controlled[record["key"]] = list(record.get("controlledTriggerBasis") or [])
 
-    # ---- display-name disambiguation (§6, the same-name pairs) --------------------------------
+    # ---- display-name disambiguation (§6 for the page title, §17(3) for a relation row) --------
+    #
+    # `display-names-v6.csv` carries both sets in one file and says which is which in `applies_to`.
+    # A `page-title` row is the §6 collision the identity stage resolved and the page prints it as
+    # its `h1`; a `relation-label` row names a page **inside another page's relation row** (§17
+    # item 3) and changes no page's own title. Reading the two apart is the whole point of the
+    # column: a v5 file, which has no column, is read as page titles exactly as before.
     disambiguation: dict[str, dict[str, Any]] = {}
-    display_names = os.path.join(args.identity_dir, "display-names-v5.csv")
+    linked_name: dict[str, dict[str, Any]] = {}
+    display_names = os.path.join(args.identity_dir, "display-names-v6.csv")
+    if not os.path.exists(display_names):
+        display_names = os.path.join(args.identity_dir, "display-names-v5.csv")
     if os.path.exists(display_names):
         for row in rows_of(
             con, f"select * from read_csv_auto('{display_names}', header=true, all_varchar=true)"
@@ -180,12 +306,15 @@ def main() -> None:
             disambiguated = row.get("disambiguated_display_name")
             if not disambiguated:
                 continue
-            disambiguation[key] = {
+            held = {
                 "displayName": disambiguated,
                 "disambiguator": row.get("disambiguator"),
                 "basis": row.get("disambiguator_source"),
                 "collidesOn": row.get("collides_on"),
             }
+            linked_name[key] = held
+            if (row.get("applies_to") or "page-title") == "page-title":
+                disambiguation[key] = held
 
     # ---- trials moved to another page (§6 form pairs; R14 extended to salts and esters) --------
     moved: dict[str, dict[str, Any]] = {}
@@ -401,7 +530,7 @@ def main() -> None:
     def display_name_of(key: str | None) -> str | None:
         if not key:
             return None
-        held = disambiguation.get(key)
+        held = linked_name.get(key)
         if held and held.get("displayName"):
             return held["displayName"]
         page = pages.get(key)
@@ -735,18 +864,47 @@ def main() -> None:
     relations_file = os.path.join(args.identity_dir, "relations-v6.parquet")
     if not os.path.exists(relations_file):
         relations_file = os.path.join(args.identity_dir, "relations-v5.parquet")
+    relation_names_disambiguated = 0
     for row in rows_of(con, f"select * from '{relations_file}' order by page_a, relation, page_b"):
         page = row["page_a"]
         counterpart = row.get("page_b")
+        # §17(3): where the counterpart prints the name this page prints, the row names it by the
+        # disambiguated name `display-names-v6.csv` records for it. "Stereoisomer of Suprofen" on
+        # the Suprofen page named two records with one name; it now reads "Stereoisomer of
+        # Suprofen (recorded without stereochemistry)" and a reader knows which page the row goes
+        # to before following it.
+        counterpart_name = pages.get(counterpart, {}).get("displayName")
+        held = linked_name.get(counterpart)
+        if held and held.get("displayName"):
+            counterpart_name = held["displayName"]
+            relation_names_disambiguated += 1
+        # A counterpart the corpus holds no name for is not named by its storage key (§14(8)).
+        # The row is dropped by both surfaces, which is what they did before this field was read.
+        if looks_like_a_key(counterpart_name):
+            counterpart_name = None
         relations[page].append(
             {
                 "relation": row.get("relation"),
                 "counterpartKey": counterpart,
-                "counterpartName": pages.get(counterpart, {}).get("displayName") or counterpart,
+                "counterpartName": counterpart_name,
                 "note": row.get("note"),
                 "rule": row.get("rule"),
             }
         )
+
+    # ---- §17(5): names that are not salt forms of this substance -------------------------------
+    canonical: dict[str, dict[str, Any]] = {}
+    if os.path.exists(args.canonical):
+        with open(args.canonical, encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if line:
+                    record = json.loads(line)
+                    canonical[record["key"]] = record
+    printed_names = {key: (linked_name.get(key, {}).get("displayName")
+                           or page.get("displayName") or key)
+                     for key, page in pages.items()}
+    synonym_kinds = salt_form_corrections(canonical, printed_names, relations)
 
     # ---- write ---------------------------------------------------------------------------------
     os.makedirs(args.out_dir, exist_ok=True)
@@ -770,6 +928,11 @@ def main() -> None:
         "withSections": {"neighbour": 0, "potency": 0, "timeline": 0, "formOf": 0},
         "sectionSentences": {"neighbour": 0, "potency": 0, "timeline": 0, "formOf": 0},
         "withComponentList": component_notes,
+        "relationNotesWithheldFromTheFormOfNote": 0,
+        "pagesWithASynonymKindCorrection": 0,
+        "synonymKindCorrections": 0,
+        "pagesWithARelationNoteDisclosure": 0,
+        "relationCounterpartNamesDisambiguated": 0,
         "withDisambiguation": 0,
         "withMovedTrials": 0,
         "interactionRowsWritten": 0,
@@ -807,6 +970,25 @@ def main() -> None:
         page_patent = patent.get(key)
         page_controlled_rows = controlled_rows.get(key, [])
         page_sections = {name: list(rows) for name, rows in sections.get(key, {}).items()}
+        # §17(4): a relation the identity stage could not confirm states that it could not confirm
+        # it, and that belongs to the technical disclosure. "PRUSSIAN BLUE INSOLUBLE and Hydrogen
+        # Cyanide are linked by an FDA salt or solvate relationship, and neither the structures nor
+        # the printed names confirm that one is a salt of the other" opened the page as its
+        # form-of note, where the note's whole job is to say what this record is a form of. The
+        # sentence is not dropped — the corpus recorded it and a reader who opens the disclosure
+        # meets it — it leaves the painted note.
+        withheld = [row for row in page_sections.get("formOf", [])
+                    if is_unconfirmed_relation_note(row)]
+        if withheld:
+            page_sections["formOf"] = [row for row in page_sections["formOf"]
+                                       if not is_unconfirmed_relation_note(row)]
+            if not page_sections["formOf"]:
+                page_sections.pop("formOf")
+            page_relation_notes = [relation_note_row(row) for row in withheld]
+            summary["relationNotesWithheldFromTheFormOfNote"] += len(withheld)
+            summary["pagesWithARelationNoteDisclosure"] += 1
+        else:
+            page_relation_notes = []
         tiers: dict[str, Any] = {}
         for tier in TIER_ORDER:
             rows = interaction_rows.get(key, {}).get(tier, [])
@@ -841,6 +1023,12 @@ def main() -> None:
             "sections": page_sections,
             "relations": relations.get(key, []),
         }
+        if page_relation_notes:
+            record["relationNotes"] = page_relation_notes
+        if key in synonym_kinds:
+            record["synonymKinds"] = synonym_kinds[key]
+            summary["pagesWithASynonymKindCorrection"] += 1
+            summary["synonymKindCorrections"] += len(synonym_kinds[key])
         if page_patent is not None:
             record["patent"] = page_patent
         if key in disambiguation:
@@ -876,6 +1064,7 @@ def main() -> None:
             flush()
     flush()
 
+    summary["relationCounterpartNamesDisambiguated"] = relation_names_disambiguated
     with open(os.path.join(args.out_dir, "summary.json"), "w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)
         handle.write("\n")

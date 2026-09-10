@@ -129,7 +129,7 @@ export function CorpusDossierPage({ dossier }: { dossier: CorpusDossier }) {
             <>
               <RegionGlyph />
               <ExactRecord identifiers={dossier.identifiers} />
-              <RelationsRows relations={dossier.relations} />
+              <RelationsRows notes={dossier.relationNotes} relations={dossier.relations} />
               <HubRows hubs={dossier.hubs} />
             </>
           )}
