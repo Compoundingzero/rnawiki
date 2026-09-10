@@ -1662,6 +1662,125 @@ def test_every_rendered_row_keeps_its_label(provenance):
     _report(failures, "a row painting a bare number (§15 item 7)")
 
 
+# A clause of the supervision answer names its class in words and ends with the source that stated
+# it, which is what `CLAUSE_SOURCE` above matches. The block's last paragraph may instead be this
+# record's own study scope ("in humans, 3 registered studies, largest enrolment 40"), which states
+# no classification, carries no bracketed source, and is not a clause.
+def _supervision_clause_count(entries: list[dict[str, Any]]) -> int:
+    """How many class clauses the supervision block painted on this page."""
+    held = _supervision_entries(entries)
+    if not held:
+        return 0
+    sentences = [_strip_provenance_anchor(str(entry["sentence"])) for entry in held]
+    return sum(1 for sentence in sentences if CLAUSE_SOURCE.search(sentence))
+
+
+def test_the_supervision_block_paints_every_recorded_class_clause(provenance):
+    """Section 16 item 1: the supervision block is never truncated.
+
+    `buildBlockBody` ended with `.slice(0, 2)` - the two-paragraph discipline every question answer
+    is held to - and the supervision block was held to it as well, so the third and later clauses
+    were dropped before the page was written. Glofitamab's record carries S1, S3, S4 and S6 and the
+    page stated neither its hazardous-medicine class nor its boxed warning. The cap is a rule about
+    an answer that develops; this answer enumerates, one clause per recorded class in the order
+    S1-S9, and every one of them is painted.
+
+    The measurement: over the render, some page states four class clauses. Under the cap the
+    maximum any page could state was two, so this rule fails on the render the cap produced and can
+    only pass on one it did not.
+    """
+    counts = {key: _supervision_clause_count(entries) for key, entries in provenance.items()}
+    painted = {key: count for key, count in counts.items() if count > 0}
+    assert painted, "no supervision answer was rendered"
+    most = max(painted.values())
+    assert most >= 4, (
+        f"the largest supervision answer in the render paints {most} class clause(s); "
+        "a record carrying four classes must paint four (section 16 item 1)"
+    )
+    assert sum(1 for count in painted.values() if count >= 3) > 0, (
+        "no page paints a third clause, which is what the two-paragraph cap dropped"
+    )
+
+
+# docs/specs/interaction-rules.md section 7 and `data/revamp/interaction-validation.json`: the
+# rules the validation disabled. `scripts/revamp/interactions_build.py` refuses to write a row
+# carrying one of them, so none of them can reach `page_interactions` or a rendered line.
+DISABLED_INTERACTION_RULES = (
+    "C2-shared-target-same-direction",
+    "C3-additive-hepatotoxic",
+    "C3-additive-nephrotoxic",
+)
+
+
+def test_no_published_interaction_row_carries_a_disabled_rule_id(blocks):
+    """Section 16 item 2: a rule the measurement disabled publishes nothing.
+
+    C2 predicted 43,068 pairs and no label speaks about one of them, so the corpus holds no
+    evidence for or against any of its predictions; the validation disabled it, and the published
+    parquet was rebuilt afterwards without the flag that removed it, putting 92,476 unverified rows
+    back on the pages. The build now reads the disabled list from the measurement's own output and
+    refuses the row, so the block bundles the loader and the renderer read carry none.
+    """
+    failures: list[str] = []
+    checked = 0
+    for key, row in blocks.items():
+        tiers = ((row.get("interactions") or {}).get("tiers") or {})
+        for tier in tiers.values():
+            for line in list(tier.get("inline") or []) + list(tier.get("disclosed") or []):
+                checked += 1
+                rule = line.get("ruleId")
+                if rule in DISABLED_INTERACTION_RULES:
+                    failures.append(f"{key}: {rule} on {line.get('counterpartName') or '?'}")
+    assert checked > 0, "no interaction line was read"
+    _report(failures, "an interaction line carrying a disabled rule id (section 16 item 2)")
+
+
+def test_a_shared_target_direction_trace_names_its_two_action_rows():
+    """Section 16 item 2: the direction trace of an action pair names field paths, not a sentence.
+
+    `interactions_build.py` wrote "action words Inhibitor and Inhibitor both read as inhibit",
+    which states the reading rather than the records it was read from, and `resolve_trace` had no
+    class for it: every sentence carrying it failed check (a) in draws 8 and 9. The trace now names
+    the field path of each stored action row and the record it sits on, and the resolver executes
+    it - this page's own row must reach a recorded value on this page's record, and the counterpart
+    must be a page the corpus holds.
+    """
+    page = slop_draw.PageInputs(
+        key="K1:AAAAAAAAAA",
+        fields={
+            "target": {
+                "state": "present",
+                "value": {
+                    "mergedTargets": [
+                        {"targetKey": "CHEMBL204", "evidence": [{"pharmacology": "Inhibitor"}]}
+                    ]
+                },
+            }
+        },
+    )
+    corpus_keys = {"K1:AAAAAAAAAA", "K1:BBBBBBBBBB"}
+    trace = (
+        "action pair: fields.target.value.mergedTargets[].evidence[].pharmacology "
+        "on K1:AAAAAAAAAA (Inhibitor) x "
+        "fields.mechanismClass.value.chemblMechanisms[].actionType "
+        "on K1:BBBBBBBBBB (INHIBITOR), both read as inhibit"
+    )
+    klass, resolved = slop_draw.resolve_trace(trace, page, corpus_keys, set(), set())
+    assert klass == "action pair"
+    assert resolved is True
+
+    # A counterpart the corpus does not hold, and an action row this record does not carry, are
+    # both refused: the class exists so the shape is recognised, and the claim is still executed.
+    _klass, unknown_counterpart = slop_draw.resolve_trace(
+        trace.replace("K1:BBBBBBBBBB", "K1:CCCCCCCCCC"), page, corpus_keys, set(), set()
+    )
+    assert unknown_counterpart is False
+    _klass, unread_row = slop_draw.resolve_trace(
+        trace, slop_draw.PageInputs(key="K1:AAAAAAAAAA", fields={}), corpus_keys, set(), set()
+    )
+    assert unread_row is False
+
+
 # The two supervision clause frames that can read the same ATC group off the same record: S1 names
 # the therapeutic class the register published, S4 names the hazardous-medicine class the test
 # reads off that same code.

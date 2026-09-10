@@ -6,12 +6,20 @@ rules in CLAUDE.md) requires one `<main>` per public page, and the corpus-20k ga
 JSON-LD block per dossier. Step 6.1 rewrote `/d/*` and `/h/*` as server-written documents
 (`lib/document/render.tsx`), so both facts are re-measured on every build rather than assumed.
 
-The sample is drawn from the loaded database's own page list, one deterministic draw per seed,
-spread over the tiers a corpus load writes, plus the hubs the build publishes when `--hubs` is
-given. Every page is fetched once from the running build; the counts are the served bytes'.
+The sample is drawn from the loaded database's own page list, one deterministic draw per seed:
+`--sample` indexable pages and `--sample` pages the load marked noindex, plus the hubs the build
+publishes when `--hubs` is given. Every page is fetched once from the running build; the counts are
+the served bytes'.
+
+The split is the rule, not a convenience. A structured-data block describes a page to a search
+engine, and a page the ruler excluded from the index is not offered to one: an indexable page
+carries exactly one JSON-LD block and a noindex page carries none. Drawing by tier instead measured
+whichever mix of the two a tier happened to hold — under the corpus-20k ruler most of Tier 1 was
+indexable and the difference did not show; under the revamp ruler 292 of Tier 1's 1,697 pages are,
+and a tier draw reported every noindex page it happened to draw as a failure.
 
     scripts/revamp/jsonld_check.py --base-url http://127.0.0.1:3199 \
-        --sample 20 --seed 20260912 --out data/revamp/jsonld-v9.json
+        --sample 20 --seed 20260912 --out data/revamp/jsonld-v11.json
 """
 
 from __future__ import annotations
@@ -74,28 +82,38 @@ def main(argv: list[str] | None = None) -> int:
 
     started = time.time()
     base = args.base_url.rstrip("/")
-    pages = psql(args.database_url, 'SELECT slug, tier FROM corpus_pages ORDER BY slug')
+    pages = psql(
+        args.database_url,
+        "SELECT slug, tier, indexable FROM corpus_pages ORDER BY slug",
+    )
     rng = random.Random(args.seed)
-    by_tier: dict[str, list[str]] = {}
-    for slug, tier in pages:
-        by_tier.setdefault(tier, []).append(slug)
+    indexable = [slug for slug, _tier, flag in pages if flag == "t"]
+    noindex: dict[str, list[str]] = {}
+    for slug, tier, flag in pages:
+        if flag != "t":
+            noindex.setdefault(tier, []).append(slug)
+    if not indexable:
+        raise SystemExit("the loaded build marks no page indexable; there is nothing to check")
 
-    drawn: list[tuple[str, str]] = []
-    tiers = sorted(by_tier)
+    drawn: list[tuple[str, str]] = [
+        (f"/d/{slug}", "indexable")
+        for slug in rng.sample(indexable, min(args.sample, len(indexable)))
+    ]
+    # The noindex half is spread over the tiers, because a stub and a full page that both fell
+    # below the ruler must each carry no block.
+    tiers = sorted(noindex)
     per_tier = max(1, args.sample // max(1, len(tiers)))
+    taken: list[str] = []
     for tier in tiers:
-        pool = by_tier[tier]
-        take = min(per_tier, len(pool))
-        for slug in rng.sample(pool, take):
-            drawn.append((f"/d/{slug}", f"tier {tier}"))
-    # fill the remainder from the largest tier so the draw is exactly --sample pages
-    while len(drawn) < args.sample and tiers:
-        tier = max(tiers, key=lambda t: len(by_tier[t]))
-        pool = [s for s in by_tier[tier] if (f"/d/{s}", f"tier {tier}") not in drawn]
+        pool = noindex[tier]
+        taken.extend(rng.sample(pool, min(per_tier, len(pool))))
+    while len(taken) < args.sample and tiers:
+        tier = max(tiers, key=lambda t: len(noindex[t]))
+        pool = [slug for slug in noindex[tier] if slug not in taken]
         if not pool:
             break
-        drawn.append((f"/d/{rng.choice(pool)}", f"tier {tier}"))
-    drawn = drawn[: args.sample]
+        taken.append(rng.choice(pool))
+    drawn.extend((f"/d/{slug}", "noindex") for slug in taken[: args.sample])
 
     if args.hubs:
         hub_rows = psql(args.database_url, "SELECT slug FROM hubs ORDER BY slug")
@@ -111,11 +129,12 @@ def main(argv: list[str] | None = None) -> int:
         mains = len(MAIN_OPEN.findall(body))
         row = {"path": path, "kind": kind, "status": status, "jsonLdBlocks": ld, "mainElements": mains}
         results.append(row)
-        if status != 200 or ld != 1 or mains != 1:
+        wanted = 0 if kind == "noindex" else 1
+        if status != 200 or ld != wanted or mains != 1:
             failures.append(row)
 
     report = {
-        "schema": "rnawiki-revamp-jsonld-check/v1",
+        "schema": "rnawiki-revamp-jsonld-split/v1",
         "spec": "docs/specs/revamp-2026-09.md operating rule 7; CLAUDE.md public copy rules",
         "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "baseUrl": base,
@@ -123,7 +142,12 @@ def main(argv: list[str] | None = None) -> int:
         "requested": args.sample,
         "hubsRequested": args.hubs,
         "fetched": len(results),
-        "pagesWithExactlyOneJsonLdBlock": sum(1 for r in results if r["jsonLdBlocks"] == 1),
+        "indexableDrawn": sum(1 for r in results if r["kind"] == "indexable"),
+        "noindexDrawn": sum(1 for r in results if r["kind"] == "noindex"),
+        "indexableWithExactlyOneBlock":
+            sum(1 for r in results if r["kind"] == "indexable" and r["jsonLdBlocks"] == 1),
+        "noindexWithZeroBlocks":
+            sum(1 for r in results if r["kind"] == "noindex" and r["jsonLdBlocks"] == 0),
         "pagesWithExactlyOneMain": sum(1 for r in results if r["mainElements"] == 1),
         "failures": failures,
         "rows": results,
@@ -133,8 +157,9 @@ def main(argv: list[str] | None = None) -> int:
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(
         f"{len(results)} fetched · one JSON-LD block on "
-        f"{report['pagesWithExactlyOneJsonLdBlock']} · one <main> on "
-        f"{report['pagesWithExactlyOneMain']} · {len(failures)} failures -> {args.out}"
+        f"{report['indexableWithExactlyOneBlock']}/{report['indexableDrawn']} indexable · "
+        f"none on {report['noindexWithZeroBlocks']}/{report['noindexDrawn']} noindex · "
+        f"one <main> on {report['pagesWithExactlyOneMain']} · {len(failures)} failures -> {args.out}"
     )
     return 1 if failures else 0
 

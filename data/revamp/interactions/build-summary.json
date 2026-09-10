@@ -1,23 +1,25 @@
 {
   "ddinter": "not read: the non-commercial gate in docs/revamp/BLOCKERS.md is not lifted",
-  "disabled_rules": [],
+  "disabled_rules": [
+    "C2-shared-target-same-direction",
+    "C3-additive-hepatotoxic",
+    "C3-additive-nephrotoxic"
+  ],
   "lexicon_dropped": 29384,
   "lexicon_forms": 160014,
   "lexicon_forms_named_only": 1284,
   "lexicon_forms_page_linked": 158730,
   "pages_total": 28832,
   "pages_with_a_label": 2357,
-  "pages_with_only_the_checked_sources_statement": 23077,
+  "pages_with_only_the_checked_sources_statement": 25267,
   "pages_with_rows_per_rule": {
     "A-label-statement": 1301,
     "B-inxight-frdb": 2623,
     "C1-cyp-inducer-substrate": 12,
     "C1-cyp-inhibitor-substrate": 33,
-    "C2-shared-target-same-direction": 3116,
     "C3-additive-CNS-depressant": 141,
     "C3-additive-QT-prolonging": 143,
     "C3-additive-anticoagulant-antiplatelet": 88,
-    "C3-additive-hepatotoxic": 4,
     "C3-additive-hyperkalaemic": 21,
     "C3-additive-hypoglycaemic": 67,
     "C3-additive-hypotensive": 279,
@@ -26,23 +28,21 @@
   "pages_with_rows_per_tier": {
     "A": 1301,
     "B": 2623,
-    "C": 3648
+    "C": 770
   },
   "qt_member_pages": 143,
   "rows_per_band": {
-    "likely": 11873,
-    "possible": 258226
+    "likely": 6687,
+    "possible": 170924
   },
   "rows_per_rule": {
     "A-label-statement": 342224,
     "B-inxight-frdb": 18297,
     "C1-cyp-inducer-substrate": 14699,
     "C1-cyp-inhibitor-substrate": 30604,
-    "C2-shared-target-same-direction": 92476,
     "C3-additive-CNS-depressant": 19724,
     "C3-additive-QT-prolonging": 20292,
     "C3-additive-anticoagulant-antiplatelet": 7642,
-    "C3-additive-hepatotoxic": 12,
     "C3-additive-hyperkalaemic": 414,
     "C3-additive-hypoglycaemic": 4396,
     "C3-additive-hypotensive": 77494,
@@ -51,7 +51,7 @@
   "rows_per_tier": {
     "A": 342224,
     "B": 18297,
-    "C": 270099
+    "C": 177611
   },
   "run_date": "2026-09-06",
   "tier_a_stats": {

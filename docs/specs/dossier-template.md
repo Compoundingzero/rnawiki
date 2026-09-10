@@ -56,7 +56,10 @@ block, not a banner.
 
 - Badge: 22 px rounded square, accent fill, white `Qn`, in the left margin 10 px clear of the
   text, **sticky for the life of its block** (B3). Numbering restarts per page.
-- Exactly two paragraphs (B2); a third paragraph is a second question (the derivation rules split).
+- Exactly two paragraphs (B2); a third paragraph is a second question (the derivation rules
+  split). The one exception is the supervision block, whose body enumerates rather than
+  develops: it states one clause per class the suppression pass recorded, as list items in the
+  order S1–S9, and is never truncated (`docs/specs/phase4-generators.md` §16 item 1).
 - Provenance anchor: a literal source, never a section of the same page (V5): rendered as
   `[source-glyph] Register/Study id · date` inline at the paragraph end, linking the immutable
   source snapshot (existing `evidence_sources`/`source_snapshots`) and carrying `data-source-date`

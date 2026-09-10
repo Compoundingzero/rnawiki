@@ -617,6 +617,15 @@ DDI_RE = re.compile(r"^(?:inxight record )?frdb:ddi:\d+$")
 LEXICON_RE = re.compile(r"^lexicon surface '(?P<surface>[^']*)'(?P<tail>.*)$")
 BAND_RULE_RE = re.compile(r"^band rule (?P<rule>[A-Za-z0-9\-]+) in (?P<spec>\S+)")
 CLASS_RE = re.compile(r"^both pages are members of the (?P<klass>[a-z/\-]+) class$")
+# The direction trace of a prediction that reads an action word off two stored rows
+# (docs/specs/phase4-generators.md section 16 item 2). It names the field path of each action row
+# and the record that row sits on, so the claim is executable: this page's own row must reach a
+# recorded value on this page's record, and the counterpart must be a page the corpus holds.
+ACTION_PAIR_RE = re.compile(
+    r"^action pair: (?P<left_path>fields\.\S+) on (?P<left_key>\S+) \((?P<left_action>[^()]+)\)"
+    r" x (?P<right_path>fields\.\S+) on (?P<right_key>\S+) \((?P<right_action>[^()]+)\),"
+    r" both read as (?P<direction>[a-z]+)$"
+)
 # The trace of an absence (docs/specs/phase4-generators.md section 11), as
 # `scripts/revamp/build_blocks.py` writes it: the field paths that were searched, the register that
 # was read, and the date it was read on. It resolves only if every path named really is absent from
@@ -772,6 +781,22 @@ def resolve_trace(trace: str, page: PageInputs, corpus_keys: set[str], columns: 
     match = CLASS_RE.match(trace)
     if match:
         return "additive class", match.group("klass") in ADDITIVE_CLASSES
+
+    match = ACTION_PAIR_RE.match(trace)
+    if match:
+        # Executed on both sides: the row this page contributed has to be on this page's stored
+        # record, and the row the counterpart contributed has to belong to a page the corpus holds.
+        # A trace written from the other page's side names this page second, so whichever side is
+        # this page is the side resolved against its record.
+        own = "left" if match.group("left_key") == page.key else "right"
+        other = "right" if own == "left" else "left"
+        return "action pair", (
+            match.group(f"{own}_key") == page.key
+            and field_path_resolves(page, match.group(f"{own}_path"))
+            and match.group(f"{other}_key") in corpus_keys
+            and bool(match.group("left_action").strip())
+            and bool(match.group("right_action").strip())
+        )
 
     if trace.startswith("computed:"):
         return "computed value", len(trace) > len("computed:")

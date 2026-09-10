@@ -160,6 +160,17 @@ export interface BlockBody {
    */
   furniture: boolean[]
   /**
+   * Parallel to `paragraphs`: true where the paragraph is one item of a list the block paints as a
+   * list rather than as running prose (§16(1)).
+   *
+   * The supervision answer is the one block whose body is a set of separate recorded facts — one
+   * clause per class the suppression pass recorded, each with its own evidence and its own source
+   * — and not a paragraph that develops. It is painted as a list, one clause per item, in the class
+   * order S1–S9, and the two-paragraph discipline every question answer is held to does not apply
+   * to it: a record carrying four classes states all four.
+   */
+  list: boolean[]
+  /**
    * The same paragraphs without their provenance anchor. A citation ("DailyMed label · <id> ·
    * <date>", or a bare register name where the source records no id) is not a sentence the page
    * asserts, and counting it as one would report every page that cites ClinicalTrials.gov as
@@ -734,6 +745,7 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
   const paragraphs: string[] = []
   const bare: string[] = []
   const furniture: boolean[] = []
+  const list: boolean[] = []
   const rows: RevealedRow[] = []
   /** §13(7): values painted under the question heading, above the revealed layer. */
   const facts: RevealedRow[] = []
@@ -741,13 +753,23 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     const t = oneFullStop(s)
     bare.push(t)
     furniture.push(isFurniture)
+    list.push(false)
     paragraphs.push(withAnchor(t, source))
   }
   const p2 = (s: string, source?: SourceRef): void => {
     const t = oneFullStop(s)
     bare.push(t)
     furniture.push(false)
+    list.push(false)
     paragraphs.push(source ? withAnchor(t, source) : t)
+  }
+  /** One item of a list the block paints as a list: a supervision class clause (§16(1)). */
+  const item = (s: string): void => {
+    const t = oneFullStop(s)
+    bare.push(t)
+    furniture.push(false)
+    list.push(true)
+    paragraphs.push(t)
   }
   const joinBits = (bits: Array<string | undefined>): string =>
     bits.filter((b): b is string => Boolean(b && b.trim())).join('; ')
@@ -815,7 +837,11 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       if (clauses.length === 0) break
       // Each clause names its own source inside the sentence, so none of them carries an anchor:
       // a citation printed twice in one sentence is the repetition §14(6) removed from the page.
-      for (const clause of clauses) p2(clause.text)
+      // §16(1): every recorded class states its clause, as one list item, in the class order
+      // S1–S9 that `supervisionClauses` returns them in. The block is not capped at two: the
+      // two-paragraph discipline is about an answer that develops, and this answer does not
+      // develop — it enumerates. Glofitamab carries S1, S3, S4 and S6 and states all four.
+      for (const clause of clauses) item(clause.text)
       // Standing-sentence rule: where the page records no study scope there is nothing of its own
       // to say, so no scope sentence is written. "No study record accompanies it." stood verbatim
       // on 378 indexed pages (6.4%) and is exactly the shared sentence the constraints forbid.
@@ -2037,14 +2063,23 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     }
   }
 
-  const keep = paragraphs
-    .map((_, i) => i)
-    .filter((i) => (paragraphs[i] ?? '').trim().length > 2)
-    .slice(0, 2)
+  /*
+   * §16(1): the two-paragraph discipline is a rule about an answer that develops, and it belongs
+   * to the question answers. The supervision block enumerates: one clause per class the
+   * suppression pass recorded, each a separate fact with its own evidence and its own source, in
+   * the order S1–S9. `.slice(0, 2)` dropped the third and later clauses before the page was
+   * written — glofitamab stated neither its hazardous-medicine class nor its boxed warning — so
+   * the cap is applied to every block except this one, and the render and the page apply the same
+   * rule because both call this function.
+   */
+  const capped = q.block !== 'supervision'
+  const kept = paragraphs.map((_, i) => i).filter((i) => (paragraphs[i] ?? '').trim().length > 2)
+  const keep = capped ? kept.slice(0, 2) : kept
   return {
     paragraphs: keep.map((i) => paragraphs[i] as string),
     bare: keep.map((i) => bare[i] as string),
     furniture: keep.map((i) => furniture[i] === true),
+    list: keep.map((i) => list[i] === true),
     // §14(8): applied once, over everything a block puts on the page, rather than at each of the
     // twenty places a row is built.
     //

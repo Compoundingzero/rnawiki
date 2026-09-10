@@ -284,6 +284,28 @@
   font-weight: 600;
 }
 
+/*
+ * §16(1): the clauses of the supervision answer, one recorded class per item.
+ *
+ * They enumerate rather than develop, so they are a list. The marker sits inside the measure so a
+ * clause wraps under its own first word and the block keeps its left edge at every width.
+ */
+.cd-clauses {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--corpus-ink-0);
+}
+
+.cd-clause {
+  margin: 0.45rem 0 0;
+  /* A clause carries a register's own code and an identifier, which are single long tokens. */
+  overflow-wrap: anywhere;
+}
+
+.cd-clause:first-child {
+  margin-top: 0;
+}
+
 .cd-anchor {
   text-decoration: underline;
   text-underline-offset: 2px;

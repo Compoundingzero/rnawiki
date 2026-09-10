@@ -200,9 +200,15 @@ EXTRACT_JS = """() => {
     closed: Boolean(closedDisclosure(el)),
   }));
 
-  // The supervision block's answer paragraphs.
+  // The supervision block's answer, in painted order. Section 16 item 1 paints the class clauses
+  // as list items and leaves the record's own study scope, where it has one, as the paragraph
+  // after them, so both element kinds are read and `querySelectorAll` returns them in document
+  // order — the clauses first, the scope sentence last, which is the order the rules below read.
   const supervision = [
-    ...main.querySelectorAll('section[data-block="supervision"] p.cd-paragraph'),
+    ...main.querySelectorAll(
+      'section[data-block="supervision"] li.cd-clause, ' +
+        'section[data-block="supervision"] p.cd-paragraph',
+    ),
   ].map(text);
 
   // Every question block's visible content: its heading, its facts, its paragraphs. A row inside
@@ -210,7 +216,7 @@ EXTRACT_JS = """() => {
   const questions = [...main.querySelectorAll('section.cd-block')].map((block) => ({
     heading: text(block.querySelector('h2.cd-question')),
     visible: [
-      ...block.querySelectorAll('dl.cd-facts > div, p.cd-paragraph'),
+      ...block.querySelectorAll('dl.cd-facts > div, p.cd-paragraph, li.cd-clause'),
     ]
       .filter((el) => !closedDisclosure(el))
       .map(text),

@@ -169,6 +169,15 @@ action words only: `INHIBITOR`, `ANTAGONIST`, `BLOCKER`, `NEGATIVE ALLOSTERIC MO
 MODULATOR`, `POSITIVE MODULATOR` and `OPENER` are `activate`. Every other action word, and a
 missing one, fires nothing. `direction` = `additive effect at <target>`.
 
+The rule is not published (§7). Where a rule reads its direction off two stored action rows, its
+`direction` provenance names the field path of each row and the record that row sits on —
+`action pair: fields.target.value.mergedTargets[].evidence[].pharmacology on K1:… (Inhibitor) x
+fields.mechanismClass.value.chemblMechanisms[].actionType on K1:… (INHIBITOR), both read as inhibit`
+— rather than stating the reading as a sentence ("action words Inhibitor and Inhibitor both read as
+inhibit"), which names no record and cannot be executed. `slop_draw.resolve_trace` classes that
+shape `action pair` and resolves it by reading this page's own action row off this page's stored
+record and checking that the counterpart is a page the corpus holds.
+
 ### C3 — `additive-class`
 
 Inputs: pages A and B are both members of one additive-effect class. Membership comes from
@@ -252,8 +261,17 @@ each rule runs.
 ## 7. Rules disabled by the measurement
 
 Measured 2026-09-06 by `scripts/revamp/validate_interactions.py`; the numbers below are in
-`data/revamp/interaction-validation.json`, and the published parquet was rebuilt with
-`--disable C2-shared-target-same-direction --disable C3-additive-hepatotoxic`.
+`data/revamp/interaction-validation.json`.
+
+**The build enforces this list; an operator does not.** `interactions_build.py` reads the `disabled`
+array of `data/revamp/interaction-validation.json` and refuses to write `interactions.parquet` at
+all if any row carries one of those rule ids (`--disable` may add to the list and can never take
+anything off it). The two rules were originally removed by passing `--disable` on the command line,
+and a later re-run of the build without those flags published 92,476 C2 rows and 12
+C3-additive-hepatotoxic rows, which reached `page_interactions` and the rendered pages. A rule the
+measurement disabled is disabled wherever the corpus is read from
+(`docs/specs/phase4-generators.md` §16 item 2). `interactions-all-rules.parquet` still carries every
+rule, because that is the table the validation measures.
 
 The bar was met. `likely` reaches label-adjudicated precision **0.9956** over 458 adjudicated pairs
 against the 0.60 bar; overall precision is 0.9828 over 1,748 adjudicated pairs; overall recall is

@@ -102,6 +102,9 @@ MERGED_ATC_CLAUSE = re.compile(
     r"^Its World Health Organization ATC (?:class is|classes are) .+; hazardous-medicine class",
     re.MULTILINE,
 )
+# A supervision clause ends with the source the suppression pass recorded for its class, which is
+# how `tests/test_render_safety.py` tells a clause from the block's study-scope paragraph.
+CLAUSE_SOURCE = re.compile(r"\([^()]{3,}\)\s*\.$")
 
 
 def newest_ruler() -> tuple[Path, Path, str]:
@@ -208,6 +211,9 @@ class Flags:
         "quoted-interaction-span", "interaction-line", "no-interaction-found",
         "checked-in", "not-found-line", "absence-table",
         "supervision-block", "supervision-in-class-words", "supervision-merged-atc-clause",
+        # Section 16 item 1: a record whose supervision answer states four class clauses, so the
+        # rule that asserts the block is never truncated has a page to read.
+        "supervision-four-clauses",
         "trial-row", "composed-sentence",
     )
 
@@ -277,14 +283,27 @@ def scan_provenance(flags: Flags, directory: Path) -> None:
     for raw, row in read_ndjson_dir(directory):
         key = row["key"]
         flags.cost[key] += len(raw) + 1
+        clauses = 0
         for entry in row.get("provenance") or []:
             sentence = entry.get("sentence") or ""
             if entry.get("kind", "sentence") == "sentence":
                 flags.mark(key, "composed-sentence")
+                # Section 16 item 1: the supervision answer's class clauses, counted the way
+                # `tests/test_render_safety.py` counts them - a prose answer of the supervision
+                # question that ends with the source the class was recorded from.
+                if (
+                    entry.get("furniture") is not True
+                    and entry.get("heading") is not True
+                    and "page_questions.supervision" in (entry.get("fields") or [])
+                    and CLAUSE_SOURCE.search(sentence)
+                ):
+                    clauses += 1
             elif entry.get("kind") == "row" and (
                 sentence.startswith("Trial ") or FURTHER_TRIALS.match(sentence)
             ):
                 flags.mark(key, "trial-row")
+        if clauses >= 4:
+            flags.mark(key, "supervision-four-clauses")
 
 
 def choose(flags: Flags, canonical_keys: set[str], pages: int, per_requirement: int,

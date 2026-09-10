@@ -133,7 +133,14 @@ const PAGE_AUDIT = `() => {
     }
     return rows
   }
-  const bodyRows = [...measure('p.cd-paragraph'), ...measure('h1.cd-title'), ...measure('h2.cd-question')]
+  // §16(1): the supervision block paints its class clauses as list items, so the contrast check
+  // reads them beside the paragraphs rather than leaving a block of body text unmeasured.
+  const bodyRows = [
+    ...measure('p.cd-paragraph'),
+    ...measure('li.cd-clause'),
+    ...measure('h1.cd-title'),
+    ...measure('h2.cd-question'),
+  ]
   const greyRows = [
     ...measure('.cd-row-value'),
     ...measure('.cd-row-label'),

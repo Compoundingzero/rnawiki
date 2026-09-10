@@ -78,9 +78,12 @@ export function supervisionBlock(
     block: 'supervision',
     template: 'supervision',
     question: supervisionQuestion(displayName),
+    // §16(1): one list item per recorded class, in the order S1–S9, exactly as the question-block
+    // path paints them. A record below the stub floor states the same clauses in the same shape.
     paragraphs: paragraphs.map((sentence) => ({
       text: sentence,
       interpretation: false,
+      listItem: true as const,
     })),
     facts: [],
     groups: [],

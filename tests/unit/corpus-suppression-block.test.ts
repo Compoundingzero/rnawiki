@@ -17,6 +17,7 @@ import { describe, expect, it } from 'vitest'
 
 import { CorpusDossierPage } from '@/components/dossier/corpus/CorpusDossierPage'
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
+import { buildBlockBody, type PageBundle } from '@/lib/corpus/page-text'
 import {
   SUPPRESSION_CLASS_LABELS,
   citedSuppressionLabels,
@@ -238,6 +239,32 @@ describe('a suppressed page with no question rows', () => {
     }
   })
 
+  /*
+   * §16(1): the supervision block is never truncated.
+   *
+   * `buildBlockBody` ended with `.slice(0, 2)` — the two-paragraph discipline every question answer
+   * is held to — and the supervision block was held to it too, so a record carrying four classes
+   * stated two of them. Glofitamab (S1, S3, S4, S6) stated neither its hazardous-medicine class nor
+   * its boxed warning. Both paths are checked here, because the render and the page call the same
+   * builder and a record below the stub floor assembles the block from the same clauses.
+   */
+  it('paints four clauses for a record carrying four classes, as list items in S1–S9 order', () => {
+    const classes = ['S1', 'S3', 'S4', 'S6']
+    const markup = renderToStaticMarkup(
+      React.createElement(CorpusDossierPage, { dossier: suppressedStub(classes) }),
+    )
+    const items = [...markup.matchAll(/<li class="cd-clause">([\s\S]*?)<\/li>/g)].map((match) =>
+      visibleText(match[1] ?? ''),
+    )
+    expect(items).toHaveLength(4)
+    expect(items[0]).toContain('Its World Health Organization ATC class is C01AA')
+    expect(items[1]).toContain('It is under a pregnancy-prevention programme')
+    expect(items[2]).toContain('A hazardous-medicine class covers it: L01BB')
+    expect(items[3]).toContain('Its United States label carries a boxed warning')
+    const text = visibleText(markup)
+    for (const item of items) expect(text).toContain(item)
+  })
+
   it('states that no classification is recorded when only the unknown class is held', () => {
     const dossier = suppressedStub(['S10'])
     expect(dossier.blocks).toEqual([])
@@ -246,5 +273,60 @@ describe('a suppressed page with no question rows', () => {
     const text = visibleText(markup)
     expect(text).toContain('No classification is recorded for this compound')
     expect(text).not.toMatch(/\bS(?:[1-9]|1[01])\b/)
+  })
+})
+
+describe('the supervision block on a page that carries question rows', () => {
+  /**
+   * The same record as a full page: the derivation puts the supervision question first and
+   * `buildBlockBody` builds its body. §16(1) removes the two-paragraph cap from this block and
+   * this block only, so the clause count is the recorded class count and not two.
+   */
+  const bundleFor = (classes: string[]): PageBundle =>
+    ({
+      key: 'K1:FIXTURE00',
+      displayName: 'Fixture Compound',
+      model: 'CLINICAL',
+      tier: 1,
+      withdrawn: false,
+      suppressed: true,
+      suppressionClasses: classes,
+      suppressionEvidence: evidenceFor(classes),
+      stub: false,
+      presentFields: 6,
+      fields: {},
+      seeds: {},
+      identity: { displayName: 'Fixture Compound', synonyms: [], relations: [] },
+      questions: [],
+      names: new Map(),
+    }) as unknown as PageBundle
+
+  const supervisionQuestionBlock = {
+    id: 'supervision',
+    text: 'Why does Fixture Compound carry a supervision requirement?',
+    badge: 'Q1',
+    block: 'supervision',
+    template: 'supervision',
+    values: {},
+    sources: [],
+  }
+
+  it('builds one paragraph per recorded class, not two', () => {
+    const four = buildBlockBody(supervisionQuestionBlock, bundleFor(['S1', 'S3', 'S4', 'S6']))
+    expect(four.paragraphs).toHaveLength(4)
+    expect(four.list).toEqual([true, true, true, true])
+    expect(four.paragraphs[2]).toContain('A hazardous-medicine class covers it: L01BB')
+    expect(four.paragraphs[3]).toContain('boxed warning')
+
+    const five = buildBlockBody(supervisionQuestionBlock, bundleFor(['S1', 'S2', 'S3', 'S4', 'S6']))
+    expect(five.paragraphs).toHaveLength(5)
+  })
+
+  it('still caps every other question answer at two paragraphs', () => {
+    const body = buildBlockBody(
+      { ...supervisionQuestionBlock, block: 'human-data', template: 'human-data' },
+      bundleFor(['S1', 'S3', 'S4', 'S6']),
+    )
+    expect(body.paragraphs.length).toBeLessThanOrEqual(2)
   })
 })

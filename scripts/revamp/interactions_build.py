@@ -40,8 +40,44 @@ OPENFDA_MAPPED = os.path.join(ROOT, "data", "sources", "openfda-label", "mapped.
 INXIGHT_MAPPED = os.path.join(ROOT, "data", "sources", "inxight", "mapped.parquet")
 UNII_NAMES = os.path.join(ROOT, "data", "corpus-20k", "raw", "fda-unii", "UNII_Names_4Aug2026.txt")
 SALTS = os.path.join(ROOT, "scripts", "revamp", "salts.txt")
+# The measurement's own record of which rules it disabled, and the only place this build reads
+# them from: docs/specs/interaction-rules.md section 7 states the same three with their reasons.
+VALIDATION = os.path.join(ROOT, "data", "revamp", "interaction-validation.json")
+
+
+def disabled_rules():
+    """The rule ids the validation disabled, read from its own output.
+
+    docs/specs/phase4-generators.md section 16 item 2: "the build refuses a row whose rule id is in
+    the disabled list". A rule that the measurement disabled is disabled everywhere the corpus is
+    read from — `interactions.parquet`, `page_interactions`, every rendered line — and not only
+    when an operator remembers to pass `--disable`. The published parquet carried 92,476
+    C2-shared-target-same-direction rows because a re-run did not.
+
+    The complete table `interactions-all-rules.parquet` still carries every rule, because that is
+    what `validate_interactions.py` measures and what a later measurement would have to re-read to
+    change this decision.
+    """
+    with open(VALIDATION, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    ids = sorted({str(row.get("rule_id") or "").strip()
+                  for row in (doc.get("disabled") or [])} - {""})
+    if not ids:
+        raise SystemExit(
+            "%s records no disabled rule; docs/specs/interaction-rules.md section 7 names three, "
+            "so the file this build reads the decision from is not the file the measurement wrote"
+            % os.path.relpath(VALIDATION, ROOT))
+    return ids
+
 
 MODELS = ("clinical", "development", "longevity")
+
+# The two stored rows a shared-target prediction reads an action word off, as the field paths the
+# renderer's provenance traces are written in (docs/specs/phase4-generators.md section 16 item 2).
+# A trace naming a sentence — "action words Inhibitor and Inhibitor both read as inhibit" — states
+# the reading and not the record it was read from, and `slop_draw.resolve_trace` cannot execute it.
+MERGED_TARGET_ACTION_PATH = "fields.target.value.mergedTargets[].evidence[].pharmacology"
+CHEMBL_ACTION_PATH = "fields.mechanismClass.value.chemblMechanisms[].actionType"
 
 # ---------------------------------------------------------------- normalising
 
@@ -297,7 +333,8 @@ def load_fields():
                                 "name": merged.get("targetName"),
                                 "evidence": [
                                     {"pharmacology": ev.get("pharmacology"),
-                                     "source": ev.get("source")}
+                                     "source": ev.get("source"),
+                                     "path": MERGED_TARGET_ACTION_PATH}
                                     for ev in merged.get("evidence") or []
                                 ],
                             })
@@ -309,7 +346,8 @@ def load_fields():
                                     "key": mrow["targetChemblId"],
                                     "name": mrow.get("targetChemblId"),
                                     "evidence": [{"pharmacology": mrow["actionType"],
-                                                  "source": "chembl-mechanism"}],
+                                                  "source": "chembl-mechanism",
+                                                  "path": CHEMBL_ACTION_PATH}],
                                 })
                         for stmt in mech.get("classStatements") or []:
                             page["classes"].append({
@@ -912,7 +950,8 @@ def rule_c2(pages, identity):
                     continue
                 slot = groups[(tkey, direction)].setdefault(
                     key, {"name": target.get("name"), "curated": False, "sources": set(),
-                          "action": ev.get("pharmacology")})
+                          "action": ev.get("pharmacology"),
+                          "path": ev.get("path") or MERGED_TARGET_ACTION_PATH})
                 if ev.get("source") in CURATED_MECHANISM_SOURCES:
                     slot["curated"] = True
                 if ev.get("source"):
@@ -956,8 +995,13 @@ def rule_c2(pages, identity):
                         derivation=derivation,
                         match_basis="same merged target key, same action direction",
                         provenance=json.dumps({
-                            "direction": "action words %s and %s both read as %s"
-                                         % (sinfo["action"], dinfo["action"], direction),
+                            # Section 16 item 2: the trace names the two stored action rows by
+                            # their field paths and the records they sit on, so it can be resolved
+                            # against those records rather than read as a sentence about them.
+                            "direction": "action pair: %s on %s (%s) x %s on %s (%s), "
+                                         "both read as %s"
+                                         % (sinfo["path"], src, sinfo["action"],
+                                            dinfo["path"], dst, dinfo["action"], direction),
                             "target": "merged target key %s" % tkey,
                             "confidence": "band rule C2 in docs/specs/interaction-rules.md "
                                           "section 5",
@@ -1096,12 +1140,30 @@ def write_parquet(rows, path, columns):
     pq.write_table(table, path, compression="zstd")
 
 
+def write_published(rows, path, columns, disabled):
+    """Write the published table, refusing it if any row carries a disabled rule id."""
+    offending = Counter(r["rule_id"] for r in rows if r["rule_id"] in disabled)
+    if offending:
+        raise SystemExit(
+            "refusing to write %s: %d row(s) carry a rule the measurement disabled (%s). "
+            "The disabled list is data/revamp/interaction-validation.json and "
+            "docs/specs/interaction-rules.md section 7."
+            % (os.path.relpath(path, ROOT), sum(offending.values()),
+               ", ".join("%s %d" % (rule, n) for rule, n in sorted(offending.items()))))
+    write_parquet(rows, path, columns)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-date", default="2026-09-06")
     parser.add_argument("--disable", action="append", default=[])
     args = parser.parse_args()
-    disabled = set(args.disable)
+    # The measurement's decision, plus anything this run adds by hand. Neither can be turned off
+    # from the command line: a rule under the precision bar is not published.
+    measured = disabled_rules()
+    disabled = set(args.disable) | set(measured)
+    print("disabled rules (from %s): %s"
+          % (os.path.relpath(VALIDATION, ROOT), ", ".join(measured)), flush=True)
     os.makedirs(OUT_DIR, exist_ok=True)
 
     print("reading identity", flush=True)
@@ -1174,7 +1236,7 @@ def main():
         print("  disabled rules %s removed %d rows"
               % (sorted(disabled), len(every_row) - len(all_rows)), flush=True)
 
-    write_parquet(all_rows, os.path.join(OUT_DIR, "interactions.parquet"), COLUMNS)
+    write_published(all_rows, os.path.join(OUT_DIR, "interactions.parquet"), COLUMNS, disabled)
 
     print("checked sources", flush=True)
     with_rows = defaultdict(set)

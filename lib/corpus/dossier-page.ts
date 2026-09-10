@@ -94,6 +94,13 @@ export interface CorpusParagraph {
    * rendered duplicate check and the slop draw's template test all skip the same statement.
    */
   furniture?: true
+  /**
+   * §16(1): true where the paragraph is one item of a list the block paints as a list. The
+   * supervision answer is the one block whose body enumerates rather than develops — one clause
+   * per class the suppression pass recorded, in the order S1–S9 — so the template paints its
+   * clauses as list items and the two-paragraph cap does not apply to it.
+   */
+  listItem?: true
 }
 
 /** Consecutive revealed rows that share a label are one group; the label becomes its heading. */
@@ -854,11 +861,15 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     .map((question, index) => {
       const body = buildBlockBody(question, bundle)
       const paragraphs: CorpusParagraph[] = body.paragraphs
-        // The furniture flag is parallel to `body.paragraphs`, so the dose filter below is applied
-        // with the flag carried beside the text rather than by index into a filtered list.
-        .map((raw, index) => ({ raw, furniture: body.furniture[index] === true }))
+        // The furniture and list flags are parallel to `body.paragraphs`, so the dose filter below
+        // is applied with them carried beside the text rather than by index into a filtered list.
+        .map((raw, index) => ({
+          raw,
+          furniture: body.furniture[index] === true,
+          listItem: body.list[index] === true,
+        }))
         .filter((entry) => keeps(entry.raw))
-        .map(({ raw, furniture }, position) => {
+        .map(({ raw, furniture, listItem }, position) => {
           const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
           if (withoutAnchor.length === 0) return undefined
           const emphasis =
@@ -867,12 +878,18 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
           // only where it states no recorded value. The builder's second paragraph usually carries
           // this record's own counts, durations and registry wording with no anchor of its own;
           // calling those an interpretation would be a second untruth in place of the first.
+          //
+          // §16(1): a list item is never marked. A supervision clause names the register that
+          // stated the class inside its own sentence — "(WHO ATC via ChEMBL/EMA)" — so it is a
+          // sourced statement of a recorded fact, and calling the second, third and fourth clause
+          // of an enumeration an interpretation would label a citation as an inference.
           const paragraph: CorpusParagraph = {
             text: withoutAnchor,
-            interpretation: position > 0 && !found && !/\d/.test(withoutAnchor),
+            interpretation: !listItem && position > 0 && !found && !/\d/.test(withoutAnchor),
             ...(found ? { anchor: found } : {}),
             ...(emphasis ? { emphasis } : {}),
             ...(furniture ? { furniture: true as const } : {}),
+            ...(listItem ? { listItem: true as const } : {}),
           }
           return paragraph
         })
