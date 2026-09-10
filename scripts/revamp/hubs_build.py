@@ -64,7 +64,7 @@ QUESTIONS_V1 = ROOT / "data/corpus-20k/questions"
 IDENTITY = ROOT / "data/revamp/identity/canonical-v7.ndjson"
 RELATIONS = ROOT / "data/revamp/identity/relations-v3.parquet"
 # §15(3): the v2 tier map decides which pages are Tier 2, and so which members a hub has.
-TIERS = ROOT / "data/revamp/tiers/model-assignment-v2.ndjson"
+TIERS = ROOT / "data/revamp/tiers/model-assignment-v3.ndjson"
 INTERACTIONS = ROOT / "data/revamp/interactions/interactions.parquet"
 PATENT = ROOT / "data/revamp/blocks/patent.parquet"
 REGISTRATION = ROOT / "data/revamp/blocks/registration.parquet"

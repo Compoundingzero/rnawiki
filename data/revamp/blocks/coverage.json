@@ -8,8 +8,8 @@
     },
     "pagesPerTier": {
       "1": 866,
-      "2": 1606,
-      "3": 832
+      "2": 1571,
+      "3": 867
     },
     "rows": 8545,
     "rowsPerJurisdiction": {
@@ -38,23 +38,23 @@
   },
   "pagesInCorpus": 28832,
   "pagesPerTier": {
-    "1": 1717,
-    "2": 3923,
-    "3": 23192
+    "1": 1718,
+    "2": 3517,
+    "3": 23597
   },
   "patent": {
     "eligible": 3606,
     "eligiblePerTier": {
-      "1": 1095,
-      "2": 2165,
-      "3": 346
+      "1": 1096,
+      "2": 2138,
+      "3": 372
     },
     "genericAvailable": 1746,
     "noRecord": 25966,
     "noRecordPerTier": {
       "1": 804,
-      "2": 2246,
-      "3": 22916
+      "2": 1867,
+      "3": 23295
     },
     "noRecordReasons": {
       "biologic: see Purple Book exclusivity": 740,
@@ -63,9 +63,9 @@
     "orangeBookRows": 2866,
     "pages": 28832,
     "pagesPerTier": {
-      "1": 1717,
-      "2": 3923,
-      "3": 23192
+      "1": 1718,
+      "2": 3517,
+      "3": 23597
     },
     "purpleBookRows": 740,
     "rows": 28832,
@@ -77,13 +77,13 @@
     "affirmativePagesPerJurisdictionPerTier": {
       "AU": {
         "1": 768,
-        "2": 1490,
-        "3": 603
+        "2": 1461,
+        "3": 632
       },
       "CA": {
-        "1": 113,
-        "2": 2748,
-        "3": 0
+        "1": 114,
+        "2": 2342,
+        "3": 405
       },
       "EU": {
         "1": 67,
@@ -97,13 +97,13 @@
       },
       "SG": {
         "1": 442,
-        "2": 1046,
-        "3": 106
+        "2": 1039,
+        "3": 113
       },
       "US": {
-        "1": 1297,
-        "2": 2192,
-        "3": 338
+        "1": 1298,
+        "2": 2185,
+        "3": 344
       }
     },
     "affirmativeRowsPerJurisdiction": {
@@ -126,9 +126,9 @@
     "otherRegisterRows": 15966,
     "pages": 28832,
     "pagesPerTier": {
-      "1": 1717,
-      "2": 3923,
-      "3": 23192
+      "1": 1718,
+      "2": 3517,
+      "3": 23597
     },
     "rows": 220863,
     "rowsPerJurisdiction": {

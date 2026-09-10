@@ -174,6 +174,26 @@ SALTS = ROOT / "scripts/revamp/salts.txt"
 STRUCTURE_EQUALITY_LABELS = {"same structure as"}
 IDENTIFIER_INCHIKEY = "inchikey"
 
+# Section 19 item 1: Health Canada's homeopathic products. The register says which of its drug
+# codes are homeopathic in its own schedule table; the page says what it made of them. The rule
+# reads the register directly, so it does not share an answer with the stage that applied it.
+HC_SCHEDULE_GLOB = "data/corpus-20k/raw/health-canada/allfiles*/schedule*.txt"
+FIELDS_DIR = ROOT / "data/revamp/fields-v2"
+CANADA_LABEL = "canada"
+HOMEOPATHIC_LISTING = re.compile(r"homeopathic product listed", re.I)
+# The words the Canada line prints for an approval or a marketed entry, which a homeopathic
+# product listing is not.
+CA_APPROVAL_WORDS = re.compile(r"\b(?:marketed|approved|dormant)\b", re.I)
+
+# Section 19 item 2: the label the nearest-approved-neighbour row prints, and the row that names
+# the compound it found.
+NEIGHBOUR_LABEL = "closest approved compound"
+
+# Section 19 item 3: a predicted interaction line, and the cap on how many of them one rule class
+# paints before the rest sit behind a control.
+PREDICTED_PREFIX = "predicted from mechanism"
+PREDICTED_VISIBLE_ROWS = 6
+
 RULES = (
     "supervision answer names no register status",
     "no register application row outside the registration block",
@@ -200,6 +220,10 @@ RULES = (
     "no name the synonym filter removed is painted",
     "every salt-form entry is this record's name plus a counter-ion",
     "no structure-equality relation on a single-heavy-atom key",
+    # Section 19 item 4.
+    "no Health Canada homeopathic row is rendered as an approval",
+    "no nearest-approved-neighbour row on a single-heavy-atom structure",
+    "every visible predicted-interaction list caps at six rows",
 )
 
 
@@ -334,6 +358,26 @@ EXTRACT_JS = """() => {
     ...main.querySelectorAll('section.cd-form-of p.cd-paragraph'),
   ].map(text);
 
+  // Section 19 item 2: the computed sections' rows, label and value apart. The nearest-neighbour
+  // comparison is four cells of one row, and its first cell names the compound it found.
+  const computedRows = [...main.querySelectorAll('section.cd-computed dl.cd-facts > div')].map(
+    (row) => ({
+      label: text(row.querySelector('dt')),
+      value: text(row.querySelector('dd')),
+      closed: Boolean(closedDisclosure(row)),
+    }),
+  );
+
+  // Section 19 item 3: every predicted-interaction list a reader meets without opening anything,
+  // with the number of rows in it. One rule class is one list, so the cap is read off the list.
+  const predictedLists = [];
+  for (const list of main.querySelectorAll('ul.cd-interactions')) {
+    if (closedDisclosure(list)) continue;
+    const rows = [...list.querySelectorAll(':scope > li')].map(text);
+    const predicted = rows.filter((row) => row.toLowerCase().startsWith('predicted from mechanism'));
+    if (predicted.length > 0) predictedLists.push({ rows: predicted.length, first: predicted[0] });
+  }
+
   // A hub table's cells, with the furniture mark the template put on them.
   const hubCells = [...main.querySelectorAll('table td')].map((cell) => ({
     text: text(cell),
@@ -365,6 +409,8 @@ EXTRACT_JS = """() => {
     rows,
     formOfNotes,
     identifierRows,
+    computedRows,
+    predictedLists,
     hubCells,
     title,
     synonymGroups,
@@ -406,9 +452,12 @@ class Recorded:
     dropped: dict[str, set[str]]
     salts: list[tuple[str, ...]]
     single_atom_keys: set[str]
+    single_atom_names: set[str]
+    canada_evidence: dict[str, tuple[int, int]]
 
 
-RECORDED = Recorded(dropped={}, salts=[], single_atom_keys=set())
+RECORDED = Recorded(dropped={}, salts=[], single_atom_keys=set(), single_atom_names=set(),
+                    canada_evidence={})
 
 
 def load_recorded() -> Recorded:
@@ -441,7 +490,60 @@ def load_recorded() -> Recorded:
                 molecule = Chem.MolFromSmiles(smiles, sanitize=False)
                 if molecule is not None and molecule.GetNumAtoms() < 2:
                     single.add(key)
-    return Recorded(dropped=dict(dropped), salts=load_salts(str(SALTS)), single_atom_keys=single)
+
+    # Section 19 item 2 reads both sides of the comparison: the page's own structure and the name
+    # of the compound the row found. The display names of the records whose structure is one atom
+    # are the second side, read from the same revision.
+    single_names: set[str] = set()
+    if canonical.exists():
+        with canonical.open(encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                record = json.loads(line)
+                structure = record.get("structure") or {}
+                if structure.get("inchikey") in single:
+                    name = (record.get("displayName") or "").strip().casefold()
+                    if name:
+                        single_names.add(name)
+
+    # Section 19 item 1: per page, how many of its Canadian register rows the Drug Product Database
+    # itself files under the schedule HOMEOPATHIC, and how many rows it holds in all. The schedule
+    # table is the register's own answer; the field record supplies only the drug codes the page
+    # was built from, so the rule and the correction do not share a decision.
+    homeopathic_codes: set[str] = set()
+    for path in sorted(ROOT.glob(HC_SCHEDULE_GLOB)):
+        with path.open(encoding="latin-1", newline="") as handle:
+            for row in csv.reader(handle):
+                if len(row) >= 2 and row[0].strip() and row[1].strip().upper() == "HOMEOPATHIC":
+                    homeopathic_codes.add(row[0].strip())
+    canada: dict[str, tuple[int, int]] = {}
+    for batch in sorted(FIELDS_DIR.glob("*/batch-*.ndjson")):
+        with batch.open(encoding="utf-8") as handle:
+            for line in handle:
+                if "Health Canada DPD" not in line:
+                    continue
+                record = json.loads(line)
+                block = (
+                    ((record.get("fields") or {}).get("regulatory") or {}).get("value") or {}
+                ).get("CA")
+                if not isinstance(block, dict):
+                    continue
+                ids = [
+                    str(row.get("id") or "").strip()
+                    for row in (block.get("evidence") or [])
+                    if isinstance(row, dict)
+                ]
+                ids = [value for value in ids if value]
+                if not ids:
+                    continue
+                marked = sum(1 for value in ids if value in homeopathic_codes)
+                if marked:
+                    canada[record["key"]] = (marked, len(ids))
+
+    return Recorded(dropped=dict(dropped), salts=load_salts(str(SALTS)), single_atom_keys=single,
+                    single_atom_names=single_names, canada_evidence=canada)
 
 
 @dataclass
@@ -830,6 +932,58 @@ def check_page(target: Target, payload: dict, result: Result) -> None:
                 continue
             record(RULES[21], page_key not in RECORDED.single_atom_keys,
                    f"{relation['label']} {relation['name']!r} on {page_key}, one heavy atom")
+
+    # 22 — section 19 item 1: a homeopathic product listing is not an approval. Where the Drug
+    # Product Database files this page's Canadian rows under its own schedule HOMEOPATHIC, the
+    # Canada line says so; where it files all of them there, the line carries no approval word.
+    marked, total = RECORDED.canada_evidence.get(target.key, (0, 0))
+    if marked:
+        canada = next(
+            (row for row in payload["registration"]
+             if (row.get("label") or "").strip().casefold() == CANADA_LABEL),
+            None,
+        )
+        status = (canada or {}).get("status") or ""
+        record(
+            RULES[22],
+            bool(HOMEOPATHIC_LISTING.search(status)),
+            f"{marked} of {total} Canadian rows are homeopathic and the line reads {status[:120]!r}",
+        )
+        if marked == total:
+            hit = CA_APPROVAL_WORDS.search(status)
+            record(
+                RULES[22],
+                hit is None,
+                f"every Canadian row is homeopathic and the line reads {status[:120]!r}",
+            )
+
+    # 23 — section 19 item 2: the nearest-approved-neighbour comparison needs a structure on both
+    # sides. Lead's fingerprint and uranium's are both empty, and "similarity 1.00" between two
+    # empty fingerprints is not a finding about either compound.
+    for row in payload.get("computedRows") or []:
+        if (row.get("label") or "").strip().casefold() != NEIGHBOUR_LABEL:
+            continue
+        neighbour = (row.get("value") or "").strip()
+        record(
+            RULES[23],
+            page_key not in RECORDED.single_atom_keys,
+            f"a nearest-neighbour row on {page_key}, a structure of one heavy atom",
+        )
+        record(
+            RULES[23],
+            neighbour.casefold() not in RECORDED.single_atom_names,
+            f"the nearest neighbour is {neighbour!r}, a structure of one heavy atom",
+        )
+
+    # 24 — section 19 item 3: a predicted line is capped at six visible rows per rule class, and
+    # one rule class is one list, so the cap is decidable on the list the reader meets.
+    for predicted in payload.get("predictedLists") or []:
+        record(
+            RULES[24],
+            int(predicted.get("rows") or 0) <= PREDICTED_VISIBLE_ROWS,
+            f"{predicted.get('rows')} visible predicted rows in one list, "
+            f"beginning {str(predicted.get('first'))[:100]!r}",
+        )
 
     assert painted is not None
 

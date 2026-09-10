@@ -819,10 +819,20 @@ def line_ca(record, registers):
 
     words = []
     codes = []
+    homeopathic_codes = []
     for row in evidence:
-        statement = row.get("statement") or ""
-        tail = statement.split(": ")[-1].strip()
-        word = CA_WORDS.get(tail.upper(), tail if tail else None)
+        # docs/specs/phase4-generators.md §19(1): a Health Canada row whose product class is
+        # homeopathic renders as what it is — a homeopathic product listing — and never as
+        # "Marketed" or "Approved". The integration marked the row from the register's own
+        # schedule value; the line prints the class once however many such codes there are.
+        if (row.get("productClass") or "") == "homeopathic":
+            word = row.get("listingWord") or "Homeopathic product listed, DIN-HM class"
+            if row.get("id") and row["id"] not in homeopathic_codes:
+                homeopathic_codes.append(row["id"])
+        else:
+            statement = row.get("statement") or ""
+            tail = statement.split(": ")[-1].strip()
+            word = CA_WORDS.get(tail.upper(), tail if tail else None)
         if word and word not in words:
             words.append(word)
         if row.get("id") and row["id"] not in codes:
@@ -848,6 +858,8 @@ def line_ca(record, registers):
         detail = ""
         absence = "not found"
     disclosure = {"drugCodes": codes[:20]} if codes else {}
+    if homeopathic_codes:
+        disclosure["homeopathicDrugCodes"] = homeopathic_codes[:20]
     return (status, detail, "Health Canada Drug Product Database", date, provenance, disclosure,
             absence)
 

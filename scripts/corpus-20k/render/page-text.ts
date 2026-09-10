@@ -3509,6 +3509,57 @@ export interface RevealedRowGroup {
  */
 export const VISIBLE_ROWS = 6
 
+/**
+ * §19(3): a predicted interaction line is capped at six visible rows *per rule class*.
+ *
+ * A page whose mechanism rule matches many counterparts painted them as one long run — rescinnamine
+ * carried twenty hypotensive lines — because the cap was taken over the whole tier, and a tier is
+ * not what a reader is reading. The unit is the rule class: one rule, one group, six rows a reader
+ * meets, and the remainder in that group's own closed disclosure with its count. The checked-
+ * sources statement is outside every group and stays visible.
+ *
+ * The grouping is here, in the builder both surfaces call, so `renderPage` and
+ * `components/dossier/corpus/InteractionsBlock.tsx` split one list the same way rather than each
+ * holding its own idea of six.
+ */
+export const PREDICTED_VISIBLE_ROWS = 6
+
+/** One rule class's rows, split at the cap. */
+export interface PredictedRuleClassGroup<T> {
+  ruleClass: string
+  visible: T[]
+  disclosed: T[]
+}
+
+/**
+ * Split predicted rows into their rule classes, in the order the classes first appear, each capped
+ * at `PREDICTED_VISIBLE_ROWS` visible rows.
+ */
+export function groupPredictedByRuleClass<T extends { ruleId?: string | null }>(
+  rows: readonly T[],
+): Array<PredictedRuleClassGroup<T>> {
+  const order: string[] = []
+  const byClass = new Map<string, T[]>()
+  for (const row of rows) {
+    const ruleClass = (row.ruleId ?? '').trim() || 'unclassified'
+    let bucket = byClass.get(ruleClass)
+    if (bucket === undefined) {
+      bucket = []
+      byClass.set(ruleClass, bucket)
+      order.push(ruleClass)
+    }
+    bucket.push(row)
+  }
+  return order.map((ruleClass) => {
+    const all = byClass.get(ruleClass) ?? []
+    return {
+      ruleClass,
+      visible: all.slice(0, PREDICTED_VISIBLE_ROWS),
+      disclosed: all.slice(PREDICTED_VISIBLE_ROWS),
+    }
+  })
+}
+
 /** The label `rowsFromTrials` gives the rows past the sixth; it is already a counted remainder. */
 const FURTHER_ROWS = /^\d+ (?:further recorded trials?|more recorded rows?)$/
 
@@ -4181,17 +4232,38 @@ export function renderPage(
   for (const tier of ['A', 'B', 'C'] as const) {
     const held = tiers[tier]
     if (!held) continue
-    for (const row of held.inline) {
-      pushInteraction(
-        interactionLine(tier, row, { controlled, quote: true }),
-        interactionProvenance(row),
-      )
-    }
-    for (const row of held.disclosed) {
-      pushInteraction(
-        interactionLine(tier, row, { controlled, quote: false }),
-        interactionProvenance(row),
-      )
+    if (tier === 'C') {
+      // §19(3): predicted lines are grouped by rule class and capped at six visible rows in each,
+      // the remainder inside that group's own closed disclosure. The page paints the groups in the
+      // order their classes first appear and each group's visible rows before its disclosed ones,
+      // which is the order written here.
+      for (const group of groupPredictedByRuleClass([...held.inline, ...held.disclosed])) {
+        for (const row of group.visible) {
+          pushInteraction(
+            interactionLine(tier, row, { controlled, quote: true }),
+            interactionProvenance(row),
+          )
+        }
+        for (const row of group.disclosed) {
+          pushInteraction(
+            interactionLine(tier, row, { controlled, quote: false }),
+            interactionProvenance(row),
+          )
+        }
+      }
+    } else {
+      for (const row of held.inline) {
+        pushInteraction(
+          interactionLine(tier, row, { controlled, quote: true }),
+          interactionProvenance(row),
+        )
+      }
+      for (const row of held.disclosed) {
+        pushInteraction(
+          interactionLine(tier, row, { controlled, quote: false }),
+          interactionProvenance(row),
+        )
+      }
     }
     const shown = held.inline.length + held.disclosed.length
     if (held.total > shown) {
@@ -4413,6 +4485,19 @@ export function renderPage(
    * than from the counterpart's own title.
    */
   const relationLabelByTarget = new Map<string, string>()
+  /*
+   * The same decision keyed by the counterpart alone.
+   *
+   * The disambiguated name belongs to the page the row points at, not to the kind of relation
+   * that reaches it, and the two files that carry the pair do not always agree on the kind:
+   * `relations-v7.parquet` records Acebutolol ↔ Acebutolol as `form_of` in one direction and
+   * `stereoisomer_of` in the other, while `canonical-v7.ndjson` records `stereoisomer-of` both
+   * ways. Keyed on the kind, the lookup missed on 119 rows and each of them printed the bare name
+   * the two pages share — the thing §17(3) exists to stop. The kind-specific key is still tried
+   * first, so a stage that ever records two different names for two relations to one page keeps
+   * both.
+   */
+  const relationLabelByCounterpart = new Map<string, string>()
   for (const recorded of blocks?.relations ?? []) {
     const name = recorded.counterpartName
     if (recorded.counterpartKey && name) {
@@ -4420,13 +4505,20 @@ export function renderPage(
         `${relationKindOf(recorded.relation)}|${recorded.counterpartKey}`,
         name,
       )
+      if (!relationLabelByCounterpart.has(recorded.counterpartKey)) {
+        relationLabelByCounterpart.set(recorded.counterpartKey, name)
+      }
     }
   }
   const relationRows = bundle.identity.relations
     .map((r) => {
-      const label = RELATION_LABELS[r.type] ?? r.type.replace(/-/g, ' ')
+      // The page's own `RELATION_LABELS` falls back to the stored type with its separators
+      // replaced; a stored `same_structure_as` reaches the page as "same structure as" and reached
+      // this render as the enum. Both separators, so the two texts read the same words.
+      const label = RELATION_LABELS[r.type] ?? r.type.replace(/[-_]/g, ' ')
       const target =
         relationLabelByTarget.get(`${relationKindOf(r.type)}|${r.targetKey}`) ??
+        relationLabelByCounterpart.get(r.targetKey) ??
         bundle.names.get(r.targetKey)
       return target ? `${label} ${target}` : undefined
     })

@@ -45,6 +45,26 @@ ground was one of them moved to DEVELOPMENT. Tier sizes: Tier 1 1,719 → 1,717,
 register the Phase 2 pulls refreshed now records a remaining active entry for pegaptanib, colistin
 and teriparatide, which the withdrawal rule above guards against.
 
+### A homeopathic product listing is not an approval (fixed 2026-09-10, `phase4-generators.md` §19 item 1)
+
+Health Canada's Drug Product Database lists homeopathic products — the DIN-HM class, which the
+bulk extract records as the `QRYM_SCHEDULE` value `HOMEOPATHIC` on 5,571 drug codes; no product
+number in the four extracts prints an `HM` prefix, so the schedule value is the register's own
+identification. A row on such a code is a product listing and not an approval, so it makes no page
+CLINICAL, it is not a remaining register entry for the withdrawal rule above, and the jurisdiction's
+status is not `approved` where every Canadian row this page holds is one. The row is kept and the
+registration block renders it as what it is: "Homeopathic product listed, DIN-HM class (Health
+Canada Drug Product Database)".
+
+The same rule reaches the label ground: an SPL the label mapping refuses — homeopathic or
+anthroposophic in its purpose, indications or description, an `[HPUS]` ingredient, a product name
+ending in potency notation, or an unapproved NDC marketing category — cannot make a page CLINICAL
+by the `otc-label` route either. `scripts/revamp/openfda_label_map.py` records every refusal in
+`data/sources/openfda-label/2026-09-05/parsed/excluded-set-ids.json`, and
+`scripts/corpus-20k/tiers/assign-models.py` reads that file so the two stages refuse the same SPLs.
+
+The tier map that applies both rules is `data/revamp/tiers/model-assignment-v3.ndjson`.
+
 ## LONGEVITY (15 fields)
 
 | #   | Field                             | Value shape                                                                                                                                                           | Rule                                                                  |

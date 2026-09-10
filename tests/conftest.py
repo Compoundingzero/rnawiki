@@ -2,7 +2,7 @@
 
 One option is defined, `--sample`, and one file reads it: `tests/test_render_safety.py`.
 
-Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v13/`,
+Why it exists. That file reads the render the workstation wrote — `data/revamp/render-v14/`,
 `data/revamp/page-blocks/`, `data/revamp/fields-v2/` — which is gitignored and runs to hundreds of
 megabytes, so a GitHub Actions runner has none of it. `scripts/revamp/ci_sample.py` writes a small
 committed sample of exactly those streams for 200 drawn pages, and `--sample` points the rules at
@@ -29,7 +29,7 @@ to pass over nothing:
 Both run on the workstation, over the whole corpus, with the plain command above and no `--sample`.
 `docs/specs/ci-checks.md` records that split, and the CI job prints it.
 
-A third rule skips itself wherever `data/revamp/render-v13/dom-parity.json` is absent: the parity
+A third rule skips itself wherever `data/revamp/render-v14/dom-parity.json` is absent: the parity
 report is produced by `scripts/revamp/dom_parity.py` against a running build, which CI does not
 have. It is listed below for the same reason — so the skip is a stated one.
 
@@ -80,6 +80,18 @@ SAMPLE_SKIPS = {
         "counts heavy atoms with RDKit, which requirements-ci.txt does not install because no other "
         "check here reads a molecular structure; run it on the workstation with "
         "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k single_heavy_atom`",
+    # Section 19's two corpus rules. One asks the Health Canada register which of its drug codes are
+    # homeopathic, and the register's own extracts are gitignored; the other counts heavy atoms with
+    # RDKit, which requirements-ci.txt deliberately does not install.
+    "test_a_homeopathic_health_canada_row_is_never_an_approval":
+        "reads the Drug Product Database's own schedule extracts under data/corpus-20k/raw/"
+        "health-canada/, which are gitignored and absent here, and every stored regulatory record "
+        "in data/revamp/fields-v2/; run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k homeopathic`",
+    "test_no_nearest_neighbour_section_stands_on_a_single_heavy_atom_structure":
+        "counts heavy atoms with RDKit, which requirements-ci.txt does not install, and reads every "
+        "neighbour row in data/revamp/tier3-sections.parquet; run it on the workstation with "
+        "`.venv-corpus/bin/python -m pytest tests/test_render_safety.py -k nearest_neighbour_section`",
 }
 
 # stream -> the file `ci_sample.py` writes it to.

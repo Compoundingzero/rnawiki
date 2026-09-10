@@ -2002,6 +2002,78 @@ def test_a_relation_row_never_names_the_page_it_is_on(pages, blocks):
         "no relation row prints a disambiguated counterpart name; the rule cannot be observed"
     )
 
+    # The rule again, on the name the page paints rather than on the decision behind it.
+    #
+    # The block above asks the page bundle what name the row carries, and on the 119 rows this half
+    # caught the bundle was right: the loader and the render both looked the stored name up by
+    # relation kind *and* counterpart, and `relations-v7.parquet` and `canonical-v7.ndjson` disagree
+    # about the kind on some pairs, so both surfaces missed the decision and printed the bare shared
+    # name. A rule checked only against the stage that decided it cannot see that. This half
+    # recomputes the name each surface now prints — the counterpart's disambiguated name where the
+    # identity stage recorded one, else its own display name — and compares it with the page's own
+    # printed title.
+    import csv as _csv
+
+    display_names = os.path.join(ROOT, "data", "revamp", "identity", "display-names-v6.csv")
+    if not os.path.exists(display_names) or not os.path.exists(CANONICAL):
+        pytest.skip("display-names-v6.csv or canonical-v7.ndjson is absent")
+    page_title: dict[str, str] = {}
+    relation_label: dict[str, str] = {}
+    with open(display_names, encoding="utf-8", newline="") as handle:
+        for row in _csv.DictReader(handle):
+            name = (row.get("disambiguated_display_name") or "").strip()
+            if not name or not row.get("key"):
+                continue
+            relation_label[row["key"]] = name
+            if (row.get("applies_to") or "page-title") == "page-title":
+                page_title[row["key"]] = name
+    records = _canonical_records()
+    display = {key: str(record.get("displayName") or "") for key, record in records.items()}
+
+    def own(key: str) -> str:
+        return page_title.get(key) or display.get(key, "")
+
+    def shown(key: str) -> str:
+        return relation_label.get(key) or display.get(key, "")
+
+    fixable: list[str] = []
+    unrecorded: dict[str, list[str]] = {}
+    for key, record in records.items():
+        title = own(key)
+        if not title:
+            continue
+        for relation in record.get("relations") or []:
+            target = relation.get("targetKey")
+            if not target or target not in display:
+                continue
+            name = shown(target)
+            if not name or name.casefold() != title.casefold():
+                continue
+            if target in relation_label:
+                fixable.append(
+                    f"{key}: {relation.get('type')} names {name!r}, which is this page's own "
+                    "printed title, and the identity stage recorded a disambiguated name for "
+                    f"{target}"
+                )
+            else:
+                unrecorded.setdefault(target, []).append(key)
+    _report(fixable, "a painted relation row names the page it is on (§17 item 3)")
+
+    # What the rule cannot reach, named rather than passed over. `display_names_v6.py` builds its
+    # collision groups from `relations-v6.parquet`, which carries no edge to a `HOLD:existing:*`
+    # record, so four held records print a name a related page also prints and no disambiguated
+    # name exists for a row to use. Re-running that stage against the v7 revision is the change
+    # that would close it; until then this asserts the gap does not grow.
+    assert sorted(unrecorded) == [
+        "HOLD:existing:amdinocillin",
+        "HOLD:existing:arimoclomol",
+        "HOLD:existing:cisapride",
+        "HOLD:existing:vincristine",
+    ], (
+        "the set of counterparts printing a related page's name with no recorded disambiguated "
+        f"name has changed: {sorted(unrecorded)}"
+    )
+
 
 def test_an_unconfirmed_relation_note_never_renders_as_a_form_of_note(pages, provenance, blocks):
     """§17(4): the unconfirmed-relation note belongs to the technical disclosure.
@@ -2302,7 +2374,14 @@ def test_no_structure_equality_relation_stands_on_a_single_heavy_atom_key(pages)
     if not os.path.exists(RELATIONS_V7) or not os.path.exists(CANONICAL):
         pytest.skip("relations-v7.parquet or canonical-v7.ndjson is absent")
     import pyarrow.parquet as pq
-    from rdkit import Chem, RDLogger
+
+    try:
+        from rdkit import Chem, RDLogger
+    except ModuleNotFoundError:
+        pytest.skip(
+            "counting heavy atoms needs RDKit, which scripts/revamp/requirements-ci.txt "
+            "deliberately does not install; this rule runs on the workstation"
+        )
 
     RDLogger.DisableLog("rdApp.*")
     records = _canonical_records()
@@ -2348,3 +2427,261 @@ def test_no_structure_equality_relation_stands_on_a_single_heavy_atom_key(pages)
         in single
     ]
     _report(printed, "a page printing a structure-equality relation on a single-atom key")
+
+
+# ------------------------------------------------- §19: homeopathic products, structures, the cap
+
+HC_SCHEDULE_GLOB = os.path.join(
+    ROOT, "data", "corpus-20k", "raw", "health-canada", "allfiles*", "schedule*.txt"
+)
+MODEL_ASSIGNMENT_V3 = os.path.join(
+    ROOT, "data", "revamp", "tiers", "model-assignment-v3.ndjson"
+)
+TIER3_SECTIONS = os.path.join(ROOT, "data", "revamp", "tier3-sections.parquet")
+# The word the Canada registration line prints for a homeopathic product listing, and the words it
+# prints for an approval or a marketed entry — which a homeopathic listing is never one of.
+CANADA_LINE = re.compile(r"^Canada:\s+(.+?)\s+\(Health Canada Drug Product Database\)")
+HOMEOPATHIC_LISTING = re.compile(r"homeopathic product listed", re.IGNORECASE)
+CANADA_APPROVAL_WORDS = re.compile(r"\b(?:Marketed|Approved|Dormant)\b")
+# A predicted line, and the counterpart it names — the value the stored row is found by, so a
+# painted line can be read back to the rule class that produced it.
+PREDICTED_LINE = re.compile(r"^Predicted from mechanism:\s*(.+?)\s+·\s")
+
+
+def _homeopathic_drug_codes() -> set[str]:
+    """The Drug Product Database's own answer: the drug codes it files under HOMEOPATHIC."""
+    import csv
+    import glob as _glob
+
+    codes: set[str] = set()
+    for path in sorted(_glob.glob(HC_SCHEDULE_GLOB)):
+        with open(path, encoding="latin-1", newline="") as handle:
+            for row in csv.reader(handle):
+                if len(row) >= 2 and row[0].strip() and row[1].strip().upper() == "HOMEOPATHIC":
+                    codes.add(row[0].strip())
+    return codes
+
+
+def _canada_evidence() -> dict[str, list[dict[str, Any]]]:
+    """Per page, the Canadian register rows `fields-v2` carries."""
+    out: dict[str, list[dict[str, Any]]] = {}
+    for model in ("longevity", "clinical", "development"):
+        directory = os.path.join(FIELDS_DIR, model)
+        if not os.path.isdir(directory):
+            continue
+        for path in sorted(os.listdir(directory)):
+            if not re.fullmatch(r"batch-\d+\.ndjson", path):
+                continue
+            with open(os.path.join(directory, path), encoding="utf-8") as handle:
+                for line in handle:
+                    if "Health Canada DPD" not in line:
+                        continue
+                    record = json.loads(line)
+                    block = (
+                        ((record.get("fields") or {}).get("regulatory") or {}).get("value") or {}
+                    ).get("CA")
+                    if not isinstance(block, dict):
+                        continue
+                    rows = [row for row in (block.get("evidence") or []) if isinstance(row, dict)]
+                    if rows:
+                        out[record["key"]] = [dict(row, _status=block.get("status")) for row in rows]
+    return out
+
+
+def test_a_homeopathic_health_canada_row_is_never_an_approval(pages):
+    """§19(1): a DIN-HM listing is a product listing, not an approval, in every stage that reads it.
+
+    Lead (Pb), Adonis vernalis and the Bach flower remedy holly sat in Tier 2 because Health
+    Canada's Drug Product Database lists their homeopathic products. The register says which of its
+    drug codes those are, in its own schedule table; this reads that table and then asks the three
+    stages that consumed it — the field record, the tier map and the painted registration line —
+    whether any of them still calls such a row an approval.
+    """
+    codes = _homeopathic_drug_codes()
+    if not codes:
+        pytest.skip(
+            "the Health Canada DPD schedule extracts are absent, so the register cannot say which "
+            "drug codes are homeopathic; this rule runs on the workstation, where the extracts are"
+        )
+    if not os.path.isdir(FIELDS_DIR):
+        pytest.skip(f"{FIELDS_DIR} is absent")
+
+    evidence = _canada_evidence()
+    assert evidence, "no page carries a Health Canada register row; the rule cannot be observed"
+
+    failures: list[str] = []
+    all_homeopathic: set[str] = set()
+    marked = 0
+    for key, rows in evidence.items():
+        homeopathic = [row for row in rows if str(row.get("id") or "").strip() in codes]
+        marked += len(homeopathic)
+        for row in homeopathic:
+            if (row.get("productClass") or "") != "homeopathic":
+                failures.append(
+                    f"{key}: drug code {row.get('id')} is filed under the schedule HOMEOPATHIC "
+                    f"and the field record does not mark it: {row.get('statement')!r}"
+                )
+        if homeopathic and len(homeopathic) == len(rows):
+            all_homeopathic.add(key)
+            if rows[0].get("_status") == "approved":
+                failures.append(
+                    f"{key}: every Canadian row is a homeopathic product listing and the "
+                    "jurisdiction's status is still `approved`"
+                )
+    assert marked > 0, "no page holds a homeopathic Canadian row; the rule cannot be observed"
+    _report(failures, "a homeopathic Health Canada row counted as an approval (§19 item 1)")
+
+    # The tier map: no page takes CLINICAL on a homeopathic Health Canada row.
+    if os.path.exists(MODEL_ASSIGNMENT_V3):
+        grounds: list[str] = []
+        with open(MODEL_ASSIGNMENT_V3, encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line or "health-canada" not in line:
+                    continue
+                record = json.loads(line)
+                for reason in record.get("reasons") or []:
+                    if not isinstance(reason, dict) or reason.get("code") != "health-canada":
+                        continue
+                    detail = reason.get("detail")
+                    for item in detail if isinstance(detail, list) else [detail]:
+                        found = re.search(r"drug code (\d+)", str(item))
+                        if found and found.group(1) in codes:
+                            grounds.append(f"{record.get('key')}: {item}")
+        _report(grounds, "a CLINICAL ground on a homeopathic Health Canada drug code (§19 item 1)")
+
+    # The painted line: it says what the row is, and never an approval word.
+    printed = 0
+    line_failures: list[str] = []
+    for page in pages:
+        if page["key"] not in all_homeopathic:
+            continue
+        for line in _lines(page):
+            found = CANADA_LINE.match(line)
+            if not found:
+                continue
+            printed += 1
+            words = found.group(1)
+            if not HOMEOPATHIC_LISTING.search(words):
+                line_failures.append(f"{page['key']}: {line[:160]}")
+            elif CANADA_APPROVAL_WORDS.search(words):
+                line_failures.append(f"{page['key']}: {line[:160]}")
+    _report(line_failures, "a Canada register line reading a homeopathic listing as an approval")
+    assert printed > 0, (
+        "no page whose Canadian evidence is all homeopathic printed a Canada register line; "
+        "the rendered half of the rule cannot be observed"
+    )
+
+
+def test_no_nearest_neighbour_section_stands_on_a_single_heavy_atom_structure(pages):
+    """§19(2): a structural comparison needs a structure on both sides.
+
+    Lead's Morgan fingerprint and uranium's are both empty, so their Tanimoto similarity is 1.00
+    and the section read "closest approved compound: uranium, similarity 1.00" — a number about two
+    empty bit vectors, not a finding about either element. Both compounds need two heavy atoms.
+    """
+    if not os.path.exists(TIER3_SECTIONS) or not os.path.exists(CANONICAL):
+        pytest.skip("tier3-sections.parquet or canonical-v7.ndjson is absent")
+    import pyarrow.parquet as pq
+
+    try:
+        from rdkit import Chem, RDLogger
+    except ModuleNotFoundError:
+        pytest.skip(
+            "counting heavy atoms needs RDKit, which scripts/revamp/requirements-ci.txt "
+            "deliberately does not install; this rule runs on the workstation"
+        )
+
+    RDLogger.DisableLog("rdApp.*")
+    records = _canonical_records()
+    heavy_by_key: dict[str, int] = {}
+    for key, record in records.items():
+        smiles = (record.get("structure") or {}).get("smiles")
+        if not smiles:
+            continue
+        molecule = Chem.MolFromSmiles(str(smiles), sanitize=False)
+        if molecule is not None:
+            heavy_by_key[key] = molecule.GetNumAtoms()
+
+    single = {key for key, count in heavy_by_key.items() if count < MIN_HEAVY_ATOMS}
+    assert single, "no single-heavy-atom structure is recorded; the rule cannot be observed"
+
+    table = pq.read_table(TIER3_SECTIONS).to_pydict()
+    failures: list[str] = []
+    checked = 0
+    for page, section, values in zip(table["page"], table["section"], table["values"]):
+        if section != "neighbour":
+            continue
+        checked += 1
+        held = json.loads(values)
+        neighbour = str(held.get("neighbourPage") or "")
+        if page in single:
+            failures.append(f"{page}: a neighbour section on a structure of one heavy atom")
+        if neighbour and neighbour in single:
+            failures.append(f"{page}: the neighbour {neighbour} is a structure of one heavy atom")
+    assert checked > 0, "no neighbour section fired; the rule cannot be observed"
+    _report(failures, "a nearest-neighbour section on a single-heavy-atom structure (§19 item 2)")
+
+    printed = [
+        f"{page['key']}: {line}"
+        for page in pages
+        for line in _lines(page)
+        if line.startswith("Closest approved compound") and page["key"] in single
+    ]
+    _report(printed, "a page printing a nearest-neighbour row on a single-atom structure")
+
+
+def test_predicted_lines_are_painted_grouped_by_rule_class(pages, blocks):
+    """§19(3): predicted lines are grouped by rule class, six visible in each.
+
+    Rescinnamine painted twenty hypotensive lines in one run, because the cap was taken over the
+    whole predicted tier and a tier is not what a reader reads. The grouping is decidable on the
+    render once each painted line is read back to the rule that produced it: a rule class is one
+    contiguous run of lines, never two runs with another class between them, and the render writes
+    each group's visible rows before its remainder.
+    """
+    failures: list[str] = []
+    grouped_pages = 0
+    ambiguous = 0
+    for page in pages:
+        bundle = blocks.get(page["key"])
+        if not bundle:
+            continue
+        held = ((bundle.get("interactions") or {}).get("tiers") or {}).get("C")
+        if not held:
+            continue
+        rule_of: dict[str, set[str]] = {}
+        for row in list(held.get("inline") or []) + list(held.get("disclosed") or []):
+            name = str(row.get("counterpartName") or "").strip()
+            if name:
+                rule_of.setdefault(name, set()).add(str(row.get("ruleId") or ""))
+        # A counterpart two rules both name cannot be read back to one of them from the page.
+        if any(len(rules) > 1 for rules in rule_of.values()):
+            ambiguous += 1
+            continue
+        classes: list[str] = []
+        for line in _lines(page):
+            found = PREDICTED_LINE.match(line)
+            if not found:
+                continue
+            rules = rule_of.get(found.group(1).strip())
+            if rules:
+                classes.append(next(iter(rules)))
+        if len(set(classes)) < 2:
+            continue
+        grouped_pages += 1
+        runs: list[str] = []
+        for name in classes:
+            if not runs or runs[-1] != name:
+                runs.append(name)
+        if len(runs) != len(set(runs)):
+            repeated = sorted(name for name in set(runs) if runs.count(name) > 1)
+            failures.append(
+                f"{page['key']}: the predicted rule class {repeated[0]!r} is painted in "
+                f"{runs.count(repeated[0])} separate runs"
+            )
+    assert grouped_pages > 0, (
+        "no page paints more than one predicted rule class; the rule cannot be observed "
+        f"({ambiguous} pages skipped as ambiguous)"
+    )
+    _report(failures, "a predicted rule class painted in more than one run (§19 item 3)")

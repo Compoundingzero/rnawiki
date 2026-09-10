@@ -132,7 +132,7 @@ SPINE = Path("data/revamp/identity/spine-attached.parquet")
 TRIAL_REASSIGNMENTS = Path("data/revamp/identity/trial-reassignments-v5.csv")
 TRIAL_REASSIGNMENTS_FALLBACK = Path("data/revamp/identity/trial-reassignments-v4.csv")
 # §15(3): the v2 tier map.
-MODEL_ASSIGNMENT = Path("data/revamp/tiers/model-assignment-v2.ndjson")
+MODEL_ASSIGNMENT = Path("data/revamp/tiers/model-assignment-v3.ndjson")
 SUPPRESSION = Path("data/corpus-20k/suppression/assignments.ndjson")
 REGISTRY_AGGREGATES = Path("data/corpus-20k/registry/aggregates")
 
@@ -636,8 +636,20 @@ def neighbour_status_clause(fact: dict) -> tuple[str, dict]:
     return ", ".join(parts), values
 
 
+# docs/specs/phase4-generators.md §19 item 2 (and §18 item 2, the same rule): a structural
+# comparison needs a structure on both sides. Lead's fingerprint and uranium's are both empty, so
+# their Tanimoto similarity is 1.00 and the section read "closest approved compound: uranium,
+# similarity 1.00" — a statement about two elements that says nothing about either. A record whose
+# recorded structure holds fewer than two heavy atoms is therefore neither a query nor a reference
+# here, which is the rule applied to both compounds at once.
+MIN_HEAVY_ATOMS = 2
+
+
 def build_fingerprints(structures: dict[str, str]) -> tuple[dict[str, object], Counter]:
     """Morgan fingerprints, radius 2, 2048 bits, one per page holding a parseable structure.
+
+    A structure of fewer than two heavy atoms is skipped (§19 item 2): it is an element or a
+    single atom, it fingerprints to nothing, and it is neither a query nor a reference.
 
     The molecules themselves are not retained: the substituent comparison re-reads the two
     SMILES strings it needs inside its worker process.
@@ -649,6 +661,9 @@ def build_fingerprints(structures: dict[str, str]) -> tuple[dict[str, object], C
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             counts["unparseable_smiles"] += 1
+            continue
+        if mol.GetNumHeavyAtoms() < MIN_HEAVY_ATOMS:
+            counts["fewer_than_two_heavy_atoms"] += 1
             continue
         fingerprints[key] = generator.GetFingerprint(mol)
         counts["fingerprinted"] += 1
@@ -885,6 +900,12 @@ def main() -> int:
         issues.append(
             f"{fingerprint_counts['unparseable_smiles']} recorded SMILES strings RDKit could "
             "not parse; those pages hold no fingerprint and fire no neighbour section"
+        )
+    if fingerprint_counts["fewer_than_two_heavy_atoms"]:
+        issues.append(
+            f"{fingerprint_counts['fewer_than_two_heavy_atoms']} recorded structures hold fewer "
+            "than two heavy atoms; §19 item 2 makes them neither a query nor a reference for the "
+            "nearest-approved-neighbour section, on either side of the comparison"
         )
 
     reference_keys = sorted(
@@ -1556,6 +1577,7 @@ def main() -> int:
             "pagesInFields": page_counts["pages"],
             "pagesWithStructure": len(structures),
             "pagesFingerprinted": fingerprint_counts["fingerprinted"],
+            "pagesWithFewerThanTwoHeavyAtoms": fingerprint_counts["fewer_than_two_heavy_atoms"],
             "tierCounts": dict(Counter(tiers.values())),
         },
         "approvedReferenceSet": {

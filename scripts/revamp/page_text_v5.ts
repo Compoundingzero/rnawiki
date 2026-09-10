@@ -189,7 +189,7 @@ async function main(): Promise<void> {
   const identityFile = arg('identity') ?? 'data/revamp/identity/canonical-v7.ndjson'
   // §15(3): the v2 tier map, in which a DailyMed SPL with no application number is not a
   // register approval and so does not make a page CLINICAL.
-  const tiersFile = arg('tiers') ?? 'data/revamp/tiers/model-assignment-v2.ndjson'
+  const tiersFile = arg('tiers') ?? 'data/revamp/tiers/model-assignment-v3.ndjson'
   const suppressionFile = arg('suppression') ?? 'data/revamp/suppression/assignments-v2.ndjson'
   const registryDir = arg('registry') ?? 'data/corpus-20k/registry/aggregates'
   const blocksDir = arg('blocks') ?? 'data/revamp/page-blocks'
@@ -343,7 +343,7 @@ async function main(): Promise<void> {
   /*
    * The corpus this render covers is the corpus the loader loads: every key `--identity` holds.
    *
-   * `data/revamp/tiers/model-assignment-v2.ndjson` is the tier map and still names every page the
+   * `data/revamp/tiers/model-assignment-v3.ndjson` is the tier map and still names every page the
    * corpus-20k run created, including the 123 the Phase 3 and §12 merges have since absorbed. The
    * loader writes `corpus_pages` from the identity revision, so a page absent from that revision is
    * not served, is not linked, and must not be in the measured text or in a counterpart name — the

@@ -11,11 +11,12 @@
   "unmatched_records": 187919,
   "records_resolved_by_unii": 74352,
   "records_resolved_by_rxcui": 0,
-  "records_excluded_as_unapproved_or_homeopathic": 11232,
+  "records_excluded_as_unapproved_or_homeopathic": 11273,
   "records_excluded_by_reason": {
     "NDC marketing category names a homeopathic product": 9221,
     "NDC marketing category names an unapproved product": 2007,
-    "the indications or description name the product homeopathic": 4
+    "a product name ends in homeopathic potency notation and no NDA, ANDA or BLA is recorded": 41,
+    "the purpose, indications or description name the product homeopathic or anthroposophic": 4
   },
   "pages_reached_before_exclusion": 5425,
   "pages_losing_every_label": 3065,
@@ -37,17 +38,17 @@
   },
   "fields_gained_by_tier": {
     "1": {
-      "clinical_pharmacology": 525,
       "overdosage": 408,
       "mechanism_of_action": 463,
+      "clinical_pharmacology": 525,
       "drug_interactions": 445,
       "boxed_warning": 240,
       "use_in_specific_populations": 465,
-      "warnings_and_cautions": 474,
+      "indications_and_usage": 594,
       "pharmacokinetics": 484,
-      "cyp_profile": 179,
       "contraindications": 528,
-      "indications_and_usage": 594
+      "warnings_and_cautions": 474,
+      "cyp_profile": 179
     },
     "2": {
       "use_in_specific_populations": 1121,
@@ -56,24 +57,24 @@
       "clinical_pharmacology": 1305,
       "overdosage": 929,
       "mechanism_of_action": 1123,
-      "indications_and_usage": 1539,
-      "pharmacokinetics": 1131,
+      "contraindications": 1314,
       "cyp_profile": 364,
       "warnings_and_cautions": 1137,
-      "contraindications": 1314
+      "pharmacokinetics": 1131,
+      "indications_and_usage": 1539
     },
     "3": {
       "indications_and_usage": 221,
-      "warnings_and_cautions": 27,
       "contraindications": 30,
       "pharmacokinetics": 20,
+      "warnings_and_cautions": 27,
       "cyp_profile": 3,
-      "use_in_specific_populations": 23,
-      "boxed_warning": 14,
-      "drug_interactions": 10,
       "mechanism_of_action": 22,
       "clinical_pharmacology": 31,
-      "overdosage": 14
+      "overdosage": 14,
+      "use_in_specific_populations": 23,
+      "drug_interactions": 10,
+      "boxed_warning": 14
     }
   },
   "fields": [
@@ -89,7 +90,7 @@
     "boxed_warning",
     "cyp_profile"
   ],
-  "rows_before_dedup": 311111,
+  "rows_before_dedup": 311019,
   "rows_in_mapped_parquet": 124706,
   "rows_by_match_rule": {
     "unii": 124706
@@ -102,13 +103,13 @@
     "rows": 2173,
     "pages": 546,
     "by_role": {
-      "inhibitor": 758,
       "substrate": 1193,
-      "inducer": 222
+      "inducer": 222,
+      "inhibitor": 758
     },
     "by_basis": {
-      "explicit": 1684,
-      "coadministration-exposure": 489
+      "coadministration-exposure": 489,
+      "explicit": 1684
     },
     "top_enzymes_by_pages": [
       {

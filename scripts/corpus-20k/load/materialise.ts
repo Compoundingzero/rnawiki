@@ -917,7 +917,7 @@ function corpusSources(revamp: boolean): CorpusSources {
   return {
     label: 'revamp-2026-09',
     identity: join(REVAMP, 'identity', 'canonical-v7.ndjson'),
-    models: join(REVAMP, 'tiers', 'model-assignment-v2.ndjson'),
+    models: join(REVAMP, 'tiers', 'model-assignment-v3.ndjson'),
     fieldDirs: Object.values(MODEL_DIRECTORY).map((directory) =>
       join(REVAMP, 'fields-v2', directory),
     ),
@@ -2295,13 +2295,28 @@ function buildBatch(input: {
      * print the same words and neither recomputes it.
      */
     const labelByRelation = new Map<string, string>()
+    /*
+     * The same decision keyed by the counterpart alone. The disambiguated name belongs to the page
+     * the row points at, not to the kind of relation that reaches it, and the two files carrying a
+     * pair do not always agree on the kind: `relations-v7.parquet` records Acebutolol ↔ Acebutolol
+     * as `form_of` one way and `stereoisomer_of` the other, while `canonical-v7.ndjson` records
+     * `stereoisomer-of` both ways. Keyed on the kind, the lookup missed and the row printed the
+     * bare name the two pages share. `scripts/corpus-20k/render/page-text.ts` falls back the same
+     * way, so the page and the measured text still print one name.
+     */
+    const labelByCounterpart = new Map<string, string>()
     for (const recorded of input.blocks.get(key)?.relations ?? []) {
       if (!recorded.counterpartKey) continue
       const id = `${relationKind(recorded.relation)}|${recorded.counterpartKey}`
       const note = nullIfBlank(recorded.note)
       if (note) noteByRelation.set(id, note)
       const label = nullIfBlank(recorded.counterpartName)
-      if (label) labelByRelation.set(id, label)
+      if (label) {
+        labelByRelation.set(id, label)
+        if (!labelByCounterpart.has(recorded.counterpartKey)) {
+          labelByCounterpart.set(recorded.counterpartKey, label)
+        }
+      }
     }
     const seenRelations = new Set<string>()
     for (const relation of record.relations ?? []) {
@@ -2322,7 +2337,9 @@ function buildBatch(input: {
         key,
         kind,
         relation.targetKey,
-        labelByRelation.get(`${kind}|${relation.targetKey}`) ?? null,
+        labelByRelation.get(`${kind}|${relation.targetKey}`) ??
+          labelByCounterpart.get(relation.targetKey) ??
+          null,
         noteByRelation.get(`${kind}|${relation.targetKey}`) ?? null,
         'identity-resolution',
       ])

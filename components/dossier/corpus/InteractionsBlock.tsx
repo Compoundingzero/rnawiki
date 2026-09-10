@@ -21,9 +21,17 @@
  *
  * The first six lines of each tier read inline; the rest sit in one disclosure with a count, and
  * where a tier holds more counterparts than are stored the line above the disclosure says how many.
+ *
+ * §19(3): a predicted line is capped per rule class, not per tier. One mechanism rule matching many
+ * counterparts painted a long run of near-identical lines (twenty hypotensive lines on
+ * rescinnamine), so the predicted tier is split into its rule classes, each showing six rows with
+ * its own counted disclosure under it. The split is `groupPredictedByRuleClass`, the builder
+ * `scripts/corpus-20k/render/page-text.ts` also calls, so the measured text and this block put the
+ * same rows on the page. The checked-sources statement sits outside every group and stays visible.
  */
 import type { CorpusInteractionLine, CorpusInteractions } from '@/lib/corpus/dossier-page'
 import {
+  groupPredictedByRuleClass,
   interactionDisclosureLabel,
   interactionRecordIds,
   type InteractionDisclosureSource,
@@ -59,23 +67,19 @@ function Line({ line }: { line: CorpusInteractionLine }) {
   return <li>{line.line}</li>
 }
 
-function Tier({
-  tier,
-  lines,
-  total,
+/** One run of lines: the visible rows, then the counted disclosure holding the remainder. */
+function Run({
+  inline,
+  disclosed,
+  label,
 }: {
-  tier: 'A' | 'B' | 'C'
-  lines: CorpusInteractionLine[]
-  total?: number
+  inline: CorpusInteractionLine[]
+  disclosed: CorpusInteractionLine[]
+  label: string
 }) {
-  if (lines.length === 0) return null
-  const inline = lines.filter((line) => !line.disclosed)
-  const disclosed = lines.filter((line) => line.disclosed)
-  const shown = lines.length
-  const label = lines[0]?.tierLabel ?? tier
   return (
     <>
-      {/* A tier whose lines are all disclosed painted an empty list element above the control. */}
+      {/* A run whose lines are all disclosed painted an empty list element above the control. */}
       {inline.length > 0 ? (
         <ul className="cd-interactions">
           {inline.map((line) => (
@@ -96,6 +100,46 @@ function Tier({
           </ul>
         </details>
       ) : null}
+    </>
+  )
+}
+
+function Tier({
+  tier,
+  lines,
+  total,
+}: {
+  tier: 'A' | 'B' | 'C'
+  lines: CorpusInteractionLine[]
+  total?: number
+}) {
+  if (lines.length === 0) return null
+  const shown = lines.length
+  const label = lines[0]?.tierLabel ?? tier
+  /*
+   * §19(3): the predicted tier's runs are its rule classes; every other tier is one run split on
+   * the flag the loader stored. `groupPredictedByRuleClass` is the render's own splitter, so the
+   * two surfaces show the same rows above the fold.
+   */
+  const runs =
+    tier === 'C'
+      ? groupPredictedByRuleClass(lines).map((group) => ({
+          key: group.ruleClass,
+          inline: group.visible,
+          disclosed: group.disclosed,
+        }))
+      : [
+          {
+            key: tier,
+            inline: lines.filter((line) => !line.disclosed),
+            disclosed: lines.filter((line) => line.disclosed),
+          },
+        ]
+  return (
+    <>
+      {runs.map((run) => (
+        <Run key={run.key} inline={run.inline} disclosed={run.disclosed} label={label} />
+      ))}
       {total !== undefined && total > shown ? (
         <p className="cd-paragraph">
           {total} counterparts are recorded under {label.toLowerCase()} for this record; {shown} are

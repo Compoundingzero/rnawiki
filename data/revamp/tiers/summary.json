@@ -4,18 +4,18 @@
   "totalRecords": 28832,
   "counts": {
     "LONGEVITY": 1109,
-    "CLINICAL": 4531,
-    "DEVELOPMENT": 23192
+    "CLINICAL": 4126,
+    "DEVELOPMENT": 23597
   },
   "perReason": {
     "CLINICAL/chembl-approval": 2659,
     "CLINICAL/drugsfda": 1971,
     "CLINICAL/ema": 992,
     "CLINICAL/entity-class": 2194,
-    "CLINICAL/health-canada": 2840,
+    "CLINICAL/health-canada": 2426,
     "CLINICAL/orange-book": 1644,
     "CLINICAL/otc-label": 242,
-    "DEVELOPMENT/no-approval-and-no-longevity-signal": 23192,
+    "DEVELOPMENT/no-approval-and-no-longevity-signal": 23597,
     "LONGEVITY/broad-slice": 765,
     "LONGEVITY/nia-itp": 51,
     "LONGEVITY/pathway": 60,
@@ -51,15 +51,21 @@
   "registryAgeingTermPages": 525,
   "pathwayPages": 60,
   "otcLabelGround": {
-    "pagesWithTheGround": 36651,
-    "labelsRefusedForCarryingNoApplicationNumber": 5295,
-    "rule": "docs/specs/phase4-generators.md §15(3): a DailyMed SPL with no openFDA application number is a label, not a register approval, and does not make a page CLINICAL"
+    "pagesWithTheGround": 36645,
+    "labelsRefusedForCarryingNoApplicationNumber": 1,
+    "labelsRefusedByTheLabelMapping": 5301,
+    "rule": "docs/specs/phase4-generators.md §15(3): a DailyMed SPL with no openFDA application number is a label, not a register approval, and does not make a page CLINICAL. §19(1): an SPL the label mapping refuses — homeopathic, anthroposophic, [HPUS], potency-notation or an unapproved NDC marketing category — is refused here too"
+  },
+  "healthCanadaHomeopathic": {
+    "drugCodesWhoseScheduleIsHomeopathic": 5571,
+    "ingredientRowsSkipped": 11883,
+    "rule": "docs/specs/phase4-generators.md §19(1): a Health Canada DPD row whose product class is homeopathic (the DIN-HM class, which the extract records as the QRYM_SCHEDULE value HOMEOPATHIC) is not an approval: it makes no page CLINICAL and is not a remaining register entry for the withdrawal rule"
   },
   "withdrawn": {
-    "total": 660,
+    "total": 661,
     "withStatedReason": 281,
-    "withoutStatedReason": 379,
-    "pagesWithARemainingActiveRegisterEntry": 3679,
+    "withoutStatedReason": 380,
+    "pagesWithARemainingActiveRegisterEntry": 3092,
     "rule": "set only when no cleared register still records an active, approved or marketed entry for the moiety and one of them records that it is gone; or a register states a safety withdrawal; or ChEMBL records withdrawn_flag or a drug_warning of type Withdrawn"
   },
   "sourceLimits": [

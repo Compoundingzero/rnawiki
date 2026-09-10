@@ -74,10 +74,10 @@
         "4.4": "BLOCKED-WITH-EVIDENCE (ClinPGx licence gate)",
         "4.5": "rendered",
         "4.6": "done (seed 17 rule corrected in render stage)",
-        "4.7": "draw 14 read (\u00a719: homeopathic products, neighbour on single atoms, predicted-line cap); fix round 9 then draws 16/17"
+        "4.7": "fix round 9 (\u00a719) landed; ruler v14 (293 indexable, identical to v13); draws 16 and 17 clean \u2014 eight consecutive; the lead's reading of draw 16 follows"
       },
       "gate_evidence": null,
-      "updated": "2026-09-10T13:18:29+00:00"
+      "updated": "2026-09-10T17:56:12+00:00"
     },
     "5": {
       "status": "IN_PROGRESS",

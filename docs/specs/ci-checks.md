@@ -22,7 +22,7 @@ them wholesale — and the DVC remote is not reachable until Felix supplies the 
 | `data/revamp/identity/canonical-v5.ndjson`, `page-slugs.csv` | `scripts/revamp/identity_apply.py` | redirects, link graph |
 | `data/corpus-20k/reconciliation/dispositions.ndjson` | the corpus-20k run | redirects |
 | `data/revamp/ci-sample/slug-union.csv` | `scripts/revamp/ci_slug_union.py` | redirects |
-| `data/revamp/ci-sample/thresholds-v13.json` + `presence-applicable-v13-hub-members.ndjson` | `scripts/revamp/ci_sample.py` | link graph |
+| `data/revamp/ci-sample/thresholds-v14.json` + `presence-applicable-v14-hub-members.ndjson` | `scripts/revamp/ci_sample.py` | link graph |
 | `data/revamp/ci-sample/render/*.ndjson.gz` (200 pages) | `scripts/revamp/ci_sample.py` | render safety |
 | `data/revamp/ci-sample/robots.ts.snapshot` | `scripts/revamp/ci_sample.py` | sitemap invariants |
 
@@ -30,9 +30,9 @@ The two writers have a `--check` mode that fails when a committed input no longe
 corpus on the workstation, so a stale sample is a red check rather than a quiet one. The samples are
 regenerated with `npm run revamp:ci:sample`, which reads the corpus and therefore runs on the
 workstation only. **Phase 7 refreshes the ruler pair** when the settled ruler lands, and refreshes the render sample
-from the render that ships with it. Measure 9 (v13) did that: the pair is `thresholds-v13.json` and
-`presence-applicable-v13-hub-members.ndjson`, and the render sample is drawn from
-`data/revamp/render-v13`.
+from the render that ships with it. Measure 10 (v14) did that: the pair is `thresholds-v14.json` and
+`presence-applicable-v14-hub-members.ndjson`, and the render sample is drawn from
+`data/revamp/render-v14`.
 
 Everything each check cannot see from CI is named under it, with the command that checks it on the
 workstation. Nothing required by the spec is quietly reduced to advisory.
@@ -77,8 +77,8 @@ Reads the three hub parquet files in full and the committed ruler pair.
 ```
 npm run revamp:ci:link-graph
 # scripts/revamp/link_graph_check.py --data-only \
-#   --thresholds "$PWD/data/revamp/ci-sample/thresholds-v13.json" \
-#   --presence "$PWD/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson"
+#   --thresholds "$PWD/data/revamp/ci-sample/thresholds-v14.json" \
+#   --presence "$PWD/data/revamp/ci-sample/presence-applicable-v14-hub-members.ndjson"
 ```
 
 Rules 1, 3 and 4 are checked over every hub and every member: no hub under five leaves (923 hubs),
@@ -178,8 +178,8 @@ python scripts/revamp/ci_redirect_check.py --live --base-url https://rnawiki.com
 python scripts/revamp/rendered_dup_check.py --base-url https://rnawiki.com \
     --fail-on-indexable --sample 200 --concurrency 4
 python scripts/revamp/link_graph_check.py --base-url https://rnawiki.com \
-    --thresholds "$PWD/data/revamp/ci-sample/thresholds-v13.json" \
-    --presence "$PWD/data/revamp/ci-sample/presence-applicable-v13-hub-members.ndjson"
+    --thresholds "$PWD/data/revamp/ci-sample/thresholds-v14.json" \
+    --presence "$PWD/data/revamp/ci-sample/presence-applicable-v14-hub-members.ndjson"
 ```
 
 - **Redirects, live half.** Every slug in the committed union requested against the site, four at a

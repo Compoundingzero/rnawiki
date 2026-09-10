@@ -32,6 +32,7 @@ parquets on every run, and clears stale batches first.
 from __future__ import annotations
 
 import argparse
+import csv
 import glob
 import json
 import os
@@ -45,10 +46,12 @@ import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[2]
 FIELDS_DIR = ROOT / "data/corpus-20k/fields"
-# docs/specs/phase4-generators.md §15(3): the v2 tier map applies the rule that a DailyMed
+# docs/specs/phase4-generators.md §15(3): the tier map applies the rule that a DailyMed
 # SPL carrying no application number is not a register approval, so a page whose only
-# clinical ground was such a label is DEVELOPMENT and not CLINICAL.
-ASSIGNMENT = ROOT / "data/revamp/tiers/model-assignment-v2.ndjson"
+# clinical ground was such a label is DEVELOPMENT and not CLINICAL. §19(1) adds the second
+# rule the v3 map applies: a Health Canada DPD row whose product class is homeopathic is
+# not an approval either.
+ASSIGNMENT = ROOT / "data/revamp/tiers/model-assignment-v3.ndjson"
 SOURCES_DIR = ROOT / "data/sources"
 DEFAULT_OUT = ROOT / "data/revamp/fields-v2"
 DEFAULT_GATED_OUT = ROOT / "data/revamp/fields-v2-gated"
@@ -689,6 +692,79 @@ def build_boxed_warning(page, run_date):
 UK_STATEMENT = "UK register not cleared for this run"
 
 
+# ---------------------------------------------------------------------------------------------
+# docs/specs/phase4-generators.md §19 item 1 — Health Canada's homeopathic products.
+#
+# The corpus-20k field extractors wrote every Health Canada DPD status row they matched into
+# `regulatory.CA.evidence` and set the jurisdiction's status to `approved` on the strength of a
+# MARKETED row. A homeopathic product listing is not an approval: Lead (Pb), Adonis vernalis and
+# the Bach flower remedy holly reached Tier 2 on one. The register itself says which drug codes are
+# homeopathic, in its QRYM_SCHEDULE table, whose schedule value for those products is the word
+# HOMEOPATHIC — the class Health Canada issues a DIN-HM under. The correction is applied here,
+# at the stage that writes `fields-v2`, and not in the corpus-20k extractor, so the recorded
+# extraction stays what it was and one stage decides the rule for the whole corpus (the channel
+# §17(5) and §18(1) already use for a corpus-wide name correction).
+
+HC_SCHEDULE_FILES = "data/corpus-20k/raw/health-canada/allfiles*/schedule*.txt"
+HOMEOPATHIC_LISTING_WORD = "Homeopathic product listed, DIN-HM class"
+HOMEOPATHIC_CA_STATUS = "homeopathic product listed"
+
+
+def load_homeopathic_drug_codes() -> set[str]:
+    """The DPD drug codes whose own schedule value is HOMEOPATHIC."""
+    codes: set[str] = set()
+    for path in sorted(glob.glob(str(ROOT / HC_SCHEDULE_FILES))):
+        with open(path, encoding="latin-1", newline="") as handle:
+            for row in csv.reader(handle):
+                if len(row) >= 2 and row[0].strip() and row[1].strip().upper() == "HOMEOPATHIC":
+                    codes.add(row[0].strip())
+    if not codes:
+        raise SystemExit(
+            f"no Health Canada DPD schedule row reads HOMEOPATHIC under {HC_SCHEDULE_FILES}; "
+            "docs/specs/phase4-generators.md §19(1) needs that column to tell a homeopathic "
+            "product listing from an approval"
+        )
+    return codes
+
+
+HOMEOPATHIC_DRUG_CODES = load_homeopathic_drug_codes()
+HOMEOPATHIC_STATS = Counter()
+
+
+def correct_ca_homeopathic(value: dict) -> None:
+    """Mark the CA evidence rows that are homeopathic listings, and drop `approved` where they are all."""
+    ca = value.get("CA")
+    if not isinstance(ca, dict):
+        return
+    evidence = [row for row in (ca.get("evidence") or []) if isinstance(row, dict)]
+    if not evidence:
+        return
+    homeopathic = 0
+    for row in evidence:
+        code = str(row.get("id") or "").strip()
+        if code and code in HOMEOPATHIC_DRUG_CODES:
+            row["productClass"] = "homeopathic"
+            row["listingWord"] = HOMEOPATHIC_LISTING_WORD
+            homeopathic += 1
+    if not homeopathic:
+        return
+    HOMEOPATHIC_STATS["evidenceRowsMarked"] += homeopathic
+    HOMEOPATHIC_STATS["pagesWithAHomeopathicRow"] += 1
+    ca = dict(ca)
+    ca["homeopathicRows"] = homeopathic
+    if homeopathic == len(evidence):
+        HOMEOPATHIC_STATS["pagesWhoseCanadianEvidenceIsAllHomeopathic"] += 1
+        if ca.get("status") == "approved":
+            HOMEOPATHIC_STATS["pagesLosingTheCanadianApprovedStatus"] += 1
+        ca["status"] = HOMEOPATHIC_CA_STATUS
+        ca["statusNote"] = (
+            "Every Health Canada Drug Product Database row recorded for this substance is a "
+            "homeopathic product listing (the DIN-HM class, recorded in the extract as the "
+            "schedule value HOMEOPATHIC). A homeopathic product listing is not an approval."
+        )
+    value["CA"] = ca
+
+
 def build_regulatory(incumbent, page, run_date, sg_row, filled):
     value = incumbent_dict(incumbent)
     srcs = []
@@ -861,7 +937,8 @@ def build_regulatory(incumbent, page, run_date, sg_row, filled):
         if registered:
             contributing.add("hsa-singapore")
 
-    # --- UK: not cleared. --- CA: whatever the corpus already held, unchanged.
+    # --- UK: not cleared. --- CA: what the corpus held, with §19(1)'s homeopathic rule applied.
+    correct_ca_homeopathic(value)
     value["UK"] = {
         "status": "not cleared",
         "statement": UK_STATEMENT,
@@ -1842,6 +1919,15 @@ def main() -> int:
         "sgRegistrationStatus": dict(sg_counts),
         "patentEligiblePages": patent_eligible,
         "patentFilledPages": patent_filled,
+        "healthCanadaHomeopathic": {
+            **dict(sorted(HOMEOPATHIC_STATS.items())),
+            "drugCodesWhoseScheduleIsHomeopathic": len(HOMEOPATHIC_DRUG_CODES),
+            "rule": ("docs/specs/phase4-generators.md §19(1): a Health Canada DPD row whose "
+                     "product class is homeopathic is a product listing, not an approval. The row "
+                     "keeps its place in regulatory.CA.evidence and carries productClass "
+                     "'homeopathic'; a page whose Canadian evidence is all homeopathic loses the "
+                     "approved status word"),
+        },
         "ddinter": "never read by this script",
     }
     (out_root / "integration-summary.json").write_text(
@@ -1851,6 +1937,7 @@ def main() -> int:
     print(f"gated pgx pages: {gated_pages} -> {os.path.relpath(gated_root, ROOT)}")
     print(f"patent eligible {patent_eligible}, filled {patent_filled}")
     print(f"SG status: {dict(sg_counts)}")
+    print(f"Health Canada homeopathic: {dict(sorted(HOMEOPATHIC_STATS.items()))}")
     print(f"{'field':<20} {'T1':>7} {'T2':>7} {'T3':>7}   sources")
     for name, counts in sorted(fills.items()):
         srcs = sorted({s for c in fill_sources[name].values() for s in c})

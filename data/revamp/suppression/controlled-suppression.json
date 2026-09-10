@@ -28,8 +28,8 @@
     "newlySuppressedByControlledField": 1006,
     "newlySuppressedByTier": {
       "1": 224,
-      "2": 535,
-      "3": 247
+      "2": 528,
+      "3": 254
     }
   },
   "trigger": {
@@ -40,8 +40,8 @@
     },
     "byTier": {
       "1": 526,
-      "2": 803,
-      "3": 507
+      "2": 796,
+      "3": 514
     },
     "pagesFiring": 1836
   },

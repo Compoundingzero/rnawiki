@@ -59,7 +59,7 @@
   },
   "inputs": {
     "fields": "data/revamp/fields-v2",
-    "identity": "data/revamp/identity/canonical-v6.ndjson",
+    "identity": "data/revamp/identity/canonical-v7.ndjson",
     "tiers": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
     "patent": "data/revamp/blocks/patent.parquet",
     "interactions": "data/revamp/interactions/interactions.parquet",

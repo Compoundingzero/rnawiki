@@ -548,6 +548,23 @@ with open(D("data", "corpus-20k", "raw", "ema", "Medicine.csv"), encoding="utf-8
             if single_substance and status:
                 ema_page_status[i].add((status, number))
 
+# docs/specs/phase4-generators.md §19 item 1: a homeopathic product is neither a label nor an
+# approval. The Drug Product Database says which of its drug codes are homeopathic in its own
+# QRYM_SCHEDULE table, whose schedule value for those products is the word HOMEOPATHIC — the class
+# Health Canada issues a DIN-HM under. (No product number in the four extracts prints an HM prefix:
+# 58,087 rows carry an eight-digit DIN or "Not Applicable", and the 5,571 homeopathic drug codes
+# are identified by the schedule value alone.) A row on such a code is not an approval: it neither
+# makes a page CLINICAL nor counts as a register's remaining entry against the withdrawal rule.
+hc_homeopathic_codes = set()
+for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*", "schedule*.txt")):
+    with open(path, encoding="latin-1", newline="") as fh:
+        for row in csv.reader(fh):
+            if len(row) >= 2 and row[0].strip() and row[1].strip().upper() == "HOMEOPATHIC":
+                hc_homeopathic_codes.add(row[0].strip())
+print(f"      Health Canada DPD drug codes whose schedule is HOMEOPATHIC: "
+      f"{len(hc_homeopathic_codes)}", flush=True)
+hc_homeopathic_rows_skipped = 0
+
 hc_status_by_code = defaultdict(set)
 for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*", "status*.txt")):
     with open(path, encoding="latin-1", newline="") as fh:
@@ -569,6 +586,9 @@ for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*
             code = row[0].strip()
             statuses = hc_status_by_code.get(code)
             if not statuses:
+                continue
+            if code in hc_homeopathic_codes:
+                hc_homeopathic_rows_skipped += 1
                 continue
             raw_name = row[2].strip()
             base = re.sub(r"\s*\([^)]*\)\s*$", "", raw_name)
@@ -615,14 +635,33 @@ del _label_index
 print(f"      SPL set ids carrying an application number: {len(SET_IDS_WITH_APPLICATION)}",
       flush=True)
 
+# §19 item 1: the SPLs `scripts/revamp/openfda_label_map.py` refuses — homeopathic and
+# anthroposophic products, [HPUS] ingredients, potency-notation product names, unapproved NDC
+# marketing categories — are refused here too, so a label that never reaches a page cannot make one
+# CLINICAL by another route. The file is the mapping's own record of what it excluded and why.
+EXCLUDED_SET_IDS_FILE = D("data", "sources", "openfda-label", "2026-09-05", "parsed",
+                          "excluded-set-ids.json")
+if not os.path.exists(EXCLUDED_SET_IDS_FILE):
+    raise SystemExit(
+        f"{EXCLUDED_SET_IDS_FILE} is missing; it names the SPLs the label mapping refuses, which "
+        "docs/specs/phase4-generators.md §19 item 1 requires this ground to refuse as well. Run "
+        "scripts/revamp/openfda_label_map.py first."
+    )
+EXCLUDED_SET_IDS = json.load(open(EXCLUDED_SET_IDS_FILE, encoding="utf-8"))["reasons"]
+print(f"      SPL set ids the label mapping refuses: {len(EXCLUDED_SET_IDS)}", flush=True)
+
 si = json.load(open(I("label-sections-index.json"), encoding="utf-8"))
 otc_pages = 0
 otc_labels_without_application = 0
+otc_labels_excluded_by_mapping = 0
 for e in si["entries"]:
     if int(e.get("declared") or 0) != 1:
         continue
     ptypes = {str(p).upper() for p in (e.get("productTypes") or [])}
     if "HUMAN OTC DRUG" not in ptypes:
+        continue
+    if e.get("setId") in EXCLUDED_SET_IDS:
+        otc_labels_excluded_by_mapping += 1
         continue
     if e.get("setId") not in SET_IDS_WITH_APPLICATION:
         otc_labels_without_application += 1
@@ -844,9 +883,20 @@ summary = {
     "otcLabelGround": {
         "pagesWithTheGround": otc_pages,
         "labelsRefusedForCarryingNoApplicationNumber": otc_labels_without_application,
+        "labelsRefusedByTheLabelMapping": otc_labels_excluded_by_mapping,
         "rule": ("docs/specs/phase4-generators.md §15(3): a DailyMed SPL with no openFDA "
                  "application number is a label, not a register approval, and does not make a "
-                 "page CLINICAL"),
+                 "page CLINICAL. §19(1): an SPL the label mapping refuses — homeopathic, "
+                 "anthroposophic, [HPUS], potency-notation or an unapproved NDC marketing "
+                 "category — is refused here too"),
+    },
+    "healthCanadaHomeopathic": {
+        "drugCodesWhoseScheduleIsHomeopathic": len(hc_homeopathic_codes),
+        "ingredientRowsSkipped": hc_homeopathic_rows_skipped,
+        "rule": ("docs/specs/phase4-generators.md §19(1): a Health Canada DPD row whose product "
+                 "class is homeopathic (the DIN-HM class, which the extract records as the "
+                 "QRYM_SCHEDULE value HOMEOPATHIC) is not an approval: it makes no page CLINICAL "
+                 "and is not a remaining register entry for the withdrawal rule"),
     },
     "withdrawn": {"total": withdrawn_total, "withStatedReason": withdrawn_with_reason,
                   "withoutStatedReason": withdrawn_total - withdrawn_with_reason,

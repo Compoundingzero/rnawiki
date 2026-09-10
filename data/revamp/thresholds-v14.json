@@ -3,7 +3,7 @@
  "fieldsDir": "data/revamp/fields-v2",
  "census": "data/revamp/field-census-after.csv",
  "pageText": {
-  "dir": "data/revamp/render-v13/text",
+  "dir": "data/revamp/render-v14/text",
   "render": "a render other than the corpus-20k v4 text. gate1b_v3's rule, the fold construction, the population and both lines are applied to it unchanged, so the only difference from the run over `data/corpus-20k/render/text` is the text itself.",
   "pages": 28657,
   "furniture": "furniture-free (docs/specs/phase4-generators.md \u00a711): the register rows whose status is an absence, the checked-sources statement on a page with no interaction row, the patent no-record line and the S10-only classification line are on the page and are not in this text. Before Phase 4 an absence rendered nothing and was not in the measured text either, so this is the like-for-like comparison."
@@ -17,9 +17,9 @@
   "populations": {
    "candidates": 11155,
    "corpus": 28657,
-   "tier1": 1697,
-   "tier2": 3787,
-   "tier3": 23173
+   "tier1": 1698,
+   "tier2": 3382,
+   "tier3": 23577
   }
  },
  "guard": {
@@ -43,8 +43,8 @@
  },
  "tiers": {
   "tier1": {
-   "pages": 1697,
-   "pagesInPrimaryBasis": 1683,
+   "pages": 1698,
+   "pagesInPrimaryBasis": 1684,
    "medianApplicable": 23,
    "medianPresent": 14,
    "ruleAnswerUnguarded": null,
@@ -56,11 +56,11 @@
    "lineCheckSteps": [
     {
      "threshold": 3,
-     "indexable": 1678,
-     "positionalAllPairs": 0.427995,
-     "positionalSizeMatchedSet": 0.365004,
-     "lexicalSizeMatchedSet": 0.388456,
-     "lexicalAllPairs": 0.448345,
+     "indexable": 1679,
+     "positionalAllPairs": 0.427419,
+     "positionalSizeMatchedSet": 0.368182,
+     "lexicalSizeMatchedSet": 0.389222,
+     "lexicalAllPairs": 0.448205,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -68,11 +68,11 @@
     },
     {
      "threshold": 4,
-     "indexable": 1654,
-     "positionalAllPairs": 0.413454,
-     "positionalSizeMatchedSet": 0.345912,
-     "lexicalSizeMatchedSet": 0.391993,
-     "lexicalAllPairs": 0.446389,
+     "indexable": 1655,
+     "positionalAllPairs": 0.412844,
+     "positionalSizeMatchedSet": 0.342424,
+     "lexicalSizeMatchedSet": 0.390476,
+     "lexicalAllPairs": 0.446384,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -80,11 +80,11 @@
     },
     {
      "threshold": 5,
-     "indexable": 1617,
-     "positionalAllPairs": 0.40634,
-     "positionalSizeMatchedSet": 0.340426,
-     "lexicalSizeMatchedSet": 0.386387,
-     "lexicalAllPairs": 0.442589,
+     "indexable": 1618,
+     "positionalAllPairs": 0.406235,
+     "positionalSizeMatchedSet": 0.333333,
+     "lexicalSizeMatchedSet": 0.385159,
+     "lexicalAllPairs": 0.442628,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -92,10 +92,10 @@
     },
     {
      "threshold": 6,
-     "indexable": 1561,
-     "positionalAllPairs": 0.394366,
-     "positionalSizeMatchedSet": 0.326498,
-     "lexicalSizeMatchedSet": 0.38177,
+     "indexable": 1562,
+     "positionalAllPairs": 0.393919,
+     "positionalSizeMatchedSet": 0.327999,
+     "lexicalSizeMatchedSet": 0.379726,
      "lexicalAllPairs": 0.434899,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -104,11 +104,11 @@
     },
     {
      "threshold": 7,
-     "indexable": 1513,
-     "positionalAllPairs": 0.38964,
-     "positionalSizeMatchedSet": 0.321016,
-     "lexicalSizeMatchedSet": 0.382911,
-     "lexicalAllPairs": 0.430956,
+     "indexable": 1514,
+     "positionalAllPairs": 0.389049,
+     "positionalSizeMatchedSet": 0.319666,
+     "lexicalSizeMatchedSet": 0.381074,
+     "lexicalAllPairs": 0.430865,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -116,11 +116,11 @@
     },
     {
      "threshold": 8,
-     "indexable": 1438,
-     "positionalAllPairs": 0.372788,
-     "positionalSizeMatchedSet": 0.304763,
-     "lexicalSizeMatchedSet": 0.377992,
-     "lexicalAllPairs": 0.423841,
+     "indexable": 1439,
+     "positionalAllPairs": 0.372603,
+     "positionalSizeMatchedSet": 0.310962,
+     "lexicalSizeMatchedSet": 0.379549,
+     "lexicalAllPairs": 0.423077,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -128,11 +128,11 @@
     },
     {
      "threshold": 9,
-     "indexable": 1361,
-     "positionalAllPairs": 0.367781,
+     "indexable": 1362,
+     "positionalAllPairs": 0.365919,
      "positionalSizeMatchedSet": 0.303951,
-     "lexicalSizeMatchedSet": 0.372093,
-     "lexicalAllPairs": 0.416311,
+     "lexicalSizeMatchedSet": 0.371764,
+     "lexicalAllPairs": 0.416112,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -140,11 +140,11 @@
     },
     {
      "threshold": 10,
-     "indexable": 1275,
+     "indexable": 1276,
      "positionalAllPairs": 0.352778,
-     "positionalSizeMatchedSet": 0.295238,
-     "lexicalSizeMatchedSet": 0.370707,
-     "lexicalAllPairs": 0.409091,
+     "positionalSizeMatchedSet": 0.290649,
+     "lexicalSizeMatchedSet": 0.369299,
+     "lexicalAllPairs": 0.409064,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -167,7 +167,7 @@
      "indexable": 1041,
      "positionalAllPairs": 0.326577,
      "positionalSizeMatchedSet": 0.262195,
-     "lexicalSizeMatchedSet": 0.362416,
+     "lexicalSizeMatchedSet": 0.362069,
      "lexicalAllPairs": 0.392377,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -191,8 +191,8 @@
      "indexable": 864,
      "positionalAllPairs": 0.275378,
      "positionalSizeMatchedSet": 0.244158,
-     "lexicalSizeMatchedSet": 0.363555,
-     "lexicalAllPairs": 0.391282,
+     "lexicalSizeMatchedSet": 0.363129,
+     "lexicalAllPairs": 0.391255,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -201,7 +201,7 @@
     {
      "threshold": 15,
      "indexable": 769,
-     "positionalAllPairs": 0.268822,
+     "positionalAllPairs": 0.267726,
      "positionalSizeMatchedSet": 0.240042,
      "lexicalSizeMatchedSet": 0.360775,
      "lexicalAllPairs": 0.385757,
@@ -213,10 +213,10 @@
     {
      "threshold": 16,
      "indexable": 667,
-     "positionalAllPairs": 0.267658,
+     "positionalAllPairs": 0.266565,
      "positionalSizeMatchedSet": 0.245283,
-     "lexicalSizeMatchedSet": 0.364412,
-     "lexicalAllPairs": 0.383788,
+     "lexicalSizeMatchedSet": 0.364569,
+     "lexicalAllPairs": 0.384259,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -228,7 +228,7 @@
      "positionalAllPairs": 0.272059,
      "positionalSizeMatchedSet": 0.253008,
      "lexicalSizeMatchedSet": 0.361603,
-     "lexicalAllPairs": 0.377958,
+     "lexicalAllPairs": 0.378094,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": true,
@@ -237,8 +237,8 @@
     {
      "threshold": 18,
      "indexable": 479,
-     "positionalAllPairs": 0.257621,
-     "positionalSizeMatchedSet": 0.250524,
+     "positionalAllPairs": 0.256813,
+     "positionalSizeMatchedSet": 0.249476,
      "lexicalSizeMatchedSet": 0.357986,
      "lexicalAllPairs": 0.36859,
      "clearsPositionalLine": false,
@@ -249,7 +249,7 @@
     {
      "threshold": 19,
      "indexable": 384,
-     "positionalAllPairs": 0.235511,
+     "positionalAllPairs": 0.234411,
      "positionalSizeMatchedSet": 0.227691,
      "lexicalSizeMatchedSet": 0.355265,
      "lexicalAllPairs": 0.362924,
@@ -277,90 +277,90 @@
      "posMed": 0.435897,
      "posP90": 0.435897,
      "lexMed": 0.479592,
-     "cumN": 1683,
-     "cumPosMed": 0.347973,
-     "cumLexMed": 0.370138
+     "cumN": 1684,
+     "cumPosMed": 0.346509,
+     "cumLexMed": 0.369666
     },
     "2": {
      "n": 11,
      "posMed": 0.346457,
      "posP90": 0.441176,
      "lexMed": 0.459259,
-     "cumN": 1682,
-     "cumPosMed": 0.3479555,
-     "cumLexMed": 0.3698515
+     "cumN": 1683,
+     "cumPosMed": 0.346457,
+     "cumLexMed": 0.369565
     },
     "3": {
      "n": 22,
      "posMed": 0.47718799999999995,
      "posP90": 0.623656,
      "lexMed": 0.518059,
-     "cumN": 1671,
-     "cumPosMed": 0.347973,
-     "cumLexMed": 0.368635
+     "cumN": 1672,
+     "cumPosMed": 0.346509,
+     "cumLexMed": 0.368064
     },
     "4": {
      "n": 35,
      "posMed": 0.402844,
      "posP90": 0.5544152,
      "lexMed": 0.544872,
-     "cumN": 1649,
-     "cumPosMed": 0.346154,
-     "cumLexMed": 0.366733
+     "cumN": 1650,
+     "cumPosMed": 0.3453895,
+     "cumLexMed": 0.366647
     },
     "5": {
      "n": 54,
-     "posMed": 0.4158805,
+     "posMed": 0.414855,
      "posP90": 0.588889,
      "lexMed": 0.5064775,
-     "cumN": 1614,
-     "cumPosMed": 0.343348,
-     "cumLexMed": 0.364793
+     "cumN": 1615,
+     "cumPosMed": 0.342857,
+     "cumLexMed": 0.364198
     },
     "6": {
      "n": 48,
-     "posMed": 0.4405345,
+     "posMed": 0.42948949999999997,
      "posP90": 0.6095004,
      "lexMed": 0.5021370000000001,
-     "cumN": 1560,
-     "cumPosMed": 0.3356405,
+     "cumN": 1561,
+     "cumPosMed": 0.334507,
      "cumLexMed": 0.358641
     },
     "7": {
      "n": 75,
-     "posMed": 0.385542,
+     "posMed": 0.383803,
      "posP90": 0.6031122000000001,
      "lexMed": 0.494208,
-     "cumN": 1512,
-     "cumPosMed": 0.333333,
-     "cumLexMed": 0.356638
+     "cumN": 1513,
+     "cumPosMed": 0.332268,
+     "cumLexMed": 0.356627
     },
     "8": {
      "n": 76,
-     "posMed": 0.371739,
+     "posMed": 0.36936199999999997,
      "posP90": 0.5573224999999999,
      "lexMed": 0.4635765,
-     "cumN": 1437,
+     "cumN": 1438,
      "cumPosMed": 0.329032,
-     "cumLexMed": 0.353125
+     "cumLexMed": 0.35303300000000004
     },
     "9": {
      "n": 86,
-     "posMed": 0.40744400000000003,
+     "posMed": 0.39828050000000004,
      "posP90": 0.577747,
-     "lexMed": 0.4605755,
-     "cumN": 1361,
-     "cumPosMed": 0.327703,
-     "cumLexMed": 0.349315
+     "lexMed": 0.4636365,
+     "cumN": 1362,
+     "cumPosMed": 0.327373,
+     "cumLexMed": 0.34930300000000003
     },
     "10": {
-     "n": 114,
-     "posMed": 0.4086205,
-     "posP90": 0.73427,
-     "lexMed": 0.45238849999999997,
-     "cumN": 1275,
-     "cumPosMed": 0.324455,
-     "cumLexMed": 0.342806
+     "n": 115,
+     "posMed": 0.40613,
+     "posP90": 0.733253,
+     "lexMed": 0.451429,
+     "cumN": 1276,
+     "cumPosMed": 0.3245985,
+     "cumLexMed": 0.3428075
     },
     "11": {
      "n": 120,
@@ -369,7 +369,7 @@
      "lexMed": 0.4387115,
      "cumN": 1161,
      "cumPosMed": 0.321839,
-     "cumLexMed": 0.338272
+     "cumLexMed": 0.3382
     },
     "12": {
      "n": 83,
@@ -384,7 +384,7 @@
      "n": 94,
      "posMed": 0.2800955,
      "posP90": 0.5497656000000001,
-     "lexMed": 0.388876,
+     "lexMed": 0.388108,
      "cumN": 958,
      "cumPosMed": 0.325203,
      "cumLexMed": 0.333138
@@ -392,16 +392,16 @@
     "14": {
      "n": 95,
      "posMed": 0.249249,
-     "posP90": 0.5302766000000001,
+     "posP90": 0.528167,
      "lexMed": 0.338442,
      "cumN": 864,
-     "cumPosMed": 0.326861,
+     "cumPosMed": 0.326635,
      "cumLexMed": 0.3310105
     },
     "15": {
      "n": 102,
      "posMed": 0.234261,
-     "posP90": 0.4807565000000001,
+     "posP90": 0.48555570000000003,
      "lexMed": 0.3422815,
      "cumN": 769,
      "cumPosMed": 0.330097,
@@ -409,11 +409,11 @@
     },
     "16": {
      "n": 82,
-     "posMed": 0.268889,
+     "posMed": 0.268569,
      "posP90": 0.5334151,
      "lexMed": 0.352846,
      "cumN": 667,
-     "cumPosMed": 0.339394,
+     "cumPosMed": 0.337793,
      "cumLexMed": 0.327801
     },
     "17": {
@@ -422,16 +422,16 @@
      "posP90": 0.4830105,
      "lexMed": 0.3657715,
      "cumN": 585,
-     "cumPosMed": 0.349643,
+     "cumPosMed": 0.348387,
      "cumLexMed": 0.323741
     },
     "18": {
      "n": 95,
-     "posMed": 0.299465,
+     "posMed": 0.302882,
      "posP90": 0.4989902000000001,
      "lexMed": 0.341842,
      "cumN": 479,
-     "cumPosMed": 0.357746,
+     "cumPosMed": 0.357576,
      "cumLexMed": 0.31846
     },
     "19": {
@@ -440,22 +440,22 @@
      "posP90": 0.472622,
      "lexMed": 0.340343,
      "cumN": 384,
-     "cumPosMed": 0.36404400000000003,
+     "cumPosMed": 0.3619005,
      "cumLexMed": 0.3140685
     },
     "20": {
      "n": 66,
-     "posMed": 0.364998,
+     "posMed": 0.364139,
      "posP90": 0.490845,
      "lexMed": 0.3243255,
      "cumN": 293,
      "cumPosMed": 0.372685,
-     "cumLexMed": 0.311272
+     "cumLexMed": 0.311382
     },
     "21": {
      "n": 83,
-     "posMed": 0.350365,
-     "posP90": 0.4454612,
+     "posMed": 0.345324,
+     "posP90": 0.4421416,
      "lexMed": 0.308063,
      "cumN": 227,
      "cumPosMed": 0.374065,
@@ -464,7 +464,7 @@
     "22": {
      "n": 98,
      "posMed": 0.37486600000000003,
-     "posP90": 0.4769985,
+     "posP90": 0.47581589999999996,
      "lexMed": 0.31264400000000003,
      "cumN": 144,
      "cumPosMed": 0.3776165,
@@ -473,8 +473,8 @@
     "23": {
      "n": 36,
      "posMed": 0.38031349999999997,
-     "posP90": 0.558773,
-     "lexMed": 0.3044605,
+     "posP90": 0.5569660000000001,
+     "lexMed": 0.3042375,
      "cumN": 46,
      "cumPosMed": 0.3831675,
      "cumLexMed": 0.299509
@@ -500,16 +500,16 @@
    },
    "basisSensitivity": {
     "corpus": {
-     "pagesMeasured": 1697,
+     "pagesMeasured": 1698,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
-     "bestBucketPositionalMedian": 0.347418
+     "bestBucketPositionalMedian": 0.34702299999999997
     },
     "tier1": {
-     "pagesMeasured": 1697,
+     "pagesMeasured": 1698,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
-     "bestBucketPositionalMedian": 0.384259
+     "bestBucketPositionalMedian": 0.383607
     }
    },
    "stubs": {
@@ -517,16 +517,16 @@
     "applicableEqualTo1": 0,
     "note": "pages that cannot reach the stub floor because they hold fewer than 3 applicable fields; they are never indexable and never count as covered"
    },
-   "withQuestions": 1683,
+   "withQuestions": 1684,
    "indexable": 293,
    "indexableWithQuestions": 293,
    "positionalSizeMatchedDerivation": 0.372685,
-   "lexicalSizeMatchedDerivation": 0.311272,
+   "lexicalSizeMatchedDerivation": 0.311382,
    "positionalSizeMatched": 0.185384,
    "lexicalSizeMatched": 0.348613,
    "positionalAllPairs": 0.185384,
    "lexicalAllPairs": 0.348613,
-   "positionalAllPairsP90": 0.315797,
+   "positionalAllPairsP90": 0.315345,
    "sharedWordShareSizeMatched": 0.43843,
    "sharedWordShareAllPairs": 0.43843,
    "allPairs": {
@@ -535,8 +535,8 @@
     "positional": {
      "count": 293,
      "median": 0.185384,
-     "mean": 0.221299,
-     "p90": 0.315797,
+     "mean": 0.221052,
+     "p90": 0.315345,
      "max": 0.693742,
      "above_0_20": 126,
      "above_0_30": 40
@@ -544,8 +544,8 @@
     "lexical": {
      "count": 293,
      "median": 0.348613,
-     "mean": 0.363944,
-     "p90": 0.423841,
+     "mean": 0.363881,
+     "p90": 0.423077,
      "max": 0.796165,
      "above_0_20": 293,
      "above_0_30": 262
@@ -563,8 +563,8 @@
     "positional": {
      "count": 293,
      "median": 0.185384,
-     "mean": 0.221299,
-     "p90": 0.315797,
+     "mean": 0.221052,
+     "p90": 0.315345,
      "max": 0.693742,
      "above_0_20": 126,
      "above_0_30": 40
@@ -572,8 +572,8 @@
     "lexical": {
      "count": 293,
      "median": 0.348613,
-     "mean": 0.363944,
-     "p90": 0.423841,
+     "mean": 0.363881,
+     "p90": 0.423077,
      "max": 0.796165,
      "above_0_20": 293,
      "above_0_30": 262
@@ -584,10 +584,10 @@
    "clearsLexical": true
   },
   "tier2": {
-   "pages": 3787,
-   "pagesInPrimaryBasis": 3626,
+   "pages": 3382,
+   "pagesInPrimaryBasis": 3221,
    "medianApplicable": 19,
-   "medianPresent": 10,
+   "medianPresent": 11,
    "ruleAnswerUnguarded": null,
    "ruleAnswerAfterStubFloor": null,
    "selectionStartedAt": 3,
@@ -597,11 +597,11 @@
    "lineCheckSteps": [
     {
      "threshold": 3,
-     "indexable": 3515,
-     "positionalAllPairs": 0.525701,
-     "positionalSizeMatchedSet": 0.389831,
-     "lexicalSizeMatchedSet": 0.454167,
-     "lexicalAllPairs": 0.534722,
+     "indexable": 3196,
+     "positionalAllPairs": 0.502874,
+     "positionalSizeMatchedSet": 0.379689,
+     "lexicalSizeMatchedSet": 0.450007,
+     "lexicalAllPairs": 0.52518,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -609,11 +609,11 @@
     },
     {
      "threshold": 4,
-     "indexable": 3161,
-     "positionalAllPairs": 0.466403,
-     "positionalSizeMatchedSet": 0.361702,
-     "lexicalSizeMatchedSet": 0.450649,
-     "lexicalAllPairs": 0.524896,
+     "indexable": 2999,
+     "positionalAllPairs": 0.462857,
+     "positionalSizeMatchedSet": 0.357955,
+     "lexicalSizeMatchedSet": 0.448357,
+     "lexicalAllPairs": 0.519722,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -621,11 +621,11 @@
     },
     {
      "threshold": 5,
-     "indexable": 2881,
-     "positionalAllPairs": 0.448485,
-     "positionalSizeMatchedSet": 0.345725,
-     "lexicalSizeMatchedSet": 0.445614,
-     "lexicalAllPairs": 0.517564,
+     "indexable": 2789,
+     "positionalAllPairs": 0.446602,
+     "positionalSizeMatchedSet": 0.344203,
+     "lexicalSizeMatchedSet": 0.448,
+     "lexicalAllPairs": 0.514783,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -633,11 +633,11 @@
     },
     {
      "threshold": 6,
-     "indexable": 2641,
-     "positionalAllPairs": 0.423792,
-     "positionalSizeMatchedSet": 0.331933,
-     "lexicalSizeMatchedSet": 0.444444,
-     "lexicalAllPairs": 0.511182,
+     "indexable": 2599,
+     "positionalAllPairs": 0.423077,
+     "positionalSizeMatchedSet": 0.338462,
+     "lexicalSizeMatchedSet": 0.44382,
+     "lexicalAllPairs": 0.510135,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -645,11 +645,11 @@
     },
     {
      "threshold": 7,
-     "indexable": 2452,
-     "positionalAllPairs": 0.420301,
-     "positionalSizeMatchedSet": 0.329609,
-     "lexicalSizeMatchedSet": 0.444816,
-     "lexicalAllPairs": 0.508016,
+     "indexable": 2427,
+     "positionalAllPairs": 0.420339,
+     "positionalSizeMatchedSet": 0.332402,
+     "lexicalSizeMatchedSet": 0.444706,
+     "lexicalAllPairs": 0.507599,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -657,11 +657,11 @@
     },
     {
      "threshold": 8,
-     "indexable": 2269,
-     "positionalAllPairs": 0.416554,
-     "positionalSizeMatchedSet": 0.322259,
-     "lexicalSizeMatchedSet": 0.446429,
-     "lexicalAllPairs": 0.505725,
+     "indexable": 2249,
+     "positionalAllPairs": 0.416201,
+     "positionalSizeMatchedSet": 0.318493,
+     "lexicalSizeMatchedSet": 0.445759,
+     "lexicalAllPairs": 0.505576,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -669,11 +669,11 @@
     },
     {
      "threshold": 9,
-     "indexable": 2094,
-     "positionalAllPairs": 0.410876,
-     "positionalSizeMatchedSet": 0.325118,
-     "lexicalSizeMatchedSet": 0.44706,
-     "lexicalAllPairs": 0.505157,
+     "indexable": 2082,
+     "positionalAllPairs": 0.41056,
+     "positionalSizeMatchedSet": 0.323529,
+     "lexicalSizeMatchedSet": 0.446283,
+     "lexicalAllPairs": 0.504603,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -681,11 +681,11 @@
     },
     {
      "threshold": 10,
-     "indexable": 1929,
-     "positionalAllPairs": 0.401734,
-     "positionalSizeMatchedSet": 0.318493,
-     "lexicalSizeMatchedSet": 0.445302,
-     "lexicalAllPairs": 0.501479,
+     "indexable": 1923,
+     "positionalAllPairs": 0.401294,
+     "positionalSizeMatchedSet": 0.313684,
+     "lexicalSizeMatchedSet": 0.447084,
+     "lexicalAllPairs": 0.502008,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -694,9 +694,9 @@
     {
      "threshold": 11,
      "indexable": 1781,
-     "positionalAllPairs": 0.401408,
+     "positionalAllPairs": 0.401074,
      "positionalSizeMatchedSet": 0.313764,
-     "lexicalSizeMatchedSet": 0.449878,
+     "lexicalSizeMatchedSet": 0.449883,
      "lexicalAllPairs": 0.5,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -708,8 +708,8 @@
      "indexable": 1630,
      "positionalAllPairs": 0.401734,
      "positionalSizeMatchedSet": 0.326422,
-     "lexicalSizeMatchedSet": 0.449549,
-     "lexicalAllPairs": 0.496502,
+     "lexicalSizeMatchedSet": 0.449518,
+     "lexicalAllPairs": 0.496454,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -718,10 +718,10 @@
     {
      "threshold": 13,
      "indexable": 1472,
-     "positionalAllPairs": 0.374042,
+     "positionalAllPairs": 0.374404,
      "positionalSizeMatchedSet": 0.311527,
-     "lexicalSizeMatchedSet": 0.452954,
-     "lexicalAllPairs": 0.489619,
+     "lexicalSizeMatchedSet": 0.452942,
+     "lexicalAllPairs": 0.489099,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -730,9 +730,9 @@
     {
      "threshold": 14,
      "indexable": 1274,
-     "positionalAllPairs": 0.372479,
+     "positionalAllPairs": 0.372587,
      "positionalSizeMatchedSet": 0.3108,
-     "lexicalSizeMatchedSet": 0.450789,
+     "lexicalSizeMatchedSet": 0.450292,
      "lexicalAllPairs": 0.484217,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -743,8 +743,8 @@
      "threshold": 15,
      "indexable": 1052,
      "positionalAllPairs": 0.331158,
-     "positionalSizeMatchedSet": 0.29892,
-     "lexicalSizeMatchedSet": 0.449117,
+     "positionalSizeMatchedSet": 0.299268,
+     "lexicalSizeMatchedSet": 0.44907,
      "lexicalAllPairs": 0.476009,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -754,9 +754,9 @@
     {
      "threshold": 16,
      "indexable": 805,
-     "positionalAllPairs": 0.319648,
-     "positionalSizeMatchedSet": 0.297235,
-     "lexicalSizeMatchedSet": 0.448062,
+     "positionalAllPairs": 0.319124,
+     "positionalSizeMatchedSet": 0.297277,
+     "lexicalSizeMatchedSet": 0.447884,
      "lexicalAllPairs": 0.466459,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
@@ -766,7 +766,7 @@
     {
      "threshold": 17,
      "indexable": 544,
-     "positionalAllPairs": 0.293299,
+     "positionalAllPairs": 0.293427,
      "positionalSizeMatchedSet": 0.28485,
      "lexicalSizeMatchedSet": 0.439695,
      "lexicalAllPairs": 0.449896,
@@ -814,156 +814,156 @@
    ],
    "buckets": {
     "1": {
-     "n": 35,
-     "posMed": 0.895833,
-     "posP90": 0.979167,
-     "lexMed": 0.880952,
-     "cumN": 3626,
-     "cumPosMed": 0.44,
-     "cumLexMed": 0.45939450000000004
+     "n": 23,
+     "posMed": 0.680851,
+     "posP90": 0.9466990000000001,
+     "lexMed": 0.6875,
+     "cumN": 3221,
+     "cumPosMed": 0.415094,
+     "cumLexMed": 0.449664
     },
     "2": {
-     "n": 175,
-     "posMed": 0.791667,
-     "posP90": 0.9,
-     "lexMed": 0.616279,
-     "cumN": 3591,
-     "cumPosMed": 0.438503,
-     "cumLexMed": 0.458159
+     "n": 101,
+     "posMed": 0.708333,
+     "posP90": 0.890909,
+     "lexMed": 0.587302,
+     "cumN": 3198,
+     "cumPosMed": 0.414186,
+     "cumLexMed": 0.449086
     },
     "3": {
-     "n": 336,
-     "posMed": 0.76087,
-     "posP90": 0.869565,
-     "lexMed": 0.5463125,
-     "cumN": 3416,
-     "cumPosMed": 0.4307435,
-     "cumLexMed": 0.453333
+     "n": 179,
+     "posMed": 0.62,
+     "posP90": 0.7925172,
+     "lexMed": 0.504274,
+     "cumN": 3097,
+     "cumPosMed": 0.409722,
+     "cumLexMed": 0.445783
     },
     "4": {
-     "n": 271,
-     "posMed": 0.622642,
-     "posP90": 0.84,
-     "lexMed": 0.52,
-     "cumN": 3080,
-     "cumPosMed": 0.417112,
-     "cumLexMed": 0.445561
+     "n": 201,
+     "posMed": 0.538799,
+     "posP90": 0.72,
+     "lexMed": 0.510067,
+     "cumN": 2918,
+     "cumPosMed": 0.4054445,
+     "cumLexMed": 0.4423915
     },
     "5": {
-     "n": 220,
-     "posMed": 0.5680940000000001,
-     "posP90": 0.735849,
+     "n": 170,
+     "posMed": 0.5088710000000001,
+     "posP90": 0.6426641999999999,
      "lexMed": 0.507576,
-     "cumN": 2809,
-     "cumPosMed": 0.408046,
-     "cumLexMed": 0.44086
+     "cumN": 2717,
+     "cumPosMed": 0.4,
+     "cumLexMed": 0.439189
     },
     "6": {
-     "n": 179,
-     "posMed": 0.471698,
-     "posP90": 0.6629954000000002,
-     "lexMed": 0.453571,
-     "cumN": 2589,
-     "cumPosMed": 0.40107,
-     "cumLexMed": 0.437177
+     "n": 162,
+     "posMed": 0.4405465,
+     "posP90": 0.6036279,
+     "lexMed": 0.4541245,
+     "cumN": 2547,
+     "cumPosMed": 0.398649,
+     "cumLexMed": 0.436578
     },
     "7": {
-     "n": 169,
-     "posMed": 0.445312,
-     "posP90": 0.622642,
-     "lexMed": 0.461538,
-     "cumN": 2410,
-     "cumPosMed": 0.4,
-     "cumLexMed": 0.43606049999999996
+     "n": 164,
+     "posMed": 0.427626,
+     "posP90": 0.583333,
+     "lexMed": 0.457534,
+     "cumN": 2385,
+     "cumPosMed": 0.397516,
+     "cumLexMed": 0.435508
     },
     "8": {
-     "n": 160,
-     "posMed": 0.392426,
-     "posP90": 0.6004166999999999,
-     "lexMed": 0.433294,
-     "cumN": 2241,
-     "cumPosMed": 0.4,
+     "n": 152,
+     "posMed": 0.3715615,
+     "posP90": 0.5275551,
+     "lexMed": 0.43507300000000004,
+     "cumN": 2221,
+     "cumPosMed": 0.396552,
      "cumLexMed": 0.433912
     },
     "9": {
-     "n": 159,
-     "posMed": 0.377358,
-     "posP90": 0.5530690000000001,
+     "n": 153,
+     "posMed": 0.361446,
+     "posP90": 0.5441680000000001,
      "lexMed": 0.447368,
-     "cumN": 2081,
-     "cumPosMed": 0.4,
-     "cumLexMed": 0.433921
+     "cumN": 2069,
+     "cumPosMed": 0.397516,
+     "cumLexMed": 0.433912
     },
     "10": {
-     "n": 145,
-     "posMed": 0.379679,
-     "posP90": 0.546148,
-     "lexMed": 0.451064,
-     "cumN": 1922,
-     "cumPosMed": 0.4,
-     "cumLexMed": 0.432936
+     "n": 139,
+     "posMed": 0.373563,
+     "posP90": 0.545126,
+     "lexMed": 0.451404,
+     "cumN": 1916,
+     "cumPosMed": 0.3983535,
+     "cumLexMed": 0.43258949999999996
     },
     "11": {
      "n": 149,
-     "posMed": 0.388889,
+     "posMed": 0.387755,
      "posP90": 0.5517838,
-     "lexMed": 0.433692,
+     "lexMed": 0.435252,
      "cumN": 1777,
      "cumPosMed": 0.4,
-     "cumLexMed": 0.431604
+     "cumLexMed": 0.431579
     },
     "12": {
      "n": 156,
-     "posMed": 0.3931035,
-     "posP90": 0.535373,
-     "lexMed": 0.45806,
+     "posMed": 0.388889,
+     "posP90": 0.5296175000000001,
+     "lexMed": 0.45469400000000004,
      "cumN": 1628,
      "cumPosMed": 0.4,
-     "cumLexMed": 0.4313565
+     "cumLexMed": 0.431256
     },
     "13": {
      "n": 198,
-     "posMed": 0.3832265,
-     "posP90": 0.5201829,
+     "posMed": 0.375411,
+     "posP90": 0.5200884,
      "lexMed": 0.4359925,
      "cumN": 1472,
-     "cumPosMed": 0.40107,
-     "cumLexMed": 0.430233
+     "cumPosMed": 0.4,
+     "cumLexMed": 0.4302905
     },
     "14": {
      "n": 222,
-     "posMed": 0.3916745,
-     "posP90": 0.581409,
+     "posMed": 0.387912,
+     "posP90": 0.5797512,
      "lexMed": 0.446849,
      "cumN": 1274,
-     "cumPosMed": 0.406091,
-     "cumLexMed": 0.4290035
+     "cumPosMed": 0.40375799999999995,
+     "cumLexMed": 0.42917
     },
     "15": {
      "n": 247,
-     "posMed": 0.388889,
-     "posP90": 0.5111928,
-     "lexMed": 0.437811,
+     "posMed": 0.380952,
+     "posP90": 0.5098878,
+     "lexMed": 0.438017,
      "cumN": 1052,
-     "cumPosMed": 0.4075495,
+     "cumPosMed": 0.4064725,
      "cumLexMed": 0.4265275
     },
     "16": {
      "n": 261,
-     "posMed": 0.403614,
-     "posP90": 0.529126,
+     "posMed": 0.40107,
+     "posP90": 0.529644,
      "lexMed": 0.441489,
      "cumN": 805,
-     "cumPosMed": 0.411765,
+     "cumPosMed": 0.410053,
      "cumLexMed": 0.422667
     },
     "17": {
      "n": 276,
-     "posMed": 0.41221450000000004,
-     "posP90": 0.5333295,
+     "posMed": 0.41139400000000004,
+     "posP90": 0.5335215,
      "lexMed": 0.4200585,
      "cumN": 544,
-     "cumPosMed": 0.413287,
+     "cumPosMed": 0.4123855,
      "cumLexMed": 0.4130125
     },
     "18": {
@@ -972,17 +972,17 @@
      "posP90": 0.524691,
      "lexMed": 0.410557,
      "cumN": 268,
-     "cumPosMed": 0.417015,
+     "cumPosMed": 0.415952,
      "cumLexMed": 0.406837
     },
     "19": {
      "n": 66,
      "posMed": 0.43390700000000004,
      "posP90": 0.566582,
-     "lexMed": 0.398779,
+     "lexMed": 0.399323,
      "cumN": 67,
      "cumPosMed": 0.433155,
-     "cumLexMed": 0.398601
+     "cumLexMed": 0.398957
     },
     "20": {
      "n": 1,
@@ -996,16 +996,16 @@
    },
    "basisSensitivity": {
     "corpus": {
-     "pagesMeasured": 3787,
+     "pagesMeasured": 3382,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
      "bestBucketPositionalMedian": 0.317568
     },
     "tier2": {
-     "pagesMeasured": 3787,
+     "pagesMeasured": 3382,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
-     "bestBucketPositionalMedian": 0.402299
+     "bestBucketPositionalMedian": 0.4375
     }
    },
    "stubs": {
@@ -1013,7 +1013,7 @@
     "applicableEqualTo1": 0,
     "note": "pages that cannot reach the stub floor because they hold fewer than 3 applicable fields; they are never indexable and never count as covered"
    },
-   "withQuestions": 3626,
+   "withQuestions": 3221,
    "indexable": 1,
    "indexableWithQuestions": 1,
    "positionalSizeMatchedDerivation": 0.402299,
@@ -1080,8 +1080,8 @@
    "clearsLexical": true
   },
   "tier3": {
-   "pages": 23173,
-   "pagesInPrimaryBasis": 5846,
+   "pages": 23577,
+   "pagesInPrimaryBasis": 6250,
    "medianApplicable": 14,
    "medianPresent": 3,
    "ruleAnswerUnguarded": null,
@@ -1093,11 +1093,11 @@
    "lineCheckSteps": [
     {
      "threshold": 3,
-     "indexable": 20117,
-     "positionalAllPairs": 0.590476,
-     "positionalSizeMatchedSet": 0.521739,
-     "lexicalSizeMatchedSet": 0.628205,
-     "lexicalAllPairs": 0.704082,
+     "indexable": 20435,
+     "positionalAllPairs": 0.591837,
+     "positionalSizeMatchedSet": 0.521008,
+     "lexicalSizeMatchedSet": 0.625,
+     "lexicalAllPairs": 0.702128,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1105,11 +1105,11 @@
     },
     {
      "threshold": 4,
-     "indexable": 11500,
-     "positionalAllPairs": 0.549296,
-     "positionalSizeMatchedSet": 0.456,
-     "lexicalSizeMatchedSet": 0.58206,
-     "lexicalAllPairs": 0.657688,
+     "indexable": 11661,
+     "positionalAllPairs": 0.54902,
+     "positionalSizeMatchedSet": 0.452381,
+     "lexicalSizeMatchedSet": 0.580645,
+     "lexicalAllPairs": 0.656716,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1117,11 +1117,11 @@
     },
     {
      "threshold": 5,
-     "indexable": 9199,
-     "positionalAllPairs": 0.519608,
-     "positionalSizeMatchedSet": 0.424779,
-     "lexicalSizeMatchedSet": 0.573171,
-     "lexicalAllPairs": 0.647727,
+     "indexable": 9290,
+     "positionalAllPairs": 0.519279,
+     "positionalSizeMatchedSet": 0.42268,
+     "lexicalSizeMatchedSet": 0.571429,
+     "lexicalAllPairs": 0.647059,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1129,11 +1129,11 @@
     },
     {
      "threshold": 6,
-     "indexable": 6734,
-     "positionalAllPairs": 0.482353,
-     "positionalSizeMatchedSet": 0.391304,
-     "lexicalSizeMatchedSet": 0.560976,
-     "lexicalAllPairs": 0.634004,
+     "indexable": 6775,
+     "positionalAllPairs": 0.482143,
+     "positionalSizeMatchedSet": 0.391111,
+     "lexicalSizeMatchedSet": 0.561404,
+     "lexicalAllPairs": 0.633803,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1141,11 +1141,11 @@
     },
     {
      "threshold": 7,
-     "indexable": 4694,
-     "positionalAllPairs": 0.452769,
-     "positionalSizeMatchedSet": 0.372509,
-     "lexicalSizeMatchedSet": 0.554878,
-     "lexicalAllPairs": 0.623193,
+     "indexable": 4718,
+     "positionalAllPairs": 0.452107,
+     "positionalSizeMatchedSet": 0.373624,
+     "lexicalSizeMatchedSet": 0.558333,
+     "lexicalAllPairs": 0.622951,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1153,11 +1153,11 @@
     },
     {
      "threshold": 8,
-     "indexable": 3382,
-     "positionalAllPairs": 0.434454,
-     "positionalSizeMatchedSet": 0.36047,
-     "lexicalSizeMatchedSet": 0.556864,
-     "lexicalAllPairs": 0.618612,
+     "indexable": 3401,
+     "positionalAllPairs": 0.434389,
+     "positionalSizeMatchedSet": 0.359756,
+     "lexicalSizeMatchedSet": 0.556911,
+     "lexicalAllPairs": 0.617978,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1165,11 +1165,11 @@
     },
     {
      "threshold": 9,
-     "indexable": 2375,
-     "positionalAllPairs": 0.407942,
-     "positionalSizeMatchedSet": 0.344468,
-     "lexicalSizeMatchedSet": 0.555066,
-     "lexicalAllPairs": 0.608108,
+     "indexable": 2386,
+     "positionalAllPairs": 0.407959,
+     "positionalSizeMatchedSet": 0.344828,
+     "lexicalSizeMatchedSet": 0.555902,
+     "lexicalAllPairs": 0.607789,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1177,11 +1177,11 @@
     },
     {
      "threshold": 10,
-     "indexable": 1500,
-     "positionalAllPairs": 0.388961,
-     "positionalSizeMatchedSet": 0.341108,
-     "lexicalSizeMatchedSet": 0.553894,
-     "lexicalAllPairs": 0.597288,
+     "indexable": 1505,
+     "positionalAllPairs": 0.388889,
+     "positionalSizeMatchedSet": 0.337349,
+     "lexicalSizeMatchedSet": 0.555556,
+     "lexicalAllPairs": 0.597173,
      "clearsPositionalLine": false,
      "clearsLexicalLine": false,
      "clearsR3LexicalTarget": false,
@@ -1250,94 +1250,94 @@
    ],
    "buckets": {
     "1": {
-     "n": 2,
-     "posMed": 0.448611,
-     "posP90": 0.46749979999999997,
-     "lexMed": 0.4564365,
-     "cumN": 5846,
-     "cumPosMed": 0.409774,
-     "cumLexMed": 0.565217
+     "n": 14,
+     "posMed": 0.882353,
+     "posP90": 0.9734999,
+     "lexMed": 0.855731,
+     "cumN": 6250,
+     "cumPosMed": 0.419811,
+     "cumLexMed": 0.565301
     },
     "2": {
-     "n": 141,
-     "posMed": 0.479167,
-     "posP90": 0.588235,
-     "lexMed": 0.536232,
-     "cumN": 5844,
-     "cumPosMed": 0.409748,
+     "n": 215,
+     "posMed": 0.540541,
+     "posP90": 0.8234265999999999,
+     "lexMed": 0.56338,
+     "cumN": 6236,
+     "cumPosMed": 0.419355,
      "cumLexMed": 0.565217
     },
     "3": {
-     "n": 141,
-     "posMed": 0.45283,
-     "posP90": 0.556522,
-     "lexMed": 0.4875,
-     "cumN": 5703,
-     "cumPosMed": 0.408451,
-     "cumLexMed": 0.565957
+     "n": 298,
+     "posMed": 0.571429,
+     "posP90": 0.862745,
+     "lexMed": 0.534036,
+     "cumN": 6021,
+     "cumPosMed": 0.414141,
+     "cumLexMed": 0.565217
     },
     "4": {
-     "n": 213,
-     "posMed": 0.493151,
-     "posP90": 0.588957,
-     "lexMed": 0.72973,
-     "cumN": 5562,
-     "cumPosMed": 0.40701449999999995,
-     "cumLexMed": 0.567697
+     "n": 283,
+     "posMed": 0.526316,
+     "posP90": 0.727273,
+     "lexMed": 0.663636,
+     "cumN": 5723,
+     "cumPosMed": 0.409091,
+     "cumLexMed": 0.566265
     },
     "5": {
-     "n": 510,
-     "posMed": 0.4472415,
-     "posP90": 0.5323218000000001,
-     "lexMed": 0.6097255,
-     "cumN": 5349,
-     "cumPosMed": 0.402985,
-     "cumLexMed": 0.565693
+     "n": 560,
+     "posMed": 0.453098,
+     "posP90": 0.5543365000000001,
+     "lexMed": 0.6014515,
+     "cumN": 5440,
+     "cumPosMed": 0.405405,
+     "cumLexMed": 0.5647955
     },
     "6": {
-     "n": 1054,
+     "n": 1071,
      "posMed": 0.441176,
-     "posP90": 0.5709166000000001,
-     "lexMed": 0.592169,
-     "cumN": 4839,
-     "cumPosMed": 0.39819,
-     "cumLexMed": 0.56229
+     "posP90": 0.571429,
+     "lexMed": 0.590476,
+     "cumN": 4880,
+     "cumPosMed": 0.39899,
+     "cumLexMed": 0.561644
     },
     "7": {
-     "n": 738,
-     "posMed": 0.403247,
-     "posP90": 0.5046659,
-     "lexMed": 0.573582,
-     "cumN": 3785,
-     "cumPosMed": 0.392157,
-     "cumLexMed": 0.555851
+     "n": 743,
+     "posMed": 0.404,
+     "posP90": 0.5080368000000001,
+     "lexMed": 0.572973,
+     "cumN": 3809,
+     "cumPosMed": 0.392405,
+     "cumLexMed": 0.555249
     },
     "8": {
-     "n": 778,
-     "posMed": 0.409722,
-     "posP90": 0.5340608,
-     "lexMed": 0.579186,
-     "cumN": 3047,
-     "cumPosMed": 0.3875,
-     "cumLexMed": 0.553191
+     "n": 786,
+     "posMed": 0.41046550000000004,
+     "posP90": 0.534247,
+     "lexMed": 0.577761,
+     "cumN": 3066,
+     "cumPosMed": 0.388027,
+     "cumLexMed": 0.5526875
     },
     "9": {
-     "n": 798,
+     "n": 804,
      "posMed": 0.3923985,
-     "posP90": 0.4919549000000001,
-     "lexMed": 0.5631235,
-     "cumN": 2269,
+     "posP90": 0.492958,
+     "lexMed": 0.5629685,
+     "cumN": 2280,
      "cumPosMed": 0.380282,
-     "cumLexMed": 0.546218
+     "cumLexMed": 0.5460285
     },
     "10": {
-     "n": 702,
-     "posMed": 0.3756675,
-     "posP90": 0.49993509999999997,
-     "lexMed": 0.5487265,
-     "cumN": 1471,
-     "cumPosMed": 0.369565,
-     "cumLexMed": 0.538721
+     "n": 707,
+     "posMed": 0.376559,
+     "posP90": 0.5,
+     "lexMed": 0.548387,
+     "cumN": 1476,
+     "cumPosMed": 0.369863,
+     "cumLexMed": 0.538462
     },
     "11": {
      "n": 415,
@@ -1387,16 +1387,16 @@
    },
    "basisSensitivity": {
     "corpus": {
-     "pagesMeasured": 23173,
+     "pagesMeasured": 23577,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
      "bestBucketPositionalMedian": 0.355807
     },
     "tier3": {
-     "pagesMeasured": 23173,
+     "pagesMeasured": 23577,
      "ruleAnswerUnguarded": null,
      "ruleAnswerAfterStubFloor": null,
-     "bestBucketPositionalMedian": 0.35987800000000003
+     "bestBucketPositionalMedian": 0.35558199999999995
     }
    },
    "stubs": {
@@ -1404,7 +1404,7 @@
     "applicableEqualTo1": 0,
     "note": "pages that cannot reach the stub floor because they hold fewer than 3 applicable fields; they are never indexable and never count as covered"
    },
-   "withQuestions": 5846,
+   "withQuestions": 6250,
    "indexable": 0,
    "indexableWithQuestions": 0,
    "positionalSizeMatched": null,

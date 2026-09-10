@@ -38,6 +38,7 @@ import {
   CONTROLLED_WITHHELD_SEEDS,
   INTERACTION_RULE_LABELS,
   INTERACTION_TIER_LABELS,
+  PREDICTED_VISIBLE_ROWS,
   TRIAL_ROWS_INLINE,
   VISIBLE_ROWS,
   anchor,
@@ -46,6 +47,7 @@ import {
   checkedSourceNames,
   checkedSourcesStatement,
   deriveQuestions,
+  groupPredictedByRuleClass,
   groupRevealedRows,
   interactionDisclosureLabel,
   interactionLine,
@@ -1809,5 +1811,130 @@ describe('§17 and §18 — relations, their notes, and what a name is', () => {
     expect(text).toContain('Salt form Fixture Compound Sodium')
     expect(text).not.toMatch(/Salt form\s+WATER/)
     expect(text).toContain('Also called WATER')
+  })
+})
+
+describe('§19 — homeopathic listings, single-atom structures, and the predicted cap', () => {
+  it('paints a homeopathic Health Canada row as a listing and never as an approval', () => {
+    /*
+     * §19(1): Health Canada's Drug Product Database lists homeopathic products under a class of
+     * their own, and a listing there is not an approval. `scripts/revamp/build_blocks.py` writes
+     * the words; this holds the block to painting them and to adding nothing.
+     */
+    const rows: CorpusRegistrationLine[] = [
+      {
+        id: 'ca',
+        jurisdiction: 'CA',
+        label: 'Canada',
+        status: 'Homeopathic product listed, DIN-HM class (Health Canada Drug Product Database)',
+        detail: '4 drug codes · checked 2026-09-04',
+        source: 'Health Canada Drug Product Database',
+        dateChecked: '2026-09-04',
+        ordinal: 6,
+        line:
+          'Homeopathic product listed, DIN-HM class (Health Canada Drug Product Database) · ' +
+          '4 drug codes · checked 2026-09-04',
+        disclosed: false,
+        upstreamRegisters: [],
+        applications: [],
+      },
+    ]
+    const painted = visibleText(
+      renderToStaticMarkup(
+        React.createElement(RegistrationBlock, { registration: rows, events: [], schedules: [] }),
+      ),
+    )
+    expect(painted).toContain('Homeopathic product listed, DIN-HM class')
+    expect(painted).not.toMatch(/\b(?:Marketed|Approved|Dormant)\b/)
+  })
+
+  it('paints no nearest-neighbour row where the corpus computed none (§19 item 2)', () => {
+    /*
+     * §19(2): lead's fingerprint and uranium's are both empty, and the section that compared them
+     * is gone from `tier3-sections.parquet`. The component invents nothing: given the sections a
+     * single-atom record still holds, no "Closest approved compound" row is painted.
+     */
+    const painted = renderToStaticMarkup(
+      React.createElement(Tier3Sections, {
+        sections: [
+          {
+            section: 'timeline',
+            ordinal: 0,
+            rows: [{ label: 'Publications (ChEMBL)', value: '1963–1963' }],
+          },
+        ],
+      }),
+    )
+    expect(visibleText(painted)).not.toContain('Closest approved compound')
+  })
+
+  it('caps predicted lines at six visible rows per rule class (§19 item 3)', () => {
+    const rows = [
+      ...Array.from({ length: 20 }, (_, index) => ({
+        ruleId: 'C3-additive-hypotensive',
+        name: `hypotensive ${index}`,
+      })),
+      ...Array.from({ length: 3 }, (_, index) => ({
+        ruleId: 'C1-cyp-inhibitor-substrate',
+        name: `cyp ${index}`,
+      })),
+    ]
+    const groups = groupPredictedByRuleClass(rows)
+    expect(groups.map((group) => group.ruleClass)).toEqual([
+      'C3-additive-hypotensive',
+      'C1-cyp-inhibitor-substrate',
+    ])
+    expect(groups[0]?.visible).toHaveLength(PREDICTED_VISIBLE_ROWS)
+    expect(groups[0]?.disclosed).toHaveLength(20 - PREDICTED_VISIBLE_ROWS)
+    expect(groups[1]?.visible).toHaveLength(3)
+    expect(groups[1]?.disclosed).toHaveLength(0)
+  })
+
+  it('paints six predicted rows per class, the rest in a counted control (§19 item 3)', () => {
+    const predicted: CorpusInteractionLine[] = [
+      ...Array.from({ length: 20 }, (_, index) => ({
+        id: `hyp-${index}`,
+        tier: 'C' as const,
+        tierLabel: INTERACTION_TIER_LABELS.C as string,
+        line: `Predicted from mechanism: Counterpart ${index} · hypotensive class membership on both pages → additive hypotensive effect (both lower blood pressure, possible)`,
+        disclosed: false,
+        counterpartName: `Counterpart ${index}`,
+        ruleId: 'C3-additive-hypotensive',
+      })),
+      ...Array.from({ length: 8 }, (_, index) => ({
+        id: `cyp-${index}`,
+        tier: 'C' as const,
+        tierLabel: INTERACTION_TIER_LABELS.C as string,
+        line: `Predicted from mechanism: Substrate ${index} · CYP3A4 inhibition → expected ↑ exposure (likely)`,
+        disclosed: false,
+        counterpartName: `Substrate ${index}`,
+        ruleId: 'C1-cyp-inhibitor-substrate',
+      })),
+    ]
+    const markup = renderToStaticMarkup(
+      React.createElement(InteractionsBlock, {
+        interactions: {
+          lines: predicted,
+          statement: 'Checked in openFDA drug labels as of 2026-09-06.',
+          sourcesChecked: ['openFDA drug labels'],
+          date: '2026-09-06',
+          totals: { C: 353 },
+          predictedOnly: true,
+        },
+      }),
+    )
+    const open = withoutClosedDisclosures(markup)
+    // Every visible predicted list carries at most six rows, and there are two of them: one per
+    // rule class, not one per tier.
+    const lists = open.match(/<ul class="cd-interactions">[\s\S]*?<\/ul>/g) ?? []
+    expect(lists).toHaveLength(2)
+    for (const list of lists) {
+      expect((list.match(/<li>/g) ?? []).length).toBeLessThanOrEqual(PREDICTED_VISIBLE_ROWS)
+    }
+    // The remainder of each class sits in that class's own closed control, with its count.
+    expect(markup).toContain('Show 14 more predicted from mechanism lines')
+    expect(markup).toContain('Show 2 more predicted from mechanism lines')
+    // The checked-sources statement stays visible.
+    expect(visibleText(open)).toContain('Checked in openFDA drug labels as of 2026-09-06.')
   })
 })

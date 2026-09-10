@@ -30,16 +30,27 @@ approved medicine. A label is dropped when any of these holds:
     (the Homeopathic Pharmacopoeia marker);
   * an ``openfda.product_type`` or ``openfda.route`` string names a homeopathic
     product;
+  * a product name ends in homeopathic potency notation (``30C``, ``7X``,
+    ``200CK``, ``LM3``) and no NDA, ANDA or BLA is recorded beside it
+    (§19 item 1);
   * the FDA NDC directory's marketing category for this SPL names
     ``HOMEOPATHIC`` or ``UNAPPROVED`` (``UNAPPROVED HOMEOPATHIC``,
     ``UNAPPROVED DRUG OTHER``, ``UNAPPROVED MEDICAL GAS``, and the drug-shortage
     category);
-  * the word "homeopathic" appears in the label's indications or description;
+  * the word "homeopathic" or "anthroposophic" appears in the label's purpose,
+    indications or description (§19 item 1 adds the purpose section and the
+    anthroposophic word: "for constitutional treatments based on homeopathic and
+    anthroposophic indications" is not an indication of the substance);
   * the label carries no ``openfda.application_number`` and its product type is
     neither ``HUMAN PRESCRIPTION DRUG`` nor ``HUMAN OTC DRUG``.
 
 Every drop is counted by reason in `map-stats.json`, with the pages that lose
-every label and the pages that lose some.
+every label and the pages that lose some. The set ids the index-level tests
+exclude are written to `parsed/excluded-set-ids.json` for every indexed label,
+matched or not, beside the record-level exclusions of the labels that were
+streamed; `scripts/corpus-20k/tiers/assign-models.py` reads that file so the
+`otc-label` ground for the model assignment and the label mapping refuse the
+same SPLs.
 """
 
 from __future__ import annotations
@@ -124,9 +135,29 @@ def resolve(idx, unii, rxcui, generic, substance) -> tuple[dict[str, str], list[
     return matched, sorted(set(candidates))
 
 
-HOMEOPATHIC = re.compile(r"homeopath", re.I)
+HOMEOPATHIC = re.compile(r"homeopath|anthroposoph", re.I)
 HPUS = re.compile(r"\[\s*HPUS\s*\]", re.I)
 HUMAN_DRUG_TYPES = {"HUMAN PRESCRIPTION DRUG", "HUMAN OTC DRUG"}
+
+# §19 item 1: homeopathic potency notation, as the Homeopathic Pharmacopoeia writes it — a decimal
+# (X), centesimal (C), Korsakovian (CK) or fifty-millesimal (LM) dilution — and as a product name
+# carries it, which is as the name's last token ("Arnica Montana 200C", "Sulphur 12X", "Stannum
+# Pentas 7X, 11X, 18X, 30X"). The position matters: "Technetium Tc 99M Sestamibi" is an approved
+# radiopharmaceutical whose isotope number sits mid-name, "3M Skin and Nasal Antiseptic" and
+# "4X Medicated Toothache and Gum Gel" carry the token first, and none of the three is a dilution.
+POTENCY_TOKEN = re.compile(r"\A(?:\d+\s?(?:CK|[XCM])|LM\s?\d+)\Z", re.I)
+# The register's own mark of an approval on a label. Measured over the 262,271 indexed labels: no
+# label whose product name ends in a potency token carries one, so the conjunction removes nothing
+# a register approved and protects any later product whose name happens to end in such a token.
+APPROVAL_APPLICATION = re.compile(r"^(?:NDA|ANDA|BLA)", re.I)
+
+
+def ends_in_potency(name: str) -> bool:
+    """True where the product name's last token is a homeopathic potency."""
+    parts = str(name).strip().rstrip(".;,").split()
+    if not parts:
+        return False
+    return bool(POTENCY_TOKEN.match(parts[-1].rstrip(".;,")))
 
 
 def load_marketing_categories() -> dict[str, set[str]]:
@@ -150,11 +181,11 @@ def load_marketing_categories() -> dict[str, set[str]]:
     return by_spl
 
 
-def index_exclusion(product_type, route, application_number, categories) -> str | None:
+def index_exclusion(product_type, route, application_number, categories, names=()) -> str | None:
     """The exclusion reason readable from the index row and the NDC categories, or None."""
     types = {str(p).upper().strip() for p in product_type if p}
     routes = {str(r).upper().strip() for r in route if r}
-    apps = [a for a in application_number if a]
+    apps = [str(a).strip() for a in application_number if a and str(a).strip()]
     if any(HOMEOPATHIC.search(value) for value in types | routes):
         return "openFDA product type or route names a homeopathic product"
     if any("HOMEOPATHIC" in category for category in categories):
@@ -163,6 +194,13 @@ def index_exclusion(product_type, route, application_number, categories) -> str 
         return "NDC marketing category names an unapproved product"
     if not apps and not (types & HUMAN_DRUG_TYPES):
         return "no application number and not a human prescription or OTC drug product"
+    if any(ends_in_potency(name) for name in names if name) and not any(
+        APPROVAL_APPLICATION.match(app) for app in apps
+    ):
+        return (
+            "a product name ends in homeopathic potency notation and no NDA, ANDA or BLA "
+            "is recorded"
+        )
     return None
 
 
@@ -173,9 +211,16 @@ def record_exclusion(record) -> str | None:
     )
     if any(HPUS.search(text) for text in ingredients):
         return "an active ingredient carries the [HPUS] homeopathic marker"
-    prose = as_list(record.get("indications_and_usage")) + as_list(record.get("description"))
+    prose = (
+        as_list(record.get("purpose"))
+        + as_list(record.get("indications_and_usage"))
+        + as_list(record.get("description"))
+    )
     if any(HOMEOPATHIC.search(text) for text in prose):
-        return "the indications or description name the product homeopathic"
+        return (
+            "the purpose, indications or description name the product homeopathic or "
+            "anthroposophic"
+        )
     return None
 
 
@@ -240,6 +285,7 @@ def main() -> None:
         "pages_losing_some_labels": 0,
     }
     unmatched_uniis: dict[str, dict] = {}
+    excluded_set_ids: dict[str, str] = {}
     pages_before: set[str] = set()
     pages_after: set[str] = set()
     excluded_pages: set[str] = set()
@@ -252,6 +298,17 @@ def main() -> None:
         chosen = best[sid]
         if (chosen[2], chosen[3]) != (cols["archive"][i], cols["ordinal"][i]):
             continue
+        index_reason = index_exclusion(
+            cols["product_type"][i],
+            cols["route"][i],
+            cols["application_number"][i],
+            categories.get(cols["spl_id"][i], set()),
+            list(cols["brand_name"][i])
+            + list(cols["generic_name"][i])
+            + list(cols["substance_name"][i]),
+        )
+        if index_reason is not None:
+            excluded_set_ids[sid] = index_reason
         matched, candidates = resolve(
             idx, cols["unii"][i], cols["rxcui"][i],
             cols["generic_name"][i], cols["substance_name"][i],
@@ -259,12 +316,7 @@ def main() -> None:
         if matched:
             stats["resolved_by_unii"] += 1
             pages_before.update(matched)
-            reason = index_exclusion(
-                cols["product_type"][i],
-                cols["route"][i],
-                cols["application_number"][i],
-                categories.get(cols["spl_id"][i], set()),
-            )
+            reason = index_reason
             if reason is not None:
                 stats["excluded_labels"] += 1
                 stats["excluded_by_reason"][reason] = (
@@ -370,6 +422,7 @@ def main() -> None:
                 continue
             reason = record_exclusion(rec)
             if reason is not None:
+                excluded_set_ids[meta["set_id"]] = reason
                 stats["excluded_labels"] += 1
                 stats["excluded_by_reason"][reason] = (
                     stats["excluded_by_reason"].get(reason, 0) + 1
@@ -437,6 +490,21 @@ def main() -> None:
         cyp_unassigned = json.loads(previous.read_text()).get("cyp_mentions_unassigned", 0)
     stats["cyp_mentions_unassigned"] = cyp_unassigned
     (PARSED / "map-stats.json").write_text(json.dumps(stats, indent=2) + "\n")
+    (PARSED / "excluded-set-ids.json").write_text(
+        json.dumps(
+            {
+                "note": (
+                    "SPL set ids the label mapping refuses, by the reason it read. The index-level "
+                    "reasons are evaluated over every indexed label; the record-level reasons over "
+                    "the labels this run streamed."
+                ),
+                "count": len(excluded_set_ids),
+                "reasons": dict(sorted(excluded_set_ids.items())),
+            },
+            indent=2,
+        )
+        + "\n"
+    )
     with (BASE / "name-candidates.ndjson").open("w") as fh:
         for entry in sorted(name_candidates.values(), key=lambda e: -e["label_records"]):
             fh.write(json.dumps(entry) + "\n")

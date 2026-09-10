@@ -339,7 +339,7 @@ def main() -> None:
     parser.add_argument("--canonical", default=repo("data", "revamp", "identity",
                                                     "canonical-v7.ndjson"))
     parser.add_argument("--models", default=repo("data", "revamp", "tiers",
-                                                 "model-assignment-v2.ndjson"))
+                                                 "model-assignment-v3.ndjson"))
     parser.add_argument("--fields-dir", default=repo("data", "revamp", "fields-v2"))
     parser.add_argument("--salts", default=repo("scripts", "revamp", "salts.txt"))
     parser.add_argument("--chembl", default=repo("data", "sources", "chembl", "mapped.parquet"))
