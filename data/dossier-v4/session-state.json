@@ -2,9 +2,9 @@
   "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
   "branch": "rebuild/biohacker-dossier",
   "base_commit": "ee6a9e9",
-  "last_safe_commit": "ebb4db1",
-  "current_phase": "6-final-checkpoint",
-  "last_completed_phase": "5-tests-and-validation",
+  "last_safe_commit": "pending",
+  "current_phase": "7-review-handoff",
+  "last_completed_phase": "6-final-checkpoint",
   "files_in_progress": [],
   "commands_completed": [
     "npm run gate (full chain, exit code 0)",
@@ -19,7 +19,11 @@
     "npm run test:e2e (66 passed)",
     "npx tsx scripts/dossier-v4/capture.ts --label before / --label after",
     "npx tsx scripts/dossier-v4/check-gate.ts --slugs creatine-monohydrate,semaglutide,metformin,inclisiran",
-    "npm run gate twice: exit 0 at ebb4db1, exit 1 at f252e84 from the ECONNRESET flake above; npm run test:e2e re-run at f252e84 passes 66/66"
+    "npm run gate twice: exit 0 at ebb4db1, exit 1 at f252e84 from the ECONNRESET flake above; npm run test:e2e re-run at f252e84 passes 66/66",
+    "npx tsx scripts/dossier-v3/apply-identity-corrections.ts data/dossier-v3/corrections/creatine-tribulus.json --apply (pruned 5 stored references, adjusted 1 count, idempotent on re-run)",
+    "clean database replay on a fresh disposable database: all migrations from zero",
+    "npm run gate (third run, exit 0, 66 browser tests passed, 0 failures)",
+    "git push -u origin rebuild/biohacker-dossier; gh pr create --draft (pull request 19, base revamp/2026-09)"
   ],
   "tests": {
     "typecheck": "passed",
@@ -36,15 +40,28 @@
     "playwright": "config sets DOSSIER_V3_SLUGS=e2e-v3-* and DOSSIER_V4_SLUGS=e2e-v4-*"
   },
   "known_failures": [
-    "axe target-size at 390 px and 320 px reports 2 and 3 nodes on every page of the site. All of them are DocumentFooter links (/browse, /h, /how-it-works) at 14.7 px tall. Present on the v3 baseline too. Not fixed here: the footer is shared with the home page, which this rebuild may not redesign. Fix is padding-block on the footer link rule.",
-    "tests/e2e/legacy-identity-correction.spec.ts failed once inside a full gate run with \"apiRequestContext.post: read ECONNRESET\". It is a pre-existing spec that does not touch dossier-v4. It passes on its own and the whole 66-test browser suite passes on re-run, so it is a connection flake rather than a logic failure. Worth watching: two gate runs, one hit."
+    "axe target-size at 390 px and 320 px reports 2 and 3 nodes on every page of the site. All are shared footer links at 14.7 px tall, present on the v3 baseline too. Out of scope: the footer is shared with the home page. Fix is one padding rule.",
+    "tests/e2e/legacy-identity-correction.spec.ts failed once across three full gate runs with a connection reset. It passes in isolation and in the two other runs. A flake, worth watching."
   ],
   "medical_content_blockers": [
-    "reviewed_claims holds 0 rows for every medicine in rnawiki_rebuild, so no v4 page renders a section in the reviewed_content state from a claim. The hero falls to the authored tier, labelled as written into the record and not signed off.",
-    "The approved first-read answers for creatine-monohydrate and metformin no longer bind: their records changed on this branch after the fingerprint was approved. Semaglutide and inclisiran still bind. Re-approval is a human review task.",
-    "Five stored sentences exceed the 30-word hard limit and may not be rewritten by this rebuild: three mechanism details on creatine citing Harris and Volek, the recorded note on which creatine forms are sold, and the Tribulus correction reason. They need a content reviewer.",
-    "humanCeiling.trials on creatine-monohydrate still lists NCT01407445 and NCT01971099 after the Tribulus correction removed those registry matches. The role aggregate excludes them; the stored field does not."
+    "reviewed_claims holds 0 rows for every medicine, so no page renders a reviewed conclusion. Six creatine sentences are written up for a reviewer in docs/dossier-v4-creatine-approval-list.md.",
+    "The approved first-read answers for creatine-monohydrate and metformin no longer bind: this rebuild corrected both records after the approval was signed. Semaglutide and inclisiran still bind. Re-approval is a human task and the exact wording is in the approval list.",
+    "Semaglutide and metformin carry reader sentences over the 30-word limit. They are verbatim boxed warnings from an approved label and must not be paraphrased; they need marking as quotations rather than editing.",
+    "Three aggregates on creatine's human-ceiling field cannot be recomputed after the prune and need re-deriving from the cleaned registry rows: the largest enrolment, the registered-study count and the longest duration."
   ],
-  "next_exact_command": "npx tsx scripts/dossier-v4/check-gate.ts --slugs <slug> && PORT=3100 DOSSIER_V4_SLUGS=<slug> npm run start",
-  "updated_at": "2026-09-11"
+  "next_exact_command": "Read docs/dossier-v4-creatine-approval-list.md, then re-approve or revise the six creatine sentences and the two first-read answers.",
+  "updated_at": "2026-09-11",
+  "staging": {
+    "exists": false,
+    "detail": "The RNAwiki Railway project has one environment, production, with three services: the web service, the source-sync worker and Postgres. There is no staging environment and no preview environment. The only deployment trigger documented is a merge to main. Enabling DOSSIER_V4_SLUGS on the only environment would turn the compass on for readers at rnawiki.com, which is not staging and is not authorised.",
+    "options": [
+      "Create a second Railway environment with its own database and a non-production SEO marker, then deploy the branch there.",
+      "Review from the local server, which serves the exact commit."
+    ]
+  },
+  "local_preview": {
+    "url": "http://localhost:3100/d/creatine-monohydrate",
+    "command": "PORT=3100 DOSSIER_V4_SLUGS=creatine-monohydrate npm run start",
+    "note": "Only creatine is on the flag. Every other slug falls back to the corpus document."
+  }
 }
