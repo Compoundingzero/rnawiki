@@ -45,7 +45,7 @@ function corpus(overrides: Partial<CorpusDossier> = {}): CorpusDossier {
     hubs: [],
     sources: [
       { label: 'ClinicalTrials.gov', kind: 'registry', id: 'x', sourceDate: '2026-09-01' },
-    ] as CorpusDossier['sources'],
+    ] as unknown as CorpusDossier['sources'],
     licenceNotes: [],
     registeredStudies: 3,
     controlled: false,

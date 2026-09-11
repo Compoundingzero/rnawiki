@@ -134,17 +134,6 @@
   border-bottom-color: var(--dv3-accent);
   font-weight: 600;
 }
-.dv3-nav-short {
-  display: none;
-}
-@media (max-width: 480px) {
-  .dv3-nav-long {
-    display: none;
-  }
-  .dv3-nav-short {
-    display: inline;
-  }
-}
 .dv3-nav-status {
   margin: 0.25rem 0 0;
   font-size: 0.8rem;
@@ -547,4 +536,26 @@ details.dv3-label[open] {
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+
+/* ---------------------------------------------------------------- goal pages */
+.dv3-goal-rows {
+  list-style: none;
+  padding: 0;
+}
+.dv3-goal-rows li {
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--dv3-hairline);
+}
+.dv3-goal-options a {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.dv3-goal-options a[aria-current='page'] {
+  background: var(--dv3-accent-soft);
+  border-color: transparent;
 }

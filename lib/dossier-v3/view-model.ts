@@ -466,13 +466,16 @@ function substanceTypeFrom(inputs: DossierV3Inputs): DossierV3ViewModel['substan
   } else if (corpus.controlled) {
     code = 'controlled_substance'
     basis = `A controlled-substance schedule lists it (${corpus.controlledBasis.join(', ') || 'register recorded'}).`
-  } else if (/sirna|antisense|mrna|aptamer|oligonucleotide|rna/.test(modality)) {
+  } else if (/sirna|antisense|mrna|aptamer|oligonucleotide|\brna\b/.test(modality)) {
     code = 'rna_medicine'
     basis = `The identity record classes it as ${legacy?.modality ?? 'an RNA medicine'}${approvedSomewhere ? ' and a register records an approval' : ''}.`
   } else if (
-    entityClass === 'APPROVED_BIOLOGIC' ||
-    /antibod|biologic|protein|vaccine|enzyme replacement/.test(modality)
+    /antibod|monoclonal|vaccine|enzyme replacement|cell therapy|gene therapy|immunoglobulin|fusion protein/.test(
+      modality,
+    )
   ) {
+    // A biologic in the regulatory sense (a BLA-class product), not every peptide: semaglutide is
+    // a peptide approved under a drug application and is a prescription medicine here.
     code = 'biologic'
     basis = `The identity record classes it as ${legacy?.modality ?? 'a biologic'}${approvedSomewhere ? ' and a register records an approval' : ''}.`
   } else if (entityClass === 'INVESTIGATIONAL_MEDICINE') {
@@ -1411,10 +1414,19 @@ function unknownsFrom(
 }
 
 function changesFrom(inputs: DossierV3Inputs): ChangeItem[] {
+  const subjectWords = (correction: CorrectionInput): string => {
+    if (correction.subjectKind === 'page' && correction.subjectRef.startsWith('page_questions:')) {
+      return 'the registered-study heading'
+    }
+    if (correction.subjectKind === 'registry_match')
+      return `registered study ${correction.subjectRef}`
+    if (correction.subjectKind === 'synonym') return `the name “${correction.subjectRef}”`
+    return `${correction.subjectKind.replace(/_/g, ' ')} ${correction.subjectRef}`
+  }
   const items: ChangeItem[] = inputs.corrections.map((correction) => ({
     when: iso(correction.recordedAt) ?? 'undated',
     kind: correction.action.replace(/_/g, ' '),
-    text: `${correction.subjectKind.replace(/_/g, ' ')} ${correction.subjectRef}: ${correction.reason}`,
+    text: `${subjectWords(correction)}: ${correction.reason}`,
     alteredPublicConclusion: false,
   }))
   for (const claim of inputs.claims.filter((entry) =>

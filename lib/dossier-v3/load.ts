@@ -248,9 +248,10 @@ export function dossierV3Enabled(slug: string): boolean {
   const raw = process.env.DOSSIER_V3_SLUGS?.trim()
   if (!raw) return false
   if (raw === '*' || raw.toLowerCase() === 'all') return true
+  const wanted = slug.toLowerCase()
   return raw
     .split(',')
     .map((item) => item.trim().toLowerCase())
     .filter(Boolean)
-    .includes(slug.toLowerCase())
+    .some((item) => (item.endsWith('*') ? wanted.startsWith(item.slice(0, -1)) : item === wanted))
 }

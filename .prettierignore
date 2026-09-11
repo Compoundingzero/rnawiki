@@ -64,3 +64,6 @@ data/validation/
 docs/specs/
 docs/data/
 docs/revamp/
+# Dossier v3 benchmark captures, written wholesale by scripts/dossier-v3/capture.ts; the bytes are
+# the measurement.
+data/dossier-v3/benchmark/

@@ -46,12 +46,7 @@ function Navigator({ model }: { model: DossierV3ViewModel }) {
       <ol>
         {SECTIONS.map((section) => (
           <li key={section.id}>
-            <a href={`#${section.id}`}>
-              <span className="dv3-nav-long">{section.label}</span>
-              <span aria-hidden="true" className="dv3-nav-short">
-                {section.short}
-              </span>
-            </a>
+            <a href={`#${section.id}`}>{section.label}</a>{' '}
           </li>
         ))}
       </ol>
@@ -181,7 +176,7 @@ function GoalLens({ model }: { model: DossierV3ViewModel }) {
             {goal.label}
             <span className="dv3-goal-basis">
               {goal.basis === 'reviewed' ? ' · reviewed claim' : ' · registered studies only'}
-            </span>
+            </span>{' '}
           </label>
         ))}
       </div>
@@ -246,6 +241,7 @@ function DeepEvidence({ corpus, model }: { corpus: CorpusDossier; model: Dossier
           {answers.map((block) => (
             <QuestionBlock
               block={block}
+              headingLevel="h3"
               key={block.id}
               name={corpus.displayName}
               {...(LADDER_BLOCKS.has(block.block) ? { ladder: corpus.ladder } : {})}

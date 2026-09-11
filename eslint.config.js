@@ -47,6 +47,7 @@ const eslintConfig = [
       'components/dossier/corpus/**/*.tsx',
       'components/dossier/v3/**/*.tsx',
       'lib/dossier-v3/document.tsx',
+      'lib/dossier-v3/goal-document.tsx',
       'components/hubs/**/*.tsx',
       'lib/corpus/document.tsx',
       'lib/document/**/*.tsx',

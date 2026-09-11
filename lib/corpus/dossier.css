@@ -805,7 +805,8 @@
 }
 
 .cd-register-absent thead th {
-  color: var(--corpus-ink-3);
+  /* ink-2, not ink-3: at 12 px uppercase, ink-3 on the raised surface measured 3.32:1 (axe, 2026-09-11). */
+  color: var(--corpus-ink-2);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;

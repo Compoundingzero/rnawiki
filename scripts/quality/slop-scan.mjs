@@ -170,6 +170,15 @@ function importedSeedFiles(root) {
 }
 
 const explicitFiles = process.argv.length > 2
+/**
+ * The two files that DEFINE the reader-copy policy name the words they forbid; scanning them for
+ * those words would flag the policy itself. Everything they govern is still scanned.
+ */
+const POLICY_DEFINITION_FILES = [
+  'lib/dossier-v3/copy-contract.ts',
+  'docs/plain-language-content-contract.md',
+]
+
 const files = explicitFiles
   ? process.argv.slice(2)
   : [
@@ -243,7 +252,10 @@ function scanGeneratedMedicineFiles(filesToScan) {
   return scanned
 }
 
-const publicFilesScanned = scanFiles(files, PATTERNS)
+const publicFilesScanned = scanFiles(
+  files.filter((file) => !POLICY_DEFINITION_FILES.some((policy) => file.endsWith(policy))),
+  PATTERNS,
+)
 const seedFilesScanned = explicitFiles
   ? 0
   : scanFiles(importedSeedFiles('scripts/seed-data'), SEED_COPY_PATTERNS)

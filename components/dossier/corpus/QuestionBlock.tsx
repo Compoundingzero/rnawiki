@@ -178,11 +178,15 @@ export function QuestionBlock({
   block,
   name,
   ladder,
+  headingLevel = 'h2',
 }: {
   block: CorpusBlock
   name: string
   ladder?: CorpusLadderRung[]
+  /** Dossier v3 embeds these blocks under its own "Deep evidence" heading, one level down. */
+  headingLevel?: 'h2' | 'h3'
 }) {
+  const Heading = headingLevel
   const supervision = block.block === 'supervision'
   const showLadder = ladder !== undefined && LADDER_BLOCKS.has(block.block)
   return (
@@ -199,9 +203,9 @@ export function QuestionBlock({
         </span>
       </div>
       <div className="cd-block-body">
-        <h2 className="cd-question" id={`${block.id}-q`}>
+        <Heading className="cd-question" id={`${block.id}-q`}>
           {block.question}
-        </h2>
+        </Heading>
         <hr className="cd-hairline" />
         <Facts blockId={block.id} rows={block.facts} />
         <BlockProse blockId={block.id} paragraphs={block.paragraphs} />
