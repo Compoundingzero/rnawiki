@@ -127,3 +127,63 @@ technical disclosure and out of the reader path.
 
 **Retire from the primary path.** The v3 `DecisionCard` nine-field grid, the v3 `GoalLens`
 fieldset, the v3 `Navigator`, and the `DeepEvidence` section wrapper. v4 replaces all four.
+
+## Status at the end of this session
+
+All six phases are done. The full `npm run gate` chain passes with exit code 0.
+
+| Check | Result |
+| --- | --- |
+| typecheck | passed |
+| lint | 0 errors, 53 pre-existing style warnings |
+| check:copy | 541 files, 0 hits |
+| format | clean |
+| drizzle-kit check | clean |
+| unit | 2813 passed, 9 skipped, 187 files |
+| integration | 185 passed, 28 files |
+| build | passed |
+| browser | 66 passed |
+
+### What exists
+
+`lib/dossier-v4/` — taxonomy, copy, concepts, outcome classifier, reader-text guard, view model,
+loader, document, stylesheet. `components/dossier/v4/` — primitives, orientation, evidence,
+personal, closing, page shell. `scripts/dossier-v4/` — capture and check-gate.
+`app/d/[slug]/route.ts` checks `DOSSIER_V4_SLUGS` before `DOSSIER_V3_SLUGS`.
+
+### The four gold pages
+
+| Slug | Mode | Hero result origin | Sections with nothing found |
+| --- | --- | --- | --- |
+| creatine-monohydrate | self-experiment planner | written into the record | clashes |
+| semaglutide | clinician questions | approved first-read answer | which form |
+| metformin | clinician questions | written into the record | none |
+| inclisiran | clinician questions | approved first-read answer | clashes, which form, alternatives, its story |
+
+All four pass every gate. Inclisiran's concept primer opens on messenger RNA then small interfering
+RNA, and its claim decoder states that no completed trial has measured whether it prevents heart
+attacks or strokes. Metformin's states that the trial designed to test whether it slows ageing has
+never enrolled anyone.
+
+### Not done
+
+- No reviewed claim exists for any medicine, so no page renders a reviewed conclusion.
+- The community lane is built and switched off. Intake needs a licence and consent review.
+- No model is trained. The identity gate on `graph_versions` stays closed by design.
+- The site footer's touch targets fail at mobile widths, on every page including the home page.
+  Out of scope here; the fix is one padding rule.
+- Nothing is pushed, merged or deployed.
+
+### Exact next command
+
+```bash
+cd "Project RNAwiki/RNAwiki-biohacker-rebuild"
+npx tsx scripts/dossier-v4/check-gate.ts --slugs <slug>
+PORT=3100 DOSSIER_V4_SLUGS=<slug> npm run start
+```
+
+### Rollback
+
+Unset `DOSSIER_V4_SLUGS`. The next request serves v3; unset `DOSSIER_V3_SLUGS` too and every page is
+the corpus document again. v4 adds no table, no column and no migration, so there is nothing to roll
+back in the database.

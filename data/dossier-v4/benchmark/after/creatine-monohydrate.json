@@ -185,13 +185,7 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "agEing",
-      "agEing",
-      "agEing",
-      "compound_record",
-      "K1:MU72812GK0 "
-    ],
+    "internalKeys": ["agEing", "agEing", "agEing", "compound_record", "K1:MU72812GK0 "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
     "sentences": 1795,

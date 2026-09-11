@@ -181,10 +181,7 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "compound_record",
-      "K1:9100L32L2N "
-    ],
+    "internalKeys": ["compound_record", "K1:9100L32L2N "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
     "sentences": 2135,

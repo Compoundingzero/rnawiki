@@ -104,11 +104,7 @@
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 436,
     "over20": 30,
     "over30": 6,
@@ -120,33 +116,12 @@
       "31: The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains",
       "31: The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains"
     ],
-    "undefinedAcronyms": [
-      "CID",
-      "COVID",
-      "E725",
-      "EMA",
-      "FDA",
-      "JS",
-      "NCATS",
-      "PL",
-      "RC",
-      "SALT"
-    ]
+    "undefinedAcronyms": ["CID", "COVID", "E725", "EMA", "FDA", "JS", "NCATS", "PL", "RC", "SALT"]
   },
   "copy": {
-    "internalKeys": [
-      "agEing",
-      "agEing",
-      "agEing",
-      "compound_record",
-      "K1:MU72812GK0 "
-    ],
+    "internalKeys": ["agEing", "agEing", "agEing", "compound_record", "K1:MU72812GK0 "],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 869,
     "over20": 65,
     "over30": 22,

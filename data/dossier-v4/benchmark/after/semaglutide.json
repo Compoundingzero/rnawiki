@@ -202,12 +202,7 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "myoCardial",
-      "infarcTion",
-      "compound_record",
-      "K1:53AXN4NNHX "
-    ],
+    "internalKeys": ["myoCardial", "infarcTion", "compound_record", "K1:53AXN4NNHX "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
     "sentences": 1964,

@@ -103,38 +103,19 @@
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 322,
     "over20": 11,
     "over30": 1,
     "longestOver30": [
       "31: Recorded use, not yet reviewed: Adjunct to diet and exercise to reduce LDL cholesterol in adults with hypercholesterolemia, and in patients aged 12 and older with heterozygous or homozygous familial h"
     ],
-    "undefinedAcronyms": [
-      "ASCVD",
-      "FJ",
-      "KK",
-      "LDL",
-      "NCATS",
-      "ORION",
-      "RNA"
-    ]
+    "undefinedAcronyms": ["ASCVD", "FJ", "KK", "LDL", "NCATS", "ORION", "RNA"]
   },
   "copy": {
-    "internalKeys": [
-      "halfLife",
-      "K1:UPC6BTX7PY "
-    ],
+    "internalKeys": ["halfLife", "K1:UPC6BTX7PY "],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 686,
     "over20": 53,
     "over30": 17,

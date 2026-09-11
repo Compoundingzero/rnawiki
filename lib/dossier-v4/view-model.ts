@@ -716,7 +716,11 @@ function outcomeTypeFromText(text: string, origin: StatementOrigin): string {
   if (/\b(muscle|biops|phosphocreatine|concentration|content|tissue)\b/.test(lower)) {
     return 'A step measured inside a person'
   }
-  if (/\b(cholesterol|glucose|blood|serum|mass|density|weight|marker)\b/.test(lower)) {
+  if (
+    /\b(cholesterol|ldl|hdl|triglyceride|glucose|hba1c|h(?:a)?emoglobin|blood pressure|blood|serum|plasma|mass|density|weight|marker|level)s?\b/.test(
+      lower,
+    )
+  ) {
     return 'A number that stands in for health'
   }
   return 'The kind of result is not recorded'

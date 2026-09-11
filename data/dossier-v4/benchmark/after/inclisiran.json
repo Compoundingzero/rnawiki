@@ -166,10 +166,7 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "halfLife",
-      "K1:UPC6BTX7PY "
-    ],
+    "internalKeys": ["halfLife", "K1:UPC6BTX7PY "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
     "sentences": 1562,

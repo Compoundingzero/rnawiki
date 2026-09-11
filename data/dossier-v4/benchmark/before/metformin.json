@@ -105,11 +105,7 @@
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 589,
     "over20": 73,
     "over30": 16,
@@ -162,16 +158,9 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "compound_record",
-      "K1:9100L32L2N "
-    ],
+    "internalKeys": ["compound_record", "K1:9100L32L2N "],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 1077,
     "over20": 145,
     "over30": 39,

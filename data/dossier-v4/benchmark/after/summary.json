@@ -1,7 +1,7 @@
 {
   "label": "after",
   "base": "http://localhost:3100",
-  "capturedAt": "2026-09-11T18:34:12.850Z",
+  "capturedAt": "2026-09-11T18:57:51.245Z",
   "pages": [
     {
       "slug": "creatine-monohydrate",
@@ -190,13 +190,7 @@
         ]
       },
       "copy": {
-        "internalKeys": [
-          "agEing",
-          "agEing",
-          "agEing",
-          "compound_record",
-          "K1:MU72812GK0 "
-        ],
+        "internalKeys": ["agEing", "agEing", "agEing", "compound_record", "K1:MU72812GK0 "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
         "sentences": 1795,
@@ -450,12 +444,7 @@
         ]
       },
       "copy": {
-        "internalKeys": [
-          "myoCardial",
-          "infarcTion",
-          "compound_record",
-          "K1:53AXN4NNHX "
-        ],
+        "internalKeys": ["myoCardial", "infarcTion", "compound_record", "K1:53AXN4NNHX "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
         "sentences": 1964,
@@ -688,10 +677,7 @@
         ]
       },
       "copy": {
-        "internalKeys": [
-          "compound_record",
-          "K1:9100L32L2N "
-        ],
+        "internalKeys": ["compound_record", "K1:9100L32L2N "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
         "sentences": 2135,
@@ -909,10 +895,7 @@
         ]
       },
       "copy": {
-        "internalKeys": [
-          "halfLife",
-          "K1:UPC6BTX7PY "
-        ],
+        "internalKeys": ["halfLife", "K1:UPC6BTX7PY "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
         "sentences": 1562,

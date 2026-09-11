@@ -104,11 +104,7 @@
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 507,
     "over20": 74,
     "over30": 23,
@@ -167,18 +163,9 @@
     ]
   },
   "copy": {
-    "internalKeys": [
-      "myoCardial",
-      "infarcTion",
-      "compound_record",
-      "K1:53AXN4NNHX "
-    ],
+    "internalKeys": ["myoCardial", "infarcTion", "compound_record", "K1:53AXN4NNHX "],
     "forbiddenPhrases": [],
-    "unscopedCertainty": [
-      "works",
-      "works",
-      "works"
-    ],
+    "unscopedCertainty": ["works", "works", "works"],
     "sentences": 960,
     "over20": 135,
     "over30": 49,

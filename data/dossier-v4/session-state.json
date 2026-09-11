@@ -2,38 +2,47 @@
   "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
   "branch": "rebuild/biohacker-dossier",
   "base_commit": "ee6a9e9",
-  "last_safe_commit": "ee6a9e9",
-  "current_phase": "0-recovery-and-baseline",
-  "last_completed_phase": "",
-  "files_in_progress": [
-    "docs/worklogs/dossier-v4-beginner-rebuild-2026-09.md",
-    "data/dossier-v4/session-state.json"
-  ],
+  "last_safe_commit": "ebb4db1",
+  "current_phase": "6-final-checkpoint",
+  "last_completed_phase": "5-tests-and-validation",
+  "files_in_progress": [],
   "commands_completed": [
-    "git worktree list",
-    "git log --oneline --decorate -15",
-    "psql rnawiki_rebuild: counted reviewed_claims=0, dossier_field_states=0, entity_corrections=11",
-    "psql rnawiki_rebuild: inventoried page_fields for creatine-monohydrate (25 fields, 16 present)"
+    "npm run gate (full chain, exit code 0)",
+    "npm run typecheck",
+    "npm run lint (0 errors, 53 pre-existing style warnings)",
+    "npm run check:copy (541 files, 0 hits)",
+    "npm run format",
+    "npx drizzle-kit check",
+    "npm run test:unit (2813 passed, 9 skipped, 187 files)",
+    "npm run test:integration (185 passed, 28 files)",
+    "npm run build",
+    "npm run test:e2e (66 passed)",
+    "npx tsx scripts/dossier-v4/capture.ts --label before / --label after",
+    "npx tsx scripts/dossier-v4/check-gate.ts --slugs creatine-monohydrate,semaglutide,metformin,inclisiran"
   ],
   "tests": {
-    "typecheck": "not_run",
-    "lint": "not_run",
-    "unit": "not_run",
-    "integration": "not_run",
-    "playwright": "not_run",
-    "accessibility": "not_run",
-    "build": "not_run"
+    "typecheck": "passed",
+    "lint": "passed",
+    "unit": "passed_2813",
+    "integration": "passed_185",
+    "playwright": "passed_66",
+    "accessibility": "passed_no_violation_from_compass_markup",
+    "build": "passed"
   },
   "feature_flags": {
-    "DOSSIER_V3_SLUGS": "existing; v3 reader surface; unset to restore the corpus document",
-    "DOSSIER_V4_SLUGS": "planned; checked before the v3 flag; unset to fall back to v3 then corpus"
+    "DOSSIER_V4_SLUGS": "the Substance Compass; checked before the v3 flag; comma list, prefix*, or */all; unset to fall back to v3",
+    "DOSSIER_V3_SLUGS": "the v3 reader surface; unset to restore the corpus document",
+    "playwright": "config sets DOSSIER_V3_SLUGS=e2e-v3-* and DOSSIER_V4_SLUGS=e2e-v4-*"
   },
-  "known_failures": [],
-  "medical_content_blockers": [
-    "reviewed_claims is empty for every medicine in rnawiki_rebuild, so no v4 section may render a reviewed conclusion",
-    "no stored human mechanism sentence exists for creatine; the pathway field holds mouse-embryo and rat-behaviour abstracts only",
-    "humanCeiling.trials still lists NCT01407445 and NCT01971099 after the Tribulus correction removed those registry matches"
+  "known_failures": [
+    "axe target-size at 390 px and 320 px reports 2 and 3 nodes on every page of the site. All of them are DocumentFooter links (/browse, /h, /how-it-works) at 14.7 px tall. Present on the v3 baseline too. Not fixed here: the footer is shared with the home page, which this rebuild may not redesign. Fix is padding-block on the footer link rule."
   ],
-  "next_exact_command": "npx tsx scripts/dossier-v4/capture.ts --base http://localhost:3100 --label before --slugs creatine-monohydrate,semaglutide,metformin,inclisiran --out data/dossier-v4/benchmark",
+  "medical_content_blockers": [
+    "reviewed_claims holds 0 rows for every medicine in rnawiki_rebuild, so no v4 page renders a section in the reviewed_content state from a claim. The hero falls to the authored tier, labelled as written into the record and not signed off.",
+    "The approved first-read answers for creatine-monohydrate and metformin no longer bind: their records changed on this branch after the fingerprint was approved. Semaglutide and inclisiran still bind. Re-approval is a human review task.",
+    "Five stored sentences exceed the 30-word hard limit and may not be rewritten by this rebuild: three mechanism details on creatine citing Harris and Volek, the recorded note on which creatine forms are sold, and the Tribulus correction reason. They need a content reviewer.",
+    "humanCeiling.trials on creatine-monohydrate still lists NCT01407445 and NCT01971099 after the Tribulus correction removed those registry matches. The role aggregate excludes them; the stored field does not."
+  ],
+  "next_exact_command": "npx tsx scripts/dossier-v4/check-gate.ts --slugs <slug> && PORT=3100 DOSSIER_V4_SLUGS=<slug> npm run start",
   "updated_at": "2026-09-11"
 }
