@@ -15,6 +15,9 @@
 import { corpusDocumentResponse } from '@/lib/corpus/document'
 import { loadCorpusDossier } from '@/lib/corpus/dossier-page'
 import { forwardToLegacyRecord } from '@/lib/document/legacy-forward'
+import { dossierV3DocumentResponse } from '@/lib/dossier-v3/document'
+import { dossierV3Enabled, loadDossierV3Inputs } from '@/lib/dossier-v3/load'
+import { buildDossierV3 } from '@/lib/dossier-v3/view-model'
 
 // Railway's build environment cannot resolve the private database host during page collection.
 export const dynamic = 'force-dynamic'
@@ -24,6 +27,13 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> },
 ): Promise<Response> {
   const { slug } = await params
+  // Dossier v3 (docs/dossier-information-architecture.md): behind the DOSSIER_V3_SLUGS allowlist.
+  // Unsetting the variable restores the corpus document for every page on the next request.
+  if (dossierV3Enabled(slug)) {
+    const inputs = await loadDossierV3Inputs(slug)
+    if (inputs) return dossierV3DocumentResponse(inputs.corpus, buildDossierV3(inputs))
+    return forwardToLegacyRecord(request, slug)
+  }
   const dossier = await loadCorpusDossier(slug)
   if (dossier) return corpusDocumentResponse(dossier)
   return forwardToLegacyRecord(request, slug)

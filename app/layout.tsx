@@ -9,6 +9,7 @@ import './globals.css'
 // layout's stylesheet and has no page entry of its own to carry them.
 import '@/lib/corpus/tokens.css'
 import '@/lib/corpus/dossier.css'
+import '@/lib/dossier-v3/dossier-v3.css'
 
 const siteOrigin = configuredSiteOrigin()
 const analyticsMeasurementId = googleAnalyticsMeasurementId(

@@ -176,7 +176,9 @@ export const claimInputSchema = z
     riskTier: z.enum(['standard', 'elevated', 'high']).default('standard'),
     contentVersion: z.number().int().min(1).default(1),
     /** The structured readings of the two versions, compared field by field. */
-    technicalReading: z.custom<ClaimReading>((value) => typeof value === 'object' && value !== null),
+    technicalReading: z.custom<ClaimReading>(
+      (value) => typeof value === 'object' && value !== null,
+    ),
     plainReading: z.custom<ClaimReading>((value) => typeof value === 'object' && value !== null),
   })
   .strict()
@@ -256,7 +258,9 @@ export function validateClaimInput(raw: unknown): ClaimValidation {
         ...report.internalKeys.map((hit) => `internal key "${hit.match}"`),
         ...report.forbiddenPhrases.map((hit) => `forbidden phrase "${hit.match}"`),
         ...report.unscopedCertainty.map((hit) => `unscoped "${hit.match}"`),
-        ...(report.sentences.over30 > 0 ? [`${report.sentences.over30} sentence(s) over 30 words`] : []),
+        ...(report.sentences.over30 > 0
+          ? [`${report.sentences.over30} sentence(s) over 30 words`]
+          : []),
       ]
       problems.push(`${label}: ${hits.join('; ')}`)
     }
@@ -271,12 +275,18 @@ export function validateClaimInput(raw: unknown): ClaimValidation {
 }
 
 /** A stable id for a claim: the subject, the predicate, the object and the content version. */
-export function claimId(claim: Pick<ClaimInput, 'subjectKey' | 'kind' | 'predicate' | 'objectText' | 'contentVersion'>): string {
+export function claimId(
+  claim: Pick<ClaimInput, 'subjectKey' | 'kind' | 'predicate' | 'objectText' | 'contentVersion'>,
+): string {
   return createHash('sha256')
     .update(
-      [claim.subjectKey, claim.kind, claim.predicate, claim.objectText, String(claim.contentVersion)].join(
-        ' ',
-      ),
+      [
+        claim.subjectKey,
+        claim.kind,
+        claim.predicate,
+        claim.objectText,
+        String(claim.contentVersion),
+      ].join(' '),
     )
     .digest('hex')
 }
@@ -288,7 +298,8 @@ export function strongestPublishableStrength(
   let best: ClaimStrength = 'no_reviewed_conclusion'
   for (const claim of claims) {
     if (claim.reviewerState !== 'reviewed') continue
-    if (CLAIM_STRENGTH_RANK[claim.claimStrength] > CLAIM_STRENGTH_RANK[best]) best = claim.claimStrength
+    if (CLAIM_STRENGTH_RANK[claim.claimStrength] > CLAIM_STRENGTH_RANK[best])
+      best = claim.claimStrength
   }
   return best
 }
