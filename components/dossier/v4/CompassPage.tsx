@@ -51,6 +51,7 @@ import {
 } from './Personal'
 import {
   ConceptPrimer,
+  PublicationBanner,
   PurposeRail,
   SubstanceActionHero,
   SubstanceIdentityStrip,
@@ -190,8 +191,13 @@ export function CompassPage({
 }): ReactNode {
   const stages = model.journey.nodes.map((node) => node.stage)
   return (
-    <div className="dv4-root" data-dossier-version="4">
+    <div
+      className="dv4-root"
+      data-dossier-version="4"
+      data-publication-state={model.publication.state}
+    >
       <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise} />
+      <PublicationBanner publication={model.publication} />
       <PurposeRail />
       <div className="dv4-canvas">
         <Navigator model={model} />

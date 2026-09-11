@@ -26,7 +26,19 @@ import type { BoundLegacyTenSecondAnswer } from '@/lib/ten-second-answer-overrid
 import type { AuditPoint, ClinicalTrialRecord, DrugDossier, MechanismStep } from '@/lib/types'
 
 import { conceptsForPage, type Concept } from './concepts'
+import {
+  decidePublicationState,
+  readableCheckDate,
+  type PublicationDecision,
+} from './publication-state'
 import { humaniseReaderList, readerText } from './reader-text'
+import {
+  classifySubstance,
+  planningEligibleType,
+  type AvailabilityState,
+  type SubstanceTypeV4,
+  type SupervisionLevelV4,
+} from './substance'
 import { COMPASS_COPY, nothingFoundLine, registeredOutcomeLine, type TruthTerms } from './copy'
 import {
   classifyOutcomeTerms,
@@ -262,13 +274,20 @@ export const COMPASS_SECTIONS: ReadonlyArray<Omit<SectionMeta, 'state' | 'reason
 
 export interface IdentityStrip {
   canonicalName: string
+  /** What kind of substance this is, resolved independently of how it is supplied. */
   substanceType: string
-  /** Prescription, non-prescription, investigational or unknown, in reader words. */
+  substanceTypeCode: SubstanceTypeV4
+  substanceTypeBasis: string
+  /** How it is supplied, and in which jurisdictions that was recorded. */
   availability: string
-  availabilityCode: 'prescription' | 'non_prescription' | 'investigational' | 'unknown'
+  availabilityCode: AvailabilityState
+  availabilityBasis: string
+  supervision: SupervisionLevelV4
+  jurisdictions: string[]
   identityVerified: boolean
   identityLabel: string
   identityBasis: string
+  /** Only ever a date. A field-state label is not shown here. */
   lastSubstantiveReview: string | undefined
 }
 
@@ -479,6 +498,8 @@ export interface DossierV4ViewModel {
   version: 4
   slug: string
   name: string
+  /** How much this page is allowed to say. One decision, made in one place. */
+  publication: PublicationDecision
   identity: IdentityStrip
   pagePromise: string
   hero: ActionHero
@@ -698,36 +719,49 @@ function fieldState(inputs: DossierV4Inputs, field: string): string | undefined 
 
 /* ------------------------------------------------------------- identity */
 
+/**
+ * The identity strip: what this is, how it is supplied, whether we trust the identity, and when the
+ * sources were last checked.
+ *
+ * The substance type and the availability come from `lib/dossier-v4/substance.ts`, which resolves
+ * them as two independent answers. The previous version read one string and called every
+ * non-prescription substance an over-the-counter medicine.
+ */
 function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): IdentityStrip {
   const legacy = inputs.legacyRecord
-  const approval = legacy?.approvalStatus ?? inputs.legacy?.approvalStatus ?? ''
-  const lower = approval.toLowerCase()
-  let availabilityCode: IdentityStrip['availabilityCode'] = 'unknown'
-  let availability = 'RNAWiki has not recorded how this is supplied.'
-  if (/supplement|dietary|non-fda|otc|over the counter/.test(lower)) {
-    availabilityCode = 'non_prescription'
-    availability = 'Sold without a prescription'
-  } else if (/investigational|phase|not approved|clinical trial/.test(lower)) {
-    availabilityCode = 'investigational'
-    availability = 'Still being tested, not approved'
-  } else if (/approved|licen[cs]ed|marketed|prescription/.test(lower)) {
-    availabilityCode = 'prescription'
-    availability = 'Prescription only'
-  }
-  if (v3.supervision.level === 'required') {
-    availabilityCode = availabilityCode === 'unknown' ? 'prescription' : availabilityCode
-  }
+  const corpus = inputs.corpus
+  const classification = classifySubstance({
+    modality: legacy?.modality ?? inputs.legacy?.modality ?? null,
+    approvalStatus: legacy?.approvalStatus ?? inputs.legacy?.approvalStatus ?? null,
+    entityClass: inputs.legacy?.entityClass ?? null,
+    displayName: v3.name,
+    synonyms: corpus.synonyms.flatMap((group) => group.names).slice(0, 12),
+    controlled: corpus.controlled,
+    withdrawn: corpus.withdrawn,
+    suppressed: corpus.suppressed,
+    supervisionClasses: corpus.suppressionClasses,
+    registeredJurisdictions: [
+      ...new Set(corpus.registration.map((row) => row.jurisdiction).filter(Boolean)),
+    ],
+    routes: legacy?.deliverySystem?.type ? [legacy.deliverySystem.type] : [],
+  })
   const identityCheck = v3.indexQuality.find((check) => check.check === 'identity_passed')
   return {
     canonicalName: v3.name,
-    substanceType: v3.substanceType.label,
-    availability,
-    availabilityCode,
+    substanceType: classification.typeLabel,
+    substanceTypeCode: classification.type,
+    substanceTypeBasis: classification.typeBasis,
+    availability: classification.availabilityLabel,
+    availabilityCode: classification.availability,
+    availabilityBasis: classification.availabilityBasis,
+    supervision: classification.supervision,
+    jurisdictions: classification.jurisdictions,
     identityVerified: identityCheck?.passed ?? false,
     identityLabel: identityCheck?.passed ? 'Identity checked' : 'Identity not confirmed',
     identityBasis:
       identityCheck?.detail ?? 'RNAWiki has not run the identity check on this record.',
-    lastSubstantiveReview: v3.lastEvidenceCheck,
+    // Only a value that looks like a date is shown as one.
+    lastSubstantiveReview: readableCheckDate(v3.lastEvidenceCheck),
   }
 }
 
@@ -1954,8 +1988,20 @@ function buildMeasurement(
   identity: IdentityStrip,
   classified: ClassifiedOutcome[],
 ): DossierV4ViewModel['measurement'] {
+  /*
+   * The planner gate. Safety-critical, so it is a conjunction of explicit conditions rather than a
+   * single field, and every one of them has to hold.
+   *
+   * The type has to be one a person buys and takes on their own. Availability has to be either
+   * recorded as without a prescription or genuinely varying by country — a supplement is sold
+   * differently in different places, and that is not a reason to withhold a measurement plan. Every
+   * supervised, controlled, withheld or withdrawn state blocks it outright.
+   */
   const lowRisk =
-    identity.availabilityCode === 'non_prescription' &&
+    planningEligibleType(identity.substanceTypeCode) &&
+    (identity.availabilityCode === 'sold_without_prescription' ||
+      identity.availabilityCode === 'varies_by_jurisdiction') &&
+    identity.supervision !== 'required' &&
     v3.supervision.level !== 'required' &&
     !inputs.corpus.suppressed &&
     !inputs.corpus.controlled &&
@@ -2410,10 +2456,36 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     ],
   }
 
+  /*
+   * The publication decision, made once from what the page actually assembled rather than from a
+   * flag. A record with no reviewed claim and no source-linked wording is a limited record however
+   * many empty sections it can render.
+   */
+  const publication = decidePublicationState({
+    reviewedClaimCount: inputs.claims.filter((claim) => claim.reviewerState === 'reviewed').length,
+    hasApprovedFirstRead: Boolean(inputs.boundAnswer),
+    hasSourceLinkedContent:
+      hero.simpleAction.origin === 'authored_record' ||
+      hero.strongestGoalResult.origin === 'authored_record' ||
+      humanResults.cards.length > 0 ||
+      journey.nodes.length > 0,
+    identityPassed: identity.identityVerified,
+    criticalIdentityConflict: v3.indexQuality.some(
+      (check) => check.check === 'no_critical_contamination' && !check.passed,
+    ),
+    pipelineFailed: false,
+    hasAnyUsefulFact:
+      inputs.corpus.sources.length > 0 ||
+      inputs.corpus.registration.length > 0 ||
+      inputs.corpus.relations.length > 0 ||
+      classified.length > 0,
+  })
+
   const partial = {
     version: 4 as const,
     slug: v3.slug,
     name: v3.name,
+    publication,
     identity,
     pagePromise: COMPASS_COPY.pagePromise,
     hero,

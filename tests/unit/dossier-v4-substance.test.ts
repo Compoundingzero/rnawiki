@@ -162,11 +162,63 @@ describe('the withdrawn flag is not a substance state', () => {
   })
 })
 
-describe('suppression is our decision, not a fact about supply', () => {
-  it('a held-back record is unresolved, not unavailable', () => {
-    const result = classifySubstance({ ...base, displayName: 'Fixture', suppressed: true })
+describe('a register classification makes supervision more certain, not less', () => {
+  it('an injected hormone is given by a clinician, not left unresolved', () => {
+    /*
+     * The defect this guards is one I shipped and then caught on a real page. Reading the page's
+     * suppressed flag as an RNAWiki display decision answered "not established" for semaglutide,
+     * which carries S9: a long-acting injection or an injected hormone adjusted by measurement.
+     */
+    const result = classifySubstance({
+      ...base,
+      displayName: 'Fixtaglutide',
+      modality: 'Peptide / GLP-1 Agonist',
+      approvalStatus: 'FDA Approved',
+      suppressed: true,
+      supervisionClasses: ['S9'],
+    })
+    expect(result.availability).toBe('clinician_administered')
+    expect(result.supervision).toBe('required')
+  })
+
+  it('a boxed warning makes a medicine prescription only', () => {
+    const result = classifySubstance({
+      ...base,
+      displayName: 'Fixtformin',
+      modality: 'Small Molecule',
+      approvalStatus: 'FDA Approved',
+      supervisionClasses: ['S6'],
+    })
+    expect(result.availability).toBe('prescription_only')
+  })
+
+  it('a register withdrawal is a withdrawal', () => {
+    const result = classifySubstance({
+      ...base,
+      displayName: 'Fixture',
+      modality: 'Small Molecule',
+      approvalStatus: 'FDA Approved',
+      supervisionClasses: ['S8'],
+    })
+    expect(result.availability).toBe('withdrawn')
+  })
+
+  it('a supplement carrying a register classification is not an ordinary supplement', () => {
+    const result = classifySubstance({
+      ...base,
+      displayName: 'Fixture extract',
+      modality: 'Nutraceutical / Botanical',
+      approvalStatus: 'Non-FDA / Dietary Supplement',
+      supervisionClasses: ['S2'],
+    })
+    expect(result.availability).toBe('prescription_only')
+    expect(result.supervision).toBe('required')
+  })
+
+  it('no recorded classification leaves supply unresolved rather than asserted', () => {
+    const result = classifySubstance({ ...base, displayName: 'Fixture' })
     expect(result.availability).toBe('unresolved')
-    expect(result.availabilityBasis).toMatch(/our decision, not a statement about supply/i)
+    expect(result.supervision).toBe('unknown')
   })
 })
 

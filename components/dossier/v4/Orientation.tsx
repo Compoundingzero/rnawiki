@@ -11,9 +11,36 @@ import type { ReactNode } from 'react'
 
 import type { Concept } from '@/lib/dossier-v4/concepts'
 import { PURPOSES } from '@/lib/dossier-v4/taxonomy'
-import type { ActionHero, IdentityStrip } from '@/lib/dossier-v4/view-model'
+import type { ActionHero, DossierV4ViewModel, IdentityStrip } from '@/lib/dossier-v4/view-model'
 
 import { BodyPathFigure, ConceptGlyph, Disclosure, StatementBlock } from './Primitives'
+
+/**
+ * The state banner. Anything that is not a reviewed page opens by saying what it is, before the
+ * reader spends attention working out why so much of the page says "not recorded".
+ */
+export function PublicationBanner({
+  publication,
+}: {
+  publication: DossierV4ViewModel['publication']
+}): ReactNode {
+  if (!publication.bannerRequired) return null
+  return (
+    <aside
+      aria-labelledby="publication-state-h"
+      className="dv4-publication"
+      data-publication-state={publication.state}
+    >
+      <p className="dv4-publication-label" id="publication-state-h">
+        {publication.label}
+      </p>
+      <p>{publication.plain}</p>
+      <p className="dv4-note" style={{ marginBottom: 0 }}>
+        {publication.reason}
+      </p>
+    </aside>
+  )
+}
 
 export function SubstanceIdentityStrip({
   identity,
@@ -26,8 +53,17 @@ export function SubstanceIdentityStrip({
     <header className="dv4-strip">
       <h1>{identity.canonicalName}</h1>
       <ul className="dv4-strip-facts">
-        <li>{identity.substanceType}</li>
-        <li data-availability={identity.availabilityCode}>{identity.availability}</li>
+        <li data-substance-type={identity.substanceTypeCode} title={identity.substanceTypeBasis}>
+          {identity.substanceType}
+        </li>
+        <li data-availability={identity.availabilityCode} title={identity.availabilityBasis}>
+          {identity.availability}
+          {identity.jurisdictions.length > 0 &&
+          identity.availabilityCode !== 'unresolved' &&
+          identity.availabilityCode !== 'varies_by_jurisdiction'
+            ? ` in ${identity.jurisdictions.join(', ')}`
+            : null}
+        </li>
         <li data-identity-verified={identity.identityVerified ? 'true' : 'false'}>
           <span aria-hidden="true">{identity.identityVerified ? '✓' : '⚠'}</span>
           {identity.identityLabel}

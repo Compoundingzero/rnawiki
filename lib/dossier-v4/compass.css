@@ -1267,3 +1267,36 @@
   --dv4-lane-uncertainty: #e0c26a;
   --dv4-lane-community: #b79ae0;
 }
+
+/* --------------------------------------------------------- publication state */
+
+/*
+ * Every page that is not a reviewed page opens by saying so. Without this a reader meets twenty
+ * sections reading "not recorded" and has to work out for themselves that the record is thin
+ * rather than the substance being unstudied.
+ */
+.dv4-publication {
+  border: 1px solid var(--dv4-hairline);
+  border-left: 4px solid var(--dv4-caution);
+  border-radius: 12px;
+  margin: 1.25rem auto 0;
+  max-width: var(--dv4-canvas);
+  padding: 0.85rem 1.05rem;
+}
+
+.dv4-publication-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+
+.dv4-publication[data-publication-state='correction_hold'],
+.dv4-publication[data-publication-state='pipeline_failure'] {
+  border-left-color: #b3261e;
+}
+
+.dv4-publication[data-publication-state='preliminary'] {
+  border-left-color: var(--dv4-accent);
+}

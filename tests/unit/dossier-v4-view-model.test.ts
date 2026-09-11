@@ -433,7 +433,12 @@ describe('time facets are never read off one another', () => {
 
 describe('the measurement section follows the risk of the substance', () => {
   it('offers a self-experiment plan for a non-prescription supplement, with no amount', () => {
-    const model = buildDossierV4(inputs({ corpus: nonPrescriptionCorpus() }))
+    const model = buildDossierV4(
+      inputs({
+        corpus: nonPrescriptionCorpus(),
+        legacyRecord: legacyRecord({ modality: 'Nutraceutical / Botanical' }),
+      }),
+    )
     expect(model.measurement.mode).toBe('self_experiment')
     const planText = model.measurement.plan.map((step) => step.text).join(' ')
     expect(planText).not.toMatch(/\b\d+\s?(mg|g|mcg|ml|iu)\b/i)
@@ -460,16 +465,34 @@ describe('the measurement section follows the risk of the substance', () => {
     expect(model.measurement.stopRules).toEqual([])
   })
 
-  it('keeps the planner away when the register and the record disagree', () => {
-    // The register row says prescription and the legacy record says supplement. A disagreement is
-    // resolved the conservative way: no self-experiment planner is offered at all.
+  it('keeps the planner away when the record contradicts itself', () => {
+    /*
+     * The fixture says "Small Molecule" and "Non-FDA / Dietary Supplement" at once. A record that
+     * cannot say what it is does not get a measurement plan: the type resolves to unresolved and
+     * the gate refuses, which is the conservative reading and the one a reader is safer with.
+     */
     const model = buildDossierV4(inputs())
-    expect(model.identity.availabilityCode).toBe('non_prescription')
+    expect(model.identity.substanceTypeCode).toBe('unknown_type')
+    expect(model.measurement.mode).toBe('clinician_questions')
+  })
+
+  it('a supplement carrying a register classification loses the planner', () => {
+    const model = buildDossierV4(
+      inputs({
+        corpus: corpus({ suppressionClasses: ['S6'], suppressed: true } as Partial<CorpusDossier>),
+        legacyRecord: legacyRecord({ modality: 'Nutraceutical / Botanical' }),
+      }),
+    )
     expect(model.measurement.mode).toBe('clinician_questions')
   })
 
   it('states the boundary of what tracking can show', () => {
-    const model = buildDossierV4(inputs({ corpus: nonPrescriptionCorpus() }))
+    const model = buildDossierV4(
+      inputs({
+        corpus: nonPrescriptionCorpus(),
+        legacyRecord: legacyRecord({ modality: 'Nutraceutical / Botanical' }),
+      }),
+    )
     expect(model.measurement.boundary).toMatch(/cannot show what caused it/i)
   })
 })

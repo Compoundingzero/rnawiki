@@ -216,6 +216,12 @@ export interface SubstanceInputs {
   suppressed?: boolean
   /** Jurisdictions with a recorded register row, such as US or EU. */
   registeredJurisdictions?: readonly string[]
+  /**
+   * The corpus supervision classes a register positively recorded, S1 to S9. These are not an
+   * editorial decision: S6 is a boxed warning, S7 a route a clinician administers, S9 a
+   * long-acting injection or an injected hormone adjusted by measurement.
+   */
+  supervisionClasses?: readonly string[]
   /** Recorded route strings, used to spot an injected or infused product. */
   routes?: readonly string[]
   atcCodes?: readonly string[]
@@ -426,10 +432,29 @@ function classifyAvailability(
   const jurisdictions = inputs.registeredJurisdictions ?? []
   const routes = (inputs.routes ?? []).join(' ')
 
+  /*
+   * The supervision classes are a register's recorded classification, not an editorial decision.
+   *
+   * An earlier version of this file read the page's suppressed flag as "RNAWiki holds this record
+   * back" and answered "not established". That took semaglutide — carrying S9, an injected hormone
+   * adjusted by measurement — and told a reader RNAWiki had not resolved how it is supplied. Each
+   * class makes supervision more certain, not less: S6 is a boxed warning, S7 a route a clinician
+   * administers, S8 a recorded withdrawal, S9 an injected hormone.
+   */
+  const classes = inputs.supervisionClasses ?? []
+  const clinicianRoute = classes.includes('S7') || classes.includes('S9')
+  const supervised = classes.some((code) => /^S[1-9]$/.test(code))
+
   if (/withdrawn/.test(approval)) {
     return {
       availability: 'withdrawn',
       basis: 'The approval record marks this as withdrawn from market.',
+    }
+  }
+  if (classes.includes('S8')) {
+    return {
+      availability: 'withdrawn',
+      basis: 'A register recorded a withdrawal or suspension for a safety reason.',
     }
   }
   /*
@@ -451,17 +476,6 @@ function classifyAvailability(
         'A product or use on this record was withdrawn. Whether the substance is available elsewhere is unresolved.',
     }
   }
-  /*
-   * Suppression is an RNAWiki display decision, not a fact about supply. Saying "not available"
-   * because we hold a record back would invent a regulatory state out of an editorial one.
-   */
-  if (inputs.suppressed) {
-    return {
-      availability: 'unresolved',
-      basis:
-        'RNAWiki holds this record back from ordinary display. That is our decision, not a statement about supply.',
-    }
-  }
   if (/controlled \/ no approved use/.test(approval)) {
     return {
       availability: 'unavailable',
@@ -475,6 +489,14 @@ function classifyAvailability(
     }
   }
   if (/dietary supplement|non-fda/.test(approval)) {
+    // A supplement carrying a register classification is not an ordinary supplement.
+    if (supervised) {
+      return {
+        availability: clinicianRoute ? 'clinician_administered' : 'prescription_only',
+        basis:
+          'Sold as a supplement, and a register recorded a classification that restricts supply.',
+      }
+    }
     return {
       availability:
         jurisdictions.length > 0 ? 'sold_without_prescription' : 'varies_by_jurisdiction',
@@ -485,8 +507,12 @@ function classifyAvailability(
     }
   }
   if (/approved/.test(approval) || /off-label|compounded/.test(approval)) {
-    // An approved product that is injected or infused is normally given by a professional.
-    if (INJECTED.test(routes) || type === 'monoclonal_antibody' || type === 'gene_therapy') {
+    if (
+      clinicianRoute ||
+      INJECTED.test(routes) ||
+      type === 'monoclonal_antibody' ||
+      type === 'gene_therapy'
+    ) {
       return {
         availability: 'clinician_administered',
         basis:
@@ -503,10 +529,10 @@ function classifyAvailability(
           : 'Approved as a medicine. No jurisdiction is recorded on this record.',
     }
   }
-  if (inputs.controlled) {
+  if (inputs.controlled || supervised) {
     return {
-      availability: 'prescription_only',
-      basis: 'A regulator restricts how this is supplied.',
+      availability: clinicianRoute ? 'clinician_administered' : 'prescription_only',
+      basis: 'A register recorded a classification that restricts how this is supplied.',
     }
   }
   return {
