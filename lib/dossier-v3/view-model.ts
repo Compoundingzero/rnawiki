@@ -1504,7 +1504,7 @@ function indexQualityFrom(
       detail:
         unresolved.length === 0
           ? 'every required field is in a terminal state'
-          : `${unresolved.length} required field(s) not terminal: ${unresolved.map((field) => field.field).join(', ')}`,
+          : `${unresolved.length} required field(s) not terminal: ${unresolved.map((field) => field.label).join(', ')}`,
     },
     {
       check: 'public_claims_reviewed',

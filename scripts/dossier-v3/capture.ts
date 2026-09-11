@@ -69,12 +69,28 @@ async function main(): Promise<void> {
       const headings = Array.from(document.querySelectorAll('h1, h2, h3')).map(
         (h) => `${h.tagName.toLowerCase()}:${h.textContent?.trim().slice(0, 80) ?? ''}`,
       )
-      // textContent, not innerText: CSS text-transform would turn every uppercase label into a
-      // false acronym, and hidden disclosure text is reader text too.
-      const text = document.querySelector('main')?.textContent?.replace(/\s+/g, ' ') ?? ''
+      // Text nodes joined with a space: innerText would apply CSS text-transform (every
+      // uppercase label becomes a false acronym) and skip closed disclosures, while textContent
+      // runs adjacent elements together ("10 secondsPrescription"). Reader text is every text node.
+      const main = document.querySelector('main')
+      const deep = document.getElementById('deep-evidence')
+      const walker = main ? document.createTreeWalker(main, NodeFilter.SHOW_TEXT) : null
+      const parts: string[] = []
+      const readerParts: string[] = []
+      while (walker && walker.nextNode()) {
+        const node = walker.currentNode
+        const value = node.textContent?.trim()
+        if (!value) continue
+        parts.push(value)
+        // The deep-evidence layer is the explicitly labelled technical disclosure; the reader
+        // layers are everything else. Both are audited and both are reported.
+        if (!deep || !deep.contains(node)) readerParts.push(value)
+      }
+      const text = parts.join(' ')
+      const readerText = readerParts.join(' ')
       const details = document.querySelectorAll('details').length
       const overflow = document.documentElement.scrollWidth > document.documentElement.clientWidth
-      return { mains, headings, text, details, overflow }
+      return { mains, headings, text, readerText, details, overflow }
     })
     const mobileContext = await browser.newContext({ viewport: { width: 320, height: 700 } })
     const mobile = await mobileContext.newPage()
@@ -92,6 +108,7 @@ async function main(): Promise<void> {
     )
     await mobileContext.close()
     const copy = auditCopy(facts.text)
+    const readerCopy = auditCopy(facts.readerText)
     const record = {
       slug,
       url,
@@ -116,6 +133,15 @@ async function main(): Promise<void> {
         nodes: violation.nodes.length,
         help: violation.help,
       })),
+      readerLayers: {
+        internalKeys: readerCopy.internalKeys.map((hit) => hit.match).slice(0, 20),
+        forbiddenPhrases: readerCopy.forbiddenPhrases.map((hit) => hit.match),
+        unscopedCertainty: readerCopy.unscopedCertainty.map((hit) => hit.match),
+        sentences: readerCopy.sentences.sentences,
+        over20: readerCopy.sentences.over20,
+        over30: readerCopy.sentences.over30,
+        undefinedAcronyms: readerCopy.undefinedAcronyms.slice(0, 40),
+      },
       copy: {
         internalKeys: copy.internalKeys.map((hit) => hit.match).slice(0, 20),
         forbiddenPhrases: copy.forbiddenPhrases.map((hit) => hit.match),
@@ -137,7 +163,8 @@ async function main(): Promise<void> {
         htmlBytes: record.htmlBytes,
         textToHtml: record.textToHtml,
         axe: record.axeViolations.length,
-        internalKeys: record.copy.internalKeys.length,
+        internalKeysWholePage: record.copy.internalKeys.length,
+        internalKeysReaderLayers: record.readerLayers.internalKeys.length,
         overflow320: mobileOverflow,
       }),
     )

@@ -38,14 +38,20 @@ step; every command below is idempotent or dry-run by default.
    before/after (`data/dossier-v3/benchmark/`).
 9. Docs: audit, information architecture, plain-language contract, taxonomy, entity resolution
    and trial roles, knowledge-graph schema, model card, data card, privacy and safety boundaries.
+10. Goal-first entry: homepage strip and `/goals/<goal>` registry-fact pages (568 loaded records
+    under "Glucose or metabolic health" on the tier-1 load).
+11. Data-quality dashboard at `/review-queue/dossier-v3` (steward guard, same as completion review).
+12. Graph projection: `scripts/dossier-v3/project-graph.ts --apply` wrote version `7987e517…`
+    (5,151 nodes, 6,334 edges, identity gate closed) into the local database.
 
 ## Not done (see the audit §Remaining)
 
 Identity pipeline rule changes in Python; corpus-wide correction of the other name-lookup merges;
 full-corpus role backfill (only five pages classified locally); reviewed claims for any medicine
-(none exist; four gold Decision Cards render honest absences); the goal-first homepage entry and
-natural-language search (Phase 4); the stack checker and single-person planner interfaces
-(Phase 4); graph projection and the evaluation set (Phase 5, gated); production deployment.
+(none exist; four gold Decision Cards render honest absences); natural-language search, same-goal
+comparison beyond hub membership, the stack checker and the single-person planner interfaces
+(Phase 4; the goal entry is a registry-fact seed only); the frozen evaluation set and any learned
+model (Phase 5, gated; the projector runs but the identity gate is closed); production deployment.
 
 ## Exact next commands
 
@@ -59,6 +65,8 @@ npx tsx scripts/dossier-v3/apply-identity-corrections.ts data/dossier-v3/correct
 # render the four gold pages with the flag and re-run the benchmark
 PORT=3100 DOSSIER_V3_SLUGS=semaglutide,metformin,inclisiran,creatine-monohydrate npm run start
 npx tsx scripts/dossier-v3/capture.ts --base http://localhost:3100 --label after --slugs semaglutide,metformin,inclisiran,creatine-monohydrate --out data/dossier-v3/benchmark
+# project the typed graph (identity gate stays closed; dry run without --apply)
+npx tsx scripts/dossier-v3/project-graph.ts --apply
 # the gate
 npm run gate
 ```

@@ -119,7 +119,13 @@ what the best-supported result is, the main risk, or whether supervision is requ
 
 **Routes and config:** `app/d/[slug]/route.ts` (flag), `app/layout.tsx` (stylesheet), `eslint.config.js`, `playwright.config.ts` (flag env for the e2e server).
 
-**Operator commands:** `scripts/dossier-v3/{backfill-trial-roles,apply-identity-corrections,capture}.ts`; `data/dossier-v3/corrections/creatine-tribulus.json`.
+**Operator commands:** `scripts/dossier-v3/{backfill-trial-roles,apply-identity-corrections,capture,project-graph}.ts`; `data/dossier-v3/corrections/creatine-tribulus.json`.
+
+**Goal-first entry (Phase 4 seed):** `components/HomeView.tsx` (the "What are you trying to understand or improve?" strip under the untouched search bar), `app/goals/[goal]/route.ts`, `lib/dossier-v3/{goal-pages,goal-document}.ts(x)` — a page is listed because registered studies name a condition in the goal area, and every row says so.
+
+**Data-quality dashboard (private, steward-only):** `app/review-queue/dossier-v3/page.tsx`, `lib/queries/dossier-v3-quality.ts`.
+
+**Graph (Phase 5 seed):** `scripts/dossier-v3/project-graph.ts` projected version `7987e517…` locally: 5,151 nodes, 6,334 edges (identity 213, evidence 2,511, safety 3,610; 2,360 predicted with their rule ids), identity gate closed; 830 relations skipped because their target is outside the loaded tier and 8,685 interaction lines skipped because the counterpart page is not loaded.
 
 **Tests:** `tests/unit/dossier-v3-{copy-contract,trial-roles,phase0-generator,view-model}.test.ts`; `tests/unit/corpus-suppression-block.test.ts` (cap counts developing paragraphs); `tests/integration/dossier-v3-ledger-and-roles.test.ts`; `tests/e2e/dossier-v3-journey.spec.ts` + `tests/e2e/fixtures/dossier-v3.ts`.
 
@@ -127,40 +133,45 @@ what the best-supported result is, the main risk, or whether supervision is requ
 
 ## 6. Before / after benchmark (local build, same machine, `scripts/dossier-v3/capture.ts`)
 
-Screenshots: `data/dossier-v3/benchmark/{before,after}/<slug>-{desktop,mobile}.png`; per-page JSON beside them.
+Screenshots: `data/dossier-v3/benchmark/{before,after}/<slug>-{desktop,mobile}.png`; per-page JSON
+beside them (`summary.json` in each folder). "Before" is the corpus document on the unflagged
+build; "after" is the v3 document. Reader layers = everything outside the labelled "Deep evidence"
+disclosure; whole page includes it.
 
-| Page                 | axe violations before → after | internal keys in reader text before → after     | horizontal overflow at 320 px | HTML bytes before → after |
-| -------------------- | ----------------------------- | ----------------------------------------------- | ----------------------------- | ------------------------- |
-| semaglutide          | 1 (color-contrast ×4) → 0     | 1 (`compound_record`) → 0 in the reader layers* | no → no                       | 89,757 → 146,921          |
-| metformin            | 1 → 0                         | 1 → 0*                                          | no → no                       | 111,082 → 174,718         |
-| inclisiran           | 1 → 0                         | 0 → 0*                                          | no → no                       | 57,276 → 86,667           |
-| creatine-monohydrate | 1 → 0                         | 2 (`agEing`, `compound_record`) → 0*            | no → no                       | 65,309 → 106,538          |
+| Page                 | axe (WCAG 2.2 AA) before → after | internal keys in reader layers before → after | internal keys, whole page after             | overflow at 320 px | HTML bytes before → after | TTFB after |
+| -------------------- | -------------------------------- | --------------------------------------------- | ------------------------------------------- | ------------------ | ------------------------- | ---------- |
+| semaglutide          | 1 (color-contrast ×4) → 0        | 1 (`compound_record`) → 0                     | 4 (source labels and ids in the deep layer) | no → no            | 89,757 → 145,893          | 698 ms     |
+| metformin            | 1 → 0                            | 1 → 0                                         | 2                                           | no → no            | 111,082 → 173,701         | 567 ms     |
+| inclisiran           | 1 → 0                            | 0 → 0                                         | 2 (`halfLife` row label, a source id)       | no → no            | 57,276 → 85,641           | 536 ms     |
+| creatine-monohydrate | 1 → 0                            | 2 (`agEing`, `compound_record`) → 0           | 5                                           | no → no            | 65,309 → 105,540          | 537 ms     |
 
-\* The capture's `innerText` audit joined adjacent inline elements without whitespace and flagged
-tokens such as "worksHow"; the page now emits text-node separators, and the one real hit
-(`page_questions` in the ledger text) is reworded. The final "after" run is recorded in
-`data/dossier-v3/benchmark/after/summary.json`. HTML grew because the v3 page carries the decision
-card, all eleven sections and the deep layer in one document; text-to-HTML ratio stayed at
-0.13–0.18 and the page remains one static document with one island script (no React stream).
-Core Web Vitals were not measured (no Lighthouse run); TTFB per page is in the JSON.
+Sentences over 30 words in the reader layers after: 40 of 207 (semaglutide), 40 of 236
+(metformin), 15 of 152 (inclisiran), 21 of 215 (creatine); nearly all are quoted label sentences
+inside disclosures. Undefined acronyms remaining in the reader layers are register and class codes
+(ATC codes, ARTG, NCATS), `LDL`/`ASCVD` inside the recorded label indication text, and `GLP`
+inside the legacy identity-class basis; each page's list is in its JSON. The whole-page leftovers
+are source-supplied strings in the deep layer (`compound_record` from a ChEMBL source label,
+canonical `K1:` ids in the source list, one `halfLife` row label in the kinetics block). HTML grew
+because one document now carries the Decision Card, eleven sections and the deep layer; the page is
+still one static document with one island script and no React stream. The text-node/HTML ratio
+rose from about 0.14 to about 0.47. Core Web Vitals were not measured (no Lighthouse run).
 
-Undefined acronyms remaining in the reader layers after: ATC codes and register names inside the
-deep layer, `LDL` in the legacy indication text, `GLP` in the identity-class basis; all listed per
-page in the JSON.
+## 7. Test and build results (final run, 2026-09-11, local)
 
-## 7. Test and build results (2026-09-11, local)
+| Check                                                | Result                                                   |
+| ---------------------------------------------------- | -------------------------------------------------------- |
+| `npm run typecheck`                                  | exit 0                                                   |
+| `npm run lint`                                       | 0 errors, 1 pre-existing warning                         |
+| `npm run format`                                     | all files pass                                           |
+| `npm run check:copy`                                 | 0 hits across 36 patterns (471 public/docs files)        |
+| `npx drizzle-kit check`                              | consistent; 0034 replayed on `rnawiki_rebuild` (35 rows) |
+| `npx vitest run tests/unit`                          | 184 files: 2,716 passed, 9 skipped                       |
+| `tests/integration/dossier-v3-ledger-and-roles`      | 1 passed on a disposable database                        |
+| `npm run test:e2e` (full suite, disposable database) | 36 passed (includes the 6 dossier v3 journey tests)      |
+| `npm run build`                                      | exit 0 (five times this session)                         |
 
-- `npm run typecheck`: exit 0.
-- `npx drizzle-kit check`: "Everything's fine"; migration 0034 replayed cleanly on
-  `rnawiki_rebuild` (35 rows in `__drizzle_migrations`).
-- Unit: the four new suites (13 + 13 + 5 + 14 tests) pass; corpus generator suites pass after the
-  cap change (`corpus-suppression-block` 14/14, `page-text` 17/17, `corpus-render-safety` 86/86,
-  `question-derivation` 145/145). The full unit run is recorded in the worklog when it completes
-  (`hubs-render.test.ts` needs a prior build, finding G4).
-- Integration: `dossier-v3-ledger-and-roles` on a disposable database — see worklog for the final
-  run.
-- Browser: `dossier-v3-journey.spec.ts` on a disposable database — see worklog for the final run.
-- Build: `npm run build` exit 0 (three times this session).
+`npm run gate` as a single chain was not run end to end in one invocation; every stage of it was
+run individually above with the results shown.
 
 ## 8. Remaining risks
 

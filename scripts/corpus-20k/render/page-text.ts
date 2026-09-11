@@ -748,6 +748,16 @@ function countRows(counts: Record<string, unknown> | undefined): RevealedRow[] {
  *    definitions page and the block links to them; the link is chrome, and the reader still gets
  *    the caveat one click away. What stays in the block is this compound's own numbers.
  */
+/**
+ * Phase 0 trust patch: a row label that is still a storage key (`halfLife`, `trial_count`) is
+ * painted in words. A label that is already words is left exactly as written.
+ */
+function withWordLabel(row: RevealedRow): RevealedRow {
+  return /^[a-z]+(?:[A-Z][a-z]+)+$|^[a-z]+_[a-z_]+$/.test(row.label)
+    ? { ...row, label: humanizeStoredKey(row.label) }
+    : row
+}
+
 export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(page)): BlockBody {
   const name = page.displayName
   const src = firstSource(q)
@@ -2176,8 +2186,8 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     // technical provenance that belongs inside the closed disclosure. A fact therefore carries a
     // label and a value and never an identifier — enforced here rather than left to each of the
     // eleven builders that make one.
-    facts: withoutPageKeys(facts).map(withoutIdentifier),
-    rows: withoutPageKeys(rows),
+    facts: withoutPageKeys(facts).map(withoutIdentifier).map(withWordLabel),
+    rows: withoutPageKeys(rows).map(withWordLabel),
   }
 }
 
