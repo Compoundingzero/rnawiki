@@ -418,11 +418,14 @@ describe('the supervision block on a page that carries question rows', () => {
     expect(five.paragraphs).toHaveLength(5)
   })
 
-  it('still caps every other question answer at two paragraphs', () => {
+  it('still caps every other question answer at two developing paragraphs', () => {
     const body = buildBlockBody(
       { ...supervisionQuestionBlock, block: 'human-data', template: 'human-data' },
       bundleFor(['S1', 'S3', 'S4', 'S6']),
     )
-    expect(body.paragraphs.length).toBeLessThanOrEqual(2)
+    // Phase 0 (dossier v3): a fixed furniture sentence that qualifies the answer — the
+    // registry-count qualification here — sits outside the cap; the answer itself stays at two.
+    const developing = body.paragraphs.filter((_, index) => body.furniture[index] !== true)
+    expect(developing.length).toBeLessThanOrEqual(2)
   })
 })

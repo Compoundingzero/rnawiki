@@ -36,6 +36,15 @@
  * skips the rest without a JSON parse.
  */
 import { promises as fs } from 'node:fs'
+
+import {
+  humanizeStoredKey,
+  registryCountQualification,
+  SEED_KEYS_NEVER_RENDERED,
+  SEED_TEST_LABELS,
+  SEED_TEST_LIST_LABELS,
+  SPONTANEOUS_REPORT_FRAMING,
+} from '@/lib/dossier-v3/stored-keys'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -763,6 +772,19 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
     list.push(false)
     paragraphs.push(source ? withAnchor(t, source) : t)
   }
+  /**
+   * A fixed reader sentence in the same words on every page that paints it: the spontaneous-report
+   * framing, the registry-count qualification. Furniture, so the uniqueness ruler skips it; no
+   * anchor, because it states a rule about the data rather than a value read from a source; and
+   * outside the two-paragraph cap, because it qualifies the answer rather than developing it.
+   */
+  const fixed = (s: string): void => {
+    const t = oneFullStop(s)
+    bare.push(t)
+    furniture.push(true)
+    list.push(false)
+    paragraphs.push(t)
+  }
   /** One item of a list the block paints as a list: a supervision class clause (§16(1)). */
   const item = (s: string): void => {
     const t = oneFullStop(s)
@@ -852,15 +874,54 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
 
     /* --------------------------------------------------- human evidence */
     case 'human-data': {
+      let needsRegistryQualification = false
       const ceiling = f.present('humanEvidenceCeiling')
       const c = asObject(ceiling?.value)
       const endpoint = asString(pick(c, 'primaryOutcomeVerbatim', 'endpointTypeFrom'))
-      const largest = q.values.N ?? String(f.largestN ?? '')
-      const longest = q.values.duration ?? f.longestDuration ?? ''
-      p1(
-        `${largest} people in ${name}'s largest trial, ${longest} in its longest${endpoint ? `, measuring ${clampSentence(endpoint, 200)}` : ''}.`,
-        entrySource(ceiling) ?? src,
-      )
+      /*
+       * Phase 0 trust patch (docs/rnawiki-biohacker-rebuild-audit.md): the registry aggregate
+       * counted every matched study, whatever the substance was in it, and measured "longest" to a
+       * planned end date — 887,132 people in an observational cohort became semaglutide's
+       * "largest trial" and a study registered to end in 2049 became inclisiran's "31 years".
+       * Where the role-aware aggregate (lib/dossier-v3/trial-roles.ts, table
+       * page_registry_role_aggregates) is on the record, the sentence reads from it and says what
+       * it counts. Where it is not yet on the record, the old numbers are painted with the
+       * qualification that names what they include, as furniture.
+       */
+      const roleAware = asObject(pick(asObject(page.registry), 'roleAware'))
+      const tested = asObject(pick(roleAware, 'tested'))
+      const testedLargest = asObject(pick(tested, 'largest'))
+      const testedLongest = asObject(pick(tested, 'longestCompletedWindow'))
+      const testedCount = asNumber(pick(tested, 'studies'))
+      if (roleAware && testedCount !== undefined) {
+        const matched = asNumber(pick(roleAware, 'matchedStudies')) ?? testedCount
+        const others = Math.max(0, matched - testedCount)
+        const largestN = asNumber(pick(testedLargest, 'enrollment'))
+        const largestKind = asString(pick(testedLargest, 'enrollmentType'))
+        const longestDays = asNumber(pick(testedLongest, 'days'))
+        const longestWords = formatDuration(longestDays)
+        p1(
+          joinBits([
+            `${name} was the tested treatment in ${testedCount} registered ${testedCount === 1 ? 'study' : 'studies'}${others > 0 ? `; ${others} more list it as a comparison treatment, a background treatment or an observed exposure` : ''}`,
+            largestN !== undefined
+              ? `the largest tested study enrolled ${largestN} people (${largestKind === 'ACTUAL' ? 'actual' : 'registered'} enrolment${asString(pick(testedLargest, 'nctId')) ? `, ${asString(pick(testedLargest, 'nctId'))}` : ''})`
+              : undefined,
+            longestWords
+              ? `the longest completed one ran ${longestWords} from registered start to registered end, which is the study window and not the time anyone took ${name}`
+              : `none of the tested studies has completed, so no study window is reported`,
+          ]) +
+            (endpoint ? `; the recorded primary endpoint is ${clampSentence(endpoint, 200)}` : ''),
+          entrySource(ceiling) ?? src,
+        )
+      } else {
+        const largest = q.values.N ?? String(f.largestN ?? '')
+        const longest = q.values.duration ?? f.longestDuration ?? ''
+        p1(
+          `${largest} people in ${name}'s largest registered study, ${longest} in its longest registered window${endpoint ? `, measuring ${clampSentence(endpoint, 200)}` : ''}.`,
+          entrySource(ceiling) ?? src,
+        )
+        needsRegistryQualification = true
+      }
       const phases = asObject(pick(c, 'byPhase'))
       const phaseWords = countWords(phases)
       /*
@@ -902,6 +963,8 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           pick(c, 'anyAgingEndpoint') === false ? 'no ageing endpoint recorded' : undefined,
         ]) || `${f.registeredStudies ?? 0} registered studies.`
       p2(lastTest ? `${qualification.replace(/[.\s]+$/, '')}. ${lastTest}` : qualification)
+      // The qualification follows the numbers it qualifies, as fixed wording the ruler skips.
+      if (needsRegistryQualification) fixed(registryCountQualification(name))
       rows.push(...countRows(phases))
       if (ageRecord && ageDate)
         rows.push({ label: 'Last recorded human test', identifier: ageRecord, value: ageDate })
@@ -1462,20 +1525,29 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
       const faers = f.present('faersSignal')
       const fv = asObject(faers?.value)
       const terms = asArray(pick(fv, 'terms', 'reactions'))
-      const top = asObject(terms[0])
-      p1(
-        `${q.values.n ?? ''} spontaneous reports name ${name}${asString(pick(top, 'term')) ? `, most often ${asString(pick(top, 'term'))} (${asNumber(pick(top, 'count', 'reportCount')) ?? 0})` : ''}.`,
-        entrySource(faers) ?? src,
-      )
-      const next = terms
-        .slice(1, 4)
+      /*
+       * Phase 0 trust patch: the framing sits ABOVE any count, every time, in fixed words
+       * (furniture). The live page led with "most often coma (24)" for creatine and promised
+       * "and not say?" without ever saying it. The count and the most frequent terms follow, with
+       * their source, and the ordered term counts stay in the revealed rows.
+       */
+      fixed(SPONTANEOUS_REPORT_FRAMING.join(' '))
+      const leading = terms
+        .slice(0, 4)
         .map((t) => {
           const o = asObject(t)
           const term = asString(pick(o, 'term'))
           return term ? `${term} ${asNumber(pick(o, 'count', 'reportCount')) ?? 0}` : undefined
         })
         .filter((x): x is string => Boolean(x))
-      p2(joinBits([...next, `${terms.length} ${terms.length === 1 ? 'term' : 'terms'} in all`]))
+      p2(
+        `${q.values.n ?? terms.length} spontaneous reports name ${name}. ${
+          leading.length > 0
+            ? `The most frequent terms and their report counts: ${leading.join('; ')}; ${terms.length} ${terms.length === 1 ? 'term' : 'terms'} in all.`
+            : `${terms.length} ${terms.length === 1 ? 'term' : 'terms'} in all.`
+        }`,
+        entrySource(faers) ?? src,
+      )
       for (const t of terms.slice(0, ROW_CAP)) {
         const o = asObject(t)
         const term = asString(pick(o, 'term'))
@@ -2074,7 +2146,15 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
    */
   const capped = q.block !== 'supervision'
   const kept = paragraphs.map((_, i) => i).filter((i) => (paragraphs[i] ?? '').trim().length > 2)
-  const keep = capped ? kept.slice(0, 2) : kept
+  // Phase 0: a fixed furniture sentence qualifies the answer and never counts against the cap.
+  let developing = 0
+  const keep = capped
+    ? kept.filter((i) => {
+        if (furniture[i] === true) return true
+        developing += 1
+        return developing <= 2
+      })
+    : kept
   return {
     paragraphs: keep.map((i) => paragraphs[i] as string),
     bare: keep.map((i) => bare[i] as string),
@@ -2193,14 +2273,29 @@ function orderedRecordEntries(record: Record<string, unknown>): Array<[string, u
 function seedRows(values: Record<string, unknown> | undefined): RevealedRow[] {
   if (!values) return []
   const out: RevealedRow[] = []
-  for (const [key, value] of Object.entries(values).sort(([a], [b]) => a.localeCompare(b))) {
-    if (key === 'sources' || key === 'source') continue
+  for (const [rawKey, value] of Object.entries(values).sort(([a], [b]) => a.localeCompare(b))) {
+    /*
+     * Phase 0 trust patch (docs/rnawiki-biohacker-rebuild-audit.md, finding on
+     * `b_halfLifeRecorded`): a seed's own bookkeeping — the test table and its source refs — is
+     * never a row, and every remaining key is painted in words. A list of test ids ("missing",
+     * "notDeterminable") becomes one labelled row whose value names the tests in words.
+     */
+    if (SEED_KEYS_NEVER_RENDERED.has(rawKey)) continue
+    if (rawKey in SEED_TEST_LIST_LABELS && Array.isArray(value)) {
+      const named = value
+        .map((item) => asString(item))
+        .filter((item): item is string => Boolean(item))
+        .map((item) => SEED_TEST_LABELS[item] ?? humanizeStoredKey(item))
+      if (named.length > 0) out.push({ label: humanizeStoredKey(rawKey), value: named.join('; ') })
+      continue
+    }
+    const key = humanizeStoredKey(rawKey)
     if (Array.isArray(value)) {
       for (const item of value.slice(0, ROW_CAP)) {
         const o = asObject(item)
         if (!o) {
           const s = asString(item)
-          if (s) out.push({ label: key, value: s })
+          if (s) out.push({ label: key, value: humanizeStoredKey(s) })
           continue
         }
         const bits = orderedRecordEntries(o)
