@@ -1,0 +1,41 @@
+{
+  "repository": "Compoundingzero/rnawiki",
+  "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
+  "branch": "rebuild/biohacker-dossier",
+  "starting_commit": "5a5c47e",
+  "last_safe_commit": "5a5c47e",
+  "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
+  "current_phase": "1-universal-rendering",
+  "last_completed_phase": "0-verified-baseline",
+  "total_public_slugs": 0,
+  "rendered_v4_slugs": 0,
+  "reviewed_pages": 0,
+  "preliminary_pages": 0,
+  "limited_pages": 0,
+  "correction_hold_pages": 0,
+  "pipeline_failure_pages": 0,
+  "stacks_status": "not_started",
+  "community_status": "schema_and_empty_lane_only",
+  "experiment_planner_status": "renders_for_low_risk_local_only",
+  "staging_revision": "",
+  "staging_url": "",
+  "production_revision": "",
+  "production_url": "https://rnawiki.com",
+  "tests": {
+    "phase_0_gate": "passed at 5a5c47e, exit 0, 66 browser tests"
+  },
+  "critical_blockers": [
+    "v4 cannot render a record without a corpus page. loadDossierV3Inputs returns null and the route forwards to the previous dossier. 8552 of 9859 legacy records have no corpus page in this local database.",
+    "Only tier 1 is loaded locally (1698 of the corpus). Full local corpus validation needs tiers 2 and 3 materialised from the sibling worktree inputs."
+  ],
+  "noncritical_blindspots": [
+    "The graph projection predates the Tribulus stored-field correction. It happens to contain none of the removed studies, but it was not re-projected.",
+    "Three creatine human-ceiling aggregates could not be recomputed after the prune and still need re-deriving."
+  ],
+  "commands_completed": [
+    "Phase 0 verification: branch, PR, reviewed claims, corrections, Tribulus fix across registry rows, trial roles, stored fields, synonyms, graph, search"
+  ],
+  "files_in_progress": [],
+  "next_exact_command": "npx tsx scripts/dossier-v4/resume.ts",
+  "updated_at": "2026-09-11"
+}
