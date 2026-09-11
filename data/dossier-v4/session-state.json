@@ -1,0 +1,39 @@
+{
+  "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
+  "branch": "rebuild/biohacker-dossier",
+  "base_commit": "ee6a9e9",
+  "last_safe_commit": "ee6a9e9",
+  "current_phase": "0-recovery-and-baseline",
+  "last_completed_phase": "",
+  "files_in_progress": [
+    "docs/worklogs/dossier-v4-beginner-rebuild-2026-09.md",
+    "data/dossier-v4/session-state.json"
+  ],
+  "commands_completed": [
+    "git worktree list",
+    "git log --oneline --decorate -15",
+    "psql rnawiki_rebuild: counted reviewed_claims=0, dossier_field_states=0, entity_corrections=11",
+    "psql rnawiki_rebuild: inventoried page_fields for creatine-monohydrate (25 fields, 16 present)"
+  ],
+  "tests": {
+    "typecheck": "not_run",
+    "lint": "not_run",
+    "unit": "not_run",
+    "integration": "not_run",
+    "playwright": "not_run",
+    "accessibility": "not_run",
+    "build": "not_run"
+  },
+  "feature_flags": {
+    "DOSSIER_V3_SLUGS": "existing; v3 reader surface; unset to restore the corpus document",
+    "DOSSIER_V4_SLUGS": "planned; checked before the v3 flag; unset to fall back to v3 then corpus"
+  },
+  "known_failures": [],
+  "medical_content_blockers": [
+    "reviewed_claims is empty for every medicine in rnawiki_rebuild, so no v4 section may render a reviewed conclusion",
+    "no stored human mechanism sentence exists for creatine; the pathway field holds mouse-embryo and rat-behaviour abstracts only",
+    "humanCeiling.trials still lists NCT01407445 and NCT01971099 after the Tribulus correction removed those registry matches"
+  ],
+  "next_exact_command": "npx tsx scripts/dossier-v4/capture.ts --base http://localhost:3100 --label before --slugs creatine-monohydrate,semaglutide,metformin,inclisiran --out data/dossier-v4/benchmark",
+  "updated_at": "2026-09-11"
+}
