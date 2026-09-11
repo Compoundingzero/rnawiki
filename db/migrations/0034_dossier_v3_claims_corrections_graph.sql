@@ -2,10 +2,12 @@ CREATE TYPE "public"."graph_edge_origin" AS ENUM('verified', 'recorded', 'predic
 CREATE TYPE "public"."graph_node_type" AS ENUM('substance', 'ingredient', 'botanical', 'salt', 'isomer', 'metabolite', 'formulation', 'product', 'combination', 'class', 'external_identifier', 'gene', 'protein', 'receptor', 'enzyme', 'rna_target', 'cell_type', 'tissue', 'organ', 'pathway', 'biological_process', 'biomarker', 'phenotype', 'condition', 'user_goal', 'claim', 'trial', 'study_arm', 'regimen', 'population', 'outcome', 'result', 'publication', 'regulatory_document', 'source_snapshot', 'reviewer', 'correction', 'model_version', 'adverse_event', 'interaction', 'lab_test', 'procedure');--> statement-breakpoint
 CREATE TYPE "public"."v3_causality_level" AS ENUM('causal_randomized', 'causal_controlled', 'associational', 'mechanistic', 'anecdotal', 'predicted', 'unknown');--> statement-breakpoint
 CREATE TYPE "public"."v3_claim_kind" AS ENUM('effect', 'mechanism_stage', 'safety', 'interaction', 'regulatory_fact', 'recorded_use', 'identity_fact', 'unknown_statement');--> statement-breakpoint
+CREATE TYPE "public"."v3_claim_strength" AS ENUM('strong_human_specific_use', 'promising_short_studies', 'biomarker_only', 'animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion');--> statement-breakpoint
 CREATE TYPE "public"."v3_completion_state" AS ENUM('verified_evidence_present', 'no_qualifying_evidence_after_search', 'not_applicable', 'ambiguous_quarantined', 'awaiting_human_review', 'source_unavailable', 'legally_unavailable', 'pipeline_failure');--> statement-breakpoint
-CREATE TYPE "public"."v3_contradiction_state" AS ENUM('none_found', 'contradicted', 'mixed', 'unknown');--> statement-breakpoint
-CREATE TYPE "public"."v3_effect_direction" AS ENUM('increase', 'decrease', 'no_change', 'mixed', 'unknown');--> statement-breakpoint
-CREATE TYPE "public"."v3_evidence_class" AS ENUM('regulatory_label', 'randomized_trial', 'controlled_trial', 'uncontrolled_human_study', 'observational', 'mechanism_study', 'spontaneous_report', 'case_report', 'community_anecdote', 'model_prediction');--> statement-breakpoint
+CREATE TYPE "public"."v3_contradiction_state" AS ENUM('none_found', 'contradicted', 'mixed', 'not_measured', 'unknown');--> statement-breakpoint
+CREATE TYPE "public"."v3_effect_direction" AS ENUM('increase', 'decrease', 'no_change', 'mixed', 'not_measured', 'unknown');--> statement-breakpoint
+CREATE TYPE "public"."v3_effect_scale" AS ENUM('absolute', 'relative', 'both', 'not_measured');--> statement-breakpoint
+CREATE TYPE "public"."v3_evidence_class" AS ENUM('regulatory_label', 'randomized_trial', 'controlled_trial', 'uncontrolled_human_study', 'observational', 'systematic_review', 'registered_trial_no_result', 'animal_study', 'mechanism_study', 'spontaneous_report', 'case_report', 'community_anecdote', 'model_prediction');--> statement-breakpoint
 CREATE TYPE "public"."v3_outcome_class" AS ENUM('clinical_event', 'function_performance', 'symptom_quality_of_life', 'biomarker_surrogate', 'mechanistic_measurement', 'safety_tolerability', 'longevity_mortality', 'unknown_outcome');--> statement-breakpoint
 CREATE TYPE "public"."v3_reviewer_state" AS ENUM('draft', 'awaiting_review', 'reviewed', 'rejected', 'superseded', 'retracted');--> statement-breakpoint
 CREATE TYPE "public"."v3_trial_role" AS ENUM('experimental_intervention', 'active_comparator', 'placebo', 'background_therapy', 'rescue_therapy', 'concomitant_medication', 'eligibility_criterion', 'exclusion_criterion', 'outcome_measurement', 'mention_only', 'observational_exposure', 'administered_role_unclear', 'unclear');--> statement-breakpoint
@@ -187,6 +189,11 @@ CREATE TABLE "reviewed_claims" (
 	"analogy_breaks" text,
 	"evidence_class" "v3_evidence_class" NOT NULL,
 	"outcome_class" "v3_outcome_class" NOT NULL,
+	"claim_strength" "v3_claim_strength" DEFAULT 'no_reviewed_conclusion' NOT NULL,
+	"trial_identifier" varchar(16),
+	"trial_role" "v3_trial_role",
+	"participants" integer,
+	"prespecified" boolean,
 	"applicable_population" text NOT NULL,
 	"indication_or_goal" varchar(160) NOT NULL,
 	"formulation" text,
@@ -195,6 +202,9 @@ CREATE TABLE "reviewed_claims" (
 	"duration" text,
 	"comparator" text,
 	"direction" "v3_effect_direction" NOT NULL,
+	"effect_scale" "v3_effect_scale" DEFAULT 'not_measured' NOT NULL,
+	"baseline_value" text,
+	"comparator_value" text,
 	"effect_estimate" text,
 	"effect_value" numeric(30, 10),
 	"effect_unit" varchar(80),
@@ -228,7 +238,13 @@ CREATE TABLE "reviewed_claims" (
 	CONSTRAINT "reviewed_claims_uncertainty_reasons" CHECK ("reviewed_claims"."uncertainty" = 'low' or cardinality("reviewed_claims"."uncertainty_reasons") >= 1),
 	CONSTRAINT "reviewed_claims_reviewed_has_reviewer" CHECK ("reviewed_claims"."reviewer_state" <> 'reviewed' or ("reviewed_claims"."reviewed_by_user_id" is not null and "reviewed_claims"."reviewed_at" is not null)),
 	CONSTRAINT "reviewed_claims_reviewer_not_author" CHECK ("reviewed_claims"."reviewed_by_user_id" is null or "reviewed_claims"."authored_by_user_id" is null or "reviewed_claims"."reviewed_by_user_id" <> "reviewed_claims"."authored_by_user_id"),
-	CONSTRAINT "reviewed_claims_risk_tier" CHECK ("reviewed_claims"."risk_tier" in ('standard', 'elevated', 'high'))
+	CONSTRAINT "reviewed_claims_risk_tier" CHECK ("reviewed_claims"."risk_tier" in ('standard', 'elevated', 'high')),
+	CONSTRAINT "reviewed_claims_trial_id_shape" CHECK ("reviewed_claims"."trial_identifier" is null or "reviewed_claims"."trial_identifier" ~ '^NCT[0-9]{8}$'),
+	CONSTRAINT "reviewed_claims_strength_cap" CHECK (("reviewed_claims"."outcome_class" not in ('biomarker_surrogate', 'mechanistic_measurement') or "reviewed_claims"."claim_strength" in ('biomarker_only', 'animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and ("reviewed_claims"."evidence_class" not in ('animal_study', 'mechanism_study') or "reviewed_claims"."claim_strength" in ('animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and ("reviewed_claims"."evidence_class" not in ('model_prediction', 'community_anecdote') or "reviewed_claims"."claim_strength" = 'no_reviewed_conclusion')
+        and ("reviewed_claims"."outcome_class" <> 'unknown_outcome' or "reviewed_claims"."claim_strength" in ('mixed_or_contradicted', 'no_reviewed_conclusion'))),
+	CONSTRAINT "reviewed_claims_benefit_needs_tested_role" CHECK ("reviewed_claims"."kind" <> 'effect' or "reviewed_claims"."claim_strength" in ('no_reviewed_conclusion', 'mixed_or_contradicted', 'animal_or_cell_only') or "reviewed_claims"."trial_identifier" is null or "reviewed_claims"."trial_role" = 'experimental_intervention')
 );
 --> statement-breakpoint
 ALTER TABLE "dossier_field_states" ADD CONSTRAINT "dossier_field_states_key_corpus_pages_key_fk" FOREIGN KEY ("key") REFERENCES "public"."corpus_pages"("key") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
@@ -247,6 +263,7 @@ ALTER TABLE "page_trial_roles" ADD CONSTRAINT "page_trial_roles_reviewed_by_user
 ALTER TABLE "predicted_edges" ADD CONSTRAINT "predicted_edges_model_version_model_versions_id_fk" FOREIGN KEY ("model_version") REFERENCES "public"."model_versions"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "predicted_edges" ADD CONSTRAINT "predicted_edges_graph_version_graph_versions_id_fk" FOREIGN KEY ("graph_version") REFERENCES "public"."graph_versions"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "reviewed_claims" ADD CONSTRAINT "reviewed_claims_subject_key_corpus_pages_key_fk" FOREIGN KEY ("subject_key") REFERENCES "public"."corpus_pages"("key") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "reviewed_claims" ADD CONSTRAINT "reviewed_claims_supersedes_claim_id_reviewed_claims_id_fk" FOREIGN KEY ("supersedes_claim_id") REFERENCES "public"."reviewed_claims"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "reviewed_claims" ADD CONSTRAINT "reviewed_claims_authored_by_user_id_users_id_fk" FOREIGN KEY ("authored_by_user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "reviewed_claims" ADD CONSTRAINT "reviewed_claims_reviewed_by_user_id_users_id_fk" FOREIGN KEY ("reviewed_by_user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 CREATE INDEX "dossier_field_states_state_idx" ON "dossier_field_states" USING btree ("state");--> statement-breakpoint
@@ -283,51 +300,19 @@ BEGIN
   IF TG_OP = 'DELETE' THEN
     RAISE EXCEPTION 'reviewed_claims rows are never deleted; supersede or retract the claim instead';
   END IF;
-  IF OLD.reviewer_state = 'reviewed' THEN
-    -- A reviewed claim's content is frozen. Only its lifecycle columns may move, and only forward.
-    IF NEW.subject_key IS DISTINCT FROM OLD.subject_key
-      OR NEW.kind IS DISTINCT FROM OLD.kind
-      OR NEW.predicate IS DISTINCT FROM OLD.predicate
-      OR NEW.object_text IS DISTINCT FROM OLD.object_text
-      OR NEW.plain_language_version IS DISTINCT FROM OLD.plain_language_version
-      OR NEW.technical_version IS DISTINCT FROM OLD.technical_version
-      OR NEW.analogy IS DISTINCT FROM OLD.analogy
-      OR NEW.analogy_breaks IS DISTINCT FROM OLD.analogy_breaks
-      OR NEW.evidence_class IS DISTINCT FROM OLD.evidence_class
-      OR NEW.outcome_class IS DISTINCT FROM OLD.outcome_class
-      OR NEW.applicable_population IS DISTINCT FROM OLD.applicable_population
-      OR NEW.indication_or_goal IS DISTINCT FROM OLD.indication_or_goal
-      OR NEW.formulation IS DISTINCT FROM OLD.formulation
-      OR NEW.route IS DISTINCT FROM OLD.route
-      OR NEW.dose_as_studied IS DISTINCT FROM OLD.dose_as_studied
-      OR NEW.duration IS DISTINCT FROM OLD.duration
-      OR NEW.comparator IS DISTINCT FROM OLD.comparator
-      OR NEW.direction IS DISTINCT FROM OLD.direction
-      OR NEW.effect_estimate IS DISTINCT FROM OLD.effect_estimate
-      OR NEW.effect_value IS DISTINCT FROM OLD.effect_value
-      OR NEW.effect_unit IS DISTINCT FROM OLD.effect_unit
-      OR NEW.absolute_effect IS DISTINCT FROM OLD.absolute_effect
-      OR NEW.ci_low IS DISTINCT FROM OLD.ci_low
-      OR NEW.ci_high IS DISTINCT FROM OLD.ci_high
-      OR NEW.ci_level IS DISTINCT FROM OLD.ci_level
-      OR NEW.study_design IS DISTINCT FROM OLD.study_design
-      OR NEW.causality IS DISTINCT FROM OLD.causality
-      OR NEW.uncertainty IS DISTINCT FROM OLD.uncertainty
-      OR NEW.uncertainty_reasons IS DISTINCT FROM OLD.uncertainty_reasons
-      OR NEW.source_snapshot_ids IS DISTINCT FROM OLD.source_snapshot_ids
-      OR NEW.source_locators IS DISTINCT FROM OLD.source_locators
-      OR NEW.structure IS DISTINCT FROM OLD.structure
-      OR NEW.risk_tier IS DISTINCT FROM OLD.risk_tier
-      OR NEW.content_version IS DISTINCT FROM OLD.content_version
-      OR NEW.authored_by_user_id IS DISTINCT FROM OLD.authored_by_user_id
-      OR NEW.reviewed_by_user_id IS DISTINCT FROM OLD.reviewed_by_user_id
-      OR NEW.reviewed_at IS DISTINCT FROM OLD.reviewed_at
-      OR NEW.created_at IS DISTINCT FROM OLD.created_at
+  -- Once a claim has been reviewed it is frozen for good: reviewed, superseded and retracted rows
+  -- keep their content, and a superseded or retracted row never moves again.
+  IF OLD.reviewer_state IN ('reviewed', 'superseded', 'retracted') THEN
+    IF to_jsonb(NEW) - 'reviewer_state' - 'valid_to' - 'last_checked_at' - 'contradiction_state'
+       IS DISTINCT FROM to_jsonb(OLD) - 'reviewer_state' - 'valid_to' - 'last_checked_at' - 'contradiction_state'
     THEN
       RAISE EXCEPTION 'reviewed claim % is frozen; create a new content version that supersedes it', OLD.id;
     END IF;
-    IF NEW.reviewer_state NOT IN ('reviewed', 'superseded', 'retracted') THEN
+    IF OLD.reviewer_state = 'reviewed' AND NEW.reviewer_state NOT IN ('reviewed', 'superseded', 'retracted') THEN
       RAISE EXCEPTION 'a reviewed claim may only move to superseded or retracted';
+    END IF;
+    IF OLD.reviewer_state IN ('superseded', 'retracted') AND NEW.reviewer_state <> OLD.reviewer_state THEN
+      RAISE EXCEPTION 'a % claim never changes state again', OLD.reviewer_state;
     END IF;
   END IF;
   RETURN NEW;

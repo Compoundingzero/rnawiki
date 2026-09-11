@@ -125,10 +125,30 @@ export const EVIDENCE_CLASSES = [
     human: true,
   },
   {
-    code: 'mechanism_study',
-    label: 'Mechanism study',
+    code: 'systematic_review',
+    label: 'Systematic review or meta-analysis',
     plain:
-      'Experiments in cells, tissue or animals about how the substance acts. Not evidence of human benefit.',
+      'A study that pooled the results of several trials by a stated method. Only as good as the trials it pooled.',
+    human: true,
+  },
+  {
+    code: 'registered_trial_no_result',
+    label: 'Registered trial, no result posted',
+    plain:
+      'A trial was registered and may have run, but no result has been posted or published. It shows what was planned, not what was found.',
+    human: true,
+  },
+  {
+    code: 'animal_study',
+    label: 'Animal study',
+    plain: 'Experiments in animals. Not evidence of human benefit.',
+    human: false,
+  },
+  {
+    code: 'mechanism_study',
+    label: 'Cell or laboratory study',
+    plain:
+      'Experiments in cells, tissue or a test tube about how the substance acts. Not evidence of human benefit.',
     human: false,
   },
   {
@@ -507,6 +527,45 @@ export const CLAIM_STRENGTHS = [
 ] as const
 
 export type ClaimStrength = (typeof CLAIM_STRENGTHS)[number]['code']
+export const CLAIM_STRENGTH_CODES = CLAIM_STRENGTHS.map((entry) => entry.code) as [
+  ClaimStrength,
+  ...ClaimStrength[],
+]
+
+/**
+ * The strongest status a claim may carry given its outcome class and evidence class. A biomarker
+ * or a mechanistic measurement can never be "strong human evidence" for a use; a mechanism study
+ * can never be more than animal-or-cell evidence. Enforced by `CHECK` in migration 0034 and by
+ * `lib/dossier-v3/claims.ts`.
+ */
+export function maximumClaimStrength(
+  outcomeClass: OutcomeClass,
+  evidenceClass: EvidenceClass,
+): ClaimStrength {
+  if (evidenceClass === 'animal_study' || evidenceClass === 'mechanism_study') {
+    return 'animal_or_cell_only'
+  }
+  if (evidenceClass === 'model_prediction' || evidenceClass === 'community_anecdote') {
+    return 'no_reviewed_conclusion'
+  }
+  if (outcomeClass === 'biomarker_surrogate' || outcomeClass === 'mechanistic_measurement') {
+    return 'biomarker_only'
+  }
+  if (outcomeClass === 'unknown_outcome') return 'no_reviewed_conclusion'
+  return 'strong_human_specific_use'
+}
+
+export const CLAIM_STRENGTH_RANK: Record<ClaimStrength, number> = {
+  strong_human_specific_use: 5,
+  promising_short_studies: 4,
+  biomarker_only: 3,
+  animal_or_cell_only: 2,
+  mixed_or_contradicted: 1,
+  no_reviewed_conclusion: 0,
+}
+
+export const EFFECT_SCALES = ['absolute', 'relative', 'both', 'not_measured'] as const
+export type EffectScale = (typeof EFFECT_SCALES)[number]
 
 export const NO_REVIEWED_CONCLUSION_SENTENCE =
   'RNAWiki has not yet published a reviewed conclusion for this use.'
@@ -526,7 +585,13 @@ export type ReviewerState = (typeof REVIEWER_STATES)[number]
 /** Only a reviewed claim may support a public sentence. */
 export const PUBLISHABLE_REVIEWER_STATES: ReadonlySet<ReviewerState> = new Set(['reviewed'])
 
-export const CONTRADICTION_STATES = ['none_found', 'contradicted', 'mixed', 'unknown'] as const
+export const CONTRADICTION_STATES = [
+  'none_found',
+  'contradicted',
+  'mixed',
+  'not_measured',
+  'unknown',
+] as const
 export type ContradictionState = (typeof CONTRADICTION_STATES)[number]
 
 export const CAUSALITY_LEVELS = [
@@ -562,7 +627,14 @@ export const CERTAINTY_RANK: Record<UncertaintyLevel, number> = {
   unknown: 0,
 }
 
-export const EFFECT_DIRECTIONS = ['increase', 'decrease', 'no_change', 'mixed', 'unknown'] as const
+export const EFFECT_DIRECTIONS = [
+  'increase',
+  'decrease',
+  'no_change',
+  'mixed',
+  'not_measured',
+  'unknown',
+] as const
 export type EffectDirection = (typeof EFFECT_DIRECTIONS)[number]
 
 /* ------------------------------------------------------------------ user goals */

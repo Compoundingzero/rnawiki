@@ -32,6 +32,7 @@ import {
   pageQuestions,
   pageRegistration,
   pageRegistryAggregate,
+  pageRegistryRoleAggregates,
   pageRegistryStudies,
   pageRelations,
   pageSections,
@@ -625,6 +626,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     sectionRows,
     displayNameRows,
     hubMemberships,
+    roleAggregateRows,
   ] = await Promise.all([
     db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
     db.select().from(pageFields).where(eq(pageFields.key, key)),
@@ -646,6 +648,13 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     // docs/specs/hubs.md §3, joining the fan-out that is already open rather than adding a round
     // trip. `lib/hubs/queries.ts` `hubsForPage` is this query.
     hubsForPage(key),
+    // Dossier v3: the role-aware registry aggregate (lib/dossier-v3/trial-roles.ts), merged into
+    // the registry bundle as `roleAware` so the shared builder's registered-study block reads the
+    // classified counts where they exist and qualifies the old ones where they do not.
+    db
+      .select({ aggregate: pageRegistryRoleAggregates.aggregate })
+      .from(pageRegistryRoleAggregates)
+      .where(eq(pageRegistryRoleAggregates.key, key)),
   ])
 
   // The three names the computing stages give "the other page this sentence names", read in the
@@ -774,9 +783,23 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
      * less rather than saying something else.
      */
     ...(asRecord(registryAggregateRows[0]?.aggregate)
-      ? { registry: asRecord(registryAggregateRows[0]?.aggregate) as Record<string, unknown> }
+      ? {
+          registry: {
+            ...(asRecord(registryAggregateRows[0]?.aggregate) as Record<string, unknown>),
+            ...(asRecord(roleAggregateRows[0]?.aggregate)
+              ? { roleAware: asRecord(roleAggregateRows[0]?.aggregate) }
+              : {}),
+          },
+        }
       : registeredStudies > 0
-        ? { registry: { studies: registeredStudies } }
+        ? {
+            registry: {
+              studies: registeredStudies,
+              ...(asRecord(roleAggregateRows[0]?.aggregate)
+                ? { roleAware: asRecord(roleAggregateRows[0]?.aggregate) }
+                : {}),
+            },
+          }
         : {}),
     questions: [],
     names: new Map(targets.map((row) => [row.key, row.displayName])),

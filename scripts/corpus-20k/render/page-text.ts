@@ -1540,12 +1540,21 @@ export function buildBlockBody(q: QuestionBlock, page: PageBundle, f = facts(pag
           return term ? `${term} ${asNumber(pick(o, 'count', 'reportCount')) ?? 0}` : undefined
         })
         .filter((x): x is string => Boolean(x))
+      /*
+       * The stored `n` is the sum of the listed reaction-term counts (derive.ts), not a count of
+       * distinct reports: one report can name several reactions, so the page says "mentions" and
+       * never "reports" for that number.
+       */
+      const mentions =
+        asNumber(q.values.n) ??
+        terms.reduce(
+          (sum: number, t) => sum + (asNumber(pick(asObject(t), 'count', 'reportCount')) ?? 0),
+          0,
+        )
       p2(
-        `${q.values.n ?? terms.length} spontaneous reports name ${name}. ${
-          leading.length > 0
-            ? `The most frequent terms and their report counts: ${leading.join('; ')}; ${terms.length} ${terms.length === 1 ? 'term' : 'terms'} in all.`
-            : `${terms.length} ${terms.length === 1 ? 'term' : 'terms'} in all.`
-        }`,
+        `${name} appears in spontaneous reports to regulators. Across the ${terms.length} most-reported reaction ${terms.length === 1 ? 'term' : 'terms'}, ${mentions} reaction mentions were counted${
+          leading.length > 0 ? `: ${leading.join('; ')}` : ''
+        }.`,
         entrySource(faers) ?? src,
       )
       for (const t of terms.slice(0, ROW_CAP)) {

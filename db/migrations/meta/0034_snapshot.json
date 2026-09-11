@@ -1,5 +1,5 @@
 {
-  "id": "5075f8d9-58d2-4420-aa88-96efa404ba6e",
+  "id": "6cc407b8-30c1-4e2d-8965-4026c089c660",
   "prevId": "11196ae1-5f6c-419a-ace0-d382a80a948c",
   "version": "7",
   "dialect": "postgresql",
@@ -15881,6 +15881,39 @@
           "primaryKey": false,
           "notNull": true
         },
+        "claim_strength": {
+          "name": "claim_strength",
+          "type": "v3_claim_strength",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'no_reviewed_conclusion'"
+        },
+        "trial_identifier": {
+          "name": "trial_identifier",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trial_role": {
+          "name": "trial_role",
+          "type": "v3_trial_role",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "participants": {
+          "name": "participants",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "prespecified": {
+          "name": "prespecified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
         "applicable_population": {
           "name": "applicable_population",
           "type": "text",
@@ -15929,6 +15962,26 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
+        },
+        "effect_scale": {
+          "name": "effect_scale",
+          "type": "v3_effect_scale",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'not_measured'"
+        },
+        "baseline_value": {
+          "name": "baseline_value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "comparator_value": {
+          "name": "comparator_value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "effect_estimate": {
           "name": "effect_estimate",
@@ -16168,6 +16221,19 @@
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
+        "reviewed_claims_supersedes_claim_id_reviewed_claims_id_fk": {
+          "name": "reviewed_claims_supersedes_claim_id_reviewed_claims_id_fk",
+          "tableFrom": "reviewed_claims",
+          "tableTo": "reviewed_claims",
+          "columnsFrom": [
+            "supersedes_claim_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
         "reviewed_claims_authored_by_user_id_users_id_fk": {
           "name": "reviewed_claims_authored_by_user_id_users_id_fk",
           "tableFrom": "reviewed_claims",
@@ -16230,6 +16296,18 @@
         "reviewed_claims_risk_tier": {
           "name": "reviewed_claims_risk_tier",
           "value": "\"reviewed_claims\".\"risk_tier\" in ('standard', 'elevated', 'high')"
+        },
+        "reviewed_claims_trial_id_shape": {
+          "name": "reviewed_claims_trial_id_shape",
+          "value": "\"reviewed_claims\".\"trial_identifier\" is null or \"reviewed_claims\".\"trial_identifier\" ~ '^NCT[0-9]{8}$'"
+        },
+        "reviewed_claims_strength_cap": {
+          "name": "reviewed_claims_strength_cap",
+          "value": "(\"reviewed_claims\".\"outcome_class\" not in ('biomarker_surrogate', 'mechanistic_measurement') or \"reviewed_claims\".\"claim_strength\" in ('biomarker_only', 'animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))\n        and (\"reviewed_claims\".\"evidence_class\" not in ('animal_study', 'mechanism_study') or \"reviewed_claims\".\"claim_strength\" in ('animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))\n        and (\"reviewed_claims\".\"evidence_class\" not in ('model_prediction', 'community_anecdote') or \"reviewed_claims\".\"claim_strength\" = 'no_reviewed_conclusion')\n        and (\"reviewed_claims\".\"outcome_class\" <> 'unknown_outcome' or \"reviewed_claims\".\"claim_strength\" in ('mixed_or_contradicted', 'no_reviewed_conclusion'))"
+        },
+        "reviewed_claims_benefit_needs_tested_role": {
+          "name": "reviewed_claims_benefit_needs_tested_role",
+          "value": "\"reviewed_claims\".\"kind\" <> 'effect' or \"reviewed_claims\".\"claim_strength\" in ('no_reviewed_conclusion', 'mixed_or_contradicted', 'animal_or_cell_only') or \"reviewed_claims\".\"trial_identifier\" is null or \"reviewed_claims\".\"trial_role\" = 'experimental_intervention'"
         }
       },
       "isRLSEnabled": false
@@ -18395,6 +18473,18 @@
         "unknown_statement"
       ]
     },
+    "public.v3_claim_strength": {
+      "name": "v3_claim_strength",
+      "schema": "public",
+      "values": [
+        "strong_human_specific_use",
+        "promising_short_studies",
+        "biomarker_only",
+        "animal_or_cell_only",
+        "mixed_or_contradicted",
+        "no_reviewed_conclusion"
+      ]
+    },
     "public.v3_completion_state": {
       "name": "v3_completion_state",
       "schema": "public",
@@ -18416,6 +18506,7 @@
         "none_found",
         "contradicted",
         "mixed",
+        "not_measured",
         "unknown"
       ]
     },
@@ -18427,7 +18518,18 @@
         "decrease",
         "no_change",
         "mixed",
+        "not_measured",
         "unknown"
+      ]
+    },
+    "public.v3_effect_scale": {
+      "name": "v3_effect_scale",
+      "schema": "public",
+      "values": [
+        "absolute",
+        "relative",
+        "both",
+        "not_measured"
       ]
     },
     "public.v3_evidence_class": {
@@ -18439,6 +18541,9 @@
         "controlled_trial",
         "uncontrolled_human_study",
         "observational",
+        "systematic_review",
+        "registered_trial_no_result",
+        "animal_study",
         "mechanism_study",
         "spontaneous_report",
         "case_report",

@@ -5669,9 +5669,11 @@ export const hubSynthesesRelations = relations(hubSyntheses, ({ one }) => ({
 
 import {
   CAUSALITY_LEVELS,
+  CLAIM_STRENGTH_CODES,
   COMPLETION_STATE_CODES,
   CONTRADICTION_STATES,
   EFFECT_DIRECTIONS,
+  EFFECT_SCALES,
   EVIDENCE_CLASS_CODES,
   OUTCOME_CLASS_CODES,
   REVIEWER_STATES,
@@ -5688,6 +5690,8 @@ export const v3UncertaintyEnum = pgEnum('v3_uncertainty_level', UNCERTAINTY_LEVE
 export const v3EffectDirectionEnum = pgEnum('v3_effect_direction', EFFECT_DIRECTIONS)
 export const v3CompletionStateEnum = pgEnum('v3_completion_state', COMPLETION_STATE_CODES)
 export const v3TrialRoleEnum = pgEnum('v3_trial_role', TRIAL_ROLE_CODES)
+export const v3ClaimStrengthEnum = pgEnum('v3_claim_strength', CLAIM_STRENGTH_CODES)
+export const v3EffectScaleEnum = pgEnum('v3_effect_scale', EFFECT_SCALES)
 
 /** What a reviewed claim is about. Each kind carries its own validated `structure` (lib/dossier-v3/claims.ts). */
 export const v3ClaimKindEnum = pgEnum('v3_claim_kind', [
@@ -5728,6 +5732,16 @@ export const reviewedClaims = pgTable(
     analogyBreaks: text('analogy_breaks'),
     evidenceClass: v3EvidenceClassEnum('evidence_class').notNull(),
     outcomeClass: v3OutcomeClassEnum('outcome_class').notNull(),
+    /** The status words the Decision Card may use for this claim; capped by outcome and evidence class. */
+    claimStrength: v3ClaimStrengthEnum('claim_strength')
+      .notNull()
+      .default('no_reviewed_conclusion'),
+    /** The registered trial the claim is read from, where there is exactly one (`NCT…`). */
+    trialIdentifier: varchar('trial_identifier', { length: 16 }),
+    /** What the substance was in that trial. A claim of benefit needs `experimental_intervention`. */
+    trialRole: v3TrialRoleEnum('trial_role'),
+    participants: integer('participants'),
+    prespecified: boolean('prespecified'),
     applicablePopulation: text('applicable_population').notNull(),
     /** A `USER_GOALS` code or a recorded indication, in words. */
     indicationOrGoal: varchar('indication_or_goal', { length: 160 }).notNull(),
@@ -5738,6 +5752,9 @@ export const reviewedClaims = pgTable(
     duration: text('duration'),
     comparator: text('comparator'),
     direction: v3EffectDirectionEnum('direction').notNull(),
+    effectScale: v3EffectScaleEnum('effect_scale').notNull().default('not_measured'),
+    baselineValue: text('baseline_value'),
+    comparatorValue: text('comparator_value'),
     effectEstimate: text('effect_estimate'),
     effectValue: numeric('effect_value', { precision: 30, scale: 10 }),
     effectUnit: varchar('effect_unit', { length: 80 }),
@@ -5760,7 +5777,9 @@ export const reviewedClaims = pgTable(
       .$type<Array<{ snapshotId: string; locator: string; excerpt?: string }>>()
       .notNull()
       .default(sql`'[]'::jsonb`),
-    contradictionState: v3ContradictionStateEnum('contradiction_state').notNull().default('unknown'),
+    contradictionState: v3ContradictionStateEnum('contradiction_state')
+      .notNull()
+      .default('unknown'),
     reviewerState: v3ReviewerStateEnum('reviewer_state').notNull().default('draft'),
     /** Kind-specific structured fields (mechanism stage order and origin, interaction category…). */
     structure: jsonb('structure')
@@ -5769,7 +5788,9 @@ export const reviewedClaims = pgTable(
       .default(sql`'{}'::jsonb`),
     riskTier: varchar('risk_tier', { length: 16 }).notNull().default('standard'),
     contentVersion: integer('content_version').notNull().default(1),
-    supersedesClaimId: varchar('supersedes_claim_id', { length: 64 }),
+    supersedesClaimId: varchar('supersedes_claim_id', { length: 64 }).references(
+      (): AnyPgColumn => reviewedClaims.id,
+    ),
     validFrom: timestamp('valid_from', { withTimezone: true }).notNull().defaultNow(),
     validTo: timestamp('valid_to', { withTimezone: true }),
     lastCheckedAt: timestamp('last_checked_at', { withTimezone: true }).notNull().defaultNow(),
@@ -5802,6 +5823,25 @@ export const reviewedClaims = pgTable(
       sql`${table.reviewedByUserId} is null or ${table.authoredByUserId} is null or ${table.reviewedByUserId} <> ${table.authoredByUserId}`,
     ),
     check('reviewed_claims_risk_tier', sql`${table.riskTier} in ('standard', 'elevated', 'high')`),
+    check(
+      'reviewed_claims_trial_id_shape',
+      sql`${table.trialIdentifier} is null or ${table.trialIdentifier} ~ '^NCT[0-9]{8}$'`,
+    ),
+    // A biomarker or mechanistic measurement is never "strong human evidence"; a cell or animal
+    // study is never more than animal-or-cell evidence; a prediction or anecdote is never a
+    // conclusion (maximumClaimStrength in lib/dossier-v3/taxonomy.ts, mirrored here).
+    check(
+      'reviewed_claims_strength_cap',
+      sql`(${table.outcomeClass} not in ('biomarker_surrogate', 'mechanistic_measurement') or ${table.claimStrength} in ('biomarker_only', 'animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and (${table.evidenceClass} not in ('animal_study', 'mechanism_study') or ${table.claimStrength} in ('animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and (${table.evidenceClass} not in ('model_prediction', 'community_anecdote') or ${table.claimStrength} = 'no_reviewed_conclusion')
+        and (${table.outcomeClass} <> 'unknown_outcome' or ${table.claimStrength} in ('mixed_or_contradicted', 'no_reviewed_conclusion'))`,
+    ),
+    // A claim that a trial showed a benefit needs the substance to have been the tested treatment.
+    check(
+      'reviewed_claims_benefit_needs_tested_role',
+      sql`${table.kind} <> 'effect' or ${table.claimStrength} in ('no_reviewed_conclusion', 'mixed_or_contradicted', 'animal_or_cell_only') or ${table.trialIdentifier} is null or ${table.trialRole} = 'experimental_intervention'`,
+    ),
   ],
 )
 
@@ -5854,7 +5894,10 @@ export const entityCorrections = pgTable(
       'entity_corrections_decider',
       sql`${table.decidedByUserId} is not null or nullif(btrim(${table.operator}), '') is not null`,
     ),
-    check('entity_corrections_reason_nonempty', sql`nullif(btrim(${table.reason}), '') is not null`),
+    check(
+      'entity_corrections_reason_nonempty',
+      sql`nullif(btrim(${table.reason}), '') is not null`,
+    ),
   ],
 )
 
@@ -5891,7 +5934,10 @@ export const dossierFieldStates = pgTable(
       'dossier_field_states_verified_has_claim',
       sql`${table.state} <> 'verified_evidence_present' or ${table.claimId} is not null`,
     ),
-    check('dossier_field_states_basis_nonempty', sql`nullif(btrim(${table.basis}), '') is not null`),
+    check(
+      'dossier_field_states_basis_nonempty',
+      sql`nullif(btrim(${table.basis}), '') is not null`,
+    ),
   ],
 )
 
@@ -5933,20 +5979,15 @@ export const pageTrialRoles = pgTable(
 )
 
 /** The role-aware registry aggregate for one page (`RoleAwareRegistryAggregate`). */
-export const pageRegistryRoleAggregates = pgTable(
-  'page_registry_role_aggregates',
-  {
-    key: varchar('key', { length: 200 })
-      .primaryKey()
-      .references(() => corpusPages.key, { onDelete: 'cascade' }),
-    aggregate: jsonb('aggregate')
-      .$type<Record<string, unknown>>()
-      .notNull(),
-    classifierVersion: varchar('classifier_version', { length: 64 }).notNull(),
-    snapshotDate: date('snapshot_date').notNull(),
-    computedAt: timestamp('computed_at', { withTimezone: true }).notNull().defaultNow(),
-  },
-)
+export const pageRegistryRoleAggregates = pgTable('page_registry_role_aggregates', {
+  key: varchar('key', { length: 200 })
+    .primaryKey()
+    .references(() => corpusPages.key, { onDelete: 'cascade' }),
+  aggregate: jsonb('aggregate').$type<Record<string, unknown>>().notNull(),
+  classifierVersion: varchar('classifier_version', { length: 64 }).notNull(),
+  snapshotDate: date('snapshot_date').notNull(),
+  computedAt: timestamp('computed_at', { withTimezone: true }).notNull().defaultNow(),
+})
 
 /* ---------------------------------------------------------------- the typed evidence graph */
 
@@ -6015,7 +6056,11 @@ export const graphNodeTypeEnum = pgEnum('graph_node_type', [
   'procedure',
 ])
 
-export const graphEdgeOriginEnum = pgEnum('graph_edge_origin', ['verified', 'recorded', 'predicted'])
+export const graphEdgeOriginEnum = pgEnum('graph_edge_origin', [
+  'verified',
+  'recorded',
+  'predicted',
+])
 
 export const graphNodes = pgTable(
   'graph_nodes',
@@ -6105,7 +6150,10 @@ export const graphEdges = pgTable(
     index('graph_edges_version_idx').on(table.graphVersion),
     check('graph_edges_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
     check('graph_edges_not_self', sql`${table.srcId} <> ${table.dstId}`),
-    check('graph_edges_layer', sql`${table.layer} in ('identity', 'mechanism', 'evidence', 'safety')`),
+    check(
+      'graph_edges_layer',
+      sql`${table.layer} in ('identity', 'mechanism', 'evidence', 'safety')`,
+    ),
     check(
       'graph_edges_predicted_has_rule',
       sql`${table.origin} <> 'predicted' or ${table.ruleOrModelId} is not null`,
@@ -6140,7 +6188,9 @@ export const modelVersions = pgTable(
       .$type<Record<string, unknown>>()
       .notNull()
       .default(sql`'{}'::jsonb`),
-    calibrationState: varchar('calibration_state', { length: 32 }).notNull().default('uncalibrated'),
+    calibrationState: varchar('calibration_state', { length: 32 })
+      .notNull()
+      .default('uncalibrated'),
     cardPath: text('card_path').notNull(),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
@@ -6172,7 +6222,9 @@ export const predictedEdges = pgTable(
     edgeType: varchar('edge_type', { length: 48 }).notNull(),
     score: numeric('score', { precision: 10, scale: 6 }).notNull(),
     calibratedProbability: numeric('calibrated_probability', { precision: 10, scale: 6 }),
-    calibrationState: varchar('calibration_state', { length: 32 }).notNull().default('uncalibrated'),
+    calibrationState: varchar('calibration_state', { length: 32 })
+      .notNull()
+      .default('uncalibrated'),
     /** Concrete source-backed paths, never attention weights alone. */
     supportingSubgraph: jsonb('supporting_subgraph')
       .$type<Record<string, unknown>>()
@@ -6182,7 +6234,10 @@ export const predictedEdges = pgTable(
       .$type<Record<string, unknown>>()
       .notNull()
       .default(sql`'{}'::jsonb`),
-    reasons: text('reasons').array().notNull().default(sql`'{}'::text[]`),
+    reasons: text('reasons')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
     candidateCorrection: jsonb('candidate_correction').$type<Record<string, unknown>>(),
     reviewState: v3ReviewerStateEnum('review_state').notNull().default('draft'),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),

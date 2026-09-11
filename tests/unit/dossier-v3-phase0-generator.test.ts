@@ -115,7 +115,8 @@ describe('fixture 12 — spontaneous reports are framed before they are counted'
   })
 
   it('never turns a count into a rate and keeps the count after the framing', () => {
-    expect(body.paragraphs[1]).toContain('139 spontaneous reports name Creatine')
+    expect(body.paragraphs[1]).toContain('139 reaction mentions were counted')
+    expect(body.paragraphs[1]).not.toMatch(/\d+ spontaneous reports/)
     expect(body.paragraphs[1]).toContain('coma 24')
     expect(body.paragraphs.join(' ')).not.toMatch(/\b(incidence|per 1,?000|per 100)\b|%/)
   })
