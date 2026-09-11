@@ -1,0 +1,1269 @@
+/*
+ * The Substance Compass visual system (docs/dossier-v4-visual-system.md).
+ *
+ * The identity is RNAWiki's: a light neutral ground, dark text, one restrained blue, wide margins
+ * and almost no decoration. What changes from dossier v3 is the shape of the page. v3 is a 44 rem
+ * column of repeated question cards. v4 is a wide canvas with a standing rail on the left, a hero
+ * that gives the plain explanation the dominant area, and a different visual form for each kind of
+ * evidence: a matrix, a stair, a path, a spine, bands, a ladder, a receipt.
+ *
+ * Rules this file keeps:
+ *   - colour is never the only signal; every state carries a glyph and a word as well;
+ *   - every diagram is drawn from the same markup a screen reader reads;
+ *   - nothing animates on load, and every transition is dropped under reduced motion;
+ *   - every interactive target is at least 24 px in both directions at every width;
+ *   - no rule may introduce horizontal overflow at 320 px.
+ */
+
+.dv4-root {
+  --dv4-ink: var(--corpus-ink-0);
+  --dv4-ink-soft: var(--corpus-ink-1);
+  /*
+   * Not the corpus ink-2 and ink-3. Those compute to 4.48:1 and 3.5:1 against this page's own
+   * #f5f5f7 ground at the 13 px these greys are used at, which axe fails as a serious contrast
+   * violation across 64 nodes. These two are darkened until both clear 4.5:1 on that ground.
+   */
+  --dv4-ink-muted: #55555a;
+  --dv4-ink-faint: #64646a;
+  --dv4-surface: var(--corpus-surface-0);
+  --dv4-ground: var(--corpus-surface-2);
+  --dv4-raised: var(--corpus-surface-1);
+  --dv4-hairline: var(--corpus-hairline);
+  /*
+   * One step darker than the corpus accent and supervision hues, and the same hues. Measured on
+   * this page's own #f5f5f7 ground, #0071e3 reaches 4.31:1 and #8a6d1f reaches 4.49:1, so both
+   * fail AA for normal text — 47 nodes of link and label text on the creatine page. The site-wide
+   * tokens are left alone: changing them would move the home page and the v3 surface, which this
+   * rebuild is not allowed to redesign. The soft fills stay as they are; they sit behind text that
+   * uses the ink ramp, not these.
+   */
+  --dv4-accent: #0063c8;
+  --dv4-accent-soft: var(--corpus-accent-soft);
+  --dv4-caution: #6f571a;
+  --dv4-caution-soft: var(--corpus-supervision-soft);
+
+  /* One hue per truth lane, used only alongside a word. */
+  --dv4-lane-body: #5b6abf;
+  --dv4-lane-human: #0071e3;
+  --dv4-lane-personal: #2f7d63;
+  --dv4-lane-uncertainty: #6f571a;
+  --dv4-lane-community: #7a5ea8;
+
+  --dv4-rail: 15rem;
+  --dv4-gutter: 1.25rem;
+  --dv4-canvas: 84rem;
+  --dv4-step: 0.375rem;
+
+  color: var(--dv4-ink);
+  font-size: 17px;
+  line-height: 1.6;
+  padding: 0 var(--dv4-gutter) 5rem;
+}
+
+/* ------------------------------------------------------------------ type */
+
+.dv4-root h1,
+.dv4-root h2,
+.dv4-root h3,
+.dv4-root h4 {
+  font-family: var(--corpus-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dv4-root h2 {
+  font-size: 1.6rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.dv4-root h3 {
+  font-size: 1.12rem;
+}
+
+.dv4-root h4 {
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.dv4-root p {
+  margin: 0 0 0.75rem;
+  max-width: 42rem;
+}
+
+.dv4-root ul,
+.dv4-root ol {
+  margin: 0 0 0.75rem;
+  padding-left: 1.15rem;
+}
+
+.dv4-root li {
+  margin-bottom: 0.3rem;
+}
+
+.dv4-root a {
+  color: var(--dv4-accent);
+}
+
+/*
+ * Every link in the reader layer is a touch target at 24 px in both directions. Inline links inside
+ * running prose are left alone — padding them would break the line box — and the compass puts its
+ * links in lists and rows rather than mid-sentence. The technical disclosure keeps corpus styling.
+ */
+.dv4-ladder a,
+.dv4-next a,
+.dv4-nav a,
+.dv4-purpose a,
+.dv4-sources a,
+.dv4-facts a {
+  display: inline-block;
+  line-height: 1.45;
+  min-height: 1.5rem;
+  padding-block: 0.3rem;
+}
+
+/* --------------------------------------------------------- identity strip */
+
+/*
+ * Deliberately small. The name and how it is supplied, and nothing else: no alias list, no
+ * development code, no identifier block. Those live in the technical disclosure at the foot.
+ */
+.dv4-strip {
+  align-items: baseline;
+  border-bottom: 1px solid var(--dv4-hairline);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0 auto;
+  max-width: var(--dv4-canvas);
+  padding: 1.1rem 0 0.9rem;
+}
+
+.dv4-strip h1 {
+  font-size: 1.5rem;
+  margin-right: 0.25rem;
+}
+
+.dv4-strip-facts {
+  color: var(--dv4-ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.84rem;
+  gap: 0.35rem 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dv4-strip-facts li {
+  align-items: center;
+  display: flex;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.dv4-strip-facts li + li::before {
+  color: var(--dv4-ink-faint);
+  content: '·';
+}
+
+/* -------------------------------------------------------------- canvas */
+
+.dv4-canvas {
+  display: grid;
+  gap: 0 2.5rem;
+  /*
+   * minmax(0, 1fr), not 1fr. A bare 1fr track takes its minimum from the content's min-content
+   * width, and the navigator is a nowrap chip row whose min-content width is the entire row — it
+   * forced the document to 2128 px at a 320 px viewport.
+   */
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: var(--dv4-canvas);
+}
+
+.dv4-canvas > * {
+  min-width: 0;
+}
+
+@media (min-width: 60rem) {
+  .dv4-canvas {
+    grid-template-columns: var(--dv4-rail) minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------ navigator */
+
+/*
+ * The navigator scrolls to a section. It never switches a tab, hides a section or changes what is
+ * rendered. At desktop it stands in the left rail; on a phone it becomes a wrapping row of chips
+ * pinned under the strip.
+ */
+.dv4-nav {
+  align-self: start;
+  border-bottom: 1px solid var(--dv4-hairline);
+  margin: 0 calc(var(--dv4-gutter) * -1) 1.25rem;
+  padding: 0.55rem var(--dv4-gutter);
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--dv4-ground);
+}
+
+.dv4-nav-title {
+  color: var(--dv4-ink-faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.dv4-nav ol {
+  display: flex;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0 0 0.15rem;
+  scrollbar-width: thin;
+}
+
+.dv4-nav li {
+  margin: 0;
+}
+
+.dv4-nav a {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 999px;
+  color: var(--dv4-ink-soft);
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  min-height: 1.9rem;
+  padding: 0.4rem 0.7rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dv4-nav a:hover {
+  border-color: var(--dv4-accent);
+  color: var(--dv4-accent);
+}
+
+@media (min-width: 60rem) {
+  .dv4-nav {
+    background: none;
+    border-bottom: 0;
+    margin: 0;
+    padding: 1.5rem 0 2rem;
+    top: 1.25rem;
+  }
+
+  .dv4-nav ol {
+    display: block;
+    overflow: visible;
+  }
+
+  .dv4-nav li {
+    margin-bottom: 0.1rem;
+  }
+
+  .dv4-nav a {
+    border: 0;
+    border-left: 2px solid transparent;
+    border-radius: 0;
+    padding: 0.34rem 0 0.34rem 0.7rem;
+    white-space: normal;
+  }
+
+  .dv4-nav a:hover {
+    border-left-color: var(--dv4-accent);
+  }
+}
+
+.dv4-nav-lane {
+  color: var(--dv4-ink-faint);
+  display: none;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  margin: 0.8rem 0 0.25rem;
+  padding-left: 0.7rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 60rem) {
+  .dv4-nav-lane {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------- sections */
+
+.dv4-flow > * + * {
+  margin-top: 3.25rem;
+}
+
+.dv4-section {
+  scroll-margin-top: 4.5rem;
+}
+
+.dv4-eyebrow {
+  align-items: center;
+  color: var(--dv4-ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  gap: 0.45rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.dv4-eyebrow::before {
+  background: var(--dv4-lane, var(--dv4-accent));
+  border-radius: 2px;
+  content: '';
+  display: inline-block;
+  height: 0.72rem;
+  width: 3px;
+}
+
+.dv4-section[data-lane='body_action'] {
+  --dv4-lane: var(--dv4-lane-body);
+}
+.dv4-section[data-lane='human_result'] {
+  --dv4-lane: var(--dv4-lane-human);
+}
+.dv4-section[data-lane='personal_reality'] {
+  --dv4-lane: var(--dv4-lane-personal);
+}
+.dv4-section[data-lane='uncertainty'] {
+  --dv4-lane: var(--dv4-lane-uncertainty);
+}
+.dv4-section[data-lane='community_experience'] {
+  --dv4-lane: var(--dv4-lane-community);
+}
+
+.dv4-lede {
+  color: var(--dv4-ink-soft);
+  font-size: 1.02rem;
+  margin-top: 0.5rem;
+  max-width: 40rem;
+}
+
+/* ----------------------------------------------------------------- states */
+
+.dv4-state {
+  align-items: center;
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.74rem;
+  gap: 0.3rem;
+  line-height: 1.3;
+  max-width: 100%;
+  padding: 0.22rem 0.6rem;
+  /*
+   * Not nowrap. The longest state label, "Read from sources, not yet reviewed", measures 322 px as
+   * one line and scrolled a 320 px viewport sideways. A pill that wraps to two lines is better than
+   * a page that scrolls, and shortening the label instead would cost the meaning.
+   */
+  white-space: normal;
+}
+
+.dv4-state-glyph {
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.dv4-state[data-tone='strong'] {
+  background: var(--dv4-accent-soft);
+  border-color: transparent;
+  color: var(--dv4-ink);
+}
+
+.dv4-state[data-tone='caution'] {
+  border-color: var(--dv4-caution-soft);
+  color: var(--dv4-caution);
+}
+
+.dv4-state[data-tone='muted'] {
+  color: var(--dv4-ink-muted);
+}
+
+.dv4-origin {
+  color: var(--dv4-ink-muted);
+  font-size: 0.76rem;
+  margin: 0.3rem 0 0;
+}
+
+/* ------------------------------------------------------------------ hero */
+
+/*
+ * The dominant area of the first viewport is the plain explanation and the goal result. The body
+ * diagram sits beside it at desktop and beneath it on a phone.
+ */
+.dv4-hero {
+  display: grid;
+  gap: 1.75rem;
+  /*
+   * One column until there is room for twelve. A 12-track grid with a 1.75 rem gap has a minimum
+   * width of eleven gaps — 308 px — whatever the tracks collapse to, so declaring it at every width
+   * pushed a 320 px viewport into horizontal scroll before any content was measured.
+   */
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: 0.5rem;
+}
+
+.dv4-hero > * {
+  min-width: 0;
+}
+
+@media (min-width: 64rem) {
+  .dv4-hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .dv4-hero-main {
+    grid-column: 1 / span 7;
+  }
+
+  .dv4-hero-aside {
+    grid-column: 9 / span 4;
+  }
+}
+
+.dv4-hero-action {
+  font-family: var(--corpus-serif);
+  font-size: clamp(1.55rem, 1.15rem + 1.6vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.24;
+  margin: 0 0 0.9rem;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.dv4-hero-because {
+  color: var(--dv4-ink-soft);
+  font-size: 1.06rem;
+  max-width: 36rem;
+}
+
+.dv4-hero-result {
+  border-left: 3px solid var(--dv4-lane-human);
+  margin: 1.35rem 0 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+}
+
+.dv4-hero-result p {
+  margin-bottom: 0.4rem;
+}
+
+.dv4-hero-result-text {
+  font-size: 1.06rem;
+  font-weight: 500;
+}
+
+.dv4-hero-limit {
+  border-left: 3px solid var(--dv4-lane-uncertainty);
+  margin: 1rem 0 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+}
+
+.dv4-hero-analogy {
+  background: var(--dv4-raised);
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 12px;
+  margin-top: 1.35rem;
+  padding: 0.9rem 1rem;
+}
+
+.dv4-hero-analogy p:last-child {
+  margin-bottom: 0;
+}
+
+.dv4-hero-facts {
+  border-top: 1px solid var(--dv4-hairline);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+}
+
+.dv4-hero-facts dt {
+  color: var(--dv4-ink-faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.dv4-hero-facts dd {
+  font-size: 0.9rem;
+  margin: 0.2rem 0 0;
+}
+
+/* ------------------------------------------------------------ body diagram */
+
+.dv4-figure {
+  background: var(--dv4-surface);
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.dv4-figure-title {
+  color: var(--dv4-ink-faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.7rem;
+  text-transform: uppercase;
+}
+
+.dv4-figure svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------- pathway */
+
+/*
+ * The body path. A vertical spine on every width: it reads as one order, and it never becomes a
+ * horizontally scrolling strip on a phone.
+ */
+.dv4-path {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.dv4-path > li {
+  border-left: 2px solid var(--dv4-lane-body);
+  margin: 0;
+  padding: 0 0 1.35rem 1.35rem;
+  position: relative;
+}
+
+.dv4-path > li:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.dv4-path > li::before {
+  background: var(--dv4-surface);
+  border: 2px solid var(--dv4-lane-body);
+  border-radius: 50%;
+  content: '';
+  height: 0.7rem;
+  left: -0.4rem;
+  position: absolute;
+  top: 0.35rem;
+  width: 0.7rem;
+}
+
+/* An unverified link is drawn dotted and also says so in words. */
+.dv4-path > li[data-verified='false'] {
+  border-left-style: dashed;
+}
+
+.dv4-path > li[data-verified='false']::before {
+  border-style: dashed;
+}
+
+.dv4-path-stage {
+  color: var(--dv4-ink-faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dv4-path-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.15rem 0 0.35rem;
+}
+
+.dv4-path-edge {
+  color: var(--dv4-ink-muted);
+  font-size: 0.8rem;
+  margin: 0.35rem 0 0;
+}
+
+/* --------------------------------------------------------------- matrix */
+
+/*
+ * The goal fingerprint. A table at desktop; at narrow widths the same markup is re-laid as stacked
+ * rows, so nothing scrolls sideways and no cell loses its column name.
+ */
+.dv4-matrix-scroll {
+  margin-top: 1.25rem;
+  overflow-x: auto;
+}
+
+.dv4-matrix {
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  width: 100%;
+}
+
+.dv4-matrix th,
+.dv4-matrix td {
+  border-bottom: 1px solid var(--dv4-hairline);
+  padding: 0.6rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dv4-matrix thead th {
+  color: var(--dv4-ink-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.dv4-matrix tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dv4-cell {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.dv4-cell-glyph {
+  font-size: 0.95rem;
+  line-height: 1;
+  width: 1rem;
+}
+
+.dv4-cell-label {
+  font-size: 0.78rem;
+}
+
+@media (max-width: 55rem) {
+  .dv4-matrix-scroll {
+    overflow-x: visible;
+  }
+
+  .dv4-matrix,
+  .dv4-matrix tbody,
+  .dv4-matrix tr,
+  .dv4-matrix td,
+  .dv4-matrix th {
+    display: block;
+    width: auto;
+  }
+
+  .dv4-matrix thead {
+    display: none;
+  }
+
+  .dv4-matrix tbody tr {
+    border: 1px solid var(--dv4-hairline);
+    border-radius: 12px;
+    margin-bottom: 0.9rem;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .dv4-matrix tbody th {
+    border: 0;
+    font-size: 1rem;
+    padding: 0 0 0.5rem;
+    white-space: normal;
+  }
+
+  .dv4-matrix tbody td {
+    border: 0;
+    border-top: 1px solid var(--dv4-hairline);
+    display: grid;
+    gap: 0.15rem 0.75rem;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    padding: 0.45rem 0;
+  }
+
+  .dv4-matrix tbody td::before {
+    color: var(--dv4-ink-muted);
+    content: attr(data-column);
+    font-size: 0.76rem;
+  }
+}
+
+/* -------------------------------------------------------------- staircase */
+
+.dv4-stair {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.dv4-stair li {
+  align-items: flex-start;
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 10px;
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+}
+
+.dv4-stair li[data-filled='true'] {
+  background: var(--dv4-surface);
+  border-color: var(--dv4-lane-human);
+}
+
+.dv4-stair li[data-filled='false'] {
+  color: var(--dv4-ink-muted);
+}
+
+/* The stair shape: each higher rung is indented, so the ladder reads as a rise. */
+@media (min-width: 48rem) {
+  .dv4-stair li {
+    margin-left: calc(var(--dv4-step) * var(--dv4-rank, 0));
+  }
+}
+
+.dv4-stair-mark {
+  flex: 0 0 auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  width: 1.1rem;
+}
+
+.dv4-stair-label {
+  font-weight: 600;
+}
+
+.dv4-stair-detail {
+  color: var(--dv4-ink-soft);
+  font-size: 0.84rem;
+  margin: 0.15rem 0 0;
+}
+
+/* ---------------------------------------------------------------- columns */
+
+.dv4-three {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .dv4-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dv4-two {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 52rem) {
+  .dv4-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dv4-panel {
+  background: var(--dv4-surface);
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 12px;
+  padding: 0.95rem 1.05rem;
+}
+
+.dv4-panel h3 {
+  margin-bottom: 0.35rem;
+}
+
+.dv4-panel ul {
+  font-size: 0.88rem;
+  margin-bottom: 0;
+}
+
+.dv4-panel-note {
+  color: var(--dv4-ink-muted);
+  font-size: 0.8rem;
+}
+
+/* ------------------------------------------------------------ result cards */
+
+.dv4-results {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 62rem) {
+  .dv4-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dv4-result {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 12px;
+  border-top: 3px solid var(--dv4-ink-faint);
+  padding: 1rem 1.1rem;
+}
+
+.dv4-result[data-verdict='met'] {
+  border-top-color: var(--dv4-lane-human);
+}
+
+.dv4-result[data-verdict='not_met'] {
+  border-top-color: var(--dv4-caution);
+}
+
+.dv4-result-question {
+  font-size: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.dv4-result-verdict {
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.dv4-facts {
+  display: grid;
+  gap: 0.4rem 1rem;
+  grid-template-columns: 1fr;
+  margin: 0.6rem 0 0;
+}
+
+@media (min-width: 30rem) {
+  .dv4-facts {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+  }
+}
+
+.dv4-facts dt {
+  color: var(--dv4-ink-muted);
+  font-size: 0.78rem;
+}
+
+.dv4-facts dd {
+  font-size: 0.86rem;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------- timeline */
+
+.dv4-spine {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.dv4-spine li {
+  border-left: 2px solid var(--dv4-hairline);
+  margin: 0;
+  padding: 0 0 1rem 1.2rem;
+  position: relative;
+}
+
+.dv4-spine li::before {
+  background: var(--dv4-ink-faint);
+  border-radius: 50%;
+  content: '';
+  height: 0.45rem;
+  left: -0.25rem;
+  position: absolute;
+  top: 0.5rem;
+  width: 0.45rem;
+}
+
+.dv4-spine li[data-known='true'] {
+  border-left-color: var(--dv4-lane-personal);
+}
+
+.dv4-spine li[data-known='true']::before {
+  background: var(--dv4-lane-personal);
+}
+
+.dv4-spine-label {
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------- bands */
+
+/* Risk bands. Reserved styling for the urgent class only; everything else stays neutral. */
+.dv4-bands {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+}
+
+.dv4-band {
+  border: 1px solid var(--dv4-hairline);
+  border-left: 4px solid var(--dv4-ink-faint);
+  border-radius: 10px;
+  padding: 0.75rem 0.95rem;
+}
+
+.dv4-band[data-urgent='true'] {
+  border-left-color: #b3261e;
+}
+
+.dv4-band[data-action='professional_discussion'] {
+  border-left-color: var(--dv4-caution);
+}
+
+.dv4-band-head {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+/* ---------------------------------------------------------------- ladder */
+
+.dv4-ladder {
+  display: grid;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.dv4-ladder li {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 10px;
+  display: grid;
+  gap: 0.2rem 1rem;
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+}
+
+@media (min-width: 48rem) {
+  .dv4-ladder li {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+}
+
+.dv4-ladder-tier {
+  color: var(--dv4-ink-muted);
+  font-size: 0.78rem;
+}
+
+/* ------------------------------------------------------------- disclosure */
+
+.dv4-more {
+  border-top: 1px solid var(--dv4-hairline);
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.dv4-more > summary {
+  color: var(--dv4-accent);
+  cursor: pointer;
+  font-size: 0.84rem;
+  list-style: none;
+  min-height: 1.6rem;
+  padding: 0.25rem 0;
+}
+
+.dv4-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.dv4-more > summary::before {
+  content: '▸ ';
+}
+
+.dv4-more[open] > summary::before {
+  content: '▾ ';
+}
+
+.dv4-more > summary:hover {
+  text-decoration: underline;
+}
+
+.dv4-more-body {
+  font-size: 0.88rem;
+  padding-top: 0.45rem;
+}
+
+.dv4-sources {
+  font-size: 0.8rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.dv4-sources li {
+  border-left: 2px solid var(--dv4-hairline);
+  color: var(--dv4-ink-soft);
+  margin-bottom: 0.35rem;
+  padding-left: 0.6rem;
+}
+
+/* A 15 px line box is not a touch target. Padding takes every source link past 24 px. */
+.dv4-sources a {
+  display: inline-block;
+  line-height: 1.5;
+  min-height: 1.5rem;
+  padding-block: 0.28rem;
+}
+
+/* ----------------------------------------------------------------- truth */
+
+.dv4-truth {
+  background: var(--dv4-raised);
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 12px;
+  display: grid;
+  gap: 0.55rem 1.25rem;
+  grid-template-columns: 1fr;
+  margin: 1.35rem 0 0;
+  padding: 0.95rem 1.1rem;
+}
+
+@media (min-width: 44rem) {
+  .dv4-truth {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+}
+
+.dv4-truth dt {
+  color: var(--dv4-ink-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.dv4-truth dd {
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- purpose */
+
+.dv4-purpose {
+  border: 0;
+  margin: 1.5rem auto 0;
+  max-width: var(--dv4-canvas);
+  padding: 0;
+}
+
+.dv4-purpose legend {
+  color: var(--dv4-ink-faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.dv4-purpose ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+}
+
+.dv4-purpose li {
+  margin: 0;
+}
+
+.dv4-purpose a {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 999px;
+  color: var(--dv4-ink);
+  display: inline-block;
+  /* Smaller on a phone so the five choices take two rows, not four, and the opening sentence
+     still reaches the first viewport at 390 x 844. */
+  font-size: 0.78rem;
+  min-height: 1.6rem;
+  padding: 0.32rem 0.7rem;
+  text-decoration: none;
+}
+
+@media (min-width: 40rem) {
+  .dv4-purpose a {
+    font-size: 0.85rem;
+    min-height: 2rem;
+    padding: 0.42rem 0.85rem;
+  }
+}
+
+.dv4-purpose a:hover {
+  background: var(--dv4-accent-soft);
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------- concepts */
+
+.dv4-concepts {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .dv4-concepts {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+
+.dv4-concept {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+}
+
+.dv4-concept-term {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.dv4-concept svg {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ----------------------------------------------------------------- notes */
+
+.dv4-note {
+  color: var(--dv4-ink-muted);
+  font-size: 0.85rem;
+}
+
+.dv4-callout {
+  border: 1px solid var(--dv4-hairline);
+  border-left: 3px solid var(--dv4-lane-uncertainty);
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 0.7rem 0.95rem;
+}
+
+.dv4-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.dv4-absence {
+  border: 1px dashed var(--dv4-hairline);
+  border-radius: 10px;
+  color: var(--dv4-ink-soft);
+  margin-top: 1rem;
+  padding: 0.8rem 0.95rem;
+}
+
+.dv4-foot {
+  border-top: 1px solid var(--dv4-hairline);
+  color: var(--dv4-ink-muted);
+  font-size: 0.85rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+}
+
+/* -------------------------------------------------------------- technical */
+
+.dv4-technical {
+  border-top: 1px solid var(--dv4-hairline);
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+}
+
+.dv4-technical .cd-root,
+.dv4-technical .dv3-root {
+  font-size: 0.92rem;
+  max-width: none;
+  padding: 0;
+}
+
+/* ------------------------------------------------------------ next rail */
+
+.dv4-next {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.dv4-next li {
+  margin: 0;
+}
+
+.dv4-next a {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 10px;
+  color: var(--dv4-ink);
+  display: block;
+  min-height: 2.5rem;
+  padding: 0.65rem 0.9rem;
+  text-decoration: none;
+}
+
+.dv4-next a:hover {
+  border-color: var(--dv4-accent);
+}
+
+.dv4-next-why {
+  color: var(--dv4-ink-muted);
+  display: block;
+  font-size: 0.76rem;
+  margin-top: 0.15rem;
+}
+
+/* ------------------------------------------------------------------ misc */
+
+.dv4-visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.dv4-root :focus-visible {
+  outline: 2px solid var(--dv4-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv4-root *,
+  .dv4-root *::before,
+  .dv4-root *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ dark */
+
+/*
+ * The document shell paints a fixed light ground, so the dark ramp is attached to an explicit
+ * choice only, exactly as lib/corpus/tokens.css does.
+ */
+:root[data-theme='dark'] .dv4-root {
+  --dv4-lane-body: #9aa6e8;
+  --dv4-lane-human: #7cbaff;
+  --dv4-lane-personal: #6cc0a0;
+  --dv4-lane-uncertainty: #e0c26a;
+  --dv4-lane-community: #b79ae0;
+}

@@ -10,6 +10,7 @@ import './globals.css'
 import '@/lib/corpus/tokens.css'
 import '@/lib/corpus/dossier.css'
 import '@/lib/dossier-v3/dossier-v3.css'
+import '@/lib/dossier-v4/compass.css'
 
 const siteOrigin = configuredSiteOrigin()
 const analyticsMeasurementId = googleAnalyticsMeasurementId(

@@ -64,15 +64,21 @@ function parseArgs(argv: string[]): Args {
 async function pageFacts(page: Page): Promise<Record<string, unknown>> {
   return page.evaluate(() => {
     const main = document.querySelector('main')
-    const technical = document.getElementById('evidence-receipts')
+    // The reader layer is everything outside the two explicitly labelled technical sections. Raw
+    // vocabulary and record identifiers are allowed inside those and nowhere else, so the two are
+    // audited separately rather than together.
+    const technical = ['evidence-receipts', 'technical-record', 'deep-evidence']
+      .map((id) => document.getElementById(id))
+      .filter((node): node is HTMLElement => node !== null)
     const walker = main ? document.createTreeWalker(main, NodeFilter.SHOW_TEXT) : null
     const parts: string[] = []
     const readerParts: string[] = []
     while (walker && walker.nextNode()) {
-      const value = walker.currentNode.textContent?.trim()
+      const node = walker.currentNode
+      const value = node.textContent?.trim()
       if (!value) continue
       parts.push(value)
-      if (!technical || !technical.contains(walker.currentNode)) readerParts.push(value)
+      if (!technical.some((section) => section.contains(node))) readerParts.push(value)
     }
     const headings = Array.from(document.querySelectorAll('h1, h2, h3')).map(
       (node) => `${node.tagName.toLowerCase()}:${node.textContent?.trim().slice(0, 80) ?? ''}`,

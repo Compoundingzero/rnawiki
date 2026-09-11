@@ -26,6 +26,7 @@ import type { BoundLegacyTenSecondAnswer } from '@/lib/ten-second-answer-overrid
 import type { AuditPoint, ClinicalTrialRecord, DrugDossier, MechanismStep } from '@/lib/types'
 
 import { conceptsForPage, type Concept } from './concepts'
+import { humaniseReaderList, readerText } from './reader-text'
 import { COMPASS_COPY, nothingFoundLine, registeredOutcomeLine, type TruthTerms } from './copy'
 import {
   classifyOutcomeTerms,
@@ -273,6 +274,8 @@ export interface IdentityStrip {
 export interface ActionHero {
   state: SectionState
   simpleAction: Statement
+  /** The rest of the recorded explanation, at reading size under the display sentence. */
+  actionDetail: Statement
   bodyLocation: Statement
   immediateChange: Statement
   whyPeopleCare: Statement
@@ -679,6 +682,66 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
 
 /* ----------------------------------------------------------------- hero */
 
+/**
+ * Read the kind of result out of the result sentence itself, using the same ordering the outcome
+ * classifier uses: a life outcome beats a function, a function beats a performance measure, and a
+ * laboratory value is last. A sentence that names none of them stays unknown, because guessing here
+ * would turn a muscle biopsy into a health benefit on the first screen.
+ */
+function outcomeTypeFromText(text: string, origin: StatementOrigin): string {
+  if (origin === 'contract_sentence' || origin === 'absent') {
+    return 'No result is published, so no kind of result applies yet'
+  }
+  const lower = text.toLowerCase()
+  if (/\b(surviv|mortalit|death|lifespan|heart attack|stroke)\b/.test(lower)) {
+    return 'Living longer, or avoiding a major event'
+  }
+  if (/\b(function|capacity|disabilit|walking|independen)\b/.test(lower)) {
+    return 'What a body can do day to day'
+  }
+  if (/\b(power|strength|performance|repetition|bench|squat|sprint|endurance)\b/.test(lower)) {
+    return 'Measured performance'
+  }
+  if (/\b(symptom|pain|fatigue|mood|sleep|quality of life)\b/.test(lower)) {
+    return 'Symptoms and quality of life'
+  }
+  if (/\b(muscle|biops|phosphocreatine|concentration|content|tissue)\b/.test(lower)) {
+    return 'A step measured inside a person'
+  }
+  if (/\b(cholesterol|glucose|blood|serum|mass|density|weight|marker)\b/.test(lower)) {
+    return 'A number that stands in for health'
+  }
+  return 'The kind of result is not recorded'
+}
+
+/**
+ * Of the findings written into a record, pick the one closest to something a person would notice,
+ * using the staircase order. Taking the first entry instead would have led the creatine page with a
+ * muscle biopsy measurement while a twelve-week randomised strength result sat further down the
+ * same list. Ties keep the recorded order, so the choice is stable.
+ */
+function strongestMeasuredFinding(findings: readonly string[]): string | undefined {
+  const rank = (text: string): number => {
+    const lower = text.toLowerCase()
+    if (/\b(surviv|mortalit|death|lifespan|heart attack|stroke)\b/.test(lower)) return 6
+    if (/\b(function|capacity|disabilit|walking|independen)\b/.test(lower)) return 5
+    if (/\b(bench|squat|repetition|power|strength|sprint|performance)\b/.test(lower)) return 4
+    if (/\b(symptom|pain|fatigue|mood|sleep|quality of life)\b/.test(lower)) return 3
+    if (/\b(mass|density|cholesterol|glucose|blood|serum)\b/.test(lower)) return 2
+    return 1
+  }
+  let best: string | undefined
+  let bestRank = -1
+  for (const finding of findings) {
+    const value = rank(finding)
+    if (value > bestRank) {
+      bestRank = value
+      best = finding
+    }
+  }
+  return best
+}
+
 function buildHero(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
@@ -691,9 +754,11 @@ function buildHero(
 
   // What it changes in the body. The authored explanation is the only thing that answers this in
   // reader language; where it is absent the hero says so rather than reaching for an abstract.
+  // One sentence carries the display line. Two sentences at display size filled six lines of the
+  // first screen and pushed the human result below the fold, so the rest reads at body size.
   const simpleAction = legacy?.laymanHowItWorks
     ? statement(
-        firstSentences(legacy.laymanHowItWorks, 2),
+        readerText(firstSentences(legacy.laymanHowItWorks, 1)),
         'authored_record',
         'source_checked_draft',
         'A person wrote this explanation into the record, with the studies named in the path below.',
@@ -704,9 +769,24 @@ function buildHero(
         'awaiting_review',
       )
 
+  const detailText = legacy?.laymanHowItWorks
+    ? firstSentences(legacy.laymanHowItWorks, 3)
+        .slice(firstSentences(legacy.laymanHowItWorks, 1).length)
+        .trim()
+    : ''
+  const actionDetail = detailText
+    ? statement(
+        readerText(detailText),
+        'authored_record',
+        'source_checked_draft',
+        'The rest of the recorded explanation of what happens in the body.',
+        provenance.slice(0, 3),
+      )
+    : absentStatement('No further explanation is recorded.', 'no_qualifying_evidence')
+
   const bodyLocation = legacy?.anatomicalSite
     ? statement(
-        legacy.anatomicalSite,
+        readerText(legacy.anatomicalSite),
         'authored_record',
         'source_checked_draft',
         'The site of action recorded on this substance.',
@@ -717,7 +797,7 @@ function buildHero(
     steps.find((step) => step.visualStage === 'target_binding') ?? steps[1] ?? steps[0]
   const immediateChange = firstStep
     ? statement(
-        firstStep.laymanDesc,
+        readerText(firstStep.laymanDesc),
         'authored_record',
         'source_checked_draft',
         `Step ${firstStep.step} of the recorded path through the body.`,
@@ -734,13 +814,27 @@ function buildHero(
       )
     : legacy?.patientFriendlyIndication
       ? statement(
-          legacy.patientFriendlyIndication,
+          readerText(legacy.patientFriendlyIndication),
           'authored_record',
           'source_checked_draft',
           'The recorded use, written for a reader without medical training. Not signed off.',
         )
       : absentStatement('No recorded use is stored in reader language.')
 
+  /*
+   * The strongest result, and the limit beside it.
+   *
+   * Three tiers, in falling order of how much review each has had. The approved first-read answer
+   * is best: a reviewer signed the exact pairing of that sentence with this record's source
+   * surface. It resolves only while the fingerprint still matches, and on this branch two of the
+   * four gold records have changed since approval, so their answers correctly stop resolving.
+   *
+   * Rather than dropping to the contract sentence and leaving the first screen saying only that
+   * nothing is reviewed, the second tier reaches for what a person wrote into the record, under a
+   * label that says exactly that. The third tier is the contract sentence. The point of the tiers
+   * is that they are visibly different to a reader, not that they are interchangeable.
+   */
+  const measured = legacy?.measuredVsInferredSummary
   const strongestGoalResult = bound?.copy.whatStudiesFound
     ? statement(
         bound.copy.whatStudiesFound,
@@ -748,12 +842,20 @@ function buildHero(
         'reviewed_content',
         'A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet.',
       )
-    : statement(
-        v3.contract.noReviewedConclusionSentence,
-        'contract_sentence',
-        'awaiting_review',
-        'No reviewed claim names a result for any goal on this record.',
-      )
+    : strongestMeasuredFinding(measured?.strictlyMeasured ?? [])
+      ? statement(
+          readerText(strongestMeasuredFinding(measured?.strictlyMeasured ?? []) as string),
+          'authored_record',
+          'source_checked_draft',
+          'The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval.',
+          provenance.slice(0, 3),
+        )
+      : statement(
+          v3.contract.noReviewedConclusionSentence,
+          'contract_sentence',
+          'awaiting_review',
+          'No reviewed claim names a result for any goal on this record.',
+        )
 
   const principalUncertainty = bound?.copy.biggestLimit
     ? statement(
@@ -762,7 +864,17 @@ function buildHero(
         'reviewed_content',
         'The limit a reviewer approved as the one that matters most here.',
       )
-    : absentStatement('No reviewed statement of the main limit exists.', 'awaiting_review')
+    : (measured?.whatFailedInitially?.[0] ?? measured?.unsupportedInferences?.[0])
+      ? statement(
+          readerText(
+            (measured?.whatFailedInitially?.[0] ?? measured?.unsupportedInferences?.[0]) as string,
+          ),
+          'authored_record',
+          'source_checked_draft',
+          'A failure or an overreach recorded against this substance. Not signed off as a reviewed claim.',
+          provenance.slice(0, 3),
+        )
+      : absentStatement('No statement of the main limit is recorded.', 'awaiting_review')
 
   // v3 calls the boundary "breaks"; v4 renders it as "where this stops being true". An analogy
   // without its boundary is never carried across.
@@ -772,7 +884,7 @@ function buildHero(
 
   const openingWordCount =
     words(simpleAction.text) +
-    words(immediateChange.text) +
+    words(actionDetail.text) +
     words(whyPeopleCare.text) +
     words(strongestGoalResult.text)
 
@@ -783,14 +895,18 @@ function buildHero(
         ? 'source_checked_draft'
         : 'awaiting_review',
     simpleAction,
+    actionDetail,
     bodyLocation,
     immediateChange,
     whyPeopleCare,
     analogy,
     strongestGoalResult,
+    // What kind of thing the headline result is. A reviewed claim names its own outcome class; with
+    // none, the kind is read from the strongest result's own words, and stays unknown if they do
+    // not say. It is never assumed to be the kind a reader would most want.
     outcomeType:
       v3.doesItWork.byGoal[0]?.cards[0]?.outcomeLabel ??
-      'No reviewed result, so no outcome type applies yet',
+      outcomeTypeFromText(strongestGoalResult.text, strongestGoalResult.origin),
     principalUncertainty,
     supervision: v3.supervision.text,
     openingWordCount,
@@ -972,15 +1088,15 @@ function buildHumanResults(
       const role = nct ? inputs.roleAggregate?.rows.find((row) => row.nctId === nct) : undefined
       return {
         id: `result-${index + 1}`,
-        question: trial.primaryEndpoint,
-        population: trial.trialId,
+        question: readerText(trial.primaryEndpoint),
+        population: readerText(trial.trialId),
         intervention: legacy?.name ?? v3.name,
         formulation: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
         route: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
         comparator: /placebo/i.test(trial.phase)
           ? 'A dummy treatment'
           : 'Not recorded for this study',
-        outcome: trial.primaryEndpoint,
+        outcome: readerText(trial.primaryEndpoint),
         outcomeClassLabel: /surviv|death|mortalit/i.test(trial.primaryEndpoint)
           ? 'Living longer, or avoiding a major event'
           : /function|capacit|decline/i.test(trial.primaryEndpoint)
@@ -991,14 +1107,15 @@ function buildHumanResults(
         duration:
           /\b(\d+)\s*(year|month|week)s?\b/i.exec(trial.primaryEndpoint)?.[0] ??
           'Not recorded in this summary',
-        absoluteResult: trial.statisticalPValue,
+        absoluteResult: readerText(trial.statisticalPValue),
         relativeResult: 'Not recorded in this summary',
         confidenceInterval:
           /95%\s*C[LI][^.]*/i.exec(trial.statisticalPValue)?.[0] ?? 'Not recorded in this summary',
-        studyDesign: trial.phase,
+        studyDesign: readerText(trial.phase),
         replication: trial.independentReplicationStatus ?? 'Not recorded',
-        primaryLimitation:
-          trial.unreportedAdverseSignals ?? 'No limitation is recorded for this study.',
+        primaryLimitation: trial.unreportedAdverseSignals
+          ? readerText(trial.unreportedAdverseSignals)
+          : 'No limitation is recorded for this study.',
         applicabilityLimitation: role
           ? `RNAWiki classified this registered study as ${role.role === 'experimental_intervention' ? 'testing this substance' : 'not clearly testing this substance'}.`
           : 'This study is recorded from the curated record, not from the registry match.',
@@ -1231,9 +1348,9 @@ function buildJourney(
     ...steps.map((step) => ({
       id: STAGE_LABELS[step.visualStage]?.node ?? `step-${step.step}`,
       stage: STAGE_LABELS[step.visualStage]?.label ?? `Step ${step.step}`,
-      label: step.title,
-      plain: step.laymanDesc,
-      technical: step.molecularDetail,
+      label: readerText(step.title),
+      plain: readerText(step.laymanDesc),
+      technical: readerText(step.molecularDetail),
     })),
   ]
   // An edge is verified when the step it carries names a measurement in people. The curated steps
@@ -1397,11 +1514,13 @@ function buildApplicability(
 ): DossierV4ViewModel['applicability'] {
   const context = inputs.legacyRecord?.conditionContext
   const summary = inputs.legacyRecord?.measuredVsInferredSummary
-  const included = context?.whoTakesThis ? [context.whoTakesThis] : []
-  const transferLimits = [
-    ...(summary?.whatFailedInitially ?? []),
-    ...v3.applicability.intro.filter((line) => line.length > 0),
-  ].slice(0, 8)
+  const included = context?.whoTakesThis ? humaniseReaderList([context.whoTakesThis]).items : []
+  const transferLimits = humaniseReaderList(
+    [
+      ...(summary?.whatFailedInitially ?? []),
+      ...v3.applicability.intro.filter((line) => line.length > 0),
+    ].slice(0, 8),
+  ).items
   return {
     state:
       included.length || transferLimits.length ? 'source_checked_draft' : 'no_qualifying_evidence',
@@ -1504,7 +1623,7 @@ function buildPractical(
     ),
     productQuality: delivery?.description
       ? statement(
-          firstSentences(delivery.description, 2),
+          readerText(firstSentences(delivery.description, 2)),
           'authored_record',
           'source_checked_draft',
           'Recorded notes on how this is sold and what that means for what is in the pack.',
@@ -1546,7 +1665,7 @@ function buildSafety(
   }))
   if (delivery?.safetyProfile) {
     entries.unshift({
-      text: delivery.safetyProfile,
+      text: readerText(delivery.safetyProfile),
       evidenceSource: 'authored_record',
       evidenceSourcePlain: 'Written into the record from the studies named on this page',
       action: 'professional_discussion',
@@ -1672,7 +1791,7 @@ function buildFormCheck(
       : absentStatement('The route studied is not recorded.'),
     marketedForms: delivery?.description
       ? statement(
-          firstSentences(delivery.description, 3),
+          readerText(firstSentences(delivery.description, 3)),
           'authored_record',
           'source_checked_draft',
           'Recorded notes on which forms are sold and how they compare.',
@@ -1829,7 +1948,7 @@ function buildClaimDecoder(
   const unsupported = summary?.unsupportedInferences ?? []
   const provenance = citationsFromProvenance(inputs.legacyRecord?.sourceProvenance)
   const claims: DecodedClaim[] = unsupported.slice(0, 8).map((claim) => ({
-    popularClaim: claim,
+    popularClaim: readerText(claim),
     whyPlausible:
       'It follows from something real on this page: a body step, an animal result or a related finding.',
     claimSourceType: 'Recorded in this file as a claim that goes past what was measured.',
