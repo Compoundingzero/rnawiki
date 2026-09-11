@@ -130,7 +130,12 @@ fieldset, the v3 `Navigator`, and the `DeepEvidence` section wrapper. v4 replace
 
 ## Status at the end of this session
 
-All six phases are done. The full `npm run gate` chain passes with exit code 0.
+All six phases are done. The full `npm run gate` chain was run twice. The first run, at commit
+`ebb4db1`, passed with exit code 0. The second, at the final commit, exited 1 on a single browser
+test: `tests/e2e/legacy-identity-correction.spec.ts` failed with `apiRequestContext.post: read
+ECONNRESET`. That spec does not touch dossier-v4, passes on its own, and the whole 66-test browser
+suite passes on re-run, so it is a connection flake rather than a logic failure. Every other stage
+passed in both runs.
 
 | Check | Result |
 | --- | --- |

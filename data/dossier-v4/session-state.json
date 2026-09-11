@@ -18,7 +18,8 @@
     "npm run build",
     "npm run test:e2e (66 passed)",
     "npx tsx scripts/dossier-v4/capture.ts --label before / --label after",
-    "npx tsx scripts/dossier-v4/check-gate.ts --slugs creatine-monohydrate,semaglutide,metformin,inclisiran"
+    "npx tsx scripts/dossier-v4/check-gate.ts --slugs creatine-monohydrate,semaglutide,metformin,inclisiran",
+    "npm run gate twice: exit 0 at ebb4db1, exit 1 at f252e84 from the ECONNRESET flake above; npm run test:e2e re-run at f252e84 passes 66/66"
   ],
   "tests": {
     "typecheck": "passed",
@@ -35,7 +36,8 @@
     "playwright": "config sets DOSSIER_V3_SLUGS=e2e-v3-* and DOSSIER_V4_SLUGS=e2e-v4-*"
   },
   "known_failures": [
-    "axe target-size at 390 px and 320 px reports 2 and 3 nodes on every page of the site. All of them are DocumentFooter links (/browse, /h, /how-it-works) at 14.7 px tall. Present on the v3 baseline too. Not fixed here: the footer is shared with the home page, which this rebuild may not redesign. Fix is padding-block on the footer link rule."
+    "axe target-size at 390 px and 320 px reports 2 and 3 nodes on every page of the site. All of them are DocumentFooter links (/browse, /h, /how-it-works) at 14.7 px tall. Present on the v3 baseline too. Not fixed here: the footer is shared with the home page, which this rebuild may not redesign. Fix is padding-block on the footer link rule.",
+    "tests/e2e/legacy-identity-correction.spec.ts failed once inside a full gate run with \"apiRequestContext.post: read ECONNRESET\". It is a pre-existing spec that does not touch dossier-v4. It passes on its own and the whole 66-test browser suite passes on re-run, so it is a connection flake rather than a logic failure. Worth watching: two gate runs, one hit."
   ],
   "medical_content_blockers": [
     "reviewed_claims holds 0 rows for every medicine in rnawiki_rebuild, so no v4 page renders a section in the reviewed_content state from a claim. The hero falls to the authored tier, labelled as written into the record and not signed off.",
