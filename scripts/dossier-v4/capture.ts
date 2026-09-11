@@ -16,7 +16,7 @@ import { join, resolve } from 'node:path'
 import AxeBuilder from '@axe-core/playwright'
 import { chromium, type Browser, type Page } from '@playwright/test'
 
-import { auditCopy } from '@/lib/dossier-v3/copy-contract'
+import { auditCopy, sentenceStats } from '@/lib/dossier-v3/copy-contract'
 
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 1200 },
@@ -70,16 +70,68 @@ async function pageFacts(page: Page): Promise<Record<string, unknown>> {
     const technical = ['evidence-receipts', 'technical-record', 'deep-evidence']
       .map((id) => document.getElementById(id))
       .filter((node): node is HTMLElement => node !== null)
-    const walker = main ? document.createTreeWalker(main, NodeFilter.SHOW_TEXT) : null
-    const parts: string[] = []
-    const readerParts: string[] = []
-    while (walker && walker.nextNode()) {
-      const node = walker.currentNode
-      const value = node.textContent?.trim()
-      if (!value) continue
-      parts.push(value)
-      if (!technical.some((section) => section.contains(node))) readerParts.push(value)
+
+    /*
+     * Text is collected per block, not as one run of text nodes.
+     *
+     * Joining every text node with a space makes a table row read as one sentence: the creatine
+     * goal matrix produced a "131-word sentence" that is nine separate cells a reader meets one at
+     * a time. That inflated the over-30-word count on both the v3 and the v4 surface and hid the
+     * genuinely long sentences underneath it. Each block's text is terminated before the next one
+     * starts, so the sentence audit counts sentences a reader could actually read aloud.
+     *
+     * Written as one iterative walk with an explicit stack rather than a recursive helper: esbuild
+     * names function expressions and injects a `__name` helper that does not exist in the page.
+     */
+    const BLOCK =
+      'P,LI,TD,TH,DT,DD,H1,H2,H3,H4,H5,H6,SUMMARY,FIGCAPTION,CAPTION,BLOCKQUOTE,LABEL,LEGEND'
+    const blockTags = new Set(BLOCK.split(','))
+    const blockSelector = BLOCK.toLowerCase().split(',').join(',')
+    const allBlocks: string[] = []
+    const readerBlocks: string[] = []
+    const stack: Element[] = main ? [main] : []
+    while (stack.length > 0) {
+      const node = stack.pop()
+      if (!node) continue
+      /*
+       * A block counts only when it holds no other block. A list item that contains four
+       * paragraphs is a container, not a sentence: taking its whole text merged a stage label, a
+       * step title, a description and an evidence note into one forty-word "sentence" that no
+       * reader meets as one.
+       */
+      const isLeafBlock = blockTags.has(node.tagName) && node.querySelector(blockSelector) === null
+      if (isLeafBlock) {
+        /*
+         * Text nodes joined with a space, not `textContent`. `textContent` runs adjacent elements
+         * together with no separator, which invented words: a cell holding "Not recorded" beside a
+         * screen-reader sentence beginning "Harms were not..." produced the token "recordedHarms",
+         * which then failed the internal-key check as a camelCase key that nobody had written.
+         */
+        const pieces: string[] = []
+        const inner = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
+        while (inner.nextNode()) {
+          // Decorative glyphs are hidden from the accessibility tree and are not reader copy. They
+          // also break the sentence splitter, which needs a capital after a full stop.
+          const owner = inner.currentNode.parentElement
+          if (owner && owner.closest('[aria-hidden="true"]')) continue
+          const piece = inner.currentNode.textContent?.trim()
+          if (piece) pieces.push(piece)
+        }
+        const value = pieces.join(' ').replace(/\s+/g, ' ').trim()
+        if (value) {
+          const terminated = /[.!?:;]$/.test(value) ? value : `${value}.`
+          allBlocks.push(terminated)
+          if (!technical.some((section) => section.contains(node))) readerBlocks.push(terminated)
+        }
+        continue
+      }
+      const children = node.children
+      for (let index = children.length - 1; index >= 0; index -= 1) {
+        const child = children[index]
+        if (child) stack.push(child)
+      }
     }
+
     const headings = Array.from(document.querySelectorAll('h1, h2, h3')).map(
       (node) => `${node.tagName.toLowerCase()}:${node.textContent?.trim().slice(0, 80) ?? ''}`,
     )
@@ -89,8 +141,10 @@ async function pageFacts(page: Page): Promise<Record<string, unknown>> {
     return {
       mains: document.querySelectorAll('main').length,
       headings,
-      text: parts.join(' '),
-      readerText: readerParts.join(' '),
+      text: allBlocks.join(' '),
+      readerText: readerBlocks.join(' '),
+      blocks: allBlocks,
+      readerBlocks,
       details: document.querySelectorAll('details').length,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth,
@@ -163,6 +217,43 @@ async function main(): Promise<void> {
     const desktop = shots[0] as Record<string, unknown>
     const copy = auditCopy(String(desktop.text ?? ''))
     const readerCopy = auditCopy(String(desktop.readerText ?? ''))
+    /*
+     * Sentence length is counted per block, not over the joined page.
+     *
+     * `splitSentences` only breaks when the next character is a capital or a digit, so a list of
+     * lowercase registry terms after a paragraph reads as one sentence of forty words that nobody
+     * ever meets. A reader meets one block at a time, so each block is audited on its own and the
+     * counts are summed.
+     */
+    const blockStats = (
+      blocks: unknown,
+    ): { sentences: number; over20: number; over30: number; longest: string[] } => {
+      const list = Array.isArray(blocks) ? (blocks as string[]) : []
+      let sentences = 0
+      let over20 = 0
+      let over30 = 0
+      const longest: Array<{ words: number; text: string }> = []
+      for (const block of list) {
+        const stats = sentenceStats(block, 1)
+        sentences += stats.sentences
+        over20 += stats.over20
+        over30 += stats.over30
+        const top = stats.longest?.[0]
+        if (top) longest.push(top)
+      }
+      longest.sort((left, right) => right.words - left.words)
+      return {
+        sentences,
+        over20,
+        over30,
+        longest: longest
+          .filter((entry) => entry.words > 30)
+          .slice(0, 12)
+          .map((entry) => `${entry.words}: ${entry.text.slice(0, 200)}`),
+      }
+    }
+    const readerSentences = blockStats(desktop.readerBlocks)
+    const pageSentences = blockStats(desktop.blocks)
     const record = {
       slug,
       url,
@@ -188,18 +279,19 @@ async function main(): Promise<void> {
         internalKeys: readerCopy.internalKeys.map((hit) => hit.match).slice(0, 20),
         forbiddenPhrases: readerCopy.forbiddenPhrases.map((hit) => hit.match),
         unscopedCertainty: readerCopy.unscopedCertainty.map((hit) => hit.match),
-        sentences: readerCopy.sentences.sentences,
-        over20: readerCopy.sentences.over20,
-        over30: readerCopy.sentences.over30,
+        sentences: readerSentences.sentences,
+        over20: readerSentences.over20,
+        over30: readerSentences.over30,
+        longestOver30: readerSentences.longest,
         undefinedAcronyms: readerCopy.undefinedAcronyms.slice(0, 40),
       },
       copy: {
         internalKeys: copy.internalKeys.map((hit) => hit.match).slice(0, 20),
         forbiddenPhrases: copy.forbiddenPhrases.map((hit) => hit.match),
         unscopedCertainty: copy.unscopedCertainty.map((hit) => hit.match),
-        sentences: copy.sentences.sentences,
-        over20: copy.sentences.over20,
-        over30: copy.sentences.over30,
+        sentences: pageSentences.sentences,
+        over20: pageSentences.over20,
+        over30: pageSentences.over30,
         undefinedAcronyms: copy.undefinedAcronyms.slice(0, 40),
       },
     }

@@ -60,41 +60,70 @@ the exact next command.
 
 ## Phase 0 — baseline measured (2026-09-11)
 
-Before screenshots and page facts: `data/dossier-v4/benchmark/before/` at 1440x1200, 390x844 and
-320x800 for the four gold slugs, served by the v3 flag from the local build.
+Before and after screenshots and page facts: `data/dossier-v4/benchmark/{before,after}/` at
+1440x1200, 390x844 and 320x800 for the four gold slugs, both captured with the same script against
+the same local build.
 
-What the baseline shows for `creatine-monohydrate`:
+### A correction to the first measurement
 
-| Measure | v3 baseline |
-| --- | --- |
-| Headings on the page | 62 |
-| Sections | 24 |
-| Reader sentences over 30 words | 37 of 291 |
-| Internal keys leaking into the reader layer | 5 |
-| axe violations at 390 px | 1 (target-size, 2 nodes) |
-| axe violations at 320 px | 1 (target-size, 3 nodes) |
-| Horizontal overflow at 320 px | none |
+The first Phase 0 capture reported five internal keys leaking into the v3 reader layer, including
+the canonical key `K1:MU72812GK0`. **That was wrong, and the error was mine.** The capture excluded
+`#evidence-receipts` as the technical layer, which is a v4 section id; on a v3 page the technical
+layer is `#deep-evidence`, so v3's entire technical disclosure was counted as reader text. Those
+keys are inside the labelled disclosure, where the project's copy rules allow them.
 
-Two of those are defects v4 has to fix, not just design around. The canonical identity key
-`K1:MU72812GK0` and the stored field name `compound_record` both reach reader text today, which is
-the "internal database keys must never render publicly" rule failing in production code. Touch
-targets under 24 px fail at both mobile widths.
+Two further measurement faults were found and fixed while capturing the after set:
 
-First viewport today: a serif medicine name, a supervision line, a link list, then a two-column
+- joining every text node with a space made a table row read as one 131-word sentence, and made
+  `textContent` invent camelCase tokens such as `recordedHarms` out of two adjacent cells;
+- the shared sentence splitter only breaks before a capital, so a list of lowercase registry terms
+  read as one sentence of the paragraph above it.
+
+The capture now collects text per leaf block, joins each block's own text nodes with spaces, drops
+text hidden from the accessibility tree, and audits sentence length one block at a time. Both the
+before and after sets were re-captured with it, so the table below compares like with like.
+
+### The comparison, creatine-monohydrate
+
+| Measure | Before (v3) | After (v4) |
+| --- | --- | --- |
+| Sections | 24 | 37 |
+| Reader blocks | 436 | 1192 |
+| Reader sentences over 30 words | 6 | 10 |
+| Reader sentences over 20 words | 30 | 39 |
+| Internal keys in the reader layer | 0 | 0 |
+| Unscoped certainty words | 3 | 0 |
+| Horizontal overflow at 320 px | none | none |
+| axe violations from page markup | none | none |
+| axe violations from the site footer | target-size | target-size |
+
+The v4 page carries 2.7 times the reader content, so the over-30 count is lower as a proportion
+(1.4% against 0.8%). The ten that remain are five distinct sentences of stored curated prose that
+this rebuild may not rewrite: three mechanism details citing Harris and Volek, the recorded note on
+which creatine forms are sold, and the Tribulus correction reason. They are listed under
+medical_content_blockers in `data/dossier-v4/session-state.json` for a content reviewer.
+
+First viewport before: a serif medicine name, a supervision line, a link list, then a two-column
 grid of nine question cards whose first three visible answers are an identity sentence, an
 unreviewed legacy use sentence, and "RNAWiki has not yet published a reviewed conclusion for this
 use." A reader learns what the record lacks before learning what the substance does.
+
+First viewport after: one quiet identity line, five purpose anchors, then a display sentence saying
+what creatine does inside muscle, why people take it, the strongest recorded human result with its
+origin label, and the limit that matters most — for creatine, that a promising survival gain in a
+mouse model of amyotrophic lateral sclerosis did not appear in 175 patients.
 
 ### Component inventory
 
 **Preserve and reuse.** `components/document/DocumentShell`, `lib/document/render`,
 `lib/corpus/tokens.css`, `lib/dossier-v3/taxonomy.ts`, `claims.ts`, `copy-contract.ts`,
 `stored-keys.ts`, `trial-roles.ts`, `goals.ts`, `load.ts` inputs, migration 0034, the corrections
-ledger and the trial-role classifier. The v4 view model reads the same inputs.
+ledger and the trial-role classifier. `buildDossierV4` calls `buildDossierV3` rather than
+reimplementing it, so every safety rule v3 enforces is inherited.
 
-**Demote.** The v3 reader surface stays reachable behind its own flag but is no longer the newest
-surface. `QuestionBlock`, `ExactRecord`, `RelationsRows`, `HubRows`, `SourceList` and
-`RegistrationBlock` move into the v4 technical disclosure and out of the reader path.
+**Demote.** The v3 reader surface stays reachable behind its own flag. `QuestionBlock`,
+`ExactRecord`, `RelationsRows`, `HubRows`, `SourceList` and `RegistrationBlock` move into the v4
+technical disclosure and out of the reader path.
 
 **Retire from the primary path.** The v3 `DecisionCard` nine-field grid, the v3 `GoalLens`
 fieldset, the v3 `Navigator`, and the `DeepEvidence` section wrapper. v4 replaces all four.

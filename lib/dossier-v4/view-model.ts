@@ -610,6 +610,13 @@ function iso(value: Date | string | undefined | null): string | undefined {
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10)
 }
 
+/** What is left of a paragraph after the first `count` sentences, unchanged. */
+function remainderAfter(text: string | undefined, count: number): string {
+  if (!text) return ''
+  const head = firstSentences(text, count)
+  return text.slice(head.length).trim()
+}
+
 /** Cut a long authored paragraph at a sentence boundary without changing a word of what is kept. */
 function firstSentences(text: string, count: number): string {
   const parts = text.match(/[^.!?]+[.!?]+(\s|$)/g)
@@ -1791,13 +1798,33 @@ function buildFormCheck(
         : 'Evidence on this page does not automatically apply to this one.',
     }
   })
-  const corrections = inputs.corrections
-    .filter((correction) => correction.subjectKind !== 'page')
-    .map((correction) => ({
+  /*
+   * One entry per reason, not one per row.
+   *
+   * A single identity repair writes a row for each thing it touched: the creatine record carries
+   * six rows that share one sentence, and rendering them separately printed that 31-word
+   * explanation five times in a row. The subjects are listed together instead.
+   */
+  const byReason = new Map<string, { when: string; subjects: string[]; why: string }>()
+  for (const correction of inputs.corrections) {
+    if (correction.subjectKind === 'page') continue
+    const existing = byReason.get(correction.reason)
+    const subject = `${correction.action.replace(/_/g, ' ')}: ${correction.subjectRef}`
+    if (existing) {
+      existing.subjects.push(subject)
+      continue
+    }
+    byReason.set(correction.reason, {
       when: iso(correction.recordedAt) ?? '',
-      what: `${correction.action.replace(/_/g, ' ')}: ${correction.subjectRef}`,
+      subjects: [subject],
       why: correction.reason,
-    }))
+    })
+  }
+  const corrections = [...byReason.values()].map((entry) => ({
+    when: entry.when,
+    what: entry.subjects.join('; '),
+    why: entry.why,
+  }))
   return {
     state: entries.length || corrections.length ? 'source_checked_draft' : 'no_qualifying_evidence',
     exactFormStudied: delivery?.type
@@ -1816,14 +1843,16 @@ function buildFormCheck(
           'The route recorded for this substance.',
         )
       : absentStatement('The route studied is not recorded.'),
-    marketedForms: delivery?.description
+    // Not the first sentences again: "What taking it involves" already shows those, and printing
+    // the same paragraph twice on one page wastes the reader's attention and doubles its length.
+    marketedForms: remainderAfter(delivery?.description, 2)
       ? statement(
-          readerText(firstSentences(delivery.description, 3)),
+          readerText(remainderAfter(delivery?.description, 2)),
           'authored_record',
           'source_checked_draft',
-          'Recorded notes on which forms are sold and how they compare.',
+          'The rest of the recorded notes on which forms are sold and how they compare.',
         )
-      : absentStatement('Nothing is recorded about which forms are sold.'),
+      : absentStatement('Nothing further is recorded about which forms are sold.'),
     equivalenceEvidence: statement(
       COMPASS_COPY.identityMatters,
       'contract_sentence',
@@ -2330,7 +2359,10 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
       state: (v3.changes.length
         ? 'source_checked_draft'
         : 'no_qualifying_evidence') as SectionState,
-      entries: v3.changes,
+      // One entry per distinct explanation. A single identity repair writes a row for each thing
+      // it touched, and the creatine record's six rows share one 31-word sentence that read six
+      // times over on the page. The subjects are listed together and the sentence appears once.
+      entries: groupChangesByReason(v3.changes),
     },
     sections: [] as SectionMeta[],
     gates: [] as DossierV4ViewModel['gates'],
@@ -2382,6 +2414,36 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
   }
   model.nextQuestions = buildNextQuestions(model)
   return model
+}
+
+/**
+ * Collapse change rows that carry the same explanation. v3 composes each row as
+ * "<subject>: <reason>", so the reason is the tail after the first colon; rows that share one are
+ * merged and their subjects joined.
+ */
+function groupChangesByReason(
+  changes: DossierV3ViewModel['changes'],
+): DossierV3ViewModel['changes'] {
+  const grouped = new Map<
+    string,
+    { entry: DossierV3ViewModel['changes'][number]; subjects: string[] }
+  >()
+  for (const change of changes) {
+    const split = change.text.indexOf(': ')
+    const subject = split > 0 ? change.text.slice(0, split) : ''
+    const reason = split > 0 ? change.text.slice(split + 2) : change.text
+    const key = `${change.when}|${change.kind}|${reason}`
+    const existing = grouped.get(key)
+    if (existing) {
+      if (subject) existing.subjects.push(subject)
+      continue
+    }
+    grouped.set(key, { entry: { ...change, text: reason }, subjects: subject ? [subject] : [] })
+  }
+  return [...grouped.values()].map(({ entry, subjects }) => ({
+    ...entry,
+    text: subjects.length > 0 ? `${subjects.join('; ')}. ${entry.text}` : entry.text,
+  }))
 }
 
 function sectionReason(id: string, state: SectionState): string {

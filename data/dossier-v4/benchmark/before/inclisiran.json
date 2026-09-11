@@ -101,60 +101,27 @@
     }
   ],
   "readerLayers": {
-    "internalKeys": [
-      "halfLife",
-      "K1:UPC6BTX7PY "
-    ],
+    "internalKeys": [],
     "forbiddenPhrases": [],
     "unscopedCertainty": [
       "works",
       "works",
       "works"
     ],
-    "sentences": 224,
-    "over20": 55,
-    "over30": 29,
+    "sentences": 322,
+    "over20": 11,
+    "over30": 1,
+    "longestOver30": [
+      "31: Recorded use, not yet reviewed: Adjunct to diet and exercise to reduce LDL cholesterol in adults with hypercholesterolemia, and in patients aged 12 and older with heterozygous or homozygous familial h"
+    ],
     "undefinedAcronyms": [
-      "ALN",
-      "API",
-      "ARTG",
-      "ATC",
-      "AUC0",
-      "BE",
-      "BY",
-      "CAS",
-      "CC",
-      "CC0",
-      "CIMT",
-      "CL",
-      "DD",
-      "EMA",
-      "FCT",
-      "FDA",
+      "ASCVD",
       "FJ",
-      "INN",
-      "JAN",
-      "K1",
-      "KJX",
-      "KJX839",
       "KK",
-      "LATAM",
       "LDL",
-      "LEQVIO",
-      "LOWERS",
-      "MHRA",
-      "MI",
       "NCATS",
       "ORION",
-      "PCSSC",
-      "PHASE4",
-      "PMC",
-      "PMDA",
-      "POM",
-      "Q10",
-      "Q11",
-      "Q12",
-      "Q5"
+      "RNA"
     ]
   },
   "copy": {
@@ -168,9 +135,9 @@
       "works",
       "works"
     ],
-    "sentences": 224,
-    "over20": 55,
-    "over30": 29,
+    "sentences": 686,
+    "over20": 53,
+    "over30": 17,
     "undefinedAcronyms": [
       "ALN",
       "API",
@@ -208,10 +175,10 @@
       "PMC",
       "PMDA",
       "POM",
-      "Q10",
-      "Q11",
-      "Q12",
-      "Q5"
+      "Q8NBP7",
+      "RNA",
+      "SA",
+      "SAD"
     ]
   }
 }
