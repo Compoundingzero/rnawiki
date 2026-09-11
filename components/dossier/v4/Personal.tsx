@@ -393,6 +393,11 @@ export function FormRealityCheck({
             {formCheck.corrections.map((correction, index) => (
               <li key={`${correction.what}-${index}`}>
                 <strong>{correction.when}</strong> — {correction.what}. {correction.why}
+                {correction.fullReason !== correction.why ? (
+                  <Disclosure summary="The full recorded explanation" technical>
+                    <p>{correction.fullReason}</p>
+                  </Disclosure>
+                ) : null}
               </li>
             ))}
           </ul>

@@ -106,7 +106,7 @@
       "scrollWidth": 1440,
       "clientWidth": 1440,
       "axeViolations": [],
-      "htmlBytes": 222050
+      "htmlBytes": 222623
     },
     {
       "viewport": "mobile",
@@ -121,7 +121,7 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 222050
+      "htmlBytes": 222623
     },
     {
       "viewport": "narrow",
@@ -136,15 +136,15 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 222050
+      "htmlBytes": 222623
     }
   ],
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 1402,
-    "over20": 53,
+    "sentences": 1308,
+    "over20": 48,
     "over30": 21,
     "longestOver30": [
       "71: It is unknown whether RYBELSUS and OZEMPIC tablets cause thyroid C-cell tumors, including medullary thyroid carcinoma (MTC), in humans as human relevance of semaglutide-induced rodent thyroid C-cell t",
@@ -175,38 +175,37 @@
       "AM",
       "ATC",
       "BMI",
-      "C18",
       "CELL",
       "CI",
       "DOM",
-      "DPP",
       "FRDB",
       "GLP",
-      "GPCR",
       "JPH",
-      "MACE",
       "MEN",
       "MEN2",
       "NAION",
       "NCATS",
       "NEJM",
-      "NPY",
       "OATP1B1",
       "OF",
-      "POMC",
       "PROLINE",
       "RISK",
-      "S9",
       "SNAC",
-      "SP"
+      "SP",
+      "STEP",
+      "SUSTAIN",
+      "THYROID",
+      "TUMORS",
+      "WARNING",
+      "WEGOVY"
     ]
   },
   "copy": {
     "internalKeys": ["myoCardial", "infarcTion", "compound_record", "K1:53AXN4NNHX "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 1964,
-    "over20": 119,
+    "sentences": 1965,
+    "over20": 120,
     "over30": 48,
     "undefinedAcronyms": [
       "A10AB",

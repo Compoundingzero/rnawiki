@@ -557,7 +557,7 @@ export interface DossierV4ViewModel {
     marketedForms: Statement
     equivalenceEvidence: Statement
     entries: FormEntry[]
-    corrections: Array<{ when: string; what: string; why: string }>
+    corrections: Array<{ when: string; what: string; why: string; fullReason: string }>
   }
   measurement: {
     state: SectionState
@@ -588,7 +588,10 @@ export interface DossierV4ViewModel {
     state: SectionState
     entries: Array<{ when: string; what: string; changesToday: boolean }>
   }
-  changes: { state: SectionState; entries: DossierV3ViewModel['changes'] }
+  changes: {
+    state: SectionState
+    entries: Array<DossierV3ViewModel['changes'][number] & { fullText: string }>
+  }
   nextQuestions: NextQuestion[]
   sections: SectionMeta[]
   gates: Array<{ code: V4Gate; label: string; passed: boolean; detail: string }>
@@ -608,6 +611,46 @@ function iso(value: Date | string | undefined | null): string | undefined {
   if (!value) return undefined
   const date = value instanceof Date ? value : new Date(value)
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10)
+}
+
+/**
+ * Split recorded prose into what the reader layer shows and what waits behind the disclosure.
+ *
+ * The house rule is that a sentence in the default reader layer stays under thirty words. Some
+ * recorded prose does not: the note on which creatine forms are sold runs to forty-one words in one
+ * sentence, and the Tribulus correction explains itself in thirty-one. Neither may be rewritten
+ * here — nothing in this rebuild rewrites a medicine sentence — so the reader layer takes whole
+ * sentences up to the limit and the rest is kept, word for word, one click away.
+ *
+ * When even the first sentence is over the limit it is still shown, because a truncated medical
+ * sentence is worse than a long one, and `overLimit` marks it for the operator queue.
+ */
+export interface ReaderSplit {
+  lead: string
+  rest: string
+  overLimit: boolean
+}
+
+export function splitForReader(text: string | undefined, limit = 30): ReaderSplit {
+  if (!text) return { lead: '', rest: '', overLimit: false }
+  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [text]
+  const lead: string[] = []
+  let index = 0
+  for (; index < sentences.length; index += 1) {
+    const sentence = sentences[index] ?? ''
+    if (lead.length > 0 && words(sentence) > limit) break
+    lead.push(sentence)
+    if (words(sentence) > limit) {
+      index += 1
+      break
+    }
+  }
+  const leadText = lead.join('').trim()
+  return {
+    lead: leadText,
+    rest: sentences.slice(index).join('').trim(),
+    overLimit: lead.some((sentence) => words(sentence) > limit),
+  }
 }
 
 /** What is left of a paragraph after the first `count` sentences, unchanged. */
@@ -1644,12 +1687,17 @@ function buildPractical(
       v3.supervision.sources,
     ),
     productQuality: delivery?.description
-      ? statement(
-          readerText(firstSentences(delivery.description, 2)),
-          'authored_record',
-          'source_checked_draft',
-          'Recorded notes on how this is sold and what that means for what is in the pack.',
-        )
+      ? (() => {
+          const split = splitForReader(delivery.description)
+          return statement(
+            readerText(split.lead),
+            'authored_record',
+            'source_checked_draft',
+            split.rest
+              ? `Recorded notes on how this is sold. The rest of the recorded wording: ${readerText(split.rest)}`
+              : 'Recorded notes on how this is sold and what that means for what is in the pack.',
+          )
+        })()
       : absentStatement('Nothing is recorded about product quality.'),
     regulatory: regulatory
       ? statement(
@@ -1813,7 +1861,12 @@ function buildFormCheck(
   for (const correction of inputs.corrections) {
     if (correction.subjectKind === 'page') continue
     const existing = byReason.get(correction.reason)
-    const subject = `${correction.action.replace(/_/g, ' ')}: ${correction.subjectRef}`
+    /*
+     * Through the reader-text guard, because a ledger subject reference can name a stored field.
+     * Pruning the withdrawn Tribulus studies wrote rows whose subject is `humanCeiling:NCT01407445`,
+     * and the correction list put that camelCase field name straight into reader copy.
+     */
+    const subject = readerText(`${correction.action.replace(/_/g, ' ')}: ${correction.subjectRef}`)
     if (existing) {
       existing.subjects.push(subject)
       continue
@@ -1824,11 +1877,16 @@ function buildFormCheck(
       why: correction.reason,
     })
   }
-  const corrections = [...byReason.values()].map((entry) => ({
-    when: entry.when,
-    what: entry.subjects.join('; '),
-    why: entry.why,
-  }))
+  const corrections = [...byReason.values()].map((entry) => {
+    const split = splitForReader(entry.why)
+    return {
+      when: entry.when,
+      what: entry.subjects.join('; '),
+      why: split.lead || entry.why,
+      // Kept word for word. A correction's full explanation is the audit trail and is never cut.
+      fullReason: entry.why,
+    }
+  })
   return {
     state: entries.length || corrections.length ? 'source_checked_draft' : 'no_qualifying_evidence',
     exactFormStudied: delivery?.type
@@ -1849,14 +1907,34 @@ function buildFormCheck(
       : absentStatement('The route studied is not recorded.'),
     // Not the first sentences again: "What taking it involves" already shows those, and printing
     // the same paragraph twice on one page wastes the reader's attention and doubles its length.
-    marketedForms: remainderAfter(delivery?.description, 2)
-      ? statement(
-          readerText(remainderAfter(delivery?.description, 2)),
-          'authored_record',
+    marketedForms: (() => {
+      // Not the sentences "What taking it involves" already showed, and never a long sentence in
+      // the reader layer: the lead is what fits, and the recorded remainder sits in the basis.
+      const tail = remainderAfter(delivery?.description, 1)
+      if (!tail) return absentStatement('Nothing further is recorded about which forms are sold.')
+      const split = splitForReader(tail)
+      /*
+       * When the next recorded sentence is itself over the limit there is nothing to lead with, and
+       * a truncated medical sentence would be worse than a long one. The reader layer says a note
+       * exists and where to find it; the note is kept word for word in the disclosure below.
+       */
+      if (split.overLimit) {
+        return statement(
+          'A recorded note compares this form with the others that are sold. It is kept below, word for word.',
+          'contract_sentence',
           'source_checked_draft',
-          'The rest of the recorded notes on which forms are sold and how they compare.',
+          `The recorded note, unchanged: ${readerText(tail)}`,
         )
-      : absentStatement('Nothing further is recorded about which forms are sold.'),
+      }
+      return statement(
+        readerText(split.lead || tail),
+        'authored_record',
+        'source_checked_draft',
+        split.rest
+          ? `Recorded notes on which forms are sold. The rest of the recorded wording: ${readerText(split.rest)}`
+          : 'Recorded notes on which forms are sold and how they compare.',
+      )
+    })(),
     equivalenceEvidence: statement(
       COMPASS_COPY.identityMatters,
       'contract_sentence',
@@ -2427,7 +2505,7 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
  */
 function groupChangesByReason(
   changes: DossierV3ViewModel['changes'],
-): DossierV3ViewModel['changes'] {
+): Array<DossierV3ViewModel['changes'][number] & { fullText: string }> {
   const grouped = new Map<
     string,
     { entry: DossierV3ViewModel['changes'][number]; subjects: string[] }
@@ -2444,10 +2522,19 @@ function groupChangesByReason(
     }
     grouped.set(key, { entry: { ...change, text: reason }, subjects: subject ? [subject] : [] })
   }
-  return [...grouped.values()].map(({ entry, subjects }) => ({
-    ...entry,
-    text: subjects.length > 0 ? `${subjects.join('; ')}. ${entry.text}` : entry.text,
-  }))
+  /*
+   * Through the reader-text guard. The change history composes its own sentence from ledger rows,
+   * and a row's subject can name a stored field: pruning the withdrawn Tribulus studies wrote
+   * subjects such as `humanCeiling:NCT01407445`, which put a camelCase field name into reader copy
+   * on the very page that promises none.
+   */
+  return [...grouped.values()].map(({ entry, subjects }) => {
+    const composed = readerText(
+      subjects.length > 0 ? `${subjects.join('; ')}. ${entry.text}` : entry.text,
+    )
+    const split = splitForReader(composed)
+    return { ...entry, text: split.lead || composed, fullText: composed }
+  })
 }
 
 function sectionReason(id: string, state: SectionState): string {

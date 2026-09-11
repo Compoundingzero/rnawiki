@@ -122,7 +122,8 @@ export function StatementBlock({
     <div className={className} data-origin={statement.origin} data-state={statement.state}>
       <p className={emphasis ? 'dv4-hero-result-text' : undefined}>{statement.text}</p>
       <OriginNote origin={statement.origin} />
-      <Disclosure summary="Where this came from">
+      {/* Technical: this holds provenance and any recorded wording the reader layer did not take. */}
+      <Disclosure summary="Where this came from" technical>
         <p>{statement.basis}</p>
         <Sources sources={statement.sources} />
       </Disclosure>
@@ -134,13 +135,21 @@ export function Disclosure({
   summary,
   children,
   open = false,
+  technical = false,
 }: {
   summary: string
   children: ReactNode
   open?: boolean
+  /**
+   * Marks an opt-in disclosure that carries recorded technical wording rather than RNAWiki's own
+   * reader copy — a measurement quoted from a study, an identifier, a raw effect estimate. The
+   * house sentence-length rule applies to the default reader layer, and the copy audit reads this
+   * attribute so quoted technical text is counted where it belongs rather than as beginner copy.
+   */
+  technical?: boolean
 }): ReactNode {
   return (
-    <details className="dv4-more" open={open}>
+    <details className="dv4-more" data-layer={technical ? 'technical' : undefined} open={open}>
       <summary>{summary}</summary>
       <div className="dv4-more-body">{children}</div>
     </details>

@@ -332,6 +332,11 @@ export function ChangeHistory({ changes }: { changes: DossierV4ViewModel['change
                   ? 'This changed what the page says.'
                   : 'This did not change what the page says.'}
               </p>
+              {entry.fullText !== entry.text ? (
+                <Disclosure summary="The full recorded explanation" technical>
+                  <p>{entry.fullText}</p>
+                </Disclosure>
+              ) : null}
             </li>
           ))}
         </ol>

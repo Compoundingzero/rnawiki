@@ -22,7 +22,14 @@ import { and, eq, inArray, sql } from 'drizzle-orm'
 import { z } from 'zod'
 
 import { db } from '@/db'
-import { corpusPages, entityCorrections, pageRegistryStudies, pageSynonyms } from '@/db/schema'
+import {
+  corpusPages,
+  entityCorrections,
+  pageFields,
+  pageRegistryStudies,
+  pageSynonyms,
+} from '@/db/schema'
+import { pruneStoredReferences } from '@/lib/dossier-v3/prune-stored-references'
 
 const correctionSchema = z.object({
   pageKey: z.string().min(1),
@@ -58,8 +65,11 @@ async function main(): Promise<void> {
     corrections: corrections.length,
     synonymsRemoved: 0,
     studiesRemoved: 0,
+    storedReferencesPruned: 0,
+    countsAdjusted: 0,
     ledgerRows: 0,
     skipped: 0,
+    needsRecompute: [] as string[],
   }
 
   for (const correction of corrections) {
@@ -112,11 +122,37 @@ async function main(): Promise<void> {
             )
         : []
 
+    /*
+     * The same study ids are embedded in stored field values. Deleting the registry rows without
+     * pruning these left four withdrawn studies inside creatine's `humanCeiling.trials` and one
+     * inside `ongoingTrials`, both of which the page counts, so a correction that stopped at the
+     * rows was never actually complete.
+     */
+    const fieldRows =
+      correction.removeRegistryStudies.length > 0
+        ? await db
+            .select({ field: pageFields.field, value: pageFields.value })
+            .from(pageFields)
+            .where(eq(pageFields.key, page.key))
+        : []
+    const fieldPrunes = fieldRows
+      .map((row) => ({
+        field: row.field,
+        ...pruneStoredReferences(row.value, correction.removeRegistryStudies),
+      }))
+      .filter((entry) => entry.removed.length > 0)
+
     console.log(
       JSON.stringify({
         page: page.slug,
         synonymsFound: synonymRows.map((row) => `${row.name} (${row.kind}, ${row.source})`),
         studiesFound: studyRows.map((row) => `${row.nct} (${row.role}: ${row.matchedName ?? ''})`),
+        storedFieldsNamingThem: fieldPrunes.map((entry) => ({
+          field: entry.field,
+          removes: entry.removed,
+          countsAdjusted: entry.countsAdjusted,
+          countsLeftAlone: entry.countsLeftAlone.map((count) => count.key),
+        })),
         apply,
       }),
     )
@@ -182,6 +218,47 @@ async function main(): Promise<void> {
         await tx.delete(pageRegistryStudies).where(eq(pageRegistryStudies.id, row.id))
         summary.ledgerRows += 1
         summary.studiesRemoved += 1
+      }
+      for (const prune of fieldPrunes) {
+        for (const study of [...new Set(prune.removed)]) {
+          const id = ledgerId(correction, 'stored_field_reference', `${prune.field}:${study}`)
+          const exists = await tx
+            .select({ id: entityCorrections.id })
+            .from(entityCorrections)
+            .where(eq(entityCorrections.id, id))
+          if (exists.length > 0) {
+            summary.skipped += 1
+            continue
+          }
+          await tx.insert(entityCorrections).values({
+            id,
+            subjectKind: 'stored_field_reference',
+            subjectKey: page.key,
+            subjectRef: `${prune.field}:${study}`,
+            action: 'remove_stored_reference',
+            before: { field: prune.field, nct: study, page: page.slug },
+            after: {
+              removed: true,
+              countsAdjusted: prune.countsAdjusted,
+              countsNeedingRecompute: prune.countsLeftAlone.map((count) => count.key),
+              ...(correction.belongsTo ? { belongsTo: correction.belongsTo } : {}),
+            },
+            reason: correction.reason,
+            evidence: correction.evidence,
+            operator,
+            ruleOrClassifierVersion: correction.ruleOrClassifierVersion,
+          })
+          summary.ledgerRows += 1
+          summary.storedReferencesPruned += 1
+        }
+        await tx
+          .update(pageFields)
+          .set({ value: prune.value })
+          .where(and(eq(pageFields.key, page.key), eq(pageFields.field, prune.field)))
+        summary.countsAdjusted += prune.countsAdjusted.length
+        for (const count of prune.countsLeftAlone) {
+          summary.needsRecompute.push(`${page.slug}.${prune.field}.${count.key}`)
+        }
       }
     })
   }

@@ -14,7 +14,12 @@ import { auditCopy, copyPasses, findInternalKeys } from '@/lib/dossier-v3/copy-c
 import { NO_REVIEWED_CONCLUSION_SENTENCE } from '@/lib/dossier-v3/taxonomy'
 import type { RoleAwareRegistryAggregate } from '@/lib/dossier-v3/trial-roles'
 import { humaniseReaderText } from '@/lib/dossier-v4/reader-text'
-import { COMPASS_SECTIONS, buildDossierV4, type DossierV4Inputs } from '@/lib/dossier-v4/view-model'
+import {
+  COMPASS_SECTIONS,
+  buildDossierV4,
+  splitForReader,
+  type DossierV4Inputs,
+} from '@/lib/dossier-v4/view-model'
 import type { DrugDossier } from '@/lib/types'
 
 function corpus(overrides: Partial<CorpusDossier> = {}): CorpusDossier {
@@ -634,5 +639,80 @@ describe('the gates decide whether a slug may be served', () => {
     const model = buildDossierV4(inputs({ legacyRecord: legacyRecord({ laymanHowItWorks: '' }) }))
     const provenance = model.gates.find((gate) => gate.code === 'claim_provenance_present')
     expect(provenance?.passed).toBe(false)
+  })
+})
+
+describe('recorded prose never puts a long sentence in the default reader layer', () => {
+  it('leads with the sentences that fit and keeps the rest word for word', () => {
+    const long =
+      'Sold in this fixture as a supplement. Monohydrate is the form used in essentially all of the trial literature cited here, and the alternative salts and esters marketed as superior have not reproduced this evidence base or beaten it in a head to head comparison.'
+    const split = splitForReader(long)
+    expect(split.lead).toBe('Sold in this fixture as a supplement.')
+    expect(split.rest).toContain('Monohydrate is the form used')
+    expect(split.overLimit).toBe(false)
+  })
+
+  it('still shows a first sentence that is over the limit, and marks it', () => {
+    // A truncated medical sentence is worse than a long one, so it is shown and flagged instead.
+    const long = `A ${'very '.repeat(40)}long recorded sentence with no earlier break.`
+    const split = splitForReader(long)
+    expect(split.lead).toBe(long.trim())
+    expect(split.overLimit).toBe(true)
+  })
+
+  it('returns empty for nothing rather than throwing', () => {
+    expect(splitForReader(undefined)).toEqual({ lead: '', rest: '', overLimit: false })
+  })
+
+  it('keeps the full correction explanation beside the short one', () => {
+    const model = buildDossierV4(
+      inputs({
+        corrections: [
+          {
+            id: 'a'.repeat(64),
+            subjectKind: 'synonym',
+            subjectRef: 'A plant name',
+            action: 'remove_synonym',
+            reason:
+              'A plant is not a name of this substance. The identity stage sent a keyless legacy record to a name lookup, which returned a vendor record whose synonym list contains the plant name, and the merge rule then folded the plant into this page.',
+            before: {},
+            after: {},
+            recordedAt: new Date('2026-09-11T00:00:00Z'),
+            ruleOrClassifierVersion: null,
+          },
+        ],
+      }),
+    )
+    const correction = model.formCheck.corrections[0]
+    expect(correction?.why).toBe('A plant is not a name of this substance.')
+    expect(correction?.fullReason).toContain('vendor record whose synonym list')
+  })
+
+  it('never lets a stored field name reach the change history', () => {
+    // The defect this guards: pruning withdrawn studies wrote ledger subjects such as
+    // `humanCeiling:NCT01407445`, and the change history put that field name into reader copy.
+    const model = buildDossierV4(
+      inputs({
+        corrections: [
+          {
+            id: 'b'.repeat(64),
+            subjectKind: 'stored_field_reference',
+            subjectRef: 'humanCeiling:NCT00000001',
+            action: 'remove_stored_reference',
+            reason: 'A withdrawn study was still counted in a stored list.',
+            before: {},
+            after: {},
+            recordedAt: new Date('2026-09-11T00:00:00Z'),
+            ruleOrClassifierVersion: null,
+          },
+        ],
+      }),
+    )
+    const reader = [
+      ...model.changes.entries.map((entry) => entry.text),
+      ...model.formCheck.corrections.map((entry) => `${entry.what} ${entry.why}`),
+    ].join(' ')
+    expect(reader).not.toContain('humanCeiling')
+    expect(findInternalKeys(reader)).toEqual([])
   })
 })

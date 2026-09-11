@@ -105,7 +105,7 @@
       "scrollWidth": 1440,
       "clientWidth": 1440,
       "axeViolations": [],
-      "htmlBytes": 166277
+      "htmlBytes": 166712
     },
     {
       "viewport": "mobile",
@@ -120,7 +120,7 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 166277
+      "htmlBytes": 166712
     },
     {
       "viewport": "narrow",
@@ -135,20 +135,18 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 166277
+      "htmlBytes": 166712
     }
   ],
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 1071,
-    "over20": 26,
-    "over30": 4,
+    "sentences": 975,
+    "over20": 20,
+    "over30": 2,
     "longestOver30": [
       "39: ldl c from baseline to day 510; low density lipoprotein cholesterol from baseline to day 150; ldl c from baseline to day 330; ldl c; ldl c change; ldl c from baseline; low density lipoprotein choleste",
-      "36: The triantennary N-acetylgalactosamine ligand (L96) is attached to the 3' terminus of the 21-mer sense strand and binds the asialoglycoprotein receptor, which is expressed at roughly a million copies ",
-      "35: The guide strand base-pairs with a conserved site in the 3' untranslated region of PCSK9 mRNA with full complementarity, and Argonaute 2 catalyses endonucleolytic cleavage between the nucleotides pair",
       "31: Three sugar molecules on the end of the drug act as a postcode that only liver cells read, so almost all of it ends up where it is meant to be."
     ],
     "undefinedAcronyms": [
@@ -169,7 +167,7 @@
     "internalKeys": ["halfLife", "K1:UPC6BTX7PY "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 1562,
+    "sentences": 1563,
     "over20": 77,
     "over30": 23,
     "undefinedAcronyms": [

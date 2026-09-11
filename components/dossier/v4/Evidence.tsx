@@ -278,7 +278,7 @@ export function BodyJourney({ journey }: { journey: DossierV4ViewModel['journey'
                   </p>
                 ) : null}
                 {node.technical ? (
-                  <Disclosure summary="The measurement behind this step">
+                  <Disclosure summary="The measurement behind this step" technical>
                     <p>{node.technical}</p>
                     {edge ? <Sources sources={edge.sources} /> : null}
                   </Disclosure>

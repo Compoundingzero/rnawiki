@@ -1,7 +1,7 @@
 {
   "label": "after",
   "base": "http://localhost:3100",
-  "capturedAt": "2026-09-11T18:57:51.245Z",
+  "capturedAt": "2026-09-11T19:49:50.158Z",
   "pages": [
     {
       "slug": "creatine-monohydrate",
@@ -102,8 +102,8 @@
       ],
       "firstViewportText": "Creatine Over-the-counter medicine Sold without a prescription ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong Clashes Measuring Alternatives What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns Its story What changed Next What people report What people report Reports What Creatine does in the body Creatine is absorbed intact and pumped into muscle cells by a dedicated transporter. Inside, an enzyme sticks a phosphate onto it, making a small rechargeable battery. During a maximal effort the battery hands its phosphate to spent energy molecules, keeping the cell going for several seconds longer than it otherwise would. Why people take it. Taken for strength and power output in short, hard efforts What happened in people Twelve weeks of training with creatine produced greater fat-free mass, bench press, squat and fibre cross-sectional area than training with placebo in trained men ✎ Written into the record, not signed off. A person wrote this into the record with the study named beside it. No reviewer has signed it off. The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval. Harris RC, Soderlund K, Hultman E. Elevation of creatine in resting and exercised muscle of normal subjects by creatine supplementation. Clin Sci (Lond) 1992… · a recorded source, not a stored snapshot Greenha",
       "mains": 1,
-      "detailsCount": 86,
-      "focusableCount": 208,
+      "detailsCount": 90,
+      "focusableCount": 212,
       "viewports": [
         {
           "viewport": "desktop",
@@ -111,7 +111,7 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 202968
+          "htmlBytes": 206253
         },
         {
           "viewport": "mobile",
@@ -126,7 +126,7 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 202968
+          "htmlBytes": 206253
         },
         {
           "viewport": "narrow",
@@ -141,41 +141,27 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 202968
+          "htmlBytes": 206253
         }
       ],
       "readerLayers": {
         "internalKeys": [],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1192,
-        "over20": 39,
-        "over30": 10,
-        "longestOver30": [
-          "42: Harris et al. measured a mean peak plasma concentration of 795 +/- 104 micromol/L one hour after a single 5 g dose in subjects of 76 to 87 kg, with repeated 5 g doses every two hours holding plasma at",
-          "41: Monohydrate is the form used in essentially all of the trial literature cited here; the alternative salts and esters marketed as superior have not reproduced this evidence base and in several cases we",
-          "41: Uptake is highest at the start of loading — 32% of the administered dose in the first two days in Harris et al.'s three intensively sampled subjects — and falls sharply as the muscle approaches its ce",
-          "41: Monohydrate is the form used in essentially all of the trial literature cited here; the alternative salts and esters marketed as superior have not reproduced this evidence base and in several cases we",
-          "34: Fat-free mass rose 6.3% against 3.1%, bench press 24% against 16%, squat 32% against 24%, and type I, IIA and IIAB fibre cross-sectional areas rose 35%, 36% and 35% against 11%, 15% and 6%.",
-          "32: Harris et al. recovered about 20% or more of newly taken-up creatine as phosphocreatine, and muscle ATP content did not change — the pool that expands is the buffer, not the ATP itself.",
-          "31: The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains",
-          "31: The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains",
-          "31: The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains"
-        ],
+        "sentences": 1079,
+        "over20": 24,
+        "over30": 0,
+        "longestOver30": [],
         "undefinedAcronyms": [
-          "ADP",
           "AGAT",
           "ALS",
           "ATP",
-          "CID",
           "CL",
           "CREST",
           "CSA",
           "DSHEA",
           "E725",
           "GAMT",
-          "IIA",
-          "IIAB",
           "ISSN",
           "JR",
           "JS",
@@ -184,18 +170,16 @@
           "NET",
           "PD",
           "PL",
-          "RC",
-          "SALT",
-          "SLC6A8"
+          "RC"
         ]
       },
       "copy": {
         "internalKeys": ["agEing", "agEing", "agEing", "compound_record", "K1:MU72812GK0 "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1795,
-        "over20": 106,
-        "over30": 35,
+        "sentences": 1812,
+        "over20": 110,
+        "over30": 36,
         "undefinedAcronyms": [
           "ADL",
           "ADP",
@@ -348,7 +332,7 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 222050
+          "htmlBytes": 222623
         },
         {
           "viewport": "mobile",
@@ -363,7 +347,7 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 222050
+          "htmlBytes": 222623
         },
         {
           "viewport": "narrow",
@@ -378,15 +362,15 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 222050
+          "htmlBytes": 222623
         }
       ],
       "readerLayers": {
         "internalKeys": [],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1402,
-        "over20": 53,
+        "sentences": 1308,
+        "over20": 48,
         "over30": 21,
         "longestOver30": [
           "71: It is unknown whether RYBELSUS and OZEMPIC tablets cause thyroid C-cell tumors, including medullary thyroid carcinoma (MTC), in humans as human relevance of semaglutide-induced rodent thyroid C-cell t",
@@ -417,38 +401,37 @@
           "AM",
           "ATC",
           "BMI",
-          "C18",
           "CELL",
           "CI",
           "DOM",
-          "DPP",
           "FRDB",
           "GLP",
-          "GPCR",
           "JPH",
-          "MACE",
           "MEN",
           "MEN2",
           "NAION",
           "NCATS",
           "NEJM",
-          "NPY",
           "OATP1B1",
           "OF",
-          "POMC",
           "PROLINE",
           "RISK",
-          "S9",
           "SNAC",
-          "SP"
+          "SP",
+          "STEP",
+          "SUSTAIN",
+          "THYROID",
+          "TUMORS",
+          "WARNING",
+          "WEGOVY"
         ]
       },
       "copy": {
         "internalKeys": ["myoCardial", "infarcTion", "compound_record", "K1:53AXN4NNHX "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1964,
-        "over20": 119,
+        "sentences": 1965,
+        "over20": 120,
         "over30": 48,
         "undefinedAcronyms": [
           "A10AB",
@@ -603,7 +586,7 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 246261
+          "htmlBytes": 246871
         },
         {
           "viewport": "mobile",
@@ -618,7 +601,7 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 246261
+          "htmlBytes": 246871
         },
         {
           "viewport": "narrow",
@@ -633,15 +616,15 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 246261
+          "htmlBytes": 246871
         }
       ],
       "readerLayers": {
         "internalKeys": [],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1487,
-        "over20": 69,
+        "sentences": 1399,
+        "over20": 56,
         "over30": 14,
         "longestOver30": [
           "59: Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age 65 years old or greater, ",
@@ -653,35 +636,14 @@
           "35: Metformin gets carried into liver cells by a specific transporter, mildly slows one step of their energy production, and the cell reads that dip as a signal that it cannot afford to be manufacturing s",
           "31: Label-documented (DailyMed label 65884427-4dde-63bb-a23f-36a7779c0a6b · 2026-04-10): exposure increase stated with Atazanavir, Clarithromycin, Indinavir anhydrous, Itraconazole (with recorded stereoch"
         ],
-        "undefinedAcronyms": [
-          "AMP",
-          "AMPK",
-          "ATP",
-          "B12",
-          "LACTIC",
-          "LKB1",
-          "MA",
-          "MATE1",
-          "MATE2",
-          "NADH",
-          "NCATS",
-          "OCT1",
-          "PEPCK",
-          "S6",
-          "SB",
-          "SLC22A1",
-          "VA",
-          "VO2",
-          "WARNING",
-          "WHO"
-        ]
+        "undefinedAcronyms": ["B12", "LACTIC", "MA", "NCATS", "SB", "VA", "VO2", "WARNING", "WHO"]
       },
       "copy": {
         "internalKeys": ["compound_record", "K1:9100L32L2N "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 2135,
-        "over20": 168,
+        "sentences": 2136,
+        "over20": 169,
         "over30": 48,
         "undefinedAcronyms": [
           "A10BD",
@@ -834,7 +796,7 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 166277
+          "htmlBytes": 166712
         },
         {
           "viewport": "mobile",
@@ -849,7 +811,7 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 166277
+          "htmlBytes": 166712
         },
         {
           "viewport": "narrow",
@@ -864,20 +826,18 @@
               "help": "All touch targets must be 24px large, or leave sufficient space"
             }
           ],
-          "htmlBytes": 166277
+          "htmlBytes": 166712
         }
       ],
       "readerLayers": {
         "internalKeys": [],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1071,
-        "over20": 26,
-        "over30": 4,
+        "sentences": 975,
+        "over20": 20,
+        "over30": 2,
         "longestOver30": [
           "39: ldl c from baseline to day 510; low density lipoprotein cholesterol from baseline to day 150; ldl c from baseline to day 330; ldl c; ldl c change; ldl c from baseline; low density lipoprotein choleste",
-          "36: The triantennary N-acetylgalactosamine ligand (L96) is attached to the 3' terminus of the 21-mer sense strand and binds the asialoglycoprotein receptor, which is expressed at roughly a million copies ",
-          "35: The guide strand base-pairs with a conserved site in the 3' untranslated region of PCSK9 mRNA with full complementarity, and Argonaute 2 catalyses endonucleolytic cleavage between the nucleotides pair",
           "31: Three sugar molecules on the end of the drug act as a postcode that only liver cells read, so almost all of it ends up where it is meant to be."
         ],
         "undefinedAcronyms": [
@@ -898,7 +858,7 @@
         "internalKeys": ["halfLife", "K1:UPC6BTX7PY "],
         "forbiddenPhrases": [],
         "unscopedCertainty": [],
-        "sentences": 1562,
+        "sentences": 1563,
         "over20": 77,
         "over30": 23,
         "undefinedAcronyms": [

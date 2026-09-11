@@ -67,9 +67,15 @@ async function pageFacts(page: Page): Promise<Record<string, unknown>> {
     // The reader layer is everything outside the two explicitly labelled technical sections. Raw
     // vocabulary and record identifiers are allowed inside those and nowhere else, so the two are
     // audited separately rather than together.
-    const technical = ['evidence-receipts', 'technical-record', 'deep-evidence']
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => node !== null)
+    const technical = [
+      ...['evidence-receipts', 'technical-record', 'deep-evidence']
+        .map((id) => document.getElementById(id))
+        .filter((node): node is HTMLElement => node !== null),
+      // An opt-in disclosure that declares itself technical: a measurement quoted from a study, an
+      // identifier, a raw effect estimate. The house sentence rule is about the default reader
+      // layer, and counting quoted technical wording as beginner copy is a measurement error.
+      ...Array.from(document.querySelectorAll<HTMLElement>('[data-layer="technical"]')),
+    ]
 
     /*
      * Text is collected per block, not as one run of text nodes.

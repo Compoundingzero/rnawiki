@@ -107,7 +107,7 @@
       "scrollWidth": 1440,
       "clientWidth": 1440,
       "axeViolations": [],
-      "htmlBytes": 246261
+      "htmlBytes": 246871
     },
     {
       "viewport": "mobile",
@@ -122,7 +122,7 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 246261
+      "htmlBytes": 246871
     },
     {
       "viewport": "narrow",
@@ -137,15 +137,15 @@
           "help": "All touch targets must be 24px large, or leave sufficient space"
         }
       ],
-      "htmlBytes": 246261
+      "htmlBytes": 246871
     }
   ],
   "readerLayers": {
     "internalKeys": [],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 1487,
-    "over20": 69,
+    "sentences": 1399,
+    "over20": 56,
     "over30": 14,
     "longestOver30": [
       "59: Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age 65 years old or greater, ",
@@ -157,35 +157,14 @@
       "35: Metformin gets carried into liver cells by a specific transporter, mildly slows one step of their energy production, and the cell reads that dip as a signal that it cannot afford to be manufacturing s",
       "31: Label-documented (DailyMed label 65884427-4dde-63bb-a23f-36a7779c0a6b · 2026-04-10): exposure increase stated with Atazanavir, Clarithromycin, Indinavir anhydrous, Itraconazole (with recorded stereoch"
     ],
-    "undefinedAcronyms": [
-      "AMP",
-      "AMPK",
-      "ATP",
-      "B12",
-      "LACTIC",
-      "LKB1",
-      "MA",
-      "MATE1",
-      "MATE2",
-      "NADH",
-      "NCATS",
-      "OCT1",
-      "PEPCK",
-      "S6",
-      "SB",
-      "SLC22A1",
-      "VA",
-      "VO2",
-      "WARNING",
-      "WHO"
-    ]
+    "undefinedAcronyms": ["B12", "LACTIC", "MA", "NCATS", "SB", "VA", "VO2", "WARNING", "WHO"]
   },
   "copy": {
     "internalKeys": ["compound_record", "K1:9100L32L2N "],
     "forbiddenPhrases": [],
     "unscopedCertainty": [],
-    "sentences": 2135,
-    "over20": 168,
+    "sentences": 2136,
+    "over20": 169,
     "over30": 48,
     "undefinedAcronyms": [
       "A10BD",
