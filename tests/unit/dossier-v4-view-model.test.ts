@@ -751,3 +751,63 @@ describe('recorded prose never puts a long sentence in the default reader layer'
     expect(findInternalKeys(reader)).toEqual([])
   })
 })
+
+describe('the navigator is built from what the page rendered', () => {
+  it('keeps a section that found nothing when its emptiness is the point', () => {
+    /*
+     * An unanswered safety question is a fact about the record, not an absence to tidy away. The
+     * sections that carry uncertainty a reader has to see stay in the rail exactly because they are
+     * empty: safety, who was studied, which form, what is unresolved, and the receipts.
+     */
+    const model = buildDossierV4(
+      inputs({
+        corpus: corpus({
+          interactions: { lines: [], sourcesChecked: [], totals: {}, predictedOnly: false },
+        } as Partial<CorpusDossier>),
+      }),
+    )
+    const navigator = new Map(model.sections.map((section) => [section.id, section]))
+    for (const id of ['safety', 'applicability', 'form-check', 'unknowns', 'evidence-receipts']) {
+      expect(navigator.get(id)?.inNavigator).toBe(true)
+    }
+  })
+
+  it('drops a section that found nothing and carries no uncertainty', () => {
+    const model = buildDossierV4(inputs())
+    const dropped = model.sections.filter((section) => !section.inNavigator)
+    for (const section of dropped) {
+      expect(['no_qualifying_evidence', 'not_applicable']).toContain(section.state)
+    }
+  })
+
+  it('never offers a link to a section the page did not render', () => {
+    const model = buildDossierV4(inputs())
+    const ids = new Set(model.sections.map((section) => section.id))
+    for (const section of model.sections.filter((entry) => entry.inNavigator)) {
+      expect(ids.has(section.id)).toBe(true)
+    }
+  })
+
+  it('a sparse record gets a shorter rail than a full one', () => {
+    const full = buildDossierV4(inputs())
+    const sparse = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          mechanismSteps: [],
+          trials: [],
+          keyAudits: [],
+          measuredVsInferredSummary: {
+            strictlyMeasured: [],
+            unsupportedInferences: [],
+            whatFailedInitially: [],
+            realWorldOutcome: [],
+          },
+        }),
+        fields: {},
+      }),
+    )
+    const count = (model: ReturnType<typeof buildDossierV4>): number =>
+      model.sections.filter((section) => section.inNavigator).length
+    expect(count(sparse)).toBeLessThan(count(full))
+  })
+})

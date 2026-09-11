@@ -75,7 +75,9 @@ function Navigator({ model }: { model: DossierV4ViewModel }): ReactNode {
       </p>
       <ol>
         {lanes.flatMap((lane) => {
-          const sections = model.sections.filter((section) => section.lane === lane)
+          const sections = model.sections.filter(
+            (section) => section.lane === lane && section.inNavigator,
+          )
           if (sections.length === 0) return []
           return [
             <li key={`lane-${lane}`}>

@@ -146,6 +146,11 @@ function absentStatement(basis: string, state: SectionState = 'no_qualifying_evi
 
 export interface SectionMeta {
   id: string
+  /**
+   * Whether this section appears in the navigator. A section that found nothing and carries no
+   * uncertainty worth reading is dropped from the rail rather than offered as an empty link.
+   */
+  inNavigator: boolean
   /** The heading a reader sees. */
   label: string
   /** The navigator label, kept short enough for a phone. */
@@ -160,7 +165,9 @@ export interface SectionMeta {
  * The compass order. This is the learning sequence, not a list of database fields: purpose, then
  * what it does, then what happened in people, then how far that carries, then what to do about it.
  */
-export const COMPASS_SECTIONS: ReadonlyArray<Omit<SectionMeta, 'state' | 'reason'>> = [
+export const COMPASS_SECTIONS: ReadonlyArray<
+  Omit<SectionMeta, 'state' | 'reason' | 'inNavigator'>
+> = [
   {
     id: 'substance-action',
     label: 'What it does in the body',
@@ -2709,11 +2716,31 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     'next-question': 'source_checked_draft',
   }
 
+  /*
+   * The navigator is built from what the page rendered, not from the section list.
+   *
+   * On a sparse record most sections find nothing, and a rail of twenty-two links to twenty-two
+   * "nothing found" headings wastes the reader's attention and tells them nothing. What never
+   * disappears is a section carrying uncertainty a reader has to see: safety, what a result does
+   * not prove, identity doubt, what is unresolved. Those stay in the rail exactly because they are
+   * empty — an unanswered safety question is a fact about the record, not an absence to tidy away.
+   */
+  const ALWAYS_IN_NAVIGATOR = new Set([
+    'substance-action',
+    'safety',
+    'applicability',
+    'form-check',
+    'unknowns',
+    'evidence-receipts',
+    'next-question',
+  ])
   const sections: SectionMeta[] = COMPASS_SECTIONS.map((section) => {
     const state = stateById[section.id] ?? 'pipeline_failure'
+    const empty = state === 'no_qualifying_evidence' || state === 'not_applicable'
     return {
       ...section,
       state,
+      inNavigator: ALWAYS_IN_NAVIGATOR.has(section.id) || !empty,
       reason: `${sectionStateLabel(state)}. ${sectionReason(section.id, state)}`,
     }
   })
