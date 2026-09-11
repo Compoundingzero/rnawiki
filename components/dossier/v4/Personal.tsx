@@ -277,7 +277,12 @@ export function StackCollisionMap({ stack }: { stack: DossierV4ViewModel['stack'
       </div>
 
       {stack.entries.length === 0 ? (
-        <Absence reason={stack.absenceLine} state={stack.state} />
+        // Not `absenceLine` again: it is already the first paragraph of this section, and printing
+        // the same sentence three times reads as a page arguing with itself.
+        <Absence
+          reason="No pair involving this substance is recorded at all. Most pairs of substances have never been studied together."
+          state={stack.state}
+        />
       ) : (
         <ul className="dv4-ladder" style={{ marginTop: '1.25rem' }}>
           {stack.entries.map((entry, index) => (

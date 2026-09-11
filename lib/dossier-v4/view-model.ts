@@ -37,6 +37,7 @@ import {
 import {
   compassGoalFromV3,
   compassGoalLabel,
+  identityRelationCarriesEvidence,
   EXPERIENCE_TRAPS,
   FINGERPRINT_COLUMNS,
   NO_RESPONSE_REASONS,
@@ -1155,6 +1156,12 @@ function buildHumanResults(
 
 /* ------------------------------------------------------------- staircase */
 
+/** "1 registered measure", not "1 registered measures". Irregular plurals are passed in. */
+function countOf(count: number, noun: string, plural?: string): string {
+  if (count === 1) return `${count} ${noun}`
+  return `${count} ${plural ?? `${noun}s`}`
+}
+
 function buildStaircase(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
@@ -1188,9 +1195,9 @@ function buildStaircase(
           plain: level.plain,
           filled: count > 0,
           detail: failed.length
-            ? `${count} registered measures of this kind. ${failed.length} written-up studies measured this and did not show a benefit.`
+            ? `${countOf(count, 'registered measure')} of this kind. ${countOf(failed.length, 'written-up study', 'written-up studies')} measured this and did not show a benefit.`
             : count > 0
-              ? `${count} registered measures of this kind. No reviewed result.`
+              ? `${countOf(count, 'registered measure')} of this kind. No reviewed result.`
               : 'No registered study measures this.',
           sources: failed.length ? provenance.slice(0, 3) : [],
         }
@@ -1206,7 +1213,7 @@ function buildStaircase(
           filled: count > 0,
           detail:
             count > 0
-              ? `${count} registered measures of this kind.`
+              ? `${countOf(count, 'registered measure')} of this kind.`
               : 'No registered study measures this.',
           sources: [],
         }
@@ -1221,7 +1228,7 @@ function buildStaircase(
           filled: count > 0,
           detail:
             count > 0
-              ? `${count} registered measures of this kind.`
+              ? `${countOf(count, 'registered measure')} of this kind.`
               : 'No registered study measures this.',
           sources: [],
         }
@@ -1236,7 +1243,7 @@ function buildStaircase(
           filled: count > 0,
           detail:
             count > 0
-              ? `${count} registered measures of this kind.`
+              ? `${countOf(count, 'registered measure')} of this kind.`
               : 'No registered study measures this.',
           sources: [],
         }
@@ -1251,7 +1258,7 @@ function buildStaircase(
           filled: count > 0 || Boolean(humanRung?.filled),
           detail:
             count > 0
-              ? `${count} registered measures inside human tissue.`
+              ? `${countOf(count, 'registered measure')} inside human tissue.`
               : humanRung?.filled
                 ? 'A human record sits on the stored organism ladder.'
                 : 'No registered study measures this.',
@@ -1557,7 +1564,11 @@ function buildNoResponse(
   }
   const baselineLine = realWorld.find((line) => /start|baseline|lowest|deficien/i.test(line))
   if (baselineLine) applies.baseline_status = baselineLine
-  const responderLine = realWorld.find((line) => /did not|non[- ]respond|no effect/i.test(line))
+  // "showed no change" is as common a way of recording a non-responder as "did not respond", and
+  // leaving it out dropped the reason from records that plainly state it.
+  const responderLine = realWorld.find((line) =>
+    /did not|non[- ]respond|no effect|no change/i.test(line),
+  )
   if (responderLine) applies.subtle_or_unfelt_effect = responderLine
   const coInterventionLine = (inputs.legacyRecord?.mechanismSteps ?? []).find((step) =>
     /training|exercise|diet/i.test(step.laymanDesc),
@@ -1728,18 +1739,37 @@ function buildStack(inputs: DossierV4Inputs, v3: DossierV3ViewModel): DossierV4V
 
 /* ------------------------------------------------------------ form check */
 
+/**
+ * The corpus relation vocabulary, mapped to the typed identity relations the compass renders.
+ *
+ * Two things to know. The corpus stores its own kinds and the loader replaces any stored label with
+ * its own words, so this map is keyed on what the loader emits and not on what a fixture writes.
+ * An earlier version keyed on labels such as "Salt of" that the corpus never produces, which sent
+ * every relation to the unconfirmed default without anyone noticing.
+ *
+ * And nothing in this vocabulary carries evidence. Every kind here names a substance that is
+ * related to this one and is not this one: a different stereoisomer, a different ester, a component
+ * of a mixture, something that happens to hit the same target. Only a confirmed same-substance link
+ * transfers a result, and the corpus has no kind that asserts one.
+ */
 const RELATION_MAP: Record<string, IdentityRelation> = {
-  'Salt of': 'salt_of',
-  'Isomer of': 'isomer_of',
-  'Metabolite of': 'metabolite_of',
-  'Prodrug of': 'prodrug_of',
-  'Formulation of': 'formulation_of',
-  'Active ingredient of': 'active_ingredient_of',
-  'Component of': 'component_of',
-  'Member of class': 'member_of_class',
-  'Possibly matches': 'possibly_matches',
-  'Same as': 'same_entity_as',
-  Synonym: 'synonym_of',
+  'ester of': 'possibly_matches',
+  'prodrug of': 'prodrug_of',
+  'stereoisomer of': 'isomer_of',
+  'racemate of': 'isomer_of',
+  'biosimilar of': 'possibly_matches',
+  contains: 'component_of',
+  'isotopologue of': 'possibly_matches',
+  'same target as': 'explicitly_not_equivalent_to',
+  'shares an enzyme with': 'explicitly_not_equivalent_to',
+  'form of': 'formulation_of',
+  'related form of': 'formulation_of',
+  'ionised form of': 'formulation_of',
+  'component of': 'component_of',
+  'active moiety of': 'active_ingredient_of',
+  'same structure as': 'possibly_matches',
+  'originator of': 'possibly_matches',
+  'parent of': 'possibly_matches',
 }
 
 function buildFormCheck(
@@ -1748,11 +1778,8 @@ function buildFormCheck(
 ): DossierV4ViewModel['formCheck'] {
   const delivery = inputs.legacyRecord?.deliverySystem
   const entries: FormEntry[] = inputs.corpus.relations.slice(0, 20).map((relation) => {
-    const code =
-      Object.entries(RELATION_MAP).find(([label]) =>
-        relation.label.toLowerCase().startsWith(label.toLowerCase()),
-      )?.[1] ?? 'possibly_matches'
-    const carries = code === 'same_entity_as' || code === 'synonym_of'
+    const code = RELATION_MAP[relation.label.trim().toLowerCase()] ?? 'possibly_matches'
+    const carries = identityRelationCarriesEvidence(code)
     return {
       relation: code,
       relationLabel: relation.label,

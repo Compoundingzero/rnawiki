@@ -1,0 +1,638 @@
+/**
+ * The dossier v4 view model over hand-built inputs.
+ *
+ * Every case asserts a rule the Substance Compass exists to keep: a statement carries its origin, a
+ * mechanism is never promoted to a benefit, an absence is a sentence rather than a gap, a
+ * prescription medicine never gets a self-experiment plan, and no internal key reaches the reader.
+ *
+ * Fixtures only. Nothing here is seed data and no sentence here describes a real result.
+ */
+import { describe, expect, it } from 'vitest'
+
+import type { CorpusDossier } from '@/lib/corpus/dossier-page'
+import { auditCopy, copyPasses, findInternalKeys } from '@/lib/dossier-v3/copy-contract'
+import { NO_REVIEWED_CONCLUSION_SENTENCE } from '@/lib/dossier-v3/taxonomy'
+import type { RoleAwareRegistryAggregate } from '@/lib/dossier-v3/trial-roles'
+import { humaniseReaderText } from '@/lib/dossier-v4/reader-text'
+import { COMPASS_SECTIONS, buildDossierV4, type DossierV4Inputs } from '@/lib/dossier-v4/view-model'
+import type { DrugDossier } from '@/lib/types'
+
+function corpus(overrides: Partial<CorpusDossier> = {}): CorpusDossier {
+  return {
+    key: 'K1:TEST',
+    slug: 'testamab',
+    displayName: 'Testamab',
+    model: 'LONGEVITY',
+    tier: 1,
+    pageType: 'longevity',
+    indexable: true,
+    suppressed: false,
+    suppressionClasses: [],
+    suppressionEvidence: [],
+    withdrawn: false,
+    presentFieldCount: 8,
+    applicableFieldCount: 12,
+    synonyms: [{ kind: 'salt', label: 'Salt form', names: ['Testamab sodium'] }],
+    register: 'test register',
+    lastVerified: '2026-09-04',
+    humanData: true,
+    ladder: [
+      { rung: 'mouse', label: 'Mouse', filled: true },
+      { rung: 'human', label: 'Human', filled: false },
+    ],
+    blocks: [],
+    registerEvents: [],
+    identifiers: [],
+    // The labels the corpus loader emits, not invented ones. "Same target as" is the case that
+    // matters most: it names a different substance entirely and must never carry a result.
+    relations: [
+      { label: 'Stereoisomer of', name: 'Testamab isomer', slug: 'testamab-isomer' },
+      { label: 'Same target as', name: 'Another fixture compound', slug: 'other-fixture' },
+    ],
+    hubs: [],
+    sources: [
+      { label: 'ClinicalTrials.gov', kind: 'registry', id: 'x', sourceDate: '2026-09-01' },
+    ] as unknown as CorpusDossier['sources'],
+    licenceNotes: [],
+    registeredStudies: 3,
+    controlled: false,
+    controlledBasis: [],
+    registration: [
+      {
+        id: 'US',
+        jurisdiction: 'US',
+        label: 'United States',
+        status: 'Approved',
+        ordinal: 0,
+        line: 'Approved · 2 applications: prescription · checked 2026-08-28',
+        disclosed: false,
+        upstreamRegisters: [],
+        applications: [],
+        dateChecked: '2026-08-28',
+      },
+    ],
+    controlledSchedules: [],
+    interactions: {
+      lines: [],
+      sourcesChecked: ['register A', 'register B'],
+      date: '2026-09-06',
+      totals: {},
+      predictedOnly: false,
+    },
+    computedSections: [],
+    formOfNotes: [],
+    relationNotes: [],
+    ...overrides,
+  } as CorpusDossier
+}
+
+const AGGREGATE: RoleAwareRegistryAggregate = {
+  classifierVersion: 'trial-role-classifier/v1',
+  snapshotDate: '2026-09-01',
+  matchedStudies: 3,
+  byRole: { experimental_intervention: 1, administered_role_unclear: 1, observational_exposure: 1 },
+  synonymMatched: 0,
+  excludedFromSizeStatistics: 0,
+  plannedCompletionIgnored: 1,
+  tested: {
+    studies: 1,
+    largest: { nctId: 'NCT00000001', enrollment: 120, enrollmentType: 'ACTUAL' },
+    longestCompletedWindow: {
+      nctId: 'NCT00000001',
+      days: 365,
+      startDate: '2020-01',
+      completionDate: '2021-01',
+    },
+    medianEnrollment: 120,
+    completedWithPostedResults: 0,
+  },
+  administeredRoleUnclear: 1,
+  observationalExposure: 1,
+  rows: [
+    {
+      nctId: 'NCT00000001',
+      role: 'experimental_intervention',
+      enrollment: 120,
+      enrollmentType: 'ACTUAL',
+      status: 'COMPLETED',
+      startDate: '2020-01',
+      completionDate: '2021-01',
+      completionIsPlanned: false,
+      phases: ['PHASE2'],
+      synonymMatched: false,
+    },
+  ],
+}
+
+function legacyRecord(overrides: Partial<DrugDossier> = {}): DrugDossier {
+  return {
+    id: 'testamab',
+    name: 'Testamab',
+    sponsor: 'Fixture sponsor',
+    targetGene: 'FIX1',
+    targetProtein: 'Fixture protein',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication: 'Fixture indication.',
+    patientFriendlyIndication: 'Taken in this fixture for a fixture goal.',
+    oneSentenceVerdict: 'A fixture verdict.',
+    laymanHowItWorks:
+      'It reaches the fixture tissue. Inside the cell it changes one step. Nothing else is described.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 50,
+    anatomicalSite: 'Fixture tissue',
+    hasDiscrepancy: false,
+    auditPointsCount: { measured: 1, inferred: 0, failed: 1, conclusionShift: 0 },
+    recentAuditDate: '2026-09-01',
+    conditionContext: {
+      conditionExplainer: 'A fixture explanation.',
+      whyItMatters: 'It matters for the fixture.',
+      whoTakesThis: 'Fixture adults aged 30 to 50.',
+    },
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed and absorbed',
+        laymanDesc: 'It reaches the blood.',
+        molecularDetail: 'Measured in 12 fixture subjects.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Into the cell',
+        laymanDesc: 'A carrier pulls it in.',
+        molecularDetail: 'Shown in fixture mice only.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Changes a step',
+        laymanDesc: 'One chemical step changes.',
+        molecularDetail: 'Described with no measurement named.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Fixture trial one (NCT00000001)',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 120,
+        primaryEndpoint: 'Change in fixture strength after 12 weeks',
+        endpointMet: true,
+        endpointStatus: 'met',
+        statisticalPValue: 'P = 0.01',
+        unreportedAdverseSignals: 'A fixture limit that also names endpointMet in passing.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Fixture trial two',
+        phase: 'Phase 3',
+        sampleSize: 400,
+        primaryEndpoint: 'Overall survival over 4 years',
+        endpointMet: false,
+        endpointStatus: 'not_met',
+        statisticalPValue: 'P = 0.60',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    keyAudits: [
+      {
+        id: 'fix-a1',
+        category: 'measured',
+        title: 'Fixture trial one measured strength',
+        laymanSummary: 'A fixture summary.',
+        technicalDetails: 'A fixture description.',
+        evidenceSource: 'Fixture source 2026',
+        doi: '10.0000/fixture',
+        measuredMetric: 'Fixture strength',
+        auditFlag: 'verified',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A cell step was measured in fixture tissue',
+        'Fixture strength rose over 12 weeks against a dummy treatment in 120 fixture adults',
+      ],
+      unsupportedInferences: ['That it extends life, which no trial measured'],
+      whatFailedInitially: ['A survival trial in 400 people showed no difference'],
+      realWorldOutcome: ['Roughly half showed no change at all'],
+    },
+    deliverySystem: {
+      type: 'Fixture oral powder',
+      description: 'Sold in this fixture as a supplement, so no agency reviewed it before sale.',
+      safetyProfile: 'A fixture safety note.',
+    },
+    commonQuestions: [],
+    sourceProvenance: ['Fixture source 2026 (10.0000/fixture)'],
+    ...overrides,
+  } as DrugDossier
+}
+
+/**
+ * A record whose register row says the substance is sold without a prescription. The default
+ * `corpus()` register line says "prescription", and the two must not be mixed: which one a page
+ * gets decides whether it is offered a self-experiment plan at all.
+ */
+function nonPrescriptionCorpus(): CorpusDossier {
+  return corpus({
+    registration: [
+      {
+        id: 'US',
+        jurisdiction: 'US',
+        label: 'United States',
+        status: 'Marketed',
+        ordinal: 0,
+        line: 'Marketed · sold as a supplement · checked 2026-08-28',
+        disclosed: false,
+        upstreamRegisters: [],
+        applications: [],
+        dateChecked: '2026-08-28',
+      },
+    ],
+  } as Partial<CorpusDossier>)
+}
+
+function inputs(overrides: Partial<DossierV4Inputs> = {}): DossierV4Inputs {
+  return {
+    corpus: corpus(),
+    claims: [],
+    fieldStates: [],
+    roleAggregate: AGGREGATE,
+    registryConditions: ['Type 2 Diabetes', 'Healthy'],
+    registryCompletedNoResults: [{ nct: 'NCT00000002', completionDate: '2019-01' }],
+    corrections: [],
+    legacy: {
+      modality: 'Small Molecule',
+      approvalStatus: 'Non-FDA / Dietary Supplement',
+      indication: 'Fixture indication.',
+      entityClass: 'SUPPLEMENT',
+      sourceProvenance: ['Label 2026'],
+    },
+    fields: {
+      biomarkers: {
+        state: 'present',
+        value: {
+          terms: [
+            'muscle strength',
+            'overall survival',
+            'glycated hemoglobin',
+            'hamilton depression rating scale',
+            'completion of study',
+          ],
+        },
+      },
+    },
+    reviewedConclusionState: 'NOT_APPLICABLE',
+    hubs: [],
+    now: new Date('2026-09-11T00:00:00Z'),
+    legacyRecord: legacyRecord(),
+    boundAnswer: null,
+    ...overrides,
+  }
+}
+
+describe('every reader statement carries its origin', () => {
+  it('marks an unreviewed authored sentence as written into the record', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.hero.simpleAction.origin).toBe('authored_record')
+    expect(model.hero.simpleAction.state).toBe('source_checked_draft')
+    expect(model.hero.strongestGoalResult.origin).toBe('authored_record')
+  })
+
+  it('marks an approved first-read answer as reviewed, and only then', () => {
+    const model = buildDossierV4(
+      inputs({
+        boundAnswer: {
+          copy: {
+            usedFor: 'Used in this fixture for a fixture goal.',
+            whatStudiesFound: 'A fixture result in fixture adults.',
+            biggestLimit: 'A fixture limit.',
+          },
+          evidenceBinding: {
+            kind: 'legacy_answer_and_evidence_fingerprint',
+            version: 'legacy-ten-second-answer/v2',
+            fingerprint: 'sha256:fixture',
+          },
+        },
+      }),
+    )
+    expect(model.hero.strongestGoalResult.origin).toBe('approved_first_read')
+    expect(model.hero.strongestGoalResult.state).toBe('reviewed_content')
+  })
+
+  it('falls back to the contract sentence when the record holds no measured finding', () => {
+    const model = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          measuredVsInferredSummary: {
+            strictlyMeasured: [],
+            unsupportedInferences: [],
+            whatFailedInitially: [],
+            realWorldOutcome: [],
+          },
+        }),
+      }),
+    )
+    expect(model.hero.strongestGoalResult.text).toBe(NO_REVIEWED_CONCLUSION_SENTENCE)
+    expect(model.hero.strongestGoalResult.origin).toBe('contract_sentence')
+  })
+
+  it('never claims a reviewed conclusion when no reviewed claim exists', () => {
+    const model = buildDossierV4(inputs())
+    const reviewed = model.sections.filter((section) => section.state === 'reviewed_content')
+    expect(reviewed).toEqual([])
+  })
+})
+
+describe('the strongest result is the one closest to a person', () => {
+  it('prefers a strength result over a cell measurement recorded first', () => {
+    // The defect this guards: taking the first recorded finding led the page with a biopsy while a
+    // twelve-week randomised strength result sat below it in the same list.
+    const model = buildDossierV4(inputs())
+    expect(model.hero.strongestGoalResult.text).toContain('Fixture strength rose')
+    expect(model.hero.outcomeType).toBe('Measured performance')
+  })
+
+  it('reports the kind of result as unrecorded rather than guessing', () => {
+    const model = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          measuredVsInferredSummary: {
+            strictlyMeasured: ['A fixture observation with no named category'],
+            unsupportedInferences: [],
+            whatFailedInitially: [],
+            realWorldOutcome: [],
+          },
+        }),
+      }),
+    )
+    expect(model.hero.outcomeType).toBe('The kind of result is not recorded')
+  })
+})
+
+describe('a mechanism, an animal result and a biomarker stay off the benefit line', () => {
+  it('draws an unmeasured path step as unverified and says why', () => {
+    const model = buildDossierV4(inputs())
+    const unverified = model.journey.edges.filter((edge) => !edge.verified)
+    expect(unverified.length).toBeGreaterThan(0)
+    expect(unverified.some((edge) => edge.evidenceOrigin === 'animal')).toBe(true)
+    for (const edge of unverified) expect(edge.uncertaintyReason.length).toBeGreaterThan(10)
+  })
+
+  it('states that a body step is not a result in a person', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.journey.truth.notProve).toMatch(/not a result in a person/i)
+  })
+
+  it('puts a test result in the measured lane and survival in the meaningful lane', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.experience.measured.map((entry) => entry.term)).toContain('glycated hemoglobin')
+    expect(model.experience.meaningful.map((entry) => entry.term)).toContain('overall survival')
+    expect(model.experience.felt.map((entry) => entry.term)).toContain(
+      'hamilton depression rating scale',
+    )
+  })
+
+  it('never gives a goal a demonstrated state without a reviewed claim', () => {
+    const model = buildDossierV4(inputs())
+    const states = model.fingerprint.rows.flatMap((row) => row.cells.map((cell) => cell.state))
+    expect(states).not.toContain('demonstrated')
+  })
+
+  it('holds no predicted edge on the public path', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.journey.hiddenPredicted).toBe(0)
+    expect(model.journey.edges.every((edge) => edge.evidenceOrigin !== 'predicted')).toBe(true)
+  })
+})
+
+describe('time facets are never read off one another', () => {
+  it('reports the study window and leaves exposure and follow-up unrecorded', () => {
+    const model = buildDossierV4(inputs())
+    const byFacet = new Map(model.timeline.entries.map((entry) => [entry.facet, entry]))
+    expect(byFacet.get('assessed_outcome_duration')?.value.text).toContain('365 days')
+    expect(byFacet.get('treatment_exposure_duration')?.value.origin).toBe('absent')
+    expect(byFacet.get('follow_up_duration')?.value.origin).toBe('absent')
+    expect(byFacet.get('follow_up_duration')?.value.basis).toMatch(/a different thing/i)
+  })
+
+  it('bounds the long term by the longest finished study', () => {
+    const model = buildDossierV4(inputs())
+    const longTerm = model.timeline.entries.find((entry) => entry.facet === 'long_term_unknown')
+    expect(longTerm?.value.text).toContain('365 days')
+  })
+})
+
+describe('the measurement section follows the risk of the substance', () => {
+  it('offers a self-experiment plan for a non-prescription supplement, with no amount', () => {
+    const model = buildDossierV4(inputs({ corpus: nonPrescriptionCorpus() }))
+    expect(model.measurement.mode).toBe('self_experiment')
+    const planText = model.measurement.plan.map((step) => step.text).join(' ')
+    expect(planText).not.toMatch(/\b\d+\s?(mg|g|mcg|ml|iu)\b/i)
+    expect(model.measurement.whatNotToMeasure.length).toBeGreaterThan(2)
+    expect(model.measurement.stopRules.length).toBeGreaterThan(1)
+  })
+
+  it('replaces the plan with clinician questions on a supervised medicine', () => {
+    const model = buildDossierV4(
+      inputs({
+        corpus: corpus({ controlled: true }),
+        legacyRecord: legacyRecord({ approvalStatus: 'FDA Approved' }),
+        legacy: {
+          modality: 'Small Molecule',
+          approvalStatus: 'FDA Approved',
+          indication: 'A fixture prescription indication.',
+          entityClass: 'APPROVED_MEDICINE',
+          sourceProvenance: ['Label 2026'],
+        },
+      }),
+    )
+    expect(model.measurement.mode).toBe('clinician_questions')
+    expect(model.measurement.plan).toEqual([])
+    expect(model.measurement.stopRules).toEqual([])
+  })
+
+  it('keeps the planner away when the register and the record disagree', () => {
+    // The register row says prescription and the legacy record says supplement. A disagreement is
+    // resolved the conservative way: no self-experiment planner is offered at all.
+    const model = buildDossierV4(inputs())
+    expect(model.identity.availabilityCode).toBe('non_prescription')
+    expect(model.measurement.mode).toBe('clinician_questions')
+  })
+
+  it('states the boundary of what tracking can show', () => {
+    const model = buildDossierV4(inputs({ corpus: nonPrescriptionCorpus() }))
+    expect(model.measurement.boundary).toMatch(/cannot show what caused it/i)
+  })
+})
+
+describe('absences are rendered, not dropped', () => {
+  it('gives every section a state and a reason', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.sections).toHaveLength(COMPASS_SECTIONS.length)
+    for (const section of model.sections) {
+      expect(section.state).toBeTruthy()
+      expect(section.reason.length).toBeGreaterThan(10)
+    }
+  })
+
+  it('keeps the community lane switched off rather than empty and unexplained', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.community.state).toBe('feature_not_enabled')
+    expect(model.community.reports).toEqual([])
+    expect(model.community.noImportLine).toMatch(/does not copy reports from forums/i)
+  })
+
+  it('says what was searched when a body path is missing', () => {
+    const model = buildDossierV4(inputs({ legacyRecord: legacyRecord({ mechanismSteps: [] }) }))
+    expect(model.journey.state).toBe('no_qualifying_evidence')
+    expect(model.journey.textEquivalent.join(' ')).toMatch(
+      /not the same as showing there is nothing/i,
+    )
+  })
+
+  it('never turns a missing interaction record into reassurance', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.stack.neverSafeLine.toLowerCase()).not.toMatch(/is safe|are safe together/)
+    expect(model.stack.absenceLine.length).toBeGreaterThan(0)
+  })
+})
+
+describe('identity decides whether evidence carries', () => {
+  it('marks a mirror form as not carrying the evidence on this page', () => {
+    const model = buildDossierV4(inputs())
+    const isomer = model.formCheck.entries.find((entry) => entry.relation === 'isomer_of')
+    expect(isomer).toBeDefined()
+    expect(isomer?.carriesEvidence).toBe(false)
+    expect(isomer?.note).toMatch(/does not automatically apply/i)
+  })
+
+  it('treats a shared-target link as a confirmed different substance', () => {
+    const model = buildDossierV4(inputs())
+    const sameTarget = model.formCheck.entries.find(
+      (entry) => entry.relation === 'explicitly_not_equivalent_to',
+    )
+    expect(sameTarget?.counterpart).toBe('Another fixture compound')
+    expect(sameTarget?.carriesEvidence).toBe(false)
+  })
+
+  it('nothing the corpus vocabulary can express carries evidence across', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.formCheck.entries.every((entry) => !entry.carriesEvidence)).toBe(true)
+  })
+
+  it('shows a recorded identity correction rather than hiding the mistake', () => {
+    const model = buildDossierV4(
+      inputs({
+        corrections: [
+          {
+            id: 'a'.repeat(64),
+            subjectKind: 'synonym',
+            subjectRef: 'A plant name',
+            action: 'remove_synonym',
+            reason: 'A plant is not a name of this substance.',
+            before: {},
+            after: {},
+            recordedAt: new Date('2026-09-11T00:00:00Z'),
+            ruleOrClassifierVersion: null,
+          },
+        ],
+      }),
+    )
+    expect(model.formCheck.corrections).toHaveLength(1)
+    expect(model.formCheck.corrections[0]?.why).toContain('A plant is not a name')
+  })
+})
+
+describe('no internal key reaches the reader', () => {
+  it('renders a field name inside a curated note in words', () => {
+    const model = buildDossierV4(inputs())
+    const card = model.humanResults.cards.find((entry) => entry.verdict === 'met')
+    expect(card?.primaryLimitation).toContain('endpoint met')
+    expect(card?.primaryLimitation).not.toContain('endpointMet')
+  })
+
+  it('removes a canonical record id rather than humanising it', () => {
+    const result = humaniseReaderText('The record K1:MU72812GK0 holds this.')
+    expect(result.text).not.toContain('K1:MU72812GK0')
+    expect(result.text).toContain('an internal record id')
+    expect(result.replaced).toContain('K1:MU72812GK0')
+  })
+
+  it('leaves ordinary prose untouched', () => {
+    const sentence = 'Twelve weeks of training produced greater strength than training alone.'
+    expect(humaniseReaderText(sentence).text).toBe(sentence)
+  })
+
+  it('keeps the assembled reader copy inside the plain-language contract', () => {
+    const model = buildDossierV4(inputs())
+    const reader = [
+      model.hero.simpleAction.text,
+      model.hero.actionDetail.text,
+      model.hero.whyPeopleCare.text,
+      model.hero.strongestGoalResult.text,
+      model.hero.principalUncertainty.text,
+      model.pagePromise,
+      model.notAdvice,
+      model.stack.neverSafeLine,
+      ...model.measurement.plan.map((step) => step.text),
+      ...model.noResponse.entries.map((entry) => entry.plain),
+      // Joined as sentences, not with a bare space. Each of these renders in its own block on the
+      // page, and joining them with a space merges two of them into one over-long sentence that no
+      // reader ever meets.
+    ].join('. ')
+    expect(findInternalKeys(reader)).toEqual([])
+    const report = auditCopy(reader)
+    expect({
+      forbidden: report.forbiddenPhrases.map((hit) => hit.match),
+      certainty: report.unscopedCertainty.map((hit) => hit.match),
+      over30: report.sentences.over30,
+    }).toEqual({ forbidden: [], certainty: [], over30: 0 })
+    expect(copyPasses(report)).toBe(true)
+  })
+})
+
+describe('the next question is ranked by what prevents a misunderstanding', () => {
+  it('puts the claim decoder first when a claim goes past the evidence', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.nextQuestions[0]?.target).toBe('#claim-decoder')
+    expect(model.nextQuestions[0]?.objective).toBe('Prevent a misunderstanding')
+  })
+
+  it('surfaces a failed study before safety', () => {
+    const model = buildDossierV4(inputs())
+    const targets = model.nextQuestions.map((question) => question.target)
+    expect(targets.indexOf('#human-results')).toBeLessThan(targets.indexOf('#safety'))
+  })
+
+  it('every question points at a section that exists', () => {
+    const model = buildDossierV4(inputs())
+    const ids = new Set(COMPASS_SECTIONS.map((section) => `#${section.id}`))
+    for (const question of model.nextQuestions) expect(ids.has(question.target)).toBe(true)
+  })
+})
+
+describe('the gates decide whether a slug may be served', () => {
+  it('passes a record with identity, provenance and a tested study', () => {
+    const model = buildDossierV4(inputs())
+    const failed = model.gates.filter((gate) => !gate.passed).map((gate) => gate.code)
+    expect(failed).toEqual([])
+  })
+
+  it('fails the trial-role gate when no study is classified as testing the substance', () => {
+    const model = buildDossierV4(
+      inputs({ roleAggregate: { ...AGGREGATE, tested: { ...AGGREGATE.tested, studies: 0 } } }),
+    )
+    const roles = model.gates.find((gate) => gate.code === 'trial_roles_valid')
+    expect(roles?.passed).toBe(false)
+  })
+
+  it('fails the provenance gate when the opening statement has no source', () => {
+    const model = buildDossierV4(inputs({ legacyRecord: legacyRecord({ laymanHowItWorks: '' }) }))
+    const provenance = model.gates.find((gate) => gate.code === 'claim_provenance_present')
+    expect(provenance?.passed).toBe(false)
+  })
+})

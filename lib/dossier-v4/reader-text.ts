@@ -26,9 +26,15 @@ export interface HumanisedText {
 
 /**
  * A canonical identity key is never humanised into anything a reader should see, because there is
- * no reader-facing meaning to recover. It is removed along with any punctuation holding it up.
+ * no reader-facing meaning to recover. It is replaced with a phrase instead.
+ *
+ * Deliberately narrower than the detection pattern in the v3 copy contract, which allows spaces
+ * inside a key. Over-matching is harmless when you are only flagging text; here it rewrites it, and
+ * the greedy form turned "The record K1:MU72812GK0 holds this." into a sentence with three words
+ * missing. A key that does contain a space, such as one built from a two-word substance name,
+ * loses only its trailing word to the reader, and that word is ordinary language rather than a key.
  */
-const CANONICAL_KEY = /\b(?:K[1-4]|COMBO):[A-Za-z0-9:_ -]+/g
+const CANONICAL_KEY = /\b(?:K[1-4]|COMBO):[A-Za-z0-9:_-]+/g
 
 export function humaniseReaderText(input: string): HumanisedText {
   if (!input) return { text: input, replaced: [] }

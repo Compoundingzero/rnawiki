@@ -27,7 +27,11 @@ export default defineConfig({
     command: 'npm run start',
     // Dossier v3 renders only for the e2e fixture prefix unless the runner names other slugs, so
     // every other spec still exercises the corpus document (docs/dossier-information-architecture.md).
-    env: { DOSSIER_V3_SLUGS: process.env.DOSSIER_V3_SLUGS ?? 'e2e-v3-*' },
+    env: {
+      DOSSIER_V3_SLUGS: process.env.DOSSIER_V3_SLUGS ?? 'e2e-v3-*',
+      // The compass flag is checked before the v3 flag, so the two prefixes must not overlap.
+      DOSSIER_V4_SLUGS: process.env.DOSSIER_V4_SLUGS ?? 'e2e-v4-*',
+    },
     url: 'http://localhost:3000',
     // A release gate must exercise the build made in this run. Reusing an unrelated local server
     // can make stale code look green.
