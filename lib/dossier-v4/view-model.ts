@@ -768,6 +768,127 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
 /* ----------------------------------------------------------------- hero */
 
 /**
+ * The one limit the first screen carries.
+ *
+ * Taking the first recorded failure put an animal-to-human translation result about motor neurone
+ * disease at the top of the creatine page — true, important, and the wrong thing to hand a reader
+ * who came about strength. A limit earns the opening screen by bearing on what the page leads with:
+ * the chance it does nothing for the person reading, then a claim that goes further than the
+ * evidence, then a programme that failed. A result that failed to carry from animals to people is
+ * ranked last here; it belongs in the evidence limits and the claim decoder, which both show it.
+ */
+function selectPrincipalLimit(
+  measured: DrugDossier['measuredVsInferredSummary'] | undefined,
+): string | undefined {
+  if (!measured) return undefined
+  const animalTranslation = /\b(?:mouse|mice|rat|transgenic|animal-to-human|animal to human)\b/i
+  const isLimitation =
+    /\b(?:did not|do not|does not|no benefit|no effect|not|failed|halted|only)\b/i
+
+  const personalLimit = (measured.realWorldOutcome ?? []).find(
+    (line) => isLimitation.test(line) && !animalTranslation.test(line),
+  )
+  if (personalLimit) return personalLimit
+
+  const overreach = (measured.unsupportedInferences ?? []).find(
+    (line) => !animalTranslation.test(line),
+  )
+  if (overreach) return overreach
+
+  const failure = (measured.whatFailedInitially ?? []).find((line) => !animalTranslation.test(line))
+  if (failure) return failure
+
+  return measured.whatFailedInitially?.[0] ?? measured.unsupportedInferences?.[0]
+}
+
+/**
+ * Choose the sentence that opens the page.
+ *
+ * The old rule was "the first sentence of the recorded explanation", which is how creatine came to
+ * open on a transporter and how four medicines came to open with label pharmacology: "Etrasimod has
+ * minimal activity on S1P 3 (25-fold lower than C max at the recommended dose)". That is not a
+ * beginner explanation, and the phrase "at the recommended dose" has no business in the opening
+ * paragraph of a page that never names an amount.
+ *
+ * So a sentence has to earn the opening position. It must stand on its own, stay short, name no
+ * amount, and not be a wall of undefined abbreviations. Among those that qualify, one that
+ * describes a useful change beats one that describes absorption, which is the order the brief
+ * fixes: what it changes, then why a person cares, then where, then the mechanism.
+ *
+ * When nothing qualifies the page opens with why people take it instead, and the recorded
+ * explanation follows underneath. Nothing is rewritten and nothing is invented; what changes is
+ * which recorded sentence a reader meets first.
+ */
+const DOSE_LANGUAGE =
+  /\b(?:recommended dose|dose levels?|\d+\s?(?:mg|mcg|g|ml|iu)\b|titrat|mg\/kg)/i
+/** Unexplained technical tokens: receptor and gene codes, laboratory shorthand, units. */
+const HEAVY_JARGON =
+  /\b(?:[A-Z]{2,}\d[A-Za-z]?|C\s?max|AUC|IC50|EC50|Ki\b|nM|µM|mmol|micromol|pharmacokinetic|bioavailability)\b/
+/** A sentence that leans on the one before it cannot be the first a reader meets. */
+const REFERRING_OPENER =
+  /^(?:inside|then|there|this|that|it |its |these|those|during|over |after |afterwards|meanwhile|as a result|the result|so |and |but |however|also|additionally|in turn|by contrast|unlike|because|when |once )/i
+/** Words that describe a change worth caring about rather than a journey into the body. */
+const USEFUL_CHANGE =
+  /\b(?:help|helps|keep|keeps|lower|lowers|reduce|reduces|increase|increases|improve|improves|block|blocks|stop|stops|prevent|prevents|slow|slows|raise|raises|calm|calms|protect|protects|clear|clears|refill|refills|restore|restores)\b/i
+/** Words that describe getting in rather than doing something. */
+const DELIVERY_ONLY =
+  /\b(?:absorb|absorbed|swallow|swallowed|survives the gut|reaches the blood|enters the blood|transporter|injected into)\b/i
+
+interface ActionSentenceChoice {
+  text: string | null
+  /** Why nothing qualified, for the operator queue and the page's own basis line. */
+  reason: string
+}
+
+function selectActionSentence(explanation: string | undefined): ActionSentenceChoice {
+  if (!explanation?.trim()) {
+    return { text: null, reason: 'No plain explanation of what this changes is stored.' }
+  }
+  const sentences = (explanation.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [explanation]).map((sentence) =>
+    sentence.trim(),
+  )
+  let rejectedForJargon = 0
+  let rejectedForDose = 0
+  const qualified: Array<{ text: string; score: number }> = []
+  for (const sentence of sentences) {
+    if (DOSE_LANGUAGE.test(sentence)) {
+      rejectedForDose += 1
+      continue
+    }
+    if (HEAVY_JARGON.test(sentence)) {
+      rejectedForJargon += 1
+      continue
+    }
+    if (REFERRING_OPENER.test(sentence)) continue
+    if (words(sentence) > 25 || words(sentence) < 4) continue
+    /*
+     * The opening line has to answer "what useful change does this make?". A sentence that
+     * describes only how the substance travels does not answer it, however short and well written
+     * it is: creatine opening on a dedicated transporter, and semaglutide on a hormone being
+     * destroyed within minutes, are both true and both the wrong first thing to read. Where no
+     * recorded sentence describes a change, the page opens with what people take it for, which is
+     * the user value the record does hold.
+     */
+    if (!USEFUL_CHANGE.test(sentence)) continue
+    let score = 3
+    if (DELIVERY_ONLY.test(sentence)) score -= 2
+    if (words(sentence) <= 18) score += 1
+    qualified.push({ text: sentence, score })
+  }
+  if (qualified.length === 0) {
+    const reason =
+      rejectedForDose > 0
+        ? 'The recorded explanation names an amount, so it does not open this page.'
+        : rejectedForJargon > 0
+          ? 'The recorded explanation is written in label language rather than for a beginner.'
+          : 'No recorded sentence describes the change this makes in a way that stands on its own.'
+    return { text: null, reason }
+  }
+  qualified.sort((left, right) => right.score - left.score)
+  return { text: qualified[0]?.text ?? null, reason: '' }
+}
+
+/**
  * Read the kind of result out of the result sentence itself, using the same ordering the outcome
  * classifier uses: a life outcome beats a function, a function beats a performance measure, and a
  * laboratory value is last. A sentence that names none of them stays unknown, because guessing here
@@ -843,32 +964,61 @@ function buildHero(
 
   // What it changes in the body. The authored explanation is the only thing that answers this in
   // reader language; where it is absent the hero says so rather than reaching for an abstract.
-  // One sentence carries the display line. Two sentences at display size filled six lines of the
-  // first screen and pushed the human result below the fold, so the rest reads at body size.
-  const simpleAction = legacy?.laymanHowItWorks
+  const chosen = selectActionSentence(legacy?.laymanHowItWorks)
+  const whyText = bound?.copy.usedFor ?? legacy?.patientFriendlyIndication ?? ''
+
+  /*
+   * The opening line. A recorded sentence that earns the position, or the reason people take it,
+   * or an honest absence. The transporter sentence no longer wins by being first.
+   */
+  const simpleAction = chosen.text
     ? statement(
-        readerText(firstSentences(legacy.laymanHowItWorks, 1)),
+        readerText(chosen.text),
         'authored_record',
         'source_checked_draft',
         'A person wrote this explanation into the record, with the studies named in the path below.',
         provenance.slice(0, 3),
       )
-    : absentStatement(
-        'No plain explanation of what this changes in the body is stored for this record.',
-        'awaiting_review',
-      )
+    : whyText
+      ? statement(
+          readerText(whyText),
+          bound?.copy.usedFor ? 'approved_first_read' : 'authored_record',
+          bound?.copy.usedFor ? 'reviewed_content' : 'source_checked_draft',
+          `${chosen.reason} The page opens with what it is taken for instead, and the recorded explanation follows below.`,
+        )
+      : // A display line reading "Not recorded." looks like a broken page rather than an honest one.
+        statement(
+          'RNAWiki has not recorded what this substance changes in the body.',
+          'contract_sentence',
+          'awaiting_review',
+          chosen.reason,
+        )
 
-  const detailText = legacy?.laymanHowItWorks
-    ? firstSentences(legacy.laymanHowItWorks, 3)
-        .slice(firstSentences(legacy.laymanHowItWorks, 1).length)
-        .trim()
-    : ''
+  /*
+   * Everything the recorded explanation says, under the opening line. Where the opening line came
+   * from the explanation itself, its own sentence is not repeated.
+   */
+  const full = legacy?.laymanHowItWorks?.trim() ?? ''
+  const withoutOpening = chosen.text ? full.replace(chosen.text, '').trim() : full
+  /*
+   * The same rule the opening line follows applies to the paragraph under it: RNAWiki does not name
+   * an amount in its own voice, anywhere in the hero. Five records carry label wording such as "at
+   * the recommended dose levels" inside the recorded explanation. Those sentences are dropped from
+   * the hero and remain, word for word, in the technical detail on the body path below.
+   */
+  const detailSentences =
+    withoutOpening.match(/[^.!?]+[.!?]+(\s|$)/g) ?? (withoutOpening ? [withoutOpening] : [])
+  const keptSentences = detailSentences.filter((sentence) => !DOSE_LANGUAGE.test(sentence))
+  const movedForDose = detailSentences.length - keptSentences.length
+  const detailText = keptSentences.join('').trim()
   const actionDetail = detailText
     ? statement(
         readerText(detailText),
         'authored_record',
         'source_checked_draft',
-        'The rest of the recorded explanation of what happens in the body.',
+        movedForDose > 0
+          ? `The rest of the recorded explanation. ${movedForDose} ${movedForDose === 1 ? 'sentence names' : 'sentences name'} an amount and ${movedForDose === 1 ? 'is' : 'are'} kept in the technical detail instead.`
+          : 'The rest of the recorded explanation of what happens in the body.',
         provenance.slice(0, 3),
       )
     : absentStatement('No further explanation is recorded.', 'no_qualifying_evidence')
@@ -894,21 +1044,25 @@ function buildHero(
       )
     : absentStatement('No step-by-step path through the body is recorded.')
 
-  const whyPeopleCare = bound?.copy.usedFor
-    ? statement(
-        bound.copy.usedFor,
-        'approved_first_read',
-        'reviewed_content',
-        'A reviewer approved this sentence against this exact record and its sources.',
-      )
-    : legacy?.patientFriendlyIndication
-      ? statement(
-          readerText(legacy.patientFriendlyIndication),
-          'authored_record',
-          'source_checked_draft',
-          'The recorded use, written for a reader without medical training. Not signed off.',
-        )
-      : absentStatement('No recorded use is stored in reader language.')
+  const whyPeopleCare =
+    !chosen.text && whyText
+      ? // It became the opening line; the hero renders it once.
+        absentStatement('Shown as the opening line on this page.', 'not_applicable')
+      : bound?.copy.usedFor
+        ? statement(
+            bound.copy.usedFor,
+            'approved_first_read',
+            'reviewed_content',
+            'A reviewer approved this sentence against this exact record and its sources.',
+          )
+        : legacy?.patientFriendlyIndication
+          ? statement(
+              readerText(legacy.patientFriendlyIndication),
+              'authored_record',
+              'source_checked_draft',
+              'The recorded use, written for a reader without medical training. Not signed off.',
+            )
+          : absentStatement('No recorded use is stored in reader language.')
 
   /*
    * The strongest result, and the limit beside it.
@@ -953,14 +1107,12 @@ function buildHero(
         'reviewed_content',
         'The limit a reviewer approved as the one that matters most here.',
       )
-    : (measured?.whatFailedInitially?.[0] ?? measured?.unsupportedInferences?.[0])
+    : selectPrincipalLimit(measured)
       ? statement(
-          readerText(
-            (measured?.whatFailedInitially?.[0] ?? measured?.unsupportedInferences?.[0]) as string,
-          ),
+          readerText(selectPrincipalLimit(measured) as string),
           'authored_record',
           'source_checked_draft',
-          'A failure or an overreach recorded against this substance. Not signed off as a reviewed claim.',
+          'A limit recorded against this substance. Not signed off as a reviewed claim.',
           provenance.slice(0, 3),
         )
       : absentStatement('No statement of the main limit is recorded.', 'awaiting_review')
@@ -1804,8 +1956,10 @@ function buildStack(inputs: DossierV4Inputs, v3: DossierV3ViewModel): DossierV4V
       ] ?? 'insufficient_information'
     return {
       entityA: v3.name,
-      entityB: row.counterpart,
-      consequence: row.text,
+      entityB: readerText(row.counterpart),
+      // Through the guard: interaction lines embed a label record identifier, which the corpus
+      // validation found reaching reader copy on seven pages.
+      consequence: readerText(row.text),
       state,
       stateLabel: row.categoryLabel,
       evidenceClass: row.evidenceLabel,
@@ -2373,10 +2527,15 @@ function buildGates(
     {
       code: 'claim_provenance_present',
       label: 'Every public sentence names a source',
-      passed: model.hero.simpleAction.origin !== 'absent',
+      // A contract sentence is RNAWiki's own wording, not a source. An opening that falls back to
+      // one means the record carries neither an explanation nor a recorded purpose.
+      passed:
+        model.hero.simpleAction.origin !== 'absent' &&
+        model.hero.simpleAction.origin !== 'contract_sentence',
       detail:
-        model.hero.simpleAction.origin === 'absent'
-          ? 'The opening statement has no source and would render as an absence.'
+        model.hero.simpleAction.origin === 'absent' ||
+        model.hero.simpleAction.origin === 'contract_sentence'
+          ? 'The opening statement carries no source: the record holds neither an explanation nor a recorded use.'
           : `The opening statement carries the origin: ${ORIGIN_LABELS[model.hero.simpleAction.origin]}.`,
     },
     {

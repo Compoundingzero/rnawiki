@@ -133,9 +133,11 @@ export function SubstanceActionHero({
         {hero.actionDetail.origin === 'absent' ? null : (
           <p className="dv4-hero-because">{hero.actionDetail.text}</p>
         )}
-        <p className="dv4-hero-because">
-          <strong>Why people take it.</strong> {hero.whyPeopleCare.text}
-        </p>
+        {hero.whyPeopleCare.origin === 'absent' ? null : (
+          <p className="dv4-hero-because">
+            <strong>Why people take it.</strong> {hero.whyPeopleCare.text}
+          </p>
+        )}
 
         <div className="dv4-hero-result" data-block="strongest-result">
           <p className="dv4-eyebrow" style={{ marginBottom: '0.3rem' }}>

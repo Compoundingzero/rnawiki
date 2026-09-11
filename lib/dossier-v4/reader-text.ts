@@ -36,12 +36,24 @@ export interface HumanisedText {
  */
 const CANONICAL_KEY = /\b(?:K[1-4]|COMBO):[A-Za-z0-9:_-]+/g
 
+/**
+ * A label record identifier, as the interaction lines carry it: `(label, set_id <uuid>)`. There is
+ * no reader meaning to recover from a set identifier, so the phrase is replaced rather than
+ * humanised — "set id d1cda4f7…" would be worse than the raw form. Found on seven pages by the
+ * corpus validation, inside interaction text that reaches the reader layer.
+ */
+const LABEL_SET_ID = /,?\s*set_id\s+[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi
+
 export function humaniseReaderText(input: string): HumanisedText {
   if (!input) return { text: input, replaced: [] }
   const replaced: string[] = []
   let text = input.replace(CANONICAL_KEY, (match) => {
     replaced.push(match.trim())
     return 'an internal record id'
+  })
+  text = text.replace(LABEL_SET_ID, (match) => {
+    replaced.push(match.trim())
+    return ''
   })
   // Longest first, so replacing a short key never breaks a longer one that contains it.
   const hits = [...new Set(findInternalKeys(text).map((hit) => hit.match))].sort(

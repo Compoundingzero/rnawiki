@@ -658,10 +658,22 @@ describe('the gates decide whether a slug may be served', () => {
     expect(roles?.passed).toBe(false)
   })
 
-  it('fails the provenance gate when the opening statement has no source', () => {
+  it('still has a sourced opening when the explanation is missing but the purpose is not', () => {
+    // The hero falls back to what people take it for, which is recorded and sourced, so the gate
+    // passes. Leading with the purpose is the behaviour the benefit-first rule asks for.
     const model = buildDossierV4(inputs({ legacyRecord: legacyRecord({ laymanHowItWorks: '' }) }))
-    const provenance = model.gates.find((gate) => gate.code === 'claim_provenance_present')
-    expect(provenance?.passed).toBe(false)
+    expect(model.hero.simpleAction.origin).toBe('authored_record')
+    expect(model.gates.find((gate) => gate.code === 'claim_provenance_present')?.passed).toBe(true)
+  })
+
+  it('fails the provenance gate when neither an explanation nor a purpose is recorded', () => {
+    const model = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({ laymanHowItWorks: '', patientFriendlyIndication: '' }),
+      }),
+    )
+    expect(model.hero.simpleAction.origin).toBe('contract_sentence')
+    expect(model.gates.find((gate) => gate.code === 'claim_provenance_present')?.passed).toBe(false)
   })
 })
 
