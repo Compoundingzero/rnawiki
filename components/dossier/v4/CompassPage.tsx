@@ -128,6 +128,20 @@ function TechnicalRecord({
         record identifiers and every stored row, so a reader who wants to check the page can.
       </p>
 
+      {model.recordedVerdict ? (
+        <Disclosure summary="The older medicine-wide conclusion held in this record">
+          <p className="dv4-note">
+            Written for a clinical reader, and about the medicine as a whole rather than about one
+            indication, population and set of trials. RNAWiki does not treat it as a programme
+            conclusion and no reviewer has signed it off in that form. It is here word for word
+            because it is what the record holds.
+          </p>
+          <blockquote>
+            <p>{model.recordedVerdict}</p>
+          </blockquote>
+        </Disclosure>
+      ) : null}
+
       <Disclosure summary={`Recorded evidence blocks (${blocks.length})`}>
         <div className="cd-root">
           {blocks.map((block) => (
@@ -254,7 +268,7 @@ export function CompassPage({
           <UnknownMap unknowns={model.unknowns} />
           <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
           <DrugStory story={model.story} />
-          <ChangeHistory changes={model.changes} />
+          <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
           <NextQuestionRail questions={model.nextQuestions} />
           <WhatIsMissing sections={model.sections} />
           <TechnicalRecord corpus={corpus} model={model} />

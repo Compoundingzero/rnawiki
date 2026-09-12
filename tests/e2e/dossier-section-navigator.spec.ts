@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
+import { expect, test } from '@playwright/test'
 
 import {
   installNavigatorCoverageFixture,
@@ -7,10 +8,21 @@ import {
 } from './fixtures/navigator-coverage'
 
 /**
- * The floating navigator is the first control a reader can act on, and the reason it exists is that
- * everything worth reading on a medicine page sits two clicks deep behind closed disclosures. So the
- * journey tested here is the reader's, not the component's: arrive, see which sections are real,
- * jump to one, and find it open rather than collapsed.
+ * Seeing which parts of a medicine page hold something, before spending a click on them.
+ *
+ * The reader's problem here has not changed: a long page of headings, most of them empty, teaches
+ * a reader that scrolling is not worth it. What has changed is the answer.
+ *
+ * There used to be a floating "Sections & feedback" button that opened a dialog listing every
+ * module with a "Recorded" or "Not documented here" badge beside it — a client component, in a
+ * layout where everything worth reading sat two clicks deep behind closed disclosures. That layout
+ * is gone and so is the button. The compass answers the same question in the page itself: it does
+ * not render a section it has nothing for, it names every section it left out in one block near the
+ * foot, and the standing navigator in the left rail lists only what is there, each entry carrying
+ * the state of the section it points at.
+ *
+ * So the journey tested here is still the reader's — arrive, see what is real, jump to it, find it
+ * open — and it now runs with no JavaScript at all.
  */
 
 test.use({ colorScheme: 'light' })
@@ -35,117 +47,117 @@ function requireFixture(): NavigatorCoverageFixture {
   return fixture
 }
 
-async function openNavigator(page: Page) {
-  const trigger = page.getByRole('button', { name: /Sections & feedback/i })
-  await expect(trigger).toBeVisible()
-  await trigger.click()
-  return page.getByRole('dialog', { name: /Sections of the/i })
-}
-
-test('a reader can see which sections hold content before spending a click', async ({ page }) => {
-  const { slug, name } = requireFixture()
-  await page.goto(`/d/${slug}`)
-
-  const trigger = page.getByRole('button', { name: /Sections & feedback/i })
-  await expect(trigger).toBeVisible()
-
-  /*
-   * Read while the panel is closed. The badge is deliberately hidden once the panel is open, because
-   * the count is a summons and the panel it summons you to is already showing the detail.
-   */
-  const closedBadgeText = (await trigger.textContent()) ?? ''
-
-  const panel = await openNavigator(page)
-  await expect(panel).toBeVisible()
-  /* The record being navigated is named to assistive technology, not repeated in the visible text. */
-  await expect(panel).toHaveAttribute('aria-label', new RegExp(name.slice(0, 9), 'i'))
-  await expect(panel).toContainText('sections hold recorded content')
-
-  /* A module the fixture holds is offered as recorded. */
-  const uses = panel.getByRole('button', { name: /What the label says it is for/i })
-  await expect(uses).toContainText('Recorded')
-
-  /* A module the fixture does not hold says so in words about the corpus, not about the medicine. */
-  const organism = panel.getByRole('button', { name: /What organism it is/i })
-  await expect(organism).toContainText('Not documented here')
-
-  /*
-   * The badge counts SECTIONS a disagreement reaches, not disagreements, and one disagreement can
-   * legitimately reach more than one: a half-life two labels report differently belongs both to what
-   * happens after a dose and to what every label says. Asserted against the rendered rows rather
-   * than a hardcoded number, so the two can never drift apart without failing here.
-   */
-  /* exact, or the panel header's own summary line ("2 where sources differ") is counted as a row. */
-  const differingRows = await panel.getByText('Sources differ', { exact: true }).count()
-  expect(differingRows).toBeGreaterThan(0)
-  expect(closedBadgeText).toContain(String(differingRows))
-})
-
-test('a disagreement between sources is visible from the navigator', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  const panel = await openNavigator(page)
-
-  const consensus = panel.getByRole('button', { name: /What every label says/i })
-  await expect(consensus).toContainText('Sources differ')
-})
-
-test('jumping to a section opens the disclosure that contains it', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  const panel = await openNavigator(page)
-
-  await panel.getByRole('button', { name: /What the label says it is for/i }).click()
-
-  /*
-   * The failure this prevents: scrolling to an element inside a closed <details> lands the reader on
-   * a heading with nothing under it, which reads as a broken link rather than a working jump.
-   */
-  const target = page.locator('#recorded-uses')
-  await expect(target).toBeVisible()
-  await expect(page.locator('details#recorded-uses')).toHaveAttribute('open', '')
-  await expect(panel).toBeHidden()
-})
-
-test('the navigator is operable by keyboard and closes on Escape', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-
-  const trigger = page.getByRole('button', { name: /Sections & feedback/i })
-  await trigger.focus()
-  await expect(trigger).toBeFocused()
-  await page.keyboard.press('Enter')
-
-  const panel = page.getByRole('dialog', { name: /Sections of the/i })
-  await expect(panel).toBeVisible()
-
-  await page.keyboard.press('Escape')
-  await expect(panel).toBeHidden()
-  /* Focus returns to the trigger, which is where a keyboard reader expects to be left. */
-  await expect(trigger).toBeFocused()
-})
-
-test('feedback is reachable from the navigator on a medicine page', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  const panel = await openNavigator(page)
-
-  await panel.getByRole('button', { name: /Report something wrong on this page/i }).click()
-  await expect(page.getByRole('dialog', { name: /feedback/i })).toBeVisible()
-})
-
-test('the navigator works at a 320 pixel viewport without horizontal overflow', async ({
+test('the rail lists the sections that hold content, and each carries its state', async ({
   page,
 }) => {
   const { slug } = requireFixture()
-  await page.setViewportSize({ width: 320, height: 720 })
   await page.goto(`/d/${slug}`)
 
-  const panel = await openNavigator(page)
-  await expect(panel).toBeVisible()
+  const rail = page.locator('.dv4-nav')
+  await expect(rail).toContainText('On this page')
 
-  const overflows = await page.evaluate(
+  const links = rail.locator('a[href^="#"]')
+  expect(await links.count()).toBeGreaterThan(3)
+
+  // Every entry says what state the section it points at is in, before the reader goes there.
+  for (const state of await links.evaluateAll((nodes) =>
+    nodes.map((node) => node.getAttribute('data-section-state')),
+  )) {
+    expect(state, 'a rail entry with no section state').toBeTruthy()
+  }
+})
+
+test('every rail entry lands on a section that exists', async ({ page }) => {
+  const { slug } = requireFixture()
+  await page.goto(`/d/${slug}`)
+
+  const targets = await page
+    .locator('.dv4-nav a[href^="#"]')
+    .evaluateAll((nodes) => nodes.map((node) => (node as HTMLAnchorElement).hash.slice(1)))
+
+  for (const id of targets) {
+    // Not merely present: visible without opening anything, because nothing here is behind a
+    // disclosure and nothing has to run for the link to work.
+    await expect(page.locator(`#${id}`), `#${id} is linked from the rail`).toBeVisible()
+  }
+})
+
+test('a section the record has nothing for is named as missing rather than left blank', async ({
+  page,
+}) => {
+  const { slug } = requireFixture()
+  await page.goto(`/d/${slug}`)
+
+  const missing = page.locator('#what-is-missing')
+  await expect(missing).toBeVisible()
+  await expect(missing).toContainText('could not answer')
+
+  // Each one names the question and why there is no answer, in ordinary words.
+  const rows = missing.locator('li')
+  expect(await rows.count()).toBeGreaterThan(0)
+  for (const text of await rows.allTextContents()) {
+    expect(text).toMatch(
+      /found nothing in the sources checked|does not apply to this substance|is not something RNAWiki collects yet/u,
+    )
+  }
+
+  // And a section named as missing is genuinely not rendered, rather than rendered and hidden.
+  const missingIds = await rows.evaluateAll((nodes) =>
+    nodes.map((node) => node.getAttribute('data-section')),
+  )
+  for (const id of missingIds) {
+    await expect(page.locator(`#${id}`)).toHaveCount(0)
+  }
+})
+
+test('the rail and the missing list agree, and neither is a subset of the other', async ({
+  page,
+}) => {
+  const { slug } = requireFixture()
+  await page.goto(`/d/${slug}`)
+
+  const railTargets = new Set(
+    await page
+      .locator('.dv4-nav a[href^="#"]')
+      .evaluateAll((nodes) => nodes.map((node) => (node as HTMLAnchorElement).hash.slice(1))),
+  )
+  const missingIds = await page
+    .locator('#what-is-missing li')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('data-section') ?? ''))
+
+  // A section cannot be both offered in the rail and listed as absent.
+  for (const id of missingIds) {
+    expect(railTargets.has(id), `${id} is both in the rail and listed as missing`).toBe(false)
+  }
+})
+
+test('none of it needs JavaScript', async ({ browser }) => {
+  const { slug } = requireFixture()
+  const context = await browser.newContext({ javaScriptEnabled: false })
+  const page = await context.newPage()
+  await page.goto(`/d/${slug}`)
+
+  await expect(page.locator('.dv4-nav')).toContainText('On this page')
+  const first = page.locator('.dv4-nav a[href^="#"]').first()
+  const target = (await first.getAttribute('href')) ?? '#substance-action'
+  await first.click()
+  await expect(page.locator(target)).toBeVisible()
+  await context.close()
+})
+
+test('the rail works at a 320 pixel viewport without horizontal overflow', async ({ page }) => {
+  const { slug } = requireFixture()
+  await page.setViewportSize({ width: 320, height: 800 })
+  await page.goto(`/d/${slug}`)
+
+  const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
   )
-  expect(overflows).toBe(false)
+  expect(overflow).toBe(false)
+
+  const results = await new AxeBuilder({ page })
+    .include('.dv4-canvas')
+    .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
+    .analyze()
+  expect(results.violations).toEqual([])
 })

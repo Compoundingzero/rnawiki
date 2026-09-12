@@ -353,10 +353,16 @@
   border-top: 1px solid var(--corpus-hairline);
 }
 
+/*
+ * 44 px minimum, for the same reason as `.dv4-more > summary`: this is the control that opens every
+ * piece of evidence in the technical record, and a 30 px line of text is not a target a finger can
+ * hit. The height grows around the text rather than moving it.
+ */
 .cd-evidence > summary {
   list-style: none;
   cursor: pointer;
   padding: 0.6rem 0;
+  min-height: 44px;
   font-size: 0.9rem;
   color: var(--corpus-ink-1);
   display: flex;

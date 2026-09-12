@@ -156,7 +156,14 @@ test('beginner test: formulation, an alternative, an unknown and a next question
   await expect(page.locator('#form-check')).toContainText('Stereoisomer of')
   await expect(page.locator('#form-check')).toContainText('Same target as')
   await expect(page.locator('#form-check')).toContainText('does not automatically apply')
-  await expect(page.locator('#alternatives')).toContainText('Measure first')
+  /*
+   * The alternatives section is not rendered for this fixture, and that is the current contract
+   * rather than a gap. Its only entry would be the standing "measure first, or change nothing yet"
+   * option, which is on every page of the site and is not an alternative to this substance. A
+   * section carrying nothing but furniture is listed as absent instead of printed.
+   */
+  await expect(page.locator('#alternatives')).toHaveCount(0)
+  await expect(page.locator('#what-is-missing')).toContainText('Other ways to the same goal')
   await expect(page.locator('#unknowns')).toBeVisible()
   const next = page.locator('#next-question a').first()
   await expect(next).toBeVisible()
@@ -297,6 +304,15 @@ test('safety: the clash map never says a pair is fine', async ({ page }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
   const stack = page.locator('#stack')
+  /*
+   * The clash map is not rendered when the registers held nothing for this substance — an empty
+   * section is listed as absent rather than printed. When it is there, this is the rule it has to
+   * keep: it never tells anyone a pair is safe.
+   */
+  if ((await stack.count()) === 0) {
+    await expect(page.locator('#what-is-missing')).toContainText('What it may clash with')
+    return
+  }
   const text = (await stack.innerText()).toLowerCase()
   // "No interaction was found in <registers> as of <date>" is the required absence sentence and is
   // honest. What must never appear is a claim that the pair is fine.
@@ -319,14 +335,33 @@ test('a section that cannot be filled says so rather than disappearing', async (
   // Every section on the page carries a state, and every state has a word beside it.
   const sections = page.locator('section[data-state]')
   const count = await sections.count()
-  expect(count).toBeGreaterThan(15)
+  expect(count).toBeGreaterThan(4)
   for (let index = 0; index < count; index += 1) {
     const state = await sections.nth(index).getAttribute('data-state')
     expect(state).toBeTruthy()
   }
-  // The community lane renders before any report exists.
-  await expect(page.locator('#community')).toContainText('The lane is built, and it is empty')
-  await expect(page.locator('#community')).toContainText('does not copy reports from forums')
+
+  /*
+   * A section with nothing in it is named rather than printed.
+   *
+   * Every section used to render whatever the record held, so a thin medicine got eighteen headings
+   * each saying nothing was found — 22,350 characters a page, identical across medicines. They are
+   * accounted for in one block instead, with the reason kept distinct: nothing found in the sources
+   * checked, does not apply to this substance, or not something RNAWiki collects yet.
+   */
+  const missing = page.locator('#what-is-missing')
+  await expect(missing).toBeVisible()
+  await expect(missing).toContainText('could not answer')
+  await expect(missing).toContainText('listed rather than hidden')
+
+  /*
+   * "What people report" is not among them, because it no longer exists. The lane described how
+   * community reports would be weighed above a list of empty categories, on every one of 10,250
+   * pages, for a feature that does not exist. A promise is not a record.
+   */
+  await expect(page.locator('#community')).toHaveCount(0)
+  await expect(missing).not.toContainText('What people report')
+  await expect(page.locator('main')).not.toContainText('does not copy reports from forums')
 })
 
 test('no internal key reaches the reader layer', async ({ page }) => {

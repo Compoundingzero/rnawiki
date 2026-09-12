@@ -1033,12 +1033,24 @@
   padding-top: 0.5rem;
 }
 
+/*
+ * 44 px, not 1.6rem.
+ *
+ * These were 29.5 px tall on a phone: a line of 13px text with 4px of padding. That is under the
+ * minimum target size a pointer of finger size can hit reliably, and it is the only control on most
+ * of this page — every piece of provenance, every source list and the whole technical record sits
+ * behind one. `min-height` plus centring keeps the text where it was and grows the target around it,
+ * so nothing moves and the control becomes hittable.
+ */
 .dv4-more > summary {
+  align-items: center;
   color: var(--dv4-accent);
   cursor: pointer;
+  display: flex;
   font-size: 0.84rem;
+  gap: 0.1rem;
   list-style: none;
-  min-height: 1.6rem;
+  min-height: 44px;
   padding: 0.25rem 0;
 }
 

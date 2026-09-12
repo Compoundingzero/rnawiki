@@ -111,11 +111,32 @@ test('a member proposes a better wording through the form', async ({ browser }) 
   await context.close()
 })
 
-test('the medicine page now shows one proposal open and nothing approved', async ({ page }) => {
+test('the medicine page shows nothing at all about the open proposal', async ({ page }) => {
+  /*
+   * This used to assert the opposite: that the page now read "Review or improve · 0/3". The control
+   * is gone, and so is the idea behind it. A proposal in flight is a fact about RNAWiki's process,
+   * not about the medicine, and printing it beside the medicine's own record put a running tally in
+   * front of a reader who came to find out whether a drug works. The page changes when the wording
+   * changes — when three people have signed the same sentence off — and not before.
+   */
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
-  await expect(page.locator('.dv4-review-pill')).toContainText('Review or improve · 0/3')
-  await expect(page.locator('.dv4-review-pill')).toHaveAttribute('data-review-state', 'open')
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
+  await expect(page.locator('[data-review-state]')).toHaveCount(0)
+  await expect(page.locator('main a[href*="review-queue"]')).toHaveCount(0)
+  await expect(page.locator('main')).not.toContainText('Open proposals')
+})
+
+test('the open proposal is visible in the queue, grouped under its medicine', async ({ page }) => {
+  const { slug, name } = requireFixture()
+  await page.goto('/review-queue')
+  const row = page.locator(`li:has(a[href*="slug=${slug}"])`).first()
+  await expect(row).toContainText(name)
+  await expect(row).toContainText('1 proposal on 1 sentence')
+
+  // And the medicine filter narrows the grouped queue to it.
+  await page.goto(`/review-queue?medicine=${slug}`)
+  await expect(page.locator('body')).toContainText('1 sentence across 1 medicine')
 })
 
 test('the author cannot approve their own proposal', async ({ browser }) => {
@@ -161,8 +182,11 @@ test('the first approval moves the count to one of three', async ({ browser }) =
   await card.getByRole('button', { name: 'Record my approval' }).click()
 
   await expect(page.locator('main')).toContainText('1 of 3 approvals', { timeout: 15_000 })
+  // The count lives in the queue. The medicine page still says what the record says, unchanged,
+  // because one approval out of three has changed nothing about the medicine.
   await page.goto(`/d/${slug}`)
-  await expect(page.locator('.dv4-review-pill')).toContainText('Review or improve · 1/3')
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
+  expect((await page.locator('#substance-action').textContent()) ?? '').not.toContain(PROPOSED)
   await context.close()
 })
 
@@ -196,7 +220,8 @@ test('the second approval moves the count to two of three', async ({ browser }) 
 
   await expect(page.locator('main')).toContainText('2 of 3 approvals', { timeout: 15_000 })
   await page.goto(`/d/${slug}`)
-  await expect(page.locator('.dv4-review-pill')).toContainText('Review or improve · 2/3')
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
+  expect((await page.locator('#substance-action').textContent()) ?? '').not.toContain(PROPOSED)
   await context.close()
 })
 
@@ -235,12 +260,12 @@ test('the approved wording is what the public page says, with no deployment', as
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
   const text = (await page.locator('main').textContent()) ?? ''
+  // The third approval is the only one a reader ever sees, and they see it as the sentence itself
+  // having changed — not as a badge saying it has been approved.
   expect(text).toContain(PROPOSED)
-  await expect(page.locator('.dv4-review-pill')).toContainText('Community approved · 3/3')
-  await expect(page.locator('.dv4-review-pill')).toHaveAttribute(
-    'data-review-state',
-    'community_approved',
-  )
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
+  await expect(page.locator('[data-review-state]')).toHaveCount(0)
+  expect(text.toLowerCase()).not.toContain('community approved')
 })
 
 test('approval changed the wording and not the evidence state', async ({ page }) => {
@@ -251,10 +276,16 @@ test('approval changed the wording and not the evidence state', async ({ page })
     'data-publication-state',
     /preliminary|limited/,
   )
-  // The sentence says, on the first screen, that its wording was approved by members.
-  const origin = page.locator('[data-origin="community_reviewed"]')
-  await expect(origin).toHaveCount(1)
-  await expect(page.locator('main')).toContainText('Community approved 3/3')
+  /*
+   * The sentence keeps the origin of what it rests on. There used to be a `community_reviewed`
+   * origin rendering as "Community approved" beside the sentence; on a drug page that reads as a
+   * verdict on the drug, and it was a verdict on a phrasing. The approval is recorded in the
+   * provenance disclosure and the change history instead.
+   */
+  await expect(page.locator('[data-origin="community_reviewed"]')).toHaveCount(0)
+  await expect(page.locator('main')).not.toContainText('Community approved')
+  // It is still visible to anyone who opens the provenance, word for word.
+  await expect(page.locator('#substance-action')).toContainText('3 members approved this wording')
   // And the page still describes the evidence exactly as it did before the rewording.
   await expect(page.locator('[data-block="strongest-result"] [data-state]')).not.toHaveAttribute(
     'data-state',
@@ -309,7 +340,7 @@ test('a steward can roll the wording back, and the earlier wording returns', asy
   // The reader's answer returns to what the record says.
   const hero = (await page.locator('#substance-action').textContent()) ?? ''
   expect(hero).not.toContain(PROPOSED)
-  await expect(page.locator('.dv4-review-pill')).toContainText('Review or improve · 0/3')
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
   // And the wording that was rolled back stays readable, with the fact that it was rolled back.
   const history = page.locator('#change-history')
   await expect(history).toContainText(PROPOSED)

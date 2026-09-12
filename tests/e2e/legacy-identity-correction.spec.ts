@@ -72,39 +72,33 @@ test('a sourced legacy name correction stays in the bottom utilities, queues, an
 
   await login(page, fixture.author)
   await page.goto(`/d/${fixture.slug}`)
-  await expect(page.getByRole('heading', { name: fixture.originalName })).toBeVisible()
-  const evidenceControl = page.locator('summary[aria-controls="advanced-evidence-content"]')
-  const correctionControl = page.getByRole('button', { name: 'Suggest a correction' })
-  await expect(evidenceControl).toBeVisible()
-  await expect(correctionControl).toBeVisible()
-  expect(
-    await correctionControl.evaluate((correction) => {
-      const evidence = document.querySelector('summary[aria-controls="advanced-evidence-content"]')
-      return Boolean(
-        evidence && evidence.compareDocumentPosition(correction) & Node.DOCUMENT_POSITION_FOLLOWING,
-      )
-    }),
-  ).toBe(true)
-  await correctionControl.click()
+  // `exact` because the hero carries a visually hidden "What <name> does in the body" heading.
+  await expect(page.getByRole('heading', { name: fixture.originalName, exact: true })).toBeVisible()
+  /*
+   * There is no correction control on a medicine page any more.
+   *
+   * This test used to open one: an "Suggest a correction" button below the advanced-evidence
+   * disclosure, on the page itself. Both belonged to the medicine layout this release deleted, and
+   * the deletion was deliberate rather than incidental — a reader arrives to find out about a
+   * medicine, and a page that offers them an editing form in the same view has changed what it is.
+   *
+   * The workflow behind it is unchanged and is what this test still covers: a signed-in member may
+   * propose exactly one medicine-name or trade-name correction with a public source, one different
+   * trusted person decides it, and nothing publishes without that. Only the way in moved, to the
+   * review queue and the API the queue posts to.
+   */
+  await expect(page.locator('summary[aria-controls="advanced-evidence-content"]')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Suggest a correction' })).toHaveCount(0)
 
-  const dialog = page.getByRole('dialog', { name: 'Suggest a correction' })
-  await expect(dialog).toBeVisible()
-  await expect(
-    dialog.getByText(/This form cannot change evidence, safety, efficacy, trials, mechanism/),
-  ).toBeVisible()
-  await dialog.getByRole('radio', { name: 'Medicine name', exact: true }).check()
-  await dialog.getByLabel('Corrected medicine name').fill(correctedName)
-  await dialog.getByLabel('Source page title').fill(fixture.sourceTitle)
-  await dialog.getByLabel('Public source URL').fill(fixture.sourceUrl)
-  await dialog.getByLabel('Why should this name change?').fill(explanation)
-
-  const responsePromise = page.waitForResponse(
-    (response) =>
-      new URL(response.url()).pathname === `/api/drugs/${fixture.slug}/revisions` &&
-      response.request().method() === 'POST',
-  )
-  await dialog.getByRole('button', { name: 'Submit for independent review' }).click()
-  const submission = await responsePromise
+  const submission = await page.request.post(`/api/drugs/${fixture.slug}/revisions`, {
+    data: {
+      field: 'name',
+      proposedValue: correctedName,
+      sourceUrl: fixture.sourceUrl,
+      sourceTitle: fixture.sourceTitle,
+      explanation,
+    },
+  })
   const submissionBody = await submission.text()
   expect(submission.status(), submissionBody).toBe(202)
   const submitted = JSON.parse(submissionBody) as {
@@ -115,10 +109,9 @@ test('a sourced legacy name correction stays in the bottom utilities, queues, an
     sourceUrl: fixture.sourceUrl,
     sourceTitle: fixture.sourceTitle,
   })
-  await expect(page.getByRole('dialog', { name: 'Your correction is in the queue' })).toBeVisible()
-  await expectNoSeriousWcagViolations(page, 'identity correction confirmation')
 
   await page.goto('/review-queue')
+  await expectNoSeriousWcagViolations(page, 'review queue with a pending identity correction')
   const authorCard = page.locator('article').filter({ hasText: correctedName })
   await expect(authorCard).toBeVisible()
   await expect(authorCard.getByText(fixture.sourceTitle)).toBeVisible()

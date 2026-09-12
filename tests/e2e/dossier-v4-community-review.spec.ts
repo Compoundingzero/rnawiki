@@ -8,16 +8,21 @@ import {
 } from './fixtures/dossier-v4'
 
 /**
- * What replaced the preliminary-review banner, read in a browser.
+ * What a medicine page shows about its own review, read in a browser. The answer is: nothing.
  *
- * The banner is the thing this change removes, so the first job of this file is to prove it is
- * gone from an ordinary page and has not been swapped for another large warning. The second is that
- * what took its place is usable: a small control with a real hit area, a name a screen reader can
- * read, and a link that reaches the review queue for this exact medicine.
+ * This file was written when the preliminary-review banner was replaced by a small control on the
+ * page — a pill reading "Review or improve · 0/3" that linked into the queue for that medicine. The
+ * control is gone too. A reader arrives to find out about a medicine, and a page that asks them in
+ * the same breath to adjudicate its wording has changed what it is; the fraction also invited a
+ * reading nobody intended, where 2/3 looks like a score for the medicine rather than a count of
+ * signatures on a sentence. Review now lives only at /review-queue, reached from the footer link
+ * every page carries.
  *
- * The third is the part that is easy to lose. The approved V4 design and the approved wording are
- * not this task's to change, so the layout, the left rail, the purpose controls and the section
- * order are asserted here as a regression guard rather than trusted to review.
+ * So the first job of this file is to prove the page carries neither the banner nor the control,
+ * and that the review machinery leaves no trace on it at all. The second is the part that is easy
+ * to lose: the approved V4 design and the approved wording are not this task's to change, so the
+ * layout, the left rail, the purpose controls and the section order are asserted here as a
+ * regression guard rather than trusted to review.
  */
 
 test.describe.configure({ mode: 'serial' })
@@ -86,81 +91,75 @@ test('the internal publication state is preserved even though the banner is not 
   await expect(root).toHaveAttribute('data-publication-state', /preliminary|limited/)
 })
 
-test('nothing large replaced the banner, and the reader content moved up', async ({ page }) => {
+test('nothing replaced the banner, and the reader content moved up', async ({ page }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
-  const control = await page.locator('.dv4-review-pill').boundingBox()
+  const strip = await page.locator('.dv4-strip').boundingBox()
   const purpose = await page.locator('.dv4-purpose').boundingBox()
   const headline = await page.locator('.dv4-hero-action').boundingBox()
 
-  expect(control).not.toBeNull()
-  // Small: the control is one line, not a block. The old banner was over 130 px tall.
-  expect(control?.height ?? 999).toBeLessThan(60)
-  // The purpose controls and the headline follow it without a banner-sized gap between them.
-  expect((purpose?.y ?? 0) - ((control?.y ?? 0) + (control?.height ?? 0))).toBeLessThan(80)
+  // The identity strip runs straight into the purpose controls. The old banner was over 130 px
+  // tall and sat between them; the control that briefly replaced it was about 44.
+  expect((purpose?.y ?? 0) - ((strip?.y ?? 0) + (strip?.height ?? 0))).toBeLessThan(60)
   expect(headline?.y ?? 0).toBeLessThan(700)
 })
 
-/* ---------------------------------------------------- the review control */
+/* --------------------------------------- no review surface on a reader page */
 
-test('the review control reads 0 of 3 and links to this page in the review queue', async ({
+test('a medicine page carries no review control of any kind', async ({ page }) => {
+  const { slug } = requireFixture()
+  await page.goto(`/d/${slug}`)
+
+  // The control and the banner that preceded it.
+  await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
+  await expect(page.locator('[data-review-state]')).toHaveCount(0)
+  await expect(page.locator('.dv4-publication')).toHaveCount(0)
+
+  // And no link into review from anywhere inside the medicine document.
+  const inPageLinks = await page
+    .locator('main a[href*="review-queue"]')
+    .evaluateAll((nodes) => nodes.map((node) => (node as HTMLAnchorElement).getAttribute('href')))
+  expect(inPageLinks).toEqual([])
+})
+
+test('a reader page shows no approval fraction or approval status', async ({ page }) => {
+  const { slug } = requireFixture()
+  await page.goto(`/d/${slug}`)
+  const text = await readerText(page)
+
+  // The fraction invited a reading nobody intended: 2/3 looks like a score for the medicine.
+  expect(text).not.toMatch(/\b[0-9]\s*\/\s*3\b/u)
+  expect(text).not.toContain('Review or improve')
+  expect(text.toLowerCase()).not.toContain('community approved')
+  expect(text.toLowerCase()).not.toContain('community-approved')
+  expect(text.toLowerCase()).not.toContain('approved by three')
+})
+
+test('review is reachable from the footer, on every page, and only from there', async ({
   page,
 }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
-  const control = page.locator('.dv4-review-pill')
-  await expect(control).toHaveCount(1)
-  await expect(control).toContainText('Review or improve · 0/3')
-  await expect(control).toHaveAttribute('href', `/review-queue?slug=${slug}`)
-  await expect(control).toHaveAttribute('data-review-state', 'no_proposal')
+
+  const footerLink = page.locator('footer a[href="/review-queue"]')
+  await expect(footerLink).toHaveCount(1)
+  await expect(footerLink).toContainText('Review and improve')
+
+  await footerLink.click()
+  await page.waitForURL(/\/review-queue$/)
+  await expect(page.locator('body')).toContainText('Sentences waiting for review')
 })
 
-test('the control has a name that reads as a sentence rather than a fraction', async ({ page }) => {
+test('a signed-out reader is not asked to sign in to read, or to review', async ({ page }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
-  const name = await page.locator('.dv4-review-pill').getAttribute('aria-label')
-  expect(name).toContain('Review or improve the wording on this page')
-  expect(name).toContain('approved')
-  // Never this claim: three members agreeing on wording is not scientific peer review.
-  expect(name?.toLowerCase()).not.toContain('peer review')
-})
-
-test('the control is a 44 px target and takes visible focus', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  const box = await page.locator('.dv4-review-pill').boundingBox()
-  expect(box?.height ?? 0).toBeGreaterThanOrEqual(44)
-  expect(box?.width ?? 0).toBeGreaterThanOrEqual(44)
-
-  await page.locator('.dv4-review-pill').focus()
-  const outline = await page
-    .locator('.dv4-review-pill')
-    .evaluate((node) => getComputedStyle(node).outlineWidth)
-  expect(outline).not.toBe('0px')
-})
-
-test('the control reaches the review queue for this medicine', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  await page.locator('.dv4-review-pill').click()
-  await page.waitForURL(/\/review-queue\?slug=/)
-  await expect(page.locator('main')).toContainText('Review or improve')
-})
-
-test('a signed-out reader sees the review status and is not asked to sign in to read', async ({
-  page,
-}) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  // No sign-in wall on the medicine page itself.
   expect(page.url()).toContain(`/d/${slug}`)
-  await expect(page.locator('.dv4-review-pill')).toBeVisible()
 
-  await page.goto(`/review-queue?slug=${slug}`)
+  await page.goto('/review-queue')
   const queueText = (await readerText(page)).toLowerCase()
   // The queue explains the rule and offers the way in, without demanding an account to look.
-  expect(queueText).toContain('three different eligible members')
-  expect(queueText).toContain('sign in on the front page')
+  expect(queueText).toContain('three')
+  expect(queueText).toContain('sentences waiting for review')
 })
 
 /* ------------------------------------------- the repeated status paragraph */
@@ -230,15 +229,13 @@ test('the order of the compass sections did not change', async ({ page }) => {
 /* -------------------------------------------------- narrow and accessible */
 
 for (const width of [1440, 1024, 768, 390, 320]) {
-  test(`the control works at ${width} px with no horizontal overflow`, async ({ page }) => {
+  test(`the page header works at ${width} px with no horizontal overflow`, async ({ page }) => {
     const { slug } = requireFixture()
     await page.setViewportSize({ width, height: 900 })
     await page.goto(`/d/${slug}`)
 
-    const control = page.locator('.dv4-review-pill')
-    await expect(control).toBeVisible()
-    const box = await control.boundingBox()
-    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44)
+    await expect(page.locator('.dv4-strip h1')).toBeVisible()
+    await expect(page.locator('.dv4-purpose')).toBeVisible()
 
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -247,7 +244,7 @@ for (const width of [1440, 1024, 768, 390, 320]) {
   })
 }
 
-test('the control passes the accessibility checks at 320 px', async ({ page }) => {
+test('the page header passes the accessibility checks at 320 px', async ({ page }) => {
   const { slug } = requireFixture()
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto(`/d/${slug}`)
@@ -256,13 +253,4 @@ test('the control passes the accessibility checks at 320 px', async ({ page }) =
     .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
     .analyze()
   expect(results.violations).toEqual([])
-})
-
-test('the control does not animate', async ({ page }) => {
-  const { slug } = requireFixture()
-  await page.goto(`/d/${slug}`)
-  const animation = await page
-    .locator('.dv4-review-pill')
-    .evaluate((node) => getComputedStyle(node).animationName)
-  expect(animation).toBe('none')
 })

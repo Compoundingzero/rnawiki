@@ -12,6 +12,12 @@ data/registries/
 # whole point of the file is that its bytes change only when the corpus does, so reformatting it
 # would put a diff in front of a reviewer that means nothing.
 data/audits/
+# Acquisition run reports and page measurements, written wholesale by scripts/background/* and
+# scripts/dossier-v4/measure-*.ts. They are the record of what a run actually did — kept so a
+# number in a worklog can be checked against the run that produced it — and reformatting a report
+# would edit a record of something that already happened.
+data/background/
+data/dossier-v4/
 package-lock.json
 test-results/
 playwright-report/

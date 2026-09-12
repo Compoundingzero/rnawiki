@@ -126,14 +126,14 @@ async function main(): Promise<void> {
       }
 
       const gained = args.modules.filter(
-        (module) => from[module] !== undefined && (to === null || to[module] === undefined),
+        (name) => from[name] !== undefined && (to === null || to[name] === undefined),
       )
       if (gained.length === 0) continue
 
       const merged = { ...(to ?? {}) } as Envelope
-      for (const module of gained) {
-        merged[module] = from[module]
-        moved.set(module, (moved.get(module) ?? 0) + 1)
+      for (const name of gained) {
+        merged[name] = from[name]
+        moved.set(name, (moved.get(name) ?? 0) + 1)
       }
       updates.push({ slug: row.slug, envelope: merged, gained })
     }

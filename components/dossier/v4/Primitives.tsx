@@ -46,7 +46,6 @@ const STATE_GLYPHS: Record<SectionState, string> = {
 const ORIGIN_GLYPHS: Record<StatementOrigin, string> = {
   reviewed_claim: '✓',
   approved_first_read: '✓',
-  community_reviewed: '✎✓',
   authored_record: '✎',
   stored_source: '❝',
   derived_count: '#',

@@ -108,7 +108,6 @@ export interface DossierV4Inputs extends DossierV3Inputs {
 export type StatementOrigin =
   | 'reviewed_claim'
   | 'approved_first_read'
-  | 'community_reviewed'
   | 'authored_record'
   | 'stored_source'
   | 'derived_count'
@@ -118,7 +117,6 @@ export type StatementOrigin =
 export const ORIGIN_LABELS: Record<StatementOrigin, string> = {
   reviewed_claim: 'Reviewed conclusion',
   approved_first_read: 'Reviewed first-read answer',
-  community_reviewed: 'Wording approved by members',
   authored_record: 'Written into the record, not signed off',
   stored_source: 'Quoted from a stored source',
   derived_count: 'Counted from stored records',
@@ -136,7 +134,6 @@ export const ORIGIN_LABELS: Record<StatementOrigin, string> = {
 export const ORIGIN_SHORT: Record<StatementOrigin, string> = {
   reviewed_claim: 'Reviewed conclusion',
   approved_first_read: 'Reviewed first-read answer',
-  community_reviewed: 'Community approved',
   authored_record: 'Source-linked record',
   stored_source: 'Quoted from a source',
   derived_count: 'Counted from records',
@@ -148,8 +145,6 @@ export const ORIGIN_PLAIN: Record<StatementOrigin, string> = {
   reviewed_claim: 'A person checked this against the sources and signed it off.',
   approved_first_read:
     'A person wrote this and a reviewer approved it against this exact record. It carries no effect size.',
-  community_reviewed:
-    'Three members agreed this is the clearest true way to put it, against the same sources. That is about the words. It does not say the substance works, and it does not change what kind of evidence sits behind it.',
   authored_record:
     'A person wrote this into the record with the study named beside it. No reviewer has signed it off.',
   stored_source: 'Copied from a source RNAWiki stored, with the source named.',
@@ -193,10 +188,34 @@ function absentStatement(basis: string, state: SectionState = 'no_qualifying_evi
  */
 function withApprovedWording(base: Statement, active: ActivePageStatement | undefined): Statement {
   if (!active) return base
+  /*
+   * The origin is not changed, and that is the point.
+   *
+   * There used to be a `community_reviewed` origin that rendered beside the sentence as "Community
+   * approved". It read as a verdict on the medicine when it was a verdict on a phrasing, and a
+   * reader with no reason to know the difference would take "Community approved" on a drug page to
+   * mean the drug had been approved by somebody. Three people agreeing on how to say a thing does
+   * not change what the thing rests on, so the sentence keeps the origin of the evidence underneath
+   * it — a quoted source stays quoted, an unreviewed record stays unreviewed.
+   *
+   * The approval is not hidden. It is written into the basis, which the provenance disclosure under
+   * every statement prints, and into the page's change history, where a reader can see the wording
+   * that was replaced and why.
+   */
   return {
     ...base,
     text: active.text,
-    origin: 'community_reviewed',
+    /*
+     * One exception to keeping the base origin: a slot that held nothing.
+     *
+     * The hero skips a statement whose origin is `absent`, which is right when there is nothing to
+     * say and wrong the moment somebody writes something. Keeping `absent` here would have taken a
+     * wording three people signed and rendered it nowhere. `authored_record` is what it now is — a
+     * sentence a person wrote into the record — and it deliberately claims less than the truth: its
+     * plain-language note says no reviewer has signed it off, which stays accurate, because what
+     * was approved was the phrasing and not the claim.
+     */
+    ...(base.origin === 'absent' ? { origin: 'authored_record' as StatementOrigin } : {}),
     basis: `${active.approvals} members approved this wording against the same sources on ${active.publishedAt}. The evidence behind it is unchanged: ${base.basis}`,
   }
 }
@@ -576,6 +595,16 @@ export interface DossierV4ViewModel {
    * and classifications read out of public registers — never a description of the substance.
    */
   recordedIdentity: RecordedFact[]
+  /**
+   * The older medicine-wide conclusion held in the curated record, word for word, or null.
+   *
+   * 489 records carry one. It is written for a clinical reader and is deliberately not what the
+   * page leads with — a sentence about phosphocreatine resynthesis and Phase 3 trial counts is not
+   * a first read. But it is stored, it is a conclusion somebody wrote and stands behind, and it was
+   * reaching no page at all. It belongs in the technical layer, labelled as what it is: medicine-
+   * wide rather than scoped to one programme, and therefore not a programme conclusion.
+   */
+  recordedVerdict: string | null
   pagePromise: string
   /**
    * What the small review control shows. Viewer-independent by design: `/d/<slug>` is one document
@@ -2386,8 +2415,20 @@ function buildMeasurement(
     !inputs.corpus.controlled &&
     !inputs.corpus.withdrawn
   if (!lowRisk) {
+    /*
+     * A prescription or controlled medicine gets questions to ask a clinician and the warning signs
+     * the record holds — never a self-experiment plan, which is what `lowRisk` gates.
+     *
+     * The state used to be `not_applicable` for this branch, meaning "this question does not apply
+     * to this substance". It was never true: the question applies, and the section answers it in a
+     * different mode. It became load-bearing when empty sections stopped rendering, because
+     * `not_applicable` hid a section that had a list of clinician questions in it. The state now
+     * reflects whether there is anything to show, and the mode says what kind of thing it is.
+     */
+    const hasClinicianContent =
+      v3.measure.clinicianQuestions.length > 0 || v3.measure.warningSigns.length > 0
     return {
-      state: 'not_applicable',
+      state: hasClinicianContent ? 'source_checked_draft' : 'no_qualifying_evidence',
       mode: 'clinician_questions',
       reason: v3.measure.reason,
       plan: [],
@@ -2888,6 +2929,7 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     publication,
     identity,
     recordedIdentity: facts.identity,
+    recordedVerdict: inputs.legacyRecord?.oneSentenceVerdict?.trim() || null,
     pagePromise: COMPASS_COPY.pagePromise,
     reviewSummary: inputs.statementOverlay?.summary ?? {
       slug: v3.slug,
@@ -2916,7 +2958,13 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     receipts,
     story,
     changes: {
-      state: (v3.changes.length
+      /*
+       * A published wording change is a change to this page, so it keeps the section open even when
+       * nothing else was corrected. Without this the section would be hidden as empty while
+       * carrying the record of a sentence that was reworded — which is the one thing a reader
+       * looking at the current wording most needs to be able to find.
+       */
+      state: (v3.changes.length || (inputs.statementOverlay?.history?.length ?? 0) > 0
         ? 'source_checked_draft'
         : 'no_qualifying_evidence') as SectionState,
       // One entry per distinct explanation. A single identity repair writes a row for each thing
