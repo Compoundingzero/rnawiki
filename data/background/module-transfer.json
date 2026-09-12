@@ -1,0 +1,155 @@
+{
+  "dryRun": true,
+  "sourceEnvelopes": 9855,
+  "targetEnvelopes": 9855,
+  "medicinesUpdated": 236,
+  "modulesMoved": {
+    "mechanism": 108,
+    "recordedUses": 96,
+    "attribution": 78,
+    "regulatoryApproval": 37,
+    "safety": 36,
+    "productVariants": 34,
+    "molecularIdentity": 33,
+    "pharmacokinetics": 20,
+    "populationStatements": 18,
+    "commonAdverseReactions": 12,
+    "interactionSignals": 10
+  },
+  "skippedCuratedCount": 0,
+  "missingInTargetCount": 0,
+  "missingInTargetSample": [],
+  "updatedSample": [
+    {
+      "slug": "alpha-arbutin",
+      "gained": [
+        "recordedUses",
+        "attribution"
+      ]
+    },
+    {
+      "slug": "ibuprofen",
+      "gained": [
+        "recordedUses",
+        "attribution"
+      ]
+    },
+    {
+      "slug": "aspirin",
+      "gained": [
+        "attribution"
+      ]
+    },
+    {
+      "slug": "furosemide",
+      "gained": [
+        "recordedUses",
+        "attribution"
+      ]
+    },
+    {
+      "slug": "celecoxib",
+      "gained": [
+        "recordedUses",
+        "attribution"
+      ]
+    },
+    {
+      "slug": "betamethasone",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "duloxetine",
+      "gained": [
+        "recordedUses",
+        "attribution",
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "prochlorperazine",
+      "gained": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "selenium-sulfide",
+      "gained": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "promethazine",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "clonazepam",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "chlorpromazine",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "ammonia",
+      "gained": [
+        "mechanism",
+        "productVariants",
+        "populationStatements"
+      ]
+    },
+    {
+      "slug": "urea",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "isosorbide-mononitrate",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "aluminum-chloride",
+      "gained": [
+        "recordedUses"
+      ]
+    },
+    {
+      "slug": "nadolol",
+      "gained": [
+        "mechanism"
+      ]
+    },
+    {
+      "slug": "clomipramine",
+      "gained": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "gadobutrol",
+      "gained": [
+        "recordedUses"
+      ]
+    },
+    {
+      "slug": "trientine",
+      "gained": [
+        "mechanism",
+        "safety",
+        "pharmacokinetics",
+        "commonAdverseReactions"
+      ]
+    }
+  ]
+}
