@@ -575,6 +575,8 @@ export interface DossierV4ViewModel {
    * served identically to everybody, and a count that varied by session would end that.
    */
   reviewSummary: PageReviewSummary
+  /** Whether this deployment offers community review for this page at all. */
+  reviewEnabled: boolean
   /** Sentences on this page carrying a wording members approved. */
   approvedWordings: ActivePageStatement[]
   /** Wordings members replaced, newest first, for the public "What changed" section. */
@@ -2745,6 +2747,7 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
       slug: v3.slug,
       ...EMPTY_PAGE_REVIEW_SUMMARY,
     },
+    reviewEnabled: inputs.statementOverlay !== undefined,
     approvedWordings: [...(inputs.statementOverlay?.active.values() ?? [])],
     wordingHistory: inputs.statementOverlay?.history ?? [],
     hero,

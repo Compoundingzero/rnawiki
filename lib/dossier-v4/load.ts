@@ -9,6 +9,7 @@
  * v3, and unsetting both restores the corpus document. No database change is needed to roll back.
  */
 import { getPublicDrugBySlug } from '@/lib/queries/drugs'
+import { communityReviewEnabled } from '@/lib/page-statements/flags'
 import { loadPageStatementOverlay } from '@/lib/queries/page-statements'
 import { corpusFromLegacyRecord } from './legacy-shim'
 import { loadDossierV3Inputs } from '@/lib/dossier-v3/load'
@@ -26,7 +27,14 @@ export async function loadDossierV4Inputs(slug: string): Promise<DossierV4Inputs
    * revision reach a reader with no deployment: the route is force-dynamic and nothing caches the
    * document, so the next request after the publishing transaction shows the new sentence.
    */
-  const statementOverlay = await loadPageStatementOverlay(slug, legacyRecord)
+  /*
+   * Undefined, not an empty overlay: the view model reads the difference. An empty overlay means
+   * "review is available here and nothing is proposed yet", which is what a reader sees as 0/3.
+   * Undefined means the feature is not offered on this deployment, and the control does not render.
+   */
+  const statementOverlay = communityReviewEnabled(slug)
+    ? await loadPageStatementOverlay(slug, legacyRecord)
+    : undefined
   // The override resolves only when the authored copy and the record's current medical surface
   // still match one approved fingerprint. A changed record drops the answer rather than carrying
   // a stale one forward, which is the behaviour we want on a page that leads with it.

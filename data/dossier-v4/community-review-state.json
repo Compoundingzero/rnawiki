@@ -3,9 +3,9 @@
   "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
   "branch": "rebuild/biohacker-dossier",
   "starting_commit": "fb4ad49",
-  "last_safe_commit": "a74f041",
+  "last_safe_commit": "b0d3d58",
   "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
-  "phase": "12-footer-and-cleanup-done",
+  "phase": "17-local-release-rehearsal-done-staging-blocked",
   "banner_removed": true,
   "review_button_added": true,
   "review_queue_ready": true,
@@ -15,20 +15,31 @@
   "staging_revision": "",
   "production_revision": "",
   "tests": {
-    "gate": "exit 0 at this commit",
-    "unit": "2,934 passed across 192 files, 9 skipped",
+    "gate": "exit 0",
+    "unit": "2,954 passed across 193 files, 9 skipped",
     "integration": "209 passed across 29 files, disposable database",
-    "browser": "109 passed",
+    "browser": "110 passed",
     "seo": "279 passed across 24 files",
     "public_copy_scan": "0 hits, 38 patterns",
-    "clean_migration_replay": "passed on a disposable database",
+    "clean_migration_replay": "passed",
     "corpus_validation": "10,250 pages, 0 critical, 370 with any issue",
     "production_build": "exit 0",
-    "axe_on_medicine_pages": "0 violations at 1440, 390 and 320 px, down from 2 and 3 target-size nodes before"
+    "axe_on_medicine_pages": "0 violations at 1440, 390 and 320 px",
+    "local_release_rehearsal": "propose, three approvals, publish, read, roll back, verified against the real 10,250-page corpus; all five switches verified against a running production build"
   },
   "blockers": [
-    "Railway MCP is unauthorized (`railway login` needed by the account owner). Staging and production deployment cannot be inspected or performed from this session until that is restored."
+    "No staging environment. railway status --json reports one environment, production. Creating a second with its own database is a billing action for the account owner.",
+    "Production deploys on a merge to main, and this branch is 72 commits and 1,426 files ahead of it, of which 16 are this work. Merging would ship the September corpus revamp to a live medical-evidence site. The release path is the owner's decision; docs/dossier-v4-production-runbook.md sets out both.",
+    "main carries 26 migrations and this branch carries 36. Ten would replay against a production database whose state cannot be verified from here; the live deployment is from 2026-09-04 and predates all of them.",
+    "reviewed_claims is empty for every medicine, so enabling the compass would publish 6,896 preliminary pages and 3,351 limited ones. They say so honestly, which is correct behaviour and not a reason to publish them at scale."
   ],
-  "next_exact_command": "railway login   # then re-run the staging and production phases",
-  "updated_at": "2026-09-11"
+  "next_exact_command": "gh pr ready 19   # then decide Path A or Path B in docs/dossier-v4-production-runbook.md",
+  "updated_at": "2026-09-11",
+  "feature_flags": {
+    "DOSSIER_V4_SLUGS": "unset in production; the compass and review are inert until it is set",
+    "DOSSIER_COMMUNITY_REVIEW": "unset follows the compass; off withdraws review; on keeps it if the compass is rolled back",
+    "DOSSIER_REVIEW_PROPOSALS": "off stops new proposals, leaves the ones in flight reviewable",
+    "DOSSIER_REVIEW_DECISIONS": "off stops decisions, leaves the queue readable",
+    "DOSSIER_REVIEW_AUTOPUBLISH": "off records approvals and freezes the pointer; a steward releases with POST /api/page-statements/proposals/<id>/publish"
+  }
 }

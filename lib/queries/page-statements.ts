@@ -28,6 +28,7 @@ import { ApiError } from '@/lib/api-response'
 import type { VerdictReviewerExpertiseTag } from '@/lib/evidence/types'
 import { newId } from '@/lib/ids'
 import { pageStatementContentDigest, pageStatementSourceDigest } from '@/lib/page-statements/digest'
+import { autoPublishEnabled } from '@/lib/page-statements/flags'
 import { gatesPassed, runPageStatementGates, type GateResult } from '@/lib/page-statements/gates'
 import {
   emptyPageStatementOverlay as buildEmptyOverlay,
@@ -69,6 +70,7 @@ export class PageStatementError extends ApiError {
 }
 
 type RevisionRow = typeof pageStatementRevisions.$inferSelect
+type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
 
 /* ================================================================== reading */
 
@@ -661,6 +663,120 @@ function uniqueViolation(error: unknown, constraint: string): boolean {
   return cause?.code === '23505' && cause.constraint === constraint
 }
 
+/**
+ * Move the public pointer for one sentence, inside a transaction that already holds its rows.
+ *
+ * Two things call this and both mean the same thing: the third approval landed, or a steward is
+ * releasing a wording that was approved while automatic publication was switched off. Neither may
+ * skip the checks, because a wording approved yesterday was approved against a record that may have
+ * moved since — three approvals for a record that no longer exists are three approvals for nothing.
+ */
+async function publishApprovedRevision(
+  tx: Transaction,
+  revision: RevisionRow,
+  approvals: { reviewCount: number; qualifiedApprovals: number },
+  context: { record: DrugDossier | null; identityWarning: boolean; medicineAliases: string[] },
+  actorUserId: string | null,
+): Promise<{ published: boolean; eventId: string | null; blockedBy: GateResult[] }> {
+  const currentSourceDigest = pageStatementSourceDigest(context.record, revision.statementKey)
+  const results = runPageStatementGates({
+    statementKey: revision.statementKey,
+    currentText: revision.currentText,
+    proposedText: revision.proposedText,
+    changeCategory: revision.changeCategory,
+    riskClass: revision.riskClass,
+    evidenceState: revision.evidenceState,
+    sources: revision.sources as PageStatementSourceRef[],
+    evidencePacket: revision.evidencePacket as Record<string, string>,
+    identityWarning: context.identityWarning,
+    sourceDigestCurrent: currentSourceDigest === revision.sourceDigest,
+    medicineName: context.record?.name ?? '',
+    medicineAliases: context.medicineAliases,
+  })
+
+  if (!gatesPassed(results)) {
+    const blockedBy = results.filter((result) => !result.passed && result.severity === 'blocking')
+    const staleSource = blockedBy.some((gate) => gate.code === 'stale_source_surface')
+    await tx
+      .update(pageStatementRevisions)
+      .set({
+        status: staleSource ? 'stale_source' : 'safety_hold',
+        statusReason: blockedBy.map((gate) => gate.title).join('; '),
+        gateResults: results as unknown as Array<Record<string, unknown>>,
+      })
+      .where(eq(pageStatementRevisions.id, revision.id))
+    await tx.insert(pageStatementModerationEvents).values({
+      id: newId('psm'),
+      revisionId: revision.id,
+      action: 'SAFETY_HOLD',
+      actorUserId,
+      detail: blockedBy.map((gate) => `${gate.code}: ${gate.detail}`).join(' | '),
+    })
+    return { published: false, eventId: null, blockedBy }
+  }
+
+  const previousRows = await tx
+    .select({ revisionId: pageStatementPublications.revisionId })
+    .from(pageStatementPublications)
+    .where(
+      and(
+        eq(pageStatementPublications.medicineId, revision.medicineId),
+        eq(pageStatementPublications.statementKey, revision.statementKey),
+      ),
+    )
+    .limit(1)
+    .for('update')
+  const previousRevisionId = previousRows[0]?.revisionId ?? null
+
+  if (previousRevisionId) {
+    await tx
+      .update(pageStatementRevisions)
+      .set({ status: 'superseded', supersededAt: new Date() })
+      .where(eq(pageStatementRevisions.id, previousRevisionId))
+  }
+
+  await tx
+    .update(pageStatementRevisions)
+    .set({
+      status: 'published',
+      publishedAt: new Date(),
+      statusReason: null,
+      gateResults: results as unknown as Array<Record<string, unknown>>,
+    })
+    .where(eq(pageStatementRevisions.id, revision.id))
+
+  await tx
+    .insert(pageStatementPublications)
+    .values({
+      medicineId: revision.medicineId,
+      statementKey: revision.statementKey,
+      revisionId: revision.id,
+    })
+    .onConflictDoUpdate({
+      target: [pageStatementPublications.medicineId, pageStatementPublications.statementKey],
+      set: { revisionId: revision.id },
+    })
+
+  const eventId = newId('pse')
+  await tx.insert(pageStatementPublicationEvents).values({
+    id: eventId,
+    medicineId: revision.medicineId,
+    slug: revision.slug,
+    statementKey: revision.statementKey,
+    event: 'publish',
+    revisionId: revision.id,
+    previousRevisionId,
+    approvalsRecorded: approvals.reviewCount,
+    qualifiedApprovals: approvals.qualifiedApprovals,
+    automatedChecks: results as unknown as Array<Record<string, unknown>>,
+    cacheInvalidation: { paths: [`/d/${revision.slug}`, '/review-queue'], state: 'requested' },
+    contentDigest: revision.contentDigest,
+    actorUserId,
+    reason: null,
+  })
+  return { published: true, eventId, blockedBy: [] }
+}
+
 export interface RecordReviewInput {
   revisionId: string
   decision: 'APPROVE' | 'CHANGES_REQUESTED' | 'REJECT'
@@ -800,111 +916,93 @@ export async function recordPageStatementReview(
     if (state.status !== 'approved') return
 
     /*
-     * The third approval. Everything is re-checked against rows this transaction holds, because the
-     * record may have moved between the first approval and this one, and three approvals for a
-     * wording judged against a record that no longer exists are three approvals for nothing.
+     * The approval is recorded whatever this switch says. What it withholds is the pointer moving,
+     * so an operator who suspects the publishing path can freeze it without losing review work.
      */
-    const currentSourceDigest = pageStatementSourceDigest(context.record, revision.statementKey)
-    const results = runPageStatementGates({
-      statementKey: revision.statementKey,
-      currentText: revision.currentText,
-      proposedText: revision.proposedText,
-      changeCategory: revision.changeCategory,
-      riskClass: revision.riskClass,
-      evidenceState: revision.evidenceState,
-      sources: revision.sources as PageStatementSourceRef[],
-      evidencePacket: revision.evidencePacket as Record<string, string>,
-      identityWarning: context.identityWarning,
-      sourceDigestCurrent: currentSourceDigest === revision.sourceDigest,
-      medicineName: context.record?.name ?? '',
-      medicineAliases: context.medicineAliases,
-    })
-
-    if (!gatesPassed(results)) {
-      blockedBy = results.filter((result) => !result.passed && result.severity === 'blocking')
-      const staleSource = blockedBy.some((gate) => gate.code === 'stale_source_surface')
+    if (!autoPublishEnabled()) {
       await tx
         .update(pageStatementRevisions)
         .set({
-          status: staleSource ? 'stale_source' : 'safety_hold',
-          statusReason: blockedBy.map((gate) => gate.title).join('; '),
-          gateResults: results as unknown as Array<Record<string, unknown>>,
+          status: 'approved',
+          statusReason: 'Approved. Automatic publication is switched off on this deployment.',
         })
         .where(eq(pageStatementRevisions.id, revision.id))
-      await tx.insert(pageStatementModerationEvents).values({
-        id: newId('psm'),
-        revisionId: revision.id,
-        action: staleSource ? 'SAFETY_HOLD' : 'SAFETY_HOLD',
-        actorUserId: null,
-        detail: blockedBy.map((gate) => `${gate.code}: ${gate.detail}`).join(' | '),
-      })
       return
     }
 
-    const previousRows = await tx
-      .select({ revisionId: pageStatementPublications.revisionId })
-      .from(pageStatementPublications)
-      .where(
-        and(
-          eq(pageStatementPublications.medicineId, revision.medicineId),
-          eq(pageStatementPublications.statementKey, revision.statementKey),
-        ),
-      )
-      .limit(1)
-      .for('update')
-    const previousRevisionId = previousRows[0]?.revisionId ?? null
-
-    if (previousRevisionId) {
-      await tx
-        .update(pageStatementRevisions)
-        .set({ status: 'superseded', supersededAt: new Date() })
-        .where(eq(pageStatementRevisions.id, previousRevisionId))
-    }
-
-    await tx
-      .update(pageStatementRevisions)
-      .set({
-        status: 'published',
-        publishedAt: new Date(),
-        gateResults: results as unknown as Array<Record<string, unknown>>,
-      })
-      .where(eq(pageStatementRevisions.id, revision.id))
-
-    await tx
-      .insert(pageStatementPublications)
-      .values({
-        medicineId: revision.medicineId,
-        statementKey: revision.statementKey,
-        revisionId: revision.id,
-      })
-      .onConflictDoUpdate({
-        target: [pageStatementPublications.medicineId, pageStatementPublications.statementKey],
-        set: { revisionId: revision.id },
-      })
-
-    publicationEventId = newId('pse')
-    await tx.insert(pageStatementPublicationEvents).values({
-      id: publicationEventId,
-      medicineId: revision.medicineId,
-      slug: revision.slug,
-      statementKey: revision.statementKey,
-      event: 'publish',
-      revisionId: revision.id,
-      previousRevisionId,
-      approvalsRecorded: state.reviewCount,
-      qualifiedApprovals: state.qualifiedApprovals,
-      automatedChecks: results as unknown as Array<Record<string, unknown>>,
-      cacheInvalidation: { paths: [`/d/${revision.slug}`, '/review-queue'], state: 'requested' },
-      contentDigest: revision.contentDigest,
-      actorUserId: null,
-      reason: null,
-    })
-    published = true
+    const outcome = await publishApprovedRevision(tx, revision, state, context, null)
+    published = outcome.published
+    publicationEventId = outcome.eventId
+    blockedBy = outcome.blockedBy
   })
 
   const proposal = await getPageStatementProposal(input.revisionId)
   if (!proposal) throw new PageStatementError(404, 'That proposal no longer exists.', 'not_found')
   return { proposal, published, publicationEventId, failedGates: blockedBy }
+}
+
+/**
+ * Release a wording that was approved while automatic publication was switched off.
+ *
+ * Without this, freezing publication would strand the review work it was meant to protect: the
+ * proposal reaches `approved` and nothing ever moves it. A steward publishes it through the same
+ * function the third approval uses, so the gates run again and the ledger records who released it
+ * rather than leaving the event unattributed.
+ */
+export async function publishApprovedPageStatement(
+  actor: ReviewActor,
+  revisionId: string,
+  context: { record: DrugDossier | null; identityWarning: boolean; medicineAliases: string[] },
+): Promise<ReviewOutcome> {
+  if (!mayAdministerPageStatements(actor)) {
+    throw new PageStatementError(
+      403,
+      'Releasing an approved wording needs a steward or an administrator.',
+      'not_authorized',
+    )
+  }
+  let published = false
+  let eventId: string | null = null
+  let blockedBy: GateResult[] = []
+
+  await db.transaction(async (tx) => {
+    const revisionRows = await tx
+      .select()
+      .from(pageStatementRevisions)
+      .where(eq(pageStatementRevisions.id, revisionId))
+      .limit(1)
+      .for('update')
+    const revision = revisionRows[0]
+    if (!revision) throw new PageStatementError(404, 'That proposal no longer exists.', 'not_found')
+    await tx.execute(
+      sql`select rnawiki_lock_page_statement_subject(${revision.medicineId}, ${revision.statementKey}::page_statement_key)`,
+    )
+    if (revision.status !== 'approved') {
+      throw new PageStatementError(
+        409,
+        'Only a wording that already has its approvals can be released.',
+        'not_approved',
+      )
+    }
+    const stateRows = await tx
+      .select()
+      .from(pageStatementReviewStates)
+      .where(eq(pageStatementReviewStates.revisionId, revision.id))
+      .limit(1)
+      .for('update')
+    const state = stateRows[0]
+    if (!state || state.status !== 'approved') {
+      throw new PageStatementError(409, 'This wording is not approved.', 'not_approved')
+    }
+    const outcome = await publishApprovedRevision(tx, revision, state, context, actor.id)
+    published = outcome.published
+    eventId = outcome.eventId
+    blockedBy = outcome.blockedBy
+  })
+
+  const proposal = await getPageStatementProposal(revisionId)
+  if (!proposal) throw new PageStatementError(404, 'That proposal no longer exists.', 'not_found')
+  return { proposal, published, publicationEventId: eventId, failedGates: blockedBy }
 }
 
 /** Take a decision back before the wording is published. The decision stays in the audit. */

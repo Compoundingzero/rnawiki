@@ -69,6 +69,23 @@ export function PublicationBanner({
  * the substance works, the accessible name says so, and "peer reviewed" is not used anywhere,
  * because none of this is scientific peer review.
  */
+/**
+ * The one quiet line a sparse record keeps when the review control is not rendered — because review
+ * has been withdrawn, or because this deployment has not switched it on.
+ */
+export function PublicationNote({
+  publication,
+}: {
+  publication: DossierV4ViewModel['publication']
+}): ReactNode {
+  if (publication.state !== 'limited') return null
+  return (
+    <p className="dv4-strip-review">
+      <span className="dv4-note">{publication.plain}</span>
+    </p>
+  )
+}
+
 export function ReviewControl({
   publication,
   summary,

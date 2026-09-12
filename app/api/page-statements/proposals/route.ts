@@ -8,6 +8,7 @@ import { abuseRefusal, createProposalSchema } from '@/lib/page-statements/valida
 import { loadDossierV4Inputs } from '@/lib/dossier-v4/load'
 import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
 import { createPageStatementProposal, medicineIdForSlug } from '@/lib/queries/page-statements'
+import { proposalsEnabled } from '@/lib/page-statements/flags'
 import { WRITE } from '@/lib/rate-limit'
 import { requireUser } from '@/lib/session'
 
@@ -18,6 +19,14 @@ export const POST = withHandler(async (req: Request) => {
   const user = await requireUser()
   const limited = rateLimited(WRITE, rateLimitKey(req, user.id))
   if (limited) return limited
+
+  if (!proposalsEnabled()) {
+    throw new ApiError(
+      503,
+      'RNAWiki is not accepting new wording suggestions right now.',
+      'proposals_disabled',
+    )
+  }
 
   const input = createProposalSchema.parse(await readJson(req))
   const refusal = abuseRefusal(input.proposedText, input.reason)

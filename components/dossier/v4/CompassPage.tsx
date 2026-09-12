@@ -52,6 +52,7 @@ import {
 import {
   ConceptPrimer,
   PublicationBanner,
+  PublicationNote,
   PurposeRail,
   ReviewControl,
   SubstanceActionHero,
@@ -203,7 +204,12 @@ export function CompassPage({
       data-publication-state={model.publication.state}
     >
       <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise}>
-        <ReviewControl publication={model.publication} summary={model.reviewSummary} />
+        {/* Withdrawing DOSSIER_COMMUNITY_REVIEW removes the control and leaves the page intact. */}
+        {model.reviewEnabled ? (
+          <ReviewControl publication={model.publication} summary={model.reviewSummary} />
+        ) : (
+          <PublicationNote publication={model.publication} />
+        )}
       </SubstanceIdentityStrip>
       {/* Only an identity hold or a pipeline failure still opens with a block. */}
       <PublicationBanner publication={model.publication} />

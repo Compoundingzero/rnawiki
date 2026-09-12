@@ -317,6 +317,28 @@ test('a steward can roll the wording back, and the earlier wording returns', asy
   await context.close()
 })
 
+test('only a steward can release a wording approved while publication was frozen', async ({
+  browser,
+}) => {
+  /*
+   * The freeze is the one switch that could strand review work: with it on, a proposal reaches
+   * three approvals and nothing moves. This checks the way out exists and is not open to everybody.
+   * The frozen state itself is covered in tests/unit/page-statement-flags.test.ts, because turning
+   * it on needs a server restart that a browser test cannot ask for.
+   */
+  const { context, page } = await openAs(browser, requireMembers().reviewerOne)
+  const response = await page.request.post(
+    `/api/page-statements/proposals/${proposalId}/publish`,
+    {},
+  )
+  expect([403, 409]).toContain(response.status())
+  const body = await response.text()
+  if (response.status() === 403) {
+    expect(body).toContain('steward or an administrator')
+  }
+  await context.close()
+})
+
 test('an ordinary member cannot roll a wording back', async ({ browser }) => {
   const { slug } = requireFixture()
   const { context, page } = await openAs(browser, requireMembers().reviewerOne)

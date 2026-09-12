@@ -16,6 +16,7 @@ import {
   recordPageStatementReview,
   withdrawPageStatementReview,
 } from '@/lib/queries/page-statements'
+import { reviewDecisionsEnabled } from '@/lib/page-statements/flags'
 import { WRITE } from '@/lib/rate-limit'
 import { requireUser } from '@/lib/session'
 
@@ -30,6 +31,14 @@ export const POST = withHandler(async (req: Request, context: RouteContext) => {
   const user = await requireUser()
   const limited = rateLimited(WRITE, rateLimitKey(req, user.id))
   if (limited) return limited
+
+  if (!reviewDecisionsEnabled()) {
+    throw new ApiError(
+      503,
+      'RNAWiki is not accepting review decisions right now.',
+      'decisions_disabled',
+    )
+  }
 
   const input = reviewDecisionSchema.parse(await readJson(req))
   const refusal = abuseRefusal(input.reason, input.conflictsOfInterest)
