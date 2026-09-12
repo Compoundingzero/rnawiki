@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
@@ -104,33 +104,38 @@ describe('medicine dossier plain-first contract', () => {
     expect(specification).toContain('It never names, counts or links the other records')
   })
 
-  it('keeps direct evidence hashes keyboard-usable after opening the disclosure', () => {
-    const disclosure = source('components/AdvancedEvidenceDisclosure.tsx')
-    const nestedDisclosure = source('components/dossier/disclosure-deep-link.ts')
+  it('puts no navigator target inside a collapsed disclosure', () => {
+    /*
+     * Two cases stood here, over `components/AdvancedEvidenceDisclosure.tsx` and
+     * `components/MedicineBackgroundDisclosure.tsx`. Both belonged to the medicine layout this
+     * release deleted, and both existed to solve one problem: a link to an anchor that sat inside a
+     * closed `<details>` scrolled nowhere, so each shipped a hashchange listener that opened the
+     * disclosure and moved focus into it.
+     *
+     * The compass does not have that problem and does not carry that script. It is rendered once to
+     * static markup with no client JavaScript at all, so the fix is structural instead: every
+     * anchor the navigator links to is a top-level `<section>`, reachable with the browser's own
+     * behaviour and with scripting switched off. This is the check that keeps it that way.
+     */
+    const components = readdirSync('components/dossier/v4')
+      .filter((file) => file.endsWith('.tsx'))
+      .map((file) => readFileSync(`components/dossier/v4/${file}`, 'utf8'))
+      .join('\n')
 
-    expect(disclosure).toContain("window.addEventListener('hashchange', openForCurrentHash)")
-    expect(disclosure).toContain('details.contains(target)')
-    expect(disclosure).toContain('details.open = true')
-    expect(disclosure).toContain('window.requestAnimationFrame')
-    expect(disclosure).toContain('focusDisclosureTarget(details, target)')
-    expect(disclosure).toContain("target.scrollIntoView({ block: 'start' })")
-    expect(nestedDisclosure).toContain('while (nested && nested !== outerDetails')
-    expect(nestedDisclosure).toContain('nested.open = true')
-    expect(nestedDisclosure).toContain("':scope > summary'")
-    expect(nestedDisclosure).toContain('focusTarget.focus({ preventScroll: true })')
-  })
+    const navigatorTargets = [
+      ...readFileSync('lib/dossier-v4/view-model.ts', 'utf8').matchAll(
+        /^\s{4}id: '([a-z0-9-]+)',$/gmu,
+      ),
+    ].map((match) => match[1]!)
+    expect(navigatorTargets.length).toBeGreaterThan(15)
 
-  it('keeps medicine-background hashes keyboard-usable after opening the sibling disclosure', () => {
-    const disclosure = source('components/MedicineBackgroundDisclosure.tsx')
-    const nestedDisclosure = source('components/dossier/disclosure-deep-link.ts')
+    for (const id of navigatorTargets) {
+      // Rendered as a section, so a link to it lands on a heading rather than inside a panel.
+      expect(components, `#${id} is not rendered as a section`).toContain(`id="${id}"`)
+    }
 
-    expect(disclosure).toContain("window.addEventListener('hashchange', openForHash)")
-    expect(disclosure).toContain('details.contains(target)')
-    expect(disclosure).toContain('details.open = true')
-    expect(disclosure).toContain('window.requestAnimationFrame')
-    expect(disclosure).toContain('focusDisclosureTarget(details, target)')
-    expect(disclosure).toContain("target.scrollIntoView({ block: 'start' })")
-    expect(nestedDisclosure).toContain('nearestSummary ??= directSummary(nested)')
-    expect(nestedDisclosure).toContain('nested.open = true')
+    // And the page ships no script, so nothing has to run for any of that to work.
+    expect(components).not.toContain('useEffect')
+    expect(components).not.toContain("'use client'")
   })
 })

@@ -11,7 +11,7 @@
  * why it answered.
  *
  * It is written as a plain HTML document for the reason step 6.1 records in
- * `lib/corpus/document.tsx`: an App Router page ships its text twice.
+ * `lib/dossier-v4/document.tsx`: an App Router page ships its text twice.
  */
 import { hubDocumentResponse } from '@/lib/hubs/document'
 import { hubAliasTarget, loadHubPage } from '@/lib/hubs/queries'

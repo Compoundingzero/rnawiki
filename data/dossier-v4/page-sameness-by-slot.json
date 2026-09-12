@@ -1,0 +1,327 @@
+{
+  "pages": 599,
+  "report": [
+    {
+      "slot": "section:signal-timeline.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:applicability.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:no-response.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:practical-reality.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:community.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Not switched on yet. The part of RNAWiki that fills this in is built but not switched on."
+    },
+    {
+      "slot": "section:unknowns.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:change-history.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:next-question.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 1,
+      "topValueShare": 1,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "section:form-check.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.982,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "hero.strongestGoalResult",
+      "pagesShowingIt": 599,
+      "distinctValues": 32,
+      "topValueShare": 0.948,
+      "topValue": "RNAWiki has not yet published a reviewed conclusion for this use."
+    },
+    {
+      "slot": "hero.principalUncertainty",
+      "pagesShowingIt": 599,
+      "distinctValues": 32,
+      "topValueShare": 0.948,
+      "topValue": "Not recorded."
+    },
+    {
+      "slot": "hero.bodyLocation",
+      "pagesShowingIt": 599,
+      "distinctValues": 32,
+      "topValueShare": 0.948,
+      "topValue": "Not recorded."
+    },
+    {
+      "slot": "hero.outcomeType",
+      "pagesShowingIt": 599,
+      "distinctValues": 6,
+      "topValueShare": 0.948,
+      "topValue": "No result is published, so no kind of result applies yet"
+    },
+    {
+      "slot": "section:body-journey.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.948,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:claim-decoder.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.948,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:evidence-receipts.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.948,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:goal-fingerprint.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.947,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:alternatives.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.937,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:stack.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.935,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:felt-measured-meaningful.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.922,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "unknown.evidenceNeeded",
+      "pagesShowingIt": 3333,
+      "distinctValues": 2,
+      "topValueShare": 0.919,
+      "topValue": "A study that measures it, and a reviewer to sign it off."
+    },
+    {
+      "slot": "section:drug-story.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.917,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:safety.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.912,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "section:evidence-staircase.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.9,
+      "topValue": "Nothing found in the sources checked. The sources RNAWiki checked held nothing for this section."
+    },
+    {
+      "slot": "hero.whyPeopleCare",
+      "pagesShowingIt": 599,
+      "distinctValues": 105,
+      "topValueShare": 0.816,
+      "topValue": "Not recorded."
+    },
+    {
+      "slot": "hero.immediateChange",
+      "pagesShowingIt": 599,
+      "distinctValues": 111,
+      "topValueShare": 0.815,
+      "topValue": "Not recorded."
+    },
+    {
+      "slot": "hero.actionDetail",
+      "pagesShowingIt": 599,
+      "distinctValues": 137,
+      "topValueShare": 0.768,
+      "topValue": "Not recorded."
+    },
+    {
+      "slot": "section:human-results.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.661,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "hero.supervision",
+      "pagesShowingIt": 599,
+      "distinctValues": 7,
+      "topValueShare": 0.633,
+      "topValue": "Not usually supervised: sold as a supplement or food ingredient where recorded. That is a legal category, not a safety j"
+    },
+    {
+      "slot": "section:measurement.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.616,
+      "topValue": "Read from sources, not yet reviewed. Built from stored sources by fixed rules, with each source named."
+    },
+    {
+      "slot": "hero.simpleAction",
+      "pagesShowingIt": 599,
+      "distinctValues": 222,
+      "topValueShare": 0.603,
+      "topValue": "RNAWiki has not recorded what this substance changes in the body."
+    },
+    {
+      "slot": "section:substance-action.reason",
+      "pagesShowingIt": 599,
+      "distinctValues": 2,
+      "topValueShare": 0.603,
+      "topValue": "Waiting for a reviewer. A draft exists and has not been signed off."
+    },
+    {
+      "slot": "nextQuestion",
+      "pagesShowingIt": 2792,
+      "distinctValues": 11,
+      "topValueShare": 0.215,
+      "topValue": "Were people like me actually studied?"
+    },
+    {
+      "slot": "unknown.reason",
+      "pagesShowingIt": 3333,
+      "distinctValues": 102,
+      "topValueShare": 0.18,
+      "topValue": "Which groups were under-represented in the studies has not been recorded."
+    },
+    {
+      "slot": "journey:substance",
+      "pagesShowingIt": 31,
+      "distinctValues": 31,
+      "topValueShare": 0.032,
+      "topValue": "Andexanet Alfa"
+    },
+    {
+      "slot": "journey:target",
+      "pagesShowingIt": 31,
+      "distinctValues": 31,
+      "topValueShare": 0.032,
+      "topValue": "The anticoagulant binds the decoy instead of the real enzyme"
+    },
+    {
+      "slot": "journey:first-location",
+      "pagesShowingIt": 32,
+      "distinctValues": 32,
+      "topValueShare": 0.031,
+      "topValue": "A bolus followed by an infusion, because the decoy runs out"
+    },
+    {
+      "slot": "journey:cell-entry",
+      "pagesShowingIt": 32,
+      "distinctValues": 32,
+      "topValueShare": 0.031,
+      "topValue": "It circulates in the plasma and enters nothing"
+    },
+    {
+      "slot": "journey:change",
+      "pagesShowingIt": 32,
+      "distinctValues": 32,
+      "topValueShare": 0.031,
+      "topValue": "Real factor Xa is freed and thrombin generation restarts"
+    },
+    {
+      "slot": "journey:human-outcome",
+      "pagesShowingIt": 38,
+      "distinctValues": 38,
+      "topValueShare": 0.026,
+      "topValue": "The haematoma stops growing — and the patient is where they were"
+    },
+    {
+      "slot": "humanResult:result-5",
+      "pagesShowingIt": 272,
+      "distinctValues": 266,
+      "topValueShare": 0.011,
+      "topValue": "NCT00438425 · Result not recorded on this page"
+    },
+    {
+      "slot": "humanResult:result-1",
+      "pagesShowingIt": 396,
+      "distinctValues": 371,
+      "topValueShare": 0.01,
+      "topValue": "NCT05456022 · Result not recorded on this page"
+    },
+    {
+      "slot": "humanResult:result-6",
+      "pagesShowingIt": 258,
+      "distinctValues": 254,
+      "topValueShare": 0.008,
+      "topValue": "NCT02567981 · Result not recorded on this page"
+    },
+    {
+      "slot": "humanResult:result-4",
+      "pagesShowingIt": 296,
+      "distinctValues": 293,
+      "topValueShare": 0.007,
+      "topValue": "NCT04060056 · Result not recorded on this page"
+    },
+    {
+      "slot": "humanResult:result-2",
+      "pagesShowingIt": 358,
+      "distinctValues": 350,
+      "topValueShare": 0.006,
+      "topValue": "NCT04798833 · Result not recorded on this page"
+    },
+    {
+      "slot": "humanResult:result-3",
+      "pagesShowingIt": 325,
+      "distinctValues": 319,
+      "topValueShare": 0.006,
+      "topValue": "NCT01433159 · Result not recorded on this page"
+    }
+  ]
+}

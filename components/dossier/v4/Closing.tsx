@@ -1,18 +1,21 @@
 /**
- * The closing sections: other routes to the same goal, claims that go past the evidence, the
- * community lane, what nobody knows, the receipts, how the medicine got here, what changed, and
- * the one question worth reading next.
+ * The closing sections: other routes to the same goal, claims that go past the evidence, what
+ * nobody knows, the receipts, how the medicine got here, what changed, the one question worth
+ * reading next, and an account of the sections this page had nothing for.
  *
- * The community lane renders before any report exists, on purpose. An empty lane with its rules
- * visible is a promise about how reports will be treated; a lane that appears only once it is full
- * of favourable reports is an advert.
+ * A "What people report" lane used to render here. It described how community reports would be
+ * ordered and weighed, above a list of empty categories, on every one of 10,250 pages — 1,458
+ * characters, identical everywhere, for a feature that does not exist. A promise is not a record,
+ * and a reader looking for what is known about a medicine was being shown a roadmap instead. It is
+ * gone. When RNAWiki does collect reports, the lane comes back with reports in it.
  */
 import type { ReactNode } from 'react'
 
-import { COMMUNITY_REPORT_CATEGORIES } from '@/lib/dossier-v4/taxonomy'
 import type { DossierV4ViewModel } from '@/lib/dossier-v4/view-model'
 
-import { Absence, Disclosure, SectionFrame } from './Primitives'
+import { absencePhrase, sectionIsHidden } from '@/lib/dossier-v4/section-visibility'
+
+import { Absence, Disclosure, RecordedFactList, SectionFrame } from './Primitives'
 
 export function AlternativesLadder({
   alternatives,
@@ -99,65 +102,6 @@ export function ClaimDecoder({
   )
 }
 
-export function CommunityExperienceLane({
-  community,
-}: {
-  community: DossierV4ViewModel['community']
-}): ReactNode {
-  return (
-    <SectionFrame
-      id="community"
-      label="What people report"
-      lane="community_experience"
-      lede="Reports from people who took it, kept in their own lane and never counted as evidence."
-      state={community.state}
-    >
-      <p>{community.separationLine}</p>
-      <p className="dv4-note">{community.noImportLine}</p>
-
-      <Absence
-        reason="RNAWiki is not yet collecting reports. The lane is built, and it is empty."
-        state={community.state}
-      />
-
-      <h3 style={{ marginTop: '1.5rem' }}>The kinds of report this lane will hold</h3>
-      <p className="dv4-note">
-        A lane that holds only the good outcomes is an advert. These are the categories, in the
-        order they were written, and four of them are for things going wrong.
-      </p>
-      <ul className="dv4-ladder">
-        {COMMUNITY_REPORT_CATEGORIES.map((category) => (
-          <li data-category={category.code} key={category.code}>
-            <div>
-              <p className="dv4-ladder-tier" style={{ marginBottom: 0 }}>
-                {category.label}
-              </p>
-            </div>
-            <div>
-              <p className="dv4-note" style={{ marginBottom: 0 }}>
-                Nothing recorded yet.
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <Disclosure summary="How reports will be ordered, and how they will not be">
-        <p>Reports will be ordered on:</p>
-        <ul>
-          {community.qualitySignals.map((signal) => (
-            <li key={signal}>{signal}</li>
-          ))}
-        </ul>
-        <p>
-          They will not be ordered by how positive they are, and no amount anybody reports will ever
-          be added up into a suggestion.
-        </p>
-      </Disclosure>
-    </SectionFrame>
-  )
-}
-
 export function UnknownMap({ unknowns }: { unknowns: DossierV4ViewModel['unknowns'] }): ReactNode {
   return (
     <SectionFrame
@@ -210,12 +154,13 @@ export function EvidenceReceipts({
       lede="Every line above traced back to the study it came from. This is the technical layer, and the vocabulary changes here."
       state={receipts.state}
     >
-      {receipts.entries.length === 0 ? (
+      {receipts.entries.length === 0 && receipts.identifiers.length === 0 ? (
         <Absence
           reason="No traced study record is stored for this substance."
           state={receipts.state}
         />
-      ) : (
+      ) : null}
+      {receipts.entries.length === 0 ? null : (
         <>
           <p>{receipts.note}</p>
           {receipts.entries.map((entry) => (
@@ -259,6 +204,27 @@ export function EvidenceReceipts({
         </>
       )}
 
+      <RecordedFactList facts={receipts.corroboration} heading="How many documents were read" />
+
+      {receipts.identifiers.length > 0 ? (
+        <>
+          {/*
+            The registers this substance is listed in, with its number in each. These are how a
+            reader looks the same substance up somewhere that is not RNAWiki, which is the point of
+            a receipt: the page should be checkable by someone who does not trust it.
+          */}
+          <h3 style={{ marginTop: '1.75rem' }}>Where else this substance is registered</h3>
+          <dl className="dv4-facts">
+            {receipts.identifiers.map((identifier) => (
+              <div key={identifier.label}>
+                <dt>{identifier.label}</dt>
+                <dd>{identifier.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      ) : null}
+
       <h3 style={{ marginTop: '1.75rem' }}>Checks this page had to pass</h3>
       <ul className="dv4-ladder">
         {gates.map((gate) => (
@@ -291,9 +257,10 @@ export function DrugStory({ story }: { story: DossierV4ViewModel['story'] }): Re
       lede="Kept near the foot of the page. A historical event moves up only when it changes something about this substance today."
       state={story.state}
     >
-      {story.entries.length === 0 ? (
+      {story.entries.length === 0 && story.regulatory.length === 0 ? (
         <Absence reason="No history is recorded for this substance." state={story.state} />
-      ) : (
+      ) : null}
+      {story.entries.length > 0 ? (
         <ol className="dv4-spine">
           {story.entries.map((entry, index) => (
             <li data-known={entry.changesToday ? 'true' : 'false'} key={index}>
@@ -304,65 +271,17 @@ export function DrugStory({ story }: { story: DossierV4ViewModel['story'] }): Re
             </li>
           ))}
         </ol>
-      )}
+      ) : null}
+      {/*
+        For a discontinued medicine this is usually the only part of the page with anything in it.
+        The label is withdrawn from the archive; the approval stays on the register.
+      */}
+      <RecordedFactList facts={story.regulatory} heading="What the approval register records" />
     </SectionFrame>
   )
 }
 
-/**
- * Wordings members replaced, beneath the record's own correction history.
- *
- * Two different things changed a page and both belong here, told apart rather than merged: a
- * correction changed what the record holds, and a review changed how a sentence puts it. Nothing
- * private appears — not the reviewers' names, not what they declared, not the qualification records
- * themselves, only whether one of them was relevant to the claim.
- */
-function WordingHistory({ history }: { history: DossierV4ViewModel['wordingHistory'] }): ReactNode {
-  if (history.length === 0) return null
-  return (
-    <div style={{ marginTop: '1.25rem' }}>
-      <p className="dv4-eyebrow">
-        <span>Wording members changed</span>
-      </p>
-      <ol className="dv4-spine">
-        {history.map((entry, index) => (
-          <li data-known="false" key={`${entry.statementKey}-${index}`}>
-            <p style={{ marginBottom: '0.1rem' }}>
-              <span className="dv4-spine-label">{entry.changedOn}.</span> {entry.label} changed from
-              “{entry.previousText}” to “{entry.currentText}”.
-            </p>
-            <p className="dv4-note" style={{ marginBottom: 0 }}>
-              {entry.reason} Approved by {entry.approvals} members
-              {entry.qualifiedReviewerTookPart
-                ? ', one with a relevant reviewer qualification verified'
-                : ''}
-              .{' '}
-              {entry.state === 'published'
-                ? 'This is the wording on the page now.'
-                : entry.state === 'rolled_back'
-                  ? 'It was rolled back, and the page shows the earlier wording again.'
-                  : 'A later wording has replaced it.'}
-              {entry.sourceChanged
-                ? ' The record it was approved against has changed since, so the page shows what the record says rather than this wording.'
-                : ''}
-            </p>
-          </li>
-        ))}
-      </ol>
-      <p className="dv4-note" style={{ marginTop: '0.5rem' }}>
-        Members agreeing on a wording changes the words, not what kind of evidence sits behind them.
-      </p>
-    </div>
-  )
-}
-
-export function ChangeHistory({
-  changes,
-  wordingHistory,
-}: {
-  changes: DossierV4ViewModel['changes']
-  wordingHistory: DossierV4ViewModel['wordingHistory']
-}): ReactNode {
+export function ChangeHistory({ changes }: { changes: DossierV4ViewModel['changes'] }): ReactNode {
   return (
     <SectionFrame
       id="change-history"
@@ -371,9 +290,9 @@ export function ChangeHistory({
       lede="Every correction is recorded, including the ones that did not change what the page concludes."
       state={changes.state}
     >
-      {changes.entries.length === 0 && wordingHistory.length === 0 ? (
+      {changes.entries.length === 0 ? (
         <Absence reason="Nothing has been corrected on this record." state={changes.state} />
-      ) : changes.entries.length === 0 ? null : (
+      ) : (
         <ol className="dv4-spine">
           {changes.entries.map((entry, index) => (
             <li data-known={entry.alteredPublicConclusion ? 'true' : 'false'} key={index}>
@@ -394,7 +313,6 @@ export function ChangeHistory({
           ))}
         </ol>
       )}
-      <WordingHistory history={wordingHistory} />
     </SectionFrame>
   )
 }
@@ -426,5 +344,54 @@ export function NextQuestionRail({
         This order is fixed in code and does not count clicks or time on the page.
       </p>
     </SectionFrame>
+  )
+}
+
+/**
+ * The sections this page had nothing for.
+ *
+ * Every section the compass skipped is named here with the reason it was skipped, so a reader can
+ * see the shape of what is missing without scrolling through eighteen headings that each say
+ * "nothing found". The three reasons are kept apart, because a question nobody has studied, a
+ * question that does not apply to this kind of substance, and a question RNAWiki has not built the
+ * machinery for are three different facts about the record.
+ *
+ * If this list is empty the block does not render, which on a well-filled medicine is the correct
+ * outcome: nothing is missing, so nothing is said.
+ */
+export function WhatIsMissing({
+  sections,
+}: {
+  sections: DossierV4ViewModel['sections']
+}): ReactNode {
+  const hidden = sections.filter((section) => sectionIsHidden(section.id, section.state))
+  if (hidden.length === 0) return null
+  return (
+    <section
+      aria-labelledby="what-is-missing-h"
+      className="dv4-section"
+      data-compass-lane="uncertainty"
+      data-lane="uncertainty"
+      id="what-is-missing"
+    >
+      <p className="dv4-eyebrow">
+        <span>What is not here</span>
+      </p>
+      <h2 id="what-is-missing-h">
+        {hidden.length} {hidden.length === 1 ? 'question this page' : 'questions this page'} could
+        not answer
+      </h2>
+      <p className="dv4-lede">
+        These sections were prepared and left out because there was nothing to put in them. They are
+        listed rather than hidden, so the gaps in this record are visible.
+      </p>
+      <ul className="dv4-missing">
+        {hidden.map((section) => (
+          <li data-section={section.id} data-state={section.state} key={section.id}>
+            <strong>{section.label}</strong> — {absencePhrase(section.state)}.
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

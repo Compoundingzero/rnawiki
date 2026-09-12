@@ -15,6 +15,7 @@ import { googleAnalyticsMeasurementId } from '@/lib/google-analytics'
 import { corpusDossierJsonLdGraph } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin } from '@/lib/seo/deployment'
 
+import { decideMedicinePageIndexing } from './indexability'
 import type { DossierV4ViewModel } from './view-model'
 
 export function dossierV4DocumentResponse(
@@ -27,7 +28,13 @@ export function dossierV4DocumentResponse(
     siteUrl: configuredSiteOrigin(),
     url: configuredPublicUrl(path),
   })
-  const gatePassed = model.gates.every((gate) => gate.passed)
+  /*
+   * One indexing rule for every medicine page, in lib/dossier-v4/indexability.ts. A page that fails
+   * its checks, cannot resolve its identity, or holds none of the four things a reader came for is
+   * not offered to a search engine — and the same assessment writes the notice such a page shows,
+   * so the sentence a reader sees and the instruction a crawler reads cannot disagree.
+   */
+  const indexing = decideMedicinePageIndexing(model)
   return documentResponse(
     <DocumentShell
       analyticsMeasurementId={googleAnalyticsMeasurementId(
@@ -38,7 +45,7 @@ export function dossierV4DocumentResponse(
       jsonLd={jsonLd}
       ogImagePath={`${path}/opengraph-image`}
       ogType="article"
-      robots={{ index: corpus.indexable && gatePassed, follow: true }}
+      robots={{ index: indexing.index, follow: true }}
       title={`${corpus.displayName} | RNAWiki`}
     >
       <CompassPage corpus={corpus} model={model} />

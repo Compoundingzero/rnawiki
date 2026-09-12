@@ -9,15 +9,15 @@
  *   4. the whole surface — the public control disappears and every write path refuses.
  *
  * Each is read per request from the environment, so turning one off is a variable change and a
- * restart, never a deployment. That is the same rollback `DOSSIER_V4_SLUGS` already gives the
  * compass itself, and it is why none of this needs a migration to undo.
  *
- * Unset means "follow the compass". The review surface exists for a medicine exactly when the
- * compass does, so on a deployment where `DOSSIER_V4_SLUGS` is unset — which is every deployment
- * today — this whole feature is inert without anyone having to remember a second variable.
+ * Unset means on. There is one medicine layout and no variable selecting it, so there is nothing
+ * for these to follow: review is part of the product, and these exist to withdraw a layer of it
+ * when something is wrong rather than to stage a rollout.
+ *
+ * None of them reaches a reader's medicine page. The review surface lives at `/review-queue` and
+ * nowhere else, so what these withdraw is what a member can do there.
  */
-import { dossierV4Enabled } from '@/lib/dossier-v4/load'
-
 export const PAGE_STATEMENT_FLAGS = {
   /** The whole feature. `off` withdraws the control and refuses every write. */
   review: 'DOSSIER_COMMUNITY_REVIEW',
@@ -46,25 +46,9 @@ function switchedOn(name: string): boolean {
   return raw === 'on' || raw === 'true' || raw === '1' || raw === 'yes'
 }
 
-/**
- * Whether the review surface exists for one medicine.
- *
- * Unset follows the compass flag. `on` enables it for every medicine regardless, which is the
- * setting to use if the compass is ever rolled back without withdrawing review work already in
- * flight. `off` withdraws it everywhere.
- */
-export function communityReviewEnabled(slug: string): boolean {
-  if (switchedOff(PAGE_STATEMENT_FLAGS.review)) return false
-  if (switchedOn(PAGE_STATEMENT_FLAGS.review)) return true
-  return dossierV4Enabled(slug)
-}
-
-/** Whether the review queue and its API accept work at all, independent of any one medicine. */
+/** Whether the review queue and its API accept work at all. On unless withdrawn. */
 export function communityReviewSurfaceEnabled(): boolean {
-  if (switchedOff(PAGE_STATEMENT_FLAGS.review)) return false
-  if (switchedOn(PAGE_STATEMENT_FLAGS.review)) return true
-  // Follows the compass: any allowlist at all means the surface is live for the pages it covers.
-  return Boolean(process.env.DOSSIER_V4_SLUGS?.trim())
+  return !switchedOff(PAGE_STATEMENT_FLAGS.review)
 }
 
 export function proposalsEnabled(): boolean {

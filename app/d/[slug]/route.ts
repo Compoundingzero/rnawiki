@@ -1,51 +1,71 @@
 /**
- * `/d/<slug>` — one medicine record.
+ * `/d/<slug>` — one medicine record, served as the Substance Compass.
  *
- * This was an App Router page. Step 6.1 measured what that cost: the React Server Components stream
- * Next.js inlines into every page repeated 100 % of the rendered record's text, and was a median
- * 54.5 % of the served document's bytes. `createInlinedDataReadableStream` is called
- * unconditionally in Next's app renderer, so no page can opt out of the second copy. The route
- * therefore writes its own document (`lib/corpus/document.tsx`), with one small script for the
- * header's search field and nothing of the record sent twice.
+ * There is one layout and no flag deciding which one a page gets. A medicine that cannot render on
+ * the compass does not fall back to something older; there is nothing older. The corpus document,
+ * the dossier v3 surface and the React legacy record are gone, and `scripts/check/single-dossier-
+ * layout.ts` fails the build if a second one reappears.
  *
- * A medicine the corpus does not hold is still the React dossier, at the same URL, forwarded to
- * `/legacy-record/<slug>` (`lib/document/legacy-forward.ts`) and answered with exactly what that
- * page returned — its canonical, its indexing decision, its 308 to a canonical slug and its 404.
+ * This is a Route Handler rather than an App Router page for a measured reason kept from the
+ * corpus document: the React Server Components stream Next.js inlines into every page repeated
+ * 100 % of the rendered record's text, a median 54.5 % of the served bytes, and
+ * `createInlinedDataReadableStream` is called unconditionally so no page can opt out. The route
+ * writes its own document (`lib/dossier-v4/document.tsx`) with one small script for the header's
+ * search field and nothing of the record sent twice.
+ *
+ * Four things this route does that are not presentation, and that used to belong to the deleted
+ * legacy page. They are done here explicitly so that deleting a layout could not quietly delete
+ * them with it:
+ *
+ *   1. **Alias and old-slug resolution.** `resolvePublicMedicineRoute` maps a requested slug
+ *      through the alias table and the canonical-slug ledger, one hop only, failing closed on a
+ *      chain or an ambiguous owner.
+ *   2. **The canonical redirect.** A request that resolved to a different slug is answered 308,
+ *      preserving any `?programme=` the caller sent so a shared link survives the hop.
+ *   3. **The 404.** A slug that resolves to nothing, or resolves to a record the public reader
+ *      cannot see, is not answered with an empty page.
+ *   4. **The view counter**, deliberately not awaited: a counter is the least important thing on
+ *      the page and must never make a readable record slow.
+ *
+ * The indexing decision now lives in `lib/dossier-v4/document.tsx`, which reads it from the same
+ * record the page is built from.
  */
-import { corpusDocumentResponse } from '@/lib/corpus/document'
-import { loadCorpusDossier } from '@/lib/corpus/dossier-page'
-import { forwardToLegacyRecord } from '@/lib/document/legacy-forward'
-import { dossierV3DocumentResponse } from '@/lib/dossier-v3/document'
-import { dossierV3Enabled, loadDossierV3Inputs } from '@/lib/dossier-v3/load'
-import { buildDossierV3 } from '@/lib/dossier-v3/view-model'
+import { permanentRedirect } from 'next/navigation'
+
 import { dossierV4DocumentResponse } from '@/lib/dossier-v4/document'
-import { dossierV4Enabled, loadDossierV4Inputs } from '@/lib/dossier-v4/load'
+import { loadDossierV4Inputs } from '@/lib/dossier-v4/load'
 import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
+import { incrementViewCount, resolvePublicMedicineRoute } from '@/lib/queries/drugs'
 
 // Railway's build environment cannot resolve the private database host during page collection.
 export const dynamic = 'force-dynamic'
+
+function notFound(): Response {
+  return new Response('Not found', {
+    status: 404,
+    headers: { 'content-type': 'text/plain; charset=utf-8' },
+  })
+}
 
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> },
 ): Promise<Response> {
   const { slug } = await params
-  // Dossier v4, the Substance Compass (docs/dossier-v4-information-architecture.md): behind the
-  // DOSSIER_V4_SLUGS allowlist, checked first. Unset it and the next request falls back to v3;
-  // unset both and every page is the corpus document again. Neither needs a database change.
-  if (dossierV4Enabled(slug)) {
-    const inputs = await loadDossierV4Inputs(slug)
-    if (inputs) return dossierV4DocumentResponse(inputs.corpus, buildDossierV4(inputs))
-    return forwardToLegacyRecord(request, slug)
+
+  const route = await resolvePublicMedicineRoute(slug)
+  if (!route) return notFound()
+  if (route.canonicalSlug !== slug) {
+    // A programme reference is shareable UI state, so it survives the canonical hop.
+    const programme = new URL(request.url).searchParams.get('programme')
+    const query = programme ? `?programme=${encodeURIComponent(programme)}` : ''
+    permanentRedirect(`/d/${encodeURIComponent(route.canonicalSlug)}${query}`)
   }
-  // Dossier v3 (docs/dossier-information-architecture.md): behind the DOSSIER_V3_SLUGS allowlist.
-  // Unsetting the variable restores the corpus document for every page on the next request.
-  if (dossierV3Enabled(slug)) {
-    const inputs = await loadDossierV3Inputs(slug)
-    if (inputs) return dossierV3DocumentResponse(inputs.corpus, buildDossierV3(inputs))
-    return forwardToLegacyRecord(request, slug)
-  }
-  const dossier = await loadCorpusDossier(slug)
-  if (dossier) return corpusDocumentResponse(dossier)
-  return forwardToLegacyRecord(request, slug)
+
+  const inputs = await loadDossierV4Inputs(route.canonicalSlug)
+  if (!inputs) return notFound()
+
+  if (inputs.legacyRecord) void incrementViewCount(inputs.legacyRecord.id)
+
+  return dossierV4DocumentResponse(inputs.corpus, buildDossierV4(inputs))
 }

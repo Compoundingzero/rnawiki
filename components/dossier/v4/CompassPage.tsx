@@ -26,11 +26,11 @@ import {
   AlternativesLadder,
   ChangeHistory,
   ClaimDecoder,
-  CommunityExperienceLane,
   DrugStory,
   EvidenceReceipts,
   NextQuestionRail,
   UnknownMap,
+  WhatIsMissing,
 } from './Closing'
 import {
   BodyJourney,
@@ -51,10 +51,10 @@ import {
 } from './Personal'
 import {
   ConceptPrimer,
+  MissingRecordNotice,
   PublicationBanner,
   PublicationNote,
   PurposeRail,
-  ReviewControl,
   SubstanceActionHero,
   SubstanceIdentityStrip,
 } from './Orientation'
@@ -194,9 +194,6 @@ export function CompassPage({
   model: DossierV4ViewModel
 }): ReactNode {
   const stages = model.journey.nodes.map((node) => node.stage)
-  const approved = new Map(
-    model.approvedWordings.map((wording) => [wording.statementKey as string, wording]),
-  )
   return (
     <div
       className="dv4-root"
@@ -204,23 +201,20 @@ export function CompassPage({
       data-publication-state={model.publication.state}
     >
       <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise}>
-        {/* Withdrawing DOSSIER_COMMUNITY_REVIEW removes the control and leaves the page intact. */}
-        {model.reviewEnabled ? (
-          <ReviewControl publication={model.publication} summary={model.reviewSummary} />
-        ) : (
-          <PublicationNote publication={model.publication} />
-        )}
+        {/* Review lives at /review-queue. A reader sees the medicine, not the machinery. */}
+        <PublicationNote publication={model.publication} />
       </SubstanceIdentityStrip>
-      {/* Only an identity hold or a pipeline failure still opens with a block. */}
+      {/* Only an identity hold, a pipeline failure, or an empty record opens with a block. */}
       <PublicationBanner publication={model.publication} />
+      <MissingRecordNotice searched={model.searchedRegisters} substance={model.substance} />
       <PurposeRail />
       <div className="dv4-canvas">
         <Navigator model={model} />
         <div className="dv4-flow">
           <SubstanceActionHero
-            approved={approved}
             hero={model.hero}
             name={model.name}
+            recordedIdentity={model.recordedIdentity}
             stages={stages}
           />
           {model.concepts.length > 0 ? (
@@ -257,12 +251,12 @@ export function CompassPage({
           <MeasurementCoach measurement={model.measurement} />
           <AlternativesLadder alternatives={model.alternatives} />
           <ClaimDecoder decoder={model.claimDecoder} />
-          <CommunityExperienceLane community={model.community} />
           <UnknownMap unknowns={model.unknowns} />
           <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
           <DrugStory story={model.story} />
-          <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
+          <ChangeHistory changes={model.changes} />
           <NextQuestionRail questions={model.nextQuestions} />
+          <WhatIsMissing sections={model.sections} />
           <TechnicalRecord corpus={corpus} model={model} />
           <p className="dv4-foot">
             {model.notAdvice} {model.notForChildren}

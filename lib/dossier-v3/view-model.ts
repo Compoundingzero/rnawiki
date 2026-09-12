@@ -1169,27 +1169,37 @@ function interactionCategory(line: CorpusInteractionLine): InteractionCategory {
 
 function interactionsFrom(inputs: DossierV3Inputs): DossierV3ViewModel['interactions'] {
   const { interactions } = inputs.corpus
-  const rows: InteractionRow[] = interactions.lines.map((line) => {
-    const category = interactionCategory(line)
-    const evidenceClass: EvidenceClass =
-      line.tier === 'A'
-        ? 'regulatory_label'
-        : line.tier === 'B'
-          ? 'observational'
-          : 'model_prediction'
-    return {
-      category,
-      categoryLabel:
-        INTERACTION_CATEGORIES.find((entry) => entry.code === category)?.label ?? category,
-      counterpart: line.counterpartName ?? 'Unnamed counterpart',
-      ...(line.counterpartSlug ? { counterpartSlug: line.counterpartSlug } : {}),
-      text: line.line,
-      evidenceClass,
-      evidenceLabel: evidenceClassLabel(evidenceClass),
-      disclosed: line.disclosed,
-      ...(line.sourceUrl ? { sourceUrl: line.sourceUrl } : {}),
-    }
-  })
+  /*
+   * An interaction row whose counterpart has no name is not a fact a reader can use. It used to
+   * render as "Unnamed counterpart", which reached the page as "does taking Unnamed counterpart
+   * alongside Carbenicillin change anything for me?" — a question nobody can act on, and a
+   * placeholder shown to a reader as though it were content. A row without a named counterpart is
+   * dropped; the interaction section's own count and its "not finding one is not the same as there
+   * being none" line already carry the honest position.
+   */
+  const rows: InteractionRow[] = interactions.lines
+    .filter((line) => (line.counterpartName ?? '').trim().length > 0)
+    .map((line) => {
+      const category = interactionCategory(line)
+      const evidenceClass: EvidenceClass =
+        line.tier === 'A'
+          ? 'regulatory_label'
+          : line.tier === 'B'
+            ? 'observational'
+            : 'model_prediction'
+      return {
+        category,
+        categoryLabel:
+          INTERACTION_CATEGORIES.find((entry) => entry.code === category)?.label ?? category,
+        counterpart: line.counterpartName!,
+        ...(line.counterpartSlug ? { counterpartSlug: line.counterpartSlug } : {}),
+        text: line.line,
+        evidenceClass,
+        evidenceLabel: evidenceClassLabel(evidenceClass),
+        disclosed: line.disclosed,
+        ...(line.sourceUrl ? { sourceUrl: line.sourceUrl } : {}),
+      }
+    })
   const registers =
     interactions.sourcesChecked.length > 0
       ? interactions.sourcesChecked.join(' and ')

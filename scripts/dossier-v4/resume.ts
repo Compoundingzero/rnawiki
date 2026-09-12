@@ -137,7 +137,6 @@ function main(): void {
   section('Environment this needs')
   console.log('DATABASE_URL      a local PostgreSQL database migrated to the current head')
   console.log('SESSION_SECRET    at least 32 characters')
-  console.log('DOSSIER_V4_SLUGS  comma list, a prefix ending in *, or * for every page')
 
   section('Validation')
   console.log(

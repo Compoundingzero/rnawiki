@@ -1,0 +1,21 @@
+{
+  "attempted": 1771,
+  "byOutcome": {
+    "no_label": 1182,
+    "label_without_content": 417,
+    "filled": 172
+  },
+  "modulesGained": {
+    "mechanism": 98,
+    "recordedUses": 79,
+    "attribution": 58,
+    "safety": 35,
+    "productVariants": 32,
+    "molecularIdentity": 25,
+    "pharmacokinetics": 20,
+    "populationStatements": 18,
+    "commonAdverseReactions": 12,
+    "interactionSignals": 9
+  },
+  "report": "data/background/dailymed-acquisition.ndjson"
+}

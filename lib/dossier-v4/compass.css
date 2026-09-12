@@ -1255,6 +1255,67 @@
 
 /* ------------------------------------------------------------ next rail */
 
+/*
+ * The list of questions a page could not answer. Deliberately quiet: it is an account of what is
+ * absent, and it should be findable without competing with the record above it for attention.
+ */
+/*
+ * Register facts: a count, a name or a date, with the register under it. Quieter than a statement
+ * block on purpose — these are things anyone can look up, not conclusions anyone has reached.
+ */
+.dv4-register {
+  margin-top: 1.1rem;
+}
+
+.dv4-register-head {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+.dv4-register ul {
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dv4-register li {
+  border-left: 2px solid var(--dv4-hairline);
+  margin: 0;
+  padding-left: 0.7rem;
+}
+
+.dv4-register li p {
+  margin: 0;
+}
+
+.dv4-register-cite {
+  color: var(--dv4-ink-soft);
+  font-size: 0.8rem;
+  margin-top: 0.15rem !important;
+}
+
+.dv4-missing {
+  display: grid;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+}
+
+.dv4-missing li {
+  border-left: 2px solid var(--dv4-hairline);
+  color: var(--dv4-ink-soft);
+  margin: 0;
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+
+.dv4-missing strong {
+  color: var(--dv4-ink);
+  font-weight: 600;
+}
+
 .dv4-next {
   display: grid;
   gap: 0.5rem;

@@ -507,11 +507,44 @@ describe('absences are rendered, not dropped', () => {
     }
   })
 
-  it('keeps the community lane switched off rather than empty and unexplained', () => {
+  it('carries no community lane, because RNAWiki collects no reports', () => {
+    // The lane described how reports would be weighed, above an empty list, on every page. A
+    // description of a feature is not a record of a medicine, so it is gone rather than switched off.
     const model = buildDossierV4(inputs())
-    expect(model.community.state).toBe('feature_not_enabled')
-    expect(model.community.reports).toEqual([])
-    expect(model.community.noImportLine).toMatch(/does not copy reports from forums/i)
+    expect(Object.keys(model)).not.toContain('community')
+    expect(model.sections.map((section) => section.id)).not.toContain('community')
+  })
+
+  it('does not count a standing sentence as recorded timing', () => {
+    /*
+     * The "how long anything takes" section emits one sentence on every page whatever the record
+     * holds — the one saying nothing is recorded beyond the longest study. Counting it as content
+     * made the section render on all 10,250 medicines and produce two distinct pages between them.
+     */
+    const model = buildDossierV4(inputs())
+    const standing = model.timeline.entries.filter(
+      (entry) => entry.value.origin === 'contract_sentence',
+    )
+    expect(standing.length).toBeGreaterThan(0)
+    const measured = model.timeline.entries.some(
+      (entry) => entry.value.origin !== 'absent' && entry.value.origin !== 'contract_sentence',
+    )
+    expect(model.timeline.state).toBe(measured ? 'source_checked_draft' : 'no_qualifying_evidence')
+  })
+
+  it('never asserts a generic remark as this record’s basis', () => {
+    /*
+     * Every page used to print "Day-to-day swing in sleep, food and stress moves most home
+     * measurements more than a supplement would" under "On this record:", including on injectable
+     * hospital medicines. A sentence printed under that heading has to come from the record.
+     */
+    const model = buildDossierV4(inputs())
+    const noise = model.noResponse.entries.find((entry) => entry.code === 'measurement_noise')
+    expect(noise?.applies).toBe(false)
+    for (const entry of model.noResponse.entries) {
+      if (!entry.applies) continue
+      expect(entry.basis).not.toMatch(/more than a supplement would/i)
+    }
   })
 
   it('says what was searched when a body path is missing', () => {

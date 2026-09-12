@@ -1,7 +1,7 @@
 /**
  * A group page, and the group index, as whole HTML documents (step 6.1).
  *
- * The reason is the one `lib/corpus/document.tsx` gives: an App Router page ships its rendered text
+ * The reason is the one `lib/dossier-v4/document.tsx` gives: an App Router page ships its rendered text
  * twice, once as HTML and once inside the inlined React Server Components stream. Hubs are
  * indexable and in the sitemap, so they leave the page pipeline with the records.
  *

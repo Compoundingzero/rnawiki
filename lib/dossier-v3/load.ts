@@ -242,16 +242,3 @@ export async function loadDossierV3(slug: string): Promise<DossierV3ViewModel | 
   const inputs = await loadDossierV3Inputs(slug)
   return inputs ? buildDossierV3(inputs) : null
 }
-
-/** The slugs the v3 rendering is switched on for (docs/dossier-information-architecture.md, "Flag"). */
-export function dossierV3Enabled(slug: string): boolean {
-  const raw = process.env.DOSSIER_V3_SLUGS?.trim()
-  if (!raw) return false
-  if (raw === '*' || raw.toLowerCase() === 'all') return true
-  const wanted = slug.toLowerCase()
-  return raw
-    .split(',')
-    .map((item) => item.trim().toLowerCase())
-    .filter(Boolean)
-    .some((item) => (item.endsWith('*') ? wanted.startsWith(item.slice(0, -1)) : item === wanted))
-}

@@ -106,9 +106,14 @@ describe('cross-tab account reconciliation', () => {
       "const publicReadingStaysAvailable = isDossierView || pathname.startsWith('/datasets')",
     )
     expect(shell).toContain('!isDossierView && <FeedbackButton />')
-    const dossierGuard = source('components/dossier/DossierAccountActionsGuard.tsx')
-    expect(dossierGuard).toContain('inert={sessionActionLocked ? true : undefined}')
-    expect(dossierGuard).toContain('Reading stays available')
+    /*
+     * `components/dossier/DossierAccountActionsGuard.tsx` was checked here: it disabled the account
+     * actions on a medicine page while the session was being reconciled, and told the reader that
+     * reading stayed available meanwhile. There are no account actions on a medicine page any more —
+     * review moved to /review-queue — so there is nothing on that page to lock, and the guard is
+     * deleted. The shell's own rule below is what now keeps a medicine page readable during a
+     * session check, and it is the assertion that matters.
+     */
     expect(shell).toContain('Retry account check')
     expect(shell).toContain('Reload this page')
     expect(header).toContain('sessionActionLocked ? (')

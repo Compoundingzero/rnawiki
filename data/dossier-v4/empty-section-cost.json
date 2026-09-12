@@ -1,0 +1,301 @@
+{
+  "pages": 300,
+  "report": [
+    {
+      "id": "no-response",
+      "pages": 300,
+      "distinctRenderings": 7,
+      "identicalShare": 0.88,
+      "meanCharacters": 2430,
+      "wastedCharacters": 2138
+    },
+    {
+      "id": "unknowns",
+      "pages": 300,
+      "distinctRenderings": 47,
+      "identicalShare": 0.83,
+      "meanCharacters": 2348,
+      "wastedCharacters": 1949
+    },
+    {
+      "id": "measurement",
+      "pages": 181,
+      "distinctRenderings": 4,
+      "identicalShare": 0.983,
+      "meanCharacters": 1660,
+      "wastedCharacters": 1632
+    },
+    {
+      "id": "concept-primer",
+      "pages": 300,
+      "distinctRenderings": 13,
+      "identicalShare": 0.86,
+      "meanCharacters": 1612,
+      "wastedCharacters": 1386
+    },
+    {
+      "id": "signal-timeline",
+      "pages": 300,
+      "distinctRenderings": 2,
+      "identicalShare": 0.93,
+      "meanCharacters": 1402,
+      "wastedCharacters": 1304
+    },
+    {
+      "id": "safety",
+      "pages": 300,
+      "distinctRenderings": 36,
+      "identicalShare": 0.883,
+      "meanCharacters": 1184,
+      "wastedCharacters": 1046
+    },
+    {
+      "id": "evidence-receipts",
+      "pages": 300,
+      "distinctRenderings": 38,
+      "identicalShare": 0.457,
+      "meanCharacters": 1546,
+      "wastedCharacters": 706
+    },
+    {
+      "id": "body-journey",
+      "pages": 13,
+      "distinctRenderings": 13,
+      "identicalShare": 0.077,
+      "meanCharacters": 8112,
+      "wastedCharacters": 624
+    },
+    {
+      "id": "q14",
+      "pages": 3,
+      "distinctRenderings": 3,
+      "identicalShare": 0.333,
+      "meanCharacters": 1521,
+      "wastedCharacters": 507
+    },
+    {
+      "id": "practical-reality",
+      "pages": 300,
+      "distinctRenderings": 149,
+      "identicalShare": 0.273,
+      "meanCharacters": 1840,
+      "wastedCharacters": 503
+    },
+    {
+      "id": "applicability",
+      "pages": 300,
+      "distinctRenderings": 174,
+      "identicalShare": 0.403,
+      "meanCharacters": 949,
+      "wastedCharacters": 383
+    },
+    {
+      "id": "alternatives",
+      "pages": 19,
+      "distinctRenderings": 6,
+      "identicalShare": 0.368,
+      "meanCharacters": 970,
+      "wastedCharacters": 357
+    },
+    {
+      "id": "form-check",
+      "pages": 300,
+      "distinctRenderings": 31,
+      "identicalShare": 0.407,
+      "meanCharacters": 838,
+      "wastedCharacters": 341
+    },
+    {
+      "id": "next-question",
+      "pages": 300,
+      "distinctRenderings": 11,
+      "identicalShare": 0.5,
+      "meanCharacters": 583,
+      "wastedCharacters": 292
+    },
+    {
+      "id": "q13",
+      "pages": 6,
+      "distinctRenderings": 6,
+      "identicalShare": 0.167,
+      "meanCharacters": 1701,
+      "wastedCharacters": 283
+    },
+    {
+      "id": "stack",
+      "pages": 23,
+      "distinctRenderings": 23,
+      "identicalShare": 0.043,
+      "meanCharacters": 5939,
+      "wastedCharacters": 258
+    },
+    {
+      "id": "what-is-missing",
+      "pages": 300,
+      "distinctRenderings": 33,
+      "identicalShare": 0.293,
+      "meanCharacters": 841,
+      "wastedCharacters": 247
+    },
+    {
+      "id": "evidence-staircase",
+      "pages": 34,
+      "distinctRenderings": 30,
+      "identicalShare": 0.118,
+      "meanCharacters": 1791,
+      "wastedCharacters": 211
+    },
+    {
+      "id": "q12",
+      "pages": 11,
+      "distinctRenderings": 11,
+      "identicalShare": 0.091,
+      "meanCharacters": 2208,
+      "wastedCharacters": 201
+    },
+    {
+      "id": "claim-decoder",
+      "pages": 13,
+      "distinctRenderings": 13,
+      "identicalShare": 0.077,
+      "meanCharacters": 2388,
+      "wastedCharacters": 184
+    },
+    {
+      "id": "goal-fingerprint",
+      "pages": 16,
+      "distinctRenderings": 16,
+      "identicalShare": 0.063,
+      "meanCharacters": 2855,
+      "wastedCharacters": 178
+    },
+    {
+      "id": "felt-measured-meaningful",
+      "pages": 25,
+      "distinctRenderings": 24,
+      "identicalShare": 0.08,
+      "meanCharacters": 1815,
+      "wastedCharacters": 145
+    },
+    {
+      "id": "q1",
+      "pages": 19,
+      "distinctRenderings": 19,
+      "identicalShare": 0.053,
+      "meanCharacters": 2629,
+      "wastedCharacters": 138
+    },
+    {
+      "id": "technical-record",
+      "pages": 300,
+      "distinctRenderings": 191,
+      "identicalShare": 0.193,
+      "meanCharacters": 346,
+      "wastedCharacters": 67
+    },
+    {
+      "id": "q11",
+      "pages": 18,
+      "distinctRenderings": 18,
+      "identicalShare": 0.056,
+      "meanCharacters": 1115,
+      "wastedCharacters": 62
+    },
+    {
+      "id": "q6",
+      "pages": 35,
+      "distinctRenderings": 35,
+      "identicalShare": 0.029,
+      "meanCharacters": 1529,
+      "wastedCharacters": 44
+    },
+    {
+      "id": "q2",
+      "pages": 40,
+      "distinctRenderings": 40,
+      "identicalShare": 0.025,
+      "meanCharacters": 1688,
+      "wastedCharacters": 42
+    },
+    {
+      "id": "q10",
+      "pages": 23,
+      "distinctRenderings": 23,
+      "identicalShare": 0.043,
+      "meanCharacters": 838,
+      "wastedCharacters": 36
+    },
+    {
+      "id": "q7",
+      "pages": 34,
+      "distinctRenderings": 34,
+      "identicalShare": 0.029,
+      "meanCharacters": 1166,
+      "wastedCharacters": 34
+    },
+    {
+      "id": "human-results",
+      "pages": 191,
+      "distinctRenderings": 191,
+      "identicalShare": 0.005,
+      "meanCharacters": 6001,
+      "wastedCharacters": 31
+    },
+    {
+      "id": "q5",
+      "pages": 36,
+      "distinctRenderings": 36,
+      "identicalShare": 0.028,
+      "meanCharacters": 1008,
+      "wastedCharacters": 28
+    },
+    {
+      "id": "q8",
+      "pages": 30,
+      "distinctRenderings": 30,
+      "identicalShare": 0.033,
+      "meanCharacters": 852,
+      "wastedCharacters": 28
+    },
+    {
+      "id": "q9",
+      "pages": 25,
+      "distinctRenderings": 25,
+      "identicalShare": 0.04,
+      "meanCharacters": 656,
+      "wastedCharacters": 26
+    },
+    {
+      "id": "q4",
+      "pages": 39,
+      "distinctRenderings": 39,
+      "identicalShare": 0.026,
+      "meanCharacters": 865,
+      "wastedCharacters": 22
+    },
+    {
+      "id": "q3",
+      "pages": 40,
+      "distinctRenderings": 40,
+      "identicalShare": 0.025,
+      "meanCharacters": 616,
+      "wastedCharacters": 15
+    },
+    {
+      "id": "drug-story",
+      "pages": 26,
+      "distinctRenderings": 26,
+      "identicalShare": 0.038,
+      "meanCharacters": 356,
+      "wastedCharacters": 14
+    },
+    {
+      "id": "substance-action",
+      "pages": 300,
+      "distinctRenderings": 300,
+      "identicalShare": 0.003,
+      "meanCharacters": 1329,
+      "wastedCharacters": 4
+    }
+  ]
+}

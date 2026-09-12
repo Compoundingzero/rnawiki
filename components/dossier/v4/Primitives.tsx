@@ -12,7 +12,9 @@
 import type { ReactNode } from 'react'
 
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
+import type { RecordedFact } from '@/lib/dossier-v4/recorded-facts'
 import type { TruthTerms } from '@/lib/dossier-v4/copy'
+import { sectionIsHidden } from '@/lib/dossier-v4/section-visibility'
 import type { ConceptVisual } from '@/lib/dossier-v4/concepts'
 import {
   sectionStatePlain,
@@ -84,18 +86,10 @@ export function StateBadge({
  * it, so the line is now the short label and the review count, and the full explanation sits in the
  * "Where this came from" disclosure directly beneath, where the provenance already was.
  */
-export function OriginNote({
-  origin,
-  review,
-}: {
-  origin: StatementOrigin
-  /** The short review line for this sentence, e.g. "Community approved 3/3". */
-  review?: string | null
-}): ReactNode {
+export function OriginNote({ origin }: { origin: StatementOrigin }): ReactNode {
   return (
     <p className="dv4-origin">
       <span aria-hidden="true">{ORIGIN_GLYPHS[origin]}</span> {ORIGIN_SHORT[origin]}
-      {review ? <span> · {review}</span> : null}
     </p>
   )
 }
@@ -123,23 +117,55 @@ export function Sources({ sources }: { sources: SourceCitation[] }): ReactNode {
   )
 }
 
+/**
+ * Facts read out of a public register: counts, names, dates, classifications.
+ *
+ * Each carries the register it came from, because a count is only worth reading if you can go and
+ * repeat it. These are not claims about what a substance does — the wording in
+ * `lib/dossier-v4/recorded-facts.ts` is deliberate about that — so they render as a plain list
+ * rather than as statements with a review state, which would suggest somebody had judged them.
+ */
+export function RecordedFactList({
+  facts,
+  heading,
+}: {
+  facts: RecordedFact[]
+  heading?: string
+}): ReactNode {
+  if (facts.length === 0) return null
+  return (
+    <div className="dv4-register">
+      {heading ? <h3 className="dv4-register-head">{heading}</h3> : null}
+      <ul>
+        {facts.map((fact, index) => (
+          <li data-origin={fact.origin} key={`${fact.text.slice(0, 40)}-${index}`}>
+            <p>{fact.text}</p>
+            <p className="dv4-register-cite">
+              {fact.citation.label}
+              {fact.citation.id ? ` · ${fact.citation.id}` : null}
+              {fact.citation.date ? ` · read ${fact.citation.date}` : null}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 /** One statement with its origin and its receipts folded away underneath. */
 export function StatementBlock({
   statement,
   className,
   emphasis = false,
-  review,
 }: {
   statement: Statement
   className?: string
   emphasis?: boolean
-  /** The short review line for this sentence, when a community wording applies to it. */
-  review?: string | null
 }): ReactNode {
   return (
     <div className={className} data-origin={statement.origin} data-state={statement.state}>
       <p className={emphasis ? 'dv4-hero-result-text' : undefined}>{statement.text}</p>
-      <OriginNote origin={statement.origin} review={review ?? null} />
+      <OriginNote origin={statement.origin} />
       {/* Technical: this holds provenance and any recorded wording the reader layer did not take. */}
       <Disclosure summary="Where this came from" technical>
         <p>{ORIGIN_PLAIN[statement.origin]}</p>
@@ -221,6 +247,13 @@ export function SectionFrame({
   lede?: string
   children: ReactNode
 }): ReactNode {
+  /*
+   * A section with nothing in it prints nothing here. It is not dropped from the page: every hidden
+   * section is named, with its reason, in "What this page does not have" near the foot. The two use
+   * the same predicate — `sectionIsHidden` — so a section can never be both silently missing and
+   * absent from that list.
+   */
+  if (sectionIsHidden(id, state)) return null
   return (
     <section
       aria-labelledby={`${id}-h`}

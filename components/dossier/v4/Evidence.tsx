@@ -12,7 +12,15 @@ import type { ReactNode } from 'react'
 import { fingerprintStateGlyph, fingerprintStateLabel } from '@/lib/dossier-v4/taxonomy'
 import type { DossierV4ViewModel } from '@/lib/dossier-v4/view-model'
 
-import { Absence, Disclosure, SectionFrame, Sources, StateBadge, TruthLines } from './Primitives'
+import {
+  Absence,
+  Disclosure,
+  RecordedFactList,
+  SectionFrame,
+  Sources,
+  StateBadge,
+  TruthLines,
+} from './Primitives'
 
 export function EffectFingerprint({
   fingerprint,
@@ -132,8 +140,15 @@ export function HumanResults({
       lede="Each card is one study: the exact question it asked, who was in it, and whether it showed what it set out to show."
       state={results.state}
     >
+      <RecordedFactList
+        facts={results.namedTrial}
+        heading="Results from the one trial this record names"
+      />
+
       {results.cards.length === 0 ? (
-        <Absence reason={results.absence} state={results.state} />
+        results.namedTrial.length > 0 ? null : (
+          <Absence reason={results.absence} state={results.state} />
+        )
       ) : (
         <>
           <div className="dv4-results">
@@ -256,8 +271,12 @@ export function BodyJourney({ journey }: { journey: DossierV4ViewModel['journey'
       lede="From what a person takes to what changes. A solid line is a step measured in people. A dashed line is a step nobody has measured that way."
       state={journey.state}
     >
+      <RecordedFactList facts={journey.anatomy} heading="Where a source records it acting" />
+
       {journey.nodes.length === 0 ? (
-        <Absence reason={journey.textEquivalent.join(' ')} state={journey.state} />
+        journey.anatomy.length > 0 ? null : (
+          <Absence reason={journey.textEquivalent.join(' ')} state={journey.state} />
+        )
       ) : (
         <ol className="dv4-path">
           {journey.nodes.map((node, index) => {

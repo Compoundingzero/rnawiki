@@ -15,6 +15,7 @@ import type { DossierV4ViewModel } from '@/lib/dossier-v4/view-model'
 import {
   Absence,
   Disclosure,
+  RecordedFactList,
   SectionFrame,
   Sources,
   StatementBlock,
@@ -65,6 +66,16 @@ export function ApplicabilityMirror({
           )}
         </div>
       </div>
+
+      <RecordedFactList
+        facts={applicability.studyPopulation}
+        heading="Who a named study recorded including and excluding"
+      />
+
+      <RecordedFactList
+        facts={applicability.populations}
+        heading="What the label states about particular groups"
+      />
 
       {applicability.transferLimits.length > 0 ? (
         <>
@@ -166,6 +177,12 @@ export function PracticalReality({
           </div>
         ))}
       </div>
+
+      {/*
+        A recorded stepping schedule. Its first line says it is a record and not a recommendation,
+        which is the whole reason a page about medicines may print a list of amounts at all.
+      */}
+      <RecordedFactList facts={practical.titration} heading="The recorded stepping schedule" />
     </SectionFrame>
   )
 }
@@ -344,6 +361,8 @@ export function FormRealityCheck({
           <StatementBlock statement={formCheck.marketedForms} />
         </div>
       </div>
+
+      <RecordedFactList facts={formCheck.supply} heading="What is recorded as being sold" />
 
       <div className="dv4-callout">
         <p>{formCheck.equivalenceEvidence.text}</p>

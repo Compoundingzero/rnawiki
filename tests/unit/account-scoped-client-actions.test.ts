@@ -47,40 +47,23 @@ describe('shared-browser account boundaries', () => {
     expect(isCurrentAccountRequest({ ...current, aborted: true })).toBe(false)
   })
 
-  it('reloads note votes for the new account and masks the old state immediately', () => {
-    const commentary = source('components/CommunityCommentary.tsx')
-    expect(commentary).toContain('notesAccountKey === accountKey')
-    expect(commentary).toContain('communityNotes(medicineSlug, controller.signal)')
-    expect(commentary).toContain("setContent('')")
-    expect(commentary).toContain('for (const controller of mutationControllersRef.current)')
-    expect(commentary).toContain('isCurrentAccountRequest({')
-  })
-
-  it('keeps private contribution authoring and review forms bound to their account', () => {
-    const authoring = source('components/DossierContributionActions.tsx')
-    expect(authoring).toContain('workspaceAccountKey === accountKey')
-    expect(authoring).toContain('actionRequestRef.current.controller?.abort()')
-    expect(authoring).toContain('currentAccountKey: accountKeyRef.current')
-    expect(authoring).toContain('setCorrection(blankCorrection(')
-    expect(authoring).toContain('setChallenge(blankChallenge())')
-
-    const review = source('app/review-queue/ContributionReviewPanel.tsx')
-    expect(review).toContain('privateStateAccountId === accountId')
-    expect(review).toContain('writeRequestRef.current.controller?.abort()')
-    expect(review).toContain('accountRef.current !== accountId')
-
-    const identityReview = source('app/review-queue/ReviewActions.tsx')
-    expect(identityReview).toContain('viewerAccountId === accountId')
-    expect(identityReview).toContain('canReviewLegacyIdentityCorrection(currentUser)')
-    expect(identityReview).toContain('canReviewRef.current')
-    expect(identityReview).toContain('Reload review controls')
-    expect(identityReview).toContain('requestRef.current.controller?.abort()')
-    expect(identityReview).toContain("setNote('')")
-
-    const identityAuthoring = source('components/LegacyIdentityCorrectionActions.tsx')
-    expect(identityAuthoring).toContain('privateStateAccountId === accountId')
-    expect(identityAuthoring).toContain('requestControllerRef.current?.abort()')
-    expect(identityAuthoring).toContain('accountIdRef.current !== accountId')
+  /*
+   * Two cases stood here, over `components/CommunityCommentary.tsx` and
+   * `components/DossierContributionActions.tsx`. Both were per-medicine review and commentary
+   * surfaces on the old medicine layout, and both are deleted: review no longer appears on a
+   * reader's page at all, and lives at /review-queue instead.
+   *
+   * The concern they encoded — that a client surface holding one account's state must not show it
+   * to the next account signed in on the same browser — moved with the feature, and is checked
+   * below against the panel that now holds that state.
+   */
+  it('keeps the review queue bound to the account that opened it', () => {
+    const panel = source('app/review-queue/ReviewerQualificationPanel.tsx')
+    // A response that arrives after the account changed is discarded rather than rendered.
+    expect(panel).toContain('isCurrentAccountRequest')
+    // And what is already on screen is keyed to the account it was fetched for.
+    expect(panel).toContain('dataSnapshot?.accountKey === accountKey')
+    expect(panel).toContain('lastResetAccountKeyRef.current !== accountKey')
   })
 
   it('prevents late modal requests and timers from changing a later account or modal', () => {

@@ -31,6 +31,9 @@ import {
   type PageStatementOverlay,
 } from '@/lib/page-statements/overlay'
 import type { PageStatementKey } from '@/lib/page-statements/types'
+import { assessRecordSubstance, type RecordSubstance } from './indexability'
+import { recordedFactsFor, type RecordedFact, type RecordedFacts } from './recorded-facts'
+import { recordedLabelFor, type LabelSentence, type RecordedLabel } from './recorded-label'
 import type { BoundLegacyTenSecondAnswer } from '@/lib/ten-second-answer-overrides'
 import type { AuditPoint, ClinicalTrialRecord, DrugDossier, MechanismStep } from '@/lib/types'
 
@@ -315,7 +318,6 @@ export const COMPASS_SECTIONS: ReadonlyArray<
     short: 'Big claims',
     lane: 'uncertainty',
   },
-  { id: 'community', label: 'What people report', short: 'Reports', lane: 'community_experience' },
   { id: 'unknowns', label: 'What nobody knows yet', short: 'Unknowns', lane: 'uncertainty' },
   {
     id: 'evidence-receipts',
@@ -569,14 +571,21 @@ export interface DossierV4ViewModel {
   /** How much this page is allowed to say. One decision, made in one place. */
   publication: PublicationDecision
   identity: IdentityStrip
+  /**
+   * What the substance registries record about what this is and where it comes from. Counts, names
+   * and classifications read out of public registers — never a description of the substance.
+   */
+  recordedIdentity: RecordedFact[]
   pagePromise: string
   /**
    * What the small review control shows. Viewer-independent by design: `/d/<slug>` is one document
    * served identically to everybody, and a count that varied by session would end that.
    */
   reviewSummary: PageReviewSummary
-  /** Whether this deployment offers community review for this page at all. */
-  reviewEnabled: boolean
+  /** How much this record actually holds, and what is missing. */
+  substance: RecordSubstance
+  /** The registers and databases this record was looked for in, named for a reader. */
+  searchedRegisters: string[]
   /** Sentences on this page carrying a wording members approved. */
   approvedWordings: ActivePageStatement[]
   /** Wordings members replaced, newest first, for the public "What changed" section. */
@@ -592,6 +601,8 @@ export interface DossierV4ViewModel {
     registeredOutcomeLine: string
   }
   humanResults: {
+    /** Results from the one trial this record names, quoted as published. */
+    namedTrial: RecordedFact[]
     state: SectionState
     cards: HumanResultCard[]
     registry: DossierV3ViewModel['doesItWork']['registry']
@@ -600,6 +611,8 @@ export interface DossierV4ViewModel {
   }
   staircase: { state: SectionState; rungs: StaircaseRung[]; caveat: string }
   journey: {
+    /** Where a source records it acting, by region, with the action quoted. */
+    anatomy: RecordedFact[]
     state: SectionState
     nodes: JourneyNode[]
     edges: JourneyEdge[]
@@ -619,16 +632,22 @@ export interface DossierV4ViewModel {
   timeline: { state: SectionState; entries: TimelineEntry[] }
   applicability: {
     state: SectionState
+    /** Who a named study recorded including and excluding. */
+    studyPopulation: RecordedFact[]
     included: string[]
     excluded: string[]
     underrepresented: string[]
     transferLimits: string[]
     includedLine: string
     cannotSayLine: string
+    /** What a label states about a named group of people, quoted. */
+    populations: RecordedFact[]
   }
   noResponse: { state: SectionState; entries: NoResponseEntry[]; note: string }
   practical: {
     state: SectionState
+    /** How the amount was stepped in a protocol or on a label. Never advice. */
+    titration: RecordedFact[]
     availability: Statement
     route: Statement
     burden: Statement
@@ -658,6 +677,8 @@ export interface DossierV4ViewModel {
     equivalenceEvidence: Statement
     entries: FormEntry[]
     corrections: Array<{ when: string; what: string; why: string; fullReason: string }>
+    /** What the product directories and label archives record about how it is supplied. */
+    supply: RecordedFact[]
   }
   measurement: {
     state: SectionState
@@ -674,19 +695,21 @@ export interface DossierV4ViewModel {
   }
   alternatives: { state: SectionState; entries: AlternativeEntry[]; note: string }
   claimDecoder: { state: SectionState; claims: DecodedClaim[]; absence: string }
-  community: {
-    state: SectionState
-    reports: never[]
-    categories: ReadonlyArray<{ code: string; label: string; count: number }>
-    separationLine: string
-    noImportLine: string
-    qualitySignals: readonly string[]
-  }
   unknowns: { state: SectionState; entries: UnknownEntry[] }
-  receipts: { state: SectionState; entries: ReceiptEntry[]; note: string }
+  receipts: {
+    state: SectionState
+    entries: ReceiptEntry[]
+    note: string
+    /** How many documents were read, and where they agreed. */
+    corroboration: RecordedFact[]
+    /** Register identifiers, so a reader can find the same substance in the same registers. */
+    identifiers: Array<{ label: string; value: string }>
+  }
   story: {
     state: SectionState
     entries: Array<{ when: string; what: string; changesToday: boolean }>
+    /** What the approval registers record: applications, sponsors, dates, marketing status. */
+    regulatory: RecordedFact[]
   }
   changes: {
     state: SectionState
@@ -1031,10 +1054,24 @@ function strongestMeasuredFinding(findings: readonly string[]): string | undefin
   return best
 }
 
+/**
+ * A sentence the label printed, as a page statement.
+ *
+ * `stored_source` is the page's existing origin for text copied out of a source RNAWiki holds, and
+ * it is what separates a quoted label sentence from a sentence a person wrote into the record. The
+ * citation travels with it so the reader can see which document printed it.
+ */
+function labelStatement(sentence: LabelSentence, basis: string): Statement {
+  return statement(sentence.text, 'stored_source', 'source_checked_draft', basis, [
+    sentence.citation,
+  ])
+}
+
 function buildHero(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
   identity: IdentityStrip,
+  label: RecordedLabel,
 ): ActionHero {
   const legacy = inputs.legacyRecord
   const bound = inputs.boundAnswer
@@ -1065,13 +1102,29 @@ function buildHero(
           bound?.copy.usedFor ? 'reviewed_content' : 'source_checked_draft',
           `${chosen.reason} The page opens with what it is taken for instead, and the recorded explanation follows below.`,
         )
-      : // A display line reading "Not recorded." looks like a broken page rather than an honest one.
-        statement(
-          'RNAWiki has not recorded what this substance changes in the body.',
-          'contract_sentence',
-          'awaiting_review',
-          chosen.reason,
-        )
+      : label.uses[0]
+        ? labelStatement(
+            // The house split: whole sentences up to the reader limit, never a truncated medical
+            // sentence. An indication that runs to three sentences opens on the first, and the rest
+            // is kept word for word in the explanation below.
+            {
+              text: splitForReader(label.uses[0].text).lead || label.uses[0].text,
+              citation: label.uses[0].citation,
+            },
+            'The use the label states, quoted from it. No plain-language version of this sentence has been written.',
+          )
+        : label.mechanism[0]
+          ? labelStatement(
+              label.mechanism[0],
+              'What the label states this substance does, quoted from it. No plain-language version of this sentence has been written.',
+            )
+          : // A display line reading "Not recorded." looks like a broken page rather than an honest one.
+            statement(
+              'RNAWiki has not recorded what this substance changes in the body.',
+              'contract_sentence',
+              'awaiting_review',
+              chosen.reason,
+            )
 
   /*
    * Everything the recorded explanation says, under the opening line. Where the opening line came
@@ -1100,7 +1153,22 @@ function buildHero(
           : 'The rest of the recorded explanation of what happens in the body.',
         provenance.slice(0, 3),
       )
-    : absentStatement('No further explanation is recorded.', 'no_qualifying_evidence')
+    : label.mechanism.length > 0 || splitForReader(label.uses[0]?.text).rest
+      ? labelStatement(
+          {
+            text: [
+              splitForReader(label.uses[0]?.text).rest,
+              ...label.mechanism.map((sentence) => sentence.text),
+            ]
+              .filter(Boolean)
+              .join(' '),
+            citation: (label.mechanism[0] ?? label.uses[0])!.citation,
+          },
+          `What the label states about how this substance acts, quoted from it${
+            label.targets.length > 0 ? `. Targets it names: ${label.targets.join(', ')}` : ''
+          }.`,
+        )
+      : absentStatement('No further explanation is recorded.', 'no_qualifying_evidence')
 
   const bodyLocation = legacy?.anatomicalSite
     ? statement(
@@ -1121,7 +1189,12 @@ function buildHero(
         `Step ${firstStep.step} of the recorded path through the body.`,
         provenance.slice(0, 2),
       )
-    : absentStatement('No step-by-step path through the body is recorded.')
+    : label.mechanism[0]
+      ? labelStatement(
+          label.mechanism[0],
+          'The first thing the label states this substance does. No step-by-step path through the body is recorded.',
+        )
+      : absentStatement('No step-by-step path through the body is recorded.')
 
   const whyPeopleCare =
     !chosen.text && whyText
@@ -1141,7 +1214,12 @@ function buildHero(
               'source_checked_draft',
               'The recorded use, written for a reader without medical training. Not signed off.',
             )
-          : absentStatement('No recorded use is stored in reader language.')
+          : label.uses[0]
+            ? labelStatement(
+                label.uses[0],
+                'The use the label states, quoted from it. It is written for a clinician, not for a reader without medical training.',
+              )
+            : absentStatement('No recorded use is stored in reader language.')
 
   /*
    * The strongest result, and the limit beside it.
@@ -1411,6 +1489,7 @@ const VERDICT_LABELS: Record<HumanResultCard['verdict'], string> = {
 function buildHumanResults(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  namedTrial: RecordedFact[],
 ): DossierV4ViewModel['humanResults'] {
   const legacy = inputs.legacyRecord
   const provenance = citationsFromProvenance(legacy?.sourceProvenance)
@@ -1469,7 +1548,9 @@ function buildHumanResults(
       }
     })
   return {
-    state: cards.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
+    namedTrial,
+    state:
+      cards.length > 0 || namedTrial.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     cards,
     registry: v3.doesItWork.registry,
     absence:
@@ -1657,13 +1738,19 @@ const STAGE_LABELS: Record<MechanismStep['visualStage'], { label: string; node: 
 function buildJourney(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  anatomy: RecordedFact[],
 ): DossierV4ViewModel['journey'] {
   const legacy = inputs.legacyRecord
   const steps = [...(legacy?.mechanismSteps ?? [])].sort((left, right) => left.step - right.step)
   const provenance = citationsFromProvenance(legacy?.sourceProvenance)
   if (steps.length === 0) {
     return {
-      state: 'no_qualifying_evidence',
+      anatomy,
+      /*
+       * A recorded target region is a real answer to "where does this act", even with no ordered
+       * path through the body. The section stays open when the record names one.
+       */
+      state: anatomy.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
       nodes: [],
       edges: [],
       textEquivalent: [
@@ -1732,6 +1819,7 @@ function buildJourney(
     })
   }
   return {
+    anatomy,
     state: 'source_checked_draft',
     nodes,
     edges,
@@ -1841,10 +1929,20 @@ function buildTimeline(
         }
     }
   })
+  /*
+   * A standing sentence is not a measurement.
+   *
+   * This used to count any facet whose origin was not `absent`, and the `long_term_unknown` facet
+   * always emits one — a `contract_sentence`, which is the origin meaning "a sentence RNAWiki
+   * prints on every page of this kind". So every medicine reported that it had timing content, the
+   * section rendered on all of them, and across a 300-medicine sample it produced two distinct
+   * renderings. A section is only holding something when a source or a count put it there.
+   */
+  const measured = entries.some(
+    (entry) => entry.value.origin !== 'absent' && entry.value.origin !== 'contract_sentence',
+  )
   return {
-    state: entries.some((entry) => entry.value.origin !== 'absent')
-      ? 'source_checked_draft'
-      : 'no_qualifying_evidence',
+    state: measured ? 'source_checked_draft' : 'no_qualifying_evidence',
     entries,
   }
 }
@@ -1854,6 +1952,8 @@ function buildTimeline(
 function buildApplicability(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  populations: RecordedFact[],
+  studyPopulation: RecordedFact[],
 ): DossierV4ViewModel['applicability'] {
   const context = inputs.legacyRecord?.conditionContext
   const summary = inputs.legacyRecord?.measuredVsInferredSummary
@@ -1865,8 +1965,12 @@ function buildApplicability(
     ].slice(0, 8),
   ).items
   return {
+    populations,
+    studyPopulation,
     state:
-      included.length || transferLimits.length ? 'source_checked_draft' : 'no_qualifying_evidence',
+      included.length || transferLimits.length || populations.length || studyPopulation.length
+        ? 'source_checked_draft'
+        : 'no_qualifying_evidence',
     included,
     excluded: [],
     underrepresented: v3.safety.underrepresented ? [v3.safety.underrepresented] : [],
@@ -1917,8 +2021,13 @@ function buildNoResponse(
     applies.product_identity =
       'This is sold as a supplement, so no agency checked what is in a given tub before it was sold.'
   }
-  applies.measurement_noise =
-    'Day-to-day swing in sleep, food and stress moves most home measurements more than a supplement would.'
+  /*
+   * Measurement noise was asserted for every substance, in these words: "Day-to-day swing in sleep,
+   * food and stress moves most home measurements more than a supplement would." It was printed under
+   * "On this record:", which says the record supports it, and no record did — it is a general remark,
+   * and on an intravenous hospital medicine the comparison to a supplement is simply wrong. It is
+   * gone. The reason stays in the catalogue below as a thing RNAWiki checked for and did not find.
+   */
   applies.evidence_uncertainty = v3.contract.noReviewedConclusionSentence
 
   const entries: NoResponseEntry[] = NO_RESPONSE_REASONS.map((reason) => ({
@@ -1928,8 +2037,16 @@ function buildNoResponse(
     applies: Boolean(applies[reason.code]),
     basis: applies[reason.code] ?? 'Nothing in this record points to this reason.',
   }))
+  /*
+   * `evidence_uncertainty` is true of every record with no reviewed conclusion, so it alone does not
+   * make this section about this substance. The section renders when something the record itself
+   * records puts a reason on the list.
+   */
+  const fromThisRecord = entries.filter(
+    (entry) => entry.applies && entry.code !== 'evidence_uncertainty',
+  )
   return {
-    state: 'source_checked_draft',
+    state: fromThisRecord.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     entries,
     note: 'None of these is a reason to take more. Taking more is not a step this page ever suggests.',
   }
@@ -1941,11 +2058,13 @@ function buildPractical(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
   identity: IdentityStrip,
+  titration: RecordedFact[],
 ): DossierV4ViewModel['practical'] {
   const delivery = inputs.legacyRecord?.deliverySystem
   const regulatory = fieldValue(inputs, 'regulatory')
   return {
-    state: delivery ? 'source_checked_draft' : 'no_qualifying_evidence',
+    titration,
+    state: delivery || titration.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     availability: statement(
       identity.availability,
       'stored_source',
@@ -2118,6 +2237,7 @@ const RELATION_MAP: Record<string, IdentityRelation> = {
 function buildFormCheck(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  supply: RecordedFact[],
 ): DossierV4ViewModel['formCheck'] {
   const delivery = inputs.legacyRecord?.deliverySystem
   const entries: FormEntry[] = inputs.corpus.relations.slice(0, 20).map((relation) => {
@@ -2172,7 +2292,16 @@ function buildFormCheck(
     }
   })
   return {
-    state: entries.length || corrections.length ? 'source_checked_draft' : 'no_qualifying_evidence',
+    supply,
+    /*
+     * "Does the exact form matter?" is answered partly by what is actually sold. A product directory
+     * recording that a substance is supplied as a tablet, a capsule and an injection is a real answer
+     * to that question, and the section stayed empty on 60% of medicines while it sat in the record.
+     */
+    state:
+      entries.length || corrections.length || supply.length
+        ? 'source_checked_draft'
+        : 'no_qualifying_evidence',
     exactFormStudied: delivery?.type
       ? statement(
           delivery.type,
@@ -2474,6 +2603,7 @@ function buildUnknowns(
 function buildReceipts(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  facts: RecordedFacts,
 ): DossierV4ViewModel['receipts'] {
   const audits = inputs.legacyRecord?.keyAudits ?? []
   const entries: ReceiptEntry[] = audits.slice(0, 20).map((audit: AuditPoint) => {
@@ -2504,7 +2634,12 @@ function buildReceipts(
     }
   })
   return {
-    state: entries.length ? 'source_checked_draft' : 'no_qualifying_evidence',
+    corroboration: facts.corroboration,
+    identifiers: facts.identifiers,
+    state:
+      entries.length || facts.identifiers.length || facts.corroboration.length
+        ? 'source_checked_draft'
+        : 'no_qualifying_evidence',
     entries,
     note: 'Every line above can be traced to the study named beside it. Follow the link and read it.',
   }
@@ -2512,7 +2647,10 @@ function buildReceipts(
 
 /* ----------------------------------------------------------------- story */
 
-function buildStory(inputs: DossierV4Inputs): DossierV4ViewModel['story'] {
+function buildStory(
+  inputs: DossierV4Inputs,
+  regulatory: RecordedFact[],
+): DossierV4ViewModel['story'] {
   const years = fieldValue(inputs, 'publicationYears') as
     { firstYear?: number; lastYear?: number; documentCount?: number } | undefined
   const entries: Array<{ when: string; what: string; changesToday: boolean }> = []
@@ -2533,7 +2671,14 @@ function buildStory(inputs: DossierV4Inputs): DossierV4ViewModel['story'] {
       changesToday: false,
     })
   }
-  return { state: entries.length ? 'source_checked_draft' : 'no_qualifying_evidence', entries }
+  /*
+   * An approval record is how this medicine reached us, and for a discontinued one it is often the
+   * only thing still published. A page that showed nothing here while the register recorded an
+   * approval date and a sponsor was describing a failed search, not a medicine.
+   */
+  const state: SectionState =
+    entries.length > 0 || regulatory.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence'
+  return { state, entries, regulatory }
 }
 
 /* --------------------------------------------------------- next question */
@@ -2658,30 +2803,46 @@ function buildGates(
 export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
   const v3 = buildDossierV3(inputs)
   const identity = buildIdentity(inputs, v3)
-  const hero = buildHero(inputs, v3, identity)
+  /*
+   * The label record. Read once and used as the tier below the curated `drugs` columns, which are
+   * populated for a few hundred flagship medicines and empty for the rest. Before this, a medicine
+   * with a stored label and no curated column rendered an absence while its label sat in the
+   * database — 1,874 mechanisms and 3,078 recorded uses, fetched, parsed and never shown.
+   */
+  const label = recordedLabelFor(inputs.legacyRecord?.recordedBackground ?? null)
+  /*
+   * The eighteen register modules that had no reader surface after the old layout was deleted. Their
+   * only previous home was `components/MedicineRecordContextSections.tsx`, which belonged to that
+   * layout; removing it left 7,126 recorded source materials, 5,998 product listings and 2,542
+   * approval records stored, validated and invisible. They are distributed into the sections they
+   * answer rather than collected into a block of their own, because "212 products list this" is an
+   * answer to how it is supplied, not a fact about records.
+   */
+  const facts = recordedFactsFor(inputs.legacyRecord?.recordedBackground ?? null)
+  const hero = buildHero(inputs, v3, identity, label)
 
   const biomarkerTerms = ((fieldValue(inputs, 'biomarkers') as { terms?: string[] } | undefined)
     ?.terms ?? []) as string[]
   const classified = classifyOutcomeTerms(biomarkerTerms)
 
   const fingerprint = buildFingerprint(inputs, v3, classified)
-  const humanResults = buildHumanResults(inputs, v3)
+  const humanResults = buildHumanResults(inputs, v3, facts.namedTrial)
   const staircase = buildStaircase(inputs, v3, classified)
-  const journey = buildJourney(inputs, v3)
+  const journey = buildJourney(inputs, v3, facts.anatomy)
   const experience = buildExperience(classified)
   const timeline = buildTimeline(inputs, v3)
-  const applicability = buildApplicability(inputs, v3)
+  const applicability = buildApplicability(inputs, v3, facts.populations, facts.studyPopulation)
   const noResponse = buildNoResponse(inputs, v3, classified)
-  const practical = buildPractical(inputs, v3, identity)
+  const practical = buildPractical(inputs, v3, identity, facts.titration)
   const safety = buildSafety(inputs, v3)
   const stack = buildStack(inputs, v3)
-  const formCheck = buildFormCheck(inputs, v3)
+  const formCheck = buildFormCheck(inputs, v3, facts.supply)
   const measurement = buildMeasurement(inputs, v3, identity, classified)
   const alternatives = buildAlternatives(inputs, v3)
   const claimDecoder = buildClaimDecoder(inputs, v3)
   const unknowns = buildUnknowns(inputs, v3)
-  const receipts = buildReceipts(inputs, v3)
-  const story = buildStory(inputs)
+  const receipts = buildReceipts(inputs, v3, facts)
+  const story = buildStory(inputs, facts.regulatory)
 
   const concepts = conceptsForPage({
     showsBiomarker: classified.some((entry) => entry.outcomeClass === 'biomarker_surrogate'),
@@ -2694,22 +2855,6 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     isRnaMedicine: v3.substanceType.code === 'rna_medicine',
     showsRandomisedTrial: humanResults.cards.some((card) => /random/i.test(card.studyDesign)),
   })
-
-  const community: DossierV4ViewModel['community'] = {
-    state: 'feature_not_enabled',
-    reports: [],
-    categories: [],
-    separationLine: COMPASS_COPY.communitySeparation,
-    noImportLine: COMPASS_COPY.communityNoImport,
-    qualitySignals: [
-      'completeness',
-      'identity certainty',
-      'context',
-      'follow-up',
-      'confounder disclosure',
-      'objective and subjective kept apart',
-    ],
-  }
 
   /*
    * The publication decision, made once from what the page actually assembled rather than from a
@@ -2742,12 +2887,12 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     name: v3.name,
     publication,
     identity,
+    recordedIdentity: facts.identity,
     pagePromise: COMPASS_COPY.pagePromise,
     reviewSummary: inputs.statementOverlay?.summary ?? {
       slug: v3.slug,
       ...EMPTY_PAGE_REVIEW_SUMMARY,
     },
-    reviewEnabled: inputs.statementOverlay !== undefined,
     approvedWordings: [...(inputs.statementOverlay?.active.values() ?? [])],
     wordingHistory: inputs.statementOverlay?.history ?? [],
     hero,
@@ -2767,7 +2912,6 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     measurement,
     alternatives,
     claimDecoder,
-    community,
     unknowns,
     receipts,
     story,
@@ -2804,7 +2948,6 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     measurement: measurement.state,
     alternatives: alternatives.state,
     'claim-decoder': claimDecoder.state,
-    community: community.state,
     unknowns: unknowns.state,
     'evidence-receipts': receipts.state,
     'drug-story': story.state,
@@ -2847,8 +2990,29 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     sections,
     gates,
     nextQuestions: [],
+    // Filled below: the assessment reads the finished hero and section states.
+    substance: {
+      hasOpening: false,
+      hasExplanation: false,
+      hasHumanEvidence: false,
+      hasMechanism: false,
+      score: 0,
+      empty: true,
+    },
+    /*
+     * The registers a reader is told were searched. These are the sources the corpus pipeline
+     * actually consults for a medicine record, named in the words a reader would recognise rather
+     * than by module name, so an empty page can say where it looked instead of only that it failed.
+     */
+    searchedRegisters: [
+      'the FDA label archive and DailyMed',
+      'the FDA, EMA, Health Canada and TGA registers',
+      'ClinicalTrials.gov',
+      'PubChem and ChEMBL',
+    ],
   }
   model.nextQuestions = buildNextQuestions(model)
+  model.substance = assessRecordSubstance(model)
   return model
 }
 

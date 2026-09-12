@@ -37,22 +37,19 @@ describe('dossier discovery surface contract', () => {
   // both the meta description and the social-card image must derive from the one shared
   // projection over the same canonical route and default-programme dossier view, instead of the
   // card rebuilding its own answer from a second projection that can drift.
-  // Step 6.1 moved both files. `/d/<slug>` is a route handler writing a plain HTML document, the
-  // React dossier it forwards to for a medicine the corpus does not hold is at
-  // `app/legacy-record/[slug]/page.tsx`, and the card is an explicit route at the same URL it
-  // always had. The contract is unchanged: one projection behind the description and the card.
+  // `/d/<slug>` is a route handler writing a plain HTML document, and the card is an explicit route
+  // at the same URL it always had. The older React record that used to hold the description side of
+  // this contract is gone; the document builder holds it now. The contract is unchanged: one
+  // projection behind the description and the card.
   it('derives the social card from the same projection as the meta description', () => {
-    const pageSource = readFileSync(
-      join(process.cwd(), 'app/legacy-record/[slug]/page.tsx'),
-      'utf8',
-    )
+    const pageSource = readFileSync(join(process.cwd(), 'lib/dossier-v4/document.tsx'), 'utf8')
     const imageSource = readFileSync(
       join(process.cwd(), 'app/d/[slug]/opengraph-image/route.tsx'),
       'utf8',
     )
 
-    expect(pageSource).toContain('dossierDiscoveryProjection')
-    expect(pageSource).toContain('dossierMetadataDescription(input)')
+    expect(pageSource).toContain('corpusMetaDescription')
+    expect(pageSource).toContain('decideMedicinePageIndexing')
 
     expect(imageSource).toContain('dossierDiscoveryProjection')
     expect(imageSource).toContain('dossierSocialPreview')

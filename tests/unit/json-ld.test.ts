@@ -557,7 +557,7 @@ describe('connected public JSON-LD graphs', () => {
   })
 
   it('keeps CreativeWork fragments byte-identical to the page source anchors', () => {
-    // components/MedicineDossierV2.tsx renders `<li id={`source-${source.id}`}>` with the raw
+    // the medicine page renders `<li id={`source-${source.id}`}>` with the raw
     // stored id. Legacy audit sources use ids such as `doi:10.1056/nejmoa1912387`; the graph must
     // not percent-encode what the page leaves raw, or the fragment stops naming the anchor.
     const legacyDrug = eligibleLegacyDrug()

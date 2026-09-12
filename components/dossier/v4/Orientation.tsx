@@ -10,11 +10,18 @@
 import type { ReactNode } from 'react'
 
 import type { Concept } from '@/lib/dossier-v4/concepts'
-import { pageReviewPill, type PageReviewSummary } from '@/lib/page-statements/overlay'
+import type { RecordSubstance } from '@/lib/dossier-v4/indexability'
+import type { RecordedFact } from '@/lib/dossier-v4/recorded-facts'
 import { PURPOSES } from '@/lib/dossier-v4/taxonomy'
 import type { ActionHero, DossierV4ViewModel, IdentityStrip } from '@/lib/dossier-v4/view-model'
 
-import { BodyPathFigure, ConceptGlyph, Disclosure, StatementBlock } from './Primitives'
+import {
+  BodyPathFigure,
+  ConceptGlyph,
+  Disclosure,
+  RecordedFactList,
+  StatementBlock,
+} from './Primitives'
 
 /**
  * The critical-notice banner.
@@ -58,20 +65,10 @@ export function PublicationBanner({
 }
 
 /**
- * The small review control, and the one-line note a sparse record keeps.
+ * The one quiet line a sparse record keeps.
  *
- * A reader should be able to see, without leaving the first screen, how many members have signed
- * off the wording in front of them and how to suggest a better one. What they should not get is a
- * warning. The control is a link: this page ships no client JavaScript, and the review workflow
- * lives at `/review-queue`, so an anchor is the honest shape as well as the working one.
- *
- * "Community approved" describes the wording and how the evidence is represented. It never means
- * the substance works, the accessible name says so, and "peer reviewed" is not used anywhere,
- * because none of this is scientific peer review.
- */
-/**
- * The one quiet line a sparse record keeps when the review control is not rendered — because review
- * has been withdrawn, or because this deployment has not switched it on.
+ * Not review machinery: it says what RNAWiki holds about this substance, which is a fact about the
+ * record rather than about who has looked at it. A record with a full page renders nothing here.
  */
 export function PublicationNote({
   publication,
@@ -86,32 +83,38 @@ export function PublicationNote({
   )
 }
 
-export function ReviewControl({
-  publication,
-  summary,
+/**
+ * What this page could not find, said on the page.
+ *
+ * A record with nothing in it is a retrieval result, not a design state, and hiding it behind an
+ * empty section or a euphemism would make the page look like it had an answer it does not have. So
+ * it says what is missing and where RNAWiki looked. A page in this state is also not offered to a
+ * search engine — `lib/dossier-v4/indexability.ts` makes both decisions from the same assessment,
+ * so the sentence and the crawler instruction cannot disagree.
+ */
+export function MissingRecordNotice({
+  substance,
+  searched,
 }: {
-  publication: DossierV4ViewModel['publication']
-  summary: PageReviewSummary
+  substance: RecordSubstance
+  /** The registers and databases this record was looked for in, named for the reader. */
+  searched: string[]
 }): ReactNode {
-  const pill = pageReviewPill(summary)
-  // A limited record used to explain itself in the banner. That sentence is still worth one line;
-  // it is not worth a bordered block, so it sits beside the control as ordinary quiet text.
-  const limitedNote = publication.state === 'limited' ? publication.plain : null
+  if (!substance.empty) return null
   return (
-    <p className="dv4-strip-review">
-      <a
-        aria-label={pill.accessibleName}
-        className="dv4-review-pill"
-        data-review-state={pill.state}
-        href={pill.href}
-      >
-        <span aria-hidden="true" className="dv4-review-glyph">
-          ✎
-        </span>
-        <span>{pill.label}</span>
-      </a>
-      {limitedNote ? <span className="dv4-note">{limitedNote}</span> : null}
-    </p>
+    <aside aria-labelledby="missing-record-h" className="dv4-publication" data-record="empty">
+      <p className="dv4-publication-label" id="missing-record-h">
+        RNAWiki has not found information about this substance
+      </p>
+      <p>
+        There is no recorded explanation of what it does, no result measured in people, and no
+        recorded path through the body. Rather than leave the page looking finished, it says so.
+      </p>
+      <p className="dv4-note" style={{ marginBottom: 0 }}>
+        Looked for in {searched.join(', ')}. If you know of a published source for this substance,
+        the review queue is where to say so.
+      </p>
+    </aside>
   )
 }
 
@@ -188,34 +191,14 @@ export function SubstanceActionHero({
   hero,
   name,
   stages,
-  approved,
+  recordedIdentity,
 }: {
   hero: ActionHero
   name: string
   stages: string[]
-  /** Sentences on this page carrying a wording members approved, keyed by position. */
-  approved: ReadonlyMap<string, { approvals: number }>
+  /** What the substance registries record about what this is and where it comes from. */
+  recordedIdentity: RecordedFact[]
 }): ReactNode {
-  const reviewLine = (key: string): string | null => {
-    const entry = approved.get(key)
-    return entry ? `Community approved ${entry.approvals}/3` : null
-  }
-  /*
-   * The hero's opening paragraphs carry no provenance line by default: they are explained together
-   * in "Where each sentence above came from" at the foot of the hero, and repeating a label under
-   * each of them is the clutter this change removed. A community wording is different — it is a
-   * fact about this exact sentence that a reader cannot get anywhere else on the first screen — so
-   * the line appears only where one applies.
-   */
-  const ReviewLine = ({ statementKey }: { statementKey: string }): ReactNode => {
-    const line = reviewLine(statementKey)
-    if (!line) return null
-    return (
-      <p className="dv4-origin">
-        <span aria-hidden="true">✎✓</span> {line}
-      </p>
-    )
-  }
   return (
     <section
       aria-labelledby="substance-action-h"
@@ -232,13 +215,11 @@ export function SubstanceActionHero({
         <p className="dv4-hero-action" data-origin={hero.simpleAction.origin}>
           {hero.simpleAction.text}
         </p>
-        <ReviewLine statementKey="hero.opening" />
         {hero.actionDetail.origin === 'absent' ? null : (
           <>
             <p className="dv4-hero-because" data-origin={hero.actionDetail.origin}>
               {hero.actionDetail.text}
             </p>
-            <ReviewLine statementKey="hero.explanation" />
           </>
         )}
         {hero.whyPeopleCare.origin === 'absent' ? null : (
@@ -246,7 +227,6 @@ export function SubstanceActionHero({
             <p className="dv4-hero-because" data-origin={hero.whyPeopleCare.origin}>
               <strong>Why people take it.</strong> {hero.whyPeopleCare.text}
             </p>
-            <ReviewLine statementKey="hero.why_people_take_it" />
           </>
         )}
 
@@ -254,11 +234,7 @@ export function SubstanceActionHero({
           <p className="dv4-eyebrow" style={{ marginBottom: '0.3rem' }}>
             <span>What happened in people</span>
           </p>
-          <StatementBlock
-            emphasis
-            review={reviewLine('hero.strongest_result')}
-            statement={hero.strongestGoalResult}
-          />
+          <StatementBlock emphasis statement={hero.strongestGoalResult} />
         </div>
 
         <div className="dv4-hero-limit" data-block="principal-uncertainty">
@@ -266,7 +242,6 @@ export function SubstanceActionHero({
             <span>The limit that matters most</span>
           </p>
           <p data-origin={hero.principalUncertainty.origin}>{hero.principalUncertainty.text}</p>
-          <ReviewLine statementKey="hero.principal_limit" />
         </div>
 
         {hero.analogy ? (
@@ -283,10 +258,7 @@ export function SubstanceActionHero({
         <dl className="dv4-hero-facts">
           <div>
             <dt>Where it acts</dt>
-            <dd data-origin={hero.bodyLocation.origin}>
-              {hero.bodyLocation.text}
-              <ReviewLine statementKey="hero.where_it_acts" />
-            </dd>
+            <dd data-origin={hero.bodyLocation.origin}>{hero.bodyLocation.text}</dd>
           </div>
           <div>
             <dt>Kind of result</dt>
@@ -297,6 +269,13 @@ export function SubstanceActionHero({
             <dd>{hero.supervision}</dd>
           </div>
         </dl>
+
+        {/*
+          What the registries say this is. On a medicine with no recorded mechanism and no trial —
+          most of the corpus — this is the only thing on the page that describes the substance
+          itself, and it was sitting in the database unread.
+        */}
+        <RecordedFactList facts={recordedIdentity} heading="What the registries record it as" />
 
         <Disclosure summary="Where each sentence above came from">
           <p>{hero.simpleAction.basis}</p>
@@ -325,7 +304,6 @@ export function SubstanceActionHero({
           <p data-origin={hero.immediateChange.origin} style={{ fontSize: '0.9rem' }}>
             {hero.immediateChange.text}
           </p>
-          <ReviewLine statementKey="hero.immediate_change" />
         </div>
       </aside>
     </section>

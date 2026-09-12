@@ -9,7 +9,6 @@
  * v3, and unsetting both restores the corpus document. No database change is needed to roll back.
  */
 import { getPublicDrugBySlug } from '@/lib/queries/drugs'
-import { communityReviewEnabled } from '@/lib/page-statements/flags'
 import { loadPageStatementOverlay } from '@/lib/queries/page-statements'
 import { corpusFromLegacyRecord } from './legacy-shim'
 import { loadDossierV3Inputs } from '@/lib/dossier-v3/load'
@@ -28,13 +27,14 @@ export async function loadDossierV4Inputs(slug: string): Promise<DossierV4Inputs
    * document, so the next request after the publishing transaction shows the new sentence.
    */
   /*
-   * Undefined, not an empty overlay: the view model reads the difference. An empty overlay means
-   * "review is available here and nothing is proposed yet", which is what a reader sees as 0/3.
-   * Undefined means the feature is not offered on this deployment, and the control does not render.
+   * Wordings members approved, read fresh on every request.
+   *
+   * The page shows the approved text and says nothing about the approval: no count, no label, no
+   * control. A reader meets the medicine, and the review that produced the wording is visible at
+   * /review-queue where the work happens. What the overlay never carries across is the evidence
+   * state — three people agreeing on words does not move an animal result to a human one.
    */
-  const statementOverlay = communityReviewEnabled(slug)
-    ? await loadPageStatementOverlay(slug, legacyRecord)
-    : undefined
+  const statementOverlay = await loadPageStatementOverlay(slug, legacyRecord)
   // The override resolves only when the authored copy and the record's current medical surface
   // still match one approved fingerprint. A changed record drops the answer rather than carrying
   // a stale one forward, which is the behaviour we want on a page that leads with it.
@@ -77,20 +77,4 @@ export async function loadDossierV4Inputs(slug: string): Promise<DossierV4Inputs
 export async function loadDossierV4(slug: string): Promise<DossierV4ViewModel | null> {
   const inputs = await loadDossierV4Inputs(slug)
   return inputs ? buildDossierV4(inputs) : null
-}
-
-/**
- * The slugs the v4 compass is switched on for. Same grammar as the v3 flag: a comma list, a
- * prefix ending in `*`, or `*`/`all` for every page.
- */
-export function dossierV4Enabled(slug: string): boolean {
-  const raw = process.env.DOSSIER_V4_SLUGS?.trim()
-  if (!raw) return false
-  if (raw === '*' || raw.toLowerCase() === 'all') return true
-  const wanted = slug.toLowerCase()
-  return raw
-    .split(',')
-    .map((item) => item.trim().toLowerCase())
-    .filter(Boolean)
-    .some((item) => (item.endsWith('*') ? wanted.startsWith(item.slice(0, -1)) : item === wanted))
 }

@@ -31,15 +31,17 @@ describe('one-account public product surface', () => {
   })
 
   it('shows contribution identity without credential or saved-medicine surfaces', () => {
+    /*
+     * `components/CommunityCommentary.tsx` was checked here too, for the contributor handle it put
+     * beside a note on a medicine page. It is deleted with the rest of the per-medicine review
+     * surfaces; contributors are named in the public history and on their profile, and no longer on
+     * the page of a medicine they wrote about.
+     */
     const account = source('components/AccountModal.tsx')
-    const commentary = source('components/CommunityCommentary.tsx')
     const profile = source('app/u/[handle]/page.tsx')
 
     expect(account).toContain('One account for every contributor')
     expect(account).toContain('accepted edits remain attributed to you in the public history')
-    expect(commentary).toContain('note.authorHandle')
-    expect(commentary).toContain('/u/${encodeURIComponent(note.authorHandle)}')
-    expect(commentary).toContain('Notes from signed-in contributors')
 
     for (const removed of [
       'Saved medicines',
@@ -49,7 +51,7 @@ describe('one-account public product surface', () => {
       'verificationState',
       'isVerifiedDoctor',
     ]) {
-      expect(`${account}\n${commentary}\n${profile}`).not.toContain(removed)
+      expect(`${account}\n${profile}`).not.toContain(removed)
     }
   })
 

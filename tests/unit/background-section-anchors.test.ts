@@ -5,36 +5,38 @@ import { EXTRACTED_BACKGROUND } from '@/scripts/seed-data/background/extracted-b
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 
 /**
- * Every recorded-background row is addressable by an id, and a duplicate id breaks the in-page
- * anchor to it and is an accessibility fault besides.
+ * Every anchor on a medicine page is unique within that page.
  *
- * This is pinned here because the browser suite cannot catch it: the end-to-end fixtures carry no
- * recorded background at all, so none of these rows render there. Two ids collided with sections
- * that already existed on the dossier and the full gate still passed.
+ * A duplicate id breaks the in-page link to it and is an accessibility fault besides. This is pinned
+ * here because the browser suite cannot catch it: the end-to-end fixtures carry no recorded
+ * background at all, so the rows that collided do not render there, and two ids collided with
+ * sections that already existed while the full gate passed.
+ *
+ * The file this used to read — `components/MedicineRecordContextSections.tsx` — belonged to the
+ * medicine layout this release deleted. The collision it guards against did not go with it: the
+ * compass writes one document, and every section, panel and disclosure in it shares one id space.
  */
 
-const SOURCE = 'components/MedicineRecordContextSections.tsx'
-
-async function sectionIds(): Promise<string[]> {
-  const { readFileSync } = await import('node:fs')
-  const source = readFileSync(SOURCE, 'utf8')
-  return [...source.matchAll(/id="([a-z0-9-]+)"/gu)].map((match) => match[1]!)
+async function compassIds(): Promise<string[]> {
+  const { readFileSync, readdirSync } = await import('node:fs')
+  return readdirSync('components/dossier/v4')
+    .filter((file) => file.endsWith('.tsx'))
+    .flatMap((file) =>
+      [
+        ...readFileSync(`components/dossier/v4/${file}`, 'utf8').matchAll(/id="([a-z0-9-]+)"/gu),
+      ].map((match) => match[1]!),
+    )
 }
 
-describe('recorded-background section anchors', () => {
-  it('gives every row an id that is unique within the file', async () => {
-    const ids = await sectionIds()
-    expect(ids.length).toBeGreaterThan(0)
-    expect(new Set(ids).size, `duplicate ids: ${ids.join(', ')}`).toBe(ids.length)
+describe('medicine page anchors', () => {
+  it('finds the ids to check', async () => {
+    expect((await compassIds()).length).toBeGreaterThan(15)
   })
 
-  it('does not reuse an id that another dossier section already owns', async () => {
-    const { readFileSync } = await import('node:fs')
-    const ids = new Set(await sectionIds())
-    const dossier = readFileSync('components/MedicineDossierV2.tsx', 'utf8')
-    const taken = [...dossier.matchAll(/id="([a-z0-9-]+)"/gu)].map((match) => match[1]!)
-    const collisions = taken.filter((id) => ids.has(id))
-    expect(collisions).toEqual([])
+  it('gives every anchor an id that is unique across the page', async () => {
+    const ids = await compassIds()
+    const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index)
+    expect(duplicates, `ids written more than once: ${duplicates.join(', ')}`).toEqual([])
   })
 })
 
