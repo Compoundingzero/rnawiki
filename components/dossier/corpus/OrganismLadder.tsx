@@ -63,7 +63,8 @@ export function OrganismLadder({ rungs, name }: { rungs: CorpusLadderRung[]; nam
                   fill={rung.filled ? 'var(--corpus-ink-0)' : 'var(--corpus-ink-2)'}
                 >
                   {rung.label.replace(/\s*\(.*\)$/, '')}
-                </text>
+                </text>{' '}
+                {/* §15(8): a text node between the rung's name and the evidence kind under it. */}
                 {rung.kind ? (
                   <text
                     x={x}

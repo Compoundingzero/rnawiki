@@ -1,0 +1,1763 @@
+{
+ "generated": "scripts/revamp/slop_draw.py",
+ "spec": [
+  "docs/specs/revamp-2026-09.md#phase-4",
+  "docs/specs/phase4-generators.md#9"
+ ],
+ "baseUrl": "http://127.0.0.1:3197",
+ "seed": 20260908,
+ "perTier": 20,
+ "drawn": 60,
+ "rendered": 60,
+ "width": 1280,
+ "textDir": "data/revamp/render-v7/text",
+ "census": {
+  "unit": "block",
+  "pages": 28657,
+  "blockTemplates": 51400,
+  "line": 0.005,
+  "pagesLimit": 143.285,
+  "maskedNames": {
+   "drugNamePhrases": 113853,
+   "drugNameSingleTokens": 40512,
+   "targetNamePhrases": 3940,
+   "targetNameSingleTokens": 117,
+   "englishWords": 234456
+  },
+  "sentenceLevelLiteral": {
+   "pages": 28657,
+   "sentenceTemplates": 143372,
+   "pagesLimit": 143.285
+  }
+ },
+ "sentences": 1679,
+ "rowLines": 3688,
+ "failA": 0,
+ "failB": 67,
+ "failC": 0,
+ "failRendered": 0,
+ "failBUnit": "block",
+ "failBSentenceLiteral": 252,
+ "failBSentenceLiteralByBlock": {
+  "question block": 233,
+  "computed section": 19
+ },
+ "failBSentenceLiteralNote": "The literal sentence-level reading of (b), reported and never the gate. \u00a712: it fails every deterministic generator, the thirteen corpus-20k seeds that shipped included, because a section that fires on 30 % of pages with a fixed skeleton cannot appear on 0.5 % once its slots are masked. `failB` above is the rule over the block, which is the unit a reader meets.",
+ "failABreakdown": {
+  "pagesWithNoProvenanceRecord": 0
+ },
+ "parity": {
+  "renderLinesNotPainted": 0,
+  "paintedLinesNotInRender": 0,
+  "renderLinesOutOfOrder": 0
+ },
+ "renderDivergenceNote": "`failRendered` and `parity` are `scripts/revamp/dom_parity.py`'s own comparison, run here over the drawn pages: this module imports that extraction, that fold and that comparison, so one number describes parity (\u00a712). The unit is main-region text lines outside furniture. It is not one of \u00a74.7's three checks. It matters because the thresholds and the block census are measured on the render text, so where the two disagree those measurements describe text no reader sees.",
+ "loadedPagesWithNoRenderRecord": 0,
+ "renderRecordsNotLoaded": 0,
+ "failBByBlock": {
+  "question block": 43,
+  "computed section": 15,
+  "other": 9
+ },
+ "failBExamplePerBlock": {
+  "computed section": {
+   "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+   "pagesCarrying": 680,
+   "sentences": [
+    "Closest approved compound: Flurazepam (similarity 0.48); Flurazepam is approved (US, CA), generic available. Flurazepam",
+    "First publication 1977, last 2023 (ChEMBL)."
+   ]
+  },
+  "question block": {
+   "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+   "pagesCarrying": 1904,
+   "sentences": [
+    "25 of 29 completed trials of Ridaforolimus posted no result: NCT00060632, NCT00087451, NCT00086125, NCT00110188, NCT00122343 and NCT00288431, and 19 more.",
+    "oldest 2005-10; newest 2017-08-03"
+   ]
+  },
+  "other": {
+   "template": "first publication <num> last <num> chembl",
+   "pagesCarrying": 8501,
+   "sentences": [
+    "First publication 2003, last 2024 (ChEMBL)."
+   ]
+  }
+ },
+ "failBScope": [
+  "computed section",
+  "derived seed",
+  "hub synthesis",
+  "question block"
+ ],
+ "failBExclusions": {
+  "question heading (the corpus-20k template contract)": 344,
+  "outside the sentences the generator words: interactions": 221,
+  "outside the sentences the generator words: other": 187,
+  "outside the sentences the generator words: registration": 134,
+  "furniture": 100,
+  "outside the sentences the generator words: interactions: checked-sources statement": 17,
+  "outside the sentences the generator words: generic and patent": 5
+ },
+ "failBExclusionsByBlock": {
+  "question heading (the corpus-20k template contract) \u00b7 question block": 344,
+  "outside the sentences the generator words: interactions \u00b7 interactions": 221,
+  "outside the sentences the generator words: other \u00b7 other": 187,
+  "outside the sentences the generator words: registration \u00b7 registration": 134,
+  "furniture \u00b7 interactions: checked-sources statement": 43,
+  "furniture \u00b7 generic and patent": 39,
+  "furniture \u00b7 question block": 18,
+  "outside the sentences the generator words: interactions: checked-sources statement \u00b7 interactions: checked-sources statement": 17,
+  "outside the sentences the generator words: generic and patent \u00b7 generic and patent": 5
+ },
+ "failBScopeNote": "docs/specs/phase4-generators.md \u00a712 evaluates the test over the masked block \u2014 every sentence of a question, derived, computed or hub block, in painted order \u2014 and a one-sentence block is held to the literal sentence rule by construction. \u00a711 scopes the test to answer sentences, derived-section sentences, computed-section sentences and hub syntheses. A question heading is the corpus-20k template contract and is measured by that contract's own two lines; furniture is the fixed-vocabulary absence statements \u00a711 marks data-furniture; the h1 is the display name and masks to a bare <drug> on every page by construction; and the register lines (\u00a73), the checked-sources statement (\u00a74) and the no-record patent line (\u00a75) are wordings the spec fixes rather than a generator choosing them. `failB` is the rule over its scope; `failBExclusions` counts every sentence it was not applied to, by the exclusion that removed it, so the scope is on the report beside the result.",
+ "traceClasses": {
+  "question: resolved": 1007,
+  "field: resolved": 808,
+  "seed: resolved": 519,
+  "field: unresolved": 360,
+  "source record: resolved": 329,
+  "repository file: resolved": 250,
+  "needs-sibling derivation: unresolved": 184,
+  "inxight ddi record: resolved": 84,
+  "lexicon surface: resolved": 76,
+  "source list: resolved": 64,
+  "interaction rule: resolved": 60,
+  "source list: unresolved": 56,
+  "absence: resolved": 39,
+  "computed value: resolved": 31,
+  "additive class: resolved": 30,
+  "seed: unresolved": 18,
+  "field on another record: resolved": 16,
+  "page-column: resolved": 3,
+  "lexicon surface: unresolved": 1
+ },
+ "pages": [
+  {
+   "key": "K1:620X0222FQ",
+   "slug": "flunitrazepam",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/flunitrazepam",
+   "h1": "Flunitrazepam",
+   "sentences": 35,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Flurazepam (similarity 0.48); Flurazepam is approved (US, CA), generic available. Flurazepam First publication 1977, last 2023 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 680,
+     "share": 0.023729,
+     "reason": "the masked block is on 680 pages (2.37%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:48Z35KB15K",
+   "slug": "ridaforolimus",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/ridaforolimus",
+   "h1": "Ridaforolimus",
+   "sentences": 38,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "25 of 29 completed trials of Ridaforolimus posted no result: NCT00060632, NCT00087451, NCT00086125, NCT00110188, NCT00122343 and NCT00288431, and 19 more. oldest 2005-10; newest 2017-08-03",
+     "block": "question block",
+     "group": "question:q6",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Sirolimus (similarity 0.87); Sirolimus is approved (US, EU, JP, CA), generic available. Sirolimus First publication 2017, last 2024 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us eu jp ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 514,
+     "share": 0.017936,
+     "reason": "the masked block is on 514 pages (1.79%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:8V66F27X44",
+   "slug": "iberdomide",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/iberdomide",
+   "h1": "Iberdomide",
+   "sentences": 45,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "8 of 11 completed trials of Iberdomide posted no result: NCT01733875, NCT02034773, NCT02820935, NCT03135509, NCT03294603 and NCT03824678, and 2 more. oldest 2013-10-09; newest 2023-07-06",
+     "block": "question block",
+     "group": "question:q9",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Lenalidomide (similarity 0.52); Lenalidomide is approved (US, EU, JP, CA), generic available. Lenalidomide",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us eu jp ca generic available. <drug>",
+     "pagesCarrying": 176,
+     "share": 0.006142,
+     "reason": "the masked block is on 176 pages (0.61%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:2OC4HKD3SF",
+   "slug": "telbivudine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/telbivudine",
+   "h1": "Telbivudine",
+   "sentences": 41,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "19 of 28 completed trials of Telbivudine posted no result: NCT00124241, NCT00115245, NCT00132652, NCT00131742, NCT00128544 and NCT00467545, and 13 more. oldest 2005-11; newest 2018-05-31",
+     "block": "question block",
+     "group": "question:q4",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:48Q180SH9T",
+   "slug": "nonoxynol-9",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/nonoxynol-9",
+   "h1": "Nonoxynol-9",
+   "sentences": 29,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:PYD255827T",
+   "slug": "streptococcus-pneumoniae-type-23f-capsular-polysaccharide-antigen",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/streptococcus-pneumoniae-type-23f-capsular-polysaccharide-antigen",
+   "h1": "Streptococcus Pneumoniae Type 23f Capsular Polysaccharide Antigen",
+   "sentences": 33,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "16 of 48 completed trials of Streptococcus Pneumoniae Type 23f Capsular Polysaccharide Antigen posted no result: NCT00169234, NCT00307008, NCT00307528, NCT00496093, NCT02079701 and NCT00493324, and 10 more. oldest 2005-02; newest 2024-08-30",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:FB33469R8E",
+   "slug": "estriol",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/estriol",
+   "h1": "Estriol",
+   "sentences": 50,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "22 of 37 completed trials of Estriol posted no result: NCT00000482, NCT00000483, NCT00443716, NCT00000177, NCT00001752 and NCT00018343, and 16 more. oldest 1985-03; newest 2024-04-04",
+     "block": "question block",
+     "group": "question:q8",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: FLUOROESTRADIOL (similarity 0.78); FLUOROESTRADIOL is approved (US). FLUOROESTRADIOL First publication 1980, last 2024 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 779,
+     "share": 0.027184,
+     "reason": "the masked block is on 779 pages (2.72%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:8R1V1STN48",
+   "slug": "catechin",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/catechin",
+   "h1": "Cianidanol",
+   "sentences": 22,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:65UEH262IS",
+   "slug": "safflower-oil",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/safflower-oil",
+   "h1": "Safflower Oil",
+   "sentences": 41,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "9 of 12 completed trials of Safflower Oil posted no result: NCT01121471, NCT01047280, NCT00230113, NCT01038440, NCT01233778 and NCT01250275, and 3 more. oldest 2006-11; newest 2022-06-28",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "COMBO:{K1:A49OS0F91S,K1:EFW857872Q}",
+   "slug": "butamben-picrate",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/butamben-picrate",
+   "h1": "BUTAMBEN PICRATE",
+   "sentences": 28,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Dinitolmide (similarity 0.53); Dinitolmide is approved (US, CA). Dinitolmide First publication 1982, last 2012 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 467,
+     "share": 0.016296,
+     "reason": "the masked block is on 467 pages (1.63%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:46QG38NC4U",
+   "slug": "ethotoin-2",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/ethotoin-2",
+   "h1": "Ethotoin",
+   "sentences": 21,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "First publication 2003, last 2024 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:GGD30112WC",
+   "slug": "guanabenz",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/guanabenz",
+   "h1": "Guanabenz",
+   "sentences": 27,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 1 completed trials of Guanabenz posted no result: NCT04467931. oldest 2020-12-31",
+     "block": "question block",
+     "group": "question:q3",
+     "sentencesInBlock": 2,
+     "template": "<num> <drug> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 866,
+     "share": 0.030219,
+     "reason": "the masked block is on 866 pages (3.02%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2007, last 2021 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:28X28X9OKV",
+   "slug": "durvalumab",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/durvalumab",
+   "h1": "Durvalumab",
+   "sentences": 51,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "75 of 201 completed trials of Durvalumab posted no result: NCT02141347, NCT02262741, NCT02685059, NCT02301130, NCT02027961 and NCT03085849, and 69 more. oldest 2017-01-27; newest 2024-07-30",
+     "block": "question block",
+     "group": "question:q8",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:I0IO929019",
+   "slug": "calcitonin-human",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/calcitonin-human",
+   "h1": "Calcitonin Human",
+   "sentences": 33,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 7 completed trials of Calcitonin Human posted no result: NCT02115360. oldest 2016-08",
+     "block": "question block",
+     "group": "question:q4",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 557,
+     "share": 0.019437,
+     "reason": "the masked block is on 557 pages (1.94%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:4YIR8202AX",
+   "slug": "talbutal",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/talbutal",
+   "h1": "Talbutal",
+   "sentences": 11,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:BBX060AN9V",
+   "slug": "hydrogen-peroxide",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/hydrogen-peroxide",
+   "h1": "Hydrogen Peroxide",
+   "sentences": 55,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "16 of 31 completed trials of Hydrogen Peroxide posted no result: NCT00909701, NCT00978861, NCT01048307, NCT01533675, NCT01231243 and NCT02463318, and 10 more. oldest 2009-05; newest 2022-09-01",
+     "block": "question block",
+     "group": "question:q9",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Carbonate Ion (similarity 0.40); Carbonate Ion is approved (US, CA). Carbonate Ion First publication 1999, last 2025 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 467,
+     "share": 0.016296,
+     "reason": "the masked block is on 467 pages (1.63%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:D56DN867MV",
+   "slug": "evans-blue",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/evans-blue",
+   "h1": "Evans Blue Free Acid",
+   "sentences": 12,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Trypan Blue Free Acid (similarity 0.53); Trypan Blue Free Acid is approved (US, CA). Trypan Blue Free Acid First publication 2020, last 2021 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 467,
+     "share": 0.016296,
+     "reason": "the masked block is on 467 pages (1.63%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:OP1R32D61U",
+   "slug": "microcrystalline-cellulose",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/microcrystalline-cellulose",
+   "h1": "MICROCRYSTALLINE CELLULOSE",
+   "sentences": 39,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "44 of 61 completed trials of MICROCRYSTALLINE CELLULOSE posted no result: NCT00893230, NCT00869193, NCT00784511, NCT01251991, NCT01433835 and NCT01483846, and 38 more. oldest 2008-11; newest 2024-06-30",
+     "block": "question block",
+     "group": "question:q9",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:4G7DS2Q64Y",
+   "slug": "progesterone",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/progesterone",
+   "h1": "Progesterone",
+   "sentences": 83,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "111 of 214 completed trials of Progesterone posted no result: NCT00000601, NCT00000466, NCT01472315, NCT00000559, NCT00000295 and NCT00005108, and 105 more. oldest 2000-06; newest 2024-06-13",
+     "block": "question block",
+     "group": "question:q10",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:57GNO57U7G",
+   "slug": "finasteride",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/finasteride",
+   "h1": "Finasteride",
+   "sentences": 71,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "22 of 36 completed trials of Finasteride posted no result: NCT00021814, NCT01133444, NCT01133457, NCT00648791, NCT00650377 and NCT00870480, and 16 more. oldest 2001-11-30; newest 2022-03-17",
+     "block": "question block",
+     "group": "question:q8",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Dutasteride (similarity 0.64); Dutasteride is approved (US, JP, CA), generic available. Dutasteride First publication 1986, last 2024 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us jp ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 262,
+     "share": 0.009143,
+     "reason": "the masked block is on 262 pages (0.91%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:QYJ305Z91O",
+   "slug": "bifonazole",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/bifonazole",
+   "h1": "Bifonazole",
+   "sentences": 40,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 1 completed trials of Bifonazole posted no result: NCT02705664. oldest 2016-09",
+     "block": "question block",
+     "group": "question:q3",
+     "sentencesInBlock": 2,
+     "template": "<num> <drug> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 866,
+     "share": 0.030219,
+     "reason": "the masked block is on 866 pages (3.02%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:RS7A450LGA",
+   "slug": "sodium-citrate-unspecified-form",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/sodium-citrate-unspecified-form",
+   "h1": "Anhydrous Trisodium Citrate",
+   "sentences": 44,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "11 of 16 completed trials of Anhydrous Trisodium Citrate posted no result: NCT00966290, NCT00286273, NCT01689753, NCT00238667, NCT02674906 and NCT02734875, and 5 more. oldest 2006-12; newest 2022-08",
+     "block": "question block",
+     "group": "question:q5",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:BV2WYH3V8P",
+   "slug": "corylus-avellana-flower-bud",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/corylus-avellana-flower-bud",
+   "h1": "Corylus Avellana Flower Bud",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:PVI5M0M1GW",
+   "slug": "filgrastim",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/filgrastim",
+   "h1": "Filgrastim",
+   "sentences": 50,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "371 of 678 completed trials of Filgrastim posted no result: NCT00002461, NCT00002526, NCT00001048, NCT00000801, NCT00001059 and NCT01713309, and 365 more. oldest 1991-07; newest 2024-05-24",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2004, last 2004 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:31FL06Y50D",
+   "slug": "plumeria-rubra-whole",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/plumeria-rubra-whole",
+   "h1": "Plumeria Rubra Whole",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:1AKM860CX4",
+   "slug": "daphne-mezereum-whole",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/daphne-mezereum-whole",
+   "h1": "Daphne Mezereum Whole",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:RV23PE6426",
+   "slug": "magnolia-grandiflora-flower",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/magnolia-grandiflora-flower",
+   "h1": "Magnolia Grandiflora Flower",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:2RDB26I5ZB",
+   "slug": "parthenolide",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/parthenolide",
+   "h1": "Parthenolide",
+   "sentences": 17,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:CLF5YFS11O",
+   "slug": "passiflora-incarnata-flowering-top",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/passiflora-incarnata-flowering-top",
+   "h1": "Passiflora Incarnata Flowering Top",
+   "sentences": 19,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 2 completed trials of Passiflora Incarnata Flowering Top posted no result: NCT02065843. oldest 2014-09",
+     "block": "question block",
+     "group": "question:q3",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 557,
+     "share": 0.019437,
+     "reason": "the masked block is on 557 pages (1.94%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:ZRP63D75JW",
+   "slug": "idarubicin",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/idarubicin",
+   "h1": "Idarubicin",
+   "sentences": 53,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "52 of 108 completed trials of Idarubicin posted no result: NCT00002833, NCT00002609, NCT00002800, NCT00199095, NCT00003268 and NCT00006367, and 46 more. oldest 2002-04; newest 2024-02",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:6M97XTV3HD",
+   "slug": "olmesartan-medoxomil",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/olmesartan-medoxomil",
+   "h1": "Olmesartan medoxomil",
+   "sentences": 97,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "36 of 51 completed trials of Olmesartan medoxomil posted no result: NCT00362960, NCT00185068, NCT00382213, NCT00185055, NCT00856271 and NCT00185172, and 30 more. oldest 2004-09; newest 2023-06-30",
+     "block": "question block",
+     "group": "question:q6",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K2:NLYAJNPCOHFWQQ-UHFFFAOYSA-N",
+   "slug": "kaolin-2",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/kaolin-2",
+   "h1": "KAOLIN",
+   "sentences": 11,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:BH3B64OKL9",
+   "slug": "dalfampridine",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/dalfampridine",
+   "h1": "Fampridine",
+   "sentences": 61,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "14 of 28 completed trials of Fampridine posted no result: NCT01215084, NCT01235221, NCT01597297, NCT01656148, NCT02143167 and NCT01975324, and 8 more. oldest 2010-11; newest 2021-10-15",
+     "block": "question block",
+     "group": "question:q6",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: P-PHENYLENEDIAMINE (similarity 0.50); P-PHENYLENEDIAMINE is approved (US, CA). P-PHENYLENEDIAMINE First publication 1976, last 2025 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 467,
+     "share": 0.016296,
+     "reason": "the masked block is on 467 pages (1.63%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:1W6L629B4K",
+   "slug": "sulisobenzone",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/sulisobenzone",
+   "h1": "Sulisobenzone",
+   "sentences": 11,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Oxybenzone (similarity 0.53); Oxybenzone is approved (US, CA). Oxybenzone First publication 2012, last 2021 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 467,
+     "share": 0.016296,
+     "reason": "the masked block is on 467 pages (1.63%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:304NUG5GF4",
+   "slug": "itraconazole",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/itraconazole",
+   "h1": "Itraconazole",
+   "sentences": 116,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "206 of 329 completed trials of Itraconazole posted no result: NCT00000992, NCT00000975, NCT00000639, NCT00001280, NCT00012467 and NCT00003883, and 200 more. oldest 1992-06; newest 2024-08-29",
+     "block": "question block",
+     "group": "question:q6",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Terconazole (similarity 0.75); Terconazole is approved (US, CA), generic available. Terconazole",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca generic available. <drug>",
+     "pagesCarrying": 424,
+     "share": 0.014796,
+     "reason": "the masked block is on 424 pages (1.48%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:49Y788T742",
+   "slug": "trifolium-repens-flower",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/trifolium-repens-flower",
+   "h1": "Trifolium Repens Flower",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:78YC2MAX4O",
+   "slug": "gamma-linolenic-acid",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/gamma-linolenic-acid",
+   "h1": "Gamolenic acid",
+   "sentences": 30,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "3 of 3 completed trials of Gamolenic acid posted no result: NCT00004420, NCT00878670 and NCT04481724. oldest 1999-08; newest 2023-09-15",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> and <num> \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 523,
+     "share": 0.01825,
+     "reason": "the masked block is on 523 pages (1.83%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:M91TG242P2",
+   "slug": "velmanase-alfa",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/velmanase-alfa",
+   "h1": "Velmanase alfa",
+   "sentences": 32,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 1 completed trials of Velmanase alfa posted no result: NCT02998879. oldest 2020-07",
+     "block": "question block",
+     "group": "question:q5",
+     "sentencesInBlock": 2,
+     "template": "<num> <drug> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 866,
+     "share": 0.030219,
+     "reason": "the masked block is on 866 pages (3.02%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:DIF093I037",
+   "slug": "amanita-muscaria-fruiting-body",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/amanita-muscaria-fruiting-body",
+   "h1": "Amanita Muscaria Fruiting Body",
+   "sentences": 11,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:M95KG522R0",
+   "slug": "ofatumumab",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/ofatumumab",
+   "h1": "Ofatumumab",
+   "sentences": 48,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "24 of 86 completed trials of Ofatumumab posted no result: NCT00742144, NCT00686868, NCT01110031, NCT01453062, NCT01195714 and NCT01580228, and 18 more. oldest 2009-11-18; newest 2023-04-20",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> <num> <num> <num> <num> and <num> and <num> more. \u00b6 oldest <num> newest <num>",
+     "pagesCarrying": 1904,
+     "share": 0.066441,
+     "reason": "the masked block is on 1904 pages (6.64%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:E1C0J49GTW",
+   "slug": "abbv-467",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/abbv-467",
+   "h1": "ABBV-467",
+   "sentences": 15,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "First publication 2020, last 2020 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:47R2ZYV242",
+   "slug": "bavebegene-tovacivec",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/bavebegene-tovacivec",
+   "h1": "Bavebegene tovacivec",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Bavebegene tovacivec has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL6068209 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:QCT8ZA42DV",
+   "slug": "pf-04603629",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/pf-04603629",
+   "h1": "PF-04603629",
+   "sentences": 17,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 1 completed trials of PF-04603629 posted no result: NCT00638313. oldest 2008-02",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> <drug> completed trials of <num> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 244,
+     "share": 0.008514,
+     "reason": "the masked block is on 244 pages (0.85%)"
+    }
+   ]
+  },
+  {
+   "key": "K2:MPXBKLQSQUXEDB-DPURIWRLSA-N",
+   "slug": "chembl3094407",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl3094407",
+   "h1": "CHEMBL3094407",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "CHEMBL3094407 has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL3094407 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 5547,
+     "share": 0.193565,
+     "reason": "the masked block is on 5547 pages (19.36%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2013, last 2013 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:P86BHN01VE",
+   "slug": "cevostamab",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/cevostamab",
+   "h1": "Cevostamab",
+   "sentences": 16,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "SG not found; UK not cleared; curatedMarketingStatusNote NCATS Inxight Drugs records marketing events per jurisdiction from upstream product registers. It is not itself a national register and does not set the status line for any jurisdiction here. inxight \u00b7 inxight-stitch:1325583:jurisdiction:US \u00b7 2026-09-05",
+     "block": "question block",
+     "group": "question:q1",
+     "sentencesInBlock": 1,
+     "template": "sg not found uk not cleared curatedmarketingstatusnote ncats inxight drugs records marketing events per jurisdiction from upstream product registers. it is not itself a national register and does not set the status line for any jurisdiction here. inxight inxight-stitch <num> jurisdiction us <num>",
+     "pagesCarrying": 4090,
+     "share": 0.142723,
+     "reason": "the masked block is on 4090 pages (14.27%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:P4TO3C82WV",
+   "slug": "n-acetylserotonin",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/n-acetylserotonin",
+   "h1": "N-ACETYLSEROTONIN",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "N-ACETYLSEROTONIN has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL33103 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:PS9357B4XH",
+   "slug": "formylmethionine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/formylmethionine",
+   "h1": "Formylmethionine",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Dl-Methionine (similarity 0.47); Dl-Methionine is approved (US, CA). Dl-Methionine",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca <drug>",
+     "pagesCarrying": 250,
+     "share": 0.008724,
+     "reason": "the masked block is on 250 pages (0.87%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:100EPZ8Y7G",
+   "slug": "quinprenaline",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/quinprenaline",
+   "h1": "Quinprenaline",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Quinprenaline has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL2009119 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Levisoprenaline (similarity 0.44); Levisoprenaline is approved (US), generic available. Levisoprenaline",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us generic available. <drug>",
+     "pagesCarrying": 230,
+     "share": 0.008026,
+     "reason": "the masked block is on 230 pages (0.80%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:5E1O433QAI",
+   "slug": "cinalukast",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/cinalukast",
+   "h1": "Cinalukast",
+   "sentences": 14,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "SG not found; UK not cleared; curatedMarketingStatusNote NCATS Inxight Drugs records marketing events per jurisdiction from upstream product registers. It is not itself a national register and does not set the status line for any jurisdiction here. inxight \u00b7 inxight-stitch:1050115:jurisdiction:US \u00b7 2026-09-05",
+     "block": "question block",
+     "group": "question:q1",
+     "sentencesInBlock": 1,
+     "template": "sg not found uk not cleared curatedmarketingstatusnote ncats inxight drugs records marketing events per jurisdiction from upstream product registers. it is not itself a national register and does not set the status line for any jurisdiction here. inxight inxight-stitch <num> jurisdiction us <num>",
+     "pagesCarrying": 4090,
+     "share": 0.142723,
+     "reason": "the masked block is on 4090 pages (14.27%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Cinalukast has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL283754 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q3",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 1991, last 2023 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:9MCI2H1EJ6",
+   "slug": "dideoxyadenosine-5-triphosphate",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/dideoxyadenosine-5-triphosphate",
+   "h1": "Dideoxyadenosine 5'-TRIPHOSPHATE",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Dideoxyadenosine 5'-TRIPHOSPHATE has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL1383 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: Didanosine (similarity 0.43); Didanosine is approved (US, CA), generic available. Didanosine First publication 1994, last 2024 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 680,
+     "share": 0.023729,
+     "reason": "the masked block is on 680 pages (2.37%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:7TS9C20ZWA",
+   "slug": "pf-06747143",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/pf-06747143",
+   "h1": "PF-06747143",
+   "sentences": 15,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:CHZ6OLQ3UU",
+   "slug": "pexelizumab",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/pexelizumab",
+   "h1": "Pexelizumab",
+   "sentences": 28,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "SG not found; UK not cleared; curatedMarketingStatusNote NCATS Inxight Drugs records marketing events per jurisdiction from upstream product registers. It is not itself a national register and does not set the status line for any jurisdiction here. inxight \u00b7 inxight-stitch:1226833:jurisdiction:US \u00b7 2026-09-05",
+     "block": "question block",
+     "group": "question:q1",
+     "sentencesInBlock": 1,
+     "template": "sg not found uk not cleared curatedmarketingstatusnote ncats inxight drugs records marketing events per jurisdiction from upstream product registers. it is not itself a national register and does not set the status line for any jurisdiction here. inxight inxight-stitch <num> jurisdiction us <num>",
+     "pagesCarrying": 4090,
+     "share": 0.142723,
+     "reason": "the masked block is on 4090 pages (14.27%)"
+    },
+    {
+     "check": "b",
+     "sentence": "1 of 2 completed trials of Pexelizumab posted no result: NCT00091637. oldest 2007-05",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> of <num> completed trials of <drug> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 557,
+     "share": 0.019437,
+     "reason": "the masked block is on 557 pages (1.94%)"
+    },
+    {
+     "check": "b",
+     "sentence": "inhibitor on C5 and Complement C5; the record reads \"Complement C5 inhibitor\". ChEMBL 37 \u00b7 CHEMBL2107979 \u00b7 2026-09-04 1 recorded mechanism row; not recorded here: a human dose ChEMBL 37 \u00b7 CHEMBL2107979 \u00b7 2026-09-04",
+     "block": "question block",
+     "group": "question:q7",
+     "sentencesInBlock": 2,
+     "template": "inhibitor on <num> and <drug> the record reads <drug> inhibitor chembl <num> <num> <num> \u00b6 <num> recorded mechanism row not recorded here a human dose chembl <num> <num> <num>",
+     "pagesCarrying": 220,
+     "share": 0.007677,
+     "reason": "the masked block is on 220 pages (0.77%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:HGH57KDY8T",
+   "slug": "2-phenylimidazole-4-carboxylic-acid",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/2-phenylimidazole-4-carboxylic-acid",
+   "h1": "2-PHENYLIMIDAZOLE-4-CARBOXYLIC Acid",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "2-PHENYLIMIDAZOLE-4-CARBOXYLIC Acid has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL1232889 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2010, last 2016 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:KB7A32K6Z6",
+   "slug": "ob-002",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/ob-002",
+   "h1": "OB-002",
+   "sentences": 17,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "1 of 1 completed trials of OB-002 posted no result: NCT04791007. oldest 2020-08-31",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> <drug> completed trials of <num> posted no result <num> \u00b6 oldest <num>",
+     "pagesCarrying": 244,
+     "share": 0.008514,
+     "reason": "the masked block is on 244 pages (0.85%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:1S3Z442A8N",
+   "slug": "pirazmonam",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/pirazmonam",
+   "h1": "Pirazmonam",
+   "sentences": 15,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "SG not found; UK not cleared; curatedMarketingStatusNote NCATS Inxight Drugs records marketing events per jurisdiction from upstream product registers. It is not itself a national register and does not set the status line for any jurisdiction here. inxight \u00b7 inxight-stitch:1174600:jurisdiction:US \u00b7 2026-09-05",
+     "block": "question block",
+     "group": "question:q1",
+     "sentencesInBlock": 1,
+     "template": "sg not found uk not cleared curatedmarketingstatusnote ncats inxight drugs records marketing events per jurisdiction from upstream product registers. it is not itself a national register and does not set the status line for any jurisdiction here. inxight inxight-stitch <num> jurisdiction us <num>",
+     "pagesCarrying": 4090,
+     "share": 0.142723,
+     "reason": "the masked block is on 4090 pages (14.27%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Pirazmonam has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL2110757 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q3",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    }
+   ]
+  },
+  {
+   "key": "K2:DAUATIBSDSXXHA-UHFFFAOYSA-N",
+   "slug": "chembl500082",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl500082",
+   "h1": "CHEMBL500082",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "CHEMBL500082 has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL500082 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 5547,
+     "share": 0.193565,
+     "reason": "the masked block is on 5547 pages (19.36%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2007, last 2007 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:MGW2V5VJ5J",
+   "slug": "ibentatug",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/ibentatug",
+   "h1": "Ibentatug",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:MNAYRSRTNMVAPR-UHFFFAOYSA-N",
+   "slug": "cascaroside",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/cascaroside",
+   "h1": "Cascaroside",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:COJCXGYVLBGQIH-UHFFFAOYSA-N",
+   "slug": "chembl1807303",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl1807303",
+   "h1": "CHEMBL1807303",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "CHEMBL1807303 has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL1807303 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 5547,
+     "share": 0.193565,
+     "reason": "the masked block is on 5547 pages (19.36%)"
+    },
+    {
+     "check": "b",
+     "sentence": "First publication 2011, last 2011 (ChEMBL).",
+     "block": "other",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "first publication <num> last <num> chembl",
+     "pagesCarrying": 8501,
+     "share": 0.296647,
+     "reason": "the masked block is on 8501 pages (29.66%)"
+    }
+   ]
+  },
+  {
+   "key": "K1:K8YW73872D",
+   "slug": "benzohydroxamic-acid",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/benzohydroxamic-acid",
+   "h1": "Benzohydroxamic Acid",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "Benzohydroxamic Acid has no recorded human exposure: no registry trial or ChEMBL phase record. ClinicalTrials.gov and ChEMBL 37 \u00b7 CHEMBL16300 \u00b7 2026-09-01 no organism recorded; 0 matched studies",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<drug> has no recorded human exposure no registry trial or chembl phase record. clinicaltrials.gov and chembl <num> <num> <num> \u00b6 no organism recorded <num> matched studies",
+     "pagesCarrying": 6360,
+     "share": 0.221935,
+     "reason": "the masked block is on 6360 pages (22.19%)"
+    },
+    {
+     "check": "b",
+     "sentence": "Closest approved compound: METHENAMINE HIPPURATE (similarity 0.54); METHENAMINE HIPPURATE is approved (US, CA), generic available. METHENAMINE HIPPURATE First publication 1979, last 2022 (ChEMBL).",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 2,
+     "template": "closest approved compound <drug> similarity <num> <drug> is approved us ca generic available. <drug> \u00b6 first publication <num> last <num> chembl",
+     "pagesCarrying": 680,
+     "share": 0.023729,
+     "reason": "the masked block is on 680 pages (2.37%)"
+    }
+   ]
+  }
+ ],
+ "issues": [],
+ "elapsedSeconds": 31.1,
+ "pagesMarkdownWords": 36095
+}

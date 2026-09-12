@@ -1,0 +1,78 @@
+{
+ "source": "UniProt (UniProtKB)",
+ "uniprot_release": "2026_03",
+ "release_date": "2026-09-02",
+ "retrieved": "2026-09-05",
+ "licence": "CC BY 4.0",
+ "licence_url": "https://www.uniprot.org/help/license",
+ "endpoint": "https://rest.uniprot.org",
+ "robots_disallowed_paths_avoided": [
+  "/idmapping/",
+  "/uniprotkb/stream/",
+  "/docs/"
+ ],
+ "corpus_pages": 28832,
+ "pages_matched_total": 7962,
+ "pages_matched_by_tier": {
+  "1": 1197,
+  "2": 2086,
+  "3": 4679
+ },
+ "fields_gained": [
+  "targetProtein",
+  "biologicSequence"
+ ],
+ "fields_gained_by_tier": {
+  "biologicSequence": {
+   "pages": {
+    "1": 33,
+    "2": 57,
+    "3": 62
+   },
+   "rows": {
+    "1": 35,
+    "2": 59,
+    "3": 64
+   }
+  },
+  "targetProtein": {
+   "pages": {
+    "1": 1195,
+    "2": 2062,
+    "3": 4634
+   },
+   "rows": {
+    "1": 10797,
+    "2": 18451,
+    "3": 15995
+   }
+  }
+ },
+ "rows_by_match_rule": {
+  "unii": 24521,
+  "inchikey": 10960,
+  "skeleton": 5288,
+  "name-candidate": 4632
+ },
+ "match_rule_meaning": {
+  "targetProtein": "the rule by which the upstream target-asserting record (DrugCentral, IUPHAR, ChEMBL drug_mechanism, Open Targets mechanism_of_action) was tied to the page; UniProt itself carries no UNII or InChIKey",
+  "biologicSequence": "name-candidate for every row; UniProt carries no UNII and a protein has no InChIKey, so rules (a) and (b) cannot confirm any of them"
+ },
+ "target_link_sources": {
+  "drugcentral": 31213,
+  "open-targets": 11981,
+  "iuphar": 10842,
+  "chembl-mechanism": 6514
+ },
+ "chembl_target_ids_held_by_corpus": 1499,
+ "chembl_target_ids_resolved_to_uniprot": 1135,
+ "distinct_target_accessions_attached": 4409,
+ "biologic_pages_in_corpus": 3346,
+ "biologic_pages_with_a_sequence_candidate": 152,
+ "unmatched_records": 17781,
+ "name_candidates_sent_to_review": 158,
+ "name_candidates_by_field": {
+  "biologicSequence": 158,
+  "targetProtein": 4474
+ }
+}

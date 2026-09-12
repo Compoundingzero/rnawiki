@@ -709,6 +709,43 @@ def sentence_effect(text):
     return best
 
 
+# The ageing-endpoint vocabulary (docs/specs/phase4-generators.md §15 item 5).
+#
+# The audience table above maps "survival", "overall survival" and "mortality" onto lifespan,
+# because in a longevity trial those words are lifespan. In an oncology trial they are not: seed 9
+# read "event-free survival" and asked which running trial of the compound could settle *lifespan*,
+# which is a claim the endpoint does not make. The ageing reading of that endpoint is the one the
+# register writes in full — a lifespan, a life span or an all-cause mortality endpoint — so seed 9
+# asks its ageing question only on those, and every other audience endpoint stays exactly as the
+# table has it.
+AGEING_ENDPOINTS = {
+    endpoint: (
+        ["lifespan", "life span", "life-span", "all-cause mortality", "all cause mortality"]
+        if endpoint == "lifespan"
+        else terms
+    )
+    for endpoint, terms in AUDIENCE_ENDPOINTS.items()
+}
+
+
+def endpoint_of(text, table):
+    """Exact-table match of a recorded outcome string onto an endpoint list."""
+    normalized = norm(text)
+    if not normalized:
+        return None
+    padded = " " + normalized + " "
+    for endpoint, terms in table.items():
+        for term in terms:
+            if " " + norm(term) + " " in padded:
+                return endpoint
+    return None
+
+
+def ageing_endpoint_of(text):
+    """The ageing endpoint a recorded outcome string names, or None (§15 item 5)."""
+    return endpoint_of(text, AGEING_ENDPOINTS)
+
+
 def audience_endpoint_of(text):
     """Exact-table match of a recorded outcome string onto the audience endpoint list."""
     normalized = norm(text)
@@ -1709,6 +1746,13 @@ def interaction_nodes(page):
         for name in ("transporters", "transporter"):
             if value.get(name):
                 buckets.append(("transporter", as_list(value[name])))
+        # The Phase 2 integration (docs/specs/field-integration.md §3) keeps the corpus's own
+        # recorded interaction rows and adds the label and curated rows beside them; where the
+        # corpus value was a list it now sits under `recordedValue`. Following the value to the
+        # key it was moved to reads the same recorded rows this accessor has always read, so the
+        # measurement stays the same one. A record that never held the key is unaffected.
+        if value.get("recordedValue"):
+            buckets.append((None, as_list(value["recordedValue"])))
         if not buckets:
             buckets.append((None, [v for v in value.values() if isinstance(v, (dict, str))]))
     else:
@@ -2599,12 +2643,27 @@ def seed_08(ctx, page):
     if current_state is None:
         return None
 
+    # docs/specs/phase4-generators.md section 14 item 10: a provenance timeline is three or more
+    # dated events in chronological order, or it is not a timeline. Two points are a pair of dates,
+    # and the question the derivation writes over them ("How did X get from A to B?") asserts a
+    # path between them that two events do not record. The events are sorted here, once, and the
+    # question names the first and last event kinds rather than a current state read from a
+    # register: on a record whose earliest dated event is its approval, naming a current state
+    # phrased the earlier event as the destination.
     dated = [e for e in events if e.get("year") is not None]
-    if len(dated) < 2:
+    if len(dated) < 3:
         return None
     dated.sort(key=lambda e: (e["year"], e["event"]))
+    if dated[0]["event"] == dated[-1]["event"]:
+        return None
     return {
-        "slots": {"firstYear": dated[0]["year"], "currentState": current_state},
+        "slots": {
+            "firstYear": dated[0]["year"],
+            "firstEvent": dated[0]["event"],
+            "lastYear": dated[-1]["year"],
+            "lastEvent": dated[-1]["event"],
+            "currentState": current_state,
+        },
         "values": {"events": dated, "currentState": {"value": current_state, "source": current_source}},
     }
 
@@ -2634,12 +2693,17 @@ def seed_09(ctx, page):
             endpoint = audience_endpoint_of(endpoint_text)
             if not endpoint:
                 continue
+            # §15 item 5: the ageing endpoint is recorded only where the register's own words are
+            # in the ageing vocabulary. Where they are not, the row keeps the endpoint verbatim and
+            # carries no ageing endpoint, and the question the derivation writes is the neutral one.
+            ageing = ageing_endpoint_of(endpoint_text)
             rows.append({
                 "nct": entry["nct"],
                 "title": entry["title"],
                 "n": entry["n"],
                 "primaryEndpoint": endpoint_text,
                 "audienceEndpoint": endpoint,
+                **({"ageingEndpoint": ageing} if ageing else {}),
                 "readoutDate": entry["completionDate"],
                 "source": entry["source"],
                 "sourceDate": entry["sourceDate"],
@@ -2649,8 +2713,13 @@ def seed_09(ctx, page):
     if not rows:
         return None
     rows.sort(key=lambda r: (str(r["readoutDate"]), str(r["nct"])))
+    first = rows[0]
     return {
-        "slots": {"endpoint": rows[0]["audienceEndpoint"], "n": len(rows)},
+        "slots": {
+            **({"endpoint": first["ageingEndpoint"]} if first.get("ageingEndpoint") else {}),
+            "primaryEndpoint": first["primaryEndpoint"],
+            "n": len(rows),
+        },
         "values": {"trials": rows},
     }
 

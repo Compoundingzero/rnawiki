@@ -1,0 +1,106 @@
+{
+  "source": "gsrs",
+  "source_url": "https://gsrs.ncats.nih.gov/assets/downloads/dump-public-2026-08-06.gsrs",
+  "source_date": "2026-08-06",
+  "licence": "US Government work, public domain (FDA/NCATS)",
+  "dump_records_parsed": 177121,
+  "corpus_pages": 28832,
+  "pages_matched_by_tier": {
+    "1": 1644,
+    "2": 4282,
+    "3": 15376
+  },
+  "pages_matched_total": 21302,
+  "fields_gained_by_tier": {
+    "1": {
+      "gsrs_active_moiety": 1679,
+      "gsrs_form_of": 923,
+      "gsrs_form_relationships": 943,
+      "gsrs_mixture_membership": 85,
+      "gsrs_name_candidate": 1359,
+      "gsrs_parent_substance": 258,
+      "gsrs_preferred_name": 1888,
+      "gsrs_record_status": 1899,
+      "gsrs_relationships": 1152,
+      "gsrs_substance_class": 1899,
+      "gsrs_synonyms": 1888
+    },
+    "2": {
+      "gsrs_active_moiety": 3861,
+      "gsrs_form_of": 1502,
+      "gsrs_form_relationships": 1880,
+      "gsrs_mixture_membership": 282,
+      "gsrs_name_candidate": 3303,
+      "gsrs_parent_substance": 628,
+      "gsrs_preferred_name": 4694,
+      "gsrs_record_status": 4711,
+      "gsrs_relationships": 2596,
+      "gsrs_substance_class": 4711,
+      "gsrs_synonyms": 4694
+    },
+    "3": {
+      "gsrs_active_moiety": 11275,
+      "gsrs_form_of": 3191,
+      "gsrs_form_relationships": 3948,
+      "gsrs_mixture_membership": 377,
+      "gsrs_name_candidate": 6551,
+      "gsrs_parent_substance": 470,
+      "gsrs_preferred_name": 15125,
+      "gsrs_record_status": 15160,
+      "gsrs_relationships": 6052,
+      "gsrs_structure": 6,
+      "gsrs_substance_class": 15160,
+      "gsrs_synonyms": 15125
+    }
+  },
+  "mapped_rows": 139275,
+  "records_by_match_rule": {
+    "name-candidate": 11213,
+    "unii": 18141,
+    "inchikey": 3237,
+    "skeleton": 4424
+  },
+  "pages_by_match_rule_and_tier": {
+    "inchikey": {
+      "1": 302,
+      "2": 616,
+      "3": 2256
+    },
+    "name-candidate": {
+      "1": 651,
+      "2": 1687,
+      "3": 4633
+    },
+    "skeleton": {
+      "1": 426,
+      "2": 783,
+      "3": 1789
+    },
+    "unii": {
+      "1": 1584,
+      "2": 4077,
+      "3": 12820
+    }
+  },
+  "unmatched_records": 140106,
+  "records_dropped_for_ambiguous_name": 2802,
+  "mixture_component_rows": 744,
+  "name_candidates_sent_to_review": 11213,
+  "name_candidate_pages": 6971,
+  "name_candidate_review_list": "data/revamp/gsrs-name-candidates.csv",
+  "substance_class_counts": {
+    "chemical": 130591,
+    "structurallyDiverse": 27993,
+    "protein": 7699,
+    "concept": 4053,
+    "mixture": 3193,
+    "polymer": 2645,
+    "nucleicAcid": 767,
+    "specifiedSubstanceG1": 180
+  },
+  "inchikeys_computed_with_rdkit": 1192,
+  "gsrs_uniis_absent_from_fda_unii_flatfile": 78,
+  "records_with_structure_beyond_flatfile": 77,
+  "records_with_substance_class_beyond_flatfile": 78,
+  "spine_rows": 177121
+}

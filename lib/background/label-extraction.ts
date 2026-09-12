@@ -663,9 +663,54 @@ function toStatement(sentence: string, source: BackgroundSource): RecordedStatem
 }
 
 /**
- * Pulls the mechanism-of-action text. Labels either carry a dedicated section or place the same
- * prose under a "Mechanism of Action" heading inside clinical pharmacology; both are read, and
- * neither is summarized.
+ * A sentence that states how a substance acts, rather than where it goes.
+ *
+ * Older labels — and most generic ones — describe the mechanism in the opening prose of Clinical
+ * Pharmacology without printing a "Mechanism of Action" heading above it. Ofloxacin's label says it
+ * "exerts its antibacterial activity by inhibiting DNA gyrase" under no heading at all, and
+ * requiring the heading read that as an absence, which it is not.
+ */
+const MECHANISM_VERB =
+  /\b(?:acts?\s+(?:by|on|at|as)|acting\s+(?:by|on)|exerts?\s+its|inhibit(?:s|ing)|block(?:s|ing)|binds?\s+(?:to|with)|antagoni[sz]\w*|agoni[sz]\w*|is\s+an?\s+[\w\s-]{3,40}?(?:inhibitor|agonist|antagonist|blocker|blocking\s+agent|modulator)|bacteriostatic|bactericidal)\b/iu
+
+/**
+ * Sentences that describe where a substance goes rather than what it does. They belong to the
+ * pharmacokinetics module, and recording one as a mechanism would put true text under a false
+ * heading — worse than leaving the mechanism empty.
+ */
+const PHARMACOKINETIC_SENTENCE =
+  /\b(?:absorb\w*|excret\w*|eliminat\w*|half-?life|plasma\s+(?:concentration|level|protein)|serum\s+(?:concentration|level)|bioavailab\w*|metaboli[sz]\w*|distribut\w*|clearance|C\s?max|AUC|Tmax|steady[- ]state|protein\s+binding|bind\w*\s+to\s+plasma|blood[\s-]brain\s+barrier|dialys\w*)\b/iu
+
+/**
+ * Sentences about harm, or about what to do when harm occurs. The first draft of this selector kept
+ * three sentences from minoxidil's label — "These adverse effects can usually be minimized by
+ * concomitant administration of a diuretic", "They are similar to lesions produced by…" — because
+ * each contained a word like "agonist" or "suppressant" while being about something else entirely.
+ * One of them carried treatment advice. A mechanism module is not where any of that belongs.
+ */
+const NOT_A_MECHANISM_SENTENCE =
+  /\b(?:adverse|side\s+effects?|toxicit\w*|lesions?|necrosis|haemorrhag\w*|hemorrhag\w*|minimi[sz]ed|concomitant\s+administration|should\s+be\s+(?:given|administered|used)|recommended|contraindicat\w*|overdos\w*|caution)\b/iu
+
+/**
+ * Whether the sentence is about this substance rather than about some other drug the label mentions
+ * while comparing itself to it. Requiring the name is what separates "Atenolol is a beta1-selective
+ * blocking agent" from "…by beta-adrenergic receptor agonists such as isoproterenol".
+ */
+function namesTheSubstance(sentence: string, artifact: LabelArtifact): boolean {
+  const names = [...artifact.genericNames, ...artifact.brandNames]
+    .map((name) => name.trim().toLowerCase())
+    .filter((name) => name.length >= 4)
+  if (names.length === 0) return false
+  const lower = sentence.toLowerCase()
+  return names.some((name) => lower.includes(name.split(/\s+/u)[0] ?? name))
+}
+
+/**
+ * Pulls the mechanism-of-action text. Labels carry it in one of three places: a dedicated section,
+ * a "Mechanism of Action" heading inside clinical pharmacology, or unheaded prose at the top of
+ * clinical pharmacology. All three are read and none is summarized. The third is the narrowest: it
+ * keeps only whole printed sentences that name this substance, state an action, and are not about
+ * harm or its management.
  */
 function mechanismText(artifact: LabelArtifact): string | undefined {
   const dedicated = artifact.sections.mechanism_of_action
@@ -673,7 +718,16 @@ function mechanismText(artifact: LabelArtifact): string | undefined {
   const pharmacology = artifact.sections.clinical_pharmacology
   if (!pharmacology) return undefined
   const match = /mechanism of action\s*[:.\-]?\s*([\s\S]{40,4000})/iu.exec(pharmacology)
-  return match?.[1]
+  if (match?.[1]) return match[1]
+
+  const selected = sentences(pharmacology).filter(
+    (sentence) =>
+      MECHANISM_VERB.test(sentence) &&
+      !PHARMACOKINETIC_SENTENCE.test(sentence) &&
+      !NOT_A_MECHANISM_SENTENCE.test(sentence) &&
+      namesTheSubstance(sentence, artifact),
+  )
+  return selected.length > 0 ? selected.join(' ') : undefined
 }
 
 /** Named molecular targets, recorded only when the token appears in a kept statement. */

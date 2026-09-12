@@ -1,0 +1,72 @@
+{
+  "generatedBy": "scripts/revamp/hubs_build.py",
+  "publishedRoutes": {
+    "pagesWithPublishedRoute": 28832,
+    "pagesWithNoPrintableName": 0,
+    "pagesPrintingAReadableSynonym": 645
+  },
+  "membershipReasons": {
+    "pagesWithARecordedReason": 2069,
+    "groupsRejected": 5434
+  },
+  "spec": "docs/specs/hubs.md",
+  "hubsPerType": {
+    "target": 584,
+    "class": 125,
+    "pathway": 5
+  },
+  "hubs": 714,
+  "hubsBuiltBeforeDedupe": 972,
+  "hubAliases": 258,
+  "renderedHubPairsRead": 5960,
+  "hubDedupe": {
+    "line": 0.5,
+    "linkage": "complete",
+    "rule": "docs/specs/phase4-generators.md section 13 item 13 \u2014 hubs whose member sets overlap at Jaccard >= 0.5 form complete-linkage groups; the largest member set survives and the others redirect to it"
+  },
+  "members": 12607,
+  "distinctMemberPages": 6124,
+  "firstBatch": {
+    "hubs": 28,
+    "target": 23,
+    "pathway": 5,
+    "note": "docs/specs/hubs.md section 4 asks for 20 target and 10 pathway hubs. The corpus holds 5 pathway hubs meeting section 1, so the batch takes every one of them and 23 target hubs to reach 30."
+  },
+  "synthesesPerTemplate": {
+    "H1": 458,
+    "H2": 554,
+    "H3": 261,
+    "H4": 189,
+    "H5": 708,
+    "H6": 248,
+    "H7": 5
+  },
+  "syntheses": 2423,
+  "memberRoles": {
+    "approved": 3233,
+    "withdrawn": 81,
+    "development": 2181,
+    "clinical": 7112
+  },
+  "pathwayNamingRule": {
+    "pathwayStatementsKept": 2027,
+    "pathwayStatementsDropped": 101,
+    "rule": "docs/specs/phase4-generators.md section 7 \u2014 a stored Europe PMC sentence counts only when it names the page's display name or a recorded synonym"
+  },
+  "vocabulariesNotUsed": {
+    "iuphar-ligand-class": "the IUPHAR rows this corpus holds record a ligand action against one target (Inhibition, Antagonist, Agonist), not a class of compounds; grouping on them would put every inhibitor of anything in one hub",
+    "chebi-has-role": "CHEBI roles recorded here are chemical and organism roles (Homo sapiens metabolite, environmental contaminants), not a pharmacologic class"
+  },
+  "inputs": {
+    "fields": "data/revamp/fields-v2",
+    "identity": "data/revamp/identity/canonical-v7.ndjson",
+    "tiers": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
+    "patent": "data/revamp/blocks/patent.parquet",
+    "interactions": "data/revamp/interactions/interactions.parquet",
+    "seeds": [
+      "data/revamp/derived-v2/seed-03-failure-autopsy.ndjson",
+      "data/revamp/derived-v2/seed-12-registry-to-publication-gap.ndjson"
+    ],
+    "questions": "data/revamp/questions-v2"
+  }
+}

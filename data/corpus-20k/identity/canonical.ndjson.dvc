@@ -1,0 +1,5 @@
+outs:
+- md5: ac0c78b877ffc02643a43e6253524c30
+  size: 33662301
+  hash: md5
+  path: canonical.ndjson

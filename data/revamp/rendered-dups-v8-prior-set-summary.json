@@ -1,0 +1,130 @@
+{
+  "schema": "rnawiki-revamp-rendered-dup-check/v1",
+  "spec": "docs/specs/revamp-2026-09.md#phase-3 step 3.6; docs/specs/identity-resolution.md \u00a75.3",
+  "at": "2026-09-08T10:30:55Z",
+  "baseUrl": "http://127.0.0.1:3197",
+  "widths": [
+    390,
+    1280
+  ],
+  "threshold": 0.5,
+  "sampleSeed": 20260905,
+  "minhash": {
+    "permutations": 128,
+    "shingleWords": 5,
+    "permutationSeed": 20260904,
+    "permutationFamily": "splitmix64(shingle XOR seed_i), scripts/corpus-20k/overlap/harness.py",
+    "screenMargin": 0.1,
+    "scoring": "MinHash screens; the reported jaccard is the exact shingle-set Jaccard"
+  },
+  "rendered": {
+    "indexable": 1041,
+    "noindexSample": 997,
+    "hubs": 919
+  },
+  "sets": {
+    "indexableRequested": 1048,
+    "hubsRequested": 919,
+    "noindexSampleRequested": 1000,
+    "noindexFrame": 27636,
+    "sitemapChildren": [
+      "tier-1",
+      "tier-2",
+      "browse",
+      "hubs",
+      "pages"
+    ],
+    "hubSitemapChildren": [
+      "hubs"
+    ]
+  },
+  "slugSources": {
+    "recorded": 9142,
+    "recomputed": 19567,
+    "canonical": "data/revamp/identity/canonical-v5.ndjson",
+    "tiers": "data/revamp/render-v8/pages-all.ndjson"
+  },
+  "pagesDroppedOnIdentityCheck": 2,
+  "pagesRenderedThisRun": 1686,
+  "pagesFromCache": 1273,
+  "renderCounters": {
+    "cached": 1273,
+    "pages dropped: no 200 response at both widths": 8,
+    "rendered": 1686,
+    "requests logged": 3380
+  },
+  "perWidth": {
+    "390": {
+      "pagesScored": 2957,
+      "pairsFlagged": 20674,
+      "indexablePairsFlagged": 29,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 10,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2737,
+          "medianJaccard": 0.2439
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 43,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.4129,
+          "medianJaccard": 0.1501
+        }
+      }
+    },
+    "1280": {
+      "pagesScored": 2957,
+      "pairsFlagged": 20674,
+      "indexablePairsFlagged": 29,
+      "namedClassProbe": {
+        "biosimilar": {
+          "pairsRenderedBothSides": 10,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.2737,
+          "medianJaccard": 0.2439
+        },
+        "serotype-component": {
+          "pairsRenderedBothSides": 43,
+          "pairsOverThreshold": 0,
+          "maxJaccard": 0.4129,
+          "medianJaccard": 0.1501
+        }
+      }
+    }
+  },
+  "pairsFlagged": 41348,
+  "indexablePairsFlagged": 58,
+  "hubPairsFlagged": 2944,
+  "hubToPagePairsFlagged": 0,
+  "reasons": {
+    "unclassified-overlap": {
+      "pairs": 34496,
+      "indexablePairs": 12
+    },
+    "stub-template": {
+      "pairs": 6740,
+      "indexablePairs": 0
+    },
+    "identical-trial-set": {
+      "pairs": 80,
+      "indexablePairs": 14
+    },
+    "biosimilar": {
+      "pairs": 32,
+      "indexablePairs": 32
+    }
+  },
+  "exclusions": "nav, footer, [role='search'], [role='combobox'], [role='listbox'], input, .cd-rail, .cd-contents, .cd-supervision, [data-furniture]",
+  "runtimeMinutes": 2.72,
+  "outputs": {
+    "pairs": "data/revamp/rendered-dups-v8-prior-set.csv",
+    "cache": "data/revamp/rendered-text",
+    "requestLog": "data/corpus-20k/legal/requests.log"
+  },
+  "issues": [
+    "14 of the 1062 keys in data/revamp/indexable-keys-after.txt have no slug in this corpus and are not in the measured set",
+    "the indexable set is the 1048 pages named by data/revamp/indexable-keys-after.txt, not the live sitemap's",
+    "2 requested slugs rendered a different substance than their key names and were dropped before scoring"
+  ]
+}

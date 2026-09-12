@@ -118,7 +118,7 @@ export interface PublicDatasetDescriptor {
     url: 'https://creativecommons.org/licenses/by/4.0/'
     scope: string
   }
-  correctionHref: '/editorial-policy'
+  correctionHref: '/how-it-works#review-and-corrections'
   apiPath: string
   rowCount: number
   filters: PublicDatasetFilter[]
@@ -178,7 +178,7 @@ const LICENCE: PublicDatasetDescriptor['licence'] = {
     'RNAWiki licenses its selection, schema, structure, and derived projection. Quoted source passages and third-party records retain their original rights.',
 }
 
-const CORRECTION_HREF = '/editorial-policy' as const
+const CORRECTION_HREF = '/how-it-works#review-and-corrections' as const
 
 export interface LoadedPublicDataset {
   descriptor: PublicDatasetDescriptor

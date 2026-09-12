@@ -1,0 +1,5 @@
+outs:
+- md5: c668b267d31db863a09bf28230f2c541
+  size: 1717759
+  hash: md5
+  path: matched.ndjson

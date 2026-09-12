@@ -9,7 +9,8 @@ RNAWiki shows what researchers measured, what reviewed evidence found, what it d
 - https://rnawiki.com/ — medicine evidence search
 - https://rnawiki.com/browse — medicine library
 - https://rnawiki.com/how-it-works — evidence methodology and software limits
-- https://rnawiki.com/editorial-policy — sources, human review and publication policy
+- https://rnawiki.com/how-it-works#review-and-corrections — sources, human review and publication policy
+- https://rnawiki.com/privacy — what is measured, and how to withdraw the analytics choice
 
 ## Evidence records
 

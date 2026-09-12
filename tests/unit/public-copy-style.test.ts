@@ -11,13 +11,8 @@ const ACTIVE_PUBLIC_COPY_FILES = [
   'app/review-queue/FeedbackReviewPanel.tsx',
   'app/review-queue/ReviewerQualificationPanel.tsx',
   'app/review-queue/SourceRefreshAuthoringPanel.tsx',
-  'components/DossierContributionActions.tsx',
-  'components/LegacyIdentityCorrectionActions.tsx',
   'components/HomeSearch.tsx',
   'components/HomeView.tsx',
-  'components/MedicineDossierV2.tsx',
-  'components/MedicineRecordContextSections.tsx',
-  'components/CommunityCommentary.tsx',
   'components/AccountModal.tsx',
   'components/AuthModal.tsx',
   'components/FeedbackModal.tsx',
@@ -31,15 +26,12 @@ const ACTIVE_PUBLIC_COPY_FILES = [
   'app/error.tsx',
   'app/global-error.tsx',
   'app/not-found.tsx',
-  'components/AdvancedEvidenceDisclosure.tsx',
-  'components/MedicineBackgroundDisclosure.tsx',
   'lib/public-medicine-context.ts',
   'lib/public-medicine-language.ts',
   'docs/dossier-v2-product-spec.md',
 ] as const
 
 const PRESENTATION_PUBLIC_COPY_FILES = [
-  'components/MedicineDossierV2.tsx',
   'app/review-queue/CanonicalPublicationPanel.tsx',
   'app/d/[slug]/programme/[programme]/history/page.tsx',
 ] as const
@@ -130,8 +122,6 @@ describe('public copy style', () => {
     'app/review-queue/CanonicalPublicationPanel.tsx',
     'app/review-queue/ReviewerQualificationPanel.tsx',
     'app/review-queue/SourceRefreshAuthoringPanel.tsx',
-    'components/DossierContributionActions.tsx',
-    'components/LegacyIdentityCorrectionActions.tsx',
   ])('%s uses the RNAWiki product casing', (file) => {
     const source = readFileSync(join(process.cwd(), file), 'utf8')
     expect(source, `${file} contains the incorrect product casing “RNAwiki”`).not.toContain(
@@ -149,26 +139,21 @@ describe('public copy style', () => {
           label,
         )
       }
-      if (file === 'components/MedicineDossierV2.tsx') {
-        expect(source).toContain('This step was measured in people')
-        expect(source).toContain('This step was measured only in laboratory or non-human work')
-        expect(source).toContain('This step is still a prediction')
-        expect(source).toContain('It is not yet known whether this step happens')
-        expect(source).toContain('Human reviewers decide what the science means')
-      } else {
-        for (const label of [
-          'Measured in people',
-          'Measured outside people',
-          'Predicted',
-          'Not yet known',
-        ]) {
-          expect(source, `${file} must include the ordinary-language label “${label}”`).toContain(
-            label,
-          )
-        }
-        expect(source).toContain('comes from a human study')
-        expect(source).toContain('comes from laboratory or non-human work')
+      // The branch that used to sit here tested wording owned by the older medicine layout. That
+      // component is gone, and the compass carries its own evidence-label contract in
+      // tests/unit/dossier-v4-contracts.test.ts.
+      for (const label of [
+        'Measured in people',
+        'Measured outside people',
+        'Predicted',
+        'Not yet known',
+      ]) {
+        expect(source, `${file} must include the ordinary-language label “${label}”`).toContain(
+          label,
+        )
       }
+      expect(source).toContain('comes from a human study')
+      expect(source).toContain('comes from laboratory or non-human work')
       expect(source).toMatch(
         /(?:“planned date” is a schedule, not a completed event|planned date is a schedule, not something that has already happened|a future date is a plan—not proof that it happened)/,
       )

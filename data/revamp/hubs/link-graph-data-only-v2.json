@@ -1,0 +1,44 @@
+{
+ "checkedAt": "2026-09-08T07:16:46.675425+00:00",
+ "mode": "data-only",
+ "baseUrl": null,
+ "ruler": {
+  "thresholds": "data/revamp/thresholds-v7.json",
+  "presence": "data/revamp/presence-applicable-v7.ndjson",
+  "indexableLeaves": 301
+ },
+ "hubs": 923,
+ "members": 13121,
+ "rules": [
+  {
+   "rule": "no hub under five leaves",
+   "checked": 923,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no hub unreachable from /h",
+   "checked": 923,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no indexable leaf without a hub or a recorded reason",
+   "checked": 301,
+   "failures": 0,
+   "examples": [],
+   "pass": true,
+   "note": "{\"every group it names was rejected, with the reason recorded\": 11, \"in at least one hub\": 273, \"no target, class or pathway field\": 17}"
+  },
+  {
+   "rule": "every member link has a published slug",
+   "checked": 13121,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  }
+ ],
+ "pass": true
+}

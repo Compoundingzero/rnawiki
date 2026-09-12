@@ -1,0 +1,2203 @@
+{
+ "schema": "rnawiki-revamp-payload-audit/v1",
+ "spec": "docs/specs/revamp-2026-09.md step 6.1",
+ "at": "2026-09-08T04:19:49Z",
+ "baseUrl": "http://127.0.0.1:3197",
+ "seed": 20260908,
+ "minNodeChars": 20,
+ "pageSet": {
+  "samplesRequested": 8,
+  "samplesMeasured": 8,
+  "indexablePoolSize": 298,
+  "randomPagesRequested": 100,
+  "randomPagesMeasured": 100
+ },
+ "medians": {
+  "all": {
+   "rscShare": 0.544796,
+   "overlapShare": 1.0,
+   "htmlBytes": 263155.5,
+   "rscDossierBytes": 142458.5,
+   "dossierTextBytes": 24703.0,
+   "overlapBytes": 24703.0,
+   "liveTextToHtml": 0.048134
+  },
+  "samples": {
+   "rscShare": 0.544412,
+   "overlapShare": 1.0,
+   "liveTextToHtml": 0.055317
+  },
+  "indexableDraw": {
+   "rscShare": 0.544796,
+   "overlapShare": 1.0,
+   "liveTextToHtml": 0.048113
+  }
+ },
+ "floors": {
+  "liveTextToHtmlFloor": 0.15,
+  "liveTextToHtmlTarget": 0.25,
+  "note": "step 6.1's floor and target for the live median on the indexable set"
+ },
+ "runtimeMinutes": 2.56,
+ "issues": [
+  "/d/mannitol did not render in the browser: TimeoutError"
+ ],
+ "pages": {
+  "/d/metformin": {
+   "htmlBytes": 423054,
+   "rscBytes": 235432,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 233916,
+   "rscShare": 0.552922,
+   "dossierTextNodes": 553,
+   "dossierTextBytes": 46091,
+   "overlapNodes": 553,
+   "overlapBytes": 46091,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 16300,
+    "outerHtmlLength": 420151,
+    "liveTextToHtml": 0.038796
+   }
+  },
+  "/d/cysteamine": {
+   "htmlBytes": 196037,
+   "rscBytes": 107372,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 105879,
+   "rscShare": 0.540097,
+   "dossierTextNodes": 245,
+   "dossierTextBytes": 18179,
+   "overlapNodes": 245,
+   "overlapBytes": 18179,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11038,
+    "outerHtmlLength": 195441,
+    "liveTextToHtml": 0.056477
+   }
+  },
+  "/d/rofecoxib": {
+   "htmlBytes": 168189,
+   "rscBytes": 92424,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 90931,
+   "rscShare": 0.540648,
+   "dossierTextNodes": 195,
+   "dossierTextBytes": 12498,
+   "overlapNodes": 195,
+   "overlapBytes": 12498,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 9708,
+    "outerHtmlLength": 167889,
+    "liveTextToHtml": 0.057824
+   }
+  },
+  "/d/sirolimus": {
+   "htmlBytes": 365933,
+   "rscBytes": 202089,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 200596,
+   "rscShare": 0.548177,
+   "dossierTextNodes": 432,
+   "dossierTextBytes": 39701,
+   "overlapNodes": 432,
+   "overlapBytes": 39701,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 15121,
+    "outerHtmlLength": 364106,
+    "liveTextToHtml": 0.041529
+   }
+  },
+  "/d/carbidopa-levodopa": {
+   "htmlBytes": 215190,
+   "rscBytes": 120296,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 119068,
+   "rscShare": 0.553316,
+   "dossierTextNodes": 236,
+   "dossierTextBytes": 17663,
+   "overlapNodes": 236,
+   "overlapBytes": 17663,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11621,
+    "outerHtmlLength": 214580,
+    "liveTextToHtml": 0.054157
+   }
+  },
+  "/d/cdx-3379": {
+   "htmlBytes": 71349,
+   "rscBytes": 38248,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 36732,
+   "rscShare": 0.514822,
+   "dossierTextNodes": 69,
+   "dossierTextBytes": 3593,
+   "overlapNodes": 69,
+   "overlapBytes": 3593,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 4108,
+    "outerHtmlLength": 71609,
+    "liveTextToHtml": 0.057367
+   }
+  },
+  "/d/1-2-distearoyl-sn-glycero-3-phosphocholine": {
+   "htmlBytes": 50030,
+   "rscBytes": 26456,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 24963,
+   "rscShare": 0.498961,
+   "dossierTextNodes": 57,
+   "dossierTextBytes": 3068,
+   "overlapNodes": 57,
+   "overlapBytes": 3068,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 3345,
+    "outerHtmlLength": 50386,
+    "liveTextToHtml": 0.066387
+   }
+  },
+  "/d/amlodipine": {
+   "htmlBytes": 368169,
+   "rscBytes": 206257,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 204741,
+   "rscShare": 0.556106,
+   "dossierTextNodes": 480,
+   "dossierTextBytes": 36264,
+   "overlapNodes": 480,
+   "overlapBytes": 36264,
+   "overlapShare": 1.0,
+   "set": "sample",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14820,
+    "outerHtmlLength": 366721,
+    "liveTextToHtml": 0.040412
+   }
+  },
+  "/d/acetylcholine": {
+   "htmlBytes": 226251,
+   "rscBytes": 123175,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 121970,
+   "rscShare": 0.539092,
+   "dossierTextNodes": 277,
+   "dossierTextBytes": 22200,
+   "overlapNodes": 277,
+   "overlapBytes": 22200,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10746,
+    "outerHtmlLength": 225403,
+    "liveTextToHtml": 0.047675
+   }
+  },
+  "/d/acetylcysteine": {
+   "htmlBytes": 257764,
+   "rscBytes": 140802,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 139597,
+   "rscShare": 0.541569,
+   "dossierTextNodes": 276,
+   "dossierTextBytes": 22755,
+   "overlapNodes": 276,
+   "overlapBytes": 22755,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12576,
+    "outerHtmlLength": 256616,
+    "liveTextToHtml": 0.049007
+   }
+  },
+  "/d/alanine": {
+   "htmlBytes": 203436,
+   "rscBytes": 111509,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 110016,
+   "rscShare": 0.540789,
+   "dossierTextNodes": 244,
+   "dossierTextBytes": 17925,
+   "overlapNodes": 244,
+   "overlapBytes": 17925,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11651,
+    "outerHtmlLength": 202741,
+    "liveTextToHtml": 0.057467
+   }
+  },
+  "/d/allopurinol": {
+   "htmlBytes": 255238,
+   "rscBytes": 140851,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 139335,
+   "rscShare": 0.545902,
+   "dossierTextNodes": 280,
+   "dossierTextBytes": 21353,
+   "overlapNodes": 280,
+   "overlapBytes": 21353,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11887,
+    "outerHtmlLength": 254351,
+    "liveTextToHtml": 0.046735
+   }
+  },
+  "/d/atazanavir": {
+   "htmlBytes": 272430,
+   "rscBytes": 151396,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 149903,
+   "rscShare": 0.550244,
+   "dossierTextNodes": 321,
+   "dossierTextBytes": 24260,
+   "overlapNodes": 321,
+   "overlapBytes": 24260,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11905,
+    "outerHtmlLength": 271627,
+    "liveTextToHtml": 0.043828
+   }
+  },
+  "/d/bazedoxifene": {
+   "htmlBytes": 202059,
+   "rscBytes": 110595,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 109102,
+   "rscShare": 0.539951,
+   "dossierTextNodes": 241,
+   "dossierTextBytes": 18670,
+   "overlapNodes": 241,
+   "overlapBytes": 18670,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12577,
+    "outerHtmlLength": 201389,
+    "liveTextToHtml": 0.062451
+   }
+  },
+  "/d/bexarotene": {
+   "htmlBytes": 223438,
+   "rscBytes": 122252,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 121024,
+   "rscShare": 0.541645,
+   "dossierTextNodes": 229,
+   "dossierTextBytes": 20415,
+   "overlapNodes": 229,
+   "overlapBytes": 20415,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11402,
+    "outerHtmlLength": 222777,
+    "liveTextToHtml": 0.051181
+   }
+  },
+  "/d/botulinum-toxin-type-a": {
+   "htmlBytes": 230236,
+   "rscBytes": 125248,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 123732,
+   "rscShare": 0.537414,
+   "dossierTextNodes": 242,
+   "dossierTextBytes": 22378,
+   "overlapNodes": 242,
+   "overlapBytes": 22378,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11201,
+    "outerHtmlLength": 229176,
+    "liveTextToHtml": 0.048875
+   }
+  },
+  "/d/budesonide": {
+   "htmlBytes": 346306,
+   "rscBytes": 192725,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 191209,
+   "rscShare": 0.552139,
+   "dossierTextNodes": 434,
+   "dossierTextBytes": 35341,
+   "overlapNodes": 434,
+   "overlapBytes": 35341,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14111,
+    "outerHtmlLength": 344901,
+    "liveTextToHtml": 0.040913
+   }
+  },
+  "/d/calcium-carbonate": {
+   "htmlBytes": 253641,
+   "rscBytes": 138275,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 137070,
+   "rscShare": 0.540409,
+   "dossierTextNodes": 282,
+   "dossierTextBytes": 25532,
+   "overlapNodes": 282,
+   "overlapBytes": 25532,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13049,
+    "outerHtmlLength": 252337,
+    "liveTextToHtml": 0.051713
+   }
+  },
+  "/d/candesartan-cilexetil": {
+   "htmlBytes": 293738,
+   "rscBytes": 163030,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 161825,
+   "rscShare": 0.550916,
+   "dossierTextNodes": 369,
+   "dossierTextBytes": 28456,
+   "overlapNodes": 369,
+   "overlapBytes": 28456,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 15080,
+    "outerHtmlLength": 292624,
+    "liveTextToHtml": 0.051534
+   }
+  },
+  "/d/captopril": {
+   "htmlBytes": 329509,
+   "rscBytes": 183794,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 182589,
+   "rscShare": 0.554124,
+   "dossierTextNodes": 423,
+   "dossierTextBytes": 32044,
+   "overlapNodes": 423,
+   "overlapBytes": 32044,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 15308,
+    "outerHtmlLength": 328331,
+    "liveTextToHtml": 0.046624
+   }
+  },
+  "/d/cetrorelix": {
+   "htmlBytes": 186800,
+   "rscBytes": 102221,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 100728,
+   "rscShare": 0.539229,
+   "dossierTextNodes": 194,
+   "dossierTextBytes": 13353,
+   "overlapNodes": 194,
+   "overlapBytes": 13353,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 9548,
+    "outerHtmlLength": 186284,
+    "liveTextToHtml": 0.051255
+   }
+  },
+  "/d/clobetasol": {
+   "htmlBytes": 193232,
+   "rscBytes": 105470,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 103977,
+   "rscShare": 0.538094,
+   "dossierTextNodes": 196,
+   "dossierTextBytes": 15082,
+   "overlapNodes": 196,
+   "overlapBytes": 15082,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10834,
+    "outerHtmlLength": 192661,
+    "liveTextToHtml": 0.056233
+   }
+  },
+  "/d/clonidine": {
+   "htmlBytes": 254477,
+   "rscBytes": 140084,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 138591,
+   "rscShare": 0.544611,
+   "dossierTextNodes": 285,
+   "dossierTextBytes": 21798,
+   "overlapNodes": 285,
+   "overlapBytes": 21798,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12573,
+    "outerHtmlLength": 253413,
+    "liveTextToHtml": 0.049615
+   }
+  },
+  "/d/dabigatran": {
+   "htmlBytes": 207793,
+   "rscBytes": 113019,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 111503,
+   "rscShare": 0.536606,
+   "dossierTextNodes": 242,
+   "dossierTextBytes": 19320,
+   "overlapNodes": 242,
+   "overlapBytes": 19320,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10878,
+    "outerHtmlLength": 206888,
+    "liveTextToHtml": 0.052579
+   }
+  },
+  "/d/darolutamide": {
+   "htmlBytes": 238053,
+   "rscBytes": 129376,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 127860,
+   "rscShare": 0.537107,
+   "dossierTextNodes": 286,
+   "dossierTextBytes": 26757,
+   "overlapNodes": 286,
+   "overlapBytes": 26757,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10823,
+    "outerHtmlLength": 236701,
+    "liveTextToHtml": 0.045724
+   }
+  },
+  "/d/denosumab": {
+   "htmlBytes": 242146,
+   "rscBytes": 132560,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 131044,
+   "rscShare": 0.541178,
+   "dossierTextNodes": 253,
+   "dossierTextBytes": 20543,
+   "overlapNodes": 253,
+   "overlapBytes": 20543,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11307,
+    "outerHtmlLength": 241056,
+    "liveTextToHtml": 0.046906
+   }
+  },
+  "/d/dexmethylphenidate": {
+   "htmlBytes": 201082,
+   "rscBytes": 110976,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 109483,
+   "rscShare": 0.544469,
+   "dossierTextNodes": 224,
+   "dossierTextBytes": 15859,
+   "overlapNodes": 224,
+   "overlapBytes": 15859,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10207,
+    "outerHtmlLength": 200632,
+    "liveTextToHtml": 0.050874
+   }
+  },
+  "/d/diphenhydramine": {
+   "htmlBytes": 256471,
+   "rscBytes": 141214,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 140009,
+   "rscShare": 0.545906,
+   "dossierTextNodes": 290,
+   "dossierTextBytes": 22590,
+   "overlapNodes": 290,
+   "overlapBytes": 22590,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12072,
+    "outerHtmlLength": 255316,
+    "liveTextToHtml": 0.047283
+   }
+  },
+  "/d/dutasteride": {
+   "htmlBytes": 268914,
+   "rscBytes": 148520,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 147027,
+   "rscShare": 0.546744,
+   "dossierTextNodes": 302,
+   "dossierTextBytes": 24448,
+   "overlapNodes": 302,
+   "overlapBytes": 24448,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12318,
+    "outerHtmlLength": 267997,
+    "liveTextToHtml": 0.045963
+   }
+  },
+  "/d/elvitegravir-2": {
+   "htmlBytes": 201275,
+   "rscBytes": 111674,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 110158,
+   "rscShare": 0.547301,
+   "dossierTextNodes": 233,
+   "dossierTextBytes": 18549,
+   "overlapNodes": 233,
+   "overlapBytes": 18549,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11598,
+    "outerHtmlLength": 200905,
+    "liveTextToHtml": 0.057729
+   }
+  },
+  "/d/empagliflozin": {
+   "htmlBytes": 361092,
+   "rscBytes": 200086,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 198570,
+   "rscShare": 0.549915,
+   "dossierTextNodes": 480,
+   "dossierTextBytes": 40851,
+   "overlapNodes": 480,
+   "overlapBytes": 40851,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 16592,
+    "outerHtmlLength": 359186,
+    "liveTextToHtml": 0.046193
+   }
+  },
+  "/d/ertugliflozin": {
+   "htmlBytes": 221911,
+   "rscBytes": 122100,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 120607,
+   "rscShare": 0.543493,
+   "dossierTextNodes": 283,
+   "dossierTextBytes": 21416,
+   "overlapNodes": 283,
+   "overlapBytes": 21416,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13361,
+    "outerHtmlLength": 221103,
+    "liveTextToHtml": 0.060429
+   }
+  },
+  "/d/estradiol": {
+   "htmlBytes": 355957,
+   "rscBytes": 197787,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 196294,
+   "rscShare": 0.551454,
+   "dossierTextNodes": 434,
+   "dossierTextBytes": 36078,
+   "overlapNodes": 434,
+   "overlapBytes": 36078,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 15185,
+    "outerHtmlLength": 354294,
+    "liveTextToHtml": 0.04286
+   }
+  },
+  "/d/estrogen": {
+   "htmlBytes": 251875,
+   "rscBytes": 137661,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 136168,
+   "rscShare": 0.540617,
+   "dossierTextNodes": 262,
+   "dossierTextBytes": 26280,
+   "overlapNodes": 262,
+   "overlapBytes": 26280,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12842,
+    "outerHtmlLength": 250818,
+    "liveTextToHtml": 0.0512
+   }
+  },
+  "/d/eszopiclone": {
+   "htmlBytes": 222180,
+   "rscBytes": 122875,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 121382,
+   "rscShare": 0.546323,
+   "dossierTextNodes": 223,
+   "dossierTextBytes": 16116,
+   "overlapNodes": 223,
+   "overlapBytes": 16116,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10700,
+    "outerHtmlLength": 221628,
+    "liveTextToHtml": 0.048279
+   }
+  },
+  "/d/etonogestrel": {
+   "htmlBytes": 238420,
+   "rscBytes": 131699,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 130206,
+   "rscShare": 0.54612,
+   "dossierTextNodes": 285,
+   "dossierTextBytes": 21995,
+   "overlapNodes": 285,
+   "overlapBytes": 21995,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11795,
+    "outerHtmlLength": 237621,
+    "liveTextToHtml": 0.049638
+   }
+  },
+  "/d/ezetimibe": {
+   "htmlBytes": 284390,
+   "rscBytes": 157800,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 156595,
+   "rscShare": 0.550635,
+   "dossierTextNodes": 331,
+   "dossierTextBytes": 25581,
+   "overlapNodes": 331,
+   "overlapBytes": 25581,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12256,
+    "outerHtmlLength": 283386,
+    "liveTextToHtml": 0.043248
+   }
+  },
+  "/d/finasteride": {
+   "htmlBytes": 237657,
+   "rscBytes": 130893,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 129400,
+   "rscShare": 0.544482,
+   "dossierTextNodes": 264,
+   "dossierTextBytes": 19993,
+   "overlapNodes": 264,
+   "overlapBytes": 19993,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12685,
+    "outerHtmlLength": 236863,
+    "liveTextToHtml": 0.053554
+   }
+  },
+  "/d/fish-oil": {
+   "htmlBytes": 264418,
+   "rscBytes": 144124,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 142896,
+   "rscShare": 0.540417,
+   "dossierTextNodes": 314,
+   "dossierTextBytes": 26711,
+   "overlapNodes": 314,
+   "overlapBytes": 26711,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13303,
+    "outerHtmlLength": 263130,
+    "liveTextToHtml": 0.050557
+   }
+  },
+  "/d/flurbiprofen": {
+   "htmlBytes": 243108,
+   "rscBytes": 135164,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 133671,
+   "rscShare": 0.549842,
+   "dossierTextNodes": 296,
+   "dossierTextBytes": 20265,
+   "overlapNodes": 296,
+   "overlapBytes": 20265,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12262,
+    "outerHtmlLength": 242407,
+    "liveTextToHtml": 0.050584
+   }
+  },
+  "/d/flutamide": {
+   "htmlBytes": 235988,
+   "rscBytes": 129520,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 128027,
+   "rscShare": 0.542515,
+   "dossierTextNodes": 270,
+   "dossierTextBytes": 20882,
+   "overlapNodes": 270,
+   "overlapBytes": 20882,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11779,
+    "outerHtmlLength": 235106,
+    "liveTextToHtml": 0.050101
+   }
+  },
+  "/d/galantamine": {
+   "htmlBytes": 248980,
+   "rscBytes": 137072,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 135556,
+   "rscShare": 0.544445,
+   "dossierTextNodes": 273,
+   "dossierTextBytes": 21173,
+   "overlapNodes": 273,
+   "overlapBytes": 21173,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12394,
+    "outerHtmlLength": 248307,
+    "liveTextToHtml": 0.049914
+   }
+  },
+  "/d/glipizide": {
+   "htmlBytes": 285610,
+   "rscBytes": 159464,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 157948,
+   "rscShare": 0.55302,
+   "dossierTextNodes": 383,
+   "dossierTextBytes": 27265,
+   "overlapNodes": 383,
+   "overlapBytes": 27265,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12645,
+    "outerHtmlLength": 284679,
+    "liveTextToHtml": 0.044418
+   }
+  },
+  "/d/glucagon": {
+   "htmlBytes": 236040,
+   "rscBytes": 128088,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 126595,
+   "rscShare": 0.536329,
+   "dossierTextNodes": 241,
+   "dossierTextBytes": 23210,
+   "overlapNodes": 241,
+   "overlapBytes": 23210,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11877,
+    "outerHtmlLength": 234111,
+    "liveTextToHtml": 0.050732
+   }
+  },
+  "/d/heparin-sodium": {
+   "htmlBytes": 348801,
+   "rscBytes": 193928,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 192723,
+   "rscShare": 0.55253,
+   "dossierTextNodes": 435,
+   "dossierTextBytes": 36896,
+   "overlapNodes": 435,
+   "overlapBytes": 36896,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13782,
+    "outerHtmlLength": 347231,
+    "liveTextToHtml": 0.039691
+   }
+  },
+  "/d/hydralazine": {
+   "htmlBytes": 273119,
+   "rscBytes": 151895,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 150402,
+   "rscShare": 0.550683,
+   "dossierTextNodes": 376,
+   "dossierTextBytes": 25397,
+   "overlapNodes": 376,
+   "overlapBytes": 25397,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12604,
+    "outerHtmlLength": 272236,
+    "liveTextToHtml": 0.046298
+   }
+  },
+  "/d/hydrocortisone": {
+   "htmlBytes": 310215,
+   "rscBytes": 171678,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 170185,
+   "rscShare": 0.548603,
+   "dossierTextNodes": 355,
+   "dossierTextBytes": 29740,
+   "overlapNodes": 355,
+   "overlapBytes": 29740,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14574,
+    "outerHtmlLength": 308694,
+    "liveTextToHtml": 0.047212
+   }
+  },
+  "/d/ibuprofen": {
+   "htmlBytes": 331301,
+   "rscBytes": 184397,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 183169,
+   "rscShare": 0.552878,
+   "dossierTextNodes": 402,
+   "dossierTextBytes": 30718,
+   "overlapNodes": 402,
+   "overlapBytes": 30718,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13841,
+    "outerHtmlLength": 329933,
+    "liveTextToHtml": 0.041951
+   }
+  },
+  "/d/imiquimod": {
+   "htmlBytes": 224459,
+   "rscBytes": 122985,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 121492,
+   "rscShare": 0.541266,
+   "dossierTextNodes": 231,
+   "dossierTextBytes": 18074,
+   "overlapNodes": 231,
+   "overlapBytes": 18074,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10746,
+    "outerHtmlLength": 223731,
+    "liveTextToHtml": 0.048031
+   }
+  },
+  "/d/iohexol": {
+   "htmlBytes": 215317,
+   "rscBytes": 117737,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 116509,
+   "rscShare": 0.541105,
+   "dossierTextNodes": 227,
+   "dossierTextBytes": 18183,
+   "overlapNodes": 227,
+   "overlapBytes": 18183,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 9900,
+    "outerHtmlLength": 214476,
+    "liveTextToHtml": 0.046159
+   }
+  },
+  "/d/irbesartan": {
+   "htmlBytes": 329213,
+   "rscBytes": 183485,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 181992,
+   "rscShare": 0.552809,
+   "dossierTextNodes": 408,
+   "dossierTextBytes": 30861,
+   "overlapNodes": 408,
+   "overlapBytes": 30861,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14655,
+    "outerHtmlLength": 328185,
+    "liveTextToHtml": 0.044655
+   }
+  },
+  "/d/leflunomide": {
+   "htmlBytes": 272133,
+   "rscBytes": 150032,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 148539,
+   "rscShare": 0.545832,
+   "dossierTextNodes": 286,
+   "dossierTextBytes": 25011,
+   "overlapNodes": 286,
+   "overlapBytes": 25011,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12240,
+    "outerHtmlLength": 271064,
+    "liveTextToHtml": 0.045155
+   }
+  },
+  "/d/lemborexant": {
+   "htmlBytes": 228183,
+   "rscBytes": 125415,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 124187,
+   "rscShare": 0.544243,
+   "dossierTextNodes": 253,
+   "dossierTextBytes": 21646,
+   "overlapNodes": 253,
+   "overlapBytes": 21646,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10780,
+    "outerHtmlLength": 227352,
+    "liveTextToHtml": 0.047415
+   }
+  },
+  "/d/letrozole": {
+   "htmlBytes": 276991,
+   "rscBytes": 151405,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 150200,
+   "rscShare": 0.542256,
+   "dossierTextNodes": 301,
+   "dossierTextBytes": 27132,
+   "overlapNodes": 301,
+   "overlapBytes": 27132,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12878,
+    "outerHtmlLength": 275469,
+    "liveTextToHtml": 0.046749
+   }
+  },
+  "/d/leucine-2": {
+   "htmlBytes": 225283,
+   "rscBytes": 123249,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 121756,
+   "rscShare": 0.540458,
+   "dossierTextNodes": 264,
+   "dossierTextBytes": 20912,
+   "overlapNodes": 264,
+   "overlapBytes": 20912,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12812,
+    "outerHtmlLength": 224469,
+    "liveTextToHtml": 0.057077
+   }
+  },
+  "/d/levonorgestrel": {
+   "htmlBytes": 276034,
+   "rscBytes": 153058,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 151542,
+   "rscShare": 0.548998,
+   "dossierTextNodes": 316,
+   "dossierTextBytes": 24491,
+   "overlapNodes": 316,
+   "overlapBytes": 24491,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13760,
+    "outerHtmlLength": 274894,
+    "liveTextToHtml": 0.050056
+   }
+  },
+  "/d/liraglutide": {
+   "htmlBytes": 350046,
+   "rscBytes": 194446,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 193241,
+   "rscShare": 0.552045,
+   "dossierTextNodes": 440,
+   "dossierTextBytes": 36944,
+   "overlapNodes": 440,
+   "overlapBytes": 36944,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14871,
+    "outerHtmlLength": 348370,
+    "liveTextToHtml": 0.042687
+   }
+  },
+  "/d/loperamide": {
+   "htmlBytes": 235937,
+   "rscBytes": 129458,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 127942,
+   "rscShare": 0.542272,
+   "dossierTextNodes": 260,
+   "dossierTextBytes": 20610,
+   "overlapNodes": 260,
+   "overlapBytes": 20610,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11880,
+    "outerHtmlLength": 235145,
+    "liveTextToHtml": 0.050522
+   }
+  },
+  "/d/lovastatin": {
+   "htmlBytes": 279034,
+   "rscBytes": 154400,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 153195,
+   "rscShare": 0.549019,
+   "dossierTextNodes": 306,
+   "dossierTextBytes": 25455,
+   "overlapNodes": 306,
+   "overlapBytes": 25455,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12167,
+    "outerHtmlLength": 278071,
+    "liveTextToHtml": 0.043755
+   }
+  },
+  "/d/macitentan": {
+   "htmlBytes": 295156,
+   "rscBytes": 164012,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 162496,
+   "rscShare": 0.550543,
+   "dossierTextNodes": 368,
+   "dossierTextBytes": 30125,
+   "overlapNodes": 368,
+   "overlapBytes": 30125,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14433,
+    "outerHtmlLength": 294091,
+    "liveTextToHtml": 0.049077
+   }
+  },
+  "/d/mannitol": {
+   "htmlBytes": 291943,
+   "rscBytes": 161226,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 159998,
+   "rscShare": 0.548045,
+   "dossierTextNodes": 370,
+   "dossierTextBytes": 30149,
+   "overlapNodes": 370,
+   "overlapBytes": 30149,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": null
+  },
+  "/d/medroxyprogesterone": {
+   "htmlBytes": 255654,
+   "rscBytes": 140969,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 139453,
+   "rscShare": 0.545476,
+   "dossierTextNodes": 287,
+   "dossierTextBytes": 25209,
+   "overlapNodes": 287,
+   "overlapBytes": 25209,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12256,
+    "outerHtmlLength": 254624,
+    "liveTextToHtml": 0.048134
+   }
+  },
+  "/d/melatonin": {
+   "htmlBytes": 277819,
+   "rscBytes": 152988,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 151783,
+   "rscShare": 0.546338,
+   "dossierTextNodes": 327,
+   "dossierTextBytes": 24460,
+   "overlapNodes": 327,
+   "overlapBytes": 24460,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11503,
+    "outerHtmlLength": 276445,
+    "liveTextToHtml": 0.04161
+   }
+  },
+  "/d/meloxicam": {
+   "htmlBytes": 278227,
+   "rscBytes": 154711,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 153218,
+   "rscShare": 0.550694,
+   "dossierTextNodes": 319,
+   "dossierTextBytes": 24012,
+   "overlapNodes": 319,
+   "overlapBytes": 24012,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12675,
+    "outerHtmlLength": 277295,
+    "liveTextToHtml": 0.045709
+   }
+  },
+  "/d/metyrapone": {
+   "htmlBytes": 178373,
+   "rscBytes": 97088,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 95595,
+   "rscShare": 0.535928,
+   "dossierTextNodes": 198,
+   "dossierTextBytes": 14637,
+   "overlapNodes": 198,
+   "overlapBytes": 14637,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10357,
+    "outerHtmlLength": 177851,
+    "liveTextToHtml": 0.058234
+   }
+  },
+  "/d/misoprostol": {
+   "htmlBytes": 245395,
+   "rscBytes": 135913,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 134420,
+   "rscShare": 0.54777,
+   "dossierTextNodes": 280,
+   "dossierTextBytes": 20209,
+   "overlapNodes": 280,
+   "overlapBytes": 20209,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10667,
+    "outerHtmlLength": 244467,
+    "liveTextToHtml": 0.043634
+   }
+  },
+  "/d/mitotane": {
+   "htmlBytes": 223397,
+   "rscBytes": 122871,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 121355,
+   "rscShare": 0.543226,
+   "dossierTextNodes": 301,
+   "dossierTextBytes": 21451,
+   "overlapNodes": 301,
+   "overlapBytes": 21451,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11733,
+    "outerHtmlLength": 222688,
+    "liveTextToHtml": 0.052688
+   }
+  },
+  "/d/naltrexone": {
+   "htmlBytes": 264771,
+   "rscBytes": 145082,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 143589,
+   "rscShare": 0.542314,
+   "dossierTextNodes": 306,
+   "dossierTextBytes": 22950,
+   "overlapNodes": 306,
+   "overlapBytes": 22950,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12028,
+    "outerHtmlLength": 263645,
+    "liveTextToHtml": 0.045622
+   }
+  },
+  "/d/naproxen": {
+   "htmlBytes": 299226,
+   "rscBytes": 166221,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 165016,
+   "rscShare": 0.551476,
+   "dossierTextNodes": 355,
+   "dossierTextBytes": 28871,
+   "overlapNodes": 355,
+   "overlapBytes": 28871,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12476,
+    "outerHtmlLength": 297999,
+    "liveTextToHtml": 0.041866
+   }
+  },
+  "/d/niacinamide": {
+   "htmlBytes": 280733,
+   "rscBytes": 154509,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 152993,
+   "rscShare": 0.544977,
+   "dossierTextNodes": 329,
+   "dossierTextBytes": 27013,
+   "overlapNodes": 329,
+   "overlapBytes": 27013,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13886,
+    "outerHtmlLength": 279469,
+    "liveTextToHtml": 0.049687
+   }
+  },
+  "/d/nifedipine": {
+   "htmlBytes": 344625,
+   "rscBytes": 192941,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 191448,
+   "rscShare": 0.555526,
+   "dossierTextNodes": 443,
+   "dossierTextBytes": 32417,
+   "overlapNodes": 443,
+   "overlapBytes": 32417,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13999,
+    "outerHtmlLength": 343248,
+    "liveTextToHtml": 0.040784
+   }
+  },
+  "/d/nitroprusside": {
+   "htmlBytes": 188606,
+   "rscBytes": 102776,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 101260,
+   "rscShare": 0.536886,
+   "dossierTextNodes": 217,
+   "dossierTextBytes": 15861,
+   "overlapNodes": 217,
+   "overlapBytes": 15861,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10662,
+    "outerHtmlLength": 187871,
+    "liveTextToHtml": 0.056752
+   }
+  },
+  "/d/norepinephrine": {
+   "htmlBytes": 264132,
+   "rscBytes": 144666,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 143150,
+   "rscShare": 0.541964,
+   "dossierTextNodes": 302,
+   "dossierTextBytes": 25543,
+   "overlapNodes": 302,
+   "overlapBytes": 25543,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13118,
+    "outerHtmlLength": 262853,
+    "liveTextToHtml": 0.049906
+   }
+  },
+  "/d/obeticholic-acid": {
+   "htmlBytes": 211141,
+   "rscBytes": 115884,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 114391,
+   "rscShare": 0.541775,
+   "dossierTextNodes": 241,
+   "dossierTextBytes": 17907,
+   "overlapNodes": 241,
+   "overlapBytes": 17907,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11176,
+    "outerHtmlLength": 210508,
+    "liveTextToHtml": 0.053091
+   }
+  },
+  "/d/orlistat": {
+   "htmlBytes": 229784,
+   "rscBytes": 126163,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 124670,
+   "rscShare": 0.542553,
+   "dossierTextNodes": 255,
+   "dossierTextBytes": 20038,
+   "overlapNodes": 255,
+   "overlapBytes": 20038,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11904,
+    "outerHtmlLength": 229024,
+    "liveTextToHtml": 0.051977
+   }
+  },
+  "/d/pertuzumab-trastuzumab-and-hyaluronidase-zzxf": {
+   "htmlBytes": 227816,
+   "rscBytes": 122916,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 121400,
+   "rscShare": 0.532886,
+   "dossierTextNodes": 260,
+   "dossierTextBytes": 25817,
+   "overlapNodes": 260,
+   "overlapBytes": 25817,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12991,
+    "outerHtmlLength": 226601,
+    "liveTextToHtml": 0.05733
+   }
+  },
+  "/d/phenylephrine": {
+   "htmlBytes": 281276,
+   "rscBytes": 154703,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 153187,
+   "rscShare": 0.544615,
+   "dossierTextNodes": 338,
+   "dossierTextBytes": 27895,
+   "overlapNodes": 338,
+   "overlapBytes": 27895,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14430,
+    "outerHtmlLength": 279921,
+    "liveTextToHtml": 0.05155
+   }
+  },
+  "/d/pramipexole": {
+   "htmlBytes": 254611,
+   "rscBytes": 139660,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 138455,
+   "rscShare": 0.54379,
+   "dossierTextNodes": 292,
+   "dossierTextBytes": 23784,
+   "overlapNodes": 292,
+   "overlapBytes": 23784,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13601,
+    "outerHtmlLength": 253702,
+    "liveTextToHtml": 0.05361
+   }
+  },
+  "/d/pravastatin": {
+   "htmlBytes": 286664,
+   "rscBytes": 159551,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 158058,
+   "rscShare": 0.55137,
+   "dossierTextNodes": 326,
+   "dossierTextBytes": 26132,
+   "overlapNodes": 326,
+   "overlapBytes": 26132,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12177,
+    "outerHtmlLength": 285714,
+    "liveTextToHtml": 0.04262
+   }
+  },
+  "/d/prednisolone": {
+   "htmlBytes": 272316,
+   "rscBytes": 149087,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 147594,
+   "rscShare": 0.541995,
+   "dossierTextNodes": 308,
+   "dossierTextBytes": 26388,
+   "overlapNodes": 308,
+   "overlapBytes": 26388,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13033,
+    "outerHtmlLength": 270884,
+    "liveTextToHtml": 0.048113
+   }
+  },
+  "/d/prednisone": {
+   "htmlBytes": 302945,
+   "rscBytes": 167431,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 165938,
+   "rscShare": 0.54775,
+   "dossierTextNodes": 345,
+   "dossierTextBytes": 28562,
+   "overlapNodes": 345,
+   "overlapBytes": 28562,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12754,
+    "outerHtmlLength": 301331,
+    "liveTextToHtml": 0.042326
+   }
+  },
+  "/d/progesterone": {
+   "htmlBytes": 294265,
+   "rscBytes": 161928,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 160700,
+   "rscShare": 0.546106,
+   "dossierTextNodes": 341,
+   "dossierTextBytes": 28440,
+   "overlapNodes": 341,
+   "overlapBytes": 28440,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14064,
+    "outerHtmlLength": 292725,
+    "liveTextToHtml": 0.048045
+   }
+  },
+  "/d/raloxifene": {
+   "htmlBytes": 257449,
+   "rscBytes": 142709,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 141216,
+   "rscShare": 0.54852,
+   "dossierTextNodes": 294,
+   "dossierTextBytes": 21796,
+   "overlapNodes": 294,
+   "overlapBytes": 21796,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12433,
+    "outerHtmlLength": 256710,
+    "liveTextToHtml": 0.048432
+   }
+  },
+  "/d/ramipril": {
+   "htmlBytes": 308320,
+   "rscBytes": 171864,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 170371,
+   "rscShare": 0.552578,
+   "dossierTextNodes": 385,
+   "dossierTextBytes": 28380,
+   "overlapNodes": 385,
+   "overlapBytes": 28380,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13829,
+    "outerHtmlLength": 307251,
+    "liveTextToHtml": 0.045009
+   }
+  },
+  "/d/relugolix": {
+   "htmlBytes": 249774,
+   "rscBytes": 136793,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 135277,
+   "rscShare": 0.541598,
+   "dossierTextNodes": 331,
+   "dossierTextBytes": 27977,
+   "overlapNodes": 331,
+   "overlapBytes": 27977,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10870,
+    "outerHtmlLength": 248591,
+    "liveTextToHtml": 0.043726
+   }
+  },
+  "/d/rosuvastatin": {
+   "htmlBytes": 309843,
+   "rscBytes": 171875,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 170670,
+   "rscShare": 0.550827,
+   "dossierTextNodes": 369,
+   "dossierTextBytes": 30163,
+   "overlapNodes": 369,
+   "overlapBytes": 30163,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13117,
+    "outerHtmlLength": 309669,
+    "liveTextToHtml": 0.042358
+   }
+  },
+  "/d/ruxolitinib": {
+   "htmlBytes": 278262,
+   "rscBytes": 152368,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 150875,
+   "rscShare": 0.542205,
+   "dossierTextNodes": 314,
+   "dossierTextBytes": 28080,
+   "overlapNodes": 314,
+   "overlapBytes": 28080,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11919,
+    "outerHtmlLength": 276795,
+    "liveTextToHtml": 0.043061
+   }
+  },
+  "/d/semaglutide": {
+   "htmlBytes": 329362,
+   "rscBytes": 181543,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 180027,
+   "rscShare": 0.546593,
+   "dossierTextNodes": 418,
+   "dossierTextBytes": 35488,
+   "overlapNodes": 418,
+   "overlapBytes": 35488,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14026,
+    "outerHtmlLength": 327581,
+    "liveTextToHtml": 0.042817
+   }
+  },
+  "/d/sertraline": {
+   "htmlBytes": 331274,
+   "rscBytes": 183639,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 182434,
+   "rscShare": 0.550704,
+   "dossierTextNodes": 416,
+   "dossierTextBytes": 33076,
+   "overlapNodes": 416,
+   "overlapBytes": 33076,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14239,
+    "outerHtmlLength": 329721,
+    "liveTextToHtml": 0.043185
+   }
+  },
+  "/d/sitagliptin-metformin": {
+   "htmlBytes": 360171,
+   "rscBytes": 201304,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 199811,
+   "rscShare": 0.554767,
+   "dossierTextNodes": 481,
+   "dossierTextBytes": 38507,
+   "overlapNodes": 481,
+   "overlapBytes": 38507,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 17077,
+    "outerHtmlLength": 358730,
+    "liveTextToHtml": 0.047604
+   }
+  },
+  "/d/sodium-bicarbonate": {
+   "htmlBytes": 300214,
+   "rscBytes": 165583,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 164067,
+   "rscShare": 0.5465,
+   "dossierTextNodes": 373,
+   "dossierTextBytes": 31415,
+   "overlapNodes": 373,
+   "overlapBytes": 31415,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14669,
+    "outerHtmlLength": 298775,
+    "liveTextToHtml": 0.049097
+   }
+  },
+  "/d/sodium-chloride": {
+   "htmlBytes": 351636,
+   "rscBytes": 194657,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 193141,
+   "rscShare": 0.549264,
+   "dossierTextNodes": 460,
+   "dossierTextBytes": 40032,
+   "overlapNodes": 460,
+   "overlapBytes": 40032,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 16363,
+    "outerHtmlLength": 349589,
+    "liveTextToHtml": 0.046806
+   }
+  },
+  "/d/soybean-oil": {
+   "htmlBytes": 214393,
+   "rscBytes": 117663,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 116147,
+   "rscShare": 0.541748,
+   "dossierTextNodes": 224,
+   "dossierTextBytes": 16929,
+   "overlapNodes": 224,
+   "overlapBytes": 16929,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 10920,
+    "outerHtmlLength": 213631,
+    "liveTextToHtml": 0.051116
+   }
+  },
+  "/d/sulindac": {
+   "htmlBytes": 213397,
+   "rscBytes": 117053,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 115537,
+   "rscShare": 0.541418,
+   "dossierTextNodes": 243,
+   "dossierTextBytes": 18617,
+   "overlapNodes": 243,
+   "overlapBytes": 18617,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11819,
+    "outerHtmlLength": 212726,
+    "liveTextToHtml": 0.05556
+   }
+  },
+  "/d/tamoxifen": {
+   "htmlBytes": 328327,
+   "rscBytes": 181008,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 179515,
+   "rscShare": 0.546757,
+   "dossierTextNodes": 396,
+   "dossierTextBytes": 33931,
+   "overlapNodes": 396,
+   "overlapBytes": 33931,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14488,
+    "outerHtmlLength": 326517,
+    "liveTextToHtml": 0.044371
+   }
+  },
+  "/d/telmisartan": {
+   "htmlBytes": 369856,
+   "rscBytes": 206620,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 205104,
+   "rscShare": 0.554551,
+   "dossierTextNodes": 470,
+   "dossierTextBytes": 36979,
+   "overlapNodes": 470,
+   "overlapBytes": 36979,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 14745,
+    "outerHtmlLength": 368454,
+    "liveTextToHtml": 0.040019
+   }
+  },
+  "/d/tirzepatide": {
+   "htmlBytes": 267838,
+   "rscBytes": 147073,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 145557,
+   "rscShare": 0.543452,
+   "dossierTextNodes": 373,
+   "dossierTextBytes": 29669,
+   "overlapNodes": 373,
+   "overlapBytes": 29669,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12572,
+    "outerHtmlLength": 266355,
+    "liveTextToHtml": 0.0472
+   }
+  },
+  "/d/tofacitinib": {
+   "htmlBytes": 284945,
+   "rscBytes": 156567,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 155074,
+   "rscShare": 0.544224,
+   "dossierTextNodes": 305,
+   "dossierTextBytes": 28513,
+   "overlapNodes": 305,
+   "overlapBytes": 28513,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13862,
+    "outerHtmlLength": 283729,
+    "liveTextToHtml": 0.048856
+   }
+  },
+  "/d/topiramate": {
+   "htmlBytes": 268635,
+   "rscBytes": 148347,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 146854,
+   "rscShare": 0.546667,
+   "dossierTextNodes": 298,
+   "dossierTextBytes": 23446,
+   "overlapNodes": 298,
+   "overlapBytes": 23446,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12532,
+    "outerHtmlLength": 267550,
+    "liveTextToHtml": 0.04684
+   }
+  },
+  "/d/tramadol": {
+   "htmlBytes": 304354,
+   "rscBytes": 168677,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 167184,
+   "rscShare": 0.549308,
+   "dossierTextNodes": 344,
+   "dossierTextBytes": 29226,
+   "overlapNodes": 344,
+   "overlapBytes": 29226,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 12589,
+    "outerHtmlLength": 303134,
+    "liveTextToHtml": 0.041529
+   }
+  },
+  "/d/trifluridine": {
+   "htmlBytes": 208231,
+   "rscBytes": 113377,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 111884,
+   "rscShare": 0.537307,
+   "dossierTextNodes": 236,
+   "dossierTextBytes": 19478,
+   "overlapNodes": 236,
+   "overlapBytes": 19478,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11102,
+    "outerHtmlLength": 207369,
+    "liveTextToHtml": 0.053537
+   }
+  },
+  "/d/ursodiol": {
+   "htmlBytes": 241287,
+   "rscBytes": 132587,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 131071,
+   "rscShare": 0.543216,
+   "dossierTextNodes": 295,
+   "dossierTextBytes": 22275,
+   "overlapNodes": 295,
+   "overlapBytes": 22275,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13181,
+    "outerHtmlLength": 240199,
+    "liveTextToHtml": 0.054875
+   }
+  },
+  "/d/vitamin-d2": {
+   "htmlBytes": 242496,
+   "rscBytes": 132832,
+   "rscModuleBytes": 1228,
+   "rscDossierBytes": 131604,
+   "rscShare": 0.542706,
+   "dossierTextNodes": 283,
+   "dossierTextBytes": 20854,
+   "overlapNodes": 283,
+   "overlapBytes": 20854,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11856,
+    "outerHtmlLength": 241372,
+    "liveTextToHtml": 0.049119
+   }
+  },
+  "/d/warfarin": {
+   "htmlBytes": 372844,
+   "rscBytes": 207396,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 206191,
+   "rscShare": 0.553022,
+   "dossierTextNodes": 479,
+   "dossierTextBytes": 39112,
+   "overlapNodes": 479,
+   "overlapBytes": 39112,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 16448,
+    "outerHtmlLength": 371168,
+    "liveTextToHtml": 0.044314
+   }
+  },
+  "/d/zinc": {
+   "htmlBytes": 262179,
+   "rscBytes": 143226,
+   "rscModuleBytes": 1205,
+   "rscDossierBytes": 142021,
+   "rscShare": 0.541695,
+   "dossierTextNodes": 304,
+   "dossierTextBytes": 25354,
+   "overlapNodes": 304,
+   "overlapBytes": 25354,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13380,
+    "outerHtmlLength": 261087,
+    "liveTextToHtml": 0.051247
+   }
+  },
+  "/d/zinc-oxide": {
+   "htmlBytes": 216954,
+   "rscBytes": 119171,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 117655,
+   "rscShare": 0.542304,
+   "dossierTextNodes": 235,
+   "dossierTextBytes": 18400,
+   "overlapNodes": 235,
+   "overlapBytes": 18400,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 11272,
+    "outerHtmlLength": 216231,
+    "liveTextToHtml": 0.052129
+   }
+  },
+  "/d/zoledronic-acid": {
+   "htmlBytes": 270256,
+   "rscBytes": 148067,
+   "rscModuleBytes": 1516,
+   "rscDossierBytes": 146551,
+   "rscShare": 0.542267,
+   "dossierTextNodes": 282,
+   "dossierTextBytes": 24915,
+   "overlapNodes": 282,
+   "overlapBytes": 24915,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13403,
+    "outerHtmlLength": 269071,
+    "liveTextToHtml": 0.049812
+   }
+  },
+  "/d/zolpidem": {
+   "htmlBytes": 276406,
+   "rscBytes": 153273,
+   "rscModuleBytes": 1493,
+   "rscDossierBytes": 151780,
+   "rscShare": 0.54912,
+   "dossierTextNodes": 343,
+   "dossierTextBytes": 25536,
+   "overlapNodes": 343,
+   "overlapBytes": 25536,
+   "overlapShare": 1.0,
+   "set": "indexable",
+   "status": 200,
+   "measured": true,
+   "live": {
+    "innerTextLength": 13204,
+    "outerHtmlLength": 275586,
+    "liveTextToHtml": 0.047912
+   }
+  }
+ }
+}

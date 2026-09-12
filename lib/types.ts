@@ -476,6 +476,12 @@ export interface CommentUser {
   acceptedEditCount?: number
   noteCount?: number
   isAdmin?: boolean
+  /**
+   * When this account was restricted, or undefined when it is in good standing. A restricted
+   * account keeps its history and its reading access and stops being able to propose or review, so
+   * the standing travels with the session rather than needing a second query at every decision.
+   */
+  restrictedAt?: string
   joinedDate?: string
 }
 

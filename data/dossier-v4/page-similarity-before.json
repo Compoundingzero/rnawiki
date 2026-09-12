@@ -1,0 +1,4276 @@
+{
+  "summary": {
+    "label": "before",
+    "pages": 599,
+    "meanBoilerplateShare": 0.9096,
+    "meanSharedShare": 0.0586,
+    "meanSpecificShare": 0.0318,
+    "specificShareDistribution": {
+      "p10": 0.0047,
+      "p25": 0.007,
+      "median": 0.0132,
+      "p75": 0.023,
+      "p90": 0.0706
+    },
+    "pagesWithNoSpecificSentence": 0,
+    "meanSpecificSentencesPerPage": 17.6,
+    "meanSentencesPerPage": 456.6,
+    "mostRepeatedSentences": [
+      {
+        "count": 599,
+        "sentence": "✓ Identity checked"
+      },
+      {
+        "count": 599,
+        "sentence": "This page shows what was measured, who it was measured in, and what that does not settle."
+      },
+      {
+        "count": 599,
+        "sentence": "What brought you here?"
+      },
+      {
+        "count": 599,
+        "sentence": "Understand what it does"
+      },
+      {
+        "count": 599,
+        "sentence": "See evidence for my goal"
+      },
+      {
+        "count": 599,
+        "sentence": "Check risks and what it mixes with"
+      },
+      {
+        "count": 599,
+        "sentence": "Compare alternatives"
+      },
+      {
+        "count": 599,
+        "sentence": "Learn what to measure"
+      },
+      {
+        "count": 599,
+        "sentence": "On this page"
+      },
+      {
+        "count": 599,
+        "sentence": "What it changes in the body"
+      },
+      {
+        "count": 599,
+        "sentence": "What it does"
+      },
+      {
+        "count": 599,
+        "sentence": "What happened in people"
+      },
+      {
+        "count": 599,
+        "sentence": "What it would be like to take"
+      },
+      {
+        "count": 599,
+        "sentence": "Seems to do nothing"
+      },
+      {
+        "count": 599,
+        "sentence": "What it involves"
+      }
+    ]
+  },
+  "shares": [
+    {
+      "slug": "bendroflumethiazide",
+      "sentences": 429,
+      "boilerplate": 0.9277389277389277,
+      "shared": 0.055944055944055944,
+      "specific": 0.016317016317016316
+    },
+    {
+      "slug": "verteporfin",
+      "sentences": 439,
+      "boilerplate": 0.9179954441913439,
+      "shared": 0.04555808656036447,
+      "specific": 0.03644646924829157
+    },
+    {
+      "slug": "zingiberene",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "n-methyl-aspartic-acid",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.019955654101995565,
+      "specific": 0.017738359201773836
+    },
+    {
+      "slug": "rizatriptan",
+      "sentences": 440,
+      "boilerplate": 0.9090909090909091,
+      "shared": 0.05909090909090909,
+      "specific": 0.031818181818181815
+    },
+    {
+      "slug": "carmustine",
+      "sentences": 436,
+      "boilerplate": 0.9243119266055045,
+      "shared": 0.052752293577981654,
+      "specific": 0.022935779816513763
+    },
+    {
+      "slug": "umbilicus-rupestris",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "andexanet-alfa",
+      "sentences": 602,
+      "boilerplate": 0.5913621262458472,
+      "shared": 0.16611295681063123,
+      "specific": 0.2425249169435216
+    },
+    {
+      "slug": "erythromycin-estolate",
+      "sentences": 449,
+      "boilerplate": 0.821826280623608,
+      "shared": 0.15367483296213807,
+      "specific": 0.024498886414253896
+    },
+    {
+      "slug": "dexbrompheniramine",
+      "sentences": 428,
+      "boilerplate": 0.8808411214953271,
+      "shared": 0.102803738317757,
+      "specific": 0.016355140186915886
+    },
+    {
+      "slug": "indigotindisulfonate",
+      "sentences": 435,
+      "boilerplate": 0.9195402298850575,
+      "shared": 0.05517241379310345,
+      "specific": 0.02528735632183908
+    },
+    {
+      "slug": "calcium-pyruvate",
+      "sentences": 462,
+      "boilerplate": 0.9458874458874459,
+      "shared": 0.032467532467532464,
+      "specific": 0.021645021645021644
+    },
+    {
+      "slug": "alcaftadine",
+      "sentences": 436,
+      "boilerplate": 0.9174311926605505,
+      "shared": 0.05504587155963303,
+      "specific": 0.027522935779816515
+    },
+    {
+      "slug": "acer-rubrum-pollen",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.022026431718061675,
+      "specific": 0.006607929515418502
+    },
+    {
+      "slug": "ribes-nigrum-flower-bud",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "carrot",
+      "sentences": 458,
+      "boilerplate": 0.9541484716157205,
+      "shared": 0.026200873362445413,
+      "specific": 0.019650655021834062
+    },
+    {
+      "slug": "teprotumumab",
+      "sentences": 505,
+      "boilerplate": 0.7623762376237624,
+      "shared": 0.1801980198019802,
+      "specific": 0.05742574257425743
+    },
+    {
+      "slug": "scleranthus-annuus-flowering-top",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "vinblastine",
+      "sentences": 442,
+      "boilerplate": 0.9117647058823529,
+      "shared": 0.05429864253393665,
+      "specific": 0.033936651583710405
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-23f-capsular-polysaccharide-diphtheria-crm197-protein-conjugat",
+      "sentences": 468,
+      "boilerplate": 0.7329059829059829,
+      "shared": 0.25854700854700857,
+      "specific": 0.008547008547008548
+    },
+    {
+      "slug": "cresol",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "sequoiaflavone",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "tomato",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.0262582056892779,
+      "specific": 0.0087527352297593
+    },
+    {
+      "slug": "balsam-of-peru",
+      "sentences": 447,
+      "boilerplate": 0.970917225950783,
+      "shared": 0.024608501118568233,
+      "specific": 0.0044742729306487695
+    },
+    {
+      "slug": "caryophyllene",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.022123893805309734,
+      "specific": 0.017699115044247787
+    },
+    {
+      "slug": "theaflavin",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "misoprostol",
+      "sentences": 592,
+      "boilerplate": 0.6013513513513513,
+      "shared": 0.2635135135135135,
+      "specific": 0.13513513513513514
+    },
+    {
+      "slug": "serotonin",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.0196078431372549,
+      "specific": 0.0196078431372549
+    },
+    {
+      "slug": "bergenia-pacumbis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "voclosporin",
+      "sentences": 581,
+      "boilerplate": 0.6144578313253012,
+      "shared": 0.2099827882960413,
+      "specific": 0.17555938037865748
+    },
+    {
+      "slug": "lespedeza-capitata-flowering-top",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.018648018648018648,
+      "specific": 0.006993006993006993
+    },
+    {
+      "slug": "pseudomonas-calcis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "sodium-cyclamate",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.015317286652078774,
+      "specific": 0.019693654266958426
+    },
+    {
+      "slug": "abacavir-dolutegravir-lamivudine",
+      "sentences": 430,
+      "boilerplate": 0.9255813953488372,
+      "shared": 0.05581395348837209,
+      "specific": 0.018604651162790697
+    },
+    {
+      "slug": "sodium-oxide",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "xerophyllum-asphodeloides",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "insulin-like-growth-factor",
+      "sentences": 430,
+      "boilerplate": 0.9279069767441861,
+      "shared": 0.05581395348837209,
+      "specific": 0.01627906976744186
+    },
+    {
+      "slug": "brolucizumab",
+      "sentences": 438,
+      "boilerplate": 0.9200913242009132,
+      "shared": 0.045662100456621,
+      "specific": 0.03424657534246575
+    },
+    {
+      "slug": "desmodium-gangeticum",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "glycyrrhizic-acid",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.03303964757709251,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "ammonium-bromide",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.02207505518763797,
+      "specific": 0.019867549668874173
+    },
+    {
+      "slug": "cissus-quadrangularis",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.024336283185840708,
+      "specific": 0.015486725663716814
+    },
+    {
+      "slug": "xerophyllum-asphodeloides-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "ginkgolides",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.024390243902439025,
+      "specific": 0.013303769401330377
+    },
+    {
+      "slug": "momordica-charantia-stem",
+      "sentences": 438,
+      "boilerplate": 0.9315068493150684,
+      "shared": 0.04794520547945205,
+      "specific": 0.02054794520547945
+    },
+    {
+      "slug": "chinese-rhubarb",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.03090507726269316,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "tumerone",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "cannabichromene",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "chinese-star-jasmine",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "calcium-phosphate",
+      "sentences": 455,
+      "boilerplate": 0.9538461538461539,
+      "shared": 0.041758241758241756,
+      "specific": 0.004395604395604396
+    },
+    {
+      "slug": "bosentan",
+      "sentences": 445,
+      "boilerplate": 0.898876404494382,
+      "shared": 0.0696629213483146,
+      "specific": 0.03146067415730337
+    },
+    {
+      "slug": "agnuside",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "scleranthus-annus",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "white-rice",
+      "sentences": 555,
+      "boilerplate": 0.7225225225225225,
+      "shared": 0.23963963963963963,
+      "specific": 0.03783783783783784
+    },
+    {
+      "slug": "guanidinopropionic-acid",
+      "sentences": 447,
+      "boilerplate": 0.8926174496644296,
+      "shared": 0.1029082774049217,
+      "specific": 0.0044742729306487695
+    },
+    {
+      "slug": "oryctolagus-cuniculus-bone",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.021691973969631236,
+      "specific": 0.021691973969631236
+    },
+    {
+      "slug": "yumberry",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "chamaecostus-cuspidatus-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "fraxinus-pennsylvanica-pollen",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.018823529411764704,
+      "specific": 0.007058823529411765
+    },
+    {
+      "slug": "vladimiria-souliei",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "equine-thymocyte-immune-globulin",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.021691973969631236,
+      "specific": 0.021691973969631236
+    },
+    {
+      "slug": "19-nor-dhea",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "asiaticoside",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.01735357917570499,
+      "specific": 0.026030368763557483
+    },
+    {
+      "slug": "ginseng-american",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.019955654101995565,
+      "specific": 0.017738359201773836
+    },
+    {
+      "slug": "butylparaben",
+      "sentences": 433,
+      "boilerplate": 0.9353348729792148,
+      "shared": 0.046189376443418015,
+      "specific": 0.018475750577367205
+    },
+    {
+      "slug": "asiatic-dogwood",
+      "sentences": 446,
+      "boilerplate": 0.9708520179372198,
+      "shared": 0.02242152466367713,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "schisandrin-b",
+      "sentences": 453,
+      "boilerplate": 0.9735099337748344,
+      "shared": 0.01545253863134658,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "procyanidol",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "valine-alpha-ketoglutarate",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.017937219730941704,
+      "specific": 0.008968609865470852
+    },
+    {
+      "slug": "helianthus-annuus-seed-oil",
+      "sentences": 432,
+      "boilerplate": 0.9282407407407407,
+      "shared": 0.05555555555555555,
+      "specific": 0.016203703703703703
+    },
+    {
+      "slug": "human-herpesvirus-4",
+      "sentences": 462,
+      "boilerplate": 0.9545454545454546,
+      "shared": 0.02813852813852814,
+      "specific": 0.017316017316017316
+    },
+    {
+      "slug": "margetuximab-cmkb",
+      "sentences": 399,
+      "boilerplate": 0.9423558897243107,
+      "shared": 0.047619047619047616,
+      "specific": 0.010025062656641603
+    },
+    {
+      "slug": "campath-1-antigen",
+      "sentences": 458,
+      "boilerplate": 0.9563318777292577,
+      "shared": 0.021834061135371178,
+      "specific": 0.021834061135371178
+    },
+    {
+      "slug": "hydrofluoric-acid",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.026030368763557483,
+      "specific": 0.01735357917570499
+    },
+    {
+      "slug": "chromic-sulfate",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "lecanemab",
+      "sentences": 637,
+      "boilerplate": 0.533751962323391,
+      "shared": 0.24646781789638933,
+      "specific": 0.21978021978021978
+    },
+    {
+      "slug": "graphite",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.017467248908296942,
+      "specific": 0.019650655021834062
+    },
+    {
+      "slug": "ipomoea-purpurea-top",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.018691588785046728,
+      "specific": 0.004672897196261682
+    },
+    {
+      "slug": "abroma-augustum-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01639344262295082,
+      "specific": 0.00468384074941452
+    },
+    {
+      "slug": "sunvozertinib",
+      "sentences": 432,
+      "boilerplate": 0.9212962962962963,
+      "shared": 0.06018518518518518,
+      "specific": 0.018518518518518517
+    },
+    {
+      "slug": "agkistrodon-contortrix-venom",
+      "sentences": 453,
+      "boilerplate": 0.9713024282560706,
+      "shared": 0.017660044150110375,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "alpha-acids",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.03090507726269316,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "chelidonium-majus-root",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.013953488372093023,
+      "specific": 0.013953488372093023
+    },
+    {
+      "slug": "shilajit",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02666666666666667,
+      "specific": 0.008888888888888889
+    },
+    {
+      "slug": "cobimetinib",
+      "sentences": 445,
+      "boilerplate": 0.898876404494382,
+      "shared": 0.07415730337078652,
+      "specific": 0.02696629213483146
+    },
+    {
+      "slug": "futibatinib",
+      "sentences": 441,
+      "boilerplate": 0.9138321995464853,
+      "shared": 0.061224489795918366,
+      "specific": 0.024943310657596373
+    },
+    {
+      "slug": "vitis-vinifera-whole",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.0196078431372549,
+      "specific": 0.0196078431372549
+    },
+    {
+      "slug": "levacetylleucine",
+      "sentences": 432,
+      "boilerplate": 0.9259259259259259,
+      "shared": 0.05092592592592592,
+      "specific": 0.023148148148148147
+    },
+    {
+      "slug": "naja-naja-venom",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.016317016317016316,
+      "specific": 0.009324009324009324
+    },
+    {
+      "slug": "calea-zacatechichi",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "adenosine-cyclic",
+      "sentences": 462,
+      "boilerplate": 0.9545454545454546,
+      "shared": 0.02813852813852814,
+      "specific": 0.017316017316017316
+    },
+    {
+      "slug": "adenosine-monophosphate",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "phosphorylethanolamine",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "furazan",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "propionibacterium-shermanii",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "deferoxamine",
+      "sentences": 573,
+      "boilerplate": 0.6230366492146597,
+      "shared": 0.28097731239092494,
+      "specific": 0.09598603839441536
+    },
+    {
+      "slug": "mogamulizumab-kpkc",
+      "sentences": 429,
+      "boilerplate": 0.9300699300699301,
+      "shared": 0.04895104895104895,
+      "specific": 0.02097902097902098
+    },
+    {
+      "slug": "regorafenib",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.07482993197278912,
+      "specific": 0.018140589569160998
+    },
+    {
+      "slug": "cetraria-islandica-subsp-islandica",
+      "sentences": 429,
+      "boilerplate": 0.965034965034965,
+      "shared": 0.023310023310023312,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "naldemedine",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0593607305936073,
+      "specific": 0.0273972602739726
+    },
+    {
+      "slug": "angelica-archanglica",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "cherokee-rose",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.017937219730941704,
+      "specific": 0.008968609865470852
+    },
+    {
+      "slug": "calcipotriene-hydrate",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0547945205479452,
+      "specific": 0.0319634703196347
+    },
+    {
+      "slug": "molindone",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0547945205479452,
+      "specific": 0.0319634703196347
+    },
+    {
+      "slug": "morella-cerifera-pollen",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.01647058823529412,
+      "specific": 0.009411764705882352
+    },
+    {
+      "slug": "serratiopeptidase",
+      "sentences": 427,
+      "boilerplate": 0.9344262295081968,
+      "shared": 0.04449648711943794,
+      "specific": 0.02107728337236534
+    },
+    {
+      "slug": "sus-scrofa-jejunum",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.018691588785046728,
+      "specific": 0.004672897196261682
+    },
+    {
+      "slug": "artichoke",
+      "sentences": 458,
+      "boilerplate": 0.9541484716157205,
+      "shared": 0.024017467248908297,
+      "specific": 0.021834061135371178
+    },
+    {
+      "slug": "influenza-a-virus-a-victoria-4897-2022-ivr-238-antigen",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "belladonna-leaf",
+      "sentences": 431,
+      "boilerplate": 0.9698375870069605,
+      "shared": 0.013921113689095127,
+      "specific": 0.016241299303944315
+    },
+    {
+      "slug": "calochortus-tolmiei-whole",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.018691588785046728,
+      "specific": 0.004672897196261682
+    },
+    {
+      "slug": "trastuzumab-dttb",
+      "sentences": 561,
+      "boilerplate": 0.6577540106951871,
+      "shared": 0.2531194295900178,
+      "specific": 0.08912655971479501
+    },
+    {
+      "slug": "amosite",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.018823529411764704,
+      "specific": 0.007058823529411765
+    },
+    {
+      "slug": "silybum-marianum-whole",
+      "sentences": 460,
+      "boilerplate": 0.9586956521739131,
+      "shared": 0.021739130434782608,
+      "specific": 0.01956521739130435
+    },
+    {
+      "slug": "sus-scrofa-cerebrum",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.013986013986013986,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "tavaborole",
+      "sentences": 434,
+      "boilerplate": 0.9216589861751152,
+      "shared": 0.052995391705069124,
+      "specific": 0.02534562211981567
+    },
+    {
+      "slug": "osilodrostat",
+      "sentences": 535,
+      "boilerplate": 0.6710280373831776,
+      "shared": 0.27476635514018694,
+      "specific": 0.05420560747663551
+    },
+    {
+      "slug": "lachnanthes-caroliniana",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "ocrelizumab-and-hyaluronidase-ocsq",
+      "sentences": 424,
+      "boilerplate": 0.9386792452830188,
+      "shared": 0.05188679245283019,
+      "specific": 0.009433962264150943
+    },
+    {
+      "slug": "calanus-finmarchicus-oil",
+      "sentences": 448,
+      "boilerplate": 0.96875,
+      "shared": 0.022321428571428572,
+      "specific": 0.008928571428571428
+    },
+    {
+      "slug": "isocarboxazid",
+      "sentences": 498,
+      "boilerplate": 0.7329317269076305,
+      "shared": 0.18674698795180722,
+      "specific": 0.08032128514056225
+    },
+    {
+      "slug": "helleborus-niger-root",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "poly-thyronine",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.017937219730941704,
+      "specific": 0.008968609865470852
+    },
+    {
+      "slug": "glyceride",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.026607538802660754,
+      "specific": 0.011086474501108648
+    },
+    {
+      "slug": "phenylpiracetam",
+      "sentences": 581,
+      "boilerplate": 0.6402753872633391,
+      "shared": 0.14113597246127366,
+      "specific": 0.21858864027538727
+    },
+    {
+      "slug": "lovastatin",
+      "sentences": 751,
+      "boilerplate": 0.4394141145139814,
+      "shared": 0.2782956058588549,
+      "specific": 0.2822902796271638
+    },
+    {
+      "slug": "lavandula-angustifolia-subsp-angustifolia-flower",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.011655011655011656,
+      "specific": 0.013986013986013986
+    },
+    {
+      "slug": "anhydrous-dibasic",
+      "sentences": 456,
+      "boilerplate": 0.9671052631578947,
+      "shared": 0.013157894736842105,
+      "specific": 0.019736842105263157
+    },
+    {
+      "slug": "romiplostim",
+      "sentences": 612,
+      "boilerplate": 0.5833333333333334,
+      "shared": 0.16176470588235295,
+      "specific": 0.2549019607843137
+    },
+    {
+      "slug": "mezoneuron-benthamianum",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "ingenol-mebutate",
+      "sentences": 467,
+      "boilerplate": 0.7815845824411135,
+      "shared": 0.18843683083511778,
+      "specific": 0.029978586723768737
+    },
+    {
+      "slug": "equisetum-arvense-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "omega-5",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.026490066225165563,
+      "specific": 0.01545253863134658
+    },
+    {
+      "slug": "barley",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.024017467248908297,
+      "specific": 0.013100436681222707
+    },
+    {
+      "slug": "agar",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02,
+      "specific": 0.015555555555555555
+    },
+    {
+      "slug": "ostarine",
+      "sentences": 629,
+      "boilerplate": 0.5405405405405406,
+      "shared": 0.23529411764705882,
+      "specific": 0.22416534181240064
+    },
+    {
+      "slug": "glycyrrhiza-glabra-root-powder",
+      "sentences": 448,
+      "boilerplate": 0.96875,
+      "shared": 0.024553571428571428,
+      "specific": 0.006696428571428571
+    },
+    {
+      "slug": "toxoplasma-gondii-dna",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "petrolatum",
+      "sentences": 527,
+      "boilerplate": 0.6850094876660342,
+      "shared": 0.2314990512333966,
+      "specific": 0.08349146110056926
+    },
+    {
+      "slug": "populus-deltoides-pollen",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.018648018648018648,
+      "specific": 0.006993006993006993
+    },
+    {
+      "slug": "oxycodone-terephthalate",
+      "sentences": 425,
+      "boilerplate": 0.9364705882352942,
+      "shared": 0.05176470588235294,
+      "specific": 0.011764705882352941
+    },
+    {
+      "slug": "ginkgetin",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "prevotella-intermedia",
+      "sentences": 460,
+      "boilerplate": 0.95,
+      "shared": 0.02826086956521739,
+      "specific": 0.021739130434782608
+    },
+    {
+      "slug": "ibrexafungerp",
+      "sentences": 427,
+      "boilerplate": 0.9320843091334895,
+      "shared": 0.053864168618266976,
+      "specific": 0.01405152224824356
+    },
+    {
+      "slug": "ambrosia-artemisiifolia-pollen",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.015317286652078774,
+      "specific": 0.019693654266958426
+    },
+    {
+      "slug": "operculina-turpethum",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "diglyceride",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "terconazole",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05466970387243736,
+      "specific": 0.03416856492027335
+    },
+    {
+      "slug": "petasites-hybridus-root",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "eupatorium-cannabinum-whole",
+      "sentences": 454,
+      "boilerplate": 0.9625550660792952,
+      "shared": 0.024229074889867842,
+      "specific": 0.013215859030837005
+    },
+    {
+      "slug": "natalizumab",
+      "sentences": 739,
+      "boilerplate": 0.4438430311231394,
+      "shared": 0.2774018944519621,
+      "specific": 0.2787550744248985
+    },
+    {
+      "slug": "cistanche-tubulosa",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.02242152466367713,
+      "specific": 0.004484304932735426
+    },
+    {
+      "slug": "hazelnut",
+      "sentences": 451,
+      "boilerplate": 0.9645232815964523,
+      "shared": 0.019955654101995565,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "stinging-nettle",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.022123893805309734,
+      "specific": 0.017699115044247787
+    },
+    {
+      "slug": "metrizamide",
+      "sentences": 422,
+      "boilerplate": 0.8791469194312796,
+      "shared": 0.11137440758293839,
+      "specific": 0.009478672985781991
+    },
+    {
+      "slug": "influenza-b-virus-b-austria-1359417-2021-bvr-26-antigen",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "gramicidin",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.05895691609977324,
+      "specific": 0.034013605442176874
+    },
+    {
+      "slug": "cyclothiazide",
+      "sentences": 507,
+      "boilerplate": 0.6765285996055227,
+      "shared": 0.20512820512820512,
+      "specific": 0.11834319526627218
+    },
+    {
+      "slug": "pirtobrutinib",
+      "sentences": 525,
+      "boilerplate": 0.6895238095238095,
+      "shared": 0.22666666666666666,
+      "specific": 0.0838095238095238
+    },
+    {
+      "slug": "serenoa-repens-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "brucea-javanica-fruit",
+      "sentences": 406,
+      "boilerplate": 0.9482758620689655,
+      "shared": 0.04187192118226601,
+      "specific": 0.009852216748768473
+    },
+    {
+      "slug": "cacao",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.0200445434298441,
+      "specific": 0.013363028953229399
+    },
+    {
+      "slug": "plicamycin",
+      "sentences": 426,
+      "boilerplate": 0.9342723004694836,
+      "shared": 0.056338028169014086,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "decarboxylase",
+      "sentences": 427,
+      "boilerplate": 0.9344262295081968,
+      "shared": 0.0468384074941452,
+      "specific": 0.01873536299765808
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-7f-capsular-polysaccharide-diphtheria-crm197-protein-conjugate",
+      "sentences": 468,
+      "boilerplate": 0.7329059829059829,
+      "shared": 0.25854700854700857,
+      "specific": 0.008547008547008548
+    },
+    {
+      "slug": "technetium-tc-99m-pyrophosphate",
+      "sentences": 441,
+      "boilerplate": 0.9138321995464853,
+      "shared": 0.05215419501133787,
+      "specific": 0.034013605442176874
+    },
+    {
+      "slug": "juniperus-ashei-pollen",
+      "sentences": 457,
+      "boilerplate": 0.9562363238512035,
+      "shared": 0.024070021881838075,
+      "specific": 0.019693654266958426
+    },
+    {
+      "slug": "carica-papaya-whole",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.017582417582417582,
+      "specific": 0.013186813186813187
+    },
+    {
+      "slug": "teplizumab-mzwv",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "gadoxetate",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05466970387243736,
+      "specific": 0.03416856492027335
+    },
+    {
+      "slug": "coxsackievirus-a21",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.02178649237472767,
+      "specific": 0.017429193899782137
+    },
+    {
+      "slug": "hesperidin",
+      "sentences": 556,
+      "boilerplate": 0.7140287769784173,
+      "shared": 0.24640287769784172,
+      "specific": 0.039568345323741004
+    },
+    {
+      "slug": "androctonus-australis-venom",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "atlantic-mackerel",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "atlantic-salmon",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.026030368763557483,
+      "specific": 0.01735357917570499
+    },
+    {
+      "slug": "foxtail-millet",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "efgartigimod-alfa",
+      "sentences": 436,
+      "boilerplate": 0.9174311926605505,
+      "shared": 0.0481651376146789,
+      "specific": 0.034403669724770644
+    },
+    {
+      "slug": "rehmannia",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.024390243902439025,
+      "specific": 0.013303769401330377
+    },
+    {
+      "slug": "methylstenbolone",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "ibutamoren",
+      "sentences": 627,
+      "boilerplate": 0.5629984051036683,
+      "shared": 0.21371610845295055,
+      "specific": 0.22328548644338117
+    },
+    {
+      "slug": "ferric-oxide-red",
+      "sentences": 439,
+      "boilerplate": 0.929384965831435,
+      "shared": 0.05239179954441914,
+      "specific": 0.018223234624145785
+    },
+    {
+      "slug": "nickel-carbonate-hydroxide",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "magnolia-x-alba-whole",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.023474178403755867,
+      "specific": 0.004694835680751174
+    },
+    {
+      "slug": "flavonols",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.03524229074889868,
+      "specific": 0.00881057268722467
+    },
+    {
+      "slug": "betuligneol",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "rauvolfia-canescens",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "salix-nigra-bark",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "neisseria-meningitidis-group-w-135-capsular-polysaccharide-tetanus-toxoid-conjugate-antigen",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "symphoricarpos-albus-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "baikal-skullcap",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.024282560706401765,
+      "specific": 0.017660044150110375
+    },
+    {
+      "slug": "dnoc",
+      "sentences": 458,
+      "boilerplate": 0.9541484716157205,
+      "shared": 0.03056768558951965,
+      "specific": 0.015283842794759825
+    },
+    {
+      "slug": "asterias-rubens",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "cetylpyridinium",
+      "sentences": 538,
+      "boilerplate": 0.7286245353159851,
+      "shared": 0.20074349442379183,
+      "specific": 0.07063197026022305
+    },
+    {
+      "slug": "anifrolumab",
+      "sentences": 443,
+      "boilerplate": 0.9029345372460497,
+      "shared": 0.056433408577878104,
+      "specific": 0.040632054176072234
+    },
+    {
+      "slug": "sus-scrofa-nasal-mucosa",
+      "sentences": 452,
+      "boilerplate": 0.9756637168141593,
+      "shared": 0.01327433628318584,
+      "specific": 0.011061946902654867
+    },
+    {
+      "slug": "lactobacillus-paracasei",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.026490066225165563,
+      "specific": 0.01545253863134658
+    },
+    {
+      "slug": "antimony-arsenate",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "dextran-40",
+      "sentences": 507,
+      "boilerplate": 0.7199211045364892,
+      "shared": 0.21499013806706113,
+      "specific": 0.0650887573964497
+    },
+    {
+      "slug": "anemone-patens-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "ethinyl-estradiol",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05922551252847381,
+      "specific": 0.029612756264236904
+    },
+    {
+      "slug": "glucanase",
+      "sentences": 422,
+      "boilerplate": 0.9454976303317536,
+      "shared": 0.045023696682464455,
+      "specific": 0.009478672985781991
+    },
+    {
+      "slug": "angelica-archangelica-root",
+      "sentences": 463,
+      "boilerplate": 0.9438444924406048,
+      "shared": 0.03455723542116631,
+      "specific": 0.02159827213822894
+    },
+    {
+      "slug": "glutamine-alpha-ketogutarate",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.019002375296912115,
+      "specific": 0.004750593824228029
+    },
+    {
+      "slug": "rose-oil",
+      "sentences": 434,
+      "boilerplate": 0.9331797235023042,
+      "shared": 0.05069124423963134,
+      "specific": 0.016129032258064516
+    },
+    {
+      "slug": "lilium-lancifolium-flowering-top",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.013986013986013986,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "citrus-aurantium-fruit-rind",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "fig",
+      "sentences": 458,
+      "boilerplate": 0.9541484716157205,
+      "shared": 0.03056768558951965,
+      "specific": 0.015283842794759825
+    },
+    {
+      "slug": "phosphatidic-acid",
+      "sentences": 486,
+      "boilerplate": 0.8189300411522634,
+      "shared": 0.16872427983539096,
+      "specific": 0.012345679012345678
+    },
+    {
+      "slug": "lilium-lancifolium-whole-flowering",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "robinia-pseudoacacia-bark",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "dialyzable-leukocyte-extract",
+      "sentences": 447,
+      "boilerplate": 0.970917225950783,
+      "shared": 0.020134228187919462,
+      "specific": 0.008948545861297539
+    },
+    {
+      "slug": "trichopus-zeylanicus",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "sus-scrofa-intestinal-mucosa",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "pyridoxal",
+      "sentences": 436,
+      "boilerplate": 0.9243119266055045,
+      "shared": 0.06192660550458716,
+      "specific": 0.013761467889908258
+    },
+    {
+      "slug": "ferula-assa-foetida-resin",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "praying-mantis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "cyanotis-vaga",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "sanguinarine",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "ceftobiprole-medocaril",
+      "sentences": 436,
+      "boilerplate": 0.9174311926605505,
+      "shared": 0.05504587155963303,
+      "specific": 0.027522935779816515
+    },
+    {
+      "slug": "donor-human-stool",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0547945205479452,
+      "specific": 0.0319634703196347
+    },
+    {
+      "slug": "legume-protein",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.024444444444444446,
+      "specific": 0.011111111111111112
+    },
+    {
+      "slug": "anaplasma-phagocytophilum",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.019823788546255508,
+      "specific": 0.00881057268722467
+    },
+    {
+      "slug": "magnesium-trisilicate",
+      "sentences": 431,
+      "boilerplate": 0.9234338747099768,
+      "shared": 0.05568445475638051,
+      "specific": 0.02088167053364269
+    },
+    {
+      "slug": "perilla",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.024390243902439025,
+      "specific": 0.013303769401330377
+    },
+    {
+      "slug": "gardnerella-vaginalis",
+      "sentences": 460,
+      "boilerplate": 0.95,
+      "shared": 0.03260869565217391,
+      "specific": 0.017391304347826087
+    },
+    {
+      "slug": "quercus-velutina-whole",
+      "sentences": 426,
+      "boilerplate": 0.9812206572769953,
+      "shared": 0.014084507042253521,
+      "specific": 0.004694835680751174
+    },
+    {
+      "slug": "tebentafusp",
+      "sentences": 442,
+      "boilerplate": 0.9049773755656109,
+      "shared": 0.058823529411764705,
+      "specific": 0.03619909502262444
+    },
+    {
+      "slug": "bos-taurus-brain",
+      "sentences": 459,
+      "boilerplate": 0.954248366013072,
+      "shared": 0.026143790849673203,
+      "specific": 0.0196078431372549
+    },
+    {
+      "slug": "sus-scrofa-hair",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.018648018648018648,
+      "specific": 0.006993006993006993
+    },
+    {
+      "slug": "yellow-fruit-nightshade",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "eplerenone",
+      "sentences": 642,
+      "boilerplate": 0.5498442367601246,
+      "shared": 0.29127725856697817,
+      "specific": 0.1588785046728972
+    },
+    {
+      "slug": "helicobacter-pylori-dna",
+      "sentences": 462,
+      "boilerplate": 0.9545454545454546,
+      "shared": 0.01948051948051948,
+      "specific": 0.025974025974025976
+    },
+    {
+      "slug": "ilex-aquifolium-leaf",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "oxogestone",
+      "sentences": 426,
+      "boilerplate": 0.9812206572769953,
+      "shared": 0.014084507042253521,
+      "specific": 0.004694835680751174
+    },
+    {
+      "slug": "boron",
+      "sentences": 632,
+      "boilerplate": 0.5458860759493671,
+      "shared": 0.22468354430379747,
+      "specific": 0.22943037974683544
+    },
+    {
+      "slug": "cefonicid",
+      "sentences": 462,
+      "boilerplate": 0.7922077922077922,
+      "shared": 0.19480519480519481,
+      "specific": 0.012987012987012988
+    },
+    {
+      "slug": "corticotropin-zinc-hydroxide",
+      "sentences": 421,
+      "boilerplate": 0.8812351543942993,
+      "shared": 0.10926365795724466,
+      "specific": 0.009501187648456057
+    },
+    {
+      "slug": "acoltremon",
+      "sentences": 437,
+      "boilerplate": 0.9153318077803204,
+      "shared": 0.05034324942791762,
+      "specific": 0.034324942791762014
+    },
+    {
+      "slug": "trimetrexate-glucuronate",
+      "sentences": 429,
+      "boilerplate": 0.9277389277389277,
+      "shared": 0.05128205128205128,
+      "specific": 0.02097902097902098
+    },
+    {
+      "slug": "alpelisib",
+      "sentences": 548,
+      "boilerplate": 0.6514598540145985,
+      "shared": 0.2427007299270073,
+      "specific": 0.10583941605839416
+    },
+    {
+      "slug": "parathyroid-hormone",
+      "sentences": 505,
+      "boilerplate": 0.7346534653465346,
+      "shared": 0.2,
+      "specific": 0.06534653465346535
+    },
+    {
+      "slug": "chlorophyllin",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "collagen-ii",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.022271714922048998,
+      "specific": 0.011135857461024499
+    },
+    {
+      "slug": "taenia-saginata",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "ticlopidine",
+      "sentences": 431,
+      "boilerplate": 0.9234338747099768,
+      "shared": 0.060324825986078884,
+      "specific": 0.016241299303944315
+    },
+    {
+      "slug": "levalbuterol",
+      "sentences": 611,
+      "boilerplate": 0.5810147299509002,
+      "shared": 0.16202945990180032,
+      "specific": 0.2569558101472995
+    },
+    {
+      "slug": "human-papillomavirus-type-33-l1-capsid-protein-antigen",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "cosibelimab",
+      "sentences": 484,
+      "boilerplate": 0.7520661157024794,
+      "shared": 0.20867768595041322,
+      "specific": 0.03925619834710744
+    },
+    {
+      "slug": "edetic-acid",
+      "sentences": 436,
+      "boilerplate": 0.9288990825688074,
+      "shared": 0.06422018348623854,
+      "specific": 0.006880733944954129
+    },
+    {
+      "slug": "ranunculus-bulbosus-root",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.018779342723004695,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "paramethasone",
+      "sentences": 442,
+      "boilerplate": 0.8371040723981901,
+      "shared": 0.14705882352941177,
+      "specific": 0.01583710407239819
+    },
+    {
+      "slug": "mentha-x-piperita-whole",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.01312910284463895,
+      "specific": 0.02188183807439825
+    },
+    {
+      "slug": "mefenamic-acid",
+      "sentences": 584,
+      "boilerplate": 0.6078767123287672,
+      "shared": 0.2585616438356164,
+      "specific": 0.13356164383561644
+    },
+    {
+      "slug": "carya-alba-pollen",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.018823529411764704,
+      "specific": 0.007058823529411765
+    },
+    {
+      "slug": "ferumoxsil",
+      "sentences": 420,
+      "boilerplate": 0.8833333333333333,
+      "shared": 0.10952380952380952,
+      "specific": 0.007142857142857143
+    },
+    {
+      "slug": "levothyroxine",
+      "sentences": 755,
+      "boilerplate": 0.433112582781457,
+      "shared": 0.2860927152317881,
+      "specific": 0.280794701986755
+    },
+    {
+      "slug": "henna",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02,
+      "specific": 0.015555555555555555
+    },
+    {
+      "slug": "hamamelis-virginiana-bark",
+      "sentences": 428,
+      "boilerplate": 0.9672897196261683,
+      "shared": 0.02102803738317757,
+      "specific": 0.011682242990654205
+    },
+    {
+      "slug": "zinc-oxide",
+      "sentences": 567,
+      "boilerplate": 0.6349206349206349,
+      "shared": 0.26631393298059963,
+      "specific": 0.09876543209876543
+    },
+    {
+      "slug": "kale",
+      "sentences": 462,
+      "boilerplate": 0.9502164502164502,
+      "shared": 0.0367965367965368,
+      "specific": 0.012987012987012988
+    },
+    {
+      "slug": "pterostilbene",
+      "sentences": 455,
+      "boilerplate": 0.9538461538461539,
+      "shared": 0.03076923076923077,
+      "specific": 0.015384615384615385
+    },
+    {
+      "slug": "somatropin-rdna-origin",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "buspirone",
+      "sentences": 621,
+      "boilerplate": 0.573268921095008,
+      "shared": 0.1610305958132045,
+      "specific": 0.26570048309178745
+    },
+    {
+      "slug": "molybdenum",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.013186813186813187,
+      "specific": 0.017582417582417582
+    },
+    {
+      "slug": "chromium-picolinate",
+      "sentences": 519,
+      "boilerplate": 0.7707129094412332,
+      "shared": 0.1791907514450867,
+      "specific": 0.05009633911368015
+    },
+    {
+      "slug": "mentha-arvensis-leaf-oil",
+      "sentences": 406,
+      "boilerplate": 0.9482758620689655,
+      "shared": 0.04187192118226601,
+      "specific": 0.009852216748768473
+    },
+    {
+      "slug": "cetrorelix",
+      "sentences": 560,
+      "boilerplate": 0.6410714285714286,
+      "shared": 0.2642857142857143,
+      "specific": 0.09464285714285714
+    },
+    {
+      "slug": "hemlock-spruce",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "ibutilide",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05466970387243736,
+      "specific": 0.03416856492027335
+    },
+    {
+      "slug": "pyrvinium",
+      "sentences": 425,
+      "boilerplate": 0.9364705882352942,
+      "shared": 0.05176470588235294,
+      "specific": 0.011764705882352941
+    },
+    {
+      "slug": "glyceryl-monostearate",
+      "sentences": 431,
+      "boilerplate": 0.9396751740139211,
+      "shared": 0.04640371229698376,
+      "specific": 0.013921113689095127
+    },
+    {
+      "slug": "homalolepis-cedron-seed",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "magnesium-carbonate-hydroxide",
+      "sentences": 461,
+      "boilerplate": 0.9479392624728851,
+      "shared": 0.02386117136659436,
+      "specific": 0.028199566160520606
+    },
+    {
+      "slug": "asciminib",
+      "sentences": 440,
+      "boilerplate": 0.9090909090909091,
+      "shared": 0.05454545454545454,
+      "specific": 0.03636363636363636
+    },
+    {
+      "slug": "lacticaseibacillus-rhamnosus",
+      "sentences": 440,
+      "boilerplate": 0.9272727272727272,
+      "shared": 0.04772727272727273,
+      "specific": 0.025
+    },
+    {
+      "slug": "coptis-chinensis-root",
+      "sentences": 438,
+      "boilerplate": 0.9315068493150684,
+      "shared": 0.045662100456621,
+      "specific": 0.0228310502283105
+    },
+    {
+      "slug": "diphenoxylate",
+      "sentences": 440,
+      "boilerplate": 0.9159090909090909,
+      "shared": 0.05227272727272727,
+      "specific": 0.031818181818181815
+    },
+    {
+      "slug": "albumin-iodinated-i-125-serum",
+      "sentences": 422,
+      "boilerplate": 0.943127962085308,
+      "shared": 0.04739336492890995,
+      "specific": 0.009478672985781991
+    },
+    {
+      "slug": "ornithine-ketoglutarate",
+      "sentences": 447,
+      "boilerplate": 0.970917225950783,
+      "shared": 0.020134228187919462,
+      "specific": 0.008948545861297539
+    },
+    {
+      "slug": "japanese-encephalitis-virus-strain-nakayama-nih-antigen",
+      "sentences": 400,
+      "boilerplate": 0.9475,
+      "shared": 0.045,
+      "specific": 0.0075
+    },
+    {
+      "slug": "heartsease",
+      "sentences": 397,
+      "boilerplate": 0.947103274559194,
+      "shared": 0.04785894206549118,
+      "specific": 0.005037783375314861
+    },
+    {
+      "slug": "bos-taurus-dander",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "cabergoline",
+      "sentences": 593,
+      "boilerplate": 0.5952782462057336,
+      "shared": 0.2748735244519393,
+      "specific": 0.12984822934232715
+    },
+    {
+      "slug": "aster-tataricus",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "estrogens-esterified",
+      "sentences": 477,
+      "boilerplate": 0.8176100628930818,
+      "shared": 0.13626834381551362,
+      "specific": 0.04612159329140461
+    },
+    {
+      "slug": "portulaca-oleracea-seed",
+      "sentences": 407,
+      "boilerplate": 0.9459459459459459,
+      "shared": 0.04176904176904177,
+      "specific": 0.012285012285012284
+    },
+    {
+      "slug": "telisotuzumab-vedotin",
+      "sentences": 442,
+      "boilerplate": 0.9049773755656109,
+      "shared": 0.058823529411764705,
+      "specific": 0.03619909502262444
+    },
+    {
+      "slug": "phellodendrine",
+      "sentences": 432,
+      "boilerplate": 0.9375,
+      "shared": 0.046296296296296294,
+      "specific": 0.016203703703703703
+    },
+    {
+      "slug": "5-nucleotidase",
+      "sentences": 437,
+      "boilerplate": 0.9267734553775744,
+      "shared": 0.05491990846681922,
+      "specific": 0.018306636155606407
+    },
+    {
+      "slug": "malabar-nut",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "crataegus-fruit",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.0196078431372549,
+      "specific": 0.0196078431372549
+    },
+    {
+      "slug": "influenza-a-virus-a-michigan-105-2025-san-049a-antigen",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.05025125628140704,
+      "specific": 0.007537688442211055
+    },
+    {
+      "slug": "ceanothus-americanus-whole",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.023255813953488372,
+      "specific": 0.004651162790697674
+    },
+    {
+      "slug": "carnegiea-gigantea-flower",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "mequinol",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.052763819095477386,
+      "specific": 0.005025125628140704
+    },
+    {
+      "slug": "phenindione",
+      "sentences": 534,
+      "boilerplate": 0.6853932584269663,
+      "shared": 0.1704119850187266,
+      "specific": 0.1441947565543071
+    },
+    {
+      "slug": "doravirine",
+      "sentences": 606,
+      "boilerplate": 0.5858085808580858,
+      "shared": 0.1551155115511551,
+      "specific": 0.2590759075907591
+    },
+    {
+      "slug": "oligosaccharides",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.030837004405286344,
+      "specific": 0.013215859030837005
+    },
+    {
+      "slug": "iris-versicolor-whole",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.01643192488262911,
+      "specific": 0.011737089201877934
+    },
+    {
+      "slug": "citrulline-malate",
+      "sentences": 606,
+      "boilerplate": 0.6567656765676567,
+      "shared": 0.12211221122112212,
+      "specific": 0.22112211221122113
+    },
+    {
+      "slug": "methazolamide",
+      "sentences": 439,
+      "boilerplate": 0.9179954441913439,
+      "shared": 0.05466970387243736,
+      "specific": 0.02733485193621868
+    },
+    {
+      "slug": "guanfacine",
+      "sentences": 634,
+      "boilerplate": 0.5615141955835962,
+      "shared": 0.24605678233438485,
+      "specific": 0.19242902208201892
+    },
+    {
+      "slug": "kava-kava",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.022222222222222223,
+      "specific": 0.013333333333333334
+    },
+    {
+      "slug": "butea-monosperma",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.022271714922048998,
+      "specific": 0.011135857461024499
+    },
+    {
+      "slug": "retapamulin",
+      "sentences": 431,
+      "boilerplate": 0.9234338747099768,
+      "shared": 0.05568445475638051,
+      "specific": 0.02088167053364269
+    },
+    {
+      "slug": "balsam-peru",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.022026431718061675,
+      "specific": 0.006607929515418502
+    },
+    {
+      "slug": "adalimumab-aaty",
+      "sentences": 433,
+      "boilerplate": 0.9260969976905312,
+      "shared": 0.046189376443418015,
+      "specific": 0.02771362586605081
+    },
+    {
+      "slug": "brassica-rapa-subsp-oleifera-pollen",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.013953488372093023,
+      "specific": 0.013953488372093023
+    },
+    {
+      "slug": "trypsin",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.02178649237472767,
+      "specific": 0.017429193899782137
+    },
+    {
+      "slug": "barium-carbonate",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.01978021978021978,
+      "specific": 0.01098901098901099
+    },
+    {
+      "slug": "oryctolagus-cuniculus-adrenal-gland",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.011627906976744186,
+      "specific": 0.01627906976744186
+    },
+    {
+      "slug": "arsenic",
+      "sentences": 465,
+      "boilerplate": 0.9483870967741935,
+      "shared": 0.030107526881720432,
+      "specific": 0.021505376344086023
+    },
+    {
+      "slug": "zeolite",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.022271714922048998,
+      "specific": 0.011135857461024499
+    },
+    {
+      "slug": "astragalus",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.03090507726269316,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "bortezomib",
+      "sentences": 446,
+      "boilerplate": 0.8968609865470852,
+      "shared": 0.07174887892376682,
+      "specific": 0.03139013452914798
+    },
+    {
+      "slug": "zinc-ascorbate",
+      "sentences": 457,
+      "boilerplate": 0.9606126914660832,
+      "shared": 0.024070021881838075,
+      "specific": 0.015317286652078774
+    },
+    {
+      "slug": "tasmannia-lanceolata",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "human-herpesvirus-8",
+      "sentences": 461,
+      "boilerplate": 0.9479392624728851,
+      "shared": 0.03470715835140998,
+      "specific": 0.01735357917570499
+    },
+    {
+      "slug": "trifolium-pratense-whole",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.01762114537444934,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "botrytis-cinerea",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.016317016317016316,
+      "specific": 0.009324009324009324
+    },
+    {
+      "slug": "fallopia-multiflora-root",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.019823788546255508,
+      "specific": 0.00881057268722467
+    },
+    {
+      "slug": "cellulose-ethers",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.022222222222222223,
+      "specific": 0.013333333333333334
+    },
+    {
+      "slug": "lanreotide",
+      "sentences": 526,
+      "boilerplate": 0.688212927756654,
+      "shared": 0.24334600760456274,
+      "specific": 0.06844106463878327
+    },
+    {
+      "slug": "mycophenolic-acid",
+      "sentences": 600,
+      "boilerplate": 0.59,
+      "shared": 0.2683333333333333,
+      "specific": 0.14166666666666666
+    },
+    {
+      "slug": "trifolium-repens-flower",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.018648018648018648,
+      "specific": 0.006993006993006993
+    },
+    {
+      "slug": "conium-maculatum-flowering-top",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "patisiran",
+      "sentences": 561,
+      "boilerplate": 0.6221033868092691,
+      "shared": 0.17825311942959002,
+      "specific": 0.19964349376114082
+    },
+    {
+      "slug": "pentetic-acid",
+      "sentences": 442,
+      "boilerplate": 0.9049773755656109,
+      "shared": 0.07239819004524888,
+      "specific": 0.02262443438914027
+    },
+    {
+      "slug": "fragrant-rosewood",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "vitamin-e",
+      "sentences": 556,
+      "boilerplate": 0.64568345323741,
+      "shared": 0.2733812949640288,
+      "specific": 0.08093525179856115
+    },
+    {
+      "slug": "iobenguane-sulfate-i-131",
+      "sentences": 431,
+      "boilerplate": 0.9234338747099768,
+      "shared": 0.06264501160092807,
+      "specific": 0.013921113689095127
+    },
+    {
+      "slug": "american-basil",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "technetium-tc-99m-mertiatide-kit",
+      "sentences": 399,
+      "boilerplate": 0.9398496240601504,
+      "shared": 0.05263157894736842,
+      "specific": 0.007518796992481203
+    },
+    {
+      "slug": "schoenocaulon-officinale-seed",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.018604651162790697,
+      "specific": 0.009302325581395349
+    },
+    {
+      "slug": "antimony-pentasulfide",
+      "sentences": 431,
+      "boilerplate": 0.9698375870069605,
+      "shared": 0.02088167053364269,
+      "specific": 0.009280742459396751
+    },
+    {
+      "slug": "asparagus",
+      "sentences": 462,
+      "boilerplate": 0.9458874458874459,
+      "shared": 0.032467532467532464,
+      "specific": 0.021645021645021644
+    },
+    {
+      "slug": "mountain-bilberry",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "methylisothiazolinone",
+      "sentences": 430,
+      "boilerplate": 0.9418604651162791,
+      "shared": 0.04883720930232558,
+      "specific": 0.009302325581395349
+    },
+    {
+      "slug": "plectranthus-barbatus-root-oil",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.018779342723004695,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "icatibant",
+      "sentences": 518,
+      "boilerplate": 0.6833976833976834,
+      "shared": 0.24324324324324326,
+      "specific": 0.07335907335907337
+    },
+    {
+      "slug": "rooibos",
+      "sentences": 445,
+      "boilerplate": 0.9752808988764045,
+      "shared": 0.020224719101123594,
+      "specific": 0.0044943820224719105
+    },
+    {
+      "slug": "urofollitropin",
+      "sentences": 524,
+      "boilerplate": 0.7404580152671756,
+      "shared": 0.19274809160305342,
+      "specific": 0.06679389312977099
+    },
+    {
+      "slug": "pegzilarginase-nbln",
+      "sentences": 399,
+      "boilerplate": 0.9423558897243107,
+      "shared": 0.047619047619047616,
+      "specific": 0.010025062656641603
+    },
+    {
+      "slug": "prune",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02,
+      "specific": 0.015555555555555555
+    },
+    {
+      "slug": "sparsentan",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0547945205479452,
+      "specific": 0.0319634703196347
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-11a-capsular-polysaccharide-antigen",
+      "sentences": 472,
+      "boilerplate": 0.7944915254237288,
+      "shared": 0.15254237288135594,
+      "specific": 0.05296610169491525
+    },
+    {
+      "slug": "terfenadine",
+      "sentences": 599,
+      "boilerplate": 0.5759599332220368,
+      "shared": 0.2003338898163606,
+      "specific": 0.22370617696160267
+    },
+    {
+      "slug": "tomatoe",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "iobenguane-i-123",
+      "sentences": 443,
+      "boilerplate": 0.9029345372460497,
+      "shared": 0.06320541760722348,
+      "specific": 0.033860045146726865
+    },
+    {
+      "slug": "solidago-canadensis-flowering-top",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.016317016317016316,
+      "specific": 0.009324009324009324
+    },
+    {
+      "slug": "benoxinate",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05694760820045558,
+      "specific": 0.03189066059225513
+    },
+    {
+      "slug": "taurolidine",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.05668934240362812,
+      "specific": 0.036281179138321996
+    },
+    {
+      "slug": "darunavir-propylene-glycolate",
+      "sentences": 403,
+      "boilerplate": 0.9354838709677419,
+      "shared": 0.04962779156327544,
+      "specific": 0.01488833746898263
+    },
+    {
+      "slug": "aesculus-hippocastanum-whole",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.013986013986013986,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "pedra-hume",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "lead-acetate",
+      "sentences": 456,
+      "boilerplate": 0.9517543859649122,
+      "shared": 0.03508771929824561,
+      "specific": 0.013157894736842105
+    },
+    {
+      "slug": "spectinomycin",
+      "sentences": 432,
+      "boilerplate": 0.9212962962962963,
+      "shared": 0.05787037037037037,
+      "specific": 0.020833333333333332
+    },
+    {
+      "slug": "amanita-muscaria-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "mineral",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.028888888888888888,
+      "specific": 0.006666666666666667
+    },
+    {
+      "slug": "glasdegib",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.061224489795918366,
+      "specific": 0.031746031746031744
+    },
+    {
+      "slug": "daptomycin",
+      "sentences": 601,
+      "boilerplate": 0.5923460898502496,
+      "shared": 0.17304492512479203,
+      "specific": 0.23460898502495842
+    },
+    {
+      "slug": "hura-crepitans-sap",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "sequoia-sempervirens-whole",
+      "sentences": 456,
+      "boilerplate": 0.9671052631578947,
+      "shared": 0.021929824561403508,
+      "specific": 0.010964912280701754
+    },
+    {
+      "slug": "ruehssia-cundurango-bark",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "caralluma-fimbriata",
+      "sentences": 447,
+      "boilerplate": 0.970917225950783,
+      "shared": 0.02237136465324385,
+      "specific": 0.006711409395973154
+    },
+    {
+      "slug": "zantedeschia-aethiopica-flower",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "maral-root",
+      "sentences": 445,
+      "boilerplate": 0.9730337078651685,
+      "shared": 0.02247191011235955,
+      "specific": 0.0044943820224719105
+    },
+    {
+      "slug": "lathyrus-odoratus-flower",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "human-adenovirus-b-serotype-3",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.015317286652078774,
+      "specific": 0.019693654266958426
+    },
+    {
+      "slug": "dimethyl-phthalate",
+      "sentences": 454,
+      "boilerplate": 0.9625550660792952,
+      "shared": 0.02643171806167401,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "serratia-marcescens",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.0196078431372549,
+      "specific": 0.0196078431372549
+    },
+    {
+      "slug": "vorinostat",
+      "sentences": 442,
+      "boilerplate": 0.9049773755656109,
+      "shared": 0.07239819004524888,
+      "specific": 0.02262443438914027
+    },
+    {
+      "slug": "croton-tiglium-seed",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "beta-cyclodextrin",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.028824833702882482,
+      "specific": 0.008869179600886918
+    },
+    {
+      "slug": "gallium-chloride",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.026490066225165563,
+      "specific": 0.01545253863134658
+    },
+    {
+      "slug": "omacetaxine-mepesuccinate",
+      "sentences": 474,
+      "boilerplate": 0.7721518987341772,
+      "shared": 0.1962025316455696,
+      "specific": 0.03164556962025317
+    },
+    {
+      "slug": "lachesis-muta-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "propane",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.026030368763557483,
+      "specific": 0.01735357917570499
+    },
+    {
+      "slug": "medroxyprogesterone",
+      "sentences": 611,
+      "boilerplate": 0.5793780687397708,
+      "shared": 0.26677577741407527,
+      "specific": 0.15384615384615385
+    },
+    {
+      "slug": "amaranthus-hybridus-pollen",
+      "sentences": 401,
+      "boilerplate": 0.942643391521197,
+      "shared": 0.04987531172069826,
+      "specific": 0.007481296758104738
+    },
+    {
+      "slug": "queens-delight",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "trastuzumab",
+      "sentences": 673,
+      "boilerplate": 0.5037147102526003,
+      "shared": 0.2986627043090639,
+      "specific": 0.1976225854383358
+    },
+    {
+      "slug": "diflorasone",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.052763819095477386,
+      "specific": 0.005025125628140704
+    },
+    {
+      "slug": "cytidine",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.037444933920704845,
+      "specific": 0.006607929515418502
+    },
+    {
+      "slug": "streptococcus-oralis",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.019650655021834062,
+      "specific": 0.017467248908296942
+    },
+    {
+      "slug": "pork",
+      "sentences": 457,
+      "boilerplate": 0.9649890590809628,
+      "shared": 0.02188183807439825,
+      "specific": 0.01312910284463895
+    },
+    {
+      "slug": "guanidine",
+      "sentences": 452,
+      "boilerplate": 0.8694690265486725,
+      "shared": 0.11946902654867257,
+      "specific": 0.011061946902654867
+    },
+    {
+      "slug": "bos-taurus-brainstem",
+      "sentences": 456,
+      "boilerplate": 0.9671052631578947,
+      "shared": 0.021929824561403508,
+      "specific": 0.010964912280701754
+    },
+    {
+      "slug": "maize",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.024444444444444446,
+      "specific": 0.011111111111111112
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "sentences": 769,
+      "boilerplate": 0.46033810143042914,
+      "shared": 0.2756827048114434,
+      "specific": 0.26397919375812745
+    },
+    {
+      "slug": "pungent-compounds",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02,
+      "specific": 0.015555555555555555
+    },
+    {
+      "slug": "alendronate",
+      "sentences": 619,
+      "boilerplate": 0.5783521809369951,
+      "shared": 0.16478190630048464,
+      "specific": 0.2568659127625202
+    },
+    {
+      "slug": "ericameria-nauseosa-whole",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.018691588785046728,
+      "specific": 0.004672897196261682
+    },
+    {
+      "slug": "red-yeast",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.026726057906458798,
+      "specific": 0.0066815144766146995
+    },
+    {
+      "slug": "phenibut",
+      "sentences": 612,
+      "boilerplate": 0.6078431372549019,
+      "shared": 0.11601307189542484,
+      "specific": 0.2761437908496732
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "sentences": 645,
+      "boilerplate": 0.5193798449612403,
+      "shared": 0.2558139534883721,
+      "specific": 0.2248062015503876
+    },
+    {
+      "slug": "clostridium-butyricum",
+      "sentences": 455,
+      "boilerplate": 0.9538461538461539,
+      "shared": 0.03076923076923077,
+      "specific": 0.015384615384615385
+    },
+    {
+      "slug": "eurycoma-longifolia",
+      "sentences": 479,
+      "boilerplate": 0.8392484342379958,
+      "shared": 0.14822546972860126,
+      "specific": 0.012526096033402923
+    },
+    {
+      "slug": "garcinia-gummi-gutta-fruit",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "coffea-arabica-whole",
+      "sentences": 456,
+      "boilerplate": 0.9671052631578947,
+      "shared": 0.019736842105263157,
+      "specific": 0.013157894736842105
+    },
+    {
+      "slug": "malva-sylvestris-flowering-top",
+      "sentences": 406,
+      "boilerplate": 0.9482758620689655,
+      "shared": 0.04433497536945813,
+      "specific": 0.007389162561576354
+    },
+    {
+      "slug": "cetyl-laurate",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "maralixibat",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.0502283105022831,
+      "specific": 0.0365296803652968
+    },
+    {
+      "slug": "pentatropis-capensis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "juniper",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02,
+      "specific": 0.015555555555555555
+    },
+    {
+      "slug": "pinus-virginiana-pollen",
+      "sentences": 401,
+      "boilerplate": 0.942643391521197,
+      "shared": 0.04987531172069826,
+      "specific": 0.007481296758104738
+    },
+    {
+      "slug": "saponins",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.019955654101995565,
+      "specific": 0.017738359201773836
+    },
+    {
+      "slug": "convolvulus-pluricaulis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "flowering-quince",
+      "sentences": 445,
+      "boilerplate": 0.9752808988764045,
+      "shared": 0.017977528089887642,
+      "specific": 0.006741573033707865
+    },
+    {
+      "slug": "elemi",
+      "sentences": 445,
+      "boilerplate": 0.9752808988764045,
+      "shared": 0.020224719101123594,
+      "specific": 0.0044943820224719105
+    },
+    {
+      "slug": "veratrum-album-root",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "harpagophytum-procumbens-root",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.019650655021834062,
+      "specific": 0.017467248908296942
+    },
+    {
+      "slug": "linolenic-acid",
+      "sentences": 438,
+      "boilerplate": 0.9223744292237442,
+      "shared": 0.05251141552511415,
+      "specific": 0.02511415525114155
+    },
+    {
+      "slug": "chlorophytum-borivilianum-whole",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.014018691588785047,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "juglans-nigra-pollen",
+      "sentences": 452,
+      "boilerplate": 0.9668141592920354,
+      "shared": 0.02654867256637168,
+      "specific": 0.00663716814159292
+    },
+    {
+      "slug": "quinidine-polygalacturonate",
+      "sentences": 430,
+      "boilerplate": 0.9255813953488372,
+      "shared": 0.05581395348837209,
+      "specific": 0.018604651162790697
+    },
+    {
+      "slug": "quercus-kelloggii-pollen",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "plantago-seed",
+      "sentences": 434,
+      "boilerplate": 0.9331797235023042,
+      "shared": 0.055299539170506916,
+      "specific": 0.01152073732718894
+    },
+    {
+      "slug": "barbed-skullcap",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "halcinonide",
+      "sentences": 434,
+      "boilerplate": 0.9216589861751152,
+      "shared": 0.05069124423963134,
+      "specific": 0.027649769585253458
+    },
+    {
+      "slug": "vinca-minor",
+      "sentences": 460,
+      "boilerplate": 0.9565217391304348,
+      "shared": 0.02826086956521739,
+      "specific": 0.015217391304347827
+    },
+    {
+      "slug": "calcium-nitrite",
+      "sentences": 535,
+      "boilerplate": 0.7420560747663552,
+      "shared": 0.19065420560747665,
+      "specific": 0.06728971962616823
+    },
+    {
+      "slug": "berberis-vulgaris-whole",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.028384279475982533,
+      "specific": 0.008733624454148471
+    },
+    {
+      "slug": "levoketoconazole",
+      "sentences": 440,
+      "boilerplate": 0.9090909090909091,
+      "shared": 0.05909090909090909,
+      "specific": 0.031818181818181815
+    },
+    {
+      "slug": "asiatic-acid",
+      "sentences": 434,
+      "boilerplate": 0.9331797235023042,
+      "shared": 0.04838709677419355,
+      "specific": 0.018433179723502304
+    },
+    {
+      "slug": "foscarbidopa",
+      "sentences": 440,
+      "boilerplate": 0.9090909090909091,
+      "shared": 0.05909090909090909,
+      "specific": 0.031818181818181815
+    },
+    {
+      "slug": "aluminum-sesquichlorohydrate",
+      "sentences": 406,
+      "boilerplate": 0.9408866995073891,
+      "shared": 0.04187192118226601,
+      "specific": 0.017241379310344827
+    },
+    {
+      "slug": "pegulicianine",
+      "sentences": 436,
+      "boilerplate": 0.9174311926605505,
+      "shared": 0.05733944954128441,
+      "specific": 0.02522935779816514
+    },
+    {
+      "slug": "estradiol",
+      "sentences": 621,
+      "boilerplate": 0.5652173913043478,
+      "shared": 0.28180354267310787,
+      "specific": 0.1529790660225443
+    },
+    {
+      "slug": "salix-alba-flower",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "jatoba",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "cannabis-sativa-seed-oil",
+      "sentences": 439,
+      "boilerplate": 0.929384965831435,
+      "shared": 0.04555808656036447,
+      "specific": 0.025056947608200455
+    },
+    {
+      "slug": "salacia",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "anhydrous-citric-acid",
+      "sentences": 441,
+      "boilerplate": 0.9138321995464853,
+      "shared": 0.05442176870748299,
+      "specific": 0.031746031746031744
+    },
+    {
+      "slug": "flibanserin",
+      "sentences": 435,
+      "boilerplate": 0.9264367816091954,
+      "shared": 0.05057471264367816,
+      "specific": 0.022988505747126436
+    },
+    {
+      "slug": "boswellia",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.033185840707964605,
+      "specific": 0.00663716814159292
+    },
+    {
+      "slug": "chromic-sulfate-decahydrate",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "tolazoline",
+      "sentences": 398,
+      "boilerplate": 0.9422110552763819,
+      "shared": 0.052763819095477386,
+      "specific": 0.005025125628140704
+    },
+    {
+      "slug": "salix-purpurea-bark",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01639344262295082,
+      "specific": 0.00468384074941452
+    },
+    {
+      "slug": "cubebs",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "metenkefalin",
+      "sentences": 461,
+      "boilerplate": 0.9566160520607375,
+      "shared": 0.019522776572668113,
+      "specific": 0.02386117136659436
+    },
+    {
+      "slug": "pralatrexate",
+      "sentences": 443,
+      "boilerplate": 0.9029345372460497,
+      "shared": 0.06320541760722348,
+      "specific": 0.033860045146726865
+    },
+    {
+      "slug": "alstonia-scholaris-bark",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "hydroxyethyl-cellulose-unspecified",
+      "sentences": 399,
+      "boilerplate": 0.9398496240601504,
+      "shared": 0.05263157894736842,
+      "specific": 0.007518796992481203
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "sentences": 613,
+      "boilerplate": 0.5840130505709625,
+      "shared": 0.1566068515497553,
+      "specific": 0.25938009787928223
+    },
+    {
+      "slug": "kalanchoe-pinnata-leaf",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.019650655021834062,
+      "specific": 0.017467248908296942
+    },
+    {
+      "slug": "holarrhena-pubescens-bark",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "prasugrel",
+      "sentences": 622,
+      "boilerplate": 0.5739549839228296,
+      "shared": 0.15594855305466238,
+      "specific": 0.27009646302250806
+    },
+    {
+      "slug": "sumac",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.03090507726269316,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "aconitum-napellus",
+      "sentences": 452,
+      "boilerplate": 0.9756637168141593,
+      "shared": 0.01327433628318584,
+      "specific": 0.011061946902654867
+    },
+    {
+      "slug": "flavanones",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.02666666666666667,
+      "specific": 0.008888888888888889
+    },
+    {
+      "slug": "lacquertree",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-6a-capsular-polysaccharide-diphtheria-crm197-protein-conjugate",
+      "sentences": 468,
+      "boilerplate": 0.7329059829059829,
+      "shared": 0.25854700854700857,
+      "specific": 0.008547008547008548
+    },
+    {
+      "slug": "francisella-tularensis",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.015418502202643172,
+      "specific": 0.013215859030837005
+    },
+    {
+      "slug": "quinine-sulphate",
+      "sentences": 541,
+      "boilerplate": 0.6506469500924215,
+      "shared": 0.2735674676524954,
+      "specific": 0.07578558225508318
+    },
+    {
+      "slug": "hypromellose-2208",
+      "sentences": 399,
+      "boilerplate": 0.9398496240601504,
+      "shared": 0.05263157894736842,
+      "specific": 0.007518796992481203
+    },
+    {
+      "slug": "glycine-alanyl-l-phenylalanine",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.019002375296912115,
+      "specific": 0.004750593824228029
+    },
+    {
+      "slug": "propafenone",
+      "sentences": 443,
+      "boilerplate": 0.9051918735891648,
+      "shared": 0.05869074492099323,
+      "specific": 0.03611738148984198
+    },
+    {
+      "slug": "petunidin",
+      "sentences": 445,
+      "boilerplate": 0.9752808988764045,
+      "shared": 0.020224719101123594,
+      "specific": 0.0044943820224719105
+    },
+    {
+      "slug": "thiethylperazine",
+      "sentences": 469,
+      "boilerplate": 0.7803837953091685,
+      "shared": 0.18763326226012794,
+      "specific": 0.031982942430703626
+    },
+    {
+      "slug": "potassium-tetrachloroaurate",
+      "sentences": 425,
+      "boilerplate": 0.9835294117647059,
+      "shared": 0.011764705882352941,
+      "specific": 0.004705882352941176
+    },
+    {
+      "slug": "tungsten-disulfide",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "red-rooted-sage",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "plantago",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.03303964757709251,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "dientamoeba-fragilis",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.015384615384615385,
+      "specific": 0.015384615384615385
+    },
+    {
+      "slug": "chinese-plumbago",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "nalmefene",
+      "sentences": 436,
+      "boilerplate": 0.9174311926605505,
+      "shared": 0.05504587155963303,
+      "specific": 0.027522935779816515
+    },
+    {
+      "slug": "lignan",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.033112582781456956,
+      "specific": 0.008830022075055188
+    },
+    {
+      "slug": "chenopodium-album-whole",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "ureter",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "soy-fiber",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.024444444444444446,
+      "specific": 0.011111111111111112
+    },
+    {
+      "slug": "technetium-tc-99m-oxidronate-kit",
+      "sentences": 399,
+      "boilerplate": 0.9398496240601504,
+      "shared": 0.05263157894736842,
+      "specific": 0.007518796992481203
+    },
+    {
+      "slug": "apoaequorin",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "uterus",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "pork-collagen",
+      "sentences": 432,
+      "boilerplate": 0.9259259259259259,
+      "shared": 0.04861111111111111,
+      "specific": 0.02546296296296296
+    },
+    {
+      "slug": "annatto",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.024390243902439025,
+      "specific": 0.013303769401330377
+    },
+    {
+      "slug": "lumefantrine",
+      "sentences": 439,
+      "boilerplate": 0.9111617312072893,
+      "shared": 0.05922551252847381,
+      "specific": 0.029612756264236904
+    },
+    {
+      "slug": "didymocarpus-pedicellata",
+      "sentences": 447,
+      "boilerplate": 0.970917225950783,
+      "shared": 0.024608501118568233,
+      "specific": 0.0044742729306487695
+    },
+    {
+      "slug": "cariprazine",
+      "sentences": 630,
+      "boilerplate": 0.5666666666666667,
+      "shared": 0.1634920634920635,
+      "specific": 0.2698412698412698
+    },
+    {
+      "slug": "beta-sitosterol",
+      "sentences": 432,
+      "boilerplate": 0.9375,
+      "shared": 0.046296296296296294,
+      "specific": 0.016203703703703703
+    },
+    {
+      "slug": "lerodalcibep-liga",
+      "sentences": 399,
+      "boilerplate": 0.9423558897243107,
+      "shared": 0.047619047619047616,
+      "specific": 0.010025062656641603
+    },
+    {
+      "slug": "clematis-vitalba-top",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "egg-white-protein",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.02654867256637168,
+      "specific": 0.01327433628318584
+    },
+    {
+      "slug": "delafloxacin",
+      "sentences": 429,
+      "boilerplate": 0.9277389277389277,
+      "shared": 0.053613053613053616,
+      "specific": 0.018648018648018648
+    },
+    {
+      "slug": "methyl",
+      "sentences": 443,
+      "boilerplate": 0.909706546275395,
+      "shared": 0.060948081264108354,
+      "specific": 0.029345372460496615
+    },
+    {
+      "slug": "stachyurus-chinensis-whole",
+      "sentences": 426,
+      "boilerplate": 0.9741784037558685,
+      "shared": 0.01643192488262911,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "arsenic-trichloride",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "octocrylene",
+      "sentences": 432,
+      "boilerplate": 0.9375,
+      "shared": 0.046296296296296294,
+      "specific": 0.016203703703703703
+    },
+    {
+      "slug": "solidago-virgaurea-pollen",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.018823529411764704,
+      "specific": 0.007058823529411765
+    },
+    {
+      "slug": "bone-protein",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.028634361233480177,
+      "specific": 0.015418502202643172
+    },
+    {
+      "slug": "tea-tree-oil",
+      "sentences": 439,
+      "boilerplate": 0.929384965831435,
+      "shared": 0.04328018223234624,
+      "specific": 0.02733485193621868
+    },
+    {
+      "slug": "probiotics",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.03090507726269316,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "quercus-nigra-pollen",
+      "sentences": 425,
+      "boilerplate": 0.9741176470588235,
+      "shared": 0.018823529411764704,
+      "specific": 0.007058823529411765
+    },
+    {
+      "slug": "tetrahydrozoline",
+      "sentences": 437,
+      "boilerplate": 0.9176201372997712,
+      "shared": 0.05491990846681922,
+      "specific": 0.02745995423340961
+    },
+    {
+      "slug": "thiamylal",
+      "sentences": 425,
+      "boilerplate": 0.9364705882352942,
+      "shared": 0.05411764705882353,
+      "specific": 0.009411764705882352
+    },
+    {
+      "slug": "cayenne-pepper",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.01991150442477876,
+      "specific": 0.01991150442477876
+    },
+    {
+      "slug": "tebentafusp-tebn",
+      "sentences": 427,
+      "boilerplate": 0.9344262295081968,
+      "shared": 0.05152224824355972,
+      "specific": 0.01405152224824356
+    },
+    {
+      "slug": "metronidazole",
+      "sentences": 565,
+      "boilerplate": 0.6336283185840708,
+      "shared": 0.1663716814159292,
+      "specific": 0.2
+    },
+    {
+      "slug": "little-club-moss",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "irbesartan",
+      "sentences": 648,
+      "boilerplate": 0.5447530864197531,
+      "shared": 0.2824074074074074,
+      "specific": 0.1728395061728395
+    },
+    {
+      "slug": "helianthemum-canadense",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "atractylodes",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.022172949002217297,
+      "specific": 0.015521064301552107
+    },
+    {
+      "slug": "berberis-repens-root",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.018779342723004695,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "malus-sylvestris-flower",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "aster",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.028824833702882482,
+      "specific": 0.008869179600886918
+    },
+    {
+      "slug": "hagenia-abyssinica-flower",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.013986013986013986,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "viscum-album-stem",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "castor-fiber-scent-gland-secretion",
+      "sentences": 431,
+      "boilerplate": 0.9698375870069605,
+      "shared": 0.016241299303944315,
+      "specific": 0.013921113689095127
+    },
+    {
+      "slug": "betula-pendula-wood",
+      "sentences": 428,
+      "boilerplate": 0.9766355140186916,
+      "shared": 0.016355140186915886,
+      "specific": 0.007009345794392523
+    },
+    {
+      "slug": "telbivudine",
+      "sentences": 624,
+      "boilerplate": 0.5785256410256411,
+      "shared": 0.16987179487179488,
+      "specific": 0.2516025641025641
+    },
+    {
+      "slug": "poliovirus-type-3-antigen",
+      "sentences": 427,
+      "boilerplate": 0.9320843091334895,
+      "shared": 0.05152224824355972,
+      "specific": 0.01639344262295082
+    },
+    {
+      "slug": "potassium-nitrate",
+      "sentences": 560,
+      "boilerplate": 0.6321428571428571,
+      "shared": 0.2767857142857143,
+      "specific": 0.09107142857142857
+    },
+    {
+      "slug": "silver-cation",
+      "sentences": 431,
+      "boilerplate": 0.9373549883990719,
+      "shared": 0.05336426914153132,
+      "specific": 0.009280742459396751
+    },
+    {
+      "slug": "nitrofurantoin-macrocrystalline",
+      "sentences": 429,
+      "boilerplate": 0.9277389277389277,
+      "shared": 0.055944055944055944,
+      "specific": 0.016317016317016316
+    },
+    {
+      "slug": "bos-taurus-parotid-gland",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "barleria-lupulina-whole",
+      "sentences": 406,
+      "boilerplate": 0.9384236453201971,
+      "shared": 0.046798029556650245,
+      "specific": 0.014778325123152709
+    },
+    {
+      "slug": "oak",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.0200445434298441,
+      "specific": 0.013363028953229399
+    },
+    {
+      "slug": "ocriplasmin",
+      "sentences": 426,
+      "boilerplate": 0.9342723004694836,
+      "shared": 0.046948356807511735,
+      "specific": 0.018779342723004695
+    },
+    {
+      "slug": "trifluoperazine",
+      "sentences": 438,
+      "boilerplate": 0.9155251141552512,
+      "shared": 0.05707762557077625,
+      "specific": 0.0273972602739726
+    },
+    {
+      "slug": "eurycoma-longifolia-whole",
+      "sentences": 453,
+      "boilerplate": 0.9735099337748344,
+      "shared": 0.01545253863134658,
+      "specific": 0.011037527593818985
+    },
+    {
+      "slug": "alkaline",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.03303964757709251,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "indian-cassia",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "sus-scrofa-joint-capsule",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.019823788546255508,
+      "specific": 0.00881057268722467
+    },
+    {
+      "slug": "griseofulvin-ultramicrocrystalline",
+      "sentences": 427,
+      "boilerplate": 0.9320843091334895,
+      "shared": 0.053864168618266976,
+      "specific": 0.01405152224824356
+    },
+    {
+      "slug": "quercus-robur-pollen",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.01978021978021978,
+      "specific": 0.01098901098901099
+    },
+    {
+      "slug": "endive",
+      "sentences": 446,
+      "boilerplate": 0.9730941704035875,
+      "shared": 0.020179372197309416,
+      "specific": 0.006726457399103139
+    },
+    {
+      "slug": "uncaria-sinensis",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "angiotensin-i",
+      "sentences": 463,
+      "boilerplate": 0.9438444924406048,
+      "shared": 0.03455723542116631,
+      "specific": 0.02159827213822894
+    },
+    {
+      "slug": "cobaltous-nitrate-hexahydrate",
+      "sentences": 429,
+      "boilerplate": 0.9743589743589743,
+      "shared": 0.013986013986013986,
+      "specific": 0.011655011655011656
+    },
+    {
+      "slug": "ergoloid-mesylates",
+      "sentences": 425,
+      "boilerplate": 0.9364705882352942,
+      "shared": 0.05411764705882353,
+      "specific": 0.009411764705882352
+    },
+    {
+      "slug": "picrorhiza-kurroa-whole",
+      "sentences": 454,
+      "boilerplate": 0.9713656387665198,
+      "shared": 0.022026431718061675,
+      "specific": 0.006607929515418502
+    },
+    {
+      "slug": "osthol",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "lactobacillus-parakefiri",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "american-chestnut",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.039647577092511016,
+      "specific": 0.004405286343612335
+    },
+    {
+      "slug": "bifobacterium",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "bexagliflozin",
+      "sentences": 589,
+      "boilerplate": 0.6061120543293718,
+      "shared": 0.22920203735144312,
+      "specific": 0.16468590831918506
+    },
+    {
+      "slug": "nutritional-yeast",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.028824833702882482,
+      "specific": 0.008869179600886918
+    },
+    {
+      "slug": "silymarin",
+      "sentences": 511,
+      "boilerplate": 0.7690802348336595,
+      "shared": 0.18199608610567514,
+      "specific": 0.04892367906066536
+    },
+    {
+      "slug": "gladiolus-communis-whole",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.023474178403755867,
+      "specific": 0.004694835680751174
+    },
+    {
+      "slug": "fluphenazine-decanoate",
+      "sentences": 436,
+      "boilerplate": 0.9243119266055045,
+      "shared": 0.04357798165137615,
+      "specific": 0.03211009174311927
+    },
+    {
+      "slug": "odesivimab",
+      "sentences": 435,
+      "boilerplate": 0.9195402298850575,
+      "shared": 0.06206896551724138,
+      "specific": 0.01839080459770115
+    },
+    {
+      "slug": "hydralazine",
+      "sentences": 805,
+      "boilerplate": 0.40869565217391307,
+      "shared": 0.25838509316770186,
+      "specific": 0.33291925465838507
+    },
+    {
+      "slug": "eflapegrastim-xnst",
+      "sentences": 422,
+      "boilerplate": 0.9454976303317536,
+      "shared": 0.04265402843601896,
+      "specific": 0.011848341232227487
+    },
+    {
+      "slug": "sus-scrofa-pancreas",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "passiflora-incarnata-whole",
+      "sentences": 458,
+      "boilerplate": 0.962882096069869,
+      "shared": 0.021834061135371178,
+      "specific": 0.015283842794759825
+    },
+    {
+      "slug": "serdexmethylphenidate",
+      "sentences": 463,
+      "boilerplate": 0.7991360691144709,
+      "shared": 0.15982721382289417,
+      "specific": 0.04103671706263499
+    },
+    {
+      "slug": "sitagliptin",
+      "sentences": 797,
+      "boilerplate": 0.41530740276035133,
+      "shared": 0.25094102885821834,
+      "specific": 0.3337515683814304
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "sentences": 592,
+      "boilerplate": 0.6739864864864865,
+      "shared": 0.125,
+      "specific": 0.20101351351351351
+    },
+    {
+      "slug": "heptacosanol",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "causticum",
+      "sentences": 455,
+      "boilerplate": 0.9692307692307692,
+      "shared": 0.017582417582417582,
+      "specific": 0.013186813186813187
+    },
+    {
+      "slug": "poplar",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.026490066225165563,
+      "specific": 0.01545253863134658
+    },
+    {
+      "slug": "withania-somnifera-root",
+      "sentences": 460,
+      "boilerplate": 0.9543478260869566,
+      "shared": 0.02826086956521739,
+      "specific": 0.017391304347826087
+    },
+    {
+      "slug": "glucosamine-5-methyltetrahydrofolate",
+      "sentences": 448,
+      "boilerplate": 0.96875,
+      "shared": 0.020089285714285716,
+      "specific": 0.011160714285714286
+    },
+    {
+      "slug": "comocladia-dentata-bark-leaf",
+      "sentences": 427,
+      "boilerplate": 0.9695550351288056,
+      "shared": 0.02107728337236534,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "panax-ginseng-root-oil",
+      "sentences": 509,
+      "boilerplate": 0.724950884086444,
+      "shared": 0.25147347740667975,
+      "specific": 0.023575638506876228
+    },
+    {
+      "slug": "protriptyline",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.06349206349206349,
+      "specific": 0.02947845804988662
+    },
+    {
+      "slug": "macitentan",
+      "sentences": 593,
+      "boilerplate": 0.6020236087689713,
+      "shared": 0.22259696458684655,
+      "specific": 0.17537942664418213
+    },
+    {
+      "slug": "eleuthero-root",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.024336283185840708,
+      "specific": 0.015486725663716814
+    },
+    {
+      "slug": "land-cress",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "halofantrine",
+      "sentences": 430,
+      "boilerplate": 0.9255813953488372,
+      "shared": 0.053488372093023255,
+      "specific": 0.020930232558139535
+    },
+    {
+      "slug": "hedychium-flavescens-whole",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.023474178403755867,
+      "specific": 0.004694835680751174
+    },
+    {
+      "slug": "clorazepate",
+      "sentences": 441,
+      "boilerplate": 0.9070294784580499,
+      "shared": 0.05668934240362812,
+      "specific": 0.036281179138321996
+    },
+    {
+      "slug": "dimethylphenethylamine",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "phenelzine",
+      "sentences": 439,
+      "boilerplate": 0.9179954441913439,
+      "shared": 0.05011389521640091,
+      "specific": 0.03189066059225513
+    },
+    {
+      "slug": "loncastuximab-tesirine",
+      "sentences": 445,
+      "boilerplate": 0.898876404494382,
+      "shared": 0.060674157303370786,
+      "specific": 0.04044943820224719
+    },
+    {
+      "slug": "linalool",
+      "sentences": 437,
+      "boilerplate": 0.9336384439359268,
+      "shared": 0.041189931350114416,
+      "specific": 0.02517162471395881
+    },
+    {
+      "slug": "phenprocoumon",
+      "sentences": 484,
+      "boilerplate": 0.7665289256198347,
+      "shared": 0.15702479338842976,
+      "specific": 0.07644628099173553
+    },
+    {
+      "slug": "sedum-acre",
+      "sentences": 427,
+      "boilerplate": 0.9718969555035128,
+      "shared": 0.02107728337236534,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "hydroxyethyl-cellulose",
+      "sentences": 435,
+      "boilerplate": 0.9310344827586207,
+      "shared": 0.04597701149425287,
+      "specific": 0.022988505747126436
+    },
+    {
+      "slug": "tozinameran",
+      "sentences": 572,
+      "boilerplate": 0.6101398601398601,
+      "shared": 0.18356643356643357,
+      "specific": 0.2062937062937063
+    },
+    {
+      "slug": "common-periwinkle",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.033185840707964605,
+      "specific": 0.00663716814159292
+    },
+    {
+      "slug": "icosapent",
+      "sentences": 582,
+      "boilerplate": 0.6134020618556701,
+      "shared": 0.27835051546391754,
+      "specific": 0.10824742268041238
+    },
+    {
+      "slug": "glucuronic-acid",
+      "sentences": 451,
+      "boilerplate": 0.9623059866962306,
+      "shared": 0.019955654101995565,
+      "specific": 0.017738359201773836
+    },
+    {
+      "slug": "gallium-trifluoride",
+      "sentences": 422,
+      "boilerplate": 0.9739336492890995,
+      "shared": 0.02132701421800948,
+      "specific": 0.004739336492890996
+    },
+    {
+      "slug": "aconitum-carmichaeli-lateral-root",
+      "sentences": 426,
+      "boilerplate": 0.971830985915493,
+      "shared": 0.018779342723004695,
+      "specific": 0.009389671361502348
+    },
+    {
+      "slug": "egg",
+      "sentences": 460,
+      "boilerplate": 0.9586956521739131,
+      "shared": 0.02391304347826087,
+      "specific": 0.017391304347826087
+    },
+    {
+      "slug": "carnosic-acid",
+      "sentences": 449,
+      "boilerplate": 0.9665924276169265,
+      "shared": 0.022271714922048998,
+      "specific": 0.011135857461024499
+    },
+    {
+      "slug": "ornithine-l-aspartic-acid",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.03303964757709251,
+      "specific": 0.011013215859030838
+    },
+    {
+      "slug": "wild-cherry",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.028761061946902654,
+      "specific": 0.011061946902654867
+    },
+    {
+      "slug": "vidarabine",
+      "sentences": 471,
+      "boilerplate": 0.7770700636942676,
+      "shared": 0.19532908704883228,
+      "specific": 0.027600849256900213
+    },
+    {
+      "slug": "bone-marrow",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.037527593818984545,
+      "specific": 0.004415011037527594
+    },
+    {
+      "slug": "primula-veris",
+      "sentences": 428,
+      "boilerplate": 0.9672897196261683,
+      "shared": 0.02336448598130841,
+      "specific": 0.009345794392523364
+    },
+    {
+      "slug": "chestnut-rose",
+      "sentences": 454,
+      "boilerplate": 0.9559471365638766,
+      "shared": 0.037444933920704845,
+      "specific": 0.006607929515418502
+    },
+    {
+      "slug": "buckwheat",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.026143790849673203,
+      "specific": 0.013071895424836602
+    },
+    {
+      "slug": "chondroitin",
+      "sentences": 535,
+      "boilerplate": 0.7271028037383177,
+      "shared": 0.23551401869158878,
+      "specific": 0.037383177570093455
+    },
+    {
+      "slug": "citrus-bioflavonoids",
+      "sentences": 459,
+      "boilerplate": 0.9607843137254902,
+      "shared": 0.023965141612200435,
+      "specific": 0.015250544662309368
+    },
+    {
+      "slug": "magnesium-alpha-ketoglutarate",
+      "sentences": 445,
+      "boilerplate": 0.9752808988764045,
+      "shared": 0.017977528089887642,
+      "specific": 0.006741573033707865
+    },
+    {
+      "slug": "boswellia-serrata",
+      "sentences": 453,
+      "boilerplate": 0.9580573951434879,
+      "shared": 0.033112582781456956,
+      "specific": 0.008830022075055188
+    },
+    {
+      "slug": "human-thrombin",
+      "sentences": 436,
+      "boilerplate": 0.9243119266055045,
+      "shared": 0.04357798165137615,
+      "specific": 0.03211009174311927
+    },
+    {
+      "slug": "xanthium-strumarium-var-canadense-pollen",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.01627906976744186,
+      "specific": 0.011627906976744186
+    },
+    {
+      "slug": "tafluprost",
+      "sentences": 438,
+      "boilerplate": 0.91324200913242,
+      "shared": 0.05707762557077625,
+      "specific": 0.02968036529680365
+    },
+    {
+      "slug": "4-androsterone",
+      "sentences": 452,
+      "boilerplate": 0.9601769911504425,
+      "shared": 0.022123893805309734,
+      "specific": 0.017699115044247787
+    },
+    {
+      "slug": "tilia-cordata-flower",
+      "sentences": 430,
+      "boilerplate": 0.9720930232558139,
+      "shared": 0.011627906976744186,
+      "specific": 0.01627906976744186
+    },
+    {
+      "slug": "hydroxide-ion",
+      "sentences": 436,
+      "boilerplate": 0.9288990825688074,
+      "shared": 0.05045871559633028,
+      "specific": 0.020642201834862386
+    },
+    {
+      "slug": "ado-trastuzumab-emtansine",
+      "sentences": 430,
+      "boilerplate": 0.9255813953488372,
+      "shared": 0.05813953488372093,
+      "specific": 0.01627906976744186
+    },
+    {
+      "slug": "bugleweed",
+      "sentences": 421,
+      "boilerplate": 0.9762470308788599,
+      "shared": 0.021377672209026127,
+      "specific": 0.0023752969121140144
+    },
+    {
+      "slug": "artemisia-abrotanum-flowering-top",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.0117096018735363,
+      "specific": 0.00936768149882904
+    },
+    {
+      "slug": "quercus-robur-twig-bark",
+      "sentences": 427,
+      "boilerplate": 0.9789227166276346,
+      "shared": 0.01405152224824356,
+      "specific": 0.00702576112412178
+    },
+    {
+      "slug": "butchers-broom",
+      "sentences": 450,
+      "boilerplate": 0.9644444444444444,
+      "shared": 0.022222222222222223,
+      "specific": 0.013333333333333334
+    }
+  ]
+}

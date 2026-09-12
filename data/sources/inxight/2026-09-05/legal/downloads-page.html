@@ -1,0 +1,774 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" ng-app ="ginas">
+<head>
+    <base href='/'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+	<meta property="og:type" content="website" />
+
+	
+		<meta property="og:url" content="https://drugs.ncats.io/downloads" />
+
+		<meta name="twitter:domain" value="drugs.ncats.io" />
+		<meta name="twitter:url" value="https://drugs.ncats.io/downloads" />
+		<meta name="twitter:card" content="summary_large_image">
+	
+
+	
+		<meta property="og:title" content="NCATS Inxight Drugs" />
+		<meta name="twitter:title" value="NCATS Inxight Drugs" />
+
+		<meta property="og:description" content="The National Center for Advancing Translational Sciences has developed Inxight Drugs — a comprehensive portal for drug development information. NCATS Inxight incorporates and unifies a wealth of data, including marketing and regulatory status, rigorous drug ingredient definitions, biological activity, clinical use and more." />
+		<meta name="twitter:description" value="The National Center for Advancing Translational Sciences has developed Inxight Drugs — a comprehensive portal for drug development information.NCATS Inxight incorporates and unifies a wealth of data, including marketing and regulatory status, rigorous drug ingredient definitions, biological activity, clinical use and more." />
+
+		<meta property="og:image" 
+        content='https://drugs.ncats.io/assets/ginas/images/inxight_main.png?w=500' />
+		<meta name="twitter:image" 
+        content='https://drugs.ncats.io/assets/ginas/images/inxight_main.png?w=500' />
+
+		<meta name="twitter:label1" value="US Approved Drugs" />
+		<meta name="twitter:data1" value="2638" />
+		<meta name="twitter:label2" value="Total Substances" />
+		<meta name="twitter:data2" value="167131" />
+	
+
+    <!--[if lte IE 9]>
+    	<style type="text/css">
+    		#ie6msg{border:3px solid #c33; margin:8px 0; background:#fcc; color:#000;}
+    		#ie6msg h4{margin:8px; padding:0;}
+    		#ie6msg p{margin:8px; padding:0;}
+    		#ie6msg p a.getie7{font-weight:bold; color:#006;}
+    		#ie6msg p a.ie6expl{font-weight:bold; color:#006;}
+        </style>
+    	
+    	<div id="ie6msg">
+            <h4>Did you know that your browser is out of date?</h4>
+            <p>To get the best possible experience using this website it is recommended that you upgrade your browser to a newer version.
+            <p>You could also try some other popular browsers like <a class="ie6expl" href="http://mozilla.com">FireFox</a> or
+        	<a class="ie6expl" href="https://www.google.com/chrome/S">Chrome</a>.</p>
+    	</div>
+	<![endif]-->
+
+    <!--[if IE]>
+        <style type="text/css">
+            /* do allow margin adjustment for loupe symbol in main menu in IE */
+            @media (min-width: 768px){
+                #h-menu #menubar ul .hidden-md{ 
+                    margin: 7.5px 0;
+                }
+            }
+        </style>
+    <![endif]-->
+
+    <title>Error</title>
+    <link rel="icon" type="img/ico" href='/assets/ginas/images/ncats_favicon.ico'>
+    <link rel="stylesheet"
+    href='/webjars/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet"
+    href='/webjars/font-awesome/4.5.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ng-tags-input.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ng-tags-input.bootstrap.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/json-formatter.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/ginas.css'>
+    <link rel="stylesheet" href='/assets/ginas/css/drugs.css'>
+    
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    
+    
+    
+    <script src='/webjars/jquery/1.11.1/jquery.min.js'></script>
+   
+    <script src='/webjars/momentjs/2.11.0/moment.js'></script>
+    <script src='/webjars/later/1.2.0/later.min.js'></script>
+    <script src='/webjars/prettycron/0.10.0/prettycron.js'></script>
+    <script src='/webjars/humanize-duration/3.0.0/humanize-duration.js'></script>
+    
+    
+    
+    <script src='/webjars/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular.js'></script>
+    <script src='/webjars/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-messages.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-route.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-resource.js'></script>
+    <script src='/webjars/angularjs/1.5.7/angular-aria.js'></script>
+    <script src='/webjars/lodash/4.0.0/lodash.js'></script>
+
+    <script src='/assets/ginas/js/angular-local-storage.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginasApp.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-admin.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-downloads.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-scheduled.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-filter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-forms.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-form-elements.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ginas-filter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-bootstrap-file-field.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/showErrors.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/diff_match_patch.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-diff-match-patch.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/angular-loading-spinner.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/filter-listener-service.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/validators.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/json-formatter.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/ng-tags-input.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/screengrabber.js' type='text/javascript'></script>
+    <script src='/assets/ginas/js/filereader.js' type='text/javascript'></script>
+    
+
+    <script src="https://code.highcharts.com/5.0.14/highcharts.js"></script>
+    <script src="https://code.highcharts.com/5.0.14/modules/exporting.js"></script>
+
+
+    <script src='https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js'></script>
+
+	
+    <script type="text/javascript">
+        var session = {
+	        
+	            username:null
+	        
+        };
+    	var baseurl = '/';
+        console.log(baseurl);
+    	
+    	
+    </script>
+    
+    <link rel="stylesheet" href='//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css'>
+    <script src='//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM44TYRR6L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-NM44TYRR6L');
+    </script>
+
+    <script src='/assets/ginas/js/css_browser_selector.js' type="text/javascript"></script>
+    
+</head>
+
+<body scroll-spy="breadcrumb" data-target="#breadcrumb" ng-controller ="GinasController as GinasCtrl">
+   	<div id="ncatsRibbon">
+        <div class="container no-gutter">
+            <img src="/assets/images/nihribbon-hhs.svg" alt="HHS Logo" class="ncats-ribbon hhs-logo">
+            
+            <a href="http://www.hhs.gov/" 
+            title="U.S. Department of Health & Human Services | Homepage" 
+            class="ext" 
+            target="_blank">U.S. Department of Health &amp; Human Services</a>
+
+            <img src="/assets/images/nihribbon-divider.svg" class="nihDivider ncats-ribbon" alt="Divider Arrow">
+            <img src="/assets/images/nih-ribbon.svg" class="nihArrows ncats-ribbon nih-logo" alt="NIH Logo">            
+            
+			<a href="http://www.nih.gov/" 
+			title="National Institutes of Health | Homepage" 
+			class="ext" 
+			target="_blank">National Institutes of Health</a>
+            
+            <img src="/assets/images/nihribbon-divider.svg" class="nihDivider ncats-ribbon" alt="Divider Arrow">
+            <img src="/assets/images/nih-ribbon.svg" class="nihArrows ncats-ribbon nih-logo" alt="NIH Logo"> 
+
+            <a href="http://www.ncats.nih.gov" 
+            title="National Center for Advancing Translational Sciences | Homepage" 
+            target="new">NCATS</a>
+            
+            
+            </div>
+
+        <!--container-->
+    </div>
+<!--    <div class="alert-banner" >-->
+<!--        <p>Because of a lapse in government funding, the information on this website may not be up to date,-->
+<!--            transactions submitted via the website may not be processed, and the agency may not be able to respond to-->
+<!--            inquiries until appropriations are enacted. The NIH Clinical Center (the research hospital of NIH) is open.-->
+<!--            For more details about its operating status, please visit <a href="http://cc.nih.gov/">cc.nih.gov</a>. Updates regarding government operating-->
+<!--            status and resumption of normal operations can be found at <a href="http://opm.gov/">opm.gov</a>.</p>-->
+<!--        <button onclick="dismissBanner()">Dismiss</button>-->
+<!--    </div>-->
+    <script>
+        // Detect if the page was fully reloaded (not internal navigation)
+        if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+            sessionStorage.removeItem('bannerDismissed'); // Reset banner state on full reload
+        }
+
+        // Check sessionStorage for banner state
+        if (sessionStorage.getItem('bannerDismissed') === 'true') {
+            document.querySelector('.alert-banner').style.display = 'none';
+        }
+
+        function dismissBanner() {
+            document.querySelector('.alert-banner').style.display = 'none';
+            sessionStorage.setItem('bannerDismissed', 'true'); // Save to sessionStorage
+        }
+    </script>
+    <div class="row-fluid" id="main-menu">
+    <!-- BANNER AND MENU -->
+<nav class="navbar navbar-default" role="navigation" id="menu">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand navbar-nav">        
+                <a href="/" 
+                title="Return Home"
+                target="_self" 
+                alt ="Home" 
+                aria-label="Return Home" 
+                ng-class="(!showsearch)?'':'hidden-sm hidden-xs'" >
+                    <img src='/assets/ginas/images/ncats-logo.svg' 
+                    alt="ncats logo" 
+                    class="ncats-logo img-responsive hidden-xs hidden-sm" 
+                    >
+                    <img src='/assets/ginas/images/ncats-logo-short.svg'
+                    alt="ncats logo" 
+                    class="ncats-logo img-responsive hidden-md hidden-lg hidden-xl" 
+                    >
+
+					<span class="sr-only">Return Home</span>
+					<span class="logo-header">Inxight</span>
+                    <span class="logo-header subsection">Drugs</span>
+                </a>
+            </span>
+        </div>
+
+        <div class="navbar-default" id="menubar">
+            <ul class="nav navbar-nav pull-right" id = "left-menu">
+                <li ng-class="(showsearch)?'':'hidden-sm hidden-xs'" ng-controller="TypeAheadController">
+                    <div ng-cloak ="" ng-show="loadingSuggest"
+                    id="loading-suggest">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </div>
+
+                    <form class="form-inline main-search" role="search"
+                    id="main-menu-search">
+                        <div class="input-group" id = "search-bar">
+                            <input type="text"
+                            class="form-control"
+                            id="search"
+                            aria-label="Search Substances"
+                            title="Search Substances in Inxight Drugs"
+                            placeholder= "Search Substances..."
+
+                            ng-model = "query"
+                            typeahead-popup-template-url='/assets/templates/elements/suggest-popup.html'
+                            uib-typeahead="r.d as r.d for r in getSuggestions($viewValue)"
+                            typeahead-on-select="onSelect($item, $model, $label)"
+                            typeahead-loading="loadingSuggest"
+                            typeahead-focus-first ="false"
+                            autocomplete="off">
+                            <span class="input-group-btn">
+                                <div class="btn-group search-btn" uib-dropdown>
+									 <button id="split-button-main" class="btn btn-default"
+                                        type="search"
+                                        aria-label="Search Substances"
+									    ng-click = "submitq(query,'/principals')">
+                                        
+                                          
+                                        <span class="sr-only">Search Substances</span>
+                                        <span class="fa fa-search"></span>
+									</button>
+                                </div>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+				
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="loupe" ng-click="showsearch=!showsearch; showclose=!showclose" ng-class="(!showclose)?'':'hidden-sm hidden-xs'">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+                </li>
+
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="close-loupe" ng-class="(showclose)?'':'hidden-sm hidden-xs'" ng-click="showclose=!showclose; showsearch=!showsearch">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </a>	
+                </li>
+				
+                
+	           
+            </ul>
+
+        </div>
+        
+    	
+    </div>
+
+
+    <div class="container" id="h-menu">
+        <div ng-class="(!showsearchHMenu)?'':'hidden-sm hidden-xs'"
+        class="col-xs-10 col-sm-11 col-md-9 col-lg-7 nopadding"
+        id="hmenu-butt-wrap">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/" 
+                    title="Return Home"
+                    target="_self" 
+                    alt ="Home" 
+                    aria-label="Return Home">
+                        <span class="hidden-xs hidden-sm">Home</span>
+                        <i class="fa fa-lg fa-home hidden-md hidden-lg hidden-xl"></i>
+                    </a>            
+                </li>
+
+                <li class="dropdown">
+                    <a href="" 
+                    data-toggle="dropdown" 
+                    class="dropdown-toggle" 
+                    aria-expanded="false"
+                    title="Drugs by Development Status...">
+                        <span class="hidden-xs hidden-sm">Browse Drugs</span>
+                        <i class="fa fa-lg fa-list-ol hidden-md hidden-lg hidden-xl"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu"> 
+                        <li>
+                            <a target="_self" 
+                            href="/drugs"
+                            title="US Approved Drugs">
+                                <span>US Approved Drugs</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_self" 
+                            href="/marketeds"
+                            title="Drugs Marketed Somewhere in the World">
+                                <span>Marketed Drugs</span>
+                            </a>
+                        </li> 
+
+                        <li>
+                            <a target="_self" 
+                            href="/clinicals"
+                            title="Investigational Drugs">
+                                <span>Investigational Drugs</span>
+                            </a>
+                        </li> 
+
+                        <li> 
+                            <a target="_self" 
+                            href="/substances"
+                            title="All Substances">
+                                <span>All Substances</span>
+                            </a>
+                        </li>   
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="" 
+                    data-toggle="dropdown" 
+                    class="dropdown-toggle" 
+                    aria-expanded="false"
+                    title="Advanced Search...">
+                        <span class="hidden-xs hidden-sm">Search&nbsp;<i class="fa fa-plus-circle"></i></span>
+                        <i class="fa fa-lg fa-search-plus hidden-md hidden-lg hidden-xl"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>  
+
+                    <ul class="dropdown-menu"> 
+                        <li>
+                            <a ng-href="/structure" 
+                            ng-click="clearStructure()" 
+                            target="_self"
+                            title="Search by Structure">
+                                <span>Structure Search</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a ng-href="/sequence" 
+                            ng-click="clearStructure()" 
+                            target="_self"
+                            title="Search by Sequence">
+                                <span>Sequence Search</span>
+                            </a>
+                        </li>   
+                    </ul>       
+                </li>
+                <li>
+                    <a ng-href="/downloads-public" 
+                    target="_self"
+                    title="Public Downloads">
+                        <span class="hidden-xs hidden-sm">Downloads</span>
+                        <i class="fa fa-lg fa-download hidden-md hidden-lg hidden-xl"></i>
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="/about" 
+                    target="_self"
+                    title="About NCATS Inxight Drugs">
+                        <span class="hidden-xs hidden-sm">About</span>
+                        <i class="fa fa-lg fa-question-circle hidden-md hidden-lg hidden-xl"></i>
+                    </a>
+                </li>
+
+                
+
+
+
+
+                
+            </ul>
+
+        </div>
+
+        <div class="col-md-3 col-lg-5 nopadding" id="menubar">
+            <ul class="nav navbar-nav pull-right">
+
+                <li ng-class="(showsearchHMenu)?'':'hidden-sm hidden-xs'" 
+                ng-controller="TypeAheadController"
+                id="hmenu-li-search-wrap">
+
+                    <div ng-cloak ="" ng-show="loadingSuggestHMenu"
+                    id="loading-suggest">
+                        <i class="fa fa-refresh fa-spin fa-fw"></i>
+                    </div>
+
+                    <form class="form-inline main-search" role="search"
+                    id="main-menu-search">
+                        <div class="input-group" id = "search-bar">
+                            <input type="text"
+                            class="form-control"
+                            id="search"
+                            aria-label="Search Substances"
+                            title="Search Substances in Inxight Drugs"
+                            placeholder= "Search Substances..."
+
+                            ng-model = "query"
+                            typeahead-popup-template-url='/assets/templates/elements/suggest-popup.html'
+                            uib-typeahead="r.d as r.d for r in getSuggestions($viewValue)"
+                            typeahead-on-select="onSelect($item, $model, $label)"
+                            typeahead-loading="loadingSuggestHMenu"
+                            typeahead-focus-first ="false"
+                            autocomplete="off">
+                            <span class="input-group-btn">
+                                <div class="btn-group search-btn" uib-dropdown>
+                                     <button id="split-button-main" class="btn btn-default"
+                                        type="search"
+                                        aria-label="Search Substances"
+                                        
+                                        
+                                                ng-click = "submitq(query,'/marketeds')">
+                                            
+
+                                        <span class="sr-only">Search Substances</span>
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+                
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="loupe" 
+                    ng-click="showsearchHMenu=!showsearchHMenu; showcloseHMenu=!showcloseHMenu" 
+                    ng-class="(!showcloseHMenu)?'':'hidden-sm hidden-xs'">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+                </li>
+
+                <li class="hidden-xl hidden-lg hidden-md">
+                    <a class="close-loupe" 
+                    ng-class="(showcloseHMenu)?'':'hidden-sm hidden-xs'" 
+                    ng-click="showcloseHMenu=!showcloseHMenu; showsearchHMenu=!showsearchHMenu">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </a>	
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+   
+    
+</nav>
+
+
+</div>
+   	
+    <div class="container" id="content" >
+		
+        
+		
+        
+
+ 
+
+	<h1 class ="danger">401 error</h1>
+    
+    <div class = "alert alert-danger">
+        <h1>No User Present</h1>
+    </div>
+    
+    
+        <div style="text-align:center;width:100%;">
+            <a class="btn btn-default navbar-btn" 
+            ng-href= "/login"
+            id ="login-button" 
+            target="_self">
+                Login
+            </a>
+        </div>
+ 	
+
+        <mol-export></mol-export>
+    </div>
+	<script>
+		$(document).ready(function(){
+		    try{
+				$("table.gsrs-datatable").DataTable( {
+					"lengthMenu": [[5, 20, 100, -1], [5, 20, 100, "All"]],
+					language: {
+						search: "",
+						searchPlaceholder: "Search..."
+					},
+					"aaSorting": [],
+                    "scrollX": true
+				});
+
+			}catch(e){
+				console.log(e);
+			}
+
+			$('.unloaded').removeClass("unloaded");
+ 
+			$('body').scrollspy({
+				offset:300,
+				target:".sidebar-inner"
+			});
+
+			$('#affix').affix({
+				offset: {
+					top: 50
+				}
+			});
+
+			$(".dataTables_filter input").addClass("form-control");
+
+		});
+
+	  var onResize = function() {
+		// apply dynamic padding at the top of the body according to the fixed navbar height
+		  $("body").css("padding-top", $(".navbar-fixed-top").height());
+		};
+
+		// attach the function to the window resize event
+		$(window).resize(onResize);
+
+		// call it also when the page is ready after load or reload
+		$(function() {
+		  onResize();
+		});
+	</script>
+
+	<script>
+        var hmenu = document.getElementById("h-menu");
+        var hmenuOffset = hmenu.offsetTop;
+        var hmenuHeight = hmenu.offsetHeight;
+
+        var hmenuButtonWrap = document.getElementById("hmenu-butt-wrap");
+        var liSearchWrap = document.getElementById("hmenu-li-search-wrap");
+
+        window.onscroll = function() {
+            fixHMenu();
+        }
+
+        function fixHMenu() {
+            if(hmenuOffset != null) {
+                // check the offse of the page compared to the horizontal menu
+                if (window.pageYOffset >= hmenuOffset) {
+                    // if scrolled past the hmenu, then fix the menu to the top 
+                    // and show the search bar in it
+                    hmenu.classList.add("fix2top");
+                    $("#h-menu #menubar").show();
+
+                    // now we want to ensure that visibility of the menu buttons
+                    // and that of hmenu's search bar is always opposite on small screens
+                    if(liSearchWrap.classList.contains("hidden-sm")){
+                        hmenuButtonWrap.classList.remove("hidden-sm", "hidden-xs");
+                    } else {
+                        hmenuButtonWrap.classList.add("hidden-sm", "hidden-xs");
+                    }
+
+                } else {
+                    // if we haven't scrolled past the h menu, then do not fix it to top
+                    hmenu.classList.remove("fix2top");
+                    $("#h-menu #menubar").hide();
+
+                    // ensure hmenu's buttons are visible all the time when it's not on top
+                    hmenuButtonWrap.classList.remove("hidden-sm", "hidden-xs");
+                }
+            } 
+        }
+
+    </script>
+    <script>
+		$(function () {
+            
+			if($('.fixedpos').length>0){
+    			var fixmeTop = $('.fixedpos').offset().top;       // get initial position of the element
+
+    			$(window).scroll(function() {                  // assign scroll event listener
+
+    				var currentScroll = $(window).scrollTop(); // get current position
+    			
+    				if (currentScroll >= fixmeTop-100) {           // apply position: fixed if you
+    					$('.fixedpos').css({                      // scroll to that element or below it
+    						position: 'fixed',
+    						top: 70
+    					});
+    				} else {                                   // apply position: static
+    					$('.fixedpos').css({                      // if you scroll above it
+    						position: 'absolute',
+    						top: 'inherit'
+    					});
+    				}
+    			});
+			}
+            
+			var resetBindings = function(){
+			
+				$('[data-toggle="popover"]:not(.toggle-force)').off();
+				$('.toggle-on').off();
+				
+				
+				$('[data-toggle="popover"]:not(.toggle-on)').unbind( "click" );
+				$('.toggle-on').unbind( "click" );
+				
+				$('[data-toggle="popover"]:not(.toggle-on)').click(function(){
+					$(this).addClass("toggle-on");
+					var _this=this;
+					console.log("not toggle on");
+					setTimeout(function(){
+						$(_this).popover("show");
+					},10);
+					resetBindings();
+				});
+				
+				$('.toggle-on').click(function(){
+					$(this).removeClass("toggle-on");
+					$(this).popover('hide');
+					resetBindings();
+				});	
+				
+				$('[data-toggle="popover"]:not(.toggle-force)')
+			.popover({ trigger: "manual" , html: true, animation:false})
+			.on("mouseenter", function () {
+				
+				if(false){
+				var _this = this;
+				var t=Math.random() + "";
+				$(_this).attr("fade_id",t);
+				$(this).popover("show");
+				$(".popover").on("mouseleave", function () {
+					setTimeout(function () {
+						if(!$(_this).hasClass("toggle-on")){
+							$(_this).popover('hide');
+						}
+					},800);
+				});
+				}
+			})
+			.on("mouseleave", function () {
+			if(false){
+				var _this = this;
+				if(!$(_this).hasClass("toggle-on")){
+				var t=Math.random() + "";
+				$(_this).attr("fade_id",t);
+				
+				setTimeout(function () {
+						if (!$(".popover:hover").length) {
+							if($(_this).attr("fade_id") == t){
+								$(_this).popover("hide");
+							}
+						}
+				}, 800);
+				}
+				}
+			});
+			};
+			resetBindings();
+			
+			document.body.addEventListener("click", function(e){
+				if(!$(e.target).parents(".popover").length){
+					$('[data-toggle="popover"]').popover('hide');
+				}
+			
+			});
+		});
+	</script>
+
+
+	<div class="modal export" id="loading">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="loading-progress"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="inxight-footer">
+	<div class="container">
+		<div class="item"><a target="_blank" href="https://www.nih.gov/">NIH</a></div>
+		<div class="item"><a target="_blank" href="https://ncats.nih.gov/">NCATS</a></div>
+        <div class="item"><a href="/privacy" target="_self">PRIVACY NOTICE</a></div>
+		<div class="item"><a target="_blank" href="https://ncats.nih.gov/accessibility">ACCESSIBILITY</a></div>
+		<div class="item-last">
+			<a target="_blank" 
+			href="/disclaimer">
+			DISCLAIMER
+			</a>
+		</div>
+		<div class="row">
+			<div class="item-last">
+				<a target="_blank" 
+				href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html">
+				HHS VULNERABILITY DISCLOSURE
+				</a>
+			</div>
+		</div>
+
+		<div class="statement">
+			<div class="statement-desktop">
+				For <a href="http://edi.nih.gov/consulting/language-access-program/about" target="_blank" title="Read  the plan">language access</a> assistance, 
+				contact the <a href="mailto:info@ncats.nih.gov" title="Email Public Information Officer">NCATS Public Information Officer</a> 
+				<br>
+			</div>
+			<div>
+				National Center for Advancing Translational Sciences (NCATS), 
+				<span class="mobile-statement-break"><br></span>
+				6701 Democracy Boulevard, Bethesda MD 20892-4874 • 301-594-8966
+				
+			</div>
+		</div>
+	</div>
+	<div class=" hidden-xs hidden-sm" id="version">
+		<code uib-tooltip="Built on Wed Sep 02 17:05:26 GMT 2026 (commit: b4d43c75f)"
+		tooltip-placement="auto"
+		tooltip-append-to-body="true">
+			<small>version 1.1</small>
+		</code>
+	</div>
+</div>
+   
+</body>
+</html>
+
+

@@ -1,0 +1,28 @@
+# Python packages the revamp checks need on a GitHub Actions runner (docs/specs/ci-checks.md).
+#
+# Pinned to the versions in `.venv-corpus` on the workstation, so a check that passes there and
+# fails in CI is a difference in the repository, not in a library. RDKit is not here: none of these
+# checks reads a molecular structure.
+#
+# Which job needs which:
+#   pytest      — the render-safety job (`tests/test_render_safety.py --sample`).
+#   pyarrow     — `link_graph_check.py`, which reads the committed hub parquet files, and
+#                 `ci_sample.py`, which reads `hubs/members.parquet`.
+#   duckdb      — `scripts/corpus-20k/overlap/harness.py`, imported by `rendered_dup_check.py` in
+#                 the post-deploy job; it keeps the page store the MinHash screen reads.
+#   numpy       — the same harness, and `rendered_dup_check.py`'s permutations.
+#   playwright  — the post-deploy job renders pages in headless Chromium; the browser itself is
+#                 installed separately with `python -m playwright install --with-deps chromium`.
+#   pandas      — no check in this workflow imports it. It is pinned here because it is the table
+#                 library the rest of `scripts/revamp` reads through (the source maps, the release
+#                 build, the census tools' neighbours), so an operator who reproduces a CI failure
+#                 from this file and then runs one of those gets the workstation's version.
+#
+# `redirect_check.py`, `ci_redirect_check.py`, `ci_slug_union.py`, `field_census.py` and
+# `census_delta.py` import nothing outside the standard library.
+pytest==9.1.1
+pyarrow==25.0.1
+duckdb==1.5.5
+numpy==2.5.2
+pandas==3.0.5
+playwright==1.62.0

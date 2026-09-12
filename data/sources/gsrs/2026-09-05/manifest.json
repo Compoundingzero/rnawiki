@@ -1,0 +1,85 @@
+{
+  "source": "gsrs",
+  "source_name": "GSRS / FDA Global Substance Registration System",
+  "retrieval_date": "2026-09-05",
+  "dataset": "dump-public-2026-08-06.gsrs (GSRS public data export, 177,121 records)",
+  "dataset_published": "2026-08-06",
+  "retrieval_method": "bulk download of the public data export linked from gsrs.ncats.nih.gov; the API was used only to read the dataset index and one record while confirming the dump schema",
+  "licence": "US Government work, public domain (FDA/NCATS)",
+  "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+  "licence_text": "US Government work, public domain. GSRS public substance data is produced by the U.S. Food and Drug Administration and published by NIH's National Center for Advancing Translational Sciences. FDA's website policy, saved at legal/fda-website-policies.html, states: \"Unless otherwise noted, the contents of the FDA website (www.fda.gov) - both text and graphics - are not copyrighted. They are in the public domain and may be republished, reprinted and otherwise used freely by anyone without the need to obtain permission from FDA. Credit to the U.S. Food and Drug Administration as the source is appreciated but not required.\" gsrs.ncats.nih.gov serves no robots.txt (HTTP 404, saved at legal/robots.txt), so no crawl directive was in force; the bulk dump linked from the site's own home page was used rather than page fetching.",
+  "request_log": "requests.log",
+  "files": [
+    {
+      "path": "legal/dump-head.txt",
+      "url": "https://gsrs.ncats.nih.gov/assets/downloads/dump-public-2026-08-06.gsrs (HEAD)",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 569,
+      "sha256": "f1ed23b1d1a4f5ecef22c2398b6235f801aa419f3870b894a94a481bb56eeef2"
+    },
+    {
+      "path": "legal/fda-gsrs-page.html",
+      "url": "https://www.fda.gov/industry/fda-data-standards-advisory-board/fdas-global-substance-registration-system",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 35486,
+      "sha256": "101aa389842b3e5a1cab2c13288be4491dc3b90cbf3091df7ae30972d053ff39"
+    },
+    {
+      "path": "legal/fda-website-policies.html",
+      "url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 45430,
+      "sha256": "a8c97abacc43ea31b76161d75a7c0c9c4ea5ab7d4dbd1cce001c9ea25fd43d52"
+    },
+    {
+      "path": "legal/gsrs-app-main.js",
+      "url": "https://gsrs.ncats.nih.gov/main.7bf32f449a289080.js",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 1446324,
+      "sha256": "dc7077605866a253ede5f71b2152c0ab35e9d098698e76a580c55a8dba5f957c"
+    },
+    {
+      "path": "legal/gsrs-dataset-index.json",
+      "url": "https://gsrs.ncats.nih.gov/main.7bf32f449a289080.js (embedded dataset index)",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 5482,
+      "sha256": "eebf6ebfbae539e9dcf06b202f39a1e49dbb6f68ee2419f69a9385f34b702693"
+    },
+    {
+      "path": "legal/ncats-robots.txt",
+      "url": "https://ncats.nih.gov/robots.txt",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 2069,
+      "sha256": "6ba9d74cb68368778deed27fc35166fd8c3cf624dd4d99b60d12733ffdfefc8e"
+    },
+    {
+      "path": "legal/precisionfda-uniisearch.html",
+      "url": "https://precision.fda.gov/uniisearch",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 26351,
+      "sha256": "3da4dea632c8bb821fab9284903bc4997e1a7c59ba1f7e6030f655d1bc35474a"
+    },
+    {
+      "path": "legal/robots.txt",
+      "url": "https://gsrs.ncats.nih.gov/robots.txt",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 81,
+      "sha256": "12e3d721351936d59d6d6c68909b8e3e936bfac89d6cf32393b8108c15486211"
+    },
+    {
+      "path": "legal/usa-gov-copyright.html",
+      "url": "https://www.usa.gov/government-copyright",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 40705,
+      "sha256": "bc37f826d0346d4a2723e2ad1c6dcab040df7844726bdc394dafaba71f8405c3"
+    },
+    {
+      "path": "raw/dump-public-2026-08-06.gsrs",
+      "url": "https://gsrs.ncats.nih.gov/assets/downloads/dump-public-2026-08-06.gsrs",
+      "retrieved": "2026-09-05T07:11:21Z",
+      "bytes": 329396273,
+      "sha256": "07be61aea161cd212545c6cc1057a376bdbefcfc634da7ab1b4903b99f7bacad"
+    }
+  ],
+  "total_bytes": 330998770
+}

@@ -119,18 +119,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'Why does Rapamycin carry a supervision requirement?',
   },
   {
-    // Phase 5a: a suppressed page whose only class is S10 has no classification to cite, so it is
-    // never asked why it carries a supervision requirement (docs/specs/question-derivation.md,
-    // "Amendments after Gate 2").
-    template: 'classification',
-    input: page({
-      suppressed: true,
-      suppressionClasses: ['S10'],
-      fields: { regulatoryStatus: field({ US: 'approved' }) },
-    }),
-    text: 'What classification does Rapamycin carry?',
-  },
-  {
     template: 'human-data',
     input: page({
       fields: { humanEvidenceCeiling: field({ largestN: 245, longestDurationDays: 365 }) },
@@ -385,30 +373,30 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'What became of the other 3 compounds aimed at MTOR?',
   },
   {
-    template: 'jurisdiction',
-    input: page({
-      seeds: {
-        seed17: { fires: true, values: { jurisdictions: { US: 'approved', SG: 'controlled' } } },
-      },
-    }),
-    text: 'Drug, supplement or controlled: what is Rapamycin in US and SG?',
-  },
-  {
     template: 'contradiction',
     input: page({ seeds: { seed10: { fires: true, values: { field: 'half-life' } } } }),
     text: 'Where do the label and the trials disagree about Rapamycin?',
   },
   {
+    // §14(10): three or more dated events, in chronological order, and the question names the
+    // first and the last event kind. Two dated points are not a timeline, and reading a current
+    // state off a register let the question phrase a later event as leading to an earlier one.
     template: 'provenance',
     input: page({
       seeds: {
         seed8: {
           fires: true,
-          values: { firstYear: 1975, currentState: 'an approved transplant medicine' },
+          values: {
+            events: [
+              { event: 'first publication', year: 1975 },
+              { event: 'first human trial', year: 1989 },
+              { event: 'first approval', year: 1999 },
+            ],
+          },
         },
       },
     }),
-    text: 'How did Rapamycin get from 1975 to an approved transplant medicine?',
+    text: 'How did Rapamycin get from first publication in 1975 to first approval in 1999?',
   },
   {
     template: 'target-phase',
@@ -470,23 +458,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
     text: 'On the Theophylline label: indicated for what?',
   },
   {
-    template: 'regulatory-only',
-    input: page({
-      key: 'example-clinical-register',
-      displayName: 'Comocladia',
-      model: 'CLINICAL',
-      tier: 2,
-      fields: {
-        regulatoryStatus: field({
-          US: { status: 'unknown' },
-          EU: { status: 'unknown' },
-          CA: { status: 'approved' },
-        }),
-      },
-    }),
-    text: 'Where is Comocladia approved?',
-  },
-  {
     template: 'trial-history',
     input: page({
       key: 'example-clinical-trials',
@@ -502,16 +473,6 @@ const CASES: Array<{ template: string; input: PageInput; text: string }> = [
       },
     }),
     text: '18 registered trials of Sennosides — at which phases?',
-  },
-  {
-    template: 'never-dosed',
-    input: page({
-      key: 'example-preclinical',
-      displayName: 'XY-2200',
-      model: 'DEVELOPMENT',
-      fields: { everDosedInHumans: field({ bool: false }), molecularTarget: field('SIRT6') },
-    }),
-    text: 'Has XY-2200 ever reached a person?',
   },
 ]
 
@@ -663,6 +624,29 @@ describe('suppression (R2)', () => {
     expect(blocks).toContain('time-to-signal')
     expect(blocks).not.toContain('supervision')
   })
+
+  /*
+   * docs/specs/phase4-generators.md §4: a substance carrying a controlled-substance schedule
+   * reaches this deriver as a suppressed page, and the dose question is withheld on it exactly as
+   * seeds 1, 2 and 6 are. The recorded dose is not removed; only the question is withheld.
+   */
+  const withADose = {
+    doseStudied: field([{ organism: 'human', doseText: '10 mg daily', route: null }]),
+  }
+
+  it('withholds the dose question on a suppressed page', () => {
+    const blocks = deriveQuestions(page({ suppressed: true, fields: { ...withADose } })).map(
+      (q) => q.block,
+    )
+    expect(blocks).not.toContain('dose-studied')
+  })
+
+  it('asks the dose question on the same page when it is not suppressed', () => {
+    const blocks = deriveQuestions(page({ suppressed: false, fields: { ...withADose } })).map(
+      (q) => q.block,
+    )
+    expect(blocks).toContain('dose-studied')
+  })
 })
 
 describe('stub rule (R15)', () => {
@@ -694,7 +678,10 @@ describe('stub rule (R15)', () => {
       fields: { ...twoFields, highestPhase: field(1), everDosedInHumans: field({ bool: false }) },
     })
     expect(isStub(p)).toBe(false)
-    expect(deriveQuestions(p).map((q) => q.template)).toContain('never-dosed')
+    // §14(11): `never-dosed` is retired — its answer was an absence — so a page whose only other
+    // recorded field is the phase asks about the phase.
+    expect(deriveQuestions(p).map((q) => q.template)).not.toContain('never-dosed')
+    expect(deriveQuestions(p).length).toBeGreaterThan(0)
   })
 
   it('never stubs Tier 1 or Tier 2, and falls back to the field count when no tier is recorded', () => {
@@ -903,7 +890,9 @@ describe('recorded input shapes', () => {
     })
     const templates = deriveQuestions(p).map((q) => q.template)
     expect(textFor('development-stop', p)).toBe('Development of XY-3000 stopped at phase 2 — why?')
-    expect(templates).toContain('never-dosed')
+    // §14(11): "Has X ever reached a person?" answered its own absence, and is retired. The
+    // recorded flag still decides what the header's evidence line says.
+    expect(templates).not.toContain('never-dosed')
   })
 })
 
@@ -1190,22 +1179,34 @@ describe('CLINICAL indication, register and trial-history templates', () => {
     expect(templates).not.toContain('trial-history')
   })
 
-  it('asks the register question only where the page records no label indication', () => {
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: REGISTERS })).map((q) => q.template),
-    ).toContain('regulatory-only')
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: REGISTERS, indication: INDICATION })).map(
-        (q) => q.template,
-      ),
-    ).not.toContain('regulatory-only')
+  it('asks no register question at all (§15 item 4)', () => {
+    /*
+     * "Where is X approved?" was answered by the register status value line and by nothing else,
+     * and on a page whose only recorded approval is one jurisdiction's that answer is one
+     * register's line in the position of an answer. §15(4) removes the line from every question
+     * block: the registration block states each register's status once, with its date.
+     */
+    const cases: Record<string, FieldEntry>[] = [
+      { regulatoryStatus: REGISTERS },
+      { regulatoryStatus: REGISTERS, indication: INDICATION },
+      { regulatoryStatus: field({ US: { status: 'unknown' }, EU: { status: 'unknown' } }) },
+    ]
+    for (const fields of cases) {
+      expect(deriveQuestions(clinical(fields)).map((q) => q.template)).not.toContain(
+        'regulatory-only',
+      )
+    }
   })
 
-  it('does not ask where a compound is approved when every register records unknown', () => {
-    const allUnknown = field({ US: { status: 'unknown' }, EU: { status: 'unknown' } })
-    expect(
-      deriveQuestions(clinical({ regulatoryStatus: allUnknown })).map((q) => q.template),
-    ).not.toContain('regulatory-only')
+  it('asks no jurisdiction question either (§15 item 4)', () => {
+    // "EU withdrawn: the registers' classifications of Rosiglitazone" is the same shape: a
+    // register's own status line, offered as the answer to what the compound is.
+    const withStatuses = page({
+      seeds: {
+        seed17: { fires: true, values: { jurisdictions: { US: 'approved', SG: 'controlled' } } },
+      },
+    })
+    expect(deriveQuestions(withStatuses).map((q) => q.template)).not.toContain('jurisdiction')
   })
 
   it('withholds the trial-history question where the human-data block already fires', () => {

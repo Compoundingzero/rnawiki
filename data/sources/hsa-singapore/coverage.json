@@ -1,0 +1,235 @@
+{
+ "source": "hsa-singapore",
+ "source_name": "Health Sciences Authority, Listing of Registered Therapeutic Products",
+ "dataset_id": "d_767279312753558cbf19d48344577084",
+ "source_url": "https://data.gov.sg/datasets/d_767279312753558cbf19d48344577084/view",
+ "source_date": "2026-08-07",
+ "retrieval_date": "2026-09-06",
+ "licence": "Singapore Open Data Licence version 1.0",
+ "register_records": 5511,
+ "register_records_matched": 5366,
+ "unmatched_records": 145,
+ "corpus_pages": 28832,
+ "pages_matched_by_tier": {
+  "1": 442,
+  "2": 1058,
+  "3": 94
+ },
+ "pages_matched_total": 1594,
+ "fields_gained_by_tier": {
+  "1": {
+   "hsaAtcCodes": 441,
+   "hsaForensicClass": 442,
+   "hsaProduct": 442,
+   "hsaRegistrants": 442,
+   "regulatorySG": 442,
+   "sgControlledStatus": 508
+  },
+  "2": {
+   "hsaAtcCodes": 1053,
+   "hsaForensicClass": 1058,
+   "hsaProduct": 1058,
+   "hsaRegistrants": 1058,
+   "regulatorySG": 1058,
+   "sgControlledStatus": 799
+  },
+  "3": {
+   "hsaAtcCodes": 94,
+   "hsaForensicClass": 94,
+   "hsaProduct": 94,
+   "hsaRegistrants": 94,
+   "regulatorySG": 94,
+   "sgControlledStatus": 494
+  }
+ },
+ "mapped_rows": 16625,
+ "pages_by_match_rule_and_tier": {
+  "unii": {
+   "1": 749,
+   "2": 1459,
+   "3": 534
+  },
+  "name-candidate": {
+   "1": 4,
+   "2": 18,
+   "3": 4
+  },
+  "skeleton": {
+   "1": 4,
+   "2": 7,
+   "3": 23
+  }
+ },
+ "components_resolved_to_unii": 6780,
+ "components_unresolved": 385,
+ "components_ambiguous_unii": 2057,
+ "name_candidates_dropped_ambiguous_page": 26,
+ "name_candidates_sent_to_review": 41,
+ "name_candidate_pages": 26,
+ "name_candidate_review_list": "data/sources/hsa-singapore/name-candidates-for-review.csv",
+ "combination_page_rows": 61,
+ "combination_pages_matched": 13,
+ "sg_registration_status_all_pages": "data/sources/hsa-singapore/regulatory-sg-status.parquet",
+ "sg_registration_status_counts": {
+  "registered": 1594,
+  "not found": 27238
+ },
+ "subsidy": {
+  "status": "not published as open data",
+  "statement": "No drug-level subsidy list is published on data.gov.sg as of 2026-09-06. All 4,616 datasets in the portal catalogue were read and searched; the Ministry of Health dataset d_586ee0cbc5c79ff8167a46132a405239 (Healthcare Schemes and Subsidies) names the Standard Drug List and the Medication Assistance Fund as two of 26 schemes but carries no medicine. The Ministry of Health publishes its subsidised-drug list only as a paginated in-page table at https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/list-of-subsidised-drugs/, which offers no bulk or API route and states no reuse licence, so it was not retrieved.",
+  "searchedOn": "2026-09-06",
+  "evidence": [
+   "data/sources/hsa-singapore/2026-09-06/raw/search/catalogue.json",
+   "data/sources/hsa-singapore/2026-09-06/raw/search/catalogue-matches.json",
+   "data/sources/hsa-singapore/2026-09-06/raw/search/moh-healthcare-schemes-records.json"
+  ]
+ },
+ "controlled_substances": {
+  "note": "1801 pages carry a Misuse of Drugs Act or Poisons Act schedule entry from data/sources/hsa-singapore/controlled-substances.parquet",
+  "table": "data/sources/hsa-singapore/controlled-substances.parquet",
+  "pages_with_a_schedule_entry": 1801,
+  "pages_with_a_schedule_entry_by_tier": {
+   "1": 508,
+   "2": 799,
+   "3": 494
+  },
+  "summary": {
+   "source": "singapore-statutes-online",
+   "part_of": "hsa-singapore",
+   "retrieval_date": "2026-09-06",
+   "statutes": {
+    "misuse-of-drugs-act-1973": {
+     "statute": "Misuse of Drugs Act 1973",
+     "citation": "Misuse of Drugs Act 1973 (2020 Rev Ed)",
+     "url": "https://sso.agc.gov.sg/Act/MDA1973",
+     "version_date": "2026-06-01",
+     "pdf": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf",
+     "pdf_sha256": "5ca9d474fe08d227334e732baf4a4a65b6b60722e639f706ee99172a2b17e690",
+     "text": "data/sources/hsa-singapore/2026-09-06/derived/statutes-text/misuse-of-drugs-act-1973.txt"
+    },
+    "poisons-act-1938": {
+     "statute": "Poisons Act 1938",
+     "citation": "Poisons Act 1938 (2020 Rev Ed)",
+     "url": "https://sso.agc.gov.sg/Act/PA1938",
+     "version_date": "2026-05-01",
+     "pdf": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.pdf",
+     "pdf_sha256": "491b62c02312793af0df068ca20ffa483e5e9c8242f253940b7a233c64e20d20",
+     "text": "data/sources/hsa-singapore/2026-09-06/derived/statutes-text/poisons-act-1938.txt"
+    },
+    "poisons-rules": {
+     "statute": "Poisons Rules",
+     "citation": "Poisons Rules (Cap. 234, R 1, 1999 Rev Ed)",
+     "url": "https://sso.agc.gov.sg/SL/PA1938-R1",
+     "version_date": "2026-05-01",
+     "pdf": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.pdf",
+     "pdf_sha256": "cce14e00c60bb10e363731cb962a71b81f6bd7a436cb496521b82a44c3b02822",
+     "text": "data/sources/hsa-singapore/2026-09-06/derived/statutes-text/poisons-rules.txt"
+    }
+   },
+   "schedule_records": 5654,
+   "page_mapping_rows": 6110,
+   "distinct_pages_matched": 1801,
+   "pages_matched_by_tier": {
+    "1": 508,
+    "2": 799,
+    "3": 494
+   },
+   "records_by_schedule": {
+    "MDA-Sch1-Part1-ClassA": {
+     "records": 531,
+     "records_matched": 143,
+     "page_rows": 546,
+     "pages": 153
+    },
+    "MDA-Sch1-Part2-ClassB": {
+     "records": 15,
+     "records_matched": 15,
+     "page_rows": 15,
+     "pages": 15
+    },
+    "MDA-Sch1-Part3-ClassC": {
+     "records": 17,
+     "records_matched": 14,
+     "page_rows": 18,
+     "pages": 15
+    },
+    "MDA-Sch4-Specified": {
+     "records": 19,
+     "records_matched": 16,
+     "page_rows": 19,
+     "pages": 16
+    },
+    "PA-Schedule-PoisonsList": {
+     "records": 1840,
+     "records_matched": 1622,
+     "page_rows": 1997,
+     "pages": 1749
+    },
+    "PR-Sch1-Rule10": {
+     "records": 1759,
+     "records_matched": 1547,
+     "page_rows": 1913,
+     "pages": 1670
+    },
+    "PR-Sch3-Prescription": {
+     "records": 1463,
+     "records_matched": 1305,
+     "page_rows": 1592,
+     "pages": 1419
+    },
+    "PR-Sch6-Transport": {
+     "records": 7,
+     "records_matched": 4,
+     "page_rows": 7,
+     "pages": 4
+    },
+    "PR-Sch7-Colouring": {
+     "records": 3,
+     "records_matched": 0,
+     "page_rows": 3,
+     "pages": 0
+    }
+   },
+   "match_outcomes": {
+    "matched:unii": 4596,
+    "matched:skeleton": 70,
+    "records_reaching_more_than_one_page": 322,
+    "unmatched:unii-resolved-no-page": 445,
+    "unmatched:no-unii": 544
+   },
+   "unmatched_records": 989,
+   "unmatched_list": "data/sources/hsa-singapore/controlled-substances-unmatched.csv",
+   "schedules_retrieved_but_not_parsed": {
+    "MDA-Sch3-ControlledEquipment": "Misuse of Drugs Act 1973 Third Schedule, controlled equipment, materials or substances useful for manufacturing controlled drugs. Its records are unnumbered running text whose alias clauses wrap onto further lines at the same indent, so record boundaries are not recoverable from the PDF text layer without guessing, and its subject is a manufacturing input rather than a medicine's control class. The retrieved PDF holds the full text at data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf.",
+    "MDA-Sch5-Excluded": "Misuse of Drugs Act 1973 Fifth Schedule, excluded substances. An exclusion from the Act is not a control class, so it carries no controlled status onto a page."
+   },
+   "licence": {
+    "name": "Singapore legislation reproduced under clause 13 of the Singapore Statutes Online Terms of Use",
+    "url": "https://sso.agc.gov.sg/Terms-of-Use",
+    "attribution_required": true,
+    "share_alike": false,
+    "redistribution_permitted": true,
+    "commercial_use_permitted": true,
+    "conditions": [
+     "state that the legislation is subject to Singapore Government copyright and is reproduced with AGC's permission",
+     "tell readers they may check SSO for the latest version",
+     "the reproducer is responsible for the accuracy of what it reproduces",
+     "no suggestion of AGC or SSO association or endorsement",
+     "automated extraction only between 3 a.m. and 7 a.m. Singapore time, not abusive, intrusive or deceptive, and without affecting SSO's performance"
+    ],
+    "attribution_notice": "Singapore legislation reproduced from Singapore Statutes Online is subject to the copyright of the Singapore Government and is reproduced with the permission of the Attorney-General's Chambers. Readers may check Singapore Statutes Online (https://sso.agc.gov.sg) for the latest version of the legislation. Singapore Statutes Online is an unofficial version and is not the authoritative text."
+   }
+  }
+ },
+ "unmatched_record_list": "data/sources/hsa-singapore/unmatched-records.csv",
+ "forensic_classification_counts_in_register": {
+  "Prescription Only": 4717,
+  "Pharmacy Only": 308,
+  "General Sale List": 486
+ },
+ "method": {
+  "identifier_confirmation": "Every ingredient string is resolved to a UNII through data/corpus-20k/raw/fda-unii/UNII_Names_4Aug2026.txt before any page match. A page match by UNII, InChIKey or InChIKey skeleton is identifier-confirmed; an ingredient string that resolves to no UNII reaches a page only as a name candidate and goes to the Phase 3 review list.",
+  "combination_products": "`&&` separates the components of a combination product. Every component is mapped to its own page. A combination page is additionally matched only when its recorded component set is exactly the set of component pages resolved for that product.",
+  "salt_and_moiety": "`X eqv Y` marks X as the salt present and Y as the active moiety. Both are resolved; the moiety is preferred as the page target. Where only a salt resolves and its InChIKey skeleton matches a page, the row is emitted with match_rule `skeleton` and form_of_target set to that InChIKey, never merged."
+ }
+}

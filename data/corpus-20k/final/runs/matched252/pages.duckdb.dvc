@@ -1,0 +1,5 @@
+outs:
+- md5: e7d975fdb102964652951fb3ad76362e
+  size: 4468736
+  hash: md5
+  path: pages.duckdb

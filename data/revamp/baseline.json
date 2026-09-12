@@ -1,0 +1,294 @@
+{
+ "schema": "rnawiki-revamp-2026-09-baseline/v1",
+ "step": "0.3",
+ "ranAt": "2026-09-05",
+ "site": "https://rnawiki.com",
+ "method": {
+  "sameRuler": "the corpus-20k measurement scripts, unchanged: gate2/fetch.py (concurrency 4, every request appended to data/corpus-20k/legal/requests.log), gate2/extract.py, overlap/measure.py (seed 20260904, 128 permutations, 5-gram shingles, exhaustive), gate2/folds.py --fold-size 324, gate2/browser-checks.ts",
+  "urlSet": "the 1,592 dossier URLs the Phase 5 measurement fetched, rebuilt row for row from its own fetch record data/corpus-20k/final/html-text/live-dossiers.ndjson",
+  "setKeyLists": "data/corpus-20k/final/lists/*.txt, the key lists the Phase 5 scorer ran on",
+  "sampleFlagAvoided": "measure.py --sample truncates a key at its first comma, which mangles COMBO keys; one NDJSON per set was written instead, as Gate 2 and the Phase 5 measurement did",
+  "production": "read-only SQL over the Railway TCP proxy, DATABASE_PUBLIC_URL of the Postgres service, sslmode=verify-ca with the CA pinned at rnawiki-backups/railway/postgres-root.crt and PGSSLSERVERNAME=localhost",
+  "requestsLogged": 1616,
+  "artefacts": {
+   "fetch": "data/revamp/baseline/html-text/live-dossiers.ndjson",
+   "pages": "data/revamp/baseline/pages/",
+   "runs": "data/revamp/baseline/runs/",
+   "browser": "data/revamp/baseline/browser-checks-live.json",
+   "production": "data/revamp/baseline/production.json",
+   "sitemaps": "data/revamp/baseline/sitemaps/"
+  }
+ },
+ "fetch": {
+  "requested": 1592,
+  "status200": 1592,
+  "non200": []
+ },
+ "sets": {
+  "draw803": 798,
+  "draw324": 322,
+  "indexed": 636,
+  "indexed-prose": 636,
+  "matched604": 604,
+  "matched252": 251
+ },
+ "positional": {
+  "draw803": 0.3,
+  "draw803SizeMatchedTo324": 0.275916,
+  "draw324": 0.27549,
+  "matched604": 0.277962,
+  "matched252": 0.263006,
+  "indexedAllPairs": 0.195831,
+  "indexedSizeMatched": 0.188161,
+  "indexedProseOnly": 0.104789,
+  "p90": {
+   "draw803": 0.510581,
+   "draw324": 0.417913,
+   "indexedAllPairs": 0.576669,
+   "indexedSizeMatched": 0.333633
+  },
+  "aboveTarget_0_20": {
+   "indexedAllPairs": 277,
+   "indexedSizeMatched": 208,
+   "of": 636
+  },
+  "nullExpectedIndexed": 0.362602
+ },
+ "lexical": {
+  "draw803": 0.478208,
+  "draw803SizeMatchedTo324": 0.458333,
+  "draw324": 0.454566,
+  "matched604": 0.457729,
+  "matched252": 0.441687,
+  "indexedAllPairs": 0.368746,
+  "indexedSizeMatched": 0.352953,
+  "indexedProseOnly": 0.425715,
+  "nullExpectedIndexed": 0.49764
+ },
+ "sharedWordShare": {
+  "definition": "share of a page's word occurrences whose word appears on more than 90% of the other pages",
+  "matched604": 0.206851,
+  "matched252": 0.194226,
+  "indexedWithMarkup": 0.430757,
+  "indexedWithoutMarkup": 0.369318,
+  "indexedWithMarkupP90": 0.50386,
+  "indexedWithoutMarkupP90": 0.411472
+ },
+ "crawlTextToHtml": {
+  "definition": "extract.py fullChars / htmlBytes, the same figure Gate 2 and the Phase 5 measurement recorded",
+  "indexedMedian": 0.10649,
+  "indexedMin": 0.07424,
+  "indexedMax": 0.13699,
+  "allFetchedMedian": 0.09055,
+  "byTierMedian": {
+   "tier1": 0.10301,
+   "tier2": 0.07358,
+   "tier3": 0.0584
+  }
+ },
+ "liveTextToHtml": {
+  "definition": "document.body.innerText, whitespace collapsed and trimmed, divided by document.documentElement.outerHTML, measured in Chromium after hydration",
+  "samples": {
+   "metformin": {
+    "desktop": 0.038,
+    "w320": 0.033
+   },
+   "cysteamine": {
+    "desktop": 0.054,
+    "w320": 0.046
+   },
+   "rofecoxib": {
+    "desktop": 0.053,
+    "w320": 0.047
+   },
+   "sirolimus": {
+    "desktop": 0.039,
+    "w320": 0.034
+   },
+   "carbidopa-levodopa": {
+    "desktop": 0.055,
+    "w320": 0.048
+   },
+   "cdx-3379": {
+    "desktop": 0.049,
+    "w320": 0.044
+   },
+   "1-2-distearoyl-sn-glycero-3-phosphocholine": {
+    "desktop": 0.039,
+    "w320": 0.039
+   },
+   "amlodipine": {
+    "desktop": 0.042,
+    "w320": 0.036
+   }
+  },
+  "desktopMedian": 0.0455,
+  "desktopMin": 0.038,
+  "desktopMax": 0.055,
+  "bothWidthsMedian": 0.043,
+  "bothWidthsMin": 0.033,
+  "bothWidthsMax": 0.055
+ },
+ "indexedPerTier": {
+  "tier1": 610,
+  "tier2": 26,
+  "tier3": 0
+ },
+ "indexedPerTierSource": "live sitemap children sitemaps/tier-1.xml and tier-2.xml; Tier 3 appears in no sitemap child",
+ "indexedPerTierFromDatabase": {
+  "tier1": 610,
+  "tier2": 26,
+  "tier3": 0
+ },
+ "production": {
+  "readAt": "2026-09-05",
+  "method": "read-only SQL over the Railway TCP proxy, DATABASE_PUBLIC_URL of the Postgres service, sslmode=verify-ca with the CA pinned at rnawiki-backups/railway/postgres-root.crt and PGSSLSERVERNAME=localhost",
+  "pagesByTier": {
+   "1": 1719,
+   "2": 4477,
+   "3": 22636
+  },
+  "pagesByModel": {
+   "LONGEVITY": 1109,
+   "CLINICAL": 5087,
+   "DEVELOPMENT": 22636
+  },
+  "indexableByTier": {
+   "1": 610,
+   "2": 26
+  },
+  "suppressedByTier": {
+   "1": 755,
+   "2": 1062,
+   "3": 17451
+  },
+  "withdrawnByTier": {
+   "1": 663
+  },
+  "corpusPages": 28832,
+  "indexable": 636,
+  "redirects": 870,
+  "legacyDrugsRows": 9859,
+  "migrationsApplied": 26,
+  "seedFires": {
+   "2": 600,
+   "3": 2771,
+   "4": 1054,
+   "5": 575,
+   "6": 2,
+   "7": 36,
+   "8": 2574,
+   "9": 890,
+   "10": 191,
+   "12": 6086,
+   "13": 2164,
+   "14": 969,
+   "15": 7257,
+   "16": 8615,
+   "17": 182
+  },
+  "seedFiresIndexable": {
+   "2": 333,
+   "3": 537,
+   "4": 603,
+   "5": 28,
+   "6": 1,
+   "7": 27,
+   "8": 473,
+   "9": 258,
+   "10": 12,
+   "12": 626,
+   "14": 33,
+   "15": 634,
+   "16": 636,
+   "17": 63
+  },
+  "questionBlocksIndexable": {
+   "trial-size": 636,
+   "unreported": 626,
+   "human-data": 603,
+   "ladder": 603,
+   "stopped": 595,
+   "biomarkers": 582,
+   "ongoing": 573,
+   "dose-studied": 543,
+   "faers": 526,
+   "pathway": 492,
+   "provenance": 473,
+   "fasting-exercise": 415,
+   "n-of-1": 325,
+   "supervision": 287,
+   "kinetics": 282,
+   "what-would-settle": 258,
+   "interactions": 256,
+   "dose-shape": 170,
+   "clocks": 84,
+   "jurisdiction": 63,
+   "faers-unlisted": 33,
+   "indication": 33,
+   "trial-history": 33,
+   "itp": 27,
+   "contradiction": 12,
+   "classification": 7,
+   "withdrawn": 5,
+   "time-to-signal": 1
+  },
+  "questionBlocksAll": {
+   "trial-size": 8615,
+   "unreported": 6086,
+   "classification": 4620,
+   "sponsor-phase": 4401,
+   "stopped": 3421,
+   "trial-history": 2878,
+   "provenance": 2574,
+   "indication": 2422,
+   "faers": 2420,
+   "mechanism-action": 2343,
+   "lineage": 2085,
+   "regulatory-only": 1916,
+   "development-stop": 1773,
+   "dose-studied": 1759,
+   "supervision": 1669,
+   "kinetics": 1324,
+   "ladder": 1080,
+   "human-data": 1078,
+   "faers-unlisted": 969,
+   "biomarkers": 904,
+   "what-would-settle": 890,
+   "ongoing": 861,
+   "target-phase": 845,
+   "interactions": 808,
+   "pathway": 677,
+   "n-of-1": 592,
+   "fasting-exercise": 523,
+   "never-dosed": 301,
+   "dose-shape": 221,
+   "contradiction": 191,
+   "jurisdiction": 182,
+   "withdrawn": 102,
+   "clocks": 96,
+   "itp": 39,
+   "time-to-signal": 2
+  }
+ },
+ "controls": {
+  "control:other": 0.562496,
+  "control:self": 0.195271
+ },
+ "comparedWith": "docs/worklogs/corpus-20k.md FINAL REPORT and data/corpus-20k/final/summary.json",
+ "matchesFinalReport": true,
+ "discrepancies": [
+  {
+   "kind": "provenance-note",
+   "figure": "Live text-to-HTML (innerText/outerHTML), samples",
+   "note": "The FINAL REPORT states 3.3-5.5 %. The artefact behind that band is data/corpus-20k/gate2/browser-checks-v2.json, a Phase 5a run of the same script against http://localhost:3111 over seven samples (rofecoxib absent, amlodipine in its place), not against the live site. This baseline runs the same script unchanged against https://rnawiki.com over all eight samples: the range over both viewport widths is 0.033-0.055, the same band; read at desktop width alone it is 0.038-0.055 with a median of 0.0455. The live band therefore confirms the reported one and supplies the per-sample live figures the report did not hold.",
+   "affectsComparison": false
+  },
+  {
+   "kind": "provenance-note",
+   "figure": "Positional median, 803 and 324 draw rows of the FINAL REPORT before/after table",
+   "note": "The FINAL REPORT's before/after table labels its two positional rows '803 draw (798 pages after merges)' 0.799 -> 0.278 and '324 draw (322)' 0.786 -> 0.263. Those after values are the like-for-like sets of data/corpus-20k/final/report.md - the 604 medicines (0.277962) and the 251 medicines (0.263006) that resolved on the live site before the corpus deployed - not the seeded draws themselves, which measure 0.300 (798 pages) and 0.275 (322 pages). This baseline reproduces all four figures and records them separately so the Phase 1 comparison cannot conflate them.",
+   "affectsComparison": false
+  }
+ ]
+}

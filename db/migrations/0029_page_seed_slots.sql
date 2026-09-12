@@ -1,0 +1,1 @@
+ALTER TABLE "page_seeds" ADD COLUMN "slots" jsonb DEFAULT '{}'::jsonb NOT NULL;

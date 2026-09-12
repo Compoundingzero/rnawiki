@@ -1,0 +1,38 @@
+{
+  "generated": "scripts/revamp/common_line_share.py",
+  "renders": [
+    {
+      "textDir": "data/revamp/render-v9/text",
+      "pages": 28657,
+      "words": 9162521,
+      "distinctLines": 579571,
+      "linesOnMoreThanHalfOfPages": 7,
+      "wordsOnThoseLines": 638192,
+      "commonLineWordShare": 0.069652,
+      "medianWords": 125,
+      "meanWords": 319.7
+    },
+    {
+      "textDir": "data/revamp/render-v9/text-with-furniture",
+      "pages": 28657,
+      "words": 13083347,
+      "distinctLines": 581654,
+      "linesOnMoreThanHalfOfPages": 20,
+      "wordsOnThoseLines": 4251555,
+      "commonLineWordShare": 0.324959,
+      "medianWords": 275,
+      "meanWords": 456.5
+    },
+    {
+      "textDir": "data/corpus-20k/render/text",
+      "pages": 28832,
+      "words": 7477559,
+      "distinctLines": 514489,
+      "linesOnMoreThanHalfOfPages": 4,
+      "wordsOnThoseLines": 377889,
+      "commonLineWordShare": 0.050536,
+      "medianWords": 80,
+      "meanWords": 259.3
+    }
+  ]
+}

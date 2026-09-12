@@ -1,0 +1,124 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="css/stylesheet.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="images/udb.ico">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin%20Slab">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <style>
+            .one {float:left;}
+            .two {float:right;}
+        </style>
+
+        <title>WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</title>
+    </head>
+    <body>
+
+        <!-- top container-->
+        <div class="container" align="center">
+            <h3 align="center" class="shadow_inner">WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</h3><br>
+            <div class="jumbotron" align="center">
+                <!-- pages -->
+                <ul class="nav nav-tabs nav-justified">
+                    <li><a href="index.html">WITHDRAWN</a></li>
+                    <li><a href="drug_search.html">Drugs</a></li>
+                    <li><a href="targets.html">Targets</a></li>
+                    <li><a href="pathways.html">Pathways</a></li>
+                    <li><a href="toxicities.html">Toxicities</a></li>
+                    <li class="active"><a href="#">Statistics</a></li>
+                    <li><a href="help_faq.html">Help/FAQ</a></li>
+                    <li><a href="links.html">Links/Download</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="shadow" align='center'>
+                <h4 align="center" class="shadow_inner">WITHDRAWN Statistics</h4><br>
+                <img src="images/stat_icon.png" class="img-responsive" width="93" height="100">
+                <p>
+                    You will find below some statistics that resulted from comparison of withdrawn drugs with the approved drugs from FDA 
+                    as well as about the targets that have highest number of interactions with withdrawn and discontinued drugs. 
+                </p>
+            </div>
+            <div class="shadow" align="center">
+                <h4 align="center" class="shadow_inner">ATC Class Distribution (FDA Approved vs UnfortunateDB)</h4><br>
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <img src="plots/plot_atc_fda_final.jpg" class="img-responsive">
+                        <p>FDA Approved Drugs</p>
+                    </div>
+                    <div class="col-md-6" align="center">
+                        <img src="plots/plot_atc_unfortunate_final.jpg" class="img-responsive">
+                        <p>Withdrawn/Discontinued Drugs</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="shadow" align='center'>
+
+                <h4 align="center" class="shadow_inner">Top 20 Human Targets (Cytochromes)</h4><br>
+                <p>on y-axis: distinct number of interacting drugs</p>
+                <p>on x-axis: gene names of targets</p>
+                <img src="plots/target_cytochrome_top20.png" class="img-responsive">
+                <p>Gene Names</p>
+            </div>
+            <div class="shadow" align='center'>
+
+                <h4 align="center" class="shadow_inner">Top 20 Human Targets (Transporters)</h4><br>
+                <p>on y-axis: distinct number of interacting drugs</p>
+                <p>on x-axis: gene names of targets</p>
+                <img src="plots/target_transporter_top20.png" class="img-responsive">
+                <p>Gene Names</p>
+            </div>
+            <div class="shadow" align='center'>
+
+                <h4 align="center" class="shadow_inner">Top 20 Human Targets (Other Proteins)</h4><br>
+                <p>on y-axis: distinct number of interacting drugs</p>
+                <p>on x-axis: gene names of targets</p>
+                <img src="plots/target_others_top20.png" class="img-responsive">
+                <p>Gene Names</p>
+            </div>
+            <br><br>
+        </div>
+
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://bioinformatics.charite.de/biostats/" : "http://bioinformatics.charite.de/biostats/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+            try {
+                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 25);
+                piwikTracker.trackPageView();
+                piwikTracker.enableLinkTracking();
+            } catch (err) {
+            }
+        </script><noscript><p><img src="http://bioinformatics.charite.de/biostats/piwik.php?idsite=25" style="border:0" alt="" /></p></noscript>
+        <!-- End Piwik Tracking Code -->
+
+        <!-- footer -->
+        <footer class="footer-intro">
+            <ul>
+                <li><font color="white">Last Updated: September 2015</font></li>
+                <li><font color="white">|</font></li>
+                <li><a href="http://bioinformatics.charite.de/main/content/index.php" target="_blank">Structural Bioinformatics Group at Charité</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

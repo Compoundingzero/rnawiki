@@ -21,7 +21,21 @@ import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 
 const TYPES_SOURCE = 'lib/background/types.ts'
 const VIEW_SOURCE = 'lib/medicine-background-view.ts'
-const SECTIONS_SOURCE = 'components/MedicineRecordContextSections.tsx'
+
+/*
+ * The medicine page's two projections of the stored envelope.
+ *
+ * `recorded-label.ts` takes the modules that carry label prose; `recorded-facts.ts` takes the ones
+ * that carry counts, names, dates and identifiers. Between them they are the whole reader surface
+ * for `recorded_background`, and the check below is that no module falls outside both.
+ *
+ * This check used to point at `components/MedicineRecordContextSections.tsx`. That component
+ * belonged to the medicine layout this release deleted, and deleting it left eighteen modules
+ * stored, validated and unreachable — 7,126 recorded source materials, 5,998 product listings,
+ * 2,542 approval records — which is the exact failure this file was written to catch, arriving by
+ * a route it could not see. It is pointed at the live projections now.
+ */
+const COMPASS_PROJECTIONS = ['lib/dossier-v4/recorded-label.ts', 'lib/dossier-v4/recorded-facts.ts']
 
 /**
  * Fields of the envelope that carry no reader-facing content.
@@ -84,30 +98,36 @@ describe('every stored module reaches a reader', () => {
     expect(missing, `never read by the view model: ${missing.join(', ')}`).toEqual([])
   })
 
-  it('renders every field of the view model in a page section', () => {
-    // Checked against the view's own field names rather than the envelope's, because the projection
-    // is allowed to rename: `costContext` is stored under that name and shown as `costEntries`.
-    // What must never happen is a view field with nowhere to render.
-    const view = readFileSync(VIEW_SOURCE, 'utf8')
-    const block = view.match(
-      /export interface MedicineBackgroundContextView \{([\s\S]*?)\n\}/u,
-    )?.[1]
-    expect(block, 'MedicineBackgroundContextView declaration not found').toBeDefined()
-    const viewFields = [...block!.matchAll(/^\s{2}(\w+)\??:/gmu)]
-      .map((match) => match[1]!)
-      /*
-       * `driftedSources` reaches a reader as a STATE on another section -- it marks a question stale
-       * and puts "Source needs rechecking" on a navigator row -- rather than as a block of its own.
-       * A section listing source identifiers would answer no question a reader has. Declared here so
-       * a genuinely unreachable module still fails this check.
-       */
-      .filter((field) => !['authoredAt', 'provenanceNote', 'driftedSources'].includes(field))
-
-    const sections = readFileSync(SECTIONS_SOURCE, 'utf8')
-    const missing = viewFields.filter(
-      (field) => !new RegExp(`background[?!]?\\.${field}\\b`, 'u').test(sections),
+  it('reads every stored module in one of the medicine page projections', () => {
+    const projections = COMPASS_PROJECTIONS.map((file) => readFileSync(file, 'utf8')).join('\n')
+    const missing = modules.filter(
+      (module) =>
+        !new RegExp(`(?:envelope|background)\\.${module}\\b|'${module}'`, 'u').test(projections),
     )
-    expect(missing, `projected but never rendered: ${missing.join(', ')}`).toEqual([])
+    expect(
+      missing,
+      `stored in the envelope and read by no projection the medicine page renders: ${missing.join(', ')}`,
+    ).toEqual([])
+  })
+
+  it('renders every projected group somewhere on the medicine page', () => {
+    /*
+     * A projection that nothing renders is the same defect one step later, so the groups
+     * `recordedFactsFor` returns are checked against the components that consume them. The compass
+     * distributes them across sections rather than collecting them into one block, which is why this
+     * reads the whole component directory rather than a single file.
+     */
+    const facts = readFileSync('lib/dossier-v4/recorded-facts.ts', 'utf8')
+    const block = facts.match(/export interface RecordedFacts \{([\s\S]*?)\n\}/u)?.[1]
+    expect(block, 'RecordedFacts declaration not found').toBeDefined()
+    const groups = [...block!.matchAll(/^\s{2}(\w+)\??:/gmu)]
+      .map((match) => match[1]!)
+      // The citation carried alongside the identifier list, not a group of its own.
+      .filter((group) => group !== 'identifierCitation')
+
+    const model = readFileSync('lib/dossier-v4/view-model.ts', 'utf8')
+    const missing = groups.filter((group) => !new RegExp(`facts\\.${group}\\b`, 'u').test(model))
+    expect(missing, `projected but never given to a section: ${missing.join(', ')}`).toEqual([])
   })
 
   it('reaches the view for the modules the corpus actually stores', () => {

@@ -1,0 +1,5 @@
+outs:
+- md5: a0869f84e97248d4b3988d62e4cf69e9
+  size: 1335
+  hash: md5
+  path: requests.log

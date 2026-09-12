@@ -1,0 +1,172 @@
+{
+  "source": "withdrawn",
+  "sourceName": "WITHDRAWN 2.0 database (Charite, Structural Bioinformatics Group / AG Preissner)",
+  "attemptedDate": "2026-09-05",
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "dataFilesRetrieved": 0,
+  "dataBytesRetrieved": 0,
+  "note": "No WITHDRAWN data file was retrieved. Every file listed below is a legal or evidence capture, not source data. The database web application returns HTTP 404 on every path and its predecessor host has no DNS A record.",
+  "licence": "Not established. No licence, terms-of-use or copyright statement is published on any surviving page of the WITHDRAWN 2.0 database (checked: index, FAQ, contact, footer, and the live group homepage). The CC BY-NC 4.0 notice associated with the database is the Oxford University Press licence of the Nucleic Acids Research article (Nucleic Acids Res 2024;52(D1):D1503), which governs the article text, not the database contents.",
+  "licenceUrl": null,
+  "robotsTxt": {
+    "url": "https://bioinformatics.charite.de/robots.txt",
+    "path": "legal/robots.txt",
+    "verdict": "no Disallow rule covers /withdrawn_3 or /withdrawn; robots did not block retrieval"
+  },
+  "primaryTargets": [
+    "https://bioinformatics.charite.de/withdrawn_3/downloads/withdrawns.csv",
+    "https://bioinformatics.charite.de/withdrawn_3/downloads/withdrawn.sql",
+    "https://bioinformatics.charite.de/withdrawn_3/downloads/w200_checklist.csv",
+    "https://bioinformatics.charite.de/withdrawn_3/index.php",
+    "http://cheminfo.charite.de/withdrawn/"
+  ],
+  "files": [
+    {
+      "path": "legal/about.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/about.php",
+      "retrievedUtc": "2026-09-05T07:35:23Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/archived-contact.php.html",
+      "url": "https://web.archive.org/web/20231205192701id_/https://bioinformatics.charite.de/withdrawn_3/subpages/contact.php",
+      "retrievedUtc": "2026-09-05T07:39:42Z",
+      "bytes": 4176,
+      "sha256": "6db8808d258cecd31364a266529b1cf841c638eeefcb28a67ae0348a260206aa"
+    },
+    {
+      "path": "legal/archived-faq.php.html",
+      "url": "https://web.archive.org/web/20231205184919id_/https://bioinformatics.charite.de/withdrawn_3/subpages/faq.php",
+      "retrievedUtc": "2026-09-05T07:39:13Z",
+      "bytes": 24518,
+      "sha256": "887cec550a052b7219d87c8547d8ad713624c0359c53b9afe2e92144f57f861a"
+    },
+    {
+      "path": "legal/archived-footer.html",
+      "url": "https://web.archive.org/web/20250720082642id_/https://bioinformatics.charite.de/withdrawn_3/templates/footer.html",
+      "retrievedUtc": "2026-09-05T07:39:39Z",
+      "bytes": 106,
+      "sha256": "3c03967d934be89a17fe2e42047d0a4011b5cc7e17c8cae67de2cab8d5f52893"
+    },
+    {
+      "path": "legal/archived-index.php.html",
+      "url": "https://web.archive.org/web/20231205175422id_/https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:39:41Z",
+      "bytes": 16355,
+      "sha256": "53076d98e3d67a17523964f55d1c9a41ee7c9a0110d533f03d72f6e9b31ab2d8"
+    },
+    {
+      "path": "legal/contact.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/contact.php",
+      "retrievedUtc": "2026-09-05T07:35:25Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/download.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/download.php",
+      "retrievedUtc": "2026-09-05T07:35:24Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/downloads.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/downloads.php",
+      "retrievedUtc": "2026-09-05T07:35:24Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/group-main.html",
+      "url": "https://bioinformatics.charite.de/main/index.php",
+      "retrievedUtc": "2026-09-05T07:35:47Z",
+      "bytes": 12128,
+      "sha256": "aa60ba61792725d76a71fc0284acd481803ea76ae5e54c1789435e69be26dddb"
+    },
+    {
+      "path": "legal/help.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/help.php",
+      "retrievedUtc": "2026-09-05T07:35:25Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/index.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:35:22Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/robots.txt",
+      "url": "https://bioinformatics.charite.de/robots.txt",
+      "retrievedUtc": "2026-09-05T07:35:15Z",
+      "bytes": 303,
+      "sha256": "b22adda5fc717f58b6c8d06339069c37800d3a0ac7a449bdbe46812655742940"
+    },
+    {
+      "path": "legal/site-root.html",
+      "url": "https://bioinformatics.charite.de/",
+      "retrievedUtc": "2026-09-05T07:35:38Z",
+      "bytes": 402,
+      "sha256": "01269a98d08393905f339bfda5f28c150e23896ecf9c01e9bf9bc6a852d59364"
+    },
+    {
+      "path": "legal/withdrawn-index.html",
+      "url": "https://bioinformatics.charite.de/withdrawn/",
+      "retrievedUtc": "2026-09-05T07:35:38Z",
+      "bytes": 396,
+      "sha256": "74a3150bfae89e11769310094ad9b57416133f85724aa7f482e80bf5db6c06cf"
+    },
+    {
+      "path": "legal/withdrawn3-browserua.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:36:21Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/withdrawn3-try1.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:36:05Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/withdrawn3-try2.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:36:08Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/withdrawn3-try3.html",
+      "url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+      "retrievedUtc": "2026-09-05T07:36:12Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "requests.log",
+      "url": "(local request log: iso_timestamp, url, http_status, bytes, outfile)",
+      "retrievedUtc": "2026-09-05T07:41:39Z",
+      "bytes": 5877,
+      "sha256": "e06d31edbf9f2ea2097b73ea709c5dc024315a869c7717a5ec8e94d7cb0a2b8c"
+    },
+    {
+      "path": "requests.log.curlerr",
+      "url": "(local curl stderr capture)",
+      "retrievedUtc": "2026-09-05T07:35:15Z",
+      "bytes": 108,
+      "sha256": "0d036ccb806e399f35359d7d52c02b97e2ef59e1e6eab428da51c472891b62c1"
+    },
+    {
+      "path": "retry-evidence.txt",
+      "url": "(local evidence file: three retries with exponential backoff per target URL)",
+      "retrievedUtc": "2026-09-05T07:41:58Z",
+      "bytes": 3076,
+      "sha256": "b50c3a646923c0d664f1336b76e205e989d83025dab20325c5caea0c6cb3b13f"
+    }
+  ]
+}

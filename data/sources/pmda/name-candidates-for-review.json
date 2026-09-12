@@ -1,0 +1,1559 @@
+[
+  {
+    "key": "K1:NA71GR3TNV",
+    "tier": 2,
+    "corpus_display_name": "Adrenaline",
+    "pmda_name": "Adrenaline",
+    "source_record_id": "pmda:p006:r10",
+    "approval_date": "2025-09-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:SY7Q814VUP",
+    "tier": 1,
+    "corpus_display_name": "CALCIUM",
+    "pmda_name": "Calcium gluconate hydrate",
+    "source_record_id": "pmda:p010:r07",
+    "approval_date": "2025-12-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:UV63W89SJM",
+    "tier": 2,
+    "corpus_display_name": "(ACETATO-O)(DODECANOATO-O)CALCIUM",
+    "pmda_name": "Calcium gluconate hydrate",
+    "source_record_id": "pmda:p010:r07",
+    "approval_date": "2025-12-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:SY7Q814VUP",
+    "tier": 1,
+    "corpus_display_name": "CALCIUM",
+    "pmda_name": "Calcium chloride hydrate",
+    "source_record_id": "pmda:p010:r07",
+    "approval_date": "2025-12-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:UV63W89SJM",
+    "tier": 2,
+    "corpus_display_name": "(ACETATO-O)(DODECANOATO-O)CALCIUM",
+    "pmda_name": "Calcium chloride hydrate",
+    "source_record_id": "pmda:p010:r07",
+    "approval_date": "2025-12-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C4V974V932",
+    "tier": 2,
+    "corpus_display_name": "Indocyanine Green Acid Form",
+    "pmda_name": "Indocyanine green",
+    "source_record_id": "pmda:p012:r12",
+    "approval_date": "2026-02-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p012:r15",
+    "approval_date": "2026-02-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:NA71GR3TNV",
+    "tier": 2,
+    "corpus_display_name": "Adrenaline",
+    "pmda_name": "Adrenaline bitartrate",
+    "source_record_id": "pmda:p017:r03",
+    "approval_date": "2024-09-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p018:r01",
+    "approval_date": "2024-06-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04Q9AIZ7NO",
+    "tier": 2,
+    "corpus_display_name": "Pemetrexed",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p020:r01",
+    "approval_date": "2024-08-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:FG8Q47888S",
+    "tier": 2,
+    "corpus_display_name": "PEMETREXED, (R)-",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p020:r01",
+    "approval_date": "2024-08-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04Q9AIZ7NO",
+    "tier": 2,
+    "corpus_display_name": "Pemetrexed",
+    "pmda_name": "Pemetrexed sodium hemipentahydrate",
+    "source_record_id": "pmda:p020:r02",
+    "approval_date": "2024-08-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p020:r13",
+    "approval_date": "2024-09-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:43502P7F0P",
+    "tier": 1,
+    "corpus_display_name": "METHYLPREDNISOLONE ACETATE",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p026:r03",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5GMR90S4KN",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone Hemisuccinate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p026:r03",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p026:r03",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p026:r03",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:X4W7ZR7023",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p026:r03",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C4V974V932",
+    "tier": 2,
+    "corpus_display_name": "Indocyanine Green Acid Form",
+    "pmda_name": "Indocyanine green",
+    "source_record_id": "pmda:p027:r05",
+    "approval_date": "2023-09-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:2DS058H2CF",
+    "tier": 1,
+    "corpus_display_name": "Fenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p028:r05",
+    "approval_date": "2024-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:953A94Y45B",
+    "tier": 3,
+    "corpus_display_name": "Levofenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p028:r05",
+    "approval_date": "2024-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:E35R3G56OV",
+    "tier": 1,
+    "corpus_display_name": "Dexfenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p028:r05",
+    "approval_date": "2024-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p031:r10",
+    "approval_date": "2023-11-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:20ED16GHEB",
+    "tier": 1,
+    "corpus_display_name": "Choriogonadotropin beta",
+    "pmda_name": "Human chorionic gonadotrophin",
+    "source_record_id": "pmda:p038:r03",
+    "approval_date": "2022-08-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7IGF0S7R8I",
+    "tier": 2,
+    "corpus_display_name": "Fytic acid",
+    "pmda_name": "Sodium phytate",
+    "source_record_id": "pmda:p039:r06",
+    "approval_date": "2023-03-27",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:2DS058H2CF",
+    "tier": 1,
+    "corpus_display_name": "Fenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p039:r11",
+    "approval_date": "2022-09-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:953A94Y45B",
+    "tier": 3,
+    "corpus_display_name": "Levofenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p039:r11",
+    "approval_date": "2022-09-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:E35R3G56OV",
+    "tier": 1,
+    "corpus_display_name": "Dexfenfluramine",
+    "pmda_name": "Fenfluramine hydrochloride",
+    "source_record_id": "pmda:p039:r11",
+    "approval_date": "2022-09-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:B6E06QE59J",
+    "tier": 2,
+    "corpus_display_name": "Mepivacaine",
+    "pmda_name": "Mepivacaine hydrochloride",
+    "source_record_id": "pmda:p040:r08",
+    "approval_date": "2022-12-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04Q9AIZ7NO",
+    "tier": 2,
+    "corpus_display_name": "Pemetrexed",
+    "pmda_name": "Pemetrexed sodium hemipentahydrate",
+    "source_record_id": "pmda:p045:r02",
+    "approval_date": "2023-03-27",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:GKIRPKYJQBWNGO-UHFFFAOYSA-N",
+    "tier": 1,
+    "corpus_display_name": "Clomifene",
+    "pmda_name": "Clomiphene citrate",
+    "source_record_id": "pmda:p050:r10",
+    "approval_date": "2022-03-11",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:Q42T66VG0C",
+    "tier": 2,
+    "corpus_display_name": "Penicillin G",
+    "pmda_name": "Benzylpenicillin benzathine hydrate",
+    "source_record_id": "pmda:p052:r08",
+    "approval_date": "2021-09-27",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:FPAFDBFIGPHWGO-UHFFFAOYSA-N",
+    "tier": 2,
+    "corpus_display_name": "TALC",
+    "pmda_name": "Talc",
+    "source_record_id": "pmda:p054:r02",
+    "approval_date": "2022-03-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:23227F83U0",
+    "tier": 2,
+    "corpus_display_name": "Lysine Aspartate",
+    "pmda_name": "L-Lysine hydrochloride",
+    "source_record_id": "pmda:p054:r08",
+    "approval_date": "2021-06-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:K3Z4F929H6",
+    "tier": 2,
+    "corpus_display_name": "Lysine",
+    "pmda_name": "L-Lysine hydrochloride",
+    "source_record_id": "pmda:p054:r08",
+    "approval_date": "2021-06-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:Q573I9DVLP",
+    "tier": 2,
+    "corpus_display_name": "Leucovorin",
+    "pmda_name": "Calcium folinate",
+    "source_record_id": "pmda:p055:r13",
+    "approval_date": "2021-11-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VR9EYV4XBE",
+    "tier": 2,
+    "corpus_display_name": "Folinic ACID, (6R)-",
+    "pmda_name": "Calcium folinate",
+    "source_record_id": "pmda:p055:r13",
+    "approval_date": "2021-11-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:35C9R2N24F",
+    "tier": 2,
+    "corpus_display_name": "Enterobactin",
+    "pmda_name": "Ferric citrate hydrate",
+    "source_record_id": "pmda:p059:r13",
+    "approval_date": "2021-03-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:RR6P8L282I",
+    "tier": 2,
+    "corpus_display_name": "Siponimod",
+    "pmda_name": "Siponimod fumaric acid",
+    "source_record_id": "pmda:p062:r01",
+    "approval_date": "2020-06-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p064:r08",
+    "approval_date": "2020-11-27",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:B408IW3GL5",
+    "tier": 3,
+    "corpus_display_name": "LANINAMIVIR",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "source_record_id": "pmda:p074:r16",
+    "approval_date": "2019-06-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p075:r06",
+    "approval_date": "2019-05-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p075:r07",
+    "approval_date": "2019-06-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:DKO1W9H7M1",
+    "tier": 2,
+    "corpus_display_name": "Dolutegravir",
+    "pmda_name": "Dolutegravir sodium",
+    "source_record_id": "pmda:p075:r08",
+    "approval_date": "2020-01-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "COMBO:{K1:2T8Q726O95,K1:DKO1W9H7M1}",
+    "tier": 2,
+    "corpus_display_name": "Dolutegravir and Lamivudine",
+    "pmda_name": "Dolutegravir sodium/Lamivudine",
+    "source_record_id": "pmda:p075:r08",
+    "approval_date": "2020-01-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:87LA6FU830",
+    "tier": 1,
+    "corpus_display_name": "Tofacitinib",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p081:r01",
+    "approval_date": "2018-05-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:99GS5XTB51",
+    "tier": 2,
+    "corpus_display_name": "Oclacitinib",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p081:r01",
+    "approval_date": "2018-05-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C3EP7ZZ9UQ",
+    "tier": 3,
+    "corpus_display_name": "TOFACITINIB, (3S,4S)-",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p081:r01",
+    "approval_date": "2018-05-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p084:r10",
+    "approval_date": "2019-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:DREIJXJRTLTGJC-ZLBJMMTISA-N",
+    "tier": 2,
+    "corpus_display_name": "Peficitinib",
+    "pmda_name": "Peficitinib hydrobromide",
+    "source_record_id": "pmda:p084:r11",
+    "approval_date": "2019-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C4V974V932",
+    "tier": 2,
+    "corpus_display_name": "Indocyanine Green Acid Form",
+    "pmda_name": "Indocyanine green",
+    "source_record_id": "pmda:p085:r07",
+    "approval_date": "2018-07-02",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p085:r16",
+    "approval_date": "2018-07-02",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p088:r15",
+    "approval_date": "2018-08-21",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:DKO1W9H7M1",
+    "tier": 2,
+    "corpus_display_name": "Dolutegravir",
+    "pmda_name": "Dolutegravir sodium",
+    "source_record_id": "pmda:p089:r01",
+    "approval_date": "2018-11-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p089:r02",
+    "approval_date": "2019-03-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:013TE6E4WV",
+    "tier": 2,
+    "corpus_display_name": "Ledipasvir",
+    "pmda_name": "Ledipasvir acetonate",
+    "source_record_id": "pmda:p093:r12",
+    "approval_date": "2018-02-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p099:r02",
+    "approval_date": "2018-03-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:95D580798S",
+    "tier": 2,
+    "corpus_display_name": "Picosulfuric Acid",
+    "pmda_name": "Sodium picosulfate hydrate",
+    "source_record_id": "pmda:p101:r04",
+    "approval_date": "2016-07-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7Q2Q6Q87SS",
+    "tier": 2,
+    "corpus_display_name": "Carteolol",
+    "pmda_name": "Carteolol hydrochloride",
+    "source_record_id": "pmda:p103:r10",
+    "approval_date": "2016-09-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:8NF31401XG",
+    "tier": 2,
+    "corpus_display_name": "Carteolol",
+    "pmda_name": "Carteolol hydrochloride",
+    "source_record_id": "pmda:p103:r10",
+    "approval_date": "2016-09-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:B408IW3GL5",
+    "tier": 3,
+    "corpus_display_name": "LANINAMIVIR",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "source_record_id": "pmda:p103:r13",
+    "approval_date": "2016-08-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p104:r09",
+    "approval_date": "2016-12-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p106:r01",
+    "approval_date": "2016-12-02",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p108:r10",
+    "approval_date": "2016-06-17",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "COMBO:{K1:LW2E03M5PG,K1:YO603Y8113}",
+    "tier": 2,
+    "corpus_display_name": "Darunavir and Cobicistat",
+    "pmda_name": "Darunavir ethanolate/ Cobicistat",
+    "source_record_id": "pmda:p108:r12",
+    "approval_date": "2016-11-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:EL9943AG5J",
+    "tier": 2,
+    "corpus_display_name": "Tenofovir alafenamide",
+    "pmda_name": "Tenofovir alafenamide fumarate",
+    "source_record_id": "pmda:p108:r13",
+    "approval_date": "2016-12-09",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:1806D8D52K",
+    "tier": 1,
+    "corpus_display_name": "Amitriptyline",
+    "pmda_name": "Amitriptyline hydrochloride",
+    "source_record_id": "pmda:p111:r04",
+    "approval_date": "2016-02-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:013TE6E4WV",
+    "tier": 2,
+    "corpus_display_name": "Ledipasvir",
+    "pmda_name": "Ledipasvir acetonate",
+    "source_record_id": "pmda:p112:r02",
+    "approval_date": "2015-07-03",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:MVR3634GX1",
+    "tier": 2,
+    "corpus_display_name": "Primaquine",
+    "pmda_name": "Primaquine phosphate",
+    "source_record_id": "pmda:p112:r12",
+    "approval_date": "2016-03-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:QAO8PF7Q30",
+    "tier": 1,
+    "corpus_display_name": "Primaquine",
+    "pmda_name": "Primaquine phosphate",
+    "source_record_id": "pmda:p112:r12",
+    "approval_date": "2016-03-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:33E86K87QN",
+    "tier": 2,
+    "corpus_display_name": "Trametinib",
+    "pmda_name": "Trametinib dimethyl sulfoxide",
+    "source_record_id": "pmda:p116:r09",
+    "approval_date": "2016-03-28",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p121:r12",
+    "approval_date": "2014-07-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:43502P7F0P",
+    "tier": 1,
+    "corpus_display_name": "METHYLPREDNISOLONE ACETATE",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p122:r02",
+    "approval_date": "2014-08-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5GMR90S4KN",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone Hemisuccinate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p122:r02",
+    "approval_date": "2014-08-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p122:r02",
+    "approval_date": "2014-08-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p122:r02",
+    "approval_date": "2014-08-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:X4W7ZR7023",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p122:r02",
+    "approval_date": "2014-08-29",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:51F690397J",
+    "tier": 2,
+    "corpus_display_name": "Cabazitaxel",
+    "pmda_name": "Cabazitaxel acetonate",
+    "source_record_id": "pmda:p124:r05",
+    "approval_date": "2014-07-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:DKO1W9H7M1",
+    "tier": 2,
+    "corpus_display_name": "Dolutegravir",
+    "pmda_name": "Dolutegravir sodium",
+    "source_record_id": "pmda:p125:r12",
+    "approval_date": "2015-03-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "COMBO:{K1:2T8Q726O95,K1:DKO1W9H7M1,K1:WR2TIP26VS}",
+    "tier": 2,
+    "corpus_display_name": "Abacavir, Dolutegravir, Lamivudine",
+    "pmda_name": "Dolutegravir sodium, Abacavir sulfate, Lamivudine",
+    "source_record_id": "pmda:p125:r12",
+    "approval_date": "2015-03-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7PCM518YLR",
+    "tier": 2,
+    "corpus_display_name": "Efmoroctocog alfa",
+    "pmda_name": "Efraloctocog alfa (genetical recombination)",
+    "source_record_id": "pmda:p126:r08",
+    "approval_date": "2014-12-26",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:35C9R2N24F",
+    "tier": 2,
+    "corpus_display_name": "Enterobactin",
+    "pmda_name": "Ferric citrate hydrate",
+    "source_record_id": "pmda:p127:r11",
+    "approval_date": "2014-01-17",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:41VRH5220H",
+    "tier": 2,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p129:r07",
+    "approval_date": "2013-11-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:58SBH37T77",
+    "tier": 1,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p129:r07",
+    "approval_date": "2013-11-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9BK3JK3ETK",
+    "tier": 1,
+    "corpus_display_name": "Tapentadol",
+    "pmda_name": "Tapentadol hydrochloride",
+    "source_record_id": "pmda:p130:r13",
+    "approval_date": "2014-03-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:H8A007M585",
+    "tier": 2,
+    "corpus_display_name": "Tapentadol",
+    "pmda_name": "Tapentadol hydrochloride",
+    "source_record_id": "pmda:p130:r13",
+    "approval_date": "2014-03-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:B408IW3GL5",
+    "tier": 3,
+    "corpus_display_name": "LANINAMIVIR",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "source_record_id": "pmda:p131:r02",
+    "approval_date": "2013-12-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:028LZY775B",
+    "tier": 2,
+    "corpus_display_name": "Vilanterol",
+    "pmda_name": "Vilanterol trifenatate",
+    "source_record_id": "pmda:p132:r08",
+    "approval_date": "2013-09-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:DKO1W9H7M1",
+    "tier": 2,
+    "corpus_display_name": "Dolutegravir",
+    "pmda_name": "Dolutegravir sodium",
+    "source_record_id": "pmda:p134:r17",
+    "approval_date": "2014-03-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K4:monobasic",
+    "tier": 3,
+    "corpus_display_name": "Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "source_record_id": "pmda:p136:r07",
+    "approval_date": "2012-12-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:43502P7F0P",
+    "tier": 1,
+    "corpus_display_name": "METHYLPREDNISOLONE ACETATE",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p138:r13",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5GMR90S4KN",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone Hemisuccinate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p138:r13",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p138:r13",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p138:r13",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:X4W7ZR7023",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p138:r13",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "COMBO:{K1:AN164J8Y0X,K1:JE42381TNV}",
+    "tier": 3,
+    "corpus_display_name": "CO-TRIMOXAZOLE",
+    "pmda_name": "Sulfamethoxazole/ trimethoprim",
+    "source_record_id": "pmda:p139:r10",
+    "approval_date": "2012-08-10",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04201GDN4R",
+    "tier": 1,
+    "corpus_display_name": "Mometasone Furoate",
+    "pmda_name": "Mometasone furoate hydrate",
+    "source_record_id": "pmda:p141:r06",
+    "approval_date": "2012-05-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:8HR4QJ6DW8",
+    "tier": 2,
+    "corpus_display_name": "MOMETASONE",
+    "pmda_name": "Mometasone furoate hydrate",
+    "source_record_id": "pmda:p141:r06",
+    "approval_date": "2012-05-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:87LA6FU830",
+    "tier": 1,
+    "corpus_display_name": "Tofacitinib",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p142:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:99GS5XTB51",
+    "tier": 2,
+    "corpus_display_name": "Oclacitinib",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p142:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C3EP7ZZ9UQ",
+    "tier": 3,
+    "corpus_display_name": "TOFACITINIB, (3S,4S)-",
+    "pmda_name": "Tofacitinib citrate",
+    "source_record_id": "pmda:p142:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "HOLD:existing:vincristine",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine sulfate",
+    "source_record_id": "pmda:p145:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5J49Q6B70F",
+    "tier": 3,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine sulfate",
+    "source_record_id": "pmda:p145:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:RSA8KO39WH",
+    "tier": 2,
+    "corpus_display_name": "Vindesine",
+    "pmda_name": "Vincristine sulfate",
+    "source_record_id": "pmda:p145:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine sulfate",
+    "source_record_id": "pmda:p145:r02",
+    "approval_date": "2013-03-25",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:43502P7F0P",
+    "tier": 1,
+    "corpus_display_name": "METHYLPREDNISOLONE ACETATE",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p147:r04",
+    "approval_date": "2011-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5GMR90S4KN",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone Hemisuccinate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p147:r04",
+    "approval_date": "2011-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p147:r04",
+    "approval_date": "2011-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p147:r04",
+    "approval_date": "2011-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:X4W7ZR7023",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p147:r04",
+    "approval_date": "2011-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:Q42T66VG0C",
+    "tier": 2,
+    "corpus_display_name": "Penicillin G",
+    "pmda_name": "Benzylpenicillin potassium",
+    "source_record_id": "pmda:p152:r09",
+    "approval_date": "2012-02-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C4V974V932",
+    "tier": 2,
+    "corpus_display_name": "Indocyanine Green Acid Form",
+    "pmda_name": "Indocyanine green",
+    "source_record_id": "pmda:p158:r09",
+    "approval_date": "2012-02-22",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:IV9VHT3YUM",
+    "tier": 3,
+    "corpus_display_name": "Roxatidine",
+    "pmda_name": "Roxatidine acetate hydrochloride",
+    "source_record_id": "pmda:p159:r11",
+    "approval_date": "2011-01-21",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5Q7ZVV76EI",
+    "tier": 1,
+    "corpus_display_name": "Warfarin",
+    "pmda_name": "Warfarin potassium",
+    "source_record_id": "pmda:p160:r08",
+    "approval_date": "2011-02-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:I6WP63U32H",
+    "tier": 2,
+    "corpus_display_name": "Acenocoumarol",
+    "pmda_name": "Warfarin potassium",
+    "source_record_id": "pmda:p160:r08",
+    "approval_date": "2011-02-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:Q08SIO485D",
+    "tier": 1,
+    "corpus_display_name": "Phenprocoumon",
+    "pmda_name": "Warfarin potassium",
+    "source_record_id": "pmda:p160:r08",
+    "approval_date": "2011-02-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:B408IW3GL5",
+    "tier": 3,
+    "corpus_display_name": "LANINAMIVIR",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "source_record_id": "pmda:p163:r02",
+    "approval_date": "2010-09-10",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:90Y4QC304K",
+    "tier": 1,
+    "corpus_display_name": "Ketoprofen",
+    "pmda_name": "Ketoprofen",
+    "source_record_id": "pmda:p164:r09",
+    "approval_date": "2011-02-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:0G389FZZ9M",
+    "tier": 1,
+    "corpus_display_name": "Levocarnitine",
+    "pmda_name": "Levocarnitine chloride",
+    "source_record_id": "pmda:p165:r13",
+    "approval_date": "2011-03-10",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:S7UI8SM58A",
+    "tier": 1,
+    "corpus_display_name": "Carnitine",
+    "pmda_name": "Levocarnitine chloride",
+    "source_record_id": "pmda:p165:r13",
+    "approval_date": "2011-03-10",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:A051Q2099Q",
+    "tier": 2,
+    "corpus_display_name": "Mirtazapine",
+    "pmda_name": "Mirtazapine",
+    "source_record_id": "pmda:p169:r03",
+    "approval_date": "2009-07-07",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:41VRH5220H",
+    "tier": 2,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p169:r04",
+    "approval_date": "2009-10-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:58SBH37T77",
+    "tier": 1,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p169:r04",
+    "approval_date": "2009-10-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K4:chondroitin",
+    "tier": 1,
+    "corpus_display_name": "Chondroitin",
+    "pmda_name": "chondroitin sulfate sodium",
+    "source_record_id": "pmda:p169:r10",
+    "approval_date": "2009-08-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:90Y4QC304K",
+    "tier": 1,
+    "corpus_display_name": "Ketoprofen",
+    "pmda_name": "Ketoprofen",
+    "source_record_id": "pmda:p171:r05",
+    "approval_date": "2009-11-06",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04Q9AIZ7NO",
+    "tier": 2,
+    "corpus_display_name": "Pemetrexed",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p173:r01",
+    "approval_date": "2009-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:FG8Q47888S",
+    "tier": 2,
+    "corpus_display_name": "PEMETREXED, (R)-",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p173:r01",
+    "approval_date": "2009-05-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:C4V974V932",
+    "tier": 2,
+    "corpus_display_name": "Indocyanine Green Acid Form",
+    "pmda_name": "Indocyanine green",
+    "source_record_id": "pmda:p174:r04",
+    "approval_date": "2009-09-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04201GDN4R",
+    "tier": 1,
+    "corpus_display_name": "Mometasone Furoate",
+    "pmda_name": "Mometasone furoate hydrate",
+    "source_record_id": "pmda:p177:r13",
+    "approval_date": "2008-07-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:8HR4QJ6DW8",
+    "tier": 2,
+    "corpus_display_name": "MOMETASONE",
+    "pmda_name": "Mometasone furoate hydrate",
+    "source_record_id": "pmda:p177:r13",
+    "approval_date": "2008-07-16",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K4:monobasic",
+    "tier": 3,
+    "corpus_display_name": "Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "source_record_id": "pmda:p181:r01",
+    "approval_date": "2007-04-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:1JSN1I7582",
+    "tier": 3,
+    "corpus_display_name": "Esuberaprost",
+    "pmda_name": "Beraprost sodium",
+    "source_record_id": "pmda:p181:r15",
+    "approval_date": "2007-10-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:35E3NJJ4O6",
+    "tier": 3,
+    "corpus_display_name": "Beraprost",
+    "pmda_name": "Beraprost sodium",
+    "source_record_id": "pmda:p181:r15",
+    "approval_date": "2007-10-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5PX2ESK7OE",
+    "tier": 1,
+    "corpus_display_name": "Esmolol",
+    "pmda_name": "Esmolol hydrochloride",
+    "source_record_id": "pmda:p182:r08",
+    "approval_date": "2008-03-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:MDY902UXSR",
+    "tier": 1,
+    "corpus_display_name": "Esmolol",
+    "pmda_name": "Esmolol hydrochloride",
+    "source_record_id": "pmda:p182:r08",
+    "approval_date": "2008-03-19",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7Q2Q6Q87SS",
+    "tier": 2,
+    "corpus_display_name": "Carteolol",
+    "pmda_name": "Carteolol hydrochloride",
+    "source_record_id": "pmda:p182:r09",
+    "approval_date": "2007-04-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:8NF31401XG",
+    "tier": 2,
+    "corpus_display_name": "Carteolol",
+    "pmda_name": "Carteolol hydrochloride",
+    "source_record_id": "pmda:p182:r09",
+    "approval_date": "2007-04-18",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:V7OK6J19HQ",
+    "tier": 2,
+    "corpus_display_name": "Gadopentetate",
+    "pmda_name": "Meglumine gadopentetate",
+    "source_record_id": "pmda:p186:r07",
+    "approval_date": "2007-05-24",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:83HN0GTJ6D",
+    "tier": 1,
+    "corpus_display_name": "Ciclosporin",
+    "pmda_name": "Ciclosporine",
+    "source_record_id": "pmda:p189:r08",
+    "approval_date": "2006-06-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:04Q9AIZ7NO",
+    "tier": 2,
+    "corpus_display_name": "Pemetrexed",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p193:r07",
+    "approval_date": "2007-01-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:FG8Q47888S",
+    "tier": 2,
+    "corpus_display_name": "PEMETREXED, (R)-",
+    "pmda_name": "Pemetrexed sodium hydrate",
+    "source_record_id": "pmda:p193:r07",
+    "approval_date": "2007-01-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:N47C1SHV0F",
+    "tier": 2,
+    "corpus_display_name": "Streptococcus Pneumoniae Type 10a Capsular Polysaccharide Diphtheria Crm197 Protein Conjugate Antigen",
+    "pmda_name": "Pneumococcal vaccine",
+    "source_record_id": "pmda:p194:r05",
+    "approval_date": "2006-10-20",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:41VRH5220H",
+    "tier": 2,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p196:r05",
+    "approval_date": "2006-01-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:58SBH37T77",
+    "tier": 1,
+    "corpus_display_name": "Paroxetine",
+    "pmda_name": "Paroxetine hydrochloride hydrate",
+    "source_record_id": "pmda:p196:r05",
+    "approval_date": "2006-01-23",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:43502P7F0P",
+    "tier": 1,
+    "corpus_display_name": "METHYLPREDNISOLONE ACETATE",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p198:r15",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5GMR90S4KN",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone Hemisuccinate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p198:r15",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p198:r15",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p198:r15",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:X4W7ZR7023",
+    "tier": 1,
+    "corpus_display_name": "Methylprednisolone",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "source_record_id": "pmda:p198:r15",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:2BP70L44PR",
+    "tier": 2,
+    "corpus_display_name": "Dexamethasone Phosphate",
+    "pmda_name": "Dexamethasone Sodium Phosphate",
+    "source_record_id": "pmda:p199:r05",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7S5I7G3JQL",
+    "tier": 1,
+    "corpus_display_name": "Dexamethasone",
+    "pmda_name": "Dexamethasone Sodium Phosphate",
+    "source_record_id": "pmda:p199:r05",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Dexamethasone Sodium Phosphate",
+    "source_record_id": "pmda:p199:r05",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:K7V8P532WP",
+    "tier": 2,
+    "corpus_display_name": "Dexamethasone Acetate Anhydrous",
+    "pmda_name": "Dexamethasone Sodium Phosphate",
+    "source_record_id": "pmda:p199:r05",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Dexamethasone Sodium Phosphate",
+    "source_record_id": "pmda:p199:r05",
+    "approval_date": "2005-09-15",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:CPD4NFA903",
+    "tier": 1,
+    "corpus_display_name": "Aluminum",
+    "pmda_name": "Aluminum potassium sulfate",
+    "source_record_id": "pmda:p200:r02",
+    "approval_date": "2004-07-09",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:2711I21VE5",
+    "tier": 2,
+    "corpus_display_name": "Tannic Acid (QUERCUS Infectoria NUTGALL)",
+    "pmda_name": "tannic acid",
+    "source_record_id": "pmda:p200:r02",
+    "approval_date": "2004-07-09",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:LRBQNJMCXXYXIU-PPKXGCFTSA-N",
+    "tier": 2,
+    "corpus_display_name": "TANNIC ACID",
+    "pmda_name": "tannic acid",
+    "source_record_id": "pmda:p200:r02",
+    "approval_date": "2004-07-09",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:GR0L9S3J0F",
+    "tier": 2,
+    "corpus_display_name": "Racepinefrine",
+    "pmda_name": "Epinephrine",
+    "source_record_id": "pmda:p202:r03",
+    "approval_date": "2005-03-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:NA71GR3TNV",
+    "tier": 2,
+    "corpus_display_name": "Adrenaline",
+    "pmda_name": "Epinephrine",
+    "source_record_id": "pmda:p202:r03",
+    "approval_date": "2005-03-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:YKH834O4BH",
+    "tier": 1,
+    "corpus_display_name": "Epinephrine",
+    "pmda_name": "Epinephrine",
+    "source_record_id": "pmda:p202:r03",
+    "approval_date": "2005-03-04",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "HOLD:existing:vincristine",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r07",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5J49Q6B70F",
+    "tier": 3,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r07",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:RSA8KO39WH",
+    "tier": 2,
+    "corpus_display_name": "Vindesine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r07",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r07",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:2BP70L44PR",
+    "tier": 2,
+    "corpus_display_name": "Dexamethasone Phosphate",
+    "pmda_name": "Dexamethasone sodium phosphate",
+    "source_record_id": "pmda:p205:r09",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:7S5I7G3JQL",
+    "tier": 1,
+    "corpus_display_name": "Dexamethasone",
+    "pmda_name": "Dexamethasone sodium phosphate",
+    "source_record_id": "pmda:p205:r09",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:9PHQ9Y1OLM",
+    "tier": 1,
+    "corpus_display_name": "Prednisolone",
+    "pmda_name": "Dexamethasone sodium phosphate",
+    "source_record_id": "pmda:p205:r09",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:K7V8P532WP",
+    "tier": 2,
+    "corpus_display_name": "Dexamethasone Acetate Anhydrous",
+    "pmda_name": "Dexamethasone sodium phosphate",
+    "source_record_id": "pmda:p205:r09",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:VB0R961HZT",
+    "tier": 1,
+    "corpus_display_name": "Prednisone",
+    "pmda_name": "Dexamethasone sodium phosphate",
+    "source_record_id": "pmda:p205:r09",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "HOLD:existing:vincristine",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r11",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:5J49Q6B70F",
+    "tier": 3,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r11",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K1:RSA8KO39WH",
+    "tier": 2,
+    "corpus_display_name": "Vindesine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r11",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  },
+  {
+    "key": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
+    "tier": 2,
+    "corpus_display_name": "Vincristine",
+    "pmda_name": "Vincristine Sulfate",
+    "source_record_id": "pmda:p205:r11",
+    "approval_date": "2005-02-14",
+    "needs": "UNII or InChIKey confirmation before this approval is shown on the page"
+  }
+]

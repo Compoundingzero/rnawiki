@@ -70,6 +70,38 @@ const PATTERNS = [
 ]
 
 /**
+ * Two surfaces this codebase removed on purpose, and the narrow checks that keep them removed.
+ *
+ * The list is short deliberately. The first draft of it also matched the banner sentence, the
+ * repeated provenance paragraph and the phrase "peer reviewed", and every one of those produced
+ * hits on correct code: the banner label is still the internal name of a publication state, the
+ * provenance sentence moved into a disclosure rather than disappearing, and a peer-reviewed
+ * publication is a real source type RNAWiki cites. A checker that flags correct code teaches people
+ * to ignore it, so those three are covered where they can be checked honestly — in the browser, in
+ * `tests/e2e/dossier-v4-community-review.spec.ts`, against what a reader actually sees.
+ *
+ * What is left is checkable from source without guessing: a route that no longer exists, and a
+ * footer label that was taken off the footer.
+ */
+const REMOVED_SURFACE_PATTERNS = [
+  {
+    id: 'removed: the /editorial-policy route (redirects to /how-it-works#review-and-corrections)',
+    re: /['"`]\/editorial-policy['"`]/g,
+  },
+  {
+    id: 'removed: old footer labels (the list is lib/site-footer-links.ts)',
+    re: /['"`](?:Editorial policy|Analytics choices|Analytics preferences|Sign in on the front page|Public datasets)['"`]/g,
+  },
+]
+
+/** The footer is defined in one place and rendered in two; only these three are checked for labels. */
+const FOOTER_FILES = [
+  'lib/site-footer-links.ts',
+  'components/SiteFooter.tsx',
+  'components/document/DocumentFooter.tsx',
+]
+
+/**
  * Seed dossiers contain clinical terms that look like generic copy tics when read without context
  * (for example, "pivotal trial", "extensively metabolised", and "elevated liver enzymes"). Apply
  * a much narrower set of rules to this prose so scientifically correct wording does not become a
@@ -170,6 +202,15 @@ function importedSeedFiles(root) {
 }
 
 const explicitFiles = process.argv.length > 2
+/**
+ * The two files that DEFINE the reader-copy policy name the words they forbid; scanning them for
+ * those words would flag the policy itself. Everything they govern is still scanned.
+ */
+const POLICY_DEFINITION_FILES = [
+  'lib/dossier-v3/copy-contract.ts',
+  'docs/plain-language-content-contract.md',
+]
+
 const files = explicitFiles
   ? process.argv.slice(2)
   : [
@@ -243,7 +284,24 @@ function scanGeneratedMedicineFiles(filesToScan) {
   return scanned
 }
 
-const publicFilesScanned = scanFiles(files, PATTERNS)
+const scannablePublicFiles = files.filter(
+  (file) => !POLICY_DEFINITION_FILES.some((policy) => file.endsWith(policy)),
+)
+const publicFilesScanned = scanFiles(scannablePublicFiles, PATTERNS)
+
+/*
+ * Checked against raw source, not extracted prose: a route lives in a string constant and a footer
+ * label lives in an array of objects, and neither reaches the JSX-text extractor. The route check
+ * runs over app, components and lib; the label check runs only over the three files that define or
+ * render the footer, because "Public datasets" is a correct heading on the datasets page itself.
+ */
+const [routePattern, labelPattern] = REMOVED_SURFACE_PATTERNS
+const codeFiles = scannablePublicFiles.filter((file) => !file.startsWith('docs/'))
+const removedSurfaceFilesScanned =
+  scanFiles(codeFiles, routePattern ? [routePattern] : [], (src) => src) +
+  scanFiles(FOOTER_FILES, labelPattern ? [labelPattern] : [], (src) =>
+    src.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/^\s*\/\/.*$/gm, ' '),
+  )
 const seedFilesScanned = explicitFiles
   ? 0
   : scanFiles(importedSeedFiles('scripts/seed-data'), SEED_COPY_PATTERNS)
@@ -253,8 +311,8 @@ const publicDataFilesScanned = explicitFiles
 
 const sorted = [...hits.entries()].sort((a, b) => b[1].length - a[1].length)
 const configuredPatternCount = explicitFiles
-  ? PATTERNS.length
-  : PATTERNS.length + SEED_COPY_PATTERNS.length + 1
+  ? PATTERNS.length + REMOVED_SURFACE_PATTERNS.length
+  : PATTERNS.length + REMOVED_SURFACE_PATTERNS.length + SEED_COPY_PATTERNS.length + 1
 let total = 0
 for (const [id, list] of sorted) {
   total += list.length
@@ -265,7 +323,8 @@ for (const [id, list] of sorted) {
   if (list.length > 4) console.log(`      … and ${list.length - 4} more`)
 }
 console.log(
-  `\nscanned ${publicFilesScanned} public/docs files + ${seedFilesScanned} imported seed files + ` +
+  `\nscanned ${publicFilesScanned} public/docs files ` +
+    `(${removedSurfaceFilesScanned} for removed surfaces) + ${seedFilesScanned} imported seed files + ` +
     `${publicDataFilesScanned} public-data files · ` +
     (total === 0
       ? `0 hits (no matched patterns; ${configuredPatternCount} configured)`

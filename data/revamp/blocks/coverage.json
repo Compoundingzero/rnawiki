@@ -1,0 +1,154 @@
+{
+  "controlled": {
+    "pages": 3304,
+    "pagesPerJurisdiction": {
+      "AU": 2861,
+      "SG": 1801,
+      "US": 68
+    },
+    "pagesPerTier": {
+      "1": 866,
+      "2": 1571,
+      "3": 867
+    },
+    "rows": 8545,
+    "rowsPerJurisdiction": {
+      "AU": 3356,
+      "SG": 5121,
+      "US": 68
+    }
+  },
+  "generatedBy": "scripts/revamp/build_blocks.py",
+  "jurisdictionUnmapped": {
+    "csv": "data/revamp/jurisdiction-unmapped.csv",
+    "distinctSourceStrings": 101,
+    "rows": 15966,
+    "top": {
+      "Bangladesh": 26,
+      "France": 79,
+      "Germany": 76,
+      "Italy": 25,
+      "Norway": 27,
+      "Oman": 24,
+      "Sweden": 24,
+      "Venezuela": 23,
+      "Worldwide": 42,
+      "unspecified": 15140
+    }
+  },
+  "pagesInCorpus": 28832,
+  "pagesPerTier": {
+    "1": 1718,
+    "2": 3517,
+    "3": 23597
+  },
+  "patent": {
+    "eligible": 3606,
+    "eligiblePerTier": {
+      "1": 1096,
+      "2": 2138,
+      "3": 372
+    },
+    "genericAvailable": 1746,
+    "noRecord": 25966,
+    "noRecordPerTier": {
+      "1": 804,
+      "2": 1867,
+      "3": 23295
+    },
+    "noRecordReasons": {
+      "biologic: see Purple Book exclusivity": 740,
+      "not an approved US small molecule": 25226
+    },
+    "orangeBookRows": 2866,
+    "pages": 28832,
+    "pagesPerTier": {
+      "1": 1718,
+      "2": 3517,
+      "3": 23597
+    },
+    "purpleBookRows": 740,
+    "rows": 28832,
+    "withTeCode": 1439,
+    "withUnexpiredExclusivity": 761,
+    "withUnexpiredPatent": 1326
+  },
+  "registration": {
+    "affirmativePagesPerJurisdictionPerTier": {
+      "AU": {
+        "1": 768,
+        "2": 1461,
+        "3": 632
+      },
+      "CA": {
+        "1": 114,
+        "2": 2342,
+        "3": 405
+      },
+      "EU": {
+        "1": 67,
+        "2": 973,
+        "3": 0
+      },
+      "JP": {
+        "1": 340,
+        "2": 857,
+        "3": 79
+      },
+      "SG": {
+        "1": 442,
+        "2": 1039,
+        "3": 113
+      },
+      "US": {
+        "1": 1298,
+        "2": 2185,
+        "3": 344
+      }
+    },
+    "affirmativeRowsPerJurisdiction": {
+      "AU": 2861,
+      "CA": 2861,
+      "EU": 1040,
+      "JP": 1276,
+      "SG": 1594,
+      "US": 3827
+    },
+    "componentRows": 3073,
+    "notFoundRowsPerJurisdiction": {
+      "AU": 25971,
+      "CA": 25971,
+      "EU": 27792,
+      "JP": 27556,
+      "SG": 27238,
+      "US": 25005
+    },
+    "otherRegisterRows": 15966,
+    "pages": 28832,
+    "pagesPerTier": {
+      "1": 1718,
+      "2": 3517,
+      "3": 23597
+    },
+    "rows": 220863,
+    "rowsPerJurisdiction": {
+      "AU": 28832,
+      "CA": 28832,
+      "EU": 28832,
+      "JP": 28832,
+      "OTHER": 15966,
+      "SG": 28832,
+      "UK": 28832,
+      "US": 28832
+    },
+    "unitedKingdomRows": {
+      "rows": 28832,
+      "state": "the register was not cleared for this run; neither an affirmative status nor a not-found finding"
+    }
+  },
+  "spec": [
+    "docs/specs/phase4-generators.md#2",
+    "docs/specs/phase4-generators.md#3",
+    "docs/specs/phase4-generators.md#5"
+  ]
+}

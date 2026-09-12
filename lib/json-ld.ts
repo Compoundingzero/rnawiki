@@ -519,7 +519,7 @@ function sourceCreativeWorks(
     const name = text(source.label)
     if (!name) return []
     // The dossier page renders `<li id="source-{id}">` with the exact stored snapshot id
-    // (components/MedicineDossierV2.tsx), so this fragment must use the same characters.
+    // (the medicine page), so this fragment must use the same characters.
     // Percent-encoding here broke parity for legacy ids such as `doi:10.1056/...`; the URL hash
     // setter still escapes the few characters URL syntax cannot carry raw.
     const id = fragmentUrl(pageUrl, `source-${text(source.id) ?? String(index + 1)}`)

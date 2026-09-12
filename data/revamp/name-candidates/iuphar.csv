@@ -1,0 +1,975 @@
+corpus_key,corpus_display_name,corpus_tier,corpus_unii,corpus_inchikey,gtopdb_ligand_id,gtopdb_name,gtopdb_inchikey,gtopdb_chembl_id,gtopdb_pubchem_cid,matched_on_source_name,normalised_name,ambiguous_pages_for_name,confirmation,interactions_pending
+K1:615637S5PE,NEIHULIZUMAB,3,615637S5PE,,10013,AbGn-168H,,,,AbGn-168H,abgn 168h,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ND470TT8Y3,Acimtamig,3,ND470TT8Y3,,10067,AFM13,,,,AFM13,afm13,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:3G6834I4PF,Tadekinig alfa,3,3G6834I4PF,,10077,tadekinig alfa,,,,tadekinig alfa,tadekinig alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6QVL057INT,Cemiplimab,1,6QVL057INT,,10090,cemiplimab,,,,cemiplimab,cemiplimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:6QVL057INT#rwlc,Cemiplimab-Rwlc,2,6QVL057INT,,10090,cemiplimab,,,,cemiplimab,cemiplimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:6MB0YNA8DJ,BQ-788 Free Acid,3,44OLL8XEJ4,LPAHKJMGDSJDRG-DJYQTOCQSA-N,1010,BQ788,LNGMSNLRAISCCZ-IITZRFRKSA-N,,3081333,BQ 788,bq 788,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QOG25L6Z8Z,Spartalizumab,3,QOG25L6Z8Z,,10140,spartalizumab,,,,spartalizumab,spartalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:22PQS5K5TY,CCX354,3,22PQS5K5TY,ZIMLRKWQDLVPEK-UHFFFAOYSA-N,10164,CCX354,WSVDLXWYJRCDBZ-UHFFFAOYSA-N,,135565361,CCX354,ccx354,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C3VX249T6L,Ravulizumab,2,C3VX249T6L,,10168,ravulizumab,,,,ravulizumab,ravulizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:C3VX249T6L#cwvz,Ravulizumab-Cwvz,2,C3VX249T6L,,10168,ravulizumab,,,,ravulizumab,ravulizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:88WBI2D80S,Vantictumab,3,88WBI2D80S,,10197,vantictumab,,,,vantictumab,vantictumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:LT369U66CE,Ibalizumab,1,LT369U66CE,,10208,ibalizumab,,,,ibalizumab,ibalizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LT369U66CE#uiyk,Ibalizumab-Uiyk,2,LT369U66CE,,10208,ibalizumab,,,,ibalizumab,ibalizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:496K5Z02NW,Volociximab,3,496K5Z02NW,,10236,volociximab,,,,volociximab,volociximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:WDT28B7071,BMS-986120,3,WDT28B7071,,10269,BMS-986120,MINMDCMSHDBHKG-UHFFFAOYSA-N,,72190270,BMS-986120,bms 986120,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6YSJ329777,Strychnos Ignatii Whole,3,6YSJ329777,,10292,AM12,OVIAJBSVWWYJSD-UHFFFAOYSA-N,,137553166,AM-12,am 12,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:J2VZ07J96K,Polymyxin b,2,J2VZ07J96K,,10338,polymyxin B,WQVJHHACXVLGBL-UHFFFAOYSA-N,CHEMBL241797,4868,polymyxin B,polymyxin b,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:42HQ15W1ZF,Tibulizumab,3,42HQ15W1ZF,,10350,tibulizumab,,,,tibulizumab,tibulizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:MED485W763,Namilumab,3,MED485W763,,10370,namilumab,,,,namilumab,namilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:JVBQEIRQUCWMTR-UHFFFAOYSA-N,GSK-2239633,3,,JVBQEIRQUCWMTR-UHFFFAOYSA-N,10416,GSK2239633A,YTEVTHHGQMUPHC-UHFFFAOYSA-N,CHEMBL2018969,46861584,GSK-2239633A,gsk 2239633a,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:AY6V5E2GNX,Zagotenemab,3,AY6V5E2GNX,,10471,zagotenemab,,,,zagotenemab,zagotenemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:SSB56T0M0L,Pegdinetanib,3,SSB56T0M0L,,10472,pegdinetanib,,,,pegdinetanib,pegdinetanib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LEN0OCZ4SH,Sonelokimab,3,LEN0OCZ4SH,,10491,sonelokimab,,,,sonelokimab,sonelokimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:ES1M06M6QH,Envafolimab,3,ES1M06M6QH,,10492,envafolimab,,,,envafolimab,envafolimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y0O332CU66,IVONESCIMAB,3,Y0O332CU66,,10492,envafolimab,,,,envafolimab,envafolimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0JSR7Z0NB6,Amivantamab,2,0JSR7Z0NB6,,10505,amivantamab,,,,amivantamab,amivantamab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0JSR7Z0NB6#lpuj,Amivantamab and Hyaluronidase-Lpuj,2,0JSR7Z0NB6,,10505,amivantamab,,,,amivantamab,amivantamab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0JSR7Z0NB6#vmjw,Amivantamab-Vmjw,2,0JSR7Z0NB6,,10505,amivantamab,,,,amivantamab,amivantamab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:AQK7UBA1LS,Luspatercept,2,AQK7UBA1LS,,10538,luspatercept,,,,luspatercept,luspatercept,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+K1:AQK7UBA1LS#aamt,Luspatercept-Aamt,2,AQK7UBA1LS,,10538,luspatercept,,,,luspatercept,luspatercept,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+K1:L7451S9126,Crizanlizumab,1,L7451S9126,,10550,crizanlizumab,,,,crizanlizumab,crizanlizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:L7451S9126#tmca,Crizanlizumab-Tmca,2,L7451S9126,,10550,crizanlizumab,,,,crizanlizumab,crizanlizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P256HB60FF,Rovalpituzumab tesirine,3,P256HB60FF,,10561,rovalpituzumab tesirine,,,,rovalpituzumab tesirine,rovalpituzumab tesirine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0XMR8L9LOL,Mezagitamab,3,0XMR8L9LOL,,10609,mezagitamab,,,,mezagitamab,mezagitamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y64GQ0KC0A,Teprotumumab,1,Y64GQ0KC0A,,10612,teprotumumab,,,,teprotumumab,teprotumumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:ZN2GQ3II96,Ianalumab,3,ZN2GQ3II96,,10656,ianalumab,,,,ianalumab,ianalumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9WGT51BDDL,Rafutrombopag,3,9WGT51BDDL,BDGGFTDRPHKXFC-QYQHSDTDSA-N,10657,hetrombopag,YATJUTCKRWETAB-UHFFFAOYSA-N,,135565610,hetrombopag,hetrombopag,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BNO1JG5MZC,Bempegaldesleukin,3,BNO1JG5MZC,,10659,bempegaldesleukin,,,,bempegaldesleukin,bempegaldesleukin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:AVYLMJODKHVQHD-WFOXQDBGSA-N,FE 203799,3,,AVYLMJODKHVQHD-WFOXQDBGSA-N,10685,apraglutide,,,,FE 203799,fe 203799,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8202AY8I7H,Eptinezumab,2,8202AY8I7H,,10694,eptinezumab,,,,eptinezumab,eptinezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8202AY8I7H#jjmr,Eptinezumab-Jjmr,2,8202AY8I7H,,10694,eptinezumab,,,,eptinezumab,eptinezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DLE8519RWM,Enfortumab vedotin,2,DLE8519RWM,,10738,enfortumab vedotin,,,,enfortumab vedotin,enfortumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DLE8519RWM#ejfv,Enfortumab Vedotin-Ejfv,2,DLE8519RWM,,10738,enfortumab vedotin,,,,enfortumab vedotin,enfortumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y1J4NP8FF0,Leronlimab,3,Y1J4NP8FF0,,10752,leronlimab,,,,leronlimab,leronlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UXG268Q86R,Lenomorelin,3,UXG268Q86R,,1099,ghrelin,,,,ghrelin,ghrelin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K2:JSRSZGUKOAXAJV-MXAPAKLGSA-N,Lenomorelin,3,UXG268Q86R,JSRSZGUKOAXAJV-MXAPAKLGSA-N,1099,ghrelin,,,,ghrelin,ghrelin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:09QF37C617,Examorelin,3,09QF37C617,RVWNMGKSNGWLOL-GIIHNPQRSA-N,1100,examorelin,,CHEMBL108335,6918297,examorelin,examorelin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QN4128B52A,Obatoclax,3,39200FJ43J,RFTSSZJZXOSICM-GRSHGNNSSA-N,11086,obatoclax,CVCLJVVBHYOXDC-LKIBBAOUSA-N,,46930997,obatoclax,obatoclax,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:7M3UL8MR2Y,Belantamab,3,7M3UL8MR2Y,,11117,belantamab mafodotin,,,,belantamab mafodotin,belantamab mafodotin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DB1041CXDG,Belantamab mafodotin,1,DB1041CXDG,,11117,belantamab mafodotin,,,,belantamab mafodotin,belantamab mafodotin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DB1041CXDG#blmf,Belantamab Mafodotin-Blmf,2,DB1041CXDG,,11117,belantamab mafodotin,,,,belantamab mafodotin,belantamab mafodotin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:V27E9V3K7G,Litifilimab,3,V27E9V3K7G,,11122,litifilimab,,,,litifilimab,litifilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N4606MB5HM,Dapirolizumab pegol,3,N4606MB5HM,,11123,dapirolizumab pegol,,CHEMBL2109478,,dapirolizumab pegol,dapirolizumab pegol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QQA9MLH692,Tafasitamab,2,QQA9MLH692,,11131,tafasitamab,,,,tafasitamab,tafasitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QQA9MLH692#cxix,Tafasitamab-Cxix,2,QQA9MLH692,,11131,tafasitamab,,,,tafasitamab,tafasitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y8127R3VCH,Otilimab,3,Y8127R3VCH,,11132,otilimab,,,,otilimab,otilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5D8VHL5WH5,GSK-1795091,3,5D8VHL5WH5,,11150,GSK1795091,ICLAYQQKWJGHBV-XJZMHMBSSA-N,CHEMBL507938,25127152,GSK1795091,gsk1795091,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M6RN4LQ25S,BIIB-068,3,M6RN4LQ25S,,11178,BIIB068,BMWMKGNVAMXXCH-UHFFFAOYSA-N,,118139356,BIIB068,biib068,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:UZ54216N0Y,Apitegromab,3,UZ54216N0Y,,11180,apitegromab,,,,apitegromab,apitegromab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:68603V9EAF,Concizumab,2,68603V9EAF,,11182,concizumab,,,,concizumab,concizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:68603V9EAF#mtci,Concizumab-Mtci,2,68603V9EAF,,11182,concizumab,,,,concizumab,concizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IV690462VZ,Neladenoson bialanate,3,IV690462VZ,WESNEIGKOAXSGX-VXKWHMMOSA-N,11222,neladenoson,RFJKJKQQWXKVTD-UHFFFAOYSA-N,,46847262,neladenoson bialanate,neladenoson bialanate,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NPI2H5M36D,RM-2 GA-68,3,NPI2H5M36D,,11260,BAY86-7548,,,,[68Ga]RM2,68ga rm2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:RJW23BQ0KW,Bemarituzumab,3,RJW23BQ0KW,,11278,bemarituzumab,,,,bemarituzumab,bemarituzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:45KLN7N6UV,VUSOLIMOGENE ODERPAREPVEC,3,45KLN7N6UV,,11316,Radioprotectin-1,OVJUYQCJIFWMBI-UHFFFAOYSA-N,CHEMBL3322514,77461257,RP-1,rp 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:UCZDWGAJSOUHOU-VDBPWWIZSA-N,GLP-1,1,0JS9125PIZ,UCZDWGAJSOUHOU-VDBPWWIZSA-N,1132,glucagon-like peptide 1-(7-36) amide,,,,GLP-1(7-36)amide,glp 1 7 36 amide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FA2I4Z873U,Alunacedase alfa,3,FA2I4Z873U,,11320,alunacedase alfa,,,,alunacedase alfa,alunacedase alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:45I6OFJ8QH,Bamlanivimab,2,45I6OFJ8QH,,11325,bamlanivimab,,,,bamlanivimab,bamlanivimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:23IQ3PO968,Atibuclimab,3,23IQ3PO968,,11326,atibuclimab,,,,atibuclimab,atibuclimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:J0FI6WE1QN,Casirivimab,2,J0FI6WE1QN,,11327,casirivimab,,,,casirivimab,casirivimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2Z3DQD2JHM,Imdevimab,2,2Z3DQD2JHM,,11328,imdevimab,,,,imdevimab,imdevimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1KUR4BN70F,CILGAVIMAB,2,1KUR4BN70F,,11329,cilgavimab,,,,cilgavimab,cilgavimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:F0LZ415Z3B,TIXAGEVIMAB,2,F0LZ415Z3B,,11330,tixagevimab,,,,tixagevimab,tixagevimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N7Q9NLF11I,Etesevimab,3,N7Q9NLF11I,,11331,etesevimab,,,,etesevimab,etesevimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I0BGE6P6I6,Regdanvimab,1,I0BGE6P6I6,,11332,regdanvimab,,,,regdanvimab,regdanvimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1MTK0BPN8V,Sotrovimab,2,1MTK0BPN8V,,11333,sotrovimab,,,,sotrovimab,sotrovimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:A67ZN01CAW,Zansecimab,3,A67ZN01CAW,,11334,zansecimab,,,,zansecimab,zansecimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9K8GNJ2874,Naxitamab,2,9K8GNJ2874,,11341,naxitamab,,,,naxitamab,naxitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9K8GNJ2874#gqgk,Naxitamab-Gqgk,2,9K8GNJ2874,,11341,naxitamab,,,,naxitamab,naxitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:76LA80IG2G,Glucagon,1,76LA80IG2G,,1136,glucagon,MASNOZXLGMXCHN-ZLPAWPGGSA-N,CHEMBL266481,44278361,glucagon,glucagon,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:UNY2TQA40E,Brontictuzumab,3,UNY2TQA40E,,11361,brontictuzumab,,,,brontictuzumab,brontictuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EK5V9UL3WL,Osocimab,3,EK5V9UL3WL,,11366,osocimab,,,,osocimab,osocimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:24GP945V5T,Barium,2,24GP945V5T,DSAJWYNOEDNPEQ-UHFFFAOYSA-N,11376,bintrafusp alfa,,,,bintrafusp alfa,bintrafusp alfa,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NW9K8C1JN3,Bintrafusp alfa,3,NW9K8C1JN3,,11376,bintrafusp alfa,,,,bintrafusp alfa,bintrafusp alfa,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KX4D9BZA6X,Furegrelate,3,KX4D9BZA6X,VHWFITPGPFLBGT-UHFFFAOYSA-N,11378,furegrelate sodium,XBTIPIZROJAKOJ-UHFFFAOYSA-M,CHEMBL36028,23663954,furegrelate sodium,furegrelate,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5313W10MYT,Avexitide,3,5313W10MYT,,1138,exendin-(9-39),WSEVKKHALHSUMB-MVNVRWBSSA-N,CHEMBL4070972,129012199,exendin-(9-39),exendin 9 39,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FN12T66RMN,Efprezimod alfa,3,FN12T66RMN,,11395,MK-7110,,,,MK-7110,mk 7110,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0825W549JC,GLUCAGON-LIKE PEPTIDE II,3,0825W549JC,,1140,glucagon-like peptide 2,TWSALRJGPBVBQU-PKQQPRCHSA-N,,155817393,glucagon-like peptide 2,glucagon like peptide 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0825W549JC,GLUCAGON-LIKE PEPTIDE II,3,0825W549JC,,1141,glucagon-like peptide 2,JPRUMPQGPCFDGW-CWHSZFSPSA-N,,155817394,glucagon-like peptide 2,glucagon like peptide 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QC4F7FKK7I,Faricimab,2,QC4F7FKK7I,,11420,faricimab,,,,faricimab,faricimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QC4F7FKK7I#svoa,Faricimab-Svoa,2,QC4F7FKK7I,,11420,faricimab,,,,faricimab,faricimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:OYN3CCI6QE,Tirzepatide,1,OYN3CCI6QE,,11429,tirzepatide,AAPYRSPHYSKGIS-MCNPHUAVSA-N,,156588324,tirzepatide,tirzepatide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:D6OMY2L0WA,Epcoritamab,1,D6OMY2L0WA,,11442,epcoritamab,,,,epcoritamab,epcoritamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:D6OMY2L0WA#bysp,Epcoritamab-Bysp,2,D6OMY2L0WA,,11442,epcoritamab,,,,epcoritamab,epcoritamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:PV6AA88RDU,Ensovibep,3,PV6AA88RDU,,11470,ensovibep,,,,ensovibep,ensovibep,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:L9790S42AI,Safimaltib,3,L9790S42AI,APWRZPQBPCAXFP-UHFFFAOYSA-N,11507,JNJ-67856633,JPUXFKNCQZIRSR-UHFFFAOYSA-N,,155925839,JNJ-67856633,jnj 67856633,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:320A4L58IZ,K-777,3,320A4L58IZ,RHJLQMVZXQKJKB-FPHSVDBKSA-N,11515,K11777,VZSXPUDQSLKVIR-JDXGNMNLSA-N,,52946595,K-777,k 777,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:P0GVQ9A4S5,Dostarlimab,1,P0GVQ9A4S5,,11518,dostarlimab,,,,dostarlimab,dostarlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P0GVQ9A4S5#gxly,Dostarlimab-Gxly,2,P0GVQ9A4S5,,11518,dostarlimab,,,,dostarlimab,dostarlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7K5O7P6QIU,Loncastuximab tesirine,2,7K5O7P6QIU,,11521,loncastuximab tesirine,,,,loncastuximab tesirine,loncastuximab tesirine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7K5O7P6QIU#lpyl,Loncastuximab Tesirine-Lpyl,2,7K5O7P6QIU,,11521,loncastuximab tesirine,,,,loncastuximab tesirine,loncastuximab tesirine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NYM5HO7I39,Loncastuximab,3,NYM5HO7I39,,11521,loncastuximab tesirine,,,,loncastuximab tesirine,loncastuximab tesirine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:DTBGJTHCIGPRDA-UHFFFAOYSA-N,STM2457,3,,DTBGJTHCIGPRDA-UHFFFAOYSA-N,11529,STM2457,OBERVORNENYOLE-UHFFFAOYSA-N,,155167581,STM2457,stm2457,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T32CR1A69R,Temelimab,3,T32CR1A69R,,11530,temelimab,,,,temelimab,temelimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y9UQ37XT2T,Abrilumab,3,Y9UQ37XT2T,,11531,abrilumab,,,,abrilumab,abrilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IK9NYN31ZM,Aldafermin,3,IK9NYN31ZM,,11546,aldafermin,,,,aldafermin,aldafermin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:88C55N56UU,"Secretin, Unspecified",3,88C55N56UU,,1155,secretin,KKNIUBFRGPFELP-UHFFFAOYSA-N,,16129665,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,12
+K1:D0L9J6I13I,Secretin Porcine,2,D0L9J6I13I,,1155,secretin,KKNIUBFRGPFELP-UHFFFAOYSA-N,,16129665,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,12
+K1:AN3Y2B4SX4,Ziltivekimab,3,AN3Y2B4SX4,,11552,ziltivekimab,,,,ziltivekimab,ziltivekimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:W9BB98U6HP,Urofollitropin,1,W9BB98U6HP,,1157,FSH,,CHEMBL2108427,62819,urofollitropin,urofollitropin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:CTG26PRE5S,FP-1039,3,CTG26PRE5S,,11581,FP-1039,,,,FP-1039,fp 1039,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2Y3T5IF01Z,Retifanlimab,1,2Y3T5IF01Z,,11583,retifanlimab,,,,retifanlimab,retifanlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:2Y3T5IF01Z#dlwr,Retifanlimab-Dlwr,2,2Y3T5IF01Z,,11583,retifanlimab,,,,retifanlimab,retifanlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:MKXOUIKTXREBLX-NDKBASPVSA-N,Balixafortide,3,PRC974M49B,MKXOUIKTXREBLX-NDKBASPVSA-N,11587,balixafortide,OYWQJZAVFWOOBF-WBMPNIIXSA-N,,138752609,balixafortide,balixafortide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3JGY52XJNA,Lutropin alfa,2,3JGY52XJNA,,1159,LH,,CHEMBL1201419,,lutropin alfa,lutropin alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:X7K762X1IJ,Evorpacept,3,X7K762X1IJ,,11592,evorpacept,,,,evorpacept,evorpacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:3UAA36FHF1,BMS-741672,3,3UAA36FHF1,PJTGSIKANITYOO-RCOXNQKVSA-N,11598,BMS-741672,GVOISEJVFFIGQE-YCZSINBZSA-N,CHEMBL4442783,23725177,BMS-741672,bms 741672,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:20ED16GHEB,Choriogonadotropin beta,1,20ED16GHEB,,1160,hCG,,,,human chorionic gonadotropin,human chorionic gonadotropin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6413W06WR3,Choriogonadotropin alfa,2,6413W06WR3,,1160,hCG,,,,human chorionic gonadotropin,human chorionic gonadotropin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PAI71R1D2W,Olokizumab,3,PAI71R1D2W,,11601,olokizumab,,,,olokizumab,olokizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4B77GX0NA3,BARZOLVOLIMAB,3,4B77GX0NA3,,11607,barzolvolimab,,,,barzolvolimab,barzolvolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:XLXSAKCOAKORKW-AQJXLSMYSA-N,Gonadorelin,2,2RG1XQ1NYJ,XLXSAKCOAKORKW-AQJXLSMYSA-N,1162,GnRH I,NMJREATYWWNIKX-UHFFFAOYSA-N,,16132914,GnRH,gnrh,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,10
+K1:M1K0A3X96W,Plonmarlimab,3,M1K0A3X96W,,11644,plonmarlimab,,,,plonmarlimab,plonmarlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OUP4QB2A3R,Feladilimab,3,OUP4QB2A3R,,11649,feladilimab,,,,feladilimab,feladilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:GEZ43HM6NW,CC-90005,3,GEZ43HM6NW,,11659,CC-90005,FMKGJQHNYMWDFJ-CVEARBPZSA-N,,118162109,CC-90005,cc 90005,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:PACRWHUPEPCFHX-UHFFFAOYSA-N,CP-10,3,,PACRWHUPEPCFHX-UHFFFAOYSA-N,11662,CP-10,MZTSDEMVUMXQFP-UHFFFAOYSA-N,CHEMBL4553408,138911323,CP-10,cp 10,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:5G4XF6VU2Y,AZD-0284,3,5G4XF6VU2Y,,11711,AZD0284,QYYZXEPEVBXNNA-QGZVFWFLSA-N,,129205086,AZD0284,azd0284,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:MXNGYQJJYRVGGJ-QFIPXVFZSA-N,AZD-7624,3,,MXNGYQJJYRVGGJ-QFIPXVFZSA-N,11714,AZD7624,NNKPHNTWNILINE-UHFFFAOYSA-N,,25143624,AZD-7624,azd 7624,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T41737F88A,Tisotumab vedotin,2,T41737F88A,,11719,tisotumab vedotin,,,,tisotumab vedotin,tisotumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T41737F88A#tftv,Tisotumab Vedotin-Tftv,2,T41737F88A,,11719,tisotumab vedotin,,,,tisotumab vedotin,tisotumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YO3W29IM33,BMS-986318,3,YO3W29IM33,,11728,BMS-986318,WPGAVSDZYIRUGE-UHFFFAOYSA-N,,138592025,BMS-986318,bms 986318,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:23ET6940RM,Mupadolimab,3,23ET6940RM,,11758,mupadolimab,,,,mupadolimab,mupadolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UTI65JH23L,Galegenimab,3,UTI65JH23L,,11759,galegenimab,,,,galegenimab,galegenimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RM898LZ4SI,Sirexatamab,3,RM898LZ4SI,,11760,sirexatamab,,,,sirexatamab,sirexatamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IA9ALH5N8D,Anumigilimab,3,IA9ALH5N8D,,11761,anumigilimab,,,,anumigilimab,anumigilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:42SH7JCD82,LIVMONIPLIMAB,3,42SH7JCD82,,11762,livmoniplimab,,,,livmoniplimab,livmoniplimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YQ3YJK67AF,SOTEVTAMAB,3,YQ3YJK67AF,,11763,sotevtamab,,,,sotevtamab,sotevtamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6808SG2XRK,Ginisortamab,3,6808SG2XRK,,11769,ginisortamab,,,,ginisortamab,ginisortamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TRF8S0U6ON,Pabinafusp alfa,3,TRF8S0U6ON,,11772,pabinafusp alfa,,,,pabinafusp alfa,pabinafusp alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M46KZB8QXL,Quisovalimab,3,M46KZB8QXL,,11774,quisovalimab,,,,quisovalimab,quisovalimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KNL22F1WCK,DALUTRAFUSP ALFA,3,KNL22F1WCK,,11776,dalutrafusp alfa,,,,dalutrafusp alfa,dalutrafusp alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1FHM3D7Z49,TELITACICEPT,3,1FHM3D7Z49,,11827,telitacicept,,,,telitacicept,telitacicept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:JSK7TUA223,Enarodustat,3,JSK7TUA223,NALAUGMPMIVAOW-UHFFFAOYSA-N,11828,enarodustat,FJYRBJKWDXVHHO-UHFFFAOYSA-N,CHEMBL4297619,50899324,enarodustat,enarodustat,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8YL4SYR6CU,BEBTELOVIMAB,3,8YL4SYR6CU,,11921,bebtelovimab,,,,bebtelovimab,bebtelovimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6D848RA61B,Somatrogon,1,6D848RA61B,,12013,somatrogon,,,,somatrogon,somatrogon,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:6D848RA61B#ghla,Somatrogon-Ghla,2,6D848RA61B,,12013,somatrogon,,,,somatrogon,somatrogon,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:Q8A4U1Z9N2,ONTORPACEPT,3,Q8A4U1Z9N2,,12036,ontorpacept,,,,ontorpacept,ontorpacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N95U3A7N57,Lunresertib,3,N95U3A7N57,ARBRHWRTXPWZGN-UHFFFAOYSA-N,12072,(S)-RP-6306,FGSLKGDMSYOTPS-MRVPVSSYSA-N,,165368929,RP6306,rp6306,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WM18Z62RTI,Zigakibart,3,WM18Z62RTI,,12101,zigakibart,,,,zigakibart,zigakibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GHX28QZ7DD,Sibeprenlimab,3,GHX28QZ7DD,,12102,sibeprenlimab,,,,sibeprenlimab,sibeprenlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GHX28QZ7DD#szsi,Sibeprenlimab-Szsi,2,GHX28QZ7DD,,12102,sibeprenlimab,,,,sibeprenlimab,sibeprenlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:O84ZK2F68E,Perenostobart,3,O84ZK2F68E,,12103,perenostobart,,,,perenostobart,perenostobart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BCB1002X86,TAS-1553,3,BCB1002X86,,12113,TAS1553,DUYRWEBTZNUILI-DIFFPNOSSA-N,,132203319,TAS1553,tas1553,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:160R8ZBH0X,INCB-13739,3,160R8ZBH0X,,12121,INCB13739,BDQCDIWFPIDPQU-NDEPHWFRSA-N,,66662059,INCB13739,incb13739,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5IB2J79MCX,Spesolimab,1,5IB2J79MCX,,12169,spesolimab,,,,spesolimab,spesolimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5IB2J79MCX#sbzo,Spesolimab-Sbzo,2,5IB2J79MCX,,12169,spesolimab,,,,spesolimab,spesolimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:HO08KW5LSB,Varokibart,3,HO08KW5LSB,,12187,varokibart,,,,varokibart,varokibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:12PYH0FTU9,Lecanemab,1,12PYH0FTU9,,12202,lecanemab,,,,lecanemab,lecanemab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:12PYH0FTU9#irmb,Lecanemab-Irmb,2,12PYH0FTU9,,12202,lecanemab,,,,lecanemab,lecanemab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NYZ11835VX,EFMARODOCOKIN ALFA,3,NYZ11835VX,,12212,efmarodocokin alfa,,,,efmarodocokin alfa,efmarodocokin alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4W3KFI3TN3,Talquetamab,2,4W3KFI3TN3,,12240,talquetamab,,,,talquetamab,talquetamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4W3KFI3TN3#tgvs,Talquetamab-Tgvs,2,4W3KFI3TN3,,12240,talquetamab,,,,talquetamab,talquetamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4MFH3B1EFU,Mirvetuximab,3,4MFH3B1EFU,,12250,mirvetuximab soravtansine,,,,mirvetuximab soravtansine,mirvetuximab soravtansine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:98DE7VN88D,Mirvetuximab soravtansine,2,98DE7VN88D,,12250,mirvetuximab soravtansine,,,,mirvetuximab soravtansine,mirvetuximab soravtansine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:98DE7VN88D#gynx,Mirvetuximab Soravtansine-Gynx,2,98DE7VN88D,,12250,mirvetuximab soravtansine,,,,mirvetuximab soravtansine,mirvetuximab soravtansine,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S4M959U2IJ,Teplizumab,1,S4M959U2IJ,,12252,teplizumab,,,,teplizumab,teplizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S4M959U2IJ#mzwv,Teplizumab-Mzwv,2,S4M959U2IJ,,12252,teplizumab,,,,teplizumab,teplizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:ZPKHVQNRKMCYGL-AFAPVMNMSA-N,SRX246,3,,ZPKHVQNRKMCYGL-AFAPVMNMSA-N,12262,SRX246,HKPLAUMYFHPXIC-KRESLXGLSA-N,,165437864,SRX246,srx246,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4H3BBE5WVK,Avizakimab,3,4H3BBE5WVK,,12270,avizakimab,,,,avizakimab,avizakimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LDJ89SS0YG,Mosunetuzumab,2,LDJ89SS0YG,,12298,mosunetuzumab,,,,mosunetuzumab,mosunetuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:LDJ89SS0YG#axgb,Mosunetuzumab-Axgb,2,LDJ89SS0YG,,12298,mosunetuzumab,,,,mosunetuzumab,mosunetuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:A6734I702L,Inclacumab,3,A6734I702L,,12312,inclacumab,,,,inclacumab,inclacumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:90IQR2I6TR,Sugemalimab,2,90IQR2I6TR,,12342,sugemalimab,,,,sugemalimab,sugemalimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IBS1BZ4E4I,Penpulimab,1,IBS1BZ4E4I,,12347,penpulimab,,,,penpulimab,penpulimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IBS1BZ4E4I#kcqx,Penpulimab-Kcqx,2,IBS1BZ4E4I,,12347,penpulimab,,,,penpulimab,penpulimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ZBL7O904IL,Zimberelimab,3,ZBL7O904IL,,12349,zimberelimab,,,,zimberelimab,zimberelimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3L7R886Y06,Sabatolimab,3,3L7R886Y06,,12361,sabatolimab,,,,sabatolimab,sabatolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:KX1N4TV7UY,Abelacimab,3,KX1N4TV7UY,,12417,abelacimab,,,,abelacimab,abelacimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K3:CHEMBL4301788,RM-2,3,,,12494,"[D-Phe6, Stat13, Leu14]Bn(6-14)",,,,RM-2,rm 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TVT9XLV5MU,Volenrelaxin,3,TVT9XLV5MU,,12502,LY3540378,,,,LY3540378,ly3540378,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:KV2ZKH0NIM,Tafolecimab,3,KV2ZKH0NIM,,12517,tafolecimab,,,,tafolecimab,tafolecimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:CZ9KU41DVB,GDC-0334,3,CZ9KU41DVB,,12568,GDC-0334,RGXNECXVRZKGGH-UOXRKKOCSA-N,CHEMBL4865238,122490062,GDC-0334,gdc 0334,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YE8XXF1SDZ,Obrindatamab,3,YE8XXF1SDZ,,12586,obrindatamab,,,,obrindatamab,obrindatamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K3:CHEMBL4650289,KBP5209,3,,,12612,pirotinib,KJBZQIKLKWQVLL-UHFFFAOYSA-N,,56933206,KBP5209,kbp5209,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K3:CHEMBL3545248,DS-7423,1,,,12616,DS-7423,SOJJMSYMCLIQCZ-CYBMUJFWSA-N,,45378170,DS-7423,ds 7423,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K3:CHEMBL3545134,LY-2780301,3,,,12617,GLXC-26326,YDFKZIGAUIKZGP-UHFFFAOYSA-N,,46186926,LY-2780301,ly 2780301,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:90YIEHRFJ9,Magrolimab,3,90YIEHRFJ9,,12652,magrolimab,,,,magrolimab,magrolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:8R5CM46UIO,Odronextamab,2,8R5CM46UIO,,12690,odronextamab,,,,odronextamab,odronextamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:06P3KLK2J8,Glofitamab,1,06P3KLK2J8,,12758,glofitamab,,,,glofitamab,glofitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:06P3KLK2J8#gxbm,Glofitamab-Gxbm,2,06P3KLK2J8,,12758,glofitamab,,,,glofitamab,glofitamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:JA8K50N04H,MYRCLUDEX B,3,JA8K50N04H,,12775,bulevirtide,,,,bulevirtide,bulevirtide,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LLM855Y3S3#gmod,Bulevirtide-Gmod,2,LLM855Y3S3,,12775,bulevirtide,,,,bulevirtide,bulevirtide,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WKM56H3TLB,Bulevirtide,1,WKM56H3TLB,,12775,bulevirtide,,,,bulevirtide,bulevirtide,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:H9KH1GP3UU,Crovalimab,1,H9KH1GP3UU,,12790,crovalimab,,,,crovalimab,crovalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:H9KH1GP3UU#akkz,Crovalimab-Akkz,2,H9KH1GP3UU,,12790,crovalimab,,,,crovalimab,crovalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:UNRTVIQQMJRQLZ-UHFFFAOYSA-N,GNE 7883,3,,UNRTVIQQMJRQLZ-UHFFFAOYSA-N,12814,GNE-7883,OMGKSFJZXSXHCA-UHFFFAOYSA-N,CHEMBL5191316,164852436,GNE-7883,gne 7883,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:784ELC1SCZ,Penoxsulam,3,784ELC1SCZ,SYJGKVOENHZYMQ-UHFFFAOYSA-N,12844,GRASP,,,,GRASP,grasp,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2VG74ZW2K5,KISSPEPTIN,3,2VG74ZW2K5,,1288,kisspeptin-54,,,,metastin,metastin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0JJ21K6L2I,Pozelimab,2,0JJ21K6L2I,,12900,pozelimab,,,,pozelimab,pozelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0JJ21K6L2I#bbfg,Pozelimab-Bbfg,2,0JJ21K6L2I,,12900,pozelimab,,,,pozelimab,pozelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:SA0O2AK3LA,Bexmarilimab,3,SA0O2AK3LA,,12907,bexmarilimab,,,,bexmarilimab,bexmarilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:G9IB4Q8R5G,HPG-1860,3,G9IB4Q8R5G,,12910,HPG1860,JPEHHEUXHNQIIX-CQSZACIVSA-N,,169422740,HPG1860,hpg1860,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G8JN4Y1NG0,ABBV-3373,3,G8JN4Y1NG0,,12917,ABBV-3373,,,,ABBV-3373,abbv 3373,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0QI90BTJ37,Sotatercept,2,0QI90BTJ37,,12962,sotatercept,,,,sotatercept,sotatercept,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0QI90BTJ37#csrk,Sotatercept-Csrk,1,0QI90BTJ37,,12962,sotatercept,,,,sotatercept,sotatercept,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:OHZ2MEL7FD,Tozorakimab,3,OHZ2MEL7FD,,12964,tozorakimab,,,,tozorakimab,tozorakimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6FYG1DS4NW,Cadonilimab,3,6FYG1DS4NW,,12966,cadonilimab,,,,cadonilimab,cadonilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:74X82ST8Q1,TARLATAMAB,2,74X82ST8Q1,,12969,tarlatamab,,,,tarlatamab,tarlatamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:74X82ST8Q1#dlle,Tarlatamab-Dlle,2,74X82ST8Q1,,12969,tarlatamab,,,,tarlatamab,tarlatamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0KVO411B3N,Tislelizumab,1,0KVO411B3N,,12989,toripalimab,,,,toripalimab,toripalimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:28X28X9OKV,Durvalumab,1,28X28X9OKV,,12989,toripalimab,,,,toripalimab,toripalimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:8JXN261VVA,Toripalimab,1,8JXN261VVA,,12989,toripalimab,,,,toripalimab,toripalimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:8JXN261VVA#tpzi,Toripalimab-Tpzi,2,8JXN261VVA,,12989,toripalimab,,,,toripalimab,toripalimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:0KVO411B3N,Tislelizumab,1,0KVO411B3N,,12990,sintilimab,,,,sintilimab,sintilimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:73096E137E,Camrelizumab,3,73096E137E,,12990,sintilimab,,,,sintilimab,sintilimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:8FU7FQ8UPK,Sintilimab,3,8FU7FQ8UPK,,12990,sintilimab,,,,sintilimab,sintilimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:949NG8376D,Gilvetmab,3,949NG8376D,,12990,sintilimab,,,,sintilimab,sintilimab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:W05CP6IT8R,PROLGOLIMAB,3,W05CP6IT8R,,12991,prolgolimab,,,,prolgolimab,prolgolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:894KSI08XK,Nurulimab,3,894KSI08XK,,12992,nurulimab,,,,nurulimab,nurulimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G770V925KP,Rocatinlimab,3,G770V925KP,,13045,rocatinlimab,,,,rocatinlimab,rocatinlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EJ48MR05C3,Ordesekimab,3,EJ48MR05C3,,13046,ordesekimab,,,,ordesekimab,ordesekimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:J38KT46AH8,Narlumosbart,3,J38KT46AH8,,13084,narlumosbart,,,,narlumosbart,narlumosbart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1XBY50W1OX,Adebrelimab,3,1XBY50W1OX,,13085,adebrelimab,,,,adebrelimab,adebrelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:52CMI0WC3Y,Atezolizumab,1,52CMI0WC3Y,,13085,adebrelimab,,,,adebrelimab,adebrelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:13ZEQ1M5ML,DIVOZILIMAB,3,13ZEQ1M5ML,,13087,divozilimab,,,,divozilimab,divozilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C5D3YG7ZR8,ORM-10921,3,,OCUKPFWNSAAHRP-QZTJIDSGSA-N,13130,ORM-10921,ORJHUFIKVKSPRJ-ZWKOTPCHSA-N,,171037438,ORM-10921,orm 10921,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:VI6E2D3CYP,ORIC-101,3,VI6E2D3CYP,,13167,ORIC-101,VNLTWJIWEYPBIF-KMSLUKAPSA-N,CHEMBL4161754,134415769,ORIC-101,oric 101,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ONX021SC9O,Camoteskimab,3,ONX021SC9O,,13187,camoteskimab,,,,camoteskimab,camoteskimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OVF025LA77,Intermedine,3,,WHNFPRLDDSXQCL-UAZQEYIDSA-N,1320,α-MSH,,,16162729,α-melanocyte stimulating hormone,melanocyte stimulating hormone,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:MYIVZHLQTAFSND-JTNHKYCSSA-N,Girocitinib,3,,MYIVZHLQTAFSND-JTNHKYCSSA-N,13208,girocitinib,ZFQNHUSKKDBFHY-GRYCIOLGSA-N,,139412850,girocitinib,girocitinib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:KL3T9ZU6HQ,Lunbotinib,3,KL3T9ZU6HQ,,13212,lunbotinib,SYAIWXURFWCECS-UHFFFAOYSA-N,,146013180,lunbotinib,lunbotinib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:GD2OWY1DTK,Datopotamab deruxtecan,2,GD2OWY1DTK,,13304,datopotamab deruxtecan,,,,datopotamab deruxtecan,datopotamab deruxtecan,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GD2OWY1DTK#dlnk,Datopotamab Deruxtecan-Dlnk,2,GD2OWY1DTK,,13304,datopotamab deruxtecan,,,,datopotamab deruxtecan,datopotamab deruxtecan,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M3CPC50MZS,Linvoseltamab,2,M3CPC50MZS,,13305,linvoseltamab,,,,linvoseltamab,linvoseltamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:M3CPC50MZS#gcpt,Linvoseltamab-Gcpt,2,M3CPC50MZS,,13305,linvoseltamab,,,,linvoseltamab,linvoseltamab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:K0U68Q2TXA,Corticotropin,1,K0U68Q2TXA,,1331,ACTH,,,,ACTH,acth,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:ZOEFCCMDUURGSE-SQKVDDBVSA-N,Tetracosactide,2,72YY86EA29,ZOEFCCMDUURGSE-SQKVDDBVSA-N,1331,ACTH,,,,ACTH,acth,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2PHK27IP3B,Taspoglutide,3,2PHK27IP3B,,13315,taspoglutide,WRGVLTAWMNZWGT-VQSPYGJZSA-N,,56842233,taspoglutide,taspoglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Z24U3U73HN,Maridebart cafraglutide,3,Z24U3U73HN,,13316,maridebart cafraglutide,,,,maridebart cafraglutide,maridebart cafraglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:P3Z0Z3P1ZI,Prasinezumab,3,P3Z0Z3P1ZI,,13330,prasinezumab,,,,prasinezumab,prasinezumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:W83JGQ40XX,Cinpanemab,3,W83JGQ40XX,,13331,cinpanemab,,,,cinpanemab,cinpanemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2ALA66NS64,Survodutide,1,2ALA66NS64,,13383,survodutide,MEDXQFAHWBMVIM-YIUAJOCSSA-N,,168429725,survodutide,survodutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:Y0O332CU66,IVONESCIMAB,3,Y0O332CU66,,13396,ivonescimab,,,,ivonescimab,ivonescimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:32W6AJL0DY,Garadacimab,1,32W6AJL0DY,,13402,garadacimab,,,,garadacimab,garadacimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:32W6AJL0DY#gxii,Garadacimab-Gxii,2,32W6AJL0DY,,13402,garadacimab,,,,garadacimab,garadacimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0UB3OA67O7,Marstacimab,2,0UB3OA67O7,,13403,marstacimab,,,,marstacimab,marstacimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0UB3OA67O7#hncq,Marstacimab-Hncq,2,0UB3OA67O7,,13403,marstacimab,,,,marstacimab,marstacimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9S9XW36W2A,Punicalagin,3,9S9XW36W2A,SKNLUADAGHCXKF-MUUXQOATSA-N,13430,punicalagin,ZJVUMAFASBFUBG-UYMKNUMKSA-N,,44584733,punicalagin,punicalagin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:QWX84D0DRC,Briquilimab,3,QWX84D0DRC,,13450,briquilimab,,,,briquilimab,briquilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:W25GO3A75W,Vixarelimab,3,W25GO3A75W,,13451,vixarelimab,,,,vixarelimab,vixarelimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:HN5US76BWF,Dazodalibep,3,HN5US76BWF,,13453,dazodalibep,,,,dazodalibep,dazodalibep,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:R96Z451BMC,Axatilimab,2,R96Z451BMC,,13497,axatilimab,,,,axatilimab,axatilimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:R96Z451BMC#csfr,Axatilimab-Csfr,2,R96Z451BMC,,13497,axatilimab,,,,axatilimab,axatilimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:AE72RB1W1X,Zenocutuzumab,2,AE72RB1W1X,,13649,zenocutuzumab,,,,zenocutuzumab,zenocutuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AE72RB1W1X#zbco,Zenocutuzumab-Zbco,2,AE72RB1W1X,,13649,zenocutuzumab,,,,zenocutuzumab,zenocutuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GXA6PF0254,Ponsegromab,3,GXA6PF0254,,13663,ponsegromab,,,,ponsegromab,ponsegromab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7SGW2C2ZH7,Nebokitug,3,7SGW2C2ZH7,,13666,nebokitug,,,,nebokitug,nebokitug,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1TBM83QR9S,Bentracimab,3,1TBM83QR9S,,13675,bentracimab,,,,bentracimab,bentracimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PNW7GBB44P,Cosibelimab,1,PNW7GBB44P,,13676,cosibelimab,,,,cosibelimab,cosibelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:PNW7GBB44P#ipdl,Cosibelimab-Ipdl,2,PNW7GBB44P,,13676,cosibelimab,,,,cosibelimab,cosibelimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:IKT0XSS2XB,Latozinemab,3,IKT0XSS2XB,,13685,latozinemab,,,,latozinemab,latozinemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Q9J81E7VFM,Mitazalimab,3,Q9J81E7VFM,,13692,mitazalimab,,,,mitazalimab,mitazalimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4LH8QAS0LR,PARIDIPRUBART,3,4LH8QAS0LR,,13714,paridiprubart,,,,paridiprubart,paridiprubart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RB3U3A1S27,DISITAMAB VEDOTIN,3,RB3U3A1S27,,13716,disitamab vedotin,,,,disitamab vedotin,disitamab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RRW32X4U1F,Dienestrol,1,RRW32X4U1F,NFDFQCUYFHCNBW-SCGPFSFSSA-N,13716,disitamab vedotin,,,,disitamab vedotin,disitamab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6N2CA8C68F,Bempikibart,3,6N2CA8C68F,,13725,bempikibart,,,,bempikibart,bempikibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AO43BIF1U8,Cagrilintide,3,AO43BIF1U8,,13768,cagrilintide,LDERDVMBIYGIOI-IZVMHKDJSA-N,,171397054,cagrilintide,cagrilintide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:NOP2Y096GV,Retatrutide,1,NOP2Y096GV,,13769,retatrutide,MLOLQJNKXBNWFW-SAGGEDDASA-N,,171390338,retatrutide,retatrutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:L2REN9TU2D,Stapokibart,3,L2REN9TU2D,,13785,stapokibart,,,,stapokibart,stapokibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:X126G5DZ36,Ongericimab,3,X126G5DZ36,,13787,ongericimab,,,,ongericimab,ongericimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:H533QU433M,Enlonstobart,3,H533QU433M,,13789,enlonstobart,,,,enlonstobart,enlonstobart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B25CF42QKP,Benmelstobart,3,B25CF42QKP,,13790,benmelstobart,,,,benmelstobart,benmelstobart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3DV5TD1VL3,Sacituzumab tirumotecan,3,3DV5TD1VL3,,13791,sacituzumab tirumotecan,,,,sacituzumab tirumotecan,sacituzumab tirumotecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:73H2I6QS54,Sacituzumab,3,73H2I6QS54,,13791,sacituzumab tirumotecan,,,,sacituzumab tirumotecan,sacituzumab tirumotecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M9BYU8XDQ6,Sacituzumab govitecan,2,M9BYU8XDQ6,,13791,sacituzumab tirumotecan,,,,sacituzumab tirumotecan,sacituzumab tirumotecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0KVO411B3N,Tislelizumab,1,0KVO411B3N,,13796,serplulimab,,,,serplulimab,serplulimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:S3GQZ2K36V,Serplulimab,2,S3GQZ2K36V,,13796,serplulimab,,,,serplulimab,serplulimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:YRU8TD2FZD,Nivisnebart,3,YRU8TD2FZD,,13797,nivisnebart,,,,nivisnebart,nivisnebart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:39T86A9MVJ,Zadoprubart,3,39T86A9MVJ,,13799,zadoprubart,,,,zadoprubart,zadoprubart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XC95WX725U,Vorsetuzumab,3,XC95WX725U,,13800,balertatug,,,,balertatug,balertatug,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:C98V9UMX3D,Batoclimab,3,C98V9UMX3D,,13805,batoclimab,,,,batoclimab,batoclimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K6E9SY8U8D,Eneboparatide,3,K6E9SY8U8D,,13815,eneboparatide,,,,eneboparatide,eneboparatide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:N2Q7V645PL,Oberotatug ravtansine,3,N2Q7V645PL,,13819,OBT076,,,,OBT076,obt076,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TO3JYR3BOU,Pegcetacoplan,2,TO3JYR3BOU,,13826,pegcetacoplan,,,,pegcetacoplan,pegcetacoplan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C6I0GC0GX5,Ifinatamab deruxtecan,3,C6I0GC0GX5,,13850,ifinatamab deruxtecan,,,,ifinatamab deruxtecan,ifinatamab deruxtecan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3G6834I4PF,Tadekinig alfa,3,3G6834I4PF,,13868,interleukin 18 binding protein,,,,interleukin 18 binding protein,interleukin 18 binding protein,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PG97J3111A,Ebdarokimab,3,PG97J3111A,,13875,ebdarokimab,,,,ebdarokimab,ebdarokimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:87M90CV8NC,Nipocalimab,2,87M90CV8NC,,13876,nipocalimab,,,,nipocalimab,nipocalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:87M90CV8NC#aahu,Nipocalimab-Aahu,2,87M90CV8NC,,13876,nipocalimab,,,,nipocalimab,nipocalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:CGA81G3KR5,Pucotenlimab,3,CGA81G3KR5,,13886,pucolentimab,,,,pucotenlimab,pucotenlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:6YS6C7XEC8,GUMOKIMAB,3,6YS6C7XEC8,,13889,gumokimab,,,,gumokimab,gumokimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GG0AN49Y59,Quavonlimab,3,GG0AN49Y59,,13890,quavonlimab,,,,quavonlimab,quavonlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:FDL8DA4XV4,Pulocimab,3,FDL8DA4XV4,,13891,pulocimab,,,,pulocimab,pulocimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:977D2P9YYW,Sipavibart,2,977D2P9YYW,,13905,sipavibart,,,,sipavibart,sipavibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:976X9VXC3Z,Telisotuzumab vedotin,3,976X9VXC3Z,,13908,telisotuzumab vedotin,,,,telisotuzumab vedotin,telisotuzumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:976X9VXC3Z#tllv,Telisotuzumab Vedotin-Tllv,2,976X9VXC3Z,,13908,telisotuzumab vedotin,,,,telisotuzumab vedotin,telisotuzumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BO76JF850N,Clidinium,1,91ZQW5JF1Z,HOOSGZJRQIVJSZ-UHFFFAOYSA-N,13919,clifutinib,DWZXYPARIPYQKS-UHFFFAOYSA-N,,118665873,clidinium bromide,clidinium,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:MB76Z4IBZ5,Mazdutide,3,MB76Z4IBZ5,,13924,mazdutide,XRBYWQZGSZWYEJ-HMQIFOERSA-N,,167312357,mazdutide,mazdutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:KM6YM7L8LH,Ecnoglutide,3,KM6YM7L8LH,,13970,ecnoglutide,DJMLKAVQDZZBNC-NYHUXPQOSA-N,,162625103,ecnoglutide,ecnoglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DP73UWL6LE,Casdatifan,3,DP73UWL6LE,,13981,casdatifan,KHBHHNNBNHHGPE-QCCZFBHPSA-N,,156859185,casdatifan,casdatifan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:45X7OU8C4J,Domvanalimab,3,45X7OU8C4J,,13983,domvanalimab,,,,domvanalimab,domvanalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UKI9MLD5OI,DOM,3,45X7OU8C4J,NTJQREUGJKIARY-UHFFFAOYSA-N,13983,domvanalimab,,,,domvanalimab,domvanalimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FC1ZF28VIT,Etigilimab,3,FC1ZF28VIT,,13984,etigilimab,,,,etigilimab,etigilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RUU8G67GQM,Aescin,3,RUU8G67GQM,,14008,escin,MZYGIFKFDNOYEN-GGONRZKLSA-N,,176516515,escin,escin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:MLLNRQWNTKNRGQ-JXJCUFHPSA-N,AESCIN,3,RUU8G67GQM,MLLNRQWNTKNRGQ-JXJCUFHPSA-N,14008,escin,MZYGIFKFDNOYEN-GGONRZKLSA-N,,176516515,escin,escin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:09QCEV5481,TILDACERFONT,3,09QCEV5481,CLKXPWDYEYIPFS-UHFFFAOYSA-N,14043,tildacerfont,XVAWSBAQNIXMIO-UHFFFAOYSA-N,,24898977,tildacerfont,tildacerfont,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0CF4C9C787,FESOMERSEN,3,0CF4C9C787,,14081,fesomersen,,,,fesomersen,fesomersen,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K8A4DG9RWV,Gruticibart,3,K8A4DG9RWV,,14082,gruticibart,,,,gruticibart,gruticibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3XPI7EG4W8,Patritumab deruxtecan,3,3XPI7EG4W8,,14121,patritumab deruxtecan,,,,patritumab deruxtecan,patritumab deruxtecan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WR2TIP26VS,Abacavir,2,40FH6D8CHK,MCGSCOLBFJQGHM-SCZZXKLOSA-N,14169,"α,β-difluoromethylene-UDP",JKJYHYKRGKKASI-XVFCMESISA-N,CHEMBL488133,44585948,abacavir,abacavir,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:20IE6M67UX,RECATICIMAB,3,20IE6M67UX,,14196,recaticimab,,,,recaticimab,recaticimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2NHW9AKY9C,Pacibekitug,3,2NHW9AKY9C,,14206,pacibekitug,,,,pacibekitug,pacibekitug,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UO870O6MFS,Pegozafermin,3,UO870O6MFS,,14215,pegozafermin,,,,pegozafermin,pegozafermin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Z6Z6IVE7W4,Petosemtamab,3,Z6Z6IVE7W4,,14238,petosemtamab,,,,petosemtamab,petosemtamab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QP49AY37OY,BNC-210,3,QP49AY37OY,,14250,soclenicant,ZAEIHDZLLJCJFP-UHFFFAOYSA-N,,24772165,soclenicant,soclenicant,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9Q5NSR8WV9,Delpacibart,3,9Q5NSR8WV9,,14255,delpacibart,,,,delpacibart,delpacibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:93OKX5KD2L,Rosnilimab,3,93OKX5KD2L,,14271,rosnilimab,,,,rosnilimab,rosnilimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:J43GMI6IYW,DAPIGLUTIDE,3,J43GMI6IYW,,14279,dapiglutide,ZFSPELIJRGIIEX-HLQWLALHSA-N,,171934788,dapiglutide,dapiglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6HG8JYS9D6,Posdinemab,3,6HG8JYS9D6,,14292,posdinemab,,,,posdinemab,posdinemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y3BH8M899D,Navepegritide,1,Y3BH8M899D,,14293,navepegritide,,,,navepegritide,navepegritide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D16EQP0KKH,Depemokimab,1,D16EQP0KKH,,14305,depemokimab,,,,depemokimab,depemokimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D16EQP0KKH#ulaa,Depemokimab-Ulaa,2,D16EQP0KKH,,14305,depemokimab,,,,depemokimab,depemokimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LYK65H95KT,Gulgafafusp alfa,3,LYK65H95KT,,14316,glutazumab,,,,GMA-102,gma 102,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FT24ZQQ5RP,Narsoplimab,3,FT24ZQQ5RP,,14317,narsoplimab,,,,narsoplimab,narsoplimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FT24ZQQ5RP#wuug,Narsoplimab-Wuug,2,FT24ZQQ5RP,,14317,narsoplimab,,,,narsoplimab,narsoplimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1PHP3QG5PZ,Lerodalcibep,1,1PHP3QG5PZ,,14319,lerodalcibep,,,,lerodalcibep,lerodalcibep,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1PHP3QG5PZ#liga,Lerodalcibep-Liga,2,1PHP3QG5PZ,,14319,lerodalcibep,,,,lerodalcibep,lerodalcibep,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:77JYS6UZ0M,Volagidemab,3,77JYS6UZ0M,,14320,volagidemab,,,,volagidemab,volagidemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:85TS31SOL3,Nimacimab,3,85TS31SOL3,,14321,nimacimab,,,,nimacimab,nimacimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:K3KZN98GF5,Patecibart,3,K3KZN98GF5,,14322,getagozumab,,,,getagozumab,getagozumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4ZR9JAX9EG,Ozureprubart,3,4ZR9JAX9EG,,14334,ozureprubart,,,,ozureprubart,ozureprubart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:NDM64RSJ42,Pasritamig,3,NDM64RSJ42,,14352,pasritamig,,,,pasritamig,pasritamig,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C56LJ7JC3W,Rinatabart sesutecan,3,C56LJ7JC3W,,14353,rinatabart sesutecan,,,,rinatabart sesutecan,rinatabart sesutecan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:E1P2TDU69L,AG-270,3,E1P2TDU69L,HSVRUECLQUGTDS-UHFFFAOYSA-N,14386,AG-270,LSOYYWKBUKXUHQ-UHFFFAOYSA-N,CHEMBL4573938,134307820,AG-270,ag 270,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:T7Y5VC4ERJ,Suvemcitug,3,T7Y5VC4ERJ,,14397,suvemcitug,,,,suvemcitug,suvemcitug,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7PTS8JHT9R,Picankibart,3,7PTS8JHT9R,,14398,picankibart,,,,picankibart,picankibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:533Z4G2286,Finotonlimab,3,533Z4G2286,,14401,finotonlimab,,,,finotonlimab,finotonlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:JM802R57SA,LORIGERLIMAB,3,JM802R57SA,,14407,lorigerlimab,,,,lorigerlimab,lorigerlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:B2I7YTE4ZA,Duvakitug,3,B2I7YTE4ZA,,14420,duvakitug,,,,duvakitug,duvakitug,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EN2U82XV65,Povetacicept,3,EN2U82XV65,,14426,povetacicept,,,,povetacicept,povetacicept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:VYR5R5XN5A,Lunsekimig,3,VYR5R5XN5A,,14473,lunsekimig,,,,lunsekimig,lunsekimig,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:O874Z20U79,DF-003,3,O874Z20U79,DBYADRPTMRXVDJ-QBCQWNFYSA-N,14505,DF-003,ANRFSQHHAOCNIN-DEOSSOPVSA-N,,171407492,DF-003,df 003,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YXM6C5LQ2H,Tovecimig,3,YXM6C5LQ2H,,14507,tovecimig,,,,tovecimig,tovecimig,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:EK87C62XNH,Tegoprubart,3,EK87C62XNH,,14508,tegoprubart,,,,tegoprubart,tegoprubart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P5TLS56PWW,Cizutamig,3,P5TLS56PWW,,14514,cizutamig,,,,cizutamig,cizutamig,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:JP6N6TA92L,RETLIRAFUSP ALFA,3,JP6N6TA92L,,14515,retlirafusp alfa,,,,retlirafusp alfa,retlirafusp alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:BPQ010OFD7,Raludotatug deruxtecan,3,BPQ010OFD7,,14519,raludotatug deruxtecan,,,,raludotatug deruxtecan,raludotatug deruxtecan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Q3SE2QPZ2H,Rezorstobart,3,Q3SE2QPZ2H,,14521,rezorstobart,,,,rezorstobart,rezorstobart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:K2Q0JXS9B4,Dazukibart,3,K2Q0JXS9B4,,14524,dazukibart,,,,dazukibart,dazukibart,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OX5LRQ5H6K,Fianlimab,3,OX5LRQ5H6K,,14532,fianlimab,,,,fianlimab,fianlimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:L15LO3W1XX,Pivekimab sunirine,1,L15LO3W1XX,,14543,pivekimab sunirine,,,,pivekimab sunirine,pivekimab sunirine,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:L15LO3W1XX#pvzy,Pivekimab Sunirine-Pvzy,2,L15LO3W1XX,,14543,pivekimab sunirine,,,,pivekimab sunirine,pivekimab sunirine,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KX89J0DFZ8,Imsidolimab,3,KX89J0DFZ8,,14553,imsidolimab,,,,imsidolimab,imsidolimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:J28M3X94LD,Sonefpeglutide,3,J28M3X94LD,,14554,sonefpeglutide,,CHEMBL6068175,,sonefpeglutide,sonefpeglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:HFDKKNHCYWNNNQ-YOGANYHLSA-N,PANCREATIC POLYPEPTIDE,3,UDH73690IV,HFDKKNHCYWNNNQ-YOGANYHLSA-N,1480,pancreatic polypeptide,,,,pancreatic polypeptide,pancreatic polypeptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:HFDKKNHCYWNNNQ-YOGANYHLSA-N,PANCREATIC POLYPEPTIDE,3,UDH73690IV,HFDKKNHCYWNNNQ-YOGANYHLSA-N,1511,pancreatic polypeptide,,,,pancreatic polypeptide,pancreatic polypeptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K2:HFDKKNHCYWNNNQ-YOGANYHLSA-N,PANCREATIC POLYPEPTIDE,3,UDH73690IV,HFDKKNHCYWNNNQ-YOGANYHLSA-N,1512,pancreatic polypeptide,,,,pancreatic polypeptide,pancreatic polypeptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K2:HFDKKNHCYWNNNQ-YOGANYHLSA-N,PANCREATIC POLYPEPTIDE,3,UDH73690IV,HFDKKNHCYWNNNQ-YOGANYHLSA-N,1513,pancreatic polypeptide,,,,pancreatic polypeptide,pancreatic polypeptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:7PQZ90ULIR,PEPTIDE YY HUMAN (3-36),3,7PQZ90ULIR,,1517,PYY-(3-36),,,,PYY-(3-36),pyy 3 36,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:7PQZ90ULIR,PEPTIDE YY HUMAN (3-36),3,7PQZ90ULIR,,1554,PYY-(3-36),,,,PYY-(3-36),pyy 3 36,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:3S51P4W3XQ,Beta-Endorphin Human,3,3S51P4W3XQ,,1643,β-endorphin,JMHFFDIMOUKDCZ-NTXHZHDSSA-N,,16132316,β-endorphin,endorphin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:CP58JY9A5J,BETA-ENDORPHIN Human (6-17),3,CP58JY9A5J,,1643,β-endorphin,JMHFFDIMOUKDCZ-NTXHZHDSSA-N,,16132316,β-endorphin,endorphin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K2:YKCWQPZFAFZLBI-UHFFFAOYSA-N,CIBACRON BLUE,3,,YKCWQPZFAFZLBI-UHFFFAOYSA-N,1739,reactive blue-2,JQYMGXZJTCOARG-UHFFFAOYSA-N,CHEMBL1160031,656725,cibacron blue,cibacron blue,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:0E43V0BB57,Misoprostol,1,0E43V0BB57,OJLOPKGSLYJEMD-URPKTTJQSA-N,1935,misoprostol (free acid form),CNWGPXZGIIOYDL-MKYGPDKMSA-N,CHEMBL1201377,6436406,misoprostol,misoprostol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:2BD5112J0I,Relaxin Porcine,3,2BD5112J0I,,1989,relaxin,,,,relaxin,relaxin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:2BD5112J0I,Relaxin Porcine,3,2BD5112J0I,,1992,relaxin,,,,relaxin,relaxin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:2BD5112J0I,Relaxin Porcine,3,2BD5112J0I,,1993,relaxin,,,,relaxin,relaxin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2BD5112J0I,Relaxin Porcine,3,2BD5112J0I,,1994,relaxin,,,,relaxin,relaxin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:6E20216Q0L,Somatostatin,2,6E20216Q0L,NHXLMOGPVYXJNR-ATOGVRKGSA-N,2019,SRIF-14,VVEJUSYNERNRME-XGFVQVCISA-N,,44386062,SRIF-14,srif 14,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,14
+K1:XW59TYL1XH,Nepadutant,3,XW59TYL1XH,NGCNKEZHGRXHNL-WVWQGFTISA-N,2123,nepadutant,NPSVXOVMLVOMDD-SXRVEDALSA-N,,3086682,nepadutant,nepadutant,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:HFNHAPQMXICKCF-USJMABIRSA-N,UROTENSIN-II,3,QV99Q4C6CR,HFNHAPQMXICKCF-USJMABIRSA-N,2153,urotensin-II,,,,urotensin-II,urotensin ii,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K2:HFNHAPQMXICKCF-USJMABIRSA-N,UROTENSIN-II,3,QV99Q4C6CR,HFNHAPQMXICKCF-USJMABIRSA-N,2154,urotensin-II,,,,urotensin-II,urotensin ii,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K2:HFNHAPQMXICKCF-USJMABIRSA-N,UROTENSIN-II,3,QV99Q4C6CR,HFNHAPQMXICKCF-USJMABIRSA-N,2155,urotensin-II,,,,urotensin-II,urotensin ii,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:4UR7N9Z9MM,Somatorelin,2,4UR7N9Z9MM,,2270,GHRH,,,16132353,GHRH,ghrh,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:MQG94M5EEO,Tesamorelin,1,MQG94M5EEO,,2270,GHRH,,,16132353,GHRH,ghrh,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:660YQ98I10,Potassium Chloride,1,660YQ98I10,WCUXLLCKKVVCTQ-UHFFFAOYSA-M,2339,Cl-,,,312,chloride,chloride,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:LYR4M0NH37,Sodium Cation,1,LYR4M0NH37,FKNQFGJONOIPTF-UHFFFAOYSA-N,2340,Na+,,,923,sodium ion,sodium ion,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+K1:8883YP2R6D,Ivermectin,2,8883YP2R6D,,2373,ivermectin,AZSNMRSAGSSBNP-ZLRQRZFZSA-N,,6427057,ivermectin,ivermectin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:295O53K152,Potassium Cation,1,295O53K152,NPYPAHLBTDXSSS-UHFFFAOYSA-N,2381,K+,,,813,potassium ion,potassium ion,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:9K7CJ74ONH,Tenidap,3,9K7CJ74ONH,LXIKEPCNDFVJKC-QXMHVHEDSA-N,2395,tenidap,IZSFDUMVCVVWKW-UHFFFAOYSA-N,CHEMBL1908355,60712,tenidap,tenidap,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BBX060AN9V,Hydrogen Peroxide,1,BBX060AN9V,MHAJPDPJQMAIIY-UHFFFAOYSA-N,2448,H2O2,,,784,H2O2,h2o2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K4:menthyl,Menthyl,2,,,2466,frescolat ML,UJNOLBSYLSYIBM-SGUBAKSOSA-N,,62151,(-)-menthyl lactate,menthyl,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:7UJQ5OPE7D,Carbonate Ion,1,7UJQ5OPE7D,BVKZGUZCCUSVTD-UHFFFAOYSA-N,2479,HCl,,,313,hydrogen chloride,hydrogen,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7YNJ3PO35Z,Hydrogen,3,7YNJ3PO35Z,UFHFLCQGNIYNRP-UHFFFAOYSA-N,2479,HCl,,,313,hydrogen chloride,hydrogen,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QTT17582CB,Hydrochloric Acid,2,Q32ZN48698,VEXZGXHMUGYJMC-UHFFFAOYSA-N,2479,HCl,,,313,hydrogen chloride,hydrogen,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7GR9I2683O,Mecasermin,1,7GR9I2683O,,2495,insulin-like growth factor 1,,,,insulin-like growth factor 1,insulin like growth factor 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K4:lysophosphatidylcholine,Lysophosphatidylcholine,3,,,2508,lysophosphatidylcholine,RYCNUMLMNKHWPZ-SNVBAGLBSA-N,,5311264,lysophosphatidylcholine,lysophosphatidylcholine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:31C4KY9ESH,Nitric Oxide,2,31C4KY9ESH,MWUXSHHQAYIFBG-UHFFFAOYSA-N,2509,NO,,,145068,INOmax®,inomax,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:2P1P5JB93S,Leconotide,3,2P1P5JB93S,,2534,ω-conotoxin CVID,,,,leconotide,leconotide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0RP0I19CSC,RS-39604,3,,BKVIWGRFRKLFIO-UHFFFAOYSA-N,254,RS 39604,RLSGBCUXLRMTPF-UHFFFAOYSA-N,CHEMBL83954,182593,RS 39604,rs 39604,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6GK82EC25D,Pyrithione,2,6GK82EC25D,FGVVTMRZYROCTH-UHFFFAOYSA-N,2597,zinc pyrithione,OTPSWLRZXRHDNX-UHFFFAOYSA-L,CHEMBL1200471,415267,zinc pyrithione,zinc pyrithione,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:Y180U02GSB,MK-0767,3,Y180U02GSB,ORZMUVMQJPGFOM-UHFFFAOYSA-N,2677,MK-0767,NFFXEUUOMTXWCX-UHFFFAOYSA-N,CHEMBL24458,151183,MK-0767,mk 0767,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:71ANL51TLA,MENAQUINONE 6,3,71ANL51TLA,PFRQBZFETXBLTP-RCIYGOBDSA-N,2771,vitamin K2,PTWSIIUEOFZCHW-NTCAYCPXSA-N,CHEMBL263382,5280374,vitamin K2,vitamin k2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:XDBOQJCMEXOPMU-BAHYQGKPSA-N,Elocalcitol,3,,XDBOQJCMEXOPMU-BAHYQGKPSA-N,2785,elocalcitol,LRLWXBHFPGSUOX-GJQYOBCGSA-N,,11396600,elocalcitol,elocalcitol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:95K54647BZ,Hydroxytamoxifen,3,17197F0KYM,TXUZVZSFRXZGTL-QPLCGJKRSA-N,2817,4-hydroxytamoxifen,DODQJNMQWMSYGS-QPLCGJKRSA-N,CHEMBL10041,5284643,4-hydroxytamoxifen,4 hydroxytamoxifen,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+K2:JPBUGVXOVXSGAV-QPLCGJKRSA-N,4'-HYDROXYTAMOXIFEN,3,,JPBUGVXOVXSGAV-QPLCGJKRSA-N,2817,4-hydroxytamoxifen,DODQJNMQWMSYGS-QPLCGJKRSA-N,CHEMBL10041,5284643,4-hydroxytamoxifen,4 hydroxytamoxifen,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+HOLD:existing:desoxycorticosterone,Desoxycorticosterone,1,40GP35YQ49,VPGRYOFKCNULNK-ACXQXYJUSA-N,2871,deoxycorticosterone,ZESRJSPZRDMNHY-YFWFAHHUSA-N,CHEMBL1498,6166,deoxycorticosterone,deoxycorticosterone,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:6E0A168OB8,Desoxycorticosterone Acetate,1,6E0A168OB8,VPGRYOFKCNULNK-ACXQXYJUSA-N,2871,deoxycorticosterone,ZESRJSPZRDMNHY-YFWFAHHUSA-N,CHEMBL1498,6166,deoxycorticosterone,deoxycorticosterone,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4G7DS2Q64Y,Progesterone,1,4G7DS2Q64Y,RJKFOVLPORLFTN-LEKSSAKUSA-N,2879,medroxyprogesterone,FRQMUZJSZHZSGN-HBNHAYAOSA-N,CHEMBL1390,10631,medroxyprogesterone,medroxyprogesterone,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C2QI4IOI2G,Medroxyprogesterone Acetate,1,C2QI4IOI2G,PSGAAPLEWMOORI-PEINSRQWSA-N,2879,medroxyprogesterone,FRQMUZJSZHZSGN-HBNHAYAOSA-N,CHEMBL1390,10631,medroxyprogesterone,medroxyprogesterone,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G8X8WT527W,FARNESYL DIPHOSPHATE,3,G8X8WT527W,VWFJDQUYCIWHTN-YFVJMOTDSA-N,2911,farnesyl monophosphate,ALEWCKXBHSDCCT-FBXUGWQNSA-N,,6440220,farnesyl monophosphate,farnesyl,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:X71GCJ0HLI,MOCRAVIMOD,3,3YH0N35CE3,IINUNQPYJGJCJI-UHFFFAOYSA-N,2923,mocravimod-phosphate,BZVUYJGCYLMFGX-UHFFFAOYSA-N,,56947075,mocravimod-phosphate,mocravimod,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:3QN8BYN5QF,Fingolimod,2,3QN8BYN5QF,KKGQTZUTZRNORY-UHFFFAOYSA-N,2924,fingolimod-phosphate,LRFKWQGGENFBFO-UHFFFAOYSA-N,CHEMBL114606,9908268,fingolimod-phosphate,fingolimod,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,11
+K1:88C55N56UU,"Secretin, Unspecified",3,88C55N56UU,,2943,secretin,,,,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D0L9J6I13I,Secretin Porcine,2,D0L9J6I13I,,2943,secretin,,,,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G5C4M8847E,Incadronic acid,3,G5C4M8847E,LWRDQHOZTAOILO-UHFFFAOYSA-N,3174,cimadronate,GBBBPWVJGMFZGX-UHFFFAOYSA-N,CHEMBL56253,405386,incadronic acid,incadronic acid,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:1I9001LWY8,N-DESMETHYLCLOZAPINE,3,1I9001LWY8,JNNOSTQEZICQQP-UHFFFAOYSA-N,333,N-desmethylclozapine,HESZUPIXRNZIOI-UHFFFAOYSA-N,,135409468,N-desmethylclozapine,desmethylclozapine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:H037W1I5AL,LY-255283,3,H037W1I5AL,WCGXJPFHTHQNJL-UHFFFAOYSA-N,3351,LY255283,VSDBVKWYFGKZPY-UHFFFAOYSA-N,,35025716,CGS 23356,cgs 23356,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:Z49JYU6T3P,BGC-20-1531 FREE BASE,3,9QV7JG4XYZ,IXDVRRPNWPOPGV-UHFFFAOYSA-N,3380,BGC201531,BGXAOTTWXYPIQN-UHFFFAOYSA-N,,73755047,BGC20-1531,bgc20 1531,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Z46GXL23LX,OLEYLPHOSPHOCHOLINE,3,Z46GXL23LX,SLVOKEOPLJCHCQ-SEYXRHQNSA-N,3623,oleoyl-lysophosphatidylcholine,YAMUFBLWGFFICM-PTGWMXDISA-N,CHEMBL3093102,16081932,OLPC,olpc,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K0U68Q2TXA,Corticotropin,1,K0U68Q2TXA,,3633,ACTH,IDLFZVILOHSSID-OVLDLUHVSA-N,CHEMBL1201610,134611880,ACTH,acth,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:ZOEFCCMDUURGSE-SQKVDDBVSA-N,Tetracosactide,2,72YY86EA29,ZOEFCCMDUURGSE-SQKVDDBVSA-N,3633,ACTH,IDLFZVILOHSSID-OVLDLUHVSA-N,CHEMBL1201610,134611880,ACTH,acth,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:394XK0IH40,Phosphatidylserine,1,394XK0IH40,TZCPCKNHXULUIY-RGULYWFUSA-N,3638,phosphatidylserine,UNJJBGNPUUVVFQ-ZJUUUORDSA-N,,6323481,phosphatidylserine,phosphatidylserine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:88C55N56UU,"Secretin, Unspecified",3,88C55N56UU,,3643,secretin,KKNIUBFRGPFELP-UHFFFAOYSA-N,CHEMBL1201488,16129665,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D0L9J6I13I,Secretin Porcine,2,D0L9J6I13I,,3643,secretin,KKNIUBFRGPFELP-UHFFFAOYSA-N,CHEMBL1201488,16129665,secretin,secretin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:VPQCHIWQHIOPQS-UHFFFAOYSA-N,AS-99,3,,VPQCHIWQHIOPQS-UHFFFAOYSA-N,383,AS99,FCMUQGWJTIVYIU-UHFFFAOYSA-N,CHEMBL33491,135522368,AS 99,as 99,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:UJ8NQ5Z0VX,Peforelin,2,UJ8NQ5Z0VX,RTASYRSYWSLWJV-CSYZDTNESA-N,3878,GnRH III,,,,GnRH III,gnrh iii,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+HOLD:existing:nafarelin,Nafarelin,1,1X0094V6JV,PPXLVGBVOZLEIW-ITQXDASVSA-N,3902,nafarelin,RWHUEXWOYVBUCI-ITQXDASVSA-N,CHEMBL1201309,25077405,nafarelin,nafarelin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:PPXLVGBVOZLEIW-ITQXDASVSA-N,Nafarelin,2,,PPXLVGBVOZLEIW-ITQXDASVSA-N,3902,nafarelin,RWHUEXWOYVBUCI-ITQXDASVSA-N,CHEMBL1201309,25077405,nafarelin,nafarelin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AVX3D5A4LM,Thyrotropin alfa,2,AVX3D5A4LM,,3920,TSH,,,,thyrotropin alfa,thyrotropin alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ZGR06DO97T,Decyl Oleate,3,ZGR06DO97T,SASYSVUEVMOWPL-NXVVXOECSA-N,4030,decyl dihydrogen phosphate,SCIGVHCNNXTQDB-UHFFFAOYSA-N,CHEMBL361255,62532,decyl dihydrogen phosphate,decyl,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:178A96NLP2,Lauryl Alcohol,3,,LQZZUXJYWNFBMV-UHFFFAOYSA-N,4031,dodecylphosphate,TVACALAUIQMRDF-UHFFFAOYSA-L,,1550836,dodecanol phosphate,dodecanol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:HDC1R2M35U,Empagliflozin,1,HDC1R2M35U,OBWASQILIWPZMG-QZMOQZSNSA-N,4037,EMPA,KJPHTXTWFHVJIG-UHFFFAOYSA-N,CHEMBL2385132,9981404,EMPA,empa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:ZLT174DL7U,Picrotoxin,3,ZLT174DL7U,,4051,picrotoxin,VJKUPQSHOVKBCO-ZTYBEOBUSA-N,,31304,picrotoxin,picrotoxin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,26
+K2:RYEFFICCPKWYML-XZJHJRNISA-N,PICROTOXIN,3,ZLT174DL7U,RYEFFICCPKWYML-XZJHJRNISA-N,4051,picrotoxin,VJKUPQSHOVKBCO-ZTYBEOBUSA-N,,31304,picrotoxin,picrotoxin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,26
+K1:5MB77ICE2Q,9-AMINOCAMPTOTHECIN,3,5MB77ICE2Q,FUXVKZWTXQUGMW-FQEVSTJZSA-N,4113,9-anthroic acid,XGWFJBFNAQHLEF-UHFFFAOYSA-N,CHEMBL1513985,2201,9-AC,9 ac,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:372MAR8LH9,Silver Difluoride,3,372MAR8LH9,KWVVTSALYXIJSS-UHFFFAOYSA-L,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3M4G523W1G,Colloidal Silver,1,3M4G523W1G,BQCADISMDOOEFD-UHFFFAOYSA-N,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:57N7B0K90A,Silver Cation,2,57N7B0K90A,FOIXSVOLVBLSDH-UHFFFAOYSA-N,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:81M6Z3D1XE,Silver Iodide,2,81M6Z3D1XE,MSFPLIAKTHOCQP-UHFFFAOYSA-M,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:95IT3W8JZE,Silver Nitrate,2,95IT3W8JZE,SQGYOTSLMSWVJD-UHFFFAOYSA-N,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:MWB0804EO7,Silver Chloride,2,MWB0804EO7,HKZLPVFGJNLROG-UHFFFAOYSA-M,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ZL6T4Y1XP8,Silver Phosphate,1,ZL6T4Y1XP8,FJOLTQXXWSRAIX-UHFFFAOYSA-K,4126,Ag+,,,,silver,silver,7,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M1ZRX790SI,Brilliant Blue G,2,M1ZRX790SI,YVNQAIFQFWTPLQ-UHFFFAOYSA-N,4147,brilliant blue G,NIVDAYXBPZLBDP-UHFFFAOYSA-M,,73755082,brilliant blue G,brilliant blue g,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FXS1BY2PGL,Mercury,2,FXS1BY2PGL,QSHDDOUJBYECFT-UHFFFAOYSA-N,4215,Hg2+,,,,mercury,mercury,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,10
+HOLD:existing:pregnenolone,Pregnenolone,3,73R90F7MQ8,OZZAYJQNMKMUSD-DMISRAGPSA-N,4290,pregnenolone sulphate,DIJBBUIOWGGQOP-QGVNFLHTSA-N,CHEMBL1179605,105074,pregnenolone sulphate,pregnenolone,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:0G0WWV404B,Pregnenolone Acetate,3,,CRRKVZVYZQXICQ-RJJCNJEVSA-N,4290,pregnenolone sulphate,DIJBBUIOWGGQOP-QGVNFLHTSA-N,CHEMBL1179605,105074,pregnenolone sulphate,pregnenolone,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:6LN4W6JJK6,Pregnenolone Succinate,3,6LN4W6JJK6,OZZAYJQNMKMUSD-DMISRAGPSA-N,4290,pregnenolone sulphate,DIJBBUIOWGGQOP-QGVNFLHTSA-N,CHEMBL1179605,105074,pregnenolone sulphate,pregnenolone,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:73R90F7MQ8,PREGNENOLONE,3,73R90F7MQ8,ORNBQBCIOKFOEO-QGVNFLHTSA-N,4290,pregnenolone sulphate,DIJBBUIOWGGQOP-QGVNFLHTSA-N,CHEMBL1179605,105074,pregnenolone sulphate,pregnenolone,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K2:URVDQZDQPQVIGE-ZORYXUITSA-N,RYANODINE,3,,URVDQZDQPQVIGE-ZORYXUITSA-N,4303,ryanodine,JJSYXNQGLHBRRK-SFEDZAPPSA-N,,11317883,ryanodine,ryanodine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K2:LQZBDVDATBCNNN-UHEGPQQHSA-N,TNP-ATP,3,,LQZBDVDATBCNNN-UHEGPQQHSA-N,4324,TNP-ATP,NHXFSKZBEIIARS-UHFFFAOYSA-M,,3035228,TNP-ATP,tnp atp,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:708681952A,AMMONIUM TRICHLOROTELLURATE,3,708681952A,NTCZXUFXVRQSMX-UHFFFAOYSA-N,437,AS101,OZNDSRMQISJHIZ-JWGURIENSA-N,,135476605,AS101,as101,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:E8I3O45DDU,Caficrestat,3,E8I3O45DDU,YRGPAXAVTDMKDK-UHFFFAOYSA-N,4371,B-R13/17K H2 relaxin,,,,AT-001,at 001,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:ISLRAQPEXPIKDJ-NSHDSACASA-N,O-BENZYL-l-SERINE,3,,ISLRAQPEXPIKDJ-NSHDSACASA-N,4500,benzylserine,IDGQXGPQOGUGIX-VIFPVBQESA-N,,78457,O-benzyl-L-serine,benzyl l serine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0C2P5QKL36,SULFOBROMOPHTHALEIN,3,0C2P5QKL36,OHTXTCNTQJFRIG-UHFFFAOYSA-N,4506,bromsulphthalein,GHAFORRTMVIXHS-UHFFFAOYSA-L,,6282,sulfobromophthalein,sulfobromophthalein,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N7U69T4SZR,Olanzapine,2,BC164W3V2U,KVWDHTXUZHCGIO-UHFFFAOYSA-N,47,olanzapine,WXPNDRBBWZMPQG-UHFFFAOYSA-N,,135398745,olanzapine,olanzapine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,15
+K1:C4V974V932,Indocyanine Green Acid Form,2,C4V974V932,BDBMLMBYCXNVMC-UHFFFAOYSA-N,4844,indocyanine green,MOFVSTNWEDAEEK-UHFFFAOYSA-M,CHEMBL1646,19190,indocyanine green,indocyanine green,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:91X1KLU43E,Golimumab,1,91X1KLU43E,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B72HH48FLU,Infliximab,1,B72HH48FLU,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842,Adalimumab,1,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#aacf,Adalimumab-Aacf,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#aaty,Adalimumab-Aaty,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#adaz,Adalimumab-Adaz,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#adbm,Adalimumab-Adbm,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#afzb,Adalimumab-Afzb,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#aqvh,Adalimumab-Aqvh,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#atto,Adalimumab-Atto,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#bwwd,Adalimumab-Bwwd,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#fkjp,Adalimumab-Fkjp,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FYS6T7F842#ryvk,Adalimumab-Ryvk,2,FYS6T7F842,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC,Etanercept,1,OP401G7OJC,,4860,adalimumab,,,,adalimumab,adalimumab,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:NSQLIUXCMFBZME-MPVJKSABSA-N,Carperitide,3,GZ8FA500J0,NSQLIUXCMFBZME-MPVJKSABSA-N,4869,atrial natriuretic peptide,,,,atrial natriuretic peptide,atrial natriuretic peptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LX5H9JA46G,BONE MORPHOGENETIC PROTEIN 2,3,LX5H9JA46G,,4881,BMP-2,,,,BMP-2,bmp 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IT063R5MY0,Eptotermin alfa,1,IT063R5MY0,,4886,BMP-7,,,,BMP-7,bmp 7,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P7WI8UL647,Nesiritide,1,P7WI8UL647,,4890,brain natriuretic peptide,,CHEMBL1201668,,brain natriuretic peptide,brain natriuretic peptide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:CR102F038W,CILIARY NEUROTROPHIC FACTOR,3,CR102F038W,,4897,ciliary neurotrophic factor,,,,ciliary neurotrophic factor,ciliary neurotrophic factor,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EWL6971ETP,Cilmostim,2,EWL6971ETP,,4905,M-CSF,,,,M-CSF,m csf,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:15UQ94PT4P,Darbepoetin alfa,2,15UQ94PT4P,,4921,erythropoietin,,CHEMBL1201565,,erythropoietin,erythropoietin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:64FS3BFH5W,Epoetin alfa,1,64FS3BFH5W,,4921,erythropoietin,,CHEMBL1201565,,erythropoietin,erythropoietin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3A58010674,Pegfilgrastim,2,3A58010674,,4934,G-CSF,,CHEMBL2109128,,G-CSF,g csf,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:PVI5M0M1GW,Filgrastim,2,PVI5M0M1GW,,4934,G-CSF,,CHEMBL2109128,,G-CSF,g csf,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:5TAA004E22,Sargramostim,2,5TAA004E22,,4942,GM-CSF,,,,GM-CSF,gm csf,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:B321AL142J,Molgramostim,3,B321AL142J,,4942,GM-CSF,,,,GM-CSF,gm csf,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:KR89Q40F01,Regramostim,3,KR89Q40F01,,4942,GM-CSF,,,,GM-CSF,gm csf,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:NQX9KB6PCL,Somatropin,1,NQX9KB6PCL,,4943,growth hormone 1,,,,somatropin,somatropin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2TEN8A78E7,HEPATOPOIETIN-A,3,2TEN8A78E7,,4949,hepatocyte growth factor,,,,hepatocyte growth factor,hepatocyte growth factor,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:47RRR83SK7,Interferon ALFA-2A,2,47RRR83SK7,,4960,IFN-α2,,,,Roferon A®,roferon a,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:V9GU1EM8SF,Interferon beta,2,V9GU1EM8SF,,4967,IFN-β,,,,IFN-β,ifn beta,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:21K6M2I7AG,Interferon GAMMA-1B,2,21K6M2I7AG,,4968,IFN-γ,,,,IFN-γ,ifn gamma,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7GR9I2683O,Mecasermin,1,7GR9I2683O,,4971,insulin-like growth factor 1,,CHEMBL1201716,,insulin-like growth factor 1,insulin like growth factor 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:95067D43FQ,Insulin-Like Growth Factor-2,3,95067D43FQ,,4972,insulin-like growth factor 2,,,,insulin-like growth factor 2,insulin like growth factor 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:X62226112J,Interleukin-1 .beta. Human,3,X62226112J,,4974,IL-1β,,,,catabolin,catabolin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9SC4O216V9,Interleukin-10,1,9SC4O216V9,,4975,IL-10,,,,IL-10,il 10,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:HM5641GA6F,Oprelvekin,2,HM5641GA6F,,4976,IL-11,,,,IL-11,il 11,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:O14Q7A13PT,Interleukin-11,1,O14Q7A13PT,,4976,IL-11,,,,IL-11,il 11,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:02FXP10O2U,Interleukin-12 Human Recombinant,2,02FXP10O2U,,4977,IL-12,,,,IL-12,il 12,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:31Z82G8ME1,Edodekin alfa,3,31Z82G8ME1,,4977,IL-12,,,,IL-12,il 12,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:VPB6TR49WU,Interleukin-3,1,VPB6TR49WU,,4980,IL-13,,,,hematopoietic growth factor,hematopoietic growth factor,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6D6TDU4V9X,"INTERLEUKIN 15, RECOMBINANT NON-GLYCOSYLATED",3,6D6TDU4V9X,,4981,IL-15,,,,IL-15,il 15,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:VL2UPV1APW,RECOMBINANT HUMAN INTERLEUKIN-15,3,VL2UPV1APW,,4981,IL-15,,,,IL-15,il 15,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:X08H9UZ7TO,Iboctadekin,3,X08H9UZ7TO,,4983,IL-18,,,,IL-18,il 18,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M89N0Q7EQR,Aldesleukin,1,M89N0Q7EQR,,4985,IL-2,,,,IL-2,il 2,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:A4LY1V9F0H,Denenicokin,3,A4LY1V9F0H,,4987,IL-21,,,,IL-21,il 21,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:VPB6TR49WU,Interleukin-3,1,VPB6TR49WU,,4994,IL-3,,,,IL-3,il 3,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:751635Z921,Binetrakin,2,751635Z921,,4996,IL-4,,,,binetrakin,binetrakin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:9O1TT75I7L,Interleukin-5,1,9O1TT75I7L,,4997,IL-5,,,,IL-5,il 5,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4O4QWG0B3C,Human Interleukin-6,1,4O4QWG0B3C,,4998,IL-6,,,,IL-6,il 6,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:3K3WC6MT6P,Efineptakin alfa,3,3K3WC6MT6P,,4999,IL-7,,,,IL-7,il 7,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:418XB47Y71,INTERLEUKIN-7,3,418XB47Y71,,4999,IL-7,,,,IL-7,il 7,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:91X1KLU43E,Golimumab,1,91X1KLU43E,,5004,infliximab,,,,infliximab,infliximab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B72HH48FLU,Infliximab,1,B72HH48FLU,,5004,infliximab,,,,infliximab,infliximab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC,Etanercept,1,OP401G7OJC,,5004,infliximab,,,,infliximab,infliximab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1Y17CTI5SR,Insulin human,1,1Y17CTI5SR,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2ZM8CX04RZ,Insulin glargine,1,2ZM8CX04RZ,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:54Q18076QB,Insulin degludec,1,54Q18076QB,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:576O9IZ534,Insulin Beef,2,576O9IZ534,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7XIY785AZD,Insulin glulisine,1,7XIY785AZD,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D933668QVX,Insulin aspart,1,D933668QVX,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GFX7QIS1II,Insulin lispro,1,GFX7QIS1II,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:V83O1VOZ8L,Isoniazid,2,V83O1VOZ8L,QRXWMOHMRWLFEY-UHFFFAOYSA-N,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:UGOZVNFCFYTPAZ-IOXYNQHNSA-N,Insulin detemir,2,4FT78T86XV,UGOZVNFCFYTPAZ-IOXYNQHNSA-N,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K3:CHEMBL2108491,Compound insulin zinc suspension,2,,,5012,insulin,,,,insulin,insulin,10,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Q09SXY6BFI,Leptin Human,3,Q09SXY6BFI,,5015,leptin,,,,leptin,leptin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TL60C27RLH,Metreleptin,1,TL60C27RLH,,5015,leptin,,,,leptin,leptin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B6E7K36KT8,Cenegermin,2,B6E7K36KT8,,5026,NGF,,,,cenegermin,cenegermin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B6E7K36KT8#bkbj,Cenegermin-Bkbj,2,B6E7K36KT8,,5026,NGF,,,,cenegermin,cenegermin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K445G22GGD,HUMAN NEUREGULIN-1 RECOMBINANT (177-237),3,K445G22GGD,,5027,neuregulin-1,,,,neuregulin-1,neuregulin 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:02R4V6T25Y,Neurotrophin-3,3,02R4V6T25Y,,5033,neurotrophin-3,,,,neurotrophin-3,neurotrophin 3,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:P658DCA9XD,Neurotrophin-4,3,P658DCA9XD,,5034,neurotrophin-4,,,,neurotrophin-4,neurotrophin 4,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K16AIQ8CTM,Pertuzumab,2,K16AIQ8CTM,,5046,pertuzumab,,,,pertuzumab,pertuzumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K16AIQ8CTM#dpzb,Pertuzumab-Dpzb,2,K16AIQ8CTM,,5046,pertuzumab,,,,pertuzumab,pertuzumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P188ANX8CK,Trastuzumab,1,P188ANX8CK,,5046,pertuzumab,,,,pertuzumab,pertuzumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S58538ZG2,Prolactin,1,2S58538ZG2,,5049,prolactin,,,,prolactin,prolactin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:90J3F6N5FN,PROTEIN S HUMAN,2,90J3F6N5FN,,5050,protein S,,,,protein S,protein s,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:T7D25J14LT,Transforming Growth Factor Beta-1,2,T7D25J14LT,,5060,TGFβ1,,,,TGF-beta-1,tgf beta 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:693Y43MXY4,Cetermin,3,693Y43MXY4,,5061,TGFβ2,,,,cetermin,cetermin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:E2E529W34D,RECOMBINANT HUMAN THROMBOPOIETIN,3,E2E529W34D,,5063,thrombopoietin,,,,thrombopoietin,thrombopoietin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9B1I11GZRB,Ardenermin,3,9B1I11GZRB,,5069,BAFF,,,,BAFF,baff,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:0E53J927NA,Magnesium Carbonate,2,0E53J927NA,OUHCLAKJJGMPSW-UHFFFAOYSA-L,5070,LIGHT,,,,LIGHT,light,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0IHC698356,Magnesite,2,0IHC698356,ZLNQQNXFFQJAID-UHFFFAOYSA-L,5070,LIGHT,,,,LIGHT,light,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:CPLXHLVBOLITMK-UHFFFAOYSA-N,MAGNESIUM OXIDE,2,,CPLXHLVBOLITMK-UHFFFAOYSA-N,5070,LIGHT,,,,LIGHT,light,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:MZOFCQQQCNRIBI-VMXHOPILSA-N,TNF-ALPHA,3,4TVX2I407K,MZOFCQQQCNRIBI-VMXHOPILSA-N,5073,tumour necrosis factor membrane form,,,,cachectin,cachectin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:MZOFCQQQCNRIBI-VMXHOPILSA-N,TNF-ALPHA,3,4TVX2I407K,MZOFCQQQCNRIBI-VMXHOPILSA-N,5074,tumour necrosis factor shed form,,,,cachectin,cachectin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:J37T4U7EKP,CD40 Ligand (21-261),3,J37T4U7EKP,,5077,CD40 ligand,,,,CD40 ligand,cd40 ligand,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K16AIQ8CTM,Pertuzumab,2,K16AIQ8CTM,,5082,trastuzumab,,,,trastuzumab,trastuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P188ANX8CK,Trastuzumab,1,P188ANX8CK,,5082,trastuzumab,,,,trastuzumab,trastuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:SCIFESDRCALIIM-UHFFFAOYSA-N,Methylphenylalanine,3,,SCIFESDRCALIIM-UHFFFAOYSA-N,5093,α-methylphenylalanine,HYOWVAAEQCNGLE-UHFFFAOYSA-N,CHEMBL1222268,108055,α-methylphenylalanine,methylphenylalanine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:VT39RFG76Z,(+)-EHNA,3,VT39RFG76Z,IOSAAWHGJUZBOG-WDEREUQCSA-N,5179,EHNA,VVDXNJRUNJMYOZ-DHXVBOOMSA-N,CHEMBL1257094,135450187,EHNA,ehna,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:8H8Z5UER66,LITHIUM ION,3,8H8Z5UER66,HBBGRARXTFLTSG-UHFFFAOYSA-N,5212,Li+,,,3028194,lithium ion,lithium ion,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:46627O600J,Levodopa,2,46627O600J,WTDRDQBEARUVNC-LURJTMIESA-N,5512,dioleoylphosphatidic acid,MHUWZNTUIIFHAS-CLFAGFIQSA-N,,9547172,doPA,dopa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U194AS08HZ,Edotreotide,2,U194AS08HZ,RZHKDBRREKOZEW-AAXZNHDCSA-N,5638,edotreotide,,,,edotreotide,edotreotide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0J6Z13X3WO,Zinc Sulfate Anhydrous,2,0J6Z13X3WO,NWONKYPBYAMBJT-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:762R7A0O0B,Zinc Iodide,2,762R7A0O0B,UAYWVJHJZHQCIE-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:86Q357L16B,Zinc Chloride,2,86Q357L16B,JIAARYAFYJHUJI-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:89DS0H96TB,Zinc Sulfate,2,89DS0H96TB,,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:EQR32Y7H0M,Zinc Carbonate,2,EQR32Y7H0M,UOURRHZRLGCVDA-UHFFFAOYSA-D,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:FM5526K07A,Zinc Acetate,2,FM5526K07A,BEAZKUGSCHFXIQ-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:GZK92PJM7B,Valeric Acid,2,GZK92PJM7B,NQPDZGIKBAWPEJ-UHFFFAOYSA-N,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:H2ZEY72PME,ZINC ACETATE ANHYDROUS,2,H2ZEY72PME,DJWUNCQRNNEAKC-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:J41CSQ7QDS,Zinc,1,J41CSQ7QDS,HCHKCACWOHOZIP-UHFFFAOYSA-N,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:K72I3DEX9B,Zinc Citrate,2,K72I3DEX9B,WGIWBXUNRXCYRA-UHFFFAOYSA-H,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:N57JI2K7WP,Zinc Sulfate Heptahydrate,2,N57JI2K7WP,RZLVQBNCHSJZPX-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:OO7ZBU9703,Zinc Bromide,2,OO7ZBU9703,VNDYJBBGRKZCSX-UHFFFAOYSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:SOI2LOH54Z,Zinc Oxide,1,SOI2LOH54Z,RNWHGQJWIACOKP-UHFFFAOYSA-N,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:U6WSN5SQ1Z,Zinc Gluconate,1,U6WSN5SQ1Z,WHMDKBIGKVEYHS-IYEMJOQQSA-L,566,Zn2+,,,32051,zinc,zinc,14,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,35
+K1:E1IO3ICJ9A,Tandutinib,3,E1IO3ICJ9A,UXXQOJXBIDBUAC-UHFFFAOYSA-N,5695,tandutinib,SGVQMZVRLBDVCF-UHFFFAOYSA-N,,66524380,tandutinib,tandutinib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:ZZ6VH5MZ17,SU-14813,3,ZZ6VH5MZ17,CTNPALGJUAXMMC-PMFHANACSA-N,5712,SU-14813,XWPFYHDOZULRTD-ROUJOJKSSA-N,,73755145,SU-14813,su 14813,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:JMS50MPO89,Losartan,1,3ST302B24A,PSIFNNKUMBGKDQ-UHFFFAOYSA-N,586,EXP3174,ZEUXAIYYDDCIRX-UHFFFAOYSA-N,CHEMBL907,108185,EXP3174,exp3174,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9013DUQ28K,Anakinra,1,9013DUQ28K,,5878,IL-1 receptor antagonist,,,,IL-1ra,il 1ra,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:PRIGRJPRGZCFAS-UHFFFAOYSA-N,ALOISINE A,3,,PRIGRJPRGZCFAS-UHFFFAOYSA-N,5924,aloisine A,AYIIQABSVDIZSY-UHFFFAOYSA-N,CHEMBL75680,448912,aloisine A,aloisine a,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:I35H55G906,Dovitinib,3,69VKY8P7EA,PIQCTGMSNWUMAF-UHFFFAOYSA-N,5962,dovitinib,KCOYQXZDFIIGCY-ZZEZOPTASA-N,CHEMBL522892,135398510,dovitinib,dovitinib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,13
+K1:LDX3F0CCST,PYRIDONE-6,3,,VNDWQCSOSCCWIP-UHFFFAOYSA-N,5991,isogranulatimide,WXUJAQBSBZLVEV-UHFFFAOYSA-N,CHEMBL413188,135418335,pyridone 6,pyridone 6,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:WW4KZW83BX,"HT-2157, (E)-",3,WW4KZW83BX,,6126,SNAP 37889,TXCGMRVPXUBHAL-UHFFFAOYSA-N,,1471834,SNAP 37889,snap 37889,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:YGR27ZW0Y7,SODIUM SULFIDE,2,,GRVFOGOEDUUMBP-UHFFFAOYSA-N,6278,NaHS,HYHCSLBZRBJJCH-UHFFFAOYSA-M,CHEMBL1644699,28015,sodium sulfide,sodium sulfide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:01Q9PC255D,Ammonium Chloride,2,01Q9PC255D,NLXLAEXVIDQMFP-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:10LGE70FSU,"Ammonium Phosphate, Dibasic",2,10LGE70FSU,MNNHAPBLZZVQHP-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5138Q19F1X,Ammonia,1,5138Q19F1X,QGZKDVFQNNGYKY-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:67M901L9NQ,Ammonium Lactate,2,67M901L9NQ,RZOBLYBZQXQGFY-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AC80WD7GPF,Ammonium Benzoate,2,AC80WD7GPF,VWSRWGFGAAKTQG-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NJ5VT0FKLJ,Ammonium Carbonate,2,NJ5VT0FKLJ,,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PDP691CN28,Diammonium Carbonate,2,NJ5VT0FKLJ,PRKQVKDSMLBJBJ-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:R0JB3224WS,Ammonium Bromide,2,R0JB3224WS,SWLVFNYSXGMGBS-UHFFFAOYSA-N,6289,NH4Cl,,,25517,ammonium chloride,ammonium,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N863NB338G,Benzyl Benzoate,1,N863NB338G,SESFRYSPDFLNCH-UHFFFAOYSA-N,6294,benzyl bromide,AGEZXYOZHKGVCM-UHFFFAOYSA-N,CHEMBL1085946,7498,benzyl bromide,benzyl,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:66H7ZZK23N,Ozone,1,66H7ZZK23N,CBENFWSGALASAD-UHFFFAOYSA-N,6297,O3,,CHEMBL2447938,24823,ozone,ozone,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3H04W2810V,Auranofin,1,3H04W2810V,,6306,auranofin,AUJRCFUBUPVWSZ-XTZHGVARSA-M,CHEMBL1366,70788951,auranofin,auranofin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T7EU0O9VPP,Citral,3,T7EU0O9VPP,,6327,citral,WTEVQBCEXWBHNA-JXMROGBWSA-N,CHEMBL1080997,638011,citral,citral,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:PMEQBGAGFZDWQX-UHFFFAOYSA-N,ML075,3,,PMEQBGAGFZDWQX-UHFFFAOYSA-N,6404,SF-11,WFFKVDICECGSHN-UHFFFAOYSA-N,CHEMBL548708,2745583,SF-11,sf 11,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U0JZ726775,Desirudin,1,U0JZ726775,,6458,desirudin,XYWBJDRHGNULKG-OUMQNGNKSA-N,CHEMBL1201662,16129703,desirudin,desirudin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:334895S862,Doxycycline Anhydrous,2,19XTS3T51U,JBIWCJUYHHGXTC-AKNGSSGZSA-N,6464,doxycycline,SGKRLCUYIXIAHR-AKNGSSGZSA-N,CHEMBL1433,54671203,doxycycline,doxycycline,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:F8VB5M810T,Tetracycline,2,6B7BK5H33B,OFVLGDICTFRJMM-WESIUVDSSA-N,6464,doxycycline,SGKRLCUYIXIAHR-AKNGSSGZSA-N,CHEMBL1433,54671203,doxycycline,doxycycline,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:Y43GF64R34,Lepirudin,2,Y43GF64R34,,6469,lepirudin,FIBJDTSHOUXTKV-BRHMIFOHSA-N,,118856773,lepirudin,lepirudin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8631NP8608,BIVALIRUDIN TRIFLUOROACETATE,1,8631NP8608,,6470,bivalirudin,OIRCOABEOLEUMC-GEJPAHFPSA-N,CHEMBL2103749,16129704,bivalirudin,bivalirudin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TN9BEX005G,Bivalirudin,1,TN9BEX005G,,6470,bivalirudin,OIRCOABEOLEUMC-GEJPAHFPSA-N,CHEMBL2103749,16129704,bivalirudin,bivalirudin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YI437801BE,Mogamulizumab,2,YI437801BE,,6477,mogamulizumab,,,,mogamulizumab,mogamulizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YI437801BE#kpkc,Mogamulizumab-Kpkc,2,YI437801BE,,6477,mogamulizumab,,,,mogamulizumab,mogamulizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6CO90XQD9O,Sequoiadendron Giganteum Whole,2,6CO90XQD9O,,6480,G36,QTOCPACSSHFGOY-ZCCHDVMBSA-N,,73755224,G-36,g 36,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S5M7KW6U17,Upamostat,3,S5M7KW6U17,HUASEDVYRABWCV-NDEPHWFRSA-N,6497,upamostat,CYCFEEXTLQGJEL-XEOXDSMQSA-N,,56843330,upamostat,upamostat,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D9GM7FH652,Pyroglutamylaprotinin,1,D9GM7FH652,,6570,aprotinin,ZPNFWUPYTFPOJU-LPYSRVMUSA-N,,16130295,aprotinin,aprotinin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:X85G7936GV,Abciximab,2,X85G7936GV,,6584,abciximab,,,,abciximab,abciximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3JB47N2Q2P,Natalizumab,1,3JB47N2Q2P,,6591,natalizumab,,,,natalizumab,natalizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:3JB47N2Q2P#sztn,Natalizumab-Sztn,2,3JB47N2Q2P,,6591,natalizumab,,,,natalizumab,natalizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:XX2MN88N5D,Efalizumab,1,XX2MN88N5D,,6593,efalizumab,,CHEMBL1201575,,efalizumab,efalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:41W9MFI160,Etaracizumab,3,41W9MFI160,,6596,etaracizumab,,,,etaracizumab,etaracizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PP0SHH6V16,Alirocumab,1,PP0SHH6V16,,6744,alirocumab,,,,alirocumab,alirocumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3A189DH42V,Alemtuzumab,2,3A189DH42V,,6770,alemtuzumab,,,,alemtuzumab,alemtuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V,Bevacizumab,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#adcd,Bevacizumab-Adcd,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#awwb,Bevacizumab-Awwb,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#bvzr,Bevacizumab-Bvzr,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#maly,Bevacizumab-Maly,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#nwgd,Bevacizumab-Nwgd,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#tnjn,Bevacizumab-Tnjn,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2S9ZZM9Q9V#vikg,Bevacizumab-Vikg,2,2S9ZZM9Q9V,,6771,bevacizumab,,,,bevacizumab,bevacizumab,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7XL5ISS668,Brentuximab vedotin,2,7XL5ISS668,,6772,brentuximab vedotin,,,,brentuximab vedotin,brentuximab vedotin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:37CQ2C7X93,Canakinumab,1,37CQ2C7X93,,6773,canakinumab,,,,canakinumab,canakinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UMD07X179E,Certolizumab pegol,1,UMD07X179E,,6774,certolizumab pegol,,,,certolizumab pegol,certolizumab pegol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0T8392U5N1,Glucose Oxidase,3,0T8392U5N1,,6775,gemtuzumab ozogamicin,,,,gemtuzumab ozogamicin,gemtuzumab ozogamicin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8GZG754X6M,Gemtuzumab ozogamicin,1,8GZG754X6M,,6775,gemtuzumab ozogamicin,,,,gemtuzumab ozogamicin,gemtuzumab ozogamicin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:93NS566KF7,Gemtuzumab,3,93NS566KF7,,6775,gemtuzumab ozogamicin,,,,gemtuzumab ozogamicin,gemtuzumab ozogamicin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:91X1KLU43E,Golimumab,1,91X1KLU43E,,6776,golimumab,,,,golimumab,golimumab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:91X1KLU43E#sldi,Golimumab-Sldi,2,91X1KLU43E,,6776,golimumab,,,,golimumab,golimumab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B72HH48FLU,Infliximab,1,B72HH48FLU,,6776,golimumab,,,,golimumab,golimumab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC,Etanercept,1,OP401G7OJC,,6776,golimumab,,,,golimumab,golimumab,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4Q52C550XK,Ibritumomab tiuxetan,2,4Q52C550XK,,6777,ibritumomab tiuxetan,,,,ibritumomab tiuxetan,ibritumomab tiuxetan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QA846JAV5B,YTTRIUM Y 90 IBRITUMOMAB TIUXETAN,2,QA846JAV5B,,6777,ibritumomab tiuxetan,,,,ibritumomab tiuxetan,ibritumomab tiuxetan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S9U4ZR2W8V,INDIUM IN 111 IBRITUMOMAB TIUXETAN,3,S9U4ZR2W8V,,6777,ibritumomab tiuxetan,,,,ibritumomab tiuxetan,ibritumomab tiuxetan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M95KG522R0,Ofatumumab,2,M95KG522R0,,6778,ofatumumab,,,,ofatumumab,ofatumumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ZL1R02VT79,Ranibizumab,2,ZL1R02VT79,,6779,ranibizumab,,,,ranibizumab,ranibizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4F4X42SYQ6,Rituximab,1,4F4X42SYQ6,,6780,rituximab,,,,rituximab,rituximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:A5O6P1UL4I,Resiniferatoxin,3,A5O6P1UL4I,DSDNAKHZNJAGHN-MXTYGGKSSA-N,6780,rituximab,,,,rituximab,rituximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0343IGH41U,Tositumomab,2,0343IGH41U,,6781,tositumomab,,,,tositumomab,tositumomab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K1KT5M40JC,Tositumomab I-131,3,K1KT5M40JC,,6781,tositumomab,,,,tositumomab,tositumomab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:15C2VL427D,Aflibercept,2,15C2VL427D,,6786,aflibercept,,CHEMBL1742982,,aflibercept,aflibercept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ELK3V90G6C,Alefacept,2,ELK3V90G6C,,6787,alefacept,,CHEMBL1201571,,alefacept,alefacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:JGH8MYC891,Drotrecogin alfa (activated),1,JGH8MYC891,,6788,drotrecogin alfa,,CHEMBL2109065,,drotrecogin alfa (activated),drotrecogin alfa activated,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:91X1KLU43E,Golimumab,1,91X1KLU43E,,6789,etanercept,,CHEMBL1201572,,etanercept,etanercept,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:B72HH48FLU,Infliximab,1,B72HH48FLU,,6789,etanercept,,CHEMBL1201572,,etanercept,etanercept,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC,Etanercept,1,OP401G7OJC,,6789,etanercept,,CHEMBL1201572,,etanercept,etanercept,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC#szzs,Etanercept-Szzs,2,OP401G7OJC,,6789,etanercept,,CHEMBL1201572,,etanercept,etanercept,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OP401G7OJC#ykro,Etanercept-Ykro,2,OP401G7OJC,,6789,etanercept,,CHEMBL1201572,,etanercept,etanercept,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8K80YB5GMG,Rilonacept,1,8K80YB5GMG,,6790,rilonacept,,CHEMBL1201830,,rilonacept,rilonacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S79O08V79F,Dalteparin,2,S79O08V79F,,6803,dalteparin,,CHEMBL1201460,,dalteparin,dalteparin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BI6GY4U9CW,Danaparoid,2,BI6GY4U9CW,,6804,danaparoid,,CHEMBL1201534,,danaparoid,danaparoid,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:26GW6E5M72,Heparin (PORCINE; 7000 MW),1,26GW6E5M72,,6811,enoxaparin,HTTJABKRGRZYRN-UHFFFAOYSA-N,CHEMBL1201476,772,enoxaparin,enoxaparin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:E47C0NF7LV,Enoxaparin,2,E47C0NF7LV,,6811,enoxaparin,HTTJABKRGRZYRN-UHFFFAOYSA-N,CHEMBL1201476,772,enoxaparin,enoxaparin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QA0A21Y20D,ADRENOMEDULLIN,3,QA0A21Y20D,,683,adrenomedullin,,,,adrenomedullin,adrenomedullin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,7
+K1:2H1PA8H1EN,Pegaptanib,1,2H1PA8H1EN,,6836,pegaptanib,,,,pegaptanib,pegaptanib,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DD50D2QKH1,PEGPLERANIB SODIUM,3,DD50D2QKH1,,6836,pegaptanib,,,,pegaptanib,pegaptanib,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7UQ7X4Y489,Tinzaparin,2,7UQ7X4Y489,,6846,tinzaparin,,CHEMBL1201414,,tinzaparin,tinzaparin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U3U3114NE1,Amlintide,3,U3U3114NE1,,687,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:OQOHVUMWRQUZQC-YYVAPWOASA-N,AMYLIN,3,D3FM8FA78T,OQOHVUMWRQUZQC-YYVAPWOASA-N,687,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:TZIRZGBAFTZREM-MKAGXXMWSA-N,Pramlintide,1,726I6TE06G,TZIRZGBAFTZREM-MKAGXXMWSA-N,687,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:LZM5W2UC3I,Capromab,3,LZM5W2UC3I,,6878,capromab,,,,capromab,capromab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9927MT646M,Basiliximab,1,9927MT646M,,6879,basiliximab,,,,basiliximab,basiliximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U3U3114NE1,Amlintide,3,U3U3114NE1,,688,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:OQOHVUMWRQUZQC-YYVAPWOASA-N,AMYLIN,3,D3FM8FA78T,OQOHVUMWRQUZQC-YYVAPWOASA-N,688,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:TZIRZGBAFTZREM-MKAGXXMWSA-N,Pramlintide,1,726I6TE06G,TZIRZGBAFTZREM-MKAGXXMWSA-N,688,amylin,,,,amylin,amylin,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:CUJ2MVI71Y,Daclizumab,1,CUJ2MVI71Y,,6880,daclizumab,,,,daclizumab,daclizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I031V2H011,Tocilizumab,1,I031V2H011,,6881,tocilizumab,,,,tocilizumab,tocilizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:ER09126G7A,Lornoxicam,2,ER09126G7A,WLHQHAUOOXYABV-UHFFFAOYSA-N,6882,cetuximab,,,,cetuximab,cetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PQX0D8J21J,Cetuximab,2,PQX0D8J21J,,6882,cetuximab,,,,cetuximab,cetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6A901E312A,Panitumumab,2,6A901E312A,,6883,panitumumab,,,,panitumumab,panitumumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:A3ULP0F556,Eculizumab,2,A3ULP0F556,,6884,eculizumab,,,,eculizumab,eculizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:A3ULP0F556#aagh,Eculizumab-Aagh,2,A3ULP0F556,,6884,eculizumab,,,,eculizumab,eculizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:A3ULP0F556#aeeb,Eculizumab-Aeeb,2,A3ULP0F556,,6884,eculizumab,,,,eculizumab,eculizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:FU77B4U5Z0,Ustekinumab,1,FU77B4U5Z0,,6885,ustekinumab,,,,ustekinumab,ustekinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4EQZ6YO2HI,Denosumab,1,4EQZ6YO2HI,,6886,denosumab,,,,denosumab,denosumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:73B0K5S26A,Belimumab,2,73B0K5S26A,,6887,belimumab,,,,belimumab,belimumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6T8C155666,Ipilimumab,2,6T8C155666,,6888,ipilimumab,,,,ipilimumab,ipilimumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:JGA39ICE2V,Muromonab-cd3,2,JGA39ICE2V,,6889,muromonab-CD3,,,,muromonab-CD3,muromonab cd3,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2P471X1Z11,Omalizumab,1,2P471X1Z11,,6890,omalizumab,,,,omalizumab,omalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:7D0YB67S97,Abatacept,1,7D0YB67S97,,6891,abatacept,,CHEMBL1201823,,abatacept,abatacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:E3B2GI648A,Belatacept,1,E3B2GI648A,,6892,belatacept,,CHEMBL1742990,,belatacept,belatacept,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:I0IO929019,Calcitonin Human,1,I0IO929019,,690,calcitonin-(8-32) (salmon),TXYDMAIIBMZDGF-UDXYTFIASA-N,,155817381,calcitonin,calcitonin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:NC11WKO35D,Bapineuzumab,3,NC11WKO35D,,6930,bapineuzumab,,,,bapineuzumab,bapineuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I8ID590133,AZD-3839,3,I8ID590133,MRXBCEQZNKUUIP-DEOSSOPVSA-N,6931,AZD3839,QXKYWSDUVAJHNZ-CGAIIQECSA-N,,60210951,AZD3839,azd3839,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5D6PWO0333,Solanezumab,3,5D6PWO0333,,6932,solanezumab,,,,solanezumab,solanezumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4DF060P933,Gantenerumab,3,4DF060P933,,6933,gantenerumab,,,,gantenerumab,gantenerumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:O8AS5277H0,Crenezumab,3,O8AS5277H0,,6934,crenezumab,,,,crenezumab,crenezumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:O43472U9X8,Obinutuzumab,2,O43472U9X8,,6941,obinutuzumab,,,,obinutuzumab,obinutuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QMS40680K6,Palifermin,2,QMS40680K6,,6954,palifermin,,CHEMBL1201821,,palifermin,palifermin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:MQG94M5EEO,Tesamorelin,1,MQG94M5EEO,,6959,tesamorelin,QBEPNUQJQWDYKU-BMGKTWPMSA-N,CHEMBL1237026,16137828,tesamorelin,tesamorelin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3A58010674,Pegfilgrastim,2,3A58010674,,6969,pegfilgrastim,,CHEMBL1201568,,pegfilgrastim,pegfilgrastim,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PVI5M0M1GW,Filgrastim,2,PVI5M0M1GW,,6969,pegfilgrastim,,CHEMBL1201568,,pegfilgrastim,pegfilgrastim,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QA0A21Y20D,ADRENOMEDULLIN,3,QA0A21Y20D,,697,adrenomedullin,,,,adrenomedullin,adrenomedullin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,8
+K1:HM5641GA6F,Oprelvekin,2,HM5641GA6F,,6971,oprelvekin,,CHEMBL1201573,,oprelvekin,oprelvekin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9013DUQ28K,Anakinra,1,9013DUQ28K,,6972,anakinra,,CHEMBL1201570,,anakinra,anakinra,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7SFC6U2VI5,Calcitonin Salmon,2,7SFC6U2VI5,,6973,calcitonin (salmon),AZCMZZXDDMAXIT-VJVYQDLKSA-N,CHEMBL1201661,155817456,calcitonin (salmon),calcitonin salmon,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K2:BBBFJLBPOGFECG-VJVYQDLKSA-N,CALCITONIN SALMON,2,7SFC6U2VI5,BBBFJLBPOGFECG-VJVYQDLKSA-N,6973,calcitonin (salmon),AZCMZZXDDMAXIT-VJVYQDLKSA-N,CHEMBL1201661,155817456,calcitonin (salmon),calcitonin salmon,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:GN5XU2DXKV,Romiplostim,2,GN5XU2DXKV,,6974,romiplostim,,CHEMBL1201832,,romiplostim,romiplostim,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3QN8BYN5QF,Fingolimod,2,3QN8BYN5QF,KKGQTZUTZRNORY-UHFFFAOYSA-N,6996,(S)-FTY720-phosphate,LRFKWQGGENFBFO-IBGZPJMESA-N,CHEMBL366208,11452022,(S)-FTY720-phosphate,fty720,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:89243S03TE,Sermorelin,1,89243S03TE,,6998,sermorelin,,,,sermorelin,sermorelin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T6V3LHY838,Magnesium Cation,3,T6V3LHY838,JLVVSXFLKOJNIY-UHFFFAOYSA-N,708,Mg2+,,,888,magnesium ion,magnesium ion,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,27
+K1:31YO63LBSN,Nivolumab,1,31YO63LBSN,,7335,nivolumab,,,,nivolumab,nivolumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:8JXN261VVA,Toripalimab,1,8JXN261VVA,,7335,nivolumab,,,,nivolumab,nivolumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:DPT0O3T46P,Pembrolizumab,1,DPT0O3T46P,,7335,nivolumab,,,,nivolumab,nivolumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:LKC0U3A8NJ,Evolocumab,1,LKC0U3A8NJ,,7343,evolocumab,,,,evolocumab,evolocumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:140QMO216E,Metronidazole,2,140QMO216E,VAOCPAMSLUNLGC-UHFFFAOYSA-N,738,arachidonyl-2-chloroethylamide,SCJNCDSAIRBRIA-DOFZRALJSA-N,CHEMBL151167,5311006,ACEA,acea,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4FR53SIF3A,Blinatumomab,2,4FR53SIF3A,,7384,blinatumomab,,,,blinatumomab,blinatumomab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:M2HPV837HO,Catumaxomab,2,M2HPV837HO,,7385,catumaxomab,,CHEMBL2108581,,catumaxomab,catumaxomab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5E7U48495E,Albiglutide,1,5E7U48495E,,7386,albiglutide,,CHEMBL2107841,,albiglutide,albiglutide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:74O62BB01U,Lixisenatide,1,74O62BB01U,,7387,lixisenatide,XVVOERDUTLJJHN-IAEQDCLQSA-N,CHEMBL2108336,16139342,lixisenatide,lixisenatide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:D99YVK4L0X,Ramucirumab,2,D99YVK4L0X,,7390,ramucirumab,,,,ramucirumab,ramucirumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QX3JU54GYQ,Gevokizumab,3,QX3JU54GYQ,,7394,gevokizumab,,,,gevokizumab,gevokizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4Z63YK6E0E,Daratumumab,2,4Z63YK6E0E,,7395,daratumumab,,,,daratumumab,daratumumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4Z63YK6E0E#fihj,Daratumumab and Hyaluronidase-Fihj,2,4Z63YK6E0E,,7395,daratumumab,,,,daratumumab,daratumumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T4H8FMA7IM,Siltuximab,1,T4H8FMA7IM,,7396,siltuximab,,,,siltuximab,siltuximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9RV78Q2002,Vedolizumab,1,9RV78Q2002,,7437,vedolizumab,,,,vedolizumab,vedolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:JX56W9N61Q,Peginesatide,1,JX56W9N61Q,,7447,peginesatide,,CHEMBL2107866,,peginesatide,peginesatide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PY79D6C8RX,Crofelemer,2,PY79D6C8RX,,7453,crofelemer,,CHEMBL2108184,,crofelemer,crofelemer,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4DVS4AG4DF,Interferon alfa-2b,2,4DVS4AG4DF,,7462,peginterferon alfa-2b,,CHEMBL1201561,,peginterferon alfa-2b,peginterferon alfa 2b,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:G8RGG88B68,Peginterferon alfa-2b,2,G8RGG88B68,,7462,peginterferon alfa-2b,,CHEMBL1201561,,peginterferon alfa-2b,peginterferon alfa 2b,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:Q46947FE7K,Peginterferon alfa-2a,1,Q46947FE7K,,7462,peginterferon alfa-2b,,CHEMBL1201561,,peginterferon alfa-2b,peginterferon alfa 2b,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:OQOHVUMWRQUZQC-YYVAPWOASA-N,AMYLIN,3,D3FM8FA78T,OQOHVUMWRQUZQC-YYVAPWOASA-N,7482,pramlintide,,,,pramlintide,pramlintide,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K2:TZIRZGBAFTZREM-MKAGXXMWSA-N,Pramlintide,1,726I6TE06G,TZIRZGBAFTZREM-MKAGXXMWSA-N,7482,pramlintide,,,,pramlintide,pramlintide,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:N824AOU5XV,Pegvisomant,1,N824AOU5XV,,7485,pegvisomant,,CHEMBL1201515,,pegvisomant,pegvisomant,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:F43I396OIS,.ALPHA.1-PROTEINASE INHIBITOR HUMAN,2,F43I396OIS,,7487,alpha1-proteinase inhibitor,,,,alpha1-proteinase inhibitor,alpha1 proteinase inhibitor,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:31YO63LBSN,Nivolumab,1,31YO63LBSN,,7499,pembrolizumab,,,,pembrolizumab,pembrolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:8JXN261VVA,Toripalimab,1,8JXN261VVA,,7499,pembrolizumab,,,,pembrolizumab,pembrolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:DPT0O3T46P,Pembrolizumab,1,DPT0O3T46P,,7499,pembrolizumab,,,,pembrolizumab,pembrolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:6ZA31Y954Z,Brodalumab,1,6ZA31Y954Z,,7540,brodalumab,,,,brodalumab,brodalumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BTY153760O,Ixekizumab,1,BTY153760O,,7541,ixekizumab,,,,ixekizumab,ixekizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:420K487FSG,Dupilumab,1,420K487FSG,,7574,dupilumab,,,,dupilumab,dupilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:BI009E452R,Andexanet alfa,2,BI009E452R,,7576,andexanet alfa,,,,andexanet alfa,andexanet alfa,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:A10SJL62JY,Ocrelizumab,1,A10SJL62JY,,7580,ocrelizumab,,,,ocrelizumab,ocrelizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:A10SJL62JY#ocsq,Ocrelizumab and Hyaluronidase-Ocsq,2,A10SJL62JY,,7580,ocrelizumab,,,,ocrelizumab,ocrelizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:71492GE1FX,Benralizumab,1,71492GE1FX,,7674,benralizumab,,CHEMBL1742991,,benralizumab,benralizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2NDX4B6N8F,Moxetumomab pasudotox,1,2NDX4B6N8F,,7675,moxetumomab pasudotox,,CHEMBL1743043,,moxetumomab pasudotox,moxetumomab pasudotox,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2NDX4B6N8F#tdfk,Moxetumomab Pasudotox-Tdfk,2,2NDX4B6N8F,,7675,moxetumomab pasudotox,,CHEMBL1743043,,moxetumomab pasudotox,moxetumomab pasudotox,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U9JLP7V031,Lebrikizumab,1,U9JLP7V031,,7684,lebrikizumab,,,,lebrikizumab,lebrikizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U9JLP7V031#lbkz,Lebrikizumab-Lbkz,2,U9JLP7V031,,7684,lebrikizumab,,,,lebrikizumab,lebrikizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:90Z2UF0E52,Mepolizumab,1,90Z2UF0E52,,7685,mepolizumab,,,,mepolizumab,mepolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:45M75JVK38,Bococizumab,3,45M75JVK38,,7730,bococizumab,,,,bococizumab,bococizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:MO4K3GDN1I,Emibetuzumab,3,MO4K3GDN1I,,7748,emibetuzumab,,,,emibetuzumab,emibetuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0Z70DT5PRX,Dusigitumab,1,0Z70DT5PRX,,7749,dusigitumab,,,,dusigitumab,dusigitumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:1158JD1P9A,Mavrilimumab,3,1158JD1P9A,,7785,mavrilimumab,,,,mavrilimumab,mavrilimumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:N1IOA09R6A,Pascolizumab,3,N1IOA09R6A,,7786,pascolizumab,,,,pascolizumab,pascolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6HJ411TU98,DIPHENYLENEIODONIUM,3,6HJ411TU98,QFXKXRXFBRLLPQ-UHFFFAOYSA-N,7802,diphenyleneiodonium chloride,FCFZKAVCDNTYID-UHFFFAOYSA-M,,2733504,diphenyleneiodonium chloride,diphenyleneiodonium,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:WGYWHJPQFQGLOQ-UHFFFAOYSA-N,OTS964,3,,WGYWHJPQFQGLOQ-UHFFFAOYSA-N,7813,OTS964,XCFRUAOZMVFDPQ-AWEZNQCLSA-N,,67448186,OTS964,ots964,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0TII45R8IJ,AZD-1080,3,0TII45R8IJ,BLTVBQXJFVRPFK-UHFFFAOYSA-N,7819,AZD1080,JULOXTBHCHEFBE-ISLYRVAYSA-N,,135564570,AZD1080,azd1080,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K3:CHEMBL3545221,AZD2423,3,,,7825,AZD2423,WERHXSXPOAOBJV-QGZVFWFLSA-N,,46213922,AZD2423,azd2423,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WI6V529FZ9,Copanlisib,1,03ZI7RZ52O,PZBCKZWLPGJMAO-UHFFFAOYSA-N,7875,copanlisib,MWYDSXOGIBMAET-UHFFFAOYSA-N,CHEMBL3218576,135565596,copanlisib,copanlisib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,5
+K1:XAV9KYN9WL,AT-9283,3,XAV9KYN9WL,LOLPPWBBNUVNQZ-UHFFFAOYSA-N,7949,AT-9283,VRXXZJLHPWWXIX-ZCXUNETKSA-N,,135398495,AT-9283,at 9283,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:60ES45KTMK,Pilaralisib,3,60ES45KTMK,QINPEPAQOBZPOF-UHFFFAOYSA-N,7963,pilaralisib,MQMKRQLTIWPEDM-UHFFFAOYSA-N,CHEMBL3218575,1893730,pilaralisib,pilaralisib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:7SQY4ZUD30,Dinutuximab,1,7SQY4ZUD30,,7979,dinutuximab,,,,dinutuximab,dinutuximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:V00Y10W60W,Lintuzumab,3,V00Y10W60W,,7983,lintuzumab,,,,lintuzumab,lintuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:V860J30J9N,Actinium (225ac) lintuzumab satetraxetan,3,V860J30J9N,,7983,lintuzumab,,,,lintuzumab,lintuzumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:28X28X9OKV,Durvalumab,1,28X28X9OKV,,7985,durvalumab,,,,durvalumab,durvalumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:52CMI0WC3Y,Atezolizumab,1,52CMI0WC3Y,,7985,durvalumab,,,,durvalumab,durvalumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8JXN261VVA,Toripalimab,1,8JXN261VVA,,7985,durvalumab,,,,durvalumab,durvalumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:51WEW898IJ,Rilotumumab,3,51WEW898IJ,,7986,rilotumumab,,,,rilotumumab,rilotumumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:640443FU93,Sirukumab,3,640443FU93,,7989,sirukumab,,,,sirukumab,sirukumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:28X28X9OKV,Durvalumab,1,28X28X9OKV,,7990,atezolizumab,,,,atezolizumab,atezolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:52CMI0WC3Y,Atezolizumab,1,52CMI0WC3Y,,7990,atezolizumab,,,,atezolizumab,atezolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:52CMI0WC3Y#tqjs,Atezolizumab and Hyaluronidase-Tqjs,2,52CMI0WC3Y,,7990,atezolizumab,,,,atezolizumab,atezolizumab,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:74T7185BMM,Inebilizumab,2,74T7185BMM,,7992,inebilizumab,,,,inebilizumab,inebilizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:74T7185BMM#cdon,Inebilizumab-Cdon,2,74T7185BMM,,7992,inebilizumab,,,,inebilizumab,inebilizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:089658A12D,Guselkumab,1,089658A12D,,7998,guselkumab,,,,guselkumab,guselkumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:NU90V55F8I,Sarilumab,1,NU90V55F8I,,7999,sarilumab,,,,sarilumab,sarilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PQP8VH3MJW,Tabalumab,3,PQP8VH3MJW,,8000,tabalumab,,,,tabalumab,tabalumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GK1LYB375A,Tralokinumab,1,GK1LYB375A,,8001,tralokinumab,,,,tralokinumab,tralokinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Q16CT95N25,Bavituximab,3,Q16CT95N25,,8002,bavituximab,,,,bavituximab,bavituximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:79D8PWX59X,CCT 241533,3,79D8PWX59X,HZASIAXCPXTISQ-NVXWUHKLSA-N,8044,CCT241533,IXTQNANZDPZION-GSOOIIRJSA-N,,135564841,CCT241533,cct241533,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:VY778IXU5T,OTS-167,3,VY778IXU5T,DKZYXHCYPUVGAF-JCNLHEQBSA-N,8046,OTSSP167,WZJUACDPTWDYSI-UHFFFAOYSA-N,,135398499,OTSSP167,otssp167,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DLG4EML025,Secukinumab,1,DLG4EML025,,8078,secukinumab,,,,secukinumab,secukinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:N15SW1DIV8,Bimagrumab,1,N15SW1DIV8,,8086,bimagrumab,,,,bimagrumab,bimagrumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:N6SVN735GY,Bermekimab,3,N6SVN735GY,,8089,bermekimab,,,,bermekimab,bermekimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2BT4C47RUI,Necitumumab,2,2BT4C47RUI,,8090,necitumumab,,,,necitumumab,necitumumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:35A26E427H,Reslizumab,1,35A26E427H,,8091,reslizumab,,,,reslizumab,reslizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3VHF2ZD92J,Romosozumab,2,3VHF2ZD92J,,8092,romosozumab,,,,romosozumab,romosozumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3VHF2ZD92J#aqqg,Romosozumab-Aqqg,2,3VHF2ZD92J,,8092,romosozumab,,,,romosozumab,romosozumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DEW6X41BEK,Tildrakizumab,1,DEW6X41BEK,,8093,tildrakizumab,,,,tildrakizumab,tildrakizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:DEW6X41BEK#asmn,Tildrakizumab-Asmn,1,DEW6X41BEK,,8093,tildrakizumab,,,,tildrakizumab,tildrakizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:71596A9R13,Epacadostat,3,71596A9R13,FBKMWOJEPMPVTQ-UHFFFAOYSA-N,8221,epacadostat,YPBKTZBXSBLTDK-PKNBQFBNSA-N,CHEMBL3545369,135564890,epacadostat,epacadostat,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EFE6X5M3UY,Labetuzumab,3,EFE6X5M3UY,,8251,labetuzumab,,,,labetuzumab,labetuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8E3HI6QQ9J,Labetuzumab govitecan,3,8E3HI6QQ9J,,8252,labetuzumab govitecan,,,,labetuzumab govitecan,labetuzumab govitecan,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3DV5TD1VL3,Sacituzumab tirumotecan,3,3DV5TD1VL3,,8253,sacituzumab govitecan,,,,sacituzumab govitecan,sacituzumab govitecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M9BYU8XDQ6,Sacituzumab govitecan,2,M9BYU8XDQ6,,8253,sacituzumab govitecan,,,,sacituzumab govitecan,sacituzumab govitecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M9BYU8XDQ6#hziy,Sacituzumab Govitecan-Hziy,2,M9BYU8XDQ6,,8253,sacituzumab govitecan,,,,sacituzumab govitecan,sacituzumab govitecan,3,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:123I05210W,Ozanezumab,3,123I05210W,,8254,ozanezumab,,,,ozanezumab,ozanezumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6U3F28IT58,Dezamizumab,3,6U3F28IT58,,8255,dezamizumab,,,,dezamizumab,dezamizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XOY1YA7RMC,Sifalimumab,3,XOY1YA7RMC,,8257,sifalimumab,,,,sifalimumab,sifalimumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:38RL9AE51Q,Anifrolumab,2,38RL9AE51Q,,8258,anifrolumab,,,,anifrolumab,anifrolumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:38RL9AE51Q#fnia,Anifrolumab-Fnia,2,38RL9AE51Q,,8258,anifrolumab,,,,anifrolumab,anifrolumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:375142VBIA,Fresolimumab,3,375142VBIA,,8264,fresolimumab,,,,fresolimumab,fresolimumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P93RUU11P7,Inotuzumab ozogamicin,2,P93RUU11P7,,8266,inotuzumab ozogamicin,,,,inotuzumab ozogamicin,inotuzumab ozogamicin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UC47AV3PU8,INOTUZUMAB,2,UC47AV3PU8,,8266,inotuzumab ozogamicin,,,,inotuzumab ozogamicin,inotuzumab ozogamicin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2OP4E0GC6V,Milatuzumab,3,2OP4E0GC6V,,8267,milatuzumab,,,,milatuzumab,milatuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BPD4DGQ314,Veltuzumab,3,BPD4DGQ314,,8268,veltuzumab,,,,veltuzumab,veltuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:DP1U601YQS,Bufo Bufo Whole,3,DP1U601YQS,,8292,AM7,PEGWVOKOYYAQEV-UHFFFAOYSA-N,CHEMBL505896,11650194,AM 7,am 7,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UWU93Y99R3,Lampalizumab,3,UWU93Y99R3,,8294,lampalizumab,,,,lampalizumab,lampalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1N3L70MDFX,Seribantumab,3,1N3L70MDFX,,8297,seribantumab,,,,seribantumab,seribantumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:97RWB5S1U6,Idarucizumab,2,97RWB5S1U6,,8298,idarucizumab,,,,idarucizumab,idarucizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AVK0I6HY2U,Abaloparatide,1,AVK0I6HY2U,,8299,abaloparatide,,,,abaloparatide,abaloparatide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:87CIC980Y0,Tucidinostat,3,87CIC980Y0,SZMJVTADHFNAIS-BJMVGYQFSA-N,8305,tucidinostat,WXHHICFWKXDFOW-UHFFFAOYSA-N,,53394037,tucidinostat,tucidinostat,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3ZXZ2V0588,Monalizumab,3,3ZXZ2V0588,,8323,monalizumab,,,,monalizumab,monalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:105J35OE21,Aducanumab,2,105J35OE21,,8325,aducanumab,,,,aducanumab,aducanumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:105J35OE21#avwa,Aducanumab-avwa,1,105J35OE21,,8325,aducanumab,,,,aducanumab,aducanumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1351PE5UGS,Elotuzumab,2,1351PE5UGS,,8361,elotuzumab,,,,elotuzumab,elotuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9OD8ISS64U,Vobarilizumab,3,9OD8ISS64U,,8363,vobarilizumab,,,,vobarilizumab,vobarilizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M55Q728KNA,Abicipar pegol,3,M55Q728KNA,,8371,abicipar pegol,,,,abicipar pegol,abicipar pegol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KG6VO684Z6,Polatuzumab vedotin,2,KG6VO684Z6,,8404,polatuzumab vedotin,,,,polatuzumab vedotin,polatuzumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KG6VO684Z6#piiq,Polatuzumab Vedotin-Piiq,2,KG6VO684Z6,,8404,polatuzumab vedotin,,,,polatuzumab vedotin,polatuzumab vedotin,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7IUT83FK6S,Lifastuzumab vedotin,3,7IUT83FK6S,,8405,lifastuzumab vedotin,,,,lifastuzumab vedotin,lifastuzumab vedotin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U9I0PLD4HT,Codrituzumab,3,U9I0PLD4HT,,8406,codrituzumab,,,,codrituzumab,codrituzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I2A72G2V3J,Etrolizumab,3,I2A72G2V3J,,8407,etrolizumab,,,,etrolizumab,etrolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:BPR0F3X56H,Lancovutide,3,BPR0F3X56H,,841,duramycin,,,,duramycin,duramycin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:11Z5AIU653,Simtuzumab,3,11Z5AIU653,,8412,simtuzumab,,,,simtuzumab,simtuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:X8Y5U6NC7E,Trebananib,3,X8Y5U6NC7E,,8414,trebananib,,,,trebananib,trebananib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EQL0E9GCX1,Tanezumab,3,EQL0E9GCX1,,8415,tanezumab,,,,tanezumab,tanezumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:SF168W7FW0,Demcizumab,3,SF168W7FW0,,8451,demcizumab,,,,demcizumab,demcizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:333YMY788E,Tarextumab,3,333YMY788E,,8453,tarextumab,,,,tarextumab,tarextumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:WX8293WGLC,Nesvacumab,3,WX8293WGLC,,8457,nesvacumab,,,,nesvacumab,nesvacumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I5HF2X04PB,Otelixizumab,3,I5HF2X04PB,,8458,otelixizumab,,,,otelixizumab,otelixizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LCT264LTYE,Lulizumab pegol,3,LCT264LTYE,,8460,lulizumab pegol,,,,lulizumab pegol,lulizumab pegol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QEN1X95CIX,Tremelimumab,2,QEN1X95CIX,,8462,tremelimumab,,,,tremelimumab,tremelimumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QEN1X95CIX#actl,Tremelimumab-Actl,2,QEN1X95CIX,,8462,tremelimumab,,,,tremelimumab,tremelimumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LZ0EU1YHCK,RO-5028442,3,LZ0EU1YHCK,QZXVLRCMAHJVIP-UHFFFAOYSA-N,8529,Ro5028442,DRMVDBATNZBNEB-UHFFFAOYSA-N,,91827367,Ro5028442,ro5028442,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K2:JJVZSYKFCOBILL-DPNRMINZSA-N,Motixafortide,3,,JJVZSYKFCOBILL-DPNRMINZSA-N,853,T140,IMOHHNXUCDZLKM-ADZSTZGASA-N,CHEMBL2370138,16130395,T140,t140,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PV9T9B2S11,PHENYLALANINE AMIDE,3,PV9T9B2S11,OBSIQMZKFXFYLV-QMMMGPOBSA-N,858,A-71623,KNHCBYMGWWTGSO-ZYADHFCISA-N,CHEMBL323521,121964,L-phenylalaninamide,phenylalaninamide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IT54DZ1478,EMI-137,3,IT54DZ1478,,8585,GE-137,UQYUYHHXESUXGH-ABPLELQPSA-N,,91827375,GE-137,ge 137,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:261Q3JB310,Rufocromomycin,3,261Q3JB310,PVYJZLYGTZKPJE-UHFFFAOYSA-N,8683,streptonigrin,DLWOTOMWYCRPLK-UVTDQMKNSA-N,,5298,streptonigrin,streptonigrin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:K911R84KEW,Margetuximab,2,K911R84KEW,,8686,margetuximab,,,,margetuximab,margetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:K911R84KEW#cmkb,Margetuximab-Cmkb,2,K911R84KEW,,8686,margetuximab,,,,margetuximab,margetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:360N6PY2A1,Begelomab,3,360N6PY2A1,,8691,begelomab,,,,begelomab,begelomab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:EF0NX91490,Pentagastrin,2,EF0NX91490,NEYNJQRKHLUJRU-DZUOILHNSA-N,870,pentagastrin,ALXRNCVIQSDJAO-KRCBVYEFSA-N,,444007,pentagastrin,pentagastrin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:3FO6689MSD,Tesidolumab,3,3FO6689MSD,,8711,tesidolumab,,,,tesidolumab,tesidolumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XSZ53G39H5,Brolucizumab,2,XSZ53G39H5,,8713,brolucizumab,,,,brolucizumab,brolucizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XSZ53G39H5#dbll,Brolucizumab-Dbll,2,XSZ53G39H5,,8713,brolucizumab,,,,brolucizumab,brolucizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:764HZ2554D,Dectrekumab,3,764HZ2554D,,8714,dectrekumab,,,,dectrekumab,dectrekumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5F1CN52GFM,Elgemtumab,3,5F1CN52GFM,,8715,elgemtumab,,,,elgemtumab,elgemtumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T8B2ORP1DW,Evinacumab,2,T8B2ORP1DW,,8717,evinacumab,,,,evinacumab,evinacumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T8B2ORP1DW#dgnb,Evinacumab-Dgnb,1,T8B2ORP1DW,,8717,evinacumab,,,,evinacumab,evinacumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3F0FR4W3H8,Indusatumab vedotin,3,3F0FR4W3H8,,8718,indusatumab vedotin,,,,indusatumab vedotin,indusatumab vedotin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:R30772KCU0,Isatuximab,1,R30772KCU0,,8719,isatuximab,,,,isatuximab,isatuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:R30772KCU0#irfc,Isatuximab-Irfc,1,R30772KCU0,,8719,isatuximab,,,,isatuximab,isatuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GN465U8B72,Nemolizumab,1,GN465U8B72,,8720,nemolizumab,,,,nemolizumab,nemolizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GN465U8B72#ilto,Nemolizumab-Ilto,2,GN465U8B72,,8720,nemolizumab,,,,nemolizumab,nemolizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:52CMI0WC3Y,Atezolizumab,1,52CMI0WC3Y,,8735,avelumab,,,,avelumab,avelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:KXG2PJ551I,Avelumab,1,KXG2PJ551I,,8735,avelumab,,,,avelumab,avelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7OI79TB6KN,IGN-523,3,7OI79TB6KN,,8737,IGN523,,,,IGN523,ign523,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1S4CJB5ZGN,Estradiol benzoate,2,1S4CJB5ZGN,UYIFTLBWAOGQBI-BZDYCCQFSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4TI98Z838E,Estradiol,1,4TI98Z838E,VOXZDWNPVJITMN-ZBRFXRBCSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5R97F5H93P,ESTRADIOL ACETATE,1,5R97F5H93P,FHXBMXJMKMWVRG-SLHNCBLASA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7E1DV054LO,Estradiol Cypionate,1,7E1DV054LO,UOACKFBJUYNSLK-XRKIENNPSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:OKG364O896,Estradiol valerate,2,OKG364O896,RSEPBGGWRJCQGY-RBRWEJTLSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T18F433X4S,Norethisterone,1,T18F433X4S,VIKNJXKGJWUCNN-XGXHKTLJSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XC0K09B7K4,Atrimustine,3,XC0K09B7K4,IFJUINDAXYAPTO-UUBSBJJBSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:GJUHUIXJLZINMA-MJCUULBUSA-N,ESTROGEN,1,IU5QR144QX,GJUHUIXJLZINMA-MJCUULBUSA-N,8802,estradiol disulfate,VPLAJGAMHNQZIY-ZBRFXRBCSA-N,CHEMBL1162492,66430,estradiol disulfate,estradiol,8,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:U59UGK3IPC,Ublituximab,2,U59UGK3IPC,,8920,ublituximab,,,,ublituximab,ublituximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4XG66BMN0D,Plozalizumab,3,4XG66BMN0D,,8921,plozalizumab,,,,plozalizumab,plozalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:90ZX3Q3FR7,Risankizumab,1,90ZX3Q3FR7,,8922,risankizumab,,,,risankizumab,risankizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:90ZX3Q3FR7#rzaa,Risankizumab-Rzaa,2,90ZX3Q3FR7,,8922,risankizumab,,,,risankizumab,risankizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:WX1WTN0Y15,Opicinumab,3,WX1WTN0Y15,,8923,opicinumab,,,,opicinumab,opicinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K3:CHEMBL2109398,KB-004,3,,,8925,fibatuzumab,,,,KB-004,kb 004,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QS5F6VTS0O,Pamrevlumab,3,QS5F6VTS0O,,8928,pamrevlumab,,,,pamrevlumab,pamrevlumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:87T4327873,Trevogrumab,1,87T4327873,,8929,trevogrumab,,,,trevogrumab,trevogrumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:XLR461MD3M,Istiratumab,1,XLR461MD3M,,8930,istiratumab,,,,istiratumab,istiratumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:6IJ4CQY76O,MM-111,3,6IJ4CQY76O,,8931,MM-111,,,,MM-111,mm 111,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:BPZ4A29SYE,Pepinemab,3,BPZ4A29SYE,,8932,pepinemab,,,,pepinemab,pepinemab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RJ1IW3B4QX,Tezepelumab,1,RJ1IW3B4QX,,8933,tezepelumab,,,,tezepelumab,tezepelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RJ1IW3B4QX#ekko,Tezepelumab-Ekko,2,RJ1IW3B4QX,,8933,tezepelumab,,,,tezepelumab,tezepelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I4BE5F78HR,Enokizumab,3,I4BE5F78HR,,8934,enokizumab,,,,enokizumab,enokizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IE4X6497XK,Lenzilumab,3,IE4X6497XK,,8935,lenzilumab,,,,lenzilumab,lenzilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6FY6EI1X8R,Emactuzumab,3,6FY6EI1X8R,,8944,emactuzumab,,,,emactuzumab,emactuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WD9FU5A8DR,BAY-678,3,WD9FU5A8DR,PGIVGIFOWOVINL-GOSISDBHSA-N,8956,BAY-678,SHVLFOSIUCIFDN-MUMRKEEXSA-N,,117072553,BAY-678,bay 678,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0E986JU40I,Fulranumab,3,0E986JU40I,,8964,fulranumab,,,,fulranumab,fulranumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:11T51Q3082,Fasinumab,3,11T51Q3082,,8965,fasinumab,,,,fasinumab,fasinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:MS1J9720WC,Onartuzumab,3,MS1J9720WC,,8966,onartuzumab,,,,onartuzumab,onartuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:55KHL3P693,Galcanezumab,2,55KHL3P693,,8967,galcanezumab,,,,galcanezumab,galcanezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:55KHL3P693#gnlm,Galcanezumab-Gnlm,2,55KHL3P693,,8967,galcanezumab,,,,galcanezumab,galcanezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:Y5929UIJ5N,Opicapone,2,Y5929UIJ5N,ASOADIZOVZTJSR-UHFFFAOYSA-N,8988,opicapone,HVGGGVAREUUJQV-CHHVJCJISA-N,,135565903,opicapone,opicapone,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:L8LE0L691T,Ligelizumab,3,L8LE0L691T,,8997,ligelizumab,,,,ligelizumab,ligelizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:26F96HRJ3W,Quilizumab,3,26F96HRJ3W,,8998,quilizumab,,,,quilizumab,quilizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:926SHL95NC,Navoximod,3,926SHL95NC,YGACXVRLDHEXKY-WXRXAMBDSA-N,9019,navoximod,YTRRAUACYORZLX-UHFFFAOYSA-N,CHEMBL3629569,66558287,navoximod,navoximod,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:15O91A27I5,Eldelumab,3,15O91A27I5,,9047,eldelumab,,,,eldelumab,eldelumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9NKZ9LYZ06,Cenderitide,3,9NKZ9LYZ06,,9066,cenderitide,YZEJNKFJIYNYMP-MGAVOHMASA-N,CHEMBL2108721,155817506,cenderitide,cenderitide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:YI2S0GUQ2C,PL-3994,3,YI2S0GUQ2C,HSHVZRILAMZYHY-WXSGKXQHSA-N,9067,PL-3994,,,,PL-3994,pl 3994,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,3
+K1:7SE5582Q2P,Vosoritide,1,7SE5582Q2P,,9068,vosoritide,IGYWDDBBJPSOTG-WBAGYEQSSA-N,,119058036,vosoritide,vosoritide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YB18NF020M,Satralizumab,1,YB18NF020M,,9093,satralizumab,,,,satralizumab,satralizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2372V1TKXK,Lanadelumab,2,2372V1TKXK,,9094,lanadelumab,,,,lanadelumab,lanadelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2372V1TKXK#flyo,Lanadelumab-Flyo,2,2372V1TKXK,,9094,lanadelumab,,,,lanadelumab,lanadelumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:516MD5WQ24,Domagrozumab,3,516MD5WQ24,,9096,domagrozumab,,,,domagrozumab,domagrozumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:UJO03RO3K6,Timolumab,3,UJO03RO3K6,,9097,timolumab,,,,timolumab,timolumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:YB2EWE6139,Carotuximab,3,YB2EWE6139,,9098,carotuximab,,,,carotuximab,carotuximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2K30142185,Brimapitide,3,2K30142185,BAAXVYBAMNDCIB-BMCUWHFPSA-N,9101,brimapitide,,,,brimapitide,brimapitide,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:SZ3778HS3S,AMG-820,3,SZ3778HS3S,,9106,AMG820,,,,AMG820,amg820,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5FJL6W0640,Cabiralizumab,3,5FJL6W0640,,9107,cabiralizumab,,,,cabiralizumab,cabiralizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K3:CHEMBL2109323,IMC-CS4,3,,,9109,LY3022855,,,,LY3022855,ly3022855,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2R27AB6766,Caplacizumab,2,2R27AB6766,,9123,caplacizumab,,,,caplacizumab,caplacizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:305OE8862Y,Corticorelin,1,305OE8862Y,,913,corticotropin-releasing factor,,,,corticotropin-releasing factor,corticotropin releasing factor,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:PNMZQWKBJIQQJL-FAUHKOHMSA-N,HUMAN CORTICOTROPIN RELEASING FACTOR,3,305OE8862Y,PNMZQWKBJIQQJL-FAUHKOHMSA-N,913,corticotropin-releasing factor,,,,corticotropin-releasing factor,corticotropin releasing factor,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:B800Z06O8K,Vanucizumab,3,B800Z06O8K,,9132,vanucizumab,,,,vanucizumab,vanucizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:7KNP87L4X4,Ulocuplumab,3,7KNP87L4X4,,9161,ulocuplumab,,,,ulocuplumab,ulocuplumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TT6HN20MVF,Olaratumab,2,TT6HN20MVF,,9172,olaratumab,,,,olaratumab,olaratumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:4S38Z8RA9O,Clazakizumab,1,4S38Z8RA9O,,9195,clazakizumab,,,,clazakizumab,clazakizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:FPW3780T3E,Setrusumab,3,FPW3780T3E,,9202,setrusumab,,,,setrusumab,setrusumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PF8K38CG54,Fremanezumab,2,PF8K38CG54,,9208,fremanezumab,,,,fremanezumab,fremanezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:PF8K38CG54#vfrm,Fremanezumab-Vfrm,2,PF8K38CG54,,9208,fremanezumab,,,,fremanezumab,fremanezumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TF5MPQ8WGY,Zolbetuximab,2,TF5MPQ8WGY,,9209,zolbetuximab,,,,zolbetuximab,zolbetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:TF5MPQ8WGY#clzb,Zolbetuximab-Clzb,2,TF5MPQ8WGY,,9209,zolbetuximab,,,,zolbetuximab,zolbetuximab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:978I8M0P8X,Briakinumab,3,978I8M0P8X,,9213,briakinumab,,,,briakinumab,briakinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6YY8O697VF,Utomilumab,3,6YY8O697VF,,9244,utomilumab,,,,utomilumab,utomilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C78148TF1D,Vonlerolizumab,3,C78148TF1D,,9245,vonlerolizumab,,,,vonlerolizumab,vonlerolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:I5I8VB78VT,Erenumab,2,I5I8VB78VT,,9250,erenumab,,,,erenumab,erenumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:I5I8VB78VT#aooe,Erenumab-Aooe,2,I5I8VB78VT,,9250,erenumab,,,,erenumab,erenumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0S77U25XZ3,Fezakinumab,3,0S77U25XZ3,,9281,fezakinumab,,,,fezakinumab,fezakinumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:ZZASKUJKXIXHIC-VKDININFSA-N,Rusalatide,3,81248X8C37,ZZASKUJKXIXHIC-VKDININFSA-N,9284,TP508,MOZAQZCGIKWACU-VKDININFSA-N,,155817508,TP508,tp508,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:SK1LVT23A1,Elezanumab,3,SK1LVT23A1,,9290,elezanumab,,,,elezanumab,elezanumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G9WJT6RD29,Burosumab,2,G9WJT6RD29,,9292,burosumab,,,,burosumab,burosumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:G9WJT6RD29#twza,Burosumab-Twza,2,G9WJT6RD29,,9292,burosumab,,,,burosumab,burosumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:50EI9G8Q6U,Brazikumab,3,50EI9G8Q6U,,9293,brazikumab,,,,brazikumab,brazikumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3S252O2Z4X,Emapalumab,2,3S252O2Z4X,,9295,emapalumab,,,,emapalumab,emapalumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:3S252O2Z4X#lzsg,Emapalumab-Lzsg,2,3S252O2Z4X,,9295,emapalumab,,,,emapalumab,emapalumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Y4U029R8MS,Vunakizumab,3,Y4U029R8MS,,9296,vunakizumab,,,,vunakizumab,vunakizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:15FAZ725S0,Lutikizumab,3,15FAZ725S0,,9297,lutikizumab,,,,lutikizumab,lutikizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:230902QLLC,Urelumab,3,230902QLLC,,9311,urelumab,,,,urelumab,urelumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:237GB6IDKO,Tigatuzumab,3,237GB6IDKO,,9334,tigatuzumab,,,,tigatuzumab,tigatuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5K64W8EU3E,CHIR-124,3,,MOVBBVMDHIRCTG-LJQANCHMSA-N,9365,CHIR-124,VBIIUHUSFOLTIU-LJQANCHMSA-N,CHEMBL377312,135399748,CHIR-124,chir 124,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:MLSAQOINCGAULQ-QFMPWRQOSA-N,SB590885,3,,MLSAQOINCGAULQ-QFMPWRQOSA-N,9389,SB590885,DPCXEUSDRQOOGZ-YYADALCUSA-N,,135564599,SB590885,sb590885,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:P45C2W27DU,Tomaralimab,3,P45C2W27DU,,9408,tomaralimab,,,,tomaralimab,tomaralimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:09495UIM6V,Bimekizumab,1,09495UIM6V,,9411,bimekizumab,,,,bimekizumab,bimekizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:09495UIM6V#bkzx,Bimekizumab-Bkzx,2,09495UIM6V,,9411,bimekizumab,,,,bimekizumab,bimekizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:XQQ2RHV14N,Itolizumab,3,XQQ2RHV14N,,9421,itolizumab,,,,itolizumab,itolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T13V17U431,Vadastuximab talirine,3,T13V17U431,,9434,vadastuximab talirine,,,,vadastuximab talirine,vadastuximab talirine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:SV2NZO0LAU,ATF-936,3,SV2NZO0LAU,IIBRYYCFSIBSFT-UHFFFAOYSA-N,9475,ATF936,WXYYACUWOMKZQC-UHFFFAOYSA-N,,10158373,ATF936,atf936,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:358M5150LY,Amiselimod,3,358M5150LY,JVCPIJKPAKAIIP-UHFFFAOYSA-N,9491,amiselimod phosphate,OFRUGVQKZMGHHH-GOSISDBHSA-N,,57704582,amiselimod phosphate,amiselimod,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:AKQ3X6FEH0,BMS-817399,3,AKQ3X6FEH0,GTDPZONCGOCXOD-JPYJTQIMSA-N,9497,BMS-817399,PTNKPLPRPJERNR-XXBNENTESA-N,CHEMBL3334824,44537841,BMS-817399,bms 817399,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:571045EIM4,Andecaliximab,3,571045EIM4,,9510,andecaliximab,,,,andecaliximab,andecaliximab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AF75XOF6W3,Relatlimab,2,AF75XOF6W3,,9536,relatlimab,,,,relatlimab,relatlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:AF75XOF6W3#rmbw,Relatlimab-Rmbw,2,AF75XOF6W3,,9536,relatlimab,,,,relatlimab,relatlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:M6030H73N9,Enoblituzumab,3,M6030H73N9,,9589,enoblituzumab,,,,enoblituzumab,enoblituzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:0KVO411B3N,Tislelizumab,1,0KVO411B3N,,9592,tislelizumab,,,,tislelizumab,tislelizumab,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0KVO411B3N#jsgr,Tislelizumab-Jsgr,2,0KVO411B3N,,9592,tislelizumab,,,,tislelizumab,tislelizumab,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8FU7FQ8UPK,Sintilimab,3,8FU7FQ8UPK,,9592,tislelizumab,,,,tislelizumab,tislelizumab,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8JXN261VVA,Toripalimab,1,8JXN261VVA,,9592,tislelizumab,,,,tislelizumab,tislelizumab,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:S3GQZ2K36V,Serplulimab,2,S3GQZ2K36V,,9592,tislelizumab,,,,tislelizumab,tislelizumab,5,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5CRY01URYQ,Oleclumab,3,5CRY01URYQ,,9596,oleclumab,,,,oleclumab,oleclumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:1V8WRH3RVX,Remtolumab,3,1V8WRH3RVX,,9597,remtolumab,,,,remtolumab,remtolumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:XLB16RJ01B,Rovelizumab,3,XLB16RJ01B,,9598,rovelizumab,,,,rovelizumab,rovelizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:H1V41MWX63,Lusvertikimab,3,H1V41MWX63,,9604,lusvertikimab,,,,lusvertikimab,lusvertikimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:L4766ELH5T,PROGRAMMED CELL DEATH 1 LIGAND 1,3,L4766ELH5T,,9606,programmed cell death 1 ligand 1,,,,programmed cell death 1 ligand 1,programmed cell death 1 ligand 1,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:4JQ68PW6XF,Crotedumab,3,4JQ68PW6XF,,9614,crotedumab,,,,crotedumab,crotedumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,4
+K1:7TK323DLA0,NOGAPENDEKIN ALFA INBAKICEPT,2,7TK323DLA0,,9615,ALT-803,,,,ALT-803,alt 803,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:7TK323DLA0#pmln,Nogapendekin alfa Inbakicept-Pmln,1,7TK323DLA0,,9615,ALT-803,,,,ALT-803,alt 803,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:EW92EB4VEN,Nogapendekin alfa,3,EW92EB4VEN,,9615,ALT-803,,,,ALT-803,alt 803,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:QN4LI58PJ5,Inbakicept,3,QN4LI58PJ5,,9615,ALT-803,,,,ALT-803,alt 803,4,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:1PQB4AA2CT,GSK-3050002,3,1PQB4AA2CT,,9623,GSK3050002,,,,GSK3050002,gsk3050002,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:8961SFA7R3,Gimsilumab,3,8961SFA7R3,,9624,gimsilumab,,,,gimsilumab,gimsilumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:05ZCK72TXZ,Ozoralizumab,3,05ZCK72TXZ,,9638,ozoralizumab,,,,ozoralizumab,ozoralizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:LDO2FIQ61I,Rontalizumab,3,LDO2FIQ61I,,9640,rontalizumab,,,,rontalizumab,rontalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,12
+K1:MTM792B442,Olaptesed pegol,3,MTM792B442,,9674,olaptesed pegol,,,,olaptesed pegol,olaptesed pegol,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:5QM1ZK6VXZ,Isunakinra,3,5QM1ZK6VXZ,,9704,isunakinra,,CHEMBL3545190,,isunakinra,isunakinra,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:53AXN4NNHX,Semaglutide,1,53AXN4NNHX,,9724,semaglutide,DLSWIYLPEUIQAV-CCUURXOWSA-N,,56843331,semaglutide,semaglutide,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K2:YSDQQAXHVYUZIW-QCIJIYAXSA-N,Liraglutide,2,839I73S42A,YSDQQAXHVYUZIW-QCIJIYAXSA-N,9724,semaglutide,DLSWIYLPEUIQAV-CCUURXOWSA-N,,56843331,semaglutide,semaglutide,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:7NL2E3F6K3,Emicizumab,2,7NL2E3F6K3,,9744,emicizumab,,,,emicizumab,emicizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2
+K1:961YV2O515,Efgartigimod alfa,2,961YV2O515,,9777,efgartigimod alfa,,,,efgartigimod alfa,efgartigimod alfa,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:961YV2O515#qvfc,Efgartigimod alfa and Hyaluronidase-Qvfc,2,961YV2O515,,9777,efgartigimod alfa,,,,efgartigimod alfa,efgartigimod alfa,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:RR5U4UFJ8L,Cusatuzumab,3,RR5U4UFJ8L,,9778,cusatuzumab,,,,cusatuzumab,cusatuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:9S44LIC7OJ,NORETHINDRONE ACETATE,2,9S44LIC7OJ,IMONTRJLAWHYGT-ZCPXKWAGSA-N,9781,α-NETA,WZJKPXZLQTXALB-UHFFFAOYSA-N,CHEMBL1358898,1518,α-NETA,neta,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:T18F433X4S,Norethisterone,1,T18F433X4S,VIKNJXKGJWUCNN-XGXHKTLJSA-N,9781,α-NETA,WZJKPXZLQTXALB-UHFFFAOYSA-N,CHEMBL1358898,1518,α-NETA,neta,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P7186074QC,Rozanolixizumab,2,P7186074QC,,9801,rozanolixizumab,,,,rozanolixizumab,rozanolixizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:P7186074QC#noli,Rozanolixizumab-Noli,2,P7186074QC,,9801,rozanolixizumab,,,,rozanolixizumab,rozanolixizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:0628T707D0,Iscalimab,3,0628T707D0,,9802,iscalimab,,,,iscalimab,iscalimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:IYH4W60MAZ,Imaprelimab,3,IYH4W60MAZ,,9805,imaprelimab,,,,imaprelimab,imaprelimab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GNWE7KJ995,Sutimlimab,2,GNWE7KJ995,,9807,sutimlimab,,,,sutimlimab,sutimlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:GNWE7KJ995#jome,Sutimlimab-Jome,2,GNWE7KJ995,,9807,sutimlimab,,,,sutimlimab,sutimlimab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:BZF2ZM0I5Z,Retaspimycin,3,928Q33Q049,OAKGNIRUXAZDQF-TXHRRWQRSA-N,9827,retaspimycin hydrochloride,OIRUWDYJGMHDHJ-AFXVCOSJSA-N,,11685945,retaspimycin hydrochloride,retaspimycin,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:OKYYOKGIPDRZJA-CPSXWDTOSA-N,Agatolimod,3,5V336PV3HG,OKYYOKGIPDRZJA-CPSXWDTOSA-N,9843,agatolimod,GUVMFDICMFQHSZ-UHFFFAOYSA-N,,56841790,agatolimod,agatolimod,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Z7HVY03PHP,Mirikizumab,1,Z7HVY03PHP,,9846,mirikizumab,,,,mirikizumab,mirikizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:Z7HVY03PHP#mrkz,Mirikizumab-Mrkz,2,Z7HVY03PHP,,9846,mirikizumab,,,,mirikizumab,mirikizumab,2,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6J92H2439Z,Fontolizumab,3,6J92H2439Z,,9847,fontolizumab,,,,fontolizumab,fontolizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:C5AGI979T7,LX-2931,3,C5AGI979T7,AMXVYJYMZLDINS-RSWLNLDNSA-N,9851,LX2931,CGJLPLVZAAEKTK-LIVYHJONSA-N,CHEMBL1852164,136034475,LX2931,lx2931,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:QOK1YYH7J2,Pateclizumab,3,QOK1YYH7J2,,9854,pateclizumab,,,,pateclizumab,pateclizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:43D26MK176,Tregalizumab,3,43D26MK176,,9864,tregalizumab,,,,tregalizumab,tregalizumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:30LE65637T,Revamilast,3,30LE65637T,IXQHNBONEVULTL-UHFFFAOYSA-N,9865,revamilast,CFRXVFRHMZLQBS-UHFFFAOYSA-N,,11546664,revamilast,revamilast,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:6ZZ3B7NZ0B,Xiliertinib,3,6ZZ3B7NZ0B,FSXCKIBROURMFT-VGSWGCGISA-N,9929,xiliertinib,HJXSISWJKLMCHI-FIFRQSLGSA-N,,132992142,xiliertinib,xiliertinib,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,6
+K1:1Y0Y126GUG,PF-06751979,3,1Y0Y126GUG,ZLZUHACSRMOLLV-RAALSFIWSA-N,9943,PF-06751979,JQUCWIWWWKZNCS-LESHARBVSA-N,,118435422,PF-06751979,pf 06751979,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:7E628D4GSQ,Anatumomab mafenatox,3,7E628D4GSQ,,9947,anatumomab mafenatox,,CHEMBL2108248,,anatumomab mafenatox,anatumomab mafenatox,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:93T929W6LC,Naptumomab estafenatox,3,93T929W6LC,,9948,naptumomab estafenatox,,CHEMBL1743045,,naptumomab estafenatox,naptumomab estafenatox,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:WE1X5A83B9,Naratuximab emtansine,3,WE1X5A83B9,,9949,naratuximab emtansine,,,,naratuximab emtansine,naratuximab emtansine,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:58I6YNR7BV,LILOTOMAB,3,58I6YNR7BV,,9950,lilotomab,,,,lilotomab,lilotomab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K1:2MZ3L2664T,Otlertuzumab,3,2MZ3L2664T,,9951,otlertuzumab,,CHEMBL3039539,,otlertuzumab,otlertuzumab,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,1
+K2:PWIPORDFWDZCJG-UHFFFAOYSA-N,PD-156707,3,,PWIPORDFWDZCJG-UHFFFAOYSA-N,999,PD-156707,ZLHQEGFYBMZQGM-RKVLWQGQSA-M,CHEMBL25438,23670447,PD-156707,pd 156707,1,none - corpus page and GtoPdb ligand share no UNII and no InChIKey; needs a human decision,2

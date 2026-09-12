@@ -1,0 +1,70 @@
+{
+  "version": "2026-09-06",
+  "pending_source": [],
+  "structural": {
+    "itp": {
+      "applicable_when": "itp_tested",
+      "source": "data/corpus-20k/raw/jax-itp legend mapping in data/corpus-20k/tiers/model-assignment.ndjson reasons (ITP)"
+    },
+    "withdrawal": {
+      "applicable_when": "withdrawn_true"
+    },
+    "approvalDate": {
+      "applicable_when": "approved_in_any_register_or_model_clinical"
+    },
+    "whyStopped": {
+      "applicable_when": "has_stopped_registry_study"
+    },
+    "sponsor": {
+      "applicable_when": "has_registry_study"
+    },
+    "indication": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "labelKinetics": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "adverseEvents": {
+      "applicable_when": "not_NA_LABEL_CLASS"
+    },
+    "kinetics": {
+      "applicable_when": "not_NA_COMBINATION"
+    },
+    "target": {
+      "applicable_when": "has_chembl_id"
+    },
+    "mechanismClass": {
+      "applicable_when": "has_chembl_id"
+    },
+    "relatedOnTarget": {
+      "applicable_when": "has_chembl_id"
+    }
+  },
+  "note": "A field whose stored state is not-applicable with a rule id is not applicable; a field absent from a page's record but listed for its model is absent (applicable). The loader's lifted fields (doseStudied, approvalDate) count as fields.",
+  "pending_source_history": [
+    {
+      "field": "patentStatus",
+      "declared": "2026-09-05",
+      "left_pending": "2026-09-06",
+      "reason": "Phase 2 source 9 (FDA Orange Book patents, exclusivity, RLD, TE codes and first-generic approval date; FDA Purple Book exclusivity for biologics) filled it. The after-census measures {'tier1': 63.8162, 'tier2': 49.2294, 'tier3': 1.3474} present, so it is above the 1 % line in every tier that carries it and re-enters the denominator.",
+      "evidence": "data/revamp/field-census-after.csv, data/revamp/field-census-delta.csv"
+    }
+  ],
+  "new_fields_2026-09-06": {
+    "written_by": "scripts/revamp/integrate_sources.py",
+    "rules": "docs/specs/field-integration.md",
+    "applicability": "Each new field is applicable by default and carries its own recorded state on every page. Where a structural fact makes the field inapplicable the record stores `not-applicable` with the reason, which derive_threshold.py already honours as rule 1, so no new structural predicate is added to the threshold script and the selection rule is unchanged.",
+    "fields": {
+      "cyp_profile": "applicable everywhere; absent names the two sources consulted (openFDA label extraction and the Inxight curated DDI enzyme and transporter rows)",
+      "contraindications": "applicable everywhere; absent names the openFDA contraindications section and the DrugCentral omop_relationship contraindication rows",
+      "boxedWarning": "applicable everywhere; absent names the openFDA boxed_warning section",
+      "controlled": "applicable everywhere; absent names the four scheduled lists ingested (US DEA schedule on the openFDA NDC record, the TGA Poisons Standard June 2026, the Singapore Misuse of Drugs Act 1973 First and Fourth Schedules with the Poisons Act 1938 Schedule and the Poisons Rules read from Singapore Statutes Online on 2026-09-06, and the HSA forensic classification). A finding of 'not listed in the Singapore schedules' is written into the value and does not make the field present.",
+      "potency": "applicable everywhere; absent names ChEMBL 37 activities with a pChEMBL value",
+      "publicationYears": "applicable everywhere; absent names the ChEMBL 37 compound_record years",
+      "registry": "applicable everywhere; absent names the ClinicalTrials.gov API v2 snapshot of 2026-09-01, which was matched against every page",
+      "identifiers": "applicable everywhere; absent names PubChem, UniProtKB and the GSRS public dump",
+      "patentStatus": "not-applicable with the reason on a page holding neither an Orange Book product record nor a Purple Book product record; applicable and present on the 3,606 pages that hold one",
+      "regulatory": "the integration writes this field onto DEVELOPMENT records as well, because Gate G2 requires a Singapore registration status on 100 % of pages and the SUSMP, EMA, PMDA and HSA registers hold facts about Tier 3 substances. A jurisdiction block whose only content is a negative register finding does not make the field present."
+    }
+  }
+}

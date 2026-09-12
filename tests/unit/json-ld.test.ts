@@ -557,7 +557,7 @@ describe('connected public JSON-LD graphs', () => {
   })
 
   it('keeps CreativeWork fragments byte-identical to the page source anchors', () => {
-    // components/MedicineDossierV2.tsx renders `<li id={`source-${source.id}`}>` with the raw
+    // the medicine page renders `<li id={`source-${source.id}`}>` with the raw
     // stored id. Legacy audit sources use ids such as `doi:10.1056/nejmoa1912387`; the graph must
     // not percent-encode what the page leaves raw, or the fragment stops naming the anchor.
     const legacyDrug = eligibleLegacyDrug()
@@ -932,7 +932,9 @@ describe('corpus record structured data', () => {
       tier: 1,
       pageType: 'clinical',
       indexable: true,
+      relationNotes: [],
       suppressed: false,
+      suppressionEvidence: [],
       suppressionClasses: [],
       withdrawn: false,
       presentFieldCount: 14,
@@ -960,10 +962,11 @@ describe('corpus record structured data', () => {
               interpretation: false,
             },
           ],
+          facts: [],
           groups: [],
         },
       ],
-      arc: [],
+      registerEvents: [],
       identifiers: [
         {
           field: 'unii',
@@ -981,8 +984,16 @@ describe('corpus record structured data', () => {
         { field: 'structureInchikey', label: 'InChIKey', value: 'XZWYZXLIPXDOLR-UHFFFAOYSA-N' },
       ],
       relations: [],
+      hubs: [],
       sources: [],
       licenceNotes: [],
+      controlled: false,
+      controlledBasis: [],
+      registration: [],
+      controlledSchedules: [],
+      interactions: { lines: [], sourcesChecked: [], totals: {}, predictedOnly: false },
+      computedSections: [],
+      formOfNotes: [],
       registeredStudies: 3,
       ...patch,
     }

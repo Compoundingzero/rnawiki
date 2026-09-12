@@ -1,0 +1,952 @@
+{
+ "generated": "scripts/revamp/slop_draw.py",
+ "spec": [
+  "docs/specs/revamp-2026-09.md#phase-4",
+  "docs/specs/phase4-generators.md#9"
+ ],
+ "baseUrl": "http://127.0.0.1:3212",
+ "seed": 20260916,
+ "perTier": 20,
+ "drawn": 60,
+ "rendered": 60,
+ "width": 1280,
+ "textDir": "data/revamp/render-v11/text",
+ "census": {
+  "unit": "block",
+  "pages": 28657,
+  "blockTemplates": 24777,
+  "line": 0.005,
+  "pagesLimit": 143.285,
+  "maskedNames": {
+   "drugNamePhrases": 113853,
+   "drugNameSingleTokens": 40512,
+   "targetNamePhrases": 3940,
+   "targetNameSingleTokens": 117,
+   "englishWords": 234456
+  },
+  "sentenceLevelLiteral": {
+   "pages": 28657,
+   "sentenceTemplates": 120161,
+   "pagesLimit": 143.285
+  }
+ },
+ "sentences": 1173,
+ "rowLines": 3484,
+ "failA": 0,
+ "failB": 0,
+ "failC": 0,
+ "failRendered": 0,
+ "failBUnit": "block",
+ "failBSentenceLiteral": 70,
+ "failBSentenceLiteralByBlock": {
+  "question block": 70
+ },
+ "failBSentenceLiteralNote": "The literal sentence-level reading of (b), reported and never the gate. \u00a712: it fails every deterministic generator, the thirteen corpus-20k seeds that shipped included, because a section that fires on 30 % of pages with a fixed skeleton cannot appear on 0.5 % once its slots are masked. `failB` above is the rule over the block, which is the unit a reader meets.",
+ "failABreakdown": {
+  "pagesWithNoProvenanceRecord": 0
+ },
+ "parity": {
+  "renderLinesNotPainted": 0,
+  "paintedLinesNotInRender": 0,
+  "renderLinesOutOfOrder": 0
+ },
+ "renderDivergenceNote": "`failRendered` and `parity` are `scripts/revamp/dom_parity.py`'s own comparison, run here over the drawn pages: this module imports that extraction, that fold and that comparison, so one number describes parity (\u00a712). The unit is main-region text lines outside furniture. It is not one of \u00a74.7's three checks. It matters because the thresholds and the block census are measured on the render text, so where the two disagree those measurements describe text no reader sees.",
+ "loadedPagesWithNoRenderRecord": 0,
+ "renderRecordsNotLoaded": 0,
+ "failBByBlock": {},
+ "failBExamplePerBlock": {},
+ "failBScope": [
+  "computed section",
+  "derived seed",
+  "hub synthesis",
+  "question block"
+ ],
+ "failBExclusions": {
+  "question heading (the corpus-20k template contract)": 259,
+  "outside the sentences the generator words: other": 165,
+  "furniture": 119,
+  "outside the sentences the generator words: interactions": 117,
+  "outside the sentences the generator words: registration": 93,
+  "outside the sentences the generator words: interactions: checked-sources statement": 17,
+  "outside the sentences the generator words: generic and patent": 5,
+  "the h1 and the header line": 2
+ },
+ "failBExclusionsByBlock": {
+  "question heading (the corpus-20k template contract) \u00b7 question block": 259,
+  "outside the sentences the generator words: other \u00b7 other": 165,
+  "outside the sentences the generator words: interactions \u00b7 interactions": 117,
+  "outside the sentences the generator words: registration \u00b7 registration": 93,
+  "furniture \u00b7 interactions: checked-sources statement": 43,
+  "furniture \u00b7 other": 42,
+  "furniture \u00b7 generic and patent": 34,
+  "outside the sentences the generator words: interactions: checked-sources statement \u00b7 interactions: checked-sources statement": 17,
+  "outside the sentences the generator words: generic and patent \u00b7 generic and patent": 5,
+  "the h1 and the header line \u00b7 header": 2
+ },
+ "failBScopeNote": "docs/specs/phase4-generators.md \u00a712 evaluates the test over the masked block \u2014 every sentence of a question, derived, computed or hub block, in painted order \u2014 and a one-sentence block is held to the literal sentence rule by construction. \u00a711 scopes the test to answer sentences, derived-section sentences, computed-section sentences and hub syntheses. A question heading is the corpus-20k template contract and is measured by that contract's own two lines; furniture is the fixed-vocabulary absence statements \u00a711 marks data-furniture; the h1 is the display name and masks to a bare <drug> on every page by construction; and the register lines (\u00a73), the checked-sources statement (\u00a74) and the no-record patent line (\u00a75) are wordings the spec fixes rather than a generator choosing them. `failB` is the rule over its scope; `failBExclusions` counts every sentence it was not applied to, by the exclusion that removed it, so the scope is on the report beside the result.",
+ "traceClasses": {
+  "field: resolved": 803,
+  "question: resolved": 655,
+  "field: unresolved": 290,
+  "seed: resolved": 205,
+  "repository file: resolved": 150,
+  "needs-sibling derivation: unresolved": 112,
+  "source record: resolved": 92,
+  "source list: resolved": 76,
+  "interaction rule: resolved": 59,
+  "source list: unresolved": 42,
+  "page-column: resolved": 42,
+  "seed: unresolved": 39,
+  "absence: resolved": 34,
+  "additive class: unresolved": 29,
+  "lexicon surface list: resolved": 23,
+  "lexicon surface: resolved": 18,
+  "inxight ddi record list: resolved": 9,
+  "inxight ddi record: resolved": 8
+ },
+ "pages": [
+  {
+   "key": "K1:S88TT14065",
+   "slug": "oxygen",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/oxygen",
+   "h1": "Oxygen",
+   "sentences": 46,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:0C94V6X681",
+   "slug": "buclizine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/buclizine",
+   "h1": "Buclizine",
+   "sentences": 13,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:TQ57I8046V",
+   "slug": "suprofen",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/suprofen",
+   "h1": "Suprofen",
+   "sentences": 8,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:9NDF7JZ4M3",
+   "slug": "rivaroxaban",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/rivaroxaban",
+   "h1": "Rivaroxaban",
+   "sentences": 84,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:3IN71E75Z5",
+   "slug": "urethane",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/urethane",
+   "h1": "Urethane",
+   "sentences": 19,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:R3UK8X3U3D",
+   "slug": "modafinil",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/modafinil",
+   "h1": "Modafinil",
+   "sentences": 49,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:276F2O42F5",
+   "slug": "hydroxyprogesterone-caproate",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/hydroxyprogesterone-caproate",
+   "h1": "Hydroxyprogesterone caproate",
+   "sentences": 34,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:98881NCP5R",
+   "slug": "cryptenamine-tannates",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/cryptenamine-tannates",
+   "h1": "Cryptenamine tannates",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:I0VM4M70GC",
+   "slug": "dabigatran",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/dabigatran",
+   "h1": "Dabigatran",
+   "sentences": 40,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:60ME133FJB",
+   "slug": "etelcalcetide",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/etelcalcetide",
+   "h1": "Etelcalcetide",
+   "sentences": 28,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:YVU35998K5",
+   "slug": "viomycin",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/viomycin",
+   "h1": "Viomycin",
+   "sentences": 8,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:NY22HMQ4BX",
+   "slug": "exemestane",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/exemestane",
+   "h1": "Exemestane",
+   "sentences": 50,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:D9GM7FH652",
+   "slug": "aprotinin",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/aprotinin",
+   "h1": "Pyroglutamylaprotinin",
+   "sentences": 29,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:S7YTV04R8O",
+   "slug": "sus-scrofa-ovary",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/sus-scrofa-ovary",
+   "h1": "Sus Scrofa Ovary",
+   "sentences": 32,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:MUW8FP7HNZ",
+   "slug": "icotrokinra",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/icotrokinra",
+   "h1": "Icotrokinra",
+   "sentences": 19,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:OP401G7OJC",
+   "slug": "etanercept",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/etanercept",
+   "h1": "Etanercept",
+   "sentences": 46,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:HU9DX48N0T",
+   "slug": "mycophenolic-acid",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/mycophenolic-acid",
+   "h1": "Mycophenolic acid",
+   "sentences": 55,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:WYQ7N0BPYC",
+   "slug": "acetylcysteine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/acetylcysteine",
+   "h1": "Acetylcysteine",
+   "sentences": 49,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:M0XW1UBI14",
+   "slug": "testosterone-cypionate",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/testosterone-cypionate",
+   "h1": "Testosterone Cypionate",
+   "sentences": 41,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:P2Y1C6M9PS",
+   "slug": "sodium-lactate",
+   "tier": 1,
+   "url": "http://127.0.0.1:3212/d/sodium-lactate",
+   "h1": "Sodium LACTATE, L- (C3H5NaO3)",
+   "sentences": 21,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:G2AE2VE07O",
+   "slug": "revefenacin",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/revefenacin",
+   "h1": "Revefenacin",
+   "sentences": 28,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:57L1Z5378K",
+   "slug": "dermatophagoides-pteronyssinus",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/dermatophagoides-pteronyssinus",
+   "h1": "Dermatophagoides Pteronyssinus",
+   "sentences": 18,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:5BF646324K",
+   "slug": "vinflunine",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/vinflunine",
+   "h1": "Vinflunine",
+   "sentences": 21,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:3Q034RO3BT",
+   "slug": "lytta-vesicatoria",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/lytta-vesicatoria",
+   "h1": "Lytta Vesicatoria",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:A6I4E79QF1",
+   "slug": "bismuth-oxide",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/bismuth-oxide",
+   "h1": "Bismuth Oxide (Bi2O3)",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:5Z7OO9FNFD",
+   "slug": "difloxacin",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/difloxacin",
+   "h1": "Difloxacin",
+   "sentences": 9,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:G8RGG88B68",
+   "slug": "peginterferon-alfa-2b",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/peginterferon-alfa-2b",
+   "h1": "Peginterferon alfa-2b",
+   "sentences": 26,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:MRO1FS760M",
+   "slug": "inonotus-obliquus-fruiting-body",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/inonotus-obliquus-fruiting-body",
+   "h1": "Inonotus Obliquus Fruiting Body",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:B786J7A343",
+   "slug": "aripiprazole-lauroxil",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/aripiprazole-lauroxil",
+   "h1": "Aripiprazole Lauroxil",
+   "sentences": 31,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:W4141180YD",
+   "slug": "taletrectinib-adipate",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/taletrectinib-adipate",
+   "h1": "Taletrectinib",
+   "sentences": 57,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:9FN79X2M3F",
+   "slug": "lithium-2",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/lithium-2",
+   "h1": "LITHIUM",
+   "sentences": 33,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:MO892VI77K",
+   "slug": "strophanthus-hispidus-seed",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/strophanthus-hispidus-seed",
+   "h1": "Strophanthus Hispidus Seed",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:9JU12S4YFY",
+   "slug": "fluoxymesterone",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/fluoxymesterone",
+   "h1": "Fluoxymesterone",
+   "sentences": 24,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:FYS6T7F842#adbm",
+   "slug": "adalimumab-adbm",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/adalimumab-adbm",
+   "h1": "Adalimumab-Adbm",
+   "sentences": 45,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:X72RBB02N8",
+   "slug": "felbamate",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/felbamate",
+   "h1": "Felbamate",
+   "sentences": 29,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:97O6X78C53",
+   "slug": "benperidol",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/benperidol",
+   "h1": "Benperidol",
+   "sentences": 22,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K4:siberian ginseng",
+   "slug": "siberian-ginseng",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/siberian-ginseng",
+   "h1": "Siberian Ginseng",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:2RQ1L9N089",
+   "slug": "periplaneta-americana",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/periplaneta-americana",
+   "h1": "Periplaneta Americana",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:T3C89M417N",
+   "slug": "glutaral",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/glutaral",
+   "h1": "Glutaral",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:D6DVA9TCAP",
+   "slug": "usnea-barbata",
+   "tier": 2,
+   "url": "http://127.0.0.1:3212/d/usnea-barbata",
+   "h1": "Usnea",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:238M5105OY",
+   "slug": "naroparcil",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/naroparcil",
+   "h1": "Naroparcil",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:8EPZ3U4PSS",
+   "slug": "ficonalkib",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/ficonalkib",
+   "h1": "Ficonalkib",
+   "sentences": 7,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:CKSIVONWCYACAP-UHFFFAOYSA-N",
+   "slug": "chembl204997",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chembl204997",
+   "h1": "CHEMBL204997",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:SZCIUMNCRFCHKW-JSRBVGTNSA-N",
+   "slug": "chembl184679",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chembl184679",
+   "h1": "CHEMBL184679",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:JB0YA8LDOW",
+   "slug": "flumecinol",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/flumecinol",
+   "h1": "Flumecinol",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K4:gluthathione",
+   "slug": "gluthathione",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/gluthathione",
+   "h1": "Gluthathione",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:KFSXLIJSXOJBCB-UHFFFAOYSA-N",
+   "slug": "filenadol",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/filenadol",
+   "h1": "Filenadol",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:CVJDYZNCQRBDOX-UHFFFAOYSA-N",
+   "slug": "chembl4203133",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chembl4203133",
+   "h1": "CHEMBL4203133",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:8X1F3A6Q1V",
+   "slug": "lauralkonium",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/lauralkonium",
+   "h1": "Lauralkonium",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:17NV064B2D",
+   "slug": "nisoxetine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/nisoxetine",
+   "h1": "Nisoxetine",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:3E9P89C6JX",
+   "slug": "vintesomeran",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/vintesomeran",
+   "h1": "Vintesomeran",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:25VR943RPP",
+   "slug": "white-mustard-seed",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/white-mustard-seed",
+   "h1": "White Mustard",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:Q813145M20",
+   "slug": "chrysoeriol",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chrysoeriol",
+   "h1": "CHRYSOERIOL",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:11T9HCO30O",
+   "slug": "proteus-vulgaris",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/proteus-vulgaris",
+   "h1": "Proteus Vulgaris",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:LZB7TFX1LT",
+   "slug": "protortonia-cacti",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/protortonia-cacti",
+   "h1": "Protortonia Cacti",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:CNWZWPQCJCOBHA-UHFFFAOYSA-N",
+   "slug": "chembl215322",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chembl215322",
+   "h1": "CHEMBL215322",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:F2HTG1MH2D",
+   "slug": "riamilovir",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/riamilovir",
+   "h1": "Riamilovir",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:ULS0NT2D68",
+   "slug": "necuparanib",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/necuparanib",
+   "h1": "Necuparanib",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:VBXHGXTYZGYTQG-SQOUGZDYSA-N",
+   "slug": "chembl1213470",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/chembl1213470",
+   "h1": "CHEMBL1213470",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:2719UAHUA8",
+   "slug": "novolimus",
+   "tier": 3,
+   "url": "http://127.0.0.1:3212/d/novolimus",
+   "h1": "Novolimus",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  }
+ ],
+ "issues": [],
+ "elapsedSeconds": 32.0,
+ "pagesMarkdownWords": 31067
+}

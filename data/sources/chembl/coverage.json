@@ -1,0 +1,219 @@
+{
+  "source": "chembl",
+  "source_name": "ChEMBL 37 (EMBL-EBI)",
+  "source_version": "ChEMBL 37",
+  "retrieval_date": "2026-09-05",
+  "licence": "CC BY-SA 3.0",
+  "corpus_pages_total": 28832,
+  "corpus_pages_by_tier": {
+    "1": 1719,
+    "2": 4477,
+    "3": 22636
+  },
+  "already_held_confirmed": {
+    "source_files": "data/corpus-20k/raw/chembl",
+    "molecule_table": {
+      "molecule_records": 16784,
+      "max_phase_present": 16784,
+      "max_phase_gte_1": 16784,
+      "withdrawn_flag_true": 364,
+      "withdrawn_year_present": 0,
+      "withdrawn_reason_present": 0,
+      "withdrawn_country_present": 0,
+      "molecule_hierarchy_present": 16507,
+      "molecule_hierarchy_salt_or_child_of_other_parent": 2125,
+      "withdrawn_keys_on_molecule_record": [
+        "withdrawn_flag"
+      ]
+    },
+    "drug_mechanism_rows": 7473,
+    "drug_indication_rows": 59916,
+    "drug_warning_rows": 2304,
+    "chemreps_structures_file": "data/corpus-20k/raw/chembl/chembl_37_chemreps.txt.gz",
+    "withdrawn_detail_note": "ChEMBL 37 carries withdrawn_flag on the molecule record and no withdrawn_reason, withdrawn_year or withdrawn_country field. Withdrawal detail is published in the drug_warning table, held here as warning-*.json with warning_type, warning_class, warning_description, warning_country and warning_year."
+  },
+  "source_records": {
+    "corpus_chembl_ids": 22792,
+    "molecules_topped_up_below_max_phase_1": 8123,
+    "compound_records_read": 215416,
+    "documents_with_year": 100911,
+    "activities_fetched": 24050,
+    "activities_off_mechanism_target_discarded": 4114,
+    "activities_kept": 19702,
+    "molecules_with_activities": 1558,
+    "molecules_with_publication_years": 14812,
+    "molecules_with_atc_codes": 3589,
+    "atc_codes_in_dictionary": 5579
+  },
+  "pages_matched_by_tier": {
+    "1": 1327,
+    "2": 2641,
+    "3": 12466
+  },
+  "pages_matched_total": 16434,
+  "pages_matched_by_tier_and_rule": {
+    "inchikey": {
+      "1": 1042,
+      "2": 1800,
+      "3": 12155
+    },
+    "name-candidate": {
+      "1": 506,
+      "2": 1281,
+      "3": 386
+    },
+    "skeleton": {
+      "2": 2,
+      "3": 9
+    }
+  },
+  "fields_gained_by_tier": {
+    "1": {
+      "activities": {
+        "pages": 316,
+        "values": 5049
+      },
+      "atc": {
+        "pages": 1019,
+        "values": 1565
+      },
+      "publicationYears": {
+        "pages": 1072,
+        "values": 1154
+      }
+    },
+    "2": {
+      "activities": {
+        "pages": 471,
+        "values": 8200
+      },
+      "atc": {
+        "pages": 2104,
+        "values": 3010
+      },
+      "publicationYears": {
+        "pages": 1982,
+        "values": 2136
+      }
+    },
+    "3": {
+      "activities": {
+        "pages": 831,
+        "values": 6958
+      },
+      "atc": {
+        "pages": 1015,
+        "values": 1223
+      },
+      "publicationYears": {
+        "pages": 12124,
+        "values": 12166
+      }
+    }
+  },
+  "fields_gained": [
+    "activities",
+    "atc",
+    "publicationYears"
+  ],
+  "mapped_rows": 41461,
+  "molecules_matched_by_rule": {
+    "unii": 0,
+    "inchikey": 14860,
+    "skeleton": 11,
+    "name-candidate": 1458
+  },
+  "unii_rule_note": "ChEMBL 37 publishes no UNII on the molecule, activity, compound_record, document or atc_class endpoints and none in chembl_37_chemreps.txt.gz, so mapping rule (a) could not fire for this source. Rule (b) full InChIKey carried the mapping.",
+  "withdrawn_reason_note": "ChEMBL 37 carries no withdrawn_reason, withdrawn_year or withdrawn_country field on the molecule endpoint; the molecule record holds withdrawn_flag only. Withdrawal detail lives in the drug_warning table already held under data/corpus-20k/raw/chembl/warning-*.json as warning_type, warning_class, warning_description, warning_country and warning_year.",
+  "unmatched_source_records": {
+    "contributing_molecules": 16343,
+    "contributing_molecules_unmatched": 14,
+    "contributing_molecules_unmatched_ids": [
+      "CHEMBL1237295",
+      "CHEMBL1237296",
+      "CHEMBL1237297",
+      "CHEMBL1237317",
+      "CHEMBL1370561",
+      "CHEMBL1515091",
+      "CHEMBL1516388",
+      "CHEMBL2040681",
+      "CHEMBL2206194",
+      "CHEMBL3039597",
+      "CHEMBL3350555",
+      "CHEMBL4451232",
+      "CHEMBL5305690",
+      "CHEMBL61441"
+    ],
+    "molecules_matched_by_corpus_chembl_id_only": 13,
+    "molecules_matched_by_corpus_chembl_id_only_detail": {
+      "CHEMBL1237295": [
+        "K2:SHXKWDFUPJBYSD-PULAQXAZSA-N"
+      ],
+      "CHEMBL1237296": [
+        "K2:DYEMZRKMQRNACO-WCHHKNOZSA-N"
+      ],
+      "CHEMBL1237297": [
+        "K2:QLPYXMVIADXXGK-LEOYLKIESA-N"
+      ],
+      "CHEMBL1237317": [
+        "K2:UZOKLIQHROZOQA-JZGDWWSASA-N"
+      ],
+      "CHEMBL1515091": [
+        "K1:6MB0YNA8DJ"
+      ],
+      "CHEMBL1516388": [
+        "K1:8DY2X8LXW4"
+      ],
+      "CHEMBL2040681": [
+        "K1:78G4631RTT"
+      ],
+      "CHEMBL2206194": [
+        "K1:TP732M43NA"
+      ],
+      "CHEMBL3039597": [
+        "COMBO:{IK:XUFIWSHGXVLULG-IBLUXPFWSA-N,K1:AV4A72IATD}"
+      ],
+      "CHEMBL3350555": [
+        "K2:LHNBTNFXIRAJNQ-XCUUVMGVSA-N"
+      ],
+      "CHEMBL4451232": [
+        "K1:00LOF6890B"
+      ],
+      "CHEMBL5305690": [
+        "K1:923TYK19HG"
+      ],
+      "CHEMBL61441": [
+        "K2:RIVZUHBWXRGVOG-UHFFFAOYSA-N"
+      ]
+    },
+    "identity_only_note": "These ChEMBL ids are recorded on a corpus page but carry no InChIKey in chembl_37_chemreps.txt.gz and no name that normalises onto that page, so none of the four spec mapping rules can fire and no row is written for them. They are listed here for the Phase 3 identity review.",
+    "molecules_with_compound_records_but_no_dated_document": 7749,
+    "corpus_chembl_ids_absent_from_molecule_endpoint": [
+      "CHEMBL1200608",
+      "CHEMBL1491875",
+      "CHEMBL2096649",
+      "CHEMBL2103752",
+      "CHEMBL2104827",
+      "CHEMBL2105663",
+      "CHEMBL2109269",
+      "CHEMBL2110674",
+      "CHEMBL3039582",
+      "CHEMBL417016"
+    ],
+    "corpus_chembl_ids_absent_note": "These ChEMBL ids are recorded on corpus pages but are not in the held max_phase>=1 molecule pull and were not returned by the molecule endpoint top-up. Two were checked individually on 2026-09-05 and answered HTTP 404 (https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL417016.json and .../CHEMBL1200608.json, logged in requests.log), so they no longer resolve in ChEMBL 37 and belong on the Phase 3 identity review list."
+  },
+  "activity_truncation": {
+    "rule": "molecules with more than 1000 qualifying activities keep the 1000 highest pChEMBL",
+    "molecules_truncated": 1,
+    "detail": {
+      "CHEMBL98": 1234
+    }
+  },
+  "name_candidates_sent_to_review": {
+    "pairs": 2831,
+    "pairs_unconfirmed_by_corpus_chembl_id": 1452,
+    "distinct_pages": 2173,
+    "distinct_molecules": 1458,
+    "path": "data/revamp/name-candidates/chembl.csv"
+  }
+}

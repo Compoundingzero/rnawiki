@@ -1,0 +1,139 @@
+{
+  "generatedBy": "scripts/revamp/self_audit.py",
+  "spec": [
+    "docs/specs/phase4-generators.md#14",
+    "docs/specs/phase4-generators.md#15"
+  ],
+  "baseUrl": "http://127.0.0.1:3213",
+  "seed": 20260911,
+  "drawn": {
+    "pages": 30,
+    "hubs": 10,
+    "perTier": 10
+  },
+  "rendered": {
+    "pages": 30,
+    "hubs": 10
+  },
+  "pages": "30/30",
+  "hubs": "10/10",
+  "rulesChecked": 19,
+  "rules": {
+    "supervision answer names no register status": {
+      "applied": 14,
+      "passed": 14,
+      "failed": 0,
+      "examples": []
+    },
+    "no register application row outside the registration block": {
+      "applied": 364,
+      "passed": 364,
+      "failed": 0,
+      "examples": []
+    },
+    "no storage key painted": {
+      "applied": 40,
+      "passed": 40,
+      "failed": 0,
+      "examples": []
+    },
+    "no record id painted outside a closed disclosure": {
+      "applied": 822,
+      "passed": 822,
+      "failed": 0,
+      "examples": []
+    },
+    "every visible list caps at six rows": {
+      "applied": 132,
+      "passed": 132,
+      "failed": 0,
+      "examples": []
+    },
+    "adjacent inline elements are separated by a text node": {
+      "applied": 40,
+      "passed": 40,
+      "failed": 0,
+      "examples": []
+    },
+    "the provenance timeline is dated at both ends and in order": {
+      "applied": 0,
+      "passed": 0,
+      "failed": 0,
+      "examples": []
+    },
+    "no absence question fires": {
+      "applied": 30,
+      "passed": 30,
+      "failed": 0,
+      "examples": []
+    },
+    "one relation per pair": {
+      "applied": 6,
+      "passed": 6,
+      "failed": 0,
+      "examples": []
+    },
+    "the United States status word agrees with its applications": {
+      "applied": 10,
+      "passed": 10,
+      "failed": 0,
+      "examples": []
+    },
+    "a hub table's absence cells carry data-furniture": {
+      "applied": 1685,
+      "passed": 1685,
+      "failed": 0,
+      "examples": []
+    },
+    "every supervision clause carries its own source": {
+      "applied": 9,
+      "passed": 9,
+      "failed": 0,
+      "examples": []
+    },
+    "the ageing question fires only on an ageing endpoint": {
+      "applied": 6,
+      "passed": 6,
+      "failed": 0,
+      "examples": []
+    },
+    "a stereochemistry note names no relation the records do not have": {
+      "applied": 0,
+      "passed": 0,
+      "failed": 0,
+      "examples": []
+    },
+    "every row in a counted remainder keeps its label": {
+      "applied": 223,
+      "passed": 223,
+      "failed": 0,
+      "examples": []
+    },
+    "a withdrawal clause states each event once and no flag beside a reason": {
+      "applied": 2,
+      "passed": 2,
+      "failed": 0,
+      "examples": []
+    },
+    "a relation row never names the page it is on": {
+      "applied": 6,
+      "passed": 6,
+      "failed": 0,
+      "examples": []
+    },
+    "an unconfirmed relation note renders only inside a closed disclosure": {
+      "applied": 30,
+      "passed": 30,
+      "failed": 0,
+      "examples": []
+    },
+    "the salt-form list holds no component or mixture name": {
+      "applied": 0,
+      "passed": 0,
+      "failed": 0,
+      "examples": []
+    }
+  },
+  "targetsWithAFailure": [],
+  "issues": []
+}

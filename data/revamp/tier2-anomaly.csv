@@ -1,0 +1,14 @@
+row_kind,field,tier2_pages,pages_carrying_field,present_before,present_pct_before_over_4477,present_pct_before_over_carrying,applicable_after,present_after,present_pct_after_over_applicable,pages_left_denominator,share_left_denominator,present_entries_dropped_by_rule,absent_where_applicable,bucket
+field,indication,4477,4477,2368,52.8926,52.8926,3879,2368,61.0467,598,0.1336,0,1511,both
+field,labelKinetics,4477,4477,1209,27.0047,27.0047,3879,1209,31.1678,598,0.1336,0,2670,both
+field,interactions,4477,4477,675,15.0771,15.0771,3879,675,17.4014,598,0.1336,0,3204,both
+field,adverseEvents,4477,4477,1405,31.3826,31.3826,3879,1405,36.2207,598,0.1336,0,2474,both
+field,faers,4477,4477,1628,36.3636,36.3636,4477,1628,36.3636,0,0.0,0,2849,data fact
+field,trialHistory,4477,4477,3167,70.7393,70.7393,4477,3167,70.7393,0,0.0,0,1310,data fact
+field,trialFailures,4477,4477,1705,38.0835,38.0835,4477,1705,38.0835,0,0.0,0,2772,data fact
+field,regulatory,4477,4477,3366,75.1843,75.1843,4477,3366,75.1843,0,0.0,0,1111,data fact
+field,withdrawal,4477,4477,197,4.4003,4.4003,65,65,100.0,4412,0.9855,132,0,schema artefact
+field,doseStudied,4477,4454,1078,24.0786,24.203,4454,1078,24.203,23,0.0051,0,3376,data fact
+field,approvalDate,4477,4454,2286,51.061,51.3247,4454,2286,51.3247,23,0.0051,0,2168,data fact
+summary,pass count at the old corpus-wide threshold 11,4477,,26,0.5807,,,5,0.1117,,,,,before = loader present-field count of 11 possible (page-meta-v4); after = the same threshold of 11 read against the corrected present-over-applicable count
+summary,"pass count at the Tier 2 bucket-rule answer 8 (no count clears the lexical line, so Tier 2 has no final threshold)",4477,,26,0.5807,,,987,22.046,,,,,"before = the recorded 26 at threshold 11; after = pages whose corrected count reaches the Tier 2 bucket-rule answer 8 (no count clears the lexical line, so Tier 2 has no final threshold), derived in data/revamp/thresholds.json"

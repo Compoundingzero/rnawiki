@@ -124,16 +124,17 @@ That reading of the four-word rule is stricter than the tail rule above: it also
 _middle_ of a sentence, and it counts `{name}'s` as a value followed by a fixed `s`, so a template
 has three free words after a possessive and four after a plain slot.
 
-**A new block, and one it replaces.** A suppressed page whose only recorded class is S10 (unknown)
-has no classification to cite, so it must not be asked why it carries a supervision requirement.
+**A new block, and one it replaces** — and, after §13, one that is retired outright. A suppressed
+page whose only recorded class is S10 (unknown) has no classification to cite, so it must not be
+asked why it carries a supervision requirement; it is now asked nothing at all.
 
 | Block          | Trigger                                 | Template                                                                                                                                                                                                                                                                                            |
 | -------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| classification | suppressed, every recorded class is S10 | `What classification does {name} carry?` (body paragraph 1: `No regulator classification is recorded for {name} in {cleared registers}.`; paragraph 2 only where the page holds a regulatory row, carrying that row's recorded statuses as values; the per-jurisdiction statuses are revealed rows) |
-| supervision    | suppressed, any class S1–S9             | unchanged; the body quotes the register's classification                                                                                                                                                                                                                                            |
+| classification | retired (`docs/specs/phase4-generators.md` §13 item 1) | The block asked what classification a record carries and answered `No regulator classification is recorded for {name}`, on 16,814 pages. An absence offered as an answer does not follow from the question; the registration block's absence table states the same thing once, as furniture, on every page that has an absent register. No question is derived and no builder exists. |
+| supervision    | suppressed, any class S1–S9             | unchanged in trigger; §13 item 1 narrows the body to affirmative classifications only — a controlled-substance schedule, a withdrawal, a boxed warning, a REMS — and never a jurisdiction read from another source. Where none is recorded the block does not render.                                                                                                                 |
 
-`classification` leads the block order, in `supervision`'s place. Seeds 1, 2 and 6 stay absolutely
-suppressed on both.
+`supervision` leads the block order. Seeds 1, 2 and 6 stay absolutely suppressed on a suppressed
+page whether or not it carries a classification to cite.
 
 **Question wordings changed, with the fixed run each one carried:**
 

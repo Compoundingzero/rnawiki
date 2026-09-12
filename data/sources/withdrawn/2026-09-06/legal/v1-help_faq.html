@@ -1,0 +1,238 @@
+<!--
+   To change this template, choose Tools | Templates
+   and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="css/stylesheet.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="images/udb.ico">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin%20Slab">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <title>WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</title>
+    </head>
+    <body>
+        <!-- top container-->
+        <div class="container" align="center">
+            <h3 align="center" class="shadow_inner">WITHDRAWN: A Resource for Withdrawn and Discontinued Drugs</h3>
+            <br>
+            <div class="jumbotron" align="center">
+                <!-- pages -->
+                <ul class="nav nav-tabs nav-justified">
+                    <li><a href="index.html">WITHDRAWN</a></li>
+                    <li><a href="drug_search.html">Drugs</a></li>
+                    <li><a href="targets.html">Targets</a></li>
+                    <li><a href="pathways.html">Pathways</a></li>
+                    <li><a href="toxicities.html">Toxicities</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li class="active"><a href="#">Help/FAQ</a></li>
+                    <li><a href="links.html">Links/Download</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- faq container -->
+        <div class="container">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">Frequently Asked Questions</h4>
+                <br>
+                <div class="faq" align="center">
+                    <table style="font-size: 11pt; text-align: center;">
+                        <tbody>
+                            <tr>
+                                <td style="width:80%; text-align:left">
+                                    <ul class="nested">
+                                        <li class="nested">
+                                            <a href="#withdrawn"><b><font color="#527ACC">WITHDRAWN</font></b></a>
+                                        </li>
+                                        <li class="nested">
+                                            <a href="#sysreq"><b><font color="#527ACC">System Requirements</font></b></a>
+                                        </li>
+                                        <li class="nested">
+                                            <a href="#background"><b><font color="#527ACC">Background</font></b></a>
+                                            <ul class="nested">
+                                                <li class="nested">
+                                                    <a href="#atc"><font color="#527ACC">What is the ATC code?</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#fp"><font color="#527ACC">What are molecular fingerprints?</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#tc"><font color="#527ACC">What is the Tanimoto coefficient?</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#toxtargets"><font color="#527ACC">What are toxicity targets?</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#snp"><font color="#527ACC">What is a SNP?</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#maf"><font color="#527ACC">What is MAF?</font></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nested">
+                                            <a href="#website"><b><font color="#527ACC">Website</font></b></a>
+                                            <ul class="nested">
+                                                <li class="nested">
+                                                    <a href="#usage"><font color="#527ACC">Usage of the Website</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#usage_drugs"><font color="#527ACC">Drugs</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#usage_targets"><font color="#527ACC">Targets</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#usage_pathways"><font color="#527ACC">Pathways</font></a>
+                                                </li>
+                                                <li class="nested">
+                                                    <a href="#usage_toxicities"><font color="#527ACC">Toxicities</font></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="width:2%"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="withdrawn">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">WITHDRAWN</h4>
+                <br>
+                <p align="justify">WITHDRAWN is a database for withdrawn and discontinued drugs. The database contains 550 drugs which have been withdrawn or discontinued from the market or clinical phases since the 1960s due to adverse drug reactions. The database provides
+                    molecular structures, important physico-chemical properties as well as facts associated with drug withdrawals, including manually curated withdrawal reasons, toxicity types and predicted toxicity classes. Additionally, the database contains protein targets
+                    known to interact with the drugs. Genetic variations of the protein targets are also available.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="container" id="sysreq">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">System Requirements</h4>
+                <br>
+                <p align="justify">We recommend a recent version of Mozilla Firefox, Google Chrome or Safari web browsers when accessing WITHDRAWN. For the usage of the Ketcher (the molecule drawing tool) component JavaScript has to be enabled in the browser. You find Ketcher implemented on the drugs page.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="container" id="background">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">Background</h4>
+                <br>
+                <h5 style="text-align:left" id="atc"><b>What is the ATC code?</b></h5>
+                <p align="justify">The Anatomical Therapeutic Chemical (ATC) classification system is used for the classification of drugs. It is published by the
+                    <a href="http://www.whocc.no/atc_ddd_index/" target="_blank">
+                        World Health Organization (WHO)</a>. The classification into groups is based on therapeutic and chemical characteristics of the drugs.Each ATC code is divided into five levels:<br>
+                </p>
+                <ul>
+                    <li>level 1: Anatomical main group </li>
+                    <li>level 2: Therapeutic main group </li>
+                    <li>level 3: Therapeutic/pharmacological subgroup </li>
+                    <li>level 4: Chemical/therapeutic/pharmacological subgroup </li>
+                    <li>level 5: Chemical substance </li>
+                </ul>
+                <p align="justify">Substances or combination of substances in the 5th level refer to a single indication. Drugs having more than one indication belong to more than one ATC code. Aspirin for example has 3 ATC codes assigned. Drugs having no ATC code assigned by the WHO were given a pseudo-ATC class based on their primary indication areas. To assign pseudo-ATC code an exhaustive literature search was carried out.
+                </p>
+                <br>
+                <h5 style="text-align:left" id="fp"><b>What are Molecular fingerprints?</b></h5>
+                <p align="justify">Molecular fingerprints represent certain structural features of a molecule. There are two processes where fingerprints are primarily used for: similarity measures like calculations and screenings. Similarity calculation is to quantify the similarity of two molecules where as screening is a way of eliminating molecules as candidates in a substructure search. The fingerprint algorithm examines the molecule
+                    and generates patterns of the molecules. The fingerprints are commonly represented as bit strings.
+                </p>
+                <br>
+                <h5 style="text-align:left" id="tc"><b>What is the Tanimoto coefficient?</b></h5>
+                <p align="justify">For similarity search with a structure against the WITHDRAWN, the database molecules and the query molecules are converted into MACCS fingerprints, where the structural fragments are encoded as bit vectors. To compare the structural similarity between the molecules, the
+                    Tanimoto coefficient is used. The Tanimoto coefficient relies on the number bits set to one in fingerprints of a molecule pair and is calculates using the following mathematical equation:
+                </p><br>
+                <div align="center"><img src="images/tanimoto.gif" alt="tanimoto"></div>
+                <br>
+                <p align="justify">Here, N<sub>a</sub> is the total number of bits set to 1 (i.e. bit present) in molecule a, N<sub>b</sub> is the total number of bits set to 1 in molecule b and N<sub>c</sub> is the number of bits commonly set to 1 in both molecule a and b.</p>
+                <br>
+                <h5 style="text-align:left" id="toxtargets"><b>What are toxicity targets?</b></h5>
+                <p align="justify">Compound toxicity can be caused by many different mechanisms. To understand the underlying mechanism, it is important to consider the macromolecular targets to which a compound binds. Some targets are important for the therapeutic effect of the drug compound. Other targets, so-called 'off-targets' or 'tox targets' are responsible for adverse drug reactions and toxicities associated with a drug compound. Tox targets have been defined according to the Novartis in vitro safety panel of targets associated with adverse drug reactions <a href="http://www.ncbi.nlm.nih.gov/pubmed/22722194" target="_blank">(Lounkine et al. 2012)</a>. 73 toxicity diverse toxicity targets are considered, including transmembrane proteins as well as intracellular receptors.</p>
+                <br>
+                <h5 style="text-align:left" id="snp"><b>What is a SNP?</b></h5>
+                <p align="justify">A Single Nucleotide Polymorphism (SNP) is a DNA sequence variation occurring commonly within a population (e.g. 1%) in which a single nucleotide (A, T, C or G) in the genome differs between members of a biological species or paired chromosomes. For example, two sequenced DNA fragments from different individuals, AAGCCTA to AAGCTTA, contain a difference in a single nucleotide.</p> SNPs can cause problems in different ethicities often in respect to metabolism changes of drugs or prodrugs. It was shown that the prodrug Clopidogrel has a reduced metabolism to its active metabolite caused by a SNP in the hepatic cytochrome P450 2C19 (CYP2C19) enzyme (<a href="http://www.ncbi.nlm.nih.gov/pubmed/21215696" target="_blank">Byron et. al., 2011</a>).
+                <br>
+                <h5 style="text-align:left" id="maf"><b>What is MAF?</b></h5>
+                <p align="justify">The minor allele frequency (MAF) refers to the frequency at which the least common allele occurs in a given population.</p>
+                <p align="justify">On the website we only provide a detailed list for SNPs which lead to an amino acid switch in the protein (non-synonymous mutation). Additionally, for every SNP a minor allele frequency has to be provided.
+                    SNPs are displayed on the individual target page. The SNPs provided on this website can be accessed by the <a href="www.ncbi.nlm.nih.gov/SNP/" target="_blank">dbSNP</a> database for a more detailed overview.</p>
+            </div>
+        </div>
+        <br>
+        <div class="container" id="website">
+            <div class="shadow">
+                <h4 align="center" class="shadow_inner">Website</h4>
+                <br>
+                <h5 style="text-align:left" id="usage"><b>Usage of the website</b></h5>
+                <br>
+                <p align="justify">The WITHDRAWN database provides information about withdrawn and discontinued drugs as well as their primary and off-targets, pathways, ATC codes and associated toxicities. There are four main search buttons: Drugs, Targets, Pathways and Toxicities.</p>
+                <br>
+                <h5 style="text-align:left" id="usage_drugs"><b>Drugs</b></h5>
+                <p align="justify">In the Drugs section one can browse the withdrawn and discontinued drugs by clicking on the respective Browse buttons. Information about
+                    the first approval and first withdrawal date, ATC code and further details for the drugs are given ("Show Details" button). Alternatively, the user can search for drugs by ATC code, drug name or by drawing a structure.<br> Both, searching by the unique ATC code of a drug as well as searching by an ATC class like "N03A" resulting in a list with all drugs that belong to the "nervous system - antiepileptics" class "N03A". If a drug, that was searched for, is not stored in the database then the five most similar withdrawn/discontinued drugs will be displayed on the result page. <br>Searching for drugs by structure is enabled by a sketching tool. The user can choose between two search options: first, a search for similar structures to the query structure (the user can define the similarity threshold and the number maximal shown results) or second, a substructure search where structures containing the query structure are given as output. <br><br> 
+
+                    The <b>coverage of withdrawn drugs</b> from the U.S. and European market is complete as we have drug lists from <a href="http://chemoinfo.ipmc.cnrs.fr/MOLDB/index.html" target="_blank">eDrug3D</a> (obtain their lists directly from <a href="http://www.fda.gov/" target="_blank">FDA</a>) and the <a href="http://www.ema.europa.eu/ema/" target="_blank">EMA (European Medicines Agency)</a>. Information about withdrawals in other countries has been gathered from <a href="http://www.drugbank.ca/" target="_blank">Drugbank</a> and an extensive literature search. <br>
+                    All 353 drugs marked as discontinued in eDrug3d, all 151 drugs marked as withdrawn or suspended from EMA, 164 of 165 drugs marked as withdrawn from DrugBank has been included into the <b>withdrawn database</b>. One drug of DrugBank (fenfluramine - DB00574) was not added to the <b>withdrawn database </b> because it has an undefined chiral center and the corresponding drug with a defined chiral center (dexfenfluramine - DB01191) was added to the database. To the best of our knowledge, we have gathered all scientific literature describing drug withdrawals and included additional drugs not stored in the previous mentioned data sources. Monoclonal antibodies and substance combinations have been removed from the dataset. The joined dataset after removal of duplicates contains 578 drugs. However, we cannot guarantee that all withdrawn/discontinued drugs outside of Europe and the U.S. have been captured.
+                </p>
+                <br>
+                <div align="center"><img src="images/drug_search.png" alt="drug search" width="1080" height="500"></div>
+                <br>
+                <h5 style="text-align:left" id="usage_targets"><b>Targets</b></h5>
+                <p align="justify">In the Targets section one can browse for targets which are associated with withdrawn or discontinued drugs. The user can search for targets by gene name, UniProt Accession or UniProt Name. A detailed record is provided to the user along with links to external databases. Also, the drug-target interactions, KEGG pathways and SNPs can be accessed in the detailed target record. Additionally, a structure of the protein is displayed, if a X-ray or NMR structure is available. Furhtermore, all PDB links are given for a protein structure, also protein-withdrawn drug complexes.<br>Another possibility to browse for targets is the target tree. All the human protein targets known to interact with WITHDRAWN drugs are grouped by their protein class within the tree-view.
+                </p><br>
+                <div align="center"><img src="images/targets.png" alt="targets" width="1080" height="500"></div>
+
+                <h5 style="text-align:left" id="usage_pathways"><b>Pathways</b></h5>
+                <p align="justify">In the Pathways section one can select a pathway of interest. All protein targets in the database that interact with withdrawn or discontinued drugs are highlighted in yellow within the pathway maps. In addition, a list of the highlighted targets is displayed below the map allowing to navigate to individual target records.
+                </p>
+                <br>
+                <div align="center"><img src="images/pathways.png" alt="pathways"></div>
+
+                <h5 style="text-align:left" id="usage_toxicities"><b>Toxicities</b></h5>
+                <p align="justify">
+                    In the Toxicities section, an interactive wheel visualization using the <a href='http://d3js.org/' target='_blank'>D3</a> (a javascript library for data visualization) is provided to show different toxicity types that are associated with withdrawn drugs.
+                    By clicking on the name of the toxicity type, a list of drugs associated with the toxicity type are displayed to the user.</p><br>
+                <div align="right"><img src="images/toxicity.png" alt="toxicity">
+                    <br>
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://bioinformatics.charite.de/biostats/" : "http://bioinformatics.charite.de/biostats/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+            try {
+                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 25);
+                piwikTracker.trackPageView();
+                piwikTracker.enableLinkTracking();
+            } catch (err) {
+            }
+        </script><noscript><p><img src="http://bioinformatics.charite.de/biostats/piwik.php?idsite=25" style="border:0" alt="" /></p></noscript>
+        <!-- End Piwik Tracking Code -->
+
+        <!-- footer -->
+        <footer class="footer-intro">
+            <ul>
+                <li><font color="white">Last Updated: Septemeber 2015</font></li>
+                <li><font color="white">|</font></li>
+                <li><a href="http://bioinformatics.charite.de/main/content/index.php" target="_blank">Structural Bioinformatics Group at Charité</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

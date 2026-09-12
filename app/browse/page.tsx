@@ -164,7 +164,7 @@ function FilterRow<T extends string>({
           aria-current={active === undefined ? 'true' : undefined}
           className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border transition cursor-pointer ${
             active === undefined
-              ? 'text-[#0071E3] bg-blue-50 border-[#0071E3]/20'
+              ? 'text-[#0066CC] bg-blue-50 border-[#0071E3]/20'
               : 'text-[#6E6E73] bg-white border-black/[0.06] hover:text-[#1D1D1F]'
           }`}
         >
@@ -177,7 +177,7 @@ function FilterRow<T extends string>({
             aria-current={active === option ? 'true' : undefined}
             className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border transition cursor-pointer ${
               active === option
-                ? 'text-[#0071E3] bg-blue-50 border-[#0071E3]/20'
+                ? 'text-[#0066CC] bg-blue-50 border-[#0071E3]/20'
                 : 'text-[#6E6E73] bg-white border-black/[0.06] hover:text-[#1D1D1F]'
             }`}
           >
@@ -418,13 +418,16 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               {browsePageLinks(filters.page, lastPage).map((page) => (
                 <li key={page}>
                   {page === filters.page ? (
-                    <span aria-current="page" className="px-1 text-[#1D1D1F]">
+                    <span
+                      aria-current="page"
+                      className="inline-flex min-h-8 min-w-8 items-center justify-center px-1 text-[#1D1D1F]"
+                    >
                       {page.toLocaleString('en-GB')}
                     </span>
                   ) : (
                     <Link
                       href={browseHref({ ...filters, page })}
-                      className="inline-flex min-h-8 items-center px-1 text-[#0071E3] hover:text-[#0077ED] transition"
+                      className="inline-flex min-h-8 min-w-8 items-center justify-center px-1 text-[#0071E3] hover:text-[#0077ED] transition"
                     >
                       {page.toLocaleString('en-GB')}
                     </Link>

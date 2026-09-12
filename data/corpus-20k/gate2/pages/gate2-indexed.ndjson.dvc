@@ -1,0 +1,5 @@
+outs:
+- md5: 6ab06a9e78ed16069c521861ec57c19e
+  size: 8196800
+  hash: md5
+  path: gate2-indexed.ndjson

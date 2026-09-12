@@ -1,0 +1,561 @@
+/*
+ * Dossier v3 reader surface (docs/dossier-information-architecture.md).
+ *
+ * Reuses the corpus tokens (lib/corpus/tokens.css): light default, the ink/surface ramp, one blue
+ * accent, serif headings, the 44rem measure. A calm dark mirror follows the viewer's preference
+ * for this surface only, guarded so an explicit light choice wins. Colour is never the only
+ * signal: every evidence label carries words and a glyph.
+ */
+
+.dv3-root {
+  --dv3-ink: var(--corpus-ink-0);
+  --dv3-ink-soft: var(--corpus-ink-1);
+  --dv3-ink-muted: var(--corpus-ink-2);
+  --dv3-surface: var(--corpus-surface-0);
+  --dv3-surface-raised: var(--corpus-surface-1);
+  --dv3-hairline: var(--corpus-hairline);
+  --dv3-accent: var(--corpus-accent);
+  --dv3-accent-soft: var(--corpus-accent-soft);
+  --dv3-caution: var(--corpus-supervision);
+  --dv3-caution-soft: var(--corpus-supervision-soft);
+  color: var(--dv3-ink);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: var(--corpus-measure);
+  margin: 0 auto;
+  padding: 0 16px 4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .dv3-root {
+    --dv3-ink: #f5f5f7;
+    --dv3-ink-soft: #d8d8dc;
+    --dv3-ink-muted: #a9a9b0;
+    --dv3-surface: #16161a;
+    --dv3-surface-raised: #1d1d22;
+    --dv3-hairline: rgba(255, 255, 255, 0.16);
+    --dv3-accent: #7cbaff;
+    --dv3-accent-soft: rgba(124, 186, 255, 0.22);
+    --dv3-caution: #e0c26a;
+    --dv3-caution-soft: rgba(224, 194, 106, 0.3);
+    background: var(--dv3-surface);
+  }
+}
+
+:root[data-theme='dark'] .dv3-root {
+  --dv3-ink: #f5f5f7;
+  --dv3-ink-soft: #d8d8dc;
+  --dv3-ink-muted: #a9a9b0;
+  --dv3-surface: #16161a;
+  --dv3-surface-raised: #1d1d22;
+  --dv3-hairline: rgba(255, 255, 255, 0.16);
+  --dv3-accent: #7cbaff;
+  --dv3-accent-soft: rgba(124, 186, 255, 0.22);
+  --dv3-caution: #e0c26a;
+  --dv3-caution-soft: rgba(224, 194, 106, 0.3);
+  background: var(--dv3-surface);
+}
+
+.dv3-root h1,
+.dv3-root h2,
+.dv3-root h3 {
+  font-family: var(--corpus-serif);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--dv3-ink);
+}
+.dv3-root h1 {
+  font-size: 2.1rem;
+  margin: 1.5rem 0 0.25rem;
+}
+.dv3-root h2 {
+  font-size: 1.45rem;
+  margin: 0 0 0.75rem;
+  scroll-margin-top: 7rem;
+}
+.dv3-root h3 {
+  font-size: 1.1rem;
+  margin: 1.25rem 0 0.4rem;
+}
+.dv3-root p {
+  margin: 0 0 0.75rem;
+}
+.dv3-root a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.dv3-root a:focus-visible,
+.dv3-root summary:focus-visible,
+.dv3-root input:focus-visible + span,
+.dv3-root input:focus-visible {
+  outline: 3px solid var(--dv3-accent);
+  outline-offset: 2px;
+}
+
+.dv3-header-line {
+  color: var(--dv3-ink-soft);
+}
+
+/* ---------------------------------------------------------------- navigator */
+.dv3-nav {
+  position: sticky;
+  top: 3.5rem; /* below the 56px site header */
+  z-index: 5;
+  background: var(--dv3-surface);
+  border-bottom: 1px solid var(--dv3-hairline);
+  margin: 0.5rem -16px 1.5rem;
+  padding: 0.35rem 16px;
+}
+.dv3-nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.25rem 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.dv3-nav li {
+  flex: 0 0 auto;
+}
+.dv3-nav a {
+  display: inline-block;
+  padding: 0.3rem 0.1rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--dv3-ink-soft);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.dv3-nav a[aria-current='true'] {
+  color: var(--dv3-ink);
+  border-bottom-color: var(--dv3-accent);
+  font-weight: 600;
+}
+.dv3-nav-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+}
+
+/* ---------------------------------------------------------------- sections */
+.dv3-section {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--dv3-hairline);
+}
+.dv3-section:first-of-type {
+  border-top: 0;
+}
+.dv3-lede {
+  color: var(--dv3-ink-soft);
+}
+.dv3-fine {
+  font-size: 0.85rem;
+  color: var(--dv3-ink-muted);
+}
+.dv3-absent {
+  color: var(--dv3-ink-soft);
+  font-style: normal;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--dv3-hairline);
+}
+.dv3-callout,
+.dv3-spontaneous,
+.dv3-registry,
+.dv3-teach {
+  background: var(--dv3-surface-raised);
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+}
+.dv3-callout-line {
+  border-left: 3px solid var(--dv3-caution);
+  padding-left: 0.75rem;
+  color: var(--dv3-ink-soft);
+}
+.dv3-quote {
+  font-size: 0.95rem;
+  color: var(--dv3-ink-soft);
+  white-space: pre-wrap;
+}
+
+/* ---------------------------------------------------------------- decision card */
+.dv3-kicker {
+  color: var(--dv3-ink-muted);
+  font-size: 0.9rem;
+}
+.dv3-type {
+  font-weight: 600;
+  color: var(--dv3-ink);
+}
+.dv3-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  padding: 0;
+}
+@media (min-width: 720px) {
+  .dv3-card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.dv3-field {
+  background: var(--dv3-surface-raised);
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+}
+.dv3-field dt {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dv3-ink-muted);
+  margin-bottom: 0.25rem;
+}
+.dv3-field dd {
+  margin: 0;
+}
+.dv3-field dd > p:first-child {
+  font-size: 1.02rem;
+  margin-bottom: 0.4rem;
+}
+.dv3-field-absent dd > p:first-child {
+  color: var(--dv3-ink-soft);
+}
+.dv3-field-meta {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+.dv3-analogy {
+  border-left: 3px solid var(--dv3-accent);
+  padding-left: 0.75rem;
+}
+.dv3-note {
+  font-size: 0.85rem;
+  color: var(--dv3-ink-muted);
+}
+
+/* ---------------------------------------------------------------- labels */
+.dv3-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--dv3-hairline);
+  background: var(--dv3-surface);
+  color: var(--dv3-ink-soft);
+  vertical-align: middle;
+}
+.dv3-label-strong {
+  background: var(--dv3-accent-soft);
+  color: var(--dv3-ink);
+  border-color: transparent;
+}
+.dv3-label-caution {
+  background: var(--dv3-caution-soft);
+  color: var(--dv3-ink);
+  border-color: transparent;
+}
+.dv3-label-muted {
+  color: var(--dv3-ink-muted);
+}
+.dv3-label-glyph {
+  font-weight: 700;
+}
+details.dv3-label > summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+}
+details.dv3-label > summary::-webkit-details-marker {
+  display: none;
+}
+details.dv3-label[open] {
+  display: block;
+  border-radius: 12px;
+  padding: 0.4rem 0.7rem;
+}
+.dv3-label-plain {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--dv3-ink-soft);
+}
+
+/* ---------------------------------------------------------------- disclosures */
+.dv3-receipt,
+.dv3-glossary,
+.dv3-dimensions,
+.dv3-deep-group {
+  margin: 0.4rem 0 0.6rem;
+}
+.dv3-root details > summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--dv3-ink-soft);
+  padding: 0.25rem 0;
+}
+.dv3-root details[open] > summary {
+  color: var(--dv3-ink);
+}
+.dv3-deep-group > summary {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+.dv3-embedded-corpus {
+  margin-top: 0.5rem;
+}
+
+/* ---------------------------------------------------------------- lists */
+.dv3-kv {
+  margin: 0.5rem 0;
+}
+.dv3-kv > div {
+  padding: 0.35rem 0;
+  border-top: 1px solid var(--dv3-hairline);
+}
+.dv3-kv dt {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.dv3-kv dd {
+  margin: 0.1rem 0 0;
+}
+.dv3-sources {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: var(--dv3-ink-muted);
+}
+.dv3-sources-compact li {
+  display: inline;
+}
+.dv3-sources-compact li + li::before {
+  content: ' · ';
+}
+.dv3-source-binding {
+  font-style: italic;
+}
+.dv3-truth {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px dashed var(--dv3-hairline);
+}
+.dv3-truth > div {
+  margin-bottom: 0.4rem;
+}
+.dv3-truth dt {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dv3-ink-muted);
+}
+.dv3-truth dd {
+  margin: 0;
+}
+.dv3-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+.dv3-result-card {
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 0.6rem;
+}
+.dv3-card-plain {
+  font-size: 1rem;
+}
+.dv3-card-labels {
+  font-size: 0.8rem;
+}
+.dv3-conclusion {
+  font-size: 1.05rem;
+}
+.dv3-stages {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  counter-reset: stage;
+}
+.dv3-stage {
+  position: relative;
+  padding: 0.6rem 0 0.6rem 2.2rem;
+  border-left: 3px solid var(--dv3-accent);
+  margin-left: 0.5rem;
+}
+.dv3-stage::before {
+  counter-increment: stage;
+  content: counter(stage);
+  position: absolute;
+  left: -0.85rem;
+  top: 0.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--dv3-accent);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.dv3-stage-unsupported {
+  border-left-style: dashed;
+  border-left-color: var(--dv3-caution);
+}
+.dv3-stage-unsupported::before {
+  background: var(--dv3-caution);
+}
+.dv3-boundary {
+  margin: 0 0 0.5rem -2.2rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--dv3-caution-soft);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+.dv3-stage-role {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dv3-ink-muted);
+  margin-bottom: 0.1rem;
+}
+.dv3-stage-simple {
+  font-size: 1rem;
+}
+.dv3-framing {
+  padding-left: 1.2rem;
+  color: var(--dv3-ink-soft);
+}
+.dv3-safety,
+.dv3-interactions,
+.dv3-alternatives,
+.dv3-changes,
+.dv3-terms {
+  padding-left: 1.2rem;
+}
+.dv3-safety-item {
+  margin-bottom: 0.6rem;
+}
+.dv3-kind {
+  font-size: 0.8rem;
+  color: var(--dv3-ink-muted);
+}
+.dv3-when {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.dv3-gate {
+  list-style: none;
+  padding: 0;
+}
+.dv3-gate li[data-passed='false'] {
+  color: var(--dv3-caution);
+}
+
+/* ---------------------------------------------------------------- goal lens (no script) */
+.dv3-goals {
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+.dv3-goals legend {
+  font-family: var(--corpus-serif);
+  font-weight: 600;
+  padding: 0 0.3rem;
+}
+.dv3-goal-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+}
+.dv3-goal-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.dv3-goal-options label:has(input:checked) {
+  background: var(--dv3-accent-soft);
+  border-color: transparent;
+}
+.dv3-goal-basis {
+  font-size: 0.75rem;
+  color: var(--dv3-ink-muted);
+}
+.dv3-goals-help,
+.dv3-goals-none {
+  font-size: 0.85rem;
+  color: var(--dv3-ink-muted);
+}
+/* A selected goal hides the other goal panels. With no :has() support every panel shows. */
+.dv3-root:has(.dv3-goals input[value='all']:checked) .dv3-goal-panel:not([data-goal='all']) {
+  display: none;
+}
+.dv3-root:has(.dv3-goals input:not([value='all']):checked) .dv3-goal-panel[data-goal='all'] {
+  display: none;
+}
+.dv3-root:has(.dv3-goals input[value='sleep']:checked) .dv3-goal-panel:not([data-goal='sleep']),
+.dv3-root:has(.dv3-goals input[value='energy']:checked) .dv3-goal-panel:not([data-goal='energy']),
+.dv3-root:has(.dv3-goals input[value='focus']:checked) .dv3-goal-panel:not([data-goal='focus']),
+.dv3-root:has(.dv3-goals input[value='mood']:checked) .dv3-goal-panel:not([data-goal='mood']),
+.dv3-root:has(.dv3-goals input[value='strength']:checked)
+  .dv3-goal-panel:not([data-goal='strength']),
+.dv3-root:has(.dv3-goals input[value='muscle']:checked) .dv3-goal-panel:not([data-goal='muscle']),
+.dv3-root:has(.dv3-goals input[value='endurance']:checked)
+  .dv3-goal-panel:not([data-goal='endurance']),
+.dv3-root:has(.dv3-goals input[value='body_fat_weight']:checked)
+  .dv3-goal-panel:not([data-goal='body_fat_weight']),
+.dv3-root:has(.dv3-goals input[value='glucose_metabolic']:checked)
+  .dv3-goal-panel:not([data-goal='glucose_metabolic']),
+.dv3-root:has(.dv3-goals input[value='cardiovascular_risk']:checked)
+  .dv3-goal-panel:not([data-goal='cardiovascular_risk']),
+.dv3-root:has(.dv3-goals input[value='pain_recovery']:checked)
+  .dv3-goal-panel:not([data-goal='pain_recovery']),
+.dv3-root:has(.dv3-goals input[value='fertility_sexual_health']:checked)
+  .dv3-goal-panel:not([data-goal='fertility_sexual_health']),
+.dv3-root:has(.dv3-goals input[value='healthy_aging']:checked)
+  .dv3-goal-panel:not([data-goal='healthy_aging']) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv3-root * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------- goal pages */
+.dv3-goal-rows {
+  list-style: none;
+  padding: 0;
+}
+.dv3-goal-rows li {
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--dv3-hairline);
+}
+.dv3-goal-options a {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--dv3-hairline);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.dv3-goal-options a[aria-current='page'] {
+  background: var(--dv3-accent-soft);
+  border-color: transparent;
+}

@@ -1,0 +1,350 @@
+{
+ "source": "hsa-singapore",
+ "source_name": "Health Sciences Authority, Listing of Registered Therapeutic Products",
+ "dataset_id": "d_767279312753558cbf19d48344577084",
+ "publisher": "Health Sciences Authority",
+ "dataset_name": "Listing of Registered Therapeutic Products",
+ "dataset_last_updated": "2026-08-07T17:43:28+08:00",
+ "dataset_size_reported": 1317687,
+ "retrieval_date": "2026-09-06",
+ "retrieval_routes": [
+  "bulk CSV via POST-equivalent initiate-download table export",
+  "full datastore_search API paging as a row-for-row cross-check"
+ ],
+ "portal": "https://data.gov.sg/datasets/d_767279312753558cbf19d48344577084/view",
+ "licence": {
+  "name": "Singapore Open Data Licence version 1.0",
+  "url": "https://data.gov.sg/open-data-licence",
+  "local_copy": "data/sources/hsa-singapore/2026-09-06/legal/open-data-licence.html",
+  "attribution_required": true,
+  "share_alike": false,
+  "redistribution_permitted": true,
+  "commercial_use_permitted": true
+ },
+ "robots_txt": {
+  "https://data.gov.sg/robots.txt": "User-agent: * / Allow: /",
+  "https://api-open.data.gov.sg/robots.txt": "403 Missing Authentication Token, the API gateway default for an unrouted path: no crawl directives are published for this host (legal/robots-api-open.txt)",
+  "https://api-production.data.gov.sg/robots.txt": "404, no crawl directives published for the API host"
+ },
+ "api_key": "DATA_GOV_SG_API_KEY is not set in this environment. The public dataset endpoints used here accept unauthenticated requests and returned 200/201 for every request in requests.log; no key was needed and none was stored.",
+ "api_total_records": 5511,
+ "api_records_retrieved": 5511,
+ "files": [
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/robots-data-gov-sg.txt",
+   "url": "https://data.gov.sg/robots.txt",
+   "retrieved_utc": "2026-09-05T16:05:42Z",
+   "bytes": 22,
+   "sha256": "44f3f8eafdf064cf69acb05f23ee4dfc9ab5b3d67d81c64246bc29f7e438789a"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/robots-api-open.txt",
+   "url": "https://api-open.data.gov.sg/robots.txt",
+   "retrieved_utc": "2026-09-05T16:05:43Z",
+   "bytes": 42,
+   "sha256": "f249b63cb2fcb66b47e86f906c98f8fd912e82dd035b4e53d7e72fc1960cfd16"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/robots-api-production.txt",
+   "url": "https://api-production.data.gov.sg/robots.txt",
+   "retrieved_utc": "2026-09-05T16:05:43Z",
+   "bytes": 84,
+   "sha256": "13e90134f4419294d86340b489651b6f00100edccb2a4471a1aadbcc50953367"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/open-data-licence.html",
+   "url": "https://data.gov.sg/open-data-licence",
+   "retrieved_utc": "2026-09-05T16:05:43Z",
+   "bytes": 97079,
+   "sha256": "1c93e428ba8a3c81719f3d99382cee5f2631c1743e8c505b6630b739646b2d19"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/privacy-and-terms.html",
+   "url": "https://data.gov.sg/privacy-and-terms",
+   "retrieved_utc": "2026-09-05T16:05:44Z",
+   "bytes": 118860,
+   "sha256": "375d28a7464d188f6d20a7d24bae4e0f493ae53d37df2788b951bcdaff2808d7"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/dataset-metadata.json",
+   "url": "https://api-production.data.gov.sg/v2/public/api/datasets/d_767279312753558cbf19d48344577084/metadata",
+   "retrieved_utc": "2026-09-05T16:05:44Z",
+   "bytes": 3427,
+   "sha256": "d076eb29729b48accb6eac54d99533734094bd624bd70b1f435d19a01433e95a"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/initiate-download.json",
+   "url": "https://api-open.data.gov.sg/v1/public/api/datasets/d_767279312753558cbf19d48344577084/initiate-download",
+   "retrieved_utc": "2026-09-05T16:05:45Z",
+   "bytes": 1831,
+   "sha256": "1a42df0873aa69ab40f1c7bdabcfeb35716a7cec1a8588b589aca46c96828118",
+   "note": "signed S3 URL for the complete CSV; the signature expires"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/hsa-registered-therapeutic-products.csv",
+   "url": "https://s3.ap-southeast-1.amazonaws.com/table-downloads-ingest.data.gov.sg/d_767279312753558cbf19d48344577084/e273c197fcdf3bb05f9eec6146dee4e9a69c56e24eee7411e0208e81a28ef24d.csv?AWSAccessKeyId=ASIAU7LWPY2WFIKUGPIC&Expires=1788627945&Signature=sFCKe8XcHubgxEg0FyqjsIWNl5I%3D&X-Amzn-Trace-Id=Root%3D1-6a9c3dd9-36747ec7060e8021311ec30c%3BParent%3Dfda3cf07ed240f2e%3BSampled%3D0%3BLineage%3D1%3Ab9934a3d%3A0&response-content-disposition=attachment%3B%20filename%3D%22ListingofRegisteredTherapeuticProducts.csv%22&x-amz-security-token=IQoJb3JpZ2luX2VjEEcaDmFwLXNvdXRoZWFzdC0xIkgwRgIhAOxao%2BRGctB6KNmvLHI%2FVgolOVzJM14%2FqWOyljP8NuWBAiEA%2FwuVXNDuohrHJ%2FNFFqm2UwioxTlT6GFAC%2FRMnk8dVO8qtQQIEBAEGgwzNDIyMzUyNjg3ODAiDKiGDHtAwKNPoTdISiqSBI%2Fe2GdkpepY%2FALCJD9Ew1PTko9cSPg7rHF494Xv450pWN0dYCRUTfshdML%2Bi%2BVnMehoLhk%2BrsX2osMsByXRHrH1xrYCtXC24iLP%2FbEXxkrT7dQmeC81bCBL3CwAbGyGRH4wV4dA9QqDXX6cfeRfWbiGReFQTmfN%2BIw9usKmbF%2FoujQvnYRHJovu1jI1yAqu92gzDXx572TgGMgYRmKZ2M1yRFySmtZFX8hjAZdsCxGcXxqLQbEEe0dYBOZYym5LtyUcQEa503Go3ZKQwlhhD0BQ2WaM3xFFrEfWDGsMak6qiBQpMAnMCyxVDHpwYVxYbd3HwD%2BNRcK0%2FMR8mRIl24bJm4tIMLj6gm%2BKl4ZeodfcGG0%2Bvx7C0v7mTZ106VvHNJytqJnG1IXdn6l6BAhumJ4wmLU5sC1Q0S7gXsdh77PanizSyrLXC9uj%2FADVFBwcZ23R%2FEsGBli8PWzOG3rZDsyqOMbGrn%2Fm2iDJNNnoQUyKcZ616cM5yQdwyQDtASl7JxgbhR58GS5e6OvIYcC6xJ2%2Bv9lmJpGzrt%2FpmOuCHrrg0LInhJLRvsKzFgQ5Et5C6AqEBlZlYu5FcEE9SAYRW6Bvm9MwtBonQ%2BX2NyU5NUoBEJ6D3A8574rqJUj3WiR3W89sF31zfD%2FUd3vMc9FjCFsiW2tsNrmmgiB5c4hkATZ2FWxXqzp2PtcPmRDz4zXtJCGaMK3e8NQGOqEBZ7L2snRJ34B6ZYdlqv2ZZc3d7N0k1BSGB56RZaI7S5JmZuORjrirp04Qu%2F0uIGF2dXHCLwnmPd2LaTkjjwlKioY7cRg0e5guhdzdc0js36cz%2B%2BdPdTVr8DEW2fp50DDvxcONXMkH5jtW0XUzYIvVm83%2BADpQu06Vup4jfHoN%2BPOtHhzWrH%2FKxmcB5kzHMAglVbWdTiSACbzQG9fe2fLGtJY%3D",
+   "retrieved_utc": "2026-09-05T16:05:45Z",
+   "bytes": 1312172,
+   "sha256": "8c6c6f09225975b82c0a9f337b450ed18ae6299d3bdd499d9671e70a78f8f4a2",
+   "note": "complete dataset CSV, bulk table-download route"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-000000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=0",
+   "retrieved_utc": "2026-09-05T16:05:48Z",
+   "bytes": 444955,
+   "sha256": "2bbc7e441aa577bc216db869690d7a38c0d9073ebe312fa8b8fec1f1f869ddb0"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-001000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=1000",
+   "retrieved_utc": "2026-09-05T16:05:51Z",
+   "bytes": 461406,
+   "sha256": "c17ff7764acc60feaf56f5b0d6fc278e21689dcfb7038551728a57aabb71bde7"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-002000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=2000",
+   "retrieved_utc": "2026-09-05T16:05:54Z",
+   "bytes": 477204,
+   "sha256": "a04f48ad7a9c08bf3c16a8dcad6fe1f298c6faa841deb65144b7929b8610ce8a"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-003000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=3000",
+   "retrieved_utc": "2026-09-05T16:05:57Z",
+   "bytes": 481927,
+   "sha256": "bb9d51f3a14e3beb556b83ab397f07415fceea74df67cf9bb3b3a5f74df290a8"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-004000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=4000",
+   "retrieved_utc": "2026-09-05T16:06:00Z",
+   "bytes": 487588,
+   "sha256": "624f87db893ee908f7e34a9d514d09ac51277470a7d3d0c39ae53b6543af0218"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/api/datastore-search-offset-005000.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084&limit=1000&offset=5000",
+   "retrieved_utc": "2026-09-05T16:06:02Z",
+   "bytes": 255542,
+   "sha256": "68aca69e114b42002ec2303fca93dacc2d6aa250ad1f269ea0fece3eca1f8831"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/datastore-records.json",
+   "url": "https://data.gov.sg/api/action/datastore_search?resource_id=d_767279312753558cbf19d48344577084 (paged, limit=1000)",
+   "retrieved_utc": "2026-09-05T16:06:02Z",
+   "bytes": 2749307,
+   "sha256": "f125c8b4678174fc4138214244c554bcfe1dfa92d0a2a86ae5307c113b0210a7",
+   "note": "every datastore_search page concatenated in retrieval order"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/robots-sso-agc.txt",
+   "url": "https://sso.agc.gov.sg/robots.txt",
+   "http_status": 200,
+   "retrieved_utc": "2026-09-05T19:01:59Z",
+   "bytes": 48,
+   "sha256": "22e07dcf595c6248eeffbf95acebe9fe5cb657a91b29e8576acdc71d8c3b69b9"
+  },
+  {
+   "path": "data/sources/hsa-singapore/2026-09-06/legal/sso-terms-of-use.html",
+   "url": "https://sso.agc.gov.sg/Terms-of-Use",
+   "http_status": 200,
+   "retrieved_utc": "2026-09-05T19:02:05Z",
+   "bytes": 42663,
+   "sha256": "a1edea5563240d35aa41333d679e48df0c9b6be4782775d38d80790b4ba70bb1"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973",
+   "statute": "Misuse of Drugs Act 1973",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.html",
+   "bytes": 485618,
+   "sha256": "008c01148a227130b45e017b8c5c61e8b9bc69974619f3333e7f86d19e178b67",
+   "retrieved_utc": "2026-09-05T19:02:11Z"
+  },
+  {
+   "stem": "poisons-act-1938",
+   "statute": "Poisons Act 1938",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.html",
+   "bytes": 307062,
+   "sha256": "b5fc199fca187c1f146b301d353ef4b92d060bd622d9bbc8f7599ae52c60f154",
+   "retrieved_utc": "2026-09-05T19:02:18Z"
+  },
+  {
+   "stem": "poisons-rules",
+   "statute": "Poisons Rules (subsidiary legislation under the Poisons Act 1938)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?WholeDoc=1",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.html",
+   "bytes": 289672,
+   "sha256": "6092a4a0c2e0f8f8a1efed343d337a0056638dd02779c5246386aaef86e1709d",
+   "retrieved_utc": "2026-09-05T19:02:24Z"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973-print",
+   "statute": "Misuse of Drugs Act 1973 (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973-print.html",
+   "bytes": 59102,
+   "sha256": "b109ef7f692706a73bd8dd84b65cf65131a555c91a2b79d02c476579f2a1c098",
+   "retrieved_utc": "2026-09-05T20:55:52Z"
+  },
+  {
+   "stem": "poisons-act-1938-print",
+   "statute": "Poisons Act 1938 (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938-print.html",
+   "bytes": 16341,
+   "sha256": "4b32a45133db8cef627307da0ac238f0ff9b0e68fa79210440d276cd1ca2b4e1",
+   "retrieved_utc": "2026-09-05T20:55:58Z"
+  },
+  {
+   "stem": "poisons-rules-print",
+   "statute": "Poisons Rules (print view, Schedules inline)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Print",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules-print.html",
+   "bytes": 22091,
+   "sha256": "01cc920a87d9b280e8b6b24bd78ea053363191f517120f8995d7c42673031d5b",
+   "retrieved_utc": "2026-09-05T20:56:04Z"
+  },
+  {
+   "stem": "misuse-of-drugs-act-1973",
+   "file": "misuse-of-drugs-act-1973.pdf",
+   "statute": "Misuse of Drugs Act 1973 (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf",
+   "bytes": 638537,
+   "sha256": "5ca9d474fe08d227334e732baf4a4a65b6b60722e639f706ee99172a2b17e690",
+   "retrieved_utc": "2026-09-05T20:56:51Z"
+  },
+  {
+   "stem": "poisons-act-1938",
+   "file": "poisons-act-1938.pdf",
+   "statute": "Poisons Act 1938 (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.pdf",
+   "bytes": 280615,
+   "sha256": "491b62c02312793af0df068ca20ffa483e5e9c8242f253940b7a233c64e20d20",
+   "retrieved_utc": "2026-09-05T20:56:57Z"
+  },
+  {
+   "stem": "poisons-rules",
+   "file": "poisons-rules.pdf",
+   "statute": "Poisons Rules (published PDF, Schedules included)",
+   "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Pdf",
+   "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.pdf",
+   "bytes": 660096,
+   "sha256": "cce14e00c60bb10e363731cb962a71b81f6bd7a436cb496521b82a44c3b02822",
+   "retrieved_utc": "2026-09-05T20:57:03Z"
+  }
+ ],
+ "files_reused_from_prior_manifest": 0,
+ "statutes": {
+  "manifest": "data/sources/hsa-singapore/2026-09-06/statutes-manifest.json",
+  "base_url": "https://sso.agc.gov.sg/",
+  "robots_txt": "allows all paths except /search; crawl-delay 6",
+  "licence": {
+   "name": "Singapore legislation reproduced under clause 13 of the Singapore Statutes Online Terms of Use",
+   "url": "https://sso.agc.gov.sg/Terms-of-Use",
+   "attribution_required": true,
+   "share_alike": false,
+   "redistribution_permitted": true,
+   "commercial_use_permitted": true,
+   "conditions": [
+    "state that the legislation is subject to Singapore Government copyright and is reproduced with AGC's permission",
+    "tell readers they may check SSO for the latest version",
+    "the reproducer is responsible for the accuracy of what it reproduces",
+    "no suggestion of AGC or SSO association or endorsement",
+    "automated extraction only between 3 a.m. and 7 a.m. Singapore time, not abusive, intrusive or deceptive, and without affecting SSO's performance"
+   ],
+   "attribution_notice": "Singapore legislation reproduced from Singapore Statutes Online is subject to the copyright of the Singapore Government and is reproduced with the permission of the Attorney-General's Chambers. Readers may check Singapore Statutes Online (https://sso.agc.gov.sg) for the latest version of the legislation. Singapore Statutes Online is an unofficial version and is not the authoritative text."
+  },
+  "documents": [
+   {
+    "stem": "misuse-of-drugs-act-1973",
+    "statute": "Misuse of Drugs Act 1973",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.html",
+    "bytes": 485618,
+    "sha256": "008c01148a227130b45e017b8c5c61e8b9bc69974619f3333e7f86d19e178b67",
+    "retrieved_utc": "2026-09-05T19:02:11Z"
+   },
+   {
+    "stem": "poisons-act-1938",
+    "statute": "Poisons Act 1938",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.html",
+    "bytes": 307062,
+    "sha256": "b5fc199fca187c1f146b301d353ef4b92d060bd622d9bbc8f7599ae52c60f154",
+    "retrieved_utc": "2026-09-05T19:02:18Z"
+   },
+   {
+    "stem": "poisons-rules",
+    "statute": "Poisons Rules (subsidiary legislation under the Poisons Act 1938)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?WholeDoc=1",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.html",
+    "bytes": 289672,
+    "sha256": "6092a4a0c2e0f8f8a1efed343d337a0056638dd02779c5246386aaef86e1709d",
+    "retrieved_utc": "2026-09-05T19:02:24Z"
+   },
+   {
+    "stem": "misuse-of-drugs-act-1973-print",
+    "statute": "Misuse of Drugs Act 1973 (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973-print.html",
+    "bytes": 59102,
+    "sha256": "b109ef7f692706a73bd8dd84b65cf65131a555c91a2b79d02c476579f2a1c098",
+    "retrieved_utc": "2026-09-05T20:55:52Z"
+   },
+   {
+    "stem": "poisons-act-1938-print",
+    "statute": "Poisons Act 1938 (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938-print.html",
+    "bytes": 16341,
+    "sha256": "4b32a45133db8cef627307da0ac238f0ff9b0e68fa79210440d276cd1ca2b4e1",
+    "retrieved_utc": "2026-09-05T20:55:58Z"
+   },
+   {
+    "stem": "poisons-rules-print",
+    "statute": "Poisons Rules (print view, Schedules inline)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Print",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules-print.html",
+    "bytes": 22091,
+    "sha256": "01cc920a87d9b280e8b6b24bd78ea053363191f517120f8995d7c42673031d5b",
+    "retrieved_utc": "2026-09-05T20:56:04Z"
+   },
+   {
+    "stem": "misuse-of-drugs-act-1973",
+    "file": "misuse-of-drugs-act-1973.pdf",
+    "statute": "Misuse of Drugs Act 1973 (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/Act/MDA1973?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/misuse-of-drugs-act-1973.pdf",
+    "bytes": 638537,
+    "sha256": "5ca9d474fe08d227334e732baf4a4a65b6b60722e639f706ee99172a2b17e690",
+    "retrieved_utc": "2026-09-05T20:56:51Z"
+   },
+   {
+    "stem": "poisons-act-1938",
+    "file": "poisons-act-1938.pdf",
+    "statute": "Poisons Act 1938 (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/Act/PA1938?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-act-1938.pdf",
+    "bytes": 280615,
+    "sha256": "491b62c02312793af0df068ca20ffa483e5e9c8242f253940b7a233c64e20d20",
+    "retrieved_utc": "2026-09-05T20:56:57Z"
+   },
+   {
+    "stem": "poisons-rules",
+    "file": "poisons-rules.pdf",
+    "statute": "Poisons Rules (published PDF, Schedules included)",
+    "url": "https://sso.agc.gov.sg/SL/PA1938-R1?ViewType=Pdf",
+    "path": "data/sources/hsa-singapore/2026-09-06/raw/statutes/poisons-rules.pdf",
+    "bytes": 660096,
+    "sha256": "cce14e00c60bb10e363731cb962a71b81f6bd7a436cb496521b82a44c3b02822",
+    "retrieved_utc": "2026-09-05T20:57:03Z"
+   }
+  ]
+ }
+}

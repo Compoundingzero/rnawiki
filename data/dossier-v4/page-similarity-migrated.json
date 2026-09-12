@@ -1,0 +1,223 @@
+{
+  "summary": {
+    "label": "migrated",
+    "pages": 20,
+    "meanBoilerplateShare": 0.7512,
+    "meanSharedShare": 0.1359,
+    "meanSpecificShare": 0.1129,
+    "specificShareDistribution": {
+      "p10": 0.0471,
+      "p25": 0.0594,
+      "median": 0.099,
+      "p75": 0.1086,
+      "p90": 0.221
+    },
+    "pagesWithNoSpecificSentence": 0,
+    "meanSpecificSentencesPerPage": 42,
+    "meanSentencesPerPage": 329.9,
+    "mostRepeatedSentences": [
+      {
+        "count": 20,
+        "sentence": "✓ Identity checked"
+      },
+      {
+        "count": 20,
+        "sentence": "Sources last checked 2026-09-04"
+      },
+      {
+        "count": 20,
+        "sentence": "This page shows what was measured, who it was measured in, and what that does not settle."
+      },
+      {
+        "count": 20,
+        "sentence": "What brought you here?"
+      },
+      {
+        "count": 20,
+        "sentence": "Understand what it does"
+      },
+      {
+        "count": 20,
+        "sentence": "See evidence for my goal"
+      },
+      {
+        "count": 20,
+        "sentence": "Check risks and what it mixes with"
+      },
+      {
+        "count": 20,
+        "sentence": "Compare alternatives"
+      },
+      {
+        "count": 20,
+        "sentence": "Learn what to measure"
+      },
+      {
+        "count": 20,
+        "sentence": "On this page"
+      },
+      {
+        "count": 20,
+        "sentence": "What it changes in the body"
+      },
+      {
+        "count": 20,
+        "sentence": "What it does"
+      },
+      {
+        "count": 20,
+        "sentence": "What happened in people"
+      },
+      {
+        "count": 20,
+        "sentence": "What it would be like to take"
+      },
+      {
+        "count": 20,
+        "sentence": "Seems to do nothing"
+      }
+    ]
+  },
+  "shares": [
+    {
+      "slug": "erythromycin-estolate",
+      "sentences": 310,
+      "boilerplate": 0.8290322580645161,
+      "shared": 0.1032258064516129,
+      "specific": 0.06774193548387097
+    },
+    {
+      "slug": "zingiberene",
+      "sentences": 279,
+      "boilerplate": 0.7455197132616488,
+      "shared": 0.22580645161290322,
+      "specific": 0.02867383512544803
+    },
+    {
+      "slug": "dexbrompheniramine",
+      "sentences": 276,
+      "boilerplate": 0.8297101449275363,
+      "shared": 0.10507246376811594,
+      "specific": 0.06521739130434782
+    },
+    {
+      "slug": "verteporfin",
+      "sentences": 328,
+      "boilerplate": 0.8048780487804879,
+      "shared": 0.08841463414634146,
+      "specific": 0.10670731707317073
+    },
+    {
+      "slug": "bendroflumethiazide",
+      "sentences": 292,
+      "boilerplate": 0.8698630136986302,
+      "shared": 0.07876712328767123,
+      "specific": 0.05136986301369863
+    },
+    {
+      "slug": "n-methyl-aspartic-acid",
+      "sentences": 313,
+      "boilerplate": 0.7699680511182109,
+      "shared": 0.1853035143769968,
+      "specific": 0.04472843450479233
+    },
+    {
+      "slug": "rizatriptan",
+      "sentences": 313,
+      "boilerplate": 0.8274760383386581,
+      "shared": 0.06389776357827476,
+      "specific": 0.10862619808306709
+    },
+    {
+      "slug": "carmustine",
+      "sentences": 313,
+      "boilerplate": 0.8434504792332268,
+      "shared": 0.05750798722044728,
+      "specific": 0.09904153354632587
+    },
+    {
+      "slug": "umbilicus-rupestris",
+      "sentences": 297,
+      "boilerplate": 0.7508417508417509,
+      "shared": 0.20202020202020202,
+      "specific": 0.04713804713804714
+    },
+    {
+      "slug": "indigotindisulfonate",
+      "sentences": 321,
+      "boilerplate": 0.8193146417445483,
+      "shared": 0.0778816199376947,
+      "specific": 0.102803738317757
+    },
+    {
+      "slug": "andexanet-alfa",
+      "sentences": 495,
+      "boilerplate": 0.45252525252525255,
+      "shared": 0.04242424242424243,
+      "specific": 0.5050505050505051
+    },
+    {
+      "slug": "alcaftadine",
+      "sentences": 313,
+      "boilerplate": 0.8434504792332268,
+      "shared": 0.054313099041533544,
+      "specific": 0.10223642172523961
+    },
+    {
+      "slug": "acer-rubrum-pollen",
+      "sentences": 336,
+      "boilerplate": 0.7619047619047619,
+      "shared": 0.16666666666666666,
+      "specific": 0.07142857142857142
+    },
+    {
+      "slug": "calcium-pyruvate",
+      "sentences": 338,
+      "boilerplate": 0.6923076923076923,
+      "shared": 0.1863905325443787,
+      "specific": 0.12130177514792899
+    },
+    {
+      "slug": "teprotumumab",
+      "sentences": 429,
+      "boilerplate": 0.6037296037296037,
+      "shared": 0.17715617715617715,
+      "specific": 0.2191142191142191
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-23f-capsular-polysaccharide-diphtheria-crm197-protein-conjugat",
+      "sentences": 362,
+      "boilerplate": 0.5441988950276243,
+      "shared": 0.23480662983425415,
+      "specific": 0.22099447513812154
+    },
+    {
+      "slug": "scleranthus-annuus-flowering-top",
+      "sentences": 303,
+      "boilerplate": 0.7425742574257426,
+      "shared": 0.19801980198019803,
+      "specific": 0.0594059405940594
+    },
+    {
+      "slug": "ribes-nigrum-flower-bud",
+      "sentences": 296,
+      "boilerplate": 0.7533783783783784,
+      "shared": 0.19594594594594594,
+      "specific": 0.05067567567567568
+    },
+    {
+      "slug": "carrot",
+      "sentences": 354,
+      "boilerplate": 0.7401129943502824,
+      "shared": 0.1807909604519774,
+      "specific": 0.07909604519774012
+    },
+    {
+      "slug": "vinblastine",
+      "sentences": 330,
+      "boilerplate": 0.8,
+      "shared": 0.09393939393939393,
+      "specific": 0.10606060606060606
+    }
+  ]
+}

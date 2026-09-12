@@ -1,0 +1,5 @@
+outs:
+- md5: 5304744d9cfe14eaf81891af8c157eeb
+  size: 6956793
+  hash: md5
+  path: model-assignment.ndjson

@@ -6,7 +6,9 @@
   "description": "A public, programme-scoped record of medicine evidence and its sources.",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/build-island.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-island.mjs",
     "build": "next build",
     "start": "next start -p ${PORT:-3000}",
     "lint": "eslint .",
@@ -58,7 +60,7 @@
     "test:integration:raw": "vitest run tests/integration",
     "test:e2e": "tsx scripts/with-disposable-database.ts -- npm run test:e2e:raw",
     "test:e2e:raw": "playwright test",
-    "gate": "npm run typecheck && npm run lint && npm run check:copy && npm run check:medicine-content && npm run audit:denial-corpus && npm run agents:check && npm run agents:import:check && npm run check:agent-datasets && npm run check:four-audience-coverage && npm run check:source-consensus-snapshot && npm run check:dataset-export && npm run check:seo && npm run format && npx drizzle-kit check && npm run test:unit && npm run test:integration && npm run build && npm run test:e2e",
+    "gate": "npm run typecheck && npm run lint && npm run check:copy && npm run check:single-layout && npm run check:medicine-content && npm run audit:denial-corpus && npm run agents:check && npm run agents:import:check && npm run check:agent-datasets && npm run check:four-audience-coverage && npm run check:source-consensus-snapshot && npm run check:dataset-export && npm run check:seo && npm run format && npx drizzle-kit check && npm run build && npm run test:unit && npm run test:integration && npm run test:e2e",
     "ingest:download": "tsx scripts/ingest/download.ts",
     "ingest:structures": "tsx scripts/ingest/build-structures.ts",
     "ingest": "tsx scripts/ingest/run.ts",
@@ -82,7 +84,16 @@
     "discovery:monitor": "tsx scripts/discovery/monitor-discovery.ts",
     "semantic:project": "tsx scripts/semantic/project-units.ts",
     "semantic:benchmark": "tsx scripts/semantic/benchmark.ts",
-    "semantic:query": "tsx scripts/semantic/query.ts"
+    "semantic:query": "tsx scripts/semantic/query.ts",
+    "revamp:ci": "npm run revamp:ci:slug-union && npm run revamp:ci:redirect-plan && npm run revamp:ci:link-graph && npm run revamp:ci:sitemap && npm run revamp:ci:render-safety",
+    "revamp:ci:slug-union": ".venv-corpus/bin/python scripts/revamp/ci_slug_union.py --check",
+    "revamp:ci:redirect-plan": ".venv-corpus/bin/python scripts/revamp/ci_redirect_check.py --plan",
+    "revamp:ci:link-graph": ".venv-corpus/bin/python scripts/revamp/link_graph_check.py --data-only --thresholds \"$PWD/data/revamp/ci-sample/thresholds-v14.json\" --presence \"$PWD/data/revamp/ci-sample/presence-applicable-v14-hub-members.ndjson\"",
+    "revamp:ci:sitemap": "vitest run tests/unit/ci-sitemap-invariants.test.ts",
+    "revamp:ci:render-safety": ".venv-corpus/bin/python -m pytest tests/test_render_safety.py --sample data/revamp/ci-sample/render -q",
+    "revamp:ci:sample": ".venv-corpus/bin/python scripts/revamp/ci_sample.py",
+    "revamp:ci:sample:check": ".venv-corpus/bin/python scripts/revamp/ci_sample.py --check",
+    "check:single-layout": "tsx scripts/check/single-dossier-layout.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "4.2.0",

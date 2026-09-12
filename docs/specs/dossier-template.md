@@ -12,7 +12,7 @@ passes on the seven samples.
 | ------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Longevity dossier  | LONGEVITY                                        | question blocks from the derivation rules; the organism ladder is always the second block when present                                     |
 | Clinical dossier   | CLINICAL                                         | question blocks; the withdrawn block leads when withdrawn                                                                                  |
-| Withdrawn arc      | any model with `withdrawn:true` (Tier 1 by rule) | a dated arc first (approval → signal → withdrawal decision → jurisdictions → what replaced it, each row sourced), then the ordinary blocks |
+| Withdrawn record   | any model with `withdrawn:true` (Tier 1 by rule) | the register events inside "Where it's registered" — one sentence per dated event, in words, with every register that recorded it named on the same line (`docs/specs/phase4-generators.md` §13 item 2) — then the ordinary blocks. The separate dated-arc block is retired: its rows duplicated the registration block and printed the registers' own column names |
 | Development record | DEVELOPMENT                                      | question blocks (highest phase, why stopped, ever dosed, same-target lineage as markup)                                                    |
 | Stub               | any tier with < 3 present fields                 | identity rows + relations + the sentence "This record holds {n} fields" as markup; no questions; noindex                                   |
 
@@ -56,7 +56,10 @@ block, not a banner.
 
 - Badge: 22 px rounded square, accent fill, white `Qn`, in the left margin 10 px clear of the
   text, **sticky for the life of its block** (B3). Numbering restarts per page.
-- Exactly two paragraphs (B2); a third paragraph is a second question (the derivation rules split).
+- Exactly two paragraphs (B2); a third paragraph is a second question (the derivation rules
+  split). The one exception is the supervision block, whose body enumerates rather than
+  develops: it states one clause per class the suppression pass recorded, as list items in the
+  order S1–S9, and is never truncated (`docs/specs/phase4-generators.md` §16 item 1).
 - Provenance anchor: a literal source, never a section of the same page (V5): rendered as
   `[source-glyph] Register/Study id · date` inline at the paragraph end, linking the immutable
   source snapshot (existing `evidence_sources`/`source_snapshots`) and carrying `data-source-date`

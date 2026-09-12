@@ -1,0 +1,39 @@
+{
+ "checkedAt": "2026-09-07T13:06:31.862221+00:00",
+ "mode": "data-only",
+ "baseUrl": null,
+ "hubs": 972,
+ "members": 14306,
+ "rules": [
+  {
+   "rule": "no hub under five leaves",
+   "checked": 972,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no hub unreachable from /h",
+   "checked": 972,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  },
+  {
+   "rule": "no indexable leaf without a hub or a recorded reason",
+   "checked": 49,
+   "failures": 0,
+   "examples": [],
+   "pass": true,
+   "note": "{\"every group it names was rejected, with the reason recorded\": 1, \"in at least one hub\": 47, \"no target, class or pathway field\": 1}"
+  },
+  {
+   "rule": "every member link has a published slug",
+   "checked": 14306,
+   "failures": 0,
+   "examples": [],
+   "pass": true
+  }
+ ],
+ "pass": true
+}

@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-09-05T22:33:10Z",
+  "step": "3.5",
+  "inputs": {
+    "dispositions": "data/corpus-20k/reconciliation/dispositions.ndjson",
+    "productionRedirectTable": "medicine_slug_redirects (CA-pinned read)",
+    "plan": "data/revamp/identity/redirect-plan-v3.csv",
+    "canonical": "data/revamp/identity/canonical-v3.ndjson"
+  },
+  "plan": {
+    "universe": 9857,
+    "redirectRows": 935,
+    "productionRows": 870,
+    "planRows": 65,
+    "liveSlugsAfterPlan": 28766,
+    "servedDirectly": 8972,
+    "servedByOneHop": 935,
+    "orphans": [],
+    "orphanCount": 0,
+    "chains": [],
+    "chainCount": 0,
+    "conflicts": [],
+    "conflictCount": 0,
+    "pass": true
+  },
+  "live": {
+    "baseUrl": "https://rnawiki.com",
+    "checked": 9857,
+    "concurrency": 4,
+    "accepted": [
+      200,
+      301,
+      308
+    ],
+    "byStatus": {
+      "200": 8987,
+      "308": 870
+    },
+    "failures": {},
+    "failureCount": 0,
+    "pass": true,
+    "requestLog": "data/corpus-20k/legal/requests.log",
+    "reusedFrom": "data/revamp/redirect-check.json",
+    "reusedAt": "2026-09-05T16:55:01Z"
+  }
+}

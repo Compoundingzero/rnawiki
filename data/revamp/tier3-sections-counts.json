@@ -1,0 +1,141 @@
+{
+  "schema": "rnawiki-revamp-tier3-sections/v1",
+  "generatedAt": "2026-09-10T13:56:39Z",
+  "runSeconds": 197.1,
+  "inputs": {
+    "fields": "data/revamp/fields-v2/*/batch-*.ndjson",
+    "structures": "data/revamp/identity/canonical-v2.ndjson",
+    "displayNames": "data/revamp/identity/display-names.csv",
+    "relations": "data/revamp/identity/relations-v7.parquet",
+    "tiers": "data/revamp/identity/spine-attached.parquet",
+    "models": "data/revamp/tiers/model-assignment-v3.ndjson",
+    "registryPerTrial": "data/corpus-20k/registry/aggregates",
+    "trialReassignments": "data/revamp/identity/trial-reassignments-v5.csv",
+    "suppression": "data/corpus-20k/suppression/assignments.ndjson"
+  },
+  "outputs": {
+    "parquet": "data/revamp/tier3-sections.parquet",
+    "counts": "data/revamp/tier3-sections-counts.json"
+  },
+  "corpus": {
+    "pagesInFields": 28832,
+    "pagesWithStructure": 20017,
+    "pagesFingerprinted": 19903,
+    "pagesWithFewerThanTwoHeavyAtoms": 114,
+    "tierCounts": {
+      "3": 22636,
+      "2": 4477,
+      "1": 1719
+    }
+  },
+  "approvedReferenceSet": {
+    "definition": "a fields-v2 regulatory US, EU, JP or CA block whose status is approved, or an NCATS Inxight marketing record carrying a USApprovalRx, USApprovalOTC or USApprovalAllergenic status",
+    "approvedPages": 5562,
+    "approvedPagesWithAStructure": 3502
+  },
+  "fired": {
+    "neighbour": {
+      "tier1": 845,
+      "tier2": 1546,
+      "tier3": 6254,
+      "other": 2391,
+      "total": 8645,
+      "suppressedPages": 6067
+    },
+    "potency": {
+      "tier1": 0,
+      "tier2": 0,
+      "tier3": 466,
+      "other": 0,
+      "total": 466,
+      "suppressedPages": 435
+    },
+    "timeline": {
+      "tier1": 1143,
+      "tier2": 2270,
+      "tier3": 12594,
+      "other": 3413,
+      "total": 16007,
+      "suppressedPages": 12567
+    },
+    "formOf": {
+      "tier1": 459,
+      "tier2": 1101,
+      "tier3": 1342,
+      "other": 1560,
+      "total": 2902,
+      "suppressedPages": 1472
+    }
+  },
+  "sentences": {
+    "t3-form-of-note-v1": 3820,
+    "t3-neighbour-similarity-v1": 7639,
+    "t3-neighbour-substituent-v1": 1006,
+    "t3-potency-rank-v1": 466,
+    "t3-timeline-originator-no-recent-record-v1": 434,
+    "t3-timeline-originator-v1": 941,
+    "t3-timeline-publication-span-v1": 15178,
+    "t3-timeline-target-headwind-v1": 29,
+    "t3-timeline-target-validated-v1": 293
+  },
+  "templates": {
+    "t3-neighbour-substituent-v1": "Closest approved compound: {neighbour} (similarity {similarity}); differs by a {substituent} substituent{location}; {neighbour} is {status}.",
+    "t3-neighbour-similarity-v1": "Closest approved compound: {neighbour} (similarity {similarity}); {neighbour} is {status}.",
+    "t3-potency-rank-v1": "Among {n} compounds with a pChEMBL value against {target} ({assay} assays), {name} ranks {rank} ({percentile} percentile).",
+    "t3-timeline-publication-span-v1": "First publication {first}, last {last} (ChEMBL).",
+    "t3-timeline-target-validated-v1": "An approved drug has since been approved against {target} (target validated).",
+    "t3-timeline-target-headwind-v1": "The last three trials on {target} were terminated or withdrawn (target headwind).",
+    "t3-timeline-originator-v1": "Originating organisation: {organisation}.",
+    "t3-timeline-originator-no-recent-record-v1": "Originating organisation: {organisation} (no record after 2020).",
+    "t3-form-of-note-v1": "{note}"
+  },
+  "templateToSpec": {
+    "t3-neighbour-substituent-v1": "phase4-generators.md §8 bullet 1, full wording",
+    "t3-neighbour-similarity-v1": "phase4-generators.md §8 bullet 1, the wording with the substituent clause dropped because RDKit could not name the difference",
+    "t3-potency-rank-v1": "phase4-generators.md §8 bullet 2",
+    "t3-timeline-publication-span-v1": "phase4-generators.md §8 bullet 3, sentence 1",
+    "t3-timeline-target-validated-v1": "phase4-generators.md §8 bullet 3, sentence 2, validated branch",
+    "t3-timeline-target-headwind-v1": "phase4-generators.md §8 bullet 3, sentence 2, headwind branch",
+    "t3-timeline-originator-v1": "phase4-generators.md §8 bullet 3, sentence 3, without the parenthetical",
+    "t3-timeline-originator-no-recent-record-v1": "phase4-generators.md §8 bullet 3, sentence 3, with the parenthetical",
+    "t3-form-of-note-v1": "phase4-generators.md §8 bullet 4; the wording is the Phase 3 relation note verbatim"
+  },
+  "neighbourSubstituentOutcomes": {
+    "heavy-atom difference larger than a single substituent": 1295,
+    "maximum common substructure search did not complete": 425,
+    "molecule larger than the maximum common substructure size limit": 263,
+    "named": 1006,
+    "side chains off the common core could not be isolated": 1534,
+    "the differing group is not in the named-substituent table": 391,
+    "the two molecules differ on both sides of the common core, which is not a single added substituent": 3731
+  },
+  "potency": {
+    "comparatorGroups": 773,
+    "groupsAtOrOverFive": 146,
+    "assayTypesSeen": [
+      "A",
+      "B",
+      "F",
+      "T"
+    ],
+    "firesUnderStricterFiveComparatorReading": 426
+  },
+  "formOf": {
+    "relationsInIsFormDirection": 4482,
+    "notesWithheldForARecordIdInProse": 434
+  },
+  "decisions": {
+    "D1_top_match_changed_by_relation_exclusion": 805,
+    "D6_multiple_sponsors_on_earliest_record": 5480,
+    "D6_packed_sponsor_string_on_earliest_record": 41
+  },
+  "issues": [
+    "page identity is read from data/revamp/identity/canonical-v2.ndjson, which the rest of Phase 4 reads; data/revamp/identity/canonical-v7.ndjson exists and carries 28709 keys against 28822, dropping 113 of them and adding 0. Trial reassignments already read the v5 file. Re-running this step against the v5 spine is a one-command change and the counts above name what it would move",
+    "8815 of 28832 pages record no structure in canonical-v2.ndjson, so the nearest-approved-neighbour section cannot fire on them; the missing structure is stated on the page rather than filled",
+    "114 recorded structures hold fewer than two heavy atoms; §19 item 2 makes them neither a query nor a reference for the nearest-approved-neighbour section, on either side of the comparison",
+    "822 pages hold a pChEMBL value but record no ChEMBL mechanism target, so they have no primary target and fire no potency rank",
+    "`target` is a DEVELOPMENT-model field: 2444 pages record a ChEMBL mechanism target and every one of them is Tier 3, so a primary target — and with it the potency rank and the target sentences — can only be established on a Tier 3 page. CLINICAL and LONGEVITY pages carry UniProt target accessions under identifiers.uniprotTargets; those join the target index as comparators and as approved drugs against the target, but they give those pages no primary target of their own",
+    "425 maximum common substructure searches hit the 2-second limit; those sentences carry the similarity and the neighbour's status without a named substituent",
+    "5480 pages name more than one sponsor on their earliest dated Inxight marketing record, so no single originating organisation is stated for them"
+  ]
+}

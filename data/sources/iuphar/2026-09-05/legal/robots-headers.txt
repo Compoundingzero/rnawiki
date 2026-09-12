@@ -1,0 +1,10 @@
+HTTP/1.1 302 302
+Content-Type: text/plain
+Content-Length: 0
+Connection: keep-alive
+Date: Sat, 05 Sep 2026 06:32:11 GMT
+Server: Apache
+Set-Cookie: JSESSIONID=8CE76EB53277507C1B75D69BFADC8F2D; Path=/; HttpOnly; Secure
+Location: /login.jsp
+Set-Cookie: RCKBMHKB=027ff8be59-56fd-48fL6VVw3nXZWfoElxJKsQgw7hQL1DGI5MCOYfWvVBwvsWBPihf5pW7nsmtu15J462c2U; path=/; SameSite=None; Secure
+

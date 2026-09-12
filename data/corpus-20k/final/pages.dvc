@@ -1,0 +1,6 @@
+outs:
+- md5: 6481c05ad23a3d17e93ed9a3f7e706c0.dir
+  size: 43838431
+  nfiles: 8
+  hash: md5
+  path: pages

@@ -1,0 +1,129 @@
+{
+  "source": "ema",
+  "sourceName": "European Medicines Agency, medicines output report",
+  "status": "mapped",
+  "retrievalDate": "2026-09-06",
+  "reportGenerated": "05/09/2026 - 06:00",
+  "reportLastModified": "Sat, 05 Sep 2026 04:02:55 GMT",
+  "supersedes": {
+    "path": "data/corpus-20k/raw/ema/medicines-output-medicines-report_en.xlsx",
+    "sha256": "bb1eadf5eecbc4db033b90f66a9335d57b162c3fa272be198ffaa1a17fbdef1f",
+    "reportGenerated": "03/09/2026 - 18:00",
+    "reason": "The copy already on disk was generated 03/09/2026 18:00. The published file carries Last-Modified Sat, 05 Sep 2026 04:02:55 GMT and generates 05/09/2026 06:00, so it is newer and was refetched. Both hold 2,732 rows, 2,339 of them human."
+  },
+  "licence": "EMA copyright and limited reproduction notice: reproduction and distribution permitted, in whole or in part, for non-commercial and commercial purposes, provided EMA is acknowledged as the source (https://www.ema.europa.eu/en/about-us/about-website/legal-notice)",
+  "attribution": "Source: European Medicines Agency",
+  "rawFiles": 4,
+  "rawBytes": 1054609,
+  "recordsInReport": 2732,
+  "humanRecords": 2339,
+  "veterinaryRecordsExcluded": 393,
+  "humanRecordsByStatus": {
+    "Authorised": 1568,
+    "Withdrawn": 361,
+    "Application withdrawn": 268,
+    "Refused": 63,
+    "Lapsed": 27,
+    "Opinion": 21,
+    "Expired": 17,
+    "Revoked": 9,
+    "Opinion under re-examination": 2,
+    "Withdrawn from rolling review": 2,
+    "Suspended": 1
+  },
+  "productsMatched": 2196,
+  "productsUnmatched": 143,
+  "productsMatchedOnlyByUnconfirmedName": 284,
+  "mappedRows": 4326,
+  "corpusPagesByTier": {
+    "1": 1719,
+    "2": 4477,
+    "3": 22636
+  },
+  "corpusPagesTotal": 28832,
+  "pagesMatchedByTier": {
+    "1": 436,
+    "2": 974,
+    "3": 67
+  },
+  "pagesMatchedTotal": 1477,
+  "fieldsGainedByTier": {
+    "1": {
+      "regulatory.EU": 436
+    },
+    "2": {
+      "regulatory.EU": 974
+    },
+    "3": {
+      "regulatory.EU": 67
+    }
+  },
+  "fieldsGained": [
+    "regulatory.EU"
+  ],
+  "pagesConfirmedByUniiOrFullInchikey": 1285,
+  "pagesLinkedOnlyBySkeletonAsFormOf": 1,
+  "pagesReachedOnlyByUnconfirmedName": 191,
+  "pagesByEmaStatus": {
+    "Authorised": 1200,
+    "Withdrawn": 322,
+    "Application withdrawn": 275,
+    "Refused": 71,
+    "Opinion": 43,
+    "Lapsed": 39,
+    "Expired": 14,
+    "Revoked": 6,
+    "Opinion under re-examination": 5,
+    "Withdrawn from rolling review": 2,
+    "Suspended": 1
+  },
+  "matchRuleCounts": {
+    "unii": 3874,
+    "name-candidate": 439,
+    "inchikey": 12,
+    "skeleton": 1
+  },
+  "matchRuleCountsByTier": {
+    "1": {
+      "unii": 1106,
+      "name-candidate": 88,
+      "inchikey": 2
+    },
+    "2": {
+      "unii": 2714,
+      "name-candidate": 330,
+      "inchikey": 10,
+      "skeleton": 1
+    },
+    "3": {
+      "unii": 54,
+      "name-candidate": 21
+    }
+  },
+  "substanceResolutionOutcomes": {
+    "unii": 2638,
+    "unresolved": 321,
+    "name-candidate": 314,
+    "inchikey": 20,
+    "skeleton": 1
+  },
+  "combinationPagesReached": 5,
+  "unmatchedRecords": 143,
+  "unmatchedRecordsFile": "data/sources/ema/unmatched-records.json",
+  "nameCandidatesSentToReview": 207,
+  "ambiguousUniiResolutions": 14,
+  "nameCandidateFile": "data/sources/ema/name-candidates-for-review.json",
+  "mappedParquet": "data/sources/ema/mapped.parquet",
+  "manifest": "data/sources/ema/2026-09-06/manifest.json",
+  "saltListChange": "scripts/revamp/salts.txt was read and not extended. Every EMA active-substance string that failed to reach a page was checked for an unlisted trailing counter-ion token; the residue is vaccine antigens, viral strains and cell therapies (attenuated, adjuvanted, adsorbed, recombinant, toxoid, strain), not salts, so no suffix was appended.",
+  "method": "EMA publishes no UNII, InChIKey or structure. Each product's active substance and INN strings were resolved to a UNII against the FDA UNII name lists (types of/cn/sys; brand and code names excluded), exact punctuation-normalised name first, then the shared salt-stripped normaliser. A name resolving to more than one UNII is disambiguated by an exact UNII preferred-name match, then by a single corpus-present UNII; anything still ambiguous is not treated as a UNII match. A resolved UNII joins the corpus by UNII, then by its full InChIKey, then by InChIKey skeleton as form_of. A substance with no resolved UNII joins by normalised name as an unconfirmed candidate only.",
+  "freshnessCheck": {
+    "script": "scripts/revamp/ema_freshness_check.py",
+    "report": "data/sources/ema/2026-09-06/freshness-check.json",
+    "checkedAt": "2026-09-05T20:56:24Z",
+    "publishedGenerated": "05/09/2026 - 18:00",
+    "publishedLastModified": "Sat, 05 Sep 2026 16:01:10 GMT",
+    "publishedSha256": "7aeb28d71b0ff0b5a3ed0a0d988ce7edd3efac9c31f6c9fc090912631398cda1",
+    "result": "EMA regenerates this report on a schedule, so the published bytes and Last-Modified change without any record changing. The published file generated 05/09/2026 18:00 was downloaded and compared cell by cell against the stored pull generated 05/09/2026 06:00: 2,732 rows x 39 columns, 0 cells differing. The stored pull carries the current data and was not replaced; the downloaded copy was discarded."
+  }
+}

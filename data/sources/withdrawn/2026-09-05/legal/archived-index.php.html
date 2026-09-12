@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Shared imports and settings file-->
+    <!-- A NOTE ON IMPORTS:
+There are many options, all with their drawbacks. 
+
+-JS includes are powerful, but loading order can be a problem - especially if you have to fetch via ajax from a file. 
+This works for page content itself if you just use defer, but it does NOT work well for headers, at least not to my experiences so far.
+
+So you need to take at least one other method
+
+-PHP is the easiest by far if you use apache/php. This has been chosen here. For other servers, analogs exist.
+
+-For a more generalized solution : pick a preprocessor (like sergey) and/or a templating language. Most "modern" HTML is pre-processed anyhow
+(just as you might need a preprocessor for SASS). 
+
+But then you almost can move to a "modern" web framework toolchain anyhow, be it react, angular, vue or similar, and reap the many other benefits
+
+Though if you do preprocessing ONLY for that...there's an option like Sergey that is basically just HTML + partials, adding tiny bits to your static sites.
+
+If you want to use npm to install the dependencies, the main ones are bootstrap (~4), bootstrap-icons, jquery
+
+Use if you need a different tree vis (javascript object based input, used for atc tree), you can give bstreeview a shake (though I dislike its icon handling)
+
+-->
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--Responsive meta tag-->
+
+<!--This needs to be included via php/server-side/preprocessor, otherwise we run into issues-->
+<!--IMPORTANT : IF YOU CHANGE YOUR SERVER, ADJUST THIS LINE TO MATCH!!!!!!! That's the only server-specific adjustment essential-->
+<base href="https://bioinformatics.charite.de/withdrawn_3/index.html"> <!--Set BASE Url as common ground for checks, so you don't have to care where you are.-->
+
+<!--NOTE : All those mins are okay. Just make sure you have "enable source maps" settings enabled in browser.-->
+<link rel="stylesheet" href="include/bootstrap/dist/css/bootstrap.min.css"> <!-- This includes ALL bootstrap. grid only includes grid and flex utils, reboot only reboot-->
+<script src="include/jquery/dist/jquery.min.js"></script>  
+<script src="include/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!--Deferred javascript loads - these only loads once the page is completed, making sure the queried ID's exist-->
+<script src="js/load_ajax.js"></script> <!--We want this one immediately available-->
+<script src="js/load_templates.js" defer></script>  <!--defer other things, so page elements load first.-->
+<script src="js/common.js" defer></script>
+<script type="text/javascript" src="js/bootstrap_themes.js"></script>
+ <!--If you are NOT using php, use your server equivalent. For exampüle for node, %include ..., and rename php to html -->
+	
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+
+<!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lafeber/world-flags-sprite/stylesheets/flags32-both.css" />
+
+<style>
+#container {
+    height: 500px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.highcharts-tooltip > span {
+    padding: 10px;
+    white-space: normal !important;
+    width: 200px;
+}
+
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+
+.f32 .flag {
+    vertical-align: middle !important;
+}
+
+#container2 {
+    height: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+</style>
+
+<!--<div id="table-div">
+    <table id="data">
+        <tr>
+            <td>1</td>
+            <td>AUSTRALIA</td>
+            <td>2.0</td>
+        </tr>
+        
+				
+    </table>
+</div>-->
+
+</head>
+
+<script>
+(async () => {
+
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/custom/world.topo.json'
+    ).then(response => response.json());
+
+    const data = await fetch(
+		'./config/countries_new.json'
+		<!--'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json'-->
+    ).then(response => response.json());
+
+    // Prevent logarithmic errors in color calulcation
+    data.forEach(function (p) {
+        p.value = (p.value < 1 ? 1 : p.value);
+    });
+
+    // Initialize the chart
+    Highcharts.mapChart('container', {
+
+        chart: {
+            map: topology
+        },
+
+        title: {
+            text: 'World Map'
+        },
+		
+		subtitle: {
+            text: 'Clicking a country will show a list of all drugs withdrawn in the specified country.'
+        },
+
+        legend: {
+            title: {
+                text: 'Number of withdrawn drugs',
+                style: {
+                    color: ( // theme
+                        Highcharts.defaultOptions &&
+                            Highcharts.defaultOptions.legend &&
+                            Highcharts.defaultOptions.legend.title &&
+                            Highcharts.defaultOptions.legend.title.style &&
+                            Highcharts.defaultOptions.legend.title.style.color
+                    ) || 'black'
+                }
+            }
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        tooltip: {
+            backgroundColor: 'none',
+            borderWidth: 0,
+            shadow: false,
+            useHTML: true,
+            padding: 0,
+            pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
+                    '</span></span> {point.name}<br>' +
+                    '<span style="font-size:30px">{point.value}</span>',					 
+					<!--'<span style="font-size:10px">{point.tooltip}</span>'-->
+            positioner: function () {
+                return { x: 0, y: 250 };
+            }
+        },
+
+        colorAxis: {
+            min: 1,
+            max: 100
+            <!--type: 'logarithmic'-->
+        },
+		
+		plotOptions: {
+            series: {
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = 'https://bioinformatics.charite.de/withdrawn_3/subpages/browse_country.php?code=' + this.code3;
+                        }
+                    }
+                }
+            }
+        },
+
+        series: [{
+            data: data,
+            joinBy: ['iso-a3', 'code3'],
+            name: 'Withdrawn drugs'
+        }]
+    });
+
+})();
+</script>
+
+<!--<script>
+							
+							(async () => {
+
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/custom/world.topo.json'
+    ).then(response => response.json());
+
+    // Instantiate the map
+    Highcharts.mapChart('container', {
+        chart: {
+            map: topology
+        },
+
+        title: {
+            text: 'World map',
+            align: 'left'
+        },
+
+        subtitle: {
+            text: 'Countries, in which is/was withdrawn are highlighted red',
+            align: 'left'
+        },
+
+        accessibility: {
+            typeDescription: 'World Map.',
+            point: {
+                describeNull: false
+            }
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        series: [{
+            name: 'Country',
+            data: [
+                ['is', 1],
+                ['no', 1],
+                ['se', 1],
+                ['dk', 1],
+                ['fi', 1]
+            ],
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                format: '{point.name}',
+                nullFormat: ''
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '{point.name}'
+            }
+        }]
+    });
+
+})();
+
+</script>-->
+
+<!--
+<script>
+(async () => {
+
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/custom/world.topo.json'
+    ).then(response => response.json());
+
+    // Load the data from the HTML table and tag it with an upper case name used
+    // for joining
+    const data = [];
+
+    Highcharts.data({
+        table: document.getElementById('data'),
+        startColumn: 1,
+        firstRowAsNames: false,
+        complete: function (options) {
+            options.series[0].data.forEach(function (p) {
+                data.push({
+                    ucName: p[0],
+                    value: p[1]
+                });
+            });
+        }
+    });
+
+    // Prepare map data for joining
+    topology.objects.default.geometries.forEach(function (g) {
+        if (g.properties && g.properties.name) {
+            g.properties.ucName = g.properties.name.toUpperCase();
+        }
+    });
+
+    // Initialize the chart
+    Highcharts.mapChart('container', {
+
+        title: {
+            text: 'US unemployment rate in Dec. 2017',
+            align: 'left'
+        },
+
+        subtitle: {
+            text: 'Small US map with data labels',
+            align: 'left'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            enableButtons: false
+        },
+
+        xAxis: {
+            labels: {
+                enabled: false
+            }
+        },
+
+        colorAxis: {
+            labels: {
+                format: '{value}%'
+            },
+            stops: [
+                [0.2, '#188e2a'], // Green
+                [0.5, '#fee401'], // Yellow
+                [1, '#df1309'] // Red
+            ],
+            min: 0,
+            max: 8
+        },
+
+        series: [{
+            mapData: topology,
+            data,
+            joinBy: 'ucName',
+            name: 'Unemployment rate per 2017',
+            dataLabels: {
+                enabled: true,
+                format: '{point.properties.hc-a2}',
+                style: {
+                    fontSize: '10px'
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }, {
+        // The connector lines
+            type: 'mapline',
+            data: Highcharts.geojson(topology, 'mapline'),
+            color: 'silver',
+            accessibility: {
+                enabled: false
+            }
+        }]
+    });
+
+})();
+</script>-->
+
+<body>
+    <header class="header" data-active="nav_home"></header> <!--Just specify the page you used it on for auto "active" state-->
+    
+    <div class="container">
+
+        <div class="row row-eq-height justify-content-center"> <!--row-eq-height is still needed to equalize container-->
+            <div class="col-sm-6"> <!--using my-auto in column will equally distribute the contents. -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">About Withdrawn 2.0</h5>
+                        <p class="card-text">
+						
+							Post-marketing drug withdrawals can be associated with 
+							various events, ranging from safety issues such as reported 
+							deaths or severe side-effects, to a multitude of non-safety 
+							problems including lack of efficacy, manufacturing, regulatory 
+							or business issues. During the last century, the majority of drugs 
+							voluntarily withdrawn from the market or prohibited by regulatory 
+							agencies was reported to be related to adverse drug reactions. 
+							Understanding the underlying mechanisms that lead to the withdrawal 
+							of a substance is of utmost importance for current and future drug discovery.
+							The Withdrawn database aims to facilitate this by not only listing 
+							withdrawal information, but also important features such as toxicity 
+							information, side-effects, targets, ATC classes and more.
+                            
+                            <br><br>
+                            If you have any questions please see the 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/faq.php">FAQs</a>
+							or feel free to 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/contact.php">contact us!</a>
+                            
+							
+							
+                            
+                            
+                        </p>
+                    </div>
+                </div>
+
+                <!--<div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Starting points</h5>
+                        <p class="card-text">
+                            To easily 
+                        </p>
+                        <br>
+                        
+                    </div>
+                </div>--> 
+            </div>
+
+
+            <div class="col-sm-6">
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Starting points</h5>
+                        <p class="card-text">
+                            To easily find specific withdrawn drugs or browse the whole database,
+							a number of different access points are available.<br>
+							If you're looking for a specific withdrawn drug, you can 
+							directly access the information page via
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/drug_search.php">withdrawn id or drug name.</a>
+							<br>
+							Additionally, you can search for withdrawn drugs that have a similar 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/compounds_structure.php">chemical structure</a>
+							as an input structure, or contain a specific 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/compounds_substructure.php">substructure</a>.
+							<br>
+							For a quick overview over all withdrawn drugs contained in the database, the 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/browse.php">browse tab</a>
+							lists them sorted by name.
+							<br>For a more systematic approach, an 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/tree.php">ATC tree</a>
+							of all withdrawn drugs that have an ATC code assigned is available.
+							<br>
+							Lastly, if you are interested in a specific protein class or target, a 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/target_search.php">target search</a>
+							is available to find out if, and if yes, which withdrawn drugs are associated 
+							with the target(s) of interest.
+							
+							
+                        </p>
+                        
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Prediction features</h5>
+                        <p class="card-text">
+                            
+							As a starting point for investigation about drug withdrawals, a 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/moa.php">mechanism of action</a>
+							and 
+							<a href="https://bioinformatics.charite.de/withdrawn_3/subpages/pathways.php">pathway enrichment</a>
+							analysis are available. Both work via structural similarity searches 
+							of withdrawn drugs to known ChEMBL compounds, and display target 
+							acitivies and KEGG pathways with druggable targets respectively.
+							
+                        </p>
+                    </div>
+                </div>
+            </div>
+		
+		
+        </div>
+<div id="container"></div>
+<div id="container2"></div>
+    </div>
+
+    <footer class="footer"></footer>
+
+</body>
+
+</html>

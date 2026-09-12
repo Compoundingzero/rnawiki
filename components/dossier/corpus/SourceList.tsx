@@ -7,6 +7,38 @@
  * paragraph cites it.
  */
 import type { CorpusSourceRow } from '@/lib/corpus/dossier-page'
+import { VISIBLE_ROWS } from '@/lib/corpus/page-text'
+
+/**
+ * The source rows themselves. The record id carries `cd-source-id` rather than `cd-row-id`: a
+ * record id inside a block is technical provenance and §14(6) keeps it inside a closed disclosure,
+ * and this is the page's own citation list, where the id is what a reader follows the source by.
+ */
+function SourceRows({ sources }: { sources: CorpusSourceRow[] }) {
+  return (
+    <ul className="cd-source-rows">
+      {sources.map((source) => (
+        <li key={`${source.kind}-${source.id}`}>
+          {source.href ? (
+            <a href={source.href} rel="nofollow noopener" target="_blank">
+              {source.register}
+            </a>
+          ) : (
+            <span>{source.register}</span>
+          )}{' '}
+          <span className="cd-source-id">{source.id}</span>
+          {source.sourceDate ? (
+            <>
+              {' · '}
+              <time dateTime={source.sourceDate}>{source.sourceDate}</time>
+            </>
+          ) : null}
+          {source.title ? <div className="cd-row-value">{source.title}</div> : null}
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 export function SourceList({
   sources,
@@ -21,28 +53,16 @@ export function SourceList({
       <h2 className="cd-section-heading" id="cd-sources-heading">
         Sources
       </h2>
-      {sources.length > 0 ? (
-        <ul className="cd-source-rows">
-          {sources.map((source) => (
-            <li key={`${source.kind}-${source.id}`}>
-              {source.href ? (
-                <a href={source.href} rel="nofollow noopener" target="_blank">
-                  {source.register}
-                </a>
-              ) : (
-                <span>{source.register}</span>
-              )}{' '}
-              <span className="cd-row-id">{source.id}</span>
-              {source.sourceDate ? (
-                <>
-                  {' · '}
-                  <time dateTime={source.sourceDate}>{source.sourceDate}</time>
-                </>
-              ) : null}
-              {source.title ? <div className="cd-row-value">{source.title}</div> : null}
-            </li>
-          ))}
-        </ul>
+      {sources.length > 0 ? <SourceRows sources={sources.slice(0, VISIBLE_ROWS)} /> : null}
+      {/* §14(9): six on the page, the counted rest inside a control of its own. */}
+      {sources.length > VISIBLE_ROWS ? (
+        <details className="cd-evidence cd-further-rows" id="cd-sources-more">
+          <summary>
+            {sources.length - VISIBLE_ROWS} more{' '}
+            {sources.length - VISIBLE_ROWS === 1 ? 'source' : 'sources'}
+          </summary>
+          <SourceRows sources={sources.slice(VISIBLE_ROWS)} />
+        </details>
       ) : null}
       {licenceNotes.length > 0 ? <p className="cd-licence">{licenceNotes.join(' · ')}</p> : null}
       <p className="cd-definitions">

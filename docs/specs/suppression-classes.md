@@ -47,3 +47,68 @@ worklog gets the table.
 Suppression is orthogonal to tier. A Tier 1 longevity compound in a suppression class (e.g. a
 scheduled substance) keeps the LONGEVITY model's factual fields and loses seeds 1, 2 and 6. A
 suppressed record never renders "can I test this myself" in any wording.
+
+## Ordinary-language labels (reader-facing wording)
+
+A class id is a storage token. It never reaches a reader. Wherever a page states its own
+classification — the supervision block on any suppressed page, including one that holds too few
+fields to carry a question — it names the class in the words below and never as `S1`…`S10`. This
+table is the only place the wording is fixed; `lib/corpus/suppression-classes.ts` reads from it and
+`tests/unit/corpus-suppression-block.test.ts` holds it to it.
+
+| Id  | Reader-facing label                                                                                                          |
+| --- | ---------------------------------------------------------------------------------------------------------------------------- |
+| S1  | a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics |
+| S2  | a controlled-substance schedule in Singapore, the United States, Australia or the United Kingdom                                        |
+| S3  | a label warning about harm to a developing baby, or a pregnancy-prevention programme                                         |
+| S4  | a list of cytotoxic or otherwise hazardous medicines                                                                         |
+| S5  | a United States programme that restricts how the medicine is supplied and who may supply it                                  |
+| S6  | a boxed warning, the strongest warning a United States label carries                                                         |
+| S7  | a route a clinician administers, such as an injection into a vein or into the spine                                          |
+| S8  | a register record of withdrawal or suspension for a safety reason                                                            |
+| S9  | a long-acting injection, an insulin, or another injected hormone adjusted by measurement                                     |
+| S10 | no classification found in the registers checked                                                                             |
+
+The block's sentences are generated, never free-written. Until 2026-09-09 there were two, and the
+first named the class from the table above — the generic label, which says what a class of that
+kind might be and not what this record is in. `docs/specs/phase4-generators.md` §15 item 1 replaces
+them: **one clause per recorded class, each built from that class's own evidence and its own
+source**, in the class order this table fixes, and **a clause without a matching source does not
+render**. The evidence is the row the suppression pass recorded beside the class
+(`{ test, source, value }`, plus `label` where `scripts/revamp/controlled_suppression.py` resolved
+the ATC group's own name from the ChEMBL `atc_class` download); it travels onto the page row as
+`corpus_pages.suppression_evidence` (migration 0033) and the clauses are built by
+`supervisionClauses` in `lib/corpus/suppression-labels.ts`:
+
+| Class | The clause |
+| --- | --- |
+| S1 | `Its World Health Organization ATC class is C01AA, digitalis glycosides (WHO ATC via ChEMBL/EMA).` |
+| S2 | `A statute schedules it as a controlled substance: <schedule> (<statute, version>).` |
+| S3 | `It is under a pregnancy-prevention programme (<the roster>).`, or the label's own recorded risk with the source that stated it |
+| S4 | `A hazardous-medicine class covers it: <ATC class, or the word "cytotoxic" in its label> (<source>).` |
+| S5 | `A United States Risk Evaluation and Mitigation Strategy is named in its label (DailyMed label <set id>, <date>).` |
+| S6 | `Its United States label carries a boxed warning naming <what it names> (DailyMed label <set id>, <date>).` |
+| S7 | `Its recorded route of administration is one a clinician gives: <route> (<source>).` |
+| S8 | `A register records it withdrawn or suspended for a safety reason: <reason, where, when> (<register>).` |
+| S9 | `A long-acting or titrated injected form is recorded for it: <ATC class> (<source>).` |
+
+**One clause per fact, not one clause per test.** Where S1 and S4 name the same ATC class code —
+every antineoplastic L01 record, because the ATC group is both the therapeutic class the register
+published and the hazardous-medicine class S4 reads off that code — the two clauses are one clause
+naming the class once and carrying both sources:
+`Its World Health Organization ATC class is L01CA, Vinca alkaloids and analogues (WHO ATC via
+ChEMBL/EMA; hazardous-medicine class, NIOSH list not fetched).` An S4 row that names a class S1 did
+not, or the word "cytotoxic" in a label, is a different fact and keeps its own clause, and a record
+carrying only one of the two classes states exactly what it stated before.
+
+A prescription classification is never among them: a Poisons Act or Poisons Rules schedule, a SUSMP
+Schedule 4 entry, a Singapore POM forensic class and the words "prescription only" are supply
+restrictions and are stated in the registration block, which is where §13 item 4 puts them.
+`controlled_suppression.py` records S2 evidence only for the narrow controlled test — the Misuse of
+Drugs Act schedules, a United States DEA schedule, an Australian Poisons Standard Schedule 8 or 9.
+
+The labels in the table above remain the vocabulary each class stands for, and the class ids remain
+storage tokens a reader never meets. An S10-only record has no classification to state, so it
+carries no supervision block; it keeps the stub's single line saying that no classification is
+recorded, and a record whose recorded classes carry no evidence with a source renders no block at
+all, which is the same fact stated by silence rather than by a label that cites nothing.

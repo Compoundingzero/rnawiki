@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- A NOTE ON IMPORTS:
+There are many options, all with their drawbacks. 
+
+-JS includes are powerful, but loading order can be a problem - especially if you have to fetch via ajax from a file. 
+This works for page content itself if you just use defer, but it does NOT work well for headers, at least not to my experiences so far.
+
+So you need to take at least one other method
+
+-PHP is the easiest by far if you use apache/php. This has been chosen here. For other servers, analogs exist.
+
+-For a more generalized solution : pick a preprocessor (like sergey) and/or a templating language. Most "modern" HTML is pre-processed anyhow
+(just as you might need a preprocessor for SASS). 
+
+But then you almost can move to a "modern" web framework toolchain anyhow, be it react, angular, vue or similar, and reap the many other benefits
+
+Though if you do preprocessing ONLY for that...there's an option like Sergey that is basically just HTML + partials, adding tiny bits to your static sites.
+
+If you want to use npm to install the dependencies, the main ones are bootstrap (~4), bootstrap-icons, jquery
+
+Use if you need a different tree vis (javascript object based input, used for atc tree), you can give bstreeview a shake (though I dislike its icon handling)
+
+-->
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--Responsive meta tag-->
+
+<!--This needs to be included via php/server-side/preprocessor, otherwise we run into issues-->
+<!--IMPORTANT : IF YOU CHANGE YOUR SERVER, ADJUST THIS LINE TO MATCH!!!!!!! That's the only server-specific adjustment essential-->
+<base href="https://bioinformatics.charite.de/withdrawn_3/index.html"> <!--Set BASE Url as common ground for checks, so you don't have to care where you are.-->
+
+<!--NOTE : All those mins are okay. Just make sure you have "enable source maps" settings enabled in browser.-->
+<link rel="stylesheet" href="include/bootstrap/dist/css/bootstrap.min.css"> <!-- This includes ALL bootstrap. grid only includes grid and flex utils, reboot only reboot-->
+<script src="include/jquery/dist/jquery.min.js"></script>  
+<script src="include/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!--Deferred javascript loads - these only loads once the page is completed, making sure the queried ID's exist-->
+<script src="js/load_ajax.js"></script> <!--We want this one immediately available-->
+<script src="js/load_templates.js" defer></script>  <!--defer other things, so page elements load first.-->
+<script src="js/common.js" defer></script>
+<script type="text/javascript" src="js/bootstrap_themes.js"></script>
+ <!--If you are NOT using php, use your server equivalent. For exampüle for node, %include ... -->
+    <!--<link rel="stylesheet" href="css/faq.css">-->
+    <!--<script src="js/faq.js" defer></script>-->
+</head>
+
+<body>
+
+<!-- NOTE : This would likely be more pretty using a side-bar. That option should at least be considered -->
+
+<header class="header" data-active="nav_faq"></header> <!--Just specify the page you used it on for auto activation-->
+
+
+<div class="alert alert-secondary text-center" role="alert">
+    <strong>Frequently Asked Questions</strong>
+</div>
+
+<div class="container" style="margin-top:30px;">
+    <div id="top" class="row justify-content-center">
+        <div class="col-2">
+        </div>
+        <div class="col-6">
+        <ol class="ml">
+            <!--Real important : because of us using the base tag, we need to use absolutes here.-->
+            <!--Because of how painful this is to do manually : done in the javascript processor-->
+            <li><a href="./subpages/faq.php/#withdrawn3">Withdrawn 2.0 in numbers</a></li>
+            <li><a href="./subpages/faq.php/#system_requirements">System Requirements</a></li>
+            <li><a href="./subpages/faq.php/#biological_background">What is the ATC code?</a></li>
+			
+			<li><a href="./subpages/faq.php/#search">How can I use the structure search options?</a></li>
+			
+			<li><a href="./subpages/faq.php/#faers">How was the side-effect mapping done?</a></li>
+			
+			<li><a href="./subpages/faq.php/#faers_example">How were the drug synonym lists for the FAERS mapping obtained?</a></li>
+			
+			<li><a href="./subpages/faq.php/#2">How is the toxicity class of a compound determined?</a></li>
+			
+			<li><a href="./subpages/faq.php/#5">How are the activity values for the mechanism of action determined?</a></li>
+			
+			
+			<li><a href="./subpages/faq.php/#6">How was the pathway enrichment analysis performed?</a></li>
+			<ol class="ml">
+                <li><a href="./subpages/faq.php/#7">What is the p-value?</a></li>
+                <li><a href="./subpages/faq.php/#8">What is the e-value?</a></li>
+       
+            </ol class="ml">
+			
+			<li><a href="./subpages/faq.php/#9">Why do mechanism of action prediction and pathway 
+			enrichment analysis sometimes give different ChEMBL compounds as results?</a></li>
+			
+			<li><a href="./subpages/faq.php/#10">How large is the overlap from Withdrawn 2.0 to ChEMBL withdrawn compounds?</a></li>
+			
+			<li><a href="./subpages/faq.php/#download">Is there a bulk download?</a></li>
+            
+			<!--<ol class="ml">
+                <li><a href="./subpages/faq.php/#atc_code">1?</a></li>
+                <li><a href="./subpages/faq.php/#score">2?</a></li>
+               
+            </ol class="ml"></li>
+            <li><a href="">Prediction-Pipeline</a>
+                <ol class="ml">
+                <li><a href="">Prediction-Pipeline</a></li>
+                <li><a href="">2D-Similarity</a>
+                    <ol class="ml"><li><a href="">Threshold-Calculation</a></li></ol>
+					</ol>
+                </li>
+            </li>
+			</ol>-->
+            
+        </ol>
+        
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div id="superPred2" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">Withdrawn 2.0 in numbers</h3>
+                <p>Withdrawn 2.0 is a database containing 626 withdrawn drugs, along with 
+				information regarding their withdrawal history, toxicity, side-effects etc.
+				<br>Additionally, 409 unique targets of withdrawn drugs were extracted from 
+				ChEMBL assays and filtered regarding their reliability and minimal activity to 
+				withdrawn compounds, leading to 1628 unique drug-target-relationships.
+				<br>For 275 KEGG pathways containing druggable targets, a pathway enrichment analysis 
+				is available, and the ATC tree contains 512 withdrawn drugs, for which a level 5 
+				ATC code is available.</p>
+
+                <p></p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+
+            <div id="system_requirements" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">System Requirements</h3><br>
+                <p>We recommend a recent version of Mozilla Firefox, Microsoft Internet Explorer 
+				or Google Chrome. For the usage of the ChemDoodle web component (used 
+				on pages where a similarity search is performed), Internet Explorer 
+				9 or newer is recommended. If you have an older version of Internet Explorer Google 
+				chrome frame is required for the right presentation of ChemDoodle. In 
+				addition to that, JavaScript has to be enabled.</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+
+            <div id="biological_background" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">What is the ATC code?</h3>
+
+                <h4 id="atc_code" class="text-left"></h4>
+                <p>The Anatomical Therapeutic Chemical (ATC) classification system 
+				is used for the classification of drugs. It is published by 
+				the World Health Organization (WHO). The classification into 
+				groups is based on therapeutic and chemical characteristics of the drugs. 
+				Each ATC code is divided into 5 levels:</p>
+                <ul class="text-left">
+                    <li>1. level: Anatomical main group</li>
+                    <li>2. level: Therapeutic main group</li>
+                    <li>3. level: Therapeutic/pharmacological subgroup</li>
+                    <li>4. level: Chemical/therapeutic/pharmacological subgroup</li>
+                    <li>5. level: Chemical substance</li>
+                </ul>
+                
+                <p>Substances or combination of substances in the 5th level refer to a single 
+				indication. Drugs having more than one indication belong to more than one ATC code. 
+				Aspirine for example has 3 ATC codes assigned.</p>
+
+                <br>
+                
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="search" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How can I use the structure search options?</h3><br>
+                <p>
+				The option to use a user provided molecular structure is available in a variety of tabs 
+				(drug search, mechanism of action and pathways). As a first step, 
+				a molecular structure has to be loaded in the 
+				<a href="https://www.chemdoodle.com/">ChemDoodle </a> 
+				web interface. Structures 
+				can be obtained by entering a 
+				<a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a> 
+				name, a SMILES string, loading a structure
+				file or drawing with the provided tools (see below). <br>Once a structure is loaded, 
+				additional modifications can be done as well. When satisfied with the result, 
+				the button "Start Similarity Search" can be used to start the search/predictions.<br><br>
+				<img src="./images/search.png"></img>
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="faers" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How was the side-effect mapping done?</h3><br>
+                <p>
+				The 		
+				<a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard">FAERS database</a>
+				is a reporting system where medical professionals, patients, lawyers and similar are 
+				able to submit side-effects that occured during the use of drugs. For the displayed 
+				side-effects, all case reports in FAERS were filtered, leaving only reports submitted by 
+				medical professionals, and in a second step, only cases where the specific drug was 
+				the primary suspect for the occuring reaction. Side-effects were assigned to withdrawn 
+				drugs by collecting every report that concerned a marketed drug that contains the specific 
+				withdrawn compound. Lastly, the occuring reactions were mapped to
+				<a href="https://www.meddra.org/">MedDRA</a>
+				terms to filter out duplicates.
+				
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="faers_example" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How were the drug synonym lists for the FAERS mapping obtained?</h3><br>
+                <p>
+				To map withdrawn drugs to FAERS drugs, a collection of drug names, 
+				synonyms, products and brands was created and mapped to its ingredients 
+				(in case of combination drugs). Synonym data was collected from 
+				<a href="http://db.idrblab.net/ttd/">TTD</a> 
+				(single drugs and drugs identified as combinations), 
+				<a href="https://go.drugbank.com/">DrugBank</a> 
+				(drugs, synonyms, external identifier, products, mixtures, international brands), 
+				<a href="https://www.fda.gov/drugs/types-applications/new-drug-application-nda">NDA</a> 
+				(tradenames) 
+				and a FAERS list of explicit combinations of drug names that often occur in FAERS data.<br>
+				As an example, you can download the resulting synonym list for the drug 
+				<a href="./downloads/w200_checklist.csv" download="dataset.csv">Ethinylestradiol</a>.
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="2" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How is the toxicity class of a compound determined?</h3>
+                <p>
+				<a href="https://tox-new.charite.de/protox_II/">ProTox-II</a> is the first freely available web server for toxicity 
+				prediction based on chemical similarity and the identification of toxic fragments and demonstrates good 
+				performance in comparison to available QSAR-based methods. ProTox predicts the median oral lethal doses 
+				(LD50 values) and toxicity classes in rodents. In addition to the oral toxicity prediction, the web server 
+				indicates possible toxicity targets based on a collection of protein-ligand-based pharmacophores 
+				('toxicophores') and therefore provides suggestions for the mechanism of toxicity development.  
+				However, the absence of such toxicity prediction or alert for a compound should not be taken as an 
+				indication of safety.
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+
+			<div id="5" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How are the activity values for the mechanism of action determined?</h3>
+                <p>
+				
+				From the <a href="https://www.ebi.ac.uk/chembl/">ChEMBL 32 database</a>, all interactions between 
+				ChEMBL compounds and human targets were extracted. Furthermore, activities were normalized 
+				to nanomolar values and for each unique compound-target pair, the minimum activity value 
+				was determined.<br>
+				Afterwards, a similarity comparison to Withdrawn 2.0 compounds was performed, using Morgan fingerprints 
+				of length 128 and radius 2.
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="6" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How was the pathway enrichment analysis performed?</h3>
+                <p>
+				Used resources were the <a href="https://www.ebi.ac.uk/chembl/">ChEMBL 32 database</a>, 
+				the <a href="https://www.uniprot.org/">UniProt database</a>, 
+				<a href="https://www.genome.jp/kegg/">KEGG pathways</a> and a list of druggable genes from 
+				<a href="https://druggablegenome.net/IDGProteinList">IDG</a>, further enriched with 43 genes 
+				which are targets of approved drugs from <a href="http://db.idrblab.net/ttd/">TTD</a>.<br>
+				At the start a table was created containing data from assays with human 
+				organisms. This table was filtered for real binders, taking into account a 
+				combination of binding strength, IC50/EC50 values and confidence scores. The 
+				ChEMBL-IDs of the targets were mapped to UNIPROTKB IDs, and to KEGG-IDs. Both 
+				mappings are not unique, therefore there are cases where a ChEMBL-ID is
+				connected to more than one UNIPROTKB-ID, or a UNIPROTKB-ID is mapped to more than 
+				one KEGG-ID. Not for every Target-ChEMBL-ID there is a UNIPROTKB-ID.
+				The resulting table contains a mapping of unique 
+				relations between CHEMBL molecules and KEGG-IDs of human targets.
+				Using all human KEGG-ids, which were derived from the UNIPROT-DBs-table, into a 
+				query on <a href="https://www.genome.jp/kegg/mapper/">KEGG mapper</a>, a table was  
+				derived containing all information between KEGG	pathways and human genes.
+				Filtering according to KEGG pathways related to diseases and infections,
+				a table containing only human KEGG-IDS appearing within disease pathways was built. 
+				For each of these entries, the information whether the gene is druggable for small molecules
+				using <a href="https://www.genenames.org/">HGNC</a> mapping was added.
+Using all this for each molecule and all disease pathways, the numbers how many distinct 
+druggable KEGG-IDs are related to molecule and pathway was evaluated.
+Additionally, the number of distinct druggable KEGG-IDs for each molecule,
+ the number of distinct druggable KEGG-IDs for each pathway,
+ and the number of distinct druggable KEGG-IDs appearing in any disease-related pathway were assessed
+  and furthermore used to evaluate the probability for a specific compound to 
+  act on the evaluated pathways.<br>
+
+For the search for molecules for a special pathway, this strategy is not useful
+ because you get a large number of molecules with the same number of targets within
+ this pathway, so an additional score for a ranking was needed. 
+ Here all molecules with a binding to any druggable target within the pathway were
+ evaluated and ranked according to the binding value.
+
+ 
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="7" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">What is the p-value?</h3>
+                <p>
+				For the evaluation of the p-value the number of interactions for a compound 
+				to druggable genes and the part within the given pathways with the same values for all druggable
+				genes are evaluated. The p-value gives the probability that you have at least so many interactions within the
+				given pathways only by chance. This propability value is evaluated with the cumulative
+				hypergeometric distribution using <a href="https://www.r-project.org/">R</a>. In this way, a binding within a pathway 
+				containing only two druggable genes is ranked up compared to a few bindings within pathways
+				with a lot of druggable genes, and a single binding in one pathway of a compound with a lot
+				of interactions is ranked down.
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="8" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">What is the e-value?</h3>
+                <p>
+				The e-value gives the probability that you find an 
+				interaction within a pathway by chance if you search
+				within a number of pathways. For the evaluation of the e-values
+				the number of pathways with druggable targets and binding within
+				ChEMBL was taken into account (275 pathways). For very small p-values
+				the p-value can be multiplied with the number of pathways, for larger
+				values you need to evaluate this by the formula e = 1 - (1-p)<sup>275</sup>. 
+
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="9" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">Why do mechanism of action prediction and pathway 
+			enrichment analysis sometimes give different ChEMBL compounds as results?</h3>
+                <p>
+				 For the mechanism of action prediction, associated human targets are found in ChEMBL with a
+				 low binding activity (<= 10 000 nm) and a sufficient confidence score.
+				 In contrast, pathway searches are performed on a subset of the MOA structures,
+				 that have the additional requirement to have according activities to at least one 
+				 druggable target. Therefore, it is possible that the pathway enrichment analysis has 
+				 fewer hits than the MOA prediction.
+
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="10" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">How large is the overlap from Withdrawn 2.0 to ChEMBL withdrawn compounds?</h3>
+                <p>
+				 Comparing the dataset of Withdrawn 2.0 and ChEMBL is a complex problem. While the withdrawn database uses only one entry for each drug, the ChEMBL database often has several entries for the same drug. For instance, ChEMBL contains METHAPYRILENE (CHEMBL1411979), METHAPYRILENE FUMARATE (CHEMBL3187246), and METHAPYRILENE HYDROCHLORIDE (CHEMBL1255739), while Withdrawn 2.0 only lists METHAPYRILENE (CHEMBL1411979). Furthermore, there are several levels of withdrawn structures within ChEMBL: structures having only the tag withdrawn_flag = 1 within the table “molecule_dictionary”, as well as structures with additional information within the table “drug_warning”, including data for withdrawal country, year and description. For each compound with the “withdrawn_flag”, that is not contained in the table “drug_warning”, a different compound with identical or near identical structure is contained instead, which further complicates mapping of withdrawn structures to additional withdrawal information. Last but not least, there are entries that are marked as approved and subsequently withdrawn, that are not actually approved drugs. For instance, METABROMSALAN (CHEMBL1801800) is a pesticide and DIBROMSALAN (CHEMBL21869) is a disinfectant, used in soaps. So, even more manual curation would be needed to fully integrate the data.
+<br>
+Generally, CHEMBL 32 lists 4194 IDs with max_phase 4.0 as approved drugs, of which 3215 also have the year of the first approval assigned. 262 of these IDs have the flag “withdrawn_flag = 1”, of which Withdrawn 2.0 lists 171 with the same ChEMBL ID. 225 different structures in the table “drug_warning” have the tag “withdrawn” - 141 of these structures are listed with the same ID in Withdrawn 2.0.
+Summarized, at least 171 compounds of Withdrawn 2.0 are listed as withdrawn in ChEMBL too, but there are further copies of structures within the 262 ChEMBL structures with “withdrawn_flag” (which result in not more than 225 different drugs), that are contained within Withdrawn 2.0 but have another ChEMBL ID.
+
+
+				</p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+			
+			<div id="download" class="alert alert-secondary text-left" role="alert">
+                <h3 class="text-center">Is there a bulk download</h3>
+                <p>
+				Information on all 626 withdrawn drugs, including chemical properties such as 
+				SMILES, InChi and molecular formula, withdrawal and toxicity information is available 
+				as 
+				<!--<a href="./downloads/withdrawn.sql" download="dataset.zip">sql </a>-->
+				
+				<a href="./downloads/withdrawns.csv" download="dataset.csv">csv </a>
+				file download.
+				</p>
+
+                <p></p>
+                <div class="text-center">
+                    <button class="button"><a href="./subpages/faq.php/#top">Back</a></button>
+                </div>
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{
+  "generated": "scripts/revamp/common_line_share.py",
+  "renders": [
+    {
+      "textDir": "data/revamp/render-v6/text",
+      "pages": 28832,
+      "words": 12473782,
+      "distinctLines": 795574,
+      "linesOnMoreThanHalfOfPages": 8,
+      "wordsOnThoseLines": 670673,
+      "commonLineWordShare": 0.053767,
+      "medianWords": 215,
+      "meanWords": 432.6
+    },
+    {
+      "textDir": "data/revamp/render-v6/text-with-furniture",
+      "pages": 28832,
+      "words": 16183745,
+      "distinctLines": 797651,
+      "linesOnMoreThanHalfOfPages": 21,
+      "wordsOnThoseLines": 4296373,
+      "commonLineWordShare": 0.265475,
+      "medianWords": 352,
+      "meanWords": 561.3
+    },
+    {
+      "textDir": "data/revamp/render-v5/text",
+      "pages": 28832,
+      "words": 12473782,
+      "distinctLines": 795574,
+      "linesOnMoreThanHalfOfPages": 8,
+      "wordsOnThoseLines": 670673,
+      "commonLineWordShare": 0.053767,
+      "medianWords": 215,
+      "meanWords": 432.6
+    },
+    {
+      "textDir": "data/corpus-20k/render/text",
+      "pages": 28832,
+      "words": 7477559,
+      "distinctLines": 514489,
+      "linesOnMoreThanHalfOfPages": 4,
+      "wordsOnThoseLines": 377889,
+      "commonLineWordShare": 0.050536,
+      "medianWords": 80,
+      "meanWords": 259.3
+    }
+  ]
+}

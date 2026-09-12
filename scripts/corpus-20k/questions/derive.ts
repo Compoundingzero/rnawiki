@@ -44,6 +44,12 @@ export interface FieldEntry {
 export interface SeedEntry {
   fires: boolean
   values?: unknown
+  /**
+   * The seed's own slot values (migration 0029). The corpus-scale reader merges them into `values`
+   * as it loads the seed files; the database path keeps them apart, so a rule that reads a slot
+   * reads both and lets the slots win, exactly as `compute.py` records them.
+   */
+  slots?: unknown
 }
 
 export interface PageInput {
@@ -61,6 +67,18 @@ export interface PageInput {
    * classification to cite, so it must not be asked why it carries a supervision requirement.
    */
   suppressionClasses?: string[]
+  /**
+   * The controlled-substance trigger (docs/specs/phase4-generators.md §4): a recorded entry in the
+   * Singapore Misuse of Drugs Act or Poisons Act schedules, a United States DEA schedule, or
+   * Australian Poisons Standard Schedule 8 or 9, as
+   * `scripts/revamp/controlled_suppression.py` recorded it.
+   *
+   * The Phase 4 assignments file also sets `suppressed` on such a page, so the four withheld blocks
+   * were already going; this flag makes the rule independent of that coupling. A page that carries a
+   * schedule but is not otherwise suppressed still has no dose question, and a reader of this file
+   * can see why without following the assignments file to find out.
+   */
+  controlled?: boolean
 }
 
 export interface QuestionBlock {
@@ -341,6 +359,8 @@ interface NormalPage {
   name: string
   model: string
   suppressed: boolean
+  /** The controlled-substance trigger of docs/specs/phase4-generators.md §4. */
+  controlled: boolean
   tier?: number
   suppressionClasses: string[]
   fields: Map<FieldId, FieldEntry>
@@ -423,6 +443,7 @@ export function normalisePage(page: PageInput): NormalPage {
     name: page.displayName,
     model: page.model,
     suppressed: page.suppressed === true,
+    controlled: page.controlled === true,
     suppressionClasses: Array.isArray(page.suppressionClasses) ? page.suppressionClasses : [],
     ...(typeof page.tier === 'number' ? { tier: page.tier } : {}),
     fields,
@@ -841,6 +862,60 @@ export interface RegisterStatus {
  * record none, because the question needs the first and the block's qualification needs the second.
  * Nothing is inferred: a code whose status is "unknown" is unknown, not absent.
  */
+/**
+ * The order §2 of `docs/specs/phase4-generators.md` fixes: Singapore, the United States, Australia,
+ * the United Kingdom, the European Union, Japan, Canada, then anything else by its code.
+ *
+ * Nothing may read a jurisdiction list in the order a record happens to hold it. The stored field
+ * is JSON, and PostgreSQL's `jsonb` does not keep an object's key order, so the page rendered from
+ * the database listed the jurisdictions in one order and the page rendered from the corpus files
+ * in another — the disagreement §11 names. Both now sort through this comparator.
+ */
+export const JURISDICTION_ORDER: readonly string[] = ['SG', 'US', 'AU', 'UK', 'EU', 'JP', 'CA']
+
+export function byJurisdiction(a: string, b: string): number {
+  const left = JURISDICTION_ORDER.indexOf(a)
+  const right = JURISDICTION_ORDER.indexOf(b)
+  if (left >= 0 && right >= 0) return left - right
+  if (left >= 0) return -1
+  if (right >= 0) return 1
+  return a.localeCompare(b)
+}
+
+/* ------------------------------------------- absences and classifications (§13 item 1) */
+
+/**
+ * The words a register uses to say it holds nothing (§13(1)).
+ *
+ * "SG not found, AU scheduled in the Poisons Standard and UK not cleared: the registers'
+ * classification of X" offered three findings as one classification, two of which were absences.
+ * An absence is not a classification and does not follow from one, so it never reaches a prose
+ * answer: the registration block's absence table is where the page states it, once, in a table.
+ */
+const ABSENCE_STATUS =
+  /^(?:not\s+(?:found|cleared|checked|listed|recorded|stated)|no\s+(?:record|status|entry)|unknown|none)\b/i
+
+export function isAbsenceStatus(status: string | undefined): boolean {
+  return status === undefined || ABSENCE_STATUS.test(status.trim())
+}
+
+/**
+ * An affirmative classification (§13(1)): a controlled-substance schedule, a withdrawal, a boxed
+ * warning, a REMS, or a register's own word for what kind of product this is.
+ *
+ * A registration status — approved, registered, marketed — is a register listing, and the
+ * registration block is the single place for it. Only the words below classify the substance, so
+ * only they may open a classification answer.
+ */
+const AFFIRMATIVE_CLASSIFICATION =
+  /\b(controlled|schedul|poisons?\s+standard|misuse\s+of\s+drugs|supplement|withdrawn|withdrawal|boxed\s+warning|rems|restricted|narcotic|psychotropic)/i
+
+export function isAffirmativeClassification(status: string | undefined): boolean {
+  if (status === undefined) return false
+  if (isAbsenceStatus(status)) return false
+  return AFFIRMATIVE_CLASSIFICATION.test(status)
+}
+
 export function readRegisterStatuses(entry: FieldEntry | undefined): {
   recorded: RegisterStatus[]
   unknown: string[]
@@ -851,7 +926,14 @@ export function readRegisterStatuses(entry: FieldEntry | undefined): {
   const neverCleared: string[] = []
   const value = asObject(entry?.value)
   if (!value) return { recorded, unknown, neverCleared }
-  for (const [code, raw] of Object.entries(value)) {
+  for (const [code, raw] of [...Object.entries(value)].sort(([a], [b]) => byJurisdiction(a, b))) {
+    /*
+     * §13(1): only a two-letter jurisdiction code names a jurisdiction. The stored map also
+     * carries the extractor's own notes — `curatedMarketingStatusNote`, whose value is a paragraph
+     * about what NCATS Inxight Drugs is — and reading them as jurisdictions put a stored field name
+     * and its note inside a sentence about a label's indication.
+     */
+    if (!/^[A-Z]{2}$/.test(code)) continue
     const o = asObject(raw)
     const status = asString(o ? pick(o, 'status') : raw)
     if (!status) continue
@@ -895,7 +977,9 @@ export function readRegisterStatuses(entry: FieldEntry | undefined): {
  * precedence — never a fixed section order, and never a heading with nothing under it.
  */
 export const BLOCK_ORDER = [
-  'classification',
+  // §13(1) retired `classification`: its answer was "No regulator classification is recorded for
+  // X", an absence offered as a finding, on 16,814 pages. The registration block's absence table
+  // states it once, as furniture, and no question is asked.
   'supervision',
   'indication',
   'human-data',
@@ -922,21 +1006,20 @@ export const BLOCK_ORDER = [
   'fasting-exercise',
   'pathway',
   'lineage',
-  'regulatory-only',
-  'jurisdiction',
+  // §15(4) retired `regulatory-only` and `jurisdiction` with the register status value line that
+  // was the whole answer of each. The registration block is the only place a register's status is
+  // stated.
   'contradiction',
   'provenance',
   'target-phase',
   'mechanism-action',
   'sponsor-phase',
   'development-stop',
-  'never-dosed',
 ] as const
 
 /** Every emitting template in the spec table. `stub` emits nothing and is not listed here. */
 export const TEMPLATE_IDS = [
   'supervision',
-  'classification',
   'human-data',
   'human-data-none',
   'ladder',
@@ -965,17 +1048,14 @@ export const TEMPLATE_IDS = [
   'fasting-exercise',
   'pathway',
   'lineage',
-  'jurisdiction',
   'contradiction',
   'provenance',
   'indication',
-  'regulatory-only',
   'trial-history',
   'target-phase',
   'mechanism-action',
   'sponsor-phase',
   'development-stop',
-  'never-dosed',
 ] as const
 
 export type TemplateId = (typeof TEMPLATE_IDS)[number]
@@ -991,8 +1071,19 @@ interface Draft {
 /**
  * Seeds 1, 2 and 6 are removed absolutely under R2 suppression, and a suppressed page always leads
  * with the supervision block (which is first in §4's order).
+ *
+ * `dose-studied` joins them (`docs/specs/phase4-generators.md` §4). That question quotes a
+ * recorded dose and asks the reader over how long it ran, which is the one question on the page a
+ * reader can act on with a dose in hand. R2 already drops "any other derived seed that could read
+ * as guidance for a suppressed compound" (`docs/specs/suppression-classes.md`), and Operating
+ * Rule 9 forbids dosing text on a substance carrying a controlled-substance schedule. The
+ * schedules themselves reach this filter through `p.suppressed`: the Phase 4 assignments file
+ * (`scripts/revamp/controlled_suppression.py`) sets that flag from the `controlled` field's SG
+ * Misuse of Drugs Act and Poisons Act schedules, US DEA schedule and AU Poisons Standard
+ * Schedule 8 or 9 entries, so no dose rule is written here. The recorded dose itself is not
+ * removed: it stays in the block's rows, and only the question is withheld.
  */
-const SUPPRESSED_BLOCKS = new Set(['bioavailability', 'n-of-1', 'time-to-signal'])
+const SUPPRESSED_BLOCKS = new Set(['bioavailability', 'n-of-1', 'time-to-signal', 'dose-studied'])
 
 /**
  * A slot carries a source's own words, and a recorded value may contain one of the guarded words
@@ -1053,15 +1144,14 @@ export function deriveQuestions(
   if (p.suppressed) {
     const unknownClassOnly =
       p.suppressionClasses.length > 0 && p.suppressionClasses.every((code) => code === 'S10')
-    if (unknownClassOnly) {
-      push(
-        'classification',
-        'classification',
-        `What classification does ${name} carry?`,
-        { name },
-        sourcesOf(present('regulatoryStatus')),
-      )
-    } else {
+    /*
+     * §13(1): "What classification does X carry?" fired only on an S10-only record — the class the
+     * suppression pass assigns when it could read none — and its answer was "No regulator
+     * classification is recorded for X". An absence offered as an answer is a non-sequitur, and it
+     * stood on 16,814 pages. The question is not asked; the registration block's absence table
+     * states the same thing once, as furniture, on every page.
+     */
+    if (!unknownClassOnly) {
       push(
         'supervision',
         'supervision',
@@ -1426,14 +1516,32 @@ export function deriveQuestions(
   /* -- what-would-settle (seed 9) ---------------------------------------------- */
   const seed9 = seed('seed9')
   if (seed9) {
-    const endpoint = asString(pick(asObject(seed9.values), 'endpoint', 'primaryEndpoint'))
-    if (endpoint) {
+    /*
+     * §15(5): the ageing wording is used only where the running trial's primary endpoint is in
+     * the ageing-endpoint vocabulary. Seed 9 recorded "lifespan" for an event-free-survival
+     * endpoint, and the page then asked which running trial could settle the compound's effect on
+     * lifespan — a question the trial does not answer. Where the seed records no ageing endpoint
+     * the question asks what reads out next and the answer names the endpoint in the register's
+     * own words.
+     */
+    const slots = { ...(asObject(seed9.values) ?? {}), ...(asObject(seed9.slots) ?? {}) }
+    const ageing = asString(pick(slots, 'endpoint'))
+    const verbatim = asString(pick(slots, 'primaryEndpoint'))
+    if (ageing) {
       push(
         'what-would-settle',
         'what-would-settle',
         // "Which running trial could settle" was five fixed words on 15.2 % of indexed pages.
-        `Which running trial of ${name} could settle ${endpoint}?`,
-        { name, endpoint },
+        `Which running trial of ${name} could settle ${ageing}?`,
+        { name, endpoint: ageing },
+        [...seedSources(seed9.values), ...sourcesOf(ongoing)],
+      )
+    } else if (verbatim) {
+      push(
+        'what-would-settle',
+        'what-would-settle',
+        `Which running trial of ${name} reads out next?`,
+        { name },
         [...seedSources(seed9.values), ...sourcesOf(ongoing)],
       )
     }
@@ -1615,31 +1723,14 @@ export function deriveQuestions(
   }
 
   /* -- jurisdiction (seed 17) --------------------------------------------------------------- */
-  const seed17 = seed('seed17')
-  if (seed17) {
-    const v = asObject(seed17.values)
-    const raw = pick(v, 'jurisdictions', 'statuses')
-    const rawObject = asObject(raw)
-    const jurisdictions = unique(
-      rawObject
-        ? Object.keys(rawObject)
-        : asArray(raw)
-            .map((j) =>
-              asString(asObject(j) ? pick(asObject(j), 'jurisdiction', 'code', 'name') : j),
-            )
-            .filter((j): j is string => Boolean(j)),
-    )
-    if (jurisdictions.length >= 2) {
-      const list = joinList(jurisdictions)
-      push(
-        'jurisdiction',
-        'jurisdiction',
-        `Drug, supplement or controlled: what is ${name} in ${list}?`,
-        { name, jurisdictions: list },
-        [...seedSources(seed17.values), ...sourcesOf(present('regulatoryStatus'))],
-      )
-    }
-  }
+  /*
+   * §15(4) retires this block with `regulatory-only`. §13(1) had kept it where a register recorded
+   * an affirmative classification, and its answer was that register's own status line — "EU
+   * withdrawn: the registers' classifications of Rosiglitazone" on 160 pages. §15(4) is general:
+   * "the register status value line leaves the question blocks entirely (the registration block is
+   * the only place)". A withdrawal is still stated, once, in the registration block, with the
+   * register that recorded it and the date it was read.
+   */
 
   /* -- contradiction (seed 10) ---------------------------------------------------------------- */
   if (seed('seed10')) {
@@ -1653,19 +1744,43 @@ export function deriveQuestions(
   }
 
   /* -- provenance (seed 8) ---------------------------------------------------------------------- */
+  /*
+   * §14(10): the question names the first and last event kinds, in that order, and fires only on
+   * three or more dated events.
+   *
+   * It used to read "How did X get from {firstYear} to {currentState}?", where the current state
+   * came from a register and the year from the earliest event. On a record whose earliest dated
+   * event is its approval, that asked how the compound got from its approval to being approved,
+   * and the draw found one reading "How did X get from 1989 to approved?" over the events "1989
+   * first approval, 2004 first human trial". Naming both ends makes the question the timeline's
+   * own shape, and sorting the events makes the first end the earliest one.
+   */
   const seed8 = seed('seed8')
   if (seed8) {
     const v = asObject(seed8.values)
-    const firstYear = year(
-      pick(v, 'firstYear', 'firstEventYear', 'firstPublicationYear', 'firstEvent'),
-    )
-    const currentState = asString(pick(v, 'currentState', 'current', 'state'))
-    if (firstYear && currentState) {
+    const events = asArray(pick(v, 'events'))
+      .map((event) => asObject(event))
+      .filter((event): event is Record<string, unknown> => event !== undefined)
+      .map((event) => ({
+        kind: asString(pick(event, 'event')),
+        year: year(pick(event, 'year', 'date')),
+      }))
+      .filter((event): event is { kind: string; year: string } => Boolean(event.kind && event.year))
+      .sort((a, b) => a.year.localeCompare(b.year))
+    const first = events[0]
+    const last = events[events.length - 1]
+    if (events.length >= 3 && first && last && !(first.kind === last.kind)) {
       push(
         'provenance',
         'provenance',
-        `How did ${name} get from ${firstYear} to ${currentState}?`,
-        { name, firstYear, currentState },
+        `How did ${name} get from ${first.kind} in ${first.year} to ${last.kind} in ${last.year}?`,
+        {
+          name,
+          firstYear: first.year,
+          firstEvent: first.kind,
+          lastYear: last.year,
+          lastEvent: last.kind,
+        },
         seedSources(seed8.values),
       )
     }
@@ -1704,17 +1819,15 @@ export function deriveQuestions(
     )
   }
 
-  const registers = present('regulatoryStatus')
-  const registerStatuses = readRegisterStatuses(registers)
-  if (isClinical && registers && !indication && registerStatuses.recorded.length > 0) {
-    push(
-      'regulatory-only',
-      'regulatory-only',
-      `Where is ${name} approved?`,
-      { name },
-      sourcesOf(registers),
-    )
-  }
+  /*
+   * §15(4) retires `regulatory-only`. "Where is X approved?" was answered by the register status
+   * line and by nothing else — "CA approved (2026-09-04). Drugs@FDA · 2026-08-28" — and §14(2)
+   * had already made the registration block the one place a register status is stated. On a page
+   * whose only recorded approval is one jurisdiction's, that answer is one register's line
+   * repeated verbatim in the position of an answer: the measured shape on 182 pages (0.64 %) in
+   * slop draws 6 and 7. The question is not asked, and the registration block answers it once, on
+   * every page, with every jurisdiction it holds.
+   */
 
   const trialHistory = present('trialHistory')
   const trialHistoryValue = asObject(trialHistory?.value)
@@ -1823,26 +1936,16 @@ export function deriveQuestions(
     }
   }
 
-  /* -- never-dosed ----------------------------------------------------------------------------------- */
-  const everDosed = present('everDosedInHumans')
-  if (p.model === 'DEVELOPMENT' && everDosed) {
-    const e = asObject(everDosed.value)
-    const flag = e ? pick(e, 'bool', 'everDosed', 'everDosedInHumans', 'value') : everDosed.value
-    if (flag === false) {
-      push(
-        'never-dosed',
-        'never-dosed',
-        `Has ${name} ever reached a person?`,
-        { name },
-        sourcesOf(everDosed),
-      )
-    }
-  }
+  /*
+   * §14(11): `never-dosed` is retired. "Has X ever reached a person?" fired only where the record
+   * says no one has, and its answer was that absence — the shape §13(1) took out of the
+   * classification question. The header line "No human study recorded" carries it, once.
+   */
 
   /* -- suppression, one-per-block, §4 order ---------------------------------------------------------- */
   const kept = new Map<string, Draft>()
   for (const d of drafts) {
-    if (p.suppressed && SUPPRESSED_BLOCKS.has(d.block)) continue
+    if ((p.suppressed || p.controlled) && SUPPRESSED_BLOCKS.has(d.block)) continue
     if (!kept.has(d.block)) kept.set(d.block, d)
   }
   const ordered = [...kept.values()].sort(
@@ -2269,11 +2372,20 @@ async function main(): Promise<void> {
     const classes = asArray(pick(row, 'classes', 'suppressionClasses'))
       .map((c) => asString(c))
       .filter((c): c is string => Boolean(c))
+    const page = pages.get(key)
     if (classes.length > 0) {
       suppressionClasses.set(key, classes)
-      const page = pages.get(key)
       if (page) page.suppressionClasses = classes
     }
+    if (!page) continue
+    /*
+     * The assignments file is the record of both flags. The field batches carry `suppressed` only
+     * where the extractor happened to copy it, and the Phase 4 batches do not carry it at all, so
+     * reading it here is what makes the Phase 4 run withhold the blocks it must withhold. The
+     * controlled trigger is `scripts/revamp/controlled_suppression.py`'s own recorded decision.
+     */
+    if (typeof row.suppressed === 'boolean') page.suppressed = row.suppressed
+    if (row.controlledTrigger === true) page.controlled = true
   }
 
   // Only the seed files themselves: `derived/indexes/*.ndjson` holds the corpus-wide bipartite

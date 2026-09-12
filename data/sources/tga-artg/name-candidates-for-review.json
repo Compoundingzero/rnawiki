@@ -1,0 +1,2481 @@
+{
+  "source": "tga-artg",
+  "generated": "2026-09-06",
+  "rule": "revamp-2026-09 Phase 2 mapping rule (d): a normalised-name match is a candidate until a UNII or InChIKey confirms it. Every entry below is unconfirmed. classEntry marks a Poisons Standard entry that names a class of substances rather than one substance; shortName marks a normalised name of four characters or fewer, where a collision is more likely.",
+  "count": 132,
+  "candidates": [
+    {
+      "substance": "ACETONE",
+      "normalised": "acetone",
+      "candidate_page_keys": [
+        "K1:CU38ZXW8ZG"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0005"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ACLIDINIUM BROMIDE",
+      "normalised": "aclidinium bromide",
+      "candidate_page_keys": [
+        "K1:K17VY42F6C"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0027"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ACRIFLAVINIUM CHLORIDE",
+      "normalised": "acriflavinium chloride",
+      "candidate_page_keys": [
+        "K1:1T3A50395T"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0006",
+        "frl:F2026L00633:schedule-7:0003"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ADRENALINE",
+      "normalised": "adrenaline",
+      "candidate_page_keys": [
+        "K1:NA71GR3TNV"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0002",
+        "frl:F2026L00633:schedule-4:0039"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "AFATINIB DIMALEATE",
+      "normalised": "afatinib dimaleate",
+      "candidate_page_keys": [
+        "K1:41UD74L59M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0042"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ALGLUCOSIDASE",
+      "normalised": "alglucosidase",
+      "candidate_page_keys": [
+        "K1:DTI67O9503"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0062"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ALIMEMAZINE",
+      "normalised": "alimemazine",
+      "candidate_page_keys": [
+        "K1:76H78MJJ52",
+        "K1:FF3207A72P"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0004",
+        "frl:F2026L00633:schedule-3:0004",
+        "frl:F2026L00633:schedule-4:0063"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ALPHA-CYPERMETHRIN",
+      "normalised": "alpha cypermethrin",
+      "candidate_page_keys": [
+        "K1:1TR49121NP"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0014",
+        "frl:F2026L00633:schedule-6:0015",
+        "frl:F2026L00633:schedule-7:0010"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "AMPHOMYCIN",
+      "normalised": "amphomycin",
+      "candidate_page_keys": [
+        "K2:NFTBBVJRGJPZER-WYMLVPIESA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0115"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "AOD-9604",
+      "normalised": "aod 9604",
+      "candidate_page_keys": [
+        "K1:7UP768IP4M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0148"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "APROTININ",
+      "normalised": "aprotinin",
+      "candidate_page_keys": [
+        "K1:D9GM7FH652"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0158"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ASTODRIMER SODIUM",
+      "normalised": "astodrimer sodium",
+      "candidate_page_keys": [
+        "K1:F8H3J9KSY9"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0009",
+        "frl:F2026L00633:schedule-3:0007"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ATENOLOL",
+      "normalised": "atenolol",
+      "candidate_page_keys": [
+        "K1:50VV3VW0TI",
+        "K1:DPF757BOSR",
+        "K1:YG132I00WY"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0176"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ATROPINE METHONITRATE",
+      "normalised": "atropine methonitrate",
+      "candidate_page_keys": [
+        "K1:80719I460H"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0187"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "AZITHROMYCIN",
+      "normalised": "azithromycin",
+      "candidate_page_keys": [
+        "K1:4B9XT59T7S",
+        "K1:H1250JIK0A",
+        "K1:J2KLZ20U1M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0207"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "BENZATHINE PENICILLIN",
+      "normalised": "benzathine penicillin",
+      "candidate_page_keys": [
+        "K1:Q42T66VG0C"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0242"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "BENZODIAZEPINE",
+      "normalised": "benzodiazepine",
+      "candidate_page_keys": [
+        "K1:5PE9FDE8GB",
+        "K1:M0Q7802G2B",
+        "K1:R60L0SM5BC"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0245"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "BETHANECHOL CHLORIDE",
+      "normalised": "bethanechol chloride",
+      "candidate_page_keys": [
+        "K1:004F72P8F4"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0258"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "BPC-157",
+      "normalised": "bpc 157",
+      "candidate_page_keys": [
+        "K2:HEEWEZGQMLZMFE-RKGINYAYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0291"
+      ],
+      "reason": "unii_name_salt_stripped",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "BROMOPHOS",
+      "normalised": "bromophos",
+      "candidate_page_keys": [
+        "K1:74A4TNE8C3"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0077"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CALCIFEROL",
+      "normalised": "calciferol",
+      "candidate_page_keys": [
+        "K1:VS041H42XC"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0093",
+        "frl:F2026L00633:schedule-7:0041"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CALCITONIN",
+      "normalised": "calcitonin",
+      "candidate_page_keys": [
+        "K1:I0IO929019"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0331"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CALCIUM CARBIMIDE",
+      "normalised": "calcium carbimide",
+      "candidate_page_keys": [
+        "K2:VPKDCDLSJZCGKE-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0334"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CARBACHOL",
+      "normalised": "carbachol",
+      "candidate_page_keys": [
+        "K1:54Z8M50D6Q"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0358"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CEFACLOR",
+      "normalised": "cefaclor",
+      "candidate_page_keys": [
+        "K1:3Z6FS3IK0K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0388"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CHLORFENVINPHOS",
+      "normalised": "chlorfenvinphos",
+      "candidate_page_keys": [
+        "K1:871L5HXP4D"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-7:0053"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CHLORMEZANONE",
+      "normalised": "chlormezanone",
+      "candidate_page_keys": [
+        "K1:GP568V9G19"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0445"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CIDOFOVIR",
+      "normalised": "cidofovir",
+      "candidate_page_keys": [
+        "K1:768M1V522C"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0469"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CJC-1295",
+      "normalised": "cjc 1295",
+      "candidate_page_keys": [
+        "K1:62RC32V9N7"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0486"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CLOCORTOLONE",
+      "normalised": "clocortolone",
+      "candidate_page_keys": [
+        "K1:85061HTR8T"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0502"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CLOPROSTENOL",
+      "normalised": "cloprostenol",
+      "candidate_page_keys": [
+        "K2:VJGGHXVGBSZVMZ-YVKATYTESA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0515"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CO-TRIMOXAZOLE",
+      "normalised": "co trimoxazole",
+      "candidate_page_keys": [
+        "COMBO:{K1:AN164J8Y0X,K1:JE42381TNV}",
+        "K1:JE42381TNV"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0546"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CODEINE",
+      "normalised": "codeine",
+      "candidate_page_keys": [
+        "K1:UX6OWY2V7J"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0526",
+        "frl:F2026L00633:schedule-8:0019"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "COLLAGEN",
+      "normalised": "collagen",
+      "candidate_page_keys": [
+        "K1:4VQ3JK6ZJJ"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0534"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CROTON TIGLIUM",
+      "normalised": "croton tiglium",
+      "candidate_page_keys": [
+        "K1:0HK2GZK66E"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-10:0034"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CURARE",
+      "normalised": "curare",
+      "candidate_page_keys": [
+        "K1:W9YXS298BM"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0552"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CYCLOPENTHIAZIDE",
+      "normalised": "cyclopenthiazide",
+      "candidate_page_keys": [
+        "K1:VX4S2N85F5"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0558"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "CYCLOPHOSPHAMIDE",
+      "normalised": "cyclophosphamide",
+      "candidate_page_keys": [
+        "K1:ER09126G7A"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0560"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "DEOXYRIBONUCLEASE",
+      "normalised": "deoxyribonuclease",
+      "candidate_page_keys": [
+        "K1:0BE71HM000"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0619"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "DESVENLAFAXINE",
+      "normalised": "desvenlafaxine",
+      "candidate_page_keys": [
+        "K1:189BFR45S0",
+        "K1:NG99554ANW"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0634"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "DOCETAXEL",
+      "normalised": "docetaxel",
+      "candidate_page_keys": [
+        "K1:699121PHCA",
+        "K1:X9N27M888C"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0724"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "DOXEPIN",
+      "normalised": "doxepin",
+      "candidate_page_keys": [
+        "K2:ODQWQRRAPPTVAG-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0740"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "DOXYCYCLINE",
+      "normalised": "doxycycline",
+      "candidate_page_keys": [
+        "K1:334895S862",
+        "K1:F8VB5M810T"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0742"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "EPHEDRA",
+      "normalised": "ephedra",
+      "candidate_page_keys": [
+        "K1:55L3XLO37E"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0803"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "EPHEDRINE",
+      "normalised": "ephedrine",
+      "candidate_page_keys": [
+        "K1:72087NSY56",
+        "K1:GN83C131XS"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0804"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ESTETROL MONOHYDRATE",
+      "normalised": "estetrol monohydrate",
+      "candidate_page_keys": [
+        "K1:ENB39R14VF"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0831"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ETHOPROPAZINE",
+      "normalised": "ethopropazine",
+      "candidate_page_keys": [
+        "K1:36P25IV7YN",
+        "K1:7WI4P02YN1"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0850"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "FLUOCORTIN",
+      "normalised": "fluocortin",
+      "candidate_page_keys": [
+        "K1:6N7OA9MO7O"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0930"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "FLUPENTIXOL",
+      "normalised": "flupentixol",
+      "candidate_page_keys": [
+        "K1:FA0UYH6QUO"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0938"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "GALLAMINE",
+      "normalised": "gallamine",
+      "candidate_page_keys": [
+        "K1:VYJ027LZ05"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0988"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "GENTAMICIN",
+      "normalised": "gentamicin",
+      "candidate_page_keys": [
+        "K1:8X7386QRLV"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1001"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "GONADORELIN",
+      "normalised": "gonadorelin",
+      "candidate_page_keys": [
+        "K1:DB7AK6G4U9",
+        "K2:XLXSAKCOAKORKW-AQJXLSMYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1025"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "HUMAN CHORIONIC GONADOTROPHIN",
+      "normalised": "human chorionic gonadotrophin",
+      "candidate_page_keys": [
+        "K1:20ED16GHEB"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1069"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "HUMAN PAPILLOMAVIRUS VACCINE",
+      "normalised": "human papillomavirus vaccine",
+      "candidate_page_keys": [
+        "K3:CHEMBL6068359"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1070"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "HYOSCYAMINE",
+      "normalised": "hyoscyamine",
+      "candidate_page_keys": [
+        "K1:PX44XO846X",
+        "K1:V3203SI72M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0074",
+        "frl:F2026L00633:schedule-4:1088"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "IBUPROFEN",
+      "normalised": "ibuprofen",
+      "candidate_page_keys": [
+        "K1:99W8H60N62",
+        "K1:WK2XYI10QM"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0076",
+        "frl:F2026L00633:schedule-3:0047",
+        "frl:F2026L00633:schedule-4:1099"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "IMMUNOGLOBULINS",
+      "normalised": "immunoglobulins",
+      "candidate_page_keys": [
+        "K1:66Y330CJHS"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1122"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ISOPRENALINE",
+      "normalised": "isoprenaline",
+      "candidate_page_keys": [
+        "K1:70D2X5QMKK",
+        "K1:L628TT009W"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1165"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ISOPRINOSINE",
+      "normalised": "isoprinosine",
+      "candidate_page_keys": [
+        "COMBO:{K1:04Z20NMK31,K1:5A614L51CT}"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1166"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "JAPANESE ENCEPHALITIS VACCINE",
+      "normalised": "japanese encephalitis vaccine",
+      "candidate_page_keys": [
+        "K1:DZ854I04ZE"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1182"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "KANAMYCIN",
+      "normalised": "kanamycin",
+      "candidate_page_keys": [
+        "K1:EQK9Q303C5"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1183"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "KETAZOLAM",
+      "normalised": "ketazolam",
+      "candidate_page_keys": [
+        "K1:92A214MD7Y"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1185"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "LISINOPRIL",
+      "normalised": "lisinopril",
+      "candidate_page_keys": [
+        "K1:7Q3P4BS2FD"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1253"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "LOGIPARIN",
+      "normalised": "logiparin",
+      "candidate_page_keys": [
+        "K1:7UQ7X4Y489"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1259"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "LOTEPREDNOL",
+      "normalised": "loteprednol",
+      "candidate_page_keys": [
+        "K1:I3T12NR296",
+        "K1:YEH1EZ96K6"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1272"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "LUFENURON",
+      "normalised": "lufenuron",
+      "candidate_page_keys": [
+        "K1:1R754M4918"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0250"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MALACHITE GREEN",
+      "normalised": "malachite green",
+      "candidate_page_keys": [
+        "K1:680V7SFB75"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0254",
+        "frl:F2026L00633:schedule-7:0143"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MEDROXYPROGESTERONE",
+      "normalised": "medroxyprogesterone",
+      "candidate_page_keys": [
+        "K1:4G7DS2Q64Y",
+        "K1:C2QI4IOI2G"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1312"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MEFENOREX",
+      "normalised": "mefenorex",
+      "candidate_page_keys": [
+        "K1:K98M4N387W"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1315"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MELENGESTROL",
+      "normalised": "melengestrol",
+      "candidate_page_keys": [
+        "K1:4W5HDS3936"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1322"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MERCAPTOACETIC ACID",
+      "normalised": "mercaptoacetic acid",
+      "candidate_page_keys": [
+        "K1:7857H94KHM"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0268",
+        "frl:F2026L00633:schedule-6:0343"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METAZOCINE",
+      "normalised": "metazocine",
+      "candidate_page_keys": [
+        "K2:YGSVZRIZCHZUHB-NZVBXONLSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0098"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METENOLONE",
+      "normalised": "metenolone",
+      "candidate_page_keys": [
+        "K1:W75590VPKQ"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1355"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METHENOLONE",
+      "normalised": "methenolone",
+      "candidate_page_keys": [
+        "K1:W75590VPKQ"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1365"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METHYL METHACRYLATE",
+      "normalised": "methyl methacrylate",
+      "candidate_page_keys": [
+        "K1:C58H6JXO5L"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0365",
+        "frl:F2026L00633:schedule-10:0070"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METHYLENE BLUE",
+      "normalised": "methylene blue",
+      "candidate_page_keys": [
+        "K1:ZMZ79891ZH"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1383",
+        "frl:F2026L00633:schedule-5:0283",
+        "frl:F2026L00633:schedule-7:0161"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "METRIFONATE",
+      "normalised": "metrifonate",
+      "candidate_page_keys": [
+        "K1:DBF2DG4G2K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1402"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "MONOCLONAL ANTIBODIES",
+      "normalised": "monoclonal antibodies",
+      "candidate_page_keys": [
+        "K1:31YO63LBSN",
+        "K1:52CMI0WC3Y",
+        "K1:DPT0O3T46P",
+        "K1:P188ANX8CK",
+        "K1:PQX0D8J21J"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1446"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "NADROPARIN",
+      "normalised": "nadroparin",
+      "candidate_page_keys": [
+        "K1:LIA7Z4002P"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1465"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "NAPHTHALOPHOS",
+      "normalised": "naphthalophos",
+      "candidate_page_keys": [
+        "K1:H5IT2P8H5I"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0390",
+        "frl:F2026L00633:schedule-7:0169"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "NORELGESTROMIN",
+      "normalised": "norelgestromin",
+      "candidate_page_keys": [
+        "K1:UM2XKY25DH"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1540"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "OCTATROPINE",
+      "normalised": "octatropine",
+      "candidate_page_keys": [
+        "K1:704G17JK68"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1558"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "OXEDRINE",
+      "normalised": "oxedrine",
+      "candidate_page_keys": [
+        "K1:73SNV1H5Y5",
+        "K1:PEG5DP7434"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1604"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "OXYPHENBUTAZONE",
+      "normalised": "oxyphenbutazone",
+      "candidate_page_keys": [
+        "K1:A7D84513GV"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1616"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "OXYTETRACYCLINE",
+      "normalised": "oxytetracycline",
+      "candidate_page_keys": [
+        "K1:SLF0D9077S"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1619",
+        "frl:F2026L00633:schedule-5:0328"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PANCREATIC ENZYMES",
+      "normalised": "pancreatic enzymes",
+      "candidate_page_keys": [
+        "K1:FQ3DRG0N5K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1632"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PAROXETINE",
+      "normalised": "paroxetine",
+      "candidate_page_keys": [
+        "K1:41VRH5220H",
+        "K1:58SBH37T77"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1646"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PEGINTERFERON",
+      "normalised": "peginterferon",
+      "candidate_page_keys": [
+        "K1:G8RGG88B68"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1657"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PENBUTOLOL",
+      "normalised": "penbutolol",
+      "candidate_page_keys": [
+        "K1:3MVQ8H3X65",
+        "K1:78W62V43DY"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1666"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PENTOSAN POLYSULFATE SODIUM",
+      "normalised": "pentosan polysulfate sodium",
+      "candidate_page_keys": [
+        "K1:F59P8B75R4"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1677"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PERAMIVIR",
+      "normalised": "peramivir",
+      "candidate_page_keys": [
+        "K1:9ZS94HQO3B"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1679"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PHENADOXONE",
+      "normalised": "phenadoxone",
+      "candidate_page_keys": [
+        "K1:375W3TA42N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0145"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PHENYLPROPANOLAMINE",
+      "normalised": "phenylpropanolamine",
+      "candidate_page_keys": [
+        "K1:57B9YG5Y1E",
+        "K1:7875H6443P",
+        "K2:DLNKOYKMWOXYQA-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1713"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PHOSPHODIESTERASE TYPE 5 INHIBITORS",
+      "normalised": "phosphodiesterase type 5 inhibitors",
+      "candidate_page_keys": [
+        "K1:3M7OB98Y7H"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1718"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PIMOBENDAN",
+      "normalised": "pimobendan",
+      "candidate_page_keys": [
+        "K1:34AP3BBP9T"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1725"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PINACIDIL",
+      "normalised": "pinacidil",
+      "candidate_page_keys": [
+        "K1:Y08IPB8MZH"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1727"
+      ],
+      "reason": "unii_name_exact_display_name_tiebreak",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PINAVERIUM BROMIDE",
+      "normalised": "pinaverium bromide",
+      "candidate_page_keys": [
+        "K2:DDHUTBKXLWCZCO-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1728"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PIPERACILLIN",
+      "normalised": "piperacillin",
+      "candidate_page_keys": [
+        "K1:9I628532GX"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1735"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PNEUMOCOCCAL VACCINE",
+      "normalised": "pneumococcal vaccine",
+      "candidate_page_keys": [
+        "K1:N47C1SHV0F"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1758"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "POLIOMYELITIS VACCINE",
+      "normalised": "poliomyelitis vaccine",
+      "candidate_page_keys": [
+        "K3:CHEMBL2107962"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1763"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "POTASSIUM NITRITE",
+      "normalised": "potassium nitrite",
+      "candidate_page_keys": [
+        "K1:T2I5UM75DN"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0356",
+        "frl:F2026L00633:schedule-6:0450",
+        "frl:F2026L00633:schedule-7:0188"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PROCAINE BENZYLPENICILLIN",
+      "normalised": "procaine benzylpenicillin",
+      "candidate_page_keys": [
+        "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1808"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PROTAMINE",
+      "normalised": "protamine",
+      "candidate_page_keys": [
+        "K1:0DE9724IHC"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1836"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "PYRITHIONE ZINC",
+      "normalised": "pyrithione zinc",
+      "candidate_page_keys": [
+        "K1:6GK82EC25D"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0143",
+        "frl:F2026L00633:schedule-5:0381",
+        "frl:F2026L00633:schedule-6:0475"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ROSIN",
+      "normalised": "rosin",
+      "candidate_page_keys": [
+        "K1:SVS3GU8AY8"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0392"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SILVER SULFADIAZINE",
+      "normalised": "silver sulfadiazine",
+      "candidate_page_keys": [
+        "K1:0N7609K889"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1989"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SODIUM HYDROGEN SULFATE",
+      "normalised": "sodium hydrogen sulfate",
+      "candidate_page_keys": [
+        "K1:0YPR65R21J"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0406"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SODIUM OXYBATE",
+      "normalised": "sodium oxybate",
+      "candidate_page_keys": [
+        "K1:30IW36W5B2"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-8:0078"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SODIUM PHOSPHATE",
+      "normalised": "sodium phosphate",
+      "candidate_page_keys": [
+        "K1:22ADO53M6F",
+        "K1:SX01TZO3QZ"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0089",
+        "frl:F2026L00633:schedule-4:2005"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SODIUM PICOSULFATE",
+      "normalised": "sodium picosulfate",
+      "candidate_page_keys": [
+        "K1:95D580798S"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0090"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "SODIUM THIOSULFATE ANHYDROUS",
+      "normalised": "sodium thiosulfate anhydrous",
+      "candidate_page_keys": [
+        "K1:HX1032V43M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2009"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "STENABOLIC (SR9009)",
+      "normalised": "stenabolic sr9009",
+      "candidate_page_keys": [
+        "K1:X5DCA09N30"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2035"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "STENBOLONE",
+      "normalised": "stenbolone",
+      "candidate_page_keys": [
+        "K1:36HF75V9XI"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2036"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "STILBESTROL",
+      "normalised": "stilbestrol",
+      "candidate_page_keys": [
+        "K1:731DCA35BT"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2038"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "STROPHANTHUS",
+      "normalised": "strophanthus",
+      "candidate_page_keys": [
+        "K1:17A930VR0G",
+        "K1:434209F77F",
+        "K1:S81N5ILG2E"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2045"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TAFENOQUINE SUCCINATE",
+      "normalised": "tafenoquine succinate",
+      "candidate_page_keys": [
+        "K1:262P8GS9L9"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2094"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TAPENTADOL",
+      "normalised": "tapentadol",
+      "candidate_page_keys": [
+        "K1:9BK3JK3ETK",
+        "K1:H8A007M585"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-8:0080"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TB-500",
+      "normalised": "tb 500",
+      "candidate_page_keys": [
+        "K1:QHK6Z47GTG"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2107"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TETRABENAZINE",
+      "normalised": "tetrabenazine",
+      "candidate_page_keys": [
+        "K1:8A3NP33E5M",
+        "K2:MKJIEFSOBYUXJB-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2143"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "THEOPHYLLINE",
+      "normalised": "theophylline",
+      "candidate_page_keys": [
+        "K1:0I55128JYK"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0094",
+        "frl:F2026L00633:schedule-4:2153"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TIANEPTINE",
+      "normalised": "tianeptine",
+      "candidate_page_keys": [
+        "K1:0T493YFU8O"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2179"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TILIDINE",
+      "normalised": "tilidine",
+      "candidate_page_keys": [
+        "K1:2728MV084C",
+        "K2:WDEFBBTXULIOBB-UHFFFAOYSA-N"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-8:0085"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TRAMETINIB DIMETHYL SULFOXIDE",
+      "normalised": "trametinib dimethyl sulfoxide",
+      "candidate_page_keys": [
+        "K1:33E86K87QN"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2236"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TRICHLORFON",
+      "normalised": "trichlorfon",
+      "candidate_page_keys": [
+        "K1:DBF2DG4G2K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0549"
+      ],
+      "reason": "ambiguous_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "TUBERCULIN",
+      "normalised": "tuberculin",
+      "candidate_page_keys": [
+        "K1:I7L8FKN87J"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2286"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "VACCINES",
+      "normalised": "vaccines",
+      "candidate_page_keys": [
+        "K1:IHN2NQ5OF9"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2305",
+        "frl:F2026L00633:schedule-4:2306",
+        "frl:F2026L00633:schedule-4:2307"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "VATINOXAN HYDROCHLORIDE",
+      "normalised": "vatinoxan hydrochloride",
+      "candidate_page_keys": [
+        "K1:342EYN0QFD"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2324"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "VERATRUM",
+      "normalised": "veratrum",
+      "candidate_page_keys": [
+        "K1:197B3Q7T5Q"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2336"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "VITAMIN D",
+      "normalised": "vitamin d",
+      "candidate_page_keys": [
+        "K1:143NQ3779B",
+        "K1:VS041H42XC"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0099",
+        "frl:F2026L00633:schedule-4:2357"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "XANTHINOL NICOTINATE",
+      "normalised": "xanthinol nicotinate",
+      "candidate_page_keys": [
+        "COMBO:{K1:2679MF687A,K1:TN1B5910V2}"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2369"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "XYLENE",
+      "normalised": "xylene",
+      "candidate_page_keys": [
+        "K1:I5YJB4EXVP"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0564"
+      ],
+      "reason": "unii_name_exact",
+      "classEntry": false,
+      "shortName": false
+    },
+    {
+      "substance": "ZETA-CYPERMETHRIN",
+      "normalised": "zeta cypermethrin",
+      "candidate_page_keys": [
+        "K1:1TR49121NP"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0566",
+        "frl:F2026L00633:schedule-7:0215"
+      ],
+      "reason": "no_unii_name_match",
+      "classEntry": false,
+      "shortName": false
+    }
+  ],
+  "ambiguousUniiResolutions": [
+    {
+      "substance": "1-OCTEN-3-OL",
+      "candidate_uniis": [
+        "07D31239FH",
+        "BYV0MEV7V1",
+        "WXB511GE38"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0405"
+      ]
+    },
+    {
+      "substance": "ADRENALINE",
+      "candidate_uniis": [
+        "NA71GR3TNV",
+        "YKH834O4BH"
+      ],
+      "candidate_uniis_in_corpus": [
+        "NA71GR3TNV",
+        "YKH834O4BH"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-3:0002",
+        "frl:F2026L00633:schedule-4:0039"
+      ]
+    },
+    {
+      "substance": "ALIMEMAZINE",
+      "candidate_uniis": [
+        "5CC6O389DK",
+        "76H78MJJ52",
+        "FF3207A72P"
+      ],
+      "candidate_uniis_in_corpus": [
+        "76H78MJJ52",
+        "FF3207A72P"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0004",
+        "frl:F2026L00633:schedule-3:0004",
+        "frl:F2026L00633:schedule-4:0063"
+      ]
+    },
+    {
+      "substance": "ALPHA-CHLOROHYDRIN",
+      "candidate_uniis": [
+        "227BD3H6H6",
+        "64YMO02KAE"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0112"
+      ]
+    },
+    {
+      "substance": "ATENOLOL",
+      "candidate_uniis": [
+        "50VV3VW0TI",
+        "DPF757BOSR",
+        "YG132I00WY"
+      ],
+      "candidate_uniis_in_corpus": [
+        "50VV3VW0TI",
+        "DPF757BOSR",
+        "YG132I00WY"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0176"
+      ]
+    },
+    {
+      "substance": "BENALAXYL",
+      "candidate_uniis": [
+        "06UBT0512C",
+        "18TH6NY90J",
+        "K2I4VH4B65"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0036"
+      ]
+    },
+    {
+      "substance": "Bromo-Dragonfly",
+      "candidate_uniis": [
+        "3T0WPB2X90",
+        "GC9M7R36OI",
+        "U9Q905Y70C"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0023"
+      ]
+    },
+    {
+      "substance": "CHLORMEZANONE",
+      "candidate_uniis": [
+        "4BU37OM8KL",
+        "C14WB33Y0S",
+        "GP568V9G19"
+      ],
+      "candidate_uniis_in_corpus": [
+        "4BU37OM8KL",
+        "GP568V9G19"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0445"
+      ]
+    },
+    {
+      "substance": "CLOPROSTENOL",
+      "candidate_uniis": [
+        "4208238832",
+        "52EJR3Y9IN"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0515"
+      ]
+    },
+    {
+      "substance": "COCOYL GLYCINATE",
+      "candidate_uniis": [
+        "L72Y2D5TTY",
+        "R7N8Y0XMX7"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0135"
+      ]
+    },
+    {
+      "substance": "CYCLOPENTHIAZIDE",
+      "candidate_uniis": [
+        "866GEV195O",
+        "T7817XC41U",
+        "VX4S2N85F5"
+      ],
+      "candidate_uniis_in_corpus": [
+        "T7817XC41U",
+        "VX4S2N85F5"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0558"
+      ]
+    },
+    {
+      "substance": "DESVENLAFAXINE",
+      "candidate_uniis": [
+        "189BFR45S0",
+        "HY5T9WKI4O",
+        "NG99554ANW"
+      ],
+      "candidate_uniis_in_corpus": [
+        "189BFR45S0",
+        "NG99554ANW"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0634"
+      ]
+    },
+    {
+      "substance": "DINICONAZOLE",
+      "candidate_uniis": [
+        "HZM0U4P0K9",
+        "X82HVO1N83"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0146"
+      ]
+    },
+    {
+      "substance": "ECGONINE",
+      "candidate_uniis": [
+        "342I22959I",
+        "DX2E9E17AV"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0062"
+      ]
+    },
+    {
+      "substance": "EPHEDRINE",
+      "candidate_uniis": [
+        "28S9JBG39X",
+        "72087NSY56",
+        "GN83C131XS"
+      ],
+      "candidate_uniis_in_corpus": [
+        "72087NSY56",
+        "GN83C131XS"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0804"
+      ]
+    },
+    {
+      "substance": "EPOXICONAZOLE",
+      "candidate_uniis": [
+        "Q37FVM7PTL",
+        "U80T84L776",
+        "XC5J8QTX8T"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0156"
+      ]
+    },
+    {
+      "substance": "ETHOPROPAZINE",
+      "candidate_uniis": [
+        "36P25IV7YN",
+        "7WI4P02YN1",
+        "E9CAW05ROP"
+      ],
+      "candidate_uniis_in_corpus": [
+        "36P25IV7YN",
+        "7WI4P02YN1"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:0850"
+      ]
+    },
+    {
+      "substance": "FENOPROP",
+      "candidate_uniis": [
+        "D2HZL58IS3",
+        "H2UL7N6ZEB",
+        "W8G08M2WU6"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0178"
+      ]
+    },
+    {
+      "substance": "FLUTRIAFOL",
+      "candidate_uniis": [
+        "4W0XEF5702",
+        "83P8CT2Z3H",
+        "SYO85A897P"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0272"
+      ]
+    },
+    {
+      "substance": "HALOXYFOP",
+      "candidate_uniis": [
+        "24TYO6H90H",
+        "5DT2D214EB",
+        "I57833604I"
+      ],
+      "candidate_uniis_in_corpus": [
+        "I57833604I"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0288"
+      ]
+    },
+    {
+      "substance": "HEXACONAZOLE",
+      "candidate_uniis": [
+        "SX9R3X1FQV",
+        "TE72G00GGS",
+        "Z4IDE9ACW3"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0212"
+      ]
+    },
+    {
+      "substance": "HYOSCYAMINE",
+      "candidate_uniis": [
+        "7C0697DR9I",
+        "PX44XO846X",
+        "V3203SI72M"
+      ],
+      "candidate_uniis_in_corpus": [
+        "PX44XO846X",
+        "V3203SI72M"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0074",
+        "frl:F2026L00633:schedule-4:1088"
+      ]
+    },
+    {
+      "substance": "IBUPROFEN",
+      "candidate_uniis": [
+        "99W8H60N62",
+        "WK2XYI10QM"
+      ],
+      "candidate_uniis_in_corpus": [
+        "99W8H60N62",
+        "WK2XYI10QM"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-2:0076",
+        "frl:F2026L00633:schedule-3:0047",
+        "frl:F2026L00633:schedule-4:1099"
+      ]
+    },
+    {
+      "substance": "IMAZAPIC",
+      "candidate_uniis": [
+        "K98N09T10R",
+        "QR1P5DV86Y",
+        "Z810CLK7WS"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0225"
+      ]
+    },
+    {
+      "substance": "INDOXACARB",
+      "candidate_uniis": [
+        "52H0D26MWR",
+        "610LV0BX3Y",
+        "PKL1F8Y0FV"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0230",
+        "frl:F2026L00633:schedule-6:0307"
+      ]
+    },
+    {
+      "substance": "ISOPRENALINE",
+      "candidate_uniis": [
+        "70D2X5QMKK",
+        "L628TT009W"
+      ],
+      "candidate_uniis_in_corpus": [
+        "70D2X5QMKK",
+        "L628TT009W"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1165"
+      ]
+    },
+    {
+      "substance": "KETAZOLAM",
+      "candidate_uniis": [
+        "424J5HGB8E",
+        "92A214MD7Y",
+        "9ZBH5G9835"
+      ],
+      "candidate_uniis_in_corpus": [
+        "424J5HGB8E",
+        "92A214MD7Y"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1185"
+      ]
+    },
+    {
+      "substance": "LAMBDA-CYHALOTHRIN",
+      "candidate_uniis": [
+        "375WQ7596S",
+        "GOI9BD654Y",
+        "Z44TGV333K"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0241",
+        "frl:F2026L00633:schedule-6:0321",
+        "frl:F2026L00633:schedule-7:0139"
+      ]
+    },
+    {
+      "substance": "LUFENURON",
+      "candidate_uniis": [
+        "1R754M4918",
+        "4629851K7Q",
+        "9CR45YMS74"
+      ],
+      "candidate_uniis_in_corpus": [
+        "1R754M4918",
+        "9CR45YMS74"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0250"
+      ]
+    },
+    {
+      "substance": "MBDB",
+      "candidate_uniis": [
+        "1K4DM46547",
+        "AJ6337RW87",
+        "E8HMQ4F9JQ"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0114"
+      ]
+    },
+    {
+      "substance": "MECOPROP",
+      "candidate_uniis": [
+        "455R9M917H",
+        "74N8TKR9P8",
+        "R049359JHL"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0263",
+        "frl:F2026L00633:schedule-6:0335"
+      ]
+    },
+    {
+      "substance": "MEFENOREX",
+      "candidate_uniis": [
+        "7FT4O2NC8G",
+        "85052999IT",
+        "K98M4N387W"
+      ],
+      "candidate_uniis_in_corpus": [
+        "85052999IT",
+        "K98M4N387W"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1315"
+      ]
+    },
+    {
+      "substance": "METAZOCINE",
+      "candidate_uniis": [
+        "43F5BF98QO",
+        "670ER53976",
+        "XD53YGT34W"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0098"
+      ]
+    },
+    {
+      "substance": "METHYLMERCURY",
+      "candidate_uniis": [
+        "EZ74BDI0HB",
+        "RWZ4L3O1X0",
+        "W0GUM2OU8K"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1385"
+      ]
+    },
+    {
+      "substance": "METRIFONATE",
+      "candidate_uniis": [
+        "1MVY4KU98F",
+        "37VCQ9C0OG",
+        "DBF2DG4G2K"
+      ],
+      "candidate_uniis_in_corpus": [
+        "1MVY4KU98F",
+        "DBF2DG4G2K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1402"
+      ]
+    },
+    {
+      "substance": "OXEDRINE",
+      "candidate_uniis": [
+        "73SNV1H5Y5",
+        "PEG5DP7434",
+        "Y276ILP9M0"
+      ],
+      "candidate_uniis_in_corpus": [
+        "73SNV1H5Y5",
+        "PEG5DP7434"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1604"
+      ]
+    },
+    {
+      "substance": "PAROXETINE",
+      "candidate_uniis": [
+        "32Q7TW8BX7",
+        "41VRH5220H",
+        "58SBH37T77"
+      ],
+      "candidate_uniis_in_corpus": [
+        "41VRH5220H",
+        "58SBH37T77"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1646"
+      ]
+    },
+    {
+      "substance": "PENBUTOLOL",
+      "candidate_uniis": [
+        "3JET4HND2G",
+        "3MVQ8H3X65",
+        "78W62V43DY"
+      ],
+      "candidate_uniis_in_corpus": [
+        "3MVQ8H3X65",
+        "78W62V43DY"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1666"
+      ]
+    },
+    {
+      "substance": "PERAMIVIR",
+      "candidate_uniis": [
+        "IDL9Q29886",
+        "QW7Y7ZR15U"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1679"
+      ]
+    },
+    {
+      "substance": "PHENADOXONE",
+      "candidate_uniis": [
+        "375W3TA42N",
+        "JA58G2B3DF",
+        "QZG2ZB35VK"
+      ],
+      "candidate_uniis_in_corpus": [
+        "375W3TA42N",
+        "QZG2ZB35VK"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-9:0145"
+      ]
+    },
+    {
+      "substance": "PHENYLPROPANOLAMINE",
+      "candidate_uniis": [
+        "33RU150WUN",
+        "57B9YG5Y1E",
+        "7875H6443P"
+      ],
+      "candidate_uniis_in_corpus": [
+        "33RU150WUN",
+        "57B9YG5Y1E",
+        "7875H6443P"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1713"
+      ]
+    },
+    {
+      "substance": "PIMOBENDAN",
+      "candidate_uniis": [
+        "34AP3BBP9T",
+        "613JXV89SU",
+        "9HTU209Z0N"
+      ],
+      "candidate_uniis_in_corpus": [
+        "34AP3BBP9T",
+        "613JXV89SU"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:1725"
+      ]
+    },
+    {
+      "substance": "PYRACLOFOS",
+      "candidate_uniis": [
+        "81X04A8S4O",
+        "A222WM5KQD",
+        "M0W5LEC929"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0468"
+      ]
+    },
+    {
+      "substance": "SODIUM HYDROGEN SULFATE",
+      "candidate_uniis": [
+        "26WJH3CS0B",
+        "2T9TH558WS",
+        "3KLS9Y77YJ",
+        "3W2KK83V5G",
+        "75E63I9H07",
+        "8MDF5V39QO",
+        "LD902RT12W",
+        "P699N4QOWE",
+        "YK2ED6SH8Y"
+      ],
+      "candidate_uniis_in_corpus": [
+        "8MDF5V39QO",
+        "P699N4QOWE"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0406"
+      ]
+    },
+    {
+      "substance": "TAPENTADOL",
+      "candidate_uniis": [
+        "9BK3JK3ETK",
+        "H8A007M585"
+      ],
+      "candidate_uniis_in_corpus": [
+        "9BK3JK3ETK",
+        "H8A007M585"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-8:0080"
+      ]
+    },
+    {
+      "substance": "TETRABENAZINE",
+      "candidate_uniis": [
+        "69ENL3U6BF",
+        "8A3NP33E5M",
+        "Z9O08YRN8O"
+      ],
+      "candidate_uniis_in_corpus": [
+        "8A3NP33E5M",
+        "Z9O08YRN8O"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2143"
+      ]
+    },
+    {
+      "substance": "TETRACONAZOLE",
+      "candidate_uniis": [
+        "8FGY868T0G",
+        "9225R3CLW5",
+        "X788F9M554"
+      ],
+      "candidate_uniis_in_corpus": [],
+      "entries": [
+        "frl:F2026L00633:schedule-5:0440",
+        "frl:F2026L00633:schedule-6:0528"
+      ]
+    },
+    {
+      "substance": "TIANEPTINE",
+      "candidate_uniis": [
+        "0T493YFU8O",
+        "AKU7QFL9ZT",
+        "XV6773012I"
+      ],
+      "candidate_uniis_in_corpus": [
+        "0T493YFU8O",
+        "AKU7QFL9ZT"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-4:2179"
+      ]
+    },
+    {
+      "substance": "TILIDINE",
+      "candidate_uniis": [
+        "1I0Q98V2I5",
+        "2728MV084C",
+        "GY33N31E9Y"
+      ],
+      "candidate_uniis_in_corpus": [
+        "2728MV084C"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-8:0085"
+      ]
+    },
+    {
+      "substance": "TRICHLORFON",
+      "candidate_uniis": [
+        "1MVY4KU98F",
+        "37VCQ9C0OG",
+        "DBF2DG4G2K"
+      ],
+      "candidate_uniis_in_corpus": [
+        "1MVY4KU98F",
+        "DBF2DG4G2K"
+      ],
+      "entries": [
+        "frl:F2026L00633:schedule-6:0549"
+      ]
+    }
+  ]
+}

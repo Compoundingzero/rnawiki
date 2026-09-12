@@ -133,7 +133,14 @@ const PAGE_AUDIT = `() => {
     }
     return rows
   }
-  const bodyRows = [...measure('p.cd-paragraph'), ...measure('h1.cd-title'), ...measure('h2.cd-question')]
+  // §16(1): the supervision block paints its class clauses as list items, so the contrast check
+  // reads them beside the paragraphs rather than leaving a block of body text unmeasured.
+  const bodyRows = [
+    ...measure('p.cd-paragraph'),
+    ...measure('li.cd-clause'),
+    ...measure('h1.cd-title'),
+    ...measure('h2.cd-question'),
+  ]
   const greyRows = [
     ...measure('.cd-row-value'),
     ...measure('.cd-row-label'),
@@ -183,7 +190,10 @@ const PAGE_AUDIT = `() => {
   /* --- what must be keyboard reachable ------------------------------------------------------- */
   const focusTargets = {
     details: main.querySelectorAll('details > summary').length,
-    railLinks: document.querySelectorAll('a.cd-rail-link').length,
+    // Step 6.1 took the class off these links: the rail they are in identifies them, and a class
+    // on every one of about fifty links was markup the reader never used. The rail is the same
+    // rail, so this counts the same links.
+    railLinks: document.querySelectorAll('.cd-rail a[href^="#"], .cd-contents a[href^="#"]').length,
     anchors: main.querySelectorAll('a.cd-anchor').length,
   }
 
@@ -242,6 +252,7 @@ async function keyboardWalk(page: Page): Promise<Record<string, unknown>> {
       return {
         tag: active.tagName.toLowerCase(),
         className: typeof active.className === 'string' ? active.className : '',
+        railLink: Boolean(active.closest('.cd-rail, .cd-contents')) && active.tagName === 'A',
         inMain: Boolean(active.closest('main')),
         ring,
         label: (active.textContent || '').trim().slice(0, 40),
@@ -250,10 +261,9 @@ async function keyboardWalk(page: Page): Promise<Record<string, unknown>> {
     if (state) {
       const classes = state.className.split(/\s+/)
       if (state.tag === 'summary') seen.details += 1
-      if (classes.includes('cd-rail-link')) seen.railLinks += 1
+      if (state.railLink) seen.railLinks += 1
       if (classes.includes('cd-anchor')) seen.anchors += 1
-      const required =
-        state.tag === 'summary' || classes.includes('cd-rail-link') || classes.includes('cd-anchor')
+      const required = state.tag === 'summary' || state.railLink || classes.includes('cd-anchor')
       if (required && !state.ring && seen.noRing.length < 5) {
         seen.noRing.push(`${state.tag}.${state.className}: ${state.label}`)
       }

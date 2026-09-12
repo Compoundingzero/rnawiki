@@ -1,0 +1,70 @@
+{
+  "source": "mhra-emc",
+  "phase2_item": 14,
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "retrieval_date": "2026-09-06",
+  "written": "2026-09-05T16:14:08Z",
+  "reason": "Neither site clears this use. emc's published Terms prohibit commercial use, populating a database from the site, re-circulating material and systematically tracking updates; rnawiki.com is a commercial site whose Phase 2 purpose is exactly database population. products.mhra.gov.uk publishes no terms of use or copyright statement at any route on the site, has no bulk file and no dataset on data.gov.uk, and its two machine endpoints are the site's own Azure search backend (key issued to the site, not to this project, no terms, no registration route) and a GraphQL host that returned HTTP 503 on every attempt. Operating rule 8 forbids scraping a source whose terms cannot be found. Evidence: data/sources/mhra-emc/2026-09-06/legal/TERMS-DETERMINATION.md.",
+  "records_ingested": 0,
+  "pages_matched_by_tier": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+  },
+  "pages_matched_total": 0,
+  "corpus_pages_by_tier": {
+    "1": 1719,
+    "2": 4477,
+    "3": 22636
+  },
+  "fields_gained_by_tier": {
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "fields_gained": [],
+  "fields_not_gained": {
+    "regulatory.UK": "not populated; UK status stays \"UK register not cleared for this run\"",
+    "smpcInteractions": "not populated; SmPC section 4.5 was not retrieved",
+    "smpcPharmacodynamics": "not populated; SmPC section 5.1 was not retrieved"
+  },
+  "unmatched_records": 0,
+  "unmatched_records_note": "No record was ingested, so there is no unmatched record. This is zero because nothing was taken, not because everything matched.",
+  "name_candidates_sent_to_review": 0,
+  "match_rules_used": [],
+  "forgone_scope": {
+    "note": "Counted from the robots-declared sitemap, kept at raw/products-mhra-sitemap.xml and joined to nothing.",
+    "products_mhra_sitemap": {
+      "urls_total": 25414,
+      "product": 21589,
+      "substance": 3769,
+      "substance-index": 33,
+      "medicine-levels-in-pregnancy": 18,
+      "404": 1,
+      "about": 1,
+      "accessibility": 1,
+      "cookies": 1,
+      "search": 1
+    },
+    "sitemap_lastmod": "2026-05-20",
+    "emc_documents_claimed_by_site": "more than 14,000 documents (emc About page, legal/emc-about-the-emc.verbatim.txt)"
+  },
+  "unblock_route": "A negotiated content licence from Datapharm for emc, or a published reuse licence or documented API from MHRA for products.mhra.gov.uk. Recorded in docs/revamp/BLOCKERS.md.",
+  "mapped_parquet": {
+    "path": "data/sources/mhra-emc/mapped.parquet",
+    "rows": 0,
+    "schema": [
+      "key:string",
+      "tier:int8",
+      "field:string",
+      "value:string",
+      "source_record_id:string",
+      "source_url:string",
+      "source_date:string",
+      "match_rule:string",
+      "form_of_target:string",
+      "licence:string"
+    ],
+    "note": "Written with the full declared schema and zero rows so the Phase 2 integration reads every source the same way. It contains no value because none may be taken."
+  }
+}

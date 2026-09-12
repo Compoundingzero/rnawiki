@@ -12,6 +12,12 @@ data/registries/
 # whole point of the file is that its bytes change only when the corpus does, so reformatting it
 # would put a diff in front of a reviewer that means nothing.
 data/audits/
+# Acquisition run reports and page measurements, written wholesale by scripts/background/* and
+# scripts/dossier-v4/measure-*.ts. They are the record of what a run actually did — kept so a
+# number in a worklog can be checked against the run that produced it — and reformatting a report
+# would edit a record of something that already happened.
+data/background/
+data/dossier-v4/
 package-lock.json
 test-results/
 playwright-report/
@@ -37,8 +43,36 @@ docs/audits/semantic/
 data/biohacker-pivot/
 data/corpus-20k/
 data/design-study/
+data/revamp/
 data/trial-results/
 # Running logs, rewritten at the top on every batch and hand-wrapped at 100 columns. Their reader
 # check is scripts/quality/slop-scan.mjs, which reads the prose; realigning their tables would
 # rewrite files that the next batch rewrites again.
 docs/worklogs/
+# The DVC cache: content-addressed copies of the run's data files, written by `dvc add` and
+# gitignored. Several are hundreds of megabytes, which Prettier cannot read as a string at all
+# ("Invalid string length"), and none of them is source.
+.dvc/
+# The Python environment the corpus scripts run in (docs/specs/revamp-2026-09.md): gitignored, and
+# a vendored third-party driver's bundled JavaScript is not ours to reformat.
+.venv-corpus/
+# Retrieved source material, kept exactly as it was served: the legal pages, terms, verification
+# captures and manifests under data/sources/ and data/validation/ are recorded with a SHA256 in
+# their manifest.json, and that digest is the evidence of what was retrieved on the date recorded.
+# Reformatting a byte of them would break the one thing they are held for. Several are also
+# malformed HTML as served, which is itself part of the record.
+data/sources/
+data/validation/
+# Specs, licences and blockers for the revamp run, hand-wrapped at 100 columns with wide reference
+# tables — the same reason docs/worklogs/ is here. Their reader check is
+# scripts/quality/slop-scan.mjs, which reads the prose; realigning the tables would rewrite the
+# lead's fixed spec text without changing a word of it.
+docs/specs/
+docs/data/
+docs/revamp/
+# Dossier v3 benchmark captures, written wholesale by scripts/dossier-v3/capture.ts; the bytes are
+# the measurement.
+data/dossier-v3/benchmark/
+# Dossier v4 benchmark captures, written wholesale by scripts/dossier-v4/capture.ts, for the same
+# reason as the v3 captures above: the bytes are the measurement.
+data/dossier-v4/benchmark/

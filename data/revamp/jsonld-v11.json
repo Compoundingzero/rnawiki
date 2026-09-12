@@ -1,0 +1,299 @@
+{
+  "schema": "rnawiki-revamp-jsonld-split/v1",
+  "spec": "docs/specs/revamp-2026-09.md operating rule 7; CLAUDE.md public copy rules",
+  "at": "2026-09-10T00:52:47Z",
+  "baseUrl": "http://127.0.0.1:3212",
+  "seed": 20260914,
+  "requested": 20,
+  "hubsRequested": 0,
+  "fetched": 40,
+  "indexableDrawn": 20,
+  "noindexDrawn": 20,
+  "indexableWithExactlyOneBlock": 20,
+  "noindexWithZeroBlocks": 20,
+  "pagesWithExactlyOneMain": 40,
+  "failures": [],
+  "rows": [
+    {
+      "path": "/d/pravastatin",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/semaglutide",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/mitotane",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/zolpidem",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/abemaciclib",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/mycophenolic-acid",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/levothyroxine",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/trazodone",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/etodolac",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/valine-2",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/leucine-2",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/botulinum-toxin-type-a",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/nicotine",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/elvitegravir-2",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/mifepristone",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/galantamine",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/colchicine",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/chloride",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/tacrolimus",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/modafinil",
+      "kind": "indexable",
+      "status": 200,
+      "jsonLdBlocks": 1,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/ginger",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/pipamazine",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/pegademase-bovine",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/anamorelin",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/phenyl",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/bunamiodyl",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/cinacalcet",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/levisoprenaline",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/tubocurarine",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/esketamine",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/dabrafenib",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/margetuximab",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/hedyotis-diffusa",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/chembl2441112",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/scots-pine",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/chaulmosulfone",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/collinsonia",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/atiprimod",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/garden-cress",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    },
+    {
+      "path": "/d/umirolimus",
+      "kind": "noindex",
+      "status": 200,
+      "jsonLdBlocks": 0,
+      "mainElements": 1
+    }
+  ],
+  "runtimeSeconds": 0.6
+}

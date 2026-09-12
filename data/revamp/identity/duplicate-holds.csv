@@ -1,0 +1,3 @@
+kind,held_slug,held_key,link_slug,link_key,jaccard,reason,held_present,link_present,source
+page,trastuzumab-and-hyaluronidase-oysk,K1:P188ANX8CK#oysk,pertuzumab-trastuzumab-and-hyaluronidase-zzxf,K1:P188ANX8CK#zzxf,0.5894,biosimilar,20,21,"rendered duplicate check, docs/specs/phase4-generators.md §13 item 14"
+hub,hdac8,target/hdac8,histone-deacetylase-1-histone-deacetylase-1,target/histone-deacetylase-1-histone-deacetylase-1,0.5703,,19,30,"rendered duplicate check, docs/specs/phase4-generators.md §13 item 14"

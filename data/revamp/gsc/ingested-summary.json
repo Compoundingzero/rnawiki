@@ -1,0 +1,396 @@
+{
+  "schema": "rnawiki-revamp-gsc-ingest/v1",
+  "step": "0.4",
+  "ingested_at": "2026-09-05T05:20:50.190588+00:00",
+  "exports": [
+    "data/revamp/gsc-export-2026-09-02"
+  ],
+  "files": [
+    {
+      "file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "rows": 42
+    },
+    {
+      "file": "data/revamp/gsc-export-2026-09-02/Critical issues.csv",
+      "kind": "indexing_reasons",
+      "rows": 3
+    },
+    {
+      "file": "data/revamp/gsc-export-2026-09-02/Metadata.csv",
+      "kind": "metadata",
+      "rows": 1
+    },
+    {
+      "file": "data/revamp/gsc-export-2026-09-02/Non-critical issues.csv",
+      "kind": "indexing_reasons",
+      "rows": 0
+    }
+  ],
+  "rows": {
+    "url_rows": 0,
+    "reason_rows": 3,
+    "daily_rows": 42
+  },
+  "per_tier": {},
+  "per_disposition": {},
+  "indexing_reasons": [
+    {
+      "reason": "Discovered \u2013 currently not indexed",
+      "source": "Google systems",
+      "pages": 163.0,
+      "source_file": "data/revamp/gsc-export-2026-09-02/Critical issues.csv"
+    },
+    {
+      "reason": "Crawled - currently not indexed",
+      "source": "Google systems",
+      "pages": 5.0,
+      "source_file": "data/revamp/gsc-export-2026-09-02/Critical issues.csv"
+    },
+    {
+      "reason": "Not found (404)",
+      "source": "Website",
+      "pages": 0.0,
+      "source_file": "data/revamp/gsc-export-2026-09-02/Critical issues.csv"
+    }
+  ],
+  "daily_series": [
+    {
+      "date": "2026-07-18",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-19",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 3.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-20",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-21",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-22",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-23",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-24",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-25",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-26",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-27",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 3.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-28",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 4.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-29",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 2.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-30",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 2.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-07-31",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 4.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-01",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-02",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-03",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 2.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-04",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-05",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-06",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-07",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-08",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 2.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-09",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 3.0,
+      "indexed": null,
+      "not_indexed": null
+    },
+    {
+      "date": "2026-08-10",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": 114.0,
+      "not_indexed": 454.0
+    },
+    {
+      "date": "2026-08-11",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 102.0,
+      "not_indexed": 466.0
+    },
+    {
+      "date": "2026-08-12",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 102.0,
+      "not_indexed": 466.0
+    },
+    {
+      "date": "2026-08-13",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 102.0,
+      "not_indexed": 466.0
+    },
+    {
+      "date": "2026-08-14",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 102.0,
+      "not_indexed": 466.0
+    },
+    {
+      "date": "2026-08-15",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 74.0,
+      "not_indexed": 494.0
+    },
+    {
+      "date": "2026-08-16",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 74.0,
+      "not_indexed": 494.0
+    },
+    {
+      "date": "2026-08-17",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 3.0,
+      "indexed": 74.0,
+      "not_indexed": 494.0
+    },
+    {
+      "date": "2026-08-18",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 8.0,
+      "indexed": 72.0,
+      "not_indexed": 496.0
+    },
+    {
+      "date": "2026-08-19",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 72.0,
+      "not_indexed": 496.0
+    },
+    {
+      "date": "2026-08-20",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 1.0,
+      "indexed": 72.0,
+      "not_indexed": 496.0
+    },
+    {
+      "date": "2026-08-21",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 4.0,
+      "indexed": 72.0,
+      "not_indexed": 496.0
+    },
+    {
+      "date": "2026-08-22",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-23",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 4.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-24",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 2.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-25",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-26",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 5.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-27",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    },
+    {
+      "date": "2026-08-28",
+      "source_file": "data/revamp/gsc-export-2026-09-02/Chart.csv",
+      "kind": "coverage_chart",
+      "impressions": 0.0,
+      "indexed": 1.0,
+      "not_indexed": 168.0
+    }
+  ],
+  "parquet": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/revamp/gsc/ingested.parquet"
+}

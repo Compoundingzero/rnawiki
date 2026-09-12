@@ -1,0 +1,7 @@
+# robots.txt for www.legislation.gov.au
+User-agent: *
+Crawl-delay: 10
+Disallow: /assets/
+
+Sitemap: https://www.legislation.gov.au/sitemap.xml
+# Sitemap: https://www.legislation.gov.au/sitemap-titles.xml

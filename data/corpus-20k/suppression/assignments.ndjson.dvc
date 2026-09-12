@@ -1,0 +1,5 @@
+outs:
+- md5: 475570601c4b2bfa9e31d44a7f59419d
+  size: 8247557
+  hash: md5
+  path: assignments.ndjson

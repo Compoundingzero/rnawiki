@@ -1,0 +1,1 @@
+ALTER TABLE "hubs" ADD COLUMN "duplicate_hold_of" varchar(200);

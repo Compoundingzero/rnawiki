@@ -1,0 +1,43 @@
+{
+ "unionRows": 1592,
+ "unionSource": "data/corpus-20k/final/html-text/live-dossiers.ndjson (the Phase 5 fetch record)",
+ "sampleSlugs": [
+  "metformin",
+  "cysteamine",
+  "rofecoxib",
+  "sirolimus",
+  "carbidopa-levodopa",
+  "cdx-3379",
+  "1-2-distearoyl-sn-glycero-3-phosphocholine",
+  "amlodipine"
+ ],
+ "sampleRowsWritten": 8,
+ "sampleSlugsMissingFromUnion": [],
+ "sitemapIndexChildren": [
+  "https://rnawiki.com/sitemaps/tier-1.xml",
+  "https://rnawiki.com/sitemaps/tier-2.xml",
+  "https://rnawiki.com/sitemaps/browse.xml",
+  "https://rnawiki.com/sitemaps/pages.xml"
+ ],
+ "sitemapChildCounts": {
+  "sitemap.xml": 4,
+  "sitemaps/tier-1.xml": 610,
+  "sitemaps/tier-2.xml": 26,
+  "sitemaps/browse.xml": 1843,
+  "sitemaps/pages.xml": 10
+ },
+ "indexedPerTier": {
+  "tier1": 610,
+  "tier2": 26,
+  "tier3": 0
+ },
+ "indexedTotal": 636,
+ "tier3InAnySitemapChild": 0,
+ "setKeyLists": {
+  "draw803": 798,
+  "draw324": 322,
+  "indexed": 636,
+  "matched604": 604,
+  "matched252": 251
+ }
+}

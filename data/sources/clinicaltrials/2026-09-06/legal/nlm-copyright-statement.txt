@@ -1,0 +1,25 @@
+Verbatim extract, https://www.nlm.nih.gov/web_policies.html, retrieved 2026-09-06.
+Full page saved alongside as nlm-web-policies.html.
+
+  "Copyright
+
+   Attribution and Rights for Government Works: Works produced by the U.S.
+   government are not subject to copyright protection in the United States.
+   Any such works found on National Library of Medicine (NLM) Web sites may be
+   freely used or reproduced without permission in the U.S. Please acknowledge
+   NLM as the source of the information by including the phrase "Courtesy of
+   the National Library of Medicine" or "Source: National Library of
+   Medicine."
+
+   Copyright Protections for Non-Government Works: When using NLM Web sites,
+   you may encounter documents, illustrations, photographs, or other content
+   contributed by or licensed from private individuals, companies, or
+   organizations that may be protected by U.S. and foreign copyright laws."
+
+  "User Responsibility: It is your responsibility to determine and satisfy
+   copyright or other use restrictions when using materials that are not in
+   the public domain. NLM cannot guarantee the copyright status for any item."
+
+https://www.nlm.nih.gov/copyright.html now redirects to web_policies.html#copyright
+and carries the notice "This page is no longer being maintained."
+(saved as nlm-copyright.html).

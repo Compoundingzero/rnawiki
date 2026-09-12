@@ -84,6 +84,15 @@ const nextConfig = {
       // from dossier pages, so they redirect rather than 404.
       { source: '/methodology', destination: '/how-it-works', permanent: true },
       { source: '/how-editing-works', destination: '/how-it-works', permanent: true },
+      // /editorial-policy stated six rules the evidence surface already states in context, and its
+      // one unique paragraph was a privacy disclosure that now lives on /privacy. The route is
+      // indexed and linked from every dataset manifest, so it redirects to the section of
+      // /how-it-works that answers the same question rather than 404ing.
+      {
+        source: '/editorial-policy',
+        destination: '/how-it-works#review-and-corrections',
+        permanent: true,
+      },
     ]
   },
 }

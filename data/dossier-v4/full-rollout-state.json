@@ -1,0 +1,52 @@
+{
+  "repository": "Compoundingzero/rnawiki",
+  "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
+  "branch": "rebuild/biohacker-dossier",
+  "starting_commit": "5a5c47e",
+  "last_safe_commit": "bd1457d",
+  "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
+  "current_phase": "8-awaiting-release-decision",
+  "last_completed_phase": "7-corpus-validated",
+  "total_public_slugs": 10250,
+  "rendered_v4_slugs": 10248,
+  "reviewed_pages": 0,
+  "preliminary_pages": 6896,
+  "limited_pages": 3351,
+  "correction_hold_pages": 1,
+  "pipeline_failure_pages": 0,
+  "stacks_status": "not_started",
+  "community_status": "schema_and_empty_lane_only; no submission or moderation surface",
+  "experiment_planner_status": "renders for eligible low-risk pages; gate rebuilt on the substance taxonomy",
+  "staging_revision": "",
+  "staging_url": "",
+  "production_revision": "",
+  "production_url": "https://rnawiki.com",
+  "tests": {
+    "gate": "passed at bd1457d, exit 0",
+    "unit": "2,900+ across 189 files",
+    "integration": "185 across 28 files",
+    "browser": "66",
+    "corpus_validation": "10250 pages, 0 critical, 370 with any issue",
+    "clean_database_replay": "passed"
+  },
+  "critical_blockers": [
+    "No page is in the reviewed state. reviewed_claims is empty for every medicine, so enabling the compass in production would publish 6,896 preliminary pages and 3,351 limited ones. The pages say so honestly; that is not a reason to publish them at scale.",
+    "No staging environment exists. The Railway project has one environment, production. Creating a second with its own database is a billing action for the account owner.",
+    "Merging this branch to main would ship 68 commits and 1,316 files, of which 55 commits are an unreviewed corpus revamp. The release path is a decision for the repository owner and is written up in docs/dossier-v4-production-runbook.md."
+  ],
+  "noncritical_blindspots": [
+    "335 records have no substance type any recorded field settles, and 122 no supply route. Both render as honest unresolved states.",
+    "Two slugs in the corpus tables have no record at all: header and tbd. They look like junk rows.",
+    "One record is held for an identity check: trastuzumab-and-hyaluronidase-oysk.",
+    "The graph projection predates the Tribulus stored-field correction. It contains none of the removed studies but was not re-projected.",
+    "Three creatine human-ceiling aggregates still need re-deriving after the prune."
+  ],
+  "commands_completed": [
+    "Phase 0 verification: branch, PR, reviewed claims, corrections, Tribulus fix across registry rows, trial roles, stored fields, synonyms, graph, search",
+    "npx tsx scripts/dossier-v4/validate-corpus.ts --concurrency 10 (10,250 pages, 0 critical)",
+    "npm run gate (exit 0: lint 0 errors, copy 0 hits, format clean, migrations clean, 189 unit files, 185 integration, 66 browser, production build)"
+  ],
+  "files_in_progress": [],
+  "next_exact_command": "npx tsx scripts/dossier-v4/resume.ts",
+  "updated_at": "2026-09-11"
+}

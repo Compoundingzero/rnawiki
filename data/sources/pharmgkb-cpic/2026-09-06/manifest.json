@@ -1,0 +1,286 @@
+{
+ "source": "pharmgkb-cpic",
+ "source_name": "PharmGKB / ClinPGx pharmacogenomics knowledge base, and the Clinical Pharmacogenetics Implementation Consortium (CPIC) gene-drug pair and guideline tables",
+ "retrieval_date": "2026-09-06",
+ "pharmgkb_archive_created": "2026-09-05",
+ "retrieval_route": "Bulk ZIP download from the ClinPGx download-file endpoint (https://api.clinpgx.org/v1/download/file/data/<name>.zip), which serves the same archives the ClinPGx Downloads page links, then the CPIC PostgREST API at https://api.cpicpgx.org/v1/ for the guideline, pair and drug tables. CPIC publishes no bulk archive of those tables, so the API is the documented bulk route. No record page was fetched.",
+ "base_urls": [
+  "https://api.clinpgx.org",
+  "https://www.clinpgx.org",
+  "https://api.cpicpgx.org"
+ ],
+ "site_rename_note": "PharmGKB has been renamed ClinPGx. www.pharmgkb.org answers and serves the ClinPGx application; api.pharmgkb.org no longer resolves (curl: (6) Could not resolve host: api.pharmgkb.org), and the download endpoint is api.clinpgx.org. The archives still carry PharmGKB accessions and the licence text names both.",
+ "licence": {
+  "pharmgkb": {
+   "name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "statement_url": "https://www.clinpgx.org/page/dataUsagePolicy",
+   "statement_quote": "ClinPGx/PharmGKB grants use of its data and contents under the Creative Commons Attribution-ShareAlike 4.0 International License.",
+   "archive_licence_file": "legal/pharmgkb-archive-LICENSE.txt",
+   "additional_conditions_quoted": [
+    "Under no circumstances can ClinPGx data be sold for other's private or commercial use. (LICENSE.txt shipped in every archive)",
+    "to use the data for research purposes and not with any intent to offer all or any part of the data for sale as a commercial item (Terms and Conditions of Use, dataUsagePolicy)",
+    "ShareAlike: If you alter, amend, reuse or otherwise change ClinPGx data you agree that if you distribute such product, all recipients shall first agree to be subject to this license. (LICENSE.txt)"
+   ],
+   "attribution_required": true,
+   "share_alike": true,
+   "redistribution_permitted": true,
+   "commercial_use_permitted": "Permitted by the CC BY-SA 4.0 grant, which expressly allows commercial use. The conditions ClinPGx adds bar selling the data and state a research purpose; they do not bar displaying attributed, share-alike records on a site that is itself commercial, and rnawiki.com does not sell the data. The wording is recorded verbatim above so the decision can be revisited.",
+   "citation": "ClinPGx (formerly PharmGKB), https://www.clinpgx.org/, archives created 2026-09-05, retrieved 2026-09-06."
+  },
+  "cpic": {
+   "name": "CC0 1.0 Universal Public Domain Dedication",
+   "statement_url": "https://www.clinpgx.org/page/dataUsagePolicy",
+   "statement_quote": "CPIC resources are freely available for use by anyone. All curated content published by CPIC is available free of restriction under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.",
+   "attribution_required": false,
+   "attribution_requested": true,
+   "share_alike": false,
+   "redistribution_permitted": true,
+   "commercial_use_permitted": true,
+   "citation": "CPIC. https://api.cpicpgx.org/v1/ accessed 2026-09-06, table version numbers in raw/cpic-*.json. CPIC requests that the primary source at ClinPGx be named and that content be marked as subject to update.",
+   "trademark_note": "CPIC is a registered service mark of the US Department of Health and Human Services, and CPIC states that its logo and acronym may not be reproduced on another website without NIH permission. No logo is stored. The acronym is stored, in the field name pgxCpicGuideline and in guideline names and notes, because the same policy directs that content be cited as CPIC with the URL and access date; whether that use needs NIH permission is a question for Felix before these rows are rendered."
+  }
+ },
+ "robots_txt": [
+  {
+   "url": "https://www.clinpgx.org/robots.txt",
+   "http_status": 200,
+   "path": "legal/clinpgx-robots.txt",
+   "effect": "Disallows /literature/ for SiteimproveBot only. Nothing here is disallowed."
+  },
+  {
+   "url": "https://api.clinpgx.org/robots.txt",
+   "http_status": 200,
+   "path": "legal/api-clinpgx-robots.txt",
+   "effect": "Allow: / for all agents with Crawl-delay: 30. Every request to this host in the pull waited 30 seconds."
+  },
+  {
+   "url": "https://cpicpgx.org/robots.txt",
+   "http_status": 200,
+   "path": "legal/cpicpgx-robots.txt",
+   "effect": "Disallows /wp-admin/ only."
+  },
+  {
+   "url": "https://api.cpicpgx.org/robots.txt",
+   "http_status": 404,
+   "path": "legal/api-cpicpgx-robots.txt",
+   "effect": "No robots.txt is served. Requests were spaced 2 seconds apart."
+  },
+  {
+   "url": "https://files.cpicpgx.org/robots.txt",
+   "http_status": 404,
+   "path": "legal/files-cpicpgx-robots.txt",
+   "effect": "No robots.txt is served. No file was taken from this host."
+  }
+ ],
+ "access_note": "https://cpicpgx.org/license/ answers 302 to https://www.clinpgx.org/page/dataUsagePolicy, so CPIC's licence and PharmGKB's are published on one page; that page is saved as legal/clinpgx-dataUsagePolicy.json with the rendered HTML beside it. www.clinpgx.org is a JavaScript application whose pages return a 2,505-byte shell to curl, which is why the licence was taken from the API route that the application itself reads.",
+ "working_files": {
+  "fetch-entries.json": "Per-file record the fetch script writes and this script reads to build the manifest. Regenerated on every fetch; the manifest below is the authoritative list."
+ },
+ "request_log": "requests.log",
+ "request_log_note": "Every request this pull made, with timestamp, URL, HTTP status, bytes and output path. curl transport errors are appended to requests.log.curlerr.",
+ "files": [
+  {
+   "path": "legal/clinpgx-robots.txt",
+   "url": "https://www.clinpgx.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:24:47Z",
+   "http_status": "200",
+   "bytes": 68,
+   "sha256": "0bd212d5a572cd674d0154d139e049245bd61b35228386c003bd0a7a877b328f",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/api-clinpgx-robots.txt",
+   "url": "https://api.clinpgx.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:24:50Z",
+   "http_status": "200",
+   "bytes": 71,
+   "sha256": "79a44068c6b3d582d85b98625294552f108c5bbe01a6aa04de86175bd999829c",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/pharmgkb-robots.txt",
+   "url": "https://www.pharmgkb.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:24:57Z",
+   "http_status": "200",
+   "bytes": 68,
+   "sha256": "0bd212d5a572cd674d0154d139e049245bd61b35228386c003bd0a7a877b328f",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/cpicpgx-robots.txt",
+   "url": "https://cpicpgx.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:25:00Z",
+   "http_status": "200",
+   "bytes": 112,
+   "sha256": "9e1035f163406db2e2de056eb0a35f5de3cdc92d8b2329f65d6dc90627c85d14",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/api-cpicpgx-robots.txt",
+   "url": "https://api.cpicpgx.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:25:03Z",
+   "http_status": "404",
+   "bytes": 1367,
+   "sha256": "2420d47b4b57cf2c239c84c0eb80540452f3cec5118216f9647c2da1e9c4300e",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/files-cpicpgx-robots.txt",
+   "url": "https://files.cpicpgx.org/robots.txt",
+   "retrieved_utc": "2026-09-05T16:25:06Z",
+   "http_status": "404",
+   "bytes": 281,
+   "sha256": "913bc42de536c80da4c34e07ac16585cbfa4346e250082ba3d022eee9031e6fd",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/clinpgx-dataUsagePolicy.json",
+   "url": "https://api.clinpgx.org/v1/data/page/dataUsagePolicy",
+   "retrieved_utc": "2026-09-05T16:25:09Z",
+   "http_status": "200",
+   "bytes": 10356,
+   "sha256": "4e43505760a3258c099c5604e7c48fc34cb9b07ca99df2410f241f5d8af5a0c4",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/cpicpgx-license.html",
+   "url": "https://cpicpgx.org/license/",
+   "retrieved_utc": "2026-09-05T16:25:13Z",
+   "http_status": "200",
+   "bytes": 2505,
+   "sha256": "efedccdba9792a26e4a0fe8de6570b7a9f6da4804502a5f059d17b998cd00898",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "legal/pharmgkb-downloads.html",
+   "url": "https://www.clinpgx.org/downloads",
+   "retrieved_utc": "2026-09-05T16:25:15Z",
+   "http_status": "200",
+   "bytes": 2505,
+   "sha256": "efedccdba9792a26e4a0fe8de6570b7a9f6da4804502a5f059d17b998cd00898",
+   "note": "Legal and access evidence saved before the first data request."
+  },
+  {
+   "path": "raw/drugs.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/drugs.zip",
+   "retrieved_utc": "2026-09-05T16:25:19Z",
+   "http_status": "200",
+   "bytes": 678392,
+   "sha256": "b072ff8584699576274b649d126756f047d2a940fde4810a4aba304bbf764f28",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Drug records with cross-references (RxNorm, PubChem, ChEBI, ChEMBL via external vocabulary), used as the identifier spine for mapping."
+  },
+  {
+   "path": "raw/chemicals.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/chemicals.zip",
+   "retrieved_utc": "2026-09-05T16:25:50Z",
+   "http_status": "200",
+   "bytes": 814225,
+   "sha256": "434ff9bb8a5f61f66805a32ec73110f8ea76d77e9a4cf217952a8c99515ebd72",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Chemical records: the superset of drugs.zip that also carries chemicals annotated but not registered as drugs; clinical annotations cite chemicals by PharmGKB accession."
+  },
+  {
+   "path": "raw/summaryAnnotations.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/summaryAnnotations.zip",
+   "retrieved_utc": "2026-09-05T16:26:21Z",
+   "http_status": "200",
+   "bytes": 1237100,
+   "sha256": "a891a59120100bc0e49213e2e8b1f89352c26f36837311b63e3d330d0aca915f",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Clinical annotations: one row per variant/haplotype-drug pair with level of evidence 1A-4, score, phenotype category and phenotype text."
+  },
+  {
+   "path": "raw/clinicalVariants.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/clinicalVariants.zip",
+   "retrieved_utc": "2026-09-05T16:26:55Z",
+   "http_status": "200",
+   "bytes": 74404,
+   "sha256": "e266dc2280a5c044bd72a579bbc8929bbb3f2b9c816e5c7f93209fe24678e6ca",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Variant-drug pairs with level of evidence, rolled up per variant."
+  },
+  {
+   "path": "raw/drugLabels.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/drugLabels.zip",
+   "retrieved_utc": "2026-09-05T16:27:28Z",
+   "http_status": "200",
+   "bytes": 59489,
+   "sha256": "b41e87587dfa4731b860a67afb0ba7d420727a28289558a01511fcdf304d563b",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Drug label annotations: regulator, testing level and the genes named in the label."
+  },
+  {
+   "path": "raw/relationships.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/relationships.zip",
+   "retrieved_utc": "2026-09-05T16:28:04Z",
+   "http_status": "200",
+   "bytes": 2370784,
+   "sha256": "c35a57ec55f5b7b8a5dd4561d35505efd10df1e8b087752e33b0ea78ee7b0c56",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Curated entity-entity relationships, including gene-chemical, with evidence types and PMID counts."
+  },
+  {
+   "path": "raw/guidelineAnnotations.json.zip",
+   "url": "https://api.clinpgx.org/v1/download/file/data/guidelineAnnotations.json.zip",
+   "retrieved_utc": "2026-09-05T16:29:07Z",
+   "http_status": "200",
+   "bytes": 861375,
+   "sha256": "bb61e1881491d09c3cfdec3fa1a81d0cea537a32343de00d41cfd2cc7891b533",
+   "licence": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+   "note": "Clinical guideline annotations in JSON, one document per guideline, carrying the guideline source (CPIC, DPWG, CPNDS and others), name, ClinPGx URL and the genes and chemicals it covers."
+  },
+  {
+   "path": "raw/cpic-guideline.json",
+   "url": "https://api.cpicpgx.org/v1/guideline?order=id.asc",
+   "retrieved_utc": "2026-09-05T16:29:11Z",
+   "http_status": "200",
+   "bytes": 7030,
+   "rows": 29,
+   "sha256": "1c3e5623b5db2bdee5fc210f481309d245c3dcd87ad9b3a54814726121b23616",
+   "licence": "CC0 1.0 Universal Public Domain Dedication",
+   "note": "CPIC guideline records: id, name, ClinPGx URL, the genes covered and the ClinPGx accession."
+  },
+  {
+   "path": "raw/cpic-pair.json",
+   "url": "https://api.cpicpgx.org/v1/pair?order=pairid.asc",
+   "retrieved_utc": "2026-09-05T16:29:29Z",
+   "http_status": "200",
+   "bytes": 205452,
+   "rows": 635,
+   "sha256": "434e7883f0aae36f8e51408dfb02e205ab8527a698fa45983c77f10f56f8d2ba",
+   "licence": "CC0 1.0 Universal Public Domain Dedication",
+   "note": "CPIC gene-drug pairs: gene symbol, drug id, guideline id, CPIC level, ClinPGx level, PGx testing recommendation and whether the pair was removed."
+  },
+  {
+   "path": "raw/cpic-drug.json",
+   "url": "https://api.cpicpgx.org/v1/drug?order=drugid.asc",
+   "retrieved_utc": "2026-09-05T16:29:41Z",
+   "http_status": "200",
+   "bytes": 89591,
+   "rows": 324,
+   "sha256": "9970cd23059ad2176ed2d601932ab7d76a92e95cf4d40fe5ecd97efddf79b773",
+   "licence": "CC0 1.0 Universal Public Domain Dedication",
+   "note": "CPIC drug records: RxNorm id, name, ClinPGx accession, DrugBank id, ATC codes and the guideline the drug belongs to."
+  },
+  {
+   "path": "legal/pharmgkb-archive-LICENSE.txt",
+   "url": "https://api.clinpgx.org/v1/download/file/data/chemicals.zip#LICENSE.txt",
+   "retrieved_utc": null,
+   "http_status": "200",
+   "bytes": 1044,
+   "sha256": "5193e5a3bcf55f4b70931b65f5155b6281a521bd18c6e3a2d4933895028b8d9f",
+   "note": "The licence file ClinPGx ships inside every data archive, copied out unchanged. It is the licence grant that attaches to the downloaded records themselves."
+  },
+  {
+   "path": "legal/clinpgx-dataUsagePolicy.html",
+   "url": "https://api.clinpgx.org/v1/data/page/dataUsagePolicy#data.markdown.html",
+   "retrieved_utc": null,
+   "http_status": "200",
+   "bytes": 10103,
+   "sha256": "0400f2a8fb3b28c30d254c41e3ad22564bfd6a41d7afb7182bef2d88bf0390b0",
+   "note": "The HTML body carried inside the saved API response, extracted unchanged. This is the page that grants CC BY-SA 4.0 for ClinPGx/PharmGKB and CC0 1.0 for CPIC."
+  }
+ ],
+ "total_bytes": 6426322
+}

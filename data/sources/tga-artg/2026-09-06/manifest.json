@@ -1,0 +1,199 @@
+{
+ "source": "tga-artg",
+ "sourceName": "Poisons Standard (SUSMP) schedule lists — Therapeutic Goods (Poisons Standard—June 2026) Instrument 2026 (F2026L00633), Federal Register of Legislation. The Australian Register of Therapeutic Goods half of this source is blocked; see blocker.",
+ "retrievalDate": "2026-09-06",
+ "retrievalRoute": "Bulk download of the instrument's authorised Word original from the Federal Register of Legislation, the route the register's own downloads page links (https://www.legislation.gov.au/F2026L00633/asmade/downloads). The in-force instrument was identified through the register's OData API (https://api.prod.legislation.gov.au/v1/titles?$filter=contains(name,'Poisons Standard')), which reports F2026L00633 as the only Poisons Standard with status InForce and gives the Primary Word document size as 966,941 bytes; the downloaded file is exactly that size. No page of the register was crawled.",
+ "landingPage": "https://www.legislation.gov.au/F2026L00633/asmade",
+ "instrument": {
+  "registerId": "F2026L00633",
+  "name": "Therapeutic Goods (Poisons Standard—June 2026) Instrument 2026",
+  "commonName": "Poisons Standard June 2026 (SUSMP)",
+  "makingDate": "2026-05-27",
+  "registeredAt": "2026-05-28T12:59:30Z",
+  "status": "InForce",
+  "compilationNumber": "0"
+ },
+ "licence": {
+  "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "terms_of_use_url": "https://www.legislation.gov.au/terms-of-use",
+  "terms_of_use_local_copy": "data/sources/tga-artg/2026-09-06/legal/legislation-gov-au-terms-of-use.html",
+  "quoted": "With the exception of the Commonwealth Coat of Arms, and where otherwise noted, all content on the Federal Register of Legislation (the Legislation Register) is provided under Creative Commons Attribution 4.0 International (the CC BY 4.0 licence). This licence allows you to share (copy and redistribute in any medium or format) and to adapt (remix, transform, and build upon) content for any purpose, even commercially.",
+  "attribution_required": true,
+  "share_alike": false,
+  "redistribution_permitted": true,
+  "commercial_use_permitted": true,
+  "attribution_text": "Sourced from the Federal Register of Legislation at 6 September 2026. For the latest information on Australian Government law please go to https://www.legislation.gov.au."
+ },
+ "robots": [
+  {
+   "url": "https://www.legislation.gov.au/robots.txt",
+   "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-www-legislation-gov-au.txt",
+   "finding": "User-agent: * with Crawl-delay: 10 and Disallow: /assets/ only. The instrument download path is not under /assets/. Four requests were made to this host in total, spaced by more than 10 seconds each."
+  },
+  {
+   "url": "https://www.tga.gov.au/robots.txt",
+   "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-www-tga-gov-au-wayback-20260202.txt",
+   "finding": "Not retrievable live: fifteen requests across two days and two rounds timed out after 30 s with 0 bytes received (evidence in legal/www-tga-gov-au-retries.txt, legal/www-tga-gov-au-retries-2.txt and the 2026-09-05 directory). The copy here is the Internet Archive capture of 2026-02-02, a stock Drupal robots.txt whose Disallow rules cover /core/, /profiles/, /admin/, /search and account paths only. Robots is not what blocks this source; the site copyright notice is."
+  },
+  {
+   "url": "https://www.ebs.tga.gov.au/robots.txt",
+   "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-www-ebs-tga-gov-au.txt",
+   "finding": "User-agent: * / Disallow: / — the TGA eBS host, which serves the ARTG public search and its export, forbids automated retrieval of every path. No eBS data path was requested."
+  },
+  {
+   "url": "https://data.gov.au/robots.txt",
+   "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-data-gov-au.txt",
+   "finding": "Checked before querying the CKAN API for an openly licensed ARTG redistribution. /data/api/ is not disallowed. The search returned no ARTG dataset and no resource hosted on tga.gov.au."
+  },
+  {
+   "url": "https://apps.tga.gov.au/robots.txt",
+   "local_copy": "data/sources/tga-artg/2026-09-06/legal/robots-apps-tga-gov-au.txt",
+   "finding": "HTTP 404, no robots.txt. No path on this host was requested."
+  }
+ ],
+ "blockedComponent": {
+  "component": "Australian Register of Therapeutic Goods (active ingredient, ARTG id, ARTG status)",
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "evidence": "data/revamp/worklog-entries/2.12-blocker.md",
+  "tgaCopyrightCaptures": [
+   "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20251128.html",
+   "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20250518.html"
+  ],
+  "quoted": "TGA Copyright page (https://www.tga.gov.au/about-us/using-our-website/copyright, Internet Archive capture of 2025-11-28, the most recent capture that returns the page): \"You must not use the whole or any part of the content on this website for any commercial purposes.\" and \"You are not permitted to re-transmit, distribute or commercialise the material without our prior written approval.\" The earlier capture at https://www.tga.gov.au/copyright (2025-05-18) says the same in the older wording: reproduction is permitted for personal or internal organisational use \"but only if you or your organisation do not use the reproduction for any commercial purpose\".",
+  "reachabilityRecheck": {
+   "date": "2026-09-06",
+   "script": "scripts/revamp/tga_recheck.sh",
+   "result": "Six further attempts, all failed: five curl exit 28 and one curl exit 56, every one with 0 bytes received. The blocker does not rest on reachability; ground 1 (the copyright terms) and ground 2 (eBS robots.txt Disallow: /) stand independently.",
+   "evidence": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries-2.txt"
+  }
+ },
+ "apiKey": "None. The Federal Register of Legislation OData API is open and offers no key registration; no credential was created or stored for this source.",
+ "requestLog": "data/sources/tga-artg/2026-09-06/requests.log",
+ "rawFileCount": 1,
+ "rawBytes": 966941,
+ "files": [
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/legislation-gov-au-terms-of-use.html",
+   "role": "legal",
+   "bytes": 48503,
+   "sha256": "aa74fb1b971a1f0f235d2c345188688e41a454863400bbd2cf56f3b7a87633e4",
+   "url": "https://www.legislation.gov.au/terms-of-use",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:08:33Z",
+   "logged_bytes": 11945,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/robots-apps-tga-gov-au.txt",
+   "role": "legal",
+   "bytes": 1245,
+   "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+   "url": "https://apps.tga.gov.au/robots.txt",
+   "http_status": 404,
+   "retrieved": "2026-09-05T16:07:51Z",
+   "provenance": "The host answered HTTP 404 from IIS: apps.tga.gov.au publishes no robots.txt. The 404 body is kept as the record of that check.",
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/robots-data-gov-au.txt",
+   "role": "legal",
+   "bytes": 552,
+   "sha256": "386123441968e1a8e8633f4226f026dfe42bfffc8e4b033972d47b7cfb37f8e7",
+   "url": "https://data.gov.au/robots.txt",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:07:50Z",
+   "logged_bytes": 552,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/robots-www-ebs-tga-gov-au.txt",
+   "role": "legal",
+   "bytes": 28,
+   "sha256": "a8f31103361fca68bef71fc69cff844b7c23bd3d64d2b872d74690cbda656bfc",
+   "url": "https://www.ebs.tga.gov.au/robots.txt",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:07:49Z",
+   "logged_bytes": 28,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/robots-www-legislation-gov-au.txt",
+   "role": "legal",
+   "bytes": 210,
+   "sha256": "ccee18ba778f81d2ee50e3f510029d801c25bcc202ae5673e1e2d57b95f995fd",
+   "url": "https://www.legislation.gov.au/robots.txt",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:07:50Z",
+   "logged_bytes": 210,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/robots-www-tga-gov-au-wayback-20260202.txt",
+   "role": "legal",
+   "bytes": 1720,
+   "sha256": "adfc4f58a3041377157e4fe3f728d40be749c5cbcee94d2089d09698d3a90950",
+   "url": "https://web.archive.org/web/20260202082248id_/https://www.tga.gov.au/robots.txt",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:12:47Z",
+   "logged_bytes": 1720,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20250518.html",
+   "role": "legal",
+   "bytes": 59398,
+   "sha256": "9dd0bd45e34f1e1a405b7dc17e5e10578316b6a4731564907bf3c87c9bf4aa3d",
+   "url": "https://web.archive.org/web/20250518142340id_/https://www.tga.gov.au/copyright",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:12:46Z",
+   "logged_bytes": 59398,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/tga-copyright-wayback-20251128.html",
+   "role": "legal",
+   "bytes": 113063,
+   "sha256": "c597afa5551c0df701054723057eba3c77b88f1a34334d36092178f46b28267a",
+   "url": "https://web.archive.org/web/20251128114144id_/https://www.tga.gov.au/about-us/using-our-website/copyright",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:25:02Z",
+   "logged_bytes": 113063,
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries-2.txt",
+   "role": "legal",
+   "bytes": 1984,
+   "sha256": "55ae88627b844ee4f62e690b50f16259bf5313c19d0e7d6f64a32e2626fa72ad",
+   "provenance": "Written by this step, not fetched: the verbatim curl output of a second round of six requests to www.tga.gov.au on 2026-09-06 (two URLs, three attempts each with 0 s, 7 s and 22 s backoff, desktop Chrome user agent over HTTP/1.1), run by scripts/revamp/tga_recheck.sh. Five attempts returned curl exit 28 (operation timed out with 0 bytes received) and one returned curl exit 56 (recv failure: operation timed out). Fifteen attempts across two rounds and two days have now failed identically.",
+   "state": "added"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/legal/www-tga-gov-au-retries.txt",
+   "role": "legal",
+   "bytes": 2432,
+   "sha256": "7b15b471491a4b90edff9d54f04affd3a2652b9cfd15208ff0a74d73d68bc738",
+   "provenance": "Written by this step, not fetched: the verbatim curl output of nine requests to www.tga.gov.au (three URLs, three attempts each with 0 s, 7 s and 22 s backoff), every one curl exit 28 with 0 bytes received.",
+   "state": "unchanged"
+  },
+  {
+   "path": "data/sources/tga-artg/2026-09-06/raw/poisons-standard-june-2026-F2026L00633.docx",
+   "role": "raw",
+   "bytes": 966941,
+   "sha256": "5927efde685b9719d17ef6a48b454c4e25b851cccc9c33a6b7aa9460874c9d01",
+   "url": "https://www.legislation.gov.au/F2026L00633/asmade/2026-05-28/text/original/word",
+   "http_status": 200,
+   "retrieved": "2026-09-05T16:12:48Z",
+   "logged_bytes": 966941,
+   "state": "unchanged"
+  }
+ ],
+ "derivedFiles": [
+  "data/sources/tga-artg/2026-09-06/parsed/susmp-entries.json",
+  "data/sources/tga-artg/mapped.parquet",
+  "data/sources/tga-artg/coverage.json",
+  "data/sources/tga-artg/name-candidates-for-review.json",
+  "data/sources/tga-artg/unmatched-records.json"
+ ]
+}

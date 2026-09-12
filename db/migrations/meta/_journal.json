@@ -183,6 +183,76 @@
       "when": 1788527298311,
       "tag": "0025_corpus_page_facets",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1788651411262,
+      "tag": "0026_corpus_revamp",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1788674601327,
+      "tag": "0027_corpus_ruler_numerator",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1788784996715,
+      "tag": "0028_hubs",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1788790489539,
+      "tag": "0029_page_seed_slots",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1788791255636,
+      "tag": "0030_page_question_values",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1788848974876,
+      "tag": "0031_corpus_duplicate_holds_and_hub_aliases",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1788896972447,
+      "tag": "0032_hub_duplicate_holds",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1788978584250,
+      "tag": "0033_corpus_suppression_evidence",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1789100672551,
+      "tag": "0034_dossier_v3_claims_corrections_graph",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1789187714258,
+      "tag": "0035_page_statement_community_review",
+      "breakpoints": true
     }
   ]
 }

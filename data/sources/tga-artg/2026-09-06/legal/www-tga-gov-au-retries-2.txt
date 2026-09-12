@@ -1,0 +1,26 @@
+# www.tga.gov.au reachability re-check, Phase 2 step 2.12, 2026-09-06 (UTC timestamps below are
+# 2026-09-05T20:5x Z = 2026-09-06 local). Command: scripts/revamp/tga_recheck.sh — curl -sS -4 --http1.1
+# --compressed -m 30 with a desktop Chrome user agent, three attempts per URL, 0 s / 7 s / 22 s backoff.
+# This is the second round; the first round of nine attempts is in www-tga-gov-au-retries.txt and
+# data/sources/tga-artg/2026-09-05/tga-www-retries.txt. Every attempt in both rounds failed identically.
+
+=== attempt 1 https://www.tga.gov.au/robots.txt at 2026-09-05T20:55:48Z ===
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 exit=28
+=== attempt 2 https://www.tga.gov.au/robots.txt at 2026-09-05T20:56:25Z ===
+curl: (28) Operation timed out after 30008 milliseconds with 0 bytes received
+http_code=000 size=0 exit=28
+=== attempt 3 https://www.tga.gov.au/robots.txt at 2026-09-05T20:57:17Z ===
+curl: (28) Operation timed out after 30003 milliseconds with 0 bytes received
+http_code=000 size=0 exit=28
+=== attempt 1 https://www.tga.gov.au/about-us/using-our-website/copyright at 2026-09-05T20:57:47Z ===
+(no result line: the shell invocation that wrote this header hit its own 120 s wall-clock limit while curl was still waiting on this request. The attempt was re-run in full nine seconds later and its result is the next block.)
+=== attempt 1 https://www.tga.gov.au/about-us/using-our-website/copyright at 2026-09-05T20:57:56Z ===
+curl: (56) Recv failure: Operation timed out
+http_code=000 size=0 exit=56
+=== attempt 2 https://www.tga.gov.au/about-us/using-our-website/copyright at 2026-09-05T20:58:30Z ===
+curl: (28) Operation timed out after 30011 milliseconds with 0 bytes received
+http_code=000 size=0 exit=28
+=== attempt 3 https://www.tga.gov.au/about-us/using-our-website/copyright at 2026-09-05T20:59:22Z ===
+curl: (28) Operation timed out after 30012 milliseconds with 0 bytes received
+http_code=000 size=0 exit=28

@@ -1,0 +1,10 @@
+[core]
+    analytics = false
+    autostage = false
+    remote = offsite
+[cache]
+    type = "reflink,copy"
+['remote "offsite"']
+    url = s3://rnawiki-corpus-dvc
+    endpointurl = https://s3.us-west-004.backblazeb2.com
+    region = us-west-004

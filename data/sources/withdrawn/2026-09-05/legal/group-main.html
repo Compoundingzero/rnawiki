@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Re-used includes, test bootstrap nav header, page header -->
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="structural-bioinformatics-group">
+
+        <title>Structural Bioinformatics Group</title>
+
+        <!-- Page Icon -->
+        <link rel="icon" href="./images/favicon.ico" />
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container-fluid">
+
+                <!--Collapsed mobile Navbar header (the three bars)-->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <!--<a class="navbar-brand" href="#">Structural Bioinformatics Group</a>--> <!--Optional left-heading "branding"-->
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>
+                            <a href="web_data.php">Databases/Web Servers</a>
+                        </li>
+                        <li>
+                            <!--<a href="publications.php">Publications</a>-->
+                            <a href="bib.php">Publications</a>
+                        </li>
+                        <li>
+                            <a href="members.php">Members</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teaching<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="thesis.php">Theses</a></li>
+                                <li><a href="course_theoretical.php">Theoretical Course</a></li>
+                                <li><a href="course_practical.php">Practical Course</a></li>
+                                <li><a href="course_software.php">Software Course</a></li>
+                            </ul>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="funding.php">Funding</a></li>
+                                <li><a href="coops.php">Cooperations</a></li>
+                                <li><a href="positions.php">Open Positions</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact.php">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Header -->
+        <!-- Set your background image for this header on the line below. -->
+        <!--<header class="intro-header" style="background-image: url('img/header-bg1.png')">-->
+        <header class="intro-header" style="background-image: url('./images/vishal_background.png');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-lg-6 col-md-offset-3">
+                        <div class="site-heading">
+                            <h2>
+                                Structural Bioinformatics Group
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-offset-0 col-lg-12 col-sm-offset-0">
+                    <h3 class="site-heading-contact">Welcome to AG Preissner</h3>
+
+                    <p></p>
+                    <div class="post-heading">
+                        <h4>Our Research Activities</h4>
+                    </div>
+                    <div class="panel panel-default pub">
+                        <p></p>
+
+                        <p align="justify">
+                            As an interdisciplinary research group, we focus on multiple research topics in fields of bio/cheminformatics and personalized medicine.
+                            Our primary interests are in understanding the structure, function and interaction of chemicals with therapeutic and off-targets.
+                            By applying a wide range of cheminformatics methods including chemical similarity approaches, molecular docking and simulations, we propose
+                            hypotheses to answer complex questions in drug discovery. We develop in silico models to predict the target landscape of small molecules relevant
+                            in cancer research and for other pharmaceutically relevant endpoints (cardiotoxicity, hepatotoxicity etc.). With an aim to serve the research community,
+                            we developed several bio- and cheminformatics databases and web servers (listed below). Using our knowledge base and toolchain, we analyze health care data
+                            in order to propose recommendations to improve decision making in clinical practices, and develop computational methods to contribute to the state-of-the-art
+                            in the research field.
+                        </p>
+
+                        <p align="justify">
+                            Our group is part of the Charité Technology Transfer initiative. For more information, please check the <a href="files/Technology_Transfer_SBG.pdf">catalogue</a>.
+                        </p>
+
+                        <p align="justify">
+                            List of bio/cheminformatics databases and web servers developed at our group (selected):
+                        </p>
+
+                        <ul class="underline">
+                            <li>the <a target="_blank" href="https://bioinformatics.charite.de/withdrawn_3/index.php">WITHDRAWN 2.0 database</a> (2023)</li>
+                            <li>the <a target="_blank" href="http://virtualtaste.charite.de/VirtualTaste/">VirtualTaste: A web-server for the prediction of organoleptic properties of chemical compounds</a> (2021)</li>
+                            <li>the <a target="_blank" href="http://insilico-cyp.charite.de/SuperCYPsPred/index.php?site=Statistics">SuperCYPsPred: a web server to predict Cytochrome P450 interactions</a> (2020)</li>
+                            <li>the <a target="_blank" href="http://bioinformatics.charite.de/promiscuous2">Promiscuous 2.0: a resource for drug-repositioning</a> (2020)</li>
+			    <li>the <a target="_blank" href="http://tox.charite.de">Protox II webserver</a> (2018)</li>
+                            <li>the <a target="_blank" href="http://cheminfo.charite.de/superdrug2">SuperDRUG2</a> database (2018)</li>
+                            <li>the <a target="_blank" href="http://bioinformatics.charite.de/mvoc">MVOC 2.0</a> database (2018)</li>
+                            <li>the <a target="_blank" href="http://bioinformatics.charite.de/care">CancerResource</a> database (2016)</li>
+                            <li>the <a target="_blank" href="http://bioinf-applied.charite.de/supernatural_new/">Super Natural II</a> database (2015)</li>
+                            <li>the <a target="_blank" href="http://prediction.charite.de">SuperPred</a> webserver (2014)</li>
+                            <li>the <a target="_blank" href="http://bioinformatics.charite.de/superpain">SuperPain</a> database (2014)</li>
+                        </ul>
+
+                        <p align="justify">
+                            An extensive list of resources can be found <a href="web_data.php">here.</a>
+                        </p>
+                        <p></p>
+                    </div>
+
+                    <p></p>
+                    <div class="post-heading">
+                        <h4>Latest News</h4>
+                    </div> 
+                    <div class="panel panel-default pub">
+                        <p></p>
+                        <ul class="news underline">
+			
+                            
+  
+                            <li>For older news, see
+                                <a href="news_archive.php">News Archive</a>
+                            </li>
+                        </ul>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!--Re-used footer, including library load-->
+        <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://www.charite.de/en/" target="_blank">
+                            <img src="img/logo_charite.svg" alt="logo-charite" style="height: 25%; width: 25%;">
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Structural Bioinformatics Group 2023</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/clean-blog.min.js"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDomains", ["*.bioinf-apache.charite.de/main","*.bioinformatics.charite.de/main"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//bioinformatics.charite.de/biostats/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 3]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//bioinformatics.charite.de/biostats/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+<script>
+var aTags = document.getElementsByTagName("a");
+var redirects = {
+    //"tox.charite.de/pb": "http://bioinformatics.charite.de/main/members.php"};
+
+for(var i = 0;i < aTags.length; i++) {
+    aTags[i].addEventListener("click", function(event) {
+        var url = this.getAttribute("href");
+
+        for (var redirect in redirects) {
+            var pattern = new RegExp(redirect);
+
+            if (pattern.test(url)) {
+                window.location = redirects[redirect];
+                event.preventDefault();
+            }
+        }
+    });
+}
+</script>
+
+
+    </body>
+
+</html>

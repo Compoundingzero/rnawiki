@@ -1,0 +1,476 @@
+{
+  "after": {
+    "asOf": "2026-09-06",
+    "assignmentLines": 28832,
+    "fieldsDirectory": "data/revamp/fields-v2",
+    "path": "data/revamp/derived-v2/fire-counts.json",
+    "suppressedPages": 20274
+  },
+  "before": {
+    "asOf": "2026-09-04",
+    "fieldsDirectory": "data/corpus-20k/fields",
+    "path": "data/corpus-20k/derived/fire-counts.json",
+    "suppressedPages": 19268
+  },
+  "floorReapplied": true,
+  "generatedBy": "scripts/revamp/derived_fire_counts.py",
+  "indexes": {
+    "after": {
+      "enzymeNodes": 47,
+      "enzymeRows": 4491,
+      "targetNodes": 2298,
+      "targetRows": 8836
+    },
+    "before": {
+      "enzymeNodes": 47,
+      "enzymeRows": 4491,
+      "targetNodes": 2298,
+      "targetRows": 8836
+    }
+  },
+  "minFires": 40,
+  "seeds": {
+    "1": {
+      "after": 0,
+      "afterDiscarded": true,
+      "afterReason": "discarded: fires on 0 of the 3615 pages in this seed's models, below the 40-page floor",
+      "before": 0,
+      "beforeDiscarded": true,
+      "delta": 0,
+      "firesByTier": {
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "name": "Bioavailability gap",
+      "rowsWritten": 0,
+      "suppressedKeysInFile": 0,
+      "suppressionAbsolute": true
+    },
+    "10": {
+      "after": 218,
+      "afterDiscarded": false,
+      "afterReason": "computed over 6196 pages in this seed's models",
+      "before": 191,
+      "beforeDiscarded": false,
+      "delta": 27,
+      "firesByTier": {
+        "1": 153,
+        "2": 65,
+        "3": 0
+      },
+      "name": "Source contradiction",
+      "rowsWritten": 218,
+      "suppressedKeysInFile": 180,
+      "suppressionAbsolute": false
+    },
+    "11": {
+      "after": 0,
+      "afterDiscarded": true,
+      "afterReason": "discarded: fires on 0 of the 1109 pages in this seed's models, below the 40-page floor",
+      "before": 0,
+      "beforeDiscarded": true,
+      "delta": 0,
+      "firesByTier": {
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "name": "Animal-only ceiling",
+      "rowsWritten": 0,
+      "suppressedKeysInFile": 0,
+      "suppressionAbsolute": false
+    },
+    "12": {
+      "after": 6086,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 6086,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 1118,
+        "2": 2144,
+        "3": 2824
+      },
+      "name": "Registry-to-publication gap",
+      "rowsWritten": 6086,
+      "suppressedKeysInFile": 3912,
+      "suppressionAbsolute": false
+    },
+    "13": {
+      "after": 2164,
+      "afterDiscarded": false,
+      "afterReason": "computed over 27723 pages in this seed's models",
+      "before": 2164,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 0,
+        "2": 0,
+        "3": 2164
+      },
+      "name": "Same-target lineage",
+      "rowsWritten": 2164,
+      "suppressedKeysInFile": 2058,
+      "suppressionAbsolute": false
+    },
+    "14": {
+      "after": 1773,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 969,
+      "beforeDiscarded": false,
+      "delta": 804,
+      "firesByTier": {
+        "1": 135,
+        "2": 1638,
+        "3": 0
+      },
+      "name": "Spontaneous-report disproportion",
+      "rowsWritten": 1773,
+      "suppressedKeysInFile": 1131,
+      "suppressionAbsolute": false
+    },
+    "15": {
+      "after": 7257,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 7257,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 1189,
+        "2": 2460,
+        "3": 3608
+      },
+      "name": "Evidence age",
+      "rowsWritten": 7257,
+      "suppressedKeysInFile": 4754,
+      "suppressionAbsolute": false
+    },
+    "16": {
+      "after": 8615,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 8615,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 1267,
+        "2": 2661,
+        "3": 4687
+      },
+      "name": "Trial size ceiling",
+      "rowsWritten": 8615,
+      "suppressedKeysInFile": 5802,
+      "suppressionAbsolute": false
+    },
+    "17": {
+      "after": 12872,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 182,
+      "beforeDiscarded": false,
+      "delta": 12690,
+      "firesByTier": {
+        "1": 1630,
+        "2": 4106,
+        "3": 7136
+      },
+      "name": "Jurisdiction divergence",
+      "rowsWritten": 12872,
+      "suppressedKeysInFile": 7696,
+      "suppressionAbsolute": false
+    },
+    "2": {
+      "after": 479,
+      "afterDiscarded": false,
+      "afterReason": "computed over 540 pages in this seed's models",
+      "before": 600,
+      "beforeDiscarded": false,
+      "delta": -121,
+      "firesByTier": {
+        "1": 479,
+        "2": 0,
+        "3": 0
+      },
+      "name": "N-of-1 designability",
+      "rowsWritten": 479,
+      "suppressedKeysInFile": 0,
+      "suppressionAbsolute": true
+    },
+    "3": {
+      "after": 2771,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 2771,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 739,
+        "2": 1247,
+        "3": 785
+      },
+      "name": "Failure autopsy",
+      "rowsWritten": 2771,
+      "suppressedKeysInFile": 1893,
+      "suppressionAbsolute": false
+    },
+    "4": {
+      "after": 1054,
+      "afterDiscarded": false,
+      "afterReason": "computed over 1109 pages in this seed's models",
+      "before": 1054,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 1054,
+        "2": 0,
+        "3": 0
+      },
+      "name": "Endpoint mismatch",
+      "rowsWritten": 1054,
+      "suppressedKeysInFile": 546,
+      "suppressionAbsolute": false
+    },
+    "5": {
+      "after": 575,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 575,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 18,
+        "2": 557,
+        "3": 0
+      },
+      "name": "Stack interaction graph",
+      "rowsWritten": 575,
+      "suppressedKeysInFile": 393,
+      "suppressionAbsolute": false
+    },
+    "6": {
+      "after": 2,
+      "afterDiscarded": true,
+      "afterReason": "discarded: fires on 2 of the 540 pages in this seed's models, below the 40-page floor",
+      "before": 2,
+      "beforeDiscarded": true,
+      "delta": 0,
+      "firesByTier": {
+        "1": 2,
+        "2": 0,
+        "3": 0
+      },
+      "name": "Time-to-signal",
+      "rowsWritten": 2,
+      "suppressedKeysInFile": 0,
+      "suppressionAbsolute": true
+    },
+    "7": {
+      "after": 36,
+      "afterDiscarded": true,
+      "afterReason": "discarded: fires on 36 of the 1109 pages in this seed's models, below the 40-page floor",
+      "before": 36,
+      "beforeDiscarded": true,
+      "delta": 0,
+      "firesByTier": {
+        "1": 36,
+        "2": 0,
+        "3": 0
+      },
+      "name": "Sex-specific divergence",
+      "rowsWritten": 36,
+      "suppressedKeysInFile": 15,
+      "suppressionAbsolute": false
+    },
+    "8": {
+      "after": 2800,
+      "afterDiscarded": false,
+      "afterReason": "computed over 28832 pages in this seed's models",
+      "before": 2574,
+      "beforeDiscarded": false,
+      "delta": 226,
+      "firesByTier": {
+        "1": 822,
+        "2": 1978,
+        "3": 0
+      },
+      "name": "Evidence provenance timeline",
+      "rowsWritten": 2800,
+      "suppressedKeysInFile": 1608,
+      "suppressionAbsolute": false
+    },
+    "9": {
+      "after": 890,
+      "afterDiscarded": false,
+      "afterReason": "computed over 6196 pages in this seed's models",
+      "before": 890,
+      "beforeDiscarded": false,
+      "delta": 0,
+      "firesByTier": {
+        "1": 332,
+        "2": 558,
+        "3": 0
+      },
+      "name": "What would change this",
+      "rowsWritten": 890,
+      "suppressedKeysInFile": 633,
+      "suppressionAbsolute": false
+    }
+  },
+  "spec": "docs/specs/revamp-2026-09.md#phase-4",
+  "step": "4.6",
+  "suppression": {
+    "allSuppressionAbsoluteSeedsClean": true,
+    "controlledTriggerByRegister": {
+      "AU-SUSMP-8-9": 161,
+      "SG-MDA-POISONS": 1801,
+      "US-DEA": 68
+    },
+    "controlledTriggerPages": 1836,
+    "nOf1DesignabilityNeverFiresOnASuppressedPage": true,
+    "newlySuppressedByControlledField": 1006,
+    "seeds1And6NeverFireOnASuppressedPage": true,
+    "seedsHoldingASuppressedPage": {
+      "10": {
+        "count": 180,
+        "examples": [
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:{K1:A49OS0F91S,K1:EFW857872Q}",
+          "COMBO:{K1:DIQ16UC154,K1:HB75CIT999}",
+          "COMBO:{K1:O9S4K2S25E,K1:S2F83W92TK}",
+          "HOLD:existing:cisapride"
+        ]
+      },
+      "12": {
+        "count": 3912,
+        "examples": [
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:{IK:DSLZVSRJTYRBFB-AJSXGEPRSA-N,K1:GOO8ZCK7RT}",
+          "COMBO:{IK:JAZBEHYOTPTENJ-RCHUDCCISA-N,IK:OQOCQFSPEWCSDO-RCHUDCCISA-N,IK:YUFFSWGQGVEMMI-RCHUDCCISA-N}",
+          "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}"
+        ]
+      },
+      "13": {
+        "count": 2058,
+        "examples": [
+          "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
+          "COMBO:{K1:7673326042,K1:P7V86EYZ5L}",
+          "K1:000705ZASD",
+          "K1:00ALI1GAY2",
+          "K1:00OLE78529"
+        ]
+      },
+      "14": {
+        "count": 1131,
+        "examples": [
+          "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+          "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}",
+          "COMBO:{K1:04Z20NMK31,K1:5A614L51CT}",
+          "COMBO:{K1:0I55128JYK,K1:TE7660XO1C}",
+          "COMBO:{K1:1J444QC288,K1:80M03YXJ7I}"
+        ]
+      },
+      "15": {
+        "count": 4754,
+        "examples": [
+          "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
+          "COMBO:{IK:DSLZVSRJTYRBFB-AJSXGEPRSA-N,K1:GOO8ZCK7RT}"
+        ]
+      },
+      "16": {
+        "count": 5802,
+        "examples": [
+          "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:NAME:svn53 67 m57 klh peptide vaccine",
+          "COMBO:{IK:DSLZVSRJTYRBFB-AJSXGEPRSA-N,K1:GOO8ZCK7RT}"
+        ]
+      },
+      "17": {
+        "count": 7696,
+        "examples": [
+          "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:NAME:human botulinum neurotoxin a b immune globulin",
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:{IK:BRLQWZUYTZBJKN-UHFFFAOYSA-N,K1:506T60A25R}"
+        ]
+      },
+      "3": {
+        "count": 1893,
+        "examples": [
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:NAME:hydroxyethyl starch 130 0 4",
+          "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+          "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
+          "COMBO:{K1:6DC9Q167V3,K1:A0JWA85V8F}"
+        ]
+      },
+      "4": {
+        "count": 546,
+        "examples": [
+          "COMBO:NAME:follitropin alfa beta",
+          "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+          "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+          "COMBO:{K1:4TI98Z838E,K1:5B2546MB5Z,K1:T18F433X4S}",
+          "COMBO:{K1:6DC9Q167V3,K1:A0JWA85V8F}"
+        ]
+      },
+      "5": {
+        "count": 393,
+        "examples": [
+          "COMBO:{K1:3QN8BYN5QF,K1:DIQ16UC154}",
+          "HOLD:existing:arimoclomol",
+          "HOLD:existing:beclomethasone",
+          "HOLD:existing:vincristine",
+          "K1:01K63SUP8D"
+        ]
+      },
+      "7": {
+        "count": 15,
+        "examples": [
+          "K1:08W5N2C97Q",
+          "K1:184SNS8VUH",
+          "K1:3L5TQ84570",
+          "K1:4TI98Z838E",
+          "K1:5R97F5H93P"
+        ]
+      },
+      "8": {
+        "count": 1608,
+        "examples": [
+          "COMBO:NAME:conjugated estrogens medroxyprogesterone",
+          "COMBO:{IK:SBFXHXZNBNFPHV-CROXOCCCSA-N,K1:05D48LUM4Z,K1:202229IR8Y,K1:IK4C1OC8NE}",
+          "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+          "COMBO:{K1:1J444QC288,K1:80M03YXJ7I}",
+          "COMBO:{K1:46627O600J,K1:KR87B45RGH}"
+        ]
+      },
+      "9": {
+        "count": 633,
+        "examples": [
+          "COMBO:{K1:19GBJ60SN5,K1:7J8897W37S}",
+          "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
+          "COMBO:{K1:6DC9Q167V3,K1:A0JWA85V8F}",
+          "HOLD:existing:fludarabine",
+          "HOLD:existing:fludrocortisone"
+        ]
+      }
+    },
+    "seedsRequiredToHoldNoSuppressedPage": [
+      "1",
+      "2",
+      "6"
+    ],
+    "suppressedPagesAfter": 20274,
+    "suppressedPagesBefore": 19268
+  }
+}

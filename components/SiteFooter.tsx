@@ -1,23 +1,19 @@
 // Site-wide navigation and medical disclaimer. This is static server-rendered markup.
+//
+// The link list lives in lib/site-footer-links.ts, shared with the plain-document footer so the
+// two cannot drift. The analytics control that used to sit at the end of this row now lives on
+// /privacy, with the explanation of what it does beside it.
 
 import Link from 'next/link'
 
-import { AnalyticsPreferencesButton } from '@/components/GoogleAnalytics'
-
-const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
-  { href: '/browse', label: 'Browse all medicines' },
-  { href: '/datasets', label: 'Public datasets' },
-  { href: '/how-it-works', label: 'How this works' },
-  { href: '/editorial-policy', label: 'Editorial policy' },
-  { href: '/review-queue', label: 'Review queue' },
-]
+import { FOOTER_LINKS, FOOTER_TRUST_LINES } from '@/lib/site-footer-links'
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-black/[0.06] bg-white py-6 text-center text-xs text-[#6E6E73]">
       <div className="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>RNAWiki.com &bull; Public medicine evidence</span>
-        <span>No advertising &bull; Free to read</span>
+        <span>{FOOTER_TRUST_LINES.identity}</span>
+        <span>{FOOTER_TRUST_LINES.terms}</span>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 mt-5 pt-4 border-t border-black/[0.04] space-y-2">
@@ -29,18 +25,14 @@ export function SiteFooter() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[#6E6E73] hover:text-[#0071E3] hover:underline transition"
+              className="inline-flex min-h-11 items-center text-[#6E6E73] hover:text-[#0071E3] hover:underline transition"
             >
               {link.label}
             </Link>
           ))}
-          <AnalyticsPreferencesButton />
         </nav>
 
-        <p className="text-[11px] leading-relaxed text-[#6E6E73]">
-          RNAWiki is a public evidence record, not medical advice. Talk to a clinician before
-          changing any treatment.
-        </p>
+        <p className="text-[11px] leading-relaxed text-[#6E6E73]">{FOOTER_TRUST_LINES.notAdvice}</p>
       </div>
     </footer>
   )

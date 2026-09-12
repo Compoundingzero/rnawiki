@@ -27,6 +27,14 @@ import {
   type AttributionWarning,
   type IdentitySource,
 } from '@/lib/inventory/types'
+import {
+  PAGE_STATEMENT_CHANGE_CATEGORIES,
+  PAGE_STATEMENT_KEYS,
+  PAGE_STATEMENT_PROPOSAL_STATUSES,
+  PAGE_STATEMENT_PUBLICATION_EVENTS,
+  PAGE_STATEMENT_REVIEW_STATUSES,
+  PAGE_STATEMENT_RISK_CLASSES,
+} from '@/lib/page-statements/types'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -321,6 +329,12 @@ export const users = pgTable(
     noteCount: integer('note_count').notNull().default(0),
 
     isAdmin: boolean('is_admin').notNull().default(false),
+
+    // Moderation standing. A restricted account keeps its history and its reading access and stops
+    // being able to propose or review. `account_restriction_events` is the ledger behind it.
+    restrictedAt: timestamp('restricted_at', { withTimezone: true }),
+    restrictionReason: text('restriction_reason'),
+
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
@@ -328,6 +342,11 @@ export const users = pgTable(
     uniqueIndex('users_handle_unique').on(sql`lower(${table.handle})`),
     index('users_verification_state_idx').on(table.verificationState),
     index('users_trust_tier_idx').on(table.trustTier),
+    check(
+      'users_restriction_shape',
+      sql`(${table.restrictedAt} is null and ${table.restrictionReason} is null)
+        or (${table.restrictedAt} is not null and nullif(btrim(${table.restrictionReason}), '') is not null)`,
+    ),
   ],
 )
 
@@ -4669,6 +4688,12 @@ export const corpusSynonymKindEnum = pgEnum('corpus_synonym_kind', [
   'fragment',
   'common',
   'display',
+  /**
+   * Migration 0026: the name a page absorbed when Phase 3 merged two records into one. Dropping it
+   * would take a name a reader may search for — "Sodium Hyaluronate", "Trisodium Citrate Dihydrate"
+   * — out of the index, which is the opposite of what a merge is for.
+   */
+  'merged-page',
 ])
 
 export const corpusRelationKindEnum = pgEnum('corpus_relation_kind', [
@@ -4681,6 +4706,17 @@ export const corpusRelationKindEnum = pgEnum('corpus_relation_kind', [
   'isotopologue-of',
   'same-target',
   'shares-enzyme',
+  // Migration 0026: the rest of the Phase 3 vocabulary in `data/revamp/identity/relations-v3.parquet`
+  // (docs/specs/identity-resolution.md). Without these the loader dropped a resolved relation and
+  // counted it, which is how a salt page lost the link to its parent.
+  'form-of',
+  'related-form-of',
+  'ionised-form-of',
+  'component-of',
+  'active-moiety-of',
+  'same-structure-as',
+  'originator-of',
+  'parent-of',
 ])
 
 export const corpusPages = pgTable(
@@ -4697,8 +4733,45 @@ export const corpusPages = pgTable(
     pageType: corpusPageTypeEnum('page_type').notNull(),
     /** tier in (1,2) and page_type <> 'stub' and present_field_count >= the Gate 1b threshold. */
     indexable: boolean('indexable').notNull().default(false),
+    /**
+     * The page this record is held against as a rendered duplicate (§13 item 14).
+     *
+     * Where two indexable pages measure at or above 0.5 on the rendered duplicate check after every
+     * generator rule has been applied, the page with fewer own facts carries `noindex,follow` and a
+     * link to the other until Felix decides which of the two the corpus keeps. The slug named here
+     * is that other page; `indexable` is false on this row for as long as it stands.
+     */
+    duplicateHoldOf: varchar('duplicate_hold_of', { length: 200 }),
     suppressed: boolean('suppressed').notNull().default(false),
     suppressionClasses: text('suppression_classes')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /**
+     * The evidence the suppression pass recorded for those classes, one row per statement:
+     * `{ test, source, value, label? }` (migration 0033).
+     *
+     * docs/specs/phase4-generators.md §15 item 1: the supervision answer is one clause per
+     * recorded class, built from that class's own evidence and source — the ATC code with the
+     * register's own name for it, the boxed warning with the label it is on, the controlled
+     * schedule with the statute row, the withdrawal with its reason and register. Without these
+     * rows the page could only name a class from a generic list, which is what the reading of
+     * draw 6 found it doing. A class with no row here states nothing.
+     */
+    suppressionEvidence: jsonb('suppression_evidence')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /**
+     * The controlled-substance trigger (docs/specs/phase4-generators.md §4; migration 0026): a
+     * recorded entry in the Singapore Misuse of Drugs Act or Poisons Act schedules, a United States
+     * DEA schedule, or Australian Poisons Standard Schedule 8 or 9. A page carrying it never holds
+     * a dose, bioavailability, self-experiment-design or time-to-signal block, and the database
+     * refuses to write one: see the triggers migration 0026 installs. A Poisons Standard Schedule 2
+     * to 7 entry is a supply restriction, not a schedule, and does not set this column.
+     */
+    controlled: boolean('controlled').notNull().default(false),
+    /** Which registers fired the trigger, e.g. `SG-MDA-POISONS`, `US-DEA`, `AU-SUSMP-8-9`. */
+    controlledBasis: text('controlled_basis')
       .array()
       .notNull()
       .default(sql`'{}'::text[]`),
@@ -4707,6 +4780,16 @@ export const corpusPages = pgTable(
     presentFieldCount: integer('present_field_count').notNull().default(0),
     /** Coverage denominator: fields of this page's model that are not `not-applicable`. */
     applicableFieldCount: integer('applicable_field_count').notNull().default(0),
+    /**
+     * The ruler's own numerator (docs/specs/phase4-generators.md §11): fields that are present
+     * *and* applicable, as `scripts/revamp/derive_threshold.py` counts them — the recorded state,
+     * the fields a Phase 2 source has not filled anywhere, and the structural rules of
+     * `data/revamp/field-applicability.json`. `indexable` is decided on this count against the
+     * page's own tier threshold, never on the present count against one corpus-wide number.
+     *
+     * Where a load is given no presence file it equals `present_field_count`, and the load says so.
+     */
+    presentApplicableCount: integer('present_applicable_count').notNull().default(0),
     /**
      * ATC codes ChEMBL records for this molecule, verbatim (e.g. `C02CA01`). The browse class
      * facet reads their first level. ChEMBL content is CC BY-SA 3.0, which `licence_notes`
@@ -4769,6 +4852,9 @@ export const corpusPages = pgTable(
     index('corpus_pages_suppressed_idx')
       .on(table.tier)
       .where(sql`${table.suppressed}`),
+    index('corpus_pages_controlled_idx')
+      .on(table.tier)
+      .where(sql`${table.controlled}`),
     // Identifier lookups. Partial, because most pages hold only one or two of these keys.
     index('corpus_pages_unii_idx')
       .on(table.unii)
@@ -4802,6 +4888,10 @@ export const corpusPages = pgTable(
     check(
       'corpus_pages_field_counts',
       sql`${table.presentFieldCount} >= 0 and ${table.applicableFieldCount} >= 0 and ${table.presentFieldCount} <= ${table.applicableFieldCount}`,
+    ),
+    check(
+      'corpus_pages_present_applicable_count',
+      sql`${table.presentApplicableCount} >= 0 and ${table.presentApplicableCount} <= ${table.presentFieldCount}`,
     ),
     check(
       'corpus_pages_stub_not_indexable',
@@ -4889,6 +4979,17 @@ export const pageSeeds = pgTable(
     values: jsonb('values')
       .notNull()
       .default(sql`'{}'::jsonb`),
+    /**
+     * The seed's own slots — the named values the question text is written from, which the seed
+     * stage records beside `values` and which are not the same thing (docs/specs/phase4-generators
+     * §11). Without them the page re-derives its question list from a smaller input than the
+     * corpus renderer read, and the two write different sentences: a block whose slot is missing
+     * falls back to "this target" where the render names the target. Stored so the page and the
+     * measured text are one text.
+     */
+    slots: jsonb('slots')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
     sources: jsonb('sources')
       .notNull()
       .default(sql`'[]'::jsonb`),
@@ -4922,6 +5023,22 @@ export const pageQuestions = pgTable(
     revealed: jsonb('revealed')
       .notNull()
       .default(sql`'[]'::jsonb`),
+    /**
+     * The slot values and the sources the question was derived with (docs/specs/
+     * phase4-generators.md §11).
+     *
+     * The page rebuilds each answer from the derivation, and the derivation it can run at request
+     * time reads what this database holds rather than the corpus files the render read. Where the
+     * two disagreed the page wrote a different sentence from the measured text — "this target"
+     * where the render named the target, and a paragraph with no source where the render cited
+     * one. These are the derivation's own outputs, stored so the page answers with them.
+     */
+    values: jsonb('values')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    sources: jsonb('sources')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
   },
   (table) => [
     primaryKey({ columns: [table.key, table.ordinal] }),
@@ -4947,6 +5064,12 @@ export const pageRelations = pgTable(
      */
     targetKey: varchar('target_key', { length: 200 }).notNull(),
     label: text('label'),
+    /**
+     * The form note (migration 0026, docs/specs/phase4-generators.md §6): the sentence Phase 3
+     * recorded for this relation, e.g. "Heparin calcium is the calcium salt of heparin". Written by
+     * the identity stage and copied verbatim; null where that stage recorded none.
+     */
+    note: text('note'),
     source: varchar('source', { length: 64 }).notNull(),
   },
   (table) => [
@@ -4985,6 +5108,26 @@ export const pageSources = pgTable(
   ],
 )
 
+/**
+ * The registry aggregate one page's question blocks are written from.
+ *
+ * `page_registry_studies` holds the NCT identifiers a page matched, which is enough to count
+ * studies and nothing else. The body builders need the aggregate itself — the phases, the
+ * enrolments, the durations, the per-trial rows — and without it the page built from the database
+ * wrote "98 registered studies." where the page built from the corpus files wrote "98 registered
+ * studies of Atropine Sulfate: 19 na, 12 phase 1, …". That is the disagreement §11 forbids, so the
+ * aggregate the renderer reads is stored and the template reads the same object.
+ *
+ * The stored object is the corpus aggregate with the studies Phase 3 moved to another page already
+ * removed, exactly as `scripts/revamp/page_text_v5.ts` removes them.
+ */
+export const pageRegistryAggregate = pgTable('page_registry_aggregate', {
+  key: varchar('key', { length: 200 })
+    .primaryKey()
+    .references(() => corpusPages.key, { onDelete: 'cascade' }),
+  aggregate: jsonb('aggregate').notNull(),
+})
+
 export const pageRegistryStudies = pgTable(
   'page_registry_studies',
   {
@@ -5007,6 +5150,309 @@ export const pageRegistryStudies = pgTable(
   ],
 )
 
+/* --------------------------------------------------------------------------------------------- */
+/* Phase 4 blocks (migration 0026, docs/specs/phase4-generators.md)                                */
+/* --------------------------------------------------------------------------------------------- */
+
+/**
+ * Which evidence tier an interaction row came from (`docs/specs/interaction-rules.md`). The letter
+ * is storage; the reader always meets the words `INTERACTION_TIER_LABELS` fixes.
+ */
+export const corpusInteractionTierEnum = pgEnum('corpus_interaction_tier', ['A', 'B', 'C'])
+
+/**
+ * A row in `page_interactions` is either one interaction or the page-level statement of which
+ * sources were checked and when. The statement exists on every page, including the 25,217 that
+ * hold no interaction at all: "no rows" is a finding, and the reader is told where it was looked
+ * for rather than left to infer safety (`docs/specs/revamp-2026-09.md` Operating Rule 9).
+ */
+export const corpusInteractionRowKindEnum = pgEnum('corpus_interaction_row_kind', [
+  'interaction',
+  'sources-checked',
+])
+
+/**
+ * "Where it's registered" (§2, §3) — one row per jurisdiction per page, on every page including a
+ * Tier 3 stub, plus one row per component of a combination product and one per unmapped "Other
+ * registers" source string.
+ *
+ * `line` is the finished reader-facing line, written by `scripts/revamp/build_blocks.py` from the
+ * page's own `regulatory` field; `provenance` names the field path behind every value in it. An
+ * unknown reads "Not found in [register] as of [date]" and is a row like any other.
+ */
+export const pageRegistration = pgTable(
+  'page_registration',
+  {
+    /** sha256 of key | jurisdiction | component | ordinal. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** `SG`…`CA`, or `OTHER` for a source string `lib/corpus/jurisdictions.ts` does not map. */
+    jurisdiction: varchar('jurisdiction', { length: 16 }).notNull(),
+    /** The reader-facing name: "Singapore", "United States", or the source's verbatim string. */
+    label: text('label').notNull(),
+    status: text('status').notNull(),
+    detail: text('detail'),
+    source: text('source'),
+    dateChecked: varchar('date_checked', { length: 32 }),
+    /** Page order, fixed by §2: Singapore, United States, Australia, UK, EU, Japan, Canada, other. */
+    ordinal: integer('ordinal').notNull().default(0),
+    /** The component this line belongs to on a combination product; null on the product's own. */
+    component: text('component'),
+    line: text('line').notNull(),
+    /**
+     * The absence this row states, in the register's own three words — `not found`, `not cleared`
+     * or `not checked` — and null on a row that states anything affirmative (§11). The template
+     * prints these rows as one table of furniture; the ruler and the duplicate check skip them.
+     */
+    absence: varchar('absence', { length: 32 }),
+    /**
+     * True where the row belongs to the technical disclosure and never to a visible line (§13(6)).
+     *
+     * NCATS Inxight files a curated marketing record under the jurisdiction "unspecified". It names
+     * no jurisdiction and no register, so it is not a register line; it is kept, and the page
+     * paints it inside the block's closed disclosure.
+     */
+    disclosed: boolean('disclosed').notNull().default(false),
+    /** The register application ids and curated marketing rows the summary line stands for. */
+    disclosure: jsonb('disclosure')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+  },
+  (table) => [
+    index('page_registration_key_idx').on(table.key, table.ordinal),
+    index('page_registration_jurisdiction_idx').on(table.jurisdiction),
+    check('page_registration_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_registration_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_registration_date_shape',
+      sql`${table.dateChecked} is null or ${table.dateChecked} ~ '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'`,
+    ),
+  ],
+)
+
+/**
+ * Interactions (§4) and the checked-sources statement that stands beside them.
+ *
+ * A page carries at most `disclosed = false` six rows per tier inline and the rest in its
+ * disclosure; `total_in_tier` records how many rows the tier actually holds, because a page with
+ * 10,034 label-documented rows must say so rather than imply that six is all there is.
+ */
+export const pageInteractions = pgTable(
+  'page_interactions',
+  {
+    /** sha256 of key | kind | tier | ordinal | counterpart. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    kind: corpusInteractionRowKindEnum('kind').notNull().default('interaction'),
+    /** Null on the checked-sources row, which belongs to no tier. */
+    tier: corpusInteractionTierEnum('tier'),
+    ordinal: integer('ordinal').notNull().default(0),
+    /** True where the row sits in the disclosure rather than on the page's inline lines. */
+    disclosed: boolean('disclosed').notNull().default(false),
+    /** How many rows this page holds in this tier, including the ones not stored. */
+    totalInTier: integer('total_in_tier'),
+    counterpartKey: varchar('counterpart_key', { length: 200 }),
+    counterpartName: text('counterpart_name'),
+    direction: text('direction'),
+    mechanism: text('mechanism'),
+    source: varchar('source', { length: 64 }),
+    sourceRecordId: varchar('source_record_id', { length: 200 }),
+    sourceUrl: text('source_url'),
+    sourceDate: varchar('source_date', { length: 32 }),
+    setId: varchar('set_id', { length: 64 }),
+    effectiveTime: varchar('effective_time', { length: 32 }),
+    labelSection: varchar('label_section', { length: 64 }),
+    licence: text('licence'),
+    /** `C1-cyp-inhibitor-substrate` and the like. Storage: the page prints the rule's words. */
+    ruleId: varchar('rule_id', { length: 64 }),
+    confidence: varchar('confidence', { length: 24 }),
+    /** The label sentence, verbatim, on a Tier A row. */
+    sentence: text('sentence'),
+    /** The Tier C derivation, naming its inputs verbatim. */
+    derivation: text('derivation'),
+    /** The finished reader-facing line, tier label first. */
+    line: text('line').notNull(),
+    /** The sources checked for this page, on the `sources-checked` row. */
+    sourcesChecked: jsonb('sources_checked')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    index('page_interactions_key_idx').on(table.key, table.tier, table.ordinal),
+    index('page_interactions_counterpart_idx')
+      .on(table.counterpartKey)
+      .where(sql`${table.counterpartKey} is not null`),
+    uniqueIndex('page_interactions_checked_once')
+      .on(table.key)
+      .where(sql`${table.kind} = 'sources-checked'`),
+    check('page_interactions_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('page_interactions_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_interactions_tier_by_kind',
+      sql`(${table.kind} = 'interaction' and ${table.tier} is not null) or (${table.kind} = 'sources-checked' and ${table.tier} is null)`,
+    ),
+  ],
+)
+
+/**
+ * Generic and patent (§5) — one row for every page, because a page with no Orange Book record
+ * still states that, and states the reason where the reason is knowable.
+ */
+export const pagePatent = pgTable(
+  'page_patent',
+  {
+    key: varchar('key', { length: 200 })
+      .primaryKey()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** Whether an Orange Book or Purple Book product record exists for this page at all. */
+    eligible: boolean('eligible').notNull(),
+    register: text('register'),
+    rld: boolean('rld'),
+    earliestUnexpiredPatentExpiry: varchar('earliest_unexpired_patent_expiry', { length: 32 }),
+    exclusivityEnd: varchar('exclusivity_end', { length: 32 }),
+    genericAvailable: boolean('generic_available'),
+    firstGenericApproval: varchar('first_generic_approval', { length: 32 }),
+    teCode: varchar('te_code', { length: 16 }),
+    /** "No US patent or exclusivity data on record", where that is the finding. */
+    noRecordLine: text('no_record_line'),
+    /** Why there is no record, where the registers make it knowable. */
+    reason: text('reason'),
+    line: text('line').notNull(),
+    /**
+     * True where the line states only that no US register holds this record — the furniture case of
+     * §11. A Purple Book line carries BLA numbers and an exclusivity date, which is a finding, and
+     * is not marked.
+     */
+    absence: boolean('absence').notNull().default(false),
+    source: text('source'),
+    dateChecked: varchar('date_checked', { length: 32 }),
+    disclosure: jsonb('disclosure')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+  },
+  (table) => [
+    index('page_patent_eligible_idx')
+      .on(table.eligible)
+      .where(sql`${table.eligible}`),
+    check('page_patent_line_nonempty', sql`nullif(btrim(${table.line}), '') is not null`),
+    check(
+      'page_patent_no_record_has_line',
+      sql`${table.eligible} or ${table.noRecordLine} is not null`,
+    ),
+  ],
+)
+
+/**
+ * Controlled-substance schedule entries, as the statute or instrument records them.
+ *
+ * This table holds every entry the registers state, Schedule 2 to Schedule 10 included. It is not
+ * the trigger: `corpus_pages.controlled` carries the narrow test §4 fixes (Singapore Misuse of
+ * Drugs Act and Poisons Act schedules, United States DEA schedules, Australian Poisons Standard
+ * Schedules 8 and 9), and that column, not this table, is what withholds a dose block.
+ */
+export const pageControlled = pgTable(
+  'page_controlled',
+  {
+    /** sha256 of key | jurisdiction | schedule_code | substance_as_listed. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    jurisdiction: varchar('jurisdiction', { length: 16 }).notNull(),
+    /** The instrument, e.g. "Misuse of Drugs Act 1973 (2020 Rev Ed)". */
+    list: text('list').notNull(),
+    /** The schedule in its own words, e.g. "First Schedule Part 1 — Class A controlled drug". */
+    classOrSchedule: text('class_or_schedule').notNull(),
+    /** The instrument's own code, e.g. `MDA-Sch1-Part1-ClassA`. Technical disclosure only. */
+    scheduleCode: varchar('schedule_code', { length: 64 }),
+    itemNumber: varchar('item_number', { length: 32 }),
+    /** The substance exactly as the schedule names it, which is often not the page's own name. */
+    substanceAsListed: text('substance_as_listed'),
+    statute: text('statute'),
+    statuteUrl: text('statute_url'),
+    versionDate: varchar('version_date', { length: 32 }),
+    source: text('source'),
+    provenance: text('provenance'),
+  },
+  (table) => [
+    index('page_controlled_key_idx').on(table.key, table.jurisdiction),
+    check('page_controlled_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+  ],
+)
+
+/**
+ * The Tier 3 computed sections (§8): nearest approved structural neighbour, potency rank, activity
+ * timeline and the form-of note. Each row is one finished sentence with the map from that sentence
+ * to the stored field or computed value behind every part of it.
+ */
+export const pageSections = pgTable(
+  'page_sections',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** `neighbour`, `potency`, `timeline`, `formOf`. */
+    section: varchar('section', { length: 32 }).notNull(),
+    ordinal: integer('ordinal').notNull().default(0),
+    templateId: varchar('template_id', { length: 64 }),
+    sentence: text('sentence').notNull(),
+    values: jsonb('values')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    primaryKey({
+      name: 'page_sections_key_section_ordinal_pk',
+      columns: [table.key, table.section, table.ordinal],
+    }),
+    index('page_sections_section_idx').on(table.section),
+    check('page_sections_ordinal', sql`${table.ordinal} >= 0`),
+    check('page_sections_sentence_nonempty', sql`nullif(btrim(${table.sentence}), '') is not null`),
+  ],
+)
+
+/**
+ * The disambiguated display name a same-name pair renders in its `h1` (§6).
+ *
+ * Present only for the 409 keys `data/revamp/identity/display-names-v3.csv` names. Every other page
+ * renders `corpus_pages.display_name` unchanged; a row here never rewrites a name, it adds the
+ * recorded distinguishing fact (a molecular formula, a UNII) in brackets after it.
+ */
+export const pageDisplayNames = pgTable(
+  'page_display_names',
+  {
+    key: varchar('key', { length: 200 })
+      .primaryKey()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    displayName: text('display_name').notNull(),
+    /** The distinguishing value itself, e.g. `C26H33NO2`. */
+    disambiguator: text('disambiguator'),
+    /** Where that value came from, e.g. "molecular formula". */
+    basis: text('basis'),
+    /** The name the two records collide on. */
+    collidesOn: text('collides_on'),
+  },
+  (table) => [
+    check('page_display_names_nonempty', sql`nullif(btrim(${table.displayName}), '') is not null`),
+  ],
+)
+
 export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   legacyDrug: one(drugs, { fields: [corpusPages.legacyDrugId], references: [drugs.id] }),
   synonyms: many(pageSynonyms),
@@ -5016,4 +5462,1272 @@ export const corpusPagesRelations = relations(corpusPages, ({ one, many }) => ({
   pageRelations: many(pageRelations),
   sources: many(pageSources),
   registryStudies: many(pageRegistryStudies),
+  registryAggregate: one(pageRegistryAggregate),
+  registration: many(pageRegistration),
+  interactions: many(pageInteractions),
+  patent: one(pagePatent),
+  controlledSchedules: many(pageControlled),
+  sections: many(pageSections),
+  displayName: one(pageDisplayNames),
 }))
+
+/* ============================================================================================= */
+/* BEGIN revamp 2026-09 Phase 5 — hubs (docs/specs/hubs.md). Additive block; nothing above is     */
+/* changed by it. Migration 0028_hubs.sql creates these three tables.                             */
+/* ============================================================================================= */
+
+/** The three hub kinds `docs/specs/hubs.md` §1 defines. A hub is a grouping of existing pages. */
+export const corpusHubTypeEnum = pgEnum('corpus_hub_type', ['target', 'class', 'pathway'])
+
+/** The role a member holds inside a hub, which decides the comparison table's row order (§2). */
+export const corpusHubMemberRoleEnum = pgEnum('corpus_hub_member_role', [
+  'approved',
+  'clinical',
+  'development',
+  'withdrawn',
+])
+
+/**
+ * One hub: a target, a mechanism class or a pathway that at least five corpus pages share.
+ *
+ * Every column is copied from `data/revamp/hubs/hubs.parquet`, which `scripts/revamp/hubs_build.py`
+ * computes from the members' stored fields. Nothing here is authored: the definition is the source
+ * vocabulary's own record (a UniProt protein name, an ATC description, the pathway name), and
+ * `definition_source` names the register and the date it was read.
+ */
+export const hubs = pgTable(
+  'hubs',
+  {
+    /** `<type>/<slug>`, the identifier the build and the loader share. */
+    hubId: varchar('hub_id', { length: 200 }).primaryKey(),
+    type: corpusHubTypeEnum('type').notNull(),
+    /** What the hub is called in its `h1`: a gene symbol, an ATC level-4 code, a pathway name. */
+    name: text('name').notNull(),
+    /** The last path segment of `/h/<type>/<slug>`. */
+    slug: varchar('slug', { length: 200 }).notNull(),
+    definition: text('definition').notNull(),
+    definitionSource: text('definition_source').notNull(),
+    memberCount: integer('member_count').notNull(),
+    approvedCount: integer('approved_count').notNull(),
+    /** §4: 1 where the target carries an ITP or ageing-trial link, else 0.5; 1 for pathways. */
+    relevance: numeric('relevance', { precision: 4, scale: 2 }).notNull(),
+    /** approved-member count × relevance, the §4 ranking. */
+    rankScore: numeric('rank_score', { precision: 10, scale: 2 }).notNull(),
+    /** True for the 30 hubs measured first (§4). */
+    firstBatch: boolean('first_batch').notNull().default(false),
+    /**
+     * The hub this one is held against as a rendered duplicate (§13 item 14, §14 item 14).
+     *
+     * The member-set dedupe of §13(13) absorbs a hub whose members a larger hub already holds. A
+     * pair can still measure at or above 0.5 on the rendered check without complete linkage fusing
+     * it into either group; §14(14) then applies the same survivor rule to the rendered figure.
+     * The smaller member set carries `noindex,follow` and a link to the larger, and the pair goes
+     * to the held list, until Felix decides which of the two the corpus keeps. This holds the
+     * survivor's `hub_id`; it is null on every hub that is not held.
+     */
+    duplicateHoldOf: varchar('duplicate_hold_of', { length: 200 }),
+  },
+  (table) => [
+    unique('hubs_type_slug_unique').on(table.type, table.slug),
+    index('hubs_type_name_idx').on(table.type, table.name),
+    index('hubs_rank_idx').on(table.rankScore),
+    check('hubs_member_count', sql`${table.memberCount} >= 5`),
+    check('hubs_approved_count', sql`${table.approvedCount} >= 0`),
+    check('hubs_slug_shape', sql`${table.slug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+  ],
+)
+
+/**
+ * A hub slug that redirects to the hub that absorbed it (§13 item 13).
+ *
+ * The rendered duplicate check found 1,865 hub-to-hub pairs at or above 0.5 Jaccard: a hub page is
+ * its members' comparison table and a synthesis generated from that table, so two hubs over nearly
+ * the same members are nearly the same page. `scripts/revamp/hubs_build.py` groups hubs whose
+ * member sets overlap at 0.5 Jaccard by complete linkage; the largest member set survives and the
+ * others are rows here. `/h/<alias_type>/<alias_slug>` answers with a permanent redirect to the
+ * survivor, whose definition line names what it is also known by, so no link into the corpus dies
+ * and no reader lands on a page that does not say why it answered.
+ */
+export const hubAliases = pgTable(
+  'hub_aliases',
+  {
+    aliasType: corpusHubTypeEnum('alias_type').notNull(),
+    aliasSlug: varchar('alias_slug', { length: 200 }).notNull(),
+    /** The name the absorbed hub carried, named in the survivor's definition line. */
+    aliasName: text('alias_name').notNull(),
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    /** How many pages the two member sets shared, and how many the alias held. */
+    sharedMembers: integer('shared_members').notNull(),
+    aliasMemberCount: integer('alias_member_count').notNull(),
+  },
+  (table) => [
+    primaryKey({
+      name: 'hub_aliases_type_slug_pk',
+      columns: [table.aliasType, table.aliasSlug],
+    }),
+    index('hub_aliases_hub_idx').on(table.hubId),
+    check('hub_aliases_slug_shape', sql`${table.aliasSlug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+    check('hub_aliases_shared_members', sql`${table.sharedMembers} >= 0`),
+  ],
+)
+
+/**
+ * One member page inside one hub, carrying its comparison-table row (§2 item 2).
+ *
+ * Each column is a value, never a sentence: the table is markup, so the uniqueness ruler reads only
+ * the synthesis. A cell the registers do not fill holds the recorded absence word ("not found",
+ * "not cleared") that `data/revamp/blocks/registration.parquet` carries, never a blank guess.
+ */
+export const hubMembers = pgTable(
+  'hub_members',
+  {
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** The §2 row order: approved by jurisdiction count, then clinical by phase, then the rest. */
+    ordinal: integer('ordinal').notNull(),
+    memberRole: corpusHubMemberRoleEnum('member_role').notNull(),
+    /** Which stored row put this page in this hub, e.g. "target field names uniprot:P10275". */
+    membershipEvidence: text('membership_evidence').notNull(),
+    /** The seven jurisdiction cells, in the §2 column order. */
+    approvalSg: text('approval_sg').notNull(),
+    approvalUs: text('approval_us').notNull(),
+    approvalAu: text('approval_au').notNull(),
+    approvalUk: text('approval_uk').notNull(),
+    approvalEu: text('approval_eu').notNull(),
+    approvalJp: text('approval_jp').notNull(),
+    approvalCa: text('approval_ca').notNull(),
+    /** POM, P, GSL or an empty string where the HSA listing records no classification. */
+    sgForensicClass: text('sg_forensic_class').notNull(),
+    /** yes / no / no record, from the Orange Book and Purple Book block. */
+    genericAvailable: text('generic_available').notNull(),
+    /** The median pChEMBL against this hub's target; empty on class and pathway hubs. */
+    potency: text('potency').notNull(),
+    /** The first three approved label indications, and the full count beside them. */
+    indications: text('indications').notNull(),
+    indicationCount: integer('indication_count').notNull(),
+    withdrawnReason: text('withdrawn_reason').notNull(),
+    withdrawnWhere: text('withdrawn_where').notNull(),
+    trialsCount: integer('trials_count').notNull(),
+    /** "171/524": completed trials with posted results over completed trials. */
+    resultsPostedShare: text('results_posted_share').notNull(),
+    tier: integer('tier').notNull(),
+    /** The member page's own first question, its one-line description in the members list (§2.4). */
+    firstQuestion: text('first_question').notNull(),
+  },
+  (table) => [
+    primaryKey({ name: 'hub_members_hub_key_pk', columns: [table.hubId, table.key] }),
+    index('hub_members_key_idx').on(table.key),
+    index('hub_members_hub_ordinal_idx').on(table.hubId, table.ordinal),
+    check('hub_members_ordinal', sql`${table.ordinal} >= 0`),
+    check('hub_members_tier', sql`${table.tier} between 0 and 3`),
+    check('hub_members_trials', sql`${table.trialsCount} >= 0`),
+  ],
+)
+
+/**
+ * One synthesis sentence and the provenance map that says which columns and fields produced it.
+ *
+ * `template_id` is one of H1–H7 (§2 item 3). A template whose inputs are absent writes no row, so a
+ * hub simply carries fewer sentences; there is never a row standing in for a missing one.
+ */
+export const hubSyntheses = pgTable(
+  'hub_syntheses',
+  {
+    hubId: varchar('hub_id', { length: 200 })
+      .notNull()
+      .references(() => hubs.hubId, { onDelete: 'cascade' }),
+    ordinal: integer('ordinal').notNull(),
+    templateId: varchar('template_id', { length: 4 }).notNull(),
+    sentence: text('sentence').notNull(),
+    /** sentence → the table columns and stored field paths it was assembled from. */
+    provenance: jsonb('provenance')
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    primaryKey({ name: 'hub_syntheses_hub_ordinal_pk', columns: [table.hubId, table.ordinal] }),
+    index('hub_syntheses_template_idx').on(table.templateId),
+    check('hub_syntheses_ordinal', sql`${table.ordinal} >= 0`),
+    check(
+      'hub_syntheses_template',
+      sql`${table.templateId} in ('H1','H2','H3','H4','H5','H6','H7')`,
+    ),
+    check('hub_syntheses_sentence_nonempty', sql`nullif(btrim(${table.sentence}), '') is not null`),
+  ],
+)
+
+export const hubsRelations = relations(hubs, ({ many }) => ({
+  members: many(hubMembers),
+  syntheses: many(hubSyntheses),
+}))
+
+export const hubMembersRelations = relations(hubMembers, ({ one }) => ({
+  hub: one(hubs, { fields: [hubMembers.hubId], references: [hubs.hubId] }),
+  page: one(corpusPages, { fields: [hubMembers.key], references: [corpusPages.key] }),
+}))
+
+export const hubSynthesesRelations = relations(hubSyntheses, ({ one }) => ({
+  hub: one(hubs, { fields: [hubSyntheses.hubId], references: [hubs.hubId] }),
+}))
+
+/* ============================================================================================= */
+/* END revamp 2026-09 Phase 5 — hubs                                                              */
+/* ============================================================================================= */
+
+/* ============================================================================================= */
+/* Dossier v3 — reviewed claims, immutable corrections, field completion states, trial roles     */
+/* and the typed evidence graph (migration 0034; docs/dossier-information-architecture.md,       */
+/* docs/evidence-and-outcome-taxonomy.md, docs/knowledge-graph-schema.md)                        */
+/* ============================================================================================= */
+
+import {
+  CAUSALITY_LEVELS,
+  CLAIM_STRENGTH_CODES,
+  COMPLETION_STATE_CODES,
+  CONTRADICTION_STATES,
+  EFFECT_DIRECTIONS,
+  EFFECT_SCALES,
+  EVIDENCE_CLASS_CODES,
+  OUTCOME_CLASS_CODES,
+  REVIEWER_STATES,
+  TRIAL_ROLE_CODES,
+  UNCERTAINTY_LEVELS,
+} from '@/lib/dossier-v3/taxonomy'
+
+export const v3EvidenceClassEnum = pgEnum('v3_evidence_class', EVIDENCE_CLASS_CODES)
+export const v3OutcomeClassEnum = pgEnum('v3_outcome_class', OUTCOME_CLASS_CODES)
+export const v3ReviewerStateEnum = pgEnum('v3_reviewer_state', REVIEWER_STATES)
+export const v3ContradictionStateEnum = pgEnum('v3_contradiction_state', CONTRADICTION_STATES)
+export const v3CausalityEnum = pgEnum('v3_causality_level', CAUSALITY_LEVELS)
+export const v3UncertaintyEnum = pgEnum('v3_uncertainty_level', UNCERTAINTY_LEVELS)
+export const v3EffectDirectionEnum = pgEnum('v3_effect_direction', EFFECT_DIRECTIONS)
+export const v3CompletionStateEnum = pgEnum('v3_completion_state', COMPLETION_STATE_CODES)
+export const v3TrialRoleEnum = pgEnum('v3_trial_role', TRIAL_ROLE_CODES)
+export const v3ClaimStrengthEnum = pgEnum('v3_claim_strength', CLAIM_STRENGTH_CODES)
+export const v3EffectScaleEnum = pgEnum('v3_effect_scale', EFFECT_SCALES)
+
+/** What a reviewed claim is about. Each kind carries its own validated `structure` (lib/dossier-v3/claims.ts). */
+export const v3ClaimKindEnum = pgEnum('v3_claim_kind', [
+  'effect',
+  'mechanism_stage',
+  'safety',
+  'interaction',
+  'regulatory_fact',
+  'recorded_use',
+  'identity_fact',
+  'unknown_statement',
+])
+
+/**
+ * One reviewed claim: the only thing a public sentence containing a scientific or medical claim
+ * may be built from. A row is created as a draft, reaches `reviewed` only through the review
+ * transaction, and is never edited afterwards — a change is a new row with a higher
+ * `content_version` that supersedes this one (trigger `reviewed_claims_frozen_once_reviewed`,
+ * migration 0034).
+ */
+export const reviewedClaims = pgTable(
+  'reviewed_claims',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    /** The corpus page the claim is scoped to (`corpus_pages.key`), which is the exact entity. */
+    subjectKey: varchar('subject_key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'restrict' }),
+    kind: v3ClaimKindEnum('kind').notNull(),
+    /** A controlled verb phrase, e.g. `lowers`, `is_approved_for`, `acts_on`, `reported_with`. */
+    predicate: varchar('predicate', { length: 80 }).notNull(),
+    /** The object of the predicate as recorded: an outcome name, a condition, a target, a value. */
+    objectText: text('object_text').notNull(),
+    plainLanguageVersion: text('plain_language_version').notNull(),
+    technicalVersion: text('technical_version').notNull(),
+    /** Optional, and only with a sentence saying where the analogy stops being accurate. */
+    analogy: text('analogy'),
+    analogyBreaks: text('analogy_breaks'),
+    evidenceClass: v3EvidenceClassEnum('evidence_class').notNull(),
+    outcomeClass: v3OutcomeClassEnum('outcome_class').notNull(),
+    /** The status words the Decision Card may use for this claim; capped by outcome and evidence class. */
+    claimStrength: v3ClaimStrengthEnum('claim_strength')
+      .notNull()
+      .default('no_reviewed_conclusion'),
+    /** The registered trial the claim is read from, where there is exactly one (`NCT…`). */
+    trialIdentifier: varchar('trial_identifier', { length: 16 }),
+    /** What the substance was in that trial. A claim of benefit needs `experimental_intervention`. */
+    trialRole: v3TrialRoleEnum('trial_role'),
+    participants: integer('participants'),
+    prespecified: boolean('prespecified'),
+    applicablePopulation: text('applicable_population').notNull(),
+    /** A `USER_GOALS` code or a recorded indication, in words. */
+    indicationOrGoal: varchar('indication_or_goal', { length: 160 }).notNull(),
+    formulation: text('formulation'),
+    route: varchar('route', { length: 80 }),
+    /** Exactly as the source records it. It is never a recommendation. */
+    doseAsStudied: text('dose_as_studied'),
+    duration: text('duration'),
+    comparator: text('comparator'),
+    direction: v3EffectDirectionEnum('direction').notNull(),
+    effectScale: v3EffectScaleEnum('effect_scale').notNull().default('not_measured'),
+    baselineValue: text('baseline_value'),
+    comparatorValue: text('comparator_value'),
+    effectEstimate: text('effect_estimate'),
+    effectValue: numeric('effect_value', { precision: 30, scale: 10 }),
+    effectUnit: varchar('effect_unit', { length: 80 }),
+    absoluteEffect: text('absolute_effect'),
+    ciLow: numeric('ci_low', { precision: 30, scale: 10 }),
+    ciHigh: numeric('ci_high', { precision: 30, scale: 10 }),
+    ciLevel: numeric('ci_level', { precision: 5, scale: 2 }),
+    studyDesign: text('study_design'),
+    causality: v3CausalityEnum('causality').notNull(),
+    uncertainty: v3UncertaintyEnum('uncertainty').notNull(),
+    /** One reason per entry, in words a reader can read. Never empty when uncertainty is not `low`. */
+    uncertaintyReasons: text('uncertainty_reasons')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    /** Immutable source snapshot ids (`source_snapshots.id`). At least one. */
+    sourceSnapshotIds: text('source_snapshot_ids').array().notNull(),
+    /** Where in the snapshot the claim is read from: a section, a table, a quoted sentence. */
+    sourceLocators: jsonb('source_locators')
+      .$type<Array<{ snapshotId: string; locator: string; excerpt?: string }>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    contradictionState: v3ContradictionStateEnum('contradiction_state')
+      .notNull()
+      .default('unknown'),
+    reviewerState: v3ReviewerStateEnum('reviewer_state').notNull().default('draft'),
+    /** Kind-specific structured fields (mechanism stage order and origin, interaction category…). */
+    structure: jsonb('structure')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    riskTier: varchar('risk_tier', { length: 16 }).notNull().default('standard'),
+    contentVersion: integer('content_version').notNull().default(1),
+    supersedesClaimId: varchar('supersedes_claim_id', { length: 64 }).references(
+      (): AnyPgColumn => reviewedClaims.id,
+    ),
+    validFrom: timestamp('valid_from', { withTimezone: true }).notNull().defaultNow(),
+    validTo: timestamp('valid_to', { withTimezone: true }),
+    lastCheckedAt: timestamp('last_checked_at', { withTimezone: true }).notNull().defaultNow(),
+    authoredByUserId: varchar('authored_by_user_id', { length: 64 }).references(() => users.id),
+    reviewedByUserId: varchar('reviewed_by_user_id', { length: 64 }).references(() => users.id),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('reviewed_claims_subject_idx').on(table.subjectKey, table.kind),
+    index('reviewed_claims_state_idx').on(table.reviewerState),
+    index('reviewed_claims_goal_idx').on(table.indicationOrGoal),
+    check('reviewed_claims_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('reviewed_claims_one_source', sql`cardinality(${table.sourceSnapshotIds}) >= 1`),
+    check('reviewed_claims_version_positive', sql`${table.contentVersion} >= 1`),
+    check(
+      'reviewed_claims_analogy_breaks',
+      sql`${table.analogy} is null or nullif(btrim(${table.analogyBreaks}), '') is not null`,
+    ),
+    check(
+      'reviewed_claims_uncertainty_reasons',
+      sql`${table.uncertainty} = 'low' or cardinality(${table.uncertaintyReasons}) >= 1`,
+    ),
+    check(
+      'reviewed_claims_reviewed_has_reviewer',
+      sql`${table.reviewerState} <> 'reviewed' or (${table.reviewedByUserId} is not null and ${table.reviewedAt} is not null)`,
+    ),
+    check(
+      'reviewed_claims_reviewer_not_author',
+      sql`${table.reviewedByUserId} is null or ${table.authoredByUserId} is null or ${table.reviewedByUserId} <> ${table.authoredByUserId}`,
+    ),
+    check('reviewed_claims_risk_tier', sql`${table.riskTier} in ('standard', 'elevated', 'high')`),
+    check(
+      'reviewed_claims_trial_id_shape',
+      sql`${table.trialIdentifier} is null or ${table.trialIdentifier} ~ '^NCT[0-9]{8}$'`,
+    ),
+    // A biomarker or mechanistic measurement is never "strong human evidence"; a cell or animal
+    // study is never more than animal-or-cell evidence; a prediction or anecdote is never a
+    // conclusion (maximumClaimStrength in lib/dossier-v3/taxonomy.ts, mirrored here).
+    check(
+      'reviewed_claims_strength_cap',
+      sql`(${table.outcomeClass} not in ('biomarker_surrogate', 'mechanistic_measurement') or ${table.claimStrength} in ('biomarker_only', 'animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and (${table.evidenceClass} not in ('animal_study', 'mechanism_study') or ${table.claimStrength} in ('animal_or_cell_only', 'mixed_or_contradicted', 'no_reviewed_conclusion'))
+        and (${table.evidenceClass} not in ('model_prediction', 'community_anecdote') or ${table.claimStrength} = 'no_reviewed_conclusion')
+        and (${table.outcomeClass} <> 'unknown_outcome' or ${table.claimStrength} in ('mixed_or_contradicted', 'no_reviewed_conclusion'))`,
+    ),
+    // A claim that a trial showed a benefit needs the substance to have been the tested treatment.
+    check(
+      'reviewed_claims_benefit_needs_tested_role',
+      sql`${table.kind} <> 'effect' or ${table.claimStrength} in ('no_reviewed_conclusion', 'mixed_or_contradicted', 'animal_or_cell_only') or ${table.trialIdentifier} is null or ${table.trialRole} = 'experimental_intervention'`,
+    ),
+  ],
+)
+
+/**
+ * The immutable correction ledger. Every repair to an entity, a relationship, a registry match, a
+ * claim or a graph edge writes one row here before anything else changes, and the row can never
+ * be updated or deleted (trigger `entity_corrections_immutable`, migration 0034). Accepted
+ * corrections are also the labelled data a later model may be retrained on.
+ */
+export const entityCorrections = pgTable(
+  'entity_corrections',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    /** What was corrected: `page`, `synonym`, `registry_match`, `relation`, `claim`, `graph_edge`, `predicted_edge`. */
+    subjectKind: varchar('subject_kind', { length: 32 }).notNull(),
+    /** The corpus page the subject belongs to, where there is one. */
+    subjectKey: varchar('subject_key', { length: 200 }),
+    /** The exact thing corrected, e.g. the synonym text, the NCT id, the relation target, the claim id. */
+    subjectRef: text('subject_ref').notNull(),
+    /** `remove_synonym`, `remove_registry_match`, `reassign_role`, `quarantine`, `deprecate_relation`, `retract_claim`, `relabel`. */
+    action: varchar('action', { length: 48 }).notNull(),
+    before: jsonb('before')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    after: jsonb('after')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    reason: text('reason').notNull(),
+    /** The observable evidence for the correction, as source references and quoted values. */
+    evidence: jsonb('evidence')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** A signed-in reviewer, or null when an operator command recorded it (then `operator` is set). */
+    decidedByUserId: varchar('decided_by_user_id', { length: 64 }).references(() => users.id),
+    operator: varchar('operator', { length: 160 }),
+    ruleOrClassifierVersion: varchar('rule_or_classifier_version', { length: 120 }),
+    graphVersion: varchar('graph_version', { length: 64 }),
+    /** Accepted corrections train nothing until a scheduled retraining reads them by this flag. */
+    accepted: boolean('accepted').notNull().default(true),
+    recordedAt: timestamp('recorded_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('entity_corrections_subject_idx').on(table.subjectKind, table.subjectKey),
+    index('entity_corrections_recorded_idx').on(table.recordedAt),
+    check('entity_corrections_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'entity_corrections_decider',
+      sql`${table.decidedByUserId} is not null or nullif(btrim(${table.operator}), '') is not null`,
+    ),
+    check(
+      'entity_corrections_reason_nonempty',
+      sql`nullif(btrim(${table.reason}), '') is not null`,
+    ),
+  ],
+)
+
+/**
+ * The explicit completion state of every required dossier field on every page. There is no
+ * silent blank: the Decision Card reads these rows, and a page whose required fields are not all
+ * in a terminal state fails the index-quality gate.
+ */
+export const dossierFieldStates = pgTable(
+  'dossier_field_states',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    /** A `DECISION_CARD_FIELDS` code (lib/dossier-v3/fields.ts). */
+    field: varchar('field', { length: 64 }).notNull(),
+    state: v3CompletionStateEnum('state').notNull(),
+    /** The reviewed claim that fills the field, when the state is `verified_evidence_present`. */
+    claimId: varchar('claim_id', { length: 64 }).references(() => reviewedClaims.id),
+    /** One sentence saying what was searched, or why the field does not apply. */
+    basis: text('basis').notNull(),
+    /** The sources searched, with dates, for an absence or a quarantine. */
+    sourcesChecked: jsonb('sources_checked')
+      .$type<Array<{ source: string; date: string }>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    resolverVersion: varchar('resolver_version', { length: 120 }).notNull(),
+    checkedAt: timestamp('checked_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ name: 'dossier_field_states_pk', columns: [table.key, table.field] }),
+    index('dossier_field_states_state_idx').on(table.state),
+    check(
+      'dossier_field_states_verified_has_claim',
+      sql`${table.state} <> 'verified_evidence_present' or ${table.claimId} is not null`,
+    ),
+    check(
+      'dossier_field_states_basis_nonempty',
+      sql`nullif(btrim(${table.basis}), '') is not null`,
+    ),
+  ],
+)
+
+/**
+ * The role a substance had in each registered study the corpus matched it to
+ * (lib/dossier-v3/trial-roles.ts). `page_registry_studies.role` says how the name matched; this
+ * says what the substance was. Only `experimental_intervention` may support a "tested in" sentence.
+ */
+export const pageTrialRoles = pgTable(
+  'page_trial_roles',
+  {
+    key: varchar('key', { length: 200 })
+      .notNull()
+      .references(() => corpusPages.key, { onDelete: 'cascade' }),
+    nct: varchar('nct', { length: 16 }).notNull(),
+    role: v3TrialRoleEnum('role').notNull(),
+    basis: text('basis').notNull(),
+    administered: boolean('administered').notNull(),
+    supportsTestedClaim: boolean('supports_tested_claim').notNull(),
+    synonymMatched: boolean('synonym_matched').notNull().default(false),
+    excludedFromSizeStatistics: boolean('excluded_from_size_statistics').notNull().default(false),
+    completionIsPlanned: boolean('completion_is_planned').notNull().default(false),
+    /** `experimental_intervention` set by a reviewer rather than the classifier. */
+    reviewedByUserId: varchar('reviewed_by_user_id', { length: 64 }).references(() => users.id),
+    classifierVersion: varchar('classifier_version', { length: 64 }).notNull(),
+    snapshotDate: date('snapshot_date').notNull(),
+    computedAt: timestamp('computed_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ name: 'page_trial_roles_pk', columns: [table.key, table.nct] }),
+    index('page_trial_roles_nct_idx').on(table.nct),
+    index('page_trial_roles_role_idx').on(table.role),
+    check('page_trial_roles_nct_shape', sql`${table.nct} ~ '^NCT[0-9]{8}$'`),
+    check(
+      'page_trial_roles_tested_only_experimental',
+      sql`${table.supportsTestedClaim} = false or ${table.role} = 'experimental_intervention'`,
+    ),
+  ],
+)
+
+/** The role-aware registry aggregate for one page (`RoleAwareRegistryAggregate`). */
+export const pageRegistryRoleAggregates = pgTable('page_registry_role_aggregates', {
+  key: varchar('key', { length: 200 })
+    .primaryKey()
+    .references(() => corpusPages.key, { onDelete: 'cascade' }),
+  aggregate: jsonb('aggregate').$type<Record<string, unknown>>().notNull(),
+  classifierVersion: varchar('classifier_version', { length: 64 }).notNull(),
+  snapshotDate: date('snapshot_date').notNull(),
+  computedAt: timestamp('computed_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
+/* ---------------------------------------------------------------- the typed evidence graph */
+
+/**
+ * A version of the projected graph. `identity_gate_passed` is the switch every model-training
+ * command reads: while it is false the graph is known to be identity-contaminated and nothing may
+ * be trained on it (docs/gnn-model-card.md).
+ */
+export const graphVersions = pgTable(
+  'graph_versions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    corpusSnapshot: text('corpus_snapshot').notNull(),
+    identityGatePassed: boolean('identity_gate_passed').notNull().default(false),
+    completionGatePassed: boolean('completion_gate_passed').notNull().default(false),
+    nodeCount: integer('node_count').notNull().default(0),
+    edgeCount: integer('edge_count').notNull().default(0),
+    notes: text('notes'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [check('graph_versions_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`)],
+)
+
+export const graphNodeTypeEnum = pgEnum('graph_node_type', [
+  'substance',
+  'ingredient',
+  'botanical',
+  'salt',
+  'isomer',
+  'metabolite',
+  'formulation',
+  'product',
+  'combination',
+  'class',
+  'external_identifier',
+  'gene',
+  'protein',
+  'receptor',
+  'enzyme',
+  'rna_target',
+  'cell_type',
+  'tissue',
+  'organ',
+  'pathway',
+  'biological_process',
+  'biomarker',
+  'phenotype',
+  'condition',
+  'user_goal',
+  'claim',
+  'trial',
+  'study_arm',
+  'regimen',
+  'population',
+  'outcome',
+  'result',
+  'publication',
+  'regulatory_document',
+  'source_snapshot',
+  'reviewer',
+  'correction',
+  'model_version',
+  'adverse_event',
+  'interaction',
+  'lab_test',
+  'procedure',
+])
+
+export const graphEdgeOriginEnum = pgEnum('graph_edge_origin', [
+  'verified',
+  'recorded',
+  'predicted',
+])
+
+export const graphNodes = pgTable(
+  'graph_nodes',
+  {
+    /** `sub:<corpus key>`, `trial:<NCT>`, `src:<snapshot id>`, `claim:<claim id>`, `tgt:<uniprot>`… */
+    id: varchar('id', { length: 240 }).primaryKey(),
+    nodeType: graphNodeTypeEnum('node_type').notNull(),
+    label: text('label').notNull(),
+    corpusKey: varchar('corpus_key', { length: 200 }).references(() => corpusPages.key),
+    identifiers: jsonb('identifiers')
+      .$type<Record<string, string>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    graphVersion: varchar('graph_version', { length: 64 })
+      .notNull()
+      .references(() => graphVersions.id),
+    validFrom: timestamp('valid_from', { withTimezone: true }).notNull().defaultNow(),
+    validTo: timestamp('valid_to', { withTimezone: true }),
+    deprecatedReason: text('deprecated_reason'),
+  },
+  (table) => [
+    index('graph_nodes_type_idx').on(table.nodeType),
+    index('graph_nodes_corpus_key_idx').on(table.corpusKey),
+    index('graph_nodes_version_idx').on(table.graphVersion),
+  ],
+)
+
+/**
+ * One typed edge. Identity, mechanism, evidence/provenance and safety layers share this table and
+ * are told apart by `layer` and `edge_type`; the private user layer is a separate security boundary
+ * and is never stored here.
+ */
+export const graphEdges = pgTable(
+  'graph_edges',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    layer: varchar('layer', { length: 16 }).notNull(),
+    edgeType: varchar('edge_type', { length: 48 }).notNull(),
+    srcId: varchar('src_id', { length: 240 })
+      .notNull()
+      .references(() => graphNodes.id),
+    dstId: varchar('dst_id', { length: 240 })
+      .notNull()
+      .references(() => graphNodes.id),
+    directed: boolean('directed').notNull().default(true),
+    polarity: v3EffectDirectionEnum('polarity'),
+    species: varchar('species', { length: 80 }),
+    cellOrTissueContext: text('cell_or_tissue_context'),
+    population: text('population'),
+    conditionOrGoal: text('condition_or_goal'),
+    doseAsStudied: text('dose_as_studied'),
+    route: varchar('route', { length: 80 }),
+    frequency: text('frequency'),
+    duration: text('duration'),
+    comparator: text('comparator'),
+    outcome: text('outcome'),
+    effectValue: numeric('effect_value', { precision: 30, scale: 10 }),
+    effectUnit: varchar('effect_unit', { length: 80 }),
+    ciLow: numeric('ci_low', { precision: 30, scale: 10 }),
+    ciHigh: numeric('ci_high', { precision: 30, scale: 10 }),
+    absoluteEvents: jsonb('absolute_events').$type<Record<string, number>>(),
+    studyDesign: v3EvidenceClassEnum('study_design'),
+    trialRole: v3TrialRoleEnum('trial_role'),
+    sourceSnapshotId: varchar('source_snapshot_id', { length: 64 }).references(
+      () => sourceSnapshots.id,
+    ),
+    sourceLocator: text('source_locator'),
+    extractionConfidence: numeric('extraction_confidence', { precision: 5, scale: 4 }),
+    origin: graphEdgeOriginEnum('origin').notNull(),
+    ruleOrModelId: varchar('rule_or_model_id', { length: 120 }),
+    reviewState: v3ReviewerStateEnum('review_state').notNull().default('draft'),
+    graphVersion: varchar('graph_version', { length: 64 })
+      .notNull()
+      .references(() => graphVersions.id),
+    validFrom: timestamp('valid_from', { withTimezone: true }).notNull().defaultNow(),
+    validTo: timestamp('valid_to', { withTimezone: true }),
+    deprecatedReason: text('deprecated_reason'),
+    properties: jsonb('properties')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+  },
+  (table) => [
+    index('graph_edges_src_idx').on(table.srcId, table.edgeType),
+    index('graph_edges_dst_idx').on(table.dstId, table.edgeType),
+    index('graph_edges_snapshot_idx').on(table.sourceSnapshotId),
+    index('graph_edges_version_idx').on(table.graphVersion),
+    check('graph_edges_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('graph_edges_not_self', sql`${table.srcId} <> ${table.dstId}`),
+    check(
+      'graph_edges_layer',
+      sql`${table.layer} in ('identity', 'mechanism', 'evidence', 'safety')`,
+    ),
+    check(
+      'graph_edges_predicted_has_rule',
+      sql`${table.origin} <> 'predicted' or ${table.ruleOrModelId} is not null`,
+    ),
+    check(
+      'graph_edges_verified_is_reviewed',
+      sql`${table.origin} <> 'verified' or ${table.reviewState} = 'reviewed'`,
+    ),
+    check(
+      'graph_edges_confidence_range',
+      sql`${table.extractionConfidence} is null or (${table.extractionConfidence} >= 0 and ${table.extractionConfidence} <= 1)`,
+    ),
+    check(
+      'graph_edges_valid_window',
+      sql`${table.validTo} is null or ${table.validTo} >= ${table.validFrom}`,
+    ),
+  ],
+)
+
+export const modelVersions = pgTable(
+  'model_versions',
+  {
+    id: varchar('id', { length: 120 }).primaryKey(),
+    /** `rules`, `lexical`, `embedding`, `distmult`, `complex`, `rotate`, `rgcn`, `hgt`. */
+    family: varchar('family', { length: 32 }).notNull(),
+    task: varchar('task', { length: 64 }).notNull(),
+    trainedOnGraphVersion: varchar('trained_on_graph_version', { length: 64 }).references(
+      () => graphVersions.id,
+    ),
+    evalSetId: varchar('eval_set_id', { length: 120 }),
+    metrics: jsonb('metrics')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    calibrationState: varchar('calibration_state', { length: 32 })
+      .notNull()
+      .default('uncalibrated'),
+    cardPath: text('card_path').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    check(
+      'model_versions_family',
+      sql`${table.family} in ('rules', 'lexical', 'embedding', 'distmult', 'complex', 'rotate', 'rgcn', 'hgt')`,
+    ),
+  ],
+)
+
+/**
+ * Model or rule outputs. Never joined to a public page unless `review_state` is `reviewed`, and
+ * never copied into `graph_edges` by anything but a reviewed correction.
+ */
+export const predictedEdges = pgTable(
+  'predicted_edges',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    modelVersion: varchar('model_version', { length: 120 })
+      .notNull()
+      .references(() => modelVersions.id),
+    graphVersion: varchar('graph_version', { length: 64 })
+      .notNull()
+      .references(() => graphVersions.id),
+    task: varchar('task', { length: 64 }).notNull(),
+    srcId: varchar('src_id', { length: 240 }).notNull(),
+    dstId: varchar('dst_id', { length: 240 }).notNull(),
+    edgeType: varchar('edge_type', { length: 48 }).notNull(),
+    score: numeric('score', { precision: 10, scale: 6 }).notNull(),
+    calibratedProbability: numeric('calibrated_probability', { precision: 10, scale: 6 }),
+    calibrationState: varchar('calibration_state', { length: 32 })
+      .notNull()
+      .default('uncalibrated'),
+    /** Concrete source-backed paths, never attention weights alone. */
+    supportingSubgraph: jsonb('supporting_subgraph')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    contradictingSubgraph: jsonb('contradicting_subgraph')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    reasons: text('reasons')
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    candidateCorrection: jsonb('candidate_correction').$type<Record<string, unknown>>(),
+    reviewState: v3ReviewerStateEnum('review_state').notNull().default('draft'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('predicted_edges_task_idx').on(table.task, table.reviewState),
+    index('predicted_edges_src_idx').on(table.srcId),
+    check('predicted_edges_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'predicted_edges_probability_range',
+      sql`${table.calibratedProbability} is null or (${table.calibratedProbability} >= 0 and ${table.calibratedProbability} <= 1)`,
+    ),
+  ],
+)
+
+/* ============================================================================================= */
+/* END dossier v3                                                                                */
+/* ============================================================================================= */
+
+/* ============================================================================================= */
+/* Community review of a Substance Compass sentence                                              */
+/* ============================================================================================= */
+
+/**
+ * A compass page is assembled from stored records and met by a reader as a handful of named
+ * sentences. These tables let a member propose a better wording for one of those positions, let
+ * three independent members approve that exact wording, and make the approved wording the public
+ * answer through a database transaction rather than a deployment.
+ *
+ * What these tables never do: change a stored medical record. A published revision is an overlay
+ * on what the page shows. `drugs`, `corpus_pages`, `page_fields`, `reviewed_claims` and every
+ * source snapshot are untouched by this workflow, which is why an approved wording can be rolled
+ * back by moving one pointer and why the evidence a sentence rests on cannot be edited here.
+ *
+ * The evidence state travels with the revision and is never recomputed from the review. Three
+ * approvals mean three people agreed on the words; they do not turn an animal result into a human
+ * one or a biomarker into an outcome.
+ */
+export const pageStatementKeyEnum = pgEnum('page_statement_key', PAGE_STATEMENT_KEYS)
+export const pageStatementChangeCategoryEnum = pgEnum(
+  'page_statement_change_category',
+  PAGE_STATEMENT_CHANGE_CATEGORIES,
+)
+export const pageStatementRiskClassEnum = pgEnum(
+  'page_statement_risk_class',
+  PAGE_STATEMENT_RISK_CLASSES,
+)
+export const pageStatementProposalStatusEnum = pgEnum(
+  'page_statement_proposal_status',
+  PAGE_STATEMENT_PROPOSAL_STATUSES,
+)
+export const pageStatementReviewStatusEnum = pgEnum(
+  'page_statement_review_status',
+  PAGE_STATEMENT_REVIEW_STATUSES,
+)
+export const pageStatementPublicationEventEnum = pgEnum(
+  'page_statement_publication_event',
+  PAGE_STATEMENT_PUBLICATION_EVENTS,
+)
+
+/**
+ * One proposed wording for one named sentence on one medicine page.
+ *
+ * A row is a content revision in the ordinary sense: it records the exact public wording it
+ * replaces, the exact wording it proposes, and two digests. `contentDigest` is what a reviewer
+ * signs — change the text and every approval is gone, because the approvals are bound to the old
+ * digest. `sourceDigest` is the medical surface the wording was judged against; when the stored
+ * record moves under an open proposal, the approvals go stale rather than silently carrying.
+ */
+export const pageStatementRevisions = pgTable(
+  'page_statement_revisions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    /** Denormalised for the queue and the public link. `drugs.slug` stays the resolving authority. */
+    slug: varchar('slug', { length: 128 }).notNull(),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    /** A reviewed claim this wording stands on, where the page has one. */
+    claimId: varchar('claim_id', { length: 64 }).references(() => reviewedClaims.id, {
+      onDelete: 'restrict',
+    }),
+    /** The revision this one was edited from. An edit is a new row, never an update. */
+    parentRevisionId: varchar('parent_revision_id', { length: 64 }).references(
+      (): AnyPgColumn => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    /** The published revision this one proposes to replace. Null means the built-in wording. */
+    baselineRevisionId: varchar('baseline_revision_id', { length: 64 }).references(
+      (): AnyPgColumn => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    /** The exact public wording at the moment the proposal was written. */
+    currentText: text('current_text').notNull(),
+    proposedText: text('proposed_text').notNull(),
+    reason: text('reason').notNull(),
+    changeCategory: pageStatementChangeCategoryEnum('change_category').notNull(),
+    /** Re-derived on the server from the category and the text. A caller's value is not trusted. */
+    riskClass: pageStatementRiskClassEnum('risk_class').notNull(),
+    /**
+     * The evidence state of the sentence being replaced, carried forward unchanged. Reviewers
+     * cannot move it, and the page renders the published wording with this state, not a better one.
+     */
+    evidenceState: varchar('evidence_state', { length: 64 }).notNull(),
+    /** Population, intervention, comparator, outcome, effect and limits, as the member gave them. */
+    evidencePacket: jsonb('evidence_packet')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    /** Sources the member attached: `[{ url, title, excerpt }]`. Stored, never fetched. */
+    sources: jsonb('sources')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** Deterministic gate results recorded at submission: `[{ code, passed, detail }]`. */
+    gateResults: jsonb('gate_results')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    contentDigestAlgorithm: varchar('content_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    sourceDigestAlgorithm: varchar('source_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    sourceDigest: varchar('source_digest', { length: 64 }).notNull(),
+    authorUserId: varchar('author_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    status: pageStatementProposalStatusEnum('status').notNull().default('draft'),
+    /** Why the proposal left the open states, in words a reader could check. */
+    statusReason: text('status_reason'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    submittedAt: timestamp('submitted_at', { withTimezone: true }),
+    publishedAt: timestamp('published_at', { withTimezone: true }),
+    supersededAt: timestamp('superseded_at', { withTimezone: true }),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    /*
+     * One open proposal per sentence. Without this two members race to reword the same line and
+     * three approvals land on wording nobody compared against the other candidate.
+     */
+    uniqueIndex('page_statement_revisions_one_open')
+      .on(table.medicineId, table.statementKey)
+      .where(sql`status in ('draft', 'submitted', 'open', 'changes_requested', 'safety_hold')`),
+    uniqueIndex('page_statement_revisions_one_published')
+      .on(table.medicineId, table.statementKey)
+      .where(sql`status = 'published'`),
+    /* The composite target the publication pointer's foreign key needs. */
+    unique('page_statement_revisions_subject_unique').on(
+      table.id,
+      table.medicineId,
+      table.statementKey,
+    ),
+    uniqueIndex('page_statement_revisions_parent_unique')
+      .on(table.parentRevisionId)
+      .where(sql`parent_revision_id is not null`),
+    index('page_statement_revisions_queue_idx').on(table.status, table.createdAt),
+    index('page_statement_revisions_slug_idx').on(table.slug, table.status),
+    index('page_statement_revisions_author_idx').on(table.authorUserId),
+    check(
+      'page_statement_revisions_text_present',
+      sql`nullif(btrim(${table.proposedText}), '') is not null and nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'page_statement_revisions_text_changed',
+      sql`btrim(${table.proposedText}) <> btrim(${table.currentText})`,
+    ),
+    check(
+      'page_statement_revisions_content_digest',
+      sql`${table.contentDigestAlgorithm} = 'sha256' and ${table.contentDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_revisions_source_digest',
+      sql`${table.sourceDigestAlgorithm} = 'sha256' and ${table.sourceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    /*
+     * A published wording has a publication clock, and a wording that was published and later
+     * replaced keeps the one it had. The history is the reason: a superseded revision that forgot
+     * when it went live could not answer "what did this page say, and from when".
+     */
+    check(
+      'page_statement_revisions_published_clock',
+      sql`(${table.status} = 'published' and ${table.publishedAt} is not null)
+        or (${table.status} = 'superseded' and ${table.publishedAt} is not null)
+        or (${table.status} not in ('published', 'superseded') and ${table.publishedAt} is null)`,
+    ),
+    check(
+      'page_statement_revisions_submitted_clock',
+      sql`${table.status} = 'draft' or ${table.submittedAt} is not null`,
+    ),
+    check(
+      'page_statement_revisions_no_self_parent',
+      sql`${table.parentRevisionId} is null or ${table.parentRevisionId} <> ${table.id}`,
+    ),
+  ],
+)
+
+/**
+ * The derived review state of one proposal. Never written by application code: a trigger
+ * recomputes it from the immutable decision rows and refuses any value that disagrees.
+ *
+ * `requiredApprovals` is frozen when the row is created, so a policy change later cannot
+ * retrospectively lower the bar a published wording cleared.
+ */
+export const pageStatementReviewStates = pgTable(
+  'page_statement_review_states',
+  {
+    revisionId: varchar('revision_id', { length: 64 })
+      .primaryKey()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    status: pageStatementReviewStatusEnum('status').notNull().default('awaiting_reviews'),
+    reviewCount: integer('review_count').notNull().default(0),
+    /** Approving decisions whose recorded qualifications are relevant to this claim. */
+    qualifiedApprovals: integer('qualified_approvals').notNull().default(0),
+    requiredApprovals: integer('required_approvals').notNull().default(3),
+    /** How many approving reviewers must hold a relevant qualification, from the risk class. */
+    requiredQualifiedApprovals: integer('required_qualified_approvals').notNull().default(0),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    resolvedAt: timestamp('resolved_at', { withTimezone: true }),
+  },
+  (table) => [
+    index('page_statement_review_states_queue_idx').on(table.status, table.updatedAt),
+    check(
+      'page_statement_review_states_count',
+      sql`${table.reviewCount} >= 0 and ${table.reviewCount} <= ${table.requiredApprovals}`,
+    ),
+    check('page_statement_review_states_required', sql`${table.requiredApprovals} = 3`),
+    check(
+      'page_statement_review_states_required_qualified',
+      sql`${table.requiredQualifiedApprovals} between 0 and ${table.requiredApprovals}`,
+    ),
+    check(
+      'page_statement_review_states_qualified_count',
+      sql`${table.qualifiedApprovals} >= 0 and ${table.qualifiedApprovals} <= ${table.reviewCount}`,
+    ),
+  ],
+)
+
+/**
+ * One immutable decision by one authenticated member on one exact revision digest.
+ *
+ * A withdrawal does not delete the row: `withdrawnAt` is set and the decision stops counting.
+ * The audit keeps every decision that was ever recorded, including the ones that were taken back.
+ */
+export const pageStatementReviews = pgTable(
+  'page_statement_reviews',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    reviewerUserId: varchar('reviewer_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    reviewerNameSnapshot: varchar('reviewer_name_snapshot', { length: 160 }).notNull(),
+    reviewerOrcidSnapshot: varchar('reviewer_orcid_snapshot', { length: 32 }),
+    /**
+     * How this person is counted once. An ORCID is a person; a user id is only an account. Two
+     * accounts sharing an ORCID are one reviewer, and the unique index below enforces it.
+     */
+    reviewerIdentityKey: varchar('reviewer_identity_key', { length: 80 }).notNull(),
+    reviewerTrustTierSnapshot: trustTierEnum('reviewer_trust_tier_snapshot').notNull(),
+    /** The qualifications the reviewer held at the moment of the vote, not the ones they hold now. */
+    qualificationSnapshot: verdictReviewerExpertiseEnum('qualification_snapshot')
+      .array()
+      .notNull()
+      .default(sql`'{}'::verdict_reviewer_expertise[]`),
+    /** Whether any snapshotted qualification is relevant to this claim, decided at vote time. */
+    qualificationRelevant: boolean('qualification_relevant').notNull().default(false),
+    decision: verdictReviewDecisionEnum('decision').notNull(),
+    checkedWording: boolean('checked_wording').notNull().default(false),
+    checkedSource: boolean('checked_source').notNull().default(false),
+    checkedLimitation: boolean('checked_limitation').notNull().default(false),
+    conflictsOfInterest: text('conflicts_of_interest').notNull(),
+    conflictsOfInterestAttested: boolean('conflicts_of_interest_attested').notNull().default(false),
+    /** A declared conflict is allowed. It removes the vote from the threshold, not the comment. */
+    conflictDeclared: boolean('conflict_declared').notNull().default(false),
+    reason: text('reason'),
+    contentDigestAlgorithm: varchar('content_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    sourceDigest: varchar('source_digest', { length: 64 }).notNull(),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }).notNull().defaultNow(),
+    withdrawnAt: timestamp('withdrawn_at', { withTimezone: true }),
+    withdrawnReason: text('withdrawn_reason'),
+  },
+  (table) => [
+    uniqueIndex('page_statement_reviews_reviewer_unique').on(
+      table.revisionId,
+      table.reviewerUserId,
+    ),
+    uniqueIndex('page_statement_reviews_identity_unique')
+      .on(table.revisionId, table.reviewerIdentityKey)
+      .where(sql`withdrawn_at is null`),
+    index('page_statement_reviews_revision_idx').on(table.revisionId, table.reviewedAt),
+    index('page_statement_reviews_reviewer_idx').on(table.reviewerUserId),
+    check(
+      'page_statement_reviews_confirmations',
+      sql`${table.checkedWording} and ${table.checkedSource} and ${table.checkedLimitation} and ${table.conflictsOfInterestAttested} and nullif(btrim(${table.conflictsOfInterest}), '') is not null`,
+    ),
+    check(
+      'page_statement_reviews_decision_reason',
+      sql`${table.decision} = 'APPROVE' or nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'page_statement_reviews_digest',
+      sql`${table.contentDigestAlgorithm} = 'sha256' and ${table.contentDigest} ~ '^[0-9a-f]{64}$' and ${table.sourceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_reviews_withdrawal',
+      sql`(${table.withdrawnAt} is null and ${table.withdrawnReason} is null)
+        or (${table.withdrawnAt} is not null and nullif(btrim(${table.withdrawnReason}), '') is not null)`,
+    ),
+    check(
+      'page_statement_reviews_orcid',
+      sql`${table.reviewerOrcidSnapshot} is null or ${table.reviewerOrcidSnapshot} ~ '^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$'`,
+    ),
+  ],
+)
+
+/**
+ * The public pointer: which revision is the active wording for one sentence on one medicine.
+ *
+ * The composite foreign key is what makes a cross-subject publication structurally impossible —
+ * a pointer cannot name a revision written for a different medicine or a different sentence.
+ */
+export const pageStatementPublications = pgTable(
+  'page_statement_publications',
+  {
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    revisionId: varchar('revision_id', { length: 64 }).notNull(),
+    publishedAt: timestamp('published_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.medicineId, table.statementKey] }),
+    uniqueIndex('page_statement_publications_revision_unique').on(table.revisionId),
+    foreignKey({
+      name: 'page_statement_publications_revision_fk',
+      columns: [table.revisionId, table.medicineId, table.statementKey],
+      foreignColumns: [
+        pageStatementRevisions.id,
+        pageStatementRevisions.medicineId,
+        pageStatementRevisions.statementKey,
+      ],
+    }).onDelete('restrict'),
+  ],
+)
+
+/**
+ * Every movement of a public pointer, append-only. A rollback is a new event, never a deletion,
+ * so the record of what a page said and why it changed survives the change.
+ */
+export const pageStatementPublicationEvents = pgTable(
+  'page_statement_publication_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    slug: varchar('slug', { length: 128 }).notNull(),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    event: pageStatementPublicationEventEnum('event').notNull(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'restrict' }),
+    previousRevisionId: varchar('previous_revision_id', { length: 64 }).references(
+      () => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    approvalsRecorded: integer('approvals_recorded').notNull().default(0),
+    qualifiedApprovals: integer('qualified_approvals').notNull().default(0),
+    /** The deterministic gates re-run inside the publishing transaction. */
+    automatedChecks: jsonb('automated_checks')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** Which reader paths were invalidated, and whether each call succeeded. */
+    cacheInvalidation: jsonb('cache_invalidation')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    /** Null means the system published it because the third approval landed. */
+    actorUserId: varchar('actor_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'restrict',
+    }),
+    reason: text('reason'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('page_statement_publication_events_subject_idx').on(
+      table.medicineId,
+      table.statementKey,
+      table.createdAt,
+    ),
+    index('page_statement_publication_events_slug_idx').on(table.slug, table.createdAt),
+    check(
+      'page_statement_publication_events_digest',
+      sql`${table.contentDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_publication_events_actor',
+      sql`${table.event} = 'publish' or ${table.actorUserId} is not null`,
+    ),
+  ],
+)
+
+/**
+ * Moderation notes on a proposal: abuse reports and the decisions taken on them. Append-only, and
+ * never public — the version history shows what changed, not who reported whom.
+ */
+export const pageStatementModerationEvents = pgTable(
+  'page_statement_moderation_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    action: varchar('action', { length: 32 }).notNull(),
+    actorUserId: varchar('actor_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'restrict',
+    }),
+    detail: text('detail').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('page_statement_moderation_events_revision_idx').on(table.revisionId, table.createdAt),
+    check(
+      'page_statement_moderation_events_action',
+      sql`${table.action} in ('REPORTED', 'REJECTED_BY_MODERATOR', 'SAFETY_HOLD', 'HOLD_RELEASED', 'RATE_LIMITED')`,
+    ),
+  ],
+)
+
+/**
+ * Account restrictions, append-only, mirroring `account_role_events`.
+ *
+ * A restricted account keeps its history and its reading access and stops being able to propose or
+ * review. This is the only thing the review path means by "suspended, restricted or flagged"; the
+ * schema had no such state before, and inventing a silent one inside the review code would have
+ * put a moderation decision somewhere nobody could audit.
+ */
+export const accountRestrictionEvents = pgTable(
+  'account_restriction_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    targetUserId: varchar('target_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    actorUserId: varchar('actor_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    action: varchar('action', { length: 16 }).notNull(),
+    reason: text('reason').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('account_restriction_events_target_idx').on(table.targetUserId, table.createdAt),
+    check('account_restriction_events_action', sql`${table.action} in ('RESTRICT', 'LIFT')`),
+    check('account_restriction_events_reason', sql`nullif(btrim(${table.reason}), '') is not null`),
+    check(
+      'account_restriction_events_not_self',
+      sql`${table.targetUserId} <> ${table.actorUserId}`,
+    ),
+  ],
+)

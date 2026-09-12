@@ -1,0 +1,14 @@
+{
+  "https://drugcentral.org/robots.txt": {
+    "status": 404,
+    "bytes": 179,
+    "retrieved_utc": "2026-09-05T06:45:13Z",
+    "finding": "no robots.txt is served (HTTP 404); no crawl directives exist to honour"
+  },
+  "https://unmtid-dbs.net/robots.txt": {
+    "status": 404,
+    "bytes": 277,
+    "retrieved_utc": "2026-09-05T06:45:14Z",
+    "finding": "no robots.txt is served (HTTP 404); no crawl directives exist to honour"
+  }
+}

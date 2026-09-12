@@ -1,0 +1,62 @@
+ddinter_id,ddinter_name,name_norm,name_base_norm,route_qualifier,drugbank_id
+DDInter74,Aminophylline,aminophylline,aminophylline,,DB01223
+DDInter100,Anthrax vaccine,anthrax vaccine,anthrax vaccine,,DB11003
+DDInter127,Asparaginase Escherichia coli,asparaginase escherichia coli,asparaginase escherichia coli,,DB00023
+DDInter444,Coral snake (micrurus fulvius) immune globulin antivenin (equine),coral snake micrurus fulvius immune globulin antivenin equine,coral snake micrurus fulvius immune globulin antivenin,equine,DB13883
+DDInter450,Crotalus scutulatus antivenin,crotalus scutulatus antivenin,crotalus scutulatus antivenin,,DB13891
+DDInter605,Drotrecogin alfa,drotrecogin alfa,drotrecogin alfa,,DB00055
+DDInter710,Factor XIII (human),factor xiii human,factor xiii,human,DB12909
+DDInter858,Hepatitis A Vaccine,hepatitis a vaccine,hepatitis a vaccine,,DB10989
+DDInter870,Human cytomegalovirus immune globulin,human cytomegalovirus immune globulin,human cytomegalovirus immune globulin,,DB13886
+DDInter924,Influenza A virus A/California/7/2009 (H1N1)-like antigen (propiolactone inactivated),influenza a virus a california 7 2009 h1n1 like antigen propiolactone inactivated,influenza a virus a california 7 2009 h1n1 like antigen,propiolactone inactivated,DB14444
+DDInter925,Influenza A virus A/Vietnam/1194/2004 (H5N1) antigen (formaldehyde inactivated),influenza a virus a vietnam 1194 2004 h5n1 antigen formaldehyde inactivated,influenza a virus a vietnam 1194 2004 h5n1 antigen,formaldehyde inactivated,DB16646
+DDInter953,Iodide I-123,iodide i 123,iodide i 123,,DB09420
+DDInter954,Iodide I-131,iodide i 131,iodide i 131,,DB09293
+DDInter977,Iron protein succinylate,iron protein succinylate,iron protein succinylate,,DB11209
+DDInter1075,Liotrix,liotrix,liotrix,,DB01583
+DDInter1109,Lyme disease vaccine (recombinant OspA),lyme disease vaccine recombinant ospa,lyme disease vaccine,recombinant ospa,DB00045
+DDInter1322,Octasulfur (topical),octasulfur topical,octasulfur,topical,
+DDInter1920,Varicella Zoster Vaccine (Recombinant),varicella zoster vaccine recombinant,varicella zoster vaccine,recombinant,
+DDInter1973,Allogeneic processed thymus tissue,allogeneic processed thymus tissue,allogeneic processed thymus tissue,,DB16736
+DDInter1978,"Dengue tetravalent vaccine, live",dengue tetravalent vaccine live,dengue tetravalent vaccine live,,DB14764
+DDInter1987,Astrazeneca covid-19 vaccine,astrazeneca covid 19 vaccine,astrazeneca covid 19 vaccine,,
+DDInter2001,Influenza b virus b/austria/1359417/2021 live (attenuated) antigen,influenza b virus b austria 1359417 2021 live attenuated antigen,influenza b virus b austria 1359417 2021 live attenuated antigen,,
+DDInter2002,Influenza a virus a/california/7/2009 x-179a (h1n1) antigen (formaldehyde inactivated),influenza a virus a california 7 2009 x 179a h1n1 antigen formaldehyde inactivated,influenza a virus a california 7 2009 x 179a h1n1 antigen,formaldehyde inactivated,
+DDInter2003,Influenza b virus b/brisbane/60/2008 live (attenuated) antigen,influenza b virus b brisbane 60 2008 live attenuated antigen,influenza b virus b brisbane 60 2008 live attenuated antigen,,
+DDInter2010,Neisseria meningitidis group a capsular polysaccharide diphtheria toxoid conjugate antigen,neisseria meningitidis group a capsular polysaccharide diphtheria toxoid conjugate antigen,neisseria meningitidis group a capsular polysaccharide diphtheria toxoid conjugate antigen,,DB10798
+DDInter2011,Neisseria meningitidis serogroup b nhba fusion protein antigen,neisseria meningitidis serogroup b nhba fusion protein antigen,neisseria meningitidis serogroup b nhba fusion protein antigen,,DB10783
+DDInter2018,Janssen covid-19 vaccine,janssen covid 19 vaccine,janssen covid 19 vaccine,,
+DDInter2040,Respiratory syncytial virus immune globulin (human),respiratory syncytial virus immune globulin human,respiratory syncytial virus immune globulin,human,
+DDInter2075,Heme iron polypeptide,heme iron polypeptide,heme iron polypeptide,,DB11067
+DDInter2097,"Rabies virus inactivated antigen, b",rabies virus inactivated antigen b,rabies virus inactivated antigen b,,
+DDInter2098,"Rabies virus inactivated antigen, a",rabies virus inactivated antigen a,rabies virus inactivated antigen a,,
+DDInter2100,"Tick-borne encephalitis vaccine (whole virus, inactivated, pediatric)",tick borne encephalitis vaccine whole virus inactivated pediatric,tick borne encephalitis vaccine,"whole virus, inactivated, pediatric",
+DDInter2101,"Tick-borne encephalitis vaccine (whole virus, inactivated)",tick borne encephalitis vaccine whole virus inactivated,tick borne encephalitis vaccine,"whole virus, inactivated",DB16611
+DDInter2117,Influenza b virus b/phuket/3073/2013 bvr-1b antigen (propiolactone inactivated),influenza b virus b phuket 3073 2013 bvr 1b antigen propiolactone inactivated,influenza b virus b phuket 3073 2013 bvr 1b antigen,propiolactone inactivated,
+DDInter2123,Potassium guaiacolsulfonate,potassium guaiacolsulfonate,potassium guaiacolsulfonate,,DB13735
+DDInter2132,Ragweed pollen extract,ragweed pollen extract,ragweed pollen extract,,DB05368
+DDInter2138,Typhoid vaccine live,typhoid vaccine live,typhoid vaccine live,,
+DDInter2155,Nfluenza a virus a/vietnam/1194/2004 (h5n1) antigen,nfluenza a virus a vietnam 1194 2004 h5n1 antigen,nfluenza a virus a vietnam 1194 2004 h5n1 antigen,,
+DDInter2159,Varicella zoster vaccine (live/attenuated),varicella zoster vaccine live attenuated,varicella zoster vaccine,live/attenuated,DB10318
+DDInter2182,Medical Cannabis,medical cannabis,medical cannabis,,DB14009
+DDInter2193,Multivitamin with iron,multivitamin with iron,multivitamin with iron,,
+DDInter2194,Multivitamin with iron and fluoride,multivitamin with iron and,multivitamin with iron and,,
+DDInter2195,Multivitamin (prenatal),multivitamin prenatal,multivitamin,prenatal,
+DDInter2200,Influenza B virus B/Phuket/3073/2013 live (attenuated) antigen,influenza b virus b phuket 3073 2013 live attenuated antigen,influenza b virus b phuket 3073 2013 live attenuated antigen,,DB11036
+DDInter2213,Lactobacillus rhamnosus GG,lactobacillus rhamnosus gg,lactobacillus rhamnosus gg,,
+DDInter2214,Mixed respiratory vaccine,mixed respiratory vaccine,mixed respiratory vaccine,,
+DDInter2217,Oral Polio Vaccine,oral polio vaccine,oral polio vaccine,,DB15864
+DDInter2225,Skin test antigens (multiple),skin test antigens multiple,skin test antigens,multiple,
+DDInter2226,Staphage lysate (spl),staphage lysate spl,staphage lysate,spl,
+DDInter2236,Lvp solution with potassium,lvp solution with,lvp solution with,,
+DDInter2237,Parenteral nutrition solution w/electrolytes,parenteral nutrition solution w electrolytes,parenteral nutrition solution w electrolytes,,
+DDInter2239,Multivitamin with minerals,multivitamin with minerals,multivitamin with minerals,,
+DDInter2246,Multivitamin,multivitamin,multivitamin,,
+DDInter2249,Liver derivative complex,liver derivative complex,liver derivative complex,,
+DDInter2251,Lvp solution with hypertonic saline,lvp solution with hypertonic saline,lvp solution with hypertonic saline,,
+DDInter2271,Parenteral nutrition solution,parenteral nutrition solution,parenteral nutrition solution,,
+DDInter2272,Peanut oil,peanut oil,peanut oil,,DB13964
+DDInter2279,gamma-Hydroxybutyric acid (potassium oxybate),gamma hydroxybutyric acid potassium oxybate,gamma hydroxybutyric acid,potassium oxybate,
+DDInter2280,gamma-Hydroxybutyric acid (magnesium oxybate),gamma hydroxybutyric acid magnesium oxybate,gamma hydroxybutyric acid,magnesium oxybate,
+DDInter2281,gamma-Hydroxybutyric acid (calcium oxybate),gamma hydroxybutyric acid calcium oxybate,gamma hydroxybutyric acid,calcium oxybate,
+DDInter2284,Haemophilus influenzae type B strain 1482 capsular polysaccharide tetanus toxoid conjugate antigen,haemophilus influenzae type b strain 1482 capsular polysaccharide tetanus toxoid conjugate antigen,haemophilus influenzae type b strain 1482 capsular polysaccharide tetanus toxoid conjugate antigen,,DB10076

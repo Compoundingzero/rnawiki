@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: If you use this dataset, please cite it and the upstream sources named in LICENSES.md.
+title: RNAWiki open drug corpus
+version: 2026-09-06
+date-released: 2026-09-06
+type: dataset
+authors:
+  - name: RNAWiki
+    given-names: Felix
+    website: https://rnawiki.com
+license: CC BY-SA 4.0
+repository-code: https://github.com/Compoundingzero/rnawiki
+url: https://rnawiki.com
+abstract: >-
+  Identity, field values, drug-interaction rows, registration, patent and controlled-substance
+  blocks, Tier 3 sections and derived sections for the RNAWiki drug and longevity corpus,
+  limited to the sources whose licences permit redistribution and commercial use. Each value
+  carries the source and the licence it came under; the compilation is CC BY-SA 4.0 and the
+  upstream records stay under their own licences, which LICENSES.md and README.md list.

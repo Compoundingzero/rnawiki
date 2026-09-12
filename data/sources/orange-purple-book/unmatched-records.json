@@ -1,0 +1,701 @@
+[
+  {
+    "dataset": "orange-book",
+    "substance_name": "AMINOPHYLLINE",
+    "resolved_unii": [
+      "27Y3KJK423"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "CYANOCOBALAMIN",
+    "resolved_unii": [
+      "P6YC3EG204"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "DIVALPROEX SODIUM",
+    "resolved_unii": [
+      "644VL95AO6"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "ESOMEPRAZOLE STRONTIUM",
+    "resolved_unii": [
+      "C5N25H3803"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "INDIUM IN-111 PENTETATE DISODIUM",
+    "resolved_unii": [
+      "7UIT3ZGC8E"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "OXTRIPHYLLINE",
+    "resolved_unii": [
+      "3K045XR58X"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "PENTETATE CALCIUM TRISODIUM YB-169",
+    "resolved_unii": [
+      "Q6RE2BCW3P"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "POTASSIUM AMINOSALICYLATE",
+    "resolved_unii": [
+      "7N21461LKD"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "SILVER SULFADIAZINE",
+    "resolved_unii": [
+      "W46JY43EJR"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "orange-book",
+    "substance_name": "SULFUR HEXAFLUORIDE LIPID-TYPE A MICROSPHERES",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Adenovirus Type 4 and Type 7 Vaccine, Live, Oral",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Allogeneic Cultured Keratinocytes and Fibroblasts in Bovine Collagen",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Allogeneic cultured keratinocytes and dermal fibroblasts in murine collagen-dsat",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Anthrax Immune Globulin Intravenous (Human)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Anthrax Vaccine Adsorbed, Adjuvanted",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Antihemophilic Factor (Recombinant), Full Length",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Antihemophilic Factor/von Willebrand Factor Complex (Human)",
+    "resolved_unii": [
+      "5T6B772R4Q"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Antivenin (Latrodectus mactans)",
+    "resolved_unii": [
+      "5VJA14972G"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Antivenin (Micrurus fulvius)",
+    "resolved_unii": [
+      "Y605XBM2GL"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Botulism Antitoxin Bivalent (Equine) Types A and B.",
+    "resolved_unii": [
+      "PGV553HXTK"
+    ],
+    "resolution_method": "unii-names-normalised",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "C1 Esterase Inhibitor Subcutaneous (Human)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Candida albicans Skin Test Antigen for Cellular Hypersensitivity",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Chikungunya Vaccine, Recombinant",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Crotalidae Polyvalent Immune Fab (Ovine)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Cytomegalovirus Immune Globulin Intravenous (Human)",
+    "resolved_unii": [
+      "129L90A25N"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Diphtheria & Tetanus Toxoids Adsorbed",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Inactivated Poliovirus and Haemophilus b Conjugate (Tetanus Toxoid Conjugate) Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Factor XIII Concentrate (Human)",
+    "resolved_unii": [
+      "F7R0FBC1XD"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Fibrin Sealant (Human)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Fibrin Sealant (Tisseel)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Fibrin Sealant Patch",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "HPC, Cord Blood",
+    "resolved_unii": [
+      "XU53VK93MC"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Haemophilus b Conjugate (Meningococcal Protein Conjugate) and Hepatitis B (Recombinant) Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Hematopoietic Progenitor Cells, Cord (HPC-C)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Hepatitis A & Hepatitis B (Recombinant) Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "House Dust Mites (Dermatophagoides farinae and Dermatophagoides pteronyssinus) Allergen Extract",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Infusion (Human)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Infusion (Human), 10% with Recombinant Human Hyaluronidase",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Injection (Human) 10% Caprylate/Chromatography Purified",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Intravenous (Human), 10% Liquid",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Intravenous, Human-kthm, 10% Solution",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Intravenous, Human-slra",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Immune Globulin Subcutaneous (Human), 20% Solution",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Influenza A (H5N1) Monovalent Vaccine, Adjuvanted",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Influenza Vaccine, mRNA",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Influenza Virus Vaccine, H5N1",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Measles, Mumps and Rubella Vaccine Live",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Measles, Mumps and Rubella Virus Vaccine Live",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Measles, Mumps, Rubella and Varicella Virus Vaccine Live",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Meningococcal Groups A, B, C, W and Y Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Meningococcal Groups A, B, C, W, and Y Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Meningococcal Groups C and Y and Haemophilus b Tetanus Toxoid Conjugate Vaccine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Meningococcal Polysaccharide Vaccine, Groups A and C Combined",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Meningococcal Polysaccharide Vaccine, Groups A, C, Y, and W-135 Combined",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Normal Horse Serum",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Poliovirus Vaccine Inactivated (Human Diploid Cell)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Pooled Plasma (Human), Solvent/Detergent Treated",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Positive Skin Test Control-Histamine",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Prothrombin complex concentrate, human-lans",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Rho(D) Immune Globulin Intravenous (Human)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Rubber Panel Thin-Layer Rapid Use Epicutaneous Patch Test",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Short Ragweed Pollen Allergen Extract",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Sweet Vernal, Orchard, Perennial Rye, Timothy, and Kentucky Blue Grass Mixed Pollens Allergen Extract",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Thin-Layer Rapid Use Epicutaneous Patch Test",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Thrombin, Topical (Bovine)",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Timothy Grass Pollen Allergen Extract",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Typhoid Vaccine Live Oral Ty21a",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Venoms, Mixed Vespid Venom Protein",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Venoms, Wasp Venom Protein",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "Venoms, Yellow Jacket Venom Protein",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "allogeneic regulatory T cell immunotherapy with HSPC and T cells-vldq",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "amivantamab and hyaluronidase-lpuj",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "atezolizumab and hyaluronidase-tqjs",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "daratumumab and hyaluronidase-fihj",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "efgartigimod alfa and hyaluronidase-qvfc",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "fibrinogen, humanchmt",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "hyaluronidase",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "immune globulin intravenous, human-dira",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "immune globulin intravenous, human-stwk",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "immune globulin subcutaneous, human-klhw",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "insulin degludec and insulin aspart",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "insulin degludec and liraglutide",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "insulin glargine and lixisenatide",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "insulin isophane human and insulin human",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "insulin lispro protamine and insulin lispro",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "nivolumab and hyaluronidase-nvhy",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "ocrelizumab and hyaluronidase-ocsq",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "peginterferon alfa-2a and ribavirin",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "peginterferon alfa-2b and ribavirin",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "pembrolizumab and berahyaluronidase alfa-pmph",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "pertuzumab, trastuzumab, and hyaluronidase-zzxf",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "plasminogen, human-tvmh",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "rituximab and hyaluronidase human",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "trastuzumab and hyaluronidase-oysk",
+    "resolved_unii": [],
+    "resolution_method": null,
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  },
+  {
+    "dataset": "purple-book",
+    "substance_name": "von Willebrand Factor/Coagulation Factor VIII Complex (Human)",
+    "resolved_unii": [
+      "5T6B772R4Q"
+    ],
+    "resolution_method": "unii-names-exact",
+    "reason": "no UNII, InChIKey, skeleton or name match to a corpus page"
+  }
+]

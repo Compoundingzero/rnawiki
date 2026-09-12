@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { FacetNav } from '@/app/browse/facet-view'
 
 import { HomeSearch } from './HomeSearch'
+import { USER_GOALS } from '@/lib/dossier-v3/taxonomy'
 import { OrganismLadderLegend } from './corpus/OrganismLadderLegend'
 import { HomepageContributorSpotlight } from './home/HomepageContributorSpotlight'
 import type { SearchHit } from '@/lib/api-client'
@@ -29,6 +30,7 @@ export interface HomeViewProps {
 }
 
 const LADDER_HEADING_ID = 'home-organism-ladder'
+const GOAL_HEADING_ID = 'home-goal-entry'
 
 export function HomeView({ contributorSpotlight, popular, corpusStats }: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
@@ -48,6 +50,39 @@ export function HomeView({ contributorSpotlight, popular, corpusStats }: HomeVie
         </div>
 
         <HomeSearch popular={popular} />
+
+        {/*
+          The goal-first entry (docs/dossier-information-architecture.md). Each link opens the
+          list of records whose registered studies name a condition in that area — a registry
+          fact, never a statement that a substance helps with the goal. The search bar above is
+          untouched.
+        */}
+        <nav aria-labelledby={GOAL_HEADING_ID} className="space-y-3 text-left">
+          <h2
+            id={GOAL_HEADING_ID}
+            className="text-base font-semibold tracking-tight text-center"
+            style={{ fontFamily: 'var(--corpus-serif)', color: 'var(--corpus-ink-0)' }}
+          >
+            What are you trying to understand or improve?
+          </h2>
+          <ul className="flex flex-wrap justify-center gap-2">
+            {USER_GOALS.map((goal) => (
+              <li key={goal.code}>
+                <Link
+                  href={`/goals/${goal.code}`}
+                  className="inline-block rounded-full border px-3 py-1 text-sm hover:bg-[#0071E3]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0071E3]"
+                  style={{ borderColor: 'var(--corpus-hairline)', color: 'var(--corpus-ink-1)' }}
+                >
+                  {goal.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-center" style={{ color: 'var(--corpus-ink-2)' }}>
+            A goal lists records with registered studies in that area. It is not a ranking, and a
+            registered study is not evidence of benefit.
+          </p>
+        </nav>
       </section>
 
       <div className="space-y-10">

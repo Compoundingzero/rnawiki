@@ -24,10 +24,18 @@ import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   corpusPages,
+  pageControlled,
+  pageDisplayNames,
   pageFields,
+  pageInteractions,
+  pagePatent,
   pageQuestions,
+  pageRegistration,
+  pageRegistryAggregate,
+  pageRegistryRoleAggregates,
   pageRegistryStudies,
   pageRelations,
+  pageSections,
   pageSeeds,
   pageSources,
   pageSynonyms,
@@ -35,8 +43,17 @@ import {
 import {
   anchor,
   buildBlockBody,
+  carriesDoseText,
+  checkedSourceNames,
+  checkedSourcesStatement,
   deriveQuestions,
+  groupRevealedRows,
+  INTERACTION_TIER_LABELS,
+  interactionRecordIds,
   registerName,
+  registerEventLines,
+  sectionSentenceParts,
+  supervisionContext,
   type FieldEntry,
   type PageBundle,
   type QuestionBlock,
@@ -44,6 +61,14 @@ import {
   type SourceRef,
 } from '@/lib/corpus/page-text'
 import { ORGANISM_RUNGS } from '@/lib/corpus/organism-ladder'
+import {
+  isUnknownClassOnly,
+  supervisionBlock,
+  unknownClassificationLine,
+  type SuppressionEvidence,
+} from '@/lib/corpus/suppression-classes'
+import { hubsForPage } from '@/lib/hubs/queries'
+import { HUB_TYPE_LABEL } from '@/lib/hubs/types'
 
 /* ------------------------------------------------------------------ types */
 
@@ -63,6 +88,20 @@ export interface CorpusParagraph {
   anchor?: CorpusAnchor
   /** A second paragraph that states no sourced value is marked, not given a manufactured source. */
   interpretation: boolean
+  /**
+   * §12: true where the paragraph is page furniture — an absence stated in fixed words. The one
+   * answer that is, "No regulator classification is recorded for X", carries `data-furniture` here
+   * exactly as the register absence table and the patent no-record line do, so the ruler, the
+   * rendered duplicate check and the slop draw's template test all skip the same statement.
+   */
+  furniture?: true
+  /**
+   * §16(1): true where the paragraph is one item of a list the block paints as a list. The
+   * supervision answer is the one block whose body enumerates rather than develops — one clause
+   * per class the suppression pass recorded, in the order S1–S9 — so the template paints its
+   * clauses as list items and the two-paragraph cap does not apply to it.
+   */
+  listItem?: true
 }
 
 /** Consecutive revealed rows that share a label are one group; the label becomes its heading. */
@@ -70,6 +109,11 @@ export interface CorpusRowGroup {
   id: string
   label?: string
   rows: RevealedRow[]
+  /**
+   * §14(9): true where this group is the counted remainder of a list longer than six rows, and the
+   * template paints it inside a closed `<details>` of its own rather than on the page.
+   */
+  disclosed?: boolean
 }
 
 export interface CorpusBlock {
@@ -80,6 +124,8 @@ export interface CorpusBlock {
   template: string
   question: string
   paragraphs: CorpusParagraph[]
+  /** §13(7): the block's own values, painted under the question heading, above the prose. */
+  facts: RevealedRow[]
   groups: CorpusRowGroup[]
   /** R9: the dates the rows under this block were recorded and last checked. */
   sourceDate?: string
@@ -108,6 +154,21 @@ export interface CorpusRelationRow {
   slug?: string
 }
 
+/**
+ * One hub this page belongs to (docs/specs/hubs.md §3). A row, never a sentence.
+ *
+ * A leaf below its tier's indexing threshold is `noindex,follow`; these links are how it stays
+ * reachable, and how a reader moves from one compound to the group it belongs to.
+ */
+export interface CorpusHubRow {
+  /** 'Target' | 'Mechanism class' | 'Pathway' */
+  label: string
+  /** The hub's own name: AR, L02BB, mTOR. */
+  name: string
+  /** /h/<type>/<slug> */
+  path: string
+}
+
 export interface CorpusSourceRow {
   kind: string
   register: string
@@ -118,17 +179,128 @@ export interface CorpusSourceRow {
   licence?: string
 }
 
-export interface CorpusArcRow {
-  date?: string
-  label: string
-  value: string
-  anchor?: CorpusAnchor
+/** One register event folded into the registration block (§13(2)): a sentence, in words. */
+export interface CorpusRegisterEvent {
+  sentence: string
 }
 
 export interface CorpusSynonymGroup {
   kind: string
   label: string
   names: string[]
+}
+
+/* ------------------------------------------- Phase 4 blocks (docs/specs/phase4-generators.md) */
+
+/** One "Where it's registered" line (§3). `line` is what the register stage wrote; nothing here rewrites it. */
+export interface CorpusRegistrationLine {
+  /**
+   * The absence this row states, in three words — `not found`, `not cleared`, `not checked` — and
+   * absent on a row that states anything affirmative. §11 renders these as one table of furniture
+   * rather than as seven sentences on 25,000 pages.
+   */
+  absence?: string
+  id: string
+  jurisdiction: string
+  label: string
+  status: string
+  detail?: string
+  source?: string
+  dateChecked?: string
+  ordinal: number
+  /** The component of a combination product this line belongs to. */
+  component?: string
+  line: string
+  /**
+   * True where the row belongs to the technical disclosure and never to a visible line (§13(6)).
+   *
+   * NCATS Inxight files a curated marketing record under the jurisdiction "unspecified". It names
+   * no jurisdiction and no register, so it is not a register line; it is kept, and the block paints
+   * it inside its closed disclosure.
+   */
+  disclosed: boolean
+  /** The upstream files NCATS stitched to build a curated row: the disclosure only (§13(6)). */
+  upstreamRegisters: string[]
+  /** The application ids the summary line stands for; rendered in a disclosure, never as lines. */
+  applications: string[]
+}
+
+/** One interaction line (§4). The tier label is the first thing on it, in words. */
+export interface CorpusInteractionLine {
+  id: string
+  tier: 'A' | 'B' | 'C'
+  tierLabel: string
+  line: string
+  /** The counterpart's own page, where the corpus holds one. A slug, never a storage key. */
+  counterpartSlug?: string
+  counterpartName?: string
+  /** True where the line sits in the disclosure rather than on the page's first six. */
+  disclosed: boolean
+  sourceUrl?: string
+  /** Storage tokens, for the technical disclosure only. */
+  ruleId?: string
+  setId?: string
+  sourceRecordId?: string
+  /** §14(5): the direction class a grouped label-documented line states, for its disclosure row. */
+  groupedDirection?: string
+  /**
+   * §14(6): the dataset records behind this line, for the closed disclosure and nowhere above it.
+   * A grouped line stands for several, and the render and the page read the same list through
+   * `interactionRecordIds` so they cannot paint two different rows for one line.
+   */
+  recordIds?: string[]
+}
+
+export interface CorpusInteractions {
+  /** Ordered by tier: label-documented, curated, predicted. */
+  lines: CorpusInteractionLine[]
+  /** "No interaction found in … as of …", or the affirmative form where rows were found. */
+  statement?: string
+  /** The registers checked, in words, for the technical disclosure. */
+  sourcesChecked: string[]
+  date?: string
+  /** Distinct counterparts recorded per tier, including the ones not stored. */
+  totals: Partial<Record<'A' | 'B' | 'C', number>>
+  /** True where the page carries predictions and nothing documented or curated (§4). */
+  predictedOnly: boolean
+}
+
+export interface CorpusPatentLine {
+  eligible: boolean
+  line: string
+  /** True where the line states only that no US register holds this record (§11 furniture). */
+  absence: boolean
+  register?: string
+  reason?: string
+  source?: string
+  dateChecked?: string
+  /** Orange Book and Purple Book application ids, for the disclosure. */
+  applications: string[]
+}
+
+export interface CorpusControlledRow {
+  id: string
+  jurisdiction: string
+  list: string
+  classOrSchedule: string
+  substanceAsListed?: string
+  statute?: string
+  statuteUrl?: string
+  versionDate?: string
+  source?: string
+}
+
+/** One computed Tier 3 section (§8), as rows and — where the comparison found one — a sentence. */
+export interface CorpusSectionSentence {
+  section: 'neighbour' | 'potency' | 'timeline' | 'formOf' | 'relationNote'
+  ordinal: number
+  /** §13(7), §13(8): the values, as labelled rows. Empty where the section is prose only. */
+  rows: RevealedRow[]
+  /** The prose the section states beyond its values, where it states any. */
+  sentence?: string
+  /** The linked page a nearest-neighbour or form-of sentence names, where it has one. */
+  counterpartSlug?: string
+  counterpartName?: string
 }
 
 export interface CorpusDossier {
@@ -139,8 +311,18 @@ export interface CorpusDossier {
   tier: number
   pageType: 'longevity' | 'clinical' | 'withdrawn' | 'development' | 'stub'
   indexable: boolean
+  /**
+   * The page this record is held against as a rendered duplicate (§13 item 14).
+   *
+   * Two indexable pages measuring at or above 0.5 on the rendered check are nearly the same page.
+   * The one with fewer own facts is `noindex,follow` and carries a link to the other, until Felix
+   * decides which of the two the corpus keeps. Absent on every page that is not held.
+   */
+  duplicateHoldOf?: { slug: string; displayName: string }
   suppressed: boolean
   suppressionClasses: string[]
+  /** The evidence recorded for those classes; the supervision answer is built from it (§15(1)). */
+  suppressionEvidence: SuppressionEvidence[]
   withdrawn: boolean
   presentFieldCount: number
   applicableFieldCount: number
@@ -153,14 +335,41 @@ export interface CorpusDossier {
   evidenceTier?: string
   ladder: CorpusLadderRung[]
   blocks: CorpusBlock[]
-  arc: CorpusArcRow[]
+  /** §13(2): the approvals and withdrawals the registers dated, inside the registration block. */
+  registerEvents: CorpusRegisterEvent[]
   identifiers: CorpusIdentifierRow[]
   relations: CorpusRelationRow[]
+  hubs: CorpusHubRow[]
   sources: CorpusSourceRow[]
   licenceNotes: string[]
   registeredStudies: number
-  /** The stub's supervision line, from the recorded classification only. */
+  /**
+   * The line a record carries when the registers recorded no classification at all. A record that
+   * has one states it in the supervision block instead, in ordinary words.
+   */
   supervisionLine?: string
+
+  /* ---- Phase 4 (docs/specs/phase4-generators.md §1 block order) --------------------------- */
+
+  /** The controlled-substance trigger of §4: no dose, timing, route or combination text renders. */
+  controlled: boolean
+  /** Which registers fired that trigger, for the technical disclosure. */
+  controlledBasis: string[]
+  /** "Where it's registered": one line per jurisdiction, on every page including a Tier 3 stub. */
+  registration: CorpusRegistrationLine[]
+  /** The recorded controlled-substance schedule entries, in the instruments' own words. */
+  controlledSchedules: CorpusControlledRow[]
+  interactions: CorpusInteractions
+  patent?: CorpusPatentLine
+  /** Nearest approved neighbour, potency rank and activity timeline (§8). */
+  computedSections: CorpusSectionSentence[]
+  /**
+   * The form-of, biosimilar-of or component-of note the page opens with (§6), and — where Phase 3
+   * moved registry studies the parent's name matched — the sentence saying how many went where.
+   */
+  formOfNotes: CorpusSectionSentence[]
+  /** §17(4): the relation notes that render only inside the relations block's closed control. */
+  relationNotes: CorpusSectionSentence[]
 }
 
 /* --------------------------------------------------------- small helpers */
@@ -339,30 +548,20 @@ function emphasisRange(
   return best
 }
 
-/** Consecutive rows sharing a label become one headed group; a lone row keeps its inline label. */
+/**
+ * Consecutive rows sharing a label become one headed group; a lone row keeps its inline label.
+ *
+ * The rule itself lives in `lib/corpus/page-text.ts` beside the body builders, because the corpus
+ * renderer has to print the rows the same way: it printed the label on every row of a run where
+ * the page prints it once, and the two texts disagreed on every disclosure holding a run.
+ */
 function groupRows(blockId: string, rows: RevealedRow[]): CorpusRowGroup[] {
-  const groups: CorpusRowGroup[] = []
-  let index = 0
-  while (index < rows.length) {
-    const current = rows[index]
-    if (!current) break
-    let end = index + 1
-    while (end < rows.length && rows[end]?.label === current.label) end += 1
-    const run = rows.slice(index, end)
-    if (run.length > 1) {
-      groups.push({
-        id: `${blockId}-g${groups.length + 1}`,
-        label: current.label,
-        rows: run,
-      })
-    } else {
-      const previous = groups[groups.length - 1]
-      if (previous && previous.label === undefined) previous.rows.push(...run)
-      else groups.push({ id: `${blockId}-g${groups.length + 1}`, rows: run })
-    }
-    index = end
-  }
-  return groups
+  return groupRevealedRows(rows).map((group, index) => ({
+    id: `${blockId}-g${index + 1}`,
+    ...(group.label === undefined ? {} : { label: group.label }),
+    rows: group.rows,
+    ...(group.disclosed === true ? { disclosed: true as const } : {}),
+  }))
 }
 
 /** The register named in the header line, and the date the record was last checked. */
@@ -392,105 +591,16 @@ function headerLine(
 }
 
 /**
- * The withdrawn arc (R11): the dated register rows that record what happened, each carrying the
- * register that states it. Nothing is narrated — a row exists only where a register wrote one.
+ * The register events (§13(2)), as `registerEventLines` built them.
+ *
+ * The "What the registers record" block is retired: its dated rows printed the registers' own
+ * column names ("drug_warning warningType Withdrawn") beside a status the registration block
+ * already carried. The same recorded facts read as one sentence per event, inside the registration
+ * block, and the sentences are built beside every other body builder so the measured text and the
+ * painted page hold the same words in the same order.
  */
-function withdrawnArc(
-  fields: Record<string, FieldEntry>,
-  candidates: AnchorCandidate[],
-): CorpusArcRow[] {
-  const rows: CorpusArcRow[] = []
-  const seen = new Set<string>()
-  const push = (row: CorpusArcRow): void => {
-    const id = `${row.date ?? ''}|${row.label}|${row.value}`
-    if (seen.has(id)) return
-    seen.add(id)
-    rows.push(row)
-  }
-  const anchorFor = (kind?: string, id?: string, date?: string): CorpusAnchor | undefined => {
-    const label = anchor({
-      ...(kind ? { kind } : {}),
-      ...(id ? { id } : {}),
-      ...(date ? { sourceDate: date } : {}),
-    })
-    if (!label) return undefined
-    return candidates.find((candidate) => candidate.text === label) ?? { text: label }
-  }
-
-  const approval = fields.approvalDate ?? fields.firstApproval
-  if (approval && approval.state === 'present') {
-    const value = asRecord(approval.value)
-    const date = text(value?.date ?? value?.year ?? approval.value)
-    const register = text(value?.register ?? value?.source)
-    if (date && register) {
-      const source = Array.isArray(approval.source) ? approval.source[0] : approval.source
-      const row: CorpusArcRow = { date, label: 'First approval', value: register }
-      const found = anchorFor(source?.kind, source?.id, source?.sourceDate ?? approval.sourceDate)
-      if (found) row.anchor = found
-      push(row)
-    }
-  }
-
-  const withdrawal = fields.withdrawal ?? fields.withdrawalStatus ?? fields.withdrawn
-  if (withdrawal && withdrawal.state === 'present') {
-    const value = asRecord(withdrawal.value)
-    const evidence = Array.isArray(value?.evidence) ? value.evidence : []
-    for (const item of evidence.slice(0, 12)) {
-      const row = asRecord(item)
-      if (!row) continue
-      const statement = text(row.statement ?? row.statusVerbatim)
-      if (!statement) continue
-      const source = text(row.source ?? row.register)
-      const date = text(row.sourceDate ?? row.date)
-      const entry: CorpusArcRow = {
-        ...(date ? { date } : {}),
-        label: source ?? 'Register record',
-        value: statement,
-      }
-      const found = anchorFor(source, text(row.id), date)
-      if (found) entry.anchor = found
-      push(entry)
-    }
-  }
-
-  const regulatory = fields.regulatory ?? fields.regulatoryStatus
-  if (regulatory && regulatory.state === 'present') {
-    const value = asRecord(regulatory.value)
-    for (const [jurisdiction, raw] of Object.entries(value ?? {})) {
-      const record = asRecord(raw)
-      const status = text(record?.status)
-      if (!status || status === 'unknown') continue
-      const evidence = [
-        ...(Array.isArray(record?.evidence) ? record.evidence : []),
-        ...(Array.isArray(record?.records) ? record.records : []),
-      ]
-      for (const item of evidence.slice(0, 4)) {
-        const row = asRecord(item)
-        if (!row) continue
-        const verbatim = text(row.statusVerbatim ?? row.statement)
-        if (!verbatim) continue
-        const date = text(row.sourceDate)
-        const register = text(row.register ?? row.source)
-        const entry: CorpusArcRow = {
-          ...(date ? { date } : {}),
-          label: `${jurisdiction}${register ? ` · ${register}` : ''}`,
-          value: verbatim,
-        }
-        const found = anchorFor(register, text(row.recordId ?? row.id), date)
-        if (found) entry.anchor = found
-        push(entry)
-      }
-    }
-  }
-
-  return rows
-    .sort((a, b) => {
-      if (a.date && b.date) return a.date.localeCompare(b.date)
-      if (a.date) return -1
-      if (b.date) return 1
-      return 0
-    })
-    .slice(0, 16)
+function registerEvents(fields: Record<string, FieldEntry>): CorpusRegisterEvent[] {
+  return registerEventLines(fields).map((event) => ({ sentence: event.sentence }))
 }
 
 /* ------------------------------------------------------------- the load */
@@ -500,21 +610,75 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   if (!page) return null
   const key = page.key
 
-  const [synonymRows, fieldRows, seedRows, questionRows, relationRows, sourceRows, studyRows] =
-    await Promise.all([
-      db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
-      db.select().from(pageFields).where(eq(pageFields.key, key)),
-      db.select().from(pageSeeds).where(eq(pageSeeds.key, key)),
-      db.select().from(pageQuestions).where(eq(pageQuestions.key, key)),
-      db.select().from(pageRelations).where(eq(pageRelations.key, key)),
-      db.select().from(pageSources).where(eq(pageSources.key, key)),
-      db
-        .select({ nct: pageRegistryStudies.nct })
-        .from(pageRegistryStudies)
-        .where(eq(pageRegistryStudies.key, key)),
-    ])
+  const [
+    synonymRows,
+    fieldRows,
+    seedRows,
+    questionRows,
+    relationRows,
+    sourceRows,
+    studyRows,
+    registryAggregateRows,
+    registrationRows,
+    interactionRows,
+    patentRows,
+    controlledRows,
+    sectionRows,
+    displayNameRows,
+    hubMemberships,
+    roleAggregateRows,
+  ] = await Promise.all([
+    db.select().from(pageSynonyms).where(eq(pageSynonyms.key, key)),
+    db.select().from(pageFields).where(eq(pageFields.key, key)),
+    db.select().from(pageSeeds).where(eq(pageSeeds.key, key)),
+    db.select().from(pageQuestions).where(eq(pageQuestions.key, key)),
+    db.select().from(pageRelations).where(eq(pageRelations.key, key)),
+    db.select().from(pageSources).where(eq(pageSources.key, key)),
+    db
+      .select({ nct: pageRegistryStudies.nct })
+      .from(pageRegistryStudies)
+      .where(eq(pageRegistryStudies.key, key)),
+    db.select().from(pageRegistryAggregate).where(eq(pageRegistryAggregate.key, key)),
+    db.select().from(pageRegistration).where(eq(pageRegistration.key, key)),
+    db.select().from(pageInteractions).where(eq(pageInteractions.key, key)),
+    db.select().from(pagePatent).where(eq(pagePatent.key, key)),
+    db.select().from(pageControlled).where(eq(pageControlled.key, key)),
+    db.select().from(pageSections).where(eq(pageSections.key, key)),
+    db.select().from(pageDisplayNames).where(eq(pageDisplayNames.key, key)),
+    // docs/specs/hubs.md §3, joining the fan-out that is already open rather than adding a round
+    // trip. `lib/hubs/queries.ts` `hubsForPage` is this query.
+    hubsForPage(key),
+    // Dossier v3: the role-aware registry aggregate (lib/dossier-v3/trial-roles.ts), merged into
+    // the registry bundle as `roleAware` so the shared builder's registered-study block reads the
+    // classified counts where they exist and qualifies the old ones where they do not.
+    db
+      .select({ aggregate: pageRegistryRoleAggregates.aggregate })
+      .from(pageRegistryRoleAggregates)
+      .where(eq(pageRegistryRoleAggregates.key, key)),
+  ])
 
-  const targetKeys = [...new Set(relationRows.map((row) => row.targetKey))]
+  // The three names the computing stages give "the other page this sentence names", read in the
+  // same order the section list below reads them. `neighbourPage` was missing here, so the nearest
+  // approved compound was never fetched and the page could not name it where the measured text
+  // did (§11).
+  const sectionCounterpartKeys = sectionRows
+    .map((row) =>
+      text(
+        asRecord(row.values)?.counterpartPage ??
+          asRecord(row.values)?.neighbourPage ??
+          asRecord(row.values)?.toKey,
+      ),
+    )
+    .filter((value): value is string => value !== undefined)
+  const targetKeys = [
+    ...new Set([
+      ...relationRows.map((row) => row.targetKey),
+      ...interactionRows
+        .map((row) => row.counterpartKey)
+        .filter((value): value is string => value !== null),
+      ...sectionCounterpartKeys,
+    ]),
+  ]
   const targets =
     targetKeys.length > 0
       ? await db
@@ -527,6 +691,34 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
           .where(inArray(corpusPages.key, targetKeys))
       : []
   const targetByKey = new Map(targets.map((row) => [row.key, row]))
+
+  /*
+   * §13(14): the page this record is held against, by slug. The loader wrote the slug rather than
+   * the key because the hold is decided on the rendered pages, which the check reaches by slug.
+   */
+  const [duplicateHoldTarget] = page.duplicateHoldOf
+    ? await db
+        .select({ slug: corpusPages.slug, displayName: corpusPages.displayName })
+        .from(corpusPages)
+        .where(eq(corpusPages.slug, page.duplicateHoldOf))
+        .limit(1)
+    : []
+
+  /*
+   * The suppression evidence (migration 0033), read as the rows the load wrote: the class each row
+   * answers, the source that stated it, that source's value and, for an ATC-based class, the
+   * register's own name for the code. A page loaded before that column existed carries none, and
+   * the supervision block then has no clause to write, which is the same outcome §15(1) gives a
+   * class with no evidence.
+   */
+  const suppressionEvidence: SuppressionEvidence[] = Array.isArray(page.suppressionEvidence)
+    ? (page.suppressionEvidence as unknown[]).filter(
+        (row): row is SuppressionEvidence =>
+          row !== null &&
+          typeof row === 'object' &&
+          typeof (row as SuppressionEvidence).test === 'string',
+      )
+    : []
 
   /* fields, in the shape the shared builders read */
   const fields: Record<string, FieldEntry> = {}
@@ -551,7 +743,12 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   const seeds: PageBundle['seeds'] = {}
   for (const row of seedRows) {
     const values = asRecord(row.values) ?? {}
-    seeds[`seed${row.seed}`] = { fires: true, values, slots: values }
+    // §11: the slots are their own recorded object (migration 0029). Reading `values` in their
+    // place gave the derivation a slot map it does not recognise, so a seed-driven question was
+    // not re-derived here at all, and the page then wrote "this target" where the measured text
+    // named the target.
+    const slots = asRecord(row.slots) ?? values
+    seeds[`seed${row.seed}`] = { fires: true, values, slots }
   }
 
   const registeredStudies = studyRows.length
@@ -563,6 +760,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     withdrawn: page.withdrawn,
     suppressed: page.suppressed,
     suppressionClasses: page.suppressionClasses,
+    suppressionEvidence,
     stub: page.pageType === 'stub',
     presentFields: page.presentFieldCount,
     fields,
@@ -577,7 +775,32 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       cas: page.cas,
       rxcui: page.rxcui,
     },
-    ...(registeredStudies > 0 ? { registry: { studies: registeredStudies } } : {}),
+    /*
+     * The registry aggregate, as the load stored it (migration 0027; §11). The body builders read
+     * the phases, the enrolments, the durations and the per-trial rows out of it, and a page given
+     * only a study count wrote a shorter paragraph than the page the ruler measures. Where no
+     * aggregate is on file the count is still passed, so a page loaded before migration 0027 says
+     * less rather than saying something else.
+     */
+    ...(asRecord(registryAggregateRows[0]?.aggregate)
+      ? {
+          registry: {
+            ...(asRecord(registryAggregateRows[0]?.aggregate) as Record<string, unknown>),
+            ...(asRecord(roleAggregateRows[0]?.aggregate)
+              ? { roleAware: asRecord(roleAggregateRows[0]?.aggregate) }
+              : {}),
+          },
+        }
+      : registeredStudies > 0
+        ? {
+            registry: {
+              studies: registeredStudies,
+              ...(asRecord(roleAggregateRows[0]?.aggregate)
+                ? { roleAware: asRecord(roleAggregateRows[0]?.aggregate) }
+                : {}),
+            },
+          }
+        : {}),
     questions: [],
     names: new Map(targets.map((row) => [row.key, row.displayName])),
   }
@@ -598,6 +821,22 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   const ordered = [...questionRows].sort((a, b) => a.ordinal - b.ordinal)
   const questions: QuestionBlock[] = ordered.map((row, index) => {
     const match = derivedByTemplate.get(row.template) ?? derivedByBlock.get(row.block)
+    /*
+     * §11: the slot values and the sources the derivation produced when this page was loaded
+     * (migration 0030). They are what the corpus renderer wrote its sentences from, so the page
+     * writes its sentences from them too, and the second derivation above is the fallback for a
+     * page loaded before those columns existed.
+     */
+    const storedValues = asRecord(row.values)
+    const storedQuestionSources: SourceRef[] = (Array.isArray(row.sources) ? row.sources : [])
+      .map((item) => asRecord(item))
+      .filter((item): item is Record<string, unknown> => item !== undefined)
+      .map((item) => ({
+        ...(text(item.kind) ? { kind: text(item.kind) } : {}),
+        ...(text(item.id) ? { id: text(item.id) } : {}),
+        ...(text(item.url) ? { url: text(item.url) } : {}),
+        ...(text(item.sourceDate) ? { sourceDate: text(item.sourceDate) } : {}),
+      }))
     const storedAnchors = Array.isArray(row.anchors) ? row.anchors : []
     const storedSources: SourceRef[] = storedAnchors
       .map((item) => asRecord(item))
@@ -617,53 +856,105 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       badge: `Q${index + 1}`,
       block: row.block,
       template: row.template,
-      values: match?.values ?? {},
-      sources: match?.sources ?? storedSources,
+      values:
+        storedValues && Object.keys(storedValues).length > 0
+          ? (storedValues as Record<string, string>)
+          : (match?.values ?? {}),
+      sources:
+        storedQuestionSources.length > 0
+          ? storedQuestionSources
+          : (match?.sources ?? storedSources),
     }
   })
   bundle.questions = questions
 
   const candidates = anchorCandidates(fieldRows, sourceRows, questions)
 
-  const blocks: CorpusBlock[] = questions.map((question, index) => {
-    const body = buildBlockBody(question, bundle)
-    const paragraphs: CorpusParagraph[] = body.paragraphs
-      .map((raw, position) => {
-        const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
-        if (withoutAnchor.length === 0) return undefined
-        const emphasis = position === 0 ? emphasisRange(withoutAnchor, question.values) : undefined
-        // B5: an unanchored paragraph is marked rather than given a manufactured citation — but
-        // only where it states no recorded value. The builder's second paragraph usually carries
-        // this record's own counts, durations and registry wording with no anchor of its own;
-        // calling those an interpretation would be a second untruth in place of the first.
-        const paragraph: CorpusParagraph = {
-          text: withoutAnchor,
-          interpretation: position > 0 && !found && !/\d/.test(withoutAnchor),
-          ...(found ? { anchor: found } : {}),
-          ...(emphasis ? { emphasis } : {}),
-        }
-        return paragraph
-      })
-      .filter((paragraph): paragraph is CorpusParagraph => paragraph !== undefined)
-    const blockId = `q${index + 1}`
-    const dates = paragraphs
-      .map((paragraph) => paragraph.anchor)
-      .filter((item): item is CorpusAnchor => item !== undefined)
-    const sourceDate = dates.map((item) => item.sourceDate).find((value) => Boolean(value))
-    const lastVerified = dates.map((item) => item.lastVerified).find((value) => Boolean(value))
-    return {
-      id: blockId,
-      badge: `Q${index + 1}`,
-      ordinal: index,
-      block: question.block,
-      template: question.template,
-      question: question.text,
-      paragraphs,
-      groups: groupRows(blockId, body.rows),
-      ...(sourceDate ? { sourceDate } : {}),
-      ...(lastVerified ? { lastVerified } : {}),
-    }
-  })
+  /*
+   * Operating Rule 9 and §4, applied to what the page paints, line by line.
+   *
+   * The loader withholds the four dose-bearing blocks from a controlled record, and the corpus
+   * renderer drops any remaining line that carries a dose, a timing, a route, a frequency or a
+   * combination protocol — a registry trial title reading "320 mg/d" is dosing text on the page
+   * whoever wrote it. The page must drop the same lines: §11 makes the render and the page one
+   * text, and until this was here the page painted dose sentences the render had withheld.
+   */
+  const withholdsDoseText = page.controlled
+  const keeps = (text: string): boolean => !withholdsDoseText || !carriesDoseText(text)
+
+  const blocks: CorpusBlock[] = questions
+    .map((question, index) => {
+      const body = buildBlockBody(question, bundle)
+      const paragraphs: CorpusParagraph[] = body.paragraphs
+        // The furniture and list flags are parallel to `body.paragraphs`, so the dose filter below
+        // is applied with them carried beside the text rather than by index into a filtered list.
+        .map((raw, index) => ({
+          raw,
+          furniture: body.furniture[index] === true,
+          listItem: body.list[index] === true,
+        }))
+        .filter((entry) => keeps(entry.raw))
+        .map(({ raw, furniture, listItem }, position) => {
+          const { body: withoutAnchor, anchor: found } = splitAnchor(raw.trim(), candidates)
+          if (withoutAnchor.length === 0) return undefined
+          const emphasis =
+            position === 0 ? emphasisRange(withoutAnchor, question.values) : undefined
+          // B5: an unanchored paragraph is marked rather than given a manufactured citation — but
+          // only where it states no recorded value. The builder's second paragraph usually carries
+          // this record's own counts, durations and registry wording with no anchor of its own;
+          // calling those an interpretation would be a second untruth in place of the first.
+          //
+          // §16(1): a list item is never marked. A supervision clause names the register that
+          // stated the class inside its own sentence — "(WHO ATC via ChEMBL/EMA)" — so it is a
+          // sourced statement of a recorded fact, and calling the second, third and fourth clause
+          // of an enumeration an interpretation would label a citation as an inference.
+          const paragraph: CorpusParagraph = {
+            text: withoutAnchor,
+            interpretation: !listItem && position > 0 && !found && !/\d/.test(withoutAnchor),
+            ...(found ? { anchor: found } : {}),
+            ...(emphasis ? { emphasis } : {}),
+            ...(furniture ? { furniture: true as const } : {}),
+            ...(listItem ? { listItem: true as const } : {}),
+          }
+          return paragraph
+        })
+        .filter((paragraph): paragraph is CorpusParagraph => paragraph !== undefined)
+      const blockId = `q${index + 1}`
+      const dates = paragraphs
+        .map((paragraph) => paragraph.anchor)
+        .filter((item): item is CorpusAnchor => item !== undefined)
+      const sourceDate = dates.map((item) => item.sourceDate).find((value) => Boolean(value))
+      const lastVerified = dates.map((item) => item.lastVerified).find((value) => Boolean(value))
+      return {
+        id: blockId,
+        badge: `Q${index + 1}`,
+        ordinal: index,
+        block: question.block,
+        template: question.template,
+        question: question.text,
+        paragraphs,
+        facts: body.facts.filter((row) =>
+          keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`),
+        ),
+        groups: groupRows(
+          blockId,
+          body.rows.filter((row) => keeps(`${row.label} ${row.identifier ?? ''} ${row.value}`)),
+        ),
+        ...(sourceDate ? { sourceDate } : {}),
+        ...(lastVerified ? { lastVerified } : {}),
+      }
+    })
+    /*
+     * §1: "a block never renders a heading over an empty body", and §11 makes the render and the
+     * page one text. `renderPage` drops a block whose builder wrote no paragraph and no row — §7
+     * stops a dose-response section whose quotations name a different compound, and that leaves
+     * the block empty — so the page has to drop the same block. Until this was here the page
+     * painted the question and nothing under it, and the parity check read the heading as text the
+     * render had not written.
+     */
+    .filter(
+      (block) => block.paragraphs.length > 0 || block.facts.length > 0 || block.groups.length > 0,
+    )
 
   /* header */
   const { register, lastVerified } = headerLine(fieldRows, sourceRows)
@@ -706,13 +997,26 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     identifiers.push({ field, label, value, ...(href ? { href } : {}) })
   }
 
+  // docs/specs/hubs.md §3: rows, never sentences, so the hub names are markup and no member of a
+  // hub gains the same word as every other member.
+  const hubRows: CorpusHubRow[] = hubMemberships.map((row) => ({
+    label: HUB_TYPE_LABEL[row.type],
+    name: row.name,
+    path: `/h/${row.type}/${encodeURIComponent(row.slug)}`,
+  }))
+
   const relations: CorpusRelationRow[] = []
   for (const row of relationRows) {
     const target = targetByKey.get(row.targetKey)
     if (!target || relations.length >= 20) continue
     relations.push({
       label: RELATION_LABELS[row.relation] ?? row.relation.replace(/-/g, ' '),
-      name: target.displayName,
+      /*
+       * §17(3): the counterpart's disambiguated name where the loader stored one. Two pages both
+       * printing "Suprofen" made "Stereoisomer of Suprofen" a row that named neither of them;
+       * the stored label names the record the link goes to.
+       */
+      name: text(row.label) ?? target.displayName,
       slug: target.slug,
     })
   }
@@ -731,25 +1035,261 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
       ...(row.licence ? { licence: row.licence } : {}),
     }))
 
-  const cited = page.suppressionClasses.filter((code) => /^S[1-9]$/.test(code))
+  /*
+   * The supervision block, on every suppressed record that has a classification to state.
+   *
+   * A record with question rows already carries it: the derivation puts the supervision question
+   * first and the loop above built it like any other block. A record below the stub floor has no
+   * question rows at all, and until this was fixed its classification fell through to the stub's
+   * own line, which printed the stored class ids. The block is built here instead, from the same
+   * recorded classes, in the words docs/specs/suppression-classes.md fixes.
+   *
+   * An S10-only record is not given a block. S10 is the class the suppression pass assigns when it
+   * could read no classification, so there is nothing for the block to state; that record keeps the
+   * single line saying exactly that.
+   */
+  const stubSupervision =
+    page.suppressed && blocks.length === 0
+      ? supervisionBlock(
+          page.displayName,
+          page.suppressionClasses,
+          suppressionEvidence,
+          supervisionContext(fields.boxedWarning, fields.indication),
+        )
+      : undefined
+  if (stubSupervision) blocks.push(stubSupervision)
+
+  // The stub line survives only for the record that has no classification to name.
   const supervisionLine =
-    cited.length > 0
-      ? `Regulator classification recorded: ${cited.join(', ')}`
-      : page.suppressionClasses.length > 0 &&
-          page.suppressionClasses.every((code) => code === 'S10')
-        ? 'No regulator classification is recorded for this compound'
-        : undefined
+    page.suppressed &&
+    stubSupervision === undefined &&
+    isUnknownClassOnly(page.suppressionClasses) &&
+    blocks.length === 0
+      ? unknownClassificationLine()
+      : undefined
+
+  /* ---- Phase 4 blocks -------------------------------------------------------------------- */
+
+  const registration: CorpusRegistrationLine[] = [...registrationRows]
+    // Rule 9 on a controlled record, line by line, exactly as the corpus renderer applies it.
+    .filter((row) => keeps(`${row.component ?? ''} ${row.label} ${row.line}`))
+    .sort(
+      (a, b) =>
+        a.ordinal - b.ordinal ||
+        (a.component ?? '').localeCompare(b.component ?? '') ||
+        a.label.localeCompare(b.label),
+    )
+    .map((row) => ({
+      id: row.id,
+      jurisdiction: row.jurisdiction,
+      label: row.label,
+      status: row.status,
+      ...(row.detail ? { detail: row.detail } : {}),
+      ...(row.source ? { source: row.source } : {}),
+      ...(row.dateChecked ? { dateChecked: row.dateChecked } : {}),
+      ordinal: row.ordinal,
+      ...(row.component ? { component: row.component } : {}),
+      line: row.line,
+      ...(row.absence ? { absence: row.absence } : {}),
+      // §13(6): a curated record filed under "unspecified" is technical provenance, not a register
+      // line, and the same is true of the upstream files NCATS stitched to build it.
+      disclosed: row.disclosed,
+      upstreamRegisters: Array.isArray(asRecord(row.disclosure)?.upstreamRegisters)
+        ? ((asRecord(row.disclosure)?.upstreamRegisters as unknown[])
+            .map((item) => text(item))
+            .filter((item): item is string => item !== undefined) as string[])
+        : [],
+      applications: Array.isArray(asRecord(row.disclosure)?.applications)
+        ? ((asRecord(row.disclosure)?.applications as unknown[])
+            .map((item) => text(item))
+            .filter((item): item is string => item !== undefined) as string[])
+        : [],
+    }))
+
+  const interactionRowsOnly = interactionRows.filter((row) => row.kind === 'interaction')
+  const checkedRow = interactionRows.find((row) => row.kind === 'sources-checked')
+  const tierOrder: Record<string, number> = { A: 0, B: 1, C: 2 }
+  const interactionLines: CorpusInteractionLine[] = [...interactionRowsOnly]
+    .sort(
+      (a, b) =>
+        (tierOrder[a.tier ?? 'C'] ?? 3) - (tierOrder[b.tier ?? 'C'] ?? 3) || a.ordinal - b.ordinal,
+    )
+    .map((row) => {
+      const tier = (row.tier ?? 'C') as 'A' | 'B' | 'C'
+      const target = row.counterpartKey ? targetByKey.get(row.counterpartKey) : undefined
+      const counterpartName = row.counterpartName ?? target?.displayName
+      /*
+       * §14(5), §14(6): a grouped label-documented line names several counterparts, so the loader
+       * stored no counterpart against it and its direction is the group's direction class. That
+       * is what its disclosure row is labelled with, and the record ids behind it come from the
+       * build's own provenance map — the same two values `renderPage` reads, through the same two
+       * functions, so the render and the painted page carry one row.
+       */
+      const grouped = counterpartName === undefined && tier === 'A' ? row.direction : null
+      return {
+        id: row.id,
+        tier,
+        tierLabel: INTERACTION_TIER_LABELS[tier] as string,
+        line: row.line,
+        ...(target ? { counterpartSlug: target.slug } : {}),
+        ...(counterpartName ? { counterpartName } : {}),
+        disclosed: row.disclosed,
+        ...(row.sourceUrl ? { sourceUrl: row.sourceUrl } : {}),
+        ...(row.ruleId ? { ruleId: row.ruleId } : {}),
+        ...(row.setId ? { setId: row.setId } : {}),
+        ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+        ...(grouped ? { groupedDirection: grouped } : {}),
+        recordIds: interactionRecordIds({
+          ...(row.ruleId ? { ruleId: row.ruleId } : {}),
+          ...(row.setId ? { setId: row.setId } : {}),
+          ...(row.sourceRecordId ? { sourceRecordId: row.sourceRecordId } : {}),
+          ...(asRecord(row.provenance) ? { provenance: asRecord(row.provenance) } : {}),
+        }),
+      }
+    })
+  const interactionTotals: CorpusInteractions['totals'] = {}
+  for (const row of interactionRowsOnly) {
+    const tier = (row.tier ?? 'C') as 'A' | 'B' | 'C'
+    if (row.totalInTier !== null) interactionTotals[tier] = row.totalInTier
+  }
+  const checkedSourcesRecorded = Array.isArray(checkedRow?.sourcesChecked)
+    ? (checkedRow.sourcesChecked as unknown[])
+        .map((item) => text(item))
+        .filter((item): item is string => item !== undefined)
+    : []
+  const interactions: CorpusInteractions = {
+    lines: interactionLines.filter((line) => keeps(line.line)),
+    ...(checkedRow?.line ? { statement: checkedRow.line } : {}),
+    sourcesChecked: checkedSourceNames(
+      checkedSourcesRecorded.length > 0
+        ? { sourcesChecked: checkedSourcesRecorded, date: checkedRow?.sourceDate ?? '' }
+        : undefined,
+    ),
+    ...(checkedRow?.sourceDate ? { date: checkedRow.sourceDate } : {}),
+    totals: interactionTotals,
+    predictedOnly:
+      interactionLines.length > 0 && interactionLines.every((line) => line.tier === 'C'),
+  }
+  // The statement the loader stored is the one the measured text carries; rebuilding it here would
+  // be a second implementation. It is only recomputed where the stored row predates the rule.
+  if (interactions.statement === undefined && checkedSourcesRecorded.length > 0) {
+    const rebuilt = checkedSourcesStatement(
+      { sourcesChecked: checkedSourcesRecorded, date: checkedRow?.sourceDate ?? '' },
+      interactionLines.length > 0,
+    )
+    if (rebuilt) interactions.statement = rebuilt
+  }
+
+  const patentRow = patentRows[0] && keeps(patentRows[0].line) ? patentRows[0] : undefined
+  const patent: CorpusPatentLine | undefined = patentRow
+    ? {
+        eligible: patentRow.eligible,
+        line: patentRow.line,
+        absence: patentRow.absence,
+        ...(patentRow.register ? { register: patentRow.register } : {}),
+        ...(patentRow.reason ? { reason: patentRow.reason } : {}),
+        ...(patentRow.source ? { source: patentRow.source } : {}),
+        ...(patentRow.dateChecked ? { dateChecked: patentRow.dateChecked } : {}),
+        applications: Array.isArray(asRecord(patentRow.disclosure)?.applications)
+          ? ((asRecord(patentRow.disclosure)?.applications as unknown[])
+              .map((item) => text(item))
+              .filter((item): item is string => item !== undefined) as string[])
+          : [],
+      }
+    : undefined
+
+  const controlledSchedules: CorpusControlledRow[] = [...controlledRows]
+    .filter((row) => keeps(`${row.classOrSchedule} ${row.list} ${row.substanceAsListed ?? ''}`))
+    /*
+     * A total order (§11): `page_controlled` has no order of its own, and jurisdiction, list and
+     * schedule do not separate every row — levonorgestrel carries two Poisons List rows under one
+     * schedule, differing only in the name the register listed. `scripts/corpus-20k/render/
+     * page-text.ts` sorts on the same five values, so the page and the render paint one order.
+     */
+    .sort(
+      (a, b) =>
+        a.jurisdiction.localeCompare(b.jurisdiction) ||
+        a.list.localeCompare(b.list) ||
+        a.classOrSchedule.localeCompare(b.classOrSchedule) ||
+        (a.substanceAsListed ?? '').localeCompare(b.substanceAsListed ?? '') ||
+        (a.versionDate ?? '').localeCompare(b.versionDate ?? ''),
+    )
+    .map((row) => ({
+      id: row.id,
+      jurisdiction: row.jurisdiction,
+      list: row.list,
+      classOrSchedule: row.classOrSchedule,
+      ...(row.substanceAsListed ? { substanceAsListed: row.substanceAsListed } : {}),
+      ...(row.statute ? { statute: row.statute } : {}),
+      ...(row.statuteUrl ? { statuteUrl: row.statuteUrl } : {}),
+      ...(row.versionDate ? { versionDate: row.versionDate } : {}),
+      ...(row.source ? { source: row.source } : {}),
+    }))
+
+  const SECTION_ORDER: Record<string, number> = {
+    neighbour: 0,
+    potency: 1,
+    timeline: 2,
+    formOf: 3,
+    relationNote: 4,
+  }
+  const sections: CorpusSectionSentence[] = [...sectionRows]
+    .sort(
+      (a, b) =>
+        (SECTION_ORDER[a.section] ?? 9) - (SECTION_ORDER[b.section] ?? 9) || a.ordinal - b.ordinal,
+    )
+    .filter((row) => keeps(row.sentence))
+    .map((row) => {
+      const values = asRecord(row.values) ?? {}
+      const counterpartKey = text(values.counterpartPage ?? values.neighbourPage ?? values.toKey)
+      const target = counterpartKey ? targetByKey.get(counterpartKey) : undefined
+      /*
+       * §13(7) and §13(8): a section whose sentence stated one comparison of stored values is
+       * rendered as those values, in rows. `sectionSentenceParts` decides which of them keep a
+       * sentence, and the corpus renderer calls the same function, so the page and the measured
+       * text carry the same rows and the same prose.
+       */
+      const parts =
+        row.section === 'formOf' || row.section === 'relationNote'
+          ? { rows: [] as RevealedRow[], sentence: row.sentence }
+          : sectionSentenceParts({
+              values,
+              provenance: asRecord(row.provenance) ?? {},
+              ...(row.templateId ? { templateId: row.templateId } : {}),
+            })
+      return {
+        section: row.section as CorpusSectionSentence['section'],
+        ordinal: row.ordinal,
+        rows: parts.rows.filter((item) => keeps(`${item.label} ${item.value}`)),
+        ...(parts.sentence && keeps(parts.sentence) ? { sentence: parts.sentence } : {}),
+        ...(target ? { counterpartSlug: target.slug, counterpartName: target.displayName } : {}),
+      }
+    })
+    .filter((row) => row.rows.length > 0 || row.sentence !== undefined)
+  const formOfNotes = sections.filter((row) => row.section === 'formOf')
+  /*
+   * §17(4): a relation the identity stage could not confirm says so inside the relations block's
+   * closed control, and nowhere else. It is not a form-of note — it states that the corpus cannot
+   * say what this record is a form of — and it is not a computed section, so it is filtered out of
+   * both here rather than left to a component to recognise.
+   */
+  const relationNotes = sections.filter((row) => row.section === 'relationNote')
+  const computedSections = sections.filter(
+    (row) => row.section !== 'formOf' && row.section !== 'relationNote',
+  )
 
   return {
     key,
     slug: page.slug,
-    displayName: page.displayName,
+    displayName: displayNameRows[0]?.displayName ?? page.displayName,
     model: page.model,
     tier: page.tier,
     pageType: page.pageType,
     indexable: page.indexable,
+    ...(duplicateHoldTarget ? { duplicateHoldOf: duplicateHoldTarget } : {}),
     suppressed: page.suppressed,
     suppressionClasses: page.suppressionClasses,
+    suppressionEvidence,
     withdrawn: page.withdrawn,
     presentFieldCount: page.presentFieldCount,
     applicableFieldCount: page.applicableFieldCount,
@@ -761,13 +1301,23 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
     ...(page.evidenceTier ? { evidenceTier: page.evidenceTier } : {}),
     ladder,
     blocks,
-    arc: page.withdrawn ? withdrawnArc(fields, candidates) : [],
+    registerEvents: registerEvents(fields).filter((event) => keeps(event.sentence)),
     identifiers,
     relations,
+    hubs: hubRows,
     sources,
     licenceNotes: page.licenceNotes,
     registeredStudies,
     ...(supervisionLine ? { supervisionLine } : {}),
+    controlled: page.controlled,
+    controlledBasis: page.controlledBasis,
+    registration,
+    controlledSchedules,
+    interactions,
+    ...(patent ? { patent } : {}),
+    computedSections,
+    formOfNotes,
+    relationNotes,
   }
 }
 

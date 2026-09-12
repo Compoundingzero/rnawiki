@@ -1,0 +1,14 @@
+{
+  "attempted": 710,
+  "byOutcome": {
+    "no_application": 673,
+    "filled": 37
+  },
+  "marketingStatuses": {
+    "Discontinued": 32,
+    "Prescription": 27,
+    "None (Tentative Approval)": 3,
+    "Over-the-counter": 1
+  },
+  "report": "data/background/drugsfda-acquisition.ndjson"
+}

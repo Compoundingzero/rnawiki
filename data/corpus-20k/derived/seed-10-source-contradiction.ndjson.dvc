@@ -1,0 +1,5 @@
+outs:
+- md5: c3da82d50fd1bd21bd04119af99ed8e0
+  size: 111351
+  hash: md5
+  path: seed-10-source-contradiction.ndjson

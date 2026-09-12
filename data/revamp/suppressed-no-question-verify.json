@@ -1,0 +1,743 @@
+{
+  "schema": "rnawiki-revamp-2026-09/suppressed-no-question-verify/v1",
+  "step": "3.7",
+  "generated": "2026-09-05T16:32:51.615Z",
+  "source": "data/revamp/suppressed-no-question.csv",
+  "database": "rnawiki_test_1788625929733_97e6079b82",
+  "pages": 39,
+  "verified": 39,
+  "failed": 0,
+  "checks": [
+    "the page answers 200",
+    "a supervision block is rendered",
+    "the supervision block is the first block on the page",
+    "every recorded S1-S9 class is named in ordinary words",
+    "no stored class id appears in the rendered text"
+  ],
+  "results": [
+    {
+      "key": "COMBO:NAME:human botulinum neurotoxin a b immune globulin",
+      "slug": "human-botulinum-neurotoxin-a-b-immune-globulin",
+      "displayName": "Human Botulinum Neurotoxin A/B Immune Globulin",
+      "suppressionClasses": [
+        "S7"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a route a clinician administers, such as an injection into a vein or into the spine"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:027828ZV5Q",
+      "slug": "gold-198au-colloidal",
+      "displayName": "Gold (198au) colloidal",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:0R97XIX3OA",
+      "slug": "fazadinium",
+      "displayName": "Fazadinium",
+      "suppressionClasses": [
+        "S7"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a route a clinician administers, such as an injection into a vein or into the spine"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:135FQ40L36",
+      "slug": "mannosulfan",
+      "displayName": "Mannosulfan",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:1CB0HBT12C",
+      "slug": "carboquone",
+      "displayName": "Carboquone",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:290YE8AR51",
+      "slug": "trichloroethylene",
+      "displayName": "Trichloroethylene",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:3KXW0Y310I",
+      "slug": "bezitramide",
+      "displayName": "Bezitramide",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:5SL0G7R0OK",
+      "slug": "anhydrous-dextrose-2",
+      "displayName": "Anhydrous Dextrose",
+      "suppressionClasses": [
+        "S7"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a route a clinician administers, such as an injection into a vein or into the spine"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:5Y48085P9Q",
+      "slug": "aprindine",
+      "displayName": "Aprindine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:8BR2SOL3L1",
+      "slug": "radium-ra-223",
+      "displayName": "RADIUM RA-223",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:92VV7G83ED",
+      "slug": "antivenin-crotalidae-polyvalent",
+      "displayName": "ANTIVENIN (CROTALIDAE) POLYVALENT",
+      "suppressionClasses": [
+        "S7"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a route a clinician administers, such as an injection into a vein or into the spine"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:953A94Y45B",
+      "slug": "levofenfluramine",
+      "displayName": "Levofenfluramine",
+      "suppressionClasses": [
+        "S8"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a register record of withdrawal or suspension for a safety reason"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:AJ1QI6OAU0",
+      "slug": "opinercept",
+      "displayName": "Opinercept",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:B69U29O7J9",
+      "slug": "gitoformate",
+      "displayName": "Gitoformate",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:B9DMX93Z6X",
+      "slug": "seniprutug",
+      "displayName": "Seniprutug",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:CKS1YQ9W1J",
+      "slug": "sodium-aurotiosulfate",
+      "displayName": "Sodium aurotiosulfate",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:DY02T48R2B",
+      "slug": "etirinotecan-pegol-tetratriflutate",
+      "displayName": "ETIRINOTECAN PEGOL TETRATRIFLUTATE",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:F3D5D9P25I",
+      "slug": "triaziquone",
+      "displayName": "Triaziquone",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:G9BH09J4JW",
+      "slug": "phenoperidine",
+      "displayName": "Phenoperidine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:GH09PRQ3FU",
+      "slug": "bunaftine",
+      "displayName": "Bunaftine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:H727SQ6OHQ",
+      "slug": "etirinotecan-pegol-tetrahydrochloride",
+      "displayName": "ETIRINOTECAN PEGOL TETRAHYDROCHLORIDE",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:I7GG1YUC5V",
+      "slug": "metildigoxin",
+      "displayName": "Metildigoxin",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:I8266RI90M",
+      "slug": "p-toluenesulfonamide",
+      "displayName": "P-TOLUENESULFONAMIDE",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:ITY7G7Q744",
+      "slug": "coccidioides-immitis-spherule",
+      "displayName": "Coccidioides Immitis Spherule",
+      "suppressionClasses": [
+        "S6"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a boxed warning, the strongest warning a United States label carries"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:KC6BL281EN",
+      "slug": "proscillaridin",
+      "displayName": "Proscillaridin",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:KGJ2T0N7IQ",
+      "slug": "lorcainide",
+      "displayName": "Lorcainide",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:PQS1L514CF",
+      "slug": "ketobemidone",
+      "displayName": "Ketobemidone",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:RYH2T97J77",
+      "slug": "ranimustine",
+      "displayName": "Ranimustine",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:S8U3J5W06N",
+      "slug": "alcuronium",
+      "displayName": "Alcuronium",
+      "suppressionClasses": [
+        "S7"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a route a clinician administers, such as an injection into a vein or into the spine"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:UK6392GD5W",
+      "slug": "oxycinchophen",
+      "displayName": "Oxycinchophen",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:ULJ82834RE",
+      "slug": "tiazofurine",
+      "displayName": "Tiazofurine",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:Y95FRL95FW",
+      "slug": "nicomorphine",
+      "displayName": "Nicomorphine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:Z01IVE25KI",
+      "slug": "demecolcine",
+      "displayName": "Demecolcine",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K1:Z7489237QT",
+      "slug": "cibenzoline",
+      "displayName": "Cibenzoline",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K2:FBTUMDXHSRTGRV-ALTNURHMSA-N",
+      "slug": "zorubicin",
+      "displayName": "Zorubicin",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K2:LAHDERDHXJFFJU-RVPOWFKMSA-N",
+      "slug": "lorajmine",
+      "displayName": "Lorajmine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K2:WDEFBBTXULIOBB-UHFFFAOYSA-N",
+      "slug": "tilidine",
+      "displayName": "Tilidine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K2:ZQHYKVKNPWDQSL-UHFFFAOYSA-N",
+      "slug": "phenazocine-2",
+      "displayName": "Phenazocine",
+      "suppressionClasses": [
+        "S1"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    },
+    {
+      "key": "K3:CHEMBL2108335",
+      "slug": "sitimagene-ceradenovec",
+      "displayName": "Sitimagene ceradenovec",
+      "suppressionClasses": [
+        "S1",
+        "S4"
+      ],
+      "status": 200,
+      "supervisionBlockPresent": true,
+      "supervisionBlockFirst": true,
+      "labelsRendered": [
+        "a World Health Organization therapeutic class such as cancer medicines, immune suppressants, opioids or general anaesthetics",
+        "a list of cytotoxic or otherwise hazardous medicines"
+      ],
+      "labelsMissing": [],
+      "classTokensInText": [],
+      "passed": true,
+      "problems": []
+    }
+  ]
+}

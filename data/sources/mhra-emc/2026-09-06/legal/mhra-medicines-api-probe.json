@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": "2026-09-05T16:09:45Z",
+    "url": "https://medicines.api.mhra.gov.uk/graphql",
+    "attempt": 1,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-graphql.attempt1.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:09:47Z",
+    "url": "https://medicines.api.mhra.gov.uk/graphql",
+    "attempt": 2,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-graphql.attempt2.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:09:52Z",
+    "url": "https://medicines.api.mhra.gov.uk/graphql",
+    "attempt": 3,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-graphql.attempt3.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:09:53Z",
+    "url": "https://medicines.api.mhra.gov.uk/",
+    "attempt": 1,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-root-retry.attempt1.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:09:55Z",
+    "url": "https://medicines.api.mhra.gov.uk/",
+    "attempt": 2,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-root-retry.attempt2.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:10:00Z",
+    "url": "https://medicines.api.mhra.gov.uk/",
+    "attempt": 3,
+    "status": "503",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-medicines-api-root-retry.attempt3.txt",
+    "stderr": "",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:10:00Z",
+    "url": "https://api.mhra.gov.uk/",
+    "attempt": 1,
+    "status": "000",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-api-root.attempt1.txt",
+    "stderr": "curl: (6) Could not resolve host: api.mhra.gov.uk",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:10:02Z",
+    "url": "https://api.mhra.gov.uk/",
+    "attempt": 2,
+    "status": "000",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-api-root.attempt2.txt",
+    "stderr": "curl: (6) Could not resolve host: api.mhra.gov.uk",
+    "body_head": ""
+  },
+  {
+    "timestamp": "2026-09-05T16:10:06Z",
+    "url": "https://api.mhra.gov.uk/",
+    "attempt": 3,
+    "status": "000",
+    "bytes": 0,
+    "outfile": "data/sources/mhra-emc/2026-09-06/legal/mhra-api-root.attempt3.txt",
+    "stderr": "curl: (6) Could not resolve host: api.mhra.gov.uk",
+    "body_head": ""
+  }
+]

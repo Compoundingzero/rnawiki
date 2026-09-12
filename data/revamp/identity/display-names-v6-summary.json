@@ -1,0 +1,18 @@
+{
+  "bySource": {
+    "ChEMBL molecule identifier": 92,
+    "FDA UNII": 12,
+    "FDA substance register name": 4,
+    "InChIKey": 38,
+    "recorded composition": 10,
+    "recorded stereochemistry": 166
+  },
+  "generatedBy": "scripts/revamp/display_names_v6.py",
+  "groupsCovered": 158,
+  "groupsWithNoDistinguishingRecord": 0,
+  "out": "data/revamp/identity/display-names-v6.csv",
+  "rowsAdded": 322,
+  "rowsFromV5": 409,
+  "spec": "docs/specs/phase4-generators.md#17",
+  "unresolved": []
+}

@@ -1,0 +1,6 @@
+outs:
+- md5: 5899278b9d1c9efdacfb5a9ce628a9f6.dir
+  size: 191376
+  nfiles: 9
+  hash: md5
+  path: lists

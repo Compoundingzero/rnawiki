@@ -1,0 +1,2662 @@
+{
+ "generated": "scripts/revamp/slop_draw.py",
+ "spec": [
+  "docs/specs/revamp-2026-09.md#phase-4",
+  "docs/specs/phase4-generators.md#9"
+ ],
+ "baseUrl": "http://127.0.0.1:3197",
+ "seed": 20260910,
+ "perTier": 20,
+ "drawn": 60,
+ "rendered": 60,
+ "width": 1280,
+ "textDir": "data/revamp/render-v8/text",
+ "census": {
+  "unit": "block",
+  "pages": 28657,
+  "blockTemplates": 38004,
+  "line": 0.005,
+  "pagesLimit": 143.285,
+  "maskedNames": {
+   "drugNamePhrases": 113853,
+   "drugNameSingleTokens": 40512,
+   "targetNamePhrases": 3940,
+   "targetNameSingleTokens": 117,
+   "englishWords": 234456
+  },
+  "sentenceLevelLiteral": {
+   "pages": 28657,
+   "sentenceTemplates": 131894,
+   "pagesLimit": 143.285
+  }
+ },
+ "sentences": 1231,
+ "rowLines": 3057,
+ "failA": 13,
+ "failB": 2,
+ "failC": 0,
+ "failRendered": 259,
+ "failBUnit": "block",
+ "failBSentenceLiteral": 83,
+ "failBSentenceLiteralByBlock": {
+  "question block": 82,
+  "computed section": 1
+ },
+ "failBSentenceLiteralNote": "The literal sentence-level reading of (b), reported and never the gate. \u00a712: it fails every deterministic generator, the thirteen corpus-20k seeds that shipped included, because a section that fires on 30 % of pages with a fixed skeleton cannot appear on 0.5 % once its slots are masked. `failB` above is the rule over the block, which is the unit a reader meets.",
+ "failABreakdown": {
+  "pagesWithNoProvenanceRecord": 0
+ },
+ "parity": {
+  "renderLinesNotPainted": 320,
+  "paintedLinesNotInRender": 320,
+  "renderLinesOutOfOrder": 5
+ },
+ "renderDivergenceNote": "`failRendered` and `parity` are `scripts/revamp/dom_parity.py`'s own comparison, run here over the drawn pages: this module imports that extraction, that fold and that comparison, so one number describes parity (\u00a712). The unit is main-region text lines outside furniture. It is not one of \u00a74.7's three checks. It matters because the thresholds and the block census are measured on the render text, so where the two disagree those measurements describe text no reader sees.",
+ "loadedPagesWithNoRenderRecord": 0,
+ "renderRecordsNotLoaded": 0,
+ "failBByBlock": {
+  "computed section": 1,
+  "question block": 1
+ },
+ "failBExamplePerBlock": {
+  "computed section": {
+   "template": "it differs from <drug> by a methyl substituent",
+   "pagesCarrying": 168,
+   "sentences": [
+    "It differs from Valeric Acid by a methyl substituent"
+   ]
+  },
+  "question block": {
+   "template": "<num> at the median <num> at the largest across <num> registered trials of <num> clinicaltrials.gov \u00b6 <num> completed <num> with posted results",
+   "pagesCarrying": 411,
+   "sentences": [
+    "99 at the median, 99 at the largest, across 1 registered trials of CMS-121. ClinicalTrials.gov",
+    "1 completed; 0 with posted results"
+   ]
+  }
+ },
+ "failBScope": [
+  "computed section",
+  "derived seed",
+  "hub synthesis",
+  "question block"
+ ],
+ "failBExclusions": {
+  "question heading (the corpus-20k template contract)": 283,
+  "outside the sentences the generator words: interactions": 152,
+  "outside the sentences the generator words: other": 140,
+  "furniture": 96,
+  "outside the sentences the generator words: registration": 75,
+  "outside the sentences the generator words: interactions: checked-sources statement": 18,
+  "outside the sentences the generator words: generic and patent": 3
+ },
+ "failBExclusionsByBlock": {
+  "question heading (the corpus-20k template contract) \u00b7 question block": 283,
+  "outside the sentences the generator words: interactions \u00b7 interactions": 152,
+  "outside the sentences the generator words: other \u00b7 other": 140,
+  "outside the sentences the generator words: registration \u00b7 registration": 75,
+  "furniture \u00b7 interactions: checked-sources statement": 42,
+  "furniture \u00b7 generic and patent": 40,
+  "outside the sentences the generator words: interactions: checked-sources statement \u00b7 interactions: checked-sources statement": 18,
+  "furniture \u00b7 question block": 13,
+  "outside the sentences the generator words: generic and patent \u00b7 generic and patent": 3,
+  "furniture \u00b7 other": 1
+ },
+ "failBScopeNote": "docs/specs/phase4-generators.md \u00a712 evaluates the test over the masked block \u2014 every sentence of a question, derived, computed or hub block, in painted order \u2014 and a one-sentence block is held to the literal sentence rule by construction. \u00a711 scopes the test to answer sentences, derived-section sentences, computed-section sentences and hub syntheses. A question heading is the corpus-20k template contract and is measured by that contract's own two lines; furniture is the fixed-vocabulary absence statements \u00a711 marks data-furniture; the h1 is the display name and masks to a bare <drug> on every page by construction; and the register lines (\u00a73), the checked-sources statement (\u00a74) and the no-record patent line (\u00a75) are wordings the spec fixes rather than a generator choosing them. `failB` is the rule over its scope; `failBExclusions` counts every sentence it was not applied to, by the exclusion that removed it, so the scope is on the report beside the result.",
+ "traceClasses": {
+  "question: resolved": 755,
+  "field: resolved": 652,
+  "seed: resolved": 331,
+  "field: unresolved": 266,
+  "repository file: resolved": 154,
+  "source record: resolved": 140,
+  "needs-sibling derivation: unresolved": 136,
+  "source list: unresolved": 69,
+  "lexicon surface: resolved": 68,
+  "interaction rule: resolved": 60,
+  "source list: resolved": 51,
+  "absence: resolved": 40,
+  "additive class: unresolved": 30,
+  "additive class: resolved": 30,
+  "seed: unresolved": 24,
+  "unrecognised: unresolved": 13,
+  "inxight ddi record: unresolved": 11,
+  "computed value: resolved": 10,
+  "page-column: resolved": 7
+ },
+ "pages": [
+  {
+   "key": "K1:2GT1D0TMX1",
+   "slug": "moricizine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/moricizine",
+   "h1": "Moracizine",
+   "sentences": 19,
+   "parity": {
+    "renderLinesNotPainted": 4,
+    "paintedLinesNotInRender": 4,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of CYP1A1, CYP1A2, CYP2B6, CYP2C, CYP3A, OATP1B1 and OATP1B3, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:16659; frdb:ddi:16660; frdb:ddi:16663; frdb:ddi:16664; frdb:ddi:16667; frdb:ddi:16668; frdb:ddi:16669"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of CYP1A1, CYP1A2, CYP2B6, CYP2C, CYP3A, OATP1B1 and OATP1B3 frdb:ddi:16659 \u00b7 frdb:ddi:16660 \u00b7 frdb:ddi:16663 \u00b7 frdb:ddi:16664 \u00b7 frdb:ddi:16667 \u00b7 frdb:ddi:16668 \u00b7 frdb:ddi:16669",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inducer of CYP3A4 frdb:ddi:16671",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Activator of PXR frdb:ddi:16670",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1990-06-19 K1:2GT1D0TMX1 first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1990-06-19K1:2GT1D0TMX1",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:66PZQ62YA6",
+   "slug": "branched-chain-amino-acids",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/branched-chain-amino-acids",
+   "h1": "Branched Chain Amino Acids",
+   "sentences": 40,
+   "parity": {
+    "renderLinesNotPainted": 7,
+    "paintedLinesNotInRender": 7,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT04603443 2025-09-30",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT04073693 healthspan; Change of muscle mass in patients with sarcopenia; 19",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "hormesis PMID 29244952 \"Branched chain amino acids, such as leucine and isoleucine, followed the opposite trend after the highest level of exposure, which can imply hormesis effects.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1 further recorded trial NCT07634523 \"Branched Chain Amino Acids for Sarcopenia in Patients Undergoing Total Knee Arthroplasty\"; n 140; \"Change in Skeletal Muscle Mass Index From Baseline to 15 Weeks After Surgery\"; 2027-05-31",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT07412054 \"Lenvatinib and Pembrolizumab With or Without BCAA in Unresectable HCC\"; n 234; \"Progression-Free Survival (PFS)\"; 2028-06-01",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT04603443",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT04073693",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "hormesisPMID 29244952",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1 further recorded trialNCT07634523",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT07412054",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:1C058IKG3B",
+   "slug": "teriflunomide",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/teriflunomide",
+   "h1": "Teriflunomide",
+   "sentences": 68,
+   "parity": {
+    "renderLinesNotPainted": 43,
+    "paintedLinesNotInRender": 43,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of CYP2C8, CYP2C9, OAT3, OATP1B1 and hERG, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:1376; frdb:ddi:1374; frdb:ddi:1396; frdb:ddi:1393; frdb:ddi:1392"
+    },
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inducer of CYP2C19 and 3A4, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:1382; frdb:ddi:1384"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Alosetron A-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Atorvastatin A-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Cefaclor Anhydrous A-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Cimetidine A-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Ciprofloxacin A-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AlosetronA-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AtorvastatinA-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Cefaclor AnhydrousA-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CimetidineA-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CiprofloxacinA-label-statement \u00b7 1824aae5-58af-43da-8231-435c8f118bc0",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:3MVQ8H3X65",
+   "slug": "penbutolol",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/penbutolol",
+   "h1": "Penbutolol",
+   "sentences": 16,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT04467931 2020-12-31",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1987-12-30 K1:3MVQ8H3X65 first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT04467931",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1987-12-30K1:3MVQ8H3X65",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:TE7660XO1C",
+   "slug": "glycine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/glycine",
+   "h1": "Glycine",
+   "sentences": 92,
+   "parity": {
+    "renderLinesNotPainted": 54,
+    "paintedLinesNotInRender": 54,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "ace inhibitors A-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Amiloride A-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Angiotensin II A-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Coumarin A-label-statement \u00b7 afeb4837-a759-4484-a76e-e04611c459e7",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "immunosuppressants A-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "12 counterparts are recorded under label-documented for this record; 11 are shown.",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ace inhibitorsA-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AmilorideA-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Angiotensin IIA-label-statement \u00b7 8469d6fb-d6ef-476f-8cc3-0905192de0a8",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CoumarinA-label-statement \u00b7 afeb4837-a759-4484-a76e-e04611c459e7",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:9679TC07X4",
+   "slug": "iodine",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/iodine",
+   "h1": "Iodine",
+   "sentences": 56,
+   "parity": {
+    "renderLinesNotPainted": 9,
+    "paintedLinesNotInRender": 9,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Carbamazepine A-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Fosphenytoin A-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Phenytoin A-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Valproic acid A-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT05382793 2023-12-15",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CarbamazepineA-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "FosphenytoinA-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "PhenytoinA-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Valproic acidA-label-statement \u00b7 42a5cafd-a2c0-4ac2-99c9-708642f00716",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT05382793",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:VL0L558GCB",
+   "slug": "ardeparin",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/ardeparin",
+   "h1": "Ardeparin",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:8JXN261VVA",
+   "slug": "toripalimab",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/toripalimab",
+   "h1": "Toripalimab",
+   "sentences": 39,
+   "parity": {
+    "renderLinesNotPainted": 7,
+    "paintedLinesNotInRender": 7,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "US toripalimab INVESTIGATIONAL_MEDICINE",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EU EMEA/H/C/006120 Authorised",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Gemcitabine A-label-statement \u00b7 82e7921a-1e84-4988-9799-0ad7d19b2a75",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "systemic steroids A-label-statement \u00b7 82e7921a-1e84-4988-9799-0ad7d19b2a75",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT04354662 2026-07-06",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "UStoripalimab",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EUEMEA/H/C/006120",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "GemcitabineA-label-statement \u00b7 82e7921a-1e84-4988-9799-0ad7d19b2a75",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "systemic steroidsA-label-statement \u00b7 82e7921a-1e84-4988-9799-0ad7d19b2a75",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT04354662",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:M9NL0C577Y",
+   "slug": "ubiquinol",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/ubiquinol",
+   "h1": "Ubiquinol",
+   "sentences": 39,
+   "parity": {
+    "renderLinesNotPainted": 18,
+    "paintedLinesNotInRender": 18,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT06640465 2025-09-17",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT02779634 biomarker; NT-pro brain natriuretic peptide (NT-proBNP) serum levels (pg/ml); 15",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT03968640 withdrawn; \"Sponsor terminated award\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT06555575 Ubiquinol 100 MG Oral Capsule",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "hormesis PMID 10715615 \"A multifunctional ubiquinol (NADH) oxidase with protein disulfide-thiol interchange activity of the cell surface, abbreviated as NOX, is described as a molecular target for chemical hormesis of cell growth.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT06640465",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT02779634",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT03968640",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT06555575",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "hormesisPMID 10715615",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:67U96J8P35",
+   "slug": "meprednisone",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/meprednisone",
+   "h1": "Meprednisone",
+   "sentences": 22,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 1
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Substrate of CYP3A4 frdb:ddi:10568",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inducer of CYP3A5 frdb:ddi:10570",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "It differs from Prednisone by a methyl substituent on the ring",
+     "block": "renderLinesOutOfOrder",
+     "reason": "the page paints this line, but not where the render puts it"
+    }
+   ]
+  },
+  {
+   "key": "K4:resistant starch",
+   "slug": "resistant-starch",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/resistant-starch",
+   "h1": "Resistant Starch",
+   "sentences": 34,
+   "parity": {
+    "renderLinesNotPainted": 5,
+    "paintedLinesNotInRender": 5,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT03356990 2024-12-31",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT02784145 biomarker; Fecal short chain fatty acid (SCFA) concentrations; 25",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT04342689 terminated; \"Study was terminated due to low enrollment.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "US 2026-09-04 supplement",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "2018 PMID:29393371 first non-human result",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT03356990",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT02784145",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT04342689",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "US2026-09-04",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "2018PMID:29393371",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "HOLD:existing:boldenone",
+   "slug": "boldenone",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/boldenone",
+   "h1": "Boldenone",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 1,
+    "paintedLinesNotInRender": 1,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Substrate of CYP3A4 frdb:ddi:12041",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:1WZ12GTT67",
+   "slug": "temafloxacin",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/temafloxacin",
+   "h1": "Temafloxacin",
+   "sentences": 15,
+   "parity": {
+    "renderLinesNotPainted": 1,
+    "paintedLinesNotInRender": 1,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of CYP1A2 frdb:ddi:20160",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:40UIR9Q29H",
+   "slug": "sodium-butyrate",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/sodium-butyrate",
+   "h1": "Butyric Acid",
+   "sentences": 46,
+   "parity": {
+    "renderLinesNotPainted": 16,
+    "paintedLinesNotInRender": 16,
+    "renderLinesOutOfOrder": 1
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "It differs from Valeric Acid by a methyl substituent",
+     "block": "computed section",
+     "group": "computed",
+     "sentencesInBlock": 1,
+     "template": "it differs from <drug> by a methyl substituent",
+     "pagesCarrying": 168,
+     "share": 0.005862,
+     "reason": "the masked block is on 168 pages (0.59%)"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT06556745 2026-06-04",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT02693106 biomarker; Concentration of Total Plasma Ketones; 34",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "U-shaped PMID 42517812 \"BKMR revealed a non-linear joint effect, with the overall association shifting from positive to negative when the mixture quantile exceeded 0.5; butyric acid showed an inverted U-shaped relationship.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "dose-response PMID 42012901 \"Butyrate showed a dose-response increase that correlated with Ace-K consumption, suggesting its microbial metabolism.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "biphasic PMID 42514970 \"In vitro release studies with hydrocortisone-17-butyrate (H-17-B; encapsulation efficiency of 79.8% \u00b1 4.8%) demonstrated biphasic kinetics best fit by bi-exponential models (R<sup>2</sup> > 0.95).\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT06556745",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT02693106",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "U-shapedPMID 42517812",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "dose-responsePMID 42012901",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "biphasicPMID 42514970",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "It differs from Valeric Acid by a methyl substituent",
+     "block": "renderLinesOutOfOrder",
+     "reason": "the page paints this line, but not where the render puts it"
+    }
+   ]
+  },
+  {
+   "key": "K1:47BYS17IY0",
+   "slug": "mitoquinone-cation",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/mitoquinone-cation",
+   "h1": "MITOQUINONE CATION",
+   "sentences": 27,
+   "parity": {
+    "renderLinesNotPainted": 8,
+    "paintedLinesNotInRender": 8,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT04851288 2026-07-31",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT02690064 mechanism-only; Acute Change in Flow mediated dilation; 8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ITP cohort C2015 MitoQ; 100; 7 months; f, m; ITP_C2015_Lifespan.xlsx",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT03166800 terminated; \"Lack of adequate funding\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "autophagy PMID 39199249 \"Pretreatment with Mitoquinone mesylate (Mito Q) and compound C partially reversed SS-induced apoptosis, autophagy, and proliferation inhibition.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT04851288",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT02690064",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ITP cohortC2015",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT03166800",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "autophagyPMID 39199249",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:VPB6TR49WU",
+   "slug": "interleukin-3",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/interleukin-3",
+   "h1": "Interleukin-3",
+   "sentences": 12,
+   "parity": {
+    "renderLinesNotPainted": 6,
+    "paintedLinesNotInRender": 6,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "mTOR PMID 30863490 \"Assessment was performed by clinical observation, histological analysis, Reactive oxygen species (ROS) activities and molecular analysis of Interleukin 3 and 6, Tumor Necrosis Factor alpha, AMP-activated protein Kinase and the mammalian target of rapamycin.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AMPK PMID 30863490 \"Assessment was performed by clinical observation, histological analysis, Reactive oxygen species (ROS) activities and molecular analysis of Interleukin 3 and 6, Tumor Necrosis Factor alpha, AMP-activated protein Kinase and the mammalian target of rapamycin.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "autophagy PMID 24912196 \"In addition, inhibition of autophagy induced by amino acid starvation, etoposide, or interleukin-3 withdrawal did not affect cell death in the absence of Bax and Bak.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mTOR PMID 36745138 \"Unprecedently, a novel UA binding protein - the neuronal apoptosis inhibitor protein (NAIP) - is suggested as responsible for the asymptomatic hyperuricemia paradox.<b>Abbreviation:</b> \u03b22-integrins: leukocyte-specific adhesion molecules; ABCG2: ATP-binding cassete family/breast cancer-resistant protein; ACR: American college of rheumatology; AIM2: absent in melanoma 2, type of pattern\u2026\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mTOR PMID 15514005 \"Our results indicated that (1) the expression of TEL-FGFR3 but not DeltaHLH-TEL-FGFR3 resulted in efficient focus formation in NIH/3T3 cells and conferred interleukin 3 independence to Ba/F3 cells by a constitutive tyrosine kinase activity probably through oligomerization by the HLH domain of TEL; (2) although effector proteins including classical mitogen-activated protein kinase (MAPK), p38\u2026\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mTORPMID 30863490",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AMPKPMID 30863490",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "autophagyPMID 24912196",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mTORPMID 36745138",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mTORPMID 15514005",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:2SH16612I9",
+   "slug": "aminorex",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/aminorex",
+   "h1": "Aminorex",
+   "sentences": 15,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 1
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "It differs from Pemoline by a oxo substituent on the ring",
+     "block": "renderLinesOutOfOrder",
+     "reason": "the page paints this line, but not where the render puts it"
+    }
+   ]
+  },
+  {
+   "key": "K1:A8M33244M6",
+   "slug": "nitroxoline",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/nitroxoline",
+   "h1": "Nitroxoline",
+   "sentences": 24,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 1
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of CYP19A1 and 2C19, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:18757; frdb:ddi:18758"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Substrate of P-gp frdb:ddi:18767",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of CYP19A1 and 2C19 frdb:ddi:18757 \u00b7 frdb:ddi:18758",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "It differs from Oxyquinoline by a nitro substituent on the aromatic ring",
+     "block": "renderLinesOutOfOrder",
+     "reason": "the page paints this line, but not where the render puts it"
+    }
+   ]
+  },
+  {
+   "key": "K1:UL1984YRKA",
+   "slug": "guanidinopropionic-acid",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/guanidinopropionic-acid",
+   "h1": "Ompenaclid",
+   "sentences": 26,
+   "parity": {
+    "renderLinesNotPainted": 6,
+    "paintedLinesNotInRender": 6,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human test NCT03597581 2025-03-31",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "human NCT03597581 mechanism-only; RGX-202-01 maximum tolerated dose; 2",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ITP cohort C2015 b-guanidinopropionic acid; 3300; 6 months; f, m; ITP_C2015_Lifespan.xlsx",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT05983367 terminated; \"At the time of the primary analysis, results did not meet the primary endpoint\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mouse b-guanidinopropionic acid C2015 3300 ppm",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Last recorded human testNCT03597581",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "humanNCT03597581",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ITP cohortC2015",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT05983367",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "mouseb-guanidinopropionic acid C2015",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:Q13SKS21MN",
+   "slug": "2-4-dinitrophenol",
+   "tier": 1,
+   "url": "http://127.0.0.1:3197/d/2-4-dinitrophenol",
+   "h1": "2,4-Dinitrophenol",
+   "sentences": 13,
+   "parity": {
+    "renderLinesNotPainted": 1,
+    "paintedLinesNotInRender": 1,
+    "renderLinesOutOfOrder": 1
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "US 2-4-dinitrophenol WITHDRAWN_MEDICINE",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "US2-4-dinitrophenol",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "It differs from BUTAMBEN PICRATE by a nitro substituent on the aromatic ring",
+     "block": "renderLinesOutOfOrder",
+     "reason": "the page paints this line, but not where the render puts it"
+    }
+   ]
+  },
+  {
+   "key": "K1:M84I3K7C2O",
+   "slug": "nifurtimox",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/nifurtimox",
+   "h1": "Nifurtimox",
+   "sentences": 28,
+   "parity": {
+    "renderLinesNotPainted": 4,
+    "paintedLinesNotInRender": 4,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "half life pharmacokinetics 2.4\u20133.6 hours; Elimination The mean (%CV) estimates for elimination half-life of nifurtimox ranged between 2.4\u20133.6 hours (12\u201337%).",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "tmax pharmacokinetics 4 hours; The median time to reach maximum concentration (T max ) of nifurtimox under fed conditions was 4 hours (range: 2 to 8 hours).",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolism pharmacokinetics Metabolism Metabolism of nifurtimox is primarily mediated via nitroreductases.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "2020-08-06 K1:M84I3K7C2O first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half lifepharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "tmaxpharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolismpharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "2020-08-06K1:M84I3K7C2O",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K4:amphetamine resin complex",
+   "slug": "amphetamine-resin-complex",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/amphetamine-resin-complex",
+   "h1": "Amphetamine Resin Complex",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:39IS23Q1EW",
+   "slug": "cedazuridine",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/cedazuridine",
+   "h1": "Cedazuridine",
+   "sentences": 36,
+   "parity": {
+    "renderLinesNotPainted": 8,
+    "paintedLinesNotInRender": 8,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of CNT2 and 3 \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:34309; frdb:ddi:34310"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EU EMEA/H/C/005823 Authorised",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CYTIDINE A-label-statement \u00b7 91a0f80b-f865-4d06-a40d-4d148d99ee71",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Venetoclax A-label-statement \u00b7 91a0f80b-f865-4d06-a40d-4d148d99ee71",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Substrate of CNT1 frdb:ddi:34311",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of CNT2 and 3 frdb:ddi:34309 \u00b7 frdb:ddi:34310",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EUEMEA/H/C/005823",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CYTIDINEA-label-statement \u00b7 91a0f80b-f865-4d06-a40d-4d148d99ee71",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "VenetoclaxA-label-statement \u00b7 91a0f80b-f865-4d06-a40d-4d148d99ee71",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:Z092RFX1IW",
+   "slug": "tilia-tomentosa-bud",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/tilia-tomentosa-bud",
+   "h1": "Tilia Tomentosa Bud",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:A49L8E13FD",
+   "slug": "p-dimethylaminoazobenzene",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/p-dimethylaminoazobenzene",
+   "h1": "P-Dimethylaminoazobenzene",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:56X54T817Q",
+   "slug": "corticorelin-ovine-triflutate",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/corticorelin-ovine-triflutate",
+   "h1": "Corticorelin ovine triflutate",
+   "sentences": 17,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT01373372 withdrawn; \"Funding not obtained.\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1996-05-23 K1:56X54T817Q first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT01373372",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1996-05-23K1:56X54T817Q",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:CK0N3WH0SR",
+   "slug": "perflutren",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/perflutren",
+   "h1": "Perflutren",
+   "sentences": 32,
+   "parity": {
+    "renderLinesNotPainted": 3,
+    "paintedLinesNotInRender": 3,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "half life pharmacokinetics 1.3 minutes; Perflutren concentrations in blood were shown to decline in a mono-exponential fashion with a mean half-life of 1.3 minutes in healthy subjects.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolism pharmacokinetics Elimination Metabolism Perflutren is a stable gas that is not metabolized.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1998-05-17 K1:CK0N3WH0SR first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half lifepharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolismpharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "1998-05-17K1:CK0N3WH0SR",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:47ISU063SG",
+   "slug": "zuclopenthixol",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/zuclopenthixol",
+   "h1": "Zuclopenthixol",
+   "sentences": 32,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Substrate of CYP2D4, 2D6 and 3A4, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:11244; frdb:ddi:11246; frdb:ddi:11245"
+    },
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of Nav1.5 and hERG, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:11242; frdb:ddi:11243"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Substrate of CYP2D4, 2D6 and 3A4 frdb:ddi:11244 \u00b7 frdb:ddi:11246 \u00b7 frdb:ddi:11245",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of Nav1.5 and hERG frdb:ddi:11242 \u00b7 frdb:ddi:11243",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:8POZ61U1G2",
+   "slug": "aquilegia-vulgaris",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/aquilegia-vulgaris",
+   "h1": "Aquilegia Vulgaris",
+   "sentences": 12,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:L0ND3981AG",
+   "slug": "gadoterate-meglumine",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/gadoterate-meglumine",
+   "h1": "Gadoterate meglumine",
+   "sentences": 32,
+   "parity": {
+    "renderLinesNotPainted": 1,
+    "paintedLinesNotInRender": 1,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "2013-03-20 K1:L0ND3981AG first approval",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "2013-03-20K1:L0ND3981AG",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:TJ2M0FR8ES",
+   "slug": "megestrol-acetate",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/megestrol-acetate",
+   "h1": "Megestrol Acetate",
+   "sentences": 40,
+   "parity": {
+    "renderLinesNotPainted": 5,
+    "paintedLinesNotInRender": 5,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Indinavir anhydrous A-label-statement \u00b7 2dc921d5-e423-4379-a345-151e87d13651",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Rifabutin A-label-statement \u00b7 2921731a-6866-4dc8-8f6b-b636abf7bcf8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Warfarin A-label-statement \u00b7 2921731a-6866-4dc8-8f6b-b636abf7bcf8",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half life pharmacokinetics 20 to 50 hours; The mean elimination half-life of megestrol ranged from 20 to 50 hours in healthy subjects.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolism pharmacokinetics Metabolism and Excretion The major route of drug elimination in humans is urine.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Indinavir anhydrousA-label-statement \u00b7 2dc921d5-e423-4379-a345-151e87d13651",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "RifabutinA-label-statement \u00b7 2921731a-6866-4dc8-8f6b-b636abf7bcf8",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "WarfarinA-label-statement \u00b7 2921731a-6866-4dc8-8f6b-b636abf7bcf8",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half lifepharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "metabolismpharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:87M90CV8NC",
+   "slug": "nipocalimab",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/nipocalimab",
+   "h1": "Nipocalimab",
+   "sentences": 30,
+   "parity": {
+    "renderLinesNotPainted": 8,
+    "paintedLinesNotInRender": 8,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "US BLA761430 application BLA761430: Prescription",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EU EMEA/H/C/006379 Authorised",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "US BLA761430 approved \u00b7 Drugs@FDA \u00b7 application BLA761430: Prescription \u00b7 2026-08-28",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EU EMEA/H/C/006379 approved \u00b7 EMA Medicine.csv \u00b7 Imaavy: medicine status Authorised \u00b7 2026-09-04",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half life pharmacokinetics 29.3 hours; After a single intravenous administration of 15 mg/kg nipocalimab-aahu, the mean clearance is 0.0627 L/h and half-life is 29.3 hours.",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "USBLA761430",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EUEMEA/H/C/006379",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "USBLA761430",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EUEMEA/H/C/006379",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "half lifepharmacokinetics",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:ZF94AP8MEY",
+   "slug": "hydrogenated-castor-oil",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/hydrogenated-castor-oil",
+   "h1": "Hydrogenated Castor Oil",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:Y6O7T4G8P9",
+   "slug": "hydrated-silica",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/hydrated-silica",
+   "h1": "Hydrated Silica",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:VOKSWYLNZZRQPF-UHFFFAOYSA-N",
+   "slug": "pentazocine-2",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/pentazocine-2",
+   "h1": "Pentazocine",
+   "sentences": 26,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Substrate of CYP1A2, CYP3A4 and P-gp, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:13921; frdb:ddi:13922; frdb:ddi:13923"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Substrate of CYP1A2, CYP3A4 and P-gp frdb:ddi:13921 \u00b7 frdb:ddi:13922 \u00b7 frdb:ddi:13923",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of hERG frdb:ddi:13925",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:6E43AWY083",
+   "slug": "iodine-povacrylex",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/iodine-povacrylex",
+   "h1": "Iodine Povacrylex",
+   "sentences": 22,
+   "parity": {
+    "renderLinesNotPainted": 1,
+    "paintedLinesNotInRender": 1,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT03859908 terminated; \"Difficulties for recruitment due to COVID-19 pandemia and expiration of the material\"",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT03859908",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:U558PCS5Z9",
+   "slug": "sodium-iodate",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/sodium-iodate",
+   "h1": "Sodium Iodate",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:D46583G77X",
+   "slug": "molsidomine",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/molsidomine",
+   "h1": "Molsidomine",
+   "sentences": 19,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Substrate of BCRP and P-gp, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:3690; frdb:ddi:3691"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Substrate of BCRP and P-gp frdb:ddi:3690 \u00b7 frdb:ddi:3691",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT00382421 2006-04",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT00382421",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:HMH0132Z1Q",
+   "slug": "cabotegravir",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/cabotegravir",
+   "h1": "Cabotegravir",
+   "sentences": 50,
+   "parity": {
+    "renderLinesNotPainted": 18,
+    "paintedLinesNotInRender": 18,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Substrate of BCRP, P-gp, UGT1A1 and UGT1A9, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:25144; frdb:ddi:25143; frdb:ddi:25148; frdb:ddi:25111"
+    },
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of OAT1 and 3, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:25149; frdb:ddi:25150"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Calcium Carbonate A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Carbamazepine A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Etravirine A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Magnesium Hydroxide (structure VTHJTEIRLNZDEV) A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Midazolam A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Calcium CarbonateA-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CarbamazepineA-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EtravirineA-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Magnesium Hydroxide (structure VTHJTEIRLNZDEV)A-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "MidazolamA-label-statement \u00b7 66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "HOLD:existing:iobenguane-sulfate-i-123",
+   "slug": "iobenguane-sulfate-i-123",
+   "tier": 2,
+   "url": "http://127.0.0.1:3197/d/iobenguane-sulfate-i-123",
+   "h1": "Iobenguane Sulfate I-123",
+   "sentences": 42,
+   "parity": {
+    "renderLinesNotPainted": 13,
+    "paintedLinesNotInRender": 13,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Amitriptyline A-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Cocaine A-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Ephedrine A-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Imipramine A-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Labetalol A-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AmitriptylineA-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CocaineA-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "EphedrineA-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "ImipramineA-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "LabetalolA-label-statement \u00b7 c89d3ecc-4f4c-4566-8808-79152344194d",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:3087NKH40A",
+   "slug": "dorastine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/dorastine",
+   "h1": "Dorastine",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:T4D9016A00",
+   "slug": "lodazecar",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/lodazecar",
+   "h1": "Lodazecar",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K4:maratime pine",
+   "slug": "maratime-pine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/maratime-pine",
+   "h1": "Maratime Pine",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:G2M24F1I2A",
+   "slug": "aseripide",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/aseripide",
+   "h1": "Aseripide",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:YXV28V1B07",
+   "slug": "ceftobiprole-medocaril-free-acid",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/ceftobiprole-medocaril-free-acid",
+   "h1": "Ceftobiprole Medocaril Free Acid",
+   "sentences": 7,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:BNO1JG5MZC",
+   "slug": "bempegaldesleukin",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/bempegaldesleukin",
+   "h1": "Bempegaldesleukin",
+   "sentences": 16,
+   "parity": {
+    "renderLinesNotPainted": 5,
+    "paintedLinesNotInRender": 5,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Nektar Therapeutics NCT03435640 7 studies; industry",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Bristol-Myers Squibb NCT03635983 4 studies; industry",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Nykode Therapeutics ASA NCT03548467 1 study; industry",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Pfizer NCT04052204 1 study; industry",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "University of Wisconsin, Madison NCT04936841 1 study; other",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Nektar TherapeuticsNCT03435640",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Bristol-Myers SquibbNCT03635983",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Nykode Therapeutics ASANCT03548467",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "PfizerNCT04052204",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "University of Wisconsin, MadisonNCT04936841",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:7BWD4SYN2A",
+   "slug": "lactobacillus-johnsonii",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/lactobacillus-johnsonii",
+   "h1": "Lactobacillus Johnsonii",
+   "sentences": 6,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:CPCMFDHSADMUTF-VNAVJBQCSA-N",
+   "slug": "chembl433990",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl433990",
+   "h1": "CHEMBL433990",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:34969JX79R",
+   "slug": "guggul",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/guggul",
+   "h1": "Guggul",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:JADDQZYHOWSFJD-BMYQGPEFSA-N",
+   "slug": "chembl1513348",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl1513348",
+   "h1": "CHEMBL1513348",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:OD54L0MH86",
+   "slug": "deutarserine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/deutarserine",
+   "h1": "Deutarserine",
+   "sentences": 7,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K1:E4RK86FAVR",
+   "slug": "hepronicate",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/hepronicate",
+   "h1": "Hepronicate",
+   "sentences": 36,
+   "parity": {
+    "renderLinesNotPainted": 30,
+    "paintedLinesNotInRender": 30,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "rendered",
+     "sentence": "Acebutolol C3-additive-hypotensive",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Ambrisentan C3-additive-hypotensive",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Amiloride C3-additive-hypotensive",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Amlodipine C3-additive-hypotensive",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Amlodipine / Valsartan C3-additive-hypotensive",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AcebutololC3-additive-hypotensive",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AmbrisentanC3-additive-hypotensive",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AmilorideC3-additive-hypotensive",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "AmlodipineC3-additive-hypotensive",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Amlodipine / ValsartanC3-additive-hypotensive",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K2:LXRBPWHQMGKMRT-GOSISDBHSA-N",
+   "slug": "bay-805",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/bay-805",
+   "h1": "BAY-805",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:FOECKIWHCOYYFL-UHFFFAOYSA-N",
+   "slug": "pptn",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/pptn",
+   "h1": "PPTN",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:PSICWGWNIOOULV-UHFFFAOYSA-N",
+   "slug": "ecf-309",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/ecf-309",
+   "h1": "ECF 309",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K4:phellodenfron",
+   "slug": "phellodenfron",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/phellodenfron",
+   "h1": "Phellodenfron",
+   "sentences": 4,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:XEEQGYMUWCZPDN-SWLSCSKDSA-N",
+   "slug": "r-s-mefloquine",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/r-s-mefloquine",
+   "h1": "(R,S)-MEFLOQUINE",
+   "sentences": 21,
+   "parity": {
+    "renderLinesNotPainted": 22,
+    "paintedLinesNotInRender": 22,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inhibitor of MRP1 and 4, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:12654; frdb:ddi:12653"
+    },
+    {
+     "check": "a",
+     "sentence": "Curated \u00b7 Inducer of CYP2B6, CYP2C8, CYP3A4, P-gp and UGT1A3, with a reported magnitude \u00b7 Inxight FRDB",
+     "block": "interactions",
+     "reason": "trace of no recognised class: frdb:ddi:12644; frdb:ddi:12642; frdb:ddi:12645; frdb:ddi:12643; frdb:ddi:12647"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inhibitor of MRP1 and 4 frdb:ddi:12654 \u00b7 frdb:ddi:12653",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Inducer of CYP2B6, CYP2C8, CYP3A4, P-gp and UGT1A3 frdb:ddi:12644 \u00b7 frdb:ddi:12642 \u00b7 frdb:ddi:12645 \u00b7 frdb:ddi:12643 \u00b7 frdb:ddi:12647",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Activator of PXR frdb:ddi:12641",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "U.S. Army Medical Research and Development Command NCT00761020 3 studies; fed",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "London School of Hygiene and Tropical Medicine NCT00158574 2 studies; other",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "CuratedB-inxight-frdb",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "U.S. Army Medical Research and Development CommandNCT00761020",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "London School of Hygiene and Tropical MedicineNCT00158574",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K1:BW9P9F8JEY",
+   "slug": "cms-121",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/cms-121",
+   "h1": "CMS-121",
+   "sentences": 10,
+   "parity": {
+    "renderLinesNotPainted": 2,
+    "paintedLinesNotInRender": 2,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": [
+    {
+     "check": "b",
+     "sentence": "99 at the median, 99 at the largest, across 1 registered trials of CMS-121. ClinicalTrials.gov 1 completed; 0 with posted results",
+     "block": "question block",
+     "group": "question:q2",
+     "sentencesInBlock": 2,
+     "template": "<num> at the median <num> at the largest across <num> registered trials of <num> clinicaltrials.gov \u00b6 <num> completed <num> with posted results",
+     "pagesCarrying": 411,
+     "share": 0.014342,
+     "reason": "the masked block is on 411 pages (1.43%)"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Trial NCT05318040 2022-12-17",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Virogenics, Inc. NCT05318040 1 study; industry",
+     "block": "renderLinesNotPainted",
+     "reason": "the render writes this line and the page does not paint it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "TrialNCT05318040",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    },
+    {
+     "check": "rendered",
+     "sentence": "Virogenics, Inc.NCT05318040",
+     "block": "paintedLinesNotInRender",
+     "reason": "the browser paints this line and the render does not carry it"
+    }
+   ]
+  },
+  {
+   "key": "K2:QQGISFDJEJMKIL-JAIQZWGSSA-N",
+   "slug": "chembl394369",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl394369",
+   "h1": "CHEMBL394369",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  },
+  {
+   "key": "K2:JKMYPJAZMANXBX-UHFFFAOYSA-N",
+   "slug": "chembl1271590",
+   "tier": 3,
+   "url": "http://127.0.0.1:3197/d/chembl1271590",
+   "h1": "CHEMBL1271590",
+   "sentences": 5,
+   "parity": {
+    "renderLinesNotPainted": 0,
+    "paintedLinesNotInRender": 0,
+    "renderLinesOutOfOrder": 0
+   },
+   "failures": []
+  }
+ ],
+ "issues": [],
+ "elapsedSeconds": 46.1,
+ "pagesMarkdownWords": 37915
+}

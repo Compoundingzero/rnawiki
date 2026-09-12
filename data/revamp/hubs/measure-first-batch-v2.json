@@ -1,0 +1,42 @@
+{
+ "set": "first-batch",
+ "method": "scripts/corpus-20k/overlap/measure.py --exhaustive (every pair scored)",
+ "pages": 28,
+ "pairs": 378,
+ "medianTokens": 183,
+ "positional": {
+  "median": 0.075592,
+  "p90": 0.118257,
+  "max": 0.145946,
+  "line": 0.2,
+  "pass": true
+ },
+ "lexical": {
+  "median": 0.308011,
+  "p90": 0.461977,
+  "max": 0.489362,
+  "line": 0.353,
+  "pass": true
+ },
+ "expectedNearestNeighbour": {
+  "full": {
+   "pages": 28,
+   "positional": 0.087358,
+   "lexical": 0.352219
+  },
+  "matched": [
+   {
+    "pages": 324,
+    "positional": 0.133629,
+    "lexical": 0.473724
+   },
+   {
+    "pages": 803,
+    "positional": 0.144536,
+    "lexical": 0.48793
+   }
+  ]
+ },
+ "sharedWordShare": 0.167553,
+ "pass": true
+}

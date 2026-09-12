@@ -1,0 +1,202 @@
+{
+  "source": "FDA Orange Book and Purple Book",
+  "source_directory": "data/sources/orange-purple-book/2026-09-05",
+  "pull_date": "2026-09-05",
+  "generated_at": "2026-09-05T16:02:10Z",
+  "retrieval_method": "bulk download of the published data files; no page scraping of records",
+  "licence": "US Government work, public domain (FDA)",
+  "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+  "licence_text": "Unless otherwise noted, the contents of the FDA website (www.fda.gov) - both text and graphics - are not copyrighted. They are in the public domain and may be republished, reprinted and otherwise used freely by anyone without the need to obtain permission from FDA. Credit to the U.S. Food and Drug Administration as the source is appreciated but not required.",
+  "datasets": {
+    "orange_book": {
+      "title": "Approved Drug Products with Therapeutic Equivalence Evaluations (Orange Book) downloadable data files",
+      "page": "https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files",
+      "archive_url": "https://www.fda.gov/media/76860/download?attachment",
+      "members": [
+        "products.txt",
+        "patent.txt",
+        "exclusivity.txt"
+      ],
+      "format": "ASCII text, tilde (~) delimited",
+      "data_file_dates": {
+        "products.txt": "2026-08-14",
+        "patent.txt": "2026-08-14",
+        "exclusivity.txt": "2026-08-14"
+      },
+      "data_file_date_basis": "UTC, from the extended-timestamp extra field (0x5455) the Orange Book archive stores for each member, whose modification time is a Unix epoch second. The zip's DOS stamp declares no timezone and is not used alone; `unzip -l` shows the same instant in the extracting machine's local zone, which displays products.txt as 2026-08-15 00:04 in Singapore for a recorded 2026-08-14T16:04:26Z."
+    },
+    "purple_book": {
+      "title": "Purple Book: Database of Licensed Biological Products, monthly data download (August 2026 report)",
+      "page": "https://purplebooksearch.fda.gov/downloads",
+      "file_url": "https://www.accessdata.fda.gov/drugsatfda_docs/PurpleBook/2026/purplebook-search-August-data-download.csv",
+      "report_month": "2026-08",
+      "structure": "two sections; rows 4-33 are the monthly change report, row 35 is the header of the full product listing"
+    }
+  },
+  "robots": {
+    "www.fda.gov": {
+      "status": 200,
+      "saved": "legal/robots-www.fda.gov.txt",
+      "relevant_directives": "User-agent: * Crawl-Delay: 30; /media/ is not disallowed",
+      "observed": "30 s between requests to www.fda.gov"
+    },
+    "www.accessdata.fda.gov": {
+      "status": 200,
+      "saved": "legal/robots-www.accessdata.fda.gov.txt",
+      "relevant_directives": "User-agent: * disallows /drugsatfda_docs/rems/ only; /drugsatfda_docs/PurpleBook/ is permitted. Non-standard Hit-rate: 30 and Visiting-hours: 23:00EDT-05:00EDT apply to indexing crawlers.",
+      "observed": "one request for one published data file, 30 s after the previous request; no crawl or index of the site was performed"
+    },
+    "purplebooksearch.fda.gov": {
+      "status": 404,
+      "saved": "legal/robots-purplebooksearch.fda.gov.txt",
+      "relevant_directives": "no robots.txt published (IIS 404 page saved as evidence); no crawl restrictions declared",
+      "observed": "one request for the downloads listing page"
+    }
+  },
+  "requests_log": "requests.log",
+  "files": [
+    {
+      "path": "legal/fda-website-policies.html",
+      "sha256": "a8c97abacc43ea31b76161d75a7c0c9c4ea5ab7d4dbd1cce001c9ea25fd43d52",
+      "bytes": 45430,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_at": "2026-09-05T07:13:18Z",
+      "http_status": "200",
+      "bytes_received": 45430,
+      "state": "unchanged"
+    },
+    {
+      "path": "legal/orange-book-data-files-page.html",
+      "sha256": "da93b0fc8a70ae699b700eae562aced34ce3c142760f59a703ca9c8e355ebdf3",
+      "bytes": 36932,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files",
+      "retrieved_at": "2026-09-05T07:13:48Z",
+      "http_status": "200",
+      "bytes_received": 36932,
+      "state": "unchanged"
+    },
+    {
+      "path": "legal/purplebook-downloads-page.html",
+      "sha256": "ddf35dc40bd60f9086aa49254447c8734b67a515b7a2aedeb3d28a9266d20486",
+      "bytes": 48766,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://purplebooksearch.fda.gov/downloads",
+      "retrieved_at": "2026-09-05T07:14:51Z",
+      "http_status": "200",
+      "bytes_received": 48766,
+      "state": "unchanged"
+    },
+    {
+      "path": "legal/robots-purplebooksearch.fda.gov.txt",
+      "sha256": "e1bc9a5155be41f9582921d443ddd5a7d74a2c534e620e4fd52ec33c45e6c968",
+      "bytes": 4952,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://purplebooksearch.fda.gov/robots.txt",
+      "retrieved_at": "2026-09-05T07:13:06Z",
+      "http_status": "404",
+      "bytes_received": 4952,
+      "state": "unchanged"
+    },
+    {
+      "path": "legal/robots-www.accessdata.fda.gov.txt",
+      "sha256": "0b48413db0f448b22fabeb04cdb813b46fb6c2a1cfab62f86159cd1a30ca4069",
+      "bytes": 1589,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.accessdata.fda.gov/robots.txt",
+      "retrieved_at": "2026-09-05T07:15:05Z",
+      "http_status": "200",
+      "bytes_received": 1589,
+      "state": "unchanged"
+    },
+    {
+      "path": "legal/robots-www.fda.gov.txt",
+      "sha256": "b28f1d0132f966047fe40018266dbff647024fa01c020b80e44b5c3f167114ed",
+      "bytes": 2505,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.fda.gov/robots.txt",
+      "retrieved_at": "2026-09-05T07:13:06Z",
+      "http_status": "200",
+      "bytes_received": 2505,
+      "state": "unchanged"
+    },
+    {
+      "path": "raw/EOBZIP.zip",
+      "sha256": "caaa826d4ba72f1abb156c8a38063929d3930d3700e091130474a876513a4da3",
+      "bytes": 1095244,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.fda.gov/media/76860/download?attachment",
+      "retrieved_at": "2026-09-05T07:14:39Z",
+      "http_status": "200",
+      "bytes_received": 1095244,
+      "state": "unchanged"
+    },
+    {
+      "path": "raw/orange-book/exclusivity.txt",
+      "sha256": "d96f310956a7b08c63359db4d2b569036538267abd0ecbf33d26a9bd761b4867",
+      "bytes": 76263,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "data_file_date": "2026-08-14",
+      "data_file_date_basis": "UTC, from the extended-timestamp extra field (0x5455) the Orange Book archive stores for each member, whose modification time is a Unix epoch second. The zip's DOS stamp declares no timezone and is not used alone; `unzip -l` shows the same instant in the extracting machine's local zone, which displays products.txt as 2026-08-15 00:04 in Singapore for a recorded 2026-08-14T16:04:26Z.",
+      "extracted_from": "raw/EOBZIP.zip",
+      "url": "https://www.fda.gov/media/76860/download?attachment",
+      "retrieved_at": "2026-09-05T07:14:39Z",
+      "state": "unchanged"
+    },
+    {
+      "path": "raw/orange-book/patent.txt",
+      "sha256": "14cbd6fb39b9658d4bd66506d8ec745956f8ac75c80c45a5ac21ea8755a51a22",
+      "bytes": 1227788,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "data_file_date": "2026-08-14",
+      "data_file_date_basis": "UTC, from the extended-timestamp extra field (0x5455) the Orange Book archive stores for each member, whose modification time is a Unix epoch second. The zip's DOS stamp declares no timezone and is not used alone; `unzip -l` shows the same instant in the extracting machine's local zone, which displays products.txt as 2026-08-15 00:04 in Singapore for a recorded 2026-08-14T16:04:26Z.",
+      "extracted_from": "raw/EOBZIP.zip",
+      "url": "https://www.fda.gov/media/76860/download?attachment",
+      "retrieved_at": "2026-09-05T07:14:39Z",
+      "state": "unchanged"
+    },
+    {
+      "path": "raw/orange-book/products.txt",
+      "sha256": "34def970b7b1fb7996c31d5d24cad1b7f0f4b1e300312592205af8d7ef42dd5c",
+      "bytes": 7490228,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "data_file_date": "2026-08-14",
+      "data_file_date_basis": "UTC, from the extended-timestamp extra field (0x5455) the Orange Book archive stores for each member, whose modification time is a Unix epoch second. The zip's DOS stamp declares no timezone and is not used alone; `unzip -l` shows the same instant in the extracting machine's local zone, which displays products.txt as 2026-08-15 00:04 in Singapore for a recorded 2026-08-14T16:04:26Z.",
+      "extracted_from": "raw/EOBZIP.zip",
+      "url": "https://www.fda.gov/media/76860/download?attachment",
+      "retrieved_at": "2026-09-05T07:14:39Z",
+      "state": "unchanged"
+    },
+    {
+      "path": "raw/purplebook-search-August-2026-data-download.csv",
+      "sha256": "53b21871b4cd439abd6bb2fafa4447df0dd44e2da3cfcf51550298aef9afe2b5",
+      "bytes": 462373,
+      "licence": "US Government work, public domain (FDA)",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "retrieved_date_utc": "2026-09-05",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/PurpleBook/2026/purplebook-search-August-data-download.csv",
+      "retrieved_at": "2026-09-05T07:15:48Z",
+      "http_status": "200",
+      "bytes_received": 462373,
+      "state": "unchanged"
+    }
+  ]
+}

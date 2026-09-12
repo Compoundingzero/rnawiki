@@ -1,0 +1,4001 @@
+{
+  "drugcentral_mapped_parquet_present": true,
+  "drugcentral_pages_with_regulatory_JP": 751,
+  "pmda_pages_with_regulatory_JP": 1276,
+  "pages_in_both": 615,
+  "pages_only_in_drugcentral": 136,
+  "pages_only_in_pmda": 661,
+  "agreement_rate_over_union": 0.4356,
+  "discrepancy_reading": "DrugCentral's PMDA flag comes from its 2023-11-01 release and marks any Japanese approval it holds; the PMDA list covers new-drug approvals from April 2004 only. A page only in DrugCentral is a Japanese approval outside that window or one PMDA lists under a name that resolves to no UNII here; a page only in PMDA is an approval DrugCentral's 2023 release does not carry, including every approval after November 2023.",
+  "pages_only_in_drugcentral_list": [
+    {
+      "key": "COMBO:NAME:follitropin alfa beta",
+      "display_name": "Follitropin Alfa/Beta",
+      "tier": 1
+    },
+    {
+      "key": "COMBO:{K1:144O8QL0L1,K1:R3D835XVCR}",
+      "display_name": "DICLOFENAC EPOLAMINE",
+      "tier": 1
+    },
+    {
+      "key": "COMBO:{K1:1EQV5MLY3D,K1:8ID597Z82X}",
+      "display_name": "Taurine Alpha-Ketoglutarate",
+      "tier": 3
+    },
+    {
+      "key": "COMBO:{K1:1ULL0QJ8UC,K1:9100L32L2N}",
+      "display_name": "Dapagliflozin, Metformin",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:3X29ZEJ4R2,K1:9100L32L2N}",
+      "display_name": "Linagliptin and Metformin",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:423D2T571U,K1:81K9V7M3A3}",
+      "display_name": "MARVELON",
+      "tier": 3
+    },
+    {
+      "key": "COMBO:{K1:6DC9Q167V3,K1:YO603Y8113}",
+      "display_name": "Darunavir Propylene Glycolate",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:7673326042,K1:P7V86EYZ5L}",
+      "display_name": "IRINOTECAN SUCROSOFATE",
+      "tier": 3
+    },
+    {
+      "key": "COMBO:{K1:9100L32L2N,K1:JHC049LO86}",
+      "display_name": "Alogliptin and Metformin",
+      "tier": 1
+    },
+    {
+      "key": "COMBO:{K1:DKO1W9H7M1,K1:EL9943AG5J,K2:XQSPYNMVSIKCOC-UHFFFAOYSA-N}",
+      "display_name": "Dolutegravir, Emtricitabine and Tenofovir Alafenamide",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:EL9943AG5J,K1:JE6H2O27P8,K2:XQSPYNMVSIKCOC-UHFFFAOYSA-N}",
+      "display_name": "Efavirenz, Emtricitabine and Tenofovir Alafenamide",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:EL9943AG5J,K2:XQSPYNMVSIKCOC-UHFFFAOYSA-N}",
+      "display_name": "Emtricitabine, Tenofovir Alafenamide",
+      "tier": 2
+    },
+    {
+      "key": "HOLD:existing:clobetasol",
+      "display_name": "Clobetasol",
+      "tier": 1
+    },
+    {
+      "key": "HOLD:existing:fludarabine",
+      "display_name": "Fludarabine",
+      "tier": 2
+    },
+    {
+      "key": "HOLD:existing:lactitol",
+      "display_name": "Lactitol",
+      "tier": 2
+    },
+    {
+      "key": "K1:029JF1SCU8",
+      "display_name": "TECHNETIUM TC 99M ARCITUMOMAB",
+      "tier": 1
+    },
+    {
+      "key": "K1:0309P36Q66",
+      "display_name": "Ferric Fluoride",
+      "tier": 2
+    },
+    {
+      "key": "K1:04UZQ7O9SJ",
+      "display_name": "Mosapramine",
+      "tier": 3
+    },
+    {
+      "key": "K1:076WHW89TW",
+      "display_name": "Follitropin",
+      "tier": 1
+    },
+    {
+      "key": "K1:0F3M7032P5",
+      "display_name": "FLUTEMETAMOL",
+      "tier": 2
+    },
+    {
+      "key": "K1:0I2XIN602U",
+      "display_name": "Ferric Chloride Hexahydrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:0YPR65R21J",
+      "display_name": "SODIUM SULFATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:11ZYL7QK34",
+      "display_name": "Levotofisopam",
+      "tier": 3
+    },
+    {
+      "key": "K1:169D1260KM",
+      "display_name": "NITROPRUSSIDE",
+      "tier": 1
+    },
+    {
+      "key": "K1:17ERJ0MKGI",
+      "display_name": "Sacubitril",
+      "tier": 2
+    },
+    {
+      "key": "K1:17VM9WN49U",
+      "display_name": "Egualen",
+      "tier": 3
+    },
+    {
+      "key": "K1:1E2497LPNY",
+      "display_name": "TOLVAPTAN, (R)-",
+      "tier": 3
+    },
+    {
+      "key": "K1:1QC36BHI6S",
+      "display_name": "Deupirfenidone",
+      "tier": 3
+    },
+    {
+      "key": "K1:1ULL0QJ8UC",
+      "display_name": "Dapagliflozin",
+      "tier": 1
+    },
+    {
+      "key": "K1:21OJT43Q88",
+      "display_name": "Terguride",
+      "tier": 3
+    },
+    {
+      "key": "K1:230447L0GL",
+      "display_name": "Etiracetam",
+      "tier": 3
+    },
+    {
+      "key": "K1:2HI1006KPH",
+      "display_name": "Dexbudesonide",
+      "tier": 3
+    },
+    {
+      "key": "K1:35MRW7B4AD",
+      "display_name": "IOBENGUANE",
+      "tier": 2
+    },
+    {
+      "key": "K1:39EY4NVB8T",
+      "display_name": "Esoxybutynin",
+      "tier": 3
+    },
+    {
+      "key": "K1:3HQ6U6424Q",
+      "display_name": "LYSINE, D-",
+      "tier": 3
+    },
+    {
+      "key": "K1:3JU1DU3652",
+      "display_name": "Zuclomifene",
+      "tier": 3
+    },
+    {
+      "key": "K1:3N2N8OOR7X",
+      "display_name": "Ipragliflozin",
+      "tier": 2
+    },
+    {
+      "key": "K1:3OKI556HC2",
+      "display_name": "Deutenzalutamide",
+      "tier": 3
+    },
+    {
+      "key": "K1:3VQ38D63M7",
+      "display_name": "Alfatradiol",
+      "tier": 1
+    },
+    {
+      "key": "K1:434C3EI07T",
+      "display_name": "FERRIC SODIUM CITRATE",
+      "tier": 3
+    },
+    {
+      "key": "K1:4KM7HJ6CBA",
+      "display_name": "RASAGILINE, (S)-",
+      "tier": 2
+    },
+    {
+      "key": "K1:4W9K63FION",
+      "display_name": "Dextrothyroxine",
+      "tier": 2
+    },
+    {
+      "key": "K1:4Y8BMI9YGC",
+      "display_name": "Olprinone",
+      "tier": 3
+    },
+    {
+      "key": "K1:501W00OOWA",
+      "display_name": "Tarenflurbil",
+      "tier": 3
+    },
+    {
+      "key": "K1:5BRQ29UUB7",
+      "display_name": "Aroxybutynin",
+      "tier": 3
+    },
+    {
+      "key": "K1:5CSZ8459RP",
+      "display_name": "CYTIDINE",
+      "tier": 3
+    },
+    {
+      "key": "K1:5GRO578KLP",
+      "display_name": "Flurbiprofen",
+      "tier": 1
+    },
+    {
+      "key": "K1:5HDI847257",
+      "display_name": "Epinastine",
+      "tier": 2
+    },
+    {
+      "key": "K1:5V71D8JOKK",
+      "display_name": "Fazarabine",
+      "tier": 3
+    },
+    {
+      "key": "K1:60UTO373KE",
+      "display_name": "Isavuconazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:63G354M39Z",
+      "display_name": "Ferric Citrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:671DKG7P5S",
+      "display_name": "Dexibuprofen",
+      "tier": 2
+    },
+    {
+      "key": "K1:6AI63CHT0T",
+      "display_name": "Metformin C-11",
+      "tier": 3
+    },
+    {
+      "key": "K1:71050168A2",
+      "display_name": "Ixazomib",
+      "tier": 2
+    },
+    {
+      "key": "K1:7592YJ0J6T",
+      "display_name": "CEPHARANTHINE",
+      "tier": 3
+    },
+    {
+      "key": "K1:7828VC80FJ",
+      "display_name": "Diquafosol",
+      "tier": 2
+    },
+    {
+      "key": "K1:7A2NOC3R88",
+      "display_name": "Nizofenone",
+      "tier": 3
+    },
+    {
+      "key": "K1:7AM2J46Z1Y",
+      "display_name": "Talipexole",
+      "tier": 3
+    },
+    {
+      "key": "K1:7PW3UT8C9B",
+      "display_name": "Deulorlatinib",
+      "tier": 3
+    },
+    {
+      "key": "K1:8YE5ABM3A9",
+      "display_name": "BEROTRALSTAT, (S)-",
+      "tier": 2
+    },
+    {
+      "key": "K1:94ZLA3W45F",
+      "display_name": "Arginine",
+      "tier": 1
+    },
+    {
+      "key": "K1:969NZA3X9T",
+      "display_name": "Turoctocog alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:97HLQ82NGL",
+      "display_name": "Tedizolid",
+      "tier": 2
+    },
+    {
+      "key": "K1:9842X06Q6M",
+      "display_name": "Betamethasone",
+      "tier": 1
+    },
+    {
+      "key": "K1:99W8H60N62",
+      "display_name": "IBUPROFEN, (-)-",
+      "tier": 2
+    },
+    {
+      "key": "K1:9EKD2E8BM5",
+      "display_name": "Asandeutertinib",
+      "tier": 3
+    },
+    {
+      "key": "K1:9JH486CZ13",
+      "display_name": "MOLIDUSTAT",
+      "tier": 3
+    },
+    {
+      "key": "K1:9RDO128EH7",
+      "display_name": "Ferric Bromide",
+      "tier": 2
+    },
+    {
+      "key": "K1:9U7D5QH5AE",
+      "display_name": "Lactulose",
+      "tier": 2
+    },
+    {
+      "key": "K1:9XH2P2N8EP",
+      "display_name": ".ALPHA.-LACTULOSE",
+      "tier": 2
+    },
+    {
+      "key": "K1:ADN79D536H",
+      "display_name": "CLOBETASOL",
+      "tier": 3
+    },
+    {
+      "key": "K1:CC9149U2QX",
+      "display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
+      "tier": 2
+    },
+    {
+      "key": "K1:CUT2W21N7U",
+      "display_name": "Fluticasone",
+      "tier": 3
+    },
+    {
+      "key": "K1:DWI62G0P59",
+      "display_name": "Sivelestat",
+      "tier": 3
+    },
+    {
+      "key": "K1:E026V904RL",
+      "display_name": "LANINAMIVIR OCTANOATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:E9PC7N0DID",
+      "display_name": "Laselipag",
+      "tier": 3
+    },
+    {
+      "key": "K1:EZ15I5D6C1",
+      "display_name": "Dextofisopam",
+      "tier": 3
+    },
+    {
+      "key": "K1:FZ56898FLE",
+      "display_name": "Duvoglustat",
+      "tier": 3
+    },
+    {
+      "key": "K1:G2M7P15E5P",
+      "display_name": "Polyethylene Glycol 3350",
+      "tier": 2
+    },
+    {
+      "key": "K1:G36A0E9CVT",
+      "display_name": "Tripamide",
+      "tier": 3
+    },
+    {
+      "key": "K1:G5C4M8847E",
+      "display_name": "Incadronic acid",
+      "tier": 3
+    },
+    {
+      "key": "K1:G6VUZ3V58L",
+      "display_name": "6-(CYCLOPROPANECARBOXAMIDO)-4-((2-METHOXY-3-(1-METHYL-1H-1,2,4-TRIAZOL-3-YL)PHENYL)AMINO)-N-METHYLPYRIDAZINE-3-CARBOXAMIDE",
+      "tier": 2
+    },
+    {
+      "key": "K1:G70A8514T8",
+      "display_name": "Falecalcitriol",
+      "tier": 3
+    },
+    {
+      "key": "K1:H8635NG3PY",
+      "display_name": "Zaltoprofen",
+      "tier": 3
+    },
+    {
+      "key": "K1:L02U804092",
+      "display_name": "Limaprost",
+      "tier": 3
+    },
+    {
+      "key": "K1:LL0G25K7I2",
+      "display_name": "Azilsartan medoxomil",
+      "tier": 1
+    },
+    {
+      "key": "K1:M0TTH61XC5",
+      "display_name": "Ibudilast",
+      "tier": 2
+    },
+    {
+      "key": "K1:MR15E85MQM",
+      "display_name": "Medetomidine",
+      "tier": 2
+    },
+    {
+      "key": "K1:MRL3739G66",
+      "display_name": "Oxodotreotide",
+      "tier": 2
+    },
+    {
+      "key": "K1:N303OK87DT",
+      "display_name": "Perospirone",
+      "tier": 3
+    },
+    {
+      "key": "K1:N6BAA189V1",
+      "display_name": "Ferric Phosphate",
+      "tier": 2
+    },
+    {
+      "key": "K1:P2K93U8740",
+      "display_name": "Fludarabine",
+      "tier": 2
+    },
+    {
+      "key": "K1:PX665RAA3H",
+      "display_name": "Ensitrelvir",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q0CH43PGXS",
+      "display_name": "Fasudil",
+      "tier": 3
+    },
+    {
+      "key": "K1:Q91187K011",
+      "display_name": "Tetraferric Tricitrate Decahydrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:QI846AL4NC",
+      "display_name": "Dexivacaine",
+      "tier": 2
+    },
+    {
+      "key": "K1:QR0BV3BRIA",
+      "display_name": "THYROXINE, DL-",
+      "tier": 3
+    },
+    {
+      "key": "K1:QU6P2P8XLW",
+      "display_name": "Simetride",
+      "tier": 3
+    },
+    {
+      "key": "K1:R54Z304Z7C",
+      "display_name": "ARGININE, D-",
+      "tier": 3
+    },
+    {
+      "key": "K1:R6D2UI4FLS",
+      "display_name": "Enclomifene",
+      "tier": 3
+    },
+    {
+      "key": "K1:R9PHW59SFN",
+      "display_name": "Naftopidil",
+      "tier": 2
+    },
+    {
+      "key": "K1:RC3A285J2G",
+      "display_name": "R-406",
+      "tier": 3
+    },
+    {
+      "key": "K1:RV59PND975",
+      "display_name": "Malotilate",
+      "tier": 3
+    },
+    {
+      "key": "K1:RVJ0BV3H3Y",
+      "display_name": "Mofezolac",
+      "tier": 2
+    },
+    {
+      "key": "K1:RZD65TSM9U",
+      "display_name": "Agalsidase beta",
+      "tier": 2
+    },
+    {
+      "key": "K1:S8Q36MD2XX",
+      "display_name": "Candesartan",
+      "tier": 1
+    },
+    {
+      "key": "K1:T672P80L2S",
+      "display_name": "Fosnetupitant",
+      "tier": 2
+    },
+    {
+      "key": "K1:T940307O7B",
+      "display_name": "Distigmine",
+      "tier": 2
+    },
+    {
+      "key": "K1:UZC80HAU42",
+      "display_name": "Tofisopam",
+      "tier": 3
+    },
+    {
+      "key": "K1:V63XWA605I",
+      "display_name": "Armodafinil",
+      "tier": 1
+    },
+    {
+      "key": "K1:V93U9DH62C",
+      "display_name": "Emorfazone",
+      "tier": 3
+    },
+    {
+      "key": "K1:W108RK810P",
+      "display_name": "FERRIC GLUCONATE TRIHYDRATE",
+      "tier": 3
+    },
+    {
+      "key": "K1:W4HFE001U5",
+      "display_name": "Tenofovir Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:X88TTO174Z",
+      "display_name": "Racemetirosine",
+      "tier": 3
+    },
+    {
+      "key": "K1:Y25LQ0H97D",
+      "display_name": "Nafamostat",
+      "tier": 3
+    },
+    {
+      "key": "K1:YKG0YF688X",
+      "display_name": "FLUCICLOVINE",
+      "tier": 2
+    },
+    {
+      "key": "K1:YU871O78GR",
+      "display_name": "DESFESOTERODINE",
+      "tier": 3
+    },
+    {
+      "key": "K1:ZGF0S6S33Q",
+      "display_name": "Levovirin",
+      "tier": 3
+    },
+    {
+      "key": "K1:ZGK8DW84SK",
+      "display_name": "(3R)-TREPROSTINIL",
+      "tier": 2
+    },
+    {
+      "key": "K2:ADEBPBSSDYVVLD-HXUWFJFHSA-N",
+      "display_name": "CHEMBL107316",
+      "tier": 3
+    },
+    {
+      "key": "K2:ANGKOCUUWGHLCE-UHFFFAOYSA-N",
+      "display_name": "Glycopyrronium bromide",
+      "tier": 2
+    },
+    {
+      "key": "K2:BHQCQFFYRZLCQQ-UMZBRFQRSA-N",
+      "display_name": "Bile Salt",
+      "tier": 3
+    },
+    {
+      "key": "K2:BPZSYCZIITTYBL-UHFFFAOYSA-N",
+      "display_name": "Formoterol",
+      "tier": 2
+    },
+    {
+      "key": "K2:DOAKLVKFURWEDJ-RWDRXURGSA-N",
+      "display_name": "Daptomycin",
+      "tier": 2
+    },
+    {
+      "key": "K2:FBRAWBYQGRLCEK-RJFLZJKCSA-N",
+      "display_name": "CLOBETASONE BUTYRATE",
+      "tier": 2
+    },
+    {
+      "key": "K2:IMQLKJBTEOYOSI-UHFFFAOYSA-N",
+      "display_name": "PHYTATE",
+      "tier": 3
+    },
+    {
+      "key": "K2:LXBIFEVIBLOUGU-KVTDHHQDSA-N",
+      "display_name": "DEOXYMANNOJIRIMYCIN",
+      "tier": 3
+    },
+    {
+      "key": "K2:MFWNKCLOYSRHCJ-UHFFFAOYSA-N",
+      "display_name": "Granisetron",
+      "tier": 2
+    },
+    {
+      "key": "K2:QFJCIRLUMZQUOT-GZKNZQCBSA-N",
+      "display_name": "CHEMBL1328768",
+      "tier": 3
+    },
+    {
+      "key": "K2:TVYLLZQTGLZFBW-UHFFFAOYSA-N",
+      "display_name": "Tramadol",
+      "tier": 2
+    },
+    {
+      "key": "K2:UHLOVGKIEARANS-QZHINBJYSA-N",
+      "display_name": "Tripamide",
+      "tier": 3
+    },
+    {
+      "key": "K2:WWYNJERNGUHSAO-CULCCENASA-N",
+      "display_name": "Norgestrel",
+      "tier": 2
+    },
+    {
+      "key": "K2:XBPUDTAATCFDRE-UHFFFAOYSA-N",
+      "display_name": "TALC ANHYDROUS",
+      "tier": 2
+    },
+    {
+      "key": "K2:XIIOFHFUYBLOLW-UHFFFAOYSA-N",
+      "display_name": "Selpercatinib",
+      "tier": 2
+    },
+    {
+      "key": "K2:XQSPYNMVSIKCOC-UHFFFAOYSA-N",
+      "display_name": "EMTRICITABINE, (+/-)-",
+      "tier": 2
+    },
+    {
+      "key": "K4:ferric ammonium",
+      "display_name": "Ferric Ammonium",
+      "tier": 1
+    }
+  ],
+  "pages_only_in_pmda_list": [
+    {
+      "key": "COMBO:{K1:1L4806J2QF,K1:W9WZN9A0GM}",
+      "display_name": "Adapalene, Benzoyl Peroxide",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:23521W1S24,K1:9EM05410Q9}",
+      "display_name": "AMOXICILLIN/CLAVULANIC ACID",
+      "tier": 3
+    },
+    {
+      "key": "COMBO:{K1:4071IF7E93,K1:OP0UW79H66}",
+      "display_name": "Methylcobalamin",
+      "tier": 1
+    },
+    {
+      "key": "COMBO:{K1:46627O600J,K1:KR87B45RGH}",
+      "display_name": "Carbidopa, Levodopa",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:6HG8UB2MUY,K1:6L8OF9XRDC}",
+      "display_name": "FOSAPREPITANT DIMEGLUMINE",
+      "tier": 2
+    },
+    {
+      "key": "COMBO:{K1:AN164J8Y0X,K1:JE42381TNV}",
+      "display_name": "CO-TRIMOXAZOLE",
+      "tier": 3
+    },
+    {
+      "key": "HOLD:existing:methylphenidate",
+      "display_name": "Methylphenidate",
+      "tier": 1
+    },
+    {
+      "key": "HOLD:existing:potassium-citrate",
+      "display_name": "Potassium Citrate",
+      "tier": 2
+    },
+    {
+      "key": "HOLD:existing:vincristine",
+      "display_name": "Vincristine",
+      "tier": 2
+    },
+    {
+      "key": "K1:013TE6E4WV",
+      "display_name": "Ledipasvir",
+      "tier": 2
+    },
+    {
+      "key": "K1:01MI4Q9DI3",
+      "display_name": "Pilocarpine",
+      "tier": 2
+    },
+    {
+      "key": "K1:028LZY775B",
+      "display_name": "Vilanterol",
+      "tier": 2
+    },
+    {
+      "key": "K1:02E00T2QDE",
+      "display_name": "Eftrenonacog alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:03J5ZE7KA5",
+      "display_name": "Atropine Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:03KSI6WLXH",
+      "display_name": "Naldemedine",
+      "tier": 2
+    },
+    {
+      "key": "K1:03V657ZD3V",
+      "display_name": "Methacholine",
+      "tier": 2
+    },
+    {
+      "key": "K1:046O35D44R",
+      "display_name": "Prilocaine",
+      "tier": 2
+    },
+    {
+      "key": "K1:048L81261F",
+      "display_name": "Dexrazoxane",
+      "tier": 2
+    },
+    {
+      "key": "K1:081L192FO9",
+      "display_name": "Suvorexant",
+      "tier": 1
+    },
+    {
+      "key": "K1:08GY9K1EUO",
+      "display_name": "Rasburicase",
+      "tier": 2
+    },
+    {
+      "key": "K1:08O3FQ4UNP",
+      "display_name": "Repotrectinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:0AWH8BFG9A",
+      "display_name": "Lauromacrogol 400",
+      "tier": 2
+    },
+    {
+      "key": "K1:0C50HW4FO1",
+      "display_name": "Etravirine",
+      "tier": 2
+    },
+    {
+      "key": "K1:0D3Q044KCA",
+      "display_name": "Galantamine",
+      "tier": 1
+    },
+    {
+      "key": "K1:0E43V0BB57",
+      "display_name": "Misoprostol",
+      "tier": 1
+    },
+    {
+      "key": "K1:0E53J927NA",
+      "display_name": "Magnesium Carbonate",
+      "tier": 2
+    },
+    {
+      "key": "K1:0EB439235F",
+      "display_name": "Tiotropium",
+      "tier": 2
+    },
+    {
+      "key": "K1:0F65R8P09N",
+      "display_name": "Goserelin",
+      "tier": 1
+    },
+    {
+      "key": "K1:0G389FZZ9M",
+      "display_name": "Levocarnitine",
+      "tier": 1
+    },
+    {
+      "key": "K1:0GEI24LG0J",
+      "display_name": "Chenodeoxycholic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:0J48LPH2TH",
+      "display_name": "Hydrochlorothiazide",
+      "tier": 1
+    },
+    {
+      "key": "K1:0J4C69C6FB",
+      "display_name": "Monteplase",
+      "tier": 3
+    },
+    {
+      "key": "K1:0J9L7J6V8C",
+      "display_name": "Nepafenac",
+      "tier": 1
+    },
+    {
+      "key": "K1:0JSR7Z0NB6",
+      "display_name": "Amivantamab",
+      "tier": 2
+    },
+    {
+      "key": "K1:0JSR7Z0NB6#lpuj",
+      "display_name": "Amivantamab and Hyaluronidase-Lpuj",
+      "tier": 2
+    },
+    {
+      "key": "K1:0JSR7Z0NB6#vmjw",
+      "display_name": "Amivantamab-Vmjw",
+      "tier": 2
+    },
+    {
+      "key": "K1:0K47UL67F2",
+      "display_name": "Carvedilol",
+      "tier": 2
+    },
+    {
+      "key": "K1:0K5C5T2QPG",
+      "display_name": "Lansoprazole",
+      "tier": 1
+    },
+    {
+      "key": "K1:0KVO411B3N",
+      "display_name": "Tislelizumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:0KVO411B3N#jsgr",
+      "display_name": "Tislelizumab-Jsgr",
+      "tier": 2
+    },
+    {
+      "key": "K1:0LB9J2797D",
+      "display_name": "Patiromer Sorbitex Calcium",
+      "tier": 2
+    },
+    {
+      "key": "K1:0QI90BTJ37",
+      "display_name": "Sotatercept",
+      "tier": 2
+    },
+    {
+      "key": "K1:0QI90BTJ37#csrk",
+      "display_name": "Sotatercept-Csrk",
+      "tier": 1
+    },
+    {
+      "key": "K1:0UB3OA67O7",
+      "display_name": "Marstacimab",
+      "tier": 2
+    },
+    {
+      "key": "K1:0UB3OA67O7#hncq",
+      "display_name": "Marstacimab-Hncq",
+      "tier": 2
+    },
+    {
+      "key": "K1:0V5436JAQW",
+      "display_name": "Miglitol",
+      "tier": 1
+    },
+    {
+      "key": "K1:0VUA21238F",
+      "display_name": "Lapatinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:0Y70779M1F",
+      "display_name": "Botulinum Toxin Type B",
+      "tier": 2
+    },
+    {
+      "key": "K1:0Z5B2CJX4D",
+      "display_name": "Fludeoxyglucose F-18",
+      "tier": 2
+    },
+    {
+      "key": "K1:101V0R1N2E",
+      "display_name": "Febuxostat",
+      "tier": 2
+    },
+    {
+      "key": "K1:12PYH0FTU9",
+      "display_name": "Lecanemab",
+      "tier": 1
+    },
+    {
+      "key": "K1:12PYH0FTU9#irmb",
+      "display_name": "Lecanemab-Irmb",
+      "tier": 2
+    },
+    {
+      "key": "K1:143NQ3779B",
+      "display_name": "Calcipotriol",
+      "tier": 2
+    },
+    {
+      "key": "K1:15UQ94PT4P",
+      "display_name": "Darbepoetin alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:17E17JBP8L",
+      "display_name": "Iomeprol",
+      "tier": 2
+    },
+    {
+      "key": "K1:1806D8D52K",
+      "display_name": "Amitriptyline",
+      "tier": 1
+    },
+    {
+      "key": "K1:1ADB65P1KK",
+      "display_name": "Donanemab",
+      "tier": 1
+    },
+    {
+      "key": "K1:1ADB65P1KK#azbt",
+      "display_name": "Donanemab-Azbt",
+      "tier": 2
+    },
+    {
+      "key": "K1:1BJ477IO2L",
+      "display_name": "Gadobutrol",
+      "tier": 2
+    },
+    {
+      "key": "K1:1C4QK22F9J",
+      "display_name": "Potassium Iodide",
+      "tier": 2
+    },
+    {
+      "key": "K1:1C6V77QF41",
+      "display_name": "Colecalciferol",
+      "tier": 1
+    },
+    {
+      "key": "K1:1CC1JFE158",
+      "display_name": "Dactinomycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:1EJ6Z6Q368",
+      "display_name": "Bempedoic acid",
+      "tier": 1
+    },
+    {
+      "key": "K1:1J444QC288",
+      "display_name": "Amlodipine",
+      "tier": 1
+    },
+    {
+      "key": "K1:1JSN1I7582",
+      "display_name": "Esuberaprost",
+      "tier": 3
+    },
+    {
+      "key": "K1:1L4806J2QF",
+      "display_name": "Adapalene",
+      "tier": 2
+    },
+    {
+      "key": "K1:1NF15YR6UY",
+      "display_name": "Aprepitant",
+      "tier": 2
+    },
+    {
+      "key": "K1:1O6WQ6T7G3",
+      "display_name": "Tafluprost",
+      "tier": 2
+    },
+    {
+      "key": "K1:1RXS4UE564",
+      "display_name": "Alteplase",
+      "tier": 1
+    },
+    {
+      "key": "K1:1W306TDA6S",
+      "display_name": "Rifabutin",
+      "tier": 2
+    },
+    {
+      "key": "K1:1XCH439UQR",
+      "display_name": "Human Milk",
+      "tier": 3
+    },
+    {
+      "key": "K1:1Y17CTI5SR",
+      "display_name": "Insulin human",
+      "tier": 1
+    },
+    {
+      "key": "K1:207SMY3FQT",
+      "display_name": "Vemurafenib",
+      "tier": 2
+    },
+    {
+      "key": "K1:20ED16GHEB",
+      "display_name": "Choriogonadotropin beta",
+      "tier": 1
+    },
+    {
+      "key": "K1:20O93L6F9H",
+      "display_name": "Oseltamivir",
+      "tier": 2
+    },
+    {
+      "key": "K1:22ADO53M6F",
+      "display_name": "Sodium Phosphate, Dibasic",
+      "tier": 2
+    },
+    {
+      "key": "K1:22X328QOC4",
+      "display_name": "Fulvestrant",
+      "tier": 1
+    },
+    {
+      "key": "K1:2302768XJ8",
+      "display_name": "Ombitasvir",
+      "tier": 2
+    },
+    {
+      "key": "K1:23227F83U0",
+      "display_name": "Lysine Aspartate",
+      "tier": 2
+    },
+    {
+      "key": "K1:23521W1S24",
+      "display_name": "Clavulanic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:23HYE36B0I",
+      "display_name": "Velaglucerase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:2494G1JF75",
+      "display_name": "Lopinavir",
+      "tier": 2
+    },
+    {
+      "key": "K1:24T2A1DOYB",
+      "display_name": "Regorafenib Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:25BB7EKE2E",
+      "display_name": "Barium Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:260456HAM0",
+      "display_name": "Nicorandil",
+      "tier": 2
+    },
+    {
+      "key": "K1:2711I21VE5",
+      "display_name": "Tannic Acid (QUERCUS Infectoria NUTGALL)",
+      "tier": 2
+    },
+    {
+      "key": "K1:27Y83O992Q",
+      "display_name": "Nonacog beta pegol",
+      "tier": 2
+    },
+    {
+      "key": "K1:27Y876D139",
+      "display_name": "Menatetrenone",
+      "tier": 3
+    },
+    {
+      "key": "K1:28K6I5M16G",
+      "display_name": "Palovarotene",
+      "tier": 2
+    },
+    {
+      "key": "K1:29Y3UO9LWK",
+      "display_name": "Antithrombin gamma",
+      "tier": 3
+    },
+    {
+      "key": "K1:2BP70L44PR",
+      "display_name": "Dexamethasone Phosphate",
+      "tier": 2
+    },
+    {
+      "key": "K1:2E18WX195X",
+      "display_name": "Dabigatran etexilate",
+      "tier": 1
+    },
+    {
+      "key": "K1:2H1PA8H1EN",
+      "display_name": "Pegaptanib",
+      "tier": 1
+    },
+    {
+      "key": "K1:2HLC17MX9G",
+      "display_name": "Agalsidase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:2I4BC502BT",
+      "display_name": "Salmeterol",
+      "tier": 2
+    },
+    {
+      "key": "K1:2K1V7GP655",
+      "display_name": "Selegiline",
+      "tier": 2
+    },
+    {
+      "key": "K1:2M2GGL7HUP",
+      "display_name": "FOLLITROPIN DELTA",
+      "tier": 2
+    },
+    {
+      "key": "K1:2NU6F9601K",
+      "display_name": "Tofersen",
+      "tier": 2
+    },
+    {
+      "key": "K1:2OYE00PC25",
+      "display_name": "Ritlecitinib",
+      "tier": 1
+    },
+    {
+      "key": "K1:2PN063X6B1",
+      "display_name": "Voclosporin",
+      "tier": 1
+    },
+    {
+      "key": "K1:2VU8WT49WX",
+      "display_name": "Thrombomodulin alfa",
+      "tier": 3
+    },
+    {
+      "key": "K1:2W150K0UUC",
+      "display_name": "Odevixibat",
+      "tier": 2
+    },
+    {
+      "key": "K1:2Y3T5IF01Z",
+      "display_name": "Retifanlimab",
+      "tier": 1
+    },
+    {
+      "key": "K1:2Y3T5IF01Z#dlwr",
+      "display_name": "Retifanlimab-Dlwr",
+      "tier": 2
+    },
+    {
+      "key": "K1:304NUG5GF4",
+      "display_name": "Itraconazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:3160WY51LV",
+      "display_name": "Bixalomer",
+      "tier": 3
+    },
+    {
+      "key": "K1:31C4KY9ESH",
+      "display_name": "Nitric Oxide",
+      "tier": 2
+    },
+    {
+      "key": "K1:320T6RNW1F",
+      "display_name": "Mifepristone",
+      "tier": 1
+    },
+    {
+      "key": "K1:32828355LL",
+      "display_name": "Rabeprazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:32W6AJL0DY",
+      "display_name": "Garadacimab",
+      "tier": 1
+    },
+    {
+      "key": "K1:32W6AJL0DY#gxii",
+      "display_name": "Garadacimab-Gxii",
+      "tier": 2
+    },
+    {
+      "key": "K1:35E3NJJ4O6",
+      "display_name": "Beraprost",
+      "tier": 3
+    },
+    {
+      "key": "K1:35S93Y190K",
+      "display_name": "Procarbazine",
+      "tier": 2
+    },
+    {
+      "key": "K1:361LPM2T56",
+      "display_name": "Sugammadex",
+      "tier": 2
+    },
+    {
+      "key": "K1:36KCS0R750",
+      "display_name": "SODIUM SULFATE ANHYDROUS",
+      "tier": 2
+    },
+    {
+      "key": "K1:382L14738L",
+      "display_name": "Nonacog alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:3982TWQ96G",
+      "display_name": "Neostigmine",
+      "tier": 2
+    },
+    {
+      "key": "K1:3A3U0GI71G",
+      "display_name": "Magnesium Oxide",
+      "tier": 2
+    },
+    {
+      "key": "K1:3G6A5W338E",
+      "display_name": "Caffeine",
+      "tier": 1
+    },
+    {
+      "key": "K1:3JB47N2Q2P",
+      "display_name": "Natalizumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:3JB47N2Q2P#sztn",
+      "display_name": "Natalizumab-Sztn",
+      "tier": 2
+    },
+    {
+      "key": "K1:3K9958V90M",
+      "display_name": "Dehydrated Alcohol",
+      "tier": 2
+    },
+    {
+      "key": "K1:3M7OB98Y7H",
+      "display_name": "Sildenafil",
+      "tier": 1
+    },
+    {
+      "key": "K1:3MM99T8R5Q",
+      "display_name": "Ioflupane (123i)",
+      "tier": 2
+    },
+    {
+      "key": "K1:3QN8BYN5QF",
+      "display_name": "Fingolimod",
+      "tier": 2
+    },
+    {
+      "key": "K1:3S12J47372",
+      "display_name": "Dobutamine",
+      "tier": 2
+    },
+    {
+      "key": "K1:3SCV180C9W",
+      "display_name": "Betaine",
+      "tier": 2
+    },
+    {
+      "key": "K1:3Z6S89TXPW",
+      "display_name": "PROTEIN C CONCENTRATE (HUMAN)",
+      "tier": 2
+    },
+    {
+      "key": "K1:3Z9Y7UWC1J",
+      "display_name": "Apixaban",
+      "tier": 1
+    },
+    {
+      "key": "K1:40D3SCR4GZ",
+      "display_name": "Buprenorphine",
+      "tier": 2
+    },
+    {
+      "key": "K1:40S1VHN69B",
+      "display_name": "Bleomycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:41UD74L59M",
+      "display_name": "Afatinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:41VRH5220H",
+      "display_name": "Paroxetine",
+      "tier": 2
+    },
+    {
+      "key": "K1:41X3PWK4O2",
+      "display_name": "Nateglinide",
+      "tier": 1
+    },
+    {
+      "key": "K1:4340891KFS",
+      "display_name": "Ponatinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:43502P7F0P",
+      "display_name": "METHYLPREDNISOLONE ACETATE",
+      "tier": 1
+    },
+    {
+      "key": "K1:451W47IQ8X",
+      "display_name": "Compound solution of sodium chloride",
+      "tier": 1
+    },
+    {
+      "key": "K1:46627O600J",
+      "display_name": "Levodopa",
+      "tier": 2
+    },
+    {
+      "key": "K1:468GE2241L",
+      "display_name": "Propiverine",
+      "tier": 2
+    },
+    {
+      "key": "K1:46CWK97Z3K",
+      "display_name": "Ixazomib Citrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:47M74X9YT5",
+      "display_name": "Cladribine",
+      "tier": 2
+    },
+    {
+      "key": "K1:4975G9NM6T",
+      "display_name": "Entacapone",
+      "tier": 2
+    },
+    {
+      "key": "K1:49DXG3M5ZW",
+      "display_name": "Fruquintinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:49S4O7ADLC",
+      "display_name": "Lafutidine",
+      "tier": 3
+    },
+    {
+      "key": "K1:4A2Y23XK11",
+      "display_name": "Lazertinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:4B93MGE4AL",
+      "display_name": "Futibatinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:4CZ1R38NDI",
+      "display_name": "Pazufloxacin",
+      "tier": 3
+    },
+    {
+      "key": "K1:4DVS4AG4DF",
+      "display_name": "Interferon alfa-2b",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI",
+      "display_name": "Denosumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#adet",
+      "display_name": "Denosumab-Adet",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#bbdz",
+      "display_name": "Denosumab-Bbdz",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#bmwo",
+      "display_name": "Denosumab-Bmwo",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#bnht",
+      "display_name": "Denosumab-Bnht",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#desu",
+      "display_name": "Denosumab-Desu",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#dssb",
+      "display_name": "Denosumab-Dssb",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#kyqq",
+      "display_name": "Denosumab-Kyqq",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#mobz",
+      "display_name": "Denosumab-Mobz",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#nxxp",
+      "display_name": "Denosumab-Nxxp",
+      "tier": 2
+    },
+    {
+      "key": "K1:4EQZ6YO2HI#qbde",
+      "display_name": "Denosumab-Qbde",
+      "tier": 2
+    },
+    {
+      "key": "K1:4F9QRS7ZV2",
+      "display_name": "Andusomeran",
+      "tier": 3
+    },
+    {
+      "key": "K1:4FLT4T3WUN",
+      "display_name": "Nickel Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:4FT78T86XV",
+      "display_name": "Insulin Detemir",
+      "tier": 1
+    },
+    {
+      "key": "K1:4O4S742ANY",
+      "display_name": "Escitalopram",
+      "tier": 1
+    },
+    {
+      "key": "K1:4Q81I59GXC",
+      "display_name": "Mesalazine",
+      "tier": 1
+    },
+    {
+      "key": "K1:4QWG6N8QKH",
+      "display_name": "Hydroxychloroquine",
+      "tier": 1
+    },
+    {
+      "key": "K1:4R4HFI6D95",
+      "display_name": "POLYETHYLENE GLYCOL 4000",
+      "tier": 3
+    },
+    {
+      "key": "K1:4SED7F4BSG",
+      "display_name": "Cipaglucosidase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:4SED7F4BSG#atga",
+      "display_name": "Cipaglucosidase Alfa-Atga",
+      "tier": 2
+    },
+    {
+      "key": "K1:4W3KFI3TN3",
+      "display_name": "Talquetamab",
+      "tier": 2
+    },
+    {
+      "key": "K1:4W3KFI3TN3#tgvs",
+      "display_name": "Talquetamab-Tgvs",
+      "tier": 2
+    },
+    {
+      "key": "K1:502FWN4Q32",
+      "display_name": "Aliskiren",
+      "tier": 1
+    },
+    {
+      "key": "K1:5085ZFP6SJ",
+      "display_name": "Tozinameran",
+      "tier": 2
+    },
+    {
+      "key": "K1:50FH5AG9RW",
+      "display_name": "BETAMETHASONE BUTYRATE PROPIONATE",
+      "tier": 3
+    },
+    {
+      "key": "K1:51F690397J",
+      "display_name": "Cabazitaxel",
+      "tier": 2
+    },
+    {
+      "key": "K1:53AH36668S",
+      "display_name": "Crizotinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:54534MX6Z9",
+      "display_name": "Teclistamab",
+      "tier": 2
+    },
+    {
+      "key": "K1:54534MX6Z9#cqyv",
+      "display_name": "Teclistamab-Cqyv",
+      "tier": 2
+    },
+    {
+      "key": "K1:55JG375S6M",
+      "display_name": "Pregabalin",
+      "tier": 2
+    },
+    {
+      "key": "K1:57GNO57U7G",
+      "display_name": "Finasteride",
+      "tier": 1
+    },
+    {
+      "key": "K1:58IFB293JI",
+      "display_name": "Vorinostat",
+      "tier": 2
+    },
+    {
+      "key": "K1:58SBH37T77",
+      "display_name": "Paroxetine",
+      "tier": 1
+    },
+    {
+      "key": "K1:59UA429E5G",
+      "display_name": "Galsulfase",
+      "tier": 2
+    },
+    {
+      "key": "K1:5B307S63B2",
+      "display_name": "Beclomethasone Dipropionate",
+      "tier": 2
+    },
+    {
+      "key": "K1:5E8K9I0O4U",
+      "display_name": "Ciprofloxacin",
+      "tier": 2
+    },
+    {
+      "key": "K1:5GMR90S4KN",
+      "display_name": "Methylprednisolone Hemisuccinate",
+      "tier": 1
+    },
+    {
+      "key": "K1:5J49Q6B70F",
+      "display_name": "Vincristine",
+      "tier": 3
+    },
+    {
+      "key": "K1:5L0HB4V1EW",
+      "display_name": "Carglumic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:5M691HL4BO",
+      "display_name": "Glatiramer Acetate",
+      "tier": 2
+    },
+    {
+      "key": "K1:5PX2ESK7OE",
+      "display_name": "Esmolol",
+      "tier": 1
+    },
+    {
+      "key": "K1:5Q7ZVV76EI",
+      "display_name": "Warfarin",
+      "tier": 1
+    },
+    {
+      "key": "K1:5R78837D4A",
+      "display_name": "Strontium Chloride Sr-89",
+      "tier": 2
+    },
+    {
+      "key": "K1:5SL0G7R0OK",
+      "display_name": "Anhydrous Dextrose",
+      "tier": 3
+    },
+    {
+      "key": "K1:5TAA004E22",
+      "display_name": "Sargramostim",
+      "tier": 2
+    },
+    {
+      "key": "K1:5UX2SD1KE2",
+      "display_name": "Mercaptamine",
+      "tier": 1
+    },
+    {
+      "key": "K1:5V9KLZ54CY",
+      "display_name": "Vinblastine",
+      "tier": 2
+    },
+    {
+      "key": "K1:5W494URQ81",
+      "display_name": "Streptozocin",
+      "tier": 2
+    },
+    {
+      "key": "K1:5W8JGG2651",
+      "display_name": "Idursulfase",
+      "tier": 2
+    },
+    {
+      "key": "K1:5X3GF74R79",
+      "display_name": "Rurioctocog alfa pegol",
+      "tier": 2
+    },
+    {
+      "key": "K1:5Y9QQM372Q",
+      "display_name": "Menotropins",
+      "tier": 2
+    },
+    {
+      "key": "K1:60158CV180",
+      "display_name": "Nelarabine",
+      "tier": 2
+    },
+    {
+      "key": "K1:60ME133FJB",
+      "display_name": "Etelcalcetide",
+      "tier": 1
+    },
+    {
+      "key": "K1:614OI1Z5WI",
+      "display_name": "Valproic acid",
+      "tier": 1
+    },
+    {
+      "key": "K1:61JJC8N5ZK",
+      "display_name": "Paromomycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:624KN6GM2T",
+      "display_name": "Temsirolimus",
+      "tier": 2
+    },
+    {
+      "key": "K1:632L571YDK",
+      "display_name": "Elbasvir",
+      "tier": 2
+    },
+    {
+      "key": "K1:6413W06WR3",
+      "display_name": "Choriogonadotropin alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:64FS3BFH5W",
+      "display_name": "Epoetin alfa",
+      "tier": 1
+    },
+    {
+      "key": "K1:64FS3BFH5W#epbx",
+      "display_name": "Epoetin Alfa-Epbx",
+      "tier": 2
+    },
+    {
+      "key": "K1:64FS3BFH5W#zeta",
+      "display_name": "Epoetin zeta",
+      "tier": 2
+    },
+    {
+      "key": "K1:655M5O3W0U",
+      "display_name": "Telaprevir",
+      "tier": 2
+    },
+    {
+      "key": "K1:660YQ98I10",
+      "display_name": "Potassium Chloride",
+      "tier": 1
+    },
+    {
+      "key": "K1:668Z8C33LU",
+      "display_name": "Repaglinide",
+      "tier": 1
+    },
+    {
+      "key": "K1:68603V9EAF",
+      "display_name": "Concizumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:68603V9EAF#mtci",
+      "display_name": "Concizumab-Mtci",
+      "tier": 2
+    },
+    {
+      "key": "K1:6892UQT2GK",
+      "display_name": "SUSOCTOCOG ALFA",
+      "tier": 2
+    },
+    {
+      "key": "K1:699121PHCA",
+      "display_name": "Docetaxel Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:6995V82D0B",
+      "display_name": "Eplerenone",
+      "tier": 1
+    },
+    {
+      "key": "K1:69PN84IO1A",
+      "display_name": "Enalapril",
+      "tier": 1
+    },
+    {
+      "key": "K1:6A901E312A",
+      "display_name": "Panitumumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:6CW7F3G59X",
+      "display_name": "Gabapentin",
+      "tier": 2
+    },
+    {
+      "key": "K1:6KY687524K",
+      "display_name": "Glimepiride",
+      "tier": 1
+    },
+    {
+      "key": "K1:6L1XP550I6",
+      "display_name": "Fedratinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:6M97XTV3HD",
+      "display_name": "Olmesartan medoxomil",
+      "tier": 2
+    },
+    {
+      "key": "K1:6O01GMS00P",
+      "display_name": "Momelotinib",
+      "tier": 1
+    },
+    {
+      "key": "K1:6Q205EH1VU",
+      "display_name": "Vancomycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:6U5EA9RT2O",
+      "display_name": "Levocetirizine",
+      "tier": 2
+    },
+    {
+      "key": "K1:6W15Z5R0RU",
+      "display_name": "Florbetapir (18f)",
+      "tier": 2
+    },
+    {
+      "key": "K1:6Z5B6HVF6O",
+      "display_name": "Latanoprost",
+      "tier": 2
+    },
+    {
+      "key": "K1:707484X33X",
+      "display_name": "Phenothrin",
+      "tier": 1
+    },
+    {
+      "key": "K1:70HZ18PH24",
+      "display_name": "Zoledronic Acid Anhydrous",
+      "tier": 1
+    },
+    {
+      "key": "K1:70JE2N95KR",
+      "display_name": "Tigecycline",
+      "tier": 2
+    },
+    {
+      "key": "K1:724L30Y2QR",
+      "display_name": "Ursodeoxycholic acid",
+      "tier": 1
+    },
+    {
+      "key": "K1:7352665165",
+      "display_name": "Avibactam",
+      "tier": 2
+    },
+    {
+      "key": "K1:742SXX0ICT",
+      "display_name": "Tadalafil",
+      "tier": 1
+    },
+    {
+      "key": "K1:743LRP9S7N",
+      "display_name": "Hemin",
+      "tier": 2
+    },
+    {
+      "key": "K1:743QUY4VD8#nvhy",
+      "display_name": "Hyaluronidase-Nvhy",
+      "tier": 2
+    },
+    {
+      "key": "K1:74X82ST8Q1",
+      "display_name": "TARLATAMAB",
+      "tier": 2
+    },
+    {
+      "key": "K1:74X82ST8Q1#dlle",
+      "display_name": "Tarlatamab-Dlle",
+      "tier": 2
+    },
+    {
+      "key": "K1:755BO701MA",
+      "display_name": "Bepridil",
+      "tier": 2
+    },
+    {
+      "key": "K1:75J73V1629",
+      "display_name": "Ceftriaxone",
+      "tier": 2
+    },
+    {
+      "key": "K1:75OCL1SPBQ",
+      "display_name": "Gabapentin enacarbil",
+      "tier": 1
+    },
+    {
+      "key": "K1:762RDY0Y2H",
+      "display_name": "Clofarabine",
+      "tier": 2
+    },
+    {
+      "key": "K1:7662KG2R6K",
+      "display_name": "Lubiprostone",
+      "tier": 2
+    },
+    {
+      "key": "K1:76I7G6D29C",
+      "display_name": "Morphine",
+      "tier": 2
+    },
+    {
+      "key": "K1:78THA212DH",
+      "display_name": "Cefditoren Pivoxil",
+      "tier": 1
+    },
+    {
+      "key": "K1:79O7855J4G",
+      "display_name": "Sepetaprost",
+      "tier": 3
+    },
+    {
+      "key": "K1:7A314HQM0I",
+      "display_name": "Pentetic Acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:7AJO3BO7QN",
+      "display_name": "Loratadine",
+      "tier": 2
+    },
+    {
+      "key": "K1:7C782967RD",
+      "display_name": "Ampicillin",
+      "tier": 2
+    },
+    {
+      "key": "K1:7CDW97HUEX",
+      "display_name": "Linzagolix",
+      "tier": 2
+    },
+    {
+      "key": "K1:7CRV8RR151",
+      "display_name": "Atogepant",
+      "tier": 2
+    },
+    {
+      "key": "K1:7CUC9DDI9F",
+      "display_name": "Pseudoephedrine",
+      "tier": 2
+    },
+    {
+      "key": "K1:7D96IR0PPM",
+      "display_name": "Pegaspargase",
+      "tier": 2
+    },
+    {
+      "key": "K1:7GR28W0FJI",
+      "display_name": "Dacarbazine",
+      "tier": 2
+    },
+    {
+      "key": "K1:7JTT036WGX",
+      "display_name": "Gumarontinib",
+      "tier": 3
+    },
+    {
+      "key": "K1:7JX9WZ3SJ5",
+      "display_name": "Colchicine Conformational Isomer",
+      "tier": 1
+    },
+    {
+      "key": "K1:7K28NB895L",
+      "display_name": "Belzutifan",
+      "tier": 2
+    },
+    {
+      "key": "K1:7M7YKX2N15",
+      "display_name": "Topotecan",
+      "tier": 2
+    },
+    {
+      "key": "K1:7PCM518YLR",
+      "display_name": "Efmoroctocog alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:7PO7G8PA8M",
+      "display_name": "Ethyl Docosahexaenoate",
+      "tier": 1
+    },
+    {
+      "key": "K1:7Q2Q6Q87SS",
+      "display_name": "Carteolol",
+      "tier": 2
+    },
+    {
+      "key": "K1:7Q3P4BS2FD",
+      "display_name": "Lisinopril Anhydrous",
+      "tier": 1
+    },
+    {
+      "key": "K1:7RN5DR86CK",
+      "display_name": "Pazopanib",
+      "tier": 2
+    },
+    {
+      "key": "K1:7SHP2FH6HQ",
+      "display_name": "Motugivatrep",
+      "tier": 3
+    },
+    {
+      "key": "K1:7WY7YBI87E",
+      "display_name": "Phenylbutyric Acid",
+      "tier": 1
+    },
+    {
+      "key": "K1:7XIY785AZD",
+      "display_name": "Insulin glulisine",
+      "tier": 1
+    },
+    {
+      "key": "K1:7XU7A7DROE",
+      "display_name": "Amphotericin b",
+      "tier": 2
+    },
+    {
+      "key": "K1:7ZW49N180B",
+      "display_name": "Zuranolone",
+      "tier": 2
+    },
+    {
+      "key": "K1:807PW4VQE3",
+      "display_name": "Cefepime",
+      "tier": 2
+    },
+    {
+      "key": "K1:81485Y3A9A",
+      "display_name": "Gatifloxacin Anhydrous",
+      "tier": 1
+    },
+    {
+      "key": "K1:820484N8I3",
+      "display_name": "Histamine",
+      "tier": 2
+    },
+    {
+      "key": "K1:826Y60901U",
+      "display_name": "BETAMETHASONE DIPROPIONATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:82KUB0583F",
+      "display_name": "Lomitapide",
+      "tier": 1
+    },
+    {
+      "key": "K1:82S8X8XX8H",
+      "display_name": "Ruxolitinib",
+      "tier": 1
+    },
+    {
+      "key": "K1:834YJF89WO",
+      "display_name": "Belumosudil",
+      "tier": 2
+    },
+    {
+      "key": "K1:83619PEU5T",
+      "display_name": "Pramipexole",
+      "tier": 1
+    },
+    {
+      "key": "K1:838F01T721",
+      "display_name": "Paliperidone",
+      "tier": 2
+    },
+    {
+      "key": "K1:83LCM6L2BY",
+      "display_name": "Fomepizole",
+      "tier": 2
+    },
+    {
+      "key": "K1:84HW7D0V04",
+      "display_name": "Tapinarof",
+      "tier": 2
+    },
+    {
+      "key": "K1:87M90CV8NC",
+      "display_name": "Nipocalimab",
+      "tier": 2
+    },
+    {
+      "key": "K1:87M90CV8NC#aahu",
+      "display_name": "Nipocalimab-Aahu",
+      "tier": 2
+    },
+    {
+      "key": "K1:87PZU03K0K",
+      "display_name": "Ferric Oxyhydroxide",
+      "tier": 2
+    },
+    {
+      "key": "K1:87T4T8BO2E",
+      "display_name": "Rotigotine",
+      "tier": 1
+    },
+    {
+      "key": "K1:88755TAZ87",
+      "display_name": "Aminolevulinic Acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:8883YP2R6D",
+      "display_name": "Ivermectin",
+      "tier": 2
+    },
+    {
+      "key": "K1:890E37NHMV",
+      "display_name": "Erdafitinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:89DS0H96TB",
+      "display_name": "Zinc Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:8A3NP33E5M",
+      "display_name": "Tetrabenazine",
+      "tier": 2
+    },
+    {
+      "key": "K1:8E05T07Z6W",
+      "display_name": "Iptacopan",
+      "tier": 2
+    },
+    {
+      "key": "K1:8FOJ430U94#beco",
+      "display_name": "Somapacitan-Beco",
+      "tier": 2
+    },
+    {
+      "key": "K1:8G167061QZ",
+      "display_name": "Ethambutol",
+      "tier": 2
+    },
+    {
+      "key": "K1:8GZG754X6M",
+      "display_name": "Gemtuzumab ozogamicin",
+      "tier": 1
+    },
+    {
+      "key": "K1:8MDF5V39QO",
+      "display_name": "Sodium Bicarbonate",
+      "tier": 1
+    },
+    {
+      "key": "K1:8NF31401XG",
+      "display_name": "Carteolol",
+      "tier": 2
+    },
+    {
+      "key": "K1:8VLN5B44ZY",
+      "display_name": "Oxymetazoline",
+      "tier": 2
+    },
+    {
+      "key": "K1:8VZV102JFY",
+      "display_name": "Fluconazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:8X7386QRLV",
+      "display_name": "Gentamicin Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:8YE81R1X1J",
+      "display_name": "Grazoprevir Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:8ZHS5657EH",
+      "display_name": "Tagraxofusp",
+      "tier": 2
+    },
+    {
+      "key": "K1:8ZHS5657EH#erzs",
+      "display_name": "Tagraxofusp-Erzs",
+      "tier": 2
+    },
+    {
+      "key": "K1:8ZYQ1474W7",
+      "display_name": "Sodium Fluoride",
+      "tier": 2
+    },
+    {
+      "key": "K1:901AS54I69",
+      "display_name": "Ramelteon",
+      "tier": 1
+    },
+    {
+      "key": "K1:90Y4QC304K",
+      "display_name": "Ketoprofen",
+      "tier": 1
+    },
+    {
+      "key": "K1:91X1KLU43E",
+      "display_name": "Golimumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:91X1KLU43E#sldi",
+      "display_name": "Golimumab-Sldi",
+      "tier": 2
+    },
+    {
+      "key": "K1:94F3830Q73",
+      "display_name": "Doxapram",
+      "tier": 2
+    },
+    {
+      "key": "K1:953A26OA1Y",
+      "display_name": "Dornase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:95AK1A52I8",
+      "display_name": "Tebipenem pivoxil",
+      "tier": 2
+    },
+    {
+      "key": "K1:95D580798S",
+      "display_name": "Picosulfuric Acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:9647FM7Y3Z",
+      "display_name": "Panobinostat",
+      "tier": 2
+    },
+    {
+      "key": "K1:977D2P9YYW",
+      "display_name": "Sipavibart",
+      "tier": 2
+    },
+    {
+      "key": "K1:97RWB5S1U6",
+      "display_name": "Idarucizumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:97T5AZ1JIP",
+      "display_name": "Cilnidipine",
+      "tier": 3
+    },
+    {
+      "key": "K1:98H1T17066",
+      "display_name": "Pasireotide",
+      "tier": 1
+    },
+    {
+      "key": "K1:98PI200987",
+      "display_name": "Lidocaine",
+      "tier": 1
+    },
+    {
+      "key": "K1:9927MT646M",
+      "display_name": "Basiliximab",
+      "tier": 1
+    },
+    {
+      "key": "K1:997WVV895X",
+      "display_name": "Rimegepant",
+      "tier": 2
+    },
+    {
+      "key": "K1:99GS5XTB51",
+      "display_name": "Oclacitinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:9AG41L3AOQ",
+      "display_name": "Gozetotide",
+      "tier": 2
+    },
+    {
+      "key": "K1:9BK3JK3ETK",
+      "display_name": "Tapentadol",
+      "tier": 1
+    },
+    {
+      "key": "K1:9CXQ3PF69U",
+      "display_name": "Imlunestrant",
+      "tier": 1
+    },
+    {
+      "key": "K1:9I628532GX",
+      "display_name": "Piperacillin Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:9J1H7Y9OJV",
+      "display_name": "Emedastine",
+      "tier": 2
+    },
+    {
+      "key": "K1:9JDX055TW1",
+      "display_name": "Dorzolamide",
+      "tier": 2
+    },
+    {
+      "key": "K1:9P1872D4OL",
+      "display_name": "Exenatide",
+      "tier": 1
+    },
+    {
+      "key": "K1:9PHQ9Y1OLM",
+      "display_name": "Prednisolone",
+      "tier": 1
+    },
+    {
+      "key": "K1:9QHX048FRV",
+      "display_name": "Talazoparib",
+      "tier": 2
+    },
+    {
+      "key": "K1:9S44LIC7OJ",
+      "display_name": "NORETHINDRONE ACETATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:9WS5RD66HZ",
+      "display_name": "Simeprevir",
+      "tier": 1
+    },
+    {
+      "key": "K1:9X7O8V25IT",
+      "display_name": "Collagenase",
+      "tier": 2
+    },
+    {
+      "key": "K1:9X7O8V25IT#aaes",
+      "display_name": "Collagenase Clostridium Histolyticum-Aaes",
+      "tier": 2
+    },
+    {
+      "key": "K1:9Y8NXQ24VQ",
+      "display_name": "Propranolol",
+      "tier": 1
+    },
+    {
+      "key": "K1:9ZOQ3TZI87",
+      "display_name": "Sorafenib",
+      "tier": 1
+    },
+    {
+      "key": "K1:9ZS94HQO3B",
+      "display_name": "Peramivir Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:A051Q2099Q",
+      "display_name": "Mirtazapine",
+      "tier": 2
+    },
+    {
+      "key": "K1:A0JWA85V8F",
+      "display_name": "Atorvastatin",
+      "tier": 1
+    },
+    {
+      "key": "K1:A5H73K9U3W",
+      "display_name": "Levobupivacaine",
+      "tier": 1
+    },
+    {
+      "key": "K1:A61RXM4375",
+      "display_name": "Bexarotene",
+      "tier": 1
+    },
+    {
+      "key": "K1:A74586SNO7",
+      "display_name": "Clopidogrel",
+      "tier": 2
+    },
+    {
+      "key": "K1:A8910SQJ1U",
+      "display_name": "Solifenacin",
+      "tier": 2
+    },
+    {
+      "key": "K1:AC71R787OV",
+      "display_name": "Eptacog alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:ADN3S497AZ",
+      "display_name": "Miglustat",
+      "tier": 2
+    },
+    {
+      "key": "K1:AG9MHG098Z",
+      "display_name": "Zanubrutinib",
+      "tier": 1
+    },
+    {
+      "key": "K1:AN164J8Y0X",
+      "display_name": "Trimethoprim",
+      "tier": 2
+    },
+    {
+      "key": "K1:AQK7UBA1LS",
+      "display_name": "Luspatercept",
+      "tier": 2
+    },
+    {
+      "key": "K1:AQK7UBA1LS#aamt",
+      "display_name": "Luspatercept-Aamt",
+      "tier": 2
+    },
+    {
+      "key": "K1:ASW034S0B8",
+      "display_name": "Atomoxetine",
+      "tier": 1
+    },
+    {
+      "key": "K1:B4SF212641",
+      "display_name": "Fosphenytoin",
+      "tier": 2
+    },
+    {
+      "key": "K1:B851121553",
+      "display_name": "Iomazenil (123i)",
+      "tier": 3
+    },
+    {
+      "key": "K1:BGL0JSY5SI",
+      "display_name": "Quetiapine",
+      "tier": 2
+    },
+    {
+      "key": "K1:BHV525JOBH",
+      "display_name": "Doripenem",
+      "tier": 2
+    },
+    {
+      "key": "K1:BKJ8M8G5HI",
+      "display_name": "Imatinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:BR1SN1JS2W",
+      "display_name": "Mecobalamin",
+      "tier": 2
+    },
+    {
+      "key": "K1:BY4TSK952Y",
+      "display_name": "DAMOCTOCOG ALFA PEGOL",
+      "tier": 2
+    },
+    {
+      "key": "K1:BZ1R15MTK7",
+      "display_name": "Levomenthol",
+      "tier": 2
+    },
+    {
+      "key": "K1:C2QI4IOI2G",
+      "display_name": "Medroxyprogesterone Acetate",
+      "tier": 1
+    },
+    {
+      "key": "K1:C2W72OJ5ZU",
+      "display_name": "Tacalcitol",
+      "tier": 2
+    },
+    {
+      "key": "K1:C7D6T3H22J",
+      "display_name": "Artemether",
+      "tier": 2
+    },
+    {
+      "key": "K1:C9LVQ0YUXG",
+      "display_name": "Axitinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:CI0NE7C96T",
+      "display_name": "MOLIDUSTAT SODIUM",
+      "tier": 3
+    },
+    {
+      "key": "K1:CJ0O37KU29",
+      "display_name": "Verapamil",
+      "tier": 2
+    },
+    {
+      "key": "K1:CJQ26KO7HP",
+      "display_name": "Sepiapterin",
+      "tier": 2
+    },
+    {
+      "key": "K1:CPD4NFA903",
+      "display_name": "Aluminum",
+      "tier": 1
+    },
+    {
+      "key": "K1:CRS35BZ94Q",
+      "display_name": "Desflurane",
+      "tier": 1
+    },
+    {
+      "key": "K1:CS849DUN3M",
+      "display_name": "ANTI-INHIBITOR COAGULANT COMPLEX",
+      "tier": 2
+    },
+    {
+      "key": "K1:D16EQP0KKH",
+      "display_name": "Depemokimab",
+      "tier": 1
+    },
+    {
+      "key": "K1:D16EQP0KKH#ulaa",
+      "display_name": "Depemokimab-Ulaa",
+      "tier": 2
+    },
+    {
+      "key": "K1:D27V6190PM",
+      "display_name": "Olopatadine",
+      "tier": 2
+    },
+    {
+      "key": "K1:D3SQ406G9X",
+      "display_name": "Articaine",
+      "tier": 2
+    },
+    {
+      "key": "K1:D6OMY2L0WA",
+      "display_name": "Epcoritamab",
+      "tier": 1
+    },
+    {
+      "key": "K1:D6OMY2L0WA#bysp",
+      "display_name": "Epcoritamab-Bysp",
+      "tier": 2
+    },
+    {
+      "key": "K1:D733ET3F9O",
+      "display_name": "Crisantaspase",
+      "tier": 2
+    },
+    {
+      "key": "K1:D87YGH4Z0Q",
+      "display_name": "Omega-3-Acid Ethyl Esters",
+      "tier": 1
+    },
+    {
+      "key": "K1:DB1041CXDG",
+      "display_name": "Belantamab mafodotin",
+      "tier": 1
+    },
+    {
+      "key": "K1:DB1041CXDG#blmf",
+      "display_name": "Belantamab Mafodotin-Blmf",
+      "tier": 2
+    },
+    {
+      "key": "K1:DCR9Z582X0",
+      "display_name": "Epoprostenol",
+      "tier": 2
+    },
+    {
+      "key": "K1:DE08037SAB",
+      "display_name": "Magnesium Sulfate, Unspecified Form",
+      "tier": 2
+    },
+    {
+      "key": "K1:DQ448MW7KS",
+      "display_name": "Palivizumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:DR40J4WA67",
+      "display_name": "Eliglustat",
+      "tier": 2
+    },
+    {
+      "key": "K1:DRH7R67UVL",
+      "display_name": "Zongertinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:DTI67O9503",
+      "display_name": "Alglucosidase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:DZR1ENT301",
+      "display_name": "Ceftazidime Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:E47C0NF7LV",
+      "display_name": "Enoxaparin",
+      "tier": 2
+    },
+    {
+      "key": "K1:E6582LOH6V",
+      "display_name": "Fexofenadine",
+      "tier": 2
+    },
+    {
+      "key": "K1:EAO03PE1TC",
+      "display_name": "SODIUM NITROPRUSSIDE",
+      "tier": 1
+    },
+    {
+      "key": "K1:EE90ONI6FF",
+      "display_name": "POTASSIUM CITRATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:EFY6W0M8TG",
+      "display_name": "Leuprorelin",
+      "tier": 1
+    },
+    {
+      "key": "K1:EGX657432I",
+      "display_name": "Sapropterin",
+      "tier": 1
+    },
+    {
+      "key": "K1:EH6D7113I8",
+      "display_name": "Clindamycin Phosphate",
+      "tier": 2
+    },
+    {
+      "key": "K1:EM5OCB9YJ6",
+      "display_name": "Abiraterone Acetate",
+      "tier": 1
+    },
+    {
+      "key": "K1:ENB39R14VF",
+      "display_name": "Estetrol (anhydrous)",
+      "tier": 1
+    },
+    {
+      "key": "K1:EPK39PL4R4",
+      "display_name": "Elasomeran",
+      "tier": 2
+    },
+    {
+      "key": "K1:EVS87XF13W",
+      "display_name": "Cobaltous Chloride",
+      "tier": 2
+    },
+    {
+      "key": "K1:F0XDI6ZL63",
+      "display_name": "Caspofungin",
+      "tier": 2
+    },
+    {
+      "key": "K1:F38R0JR742",
+      "display_name": "Lumefantrine",
+      "tier": 2
+    },
+    {
+      "key": "K1:F41401512X",
+      "display_name": "Nilotinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:F446C597KA",
+      "display_name": "Triamcinolone Acetonide",
+      "tier": 1
+    },
+    {
+      "key": "K1:F4YU4LON7I",
+      "display_name": "Tenofovir Disoproxil",
+      "tier": 2
+    },
+    {
+      "key": "K1:F5TD010360",
+      "display_name": "Alprostadil",
+      "tier": 2
+    },
+    {
+      "key": "K1:F7LTH1E20Y",
+      "display_name": "ARGININE HYDROCHLORIDE",
+      "tier": 1
+    },
+    {
+      "key": "K1:F925RR824R",
+      "display_name": "Tecovirimat",
+      "tier": 2
+    },
+    {
+      "key": "K1:FO2303MNI2",
+      "display_name": "DIMETHYL FUMARATE",
+      "tier": 1
+    },
+    {
+      "key": "K1:FQ3DRG0N5K",
+      "display_name": "Pancreatin",
+      "tier": 2
+    },
+    {
+      "key": "K1:FVF865388R",
+      "display_name": "Desloratadine",
+      "tier": 2
+    },
+    {
+      "key": "K1:G2N64C3385",
+      "display_name": "Palopegteriparatide",
+      "tier": 1
+    },
+    {
+      "key": "K1:G4FQ3CKY5R",
+      "display_name": "Asparaginase",
+      "tier": 2
+    },
+    {
+      "key": "K1:G4FQ3CKY5R#rywn",
+      "display_name": "Asparaginase Erwinia Chrysanthemi -Rywn",
+      "tier": 2
+    },
+    {
+      "key": "K1:G6UF363ECX",
+      "display_name": "Lutetium (177lu) vipivotide tetraxetan",
+      "tier": 2
+    },
+    {
+      "key": "K1:G7V6SLI20L",
+      "display_name": "Arbekacin",
+      "tier": 3
+    },
+    {
+      "key": "K1:G8RGG88B68",
+      "display_name": "Peginterferon alfa-2b",
+      "tier": 2
+    },
+    {
+      "key": "K1:GD2OWY1DTK",
+      "display_name": "Datopotamab deruxtecan",
+      "tier": 2
+    },
+    {
+      "key": "K1:GD2OWY1DTK#dlnk",
+      "display_name": "Datopotamab Deruxtecan-Dlnk",
+      "tier": 2
+    },
+    {
+      "key": "K1:GHJ553KQPS",
+      "display_name": "Tosufloxacin",
+      "tier": 3
+    },
+    {
+      "key": "K1:GLH0314RVC",
+      "display_name": "Ticagrelor",
+      "tier": 2
+    },
+    {
+      "key": "K1:GN83C131XS",
+      "display_name": "Ephedrine",
+      "tier": 1
+    },
+    {
+      "key": "K1:GR0L9S3J0F",
+      "display_name": "Racepinefrine",
+      "tier": 2
+    },
+    {
+      "key": "K1:GR120KRT6K",
+      "display_name": "Vigabatrin",
+      "tier": 2
+    },
+    {
+      "key": "K1:GRZ5RCB1QG",
+      "display_name": "Venlafaxine",
+      "tier": 2
+    },
+    {
+      "key": "K1:GZP2782OP0",
+      "display_name": "Aceneuramic acid",
+      "tier": 3
+    },
+    {
+      "key": "K1:H1250JIK0A",
+      "display_name": "Clarithromycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:H789N3FKE8",
+      "display_name": "Baclofen",
+      "tier": 2
+    },
+    {
+      "key": "K1:H8A007M585",
+      "display_name": "Tapentadol",
+      "tier": 2
+    },
+    {
+      "key": "K1:H9KH1GP3UU",
+      "display_name": "Crovalimab",
+      "tier": 1
+    },
+    {
+      "key": "K1:H9KH1GP3UU#akkz",
+      "display_name": "Crovalimab-Akkz",
+      "tier": 2
+    },
+    {
+      "key": "K1:HOY74VZE0M",
+      "display_name": "GADOXETATE DISODIUM",
+      "tier": 2
+    },
+    {
+      "key": "K1:HYD2U48IAS",
+      "display_name": "Bepotastine",
+      "tier": 2
+    },
+    {
+      "key": "K1:I6B4B2U96P",
+      "display_name": "Vildagliptin",
+      "tier": 2
+    },
+    {
+      "key": "K1:I6WP63U32H",
+      "display_name": "Acenocoumarol",
+      "tier": 2
+    },
+    {
+      "key": "K1:I8MFJ1C0BY",
+      "display_name": "Mosapride",
+      "tier": 3
+    },
+    {
+      "key": "K1:I9ZF7L6G2L",
+      "display_name": "Nifedipine",
+      "tier": 1
+    },
+    {
+      "key": "K1:IGL471WQ8P",
+      "display_name": "Cantharidin",
+      "tier": 1
+    },
+    {
+      "key": "K1:IHV1VP592V",
+      "display_name": "Hydrocortisone Hemisuccinate Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:IOW153004F",
+      "display_name": "Lonafarnib",
+      "tier": 2
+    },
+    {
+      "key": "K1:ISQ9I6J12J",
+      "display_name": "Linezolid",
+      "tier": 2
+    },
+    {
+      "key": "K1:IV9VHT3YUM",
+      "display_name": "Roxatidine",
+      "tier": 3
+    },
+    {
+      "key": "K1:IX503L9WN0",
+      "display_name": "Ganirelix",
+      "tier": 1
+    },
+    {
+      "key": "K1:J0E2756Z7N",
+      "display_name": "Irbesartan",
+      "tier": 1
+    },
+    {
+      "key": "K1:J177FOW5JL",
+      "display_name": "Fondaparinux",
+      "tier": 2
+    },
+    {
+      "key": "K1:J4T82NDH7E",
+      "display_name": "Erlotinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:J60AR2IKIC",
+      "display_name": "Clozapine",
+      "tier": 2
+    },
+    {
+      "key": "K1:JCX84Q7J1L",
+      "display_name": "Celecoxib",
+      "tier": 1
+    },
+    {
+      "key": "K1:JE42381TNV",
+      "display_name": "Sulfamethoxazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:JED5K35YGL",
+      "display_name": "Iloprost",
+      "tier": 2
+    },
+    {
+      "key": "K1:JHC049LO86",
+      "display_name": "Alogliptin",
+      "tier": 1
+    },
+    {
+      "key": "K1:JKZ19V908O",
+      "display_name": "Asenapine",
+      "tier": 2
+    },
+    {
+      "key": "K1:JM8C1SFX0U",
+      "display_name": "Danicopan",
+      "tier": 2
+    },
+    {
+      "key": "K1:JMS50MPO89",
+      "display_name": "Losartan",
+      "tier": 1
+    },
+    {
+      "key": "K1:JNA39I7ZVB",
+      "display_name": "Pirtobrutinib",
+      "tier": 1
+    },
+    {
+      "key": "K1:K17VY42F6C",
+      "display_name": "Aclidinium",
+      "tier": 2
+    },
+    {
+      "key": "K1:K4YTU42T8G",
+      "display_name": "Sebelipase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:K5BN214699",
+      "display_name": "Nitisinone",
+      "tier": 2
+    },
+    {
+      "key": "K1:K72T3FS567",
+      "display_name": "ADENOSINE",
+      "tier": 2
+    },
+    {
+      "key": "K1:K7V8P532WP",
+      "display_name": "Dexamethasone Acetate Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:K94FTS1806",
+      "display_name": "Flecainide",
+      "tier": 2
+    },
+    {
+      "key": "K1:K9X45X0051",
+      "display_name": "Anagrelide",
+      "tier": 2
+    },
+    {
+      "key": "K1:KG60484QX9",
+      "display_name": "Omeprazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:KM2Z91756Z",
+      "display_name": "Risedronic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:KR87B45RGH",
+      "display_name": "Carbidopa Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:L0HR9A577V",
+      "display_name": "Elranatamab",
+      "tier": 1
+    },
+    {
+      "key": "K1:L36O5T016N",
+      "display_name": "Rifaximin",
+      "tier": 2
+    },
+    {
+      "key": "K1:L3JE09KZ2F",
+      "display_name": "Saquinavir",
+      "tier": 2
+    },
+    {
+      "key": "K1:L6O3XI777I",
+      "display_name": "Zanamivir",
+      "tier": 2
+    },
+    {
+      "key": "K1:L6UH7ZF8HC",
+      "display_name": "Risperidone",
+      "tier": 2
+    },
+    {
+      "key": "K1:LDJ89SS0YG",
+      "display_name": "Mosunetuzumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:LDJ89SS0YG#axgb",
+      "display_name": "Mosunetuzumab-Axgb",
+      "tier": 2
+    },
+    {
+      "key": "K1:LI2427F9CI",
+      "display_name": "Daclatasvir",
+      "tier": 2
+    },
+    {
+      "key": "K1:LMQ24G57E9",
+      "display_name": "Daridorexant",
+      "tier": 1
+    },
+    {
+      "key": "K1:LR24G6354G",
+      "display_name": "Eribulin",
+      "tier": 2
+    },
+    {
+      "key": "K1:LRX7AJ16DT",
+      "display_name": "Cupric Sulfate",
+      "tier": 2
+    },
+    {
+      "key": "K1:M9BYU8XDQ6",
+      "display_name": "Sacituzumab govitecan",
+      "tier": 2
+    },
+    {
+      "key": "K1:M9BYU8XDQ6#hziy",
+      "display_name": "Sacituzumab Govitecan-Hziy",
+      "tier": 2
+    },
+    {
+      "key": "K1:MD6P741W8A",
+      "display_name": "Maraviroc",
+      "tier": 2
+    },
+    {
+      "key": "K1:MDY902UXSR",
+      "display_name": "Esmolol",
+      "tier": 1
+    },
+    {
+      "key": "K1:MHM278SD3E",
+      "display_name": "Montelukast",
+      "tier": 2
+    },
+    {
+      "key": "K1:ML30MJ2U7I",
+      "display_name": "Magnesium Sulfate Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:MVR3634GX1",
+      "display_name": "Primaquine",
+      "tier": 2
+    },
+    {
+      "key": "K1:MVR3JL3B2V",
+      "display_name": "Mirabegron",
+      "tier": 2
+    },
+    {
+      "key": "K1:MZ1IW7Q79D",
+      "display_name": "Valaciclovir",
+      "tier": 2
+    },
+    {
+      "key": "K1:N21FAR7B4S",
+      "display_name": "Apomorphine",
+      "tier": 2
+    },
+    {
+      "key": "K1:N2GI8B1GK7",
+      "display_name": "Cefotaxime",
+      "tier": 2
+    },
+    {
+      "key": "K1:N2UJM5NBF6",
+      "display_name": "Maxacalcitol",
+      "tier": 3
+    },
+    {
+      "key": "K1:N3PA6559FT",
+      "display_name": "Esomeprazole",
+      "tier": 1
+    },
+    {
+      "key": "K1:N3RIB7X24K",
+      "display_name": "Ioversol",
+      "tier": 2
+    },
+    {
+      "key": "K1:N3RQ532IUT",
+      "display_name": "Amiodarone",
+      "tier": 2
+    },
+    {
+      "key": "K1:N47C1SHV0F",
+      "display_name": "Streptococcus Pneumoniae Type 10a Capsular Polysaccharide Diphtheria Crm197 Protein Conjugate Antigen",
+      "tier": 2
+    },
+    {
+      "key": "K1:N4K14YGM3J",
+      "display_name": "Acamprosate",
+      "tier": 2
+    },
+    {
+      "key": "K1:N7U69T4SZR",
+      "display_name": "Olanzapine",
+      "tier": 2
+    },
+    {
+      "key": "K1:N824AOU5XV",
+      "display_name": "Pegvisomant",
+      "tier": 1
+    },
+    {
+      "key": "K1:N94833051K",
+      "display_name": "Fibrinogen Concentrate (Human)",
+      "tier": 2
+    },
+    {
+      "key": "K1:N9YNS0M02X",
+      "display_name": "Acetylcholine",
+      "tier": 1
+    },
+    {
+      "key": "K1:NA1U919MRO",
+      "display_name": "Difelikefalin",
+      "tier": 2
+    },
+    {
+      "key": "K1:NA71GR3TNV",
+      "display_name": "Adrenaline",
+      "tier": 2
+    },
+    {
+      "key": "K1:NNU2O4609D",
+      "display_name": "Entecavir Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:NQX9KB6PCL",
+      "display_name": "Somatropin",
+      "tier": 1
+    },
+    {
+      "key": "K1:NU23Q531G1",
+      "display_name": "Catridecacog",
+      "tier": 2
+    },
+    {
+      "key": "K1:NUV44L116D",
+      "display_name": "Clomipramine",
+      "tier": 2
+    },
+    {
+      "key": "K1:O0J6XJN02I",
+      "display_name": "Dutasteride",
+      "tier": 1
+    },
+    {
+      "key": "K1:O26FZP769L",
+      "display_name": "Lorazepam",
+      "tier": 2
+    },
+    {
+      "key": "K1:O4L1XPO44W",
+      "display_name": "Fluvoxamine",
+      "tier": 2
+    },
+    {
+      "key": "K1:O5CB12L4FN",
+      "display_name": "Diazoxide",
+      "tier": 1
+    },
+    {
+      "key": "K1:O5TNM5N07U",
+      "display_name": "Duloxetine",
+      "tier": 1
+    },
+    {
+      "key": "K1:O5V0F26RUW",
+      "display_name": "Rabbit",
+      "tier": 3
+    },
+    {
+      "key": "K1:O5ZD2TU2B7",
+      "display_name": "Sebetralstat",
+      "tier": 2
+    },
+    {
+      "key": "K1:OCY3U280Y3",
+      "display_name": "Argatroban Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:ODJ69JZG85",
+      "display_name": "Elosulfase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:OU2YM37K86",
+      "display_name": "Paritaprevir",
+      "tier": 2
+    },
+    {
+      "key": "K1:OYY3447OMC",
+      "display_name": "Pamidronic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:P1QW714R7M",
+      "display_name": "Imiquimod",
+      "tier": 1
+    },
+    {
+      "key": "K1:P7186074QC",
+      "display_name": "Rozanolixizumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:P7186074QC#noli",
+      "display_name": "Rozanolixizumab-Noli",
+      "tier": 2
+    },
+    {
+      "key": "K1:P7YU3ED05N",
+      "display_name": "Insulin icodec",
+      "tier": 1
+    },
+    {
+      "key": "K1:PKI06M3IW0",
+      "display_name": "Rivastigmine",
+      "tier": 1
+    },
+    {
+      "key": "K1:PTB4X93HE1",
+      "display_name": "Maribavir",
+      "tier": 2
+    },
+    {
+      "key": "K1:PV23P19YUG",
+      "display_name": "Azelnidipine",
+      "tier": 3
+    },
+    {
+      "key": "K1:Q08SIO485D",
+      "display_name": "Phenprocoumon",
+      "tier": 1
+    },
+    {
+      "key": "K1:Q16TT9C5BK",
+      "display_name": "Bazedoxifene",
+      "tier": 1
+    },
+    {
+      "key": "K1:Q20Q21Q62J",
+      "display_name": "Cisplatin",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q2PCN8MAM6",
+      "display_name": "Ivosidenib",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q3JTX2Q7TU",
+      "display_name": "Diazepam",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q40X8H422O",
+      "display_name": "Hydroxocobalamin",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q42T66VG0C",
+      "display_name": "Penicillin G",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q46947FE7K",
+      "display_name": "Peginterferon alfa-2a",
+      "tier": 1
+    },
+    {
+      "key": "K1:Q58C92TUN0",
+      "display_name": "Trichlormethiazide",
+      "tier": 1
+    },
+    {
+      "key": "K1:Q6C979R91Y",
+      "display_name": "Vinorelbine",
+      "tier": 2
+    },
+    {
+      "key": "K1:Q812464R06",
+      "display_name": "Hydromorphone",
+      "tier": 2
+    },
+    {
+      "key": "K1:QAO8PF7Q30",
+      "display_name": "Primaquine",
+      "tier": 1
+    },
+    {
+      "key": "K1:QFP0P1DV7Z",
+      "display_name": "Sitagliptin",
+      "tier": 1
+    },
+    {
+      "key": "K1:QQA9MLH692",
+      "display_name": "Tafasitamab",
+      "tier": 2
+    },
+    {
+      "key": "K1:QQA9MLH692#cxix",
+      "display_name": "Tafasitamab-Cxix",
+      "tier": 2
+    },
+    {
+      "key": "K1:QQE170PANO",
+      "display_name": "Manganese Chloride",
+      "tier": 2
+    },
+    {
+      "key": "K1:QR8T22JM5W",
+      "display_name": "Follitropin beta",
+      "tier": 2
+    },
+    {
+      "key": "K1:QUC7NX6WMB",
+      "display_name": "Sertraline",
+      "tier": 1
+    },
+    {
+      "key": "K1:QX3KXL1ZA2",
+      "display_name": "Naratriptan",
+      "tier": 2
+    },
+    {
+      "key": "K1:QX45B99R3J",
+      "display_name": "Mavacamten",
+      "tier": 2
+    },
+    {
+      "key": "K1:QXS94885MZ",
+      "display_name": "Bimatoprost",
+      "tier": 2
+    },
+    {
+      "key": "K1:R02XOT8V8I",
+      "display_name": "Stiripentol",
+      "tier": 2
+    },
+    {
+      "key": "K1:R10H71BSWG",
+      "display_name": "Micafungin",
+      "tier": 2
+    },
+    {
+      "key": "K1:R16CO5Y76E",
+      "display_name": "ASA",
+      "tier": 1
+    },
+    {
+      "key": "K1:R765VT7PWP",
+      "display_name": "CINAXADAMTASE ALFA",
+      "tier": 3
+    },
+    {
+      "key": "K1:RE91AN4S8G",
+      "display_name": "Luliconazole",
+      "tier": 2
+    },
+    {
+      "key": "K1:RIX4E89Y14",
+      "display_name": "Levofloxacin (anhydrous)",
+      "tier": 2
+    },
+    {
+      "key": "K1:RS7A450LGA",
+      "display_name": "Anhydrous Trisodium Citrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:RSA8KO39WH",
+      "display_name": "Vindesine",
+      "tier": 2
+    },
+    {
+      "key": "K1:RU3FE2Y4XI",
+      "display_name": "Riociguat",
+      "tier": 1
+    },
+    {
+      "key": "K1:RU4S6E2G0J",
+      "display_name": "Amifampridine",
+      "tier": 2
+    },
+    {
+      "key": "K1:RYH2T97J77",
+      "display_name": "Ranimustine",
+      "tier": 3
+    },
+    {
+      "key": "K1:S4TF6I2330",
+      "display_name": "Sulbactam",
+      "tier": 2
+    },
+    {
+      "key": "K1:S56D65XJ9G",
+      "display_name": "Eltrombopag",
+      "tier": 2
+    },
+    {
+      "key": "K1:S59502J185",
+      "display_name": "Ciclesonide",
+      "tier": 1
+    },
+    {
+      "key": "K1:S61K3P7B2V",
+      "display_name": "Proguanil",
+      "tier": 2
+    },
+    {
+      "key": "K1:S65743JHBS",
+      "display_name": "Gefitinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:S7UI8SM58A",
+      "display_name": "Carnitine",
+      "tier": 1
+    },
+    {
+      "key": "K1:S7V92P67HO",
+      "display_name": "Arsenic Trioxide",
+      "tier": 2
+    },
+    {
+      "key": "K1:S915P5499N",
+      "display_name": "Plerixafor",
+      "tier": 2
+    },
+    {
+      "key": "K1:SE10G96M8W",
+      "display_name": "Tazobactam",
+      "tier": 2
+    },
+    {
+      "key": "K1:SE4TWR0K2C",
+      "display_name": "Perflubutane",
+      "tier": 3
+    },
+    {
+      "key": "K1:SMG09YI7I8",
+      "display_name": "Butrol",
+      "tier": 2
+    },
+    {
+      "key": "K1:SY7Q814VUP",
+      "display_name": "CALCIUM",
+      "tier": 1
+    },
+    {
+      "key": "K1:T12B44A1OE",
+      "display_name": "Acoramidis",
+      "tier": 2
+    },
+    {
+      "key": "K1:T18F433X4S",
+      "display_name": "Norethisterone",
+      "tier": 1
+    },
+    {
+      "key": "K1:T1JP1KYU9O",
+      "display_name": "Flortaucipir (18f)",
+      "tier": 1
+    },
+    {
+      "key": "K1:T41737F88A",
+      "display_name": "Tisotumab vedotin",
+      "tier": 2
+    },
+    {
+      "key": "K1:T41737F88A#tftv",
+      "display_name": "Tisotumab Vedotin-Tftv",
+      "tier": 2
+    },
+    {
+      "key": "K1:T4423S18FM",
+      "display_name": "Potassium Dichromate",
+      "tier": 2
+    },
+    {
+      "key": "K1:T8B2ORP1DW",
+      "display_name": "Evinacumab",
+      "tier": 2
+    },
+    {
+      "key": "K1:T8B2ORP1DW#dgnb",
+      "display_name": "Evinacumab-Dgnb",
+      "tier": 1
+    },
+    {
+      "key": "K1:TF5MPQ8WGY",
+      "display_name": "Zolbetuximab",
+      "tier": 2
+    },
+    {
+      "key": "K1:TF5MPQ8WGY#clzb",
+      "display_name": "Zolbetuximab-Clzb",
+      "tier": 2
+    },
+    {
+      "key": "K1:TL60C27RLH",
+      "display_name": "Metreleptin",
+      "tier": 1
+    },
+    {
+      "key": "K1:TN7CUD1NGA",
+      "display_name": "Tasurgratinib",
+      "tier": 3
+    },
+    {
+      "key": "K1:TT0V5JLG5B",
+      "display_name": "AVACINCAPTAD PEGOL",
+      "tier": 2
+    },
+    {
+      "key": "K1:TTP8LBP45D",
+      "display_name": "CEFIDEROCOL SULFATE TOSYLATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:U188XYD42P",
+      "display_name": "Moxifloxacin",
+      "tier": 2
+    },
+    {
+      "key": "K1:U202363UOS",
+      "display_name": "Fenofibrate",
+      "tier": 1
+    },
+    {
+      "key": "K1:U3H27498KS",
+      "display_name": "Lamotrigine",
+      "tier": 2
+    },
+    {
+      "key": "K1:U5SFU33XUX",
+      "display_name": "Apadamtase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:U5SYW473RQ",
+      "display_name": "Telmisartan",
+      "tier": 1
+    },
+    {
+      "key": "K1:U68WG3173Y",
+      "display_name": "Carmustine",
+      "tier": 2
+    },
+    {
+      "key": "K1:U6Q8Z01514",
+      "display_name": "Adefovir Dipivoxil",
+      "tier": 2
+    },
+    {
+      "key": "K1:U7S8ZU4L3M",
+      "display_name": "Cetuximab sarotalocan",
+      "tier": 3
+    },
+    {
+      "key": "K1:U863JGG2IA",
+      "display_name": "Brivaracetam",
+      "tier": 2
+    },
+    {
+      "key": "K1:U9JLP7V031",
+      "display_name": "Lebrikizumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:U9JLP7V031#lbkz",
+      "display_name": "Lebrikizumab-Lbkz",
+      "tier": 2
+    },
+    {
+      "key": "K1:UAZ6V7728S",
+      "display_name": "Cinacalcet",
+      "tier": 2
+    },
+    {
+      "key": "K1:UC6VBE7V1Z",
+      "display_name": "Methadone",
+      "tier": 2
+    },
+    {
+      "key": "K1:UCE6F4125H",
+      "display_name": "Vardenafil",
+      "tier": 2
+    },
+    {
+      "key": "K1:UM20QQM95Y",
+      "display_name": "Ifosfamide",
+      "tier": 2
+    },
+    {
+      "key": "K1:UMD7G2653W",
+      "display_name": "Ibandronic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:UOW2C71PG5",
+      "display_name": "Inclisiran",
+      "tier": 1
+    },
+    {
+      "key": "K1:UV63W89SJM",
+      "display_name": "(ACETATO-O)(DODECANOATO-O)CALCIUM",
+      "tier": 2
+    },
+    {
+      "key": "K1:UYB6UOF69L",
+      "display_name": "Maralixibat",
+      "tier": 2
+    },
+    {
+      "key": "K1:UZX80K71OE",
+      "display_name": "Eszopiclone",
+      "tier": 1
+    },
+    {
+      "key": "K1:V7OK6J19HQ",
+      "display_name": "Gadopentetate",
+      "tier": 2
+    },
+    {
+      "key": "K1:V8G4MOF2V9",
+      "display_name": "Deferasirox",
+      "tier": 2
+    },
+    {
+      "key": "K1:V99T50803M",
+      "display_name": "Sunitinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:V9GU1EM8SF",
+      "display_name": "Interferon beta",
+      "tier": 2
+    },
+    {
+      "key": "K1:VB0R961HZT",
+      "display_name": "Prednisone",
+      "tier": 1
+    },
+    {
+      "key": "K1:VC9M78242P",
+      "display_name": "INTERFERON GAMMA-1A",
+      "tier": 3
+    },
+    {
+      "key": "K1:VD2YSN1AFD",
+      "display_name": "Olodaterol",
+      "tier": 2
+    },
+    {
+      "key": "K1:VHD28S0H7F",
+      "display_name": "Mesna free acid",
+      "tier": 1
+    },
+    {
+      "key": "K1:VJT6J7R4TR",
+      "display_name": "Rifampicin",
+      "tier": 2
+    },
+    {
+      "key": "K1:VRN8S9CW5V",
+      "display_name": "Nirsevimab",
+      "tier": 2
+    },
+    {
+      "key": "K1:VRN8S9CW5V#alip",
+      "display_name": "Nirsevimab-Alip",
+      "tier": 2
+    },
+    {
+      "key": "K1:VV3HN9ZPB5",
+      "display_name": "Follitropin alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:VZ8RRZ51VK",
+      "display_name": "Tobramycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:VZI5B1W380",
+      "display_name": "Oxcarbazepine",
+      "tier": 2
+    },
+    {
+      "key": "K1:W4141180YD",
+      "display_name": "Taletrectinib",
+      "tier": 2
+    },
+    {
+      "key": "K1:W6HS99O8ZO",
+      "display_name": "Varenicline",
+      "tier": 2
+    },
+    {
+      "key": "K1:W8O17SJF3T",
+      "display_name": "Memantine",
+      "tier": 1
+    },
+    {
+      "key": "K1:W9WZN9A0GM",
+      "display_name": "Benzoyl Peroxide",
+      "tier": 2
+    },
+    {
+      "key": "K1:WFR23M21IE",
+      "display_name": "Capivasertib",
+      "tier": 1
+    },
+    {
+      "key": "K1:WFW942PR79",
+      "display_name": "Rufinamide",
+      "tier": 2
+    },
+    {
+      "key": "K1:WH7BHQ0RB4",
+      "display_name": "EFANESOCTOCOG ALFA",
+      "tier": 2
+    },
+    {
+      "key": "K1:WHE7A56U7K",
+      "display_name": "Tolterodine",
+      "tier": 2
+    },
+    {
+      "key": "K1:WJ68R08KX9",
+      "display_name": "Travoprost",
+      "tier": 2
+    },
+    {
+      "key": "K1:WOU1621EEG",
+      "display_name": "Fosamprenavir",
+      "tier": 2
+    },
+    {
+      "key": "K1:WP58SVM6R4",
+      "display_name": "Laronidase",
+      "tier": 1
+    },
+    {
+      "key": "K1:WR2TIP26VS",
+      "display_name": "Abacavir",
+      "tier": 2
+    },
+    {
+      "key": "K1:WRE554RFEZ",
+      "display_name": "Rocuronium",
+      "tier": 2
+    },
+    {
+      "key": "K1:WTT295HSY5",
+      "display_name": "Dulaglutide",
+      "tier": 1
+    },
+    {
+      "key": "K1:WYD79216A6",
+      "display_name": "Tenapanor",
+      "tier": 2
+    },
+    {
+      "key": "K1:X1J18R4W8P",
+      "display_name": "Alendronic acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:X4HES1O11F",
+      "display_name": "Aciclovir",
+      "tier": 2
+    },
+    {
+      "key": "K1:X4OV71U42S",
+      "display_name": "Pioglitazone",
+      "tier": 1
+    },
+    {
+      "key": "K1:X4W7ZR7023",
+      "display_name": "Methylprednisolone",
+      "tier": 1
+    },
+    {
+      "key": "K1:X6Q56QN5QC",
+      "display_name": "Hydroxycarbamide",
+      "tier": 2
+    },
+    {
+      "key": "K1:X78UG0A0RN",
+      "display_name": "Dasatinib (anhydrous)",
+      "tier": 1
+    },
+    {
+      "key": "K1:X7OI7JF73P",
+      "display_name": "Indigotindisulfonate",
+      "tier": 2
+    },
+    {
+      "key": "K1:XF417D3PSL",
+      "display_name": "Anhydrous Citric Acid",
+      "tier": 2
+    },
+    {
+      "key": "K1:XRO4566Q4R",
+      "display_name": "Interferon beta-1a",
+      "tier": 2
+    },
+    {
+      "key": "K1:XUL93R30K2",
+      "display_name": "Bosentan Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:XWV9Z12C1C",
+      "display_name": "CALCIUM GLYCEROPHOSPHATE",
+      "tier": 2
+    },
+    {
+      "key": "K1:Y45QSO73OB",
+      "display_name": "Streptomycin",
+      "tier": 2
+    },
+    {
+      "key": "K1:Y5L2157C4J",
+      "display_name": "Tacrolimus Anhydrous",
+      "tier": 1
+    },
+    {
+      "key": "K1:Y64GQ0KC0A",
+      "display_name": "Teprotumumab",
+      "tier": 1
+    },
+    {
+      "key": "K1:Y64GQ0KC0A#trbw",
+      "display_name": "Teprotumumab-Trbw",
+      "tier": 2
+    },
+    {
+      "key": "K1:Y883P1Z2LT",
+      "display_name": "Atovaquone",
+      "tier": 2
+    },
+    {
+      "key": "K1:YG391PK0CC",
+      "display_name": "Zilucoplan",
+      "tier": 2
+    },
+    {
+      "key": "K1:YJO1F9W10R",
+      "display_name": "Betamethasone Phosphate",
+      "tier": 2
+    },
+    {
+      "key": "K1:YKH834O4BH",
+      "display_name": "Epinephrine",
+      "tier": 1
+    },
+    {
+      "key": "K1:YO460OQ37K",
+      "display_name": "Vandetanib",
+      "tier": 1
+    },
+    {
+      "key": "K1:YO7261ME24",
+      "display_name": "Cetirizine",
+      "tier": 2
+    },
+    {
+      "key": "K1:YOP6PX0BAO",
+      "display_name": "Meropenem Anhydrous",
+      "tier": 2
+    },
+    {
+      "key": "K1:YQE403BP4D",
+      "display_name": "Phenobarbital",
+      "tier": 1
+    },
+    {
+      "key": "K1:YSE9PPT4TH",
+      "display_name": "Sodium Hyaluronate",
+      "tier": 1
+    },
+    {
+      "key": "K1:Z633861EIM",
+      "display_name": "Asfotase alfa",
+      "tier": 2
+    },
+    {
+      "key": "K1:Z67X93HJG1",
+      "display_name": "Colistin",
+      "tier": 1
+    },
+    {
+      "key": "K1:Z80293URPV",
+      "display_name": "Ozanimod",
+      "tier": 1
+    },
+    {
+      "key": "K1:Z9K9Y9WMVL",
+      "display_name": "Macitentan",
+      "tier": 1
+    },
+    {
+      "key": "K1:ZH6F1VCV7B",
+      "display_name": "Glycerol phenylbutyrate",
+      "tier": 2
+    },
+    {
+      "key": "K1:ZIF514RVZR",
+      "display_name": "Albumin",
+      "tier": 2
+    },
+    {
+      "key": "K1:ZMZ79891ZH",
+      "display_name": "Methylene Blue Cation",
+      "tier": 1
+    },
+    {
+      "key": "K1:ZS9KD92H6V",
+      "display_name": "Metyrapone",
+      "tier": 1
+    },
+    {
+      "key": "K1:ZY54BP1CK3",
+      "display_name": "Vornorexant",
+      "tier": 3
+    },
+    {
+      "key": "K2:HTQBXNHDCUEHJF-XWLPCZSASA-N",
+      "display_name": "Exenatide",
+      "tier": 1
+    },
+    {
+      "key": "K2:LRBQNJMCXXYXIU-PPKXGCFTSA-N",
+      "display_name": "TANNIC ACID",
+      "tier": 2
+    },
+    {
+      "key": "K2:NAKSIOUBFDBTSW-ITMZJIMRSA-N",
+      "display_name": "Somapacitan",
+      "tier": 1
+    },
+    {
+      "key": "K2:OGWKCGZFUXNPDA-XQKSVPLYSA-N",
+      "display_name": "Vincristine",
+      "tier": 2
+    },
+    {
+      "key": "K2:UGOZVNFCFYTPAZ-IOXYNQHNSA-N",
+      "display_name": "Insulin detemir",
+      "tier": 2
+    },
+    {
+      "key": "K4:chondroitin",
+      "display_name": "Chondroitin",
+      "tier": 1
+    },
+    {
+      "key": "K4:monobasic",
+      "display_name": "Monobasic",
+      "tier": 3
+    }
+  ],
+  "drugcentral_release_date": "2023-11-01",
+  "pmda_pages_whose_only_approval_postdates_the_drugcentral_release": 171
+}

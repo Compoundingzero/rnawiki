@@ -1,0 +1,44 @@
+{
+  "AU": {
+    "dateUsed": "2026-09-06",
+    "datesRecorded": {
+      "2026-09-06": 5812
+    },
+    "register": "the Poisons Standard (SUSMP)"
+  },
+  "CA": {
+    "dateUsed": "2026-09-04",
+    "datesRecorded": {
+      "2026-09-04": 35786
+    },
+    "register": "the Health Canada Drug Product Database"
+  },
+  "EU": {
+    "dateUsed": "2026-09-04",
+    "datesRecorded": {
+      "2026-09-04": 3704
+    },
+    "register": "the EMA register of centrally authorised medicines"
+  },
+  "JP": {
+    "dateUsed": "2026-09-06",
+    "datesRecorded": {
+      "2026-09-06": 6679
+    },
+    "register": "the PMDA List of Approved Products (New Drugs)"
+  },
+  "SG": {
+    "dateUsed": "2026-08-07",
+    "datesRecorded": {
+      "2026-08-07": 58103
+    },
+    "register": "the HSA Listing of Registered Therapeutic Products"
+  },
+  "US": {
+    "dateUsed": "2026-08-28",
+    "datesRecorded": {
+      "2026-08-28": 28390
+    },
+    "register": "Drugs@FDA or the FDA Orange Book"
+  }
+}

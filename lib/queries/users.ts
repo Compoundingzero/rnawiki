@@ -100,6 +100,8 @@ const accountColumns = {
   rejectedEditCount: users.rejectedEditCount,
   noteCount: users.noteCount,
   isAdmin: users.isAdmin,
+  restrictedAt: users.restrictedAt,
+  restrictionReason: users.restrictionReason,
   createdAt: users.createdAt,
 }
 
@@ -195,6 +197,7 @@ export function toCommentUser(user: AccountUser): CommentUser {
     acceptedEditCount: user.acceptedEditCount,
     noteCount: user.noteCount,
     isAdmin: user.isAdmin,
+    ...(user.restrictedAt ? { restrictedAt: user.restrictedAt.toISOString() } : {}),
     joinedDate: user.createdAt.toISOString(),
   }
 }

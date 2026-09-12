@@ -21,6 +21,10 @@ const eslintConfig = [
       // Captured third-party pages, scripts and datasets kept as evidence. They are recorded
       // exactly as fetched, so their style is not ours to correct.
       'data/**',
+      // The Python environment the corpus scripts run in (docs/specs/revamp-2026-09.md). It is
+      // gitignored, and it ships a vendored Playwright driver whose bundled JavaScript is not ours
+      // to lint; without this, `npm run lint` reports two thousand errors in someone else's code.
+      '.venv*/**',
     ],
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
@@ -30,6 +34,28 @@ const eslintConfig = [
       // in their signature even when the body doesn't read it — underscore-prefixed is the
       // project's convention for "intentionally unused".
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    // The corpus document (step 6.1). `/d/*` and `/h/*` are served as plain HTML with no client
+    // router and no React Server Components stream, so both of these rules describe a page this
+    // code is deliberately not: `<Link>` needs the router these documents do not load, and
+    // `next/head` belongs to a page whose `<head>` Next.js writes. Here the document writes its
+    // own head and its links are ordinary navigations. Every other file keeps both rules.
+    files: [
+      'components/document/**/*.tsx',
+      'components/dossier/corpus/**/*.tsx',
+      'components/dossier/v3/**/*.tsx',
+      'lib/dossier-v3/document.tsx',
+      'lib/dossier-v3/goal-document.tsx',
+      'components/hubs/**/*.tsx',
+      'lib/corpus/document.tsx',
+      'lib/document/**/*.tsx',
+      'lib/hubs/document.tsx',
+    ],
+    rules: {
+      '@next/next/no-html-link-for-pages': 'off',
+      '@next/next/no-head-element': 'off',
     },
   },
 ]

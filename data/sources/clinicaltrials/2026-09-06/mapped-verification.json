@@ -1,0 +1,328 @@
+{
+  "schema": "rnawiki-revamp-clinicaltrials-mapped-verification/v1",
+  "checkedAt": "2026-09-06",
+  "aggregatePagesRead": 8663,
+  "mappedPages": 8663,
+  "agreed": {
+    "byOverallStatus": 8663,
+    "byPhase": 8663,
+    "enrolmentMax": 8663,
+    "enrolmentMedian": 8663,
+    "enrolmentMin": 8663,
+    "enrolmentN": 8663,
+    "firstStartDate": 8663,
+    "hasResults": 8663,
+    "lastCompletionDate": 8663,
+    "stoppedTrials": 8663,
+    "trials": 8663
+  },
+  "disagreed": {},
+  "disagreementExamples": {},
+  "topUpStudiesCached": 155645,
+  "completionDateTypeRowsChecked": 326420,
+  "completionDateTypeRowsAgreeing": 326420,
+  "completionDateTypeDisagreements": [],
+  "rawLineSpotChecks": 13,
+  "rawLineSpotChecksMatching": 13,
+  "rawLineSpotCheckDetail": [
+    {
+      "nct": "NCT00685542",
+      "key": "K1:4HU6J11EL5",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2009-12",
+        "hasResults": false,
+        "phases": [
+          "PHASE4"
+        ],
+        "enrollment": 86
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2009-12",
+        "hasResults": false,
+        "phases": [
+          "PHASE4"
+        ],
+        "enrollment": 86
+      }
+    },
+    {
+      "nct": "NCT00355121",
+      "key": "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2009-07",
+        "hasResults": true,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 882
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2009-07",
+        "hasResults": true,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 882
+      }
+    },
+    {
+      "nct": "NCT04271488",
+      "key": "K1:TN7CUD1NGA",
+      "match": true,
+      "raw": {
+        "status": "RECRUITING",
+        "completionDate": "2026-11-30",
+        "hasResults": false,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": 18
+      },
+      "mapped": {
+        "status": "RECRUITING",
+        "completionDate": "2026-11-30",
+        "hasResults": false,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": 18
+      }
+    },
+    {
+      "nct": "NCT00258895",
+      "key": "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2007-04",
+        "hasResults": true,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 649
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2007-04",
+        "hasResults": true,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 649
+      }
+    },
+    {
+      "nct": "NCT00451360",
+      "key": "K1:4HU6J11EL5",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "1997-04",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 500
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "1997-04",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 500
+      }
+    },
+    {
+      "nct": "NCT00445276",
+      "key": "K1:4HU6J11EL5",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2006-09",
+        "hasResults": false,
+        "phases": [
+          "PHASE4"
+        ],
+        "enrollment": 500
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2006-09",
+        "hasResults": false,
+        "phases": [
+          "PHASE4"
+        ],
+        "enrollment": 500
+      }
+    },
+    {
+      "nct": "NCT04165239",
+      "key": "K1:JCU3O35RDS",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2022-05-24",
+        "hasResults": false,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 27
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2022-05-24",
+        "hasResults": false,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 27
+      }
+    },
+    {
+      "nct": "NCT04846036",
+      "key": "K1:JCU3O35RDS",
+      "match": true,
+      "raw": {
+        "status": "SUSPENDED",
+        "completionDate": "2025-12-01",
+        "hasResults": false,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 24
+      },
+      "mapped": {
+        "status": "SUSPENDED",
+        "completionDate": "2025-12-01",
+        "hasResults": false,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": 24
+      }
+    },
+    {
+      "nct": "NCT06451757",
+      "key": "K1:JCU3O35RDS",
+      "match": true,
+      "raw": {
+        "status": "RECRUITING",
+        "completionDate": "2028-09",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 220
+      },
+      "mapped": {
+        "status": "RECRUITING",
+        "completionDate": "2028-09",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 220
+      }
+    },
+    {
+      "nct": "NCT00557219",
+      "key": "K1:97F9DE4CT4",
+      "match": true,
+      "raw": {
+        "status": "TERMINATED",
+        "completionDate": "2015-04",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 60
+      },
+      "mapped": {
+        "status": "TERMINATED",
+        "completionDate": "2015-04",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 60
+      }
+    },
+    {
+      "nct": "NCT00255047",
+      "key": "COMBO:NAME:bordetella pertussis fimbriae 2 3 antigen",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2009-02",
+        "hasResults": true,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 2167
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2009-02",
+        "hasResults": true,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 2167
+      }
+    },
+    {
+      "nct": "NCT02451072",
+      "key": "K1:97F9DE4CT4",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2016-01",
+        "hasResults": false,
+        "phases": [
+          "NA"
+        ],
+        "enrollment": 25
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2016-01",
+        "hasResults": false,
+        "phases": [
+          "NA"
+        ],
+        "enrollment": 25
+      }
+    },
+    {
+      "nct": "NCT01329887",
+      "key": "K1:97F9DE4CT4",
+      "match": true,
+      "raw": {
+        "status": "COMPLETED",
+        "completionDate": "2014-05",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 10
+      },
+      "mapped": {
+        "status": "COMPLETED",
+        "completionDate": "2014-05",
+        "hasResults": false,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": 10
+      }
+    }
+  ]
+}

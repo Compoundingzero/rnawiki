@@ -1,0 +1,422 @@
+Verbatim text of https://www.medicines.org.uk/emc/privacy-notice-and-legal
+Retrieved 2026-09-06 (see requests.log for the exact timestamp, HTTP status and byte count).
+Extracted from the saved HTML at legal/emc-privacy-notice-and-legal.html by scripts/revamp/mhra_emc_extract_terms.py.
+------------------------------------------------------------------------------
+
+Back to top
+
+emc Legal & Privacy Notice
+
+The emc website (and the collation and formation of its content) is owned and operated by Datapharm Ltd.
+
+Use of this site is subject to the following terms and disclaimers ("Terms") and by continuing to use the site you signify your acceptance of these Terms.
+
+Datapharm reserves the right to amend these Terms from time to time and any such amendment will be effective from the date when revised Terms appear on the site.
+
+The material on the site must not be used, reproduced, linked to and/or sold for commercial benefit.
+Datapharm’s decision, on whether it is of commercial benefit, is final.
+
+We reserve the right to restrict access to some or all of the website, at our discretion.
+
+Expand All
+
+Content and site availability disclaimers
+
+Every effort is taken to ensure that the information published on this website is accurate and kept up to date in terms of current medical knowledge. However, whilst we only accept information from respected sources we cannot guarantee that all of the information displayed is accurate or complete, nor can we guarantee that it will be suitable for a user's individual circumstances. This website is therefore provided for information only. It is not intended to replace a consultation with an appropriately qualified medical practitioner.
+
+Datapharm does not accept responsibility for any loss, damage or injury that arises from the use of this website except to the extent that liability cannot be excluded by law.
+
+We make every effort to ensure that this website is available at all times. To achieve this we do the following:
+
+Host the site within a fully managed solution monitored 24 hours a day, 365 days a year
+
+Use industry standard software for the servers and the website
+
+Have well developed security arrangements
+
+Have well developed monitoring, maintenance and repair procedures
+
+In spite of these efforts we cannot guarantee uninterrupted access to this website, or the sites to which it links. We also cannot guarantee that information on this website will display correctly on all types of browser. We accept no responsibility for any damages arising from the loss of access to and use of information or the manner in which such information may be displayed by individual browsers.
+
+Copyright and usage
+
+The material featured on this site is subject to copyright protection unless otherwise indicated.
+
+Allowed use
+
+The copyright protected material may be reproduced for private study or personal use. This is subject to the material being reproduced accurately
+and not being used in a misleading context and emc must always be referenced as the source.
+
+In addition and subject to any restrictions on use and the disclaimers published on this website from time to time
+
+healthcare professionals may use and download any content available on the site for clinical use
+either by themselves or other healthcare professionals and may copy from the site (a) for distribution with related products
+or (b) for supply to members of the general public or other healthcare professionals for information purposes
+provided that in either case the relevant content is reproduced and supplied in their entirety and not in part.
+
+pharmaceutical companies who are subscribers to emc publishing may reproduce their own content for any purpose.
+
+Non-UK organisations who are not members of emc
+
+The information contained on this site is UK regulatory approved information. Any non-UK based organisation or subsidiary who is not an existing emc or Datapharm customer will need to be verified before use will be permitted to ensure the information is not used incorrectly. If Datapharm believes any organisation is using the information incorrectly or without our permission, we reserve the right to block access to the site
+
+Prohibited use
+
+The material on the site must not be used, reproduced, linked to and/or sold for commercial benefit.
+
+You agree not to use the Website:
+
+for any commercial purposes (which includes using the Website to promote or encourage the sale of your goods/services or for inclusion into healthcare and prescribing systems);
+
+to create or populate a database or knowledge bank (electronic or otherwise) that includes material downloaded or otherwise obtained from the Website
+
+to transmit or re-circulate any material obtained from the Website to any third party except where expressly permitted on the Website
+
+to routinely or systematically check/track changes/updates to 3rd party information
+
+to create additional information or summarise content for your own company or on behalf of another company.
+
+These terms apply directly to all organisations in the UK who gain commercially from using the emc websites including but not limited to;
+
+Non emc pharmaceutical customers
+
+Publishers
+
+Contract Research Organisations
+
+Consultancies
+
+Medical Communication agencies
+
+Database providers
+
+Membership bodies
+
+Service providers
+
+Market Intelligence providers
+
+Clinical Trial providers
+
+Law firms
+
+For further information on Datapharm copyright policy, if you require clarification of how you can use the content on this site
+or you would like to enquire about licensing emc content please contact [email protected]
+
+Privacy notice
+
+Who we are
+
+We are Datapharm Limited (“Datapharm”, “us”, “we”, “our”). We are a limited company registered in England and Wales under Registration number 11275607 and we have our registered office at Cassini Court, Randalls Way, Leatherhead, Surrey, United Kingdom, KT22 7TW. We are registered with the UK supervisory authority, Information Commissioners Office (“ICO”) in relation to our processing of personal data under registration number ZA532747.
+
+What we do
+
+We are a medicines information company providing software solutions, insight, and technology enabled evidence generation to the healthcare sector. We are committed to protecting the privacy and security of the Personal Data we process about you.
+
+Controller
+
+Unless we notify you otherwise, we are the controller of the Personal Data we process about you. This means that we decide what Personal Data to collect and how to process it.
+
+Purpose of this privacy notice
+
+The purpose of this privacy notice is to explain what Personal Data we collect about you and how we process it. This privacy notice also explains your rights, so please read it carefully. If you have any questions, you can contact us using the information provided below under the 'How to contact us' section.
+
+Who this privacy notice applies to
+
+This privacy notice applies to you if:
+
+You visit or browse our websites, including where you do not log in, create an account, or submit any information to us.
+
+You purchase goods or services from us.
+
+You enquire about our products and/or services.
+
+You contact our customer service team.
+
+You create an account to use our platforms.
+
+You sign up to receive news from Datapharm or other promotional communications from us.
+
+What Personal Data is
+
+'Personal Data' means any information from which someone can be identified either directly or indirectly. For example, it may include name, address, email address, phone number, credit or debit card number and IP address.
+
+'Special Category Personal Data' is more sensitive Personal Data and includes information revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data for the purposes of uniquely identifying someone, data concerning physical or mental health or data concerning someone's sex life or sexual orientation.
+
+Whilst the intention of our platforms is not to collect special categories of personal data (i.e. information concerning your health), we are mindful of the fact that linking your usage data and profile data — such as medicines saved in "Favourites" on emc — may inadvertently reveal information concerning your health.
+
+What information do we collect
+
+The types of personal data we collect about you will depend on our relationship with you. This includes technical and usage data we collect automatically when you visit our websites, even if you do not log in or provide any information to us directly. The specific data and purposes are set out in the table below under 'Purposes and lawful bases'.
+
+How we collect your Personal Data
+
+We use different methods to collect personal data from and about you, including through:
+
+Direct interactions. You may give us your identity or contact data by registering with one of our platforms, purchasing products or services, or by corresponding with us by post, phone, email or otherwise.
+
+Automated technologies or interactions. As you interact with our websites and platforms, we will automatically collect usage data and technical data about your equipment, browsing actions and patterns. We use this both to keep our websites running and secure - including monitoring performance and detecting misuse or attacks - and, with your consent, for analytics. We collect this information using cookies and similar technologies. Please see our Cookie Notice for further details.
+
+Third parties. We may also collect your Personal Data from third parties such as:
+
+your employer, for the purposes of registering you as the primary contact between your employer and Datapharm when using our platforms;
+
+our analytics providers such as Google, Microsoft Insights and Mixpanel, who are based outside the EU;
+
+reputable companies who provide lead generation contact lists;
+
+others to whom you have provided consent;
+
+publicly available sources such as social media platforms; and
+
+events such as conferences and webinars.
+
+Purposes and Lawful Bases
+
+We will only use your Personal Data when the law allows. Most commonly, we will use your Personal Data in the following circumstances:
+
+Categories of individuals
+Categories of Personal Data
+Purpose of Processing
+Lawful Basis
+
+Pharmaceutical employees, Healthcare Professionals, Patients
+Name, email address
+To send you news and information on products and services where you have requested it or have signed up to marketing.
+Consent
+
+Pharmaceutical employees, Healthcare Professionals
+Name, email address, phone number, company and any other additional information that you may choose to provide us with.
+
+To facilitate events or courses you have registered for, or participated in a survey for research purposes.
+
+Provide you with relevant information about products, services or training
+
+Legitimate Interests or Consent
+
+Registered platform users (Healthcare Professionals, pharmaceutical employees)
+Name, email address, and limited platform usage data used to identify relevant users to approach
+To contact you directly to invite you to take part in voluntary research and give feedback to help us improve our platforms. Participation is optional and you can decline or opt out at any time; we offer an opt-out in our first message. This is research, not marketing.
+Legitimate Interests
+
+Users of our platforms (Pharmaceutical employees, Healthcare Professionals)
+Name, company name, job title, business address, business email address, telephone number, IP address
+
+Maintain our internal records
+
+Create and maintain your customer profile.
+
+Send you essential information required for the day-to-day usage of our software.
+
+Notify you about changes to, and availability of, our services
+
+Enable our suppliers and service providers to carry out certain functions on our behalf, including the delivery of dm+d information
+
+Contract
+
+Legitimate Interests
+
+Users of our platforms (members of the public, also known as Patients)
+Name, address, email address, telephone number, IP address
+
+In order to create and maintain your access to our platform.
+
+Notify you about changes to, and availability of, our services
+
+Legitimate Interests
+
+Pharmaceutical employees, Healthcare Professionals, Patients
+Name, Email address, telephone number and any other information provided when you contact us.
+
+Respond to queries and requests submitted by you
+
+Legitimate Interest
+
+Website visitors, including non-registered members of the public
+Technical Data - IP address (truncated/hashed), device and browser type, usage and page-interaction data, aggregated request patterns
+To monitor the performance, availability and usage of our websites and platforms so that we can confirm the service is functioning correctly and improve it. This is first-party and aggregated and relies on the statistical/audience-measurement exemption under PECR. You can object to this at any time through our cookie banner.
+Legitimate Interest
+
+Website visitors, including non-registered members of the public
+Technical Data - IP address, device and browser characteristics, request and traffic patterns, security event logs
+To protect the security, integrity and availability of our websites - detecting and preventing bots, scraping, credential-stuffing, denial-of-service and other misuse, and identifying use in breach of the prohibited-use terms in our Legal Notice.
+Legitimate Interests (the security element is treated as strictly necessary under PECR)
+
+Pharmaceutical employees, Healthcare Professionals, Patients, website visitors
+Technical Data — address, your login data, browser type and version, time zone and location, browser plug-ins, operating system and platform, and other device technology
+
+To conduct analytics on the use of our platforms and websitesusing third-party analytics tools (including Google, Microsoft and Mixpanel).
+
+Consent
+
+Suppliers
+Name, company name, job title, business address, business email address, telephone number
+To facilitate the contract we have entered into with you to provide Datapharm with goods and services.
+Contract
+
+Customers and potential customers
+Name, email address, records of spoken conversations
+To ensure correct information is collected from calls and people can be active during calls rather than take notes.
+Consent
+
+Disclosure of your Personal Data
+
+There are circumstances where we may wish to disclose or are compelled to disclose your Personal Data to third parties. This will only take place in accordance with the applicable law. These scenarios include disclosure:
+
+to our employees;
+
+to our auditors;
+
+to our third-party suppliers who need it to perform a contracted role — for example, if a pharmaceutical company submits product information via In-Demand, the NHSBSA may need to contact the pharmaceutical company with questions about the data;
+
+to third party service providers and consultants in order to protect the security or integrity of our organisation, including our databases and systems and for business continuity reasons;
+
+to legal advisors who may need to advise us or manage or litigate a claim;
+
+to another legal entity, on a temporary or permanent basis, for the purposes of a joint venture, collaboration, financing, sale, merger, reorganisation, change of legal form, dissolution or similar event — in the case of a merger or sale, your personal data will be permanently transferred to a successor company;
+
+if we believe the law requires it, or in response to any demand by law enforcement authorities in connection with a criminal investigation, or civil or administrative authorities in connection with a pending civil case or administrative investigation;
+
+to Royal National Institute of Blind People (RNIB) to fulfil requests for information to be provided in Braille, audio or large print; and
+
+to any other third party where you have provided your consent.
+
+Datapharm does not sell Personal Data it has gathered about you to third parties.
+
+International transfer of Personal Data
+
+Your Personal Data may be processed outside of the UK. This is because the organisations we use to provide our service to you are based outside the UK.
+
+We have taken appropriate steps to ensure that the Personal Data processed outside the UK has an essentially equivalent level of protection to that guaranteed in the UK. We do this by ensuring that:
+
+Your Personal Data is only processed in a country which the Secretary of State has confirmed has an adequate level of protection (an adequacy regulation), or
+
+We ensure that an appropriate transfer mechanism is in place with the receiving organisation. Where we rely on Standard Contractual Clauses, these are incorporated into our Data Processing Agreements with the relevant suppliers, together with a UK International Data Transfer Addendum (“IDTA”) issued by the Information Commissioner’s Office where required for UK GDPR purposes. We also adopt supplementary technical and organisational measures where necessary to ensure an essentially equivalent level of protection.
+
+How long we keep Personal Data?
+
+We will retain your personal data for as long as is necessary to provide you with our services and for a reasonable period thereafter to enable us to meet our contractual and legal obligations and to deal with complaints and claims.
+
+At the end of the retention period, your personal data will be securely deleted or anonymised, for example by aggregation with other data, so that it can be used in a non-identifiable way for statistical analysis and business planning.
+
+Personal Data that we hold about you as a registered user of one of our systems will be maintained for as long as you are a registered user and may be held for up to seven years after you cease to be a registered user.
+
+Your rights in relation to your Personal Data
+
+Data protection law provides you with certain rights, including the right to: access, rectify, withdraw consent, erase, restrict, transport, and object to the processing of, your Personal Data. You also have the right to lodge a complaint with the relevant data protection authority if you believe your Personal Data is not being processed in accordance with applicable data protection law. Further information about your rights is set out below:
+
+Right to be informed
+
+You have the right to know what personal data we collect about you, how we use it, for what purpose and in accordance with which lawful basis, who we share it with and how long we keep it. We use our privacy notice to explain this.
+
+Right of access (commonly known as a “Subject Access Request”)
+
+You may, where permitted by applicable law, request copies of your Personal Data. If you would like to make a SAR, i.e. a request for copies of the Personal Data we hold about you, you may do so by contacting us at the details set out in the 'How to contact us and our Data Protection Officer' section below. The request should make clear that a SAR is being made. Please quote your name and address. We should be grateful if you would also provide brief details of the information of which you would like a copy or which you would like to be corrected — this helps us to more readily locate your data. We will require proof of your identity before providing you with details of any Personal Data we may hold about you.
+
+Right to rectification
+
+You may request that we rectify any inaccurate and/or complete any incomplete Personal Data.
+
+Right to erasure (commonly known as the right to be forgotten)
+
+You may request that we erase your Personal Data and we will comply, unless there is a lawful reason for not doing so
+
+Right to object to processing
+
+You may, as permitted by applicable law, request that we stop processing your Personal Data. If you object to us using your Personal Data for marketing purposes, we will stop sending you marketing material.
+
+Right to restrict processing
+
+You have the right to restrict our use of your Personal Data.
+
+Right to portability
+
+You have the right to ask us to transfer your Personal Data to another party.
+
+Automated decision making
+
+You have the right not to be subject to a decision based solely on automated processing which will significantly affect you. We do not use automated decision-making.
+
+Right to withdraw consent
+
+You may, as permitted by applicable law, withdraw your consent to the processing of your Personal Data at any time. If you do withdraw your consent, we will no longer process your information for the purpose(s) you originally agreed to, unless we are permitted by law to do so. Such withdrawal will not affect the lawfulness of processing based on your previous consent. Please note that if you withdraw your consent, you may not be able to benefit from certain service features for which the processing of your Personal Data is essential.
+
+Your right to lodge a complaint with the supervisory authority
+
+We suggest that you contact us about any questions or if you have a complaint in relation to how we process your Personal Data. However, you do have the right to contact the relevant supervisory authority directly.
+
+The supervisory authority in the UK is the Information Commissioner’s Office who can be contacted online at:
+
+Contact us | ICO
+
+Or by telephone on 0303 123 1113
+
+How to exercise your rights
+
+You will not usually need to pay a fee to exercise any of the above rights. However, we may charge a reasonable fee if your request is clearly unfounded or excessive. Alternatively, we may refuse to comply with the request in such circumstances.
+
+If you wish to exercise your rights, you may contact us using the details set out below within the section called ‘How to contact us and our Data Protection Officer’. We may need to request specific information from you to confirm your identity before we can process your request. Once in receipt of this, we will process your request without undue delay and within one month. In some cases, such as with complex requests, it may take us longer than this and, if so, we will keep you updated.
+
+How to contact us and our Data Protection Officer
+
+If you wish to contact us in relation to this privacy notice or if you wish to exercise any of your rights outlined above, please contact us as follows:
+
+Datapharm Limited
+
+Cassini Court, Randalls Way
+
+Leatherhead, Surrey
+
+KT22 7TW
+
+United Kingdom
+
+Telephone: +44 1372 371444
+
+We have also appointed a Data Protection Officer ("DPO"). Our DPO is Pete Smith, who can be contacted as follows:
+
+Pete Smith, Data Protection Officer
+
+Datapharm Limited, Cassini Court, Randalls Way
+
+Leatherhead, Surrey, KT22 7TW
+
+Email: [email protected]
+
+Please mark your communications FAO the 'Data Protection Officer'.
+
+Updates to this privacy notice
+
+From time to time, Datapharm may revise this privacy notice. We will notify you of the changes where required by applicable law to do so.
+
+This privacy notice was last updated on 23/07/2026.
+
+You can find previous versions of this notice here
+
+Links policy
+
+Links are provided for information and convenience only. We cannot accept responsibility for the content or policies of any sites linked to, or the information found there. A link does not imply an endorsement of a site; likewise, not linking to a particular site does not imply lack of endorsement.
+
+We reserve the right to withdraw a link or refuse to link to any website without providing an explanation or justification.
+
+Links to this website
+
+We encourage organisations and individuals to create hypertext links to our website for non-commercial use or benefit.
+However, unless you are a subscriber to emc publisher, we require such organisations and individuals to request permission to do so
+via [email protected].
+
+We do request that those linking to our website respect the following conditions:
+
+Links should not be used in a defamatory context
+
+Linked information must not be changed in any way
+
+Linked information from this site should not be displayed in such a way as to appear as advertising or appear alongside advertising
+
+Those creating deep links should be aware that specific page URLs are subject to change without notice
+
+We do not "trade" links - if you chose to create a link to our website, we will not offer to create a reciprocal link.
+
+Datapharm Ltd is a company registered in England and Wales.
+Registered number: 11275607
+Registered office: Cassini Court, Randalls Way, Leatherhead, Surrey, KT22 7TW

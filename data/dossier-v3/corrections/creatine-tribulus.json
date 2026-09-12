@@ -1,0 +1,58 @@
+[
+  {
+    "pageKey": "K1:MU72812GK0",
+    "removeSynonyms": ["Tribulus Terrestris"],
+    "removeRegistryStudies": [
+      "NCT01407445",
+      "NCT01971099",
+      "NCT01975649",
+      "NCT03820453",
+      "NCT06260007"
+    ],
+    "belongsTo": "K1:4X4HLN92OT",
+    "reason": "Tribulus terrestris is a plant, not a name of creatine. The identity stage sent the keyless legacy record 'tribulus-terrestris' to a PubChem name lookup, which returned CID 10125785 (creatine gluconate, a vendor depositor record whose synonym list contains the plant name). The salt-merge rule M-SALT then folded the plant into the creatine page and the name became a synonym of kind 'common'. Five Tribulus trials were carried onto creatine's registry set as stored matches through that name. The synonym and the five studies are removed from the creatine page; they belong to the Tribulus terrestris page.",
+    "evidence": [
+      {
+        "source": "data/corpus-20k/raw/pubchem/name-lookups.ndjson",
+        "query": "Tribulus Terrestris",
+        "cid": 10125785,
+        "inchikey": "MUKYLHIZBOASDM-UHFFFAOYSA-N",
+        "note": "gluconic acid · creatine (creatine gluconate)"
+      },
+      {
+        "source": "data/corpus-20k/identity/decisions.ndjson",
+        "at": "2026-09-04T05:51:45Z",
+        "ruleId": "M-SALT",
+        "key": "K1:MU72812GK0",
+        "sourceRecords": [
+          "chembl:CHEMBL283800",
+          "existing:creatine-monohydrate",
+          "existing:magnesium-creatine",
+          "existing:tribulus-terrestris"
+        ]
+      },
+      {
+        "source": "scripts/corpus-20k/identity/resolve.py",
+        "lines": "795-816, 966-970",
+        "note": "PubChem name lookup on keyless records; M-SALT applied to an inferred structure"
+      },
+      {
+        "source": "scripts/corpus-20k/registry/match.ts",
+        "lines": "157-186, 263-270",
+        "note": "stored legacy slug pairs carried onto the canonical page without re-checking the match key"
+      },
+      {
+        "source": "https://rnawiki.com/d/creatine-monohydrate",
+        "observed": "2026-09-10",
+        "note": "header lists 'Tribulus Terrestris' under other recorded names; ongoing trials list NCT06260007 'Efficacy and Safety Study of Products Based on Tribulus Terrestris, L. in Men With Oligospermia'"
+      },
+      {
+        "source": "clinicaltrials.gov snapshot 2026-09-01",
+        "nct": "NCT06260007",
+        "interventions": ["DRUG Tribulus terrestris", "OTHER Placebo"],
+        "note": "no intervention entry names creatine"
+      }
+    ],
+    "ruleOrClassifierVersion": "identity-correction/v1 (resolve.py pubchem name-lookup + M-SALT)"
+  }
+]

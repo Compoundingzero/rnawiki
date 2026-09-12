@@ -1,0 +1,35 @@
+[2026-09-05T07:41:02Z] attempt 1  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/downloads/withdrawns.csv'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 2s
+[2026-09-05T07:41:04Z] attempt 2  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/downloads/withdrawns.csv'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 4s
+[2026-09-05T07:41:09Z] attempt 3  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/downloads/withdrawns.csv'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 8s
+[2026-09-05T07:41:17Z] attempt 1  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/subpages/drug_info.php?id=100'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 2s
+[2026-09-05T07:41:20Z] attempt 2  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/subpages/drug_info.php?id=100'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 4s
+[2026-09-05T07:41:24Z] attempt 3  curl -sSL 'https://bioinformatics.charite.de/withdrawn_3/subpages/drug_info.php?id=100'  -> 404 288
+        body: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apach
+        backoff 8s
+[2026-09-05T07:41:33Z] attempt 1  curl -sSL 'http://cheminfo.charite.de/withdrawn/'  -> curl: (6) Could not resolve host: cheminfo.charite.de
+000 0
+        body: (no response body - DNS resolution failed, nothing was written)
+        backoff 2s
+[2026-09-05T07:41:35Z] attempt 2  curl -sSL 'http://cheminfo.charite.de/withdrawn/'  -> curl: (6) Could not resolve host: cheminfo.charite.de
+000 0
+        body: (no response body - DNS resolution failed, nothing was written)
+        backoff 4s
+[2026-09-05T07:41:39Z] attempt 3  curl -sSL 'http://cheminfo.charite.de/withdrawn/'  -> curl: (6) Could not resolve host: cheminfo.charite.de
+000 0
+        body: (no response body - DNS resolution failed, nothing was written)
+        backoff 8s
+# dig +short cheminfo.charite.de A  ->
+(empty = no A record)
+# dig +short bioinformatics.charite.de A ->
+s-c02-miph-web1.charite.de.
+141.42.207.109

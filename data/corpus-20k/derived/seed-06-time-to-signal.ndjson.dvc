@@ -1,0 +1,5 @@
+outs:
+- md5: 74b9f02a11e50013fc82b33ca618e667
+  size: 2202
+  hash: md5
+  path: seed-06-time-to-signal.ndjson

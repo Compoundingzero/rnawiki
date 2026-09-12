@@ -1,0 +1,940 @@
+[
+  {
+    "key": "K1:GR0L9S3J0F",
+    "corpus_display_name": "Racepinefrine",
+    "pmda_name": "Adrenaline",
+    "normalised_to": "adrenaline",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:2URQ2N32W3",
+    "corpus_display_name": "Calcium Lactate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:5792C4VMFZ",
+    "corpus_display_name": "Calcium Palmitate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:7UJQ5OPE7D",
+    "corpus_display_name": "Carbonate Ion",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:86117BWO7P",
+    "corpus_display_name": "Calcium Citrate Anhydrous",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:8EKI9QEE2H",
+    "corpus_display_name": "Calcium Iodide",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:97Z1WI3NDX",
+    "corpus_display_name": "Calcium Phosphate, Unspecified Form",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9E7R5L6H31",
+    "corpus_display_name": "Oxalic Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9G34HU7RV0",
+    "corpus_display_name": "Edetic Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:C7X2M0VVNH",
+    "corpus_display_name": "LIME",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E934B3V59H",
+    "corpus_display_name": "Calcium Sulfate Anhydrous",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:H0G9379FGK",
+    "corpus_display_name": "Calcium Carbonate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:HUI2S00793",
+    "corpus_display_name": "CALCIUM POLYSTYRENE SULFONATE",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:K3D86KJ24N",
+    "corpus_display_name": "Undecylenic Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:K4C08XP666",
+    "corpus_display_name": "Tricalcium Phosphate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:L11K75P92J",
+    "corpus_display_name": "Anhydrous Dibasic Calcium Phosphate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:M4I0D6VV5M",
+    "corpus_display_name": "Calcium Chloride",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:N7CIZ75ZPN",
+    "corpus_display_name": "Arsenic Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:O3B55K4YKI",
+    "corpus_display_name": "Calcium Fluoride",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:OFM21057LP",
+    "corpus_display_name": "Calcium Chloride Anhydrous",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:PF5DZW74VN",
+    "corpus_display_name": "Calcium Hydroxide",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:PQ6CK8PD0R",
+    "corpus_display_name": "Ascorbic acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:QCD9FA9PLW",
+    "corpus_display_name": "Calcium Monocitrate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:QLZ991V4A2",
+    "corpus_display_name": "Glucaric Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:R4R8J0Q44B",
+    "corpus_display_name": "Gluconic Acid",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:SQE6VB453K",
+    "corpus_display_name": "CALCIUM GLUCONATE",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:WAT0DDB505",
+    "corpus_display_name": "Calcium Sulfate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:Y882YXF34X",
+    "corpus_display_name": "Calcium Acetate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "UNKEYED:existing:calcium-potassium-phosphate-citrate",
+    "corpus_display_name": "Calcium Potassium Phosphate Citrate",
+    "pmda_name": "Calcium gluconate hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:2URQ2N32W3",
+    "corpus_display_name": "Calcium Lactate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:5792C4VMFZ",
+    "corpus_display_name": "Calcium Palmitate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:7UJQ5OPE7D",
+    "corpus_display_name": "Carbonate Ion",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:86117BWO7P",
+    "corpus_display_name": "Calcium Citrate Anhydrous",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:8EKI9QEE2H",
+    "corpus_display_name": "Calcium Iodide",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:97Z1WI3NDX",
+    "corpus_display_name": "Calcium Phosphate, Unspecified Form",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9E7R5L6H31",
+    "corpus_display_name": "Oxalic Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9G34HU7RV0",
+    "corpus_display_name": "Edetic Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:C7X2M0VVNH",
+    "corpus_display_name": "LIME",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E934B3V59H",
+    "corpus_display_name": "Calcium Sulfate Anhydrous",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:H0G9379FGK",
+    "corpus_display_name": "Calcium Carbonate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:HUI2S00793",
+    "corpus_display_name": "CALCIUM POLYSTYRENE SULFONATE",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:K3D86KJ24N",
+    "corpus_display_name": "Undecylenic Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:K4C08XP666",
+    "corpus_display_name": "Tricalcium Phosphate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:L11K75P92J",
+    "corpus_display_name": "Anhydrous Dibasic Calcium Phosphate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:M4I0D6VV5M",
+    "corpus_display_name": "Calcium Chloride",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:N7CIZ75ZPN",
+    "corpus_display_name": "Arsenic Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:O3B55K4YKI",
+    "corpus_display_name": "Calcium Fluoride",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:OFM21057LP",
+    "corpus_display_name": "Calcium Chloride Anhydrous",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:PF5DZW74VN",
+    "corpus_display_name": "Calcium Hydroxide",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:PQ6CK8PD0R",
+    "corpus_display_name": "Ascorbic acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:QCD9FA9PLW",
+    "corpus_display_name": "Calcium Monocitrate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:QLZ991V4A2",
+    "corpus_display_name": "Glucaric Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:R4R8J0Q44B",
+    "corpus_display_name": "Gluconic Acid",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:SQE6VB453K",
+    "corpus_display_name": "CALCIUM GLUCONATE",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:WAT0DDB505",
+    "corpus_display_name": "Calcium Sulfate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:Y882YXF34X",
+    "corpus_display_name": "Calcium Acetate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "UNKEYED:existing:calcium-potassium-phosphate-citrate",
+    "corpus_display_name": "Calcium Potassium Phosphate Citrate",
+    "pmda_name": "Calcium chloride hydrate",
+    "normalised_to": "calcium",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:GR0L9S3J0F",
+    "corpus_display_name": "Racepinefrine",
+    "pmda_name": "Adrenaline bitartrate",
+    "normalised_to": "adrenaline",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ET54W9J4U2",
+    "corpus_display_name": "Methylprednisolone aceponate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "normalised_to": "methylprednisolone",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:QI846AL4NC",
+    "corpus_display_name": "Dexivacaine",
+    "pmda_name": "Mepivacaine hydrochloride",
+    "normalised_to": "mepivacaine",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:R6D2UI4FLS",
+    "corpus_display_name": "Enclomifene",
+    "pmda_name": "Clomiphene citrate",
+    "normalised_to": "clomiphene",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
+    "corpus_display_name": "PENICILLIN G PROCAINE",
+    "pmda_name": "Benzylpenicillin benzathine hydrate",
+    "normalised_to": "benzylpenicillin",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K2:XBPUDTAATCFDRE-UHFFFAOYSA-N",
+    "corpus_display_name": "TALC ANHYDROUS",
+    "pmda_name": "Talc",
+    "normalised_to": "talc",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:0309P36Q66",
+    "corpus_display_name": "Ferric Fluoride",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:0I2XIN602U",
+    "corpus_display_name": "Ferric Chloride Hexahydrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:1K09F3G675",
+    "corpus_display_name": "Ferric Oxide Red",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:2UA751211N",
+    "corpus_display_name": "FERRIC HYDROXIDE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:3HWS7HF5XD",
+    "corpus_display_name": "FERRIC SULFATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:403J23EMFA",
+    "corpus_display_name": "Sodium feredetate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:434C3EI07T",
+    "corpus_display_name": "FERRIC SODIUM CITRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:63G354M39Z",
+    "corpus_display_name": "Ferric Citrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:87PZU03K0K",
+    "corpus_display_name": "Ferric Oxyhydroxide",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9RDO128EH7",
+    "corpus_display_name": "Ferric Bromide",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:CC9149U2QX",
+    "corpus_display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:N6BAA189V1",
+    "corpus_display_name": "Ferric Phosphate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:Q91187K011",
+    "corpus_display_name": "Tetraferric Tricitrate Decahydrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:U38V3ZVV3V",
+    "corpus_display_name": "Ferric Chloride",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:UVP74NG1C5",
+    "corpus_display_name": "FERRIC AMMONIUM CITRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:W108RK810P",
+    "corpus_display_name": "FERRIC GLUCONATE TRIHYDRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K4:ferric ammonium",
+    "corpus_display_name": "Ferric Ammonium",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E026V904RL",
+    "corpus_display_name": "LANINAMIVIR OCTANOATE",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "normalised_to": "laninamivir",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E026V904RL",
+    "corpus_display_name": "LANINAMIVIR OCTANOATE",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "normalised_to": "laninamivir",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:TYR2U59WMA",
+    "corpus_display_name": "Amitriptylinoxide",
+    "pmda_name": "Amitriptyline hydrochloride",
+    "normalised_to": "amitriptyline",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:RJ00KV3VTG",
+    "corpus_display_name": "Radium Ra-223 Dichloride",
+    "pmda_name": "Radium （223Ra） dichloride",
+    "normalised_to": "radium 223ra",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ET54W9J4U2",
+    "corpus_display_name": "Methylprednisolone aceponate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "normalised_to": "methylprednisolone",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:0309P36Q66",
+    "corpus_display_name": "Ferric Fluoride",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:0I2XIN602U",
+    "corpus_display_name": "Ferric Chloride Hexahydrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:1K09F3G675",
+    "corpus_display_name": "Ferric Oxide Red",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:2UA751211N",
+    "corpus_display_name": "FERRIC HYDROXIDE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:3HWS7HF5XD",
+    "corpus_display_name": "FERRIC SULFATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:403J23EMFA",
+    "corpus_display_name": "Sodium feredetate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:434C3EI07T",
+    "corpus_display_name": "FERRIC SODIUM CITRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:63G354M39Z",
+    "corpus_display_name": "Ferric Citrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:87PZU03K0K",
+    "corpus_display_name": "Ferric Oxyhydroxide",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:9RDO128EH7",
+    "corpus_display_name": "Ferric Bromide",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:CC9149U2QX",
+    "corpus_display_name": "SODIUM FERRIC GLUCONATE COMPLEX",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:N6BAA189V1",
+    "corpus_display_name": "Ferric Phosphate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:Q91187K011",
+    "corpus_display_name": "Tetraferric Tricitrate Decahydrate",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:U38V3ZVV3V",
+    "corpus_display_name": "Ferric Chloride",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:UVP74NG1C5",
+    "corpus_display_name": "FERRIC AMMONIUM CITRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:W108RK810P",
+    "corpus_display_name": "FERRIC GLUCONATE TRIHYDRATE",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K4:ferric ammonium",
+    "corpus_display_name": "Ferric Ammonium",
+    "pmda_name": "Ferric citrate hydrate",
+    "normalised_to": "ferric",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E026V904RL",
+    "corpus_display_name": "LANINAMIVIR OCTANOATE",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "normalised_to": "laninamivir",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:4J9FJ0HL51",
+    "corpus_display_name": "Potassium Phosphate, Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "normalised_to": "monobasic",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:KH7I04HPUU",
+    "corpus_display_name": "Sodium Phosphate, Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "normalised_to": "monobasic",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ET54W9J4U2",
+    "corpus_display_name": "Methylprednisolone aceponate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "normalised_to": "methylprednisolone",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E934B3V59H",
+    "corpus_display_name": "Calcium Sulfate Anhydrous",
+    "pmda_name": "Precipitated calcium carbonate",
+    "normalised_to": "precipitated",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ET54W9J4U2",
+    "corpus_display_name": "Methylprednisolone aceponate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "normalised_to": "methylprednisolone",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "COMBO:{K1:4Z8Y51M438,K1:Q42T66VG0C}",
+    "corpus_display_name": "PENICILLIN G PROCAINE",
+    "pmda_name": "Benzylpenicillin potassium",
+    "normalised_to": "benzylpenicillin",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:SY7Q814VUP",
+    "corpus_display_name": "CALCIUM",
+    "pmda_name": "oral",
+    "normalised_to": "oral",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:SY7Q814VUP",
+    "corpus_display_name": "CALCIUM",
+    "pmda_name": "oral",
+    "normalised_to": "oral",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ZUP3LSD0DO",
+    "corpus_display_name": "ROXATIDINE ACETATE",
+    "pmda_name": "Roxatidine acetate hydrochloride",
+    "normalised_to": "roxatidine",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:E026V904RL",
+    "corpus_display_name": "LANINAMIVIR OCTANOATE",
+    "pmda_name": "Laninamivir octanoate hydrate",
+    "normalised_to": "laninamivir",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:0HU2UI27HF",
+    "corpus_display_name": "Propionyl-L-Carnitine",
+    "pmda_name": "Levocarnitine chloride",
+    "normalised_to": "levocarnitine",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:8QTV3DTT8W",
+    "corpus_display_name": "Chondroitin Sulfate Sodium (BOVINE)",
+    "pmda_name": "chondroitin sulfate sodium",
+    "normalised_to": "chondroitin",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K2:OAEOAAHCJGWJIC-CEVJMMQXSA-N",
+    "corpus_display_name": "CHONDROITIN SULFATE",
+    "pmda_name": "chondroitin sulfate sodium",
+    "normalised_to": "chondroitin",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:4J9FJ0HL51",
+    "corpus_display_name": "Potassium Phosphate, Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "normalised_to": "monobasic",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:KH7I04HPUU",
+    "corpus_display_name": "Sodium Phosphate, Monobasic",
+    "pmda_name": "Monobasic sodium phosphate monohydrate",
+    "normalised_to": "monobasic",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:ET54W9J4U2",
+    "corpus_display_name": "Methylprednisolone aceponate",
+    "pmda_name": "Methylprednisolone sodium succinate",
+    "normalised_to": "methylprednisolone",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:1GA689N629",
+    "corpus_display_name": "Aluminum Carbonate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:34S289N54E",
+    "corpus_display_name": "Aluminum Sulfate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:3CYT62D3GA",
+    "corpus_display_name": "Aluminum Chloride",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:5QB0T2IUN0",
+    "corpus_display_name": "Aluminum Hydroxide",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:80EHD8I43D",
+    "corpus_display_name": "Aluminum Acetate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:F92V3S521O",
+    "corpus_display_name": "Aluminum Phosphate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:HUO854648Y",
+    "corpus_display_name": "Aluminum Nitrate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:I7T908772F",
+    "corpus_display_name": "ALUMINUM SULFATE ANHYDROUS",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:IY20HBK5LK",
+    "corpus_display_name": "Aluminum Bromide",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:L903Z8J9VR",
+    "corpus_display_name": "Aluminum Iodide",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:LIF1N9568Y",
+    "corpus_display_name": "ALUMINUM CHLORIDE ANHYDROUS",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:LMI26O6933",
+    "corpus_display_name": "Alumina",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:RFJ7QXF345",
+    "corpus_display_name": "Aluminum Magnesium Hydroxide Carbonate",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K1:Z77H3IKW94",
+    "corpus_display_name": "Aluminum Fluoride",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  },
+  {
+    "key": "K2:TWNQGVIAIRXVLR-UHFFFAOYSA-N",
+    "corpus_display_name": "ALUMINIUM OXIDE",
+    "pmda_name": "Aluminum potassium sulfate",
+    "normalised_to": "aluminum",
+    "reason": "the page name matches only after its own salt or counter-ion was stripped, so this is a different substance sharing a normalised name, not a form of the substance PMDA approved"
+  }
+]

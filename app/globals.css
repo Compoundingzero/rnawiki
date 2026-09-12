@@ -1,5 +1,19 @@
 @import 'tailwindcss';
 
+/*
+ * What Tailwind reads to find class names.
+ *
+ * Its automatic detection walks the project from this file upwards, skipping what `.gitignore`
+ * skips. `data/` is version-controlled measurement output — Parquet, NDJSON and the rendered page
+ * text, seventeen gigabytes of it in a working checkout — and it holds no class name. Scanning it
+ * read the whole tree into the build worker, which the operating system then killed: `next build`
+ * ended with `Next.js build worker exited with code: null and signal: SIGKILL` and no error.
+ * Excluding it is the documented way to bound the scan; every directory that does hold markup is
+ * still detected automatically.
+ */
+@source not '../data';
+@source not '../.dvc';
+
 /* Shared colour and type tokens. */
 
 @theme {

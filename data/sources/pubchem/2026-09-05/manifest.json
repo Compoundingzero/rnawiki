@@ -1,0 +1,217 @@
+{
+  "api_response_cache": {
+    "raw/api/cid/": {
+      "bytes": 7168600,
+      "files": 128,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "per_file_digests": "raw/api/FILE-DIGESTS.tsv",
+      "retrieved_at": "2026-09-05T07:37:06+00:00",
+      "sha256_of_sorted_file_digests": "371f6490a312275f89678cd5127209cee6ebc1dd1f7d934cd0c376377235d96c",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/property/SMILES,ConnectivitySMILES,InChI,InChIKey,MolecularWeight,XLogP,TPSA/JSON (POST, up to 100 CIDs per request)"
+    },
+    "raw/api/inchikey/": {
+      "bytes": 10897924,
+      "files": 200,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "per_file_digests": "raw/api/FILE-DIGESTS.tsv",
+      "retrieved_at": "2026-09-05T07:37:06+00:00",
+      "sha256_of_sorted_file_digests": "614de7d50c9ba9803692d3e5b2a61f2cddb864165fe04cfc2aad5d8925aa3638",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/property/SMILES,ConnectivitySMILES,InChI,InChIKey,MolecularWeight,XLogP,TPSA/JSON (POST, up to 100 InChIKeys per request)"
+    },
+    "raw/api/unii/": {
+      "bytes": 33064,
+      "files": 26,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "per_file_digests": "raw/api/FILE-DIGESTS.tsv",
+      "retrieved_at": "2026-09-05T07:37:06+00:00",
+      "sha256_of_sorted_file_digests": "eeac8ad4ffd8d95fa0ef64518c7f29cbf46d600d1adf2540f0902bbfb37f3f0d",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/property/SMILES,ConnectivitySMILES,InChI,InChIKey,MolecularWeight,XLogP,TPSA/JSON (POST, one UNII code per request)"
+    }
+  },
+  "files": {
+    "legal/docs-downloads.html": {
+      "bytes": 6766,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:33:47+00:00",
+      "sha256": "cbc2e57509841e8501761c0e3a825aa05f40bf455dfe25644aa5dd85d4300082",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/docs/downloads"
+    },
+    "legal/docs-downloads.md": {
+      "bytes": 7411,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:35:53+00:00",
+      "sha256": "8dc3c24ad664403fdd440b813705a4f7e9a12e980554e8309370a64b81441f26",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/pcfe/docs/markdown/downloads.md"
+    },
+    "legal/docs-dynamic-request-throttling.md": {
+      "bytes": 5298,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:36:03+00:00",
+      "sha256": "0407d00a4daa17934003a38298a7211c086ff660565a74a529596f592abc10aa",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/pcfe/docs/markdown/dynamic-request-throttling.md"
+    },
+    "legal/docs-programmatic-access.html": {
+      "bytes": 6557,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:33:47+00:00",
+      "sha256": "399ad22f8ac957ffd376389d12461d55e55b0e033d268265a3870487e9ff023d",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access"
+    },
+    "legal/docs-programmatic-access.md": {
+      "bytes": 4745,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:35:49+00:00",
+      "sha256": "97850a9d0fd8f3d7651b3a6b0b6739cfaa0752985da77f11de826f91e2399982",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/pcfe/docs/markdown/programmatic-access.md"
+    },
+    "legal/docs-pug-rest.md": {
+      "bytes": 63197,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:35:50+00:00",
+      "sha256": "c7b560d9034067215f31bc488c9a0c9501d5950706dd2b55906bda86820f7f0b",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/pcfe/docs/markdown/pug-rest.md"
+    },
+    "legal/ftp-README-Extras.txt": {
+      "bytes": 9215,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:35:22+00:00",
+      "sha256": "25cb8d5b4774b5be54bba8f9ddc91c1d7578afd7e9167c5ab3f6e77b05a1dbc4",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/README-Extras"
+    },
+    "legal/ftp-pubchem-README.txt": {
+      "bytes": 2245,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:34:52+00:00",
+      "sha256": "1e6b69ec566f1d5e76a0ab43d979a6b58129090d269ecbaea6ffb5d4aaf855cf",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/README"
+    },
+    "legal/ncbi-policies.html": {
+      "bytes": 38936,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:33:48+00:00",
+      "sha256": "8ad8f6f186ca51ec73a5fb8935ecfa17b8cbaad300b7025b381898ab72621869",
+      "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/"
+    },
+    "legal/robots-ftp-ncbi.txt": {
+      "bytes": 26,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:33:46+00:00",
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+      "url": "https://ftp.ncbi.nlm.nih.gov/robots.txt"
+    },
+    "legal/robots-pubchem.txt": {
+      "bytes": 10636,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "legal and reference document read before the first data request",
+      "retrieved_at": "2026-09-05T06:33:03+00:00",
+      "sha256": "0bd74ac4b3b142bb52f6be18ec125a3d154848fda80bd50d0c2a13fcd526dc94",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/robots.txt"
+    },
+    "raw/CID-Identifiers.tsv.gz": {
+      "bytes": 98179955,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "bulk: CID to third-party identifiers",
+      "publisher_md5": "5f50e7ebe1603eb1e0c10bb35ce0541a",
+      "publisher_md5_verified": true,
+      "retrieved_at": "2026-09-05T06:39:10+00:00",
+      "sha256": "abe9d08948914eea4c79aaa15dacc6b130e21f5f8a742958ce0a5e78f9085e0d",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Identifiers.tsv.gz"
+    },
+    "raw/CID-Identifiers.tsv.gz.md5": {
+      "bytes": 57,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "bulk: CID to third-party identifiers",
+      "retrieved_at": "2026-09-05T06:39:10+00:00",
+      "sha256": "f167c3fd555c80aa7d39529e3197f8bbd03a72f630066d041e90a24a838a59e0",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Identifiers.tsv.gz.md5"
+    },
+    "raw/CID-Synonym-filtered.gz": {
+      "bytes": 968614055,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "bulk: CID to every associated name",
+      "publisher_md5": "8af3470e5566c8876d2947bc34e64d50",
+      "publisher_md5_verified": true,
+      "retrieved_at": "2026-09-05T07:29:56+00:00",
+      "sha256": "b47e2b88865a0ea874607c2d25e137603c6ef184c82ab74753364b6cf21bfe4a",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Synonym-filtered.gz"
+    },
+    "raw/CID-Synonym-filtered.gz.md5": {
+      "bytes": 58,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "publisher checksum",
+      "retrieved_at": "2026-09-05T07:09:49+00:00",
+      "sha256": "db1df544579efa24c5a121a2799cf8d475313eb45b7792910c2d33f3055d2b33",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Synonym-filtered.gz.md5"
+    },
+    "raw/_ftp-extras-listing.html": {
+      "bytes": 4667,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "bulk directory listing with published file sizes",
+      "retrieved_at": "2026-09-05T06:35:02+00:00",
+      "sha256": "47ef8f88f0b27d54518a0c70a0502e47db8251705e76dd3ea6dd0e4b421c1082",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/"
+    },
+    "raw/api/FILE-DIGESTS.tsv": {
+      "bytes": 39999,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "SHA256 of every cached API response, one per line",
+      "retrieved_at": "2026-09-05T07:37:06+00:00",
+      "sha256": "e536963c156f2d8c0366e90bff95d9fbbd8cd8c25a3cea59803213a09aaffe0a",
+      "url": "computed locally from the cached PUG REST responses"
+    },
+    "raw/derived/name-cid-synonyms.tsv": {
+      "bytes": 37851,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "PubChem synonyms equal to a normalised corpus name",
+      "retrieved_at": "2026-09-05T07:34:10+00:00",
+      "sha256": "c27308b5eb460afd20d1e0bb6e92af7578f142c3c357d48ff7f84d108eeb3c88",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Synonym-filtered.gz"
+    },
+    "raw/derived/unii-cid-synonyms.tsv": {
+      "bytes": 8176,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "UNII codes published as PubChem synonyms, restricted to UNIIs the corpus holds",
+      "retrieved_at": "2026-09-05T07:34:10+00:00",
+      "sha256": "5006df5671bb1bc446908df3080b3d1d9508da430a37cfc406a32bbdd44df4fa",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Synonym-filtered.gz"
+    },
+    "raw/derived/unii-cid.tsv": {
+      "bytes": 278973,
+      "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+      "note": "rows of the bulk identifier table whose identifier is a UNII held by the corpus",
+      "retrieved_at": "2026-09-05T06:39:19+00:00",
+      "sha256": "901d7f0c8a20cb1e8be28dc89b08d6afcdc417ed81e36eb12ba9617db92b0783",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-Identifiers.tsv.gz"
+    }
+  },
+  "licence": "Public domain / no restrictions. NCBI FTP README: 'NCBI itself places no restrictions on the use or distribution of the data contained therein.' NCBI Policies and Disclaimers: information created by or for the US government is within the public domain.",
+  "licence_evidence": [
+    "data/sources/pubchem/2026-09-05/legal/ftp-pubchem-README.txt",
+    "data/sources/pubchem/2026-09-05/legal/ncbi-policies.html",
+    "data/sources/pubchem/2026-09-05/legal/docs-downloads.md",
+    "data/sources/pubchem/2026-09-05/legal/docs-programmatic-access.md"
+  ],
+  "not_downloaded": {
+    "CID-InChI-Key.gz": {
+      "bytes": 7366109392,
+      "checked_at": "2026-09-05T06:39:11+00:00",
+      "gigabytes": 7.37,
+      "reason": "Archive exceeds the 5 GB download ceiling for this run. The smaller bulk form that answers the same question is the PUG REST inchikey batch POST (100 InChIKeys per request), which returns CID plus every property needed and transfers about four orders of magnitude less data.",
+      "url": "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/Extras/CID-InChI-Key.gz"
+    }
+  },
+  "retrieval_date": "2026-09-05",
+  "retrieved_by": "scripts/revamp/pubchem_fetch.py",
+  "source": "PubChem",
+  "usage_policy": "<= 5 requests/second (PubChem programmatic-access USAGE POLICY). No API keys are offered."
+}

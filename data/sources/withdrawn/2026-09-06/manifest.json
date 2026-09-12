@@ -1,0 +1,160 @@
+{
+  "source": "withdrawn",
+  "sourceName": "WITHDRAWN / WITHDRAWN 2.0 database (Charite, Structural Bioinformatics Group, AG Preissner)",
+  "attemptDate": "2026-09-06",
+  "attemptDateUtc": "2026-09-05",
+  "status": "BLOCKED-WITH-EVIDENCE",
+  "dataFilesRetrieved": 0,
+  "dataBytesRetrieved": 0,
+  "note": "No WITHDRAWN record was retrieved and none is mapped. Every file listed here is a legal, licence or retry-evidence capture, not source data.",
+  "licence": {
+    "databaseContents": "Not established. No licence, terms-of-use or copyright grant for the database contents is published on any page of either version. Checked and captured: v1 index, help/FAQ, links/download and contact pages; v2 index, FAQ, contact and footer; the Structural Bioinformatics Group homepage. The v1 download page offers the SDF files with no stated terms and its only legal statement is a disclaimer about external websites.",
+    "associatedPublications": "CC BY-NC 4.0. Both Nucleic Acids Research papers (NAR 2016;44(D1):D1080 and NAR 2024;52(D1):D1503) are Open Access under the Creative Commons Attribution-NonCommercial licence, https://creativecommons.org/licenses/by-nc/4.0/, which permits non-commercial re-use only.",
+    "verdict": "Unusable for rnawiki under operating rule 8 on two independent grounds: the terms of the database contents cannot be found, and the only licence attaching to the work is non-commercial while rnawiki.com is a commercial site."
+  },
+  "robotsTxt": [
+    {
+      "host": "bioinformatics.charite.de",
+      "path": "legal/robots-bioinformatics.txt",
+      "status": 200,
+      "verdict": "no Disallow rule covers /withdrawn or /withdrawn_3; robots did not block retrieval"
+    },
+    {
+      "host": "tox.charite.de",
+      "path": "legal/robots-tox.txt",
+      "status": 404,
+      "verdict": "no robots.txt published; robots did not block retrieval"
+    }
+  ],
+  "availability": {
+    "v2": "Every path under https://bioinformatics.charite.de/withdrawn_3/ returns HTTP 404, including the bulk CSV named in the paper's Data Availability statement.",
+    "v1": "cheminfo.charite.de has no DNS A record.",
+    "relocationCandidatesTried": [
+      "https://tox.charite.de/withdrawn/",
+      "https://tox.charite.de/withdrawn_3/",
+      "https://tox-new.charite.de/withdrawn/"
+    ],
+    "internetArchive": "Four v1 bulk SDF files are preserved and reachable (withdrawn_all.sdf 628,870 bytes; withdrawn_withdrawn.sdf 244,969; withdrawn_discontinued.sdf 324,993; withdrawn_ema.sdf 60,967), plus roughly 500 v2 drug_info.php pages. Indexed in legal/cdx-cheminfo.txt and legal/cdx-withdrawn3.txt. Deliberately not retrieved: the licence bar is independent of availability."
+  },
+  "files": [
+    {
+      "path": "legal/cdx-cheminfo.txt",
+      "url": "https://web.archive.org/cdx/search/cdx?url=cheminfo.charite.de/withdrawn*&output=text&fl=timestamp,original,statuscode,mimetype,length&collapse=urlkey&limit=400",
+      "retrievedUtc": "2026-09-05T16:05:00Z",
+      "bytes": 16007,
+      "sha256": "d78975b301b8dfe94346532cf54ed814e8e3a0ba796ec076fcf9e2119eba0c02"
+    },
+    {
+      "path": "legal/cdx-withdrawn3.txt",
+      "url": "https://web.archive.org/cdx/search/cdx?url=bioinformatics.charite.de/withdrawn_3*&output=text&fl=timestamp,original,statuscode,mimetype,length&collapse=urlkey&limit=400",
+      "retrievedUtc": "2026-09-05T16:05:00Z",
+      "bytes": 41006,
+      "sha256": "8f80a68d7321b019752e5af4fc08d4ced6208cfa7ee949dbb760d821edebb233"
+    },
+    {
+      "path": "legal/probe-bioinformatics.charite.de_withdrawn_3_downloads_withdrawns.csv.html",
+      "url": "https://bioinformatics.charite.de/withdrawn/3/downloads/withdrawns.csv",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/probe-bioinformatics.charite.de_withdrawn_3_index.php.html",
+      "url": "https://bioinformatics.charite.de/withdrawn/3/index.php",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 288,
+      "sha256": "12b6a32f6d93d126836c7d4f1a26c203ef08ce9faacd90f5293c7f8d248362e8"
+    },
+    {
+      "path": "legal/probe-tox-new.charite.de_withdrawn_.html",
+      "url": "https://tox-new.charite.de/withdrawn/",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 277,
+      "sha256": "a8a0501fd56653800d85c3341e8b0f8de0a61e92fbd46a6957cd4d45fa7e05bf"
+    },
+    {
+      "path": "legal/probe-tox.charite.de_withdrawn_.html",
+      "url": "https://tox.charite.de/withdrawn/",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 277,
+      "sha256": "a8a0501fd56653800d85c3341e8b0f8de0a61e92fbd46a6957cd4d45fa7e05bf"
+    },
+    {
+      "path": "legal/probe-tox.charite.de_withdrawn_3_.html",
+      "url": "https://tox.charite.de/withdrawn/3/",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 277,
+      "sha256": "a8a0501fd56653800d85c3341e8b0f8de0a61e92fbd46a6957cd4d45fa7e05bf"
+    },
+    {
+      "path": "legal/robots-bioinformatics.txt",
+      "url": "https://bioinformatics.charite.de/robots.txt",
+      "retrievedUtc": "2026-09-05T16:02:15Z",
+      "bytes": 303,
+      "sha256": "b22adda5fc717f58b6c8d06339069c37800d3a0ac7a449bdbe46812655742940"
+    },
+    {
+      "path": "legal/robots-tox.txt",
+      "url": "https://tox.charite.de/robots.txt",
+      "retrievedUtc": "2026-09-05T16:02:55Z",
+      "bytes": 277,
+      "sha256": "a8a0501fd56653800d85c3341e8b0f8de0a61e92fbd46a6957cd4d45fa7e05bf"
+    },
+    {
+      "path": "legal/v1-contact.html",
+      "url": "https://web.archive.org/web/20160201191755id_/http://cheminfo.charite.de/withdrawn/contact.html",
+      "retrievedUtc": "2026-09-05T16:04:29Z",
+      "bytes": 8674,
+      "sha256": "b05d602b92294befa0b72d9f3f58a4491bdb269608fdd1c522a9166ffb690e63"
+    },
+    {
+      "path": "legal/v1-help_faq.html",
+      "url": "https://web.archive.org/web/20160201191805id_/http://cheminfo.charite.de/withdrawn/help_faq.html",
+      "retrievedUtc": "2026-09-05T16:04:27Z",
+      "bytes": 21092,
+      "sha256": "6b172e5261d2066041c1f00f7d8e9a668f63cac47a01e421d9b2b2641d601359"
+    },
+    {
+      "path": "legal/v1-index.html",
+      "url": "https://web.archive.org/web/20160201211957id_/http://cheminfo.charite.de/withdrawn/index.html",
+      "retrievedUtc": "2026-09-05T16:04:24Z",
+      "bytes": 16157,
+      "sha256": "9abcce4d24661835bfbe78f00340be3e930dd06ab2146792bbbf76f139f87d30"
+    },
+    {
+      "path": "legal/v1-links.html",
+      "url": "https://web.archive.org/web/20160201191810id_/http://cheminfo.charite.de/withdrawn/links.html",
+      "retrievedUtc": "2026-09-05T16:04:31Z",
+      "bytes": 7788,
+      "sha256": "6713c0c980a6cc1eb5da6f7718d4665bad506af2a62690020db7f4401107e5ce"
+    },
+    {
+      "path": "legal/v1-statistics.html",
+      "url": "https://web.archive.org/web/20160201191820id_/http://cheminfo.charite.de/withdrawn/statistics.html",
+      "retrievedUtc": "2026-09-05T16:04:35Z",
+      "bytes": 5927,
+      "sha256": "4534d1beba686644347b01caf8686612dbeecef85eb0477c04993ccf14ce317a"
+    },
+    {
+      "path": "requests.log",
+      "url": "(local evidence file produced by this run)",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 2538,
+      "sha256": "f7db224e50c5fe627a00f577e7ae2bbcd5cae130622d86c06e895dff81652810"
+    },
+    {
+      "path": "requests.log.curlerr",
+      "url": "(local evidence file produced by this run)",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retry-evidence.txt",
+      "url": "(local evidence file produced by this run)",
+      "retrievedUtc": "2026-09-05T16:14:09Z",
+      "bytes": 3224,
+      "sha256": "73db91a2ebd31ec4bffdc309a60c4fc65e95a7f447e8796752122e0bab44eed9"
+    }
+  ]
+}

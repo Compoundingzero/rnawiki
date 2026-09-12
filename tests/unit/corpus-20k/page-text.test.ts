@@ -171,47 +171,75 @@ describe('CLINICAL bodies state the page’s own values and its own limits', () 
     studiesWithPostedResults: 6,
   })
 
-  it('quotes the label statement and states only the jurisdictions that recorded a status', () => {
+  it('quotes the label statement and states no register status beside it', () => {
+    // §13(1): the regulatory summary paragraph is retired. It read "SG not found; US approved (…);
+    // UK not cleared; curatedMarketingStatusNote …" — two absences and a stored field name, inside
+    // an answer about a label's indication. Register status belongs to the registration block.
     const b = body(
       bundle({ fields: { indication: INDICATION, regulatoryStatus: REGISTERS } }),
       question({ block: 'indication', template: 'indication' }),
     )
     expect(b.paragraphs[0]).toContain('"indicated for chronic asthma"')
     expect(b.paragraphs[0]).toContain('indications and usage')
-    expect(b.paragraphs[1]).toBe('US approved (NDA012345, 2026-09-04).')
-  })
-
-  it('renders the register statuses as rows and names no never-cleared jurisdiction', () => {
-    const b = body(
-      bundle({ fields: { regulatoryStatus: REGISTERS } }),
-      question({ block: 'regulatory-only', template: 'regulatory-only' }),
-    )
-    expect(b.paragraphs[0]).toContain('US approved (NDA012345, 2026-09-04)')
-    // No paragraph 2: counting the silent registers was the same sentence on a sixth of the corpus.
     expect(b.paragraphs).toHaveLength(1)
-    expect(b.rows).toEqual([
-      { label: 'EU', value: 'consulted, no status recorded' },
-      { label: 'CA', value: 'consulted, no status recorded' },
-      {
-        label: 'US',
-        identifier: 'NDA012345',
-        value: 'approved · Drugs@FDA · application NDA012345: Prescription · 2026-09-04',
-      },
-    ])
-    // JP was never cleared for this corpus; that fact lives on /definitions, never in a body.
-    expect(JSON.stringify(b)).not.toContain('JP')
   })
 
-  it('states how many registered studies posted no result', () => {
+  it('states the trials that posted no result under the trials question, as a row', () => {
+    // §13(7): a statement carrying one value is data, and the row says the whole of it.
+    // §14(4): the row belongs to the question about the trials, not to the question about what
+    // the label indicates. The label block writes it no longer.
+    const label = body(
+      bundle({ fields: { indication: INDICATION, trialHistory: HISTORY } }),
+      question({ block: 'indication', template: 'indication' }),
+    )
+    expect(label.paragraphs).toHaveLength(1)
+    expect(label.facts).toEqual([])
+
+    const trials = body(
+      bundle({ fields: { trialHistory: HISTORY } }),
+      question({ block: 'trial-history', template: 'trial-history' }),
+    )
+    expect(trials.facts).toContainEqual({
+      label: 'Registered studies posting no result',
+      value: '12 of 18',
+    })
+  })
+
+  it('builds no body for the retired register blocks (§15 item 4)', () => {
+    /*
+     * §14(2) took the register application rows out of every question block and §14(3) fixed the
+     * status word; the value list survived as this block's whole answer — "US approved
+     * (2026-09-04)" — and on a page whose only recorded approval is one jurisdiction's that is one
+     * register's line standing in the position of an answer. §15(4) removes it: the registration
+     * block states each register's status once, with its date, and a stored row from an earlier
+     * load builds nothing here, so no heading is written over it.
+     */
+    for (const template of ['regulatory-only', 'jurisdiction'] as const) {
+      const b = body(
+        bundle({ fields: { regulatoryStatus: REGISTERS } }),
+        question({ block: template, template }),
+      )
+      expect(b.paragraphs).toEqual([])
+      expect(b.facts).toEqual([])
+      expect(b.rows).toEqual([])
+    }
+  })
+
+  it('states how many registered studies posted no result, as the block\u2019s own value', () => {
     const b = body(
       bundle({ fields: { trialHistory: HISTORY } }),
       question({ block: 'trial-history', template: 'trial-history' }),
     )
     expect(b.paragraphs[0]).toContain('18 registered studies of Theophylline')
-    expect(b.paragraphs[1]).toContain('12 of 18 posted no result')
+    // §13(7), §14(4): one ratio is a row under the heading, not a clause in a sentence.
+    expect(b.facts).toContainEqual({
+      label: 'Registered studies posting no result',
+      value: '12 of 18',
+    })
+    expect(b.paragraphs.join(' ')).not.toContain('12 of 18 posted no result')
   })
 
-  it('never writes a caveat that would read the same on another page', () => {
+  it('never writes an answer that would read the same on another page', () => {
     const other = bundle({
       displayName: 'Salbutamol',
       fields: {
@@ -227,7 +255,7 @@ describe('CLINICAL bodies state the page’s own values and its own limits', () 
       question({ block: 'indication', template: 'indication' }),
     )
     const b = body(other, question({ block: 'indication', template: 'indication' }))
-    expect(a.paragraphs[1]).not.toBe(b.paragraphs[1])
+    expect(a.paragraphs[0]).not.toBe(b.paragraphs[0])
   })
 })
 

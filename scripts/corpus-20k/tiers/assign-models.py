@@ -548,6 +548,23 @@ with open(D("data", "corpus-20k", "raw", "ema", "Medicine.csv"), encoding="utf-8
             if single_substance and status:
                 ema_page_status[i].add((status, number))
 
+# docs/specs/phase4-generators.md §19 item 1: a homeopathic product is neither a label nor an
+# approval. The Drug Product Database says which of its drug codes are homeopathic in its own
+# QRYM_SCHEDULE table, whose schedule value for those products is the word HOMEOPATHIC — the class
+# Health Canada issues a DIN-HM under. (No product number in the four extracts prints an HM prefix:
+# 58,087 rows carry an eight-digit DIN or "Not Applicable", and the 5,571 homeopathic drug codes
+# are identified by the schedule value alone.) A row on such a code is not an approval: it neither
+# makes a page CLINICAL nor counts as a register's remaining entry against the withdrawal rule.
+hc_homeopathic_codes = set()
+for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*", "schedule*.txt")):
+    with open(path, encoding="latin-1", newline="") as fh:
+        for row in csv.reader(fh):
+            if len(row) >= 2 and row[0].strip() and row[1].strip().upper() == "HOMEOPATHIC":
+                hc_homeopathic_codes.add(row[0].strip())
+print(f"      Health Canada DPD drug codes whose schedule is HOMEOPATHIC: "
+      f"{len(hc_homeopathic_codes)}", flush=True)
+hc_homeopathic_rows_skipped = 0
+
 hc_status_by_code = defaultdict(set)
 for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*", "status*.txt")):
     with open(path, encoding="latin-1", newline="") as fh:
@@ -570,6 +587,9 @@ for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*
             statuses = hc_status_by_code.get(code)
             if not statuses:
                 continue
+            if code in hc_homeopathic_codes:
+                hc_homeopathic_rows_skipped += 1
+                continue
             raw_name = row[2].strip()
             base = re.sub(r"\s*\([^)]*\)\s*$", "", raw_name)
             idxs = match(names=[base, raw_name])
@@ -589,18 +609,69 @@ for path in glob.glob(D("data", "corpus-20k", "raw", "health-canada", "allfiles*
                         hc_page_status[i].add((s, code))
 
 print("[8/9] openFDA label product types", flush=True)
+# docs/specs/phase4-generators.md §15(3): CLINICAL requires a register approval. A DailyMed SPL is
+# a label, not an approval: an unapproved drug, a homeopathic product and a cosmetic-adjacent OTC
+# product all carry one. The register's own mark of an approval on a label is the application
+# number openFDA records beside it (an NDA, ANDA or BLA, or the OTC monograph part the product is
+# marketed under), so the label ground stands only where the SPL carries one. The set ids that do
+# are read from the pass-1 label index, which is the same bulk export the sections index was built
+# from; without that file the rule cannot be applied and the run stops rather than assigning the
+# model by the old ground.
+LABEL_INDEX = D("data", "sources", "openfda-label", "2026-09-05", "parsed", "label-index.parquet")
+if not os.path.exists(LABEL_INDEX):
+    raise SystemExit(
+        f"{LABEL_INDEX} is missing; it carries the application number per SPL set id, which "
+        "docs/specs/phase4-generators.md §15(3) requires before a label can make a page CLINICAL"
+    )
+import pyarrow.parquet as _pq  # noqa: E402  (only this step needs it)
+
+_label_index = _pq.read_table(LABEL_INDEX, columns=["set_id", "application_number"]).to_pydict()
+SET_IDS_WITH_APPLICATION = {
+    sid
+    for sid, apps in zip(_label_index["set_id"], _label_index["application_number"])
+    if sid and any(str(a).strip() for a in (apps or []))
+}
+del _label_index
+print(f"      SPL set ids carrying an application number: {len(SET_IDS_WITH_APPLICATION)}",
+      flush=True)
+
+# §19 item 1: the SPLs `scripts/revamp/openfda_label_map.py` refuses — homeopathic and
+# anthroposophic products, [HPUS] ingredients, potency-notation product names, unapproved NDC
+# marketing categories — are refused here too, so a label that never reaches a page cannot make one
+# CLINICAL by another route. The file is the mapping's own record of what it excluded and why.
+EXCLUDED_SET_IDS_FILE = D("data", "sources", "openfda-label", "2026-09-05", "parsed",
+                          "excluded-set-ids.json")
+if not os.path.exists(EXCLUDED_SET_IDS_FILE):
+    raise SystemExit(
+        f"{EXCLUDED_SET_IDS_FILE} is missing; it names the SPLs the label mapping refuses, which "
+        "docs/specs/phase4-generators.md §19 item 1 requires this ground to refuse as well. Run "
+        "scripts/revamp/openfda_label_map.py first."
+    )
+EXCLUDED_SET_IDS = json.load(open(EXCLUDED_SET_IDS_FILE, encoding="utf-8"))["reasons"]
+print(f"      SPL set ids the label mapping refuses: {len(EXCLUDED_SET_IDS)}", flush=True)
+
 si = json.load(open(I("label-sections-index.json"), encoding="utf-8"))
 otc_pages = 0
+otc_labels_without_application = 0
+otc_labels_excluded_by_mapping = 0
 for e in si["entries"]:
     if int(e.get("declared") or 0) != 1:
         continue
     ptypes = {str(p).upper() for p in (e.get("productTypes") or [])}
     if "HUMAN OTC DRUG" not in ptypes:
         continue
+    if e.get("setId") in EXCLUDED_SET_IDS:
+        otc_labels_excluded_by_mapping += 1
+        continue
+    if e.get("setId") not in SET_IDS_WITH_APPLICATION:
+        otc_labels_without_application += 1
+        continue
     idxs = match(names=e.get("names") or [])
     for i in idxs:
         otc_pages += 1
-        add(i, "CLINICAL", "otc-label", "openFDA label product type HUMAN OTC DRUG")
+        add(i, "CLINICAL", "otc-label",
+            "openFDA label product type HUMAN OTC DRUG, marketed under an application recorded by "
+            "openFDA")
 del si
 
 class_map = {}
@@ -746,7 +817,7 @@ counts = {"LONGEVITY": 0, "CLINICAL": 0, "DEVELOPMENT": 0}
 per_reason = defaultdict(int)
 withdrawn_total = 0
 withdrawn_with_reason = 0
-out_path = os.path.join(OUT_DIR, "model-assignment.ndjson")
+out_path = os.environ.get("MODEL_OUT_FILE") or os.path.join(OUT_DIR, "model-assignment.ndjson")
 with open(out_path, "w", encoding="utf-8") as out:
     for i, rec in enumerate(records):
         effective = reasons[i]
@@ -809,6 +880,24 @@ summary = {
             "cohortArmCodesSeen": len(observed)},
     "registryAgeingTermPages": lex_pages,
     "pathwayPages": len(pathway_pages),
+    "otcLabelGround": {
+        "pagesWithTheGround": otc_pages,
+        "labelsRefusedForCarryingNoApplicationNumber": otc_labels_without_application,
+        "labelsRefusedByTheLabelMapping": otc_labels_excluded_by_mapping,
+        "rule": ("docs/specs/phase4-generators.md §15(3): a DailyMed SPL with no openFDA "
+                 "application number is a label, not a register approval, and does not make a "
+                 "page CLINICAL. §19(1): an SPL the label mapping refuses — homeopathic, "
+                 "anthroposophic, [HPUS], potency-notation or an unapproved NDC marketing "
+                 "category — is refused here too"),
+    },
+    "healthCanadaHomeopathic": {
+        "drugCodesWhoseScheduleIsHomeopathic": len(hc_homeopathic_codes),
+        "ingredientRowsSkipped": hc_homeopathic_rows_skipped,
+        "rule": ("docs/specs/phase4-generators.md §19(1): a Health Canada DPD row whose product "
+                 "class is homeopathic (the DIN-HM class, which the extract records as the "
+                 "QRYM_SCHEDULE value HOMEOPATHIC) is not an approval: it makes no page CLINICAL "
+                 "and is not a remaining register entry for the withdrawal rule"),
+    },
     "withdrawn": {"total": withdrawn_total, "withStatedReason": withdrawn_with_reason,
                   "withoutStatedReason": withdrawn_total - withdrawn_with_reason,
                   "pagesWithARemainingActiveRegisterEntry": len(withdrawn_live_registers),

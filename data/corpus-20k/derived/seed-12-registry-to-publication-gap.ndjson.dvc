@@ -1,0 +1,5 @@
+outs:
+- md5: c1f5ed1e37e61259ab657b29544a79c2
+  size: 17459876
+  hash: md5
+  path: seed-12-registry-to-publication-gap.ndjson

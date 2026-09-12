@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Page Not Found</title>
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    ::-moz-selection {
+      background: #a9b3c6;
+      text-shadow: none;
+    }
+    ::selection {
+      background: #a9b3c6;
+      text-shadow: none;
+    }
+    html {
+      background: #c0bab6 url('/nginxError/desert.jpg') no-repeat fixed top center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      height: 100%;
+    }
+    body {
+      margin: 0 auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      text-align: center;
+      color: #333;
+    }
+    h1 {
+      font-size: 35px;
+    }
+    p {
+      margin: 1em 0 0;
+    }
+    .container {
+      width: 380px;
+      max-width: 380px;
+      margin: 0 auto;
+      font-size: 20px;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Not Found <span>:(</span></h1>
+  <p>Sorry, but the page you were trying to view does not exist.</p>
+  <p>This could be the result of either a mistyped address or an out-of-date link.</p>
+</div>
+</body>
+</html>

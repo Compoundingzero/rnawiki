@@ -90,7 +90,7 @@ hubs. Those omissions are recorded below rather than represented as completed wo
 
 ### Added: public discovery, trust and social surfaces
 
-- `app/editorial-policy/page.tsx` — a public trust page grounded in the existing publication
+- `app/privacy/page.tsx` — a public trust page grounded in the existing publication
   model.
 - `app/llms.txt/route.ts` — visible plain-text discovery and citation guidance; it is documented as
   optional discovery, not a ranking requirement.
@@ -137,7 +137,7 @@ hubs. Those omissions are recorded below rather than represented as completed wo
 - `app/api/programme-verdicts/[id]/publish/route.ts` — schedules the eligible-publication IndexNow
   re-query after a newly committed, non-idempotent publication without changing the response.
 - `app/u/[handle]/page.tsx` — unique metadata, empty-profile noindex and eligible ProfilePage graph.
-- `components/MedicineDossierV2.tsx` — breadcrumbs, trust strip, stable answer anchors, exact adjacent
+- `the medicine page (components/dossier/v4/)` — breadcrumbs, trust strip, stable answer anchors, exact adjacent
   source lists, source anchors and safe server-rendered evidence text.
 - `components/dossier/DossierHeader.tsx` and `components/dossier/TenSecondAnswer.tsx` — extracted,
   server-rendered medicine identity and ten-second answer surfaces; the latter owns the stable
