@@ -392,6 +392,121 @@ export interface QueueFilters {
   limit?: number
 }
 
+/**
+ * The filter clauses, built once and shared by the listing, the count and the per-medicine grouping.
+ *
+ * The default is every state a reviewer could act on. `published` and `superseded` are the two that
+ * are finished, and a queue that included them would grow without bound and never shorten.
+ */
+function queueWhere(filters: QueueFilters) {
+  return [
+    filters.slug ? eq(pageStatementRevisions.slug, filters.slug) : undefined,
+    filters.statementKey
+      ? eq(pageStatementRevisions.statementKey, filters.statementKey)
+      : undefined,
+    filters.changeCategory
+      ? eq(pageStatementRevisions.changeCategory, filters.changeCategory)
+      : undefined,
+    filters.riskClass ? eq(pageStatementRevisions.riskClass, filters.riskClass) : undefined,
+    filters.status
+      ? eq(pageStatementRevisions.status, filters.status)
+      : inArray(pageStatementRevisions.status, [
+          'submitted',
+          'open',
+          'changes_requested',
+          'safety_hold',
+        ]),
+  ].filter((clause) => clause !== undefined)
+}
+
+/** How many items match, for the pager and for the "n items across m medicines" line. */
+export async function countPageStatementProposals(filters: QueueFilters = {}): Promise<number> {
+  const rows = await db
+    .select({ total: sql<number>`count(*)::int` })
+    .from(pageStatementRevisions)
+    .where(and(...queueWhere(filters)))
+  return rows[0]?.total ?? 0
+}
+
+export interface PageStatementDrugGroup {
+  slug: string
+  medicineName: string
+  /** Items on this medicine waiting for a reviewer. */
+  openItems: number
+  /** Distinct sentences those items touch. Two items on one sentence is a different situation. */
+  statementsTouched: number
+  /** The most serious risk class among them, which is what decides where the medicine sorts. */
+  highestRisk: PageStatementRiskClass
+  /** When the oldest of them arrived, so nothing sits unlooked-at indefinitely. */
+  oldestCreatedAt: string
+}
+
+/**
+ * The queue, one row per medicine rather than one row per item.
+ *
+ * An item-granular queue is right for reviewing and wrong for reading: ten thousand medicines with a
+ * handful of open items each is a list nobody can navigate, and the items on one medicine are the
+ * ones most likely to interact — two proposals on the same page, sometimes on the same sentence.
+ * Grouping by medicine puts those together and makes the list as long as the number of medicines
+ * with work outstanding, not the number of items.
+ *
+ * Ordered by the most serious thing on the medicine, then by how long the oldest item has waited.
+ * Risk first because a safety hold outranks a wording fix however long the wording fix has queued;
+ * age second because nothing should be able to sit forever behind a stream of newer, riskier work.
+ */
+export async function listPageStatementDrugGroups(
+  filters: QueueFilters = {},
+  page: { limit?: number; offset?: number } = {},
+): Promise<PageStatementDrugGroup[]> {
+  const limit = Math.min(200, Math.max(1, page.limit ?? 25))
+  const offset = Math.max(0, page.offset ?? 0)
+  const rows = await db
+    .select({
+      slug: pageStatementRevisions.slug,
+      medicineName: drugs.name,
+      openItems: sql<number>`count(*)::int`,
+      statementsTouched: sql<number>`count(distinct ${pageStatementRevisions.statementKey})::int`,
+      /*
+       * The risk classes are a PostgreSQL enum, and enum comparison follows the order the type was
+       * declared in rather than alphabetical order. `PAGE_STATEMENT_RISK_CLASSES` runs
+       * `copy_only`, `scientific_meaning`, `high_risk` — least serious first — so the most serious
+       * value on a medicine is `max`, and `min` would quietly return the opposite.
+       */
+      highestRisk: sql<PageStatementRiskClass>`max(${pageStatementRevisions.riskClass})`,
+      oldestCreatedAt: sql<Date>`min(${pageStatementRevisions.createdAt})`,
+    })
+    .from(pageStatementRevisions)
+    .leftJoin(drugs, eq(drugs.id, pageStatementRevisions.medicineId))
+    .where(and(...queueWhere(filters)))
+    .groupBy(pageStatementRevisions.slug, drugs.name)
+    .orderBy(
+      // Most serious first, then longest-waiting first.
+      sql`max(${pageStatementRevisions.riskClass}) desc`,
+      sql`min(${pageStatementRevisions.createdAt}) asc`,
+    )
+    .limit(limit)
+    .offset(offset)
+
+  return rows.map((row) => ({
+    slug: row.slug,
+    medicineName: row.medicineName ?? row.slug,
+    openItems: row.openItems,
+    statementsTouched: row.statementsTouched,
+    highestRisk: row.highestRisk,
+    oldestCreatedAt: new Date(row.oldestCreatedAt).toISOString(),
+  }))
+}
+
+/** How many medicines have work outstanding, for the pager over the grouped queue. */
+export async function countPageStatementDrugGroups(filters: QueueFilters = {}): Promise<number> {
+  const rows = await db
+    .select({ slug: pageStatementRevisions.slug })
+    .from(pageStatementRevisions)
+    .where(and(...queueWhere(filters)))
+    .groupBy(pageStatementRevisions.slug)
+  return rows.length
+}
+
 export async function listPageStatementProposals(
   filters: QueueFilters = {},
 ): Promise<PageStatementProposalView[]> {

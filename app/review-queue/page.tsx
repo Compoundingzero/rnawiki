@@ -45,10 +45,17 @@ import { TIER_LABEL } from '@/lib/trust'
 import type { Revision } from '@/lib/types'
 import { canReviewLegacyIdentityCorrection } from '@/lib/legacy-revision-review'
 import { currentPageStatements } from '@/lib/page-statements/current'
-import { isPageStatementKey, type PageStatementKey } from '@/lib/page-statements/types'
+import {
+  isPageStatementKey,
+  RISK_CLASS_LABELS,
+  type PageStatementKey,
+} from '@/lib/page-statements/types'
 import { loadDossierV4Inputs } from '@/lib/dossier-v4/load'
 import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
 import {
+  countPageStatementDrugGroups,
+  countPageStatementProposals,
+  listPageStatementDrugGroups,
   listPageStatementHistory,
   listPageStatementProposals,
   listPageStatementPublicationEvents,
@@ -67,6 +74,14 @@ import { SourceRefreshAuthoringPanel } from './SourceRefreshAuthoringPanel'
 export const dynamic = 'force-dynamic'
 
 const PAGE_SIZE = 50
+/*
+ * The item queue is grouped by medicine, and this is how many medicines a page of it shows.
+ *
+ * Smaller than the merged queue's page on purpose: each row stands for several items and is read
+ * rather than scanned, and a reviewer choosing which medicine to open is making one decision, not
+ * fifty. The pager below it is what makes the whole thing survive a queue of thousands.
+ */
+const STATEMENT_GROUP_PAGE_SIZE = 20
 const MAX_MERGED_PAGES = 20
 const REVIEW_STATUS_FILTERS: Array<{ value: ContributionReviewStatus | null; label: string }> = [
   { value: null, label: 'Open work' },
@@ -85,6 +100,21 @@ function queueHref(status: ContributionReviewStatus | null, page = 1): string {
   if (page > 1) query.set('page', String(page))
   const suffix = query.toString()
   return suffix ? `/review-queue?${suffix}` : '/review-queue'
+}
+
+/**
+ * A page of the grouped item queue.
+ *
+ * `items` rather than `page` so that paging through the medicines with items does not also page the
+ * merged queue above them; the two lists are different lengths and a reader moving through one
+ * should not silently move through the other.
+ */
+function itemQueueHref(itemsPage: number, medicine?: string): string {
+  const query = new URLSearchParams()
+  if (itemsPage > 1) query.set('items', String(itemsPage))
+  if (medicine) query.set('medicine', medicine)
+  const suffix = query.toString()
+  return `${suffix ? `/review-queue?${suffix}` : '/review-queue'}#sentence-queue`
 }
 
 async function loadAuthorHandles(userIds: string[]): Promise<Map<string, string>> {
@@ -984,6 +1014,17 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
     )
   }
 
+  /*
+   * The item queue's own pager and filter. `medicine` narrows it to one slug, which is the same
+   * filter the per-medicine workspace applies, reached from the grouped list rather than from a
+   * control on the medicine's own page.
+   */
+  const rawItemsPage = Array.isArray(params.items) ? params.items[0] : params.items
+  const parsedItemsPage = Number.parseInt(rawItemsPage ?? '1', 10)
+  const itemsPage = Number.isFinite(parsedItemsPage) ? Math.max(1, parsedItemsPage) : 1
+  const rawMedicine = Array.isArray(params.medicine) ? params.medicine[0] : params.medicine
+  const medicineFilter = rawMedicine?.trim() ? rawMedicine.trim() : undefined
+
   const rawPage = Array.isArray(params.page) ? params.page[0] : params.page
   const parsedPage = Number.parseInt(rawPage ?? '1', 10)
   const page = Number.isFinite(parsedPage) ? Math.min(MAX_MERGED_PAGES, Math.max(1, parsedPage)) : 1
@@ -1023,6 +1064,25 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
       ? listCanonicalQueueCandidates({ limit: windowSize, offset: 0 })
       : Promise.resolve({ candidates: [], total: 0 }),
   ])
+
+  /*
+   * The sentence-level queue, grouped by medicine.
+   *
+   * Every other list on this page is one row per submission. This one is one row per medicine, with
+   * the number of sentences under review on it, because that is the unit a reviewer picks up: the
+   * items on one medicine share its record, its sources and often its sentence, and reviewing them
+   * apart is how two people approve contradictory wordings on the same page in the same hour.
+   */
+  const statementFilters = medicineFilter ? { slug: medicineFilter } : {}
+  const [statementGroups, statementMedicines, statementItems] = await Promise.all([
+    listPageStatementDrugGroups(statementFilters, {
+      limit: STATEMENT_GROUP_PAGE_SIZE,
+      offset: (itemsPage - 1) * STATEMENT_GROUP_PAGE_SIZE,
+    }),
+    countPageStatementDrugGroups(statementFilters),
+    countPageStatementProposals(statementFilters),
+  ])
+  const statementLastPage = Math.max(1, Math.ceil(statementMedicines / STATEMENT_GROUP_PAGE_SIZE))
 
   const candidateRevisionIds = await loadCandidateRevisionIds(
     contributions.proposals.map((proposal) => proposal.id),
@@ -1215,6 +1275,147 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
             )}
           </div>
         )}
+
+        {/*
+          Sentence-level review, grouped by medicine.
+
+          This is the only place on the site that lists it. There is no control on a medicine page:
+          a reader came to read about a medicine, and a page that asks them to adjudicate its wording
+          in the same breath has changed what it is. The footer's "Review and improve" link is the
+          one way in, for everybody, from everywhere.
+        */}
+        <section aria-labelledby="sentence-queue-heading" className="space-y-4" id="sentence-queue">
+          <div className="space-y-2">
+            <h2
+              className="text-xl font-extrabold tracking-tight text-[#1D1D1F]"
+              id="sentence-queue-heading"
+            >
+              Sentences waiting for review
+            </h2>
+            <p className="max-w-2xl text-xs leading-6 text-[#6E6E73]">
+              One row per medicine. Each holds the sentences on that medicine&rsquo;s page that
+              somebody has proposed a change to, and they are listed together because two changes to
+              one page are far more likely to affect each other than two changes to different ones.
+              Three people have to approve the same exact wording before it becomes what the page
+              says.
+            </p>
+            <p className="text-[11px] font-semibold tabular-nums text-[#6E6E73]">
+              {statementItems === 0
+                ? medicineFilter
+                  ? 'No sentences on this medicine are waiting.'
+                  : 'No sentences are waiting.'
+                : `${statementItems.toLocaleString('en-GB')} ${
+                    statementItems === 1 ? 'sentence' : 'sentences'
+                  } across ${statementMedicines.toLocaleString('en-GB')} ${
+                    statementMedicines === 1 ? 'medicine' : 'medicines'
+                  }`}
+            </p>
+            {medicineFilter && (
+              <p className="text-[11px] font-semibold text-[#6E6E73]">
+                Filtered to <span className="font-bold text-[#1D1D1F]">{medicineFilter}</span>.{' '}
+                <Link className="font-bold text-[#0071E3] hover:underline" href={itemQueueHref(1)}>
+                  Show every medicine
+                </Link>
+              </p>
+            )}
+          </div>
+
+          {statementGroups.length === 0 ? (
+            <div className="rounded-3xl border border-black/[0.08] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-8">
+              <p className="text-xs leading-6 text-[#6E6E73] sm:text-sm">
+                Nothing here at the moment. A sentence enters this queue when somebody proposes a
+                different wording for it on a medicine page.
+              </p>
+            </div>
+          ) : (
+            <ol className="space-y-3" aria-label="Medicines with sentences under review">
+              {statementGroups.map((group) => (
+                <li key={group.slug}>
+                  <div className="rounded-3xl border border-black/[0.08] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-5">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <h3 className="text-sm font-bold text-[#1D1D1F]">
+                        <Link
+                          className="hover:text-[#0071E3] hover:underline"
+                          href={`/review-queue?slug=${encodeURIComponent(group.slug)}`}
+                        >
+                          {group.medicineName}
+                        </Link>
+                      </h3>
+                      <QueueBadge>{RISK_CLASS_LABELS[group.highestRisk]}</QueueBadge>
+                    </div>
+                    <p className="mt-1 text-[11px] tabular-nums text-[#6E6E73]">
+                      {group.openItems} {group.openItems === 1 ? 'proposal' : 'proposals'} on{' '}
+                      {group.statementsTouched}{' '}
+                      {group.statementsTouched === 1 ? 'sentence' : 'sentences'} · oldest arrived{' '}
+                      {group.oldestCreatedAt.slice(0, 10)}
+                    </p>
+                    {group.openItems > group.statementsTouched && (
+                      <p className="mt-1 text-[11px] leading-5 text-[#6E6E73]">
+                        More proposals than sentences, so at least one sentence has competing
+                        wordings. Each is reviewed and approved on its own.
+                      </p>
+                    )}
+                    <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] font-bold">
+                      <Link
+                        className="text-[#0071E3] hover:underline"
+                        href={`/review-queue?slug=${encodeURIComponent(group.slug)}`}
+                      >
+                        Open the sentences
+                      </Link>
+                      <Link
+                        className="text-[#6E6E73] hover:text-[#0071E3] hover:underline"
+                        href={`/d/${encodeURIComponent(group.slug)}`}
+                      >
+                        Read the page first
+                      </Link>
+                      {!medicineFilter && (
+                        <Link
+                          className="text-[#6E6E73] hover:text-[#0071E3] hover:underline"
+                          href={itemQueueHref(1, group.slug)}
+                        >
+                          Show only this medicine
+                        </Link>
+                      )}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+
+          {statementLastPage > 1 && (
+            <nav
+              aria-label="Sentence queue pages"
+              className="flex items-center justify-between gap-3 text-[11px] font-bold"
+            >
+              {itemsPage > 1 ? (
+                <Link
+                  className="inline-flex min-h-11 items-center text-[#0071E3] hover:underline"
+                  href={itemQueueHref(itemsPage - 1, medicineFilter)}
+                  rel="prev"
+                >
+                  Previous medicines
+                </Link>
+              ) : (
+                <span />
+              )}
+              <span className="tabular-nums text-[#6E6E73]">
+                Page {itemsPage} of {statementLastPage}
+              </span>
+              {itemsPage < statementLastPage ? (
+                <Link
+                  className="inline-flex min-h-11 items-center text-[#0071E3] hover:underline"
+                  href={itemQueueHref(itemsPage + 1, medicineFilter)}
+                  rel="next"
+                >
+                  Next medicines
+                </Link>
+              ) : (
+                <span />
+              )}
+            </nav>
+          )}
+        </section>
 
         {pageEntries.length === 0 ? (
           <div className="space-y-2 rounded-3xl border border-black/[0.08] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-8">
