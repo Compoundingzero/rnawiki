@@ -23,8 +23,8 @@ import {
   type TruthLane,
 } from '@/lib/dossier-v4/taxonomy'
 import {
-  ORIGIN_LABELS,
   ORIGIN_PLAIN,
+  ORIGIN_SHORT,
   type Statement,
   type StatementOrigin,
 } from '@/lib/dossier-v4/view-model'
@@ -44,6 +44,7 @@ const STATE_GLYPHS: Record<SectionState, string> = {
 const ORIGIN_GLYPHS: Record<StatementOrigin, string> = {
   reviewed_claim: '✓',
   approved_first_read: '✓',
+  community_reviewed: '✎✓',
   authored_record: '✎',
   stored_source: '❝',
   derived_count: '#',
@@ -75,12 +76,26 @@ export function StateBadge({
   )
 }
 
-/** Where a sentence came from. Always rendered next to the sentence itself. */
-export function OriginNote({ origin }: { origin: StatementOrigin }): ReactNode {
+/**
+ * Where a sentence came from, and how its wording has been reviewed. One short line.
+ *
+ * This used to render the full forty-word explanation of the origin under every statement, four or
+ * five times on a first screen. Repeating the same paragraph is how a reader learns to stop reading
+ * it, so the line is now the short label and the review count, and the full explanation sits in the
+ * "Where this came from" disclosure directly beneath, where the provenance already was.
+ */
+export function OriginNote({
+  origin,
+  review,
+}: {
+  origin: StatementOrigin
+  /** The short review line for this sentence, e.g. "Community approved 3/3". */
+  review?: string | null
+}): ReactNode {
   return (
     <p className="dv4-origin">
-      <span aria-hidden="true">{ORIGIN_GLYPHS[origin]}</span> {ORIGIN_LABELS[origin]}.{' '}
-      {ORIGIN_PLAIN[origin]}
+      <span aria-hidden="true">{ORIGIN_GLYPHS[origin]}</span> {ORIGIN_SHORT[origin]}
+      {review ? <span> · {review}</span> : null}
     </p>
   )
 }
@@ -113,17 +128,21 @@ export function StatementBlock({
   statement,
   className,
   emphasis = false,
+  review,
 }: {
   statement: Statement
   className?: string
   emphasis?: boolean
+  /** The short review line for this sentence, when a community wording applies to it. */
+  review?: string | null
 }): ReactNode {
   return (
     <div className={className} data-origin={statement.origin} data-state={statement.state}>
       <p className={emphasis ? 'dv4-hero-result-text' : undefined}>{statement.text}</p>
-      <OriginNote origin={statement.origin} />
+      <OriginNote origin={statement.origin} review={review ?? null} />
       {/* Technical: this holds provenance and any recorded wording the reader layer did not take. */}
       <Disclosure summary="Where this came from" technical>
+        <p>{ORIGIN_PLAIN[statement.origin]}</p>
         <p>{statement.basis}</p>
         <Sources sources={statement.sources} />
       </Disclosure>

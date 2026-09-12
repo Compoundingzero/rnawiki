@@ -1,0 +1,156 @@
+{
+  "slug": "1-2-hexanediol",
+  "url": "http://localhost:3100/d/1-2-hexanediol",
+  "dossierVersion": "v4",
+  "status": 200,
+  "headingCount": 49,
+  "firstHeadings": [
+    "h1:1,2-Hexanediol",
+    "h2:What 1,2-Hexanediol does in the body",
+    "h3:The change it makes",
+    "h2:Four words worth knowing first",
+    "h2:What was measured, goal by goal",
+    "h2:What happened in people",
+    "h2:How close this is to real life",
+    "h2:The path through the body",
+    "h2:Felt, measured, or meaningful",
+    "h3:Felt",
+    "h3:Measured",
+    "h3:Meaningful",
+    "h2:How long anything takes",
+    "h2:Were people like you studied?",
+    "h3:Who was studied",
+    "h3:Who is missing from the studies",
+    "h3:Where the result stopped carrying",
+    "h2:Why it might seem to do nothing",
+    "h2:What taking it involves",
+    "h3:How it is supplied",
+    "h3:Form and route",
+    "h3:Who oversees it",
+    "h3:What is in the pack",
+    "h3:Where it is registered"
+  ],
+  "sectionIds": [
+    "substance-action",
+    "concept-primer",
+    "goal-fingerprint",
+    "human-results",
+    "evidence-staircase",
+    "body-journey",
+    "felt-measured-meaningful",
+    "signal-timeline",
+    "applicability",
+    "no-response",
+    "practical-reality",
+    "safety",
+    "stack",
+    "form-check",
+    "measurement",
+    "alternatives",
+    "claim-decoder",
+    "community",
+    "unknowns",
+    "evidence-receipts",
+    "drug-story",
+    "change-history",
+    "next-question",
+    "technical-record"
+  ],
+  "lanes": [
+    "body_action",
+    "body_action",
+    "human_result",
+    "human_result",
+    "human_result",
+    "body_action",
+    "personal_reality",
+    "personal_reality",
+    "uncertainty",
+    "personal_reality",
+    "personal_reality",
+    "personal_reality",
+    "personal_reality",
+    "uncertainty",
+    "personal_reality",
+    "personal_reality",
+    "uncertainty",
+    "community_experience",
+    "uncertainty",
+    "human_result",
+    "uncertainty",
+    "uncertainty",
+    "uncertainty",
+    "human_result"
+  ],
+  "firstViewportText": "1,2-Hexanediol Prescription medicine Prescription only ✓Identity checked No source check date recorded This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3RNAWiki holds very little about this substance. The page shows what there is. What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does What happened in people What happened in people Receipts What it would be like to take What it would be like to take How long Seems to do nothing What it involves What goes wrong What is missing or unclear What is missing or unclear Like you? Which form Unknowns Next What people report What people report Reports What 1,2-Hexanediol does in the body RNAWiki has not recorded what this substance changes in the body. What happened in people RNAWiki has not yet published a reviewed conclusion for this use. § A fixed RNAWiki sentence Wording RNAWiki always uses, not a finding about this substance. No reviewed claim names a result for any goal on this record. No source is stored against this line. The limit that matters most Not recorded. Where it acts Kind of result Supervision No plain explanation of what this changes is stored. No recorded use is stored in reader language. No statement of the main limit is recorded. The four opening statements run to 26 words. No path through the body is recorded for this substance. Each step is written out below, with what was measured and in what species. Not recorded. Words this page uses Four words worth knowing first Chosen from what this page shows, with each one explained before the word it depends on. Biomarker A biomarker is a number from a test that stands in for something about health. Placebo A placebo is a dummy treatment given so the real one can be compared with it. Comparator A comparator is whatever the",
+  "mains": 1,
+  "detailsCount": 25,
+  "focusableCount": 59,
+  "viewports": [
+    {
+      "viewport": "desktop",
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "axeViolations": [],
+      "htmlBytes": 67091
+    },
+    {
+      "viewport": "mobile",
+      "overflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "axeViolations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 2,
+          "help": "All touch targets must be 24px large, or leave sufficient space"
+        }
+      ],
+      "htmlBytes": 67091
+    },
+    {
+      "viewport": "narrow",
+      "overflow": false,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "axeViolations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 3,
+          "help": "All touch targets must be 24px large, or leave sufficient space"
+        }
+      ],
+      "htmlBytes": 67091
+    }
+  ],
+  "readerLayers": {
+    "internalKeys": [],
+    "forbiddenPhrases": [],
+    "unscopedCertainty": [],
+    "sentences": 510,
+    "over20": 7,
+    "over30": 0,
+    "longestOver30": [],
+    "undefinedAcronyms": []
+  },
+  "copy": {
+    "internalKeys": [],
+    "forbiddenPhrases": [],
+    "unscopedCertainty": [],
+    "sentences": 602,
+    "over20": 8,
+    "over30": 0,
+    "undefinedAcronyms": [
+      "FDA",
+      "NDC",
+      "NMN",
+      "PMC",
+      "PUG",
+      "REST",
+      "RNA"
+    ]
+  }
+}

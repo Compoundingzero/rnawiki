@@ -170,6 +170,68 @@
   content: '·';
 }
 
+/* --------------------------------------------------------- review control */
+
+/*
+ * The control that replaced the preliminary-review banner.
+ *
+ * Small on purpose: it is a way in, not a warning. It sits under the page promise and above "What
+ * brought you here?", carries a glyph as well as its words so its state is never colour alone, and
+ * keeps a 44 px hit area at every width while reading as one quiet line of the metadata block.
+ * Nothing about it animates.
+ */
+.dv4-strip-review {
+  align-items: center;
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.7rem;
+  margin: 0.45rem 0 0;
+  max-width: none;
+}
+
+.dv4-review-pill {
+  align-items: center;
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 999px;
+  color: var(--dv4-ink);
+  display: inline-flex;
+  font-size: 0.78rem;
+  gap: 0.35rem;
+  /* The visible pill is smaller than the target; the padding is what makes the target 44 px. */
+  min-height: 2.75rem;
+  padding: 0.3rem 0.85rem;
+  text-decoration: none;
+}
+
+.dv4-review-glyph {
+  color: var(--dv4-ink-faint);
+  font-size: 0.9em;
+}
+
+.dv4-review-pill:hover {
+  background: var(--dv4-accent-soft);
+  border-color: transparent;
+}
+
+/*
+ * A wording three members approved is worth marking, quietly. It is not a warning colour and it is
+ * not a success colour: the same hairline, one step of weight, and the word itself doing the work.
+ */
+.dv4-review-pill[data-review-state='community_approved'] {
+  font-weight: 600;
+}
+
+.dv4-review-pill[data-review-state='changes_requested'] .dv4-review-glyph::after {
+  content: '!';
+}
+
+@media (min-width: 40rem) {
+  .dv4-review-pill {
+    font-size: 0.8rem;
+  }
+}
+
 /* -------------------------------------------------------------- canvas */
 
 .dv4-canvas {

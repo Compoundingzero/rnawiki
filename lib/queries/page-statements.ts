@@ -30,6 +30,12 @@ import { newId } from '@/lib/ids'
 import { pageStatementContentDigest, pageStatementSourceDigest } from '@/lib/page-statements/digest'
 import { gatesPassed, runPageStatementGates, type GateResult } from '@/lib/page-statements/gates'
 import {
+  emptyPageStatementOverlay as buildEmptyOverlay,
+  type ActivePageStatement as ActiveStatement,
+  type PageReviewSummary as ReviewSummary,
+  type PageStatementOverlay as Overlay,
+} from '@/lib/page-statements/overlay'
+import {
   derivePageStatementRiskClass,
   mayAdministerPageStatements,
   mayProposePageStatements,
@@ -64,48 +70,31 @@ type RevisionRow = typeof pageStatementRevisions.$inferSelect
 
 /* ================================================================== reading */
 
-/** One published wording, as the view model applies it. */
-export interface ActivePageStatement {
-  revisionId: string
-  statementKey: PageStatementKey
-  text: string
-  /** The evidence state of the sentence it replaced, carried forward unchanged. */
-  evidenceState: string
-  approvals: number
-  qualifiedApprovals: number
-  publishedAt: string
-  sourceDigest: string
+/**
+ * The internal key for a medicine, from its public slug.
+ *
+ * `DrugDossier.id` is deliberately the public slug (lib/dossier.ts:101 — "Public dossier identity is
+ * the slug; internal primary keys stay private"), and on most records the two happen to be equal.
+ * They are not always, so every write here resolves the row key rather than assuming it, or a
+ * proposal against such a record is refused by the foreign key with nothing useful to say.
+ */
+export async function medicineIdForSlug(slug: string): Promise<string | null> {
+  const rows = await db.select({ id: drugs.id }).from(drugs).where(eq(drugs.slug, slug)).limit(1)
+  return rows[0]?.id ?? null
 }
 
-/** What the small control in the page header shows. Never depends on who is reading. */
-export interface PageReviewSummary {
-  slug: string
-  /** Approvals recorded on the open proposal closest to publication. */
-  approvals: number
-  required: number
-  /** Whether a proposal is open for review right now. */
-  openProposals: number
-  changesRequested: boolean
-  /** Whether any wording on this page has been published by community review. */
-  publishedRevisions: number
-}
-
-export const EMPTY_PAGE_REVIEW_SUMMARY: Omit<PageReviewSummary, 'slug'> = {
-  approvals: 0,
-  required: PAGE_STATEMENT_APPROVALS_REQUIRED,
-  openProposals: 0,
-  changesRequested: false,
-  publishedRevisions: 0,
-}
-
-export interface PageStatementOverlay {
-  active: ReadonlyMap<PageStatementKey, ActivePageStatement>
-  summary: PageReviewSummary
-}
-
-export function emptyPageStatementOverlay(slug: string): PageStatementOverlay {
-  return { active: new Map(), summary: { slug, ...EMPTY_PAGE_REVIEW_SUMMARY } }
-}
+/*
+ * The overlay shapes live in lib/page-statements/overlay.ts so the view model, which is a pure
+ * function, can import them without importing a database connection. Re-exported here so a caller
+ * needs one import either way.
+ */
+export {
+  emptyPageStatementOverlay,
+  EMPTY_PAGE_REVIEW_SUMMARY,
+  type ActivePageStatement,
+  type PageReviewSummary,
+  type PageStatementOverlay,
+} from '@/lib/page-statements/overlay'
 
 /**
  * The published wording and the review summary for one medicine, in one round trip each.
@@ -118,8 +107,10 @@ export function emptyPageStatementOverlay(slug: string): PageStatementOverlay {
 export async function loadPageStatementOverlay(
   slug: string,
   record: DrugDossier | null,
-): Promise<PageStatementOverlay> {
-  if (!record) return emptyPageStatementOverlay(slug)
+): Promise<Overlay> {
+  if (!record) return buildEmptyOverlay(slug)
+  const medicineId = await medicineIdForSlug(slug)
+  if (!medicineId) return buildEmptyOverlay(slug)
 
   const [published, openStates] = await Promise.all([
     db
@@ -142,7 +133,7 @@ export async function loadPageStatementOverlay(
         pageStatementReviewStates,
         eq(pageStatementReviewStates.revisionId, pageStatementRevisions.id),
       )
-      .where(eq(pageStatementPublications.medicineId, record.id)),
+      .where(eq(pageStatementPublications.medicineId, medicineId)),
     db
       .select({
         status: pageStatementRevisions.status,
@@ -156,13 +147,13 @@ export async function loadPageStatementOverlay(
       )
       .where(
         and(
-          eq(pageStatementRevisions.medicineId, record.id),
+          eq(pageStatementRevisions.medicineId, medicineId),
           inArray(pageStatementRevisions.status, ['submitted', 'open', 'changes_requested']),
         ),
       ),
   ])
 
-  const active = new Map<PageStatementKey, ActivePageStatement>()
+  const active = new Map<PageStatementKey, ActiveStatement>()
   for (const row of published) {
     const key = row.statementKey
     if (!isPageStatementKey(key)) continue
@@ -180,7 +171,7 @@ export async function loadPageStatementOverlay(
   }
 
   const open = openStates.filter((row) => row.status === 'submitted' || row.status === 'open')
-  const summary: PageReviewSummary = {
+  const summary: ReviewSummary = {
     slug,
     approvals: open.reduce((best, row) => Math.max(best, row.reviewCount ?? 0), 0),
     required: open[0]?.required ?? PAGE_STATEMENT_APPROVALS_REQUIRED,
@@ -474,6 +465,8 @@ export interface CreateProposalInput {
 
 export interface ProposalContext {
   record: DrugDossier
+  /** The `drugs.id` row key, resolved from the slug. Never `DrugDossier.id`, which is the slug. */
+  medicineId: string
   identityWarning: boolean
   medicineAliases: string[]
 }
@@ -526,7 +519,7 @@ export async function createPageStatementProposal(
     medicineAliases: context.medicineAliases,
   })
   const contentDigest = pageStatementContentDigest({
-    medicineId: context.record.id,
+    medicineId: context.medicineId,
     statementKey: input.statementKey,
     proposedText: proposed,
     currentText: current,
@@ -542,14 +535,14 @@ export async function createPageStatementProposal(
   try {
     await db.transaction(async (tx) => {
       await tx.execute(
-        sql`select rnawiki_lock_page_statement_subject(${context.record.id}, ${input.statementKey}::page_statement_key)`,
+        sql`select rnawiki_lock_page_statement_subject(${context.medicineId}, ${input.statementKey}::page_statement_key)`,
       )
       const publishedRows = await tx
         .select({ revisionId: pageStatementPublications.revisionId })
         .from(pageStatementPublications)
         .where(
           and(
-            eq(pageStatementPublications.medicineId, context.record.id),
+            eq(pageStatementPublications.medicineId, context.medicineId),
             eq(pageStatementPublications.statementKey, input.statementKey),
           ),
         )
@@ -557,7 +550,7 @@ export async function createPageStatementProposal(
 
       await tx.insert(pageStatementRevisions).values({
         id: revisionId,
-        medicineId: context.record.id,
+        medicineId: context.medicineId,
         slug: input.slug,
         statementKey: input.statementKey,
         claimId: input.claimId ?? null,

@@ -10,21 +10,36 @@
 import type { ReactNode } from 'react'
 
 import type { Concept } from '@/lib/dossier-v4/concepts'
+import { pageReviewPill, type PageReviewSummary } from '@/lib/page-statements/overlay'
 import { PURPOSES } from '@/lib/dossier-v4/taxonomy'
 import type { ActionHero, DossierV4ViewModel, IdentityStrip } from '@/lib/dossier-v4/view-model'
 
 import { BodyPathFigure, ConceptGlyph, Disclosure, StatementBlock } from './Primitives'
 
 /**
- * The state banner. Anything that is not a reviewed page opens by saying what it is, before the
- * reader spends attention working out why so much of the page says "not recorded".
+ * The critical-notice banner.
+ *
+ * This used to open every page that was not in the reviewed state — 10,247 of 10,250 of them —
+ * with a bordered block reading "Preliminary, awaiting review" and telling the reader to treat the
+ * page as a working draft. On a page where every sentence already carries its own provenance, that
+ * block said nothing the page did not, took the first 160 pixels of the first screen, and made a
+ * source-linked record look broken. It is gone.
+ *
+ * What is left is the case where a reader genuinely must be stopped before reading on: the record's
+ * identity is in doubt, or preparing the page failed. Those are not review status. A page in either
+ * state is saying something is wrong with itself, and that belongs at the top.
+ *
+ * The internal publication state is unchanged. `publication.bannerRequired` still means what it
+ * meant and is still what the corpus validation reads; only what a reader is shown has changed.
  */
+const CRITICAL_STATES = new Set(['correction_hold', 'pipeline_failure'])
+
 export function PublicationBanner({
   publication,
 }: {
   publication: DossierV4ViewModel['publication']
 }): ReactNode {
-  if (!publication.bannerRequired) return null
+  if (!CRITICAL_STATES.has(publication.state)) return null
   return (
     <aside
       aria-labelledby="publication-state-h"
@@ -42,12 +57,56 @@ export function PublicationBanner({
   )
 }
 
+/**
+ * The small review control, and the one-line note a sparse record keeps.
+ *
+ * A reader should be able to see, without leaving the first screen, how many members have signed
+ * off the wording in front of them and how to suggest a better one. What they should not get is a
+ * warning. The control is a link: this page ships no client JavaScript, and the review workflow
+ * lives at `/review-queue`, so an anchor is the honest shape as well as the working one.
+ *
+ * "Community approved" describes the wording and how the evidence is represented. It never means
+ * the substance works, the accessible name says so, and "peer reviewed" is not used anywhere,
+ * because none of this is scientific peer review.
+ */
+export function ReviewControl({
+  publication,
+  summary,
+}: {
+  publication: DossierV4ViewModel['publication']
+  summary: PageReviewSummary
+}): ReactNode {
+  const pill = pageReviewPill(summary)
+  // A limited record used to explain itself in the banner. That sentence is still worth one line;
+  // it is not worth a bordered block, so it sits beside the control as ordinary quiet text.
+  const limitedNote = publication.state === 'limited' ? publication.plain : null
+  return (
+    <p className="dv4-strip-review">
+      <a
+        aria-label={pill.accessibleName}
+        className="dv4-review-pill"
+        data-review-state={pill.state}
+        href={pill.href}
+      >
+        <span aria-hidden="true" className="dv4-review-glyph">
+          ✎
+        </span>
+        <span>{pill.label}</span>
+      </a>
+      {limitedNote ? <span className="dv4-note">{limitedNote}</span> : null}
+    </p>
+  )
+}
+
 export function SubstanceIdentityStrip({
   identity,
   promise,
+  children,
 }: {
   identity: IdentityStrip
   promise: string
+  /** The review control, rendered beneath the promise and before "What brought you here?". */
+  children?: ReactNode
 }): ReactNode {
   return (
     <header className="dv4-strip">
@@ -77,6 +136,7 @@ export function SubstanceIdentityStrip({
       <p className="dv4-note" style={{ flexBasis: '100%', margin: '0.35rem 0 0' }}>
         {promise}
       </p>
+      {children}
     </header>
   )
 }
@@ -111,11 +171,34 @@ export function SubstanceActionHero({
   hero,
   name,
   stages,
+  approved,
 }: {
   hero: ActionHero
   name: string
   stages: string[]
+  /** Sentences on this page carrying a wording members approved, keyed by position. */
+  approved: ReadonlyMap<string, { approvals: number }>
 }): ReactNode {
+  const reviewLine = (key: string): string | null => {
+    const entry = approved.get(key)
+    return entry ? `Community approved ${entry.approvals}/3` : null
+  }
+  /*
+   * The hero's opening paragraphs carry no provenance line by default: they are explained together
+   * in "Where each sentence above came from" at the foot of the hero, and repeating a label under
+   * each of them is the clutter this change removed. A community wording is different — it is a
+   * fact about this exact sentence that a reader cannot get anywhere else on the first screen — so
+   * the line appears only where one applies.
+   */
+  const ReviewLine = ({ statementKey }: { statementKey: string }): ReactNode => {
+    const line = reviewLine(statementKey)
+    if (!line) return null
+    return (
+      <p className="dv4-origin">
+        <span aria-hidden="true">✎✓</span> {line}
+      </p>
+    )
+  }
   return (
     <section
       aria-labelledby="substance-action-h"
@@ -129,28 +212,44 @@ export function SubstanceActionHero({
         <h2 className="dv4-visually-hidden" id="substance-action-h">
           What {name} does in the body
         </h2>
-        <p className="dv4-hero-action">{hero.simpleAction.text}</p>
+        <p className="dv4-hero-action" data-origin={hero.simpleAction.origin}>
+          {hero.simpleAction.text}
+        </p>
+        <ReviewLine statementKey="hero.opening" />
         {hero.actionDetail.origin === 'absent' ? null : (
-          <p className="dv4-hero-because">{hero.actionDetail.text}</p>
+          <>
+            <p className="dv4-hero-because" data-origin={hero.actionDetail.origin}>
+              {hero.actionDetail.text}
+            </p>
+            <ReviewLine statementKey="hero.explanation" />
+          </>
         )}
         {hero.whyPeopleCare.origin === 'absent' ? null : (
-          <p className="dv4-hero-because">
-            <strong>Why people take it.</strong> {hero.whyPeopleCare.text}
-          </p>
+          <>
+            <p className="dv4-hero-because" data-origin={hero.whyPeopleCare.origin}>
+              <strong>Why people take it.</strong> {hero.whyPeopleCare.text}
+            </p>
+            <ReviewLine statementKey="hero.why_people_take_it" />
+          </>
         )}
 
         <div className="dv4-hero-result" data-block="strongest-result">
           <p className="dv4-eyebrow" style={{ marginBottom: '0.3rem' }}>
             <span>What happened in people</span>
           </p>
-          <StatementBlock emphasis statement={hero.strongestGoalResult} />
+          <StatementBlock
+            emphasis
+            review={reviewLine('hero.strongest_result')}
+            statement={hero.strongestGoalResult}
+          />
         </div>
 
         <div className="dv4-hero-limit" data-block="principal-uncertainty">
           <p className="dv4-eyebrow" style={{ marginBottom: '0.3rem' }}>
             <span>The limit that matters most</span>
           </p>
-          <p>{hero.principalUncertainty.text}</p>
+          <p data-origin={hero.principalUncertainty.origin}>{hero.principalUncertainty.text}</p>
+          <ReviewLine statementKey="hero.principal_limit" />
         </div>
 
         {hero.analogy ? (
@@ -167,7 +266,10 @@ export function SubstanceActionHero({
         <dl className="dv4-hero-facts">
           <div>
             <dt>Where it acts</dt>
-            <dd>{hero.bodyLocation.text}</dd>
+            <dd data-origin={hero.bodyLocation.origin}>
+              {hero.bodyLocation.text}
+              <ReviewLine statementKey="hero.where_it_acts" />
+            </dd>
           </div>
           <div>
             <dt>Kind of result</dt>
@@ -203,7 +305,10 @@ export function SubstanceActionHero({
         </figure>
         <div className="dv4-panel" style={{ marginTop: '1rem' }}>
           <h3>The change it makes</h3>
-          <p style={{ fontSize: '0.9rem' }}>{hero.immediateChange.text}</p>
+          <p data-origin={hero.immediateChange.origin} style={{ fontSize: '0.9rem' }}>
+            {hero.immediateChange.text}
+          </p>
+          <ReviewLine statementKey="hero.immediate_change" />
         </div>
       </aside>
     </section>

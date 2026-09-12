@@ -6436,9 +6436,16 @@ export const pageStatementRevisions = pgTable(
       'page_statement_revisions_source_digest',
       sql`${table.sourceDigestAlgorithm} = 'sha256' and ${table.sourceDigest} ~ '^[0-9a-f]{64}$'`,
     ),
+    /*
+     * A published wording has a publication clock, and a wording that was published and later
+     * replaced keeps the one it had. The history is the reason: a superseded revision that forgot
+     * when it went live could not answer "what did this page say, and from when".
+     */
     check(
       'page_statement_revisions_published_clock',
-      sql`(${table.status} = 'published') = (${table.publishedAt} is not null)`,
+      sql`(${table.status} = 'published' and ${table.publishedAt} is not null)
+        or (${table.status} = 'superseded' and ${table.publishedAt} is not null)
+        or (${table.status} not in ('published', 'superseded') and ${table.publishedAt} is null)`,
     ),
     check(
       'page_statement_revisions_submitted_clock',

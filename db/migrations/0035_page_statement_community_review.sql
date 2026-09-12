@@ -151,7 +151,9 @@ CREATE TABLE "page_statement_revisions" (
 	CONSTRAINT "page_statement_revisions_text_changed" CHECK (btrim("page_statement_revisions"."proposed_text") <> btrim("page_statement_revisions"."current_text")),
 	CONSTRAINT "page_statement_revisions_content_digest" CHECK ("page_statement_revisions"."content_digest_algorithm" = 'sha256' and "page_statement_revisions"."content_digest" ~ '^[0-9a-f]{64}$'),
 	CONSTRAINT "page_statement_revisions_source_digest" CHECK ("page_statement_revisions"."source_digest_algorithm" = 'sha256' and "page_statement_revisions"."source_digest" ~ '^[0-9a-f]{64}$'),
-	CONSTRAINT "page_statement_revisions_published_clock" CHECK (("page_statement_revisions"."status" = 'published') = ("page_statement_revisions"."published_at" is not null)),
+	CONSTRAINT "page_statement_revisions_published_clock" CHECK (("page_statement_revisions"."status" = 'published' and "page_statement_revisions"."published_at" is not null)
+        or ("page_statement_revisions"."status" = 'superseded' and "page_statement_revisions"."published_at" is not null)
+        or ("page_statement_revisions"."status" not in ('published', 'superseded') and "page_statement_revisions"."published_at" is null)),
 	CONSTRAINT "page_statement_revisions_submitted_clock" CHECK ("page_statement_revisions"."status" = 'draft' or "page_statement_revisions"."submitted_at" is not null),
 	CONSTRAINT "page_statement_revisions_no_self_parent" CHECK ("page_statement_revisions"."parent_revision_id" is null or "page_statement_revisions"."parent_revision_id" <> "page_statement_revisions"."id")
 );

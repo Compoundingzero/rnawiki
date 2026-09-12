@@ -5,19 +5,26 @@
   "starting_commit": "fb4ad49",
   "last_safe_commit": "fb4ad49",
   "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
-  "phase": "0-verified-and-checkpointed",
-  "banner_removed": false,
-  "review_button_added": false,
-  "review_queue_ready": false,
-  "three_approval_rule_ready": false,
-  "automatic_publication_ready": false,
+  "phase": "9-review-workflow-live-locally",
+  "banner_removed": true,
+  "review_button_added": true,
+  "review_queue_ready": true,
+  "three_approval_rule_ready": true,
+  "automatic_publication_ready": true,
   "footer_cleaned": false,
   "staging_revision": "",
   "production_revision": "",
-  "tests": {},
+  "tests": {
+    "unit_dossier_v4": "130 passed (contracts, view model, substance)",
+    "integration_page_statement_review": "24 passed against PostgreSQL, including the concurrent third approval",
+    "browser_community_review": "33 passed (banner absence, control, 5 viewports, axe, full three-member journey, rollback)",
+    "clean_migration_replay": "passed on a disposable database",
+    "corpus_validation": "10,250 pages, 0 critical, 370 with any issue (unchanged)",
+    "production_build": "exit 0"
+  },
   "blockers": [
     "Railway MCP is unauthorized (`railway login` needed by the account owner). Staging and production deployment cannot be inspected or performed from this session until that is restored."
   ],
-  "next_exact_command": "npx tsx scripts/dossier-v4/capture.ts --base http://localhost:3100 --label community-review-before --slugs creatine-monohydrate,semaglutide,inclisiran,1-2-hexanediol --out data/dossier-v4/benchmark",
+  "next_exact_command": "npm run gate",
   "updated_at": "2026-09-11"
 }

@@ -9,6 +9,7 @@
  * v3, and unsetting both restores the corpus document. No database change is needed to roll back.
  */
 import { getPublicDrugBySlug } from '@/lib/queries/drugs'
+import { loadPageStatementOverlay } from '@/lib/queries/page-statements'
 import { corpusFromLegacyRecord } from './legacy-shim'
 import { loadDossierV3Inputs } from '@/lib/dossier-v3/load'
 import { tenSecondAnswerOverride } from '@/lib/ten-second-answer-overrides'
@@ -20,12 +21,18 @@ export async function loadDossierV4Inputs(slug: string): Promise<DossierV4Inputs
     loadDossierV3Inputs(slug),
     getPublicDrugBySlug(slug),
   ])
+  /*
+   * Wordings three members approved, read fresh on every request. This is what makes an approved
+   * revision reach a reader with no deployment: the route is force-dynamic and nothing caches the
+   * document, so the next request after the publishing transaction shows the new sentence.
+   */
+  const statementOverlay = await loadPageStatementOverlay(slug, legacyRecord)
   // The override resolves only when the authored copy and the record's current medical surface
   // still match one approved fingerprint. A changed record drops the answer rather than carrying
   // a stale one forward, which is the behaviour we want on a page that leads with it.
   const boundAnswer = legacyRecord ? (tenSecondAnswerOverride(legacyRecord) ?? null) : null
 
-  if (v3) return { ...v3, legacyRecord, boundAnswer }
+  if (v3) return { ...v3, legacyRecord, boundAnswer, statementOverlay }
 
   /*
    * No corpus page. Rather than hand the reader back to the previous design, build a corpus-shaped
@@ -55,6 +62,7 @@ export async function loadDossierV4Inputs(slug: string): Promise<DossierV4Inputs
     now: new Date(),
     legacyRecord,
     boundAnswer,
+    statementOverlay,
   }
 }
 

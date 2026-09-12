@@ -53,6 +53,7 @@ import {
   ConceptPrimer,
   PublicationBanner,
   PurposeRail,
+  ReviewControl,
   SubstanceActionHero,
   SubstanceIdentityStrip,
 } from './Orientation'
@@ -192,19 +193,30 @@ export function CompassPage({
   model: DossierV4ViewModel
 }): ReactNode {
   const stages = model.journey.nodes.map((node) => node.stage)
+  const approved = new Map(
+    model.approvedWordings.map((wording) => [wording.statementKey as string, wording]),
+  )
   return (
     <div
       className="dv4-root"
       data-dossier-version="4"
       data-publication-state={model.publication.state}
     >
-      <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise} />
+      <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise}>
+        <ReviewControl publication={model.publication} summary={model.reviewSummary} />
+      </SubstanceIdentityStrip>
+      {/* Only an identity hold or a pipeline failure still opens with a block. */}
       <PublicationBanner publication={model.publication} />
       <PurposeRail />
       <div className="dv4-canvas">
         <Navigator model={model} />
         <div className="dv4-flow">
-          <SubstanceActionHero hero={model.hero} name={model.name} stages={stages} />
+          <SubstanceActionHero
+            approved={approved}
+            hero={model.hero}
+            name={model.name}
+            stages={stages}
+          />
           {model.concepts.length > 0 ? (
             <section
               aria-labelledby="concept-primer-h"

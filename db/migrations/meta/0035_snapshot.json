@@ -1,5 +1,5 @@
 {
-  "id": "09a57087-13a6-4ae1-8309-b43c36a31068",
+  "id": "0897f0c8-7122-462e-88dc-a532273265f7",
   "prevId": "6cc407b8-30c1-4e2d-8965-4026c089c660",
   "version": "7",
   "dialect": "postgresql",
@@ -11491,7 +11491,7 @@
         },
         "page_statement_revisions_published_clock": {
           "name": "page_statement_revisions_published_clock",
-          "value": "(\"page_statement_revisions\".\"status\" = 'published') = (\"page_statement_revisions\".\"published_at\" is not null)"
+          "value": "(\"page_statement_revisions\".\"status\" = 'published' and \"page_statement_revisions\".\"published_at\" is not null)\n        or (\"page_statement_revisions\".\"status\" = 'superseded' and \"page_statement_revisions\".\"published_at\" is not null)\n        or (\"page_statement_revisions\".\"status\" not in ('published', 'superseded') and \"page_statement_revisions\".\"published_at\" is null)"
         },
         "page_statement_revisions_submitted_clock": {
           "name": "page_statement_revisions_submitted_clock",

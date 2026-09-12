@@ -101,3 +101,118 @@ inspected or changed from here.
 
 - `docs/worklogs/dossier-v4-community-review-2026-09.md` (this file)
 - `data/dossier-v4/community-review-state.json`
+
+---
+
+## Phases 1–3 — the banner, the control, the microcopy
+
+`components/dossier/v4/Orientation.tsx` still exports `PublicationBanner`, and it still renders —
+for `correction_hold` and `pipeline_failure` only. Those two states are the page saying something is
+wrong with itself, which belongs at the top. `preliminary` and `limited` no longer produce a block.
+
+`publication.bannerRequired` is untouched. It is what `scripts/dossier-v4/validate-corpus.ts:232`
+reads, and flipping it to remove the banner would have failed that check on 10,247 pages while
+also changing the indexing decision, which is derived from the same call. Only the presentation
+moved.
+
+In its place, `ReviewControl` renders one line inside the identity strip, beneath the page promise
+and above "What brought you here?":
+
+> ✎ Review or improve · 0/3
+
+Its accessible name is a sentence — "Review or improve the wording on this page. No change is
+proposed, so nothing has been approved yet." — because "0/3" does not read as speech. A limited
+record keeps its one explanatory sentence beside the control as ordinary quiet text rather than
+losing it with the block.
+
+The repeated provenance paragraph is gone from the reader layer. `OriginNote` now renders a short
+label and, where a community wording applies, its review count:
+
+> ✎ Source-linked record
+
+The forty-word explanation moved into the "Where this came from" disclosure directly beneath, which
+already carried the provenance and the sources.
+
+### Measured
+
+| Page | Headline y before | after |
+| --- | --- | --- |
+| creatine-monohydrate (1440 px) | 468 px | 360 px |
+
+The three locked reference sentences are unchanged, verified against the running server:
+
+- creatine-monohydrate — "Taken for strength and power output in short, hard efforts"
+- semaglutide — "Used for type 2 diabetes, obesity, and related heart or kidney risk."
+- inclisiran — "Used with diet and exercise to lower LDL, often called 'bad' cholesterol."
+
+## Phases 4–10 — the review system
+
+### Where the wording actually lives
+
+The decisive finding of the survey: reader-visible first-read text has two origins, and only one of
+them is the database. `semaglutide` and `inclisiran` take their opening sentence, their result and
+their limit from `lib/ten-second-answer-overrides-a.ts` — 506 hand-authored records across 196 KB of
+TypeScript, released only when a sha256 over the copy plus 25 live fields of the record matches an
+approved digest. `creatine-monohydrate`'s fingerprint no longer matches, so its opening sentence is
+the database column `drugs.patient_friendly_indication`.
+
+A publication path that wrote to either of those would have failed: editing a TypeScript literal
+needs a deploy, and editing a stored field would rewrite a medical record to change how a sentence
+reads. So a published revision is an **overlay**. `buildHero` computes every sentence exactly as it
+did, then swaps in an approved wording at the end. Nothing in `drugs`, `corpus_pages`, `page_fields`,
+`reviewed_claims` or any source snapshot is touched, which is why rolling back is moving one pointer.
+
+### What the overlay does not do
+
+`withApprovedWording` replaces the text and the origin. It does not touch `Statement.state`. A
+sentence describing an animal result still reads as an animal result after three members have agreed
+on its wording, and a page does not become a reviewed page because a sentence on it was reworded.
+The e2e suite asserts both.
+
+### The rules, and where each one lives
+
+| Rule | Enforced by |
+| --- | --- |
+| Three independent approvals | `rnawiki_expected_page_statement_review_state`, derived, trigger-checked |
+| The author cannot approve | `rnawiki_guard_page_statement_review` |
+| One vote per account | `page_statement_reviews_reviewer_unique` |
+| One vote per person across duplicate accounts | `page_statement_reviews_identity_unique` on `orcid:`/`user:` |
+| Editing resets approvals | the content digest: a review row cannot bind to text it was not given |
+| A source change stales approvals | the per-statement source digest, re-checked at the third approval |
+| Restricted accounts cannot review | `users.restricted_at`, new, with an append-only ledger |
+| A qualified reviewer where the risk needs one | refused at the last slot, with a reason, not deadlocked |
+| Two concurrent third approvals publish once | `rnawiki_lock_page_statement_subject` |
+
+There is no adjudication state, deliberately. One request for changes, or one rejection, resolves
+the proposal: on a medical page the safe answer to a split is not to publish.
+
+### Automatic gates
+
+`lib/page-statements/gates.ts` registers 24 stable codes, every one with a focused case, following
+the RNA Intelligence contract. Verified live against creatine: a proposal reading "About three in
+eight people in the biopsy studies…" was accepted and its `plain_language_contract` gate failed on
+the word "biopsy", which the first read explains rather than uses.
+
+### Publication without a deployment
+
+`/d/<slug>` is a Route Handler with `dynamic = 'force-dynamic'` that writes its own HTML and ships
+no `Cache-Control`. The overlay is read per request. The third approval commits, and the next
+request shows the new sentence — proven end to end in `page-statement-review-journey.spec.ts`.
+
+## Results at this point
+
+| Check | Result |
+| --- | --- |
+| `tsc --noEmit` | clean |
+| `eslint .` | 0 errors |
+| `prettier --check .` | clean |
+| `drizzle-kit check` | clean |
+| Unit (dossier v4) | 130 passed |
+| Integration (`page-statement-review`) | 24 passed, disposable database |
+| Browser (`dossier-v4-community-review` + `page-statement-review-journey`) | 33 passed |
+| Clean migration replay | passed |
+| Corpus validation | 10,250 pages, 0 critical, 370 with any issue (unchanged) |
+| Production build | exit 0 |
+
+One change outside the feature: `playwright.config.ts` reads `E2E_PORT`, defaulting to 3000. Port
+3000 on this machine belongs to another project, and the alternative was stopping it.

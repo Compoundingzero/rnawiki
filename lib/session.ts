@@ -47,6 +47,7 @@ export function toCommentUser(row: UserRow): CommentUser {
     acceptedEditCount: row.acceptedEditCount,
     noteCount: row.noteCount,
     isAdmin: row.isAdmin,
+    ...(row.restrictedAt ? { restrictedAt: row.restrictedAt.toISOString() } : {}),
     joinedDate: row.createdAt.toISOString(),
   }
 }

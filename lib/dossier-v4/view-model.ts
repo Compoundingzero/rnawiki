@@ -22,6 +22,14 @@ import {
   type DossierV3Inputs,
   type DossierV3ViewModel,
 } from '@/lib/dossier-v3/view-model'
+import {
+  EMPTY_PAGE_REVIEW_SUMMARY,
+  statementReviewNote,
+  type ActivePageStatement,
+  type PageReviewSummary,
+  type PageStatementOverlay,
+} from '@/lib/page-statements/overlay'
+import type { PageStatementKey } from '@/lib/page-statements/types'
 import type { BoundLegacyTenSecondAnswer } from '@/lib/ten-second-answer-overrides'
 import type { AuditPoint, ClinicalTrialRecord, DrugDossier, MechanismStep } from '@/lib/types'
 
@@ -79,6 +87,12 @@ export interface DossierV4Inputs extends DossierV3Inputs {
   legacyRecord: DrugDossier | null
   /** The approved first-read answer, only when its fingerprint still matches this record. */
   boundAnswer: BoundLegacyTenSecondAnswer | null
+  /**
+   * Wordings three members approved, keyed by the sentence they replace. This is the layer that
+   * lets an approved revision reach a reader without a deployment: the page reads it per request.
+   * Absent on a page with no community wording, which is every page until one is approved.
+   */
+  statementOverlay?: PageStatementOverlay | undefined
 }
 
 /* ----------------------------------------------------------------- origins */
@@ -90,6 +104,7 @@ export interface DossierV4Inputs extends DossierV3Inputs {
 export type StatementOrigin =
   | 'reviewed_claim'
   | 'approved_first_read'
+  | 'community_reviewed'
   | 'authored_record'
   | 'stored_source'
   | 'derived_count'
@@ -99,9 +114,28 @@ export type StatementOrigin =
 export const ORIGIN_LABELS: Record<StatementOrigin, string> = {
   reviewed_claim: 'Reviewed conclusion',
   approved_first_read: 'Reviewed first-read answer',
+  community_reviewed: 'Wording approved by members',
   authored_record: 'Written into the record, not signed off',
   stored_source: 'Quoted from a stored source',
   derived_count: 'Counted from stored records',
+  contract_sentence: 'A fixed RNAWiki sentence',
+  absent: 'Nothing recorded',
+}
+
+/**
+ * The short form that sits beside a sentence.
+ *
+ * The long sentence below used to render under every statement on the page, four or five times on
+ * a first screen, which trained a reader to stop seeing it. The short form stays; the long form
+ * moved one click away into the disclosure that already carries the provenance.
+ */
+export const ORIGIN_SHORT: Record<StatementOrigin, string> = {
+  reviewed_claim: 'Reviewed conclusion',
+  approved_first_read: 'Reviewed first-read answer',
+  community_reviewed: 'Community approved',
+  authored_record: 'Source-linked record',
+  stored_source: 'Quoted from a source',
+  derived_count: 'Counted from records',
   contract_sentence: 'A fixed RNAWiki sentence',
   absent: 'Nothing recorded',
 }
@@ -110,6 +144,8 @@ export const ORIGIN_PLAIN: Record<StatementOrigin, string> = {
   reviewed_claim: 'A person checked this against the sources and signed it off.',
   approved_first_read:
     'A person wrote this and a reviewer approved it against this exact record. It carries no effect size.',
+  community_reviewed:
+    'Three members agreed this is the clearest true way to put it, against the same sources. That is about the words. It does not say the substance works, and it does not change what kind of evidence sits behind it.',
   authored_record:
     'A person wrote this into the record with the study named beside it. No reviewer has signed it off.',
   stored_source: 'Copied from a source RNAWiki stored, with the source named.',
@@ -140,6 +176,30 @@ function statement(
 
 function absentStatement(basis: string, state: SectionState = 'no_qualifying_evidence'): Statement {
   return statement('Not recorded.', 'absent', state, basis)
+}
+
+/**
+ * Swap in a wording three members approved, without changing what the page claims about evidence.
+ *
+ * The replacement takes the text and the origin. It deliberately does NOT take the evidence state:
+ * `base.state` travels through untouched, so a sentence describing an animal result still reads as
+ * an animal result after it has been reworded, and a draft does not become a reviewed conclusion by
+ * being approved three times. The sources stay as they were, because the sentence still rests on
+ * them; a reviewer who wanted to change the sources was proposing a different thing.
+ */
+function withApprovedWording(base: Statement, active: ActivePageStatement | undefined): Statement {
+  if (!active) return base
+  return {
+    ...base,
+    text: active.text,
+    origin: 'community_reviewed',
+    basis: `${active.approvals} members approved this wording against the same sources on ${active.publishedAt}. The evidence behind it is unchanged: ${base.basis}`,
+  }
+}
+
+/** The short review line beside a sentence, or nothing when no community wording applies. */
+export function statementReviewLine(active: ActivePageStatement | undefined): string | null {
+  return statementReviewNote(active)
 }
 
 /* ---------------------------------------------------------------- sections */
@@ -509,6 +569,13 @@ export interface DossierV4ViewModel {
   publication: PublicationDecision
   identity: IdentityStrip
   pagePromise: string
+  /**
+   * What the small review control shows. Viewer-independent by design: `/d/<slug>` is one document
+   * served identically to everybody, and a count that varied by session would end that.
+   */
+  reviewSummary: PageReviewSummary
+  /** Sentences on this page carrying a wording members approved, for the "What changed" section. */
+  approvedWordings: ActivePageStatement[]
   hero: ActionHero
   concepts: Concept[]
   fingerprint: {
@@ -1130,32 +1197,49 @@ function buildHero(
     ? { text: v3.decisionCard.analogy.text, limit: v3.decisionCard.analogy.breaks }
     : null
 
+  /*
+   * The community layer, applied once at the end rather than threaded through each branch above.
+   * Every sentence the selection rules produced is still computed, so a published wording that
+   * stops resolving — because the record moved under it — falls back to exactly what this page
+   * would have said without it, not to an absence.
+   */
+  const approved = inputs.statementOverlay?.active
+  const withOverlay = (key: PageStatementKey, base: Statement): Statement =>
+    withApprovedWording(base, approved?.get(key))
+
+  const openingLine = withOverlay('hero.opening', simpleAction)
+  const explanation = withOverlay('hero.explanation', actionDetail)
+  const reasonPeopleTakeIt = withOverlay('hero.why_people_take_it', whyPeopleCare)
+  const headlineResult = withOverlay('hero.strongest_result', strongestGoalResult)
+  const headlineLimit = withOverlay('hero.principal_limit', principalUncertainty)
+  const whereItActs = withOverlay('hero.where_it_acts', bodyLocation)
+  const firstChange = withOverlay('hero.immediate_change', immediateChange)
+
   const openingWordCount =
-    words(simpleAction.text) +
-    words(actionDetail.text) +
-    words(whyPeopleCare.text) +
-    words(strongestGoalResult.text)
+    words(openingLine.text) +
+    words(explanation.text) +
+    words(reasonPeopleTakeIt.text) +
+    words(headlineResult.text)
 
   return {
     state:
-      strongestGoalResult.state === 'reviewed_content' ||
-      simpleAction.state === 'source_checked_draft'
+      headlineResult.state === 'reviewed_content' || openingLine.state === 'source_checked_draft'
         ? 'source_checked_draft'
         : 'awaiting_review',
-    simpleAction,
-    actionDetail,
-    bodyLocation,
-    immediateChange,
-    whyPeopleCare,
+    simpleAction: openingLine,
+    actionDetail: explanation,
+    bodyLocation: whereItActs,
+    immediateChange: firstChange,
+    whyPeopleCare: reasonPeopleTakeIt,
     analogy,
-    strongestGoalResult,
+    strongestGoalResult: headlineResult,
     // What kind of thing the headline result is. A reviewed claim names its own outcome class; with
     // none, the kind is read from the strongest result's own words, and stays unknown if they do
     // not say. It is never assumed to be the kind a reader would most want.
     outcomeType:
       v3.doesItWork.byGoal[0]?.cards[0]?.outcomeLabel ??
-      outcomeTypeFromText(strongestGoalResult.text, strongestGoalResult.origin),
-    principalUncertainty,
+      outcomeTypeFromText(headlineResult.text, headlineResult.origin),
+    principalUncertainty: headlineLimit,
     supervision: v3.supervision.text,
     openingWordCount,
   }
@@ -2654,6 +2738,11 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     publication,
     identity,
     pagePromise: COMPASS_COPY.pagePromise,
+    reviewSummary: inputs.statementOverlay?.summary ?? {
+      slug: v3.slug,
+      ...EMPTY_PAGE_REVIEW_SUMMARY,
+    },
+    approvedWordings: [...(inputs.statementOverlay?.active.values() ?? [])],
     hero,
     concepts,
     fingerprint,

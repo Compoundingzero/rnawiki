@@ -44,6 +44,19 @@ import { resolveSafeSourceLocator } from '@/lib/source-locator'
 import { TIER_LABEL } from '@/lib/trust'
 import type { Revision } from '@/lib/types'
 import { canReviewLegacyIdentityCorrection } from '@/lib/legacy-revision-review'
+import { currentPageStatements } from '@/lib/page-statements/current'
+import { isPageStatementKey, type PageStatementKey } from '@/lib/page-statements/types'
+import { loadDossierV4Inputs } from '@/lib/dossier-v4/load'
+import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
+import {
+  listPageStatementHistory,
+  listPageStatementProposals,
+  listPageStatementPublicationEvents,
+  medicineIdForSlug,
+  pageStatementViewerEligibility,
+  type ViewerReviewEligibility,
+} from '@/lib/queries/page-statements'
+import { PageStatementWorkspace } from './page-statements/PageStatementWorkspace'
 import { CanonicalPublicationPanel } from './CanonicalPublicationPanel'
 import { ContributionReviewPanel } from './ContributionReviewPanel'
 import { FeedbackReviewPanel } from './FeedbackReviewPanel'
@@ -957,6 +970,20 @@ type ReviewQueuePageProps = { searchParams: Promise<Record<string, string | stri
 
 export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageProps) {
   const params = await searchParams
+
+  /*
+   * `?slug=` is the link the small control on a medicine page carries. It opens the review work for
+   * that one page rather than the whole site's queue — the same application, the same account state
+   * and the same visual system, filtered to what the reader was looking at.
+   */
+  const rawSlug = Array.isArray(params.slug) ? params.slug[0] : params.slug
+  if (rawSlug) {
+    return renderPageStatementWorkspace(
+      rawSlug,
+      Array.isArray(params.statement) ? params.statement[0] : params.statement,
+    )
+  }
+
   const rawPage = Array.isArray(params.page) ? params.page[0] : params.page
   const parsedPage = Number.parseInt(rawPage ?? '1', 10)
   const page = Number.isFinite(parsedPage) ? Math.min(MAX_MERGED_PAGES, Math.max(1, parsedPage)) : 1
@@ -1289,6 +1316,72 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
             remaining records are still stored, but this screen does not display them.
           </p>
         )}
+      </div>
+    </AppShell>
+  )
+}
+
+/**
+ * The review work for one medicine page's wording.
+ *
+ * Everything here is read fresh: the page is `force-dynamic`, the compass model is rebuilt from the
+ * same loader the public page uses, and the current wording comes from that model rather than from
+ * a stored field, because the compass chooses between several recorded sentences by rule and only
+ * the built model knows which one a reader is actually seeing.
+ */
+async function renderPageStatementWorkspace(slug: string, statement: string | undefined) {
+  const [user, inputs] = await Promise.all([getCurrentUser(), loadDossierV4Inputs(slug)])
+  if (!inputs) {
+    return (
+      <AppShell initialUser={user}>
+        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 py-8 sm:px-6 sm:py-12">
+          <h1 className="text-2xl font-extrabold tracking-tight text-[#1D1D1F]">
+            No medicine record at that address
+          </h1>
+          <p className="text-xs leading-6 text-[#6E6E73]">
+            The link may be out of date.{' '}
+            <Link className="font-semibold text-[#0071E3] hover:underline" href="/review-queue">
+              Open the review queue
+            </Link>
+            .
+          </p>
+        </div>
+      </AppShell>
+    )
+  }
+
+  const model = buildDossierV4(inputs)
+  // The row key, not the public slug: DrugDossier.id is the slug by design.
+  const medicineId = await medicineIdForSlug(slug)
+  const [proposals, history, events] = await Promise.all([
+    listPageStatementProposals({ slug, sort: 'closest' }),
+    medicineId ? listPageStatementHistory(medicineId) : Promise.resolve([]),
+    medicineId ? listPageStatementPublicationEvents(medicineId) : Promise.resolve([]),
+  ])
+
+  // node-postgres runs one query at a time on a connection, so these are sequential on purpose.
+  const eligibility: Record<string, ViewerReviewEligibility> = {}
+  for (const proposal of proposals) {
+    eligibility[proposal.id] = await pageStatementViewerEligibility(proposal, user)
+  }
+
+  const selected: PageStatementKey | null =
+    statement && isPageStatementKey(statement) ? statement : null
+
+  return (
+    <AppShell initialUser={user}>
+      <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <PageStatementWorkspace
+          eligibility={eligibility}
+          events={events}
+          history={history}
+          medicineName={model.name}
+          proposals={proposals}
+          selectedStatement={selected}
+          slug={slug}
+          statements={currentPageStatements(model)}
+          viewer={user}
+        />
       </div>
     </AppShell>
   )
