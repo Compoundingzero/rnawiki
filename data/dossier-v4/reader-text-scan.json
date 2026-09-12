@@ -1,0 +1,3031 @@
+{
+  "summary": {
+    "scanned": 9857,
+    "findings": 3150,
+    "medicinesAffected": 494,
+    "byReason": {
+      "a raw section-state code": {
+        "count": 2647,
+        "medicines": 489,
+        "example": "andexanet-alfa · journey.edges[0].reviewState · source_checked_draft"
+      },
+      "a raw statement-origin code": {
+        "count": 489,
+        "medicines": 489,
+        "example": "andexanet-alfa · safety.entries[0].evidenceSource · authored_record"
+      },
+      "a raw population code": {
+        "count": 8,
+        "medicines": 5,
+        "example": "estradiol-cypionate · applicability.populations[0].text · On older people, the label states: “GERIATRIC USE In the Women's Health Initiative Memory Study, including 4,532 women 65 years of age and older, followed for a"
+      },
+      "a missing value rendered as the word \"undefined\"": {
+        "count": 6,
+        "medicines": 4,
+        "example": "isosorbide-mononitrate · journey.nodes[4].technical · Venodilatation predominates: pooling reduces venous return, left ventricular end-diastolic pressure and pulmonary capillary wedge pressure. Arteriolar relaxatio"
+      }
+    }
+  },
+  "findings": [
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "andexanet-alfa",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lecanemab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lovastatin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenylpiracetam",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "romiplostim",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "ostarine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ostarine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ostarine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ostarine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ostarine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ostarine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "natalizumab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibutamoren",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "boron",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "boron",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "boron",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "boron",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "boron",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "boron",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levalbuterol",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "levothyroxine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "buspirone",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "doravirine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "doravirine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "doravirine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "doravirine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "doravirine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "doravirine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "citrulline-malate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "patisiran",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "patisiran",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "patisiran",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "patisiran",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "patisiran",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "patisiran",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "terfenadine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "daptomycin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "trastuzumab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alpha-lipoic-acid",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "alendronate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "diethylstilbestrol",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "phenibut",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenibut",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenibut",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenibut",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenibut",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenibut",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prothrombin-complex-concentrate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "prasugrel",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cariprazine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "metronidazole",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "telbivudine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydralazine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sitagliptin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tozinameran",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amitriptyline",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "lsd",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lsd",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lsd",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lsd",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lsd",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lsd",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ibuprofen",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pantoprazole",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "midazolam",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rosuvastatin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "cannabis",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cannabis",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cannabis",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cannabis",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cannabis",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cannabis",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risedronate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cangrelor",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mupirocin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "zinc",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zinc",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zinc",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zinc",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zinc",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zinc",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "grazoprevir",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "azelastine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "clioquinol",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "bevacizumab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sugammadex",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "ipamorelin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "estradiol-cypionate",
+      "path": "applicability.populations[0].text",
+      "why": "a raw population code",
+      "text": "On older people, the label states: “GERIATRIC USE In the Women's Health Initiative Memory Study, including 4,532 women 65 years of age and older, followed for a"
+    },
+    {
+      "slug": "estradiol-cypionate",
+      "path": "applicability.populations[1].text",
+      "why": "a raw population code",
+      "text": "On people who are pregnant, the label states: “PREGNANCY DEPO-Estradiol should not be used during pregnancy.”"
+    },
+    {
+      "slug": "iodine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "iodine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "iodine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "iodine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "iodine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "iodine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "pembrolizumab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "perampanel",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "perampanel",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "perampanel",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "perampanel",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "perampanel",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "perampanel",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "phenytoin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "idarucizumab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "cephalexin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "dolutegravir",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "mipomersen",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amisulpride",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "zilebesiran",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tramadol",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nortriptyline",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "magnesium-glycinate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "enalaprilat",
+      "path": "safety.entries[0].text",
+      "why": "a raw population code",
+      "text": "USE IN PREGNANCY When used in pregnancy during the second and third trimesters, ACE inhibitors can cause injury and even death to the developing fetus. When pre"
+    },
+    {
+      "slug": "enalaprilat",
+      "path": "measurement.warningSigns[0].text",
+      "why": "a raw population code",
+      "text": "USE IN PREGNANCY When used in pregnancy during the second and third trimesters, ACE inhibitors can cause injury and even death to the developing fetus. When pre"
+    },
+    {
+      "slug": "donanemab",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "donanemab",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "donanemab",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "donanemab",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "donanemab",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "donanemab",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "folate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "folate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "folate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "folate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "folate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "folate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydroxyprogesterone-caproate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "theophylline",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "oxybutynin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "inclisiran",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "lamotrigine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "amoxicillin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "calcipotriene",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "rilpivirine",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "risperidone",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risperidone",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risperidone",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risperidone",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risperidone",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "risperidone",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "sucralfate",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "fluvastatin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "vutrisiran",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "hydrocodone",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "journey.edges[5].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "tretinoin",
+      "path": "safety.entries[0].evidenceSource",
+      "why": "a raw statement-origin code",
+      "text": "authored_record"
+    },
+    {
+      "slug": "nebivolol",
+      "path": "journey.edges[0].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nebivolol",
+      "path": "journey.edges[1].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nebivolol",
+      "path": "journey.edges[2].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nebivolol",
+      "path": "journey.edges[3].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    },
+    {
+      "slug": "nebivolol",
+      "path": "journey.edges[4].reviewState",
+      "why": "a raw section-state code",
+      "text": "source_checked_draft"
+    }
+  ]
+}
