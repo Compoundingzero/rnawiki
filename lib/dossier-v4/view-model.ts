@@ -27,6 +27,7 @@ import {
   statementReviewNote,
   type ActivePageStatement,
   type PageReviewSummary,
+  type PageStatementHistoryEntry,
   type PageStatementOverlay,
 } from '@/lib/page-statements/overlay'
 import type { PageStatementKey } from '@/lib/page-statements/types'
@@ -574,8 +575,10 @@ export interface DossierV4ViewModel {
    * served identically to everybody, and a count that varied by session would end that.
    */
   reviewSummary: PageReviewSummary
-  /** Sentences on this page carrying a wording members approved, for the "What changed" section. */
+  /** Sentences on this page carrying a wording members approved. */
   approvedWordings: ActivePageStatement[]
+  /** Wordings members replaced, newest first, for the public "What changed" section. */
+  wordingHistory: PageStatementHistoryEntry[]
   hero: ActionHero
   concepts: Concept[]
   fingerprint: {
@@ -2743,6 +2746,7 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
       ...EMPTY_PAGE_REVIEW_SUMMARY,
     },
     approvedWordings: [...(inputs.statementOverlay?.active.values() ?? [])],
+    wordingHistory: inputs.statementOverlay?.history ?? [],
     hero,
     concepts,
     fingerprint,

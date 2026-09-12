@@ -98,7 +98,7 @@
   "firstViewportText": "Semaglutide Hormone Given by a clinician in SG, US, AU, UK, EU, JP, CA, OTHER ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3 What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong Clashes Alternatives What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns Its story What changed Next What people report What people report Reports What Semaglutide does in the body Used for type 2 diabetes, obesity, and related heart or kidney risk. After a meal your gut releases a hormone called GLP-1 that tells the brain you have had enough. Natural GLP-1 is destroyed within minutes. Semaglutide is a rebuilt version with a fatty tail that clips onto albumin, the taxi protein of the blood, so one injection lasts a week. While it is there, the stomach empties more slowly and the appetite circuits in the brain run quieter. What happened in people In 1,961 adults, average weight fell about 15%, compared with about 2% after a dummy treatment. ✓ Reviewed first-read answer A person wrote this and a reviewer approved it against this exact record. It carries no effect size. A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet. No source is stored against this line. The limit that matters most After stopping treatment, people regained about two thirds of the lost weight within a year. Where it acts Kind of result Supervision No recorded sentence describes",
   "mains": 1,
   "detailsCount": 105,
-  "focusableCount": 237,
+  "focusableCount": 235,
   "viewports": [
     {
       "viewport": "desktop",
@@ -106,37 +106,23 @@
       "scrollWidth": 1440,
       "clientWidth": 1440,
       "axeViolations": [],
-      "htmlBytes": 223161
+      "htmlBytes": 223224
     },
     {
       "viewport": "mobile",
       "overflow": false,
       "scrollWidth": 390,
       "clientWidth": 390,
-      "axeViolations": [
-        {
-          "id": "target-size",
-          "impact": "serious",
-          "nodes": 2,
-          "help": "All touch targets must be 24px large, or leave sufficient space"
-        }
-      ],
-      "htmlBytes": 223161
+      "axeViolations": [],
+      "htmlBytes": 223224
     },
     {
       "viewport": "narrow",
       "overflow": false,
       "scrollWidth": 320,
       "clientWidth": 320,
-      "axeViolations": [
-        {
-          "id": "target-size",
-          "impact": "serious",
-          "nodes": 3,
-          "help": "All touch targets must be 24px large, or leave sufficient space"
-        }
-      ],
-      "htmlBytes": 223161
+      "axeViolations": [],
+      "htmlBytes": 223224
     }
   ],
   "readerLayers": {

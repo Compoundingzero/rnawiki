@@ -29,10 +29,17 @@ export const PUBLICATION_STATES = [
     indexable: true,
   },
   {
+    /*
+     * No reader is shown this state as a banner any more. The page instead marks each sentence with
+     * where it came from, and offers the review control. The label and the sentence below stay as
+     * the state's own name and definition: the corpus validation, the indexing decision and the
+     * operator tooling all read them, and a state without a definition is harder to reason about
+     * than one nobody renders.
+     */
     code: 'preliminary',
     label: 'Preliminary, awaiting review',
     plain:
-      'Everything here is linked to a source, and nobody has signed it off yet. Read it as a working draft.',
+      'Source-linked wording exists on this record and no reviewer has signed a conclusion off. Each sentence on the page says so for itself.',
     indexable: false,
   },
   {

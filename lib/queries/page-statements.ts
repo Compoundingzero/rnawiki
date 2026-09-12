@@ -33,6 +33,7 @@ import {
   emptyPageStatementOverlay as buildEmptyOverlay,
   type ActivePageStatement as ActiveStatement,
   type PageReviewSummary as ReviewSummary,
+  type PageStatementHistoryEntry as HistoryEntry,
   type PageStatementOverlay as Overlay,
 } from '@/lib/page-statements/overlay'
 import {
@@ -49,6 +50,7 @@ import {
   OPEN_PROPOSAL_STATUSES,
   PAGE_STATEMENT_APPROVALS_REQUIRED,
   isPageStatementKey,
+  pageStatementLabel,
   type PageStatementChangeCategory,
   type PageStatementKey,
   type PageStatementProposalStatus,
@@ -112,7 +114,7 @@ export async function loadPageStatementOverlay(
   const medicineId = await medicineIdForSlug(slug)
   if (!medicineId) return buildEmptyOverlay(slug)
 
-  const [published, openStates] = await Promise.all([
+  const [published, openStates, replaced] = await Promise.all([
     db
       .select({
         revisionId: pageStatementRevisions.id,
@@ -151,6 +153,37 @@ export async function loadPageStatementOverlay(
           inArray(pageStatementRevisions.status, ['submitted', 'open', 'changes_requested']),
         ),
       ),
+    /*
+     * Wordings that are no longer the public answer. A reader is owed the record of what a page used
+     * to say and why it changed, which is the whole point of publishing through a ledger rather than
+     * by editing text in place.
+     */
+    db
+      .select({
+        statementKey: pageStatementRevisions.statementKey,
+        currentText: pageStatementRevisions.currentText,
+        proposedText: pageStatementRevisions.proposedText,
+        reason: pageStatementRevisions.reason,
+        status: pageStatementRevisions.status,
+        sourceDigest: pageStatementRevisions.sourceDigest,
+        publishedAt: pageStatementRevisions.publishedAt,
+        supersededAt: pageStatementRevisions.supersededAt,
+        approvals: pageStatementReviewStates.reviewCount,
+        qualifiedApprovals: pageStatementReviewStates.qualifiedApprovals,
+      })
+      .from(pageStatementRevisions)
+      .leftJoin(
+        pageStatementReviewStates,
+        eq(pageStatementReviewStates.revisionId, pageStatementRevisions.id),
+      )
+      .where(
+        and(
+          eq(pageStatementRevisions.medicineId, medicineId),
+          inArray(pageStatementRevisions.status, ['published', 'superseded']),
+        ),
+      )
+      .orderBy(desc(pageStatementRevisions.publishedAt))
+      .limit(20),
   ])
 
   const active = new Map<PageStatementKey, ActiveStatement>()
@@ -170,6 +203,31 @@ export async function loadPageStatementOverlay(
     })
   }
 
+  const history: HistoryEntry[] = replaced.flatMap((row) => {
+    const key = row.statementKey
+    if (!isPageStatementKey(key)) return []
+    const changedOn = (row.publishedAt ?? row.supersededAt ?? new Date()).toISOString().slice(0, 10)
+    return [
+      {
+        statementKey: key,
+        label: pageStatementLabel(key),
+        previousText: row.currentText,
+        currentText: row.proposedText,
+        changedOn,
+        reason: row.reason,
+        approvals: row.approvals ?? PAGE_STATEMENT_APPROVALS_REQUIRED,
+        qualifiedReviewerTookPart: (row.qualifiedApprovals ?? 0) > 0,
+        sourceChanged: pageStatementSourceDigest(record, key) !== row.sourceDigest,
+        state:
+          row.status === 'published'
+            ? ('published' as const)
+            : active.get(key)
+              ? ('superseded' as const)
+              : ('rolled_back' as const),
+      },
+    ]
+  })
+
   const open = openStates.filter((row) => row.status === 'submitted' || row.status === 'open')
   const summary: ReviewSummary = {
     slug,
@@ -179,7 +237,7 @@ export async function loadPageStatementOverlay(
     changesRequested: openStates.some((row) => row.status === 'changes_requested'),
     publishedRevisions: active.size,
   }
-  return { active, summary }
+  return { active, summary, history }
 }
 
 /* ============================================================ queue reading */

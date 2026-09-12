@@ -1784,7 +1784,10 @@ test('keeps the static first read clear and contained in a touch-sized view', as
 }) => {
   const fixture = requireNormalizedFixture()
   const context = await browser.newContext({
-    baseURL: 'http://localhost:3000',
+    // Inherit the suite's base URL rather than naming a port. Hard-coding 3000 here sent this
+    // context to whatever else was listening on it once playwright.config.ts became
+    // port-configurable, and the page came back 404 from an unrelated server.
+    ...(test.info().project.use.baseURL ? { baseURL: test.info().project.use.baseURL } : {}),
     colorScheme: 'light',
     hasTouch: true,
     reducedMotion: 'reduce',

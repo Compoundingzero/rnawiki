@@ -78,8 +78,13 @@ export interface GateInput {
 
 /* --------------------------------------------------------------- patterns */
 
+/*
+ * Verbs that assert one thing acting on another. "Reduces" belongs here with "causes": a sentence
+ * saying a substance reduces a risk is making the same kind of claim, and leaving it out let a
+ * finding about a whole class be restated of one medicine without the gate noticing.
+ */
 const CAUSAL_VERBS =
-  /\b(?:causes?|caused|prevents?|prevented|cures?|cured|reverses?|reversed|eliminates?|treats?|fixes?|stops?)\b/i
+  /\b(?:causes?|caused|prevents?|prevented|cures?|cured|reverses?|reversed|eliminates?|treats?|fixes?|stops?|reduces?|reduced|lowers?|lowered|raises?|raised|increases?|increased|improves?|improved)\b/i
 const ASSOCIATION_WORDS =
   /\b(?:associated|association|linked|correlat\w*|observational|cohort|cross-sectional|registry)\b/i
 const HEDGE_WORDS = /\b(?:may|might|could|can|appears?|suggests?|seems?)\b/i
@@ -101,7 +106,12 @@ const START_STOP =
   /\b(?:start(?:ing)?|stop(?:ping)?|begin|quit|discontinue|switch(?:ing)? (?:to|from)|come off)\b.{0,30}\b(?:treatment|medication|medicine|taking|it|this)\b/i
 const SECOND_PERSON_ADVICE =
   /\b(?:you should|you must|you can safely|talk to your|ask your doctor to|we recommend|i recommend)\b/i
-const RATE_PATTERN = /\b(?:\d+(?:[.,]\d+)?\s?%|\d+ in \d+|one in \w+|\d+ per \d+)\b/i
+/*
+ * A trailing \b after `%` never matches — both sides of that position are non-word characters — so
+ * the boundary goes on the front of each alternative instead. Without this the gate silently
+ * ignored every percentage, which is the commonest way a rate arrives without a denominator.
+ */
+const RATE_PATTERN = /(?:\b\d+(?:[.,]\d+)?\s?%|\b\d+ in \d+\b|\bone in \w+\b|\b\d+ per \d+\b)/i
 const DENOMINATOR_PATTERN =
   /\b(?:of|among|out of|across|in)\s+(?:about\s+)?[\d,]+\s|\b[\d,]{2,}\s+(?:people|patients|adults|participants|children|men|women)\b/i
 const SAFE_CLAIM =

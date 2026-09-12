@@ -187,15 +187,10 @@ export function startAnalytics(rawMeasurementId: string | null): void {
 
   window.addEventListener(GOOGLE_ANALYTICS_PREFERENCES_EVENT, openPanel)
 
-  const nav = document.getElementById('rnawiki-footer-nav')
-  if (nav) {
-    const button = element(
-      'button',
-      'text-[#6E6E73] transition hover:text-[#0071E3] hover:underline',
-      'Analytics choices',
-    )
-    button.type = 'button'
-    button.addEventListener('click', openPanel)
-    nav.append(button)
-  }
+  /*
+   * No control is appended to the footer any more. The consent panel still opens on a first visit,
+   * and still opens on the `rnawiki:analytics-preferences` event, which is what /privacy dispatches.
+   * Putting the button in the footer of every page made a consent control part of the site's
+   * furniture; the right to change the choice is unaffected and now has a page that explains it.
+   */
 }

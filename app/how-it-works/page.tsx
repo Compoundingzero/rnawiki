@@ -33,13 +33,16 @@ function Section({
   eyebrow,
   title,
   children,
+  id,
 }: {
   eyebrow: string
   title: string
   children: ReactNode
+  /** An anchor other pages link to. Only sections something links to carry one. */
+  id?: string
 }) {
   return (
-    <section className="space-y-4">
+    <section className="space-y-4" id={id} style={id ? { scrollMarginTop: '5rem' } : undefined}>
       <div className="space-y-1 px-1">
         <span className="block text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
           {eyebrow}
@@ -699,6 +702,107 @@ export default async function HowItWorksPage() {
                 A checked source changed and may affect the page’s conclusion. The current approved
                 version stays visible while people review the change.
               </BadgeExplanation>
+            </div>
+          </Card>
+        </Section>
+
+        <Section
+          eyebrow="Review and corrections"
+          id="review-and-corrections"
+          title="How a sentence on a medicine page gets better"
+        >
+          <Card>
+            <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                <strong className="text-[#1D1D1F]">Every sentence says where it came from.</strong>{' '}
+                A medicine page marks each statement as a reviewed conclusion, an answer a reviewer
+                approved against this exact record, a sentence someone wrote into the record with
+                the study named beside it, a quotation from a stored source, a count of rows RNAWiki
+                holds, or a fixed RNAWiki sentence. An absence is shown with its reason rather than
+                hidden.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">
+                  Not measured, unknown, mixed, contradicted and confirmed are different states.
+                </strong>{' '}
+                Missing information is never filled in with generated medical content, and it is
+                never turned into a negative result.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">
+                  Anyone signed in may suggest better wording.
+                </strong>{' '}
+                The small “Review or improve” control at the top of a medicine page opens the review
+                work for that page. Pick the sentence, write what you think it should say, say why,
+                and attach the source if the change alters what the evidence shows.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Three members have to agree.</strong> Three
+                different eligible members must approve the same exact wording before it replaces
+                what is on the page. The person who proposed it cannot be one of them, editing a
+                proposal starts the count again from zero, and one request for changes or one
+                rejection ends it — on a medical page the safe answer to a disagreement is not to
+                publish.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Some changes need a qualified reviewer.</strong>{' '}
+                A change to what the evidence shows needs at least one of the three to hold a
+                recorded qualification in a relevant field. A change that touches safety,
+                interactions, pregnancy or how a medicine is used needs at least two. A reviewer who
+                declares a conflict of interest can still say what they think; their decision does
+                not count toward the three.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Agreeing is not enough.</strong> Deterministic
+                checks run when a wording is submitted and again when the third approval lands. They
+                refuse a change that turns an association into a cause, an animal result into a
+                human one, a measurement into something a person would feel, or “no evidence found”
+                into “safe”; that drops a limit, names an amount to take, tells a reader to start or
+                stop treatment, or softens a serious warning. A failed check is shown to the
+                reviewers by name and blocks publication.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">
+                  Approval is about words, not about evidence.
+                </strong>{' '}
+                Three members agreeing changes how a sentence reads. It does not change what kind of
+                evidence sits behind it: an animal result stays an animal result, a draft stays a
+                draft, and a page does not become a reviewed page because a sentence on it was
+                reworded.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Nothing is deleted.</strong> The wording that was
+                replaced, the reason it changed, who approved it and whether a qualified reviewer
+                took part all stay in the page’s own history. If a stored record changes under an
+                approved wording, the approvals go stale and the page returns to what the record
+                itself says rather than carrying a sentence nobody has checked against it. A steward
+                can roll a published wording back, and the rollback is another entry in the history.
+              </p>
+              <p>
+                A correction to a stored record — a medicine’s name, a source, a trial, a conclusion
+                — is a different path with its own review, described above. Rewording a sentence
+                never edits the record it was built from.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-bold">
+              <Link
+                href="/review-queue"
+                className="inline-flex items-center gap-1.5 rounded-2xl bg-[#0071E3] px-4 py-2 text-white transition hover:bg-[#0077ED]"
+              >
+                Open the review queue
+              </Link>
+              <Link
+                href="/datasets"
+                className="inline-flex items-center gap-1.5 rounded-2xl border border-[#0071E3]/30 bg-white px-4 py-2 text-[#0071E3] transition hover:bg-[#FAFAFC]"
+              >
+                Public datasets
+              </Link>
+              <Link
+                href="/privacy"
+                className="inline-flex items-center gap-1.5 rounded-2xl border border-[#0071E3]/30 bg-white px-4 py-2 text-[#0071E3] transition hover:bg-[#FAFAFC]"
+              >
+                Privacy
+              </Link>
             </div>
           </Card>
         </Section>

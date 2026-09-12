@@ -384,7 +384,10 @@ export default async function DefinitionsPage() {
             lists of international non-proprietary names, and patent status.
           </p>
           <p className="text-sm">
-            <Link href="/editorial-policy" className="underline underline-offset-2">
+            <Link
+              href="/how-it-works#review-and-corrections"
+              className="underline underline-offset-2"
+            >
               Editorial policy and corrections
             </Link>
           </p>

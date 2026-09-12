@@ -70,7 +70,10 @@ async function expectNoHorizontalOverflow(page: Page): Promise<void> {
 
 async function newTouchPage(browser: Browser): Promise<{ close: () => Promise<void>; page: Page }> {
   const context = await browser.newContext({
-    baseURL: 'http://localhost:3000',
+    // Inherit the suite's base URL rather than naming a port. Hard-coding 3000 here sent this
+    // context to whatever else was listening on it once playwright.config.ts became
+    // port-configurable, and the page came back 404 from an unrelated server.
+    ...(test.info().project.use.baseURL ? { baseURL: test.info().project.use.baseURL } : {}),
     colorScheme: 'light',
     hasTouch: true,
     isMobile: true,

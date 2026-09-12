@@ -1,27 +1,20 @@
 /**
- * The corpus document's footer: the same links `components/SiteFooter.tsx` carries, as plain
- * anchors, plus the front-page link that stands in for the header's account control.
+ * The plain document's footer: the same links `components/SiteFooter.tsx` carries, as plain
+ * anchors, from the same shared list.
  *
- * The analytics-choices control is a button in the React shell. Here the document's script adds it
- * to this list once it knows a measurement id is configured, so a reader with scripts off is not
- * shown a control that cannot do anything.
+ * Nothing is appended to this row at runtime any more. The document's script used to add an
+ * "Analytics choices" button once it knew a measurement id was configured, which made this footer
+ * differ from the React one depending on the environment. The consent control now lives on
+ * /privacy, linked from here like anything else.
  */
-const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
-  { href: '/browse', label: 'Browse all medicines' },
-  { href: '/h', label: 'Compare by target, class or pathway' },
-  { href: '/datasets', label: 'Public datasets' },
-  { href: '/how-it-works', label: 'How this works' },
-  { href: '/editorial-policy', label: 'Editorial policy' },
-  { href: '/review-queue', label: 'Review queue' },
-  { href: '/', label: 'Sign in on the front page' },
-]
+import { FOOTER_LINKS, FOOTER_TRUST_LINES } from '@/lib/site-footer-links'
 
 export function DocumentFooter() {
   return (
     <footer className="border-t border-black/[0.06] bg-white py-6 text-center text-xs text-[#6E6E73]">
       <div className="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>RNAWiki.com &bull; Public medicine evidence</span>
-        <span>No advertising &bull; Free to read</span>
+        <span>{FOOTER_TRUST_LINES.identity}</span>
+        <span>{FOOTER_TRUST_LINES.terms}</span>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 mt-5 pt-4 border-t border-black/[0.04] space-y-2">
@@ -32,7 +25,7 @@ export function DocumentFooter() {
         >
           {FOOTER_LINKS.map((link) => (
             <a
-              className="text-[#6E6E73] hover:text-[#0071E3] hover:underline transition"
+              className="inline-flex min-h-11 items-center text-[#6E6E73] hover:text-[#0071E3] hover:underline transition"
               href={link.href}
               key={link.href}
             >
@@ -41,10 +34,7 @@ export function DocumentFooter() {
           ))}
         </nav>
 
-        <p className="text-[11px] leading-relaxed text-[#6E6E73]">
-          RNAWiki is a public evidence record, not medical advice. Talk to a clinician before
-          changing any treatment.
-        </p>
+        <p className="text-[11px] leading-relaxed text-[#6E6E73]">{FOOTER_TRUST_LINES.notAdvice}</p>
       </div>
     </footer>
   )

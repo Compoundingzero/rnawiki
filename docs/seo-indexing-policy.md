@@ -13,7 +13,7 @@ The XML sitemap contains only:
 - `/`
 - `/browse`, and `/browse?page=N` for every later page of the unfiltered record list
 - `/how-it-works`
-- `/editorial-policy`
+- `/privacy`
 - one `/d/{canonicalSlug}` URL for each medicine admitted by any of the three eligibility paths:
   an eligible current programme publication, an eligible provenance-bound flagship compatibility
   record, or a resolved canonical record with a stored completeness assessment

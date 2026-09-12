@@ -255,7 +255,7 @@ export function CompassPage({
           <UnknownMap unknowns={model.unknowns} />
           <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
           <DrugStory story={model.story} />
-          <ChangeHistory changes={model.changes} />
+          <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
           <NextQuestionRail questions={model.nextQuestions} />
           <TechnicalRecord corpus={corpus} model={model} />
           <p className="dv4-foot">

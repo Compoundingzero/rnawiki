@@ -1,7 +1,7 @@
 {
   "label": "community-review-after",
   "base": "http://localhost:3100",
-  "capturedAt": "2026-09-12T04:11:12.558Z",
+  "capturedAt": "2026-09-12T05:59:26.447Z",
   "pages": [
     {
       "slug": "creatine-monohydrate",
@@ -103,7 +103,7 @@
       "firstViewportText": "Creatine Dietary supplement Sold without a prescription in SG, US, AU, UK, EU, JP, CA, OTHER ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3 What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong Measuring Alternatives What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns Its story What changed Next What people report What people report Reports What Creatine does in the body Taken for strength and power output in short, hard efforts Creatine is absorbed intact and pumped into muscle cells by a dedicated transporter. Inside, an enzyme sticks a phosphate onto it, making a small rechargeable battery. During a maximal effort the battery hands its phosphate to spent energy molecules, keeping the cell going for several seconds longer than it otherwise would. Over weeks that means slightly more work per training session, and slightly more work per session compounds into bigger muscle fibres. What happened in people Twelve weeks of training with creatine produced greater fat-free mass, bench press, squat and fibre cross-sectional area than training with placebo in trained men ✎ Source-linked record A person wrote this into the record with the study named beside it. No reviewer has signed it off. The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval. Harris RC, Soderlund K, Hultman E. Elevation of creatine in resting",
       "mains": 1,
       "detailsCount": 90,
-      "focusableCount": 212,
+      "focusableCount": 210,
       "viewports": [
         {
           "viewport": "desktop",
@@ -111,37 +111,23 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 206817
+          "htmlBytes": 206872
         },
         {
           "viewport": "mobile",
           "overflow": false,
           "scrollWidth": 390,
           "clientWidth": 390,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 2,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 206817
+          "axeViolations": [],
+          "htmlBytes": 206872
         },
         {
           "viewport": "narrow",
           "overflow": false,
           "scrollWidth": 320,
           "clientWidth": 320,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 3,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 206817
+          "axeViolations": [],
+          "htmlBytes": 206872
         }
       ],
       "readerLayers": {
@@ -331,7 +317,7 @@
       "firstViewportText": "Semaglutide Hormone Given by a clinician in SG, US, AU, UK, EU, JP, CA, OTHER ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3 What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong Clashes Alternatives What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns Its story What changed Next What people report What people report Reports What Semaglutide does in the body Used for type 2 diabetes, obesity, and related heart or kidney risk. After a meal your gut releases a hormone called GLP-1 that tells the brain you have had enough. Natural GLP-1 is destroyed within minutes. Semaglutide is a rebuilt version with a fatty tail that clips onto albumin, the taxi protein of the blood, so one injection lasts a week. While it is there, the stomach empties more slowly and the appetite circuits in the brain run quieter. What happened in people In 1,961 adults, average weight fell about 15%, compared with about 2% after a dummy treatment. ✓ Reviewed first-read answer A person wrote this and a reviewer approved it against this exact record. It carries no effect size. A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet. No source is stored against this line. The limit that matters most After stopping treatment, people regained about two thirds of the lost weight within a year. Where it acts Kind of result Supervision No recorded sentence describes",
       "mains": 1,
       "detailsCount": 105,
-      "focusableCount": 237,
+      "focusableCount": 235,
       "viewports": [
         {
           "viewport": "desktop",
@@ -339,37 +325,23 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 223161
+          "htmlBytes": 223224
         },
         {
           "viewport": "mobile",
           "overflow": false,
           "scrollWidth": 390,
           "clientWidth": 390,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 2,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 223161
+          "axeViolations": [],
+          "htmlBytes": 223224
         },
         {
           "viewport": "narrow",
           "overflow": false,
           "scrollWidth": 320,
           "clientWidth": 320,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 3,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 223161
+          "axeViolations": [],
+          "htmlBytes": 223224
         }
       ],
       "readerLayers": {
@@ -589,7 +561,7 @@
       "firstViewportText": "Inclisiran RNA medicine Given by a clinician in SG, US, AU, UK, EU, JP, CA, OTHER ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3 What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns What changed Next What people report What people report Reports What Inclisiran does in the body Used with diet and exercise to lower LDL, often called “bad” cholesterol. Your liver pulls cholesterol out of the blood using catchers on its surface called LDL receptors. A protein named PCSK9 grabs those catchers and drags them off to be destroyed, so you end up with fewer of them. Inclisiran is a short piece of RNA with a sugar tag that only liver cells recognise; once inside, it hands the liver a template for shredding its own PCSK9 instructions. The catchers survive and get reused, and LDL in the blood falls for about six months per injection. What happened in people After about 17 months, two large studies found that LDL fell by about half on average compared with look-alike injections containing no inclisiran. ✓ Reviewed first-read answer A person wrote this and a reviewer approved it against this exact record. It carries no effect size. A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet. No source is stored against this line. The limit that matters most Completed studies have not yet sho",
       "mains": 1,
       "detailsCount": 80,
-      "focusableCount": 191,
+      "focusableCount": 189,
       "viewports": [
         {
           "viewport": "desktop",
@@ -597,37 +569,23 @@
           "scrollWidth": 1440,
           "clientWidth": 1440,
           "axeViolations": [],
-          "htmlBytes": 166992
+          "htmlBytes": 167055
         },
         {
           "viewport": "mobile",
           "overflow": false,
           "scrollWidth": 390,
           "clientWidth": 390,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 2,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 166992
+          "axeViolations": [],
+          "htmlBytes": 167055
         },
         {
           "viewport": "narrow",
           "overflow": false,
           "scrollWidth": 320,
           "clientWidth": 320,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 3,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
-          "htmlBytes": 166992
+          "axeViolations": [],
+          "htmlBytes": 167055
         }
       ],
       "readerLayers": {
@@ -797,7 +755,7 @@
       "firstViewportText": "1,2-Hexanediol Prescription medicine Prescription only ✓Identity checked No source check date recorded This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3RNAWiki holds very little about this substance. The page shows what there is. What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does What happened in people What happened in people Receipts What it would be like to take What it would be like to take How long Seems to do nothing What it involves What goes wrong What is missing or unclear What is missing or unclear Like you? Which form Unknowns Next What people report What people report Reports What 1,2-Hexanediol does in the body RNAWiki has not recorded what this substance changes in the body. What happened in people RNAWiki has not yet published a reviewed conclusion for this use. § A fixed RNAWiki sentence Wording RNAWiki always uses, not a finding about this substance. No reviewed claim names a result for any goal on this record. No source is stored against this line. The limit that matters most Not recorded. Where it acts Kind of result Supervision No plain explanation of what this changes is stored. No recorded use is stored in reader language. No statement of the main limit is recorded. The four opening statements run to 26 words. No path through the body is recorded for this substance. Each step is written out below, with what was measured and in what species. Not recorded. Words this page uses Four words worth knowing first Chosen from what this page shows, with each one explained before the word it depends on. Biomarker A biomarker is a number from a test that stands in for something about health. Placebo A placebo is a dummy treatment given so the real one can be compared with it. Comparator A comparator is whatever the",
       "mains": 1,
       "detailsCount": 25,
-      "focusableCount": 59,
+      "focusableCount": 57,
       "viewports": [
         {
           "viewport": "desktop",
@@ -812,14 +770,7 @@
           "overflow": false,
           "scrollWidth": 390,
           "clientWidth": 390,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 2,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
+          "axeViolations": [],
           "htmlBytes": 67091
         },
         {
@@ -827,14 +778,7 @@
           "overflow": false,
           "scrollWidth": 320,
           "clientWidth": 320,
-          "axeViolations": [
-            {
-              "id": "target-size",
-              "impact": "serious",
-              "nodes": 3,
-              "help": "All touch targets must be 24px large, or leave sufficient space"
-            }
-          ],
+          "axeViolations": [],
           "htmlBytes": 67091
         }
       ],

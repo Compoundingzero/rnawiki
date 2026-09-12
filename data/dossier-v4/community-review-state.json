@@ -3,28 +3,32 @@
   "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
   "branch": "rebuild/biohacker-dossier",
   "starting_commit": "fb4ad49",
-  "last_safe_commit": "fb4ad49",
+  "last_safe_commit": "a74f041",
   "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
-  "phase": "9-review-workflow-live-locally",
+  "phase": "12-footer-and-cleanup-done",
   "banner_removed": true,
   "review_button_added": true,
   "review_queue_ready": true,
   "three_approval_rule_ready": true,
   "automatic_publication_ready": true,
-  "footer_cleaned": false,
+  "footer_cleaned": true,
   "staging_revision": "",
   "production_revision": "",
   "tests": {
-    "unit_dossier_v4": "130 passed (contracts, view model, substance)",
-    "integration_page_statement_review": "24 passed against PostgreSQL, including the concurrent third approval",
-    "browser_community_review": "33 passed (banner absence, control, 5 viewports, axe, full three-member journey, rollback)",
+    "gate": "exit 0 at this commit",
+    "unit": "2,934 passed across 192 files, 9 skipped",
+    "integration": "209 passed across 29 files, disposable database",
+    "browser": "109 passed",
+    "seo": "279 passed across 24 files",
+    "public_copy_scan": "0 hits, 38 patterns",
     "clean_migration_replay": "passed on a disposable database",
-    "corpus_validation": "10,250 pages, 0 critical, 370 with any issue (unchanged)",
-    "production_build": "exit 0"
+    "corpus_validation": "10,250 pages, 0 critical, 370 with any issue",
+    "production_build": "exit 0",
+    "axe_on_medicine_pages": "0 violations at 1440, 390 and 320 px, down from 2 and 3 target-size nodes before"
   },
   "blockers": [
     "Railway MCP is unauthorized (`railway login` needed by the account owner). Staging and production deployment cannot be inspected or performed from this session until that is restored."
   ],
-  "next_exact_command": "npm run gate",
+  "next_exact_command": "railway login   # then re-run the staging and production phases",
   "updated_at": "2026-09-11"
 }

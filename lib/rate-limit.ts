@@ -33,17 +33,77 @@ export interface RateLimitPolicy {
 const MINUTE = 60_000
 const HOUR = 60 * MINUTE
 
+/**
+ * Whether this process is demonstrably running against a throwaway test database.
+ *
+ * Not an environment flag: the answer is read from the database the process is actually connected
+ * to, and it is true only for a `rnawiki_test_*` database on a loopback host — exactly what
+ * `scripts/with-disposable-database.ts` creates, and what it refuses to create anywhere remote. A
+ * deployed instance cannot reach this branch by exporting a variable; it would have to be pointed
+ * at a local throwaway database, at which point it is not serving anybody.
+ *
+ * Why it exists: every bucket below is keyed on one anonymous fingerprint, which folds the caller's
+ * address and a user-agent bucket. The whole browser suite shares one — a hundred-odd tests, every
+ * worker, one key — so the suite spends a reader's per-minute allowance in seconds and specs start
+ * failing with a 429 for a reason unrelated to the change being tested. A gate that fails for
+ * unrelated reasons is a gate people learn to ignore. On a throwaway database the allowances are
+ * raised; everywhere a reader could reach, they are the numbers written here.
+ */
+function runsOnDisposableTestDatabase(): boolean {
+  const url = process.env.DATABASE_URL
+  if (!url) return false
+  try {
+    const parsed = new URL(url)
+    const local =
+      parsed.hostname === 'localhost' ||
+      parsed.hostname === '127.0.0.1' ||
+      parsed.hostname === '::1' ||
+      parsed.hostname === ''
+    return local && /^\/rnawiki_test_\d+_[0-9a-f]+$/.test(parsed.pathname)
+  } catch {
+    return false
+  }
+}
+
+const TEST_DATABASE = runsOnDisposableTestDatabase()
+
+/** The allowance a reader gets, or a much larger one when the suite is talking to a scratch database. */
+function allowance(readerLimit: number, testLimit: number): number {
+  return TEST_DATABASE ? testLimit : readerLimit
+}
+
 /** Anonymous reads of the public JSON API. */
-export const PUBLIC_API: RateLimitPolicy = { name: 'public_api', limit: 60, windowMs: MINUTE }
+export const PUBLIC_API: RateLimitPolicy = {
+  name: 'public_api',
+  limit: allowance(60, 100_000),
+  windowMs: MINUTE,
+}
 
 /** Any request that writes: edits, notes, upvotes, saves. */
-export const WRITE: RateLimitPolicy = { name: 'write', limit: 20, windowMs: MINUTE }
+export const WRITE: RateLimitPolicy = {
+  name: 'write',
+  limit: allowance(20, 100_000),
+  windowMs: MINUTE,
+}
 
-/** Sign-in, sign-up and password checks — the endpoints worth guessing against. */
-export const AUTH: RateLimitPolicy = { name: 'auth', limit: 10, windowMs: 15 * MINUTE }
+/**
+ * Sign-in, sign-up and password checks — the endpoints worth guessing against.
+ *
+ * Ten per fifteen minutes for a reader. The three-member review journey alone needs seven accounts
+ * to sign in, which is why the suite's allowance is not a reader's.
+ */
+export const AUTH: RateLimitPolicy = {
+  name: 'auth',
+  limit: allowance(10, 1_000),
+  windowMs: 15 * MINUTE,
+}
 
 /** The floating feedback button. Deliberately tight; nobody has five useful reports an hour. */
-export const FEEDBACK: RateLimitPolicy = { name: 'feedback', limit: 5, windowMs: HOUR }
+export const FEEDBACK: RateLimitPolicy = {
+  name: 'feedback',
+  limit: allowance(5, 1_000),
+  windowMs: HOUR,
+}
 
 export const RATE_LIMIT_POLICIES = { PUBLIC_API, WRITE, AUTH, FEEDBACK } as const
 

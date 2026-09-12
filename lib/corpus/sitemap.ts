@@ -165,7 +165,7 @@ export async function pagesSitemapEntries(): Promise<SitemapEntry[]> {
       priority: 0.6,
     })),
     { path: '/how-it-works', changeFrequency: 'monthly', priority: 0.6 },
-    { path: '/editorial-policy', changeFrequency: 'monthly', priority: 0.6 },
+    { path: '/privacy', changeFrequency: 'monthly', priority: 0.4 },
   ]
 
   const dossiers: SitemapEntry[] = reports.flatMap((report) => {

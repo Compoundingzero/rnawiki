@@ -48,13 +48,40 @@ export const EMPTY_PAGE_REVIEW_SUMMARY: Omit<PageReviewSummary, 'slug'> = {
   publishedRevisions: 0,
 }
 
+/**
+ * One wording that members replaced, as the public page shows it.
+ *
+ * Nothing private reaches this shape. A reader learns what the page used to say, what it says now,
+ * when it changed, why, how many members agreed and whether one of them held a relevant recorded
+ * qualification. They do not learn who the reviewers were, what they declared, or what the
+ * qualification records contain.
+ */
+export interface PageStatementHistoryEntry {
+  statementKey: PageStatementKey
+  /** What a reader sees above the sentence. */
+  label: string
+  previousText: string
+  currentText: string
+  /** ISO date, day precision. */
+  changedOn: string
+  reason: string
+  approvals: number
+  qualifiedReviewerTookPart: boolean
+  /** True when the record the wording rests on moved after it was approved. */
+  sourceChanged: boolean
+  /** 'published' while it is the public answer, or how it stopped being one. */
+  state: 'published' | 'superseded' | 'rolled_back'
+}
+
 export interface PageStatementOverlay {
   active: ReadonlyMap<PageStatementKey, ActivePageStatement>
   summary: PageReviewSummary
+  /** Wordings members replaced, newest first. */
+  history: PageStatementHistoryEntry[]
 }
 
 export function emptyPageStatementOverlay(slug: string): PageStatementOverlay {
-  return { active: new Map(), summary: { slug, ...EMPTY_PAGE_REVIEW_SUMMARY } }
+  return { active: new Map(), summary: { slug, ...EMPTY_PAGE_REVIEW_SUMMARY }, history: [] }
 }
 
 /* ------------------------------------------------------------ public copy */

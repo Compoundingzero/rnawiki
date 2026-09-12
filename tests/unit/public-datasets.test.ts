@@ -714,10 +714,20 @@ describe('GET /api/datasets/[dataset]', () => {
 })
 
 describe('dataset discoverability', () => {
-  it('links the public reader from the site footer', () => {
-    const footer = readFileSync(join(process.cwd(), 'components/SiteFooter.tsx'), 'utf8')
-    expect(footer).toContain("href: '/datasets'")
-    expect(footer).toContain("label: 'Public datasets'")
+  /*
+   * The datasets link left the footer in the September 2026 pruning: it serves researchers, not the
+   * primary reader at the foot of every page. What this case protects is unchanged — a reader can
+   * still find the datasets from the site's own navigation — so it now checks the path that exists.
+   * See docs/site-content-pruning-2026-09.md.
+   */
+  it('keeps the public reader a route in from the site’s own navigation', () => {
+    const footerLinks = readFileSync(join(process.cwd(), 'lib/site-footer-links.ts'), 'utf8')
+    expect(footerLinks).not.toContain("href: '/datasets'")
+    expect(footerLinks).toContain("href: '/how-it-works'")
+
+    const howItWorks = readFileSync(join(process.cwd(), 'app/how-it-works/page.tsx'), 'utf8')
+    expect(howItWorks).toContain('href="/datasets"')
+    expect(howItWorks).toContain('Public datasets')
   })
 
   it('keeps raw file access out of the route handlers and browser page', () => {

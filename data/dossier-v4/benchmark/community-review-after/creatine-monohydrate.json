@@ -98,7 +98,7 @@
   "firstViewportText": "Creatine Dietary supplement Sold without a prescription in SG, US, AU, UK, EU, JP, CA, OTHER ✓Identity checked Sources last checked 2026-09-06 This page shows what was measured, who it was measured in, and what that does not settle. ✎Review or improve · 0/3 What brought you here? Understand what it does See evidence for my goal Check risks and what it mixes with Compare alternatives Learn what to measure On this page What it changes in the body What it changes in the body What it does The path What happened in people What happened in people By goal In people How close Receipts What it would be like to take What it would be like to take Felt or measured How long Seems to do nothing What it involves What goes wrong Measuring Alternatives What is missing or unclear What is missing or unclear Like you? Which form Big claims Unknowns Its story What changed Next What people report What people report Reports What Creatine does in the body Taken for strength and power output in short, hard efforts Creatine is absorbed intact and pumped into muscle cells by a dedicated transporter. Inside, an enzyme sticks a phosphate onto it, making a small rechargeable battery. During a maximal effort the battery hands its phosphate to spent energy molecules, keeping the cell going for several seconds longer than it otherwise would. Over weeks that means slightly more work per training session, and slightly more work per session compounds into bigger muscle fibres. What happened in people Twelve weeks of training with creatine produced greater fat-free mass, bench press, squat and fibre cross-sectional area than training with placebo in trained men ✎ Source-linked record A person wrote this into the record with the study named beside it. No reviewer has signed it off. The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval. Harris RC, Soderlund K, Hultman E. Elevation of creatine in resting",
   "mains": 1,
   "detailsCount": 90,
-  "focusableCount": 212,
+  "focusableCount": 210,
   "viewports": [
     {
       "viewport": "desktop",
@@ -106,37 +106,23 @@
       "scrollWidth": 1440,
       "clientWidth": 1440,
       "axeViolations": [],
-      "htmlBytes": 206817
+      "htmlBytes": 206872
     },
     {
       "viewport": "mobile",
       "overflow": false,
       "scrollWidth": 390,
       "clientWidth": 390,
-      "axeViolations": [
-        {
-          "id": "target-size",
-          "impact": "serious",
-          "nodes": 2,
-          "help": "All touch targets must be 24px large, or leave sufficient space"
-        }
-      ],
-      "htmlBytes": 206817
+      "axeViolations": [],
+      "htmlBytes": 206872
     },
     {
       "viewport": "narrow",
       "overflow": false,
       "scrollWidth": 320,
       "clientWidth": 320,
-      "axeViolations": [
-        {
-          "id": "target-size",
-          "impact": "serious",
-          "nodes": 3,
-          "help": "All touch targets must be 24px large, or leave sufficient space"
-        }
-      ],
-      "htmlBytes": 206817
+      "axeViolations": [],
+      "htmlBytes": 206872
     }
   ],
   "readerLayers": {

@@ -309,7 +309,60 @@ export function DrugStory({ story }: { story: DossierV4ViewModel['story'] }): Re
   )
 }
 
-export function ChangeHistory({ changes }: { changes: DossierV4ViewModel['changes'] }): ReactNode {
+/**
+ * Wordings members replaced, beneath the record's own correction history.
+ *
+ * Two different things changed a page and both belong here, told apart rather than merged: a
+ * correction changed what the record holds, and a review changed how a sentence puts it. Nothing
+ * private appears — not the reviewers' names, not what they declared, not the qualification records
+ * themselves, only whether one of them was relevant to the claim.
+ */
+function WordingHistory({ history }: { history: DossierV4ViewModel['wordingHistory'] }): ReactNode {
+  if (history.length === 0) return null
+  return (
+    <div style={{ marginTop: '1.25rem' }}>
+      <p className="dv4-eyebrow">
+        <span>Wording members changed</span>
+      </p>
+      <ol className="dv4-spine">
+        {history.map((entry, index) => (
+          <li data-known="false" key={`${entry.statementKey}-${index}`}>
+            <p style={{ marginBottom: '0.1rem' }}>
+              <span className="dv4-spine-label">{entry.changedOn}.</span> {entry.label} changed from
+              “{entry.previousText}” to “{entry.currentText}”.
+            </p>
+            <p className="dv4-note" style={{ marginBottom: 0 }}>
+              {entry.reason} Approved by {entry.approvals} members
+              {entry.qualifiedReviewerTookPart
+                ? ', one with a relevant reviewer qualification verified'
+                : ''}
+              .{' '}
+              {entry.state === 'published'
+                ? 'This is the wording on the page now.'
+                : entry.state === 'rolled_back'
+                  ? 'It was rolled back, and the page shows the earlier wording again.'
+                  : 'A later wording has replaced it.'}
+              {entry.sourceChanged
+                ? ' The record it was approved against has changed since, so the page shows what the record says rather than this wording.'
+                : ''}
+            </p>
+          </li>
+        ))}
+      </ol>
+      <p className="dv4-note" style={{ marginTop: '0.5rem' }}>
+        Members agreeing on a wording changes the words, not what kind of evidence sits behind them.
+      </p>
+    </div>
+  )
+}
+
+export function ChangeHistory({
+  changes,
+  wordingHistory,
+}: {
+  changes: DossierV4ViewModel['changes']
+  wordingHistory: DossierV4ViewModel['wordingHistory']
+}): ReactNode {
   return (
     <SectionFrame
       id="change-history"
@@ -318,9 +371,9 @@ export function ChangeHistory({ changes }: { changes: DossierV4ViewModel['change
       lede="Every correction is recorded, including the ones that did not change what the page concludes."
       state={changes.state}
     >
-      {changes.entries.length === 0 ? (
+      {changes.entries.length === 0 && wordingHistory.length === 0 ? (
         <Absence reason="Nothing has been corrected on this record." state={changes.state} />
-      ) : (
+      ) : changes.entries.length === 0 ? null : (
         <ol className="dv4-spine">
           {changes.entries.map((entry, index) => (
             <li data-known={entry.alteredPublicConclusion ? 'true' : 'false'} key={index}>
@@ -341,6 +394,7 @@ export function ChangeHistory({ changes }: { changes: DossierV4ViewModel['change
           ))}
         </ol>
       )}
+      <WordingHistory history={wordingHistory} />
     </SectionFrame>
   )
 }
