@@ -127,7 +127,7 @@ function SubPageList({
           <Link
             href={subPageHref(facet, value.id, subPage)}
             aria-label={`${value.label}, ${subPage.label}`}
-            className={`inline-flex min-h-8 items-center px-1 text-[11px] font-semibold tabular-nums ${LINK_ON_GROUND}`}
+            className={`inline-flex min-h-8 min-w-8 items-center justify-center px-1 text-[11px] font-semibold tabular-nums ${LINK_ON_GROUND}`}
           >
             {subPage.label}
           </Link>
@@ -283,7 +283,7 @@ export function FacetPager({
             ) : (
               <Link
                 href={hrefFor(candidate)}
-                className={`inline-flex min-h-8 items-center px-1 ${LINK_ON_GROUND}`}
+                className={`inline-flex min-h-8 min-w-8 items-center justify-center px-1 ${LINK_ON_GROUND}`}
               >
                 {candidate.toLocaleString('en-GB')}
               </Link>
