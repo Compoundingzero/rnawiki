@@ -122,13 +122,17 @@ npm install
 npm run db:migrate
 npm run typecheck
 npm run lint
-npm run test:unit
+npm run build          # before the tests: three of them render a document, and a document
+npm run test:unit      # links the stylesheets the build wrote into .next/app-build-manifest.json
 npm run test:integration
-npm run build
 ```
 
-`npm run gate` runs typecheck, lint, public-copy checks, formatting, migration metadata checks, unit
-tests, disposable-database integration tests, the production build and Playwright browser tests.
+`npm run gate` runs typecheck, lint, public-copy checks, formatting, migration metadata checks, the
+production build, unit tests, disposable-database integration tests and Playwright browser tests. The
+build comes before the tests and `tests/unit/release-gate-order.test.ts` keeps it there: a unit test
+that renders a document reads the stylesheet manifest the build writes, so running the tests first
+passes on a developer's machine — where `.next` is left over from last time — and fails on every
+clean checkout.
 Database integration tests must run against a disposable local database.
 `scripts/with-disposable-database.ts` creates a uniquely named local test database, migrates it, runs
 the supplied command and drops it; it refuses remote hosts and non-test database names.

@@ -60,7 +60,7 @@
     "test:integration:raw": "vitest run tests/integration",
     "test:e2e": "tsx scripts/with-disposable-database.ts -- npm run test:e2e:raw",
     "test:e2e:raw": "playwright test",
-    "gate": "npm run typecheck && npm run lint && npm run check:copy && npm run check:single-layout && npm run check:medicine-content && npm run audit:denial-corpus && npm run agents:check && npm run agents:import:check && npm run check:agent-datasets && npm run check:four-audience-coverage && npm run check:source-consensus-snapshot && npm run check:dataset-export && npm run check:seo && npm run format && npx drizzle-kit check && npm run test:unit && npm run test:integration && npm run build && npm run test:e2e",
+    "gate": "npm run typecheck && npm run lint && npm run check:copy && npm run check:single-layout && npm run check:medicine-content && npm run audit:denial-corpus && npm run agents:check && npm run agents:import:check && npm run check:agent-datasets && npm run check:four-audience-coverage && npm run check:source-consensus-snapshot && npm run check:dataset-export && npm run check:seo && npm run format && npx drizzle-kit check && npm run build && npm run test:unit && npm run test:integration && npm run test:e2e",
     "ingest:download": "tsx scripts/ingest/download.ts",
     "ingest:structures": "tsx scripts/ingest/build-structures.ts",
     "ingest": "tsx scripts/ingest/run.ts",

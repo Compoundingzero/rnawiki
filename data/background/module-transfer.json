@@ -1,5 +1,5 @@
 {
-  "dryRun": true,
+  "dryRun": false,
   "sourceEnvelopes": 9855,
   "targetEnvelopes": 9855,
   "medicinesUpdated": 236,
