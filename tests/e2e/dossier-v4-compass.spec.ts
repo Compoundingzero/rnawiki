@@ -486,9 +486,27 @@ test('accessibility: reduced motion is respected and nothing animates on load', 
 
 /* -------------------------------------------------------- responsive layout */
 
+/*
+ * The widths this sweeps, and why each one is here.
+ *
+ * 320 and 390 are the phone sizes the brief names. The rest are the ones that broke: the page
+ * scrolled sideways between 960 and 1080 px, because the left rail appears at 960 and takes about
+ * 280 px with its gap, leaving the goal matrix a 690 px column while its own minimum is 797. It was
+ * invisible on macOS, where overlay scrollbars leave the viewport its full width, and reproducible
+ * on Linux, where a 15 px scrollbar takes the page under the threshold. A two-width sweep at phone
+ * sizes could never have found it.
+ */
 for (const viewport of [
   { name: '320', width: 320, height: 800 },
   { name: '390', width: 390, height: 844 },
+  { name: '768', width: 768, height: 900 },
+  { name: '880', width: 880, height: 900 },
+  { name: '960', width: 960, height: 900 },
+  { name: '1000', width: 1000, height: 900 },
+  { name: '1024', width: 1024, height: 900 },
+  { name: '1080', width: 1080, height: 900 },
+  { name: '1280', width: 1280, height: 900 },
+  { name: '1440', width: 1440, height: 900 },
 ]) {
   test(`no horizontal overflow at ${viewport.name} px`, async ({ browser }) => {
     const { slug } = requireFixture()

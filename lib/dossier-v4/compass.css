@@ -709,7 +709,21 @@
   font-size: 0.78rem;
 }
 
-@media (max-width: 55rem) {
+/*
+ * The goal matrix stacks into cards until the column holding it is genuinely wide enough for a
+ * table.
+ *
+ * This was 55rem (880 px), which is where the page is still one column. At 60rem the left rail
+ * appears and takes about 240 px plus a 40 px gap, so between 960 and about 1080 px the matrix is a
+ * table asked to fit in a 690 px column while its row headers are `white-space: nowrap` and its
+ * min-content width is 797 px. The result was a page that scrolled sideways at 1024 px — invisible
+ * on macOS, where overlay scrollbars leave the viewport its full width, and reproducible on Linux,
+ * where a 15 px scrollbar takes the page under the threshold. CI caught it; a developer's machine
+ * never would.
+ *
+ * 67.5rem is 1080 px, which is where the flow column first clears the table's own minimum.
+ */
+@media (max-width: 67.5rem) {
   .dv4-matrix-scroll {
     overflow-x: visible;
   }

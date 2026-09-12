@@ -35,6 +35,9 @@ const SOURCE_LABELS: Record<string, string> = {
   PUBCHEM: 'PubChem record',
   RXNORM: 'RxNorm record',
   FDA_DRUGSFDA: 'Drugs@FDA application register',
+  FDA_UNII: 'FDA substance registry',
+  FDA_NDC: 'FDA National Drug Code directory',
+  NCBI_TAXONOMY: 'NCBI Taxonomy',
   DSLD: 'NIH Dietary Supplement Label Database',
 }
 

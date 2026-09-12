@@ -43,7 +43,7 @@ const SOURCE_LABELS: Record<string, string> = {
   FDA_DRUGSFDA: 'Drugs@FDA application register',
   FDA_NDC: 'FDA National Drug Code directory',
   DSLD: 'NIH Dietary Supplement Label Database',
-  GSRS: 'FDA Global Substance Registration System',
+  FDA_UNII: 'FDA substance registry',
   NCBI_TAXONOMY: 'NCBI Taxonomy',
   WHO_INN: 'WHO International Nonproprietary Names list',
   CHEMBL: 'ChEMBL',
@@ -330,7 +330,9 @@ function supplyFacts(envelope: Envelope): RecordedFact[] {
     facts.push({
       text: `${variant.brandName} is ${variant.formAsRecorded.toLowerCase()}${
         variant.strengthsAsRecorded ? ` at ${variant.strengthsAsRecorded}` : ''
-      }, recorded as ${variant.statusAsRecorded.toLowerCase()} in ${variant.jurisdiction}.`,
+      }, recorded as ${variant.statusAsRecorded.toLowerCase()} in ${
+        JURISDICTION_LABELS[variant.jurisdiction] ?? variant.jurisdiction
+      }.`,
       citation: citationFor(variant.source),
       origin: 'derived_count',
     })
@@ -399,6 +401,19 @@ function regulatoryFacts(envelope: Envelope): RecordedFact[] {
   }
 
   return facts
+}
+
+/**
+ * How a regulator is named to a reader. Raw enum values never reach the page.
+ *
+ * `US_FDA` reached one twice on semaglutide's page, printed as though it were the name of a place:
+ * "recorded as approved in US_FDA". Caught by the copy contract's internal-key check in the
+ * benchmark capture, which is what that check is for.
+ */
+const JURISDICTION_LABELS: Record<string, string> = {
+  US_FDA: 'the United States',
+  EU_EMA: 'the European Union',
+  UK_MHRA: 'the United Kingdom',
 }
 
 /** How a population code is named to a reader. Raw enum values never reach the page. */
