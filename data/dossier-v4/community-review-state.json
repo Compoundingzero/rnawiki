@@ -3,9 +3,9 @@
   "worktree": "Project RNAwiki/RNAwiki-biohacker-rebuild",
   "branch": "rebuild/biohacker-dossier",
   "starting_commit": "fb4ad49",
-  "last_safe_commit": "b0d3d58",
+  "last_safe_commit": "ccaabdf",
   "pull_request": "https://github.com/Compoundingzero/rnawiki/pull/19",
-  "phase": "17-local-release-rehearsal-done-staging-blocked",
+  "phase": "18-blocked-on-owner-decisions",
   "banner_removed": true,
   "review_button_added": true,
   "review_queue_ready": true,
@@ -25,7 +25,8 @@
     "corpus_validation": "10,250 pages, 0 critical, 370 with any issue",
     "production_build": "exit 0",
     "axe_on_medicine_pages": "0 violations at 1440, 390 and 320 px",
-    "local_release_rehearsal": "propose, three approvals, publish, read, roll back, verified against the real 10,250-page corpus; all five switches verified against a running production build"
+    "local_release_rehearsal": "propose, three approvals, publish, read, roll back, verified against the real 10,250-page corpus; all five switches verified against a running production build",
+    "corpus_http_crawl": "10,250 pages crawled over HTTP against a production build; 0 findings"
   },
   "blockers": [
     "No staging environment. railway status --json reports one environment, production. Creating a second with its own database is a billing action for the account owner.",
@@ -33,7 +34,7 @@
     "main carries 26 migrations and this branch carries 36. Ten would replay against a production database whose state cannot be verified from here; the live deployment is from 2026-09-04 and predates all of them.",
     "reviewed_claims is empty for every medicine, so enabling the compass would publish 6,896 preliminary pages and 3,351 limited ones. They say so honestly, which is correct behaviour and not a reason to publish them at scale."
   ],
-  "next_exact_command": "gh pr ready 19   # then decide Path A or Path B in docs/dossier-v4-production-runbook.md",
+  "next_exact_command": "gh pr ready 19   # then choose Path A or Path B in docs/dossier-v4-production-runbook.md",
   "updated_at": "2026-09-11",
   "feature_flags": {
     "DOSSIER_V4_SLUGS": "unset in production; the compass and review are inert until it is set",

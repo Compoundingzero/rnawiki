@@ -216,3 +216,101 @@ request shows the new sentence — proven end to end in `page-statement-review-j
 
 One change outside the feature: `playwright.config.ts` reads `E2E_PORT`, defaulting to 3000. Port
 3000 on this machine belongs to another project, and the alternative was stopping it.
+
+## Phases 11–12 — the footer, and the pages that had no job
+
+Written up in full in `docs/site-content-pruning-2026-09.md`. In short: both footers now render one
+shared list of five links; `/editorial-policy` is gone and 308s to
+`/how-it-works#review-and-corrections`; `/privacy` is new and carries the consent control with the
+explanation beside it; and `Public datasets` moved out of the footer into How RNAWiki works.
+
+Giving footer links a 44-pixel target cleared the axe `target-size` failures this branch had
+recorded as known. Medicine pages now report **zero** violations at 1440, 390 and 320 px, down from
+two and three nodes.
+
+Two defects surfaced while getting the gate green, both real and both fixed:
+
+- **The rate limiter's buckets are keyed on one anonymous fingerprint, which the whole browser suite
+  shares.** Adding seven reviewer sign-ins pushed it over and specs began failing with 429s for
+  reasons unrelated to the change under test. The allowances are now raised only when the process is
+  connected to a `rnawiki_test_*` database on a loopback host, read from `DATABASE_URL` rather than
+  from a flag anyone can export. A reader's numbers are unchanged and pinned by a test.
+- **Two specs hard-coded `localhost:3000` in a browser context.** Once `playwright.config.ts` became
+  port-configurable they were talking to whatever else was listening on that port. They inherit the
+  suite's base URL now.
+
+## Phases 13–16 — accessibility, tests, visual regression
+
+`tests/e2e/dossier-v4-community-review.spec.ts` checks the control at 1440, 1024, 768, 390 and
+320 px: visible, a 44-pixel target, a visible focus ring, an accessible name that reads as a
+sentence, no animation, no horizontal overflow, and axe clean over the identity strip at 320 px. It
+also asserts the approved layout survived — the strip, the promise, the purpose controls, the left
+rail, the hero, both right-hand components, the technical record below them and the section order.
+
+Before and after captures are in `data/dossier-v4/benchmark/community-review-{before,after}/` at
+1440×1200, 390×844 and 320×800, with the site pages under each `site/` directory.
+
+| Page | Headline y, before | after | axe before | after |
+| --- | --- | --- | --- | --- |
+| creatine-monohydrate | 468 px | 360 px | 2 / 3 nodes | 0 |
+| semaglutide | — | — | 2 / 3 nodes | 0 |
+| inclisiran | — | — | 2 / 3 nodes | 0 |
+| 1-2-hexanediol | — | — | 2 / 3 nodes | 0 |
+
+## Phase 17 — the release rehearsal
+
+There is no staging environment to deploy to. `railway status --json` reports one environment,
+`production`, and creating a second with its own database is a billing action for the account owner.
+So the rehearsal was run locally against a production build and the real 10,250-page corpus, which
+is closer to production data than any staging environment would have been.
+
+Every step of the brief's workflow, through the real HTTP API and the real UI, with accounts that
+had the right trust tiers and one recorded qualification:
+
+1. Opened `/d/creatine-monohydrate`. 2. Followed "Review or improve · 0/3".
+3. Submitted a wording for "Where it acts". 4–6. Approved from three different members.
+7. Publication confirmed in the same transaction. 8. Reloaded the page.
+9. The approved wording is what it says, marked "✎✓ Community approved 3/3", and the pill reads
+"Community approved · 3/3". 10. The old wording, the reason, the count and the date are under
+"What changed". 11. Rolled back as a steward. 12. The earlier wording returned, the pill returned
+to 0/3. 13. Every revision, decision and event still present: one revision, three decisions, two
+publication events, `publish` and `rollback`, both attributed.
+
+An ordinary reviewer attempting the rollback got `403`. All five switches were verified against the
+running build, including the freeze: three approvals recorded, zero pointer rows, the page
+unchanged, and a steward releasing it afterwards through the same publishing function.
+
+The rehearsal rows were then removed; the local database holds no review data.
+
+### The corpus crawl
+
+`scripts/dossier-v4/crawl-review-surface.ts` is new, because `validate-corpus.ts` builds the view
+model and cannot see what a component renders — and what this release changed is exactly that. It
+asks the server for every public medicine page and checks the reader-visible text, with the content
+of closed disclosures removed innermost-first, since that is where the long provenance explanation
+deliberately moved.
+
+**10,250 pages crawled over HTTP. Zero findings.** No page serves "Preliminary, awaiting review",
+"Read it as a working draft", the repeated provenance paragraph, or any removed footer label; every
+compass page carries the review control and its `/review-queue?slug=` link.
+
+## Phase 18 — production
+
+Not deployed, and not deployable from here. The blockers are in
+`docs/dossier-v4-production-runbook.md` and were re-confirmed on 2026-09-11 rather than taken on
+trust:
+
+1. **No staging environment.** One Railway environment exists: `production`.
+2. **Production deploys on a merge to `main`, and this branch is 72 commits and 1,426 files ahead of
+   it** — 1.37 million insertions, of which 16 commits are this work. Merging would ship the
+   September corpus revamp to a live medical-evidence site under cover of a dossier change. The
+   release path is the owner's decision and both options are written up in the runbook.
+3. **Ten migrations would replay against production.** `main` carries 26, this branch carries 36,
+   and the live deployment is from 2026-09-04 — it predates all of them.
+4. **`DOSSIER_V4_SLUGS` is unset in production.** No `DOSSIER_*` variable exists on the service, and
+   `curl -sI https://rnawiki.com/d/creatine-monohydrate` returns no `x-rnawiki-dossier` header. The
+   live site serves the previous surface, and deploying this branch changes no reader-facing page
+   until someone sets that variable.
+
+Two of those four are decisions that are not mine to make: creating a Railway environment is a
+billing action, and choosing the release path means choosing what else ships.
