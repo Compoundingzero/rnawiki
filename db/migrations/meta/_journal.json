@@ -246,6 +246,13 @@
       "when": 1789100672551,
       "tag": "0034_dossier_v3_claims_corrections_graph",
       "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1789184980802,
+      "tag": "0035_page_statement_community_review",
+      "breakpoints": true
     }
   ]
 }

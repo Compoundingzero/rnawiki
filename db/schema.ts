@@ -27,6 +27,14 @@ import {
   type AttributionWarning,
   type IdentitySource,
 } from '@/lib/inventory/types'
+import {
+  PAGE_STATEMENT_CHANGE_CATEGORIES,
+  PAGE_STATEMENT_KEYS,
+  PAGE_STATEMENT_PROPOSAL_STATUSES,
+  PAGE_STATEMENT_PUBLICATION_EVENTS,
+  PAGE_STATEMENT_REVIEW_STATUSES,
+  PAGE_STATEMENT_RISK_CLASSES,
+} from '@/lib/page-statements/types'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -321,6 +329,12 @@ export const users = pgTable(
     noteCount: integer('note_count').notNull().default(0),
 
     isAdmin: boolean('is_admin').notNull().default(false),
+
+    // Moderation standing. A restricted account keeps its history and its reading access and stops
+    // being able to propose or review. `account_restriction_events` is the ledger behind it.
+    restrictedAt: timestamp('restricted_at', { withTimezone: true }),
+    restrictionReason: text('restriction_reason'),
+
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
@@ -328,6 +342,11 @@ export const users = pgTable(
     uniqueIndex('users_handle_unique').on(sql`lower(${table.handle})`),
     index('users_verification_state_idx').on(table.verificationState),
     index('users_trust_tier_idx').on(table.trustTier),
+    check(
+      'users_restriction_shape',
+      sql`(${table.restrictedAt} is null and ${table.restrictionReason} is null)
+        or (${table.restrictedAt} is not null and nullif(btrim(${table.restrictionReason}), '') is not null)`,
+    ),
   ],
 )
 
@@ -6256,3 +6275,452 @@ export const predictedEdges = pgTable(
 /* ============================================================================================= */
 /* END dossier v3                                                                                */
 /* ============================================================================================= */
+
+/* ============================================================================================= */
+/* Community review of a Substance Compass sentence                                              */
+/* ============================================================================================= */
+
+/**
+ * A compass page is assembled from stored records and met by a reader as a handful of named
+ * sentences. These tables let a member propose a better wording for one of those positions, let
+ * three independent members approve that exact wording, and make the approved wording the public
+ * answer through a database transaction rather than a deployment.
+ *
+ * What these tables never do: change a stored medical record. A published revision is an overlay
+ * on what the page shows. `drugs`, `corpus_pages`, `page_fields`, `reviewed_claims` and every
+ * source snapshot are untouched by this workflow, which is why an approved wording can be rolled
+ * back by moving one pointer and why the evidence a sentence rests on cannot be edited here.
+ *
+ * The evidence state travels with the revision and is never recomputed from the review. Three
+ * approvals mean three people agreed on the words; they do not turn an animal result into a human
+ * one or a biomarker into an outcome.
+ */
+export const pageStatementKeyEnum = pgEnum('page_statement_key', PAGE_STATEMENT_KEYS)
+export const pageStatementChangeCategoryEnum = pgEnum(
+  'page_statement_change_category',
+  PAGE_STATEMENT_CHANGE_CATEGORIES,
+)
+export const pageStatementRiskClassEnum = pgEnum(
+  'page_statement_risk_class',
+  PAGE_STATEMENT_RISK_CLASSES,
+)
+export const pageStatementProposalStatusEnum = pgEnum(
+  'page_statement_proposal_status',
+  PAGE_STATEMENT_PROPOSAL_STATUSES,
+)
+export const pageStatementReviewStatusEnum = pgEnum(
+  'page_statement_review_status',
+  PAGE_STATEMENT_REVIEW_STATUSES,
+)
+export const pageStatementPublicationEventEnum = pgEnum(
+  'page_statement_publication_event',
+  PAGE_STATEMENT_PUBLICATION_EVENTS,
+)
+
+/**
+ * One proposed wording for one named sentence on one medicine page.
+ *
+ * A row is a content revision in the ordinary sense: it records the exact public wording it
+ * replaces, the exact wording it proposes, and two digests. `contentDigest` is what a reviewer
+ * signs — change the text and every approval is gone, because the approvals are bound to the old
+ * digest. `sourceDigest` is the medical surface the wording was judged against; when the stored
+ * record moves under an open proposal, the approvals go stale rather than silently carrying.
+ */
+export const pageStatementRevisions = pgTable(
+  'page_statement_revisions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    /** Denormalised for the queue and the public link. `drugs.slug` stays the resolving authority. */
+    slug: varchar('slug', { length: 128 }).notNull(),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    /** A reviewed claim this wording stands on, where the page has one. */
+    claimId: varchar('claim_id', { length: 64 }).references(() => reviewedClaims.id, {
+      onDelete: 'restrict',
+    }),
+    /** The revision this one was edited from. An edit is a new row, never an update. */
+    parentRevisionId: varchar('parent_revision_id', { length: 64 }).references(
+      (): AnyPgColumn => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    /** The published revision this one proposes to replace. Null means the built-in wording. */
+    baselineRevisionId: varchar('baseline_revision_id', { length: 64 }).references(
+      (): AnyPgColumn => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    /** The exact public wording at the moment the proposal was written. */
+    currentText: text('current_text').notNull(),
+    proposedText: text('proposed_text').notNull(),
+    reason: text('reason').notNull(),
+    changeCategory: pageStatementChangeCategoryEnum('change_category').notNull(),
+    /** Re-derived on the server from the category and the text. A caller's value is not trusted. */
+    riskClass: pageStatementRiskClassEnum('risk_class').notNull(),
+    /**
+     * The evidence state of the sentence being replaced, carried forward unchanged. Reviewers
+     * cannot move it, and the page renders the published wording with this state, not a better one.
+     */
+    evidenceState: varchar('evidence_state', { length: 64 }).notNull(),
+    /** Population, intervention, comparator, outcome, effect and limits, as the member gave them. */
+    evidencePacket: jsonb('evidence_packet')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    /** Sources the member attached: `[{ url, title, excerpt }]`. Stored, never fetched. */
+    sources: jsonb('sources')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** Deterministic gate results recorded at submission: `[{ code, passed, detail }]`. */
+    gateResults: jsonb('gate_results')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    contentDigestAlgorithm: varchar('content_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    sourceDigestAlgorithm: varchar('source_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    sourceDigest: varchar('source_digest', { length: 64 }).notNull(),
+    authorUserId: varchar('author_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    status: pageStatementProposalStatusEnum('status').notNull().default('draft'),
+    /** Why the proposal left the open states, in words a reader could check. */
+    statusReason: text('status_reason'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    submittedAt: timestamp('submitted_at', { withTimezone: true }),
+    publishedAt: timestamp('published_at', { withTimezone: true }),
+    supersededAt: timestamp('superseded_at', { withTimezone: true }),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    /*
+     * One open proposal per sentence. Without this two members race to reword the same line and
+     * three approvals land on wording nobody compared against the other candidate.
+     */
+    uniqueIndex('page_statement_revisions_one_open')
+      .on(table.medicineId, table.statementKey)
+      .where(sql`status in ('draft', 'submitted', 'open', 'changes_requested', 'safety_hold')`),
+    uniqueIndex('page_statement_revisions_one_published')
+      .on(table.medicineId, table.statementKey)
+      .where(sql`status = 'published'`),
+    /* The composite target the publication pointer's foreign key needs. */
+    unique('page_statement_revisions_subject_unique').on(
+      table.id,
+      table.medicineId,
+      table.statementKey,
+    ),
+    uniqueIndex('page_statement_revisions_parent_unique')
+      .on(table.parentRevisionId)
+      .where(sql`parent_revision_id is not null`),
+    index('page_statement_revisions_queue_idx').on(table.status, table.createdAt),
+    index('page_statement_revisions_slug_idx').on(table.slug, table.status),
+    index('page_statement_revisions_author_idx').on(table.authorUserId),
+    check(
+      'page_statement_revisions_text_present',
+      sql`nullif(btrim(${table.proposedText}), '') is not null and nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'page_statement_revisions_text_changed',
+      sql`btrim(${table.proposedText}) <> btrim(${table.currentText})`,
+    ),
+    check(
+      'page_statement_revisions_content_digest',
+      sql`${table.contentDigestAlgorithm} = 'sha256' and ${table.contentDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_revisions_source_digest',
+      sql`${table.sourceDigestAlgorithm} = 'sha256' and ${table.sourceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_revisions_published_clock',
+      sql`(${table.status} = 'published') = (${table.publishedAt} is not null)`,
+    ),
+    check(
+      'page_statement_revisions_submitted_clock',
+      sql`${table.status} = 'draft' or ${table.submittedAt} is not null`,
+    ),
+    check(
+      'page_statement_revisions_no_self_parent',
+      sql`${table.parentRevisionId} is null or ${table.parentRevisionId} <> ${table.id}`,
+    ),
+  ],
+)
+
+/**
+ * The derived review state of one proposal. Never written by application code: a trigger
+ * recomputes it from the immutable decision rows and refuses any value that disagrees.
+ *
+ * `requiredApprovals` is frozen when the row is created, so a policy change later cannot
+ * retrospectively lower the bar a published wording cleared.
+ */
+export const pageStatementReviewStates = pgTable(
+  'page_statement_review_states',
+  {
+    revisionId: varchar('revision_id', { length: 64 })
+      .primaryKey()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    status: pageStatementReviewStatusEnum('status').notNull().default('awaiting_reviews'),
+    reviewCount: integer('review_count').notNull().default(0),
+    /** Approving decisions whose recorded qualifications are relevant to this claim. */
+    qualifiedApprovals: integer('qualified_approvals').notNull().default(0),
+    requiredApprovals: integer('required_approvals').notNull().default(3),
+    /** How many approving reviewers must hold a relevant qualification, from the risk class. */
+    requiredQualifiedApprovals: integer('required_qualified_approvals').notNull().default(0),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    resolvedAt: timestamp('resolved_at', { withTimezone: true }),
+  },
+  (table) => [
+    index('page_statement_review_states_queue_idx').on(table.status, table.updatedAt),
+    check(
+      'page_statement_review_states_count',
+      sql`${table.reviewCount} >= 0 and ${table.reviewCount} <= ${table.requiredApprovals}`,
+    ),
+    check('page_statement_review_states_required', sql`${table.requiredApprovals} = 3`),
+    check(
+      'page_statement_review_states_required_qualified',
+      sql`${table.requiredQualifiedApprovals} between 0 and ${table.requiredApprovals}`,
+    ),
+    check(
+      'page_statement_review_states_qualified_count',
+      sql`${table.qualifiedApprovals} >= 0 and ${table.qualifiedApprovals} <= ${table.reviewCount}`,
+    ),
+  ],
+)
+
+/**
+ * One immutable decision by one authenticated member on one exact revision digest.
+ *
+ * A withdrawal does not delete the row: `withdrawnAt` is set and the decision stops counting.
+ * The audit keeps every decision that was ever recorded, including the ones that were taken back.
+ */
+export const pageStatementReviews = pgTable(
+  'page_statement_reviews',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    reviewerUserId: varchar('reviewer_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    reviewerNameSnapshot: varchar('reviewer_name_snapshot', { length: 160 }).notNull(),
+    reviewerOrcidSnapshot: varchar('reviewer_orcid_snapshot', { length: 32 }),
+    /**
+     * How this person is counted once. An ORCID is a person; a user id is only an account. Two
+     * accounts sharing an ORCID are one reviewer, and the unique index below enforces it.
+     */
+    reviewerIdentityKey: varchar('reviewer_identity_key', { length: 80 }).notNull(),
+    reviewerTrustTierSnapshot: trustTierEnum('reviewer_trust_tier_snapshot').notNull(),
+    /** The qualifications the reviewer held at the moment of the vote, not the ones they hold now. */
+    qualificationSnapshot: verdictReviewerExpertiseEnum('qualification_snapshot')
+      .array()
+      .notNull()
+      .default(sql`'{}'::verdict_reviewer_expertise[]`),
+    /** Whether any snapshotted qualification is relevant to this claim, decided at vote time. */
+    qualificationRelevant: boolean('qualification_relevant').notNull().default(false),
+    decision: verdictReviewDecisionEnum('decision').notNull(),
+    checkedWording: boolean('checked_wording').notNull().default(false),
+    checkedSource: boolean('checked_source').notNull().default(false),
+    checkedLimitation: boolean('checked_limitation').notNull().default(false),
+    conflictsOfInterest: text('conflicts_of_interest').notNull(),
+    conflictsOfInterestAttested: boolean('conflicts_of_interest_attested').notNull().default(false),
+    /** A declared conflict is allowed. It removes the vote from the threshold, not the comment. */
+    conflictDeclared: boolean('conflict_declared').notNull().default(false),
+    reason: text('reason'),
+    contentDigestAlgorithm: varchar('content_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    sourceDigest: varchar('source_digest', { length: 64 }).notNull(),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }).notNull().defaultNow(),
+    withdrawnAt: timestamp('withdrawn_at', { withTimezone: true }),
+    withdrawnReason: text('withdrawn_reason'),
+  },
+  (table) => [
+    uniqueIndex('page_statement_reviews_reviewer_unique').on(
+      table.revisionId,
+      table.reviewerUserId,
+    ),
+    uniqueIndex('page_statement_reviews_identity_unique')
+      .on(table.revisionId, table.reviewerIdentityKey)
+      .where(sql`withdrawn_at is null`),
+    index('page_statement_reviews_revision_idx').on(table.revisionId, table.reviewedAt),
+    index('page_statement_reviews_reviewer_idx').on(table.reviewerUserId),
+    check(
+      'page_statement_reviews_confirmations',
+      sql`${table.checkedWording} and ${table.checkedSource} and ${table.checkedLimitation} and ${table.conflictsOfInterestAttested} and nullif(btrim(${table.conflictsOfInterest}), '') is not null`,
+    ),
+    check(
+      'page_statement_reviews_decision_reason',
+      sql`${table.decision} = 'APPROVE' or nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'page_statement_reviews_digest',
+      sql`${table.contentDigestAlgorithm} = 'sha256' and ${table.contentDigest} ~ '^[0-9a-f]{64}$' and ${table.sourceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_reviews_withdrawal',
+      sql`(${table.withdrawnAt} is null and ${table.withdrawnReason} is null)
+        or (${table.withdrawnAt} is not null and nullif(btrim(${table.withdrawnReason}), '') is not null)`,
+    ),
+    check(
+      'page_statement_reviews_orcid',
+      sql`${table.reviewerOrcidSnapshot} is null or ${table.reviewerOrcidSnapshot} ~ '^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$'`,
+    ),
+  ],
+)
+
+/**
+ * The public pointer: which revision is the active wording for one sentence on one medicine.
+ *
+ * The composite foreign key is what makes a cross-subject publication structurally impossible —
+ * a pointer cannot name a revision written for a different medicine or a different sentence.
+ */
+export const pageStatementPublications = pgTable(
+  'page_statement_publications',
+  {
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    revisionId: varchar('revision_id', { length: 64 }).notNull(),
+    publishedAt: timestamp('published_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.medicineId, table.statementKey] }),
+    uniqueIndex('page_statement_publications_revision_unique').on(table.revisionId),
+    foreignKey({
+      name: 'page_statement_publications_revision_fk',
+      columns: [table.revisionId, table.medicineId, table.statementKey],
+      foreignColumns: [
+        pageStatementRevisions.id,
+        pageStatementRevisions.medicineId,
+        pageStatementRevisions.statementKey,
+      ],
+    }).onDelete('restrict'),
+  ],
+)
+
+/**
+ * Every movement of a public pointer, append-only. A rollback is a new event, never a deletion,
+ * so the record of what a page said and why it changed survives the change.
+ */
+export const pageStatementPublicationEvents = pgTable(
+  'page_statement_publication_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    medicineId: varchar('medicine_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    slug: varchar('slug', { length: 128 }).notNull(),
+    statementKey: pageStatementKeyEnum('statement_key').notNull(),
+    event: pageStatementPublicationEventEnum('event').notNull(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'restrict' }),
+    previousRevisionId: varchar('previous_revision_id', { length: 64 }).references(
+      () => pageStatementRevisions.id,
+      { onDelete: 'restrict' },
+    ),
+    approvalsRecorded: integer('approvals_recorded').notNull().default(0),
+    qualifiedApprovals: integer('qualified_approvals').notNull().default(0),
+    /** The deterministic gates re-run inside the publishing transaction. */
+    automatedChecks: jsonb('automated_checks')
+      .$type<Array<Record<string, unknown>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** Which reader paths were invalidated, and whether each call succeeded. */
+    cacheInvalidation: jsonb('cache_invalidation')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    /** Null means the system published it because the third approval landed. */
+    actorUserId: varchar('actor_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'restrict',
+    }),
+    reason: text('reason'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('page_statement_publication_events_subject_idx').on(
+      table.medicineId,
+      table.statementKey,
+      table.createdAt,
+    ),
+    index('page_statement_publication_events_slug_idx').on(table.slug, table.createdAt),
+    check(
+      'page_statement_publication_events_digest',
+      sql`${table.contentDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'page_statement_publication_events_actor',
+      sql`${table.event} = 'publish' or ${table.actorUserId} is not null`,
+    ),
+  ],
+)
+
+/**
+ * Moderation notes on a proposal: abuse reports and the decisions taken on them. Append-only, and
+ * never public — the version history shows what changed, not who reported whom.
+ */
+export const pageStatementModerationEvents = pgTable(
+  'page_statement_moderation_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    revisionId: varchar('revision_id', { length: 64 })
+      .notNull()
+      .references(() => pageStatementRevisions.id, { onDelete: 'cascade' }),
+    action: varchar('action', { length: 32 }).notNull(),
+    actorUserId: varchar('actor_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'restrict',
+    }),
+    detail: text('detail').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('page_statement_moderation_events_revision_idx').on(table.revisionId, table.createdAt),
+    check(
+      'page_statement_moderation_events_action',
+      sql`${table.action} in ('REPORTED', 'REJECTED_BY_MODERATOR', 'SAFETY_HOLD', 'HOLD_RELEASED', 'RATE_LIMITED')`,
+    ),
+  ],
+)
+
+/**
+ * Account restrictions, append-only, mirroring `account_role_events`.
+ *
+ * A restricted account keeps its history and its reading access and stops being able to propose or
+ * review. This is the only thing the review path means by "suspended, restricted or flagged"; the
+ * schema had no such state before, and inventing a silent one inside the review code would have
+ * put a moderation decision somewhere nobody could audit.
+ */
+export const accountRestrictionEvents = pgTable(
+  'account_restriction_events',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    targetUserId: varchar('target_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    actorUserId: varchar('actor_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    action: varchar('action', { length: 16 }).notNull(),
+    reason: text('reason').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('account_restriction_events_target_idx').on(table.targetUserId, table.createdAt),
+    check('account_restriction_events_action', sql`${table.action} in ('RESTRICT', 'LIFT')`),
+    check('account_restriction_events_reason', sql`nullif(btrim(${table.reason}), '') is not null`),
+    check(
+      'account_restriction_events_not_self',
+      sql`${table.targetUserId} <> ${table.actorUserId}`,
+    ),
+  ],
+)

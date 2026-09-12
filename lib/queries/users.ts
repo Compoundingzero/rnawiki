@@ -100,6 +100,8 @@ const accountColumns = {
   rejectedEditCount: users.rejectedEditCount,
   noteCount: users.noteCount,
   isAdmin: users.isAdmin,
+  restrictedAt: users.restrictedAt,
+  restrictionReason: users.restrictionReason,
   createdAt: users.createdAt,
 }
 

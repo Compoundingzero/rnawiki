@@ -67,3 +67,6 @@ docs/revamp/
 # Dossier v3 benchmark captures, written wholesale by scripts/dossier-v3/capture.ts; the bytes are
 # the measurement.
 data/dossier-v3/benchmark/
+# Dossier v4 benchmark captures, written wholesale by scripts/dossier-v4/capture.ts, for the same
+# reason as the v3 captures above: the bytes are the measurement.
+data/dossier-v4/benchmark/
