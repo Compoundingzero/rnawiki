@@ -13,12 +13,14 @@ import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import { auditCopy, copyPasses, findInternalKeys } from '@/lib/dossier-v3/copy-contract'
 import { NO_REVIEWED_CONCLUSION_SENTENCE } from '@/lib/dossier-v3/taxonomy'
 import type { RoleAwareRegistryAggregate } from '@/lib/dossier-v3/trial-roles'
+import { decideMedicinePageIndexing } from '@/lib/dossier-v4/indexability'
 import { humaniseReaderText } from '@/lib/dossier-v4/reader-text'
 import {
   COMPASS_SECTIONS,
   buildDossierV4,
   splitForReader,
   type DossierV4Inputs,
+  type DossierV4ViewModel,
 } from '@/lib/dossier-v4/view-model'
 import type { DrugDossier } from '@/lib/types'
 
@@ -872,4 +874,68 @@ describe('the navigator is built from what the page rendered', () => {
       model.sections.filter((section) => section.inNavigator).length
     expect(count(sparse)).toBeLessThan(count(full))
   })
+})
+
+/**
+ * Incomplete is not the same as wrong, and only wrong hides a page.
+ *
+ * The first version of this rule required every gate to pass. Two of the seven measure how far
+ * RNAWiki has got with its own work rather than whether a page is safe to show, and one of those —
+ * `trial_roles_valid` — depends on `page_registry_role_aggregates`, a table that is empty in
+ * production. Requiring it de-indexed the entire medicine corpus the moment the layout went live:
+ * aspirin, ibuprofen and metformin all came back `noindex, follow` from rnawiki.com.
+ *
+ * These cases pin the distinction rather than the list, so adding a gate cannot silently take the
+ * corpus out of the index again.
+ */
+describe('indexing blocks on wrongness, not on incompleteness', () => {
+  const COMPLETENESS_GATES = ['claim_provenance_present', 'trial_roles_valid'] as const
+  const WRONGNESS_GATES = [
+    'identity_passed',
+    'no_cross_family_merge',
+    'no_raw_internal_fields',
+    'safety_mode_valid',
+    'canonical_metadata_valid',
+  ] as const
+
+  function withFailingGate(code: string): DossierV4ViewModel {
+    const model = buildDossierV4(inputs())
+    return {
+      ...model,
+      identity: { ...model.identity, identityVerified: true },
+      gates: model.gates.map((gate) => (gate.code === code ? { ...gate, passed: false } : gate)),
+    }
+  }
+
+  function withEveryGatePassing(): DossierV4ViewModel {
+    const model = buildDossierV4(inputs())
+    return {
+      ...model,
+      identity: { ...model.identity, identityVerified: true },
+      gates: model.gates.map((gate) => ({ ...gate, passed: true })),
+    }
+  }
+
+  it('indexes a page whose gates pass and whose record holds something', () => {
+    const model = withEveryGatePassing()
+    expect(model.substance.empty).toBe(false)
+    expect(decideMedicinePageIndexing(model)).toMatchObject({ index: true, reason: 'indexable' })
+  })
+
+  for (const code of COMPLETENESS_GATES) {
+    it(`still indexes a page whose ${code} gate fails`, () => {
+      const model = withFailingGate(code)
+      expect(model.gates.some((gate) => gate.code === code && !gate.passed)).toBe(true)
+      expect(decideMedicinePageIndexing(model).index).toBe(true)
+    })
+  }
+
+  for (const code of WRONGNESS_GATES) {
+    it(`refuses to index a page whose ${code} gate fails`, () => {
+      expect(decideMedicinePageIndexing(withFailingGate(code))).toMatchObject({
+        index: false,
+        reason: 'gate_failed',
+      })
+    })
+  }
 })

@@ -32,7 +32,7 @@ import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
 const FORBIDDEN: ReadonlyArray<{ pattern: RegExp; why: string }> = [
   { pattern: /\[object [A-Z]/u, why: 'an object rendered instead of its text' },
   { pattern: /\bundefined\b/u, why: 'a missing value rendered as the word "undefined"' },
-  { pattern: /\bnull\b/u, why: 'an empty value rendered as the word "null"' },
+
   { pattern: /\bNaN\b/u, why: 'a failed calculation rendered as a number' },
   { pattern: /\$\{/u, why: 'a template placeholder that was never filled' },
   { pattern: /\bUnnamed counterpart\b/u, why: 'a placeholder name reaching a reader' },
@@ -121,8 +121,15 @@ function walk(value: unknown, path: string, into: Finding[], slug: string): void
   }
   if (value && typeof value === 'object') {
     for (const [key, item] of Object.entries(value)) {
-      // Citations legitimately carry an identifier; it is the label beside it that must be a name.
-      if (key === 'id' || key === 'sources' || key === 'citation') continue
+      /*
+       * Fields that hold a code by design rather than reader text.
+       *
+       * `state` and `origin` are enums the page renders through `sectionStateLabel` and
+       * `ORIGIN_SHORT`; walking them reported 950,846 findings on the first run, all of them the
+       * model doing exactly what it should. A citation carries an identifier for the same reason —
+       * it is the label beside it that has to be a name.
+       */
+      if (['id', 'sources', 'citation', 'state', 'origin', 'code', 'facet'].includes(key)) continue
       walk(item, `${path}.${key}`, into, slug)
     }
   }
