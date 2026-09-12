@@ -515,6 +515,35 @@ describe('absences are rendered, not dropped', () => {
     expect(model.sections.map((section) => section.id)).not.toContain('community')
   })
 
+  it('never renders a stored object as text', () => {
+    /*
+     * `[object Object]` reached readers on aspirin, ibuprofen, metformin, caffeine, lovastatin,
+     * semaglutide and inclisiran. The half-life facet did `String(kinetics)` on a field that is a
+     * large object — a precedence note, the label's whole pharmacokinetics section, a list of
+     * experimental rows — rather than reading the value out of it.
+     *
+     * This walks every statement the model produces and refuses the three ways a value that is not
+     * a string reaches a page looking like one.
+     */
+    const model = buildDossierV4(inputs())
+    const seen: string[] = []
+    const walk = (value: unknown, path: string): void => {
+      if (typeof value === 'string') {
+        if (/\[object |undefined|NaN/u.test(value)) seen.push(`${path}: ${value.slice(0, 80)}`)
+        return
+      }
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => walk(item, `${path}[${index}]`))
+        return
+      }
+      if (value && typeof value === 'object') {
+        for (const [key, item] of Object.entries(value)) walk(item, `${path}.${key}`)
+      }
+    }
+    walk(model, 'model')
+    expect(seen, `a stored value reached reader text unrendered:\n${seen.join('\n')}`).toEqual([])
+  })
+
   it('does not count a standing sentence as recorded timing', () => {
     /*
      * The "how long anything takes" section emits one sentence on every page whatever the record

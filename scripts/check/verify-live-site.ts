@@ -89,7 +89,13 @@ const SAMPLE: ReadonlyArray<{ slug: string; kind: string; expect: string }> = [
     kind: 'discontinued',
     expect: 'approval register where the label is withdrawn',
   },
-  { slug: 'zingiberene', kind: 'sparse', expect: 'honest absence block naming what is missing' },
+  /*
+   * Classed as empty rather than sparse, which is what it is: zingiberene is one of the 2,429
+   * records that hold none of the four things a reader came for, so it carries the unavailable
+   * notice. Calling it sparse made the checker report the correct behaviour as a problem.
+   */
+  { slug: 'zingiberene', kind: 'empty', expect: 'unavailable notice and noindex' },
+  { slug: 'nystatin', kind: 'sparse', expect: 'a thin record that still has something to show' },
   {
     slug: 'amanita-pantherina-fruiting-body',
     kind: 'empty',
@@ -112,7 +118,12 @@ const OTHER_PAGES: ReadonlyArray<{ path: string; kind: string; mustContain: stri
   { path: '/privacy', kind: 'policy', mustContain: 'Privacy' },
   { path: '/healthz', kind: 'health', mustContain: 'ok' },
   { path: '/sitemap.xml', kind: 'sitemap', mustContain: '<sitemap' },
-  { path: '/robots.txt', kind: 'robots', mustContain: 'Sitemap' },
+  /*
+   * Only the canonical production origin advertises a sitemap. Everywhere else the site fails
+   * closed and serves a robots file that disallows everything, which is the behaviour we want and
+   * would otherwise read as a failure whenever this is pointed at a local build.
+   */
+  { path: '/robots.txt', kind: 'robots', mustContain: 'User-agent' },
 ]
 
 /** Things that must never appear in a reader's text. Each one shipped somewhere once. */
@@ -140,6 +151,28 @@ interface PageResult {
   bytes: number
   problems: string[]
   notes: string[]
+}
+
+/**
+ * One attribute of the first tag that carries a given identifying attribute, in either order.
+ *
+ * e.g. the `content` of the `<meta>` whose `name` is `robots`, whether the markup reads
+ * `<meta name="robots" content="...">` or `<meta content="..." name="robots">`.
+ */
+function attributeOf(
+  html: string,
+  tag: string,
+  identifyingAttribute: string,
+  identifyingValue: string,
+  wanted: string,
+): string | undefined {
+  const pattern = new RegExp(`<${tag}\\b[^>]*>`, 'giu')
+  for (const match of html.matchAll(pattern)) {
+    const element = match[0]
+    if (!new RegExp(`${identifyingAttribute}="${identifyingValue}"`, 'u').test(element)) continue
+    return new RegExp(`${wanted}="([^"]*)"`, 'u').exec(element)?.[1]
+  }
+  return undefined
 }
 
 function textOf(html: string): string {
@@ -194,11 +227,17 @@ async function checkMedicine(origin: string, entry: (typeof SAMPLE)[number]): Pr
   const h1s = [...html.matchAll(/<h1\b/gu)].length
   if (h1s !== 1) problems.push(`${h1s} <h1> elements, expected exactly 1`)
 
-  const canonical = /<link[^>]+rel="canonical"[^>]+href="([^"]+)"/u.exec(html)?.[1]
+  /*
+   * Attribute order is not guaranteed and is not stable across renderers: the document routes emit
+   * `content` before `name`, and the App Router pages emit them the other way round. A regex that
+   * fixes the order reports "no robots tag" on half the site and looks like a finding rather than a
+   * bug in the checker, so both of these match either order.
+   */
+  const canonical = attributeOf(html, 'link', 'rel', 'canonical', 'href')
   if (!canonical) problems.push('no canonical link')
   else if (!canonical.endsWith(`/d/${entry.slug}`)) notes.push(`canonical points at ${canonical}`)
 
-  const robots = /<meta[^>]+name="robots"[^>]+content="([^"]+)"/u.exec(html)?.[1] ?? 'none'
+  const robots = attributeOf(html, 'meta', 'name', 'robots', 'content') ?? 'none'
   notes.push(`robots: ${robots}`)
 
   const saysUnavailable = text.includes('RNAWiki has not found information about this substance')

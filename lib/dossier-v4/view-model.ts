@@ -1887,7 +1887,27 @@ function buildTimeline(
 ): DossierV4ViewModel['timeline'] {
   const aggregate = inputs.roleAggregate
   const longest = aggregate?.tested.longestCompletedWindow
-  const kinetics = fieldValue(inputs, 'kinetics')
+  /*
+   * The recorded half-life, and only when the record states one as a value.
+   *
+   * `kinetics` is a large object: a precedence note, the label's whole pharmacokinetics section as
+   * prose, a list of experimental parameter rows from the NCATS database, and — sometimes — a
+   * `halfLife` the extractor read out as a value with the sentence it came from. This used to be
+   * `String(kinetics)`, which rendered `[object Object]` to a reader on every page whose record had
+   * any pharmacokinetics at all. It was on aspirin, ibuprofen, metformin, caffeine, lovastatin,
+   * semaglutide and inclisiran.
+   *
+   * The experimental rows are deliberately not used. Aspirin's carry two different half-lives for
+   * two different routes, measured in different studies, and picking one to print as "how fast the
+   * body clears it" would be RNAWiki choosing a number rather than reporting one. Where the label
+   * states a half-life, that is what the page says; where it does not, the page says so.
+   */
+  const kineticsRecord = fieldValue(inputs, 'kinetics') as
+    { halfLife?: { value?: string | null; unit?: string | null; sentence?: string } } | undefined
+  const halfLife =
+    fieldState(inputs, 'kinetics') === 'present' && kineticsRecord?.halfLife?.value
+      ? kineticsRecord.halfLife
+      : undefined
   const entries: TimelineEntry[] = TIMELINE_FACETS.map((facet) => {
     switch (facet.code) {
       case 'assessed_outcome_duration':
@@ -1925,15 +1945,18 @@ function buildTimeline(
         return {
           facet: facet.code,
           label: facet.label,
-          value:
-            kinetics && fieldState(inputs, 'kinetics') === 'present'
-              ? statement(
-                  String(kinetics),
-                  'stored_source',
-                  'source_checked_draft',
-                  'The recorded clearance figure for this substance.',
-                )
-              : absentStatement('No clearance figure is recorded.'),
+          value: halfLife
+            ? statement(
+                `${halfLife.value}${halfLife.unit ? ` ${halfLife.unit}` : ''}`,
+                'stored_source',
+                'source_checked_draft',
+                halfLife.sentence
+                  ? `Read from the label, which states: “${halfLife.sentence}”`
+                  : 'The half-life the label states for this substance.',
+              )
+            : absentStatement(
+                'No half-life is recorded as a value for this substance. Where the label describes clearance in prose rather than stating a figure, the prose is in the full record at the foot of this page.',
+              ),
         }
       case 'long_term_unknown':
         return {
