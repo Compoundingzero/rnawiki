@@ -2,10 +2,10 @@
   "schema": "rnawiki-current-agent-manifest/v1",
   "historicalPreRepair": false,
   "eligibleForActiveReview": true,
-  "corpusCommit": "fd8fbfce925103a876035e7c9227ef2efa162305",
-  "corpusDigest": "6556ad3bd7abd547f64ac9d69084bb998311651702c6983a75297533b84f3f88",
-  "generatedAt": "2026-09-03T00:00:00.000Z",
-  "runDate": "2026-09-03",
+  "corpusCommit": "2fe6384ca3c86fba5470306d18e1c4ba98f765d9",
+  "corpusDigest": "d22e8631a0668a9e7e7d1ae95ae122e7eb579c2e20b34008a31e46e1f51e07b5",
+  "generatedAt": "2026-09-12T00:00:00.000Z",
+  "runDate": "2026-09-12",
   "seed": 20260828,
   "records": 9855,
   "neurodeRunManifest": {
@@ -36,8 +36,8 @@
       "silence-ledger",
       "substance-synonyms"
     ],
-    "startedAt": "2026-09-03T00:00:00.000Z",
-    "completedAt": "2026-09-03T00:00:00.000Z",
+    "startedAt": "2026-09-12T00:00:00.000Z",
+    "completedAt": "2026-09-12T00:00:00.000Z",
     "nodes": [
       {
         "neurodeId": "adverse-reaction-term-structure",
@@ -49,17 +49,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_1e6287aba4d004d595a54e34a60827b709a55a2fb4f6db3752e2b449e0afc9b4",
-        "inputDigest": "sha256:b2e2f00f9f24c626af563c0479ab8a939f8d8b4d3c98bd31b7c6211f7f609bea",
+        "cacheKey": "neurode_cache_a1e2f128f27e8325c16ea81f6f055a903af6fa57aabe182385340ccdf225d94c",
+        "inputDigest": "sha256:bb37af031f5b20f564dcc2de9579291cc6c0a70cf9ffbab2aa3352e2b165da9c",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:44aa8cd962387cc2df4d9be35cea067a1aebd01e013baca27e2e70ccbf8750ba",
+        "outputDigest": "sha256:3621faeb0f11b1ac4549ce3c67d3c174cbbf65d8b2e9be25e4ef42c88ef35886",
         "recordsConsidered": 9855,
-        "recordsUsed": 909,
+        "recordsUsed": 921,
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -72,17 +72,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_ceec4c9ef28ce9a5418c5a648943615e08e3d2ed27d1f2edf96f3e08565c1f58",
-        "inputDigest": "sha256:cca4df456529b83ea24dc20c9f94a98c675ece36a79a8f7fe7647b1affda6493",
+        "cacheKey": "neurode_cache_cc93e1ea984c880b033ddcc64cf3e7f73ec75dac64963d649539d75807873a1f",
+        "inputDigest": "sha256:4de03ec64372d0a4062a31fd99dffdec9919d59a2d7166fa557785869899f166",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:2d79bdbae3a584b1110675f1c6a816aa3306d6f9235cf29f944841e0c3812f34",
+        "outputDigest": "sha256:cd9afcc299815a7ea88bd8b51889c41f8e5de2a0f1330b9a45f863d300bfcb03",
         "recordsConsidered": 9855,
         "recordsUsed": 9855,
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -95,18 +95,18 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_b45013b1675b0c4b619513eadb40b46f2cb32361b2c9b2b8e7c617ea0b14d446",
-        "inputDigest": "sha256:69d2d70f4f6359e6d47100b416946962aa77a90e90da5bc1fdd0aec0620a861d",
+        "cacheKey": "neurode_cache_c94898d8a1baa6c9a3785202261feb2dc902c5ce34feb9555a845abdeb201e0a",
+        "inputDigest": "sha256:c0f374da2b876b751f6f2860097ca653ec4f7eb60ecd279eb18a6b086e96dfbf",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:2c63ee5d5e48b54a04837e89b7190ce3192a31920bd8a328c0f448f595e331a6",
+        "outputDigest": "sha256:e12cb421be68a353e7b1778c56c088fa927b4f1806936173442e80644c220997",
         "recordsConsidered": 9855,
-        "recordsUsed": 757,
+        "recordsUsed": 767,
         "reasonCodes": [
           "ATTRIBUTION_SUSPECT",
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -119,17 +119,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_1fa8b5e6bd31043f3314e1858e1680222aaf859d56d551a36d5f4aaf8447a102",
-        "inputDigest": "sha256:98814ecc6d03c5f6dd5238ee6311c4379ce3a299b488dba2926e36c4706ae2b9",
+        "cacheKey": "neurode_cache_ec092f84437fe0f577bead61d93783684c1f790ca93905e42a10e1f71a26c01c",
+        "inputDigest": "sha256:fcae08bb7d116477c62e0539bd1c733c8c03d47c3149566a1ab9abe870c9d374",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:14db7a4de4dffe91986dfd3567d6a8c879412377ef2218fd0ddf13cd09765513",
+        "outputDigest": "sha256:2a0575829cfcbbefbb2139d131cbcfa68d6b6f36aba309b0b325629e83bfa8cf",
         "recordsConsidered": 9855,
         "recordsUsed": 9855,
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -142,15 +142,15 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_7f98cb5acfa6c564dd2237f3b487f99807e73c84c64188cf915a2edd0a404a86",
-        "inputDigest": "sha256:8bef1869978666aa1fd59d9514b097cd250ebb23d9f2229916e7670cb2af6eb9",
+        "cacheKey": "neurode_cache_3a73e7043078ba2c58cc9dce20a7fe83ca5137f77c54a3c844fb4a0455b0287a",
+        "inputDigest": "sha256:c4f94227871cd1b59ab902c44e545f2037c5d3cf8c4671f476323ebe044b7e34",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:1f4bf57c81e92bd37ec000509edb1ae2585ea55de31af9e97fe0ecf103398cf4",
+        "outputDigest": "sha256:08c811d9f398790942c9beed57bec040000de90af54d46c8abdf34d172e8ccc4",
         "recordsConsidered": 9855,
-        "recordsUsed": 3465,
+        "recordsUsed": 3489,
         "reasonCodes": [],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -163,17 +163,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_96aaa7b1d10af661d2da03284fde67b43433890db6dd282284b27969a35ed468",
-        "inputDigest": "sha256:bbd3d2ae386d1d1c4fff4bd7b5a6d3dc03f03bd792efc9d2f8b20df94d5d09c9",
+        "cacheKey": "neurode_cache_64e3f3e95313b0214b67a83283f2049bde91ac7d6d327d1ddd2cb00ae3ac72d6",
+        "inputDigest": "sha256:6dec489863ba26da23c30b6bd68adcd892febfafcf6bcf9dbd48bb0478df0eba",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:99e75fcfede0780022d65fc8ccbffd0e1b06c04c590a089ad0ab02e17400e753",
+        "outputDigest": "sha256:74cb9b01d42279a6bfa188f20e11a68637c12d6f3a1674180537ad1a4b98b507",
         "recordsConsidered": 9855,
-        "recordsUsed": 1763,
+        "recordsUsed": 1871,
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -186,15 +186,15 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_5c10eb99f01bc7ad699b6456734edd7079fb33241ac30af3669ad2f0a5b063c8",
-        "inputDigest": "sha256:542fd03db4df8b717bedebf8e38b0cf2f9a1e29ae4b54ec2d9454bd7cfd693bd",
+        "cacheKey": "neurode_cache_0a019ee158ab6da3f243a073ef540e7177d28dcad7c62e8819d35fa3d64b7684",
+        "inputDigest": "sha256:d1f2ee6f9a4654d727fb3bc6ec41d047ea81dfdff889edd46ef4112bf03a31b5",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:77fb81c1103e1059f5034b0c7adf48ddfda3dda9a7ddae6d2994ba7d01e028f3",
+        "outputDigest": "sha256:67f6cba117fceabd600f71bde31dcd46a591f957be468be18681cc415a32e403",
         "recordsConsidered": 9855,
-        "recordsUsed": 3420,
+        "recordsUsed": 3440,
         "reasonCodes": [],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -207,17 +207,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_4a3d760ae1543faad74cfda9afda0919403387bec90321b524be81faac6484e5",
-        "inputDigest": "sha256:07b80ab807315922482ea3f574c19d7fa7d9f9c9f4f39818b27c8a54aee4eff1",
+        "cacheKey": "neurode_cache_6c4d5394261d3bd60f8a39d5314a9738b4022d0ba9e3019503707624e0d98a9f",
+        "inputDigest": "sha256:e49c8ee0e875b672fa84d33989c05b8ce57df2997fd9b725db3096538af665af",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:b65153e816f3dc8d59428f7d718be60bc1c52a90d764390a0c6c96e6399d3770",
+        "outputDigest": "sha256:9c6dc453c6531a6b4705df28f4ef1ed8cd346101cad9405b691d741231004834",
         "recordsConsidered": 9855,
-        "recordsUsed": 1347,
+        "recordsUsed": 1364,
         "reasonCodes": [
           "UNUSUAL_FOR_PEER_GROUP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -230,17 +230,17 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_e96b1d503f53eb657d3bbe4d032bd632f6cda609a699061b97df8740f4ef4c8d",
-        "inputDigest": "sha256:b8310474a2d420f4b4ee3c12012a5d145baad5aa5a16d1de0b31fafcd7523d73",
+        "cacheKey": "neurode_cache_c91d8624f370394a130616586023488b42a94c69874ce88dd706d049fe0f2727",
+        "inputDigest": "sha256:f0643350769d07ca790d1bdeb453c2aa4e8f8739f312e70648e23042660dd481",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:332afa9c3a6d8b31f2738e0744f10db6e59e27f0127521e8d64ec43016bf78db",
+        "outputDigest": "sha256:e912dd1baa114c1e0c754a08897b55f2518c9d2605efc918920a08375f5bbae9",
         "recordsConsidered": 9855,
         "recordsUsed": 9855,
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       },
       {
@@ -253,21 +253,21 @@
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_99dc4d58ad2a5d63022265025421b1f2ecc7ab9e61f83cef4ed0393cb7b9f022",
-        "inputDigest": "sha256:0ff529041840f93d2ea1df7c191a8b6909e7c75c337b645aa5e474b4a8e84a11",
+        "cacheKey": "neurode_cache_9c3d6d51a6a9a93d0afe95712323d56626257f267c6ff674c129698f23e85acc",
+        "inputDigest": "sha256:4f1bb98aa9eb6ed28a8e83fb633907f03c19495f581a8b486f1ef207f8e8c4d1",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:d19a4e57e523774afc7801dc5f7d5cbde9e923095dd345a97d417c45938174d4",
+        "outputDigest": "sha256:7ce18b31287e070586928c4436015b42b68305d5ed29f1c9a0343c46d6f03003",
         "recordsConsidered": 9855,
         "recordsUsed": 6713,
         "reasonCodes": [
           "POSSIBLE_DUPLICATE_SUBSTANCE"
         ],
-        "startedAt": "2026-09-03T00:00:00.000Z",
-        "completedAt": "2026-09-03T00:00:00.000Z",
+        "startedAt": "2026-09-12T00:00:00.000Z",
+        "completedAt": "2026-09-12T00:00:00.000Z",
         "failureCode": null
       }
     ],
-    "runId": "neurode_run_1d466301753a52ebf079c708f68ccff4ed292ccbbc46770659f827e52d170584"
+    "runId": "neurode_run_4974ae35356d85a129b7bf8f8943b5d017f5300f136fe26bb3aef4cd79524065"
   },
   "artifacts": [
     {
@@ -308,10 +308,10 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "1396a1783436167901724be587ceb97bde93c821d0db800f4561a0fbe9acb303",
-      "inputDigest": "24ecf6bc4ab8b27d338b906e6e69a200a91c18288f8d4c7dc067e793f432b6b3",
-      "outputDigest": "b4958ab3338280e9af0185bc418aa6a9ab5e157abc14e869231c30f7e6d9cc12",
+      "inputDigest": "ca4c3a4178cd89c08071bdc4c58306dd45437bedca6c71a02d24763d41222313",
+      "outputDigest": "577eeba4cb965d16e713627cf9270685c6da3570bd8fb7da7352047d8777086b",
       "candidateCount": 40,
-      "availableCandidateCount": 146647,
+      "availableCandidateCount": 146322,
       "candidateSelectionMode": "sampled",
       "findingCount": 9855,
       "candidateReasons": [
@@ -325,7 +325,7 @@
         "SILENT means no source in this corpus, in the sections that were read, states an answer. It is a fact about the documents recorded here and never a fact about the medicine.",
         "A record silent on a question is not evidence that no answer exists, and it is not evidence of safety or of danger in either direction. A label that never states a pediatric half-life is a label that never states one, nothing more.",
         "Section scoping is a real limit. A fact can sit in a section the extractor does not read, so every silence count should be read as \"not recorded from the sections read\" rather than \"not stated anywhere\".",
-        "Silence on the boxed-warning question is the clearest case of this: 9192 of 9855 records hold no boxed-warning statement, which means no recorded document contributed one, not that no boxed warning exists.",
+        "Silence on the boxed-warning question is the clearest case of this: 9183 of 9855 records hold no boxed-warning statement, which means no recorded document contributed one, not that no boxed warning exists.",
         "Only the 6 population questions can show NOT_ESTABLISHED, because only population statements carry a source-stated evidence state. On the other 11 questions a source sentence saying something was never determined, if one was printed, arrives here as a plain absence and is counted as SILENT.",
         "3278 of 9855 records were produced by the deterministic label parser rather than assembled by a person. The parser reads a fixed set of sections, so its silences are more often a limit of the parser than of the source; the roll-up splits recorded and silent counts by tier so the two are never added together blindly.",
         "RECORDED on a population question merges two different answers: a source reporting a finding in the group, and a source that only raises the group without settling safety or effectiveness for it. 88% of recorded population answers here are the second kind, so a high recorded share on those questions is not a high share of settled answers. Entries of the second kind carry mentionedWithoutFinding and the roll-up counts them in recordedMentionOnly.",
@@ -441,10 +441,10 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "2f40591169d4f0d995989f4ab0af8702378f8ad556597f6f5acf00cf49731069",
-      "inputDigest": "242b7b0ae6a32c909b89ffbd04a11a5cd7f8970f9f74e7766197be06639e287d",
-      "outputDigest": "75f2ed0bdded96c9478c57a5589c2f3b894610f82b698c96dcf21acaa8d35f7e",
-      "candidateCount": 5,
-      "availableCandidateCount": 5,
+      "inputDigest": "c10a9b2ea18935f0a7552e08007e1f0d2a403ea06c2e1d1ae00f8b8934f234ad",
+      "outputDigest": "d3c08436c472239cb3c6ce904c63a6aeba2b2b67e9f894184b88198dfd38fe96",
+      "candidateCount": 16,
+      "availableCandidateCount": 16,
       "candidateSelectionMode": "complete",
       "findingCount": 48,
       "candidateReasons": [
@@ -459,7 +459,7 @@
         "Two medicines appearing in one group is a statement about two documents. Nothing in this dataset pairs, ranks or links one medicine to another, and no such relation may be read out of the membership lists.",
         "The vocabulary, the inverse document frequencies and therefore the whole basis are computed from this corpus. Adding or removing medicines shifts every vector, so groups from two different corpus versions are not comparable and a group id means nothing outside the run that produced it.",
         "The grouping reflects how mechanism statements are written as much as what they describe. Two medicines whose recorded mechanisms are the same but whose label sections use different prose will not group together, and two whose sections share vocabulary for unrelated reasons may.",
-        "Separation is weak throughout the sweep: the sampled silhouette ran from 0.0430 to 0.0764, where 0 means groups overlap as much as they separate. The chosen cluster count is the best of a poorly separated set, not evidence that the corpus falls into distinct groups.",
+        "Separation is weak throughout the sweep: the sampled silhouette ran from 0.0415 to 0.0908, where 0 means groups overlap as much as they separate. The chosen cluster count is the best of a poorly separated set, not evidence that the corpus falls into distinct groups.",
         "The best silhouette fell at 48, the largest cluster count swept, so a finer grouping might score higher. The swept range is a declared parameter of this version and is not extended silently.",
         "3 records with recorded mechanism text could not be placed and are listed in full rather than assigned to a nearest group.",
         "Medicines with no recorded mechanism statement are absent from every group. That absence is a gap in the corpus and says nothing about the medicine."
@@ -564,12 +564,12 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "d0973f3488ac0c4f7d89771d9decbaf50a936c4292c5b5e83f738f46ac5ef36e",
-      "inputDigest": "919553b8abafb9ded7e1e5b47f964991afd85009b21f65b3b29f7b60cb48781f",
-      "outputDigest": "f8d768ca499bce7e633f7f8a79bd71925506e61f6b54e441fc72c9b6128c9ef2",
-      "candidateCount": 122,
-      "availableCandidateCount": 122,
+      "inputDigest": "5e04cd8b0356f201beb5e5ceb961fcf937a7a372af6d5308ab5da72dbd2f328e",
+      "outputDigest": "3af85cbbefc84c9b8fa2d0293ca34caebe641f5a46844d047dc6b06b903b5f44",
+      "candidateCount": 124,
+      "availableCandidateCount": 124,
       "candidateSelectionMode": "complete",
-      "findingCount": 122,
+      "findingCount": 124,
       "candidateReasons": [
         "UNUSUAL_FOR_PEER_GROUP"
       ],
@@ -581,20 +581,20 @@
         "A peer group is the recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping exists in the tree only as a clustering agent that has to be run to produce one, so taking it would make every p-value here depend on the seed, cluster count and version of another agent, and would narrow the screen to records carrying mechanism text as well as a number. Two records share a group because they state the same route, which is a weaker resemblance than a shared mechanism and puts, for example, an extended-release oral record beside an immediate-release one.",
         "A flag marks a recorded value that sits far from the other recorded values in its group. It is a pointer to read the source excerpt beside the value, never a judgement about the medicine, the value or the source that carries it.",
         "Sitting far from a peer group says nothing about whether a value is faithful to its source. This corpus holds recorded values that are extreme and also exactly what their sources print — a recorded bioavailability of 0.002% and a recorded terminal half-life of 561 hours both appear here, and each matches the excerpt stored beside it. A flag asks a reviewer to read that excerpt; a value that matches it has been confirmed, not faulted.",
-        "This run performed 2958 tests at a threshold of 0.05 and selected 122 values. If every recorded value were exactly what its source states, about 147.9 would still be expected to look this unusual purely by chance. That figure is at least as large as the number of values actually selected, so the flag list as a whole cannot be told apart from chance. Read it as an order in which to read records, not as a set of findings.",
+        "This run performed 2989 tests at a threshold of 0.05 and selected 124 values. If every recorded value were exactly what its source states, about 149.4 would still be expected to look this unusual purely by chance. That figure is at least as large as the number of values actually selected, so the flag list as a whole cannot be told apart from chance. Read it as an order in which to read records, not as a set of findings.",
         "Each quantity is screened once per recorded unit, so values recorded in L are never placed beside values recorded in L/kg, and neither are hours beside minutes. Those pairs share a name and are not the same quantity.",
         "82 peer groups across all screens hold fewer than 20 recorded values and so cannot produce a p-value at or below 0.05 however far out a member sits. Their silence is a limit of the screen, not a statement about those records.",
-        "270 recorded values for these quantities carry no parsed number and were left out entirely; a value that reads \"about five days\" with no hour figure never becomes a coordinate. A further 0 carried a number with no recorded unit and were left out for the same reason.",
+        "275 recorded values for these quantities carry no parsed number and were left out entirely; a value that reads \"about five days\" with no hour figure never becomes a coordinate. A further 0 carried a number with no recorded unit and were left out for the same reason.",
         "Peer values were measured in different populations and study conditions — single dose, healthy adults, renal impairment — and the population context is carried on every row but is not part of the grouping. A value can sit far out because its population context differs from its group's. On extracted records that context is usually the parser's own phrase rather than a described population, so for most rows it tells a reviewer where to look rather than what was measured.",
         "A value the source states as a range is compared using the first number it prints, which is the low end of that range. A row whose display shows a range is therefore positioned by its lower bound, and a reviewer reading the row against a group median should read the display rather than the position.",
         "A recorded value at or below zero cannot be placed on the log scale used for the distance and is scored as maximally unusual rather than dropped. That does not guarantee it is flagged: several such values in one group tie at the same score, and a tie at the top of a small group can still leave every one of them above the threshold.",
         "The screen has no randomised step, so the recorded seed 20260828 does not change its output.",
-        "half-life recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 5.79e-5 across 864 tests, but the largest peer group here cannot produce one below 0.0018. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
-        "bioavailability recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.16e-4 across 432 tests, but the largest peer group here cannot produce one below 0.0034. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
-        "time to peak recorded concentration recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.15e-4 across 436 tests, but the largest peer group here cannot produce one below 0.0026. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
-        "protein binding recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.03e-4 across 484 tests, but the largest peer group here cannot produce one below 0.0029. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
-        "volume of distribution recorded in L: Benjamini-Hochberg at 0.05 would require a p-value at or below 8.47e-5 across 590 tests, but the largest peer group here cannot produce one below 0.0034. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
-        "volume of distribution recorded in L/kg: Benjamini-Hochberg at 0.05 would require a p-value at or below 3.33e-4 across 150 tests, but the largest peer group here cannot produce one below 0.0114. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead."
+        "half-life recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 5.71e-5 across 876 tests, but the largest peer group here cannot produce one below 0.0017. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "bioavailability recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.14e-4 across 438 tests, but the largest peer group here cannot produce one below 0.0033. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "time to peak recorded concentration recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.14e-4 across 440 tests, but the largest peer group here cannot produce one below 0.0026. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "protein binding recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.03e-4 across 487 tests, but the largest peer group here cannot produce one below 0.0028. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "volume of distribution recorded in L: Benjamini-Hochberg at 0.05 would require a p-value at or below 8.40e-5 across 595 tests, but the largest peer group here cannot produce one below 0.0034. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "volume of distribution recorded in L/kg: Benjamini-Hochberg at 0.05 would require a p-value at or below 3.31e-4 across 151 tests, but the largest peer group here cannot produce one below 0.0112. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead."
       ],
       "allowZeroCandidates": true,
       "neurodeContract": {
@@ -696,10 +696,10 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "e2fb5ff32c027209132fd2a31683ff66292c531282321b1e739eeecf4aa886bd",
-      "inputDigest": "59fa9fd4293f3252c7cad4ba172f11246cf9daf167d06b6af22ae41fe2ff2b38",
-      "outputDigest": "13f6cd1d410bfb6766b11cf4b5a291dd26c7e3b19e60b6d6c264044e38066b72",
-      "candidateCount": 151,
-      "availableCandidateCount": 151,
+      "inputDigest": "cc57127b12d4cd8a0ae55b1931be93abb9272b5859cdfb27a7a6e6ca34b537bf",
+      "outputDigest": "6e4e3351849cead9abe67104831c00229d84c4546650da98f47741e48807d38b",
+      "candidateCount": 152,
+      "availableCandidateCount": 152,
       "candidateSelectionMode": "complete",
       "findingCount": 36,
       "candidateReasons": [
@@ -715,12 +715,12 @@
         "This dataset holds no relation between one medicine and another. Counts are per counterparty; the medicines naming a counterparty are listed with their sentences and are never paired, ranked against each other or compared.",
         "ICH M12 states that no potency classification system exists for transporters or for non-CYP enzymes, so no strong, moderate or weak vocabulary is applied to any counterparty here. The tallies count records, not strength.",
         "A counterparty with a high count is one that labels document often. Documentation frequency is not importance: US labelling asks for some enzymes to be characterised far more routinely than others, and that requirement is part of what these counts measure.",
-        "40.4% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
+        "40.1% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
         "Recorded spellings are counted separately and never merged. P-GP, PGP and P-GLYCOPROTEIN are three entries in this dataset because they are three strings in the corpus; whether they name one thing is a question for a person, and prefix relationships are reported as questions rather than resolved.",
         "A mention is admitted only when its excerpt contains the recorded counterparty, tolerating letter case alone. Every other reading of the corpus, including the mentions withheld for that reason, is in the review queue and is not represented in any count above.",
-        "9098 of 9855 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
-        "20138 of 20138 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
-        "The uniform reference for concentration allocates the same 20138 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
+        "9088 of 9855 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+        "20358 of 20358 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
+        "The uniform reference for concentration allocates the same 20358 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
       ],
       "allowZeroCandidates": false,
       "neurodeContract": {
@@ -824,12 +824,12 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "a6d88b23683da9b14e88438dc929a74378e226d8a894c1bb265ff4cbd9c108d3",
-      "inputDigest": "39d809c3849befe653c63782627e43649006698b19cbb797990386a666fc7af7",
-      "outputDigest": "596a82c1caba0d90c0fee5d25a209137ef6f3717d00ab2e925d0bdb4d0a103c9",
-      "candidateCount": 1199,
-      "availableCandidateCount": 1199,
+      "inputDigest": "30c8773f4c2edf04f3fae46dc9a4ea0735d775e07281309dc6b003f9cc4e6980",
+      "outputDigest": "3ecd4f7548a9f9b8cf064ed118b67293c2c2984a98360f9d55f2d179f075e193",
+      "candidateCount": 1209,
+      "availableCandidateCount": 1209,
       "candidateSelectionMode": "complete",
-      "findingCount": 571,
+      "findingCount": 576,
       "candidateReasons": [
         "POSSIBLE_DUPLICATE_SUBSTANCE"
       ],
@@ -955,10 +955,10 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "ea919ffa9c210abde6c4bd2754319597c8efa9cebf308d22fdaf879bedbcfbef",
-      "inputDigest": "0f64eea2b7df6d3b3af45f257674f424f0f30eefb44af53105142f606b6ef77d",
-      "outputDigest": "bc7ad362fa561e80ed3a0dc45195e455ce04ee64c6fdb6fcb0ef482ca401e233",
-      "candidateCount": 1122,
-      "availableCandidateCount": 1122,
+      "inputDigest": "28c2bbcbbee4073477572a060cc8a202c9a9c2e4f9d7afdd437e51e1d5f0d7fa",
+      "outputDigest": "739cbbfbbcc5420a3a78e6120d87ebcb9ab858de731b0eef00dfe2db12b689a5",
+      "candidateCount": 1146,
+      "availableCandidateCount": 1146,
       "candidateSelectionMode": "complete",
       "findingCount": 9855,
       "candidateReasons": [
@@ -975,7 +975,7 @@
         "Two documents count as one when they share a source kind and identifier. A document that was revised between two fetch dates therefore still counts once, so corroboration may be reported slightly higher than it is.",
         "The retrieval dates are the dates source artifacts were fetched during authoring. They say when the corpus last looked, not when the source last changed.",
         "The coverage queue was designed to rank widely marketed medicines first, using the count of recorded product variants as the proxy. This corpus cannot express that: the largest number of product variants on any record is 2, and the largest number of distinct jurisdictions on any record is 1, so the module reports little more than whether a marketed product entry was recorded at all. The queue is instead ordered by how much already-cited source material a record has left unstructured, and it does not rank medicines by prominence.",
-        "The queue cutoff is the median density of 0.555 among records holding a marketed product entry, chosen and stated in advance rather than tuned against the length of queue it produces.",
+        "The queue cutoff is the median density of 0.557 among records holding a marketed product entry, chosen and stated in advance rather than tuned against the length of queue it produces.",
         "Records assembled by the deterministic label parser and records assembled by a person are measured on the same scale here. The scale does not distinguish the two kinds of work; the provenance tier on each value does.",
         "Values recorded as displayed text with no parsed number are counted separately rather than penalised as missing. A source that prints no number is recorded faithfully when no number is stored."
       ],
@@ -1079,8 +1079,8 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "d0a807b71d65ecc311981aeed286d4d3aa3b776aec577e840f43c38355a8e6be",
-      "inputDigest": "04f634d6a3986dfd75e4b464d4c25835d7d41012cd0d430af9d1af4c07517c97",
-      "outputDigest": "cbf5433198bed868b4245ce3ef9750938d1d29f12808f7a3b47d453da7fc9057",
+      "inputDigest": "813ff9bbbcdc1e6e54a7bb184ebdf68d7618cb5dc3a45b9c39acd57676f7020a",
+      "outputDigest": "067ea9194b55955a1d7c36407a83808d38aa488e8976c129559de9fb62ea8a10",
       "candidateCount": 0,
       "availableCandidateCount": 0,
       "candidateSelectionMode": "complete",
@@ -1092,9 +1092,9 @@
       "limitations": [
         "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
         "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
-        "Of 6380 recorded values across these fields, 270 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+        "Of 6445 recorded values across these fields, 275 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
         "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
-        "Volume of distribution is published as two separate distributions and never as one: 590 values recorded in litres and 150 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
+        "Volume of distribution is published as two separate distributions and never as one: 595 values recorded in litres and 151 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
         "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",
         "A route stratum is a group of recorded values, not a group of medicines and not a group of doses. Differences between route strata reflect which medicines have a structured record for that route as much as anything about the routes.",
         "The two provenance tiers are two different kinds of work on differently-selected documents, not two samples of one population. A distributional difference between them is a fact about how the corpus was built, and it does not indicate that values in either tier are wrong.",
@@ -1199,12 +1199,12 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "dc86afe6470292daefc883693d5f34e80389a7843ad25a9e39661cb7670eaf13",
-      "inputDigest": "c6de5ae4c716a32ba2e989cd876c13b6afbea682c67eb24d731fba28daa2cc9a",
-      "outputDigest": "4deaf32f09648c5984d3ceb8ac0ac5dedc83bcc087bef706d157195aac660325",
-      "candidateCount": 420,
-      "availableCandidateCount": 420,
+      "inputDigest": "aab2f791f438bbff0ca7032e60189087e18f8136695deae2182480fea81a69bf",
+      "outputDigest": "0d601322874f41cf5fa3b3358d4725dc6379ded36628aee7aa68c10dac44141e",
+      "candidateCount": 424,
+      "availableCandidateCount": 424,
       "candidateSelectionMode": "complete",
-      "findingCount": 1197,
+      "findingCount": 1201,
       "candidateReasons": [
         "COVERAGE_GAP"
       ],
@@ -1218,11 +1218,11 @@
         "Each label keeps the threshold it printed. A term listed at 1% or more on one label and at 20% or more on another has not been measured the same way twice, so those labels are never pooled into a rate; the thresholds are reported as the exact strings the labels used and are never parsed into numbers or averaged.",
         "A validated pair is a statement about how a body of labels is worded: two terms are printed in the same list more often than each term’s own frequency accounts for. It is not a statement about two events occurring together in a person, and it is not a rate.",
         "This dataset holds no relation between one medicine and another. Structure is computed over reaction terms; the labels printing a term are listed individually with their own thresholds and sentences, and are never paired, ranked against each other or compared.",
-        "8946 of 9855 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+        "8934 of 9855 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
         "Raw co-occurrence is mostly a restatement of how common each term is: of the 10 leading pairs by raw count, 10 survive the frequency-preserving test. The validated set is the one to read; the raw leaders are shown only so the difference is visible.",
-        "11935 pairs were tested and 245 validated at a false discovery rate of 0.01, so roughly 2.45 of them are expected to be false. A single pair is not evidence on its own.",
-        "The analytic null holds each term’s frequency fixed but treats every label list as the same size. The seeded reference preserves both each term’s frequency and each label’s list length and reruns the whole procedure 25 times, validating a median of 0 pairs and at most 1, against 245 in the recorded corpus.",
-        "6357 of 6357 admitted term listings come from records the deterministic label parser produced, where no person chose the terms or checked how the sentence was split. The sentence is stored with every listing so a reader can check it, and joined or truncated-looking terms are in the review queue rather than repaired here.",
+        "12090 pairs were tested and 251 validated at a false discovery rate of 0.01, so roughly 2.51 of them are expected to be false. A single pair is not evidence on its own.",
+        "The analytic null holds each term’s frequency fixed but treats every label list as the same size. The seeded reference preserves both each term’s frequency and each label’s list length and reruns the whole procedure 25 times, validating a median of 0 pairs and at most 1, against 251 in the recorded corpus.",
+        "6436 of 6436 admitted term listings come from records the deterministic label parser produced, where no person chose the terms or checked how the sentence was split. The sentence is stored with every listing so a reader can check it, and joined or truncated-looking terms are in the review queue rather than repaired here.",
         "Terms printed on fewer than 5 labels are profiled but never paired: the frequency-preserving test cannot reach the reporting threshold for them at any co-occurrence count, so pairing them would weaken every other pair without being able to report one of their own."
       ],
       "allowZeroCandidates": false,
@@ -1327,12 +1327,12 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "dc7d7d19cc9a26dbfaaa94ab86c750f17f3ca424c3170be1b1b4ddd856c045dc",
-      "inputDigest": "80f4ebb2c36715125463be58930e929afb941e41102706170809f7f3456d1588",
-      "outputDigest": "78cd7aa6e38e6d4b266193f23e692ab183b2b7ddfddc0b9c990b7b27459070b8",
+      "inputDigest": "6e9ad7e9de0101fc9cb74816c1e4677b0fa48f0936692524b693a4881b1755e7",
+      "outputDigest": "32e510d2d362290d8afcab4f2a430f899fe2f96da6fd0ce54cd48ed9e3ada04f",
       "candidateCount": 0,
       "availableCandidateCount": 0,
       "candidateSelectionMode": "complete",
-      "findingCount": 11309,
+      "findingCount": 11385,
       "candidateReasons": [],
       "consumers": [
         "review_queue",
@@ -1455,8 +1455,8 @@
         "scripts/agents/registry.ts"
       ],
       "implementationDigest": "116602494114cb25ccadbe41349b8d49dcd7b87ae5e0e4407cff4e35d683343e",
-      "inputDigest": "468cf6833d2b055551bc4b23770b79aadc6909e769604cc8482e29af905f5a84",
-      "outputDigest": "7ef3adaa2bb4f6f6db4c0c5bf62ab39997ef2e77ba3f13d30c388ca8dd748675",
+      "inputDigest": "9f6a519f682a051072c136985414d18b7be5730a37c0f81b06fa2250f99dcd6f",
+      "outputDigest": "750da2bdeb62dcc163f86d7a3117488e0946ad8f9183aac49b009b9d332fece9",
       "candidateCount": 96,
       "availableCandidateCount": 9700,
       "candidateSelectionMode": "sampled",
@@ -1547,7 +1547,7 @@
     }
   ],
   "totals": {
-    "candidates": 3155,
-    "findings": 42857
+    "candidates": 3207,
+    "findings": 42944
   }
 }

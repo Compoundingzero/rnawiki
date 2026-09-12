@@ -3,10 +3,10 @@
   "historicalPreRepair": false,
   "eligibleForActiveReview": true,
   "corpus": {
-    "commit": "fd8fbfce925103a876035e7c9227ef2efa162305",
-    "digest": "6556ad3bd7abd547f64ac9d69084bb998311651702c6983a75297533b84f3f88"
+    "commit": "2fe6384ca3c86fba5470306d18e1c4ba98f765d9",
+    "digest": "d22e8631a0668a9e7e7d1ae95ae122e7eb579c2e20b34008a31e46e1f51e07b5"
   },
-  "inputDigest": "80f4ebb2c36715125463be58930e929afb941e41102706170809f7f3456d1588",
+  "inputDigest": "6e9ad7e9de0101fc9cb74816c1e4677b0fa48f0936692524b693a4881b1755e7",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -86,15 +86,15 @@
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_7f98cb5acfa6c564dd2237f3b487f99807e73c84c64188cf915a2edd0a404a86",
-      "inputDigest": "sha256:8bef1869978666aa1fd59d9514b097cd250ebb23d9f2229916e7670cb2af6eb9",
+      "cacheKey": "neurode_cache_3a73e7043078ba2c58cc9dce20a7fe83ca5137f77c54a3c844fb4a0455b0287a",
+      "inputDigest": "sha256:c4f94227871cd1b59ab902c44e545f2037c5d3cf8c4671f476323ebe044b7e34",
       "inputDigestComplete": true,
-      "outputDigest": "sha256:1f4bf57c81e92bd37ec000509edb1ae2585ea55de31af9e97fe0ecf103398cf4",
+      "outputDigest": "sha256:08c811d9f398790942c9beed57bec040000de90af54d46c8abdf34d172e8ccc4",
       "recordsConsidered": 9855,
-      "recordsUsed": 3465,
+      "recordsUsed": 3489,
       "reasonCodes": [],
-      "startedAt": "2026-09-03T00:00:00.000Z",
-      "completedAt": "2026-09-03T00:00:00.000Z",
+      "startedAt": "2026-09-12T00:00:00.000Z",
+      "completedAt": "2026-09-12T00:00:00.000Z",
       "failureCode": null
     }
   },
@@ -111,7 +111,7 @@
   "run": {
     "agent": "excerpt-integrity",
     "version": "1.2.0",
-    "runDate": "2026-09-03",
+    "runDate": "2026-09-12",
     "seed": 20260828,
     "parameters": {
       "normalisationRules": 7,
@@ -120,7 +120,7 @@
     },
     "coverage": {
       "considered": 9855,
-      "used": 3465,
+      "used": 3489,
       "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
     },
     "output": {
@@ -2065,6 +2065,20 @@
             "kind": "FDA_LABEL",
             "label": "Acetaminophen label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "acetazolamide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "222.24",
+          "source": {
+            "excerpt": "The chemical name for acetazolamide is N -(5-Sulfamoyl-1,3,4-thiadiazol-2-yl) acetamide and has the following chemical structure: Molecular Weight: 222.24 Molecular Formula: C 4 H 6 N 4 O 3 S 2 Acetazolamide tablets, USP are available for oral administration each containing 125 mg and 250 mg of acetazolamide respectively.",
+            "identifier": "0700a910-79aa-4431-aecf-637fe14fcae8",
+            "kind": "FDA_LABEL",
+            "label": "Acetazolamide label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -5130,6 +5144,20 @@
           }
         },
         {
+          "slug": "aminocaproic-acid",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "131.17",
+          "source": {
+            "excerpt": "The structural formula is: NH 2 CH 2 (CH 2 ) 3 CH 2 COOH The molecular formula is: C 6 H 13 NO 2 Molecular Weight: 131.17 Aminocaproic Acid is soluble in water, acid and alkaline solutions; it is sparingly soluble in methanol and practically insoluble in chloroform.",
+            "identifier": "08bfb83e-3ac5-4e66-84a3-fcd4deaf73ae",
+            "kind": "FDA_LABEL",
+            "label": "Aminocaproic Acid label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "aminoglutethimide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -5808,6 +5836,20 @@
             "kind": "FDA_LABEL",
             "label": "Amphetamine label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "amphetamine-aspartate-dextroamphetamine",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1 hour",
+          "source": {
+            "excerpt": "A delay of T max by approximately 1 hour was observed for both isomers.",
+            "identifier": "ae304b29-0b40-40ec-ad0d-76b742d4a9b9",
+            "kind": "FDA_LABEL",
+            "label": "Amphetamine Aspartate/Dextroamphetamine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -7809,6 +7851,20 @@
             "kind": "FDA_LABEL",
             "label": "Atenolol label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "atenolol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "266.34",
+          "source": {
+            "excerpt": "The structural and molecular formulas are: Atenolol (free base) has a molecular weight of 266.34.",
+            "identifier": "09b21985-1818-449d-9b29-98f733cf7b9f",
+            "kind": "FDA_LABEL",
+            "label": "Atenolol label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -19109,6 +19165,20 @@
           }
         },
         {
+          "slug": "cefprozil",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "407.45",
+          "source": {
+            "excerpt": "The chemical name for the monohydrate is (6 R ,7 R )-7-[( R )-2-Amino-2-( p -hydroxyphenyl)acetamido]-8-oxo-3-propenyl-5-thia-1-azabicyclo[4.2.0]oct-2-ene-2- carboxylic acid monohydrate, and the structural formula is: Cefprozil is a white to yellowish powder with a molecular formula for the monohydrate of C 18 H 19 N 3 O 5 S.H 2 O and a molecular weight of 407.45.",
+            "identifier": "14527f4a-ce99-449d-a5a5-9edd7fb28dee",
+            "kind": "FDA_LABEL",
+            "label": "Cefprozil label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "ceftaroline-fosamil",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -20822,6 +20892,20 @@
           }
         },
         {
+          "slug": "chlorhexidine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H30Cl2N10•2C6H12",
+          "source": {
+            "excerpt": "Its molecular formula is C 22 H 30 Cl 2 N 10 •2C 6 H 12 0 7 , molecular weight 897.77 and its structural formula is: chemical structure",
+            "identifier": "0253513c-148c-4be7-a6d5-5528f40806fa",
+            "kind": "FDA_LABEL",
+            "label": "Chlorhexidine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "chloride-ion",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -21307,6 +21391,76 @@
             "kind": "FDA_LABEL",
             "label": "Cholic Acid label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "choline",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "12 hours",
+          "source": {
+            "excerpt": "The median T max was 12 hours in the fasted state, and 8 hours in the fed state.",
+            "identifier": "0e745e85-9512-e360-e063-6394a90aebf1",
+            "kind": "FDA_LABEL",
+            "label": "Choline label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "choline",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "28.7 to 32.4 hours",
+          "source": {
+            "excerpt": "The terminal half-life following single-dose administration in healthy subjects was 28.7 to 32.4 hours.",
+            "identifier": "0e745e85-9512-e360-e063-6394a90aebf1",
+            "kind": "FDA_LABEL",
+            "label": "Choline label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "choline",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "44.9 L",
+          "source": {
+            "excerpt": "Distribution The volume of distribution of diazoxide following oral administration is about 44.9 L.",
+            "identifier": "0e745e85-9512-e360-e063-6394a90aebf1",
+            "kind": "FDA_LABEL",
+            "label": "Choline label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "choline",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C8H6ClN2O2S•C5H14NO",
+          "source": {
+            "excerpt": "The empirical formula is C 8 H 6 ClN 2 O 2 S•C 5 H 14 NO and the molecular weight is 333.83 g/mole.",
+            "identifier": "0e745e85-9512-e360-e063-6394a90aebf1",
+            "kind": "FDA_LABEL",
+            "label": "Choline label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "choline",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "333.83 g/mol",
+          "source": {
+            "excerpt": "The empirical formula is C 8 H 6 ClN 2 O 2 S•C 5 H 14 NO and the molecular weight is 333.83 g/mole.",
+            "identifier": "0e745e85-9512-e360-e063-6394a90aebf1",
+            "kind": "FDA_LABEL",
+            "label": "Choline label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -23409,6 +23563,20 @@
             "kind": "FDA_LABEL",
             "label": "Clomipramine label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "clomipramine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "351.31",
+          "source": {
+            "excerpt": "Clomipramine hydrochloride, USP is 3-chloro-5-[3-(dimethylamino)propyl]-10,11-dihydro-5 H -dibenz[ b , f ]azepine monohydrochloride, and its structural formula is Molecular Formula = C 19 H 23 ClN 2 ● HCl Molecular Weight = 351.31 Clomipramine hydrochloride, USP is a white or slightly yellow crystalline powder.",
+            "identifier": "0bf3c4f3-cf70-490d-89d8-9fb84962489e",
+            "kind": "FDA_LABEL",
+            "label": "Clomipramine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -25976,6 +26144,34 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Cupric Cation",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "cupric-chloride",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "CuCl2•2H2O",
+          "source": {
+            "excerpt": "The molecular formula is CuCl 2 • 2H 2 O and the structural formula is: Cupric chloride, USP is a blue to blue-green crystalline compound freely soluble in water, soluble in alcohol and slightly soluble in ether.",
+            "identifier": "c431cc76-f9ba-43c7-8d66-e93c77fa6229",
+            "kind": "FDA_LABEL",
+            "label": "Cupric Chloride label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "cupric-chloride",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "170.48 g/mol",
+          "source": {
+            "excerpt": "Its molecular weight is 170.48 g/mol.",
+            "identifier": "c431cc76-f9ba-43c7-8d66-e93c77fa6229",
+            "kind": "FDA_LABEL",
+            "label": "Cupric Chloride label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -35063,6 +35259,34 @@
           }
         },
         {
+          "slug": "duloxetine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C18H19NOS∙HCl",
+          "source": {
+            "excerpt": "The empirical formula is C 18 H 19 NOS∙HCl, which corresponds to a molecular weight of 333.88.",
+            "identifier": "00628e5e-4c5b-2573-e063-6294a90a0e3b",
+            "kind": "FDA_LABEL",
+            "label": "Duloxetine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "duloxetine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "333.88",
+          "source": {
+            "excerpt": "The empirical formula is C 18 H 19 NOS∙HCl, which corresponds to a molecular weight of 333.88.",
+            "identifier": "00628e5e-4c5b-2573-e063-6294a90a0e3b",
+            "kind": "FDA_LABEL",
+            "label": "Duloxetine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "dupilumab",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -38005,6 +38229,62 @@
             "kind": "FDA_LABEL",
             "label": "Enfortumab Vedotin label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "enfortumab-vedotin-ejfv",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "3.6 days",
+          "source": {
+            "excerpt": "Elimination The ADC and unconjugated MMAE exhibited multi-exponential declines with an elimination half-life of 3.6 days and 2.6 days, respectively.",
+            "identifier": "b5631d3e-4604-4363-8f20-11dfc5a4a8ed",
+            "kind": "FDA_LABEL",
+            "label": "Enfortumab Vedotin-Ejfv label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "enfortumab-vedotin-ejfv",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "68%",
+          "source": {
+            "excerpt": "In vitro , plasma protein binding of unconjugated MMAE ranged from 68% to 82%.",
+            "identifier": "b5631d3e-4604-4363-8f20-11dfc5a4a8ed",
+            "kind": "FDA_LABEL",
+            "label": "Enfortumab Vedotin-Ejfv label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "enfortumab-vedotin-ejfv",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "12.8 L",
+          "source": {
+            "excerpt": "Parameter ADC Mean (± SD) Unconjugated MMAE Mean (± SD) C max 28 (6.1) µg/mL 5.5 (3.0) ng/mL AUC 0-28d 110 (26) µg∙d/mL 85 (50) ng∙d/mL C trough,0-28d 0.31 (0.18) µg/mL 0.81 (0.88) ng/mL Distribution The estimated mean steady-state volume of distribution of the ADC was 12.8 L following administration of PADCEV.",
+            "identifier": "b5631d3e-4604-4363-8f20-11dfc5a4a8ed",
+            "kind": "FDA_LABEL",
+            "label": "Enfortumab Vedotin-Ejfv label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "enfortumab-vedotin-ejfv",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "152 kDa",
+          "source": {
+            "excerpt": "The molecular weight is approximately 152 kDa.",
+            "identifier": "b5631d3e-4604-4363-8f20-11dfc5a4a8ed",
+            "kind": "FDA_LABEL",
+            "label": "Enfortumab Vedotin-Ejfv label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -41755,6 +42035,20 @@
           }
         },
         {
+          "slug": "etomidate",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "244.3",
+          "source": {
+            "excerpt": "The drug etomidate is chemically identified as (R)-(+)-ethyl-1-(1-phenyethyl)-1H-imidazole-5-carboxylate and has the following structural formula: Molecular Formula: C 14 H 16 N 2 O 2 Molecular Weight: 244.3 chemical structure",
+            "identifier": "4312e3c3-34de-4cb3-8abd-c24d24a4bea1",
+            "kind": "FDA_LABEL",
+            "label": "Etomidate label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "etonogestrel",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -44946,6 +45240,20 @@
           }
         },
         {
+          "slug": "flecainide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "474.40",
+          "source": {
+            "excerpt": "Molecular formula: C 17 H 20 F 6 N 2 O 3 •C 2 H 4 O 2 Molecular weight: 474.40 Flecainide acetate, USP is a white crystalline substance with a pK a of 9.3.",
+            "identifier": "166aa9e4-3402-4ebd-baa5-07a8da8aae56",
+            "kind": "FDA_LABEL",
+            "label": "Flecainide label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "flibanserin",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -45758,6 +46066,34 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Fluoxymesterone",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "fluphenazine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "591.77",
+          "source": {
+            "excerpt": "It is a highly potent behavior modifier with a markedly extended duration of effect and has the following structural formula: C 32 H 44 F 3 N 3 O 2 S Molecular Weight: 591.77 Fluphenazine Decanoate Injection, USP is available as a clear, pale yellow solution for intramuscular (IM) or subcutaneous (SC) use providing 25 mg fluphenazine decanoate per mL in a sesame oil vehicle with 12 mg benzyl alcoh",
+            "identifier": "044f49f3-f980-4ef8-8beb-78412702cd9d",
+            "kind": "FDA_LABEL",
+            "label": "Fluphenazine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "fluphenazine-decanoate",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "591.77",
+          "source": {
+            "excerpt": "It is a highly potent behavior modifier with a markedly extended duration of effect and has the following structural formula: C 32 H 44 F 3 N 3 O 2 S Molecular Weight: 591.77 Fluphenazine Decanoate Injection, USP is available as a clear, pale yellow solution for intramuscular (IM) or subcutaneous (SC) use providing 25 mg fluphenazine decanoate per mL in a sesame oil vehicle with 12 mg benzyl alcoh",
+            "identifier": "044f49f3-f980-4ef8-8beb-78412702cd9d",
+            "kind": "FDA_LABEL",
+            "label": "Fluphenazine Decanoate label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -54290,6 +54626,20 @@
           }
         },
         {
+          "slug": "hydroxyzine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "763.29",
+          "source": {
+            "excerpt": "It is chemically designated as 1-(p-chlorobenzhydryl) 4-[2-(2-hydroxyethoxy) ethyl] diethylenediamine salt of 1,1’-methylene bis (2hydroxy-3-naphthalene carboxylic acid) and can be structurally represented as follows: Molecular Weight: 763.29 Each capsule, for oral administration, contains hydroxyzine pamoate equivalent to 25 mg or 50 mg of hydroxyzine hydrochloride.",
+            "identifier": "04657694-e8a8-4e52-a179-cfe752819760",
+            "kind": "FDA_LABEL",
+            "label": "Hydroxyzine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "hyoscyamine",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -56031,6 +56381,20 @@
         },
         {
           "slug": "indium-in-111",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "67.9 hours",
+          "source": {
+            "excerpt": "Clearance from liver and spleen, for the purpose of calculating the radiation dose, is assumed to be equal to the physical half-life of indium In 111 (67.9 hours).",
+            "identifier": "4c52c904-8137-4b10-8a85-d9b96c2d8a00",
+            "kind": "FDA_LABEL",
+            "label": "Indium In-111 label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "indium-in-111",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
           "state": "VERIFIED",
@@ -56377,6 +56741,34 @@
             "kind": "FDA_LABEL",
             "label": "Infliximab label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "infliximab-abda",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "7.7 to 9.5 days",
+          "source": {
+            "excerpt": "Pharmacokinetic results for single doses of 3 mg/kg to 10 mg/kg in RA, 5 mg/kg in CD, and 3 mg/kg to 5 mg/kg in Ps indicate that the median terminal half-life of infliximab is 7.7 to 9.5 days.",
+            "identifier": "dbf738c4-3fac-4422-a9d8-51d9c83a8789",
+            "kind": "FDA_LABEL",
+            "label": "Infliximab-Abda label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "infliximab-abda",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "149.1 kilodaltons",
+          "source": {
+            "excerpt": "It has a molecular weight of approximately 149.1 kilodaltons.",
+            "identifier": "dbf738c4-3fac-4422-a9d8-51d9c83a8789",
+            "kind": "FDA_LABEL",
+            "label": "Infliximab-Abda label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -58003,6 +58395,20 @@
             "kind": "FDA_LABEL",
             "label": "Iopromide label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "iothalamate",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.07 days",
+          "source": {
+            "excerpt": "Following infusion administration of I-125 iothalamate, the effective half-life is about 0.07 days.",
+            "identifier": "7f250086-2837-484b-9674-e09856b34cb0",
+            "kind": "FDA_LABEL",
+            "label": "Iothalamate label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -60414,6 +60820,34 @@
             "kind": "FDA_LABEL",
             "label": "Ketoprofen label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ketoprofen",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H14O3",
+          "source": {
+            "excerpt": "The chemical name for ketoprofen is (±)- m -Benzoylhydratropic acid with the following structural formula: Its molecular formula is C 16 H 14 O 3 , with a molecular weight of 254.29.",
+            "identifier": "198a4140-f4c0-4478-9157-ee1d68d0bb96",
+            "kind": "FDA_LABEL",
+            "label": "Ketoprofen label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "ketoprofen",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "254.29",
+          "source": {
+            "excerpt": "The chemical name for ketoprofen is (±)- m -Benzoylhydratropic acid with the following structural formula: Its molecular formula is C 16 H 14 O 3 , with a molecular weight of 254.29.",
+            "identifier": "198a4140-f4c0-4478-9157-ee1d68d0bb96",
+            "kind": "FDA_LABEL",
+            "label": "Ketoprofen label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -69044,6 +69478,20 @@
         },
         {
           "slug": "meglumine",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1.4 ± 0.2 hours",
+          "source": {
+            "excerpt": "12.3 Pharmacokinetics The pharmacokinetics of total gadolinium assessed up to 48 hours following an intravenously administered 0.1 mmol/kg dose of gadoterate meglumine in healthy adult subjects demonstrated a mean elimination half-life (reported as mean ± SD) of about 1.4 ± 0.2 hours and 2.0 ± 0.7 hours in female and male subjects, respectively.",
+            "identifier": "6f8c9fac-c995-4bf4-950d-ab89deb291b5",
+            "kind": "FDA_LABEL",
+            "label": "Meglumine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "meglumine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
           "state": "TRANSCRIBED_NOT_EXCERPT_BOUND",
@@ -70809,6 +71257,20 @@
             "kind": "FDA_LABEL",
             "label": "Methazolamide label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "methazolamide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "236.26",
+          "source": {
+            "excerpt": "The chemical name for methazolamide is: N-[5-(aminosulfonyl)-3-methyl-1,3,4-thiadiazo1-2(3H)-ylidene]-acetamide and it has the following structural formula: Molecular Formula: C 5 H 8 N 4 O 3 S 2 Molecular Weight: 236.26 Each tablet, for oral administration, contains 25 mg or 50 mg of methazolamide USP.",
+            "identifier": "042586b3-4d49-c5ae-e063-6394a90aaa7c",
+            "kind": "FDA_LABEL",
+            "label": "Methazolamide label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -72606,6 +73068,20 @@
             "kind": "FDA_LABEL",
             "label": "Metyrapone label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "metyrosine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C10H13NO3",
+          "source": {
+            "excerpt": "It has the following structural formula: Metyrosine, USP is a white to off-white powder of molecular weight 195.22 g/mol and molecular formula C 10 H 13 NO 3 .",
+            "identifier": "027f02b1-be49-4822-91a5-6cd66b56c0e1",
+            "kind": "FDA_LABEL",
+            "label": "Metyrosine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -76276,6 +76752,20 @@
           }
         },
         {
+          "slug": "nabumetone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "228.3",
+          "source": {
+            "excerpt": "It has the following structure: Nabumetone, USP is a white or almost white crystalline substance with a molecular weight of 228.3.",
+            "identifier": "04a71deb-2c9d-436c-a574-e5991b6a5248",
+            "kind": "FDA_LABEL",
+            "label": "Nabumetone label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "nadide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -77419,6 +77909,34 @@
             "kind": "FDA_LABEL",
             "label": "Navepegritide label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "naxitamab-gqgk",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "8.2 days",
+          "source": {
+            "excerpt": "Elimination The mean terminal half-life of naxitamab-gqgk was 8.2 days.",
+            "identifier": "b0f5ee96-369f-4cb9-a783-3bfa70fe8f90",
+            "kind": "FDA_LABEL",
+            "label": "Naxitamab-Gqgk label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "naxitamab-gqgk",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "144 kDa",
+          "source": {
+            "excerpt": "Naxitamab-gqgk is produced in a Chinese hamster ovary cell line and has an approximate molecular weight of 144 kDa without glycosylation.",
+            "identifier": "b0f5ee96-369f-4cb9-a783-3bfa70fe8f90",
+            "kind": "FDA_LABEL",
+            "label": "Naxitamab-Gqgk label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -80647,6 +81165,20 @@
           }
         },
         {
+          "slug": "ofloxacin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "361.38",
+          "source": {
+            "excerpt": "The molecular formula of ofloxacin is C 18 H 20 FN 3 O 4 and its molecular weight is 361.38.",
+            "identifier": "0621700e-6315-47ff-a8ed-cccf7d6fc56a",
+            "kind": "FDA_LABEL",
+            "label": "Ofloxacin label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "olanzapine",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -81520,6 +82052,48 @@
             "kind": "FDA_LABEL",
             "label": "Omalizumab label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omalizumab-igec",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "62%",
+          "source": {
+            "excerpt": "12.3 Pharmacokinetics After SC administration, omalizumab was absorbed with an average absolute bioavailability of 62%.",
+            "identifier": "dbd8709f-1636-45d9-ba94-5a3bc5f22f84",
+            "kind": "FDA_LABEL",
+            "label": "Omalizumab-Igec label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "omalizumab-igec",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "26 days",
+          "source": {
+            "excerpt": "In asthma patients omalizumab serum elimination half-life averaged 26 days, with apparent clearance averaging 2.4 ± 1.1 mL/kg/day.",
+            "identifier": "dbd8709f-1636-45d9-ba94-5a3bc5f22f84",
+            "kind": "FDA_LABEL",
+            "label": "Omalizumab-Igec label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "omalizumab-igec",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "149 kiloDaltons",
+          "source": {
+            "excerpt": "The antibody has a molecular weight of approximately 149 kiloDaltons.",
+            "identifier": "dbd8709f-1636-45d9-ba94-5a3bc5f22f84",
+            "kind": "FDA_LABEL",
+            "label": "Omalizumab-Igec label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -83572,6 +84146,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Oxyphenonium",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "oxyquinoline",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "67.9 hours",
+          "source": {
+            "excerpt": "Clearance from liver and spleen, for the purpose of calculating the radiation dose, is assumed to be equal to the physical half-life of indium In 111 (67.9 hours).",
+            "identifier": "4c52c904-8137-4b10-8a85-d9b96c2d8a00",
+            "kind": "FDA_LABEL",
+            "label": "Oxyquinoline label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -86942,6 +87530,34 @@
             "kind": "FDA_LABEL",
             "label": "Pentoxifylline label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "pentoxifylline",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C13H18N4O3",
+          "source": {
+            "excerpt": "The molecular formula is C 13 H 18 N 4 O 3 and its molecular weight is 278.31.",
+            "identifier": "40ae2d9a-0d95-640d-0640-f76e7e1a13cb",
+            "kind": "FDA_LABEL",
+            "label": "Pentoxifylline label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "pentoxifylline",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "278.31",
+          "source": {
+            "excerpt": "The molecular formula is C 13 H 18 N 4 O 3 and its molecular weight is 278.31.",
+            "identifier": "40ae2d9a-0d95-640d-0640-f76e7e1a13cb",
+            "kind": "FDA_LABEL",
+            "label": "Pentoxifylline label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -90485,6 +91101,20 @@
           }
         },
         {
+          "slug": "potassium-citrate",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "K3C6H5O7•H2O",
+          "source": {
+            "excerpt": "Its empirical formula is K 3 C 6 H 5 O 7 • H 2 O, and it has the following chemical structure: Potassium citrate extended-release tablets are off white to tan yellowish, oral wax-matrix tablets, contain 5 mEq (540 mg) potassium citrate, 10 mEq (1080 mg) potassium citrate and 15 mEq (1620 mg) potassium citrate each.",
+            "identifier": "012c925e-5874-472b-a675-00bf79f64980",
+            "kind": "FDA_LABEL",
+            "label": "Potassium Citrate label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "potassium-cyanide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -91852,6 +92482,34 @@
           }
         },
         {
+          "slug": "prochlorperazine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C20H24ClN3S•2C4H4O4",
+          "source": {
+            "excerpt": "Prochlorperazine maleate, USP, has the molecular formula C 20 H 24 ClN 3 S•2C 4 H 4 O 4 , and the molecular weight is 606.09 g/mol.",
+            "identifier": "052d351a-978b-6fc3-e063-6294a90aef55",
+            "kind": "FDA_LABEL",
+            "label": "Prochlorperazine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "prochlorperazine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "606.09 g/mol",
+          "source": {
+            "excerpt": "Prochlorperazine maleate, USP, has the molecular formula C 20 H 24 ClN 3 S•2C 4 H 4 O 4 , and the molecular weight is 606.09 g/mol.",
+            "identifier": "052d351a-978b-6fc3-e063-6294a90aef55",
+            "kind": "FDA_LABEL",
+            "label": "Prochlorperazine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "procyanidin",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -92175,6 +92833,34 @@
         },
         {
           "slug": "propanediol",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1 hour",
+          "source": {
+            "excerpt": "Administration of dapagliflozin with a high-fat meal decreases its C max by up to 50% and prolongs T max by approximately 1 hour but does not alter AUC as compared with the fasted state.",
+            "identifier": "01f90c94-71cb-4a1f-81ff-8004b850529b",
+            "kind": "FDA_LABEL",
+            "label": "Propanediol label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "propanediol",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "12.9 hours",
+          "source": {
+            "excerpt": "The mean plasma terminal half-life (t ½ ) for dapagliflozin is approximately 12.9 hours following a single oral dose of FARXIGA 10 mg.",
+            "identifier": "01f90c94-71cb-4a1f-81ff-8004b850529b",
+            "kind": "FDA_LABEL",
+            "label": "Propanediol label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "propanediol",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
           "state": "TRANSCRIBED_NOT_EXCERPT_BOUND",
@@ -92223,6 +92909,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Propantheline",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "proparacaine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "330.85 g/mol",
+          "source": {
+            "excerpt": "Molecular Weight: 330.85 g/mol Each mL contains of ALCAINE™ (proparacaine hydrochloride ophthalmic solution, USP) 0.5%: Active: proparacaine hydrochloride 5 mg 0.5%.",
+            "identifier": "0c0fa0bf-977d-4539-b8dc-54c187c5b094",
+            "kind": "FDA_LABEL",
+            "label": "Proparacaine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -92531,6 +93231,48 @@
             "kind": "FDA_LABEL",
             "label": "Propranolol label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "propylene-glycol",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "14%",
+          "source": {
+            "excerpt": "The absolute bioavailability of atorvastatin (parent drug) is approximately 14% and the systemic availability of HMG-CoA reductase inhibitory activity is approximately 30%.",
+            "identifier": "09c6c750-ae05-459f-83e8-4a9e4fd85212",
+            "kind": "FDA_LABEL",
+            "label": "Propylene Glycol label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "propylene-glycol",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "381 liters",
+          "source": {
+            "excerpt": "Distribution Mean volume of distribution of atorvastatin is approximately 381 liters.",
+            "identifier": "09c6c750-ae05-459f-83e8-4a9e4fd85212",
+            "kind": "FDA_LABEL",
+            "label": "Propylene Glycol label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "propylene-glycol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "1231.46 g/mol",
+          "source": {
+            "excerpt": "The empirical formula of atorvastatin calcium propylene glycol solvate is C 66 H 68 CaF 2 N 4 O 10 * C 3 H 8 O 2 and its molecular weight is 1231.46 g/mol.",
+            "identifier": "09c6c750-ae05-459f-83e8-4a9e4fd85212",
+            "kind": "FDA_LABEL",
+            "label": "Propylene Glycol label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -100950,6 +101692,20 @@
         },
         {
           "slug": "secretin",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2.7 liters",
+          "source": {
+            "excerpt": "The clearance of synthetic human secretin is 580.9 ± 51.3 mL/min and the volume of distribution is 2.7 liters. 12.1 Mechanism of Action The primary action of ChiRhoStim ® is to stimulate pancreatic ductal cells to secrete pancreas fluid in large volumes that contain bicarbonate.",
+            "identifier": "b4dfe70f-0a86-4488-9ba1-dcd8f86cbfcd",
+            "kind": "FDA_LABEL",
+            "label": "Secretin label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "secretin",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
           "state": "TRANSCRIBED_NOT_EXCERPT_BOUND",
@@ -101334,6 +102090,34 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Selenium Dioxide",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "selenium-sulfide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "SeS2",
+          "source": {
+            "excerpt": "Selenium sulfide has the molecular formula SeS 2 and has a molecular weight of 143.09.",
+            "identifier": "28b84e3c-ae44-40bb-93c4-2625e19f7e61",
+            "kind": "FDA_LABEL",
+            "label": "Selenium Sulfide label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "selenium-sulfide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "143.09",
+          "source": {
+            "excerpt": "Selenium sulfide has the molecular formula SeS 2 and has a molecular weight of 143.09.",
+            "identifier": "28b84e3c-ae44-40bb-93c4-2625e19f7e61",
+            "kind": "FDA_LABEL",
+            "label": "Selenium Sulfide label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -103438,6 +104222,48 @@
         },
         {
           "slug": "sodium",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "89%",
+          "source": {
+            "excerpt": "In five multiple-dose studies in healthy subjects (N = 82) and in subjects with epilepsy (N = 86), when administered under fasting and nonfasting conditions, divalproex sodium extended-release tablets given once daily produced an average bioavailability of 89% relative to an equal total daily dose of divalproex sodium delayed-release tablets given BID, TID, or QID.",
+            "identifier": "00332c65-edad-a153-9c78-628931daa732",
+            "kind": "FDA_LABEL",
+            "label": "Sodium label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "sodium",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "9 to 16 hours",
+          "source": {
+            "excerpt": "Mean terminal half-life for valproate monotherapy ranged from 9 to 16 hours following oral dosing regimens of 250 to 1,000 mg.",
+            "identifier": "00332c65-edad-a153-9c78-628931daa732",
+            "kind": "FDA_LABEL",
+            "label": "Sodium label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "sodium",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.56 L",
+          "source": {
+            "excerpt": "Elimination Mean plasma clearance and volume of distribution for total valproate are 0.56 L/hr/1.73 m 2 and 11 L/1.73 m 2 , respectively.",
+            "identifier": "00332c65-edad-a153-9c78-628931daa732",
+            "kind": "FDA_LABEL",
+            "label": "Sodium label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "sodium",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
           "state": "NOT_APPLICABLE",
@@ -103512,6 +104338,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Sodium Arsenate, Dibasic",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "sodium-benzoate",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "3-4 hours",
+          "source": {
+            "excerpt": "Caffeine has approximately a half-life (T ½) of 3-4 hours in adults.",
+            "identifier": "b2c6b352-f837-4903-8e4c-fb0a2b20bb60",
+            "kind": "FDA_LABEL",
+            "label": "Sodium Benzoate label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -103764,6 +104604,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Sodium Iodate",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "sodium-iodide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "153.99",
+          "source": {
+            "excerpt": "Sodium Iodide I 131 is designated chemically as Na131I and has a molecular weight of 153.99. 11.2 Physical Characteristics Iodine I 131 decays by beta emission and associated gamma emission with a physical half-life of 8.04 days.",
+            "identifier": "46b8d7ba-432d-d610-84f2-550bf9d0bae3",
+            "kind": "FDA_LABEL",
+            "label": "Sodium Iodide label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -104680,6 +105534,48 @@
             "kind": "FDA_LABEL",
             "label": "Sonidegib label",
             "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "sonrotoclax",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "4 hours",
+          "source": {
+            "excerpt": "Absorption The median T max of sonrotoclax is 4 hours (ranged from 1 to 8 hours) following 320 mg once daily dosing.",
+            "identifier": "ff684558-e9cb-46de-a8bf-f4d79093df7a",
+            "kind": "FDA_LABEL",
+            "label": "Sonrotoclax label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "sonrotoclax",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "4 to 6 hours",
+          "source": {
+            "excerpt": "Elimination The mean terminal elimination half-life (t ½ ) of sonrotoclax ranges from 4 to 6 hours.",
+            "identifier": "ff684558-e9cb-46de-a8bf-f4d79093df7a",
+            "kind": "FDA_LABEL",
+            "label": "Sonrotoclax label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "sonrotoclax",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "99%",
+          "source": {
+            "excerpt": "Sonrotoclax plasma protein binding is 99% across a concentration range of 1 to 10 µM.",
+            "identifier": "ff684558-e9cb-46de-a8bf-f4d79093df7a",
+            "kind": "FDA_LABEL",
+            "label": "Sonrotoclax label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -106541,6 +107437,20 @@
             "label": "FDA label for sulfasalazine tablets, USP (openFDA)",
             "locator": "clinical_pharmacology Pharmacokinetics, Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "sulfasalazine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "398.39",
+          "source": {
+            "excerpt": "Chemical Structure: C 18 H 14 N 4 O 5 S The molecular weight of sulfasalazine is 398.39.",
+            "identifier": "3c59593b-e1a5-47cb-a82b-3e5e49205344",
+            "kind": "FDA_LABEL",
+            "label": "Sulfasalazine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -110209,6 +111119,48 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Teniposide",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "tenofovir",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "40%",
+          "source": {
+            "excerpt": "Effects of Food on Oral Absorption Administration of tenofovir disoproxil fumarate 300 mg tablets following a high-fat meal (~700 to 1,000 kcal containing 40 to 50% fat) increases the oral bioavailability, with an increase in tenofovir AUC 0 to ∞ of approximately 40% and an increase in C max of approximately 14%.",
+            "identifier": "08a30772-02fc-4f63-e063-6394a90afd43",
+            "kind": "FDA_LABEL",
+            "label": "Tenofovir label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "tenofovir",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "17 hours",
+          "source": {
+            "excerpt": "Following single dose, oral administration of tenofovir disoproxil fumarate tablets, the terminal elimination half-life of tenofovir is approximately 17 hours.",
+            "identifier": "08a30772-02fc-4f63-e063-6394a90afd43",
+            "kind": "FDA_LABEL",
+            "label": "Tenofovir label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "tenofovir",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1.3 ± 0.6 L/kg",
+          "source": {
+            "excerpt": "The volume of distribution at steady-state is 1.3 ± 0.6 L/kg and 1.2 ± 0.4 L/kg, following intravenous administration of tenofovir 1 mg/kg and 3 mg/kg.",
+            "identifier": "08a30772-02fc-4f63-e063-6394a90afd43",
+            "kind": "FDA_LABEL",
+            "label": "Tenofovir label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -115876,6 +116828,20 @@
           }
         },
         {
+          "slug": "triamcinolone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C24H31FO6",
+          "source": {
+            "excerpt": "Triamcinolone Acetonide Cream USP contains Triamcinolone Acetonide [Pregna-1,4-diene-3,20-dione,9-fluoro-11,21-dihydroxy-16,17-[(1-methylethylidene) bis- (oxy)]-, (11β,16α)-], with the empirical formula C 24 H 31 FO 6 and molecular weight 434.50.",
+            "identifier": "089a8449-7810-48ec-b327-494f058c3348",
+            "kind": "FDA_LABEL",
+            "label": "Triamcinolone label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "triamcinolone-acetonide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -116205,6 +117171,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Tridihexethyl",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "trientine",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "13.8 to 16.5 hours",
+          "source": {
+            "excerpt": "Elimination The mean terminal half-life (t 1/2 ) of trientine ranged from 13.8 to 16.5 hours.",
+            "identifier": "f73feeae-62ad-401e-b9f7-5cb269127750",
+            "kind": "FDA_LABEL",
+            "label": "Trientine label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -116976,6 +117956,48 @@
           }
         },
         {
+          "slug": "tromethamine",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "100%",
+          "source": {
+            "excerpt": "ing Oral, Intramuscular and Intravenous Doses of Ketorolac Tromethamine Oral † Intramuscular* Intravenous Bolus ‡ Pharmacokinetic Parameters (units) 10 mg 15 mg 30 mg 60 mg 15 mg 30 mg Bioavailability (extent) 100% T max 1 (min) 44±34 33±21** 44±29 33±21** 1.1±0.7** 2.9±1.8 C max 2 (mcg/mL) [Single-dose] 0.87±0.22 1.14±0.32** 2.42±0.68 4.55±1.27** 2.47±0.51** 4.65±0.96 C max (mcg/mL) [steady state",
+            "identifier": "004588ba-e109-4a53-9c9d-a42dea9bb848",
+            "kind": "FDA_LABEL",
+            "label": "Tromethamine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "tromethamine",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2.5 hours",
+          "source": {
+            "excerpt": "The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.",
+            "identifier": "004588ba-e109-4a53-9c9d-a42dea9bb848",
+            "kind": "FDA_LABEL",
+            "label": "Tromethamine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "tromethamine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "376.40",
+          "source": {
+            "excerpt": "The molecular weight of ketorolac tromethamine is 376.40.",
+            "identifier": "004588ba-e109-4a53-9c9d-a42dea9bb848",
+            "kind": "FDA_LABEL",
+            "label": "Tromethamine label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
           "slug": "tropolone",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -116999,6 +118021,48 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Tropolone",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "trospium",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "9.6%",
+          "source": {
+            "excerpt": "Mean absolute bioavailability of a 20 mg dose is 9.6% (range: 4-16.1%).",
+            "identifier": "048b4bc7-c77e-40fc-9bfb-bb35c6a3f871",
+            "kind": "FDA_LABEL",
+            "label": "Trospium label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "trospium",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "33 hours",
+          "source": {
+            "excerpt": "A 4.2-fold and 1.8-fold increase in mean AUC(0-∞) and Cmax, respectively, and the appearance of an additional elimination phase with a long half-life (~33 hours vs. 18 hours) were detected in patients with severe renal impairment compared with nearly age-matched subjects with creatinine clearance equal to or higher than 80 mL/min.",
+            "identifier": "048b4bc7-c77e-40fc-9bfb-bb35c6a3f871",
+            "kind": "FDA_LABEL",
+            "label": "Trospium label",
+            "retrievedAt": "2026-09-12"
+          }
+        },
+        {
+          "slug": "trospium",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "50 to 85%",
+          "source": {
+            "excerpt": "Distribution: Protein binding ranged from 50 to 85% when concentration levels of trospium chloride (0.5-50 ng/mL) were incubated with human serum in vitro.",
+            "identifier": "048b4bc7-c77e-40fc-9bfb-bb35c6a3f871",
+            "kind": "FDA_LABEL",
+            "label": "Trospium label",
+            "retrievedAt": "2026-09-12"
           }
         },
         {
@@ -155625,16 +156689,16 @@
       "byModule": [
         {
           "module": "molecularIdentity",
-          "checked": 2263,
-          "verified": 2263,
+          "checked": 2303,
+          "verified": 2303,
           "numberAbsent": 0,
           "noExcerpt": 0,
           "verifiedShare": 1
         },
         {
           "module": "pharmacokinetics",
-          "checked": 3340,
-          "verified": 3340,
+          "checked": 3376,
+          "verified": 3376,
           "numberAbsent": 0,
           "noExcerpt": 0,
           "verifiedShare": 1
@@ -155648,12 +156712,12 @@
           "verifiedShare": 1
         }
       ],
-      "statementsChecked": 18370,
-      "statementsVerbatim": 18370,
-      "adverseTermsChecked": 6365,
-      "adverseTermsFound": 6365,
-      "totalChecked": 7817,
-      "totalVerified": 7817,
+      "statementsChecked": 18742,
+      "statementsVerbatim": 18742,
+      "adverseTermsChecked": 6444,
+      "adverseTermsFound": 6444,
+      "totalChecked": 7893,
+      "totalVerified": 7893,
       "overallVerifiedShare": 1,
       "normalisationRules": [
         {
