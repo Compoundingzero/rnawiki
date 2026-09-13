@@ -206,7 +206,13 @@ function DrugCard({
         className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-5 sm:p-6 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-3"
       >
         <div className="flex items-start justify-between gap-3">
-          <h2 className="text-lg sm:text-xl font-extrabold text-[#1D1D1F] tracking-tight group-hover:text-[#0071E3] transition min-w-0">
+          {/*
+            `break-words` because chemical names are routinely longer than a phone screen.
+            "3,4-Methylenedioxymethamphetamine" is one word to a browser and 33 characters wide, so
+            it pushed the browse list 18 px past a 320 px viewport and made the whole page scroll
+            sideways. `min-w-0` alone does not help: the element can shrink, the word cannot.
+          */}
+          <h2 className="min-w-0 break-words text-lg font-extrabold tracking-tight text-[#1D1D1F] transition group-hover:text-[#0071E3] sm:text-xl">
             {drug.name}{' '}
             {drug.tradeName && (
               <span className="text-sm text-[#6E6E73] font-normal">({drug.tradeName})</span>
@@ -219,7 +225,7 @@ function DrugCard({
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[11px] font-bold text-[#0071E3] bg-blue-50 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20">
+          <span className="text-[11px] font-bold text-[#0066CC] bg-blue-50 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20">
             {publicMedicineTypeLabel(drug.modality)}
           </span>
           <span className="rounded-full border border-black/[0.08] bg-[#F5F5F7] px-2.5 py-0.5 text-[11px] font-semibold text-[#424245]">
