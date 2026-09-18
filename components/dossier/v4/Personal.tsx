@@ -227,7 +227,7 @@ export function SafetyMap({ safety }: { safety: DossierV4ViewModel['safety'] }):
                 </p>
               ) : null}
               {entry.sources.length > 0 ? (
-                <Disclosure summary="Where this came from">
+                <Disclosure summary="Sources">
                   <Sources sources={entry.sources} />
                 </Disclosure>
               ) : null}

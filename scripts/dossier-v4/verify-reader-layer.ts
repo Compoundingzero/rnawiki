@@ -109,6 +109,22 @@ async function main(): Promise<void> {
       /<strong>Sold as\.<\/strong>([^<]*)</u.exec(reader)?.[1]?.replace(/&amp;/gu, '&').trim() ?? ''
     process.stdout.write(`  names a reader sees           : ${soldAs || 'none'}\n`)
     process.stdout.write(`  purpose-rail chips            : ${count(rendered, 'data-purpose=')}\n`)
+    /*
+     * Which sections actually rendered, with the state the model gave each one, and which did not.
+     * This is what separates a sparse page's scaffolding from its content: a section that renders
+     * while carrying nothing specific to the substance is the defect, and its state is the reason.
+     */
+    const renderedIds = new Set(
+      [...rendered.matchAll(/<section\b[^>]*\bid="([^"]+)"/gu)].map((m) => m[1] ?? ''),
+    )
+    const shown = model.sections
+      .filter((section) => renderedIds.has(section.id))
+      .map((section) => `${section.id}:${section.state}`)
+    const hiddenSections = model.sections
+      .filter((section) => !renderedIds.has(section.id))
+      .map((section) => `${section.id}:${section.state}`)
+    process.stdout.write(`  sections rendered             : ${shown.join(' ')}\n`)
+    process.stdout.write(`  sections not rendered         : ${hiddenSections.join(' ')}\n`)
     process.stdout.write(
       `  machinery in reader layer     : ${leaks.length === 0 ? 'none' : leaks.join(' | ')}\n`,
     )

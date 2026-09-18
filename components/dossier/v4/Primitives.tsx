@@ -83,7 +83,7 @@ export function StateBadge({
  * This used to render the full forty-word explanation of the origin under every statement, four or
  * five times on a first screen. Repeating the same paragraph is how a reader learns to stop reading
  * it, so the line is now the short label and the review count, and the full explanation sits in the
- * "Where this came from" disclosure directly beneath, where the provenance already was.
+ * "Sources" disclosure directly beneath, where the provenance already was.
  */
 export function OriginNote({ origin }: { origin: StatementOrigin }): ReactNode {
   return (
@@ -166,7 +166,13 @@ export function StatementBlock({
       <p className={emphasis ? 'dv4-hero-result-text' : undefined}>{statement.text}</p>
       <OriginNote origin={statement.origin} />
       {/* Technical: this holds provenance and any recorded wording the reader layer did not take. */}
-      <Disclosure summary="Where this came from" technical>
+      {/*
+       * "Sources", not "Where this came from". Measured on a rich page, the longer label was the
+       * most repeated visible line on the page at nine to ten copies. Every one of those copies is
+       * doing a job — the contract requires a statement to render its origin — so the number stays
+       * and the wording comes down to the one word a beginner already knows.
+       */}
+      <Disclosure summary="Sources" technical>
         <p>{ORIGIN_PLAIN[statement.origin]}</p>
         <p>{statement.basis}</p>
         <Sources sources={statement.sources} />
