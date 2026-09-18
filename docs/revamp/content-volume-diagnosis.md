@@ -1,131 +1,102 @@
 # Content volume on a medicine page
 
-Measured 2026-09-17 against the deployed corpus. This is the open item behind "less is more": a
-beginner meets far more sentences than the record justifies, and most of them are the same sentence
-repeated.
+Measured 2026-09-17 against the deployed corpus. The question behind "less is more": does a beginner
+meet far more sentences than the record justifies?
 
-## What the numbers say
+## The answer, first
 
-`npm run` script: `scripts/dossier-v4/measure-page-similarity.ts`, sample of 40 medicines drawn by
-`md5(slug)` so the sample is stable between runs.
+**Mostly no, and the raw measurement says otherwise because it counts text inside collapsed
+disclosures.** Two things are true and only the second matters to a reader:
 
-| Measure                                            | Value           |
-| -------------------------------------------------- | --------------- |
-| Sentences a reader meets per page (audit excluded) | **332**         |
-| Boilerplate share (a sentence on >50% of pages)    | **81.5%**       |
-| Shared share (>1 page, <50%)                       | 10.3%           |
-| Medicine-specific share (exactly one page)         | **8.1%**        |
-| Median specificity                                 | **6.1%**        |
-| p90 specificity                                    | 12.9%           |
+1. The served document is about **332 sentences** long on average, and **81.5%** of those sentences
+   are printed on more than half of all medicine pages.
+2. **24 of those sentences' containers are `<details>` elements, and every one is closed.** A reader
+   meets the summary line of each disclosure, not its body.
+
+So the numbers below describe the **document**, not the first read. The visible page is the trimmed
+one the design intends: identity strip, page promise, the purpose chips, the action hero, "what
+happened in people", "the limit that matters most", the acts/result/supervision table, and then a
+series of closed disclosures a reader opens only if they want the provenance.
+
+The clearest case: on `zingiberene` the sentence "Nothing in this record points to this reason."
+appears **11 times** in the DOM. On the served page it appears **zero** times in front of a reader —
+`Personal.tsx:126-143` already gathers all eleven behind one closed disclosure whose summary reads:
+
+> Other reasons RNAWiki checked and found nothing for (11)
+
+That is the codebase's own rule — *unknown is not failure*: the absences are kept and consolidated,
+never dropped. A change that rendered only the reasons that apply would delete that line and the
+information in it.
+
+## The measurements, for the record
+
+`scripts/dossier-v4/measure-page-similarity.ts`, sample of 40 medicines drawn by `md5(slug)` so the
+sample is stable between runs.
+
+| Measure                                            | Value   |
+| -------------------------------------------------- | ------- |
+| Sentences in the document per page (audit excluded) | 332     |
+| Boilerplate share (a sentence on >50% of pages)     | 81.5%   |
+| Shared share (>1 page, <50%)                        | 10.3%   |
+| Medicine-specific share (exactly one page)          | 8.1%    |
+| Median specificity                                  | 6.1%    |
 
 The content is **not** generic in substance. Semaglutide's page carries STEP 1 (14.9% against 2.4%
-weight loss), SELECT, evoke/evoke+ and the NAION receipts with real numbers. The problem is volume.
+weight loss), SELECT, evoke/evoke+ and the NAION receipts with real numbers.
 
-## The actual lever: repetition inside one page
+Distinct against total sentences separates "shared template" from "the same line printed again":
 
-Measuring distinct sentences against total sentences separates "shared template" from "the same
-line printed again":
+| Page        | Sentences | Distinct | Repeated within the page |
+| ----------- | --------- | -------- | ------------------------ |
+| metformin   | 1,175     | 724      | 451 (38%)                |
+| zingiberene | 371       | 280      | 91 (25%)                 |
 
-| Page        | Sentences | Distinct | Repeated copies within the page |
-| ----------- | --------- | -------- | ------------------------------ |
-| metformin   | 1,175     | 724      | **451 (38%)**                  |
-| zingiberene | 371       | 280      | **91 (25%)**                   |
+## Why the measurement overstates it
 
-The worst offenders on a **thin** record (`zingiberene`, ~5 substance-specific sentences in total):
+`readerSentences()` in the measure script strips `<script>`, `<style>` and the JSON-LD block, and
+cuts the audit layer at `id="technical-record"` so a page cannot score as specific on the strength of
+a list of accession numbers. It does **not** skip the body of a closed `<details>`, so every sentence
+behind a disclosure is counted as reader text and compared against every other page's.
 
-| Printed | Sentence                                                 | Emitted by                                 |
-| ------- | -------------------------------------------------------- | ------------------------------------------ |
-| 11×     | "Nothing in this record points to this reason."          | `lib/dossier-v4/view-model.ts:2090`        |
-| 9×      | "Where this came from"                                   | `components/dossier/v4/Primitives.tsx:169` |
-| 9×      | "No source is stored against this line."                 | `components/dossier/v4/Primitives.tsx:98`  |
-| 9×      | "Not recorded."                                          | absence line inside `SectionFrame`         |
-| 6×      | "∅ Nothing recorded"                                     | `Absence` in `Primitives.tsx`              |
-| 6×      | "RNAWiki holds nothing here and says so rather than..."  | `Absence` in `Primitives.tsx`              |
-| 5×      | "Why it matters."                                        | `components/dossier/v4/Closing.tsx:126`    |
-| 5×      | "What would answer it"                                   | `components/dossier/v4/Closing.tsx:128`    |
+That is why the biggest "repeated" sentences are the ones a reader never sees:
 
-And on a **rich** record, the whole source citation is reprinted once per receipt: metformin prints
-the UKPDS citation block and the Barzilai citation block **13× each**, because every receipt renders
-its own `Source` row inside `Closing.tsx:179`.
+| Printed | Sentence                                        | Where it lives                                     |
+| ------- | ----------------------------------------------- | -------------------------------------------------- |
+| 11×     | "Nothing in this record points to this reason." | closed disclosure, `Personal.tsx:126-143`          |
+| 9×      | "Where this came from"                          | the disclosure summary itself, `Primitives.tsx:169` |
+| 9×      | "No source is stored against this line."        | inside that disclosure, `Primitives.tsx:98`         |
+| 13×     | the same journal citation                       | one per receipt, `Closing.tsx:179-192`              |
 
-## Where the emptiness already is handled
+The disclosure **summaries** are the one honest part of that list: they are visible, and they repeat
+across statements by design, because each one labels the provenance of the statement above it.
 
-`lib/dossier-v4/section-visibility.ts` already hides sections whose state is one of
-`no_qualifying_evidence`, `not_applicable` or `feature_not_enabled`, and `WhatIsMissing` names them
-once near the foot of the page. So **empty sections are not the problem.**
+## What is actually worth doing
 
-The problem is one level down: a section that *does* carry entries still prints its scaffolding per
-entry, and the view model emits statements whose textual content is a placeholder. The confirmed
-source of the most-repeated sentence is a **fallback basis string** at
-`lib/dossier-v4/view-model.ts:2090`:
+- **Do not** strip the collapsed bodies. They carry the provenance a sceptical reader came for, and
+  the measure script's own target is the prose a reader meets.
+- **Do not** consolidate `no-response` further. It is done.
+- If the number matters as a product measure, fix the **instrument** first: have
+  `readerSentences()` skip the body of a `<details>` that is not `open`, and re-run. That separates
+  "the page is long" from "the page stores a lot behind a fold", which are different findings with
+  different fixes.
+- The one real candidate left is the per-statement disclosure summary "Where this came from", which
+  is visible and repeats. Whether it should read the same nine times on one page is a copy question,
+  not a volume one.
 
-```ts
-basis: applies[reason.code] ?? 'Nothing in this record points to this reason.',
-```
-
-Eleven statements on a thin record fall through to that fallback, and each one prints its basis
-inside its own "Where this came from" disclosure. So the repetition is a property of what the model
-emits, not of how a component renders: it cannot be fixed in `components/` without dropping
-provenance text.
-
-The section state is computed from whether entries exist, for example
-`lib/dossier-v4/view-model.ts:2743`:
-
-```ts
-const state: SectionState =
-  entries.length > 0 || regulatory.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence'
-```
-
-So a section becomes `source_checked_draft` — and therefore visible — on the strength of entries
-whose only content is "Nothing in this record points to this reason."
-
-## Why this is not a cosmetic fix
-
-Extending the existing consolidation from sections to entries changes what a thin record *asserts*.
-That is governed by `docs/dossier-v4-plain-language-contract.md`,
-`docs/dossier-v4-publication-states.md` and `docs/dossier-v4-medical-safety-gates.md`, and checked by
-`npm run check:medicine-content`, `npm run check:copy` and the section/navigator tests. The rule the
-codebase holds to is **"unknown is not failure"**: an absence must be kept and consolidated, never
-silently dropped. So the change is "print the placeholder once per section and name it in
-`WhatIsMissing`", not "stop printing it".
-
-Watch these tests before editing, because they assert on the strings above:
-
-- `tests/e2e/dossier-v4-compass.spec.ts:187` asserts a receipt contains "Role in the trial".
-- `tests/e2e/creatine-jargon-explanations.spec.ts:11` asserts a statement has a
-  "Where this came from" disclosure.
-
-## Suggested order
-
-1. Consolidate the per-entry placeholders: render `Absence` and the empty-`Sources` note once per
-   section with a count, and let `WhatIsMissing` name the section.
-2. Group `unknowns.entries` that share one `reason` so the reason prints once
-   (`Closing.tsx:121-135`).
-3. Cite each source once per page by number, and have receipts reference the number instead of
-   reprinting the citation (`Closing.tsx:179-192`).
-4. Do not remove the audit layer behind `id="technical-record"` from the page; the measurement
-   deliberately excludes it, and it is unique per medicine by construction.
-
-## How to prove it
+## How to reproduce
 
 ```bash
-# 1. Re-measure. Sample is md5(slug)-ordered, so runs are comparable.
+# Same command, same md5(slug)-ordered sample, so runs compare.
 npx tsx --tsconfig tsconfig.render-scripts.json \
   scripts/dossier-v4/measure-page-similarity.ts --sample 40 --label after-volume --concurrency 4
 
-# 2. Compare meanSentencesPerPage, meanSpecificShare and meanSharedShare against the baseline in
-#    data/dossier-v4/page-similarity-head-baseline.json.
-
-# 3. Per-page repetition, the measure this document is about:
-#    count distinct vs total sentences in the served HTML of one page.
-
-# 4. Corpus validation and the full gate.
-npx tsx scripts/dossier-v4/validate-corpus.ts
-npm run gate
+# Is a disclosure open? On the served HTML:
+#   grep -c '<details' page.html        -> 24
+#   grep -c '<details[^>]*open' page.html -> 0
 ```
 
-## Target
-
-Fewer sentences per page with a higher specific share, and no sentence printed more than once per
-section. Do not chase a boilerplate number down by rewording shared lines per drug: that is filler
-with extra steps and defeats the measurement rather than the problem.
+Two runs are kept beside this note: `data/dossier-v4/page-similarity-content-diagnose.json` (the
+baseline quoted here) and `data/dossier-v4/page-similarity-volume-hoist.json`, which is an attempt to
+consolidate in `components/dossier/v4/Closing.tsx` that came back **identical to four decimal
+places** — the evidence that the repeated sentence is not emitted by that component. That edit was
+reverted.
