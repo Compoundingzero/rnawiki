@@ -256,6 +256,28 @@ export function CompassPage({
    * What goes is the furniture that advertises sections with nothing in them.
    */
   const holdsNothing = model.substance.empty
+  /*
+   * The names a reader would recognise on the box.
+   *
+   * MedlinePlus makes "Brand names" a top-level section, and it is the first thing a reader needs
+   * when they are holding a product: is this the substance the page is about? `page_synonyms` holds
+   * 29,339 brand rows and not one of them reached a reader. On the live metformin page "Glucophage"
+   * appeared eleven times and every occurrence was inside the audit layer, behind two folds.
+   *
+   * The rows are selected by kind, not by guessing at capitalisation. The "also called" group beside
+   * them mixes in mixture products and dose strings ("eucreas", "liquid metformin 100 mg/ml"), which
+   * is exactly the noise this page is trying not to add.
+   */
+  const brands = (corpus.synonyms.find((group) => group.kind === 'brand')?.names ?? [])
+    /*
+     * The brand rows carry combination products as well as brands: semaglutide's group holds
+     * "Semaglutide component of cagrisema" and "Ozempic / Wegovy / Rybelsus" beside Ozempic and
+     * Wegovy. A reader holding a box is looking for a product name, and neither a descriptor nor a
+     * slash-joined list of three products is one, so both go. Found by rendering the page rather
+     * than by assuming the group was clean.
+     */
+    .filter((name) => !/component of|\s\/\s/iu.test(name))
+    .slice(0, 6)
   return (
     <div
       className="dv4-root"
@@ -266,6 +288,12 @@ export function CompassPage({
         {/* Review lives at /review-queue. A reader sees the medicine, not the machinery. */}
         <PublicationNote publication={model.publication} />
       </SubstanceIdentityStrip>
+      {brands.length > 0 ? (
+        <p className="dv4-note" style={{ margin: '0.35rem 0 0' }}>
+          <strong>Sold as.</strong> {brands.join(', ')}. A brand name is the same substance in a
+          particular product, not a different one.
+        </p>
+      ) : null}
       {/* Only an identity hold, a pipeline failure, or an empty record opens with a block. */}
       <PublicationBanner publication={model.publication} />
       <MissingRecordNotice searched={model.searchedRegisters} substance={model.substance} />

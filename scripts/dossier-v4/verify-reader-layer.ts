@@ -101,6 +101,13 @@ async function main(): Promise<void> {
     process.stdout.write(`  sections in the served page   : ${count(rendered, '<section')}\n`)
     process.stdout.write(`  in-page nav links             : ${count(rendered, 'href="#')}\n`)
     process.stdout.write(`  reader-facing sentences       : ${readerSentences(reader)}\n`)
+    /*
+     * The names a reader would recognise on the box. MedlinePlus gives these a top-level section, so
+     * whether they reach a reader here is a value question rather than a formatting one.
+     */
+    const soldAs =
+      /<strong>Sold as\.<\/strong>([^<]*)</u.exec(reader)?.[1]?.replace(/&amp;/gu, '&').trim() ?? ''
+    process.stdout.write(`  names a reader sees           : ${soldAs || 'none'}\n`)
     process.stdout.write(`  purpose-rail chips            : ${count(rendered, 'data-purpose=')}\n`)
     process.stdout.write(
       `  machinery in reader layer     : ${leaks.length === 0 ? 'none' : leaks.join(' | ')}\n`,
