@@ -504,9 +504,102 @@ Every stage passed locally before the merge was attempted:
 of draft, and reports `MERGEABLE`. Railway deploys `main` on push and runs the migrations in its
 pre-deploy step, so the merge is the deployment.
 
+### Three deploys, two failures, and what stopped them
+
+**The first deploy failed, on the data I had put in production myself.** Railway ran the ten
+migrations successfully and then refused at `agents:import`:
+
+    Production recorded background differs from the checked agent corpus
+    for 236 medicine subject(s).
+
+236 is exactly the number of medicines this release's acquisition enriched. The agent package carries
+a digest of every medicine's stored record, taken when the package was built; I had changed 236 of
+those records without rebuilding it. The guard exists so that findings about a medicine cannot be
+published against a record state they were never checked against, and it was right to stop.
+
+The site never went down. Railway runs the pre-deploy step before the new container takes traffic, so
+the previous version kept serving throughout.
+
+Fixing it took the dataset export, the agent package and three derived audit reports, in that order,
+because the agent loader checks its corpus digest against the committed snapshot as well as the
+working tree. It also surfaced something worth knowing on its own: the published dataset had been
+exported from a development database, not from production. It is now exported from production, which
+is the only database a downloader can check an export against. `check:dataset-export` verifies all 25
+files and reports that the published files match the manifest exactly.
+
+**The lesson, stated plainly, because I got it wrong:** a corpus change is not finished when the
+database write lands. The export, the agent package and the audits are derived from that corpus and
+are part of the same change. Shipping the data without them is what produced a failed deploy.
+
+**The second deploy succeeded, and verifying it found a worse problem than the first failure.** Every
+medicine page came back `noindex, follow` — aspirin, ibuprofen, metformin, caffeine, all of them.
+Before this release they were indexed.
+
+That was a bug I introduced earlier in this same release. `decideMedicinePageIndexing` required all
+seven page gates to pass. Five of them mean a page might be *wrong*: unresolved identity, an
+unresolved merge across substance families, internal keys leaking into reader text, an unresolved
+supervision mode, missing canonical metadata. Two of them measure how far RNAWiki has got with its
+own work, and one of those reads `page_registry_role_aggregates` — a table migration 0026 creates and
+which has never held a single row in production. Zero rows, so the gate fails for every medicine, so
+every medicine page was withheld from search the moment the layout took traffic.
+
+Indexing now blocks only on the five gates that mean a page may be wrong. Incomplete is not the same
+as wrong, and only wrong is a reason to hide a page from somebody looking for it. A page built from a
+regulator's label — what a substance is for, what it does, what can go wrong — is worth finding
+whether or not the trial classification has caught up with it.
+
+Measured across 799 medicines after the change:
+
+| Outcome | Share |
+| --- | --- |
+| Indexable | 53.2% |
+| Held back by an unresolved supervision mode | 24.4% |
+| Empty, and saying so | 22.4% |
+
+The 24.4% is a deliberate block rather than a gap: a medicine page that cannot resolve whether the
+substance needs a prescription should not be advertised in search.
+
+Eight test cases pin the distinction between the two kinds of gate rather than the list of gates, so
+adding a gate later cannot silently take the corpus out of the index again.
+
 ### Live verification
 
-*(Filled in below once the deploy completes.)*
+Thirty pages over HTTP against the deployed site — every tier and a twenty-medicine sample spanning
+curated flagships, label-derived records, discontinued medicines and empty ones:
+
+| | Result |
+| --- | --- |
+| Pages checked | 30 |
+| Failures | 0 |
+| Median response | 95 ms |
+| Slowest response | 485 ms |
+
+Every page returned 200. Every one carried exactly one `<main>` and exactly one `<h1>`, a canonical
+URL, and a robots instruction consistent with what the page says about itself. None carried any of
+the ten strings the checker refuses in reader text — the placeholder counterpart name, a raw state
+code, the review fraction, the preliminary banner, the generic supplement remark, the layout flag.
+
+The discontinued medicines carry their approval registers. Carbenicillin, norfloxacin, cephapirin,
+inamrinone and desirudin all render register facts where they previously rendered nothing.
+
+### The reader-text scan
+
+A twenty-page sample had found `[object Object]` on seven of the most-read medicines on the site. A
+sample that happened to miss those seven would have reported the page clean, so the check was rerun
+over the whole corpus rather than a sample: all 9,857 medicines, every string in every built model.
+
+**Zero `[object Object]` corpus-wide.**
+
+The scan needed two corrections of its own, both recorded because they are the kind of thing that
+makes a check useless. Its first run reported 950,926 findings, almost all of which were the model
+working correctly — it was walking `state` and `origin`, which hold enum values by design and are
+rendered through their label functions. Its second reported 3,150, of which the remainder were the
+English words "null" and "undefined" appearing in legitimate sentences: isosorbide mononitrate's
+label says "the relative importance of the three remains undefined", which is the label being
+unusually candid and is exactly the kind of sentence this site exists to carry.
+
+A check that cries wolf is worse than no check, because it teaches its reader to skim. It now looks
+only for patterns that cannot occur in English.
 
 ---
 

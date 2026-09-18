@@ -21,9 +21,9 @@ import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
  * affordable because building a model touches the database and not the renderer, and it is the only
  * way to be able to say the corpus is clean rather than that the pages checked were.
  *
- * The patterns are the ways a value fails silently rather than loudly: an object stringified, a
- * missing value printed as the word, a failed arithmetic, a template that was never filled, a raw
- * enum, and an identifier where a name belongs. Each one has shipped somewhere once.
+ * The patterns are the ways a value fails silently rather than loudly and cannot be mistaken for
+ * English: an object stringified, a failed arithmetic, a template that was never filled, a raw enum.
+ * `[object Object]` had shipped to seven of the most-read pages on the site.
  *
  *   npx tsx scripts/check/scan-reader-text.ts
  */
@@ -31,7 +31,15 @@ import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
 /** Each pattern, with what it means when it matches — the message is the finding. */
 const FORBIDDEN: ReadonlyArray<{ pattern: RegExp; why: string }> = [
   { pattern: /\[object [A-Z]/u, why: 'an object rendered instead of its text' },
-  { pattern: /\bundefined\b/u, why: 'a missing value rendered as the word "undefined"' },
+  /*
+   * `undefined` and `null` are NOT checked, and that is a deliberate reversal.
+   *
+   * Both are ordinary English in this corpus. Isosorbide mononitrate's label says "the relative
+   * importance of the three remains undefined", which is the label being unusually candid and is
+   * exactly the kind of sentence this page exists to carry. Cariprazine's record says a trial was
+   * "unambiguously null". Flagging those trains a reader of this report to skim it, which is how a
+   * real finding gets missed. The patterns kept below cannot occur in English.
+   */
 
   { pattern: /\bNaN\b/u, why: 'a failed calculation rendered as a number' },
   { pattern: /\$\{/u, why: 'a template placeholder that was never filled' },
@@ -129,7 +137,21 @@ function walk(value: unknown, path: string, into: Finding[], slug: string): void
        * model doing exactly what it should. A citation carries an identifier for the same reason —
        * it is the label beside it that has to be a name.
        */
-      if (['id', 'sources', 'citation', 'state', 'origin', 'code', 'facet'].includes(key)) continue
+      if (
+        [
+          'id',
+          'sources',
+          'citation',
+          'state',
+          'origin',
+          'code',
+          'facet',
+          // Carried for keying and for the page's own logic; the reader sees `evidenceSourcePlain`.
+          'reviewState',
+          'evidenceSource',
+        ].includes(key)
+      )
+        continue
       walk(item, `${path}.${key}`, into, slug)
     }
   }

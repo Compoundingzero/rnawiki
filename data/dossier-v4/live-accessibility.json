@@ -1,0 +1,356 @@
+{
+  "summary": {
+    "origin": "https://rnawiki.com",
+    "pagesChecked": 27,
+    "seriousOrCritical": 2,
+    "allViolations": 2,
+    "pagesThatScrollSideways": 1,
+    "pagesWithoutExactlyOneMain": 0,
+    "pagesWithHeadingSkips": 0,
+    "byRule": {
+      "color-contrast": 2
+    }
+  },
+  "results": [
+    {
+      "path": "/",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/browse",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": true
+    },
+    {
+      "path": "/d/creatine-monohydrate",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/atenolol",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/carbenicillin",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/zingiberene",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/beryllium-oxyacetate",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/review-queue",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/how-it-works",
+      "width": 320,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/browse",
+      "width": 768,
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 76,
+          "sample": "<span class=\"text-[11px] font-bold text-[#0071E3] bg-blue-50 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20\">RNA-"
+        }
+      ],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/creatine-monohydrate",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/atenolol",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/carbenicillin",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/zingiberene",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/beryllium-oxyacetate",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/review-queue",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/how-it-works",
+      "width": 768,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/browse",
+      "width": 1440,
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 76,
+          "sample": "<span class=\"text-[11px] font-bold text-[#0071E3] bg-blue-50 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20\">RNA-"
+        }
+      ],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/creatine-monohydrate",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/atenolol",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/carbenicillin",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/zingiberene",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/d/beryllium-oxyacetate",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/review-queue",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "path": "/how-it-works",
+      "width": 1440,
+      "status": 200,
+      "violations": [],
+      "landmarks": {
+        "mains": 1,
+        "h1s": 1,
+        "headingOrderBreaks": 0
+      },
+      "horizontalOverflow": false
+    }
+  ]
+}
