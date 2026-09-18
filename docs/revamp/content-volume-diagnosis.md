@@ -35,7 +35,7 @@ The worst offenders on a **thin** record (`zingiberene`, ~5 substance-specific s
 
 | Printed | Sentence                                                 | Emitted by                                 |
 | ------- | -------------------------------------------------------- | ------------------------------------------ |
-| 11×     | "Nothing in this record points to this reason."          | `components/dossier/v4/Closing.tsx:124`    |
+| 11×     | "Nothing in this record points to this reason."          | `lib/dossier-v4/view-model.ts:2090`        |
 | 9×      | "Where this came from"                                   | `components/dossier/v4/Primitives.tsx:169` |
 | 9×      | "No source is stored against this line."                 | `components/dossier/v4/Primitives.tsx:98`  |
 | 9×      | "Not recorded."                                          | absence line inside `SectionFrame`         |
@@ -55,8 +55,21 @@ its own `Source` row inside `Closing.tsx:179`.
 once near the foot of the page. So **empty sections are not the problem.**
 
 The problem is one level down: a section that *does* carry entries still prints its scaffolding per
-entry, and the view model pads sections with entries that carry only a placeholder. The section
-state is computed from whether entries exist, for example `lib/dossier-v4/view-model.ts:2743`:
+entry, and the view model emits statements whose textual content is a placeholder. The confirmed
+source of the most-repeated sentence is a **fallback basis string** at
+`lib/dossier-v4/view-model.ts:2090`:
+
+```ts
+basis: applies[reason.code] ?? 'Nothing in this record points to this reason.',
+```
+
+Eleven statements on a thin record fall through to that fallback, and each one prints its basis
+inside its own "Where this came from" disclosure. So the repetition is a property of what the model
+emits, not of how a component renders: it cannot be fixed in `components/` without dropping
+provenance text.
+
+The section state is computed from whether entries exist, for example
+`lib/dossier-v4/view-model.ts:2743`:
 
 ```ts
 const state: SectionState =
