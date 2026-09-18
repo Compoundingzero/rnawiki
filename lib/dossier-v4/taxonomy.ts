@@ -933,7 +933,7 @@ export const V4_GATES = [
   { code: 'trial_roles_valid', label: 'Trial roles classified for highlighted evidence' },
   { code: 'no_raw_internal_fields', label: 'No internal keys in reader text' },
   { code: 'safety_mode_valid', label: 'Safety mode resolved' },
-  { code: 'canonical_metadata_valid', label: 'Canonical metadata present' },
+  { code: 'canonical_metadata_valid', label: 'The name and the stored record agree' },
 ] as const
 
 export type V4Gate = (typeof V4_GATES)[number]['code']

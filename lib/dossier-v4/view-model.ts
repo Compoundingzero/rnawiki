@@ -120,7 +120,7 @@ export const ORIGIN_LABELS: Record<StatementOrigin, string> = {
   authored_record: 'Written into the record, not signed off',
   stored_source: 'Quoted from a stored source',
   derived_count: 'Counted from stored records',
-  contract_sentence: 'A fixed RNAWiki sentence',
+  contract_sentence: "RNAWiki's own standing wording",
   absent: 'Nothing recorded',
 }
 
@@ -137,7 +137,7 @@ export const ORIGIN_SHORT: Record<StatementOrigin, string> = {
   authored_record: 'Source-linked record',
   stored_source: 'Quoted from a source',
   derived_count: 'Counted from records',
-  contract_sentence: 'A fixed RNAWiki sentence',
+  contract_sentence: 'RNAWiki wording',
   absent: 'Nothing recorded',
 }
 
@@ -2851,14 +2851,22 @@ function buildGates(
         ? `${inputs.roleAggregate?.tested.studies} registered studies are classified as testing this substance.`
         : 'No registered study is classified as testing this substance.',
     },
-    { code: 'no_raw_internal_fields', label: 'No internal keys in reader text', ...internal },
+    {
+      code: 'no_raw_internal_fields',
+      label: 'No leftover internal codes in the writing',
+      ...internal,
+    },
     {
       code: 'safety_mode_valid',
       label: 'Safety mode resolved',
       passed: v3.supervision.level !== 'unknown',
       detail: v3.supervision.basis,
     },
-    { code: 'canonical_metadata_valid', label: 'Canonical metadata present', ...canonical },
+    {
+      code: 'canonical_metadata_valid',
+      label: 'The name and the stored record agree',
+      ...canonical,
+    },
   ]
 }
 

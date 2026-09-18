@@ -200,6 +200,39 @@ function TechnicalRecord({
   )
 }
 
+/**
+ * The words a page uses, explained before the words that depend on them.
+ *
+ * Shared by both page shapes. `tests/e2e/public-inclisiran-journey.spec.ts` asserts
+ * `#concept-primer` on a phone, so it is part of the skeleton every medicine page carries, not
+ * decoration a bare record can drop.
+ */
+function ConceptPrimerSection({
+  concepts,
+}: {
+  concepts: DossierV4ViewModel['concepts']
+}): ReactNode {
+  if (concepts.length === 0) return null
+  return (
+    <section
+      aria-labelledby="concept-primer-h"
+      className="dv4-section"
+      data-compass-lane="body_action"
+      data-lane="body_action"
+      id="concept-primer"
+    >
+      <p className="dv4-eyebrow">
+        <span>Words this page uses</span>
+      </p>
+      <h2 id="concept-primer-h">Four words worth knowing first</h2>
+      <p className="dv4-lede">
+        Chosen from what this page shows, with each one explained before the word it depends on.
+      </p>
+      <ConceptPrimer concepts={concepts} />
+    </section>
+  )
+}
+
 export function CompassPage({
   corpus,
   model,
@@ -208,6 +241,21 @@ export function CompassPage({
   model: DossierV4ViewModel
 }): ReactNode {
   const stages = model.journey.nodes.map((node) => node.stage)
+  /*
+   * A record that holds nothing gets a short page.
+   *
+   * Measured on the live site, `1-2-hexanediol` — a cosmetic preservative this corpus classes as a
+   * prescription medicine — served a sixteen-section dossier: a nineteen-item "On this page" list,
+   * five purpose chips whose every target was empty, a primer teaching placebo and comparator to a
+   * reader with no study to read, and the same absence written six different ways. 2,436 records are
+   * in that state, and 1,682 of them will never have content to fill it.
+   *
+   * The hero stays. On a bare record it carries the point of the page — what the registers do record,
+   * and an honest statement of what was searched and not found — which is also why
+   * `tests/e2e/public-inclisiran-journey.spec.ts` asserts `#substance-action` on every medicine page.
+   * What goes is the furniture that advertises sections with nothing in them.
+   */
+  const holdsNothing = model.substance.empty
   return (
     <div
       className="dv4-root"
@@ -221,9 +269,7 @@ export function CompassPage({
       {/* Only an identity hold, a pipeline failure, or an empty record opens with a block. */}
       <PublicationBanner publication={model.publication} />
       <MissingRecordNotice searched={model.searchedRegisters} substance={model.substance} />
-      <PurposeRail />
-      <div className="dv4-canvas">
-        <Navigator model={model} />
+      {holdsNothing ? (
         <div className="dv4-flow">
           <SubstanceActionHero
             hero={model.hero}
@@ -231,52 +277,64 @@ export function CompassPage({
             recordedIdentity={model.recordedIdentity}
             stages={stages}
           />
-          {model.concepts.length > 0 ? (
-            <section
-              aria-labelledby="concept-primer-h"
-              className="dv4-section"
-              data-compass-lane="body_action"
-              data-lane="body_action"
-              id="concept-primer"
-            >
-              <p className="dv4-eyebrow">
-                <span>Words this page uses</span>
-              </p>
-              <h2 id="concept-primer-h">Four words worth knowing first</h2>
-              <p className="dv4-lede">
-                Chosen from what this page shows, with each one explained before the word it depends
-                on.
-              </p>
-              <ConceptPrimer concepts={model.concepts} />
-            </section>
-          ) : null}
-          <EffectFingerprint fingerprint={model.fingerprint} />
-          <HumanResults results={model.humanResults} />
-          <EvidenceStaircase staircase={model.staircase} />
-          <BodyJourney journey={model.journey} />
-          <FeltMeasuredMeaningful experience={model.experience} />
-          <SignalTimeline timeline={model.timeline} />
-          <ApplicabilityMirror applicability={model.applicability} />
-          <NoResponseMap noResponse={model.noResponse} />
-          <PracticalReality practical={model.practical} />
+          <ConceptPrimerSection concepts={model.concepts} />
           <SafetyMap safety={model.safety} />
-          <StackCollisionMap stack={model.stack} />
-          <FormRealityCheck formCheck={model.formCheck} />
-          <MeasurementCoach measurement={model.measurement} />
-          <AlternativesLadder alternatives={model.alternatives} />
-          <ClaimDecoder decoder={model.claimDecoder} />
-          <UnknownMap unknowns={model.unknowns} />
+          {/*
+           * `lib/dossier-v4/section-visibility.ts` names two sections that print even when they
+           * hold nothing, because their emptiness is itself a fact the reader needs: safety, and the
+           * source trail. The second is this one. Dropping it here was caught by
+           * `tests/e2e/public-inclisiran-journey.spec.ts`, which asserts `#evidence-receipts` on a
+           * medicine page: a bare record with no visible source trail looks like a record nobody
+           * checked.
+           */}
           <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
-          <DrugStory story={model.story} />
-          <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
-          <NextQuestionRail questions={model.nextQuestions} />
-          <WhatIsMissing sections={model.sections} />
           <TechnicalRecord corpus={corpus} model={model} />
           <p className="dv4-foot">
             {model.notAdvice} {model.notForChildren}
           </p>
         </div>
-      </div>
+      ) : (
+        <>
+          <PurposeRail />
+          <div className="dv4-canvas">
+            <Navigator model={model} />
+            <div className="dv4-flow">
+              <SubstanceActionHero
+                hero={model.hero}
+                name={model.name}
+                recordedIdentity={model.recordedIdentity}
+                stages={stages}
+              />
+              <ConceptPrimerSection concepts={model.concepts} />
+              <EffectFingerprint fingerprint={model.fingerprint} />
+              <HumanResults results={model.humanResults} />
+              <EvidenceStaircase staircase={model.staircase} />
+              <BodyJourney journey={model.journey} />
+              <FeltMeasuredMeaningful experience={model.experience} />
+              <SignalTimeline timeline={model.timeline} />
+              <ApplicabilityMirror applicability={model.applicability} />
+              <NoResponseMap noResponse={model.noResponse} />
+              <PracticalReality practical={model.practical} />
+              <SafetyMap safety={model.safety} />
+              <StackCollisionMap stack={model.stack} />
+              <FormRealityCheck formCheck={model.formCheck} />
+              <MeasurementCoach measurement={model.measurement} />
+              <AlternativesLadder alternatives={model.alternatives} />
+              <ClaimDecoder decoder={model.claimDecoder} />
+              <UnknownMap unknowns={model.unknowns} />
+              <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
+              <DrugStory story={model.story} />
+              <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
+              <NextQuestionRail questions={model.nextQuestions} />
+              <WhatIsMissing sections={model.sections} />
+              <TechnicalRecord corpus={corpus} model={model} />
+              <p className="dv4-foot">
+                {model.notAdvice} {model.notForChildren}
+              </p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
