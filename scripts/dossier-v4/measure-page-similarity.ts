@@ -98,7 +98,22 @@ function readerSentences(rendered: string): string[] {
    */
   const technical = rendered.indexOf('id="technical-record"')
   const html = technical > 0 ? rendered.slice(0, technical) : rendered
-  const visible = html
+  /*
+   * A closed `<details>` is a fold, not a paragraph, and its body is not prose a reader meets.
+   *
+   * This was counted, and it is what made the page look three times longer than the first read. On
+   * one thin record "Nothing in this record points to this reason." appeared eleven times in the
+   * document and zero times in front of a reader, because all eleven sit behind a single closed
+   * summary reading "Other reasons RNAWiki checked and found nothing for (11)". Measured against the
+   * served HTML, 24 `<details>` elements rendered and none carried `open`.
+   *
+   * The summary is kept: it is visible, and it is what names what the fold holds.
+   */
+  const visibleHtml = html.replace(
+    /(<details(?![^>]*\bopen\b)[^>]*>\s*<summary>[\s\S]*?<\/summary>)[\s\S]*?<\/details>/giu,
+    '$1',
+  )
+  const visible = visibleHtml
     .replace(/<script\b[\s\S]*?<\/script>/giu, ' ')
     .replace(/<style\b[\s\S]*?<\/style>/giu, ' ')
     .replace(

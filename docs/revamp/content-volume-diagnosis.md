@@ -5,21 +5,28 @@ meet far more sentences than the record justifies?
 
 ## The answer, first
 
-**Mostly no, and the raw measurement says otherwise because it counts text inside collapsed
-disclosures.** Two things are true and only the second matters to a reader:
+**A beginner meets about 255 sentences per page, and roughly 23 of them are about that medicine.**
+That is a real volume problem, and it is smaller than the raw document count suggests.
 
-1. The served document is about **332 sentences** long on average, and **81.5%** of those sentences
-   are printed on more than half of all medicine pages.
-2. **24 of those sentences' containers are `<details>` elements, and every one is closed.** A reader
-   meets the summary line of each disclosure, not its body.
+The instrument used to report 332 sentences per page because it counted the body of every closed
+disclosure. A closed `<details>` is a fold, not a paragraph. Measured against the served HTML, 24
+`<details>` elements render on a medicine page and **none** carries `open`. Splitting the two:
 
-So the numbers below describe the **document**, not the first read. The visible page is the trimmed
-one the design intends: identity strip, page promise, the purpose chips, the action hero, "what
-happened in people", "the limit that matters most", the acts/result/supervision table, and then a
-series of closed disclosures a reader opens only if they want the provenance.
+| Measure                       | Document | Reader-facing |
+| ----------------------------- | -------- | ------------- |
+| Sentences per page            | 332      | **255**       |
+| Boilerplate share             | 81.5%    | 80.2%         |
+| Shared share                  | 10.3%    | 10.7%         |
+| Medicine-specific share       | 8.1%     | **9.1%**      |
+| Specific sentences per page   | 30       | **23**        |
 
-The clearest case: on `zingiberene` the sentence "Nothing in this record points to this reason."
-appears **11 times** in the DOM. On the served page it appears **zero** times in front of a reader —
+So the fold hides **23%** of the document, not the bulk of it. What is left is still long: 255
+sentences of which about 23 are this medicine's own. Most of the rest is fixed furniture — section
+headings, the standing line under each heading, and the absence lines — which the measure script
+classes as boilerplate on purpose and says is not a defect.
+
+The clear case for the fold mattering: on `zingiberene` the sentence "Nothing in this record points
+to this reason." appears **11 times** in the document and **zero** times in front of a reader.
 `Personal.tsx:126-143` already gathers all eleven behind one closed disclosure whose summary reads:
 
 > Other reasons RNAWiki checked and found nothing for (11)
