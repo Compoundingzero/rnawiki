@@ -1,0 +1,363 @@
+{
+  "summary": {
+    "label": "content-diagnose",
+    "pages": 40,
+    "meanBoilerplateShare": 0.8154,
+    "meanSharedShare": 0.1033,
+    "meanSpecificShare": 0.0813,
+    "specificShareDistribution": {
+      "p10": 0.0291,
+      "p25": 0.0462,
+      "median": 0.0614,
+      "p75": 0.0988,
+      "p90": 0.1292
+    },
+    "pagesWithNoSpecificSentence": 0,
+    "meanSpecificSentencesPerPage": 30.4,
+    "meanSentencesPerPage": 331.8,
+    "mostRepeatedSentences": [
+      {
+        "count": 40,
+        "sentence": "✓ Identity checked"
+      },
+      {
+        "count": 40,
+        "sentence": "This page shows what was measured, who it was measured in, and what that does not settle."
+      },
+      {
+        "count": 40,
+        "sentence": "What brought you here?"
+      },
+      {
+        "count": 40,
+        "sentence": "Understand what it does"
+      },
+      {
+        "count": 40,
+        "sentence": "See evidence for my goal"
+      },
+      {
+        "count": 40,
+        "sentence": "Check risks and what it mixes with"
+      },
+      {
+        "count": 40,
+        "sentence": "Compare alternatives"
+      },
+      {
+        "count": 40,
+        "sentence": "Learn what to measure"
+      },
+      {
+        "count": 40,
+        "sentence": "On this page"
+      },
+      {
+        "count": 40,
+        "sentence": "What it changes in the body"
+      },
+      {
+        "count": 40,
+        "sentence": "What it does"
+      },
+      {
+        "count": 40,
+        "sentence": "What happened in people"
+      },
+      {
+        "count": 40,
+        "sentence": "What it would be like to take"
+      },
+      {
+        "count": 40,
+        "sentence": "Seems to do nothing"
+      },
+      {
+        "count": 40,
+        "sentence": "What it involves"
+      }
+    ]
+  },
+  "shares": [
+    {
+      "slug": "dexbrompheniramine",
+      "sentences": 288,
+      "boilerplate": 0.8055555555555556,
+      "shared": 0.1284722222222222,
+      "specific": 0.06597222222222222
+    },
+    {
+      "slug": "erythromycin-estolate",
+      "sentences": 322,
+      "boilerplate": 0.8167701863354038,
+      "shared": 0.11490683229813664,
+      "specific": 0.06832298136645963
+    },
+    {
+      "slug": "zingiberene",
+      "sentences": 279,
+      "boilerplate": 0.899641577060932,
+      "shared": 0.08243727598566308,
+      "specific": 0.017921146953405017
+    },
+    {
+      "slug": "verteporfin",
+      "sentences": 339,
+      "boilerplate": 0.7817109144542773,
+      "shared": 0.11504424778761062,
+      "specific": 0.10324483775811209
+    },
+    {
+      "slug": "rizatriptan",
+      "sentences": 324,
+      "boilerplate": 0.8055555555555556,
+      "shared": 0.09259259259259259,
+      "specific": 0.10185185185185185
+    },
+    {
+      "slug": "bendroflumethiazide",
+      "sentences": 303,
+      "boilerplate": 0.858085808580858,
+      "shared": 0.0891089108910891,
+      "specific": 0.052805280528052806
+    },
+    {
+      "slug": "n-methyl-aspartic-acid",
+      "sentences": 313,
+      "boilerplate": 0.9041533546325878,
+      "shared": 0.051118210862619806,
+      "specific": 0.04472843450479233
+    },
+    {
+      "slug": "carmustine",
+      "sentences": 325,
+      "boilerplate": 0.8153846153846154,
+      "shared": 0.08923076923076922,
+      "specific": 0.09538461538461539
+    },
+    {
+      "slug": "alcaftadine",
+      "sentences": 324,
+      "boilerplate": 0.8179012345679012,
+      "shared": 0.08333333333333333,
+      "specific": 0.09876543209876543
+    },
+    {
+      "slug": "umbilicus-rupestris",
+      "sentences": 297,
+      "boilerplate": 0.8922558922558923,
+      "shared": 0.06734006734006734,
+      "specific": 0.04040404040404041
+    },
+    {
+      "slug": "andexanet-alfa",
+      "sentences": 507,
+      "boilerplate": 0.4457593688362919,
+      "shared": 0.0631163708086785,
+      "specific": 0.4911242603550296
+    },
+    {
+      "slug": "indigotindisulfonate",
+      "sentences": 332,
+      "boilerplate": 0.7951807228915663,
+      "shared": 0.10542168674698796,
+      "specific": 0.09939759036144578
+    },
+    {
+      "slug": "acer-rubrum-pollen",
+      "sentences": 336,
+      "boilerplate": 0.8898809523809523,
+      "shared": 0.044642857142857144,
+      "specific": 0.06547619047619048
+    },
+    {
+      "slug": "streptococcus-pneumoniae-type-23f-capsular-polysaccharide-diphtheria-crm197-protein-conjugat",
+      "sentences": 374,
+      "boilerplate": 0.5454545454545454,
+      "shared": 0.32887700534759357,
+      "specific": 0.12566844919786097
+    },
+    {
+      "slug": "calcium-pyruvate",
+      "sentences": 338,
+      "boilerplate": 0.8076923076923077,
+      "shared": 0.11538461538461539,
+      "specific": 0.07692307692307693
+    },
+    {
+      "slug": "teprotumumab",
+      "sentences": 418,
+      "boilerplate": 0.6267942583732058,
+      "shared": 0.24401913875598086,
+      "specific": 0.1291866028708134
+    },
+    {
+      "slug": "ribes-nigrum-flower-bud",
+      "sentences": 296,
+      "boilerplate": 0.8783783783783784,
+      "shared": 0.07094594594594594,
+      "specific": 0.05067567567567568
+    },
+    {
+      "slug": "carrot",
+      "sentences": 354,
+      "boilerplate": 0.8502824858757062,
+      "shared": 0.07909604519774012,
+      "specific": 0.07062146892655367
+    },
+    {
+      "slug": "scleranthus-annuus-flowering-top",
+      "sentences": 303,
+      "boilerplate": 0.8646864686468647,
+      "shared": 0.08250825082508251,
+      "specific": 0.052805280528052806
+    },
+    {
+      "slug": "vinblastine",
+      "sentences": 342,
+      "boilerplate": 0.7748538011695907,
+      "shared": 0.11988304093567251,
+      "specific": 0.10526315789473684
+    },
+    {
+      "slug": "misoprostol",
+      "sentences": 484,
+      "boilerplate": 0.493801652892562,
+      "shared": 0.2727272727272727,
+      "specific": 0.2334710743801653
+    },
+    {
+      "slug": "voclosporin",
+      "sentences": 454,
+      "boilerplate": 0.5088105726872246,
+      "shared": 0.30176211453744495,
+      "specific": 0.1894273127753304
+    },
+    {
+      "slug": "tomato",
+      "sentences": 350,
+      "boilerplate": 0.8714285714285714,
+      "shared": 0.06857142857142857,
+      "specific": 0.06
+    },
+    {
+      "slug": "cresol",
+      "sentences": 334,
+      "boilerplate": 0.8862275449101796,
+      "shared": 0.0748502994011976,
+      "specific": 0.038922155688622756
+    },
+    {
+      "slug": "sequoiaflavone",
+      "sentences": 274,
+      "boilerplate": 0.9051094890510949,
+      "shared": 0.072992700729927,
+      "specific": 0.021897810218978103
+    },
+    {
+      "slug": "theaflavin",
+      "sentences": 309,
+      "boilerplate": 0.919093851132686,
+      "shared": 0.05177993527508091,
+      "specific": 0.02912621359223301
+    },
+    {
+      "slug": "caryophyllene",
+      "sentences": 322,
+      "boilerplate": 0.8881987577639752,
+      "shared": 0.06521739130434782,
+      "specific": 0.046583850931677016
+    },
+    {
+      "slug": "balsam-of-peru",
+      "sentences": 319,
+      "boilerplate": 0.8996865203761756,
+      "shared": 0.050156739811912224,
+      "specific": 0.050156739811912224
+    },
+    {
+      "slug": "bergenia-pacumbis",
+      "sentences": 278,
+      "boilerplate": 0.89568345323741,
+      "shared": 0.07553956834532374,
+      "specific": 0.02877697841726619
+    },
+    {
+      "slug": "serotonin",
+      "sentences": 345,
+      "boilerplate": 0.855072463768116,
+      "shared": 0.0782608695652174,
+      "specific": 0.06666666666666667
+    },
+    {
+      "slug": "lespedeza-capitata-flowering-top",
+      "sentences": 311,
+      "boilerplate": 0.8585209003215434,
+      "shared": 0.09967845659163987,
+      "specific": 0.04180064308681672
+    },
+    {
+      "slug": "pseudomonas-calcis",
+      "sentences": 272,
+      "boilerplate": 0.9117647058823529,
+      "shared": 0.07352941176470588,
+      "specific": 0.014705882352941176
+    },
+    {
+      "slug": "sodium-cyclamate",
+      "sentences": 340,
+      "boilerplate": 0.8823529411764706,
+      "shared": 0.061764705882352944,
+      "specific": 0.05588235294117647
+    },
+    {
+      "slug": "abacavir-dolutegravir-lamivudine",
+      "sentences": 307,
+      "boilerplate": 0.7752442996742671,
+      "shared": 0.15309446254071662,
+      "specific": 0.07166123778501629
+    },
+    {
+      "slug": "sodium-oxide",
+      "sentences": 339,
+      "boilerplate": 0.8643067846607669,
+      "shared": 0.07964601769911504,
+      "specific": 0.05604719764011799
+    },
+    {
+      "slug": "xerophyllum-asphodeloides",
+      "sentences": 303,
+      "boilerplate": 0.8778877887788779,
+      "shared": 0.07590759075907591,
+      "specific": 0.0462046204620462
+    },
+    {
+      "slug": "insulin-like-growth-factor",
+      "sentences": 293,
+      "boilerplate": 0.856655290102389,
+      "shared": 0.08191126279863481,
+      "specific": 0.06143344709897611
+    },
+    {
+      "slug": "brolucizumab",
+      "sentences": 322,
+      "boilerplate": 0.8229813664596274,
+      "shared": 0.08695652173913043,
+      "specific": 0.09006211180124224
+    },
+    {
+      "slug": "glycyrrhizic-acid",
+      "sentences": 324,
+      "boilerplate": 0.8765432098765432,
+      "shared": 0.06481481481481481,
+      "specific": 0.05864197530864197
+    },
+    {
+      "slug": "desmodium-gangeticum",
+      "sentences": 279,
+      "boilerplate": 0.8924731182795699,
+      "shared": 0.07526881720430108,
+      "specific": 0.03225806451612903
+    }
+  ]
+}
