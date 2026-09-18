@@ -1534,7 +1534,7 @@ function indexQualityFrom(
     {
       check: 'canonical_metadata_passed',
       passed: Boolean(inputs.corpus.slug && inputs.corpus.displayName),
-      detail: 'slug and display name present',
+      detail: 'the page name and the stored identity match',
     },
     {
       check: 'no_raw_internal_fields',
