@@ -363,15 +363,36 @@ export function FeltMeasuredMeaningful({
             {column.entries.length === 0 ? (
               <p className="dv4-note">No registered study measured anything of this kind.</p>
             ) : (
-              <ul>
-                {column.entries.slice(0, 10).map((entry) => (
-                  <li key={entry.term}>{entry.term}</li>
-                ))}
-              </ul>
+              <>
+                <p className="dv4-note">
+                  {column.entries.length}{' '}
+                  {column.entries.length === 1 ? 'measure registered' : 'measures registered'}
+                </p>
+                {/*
+                 * The registered names are registry strings, not prose: lowercase, unpunctuated, and
+                 * carrying the registry's own typos ("clincal", "children s", "hamd"). Measured on the
+                 * live creatine page they were 54 of the page's reader-facing sentences, and most of
+                 * them belong to other substances' trials: "blood arsenic concentrations",
+                 * "rett syndrome motor and behavioral assessment" and "manual wheelchair slalom test"
+                 * on a creatine page tell a beginner nothing.
+                 *
+                 * The distinction the section exists to make — felt, measured and meaningful are three
+                 * different things — stays open and now reads in one line per column. The raw names
+                 * stay one click away rather than being dropped, which is the same rule the rest of
+                 * the page follows for absences.
+                 */}
+                <Disclosure summary="The registered names">
+                  <ul>
+                    {column.entries.slice(0, 10).map((entry) => (
+                      <li key={entry.term}>{entry.term}</li>
+                    ))}
+                  </ul>
+                  {column.entries.length > 10 ? (
+                    <p className="dv4-note">and {column.entries.length - 10} more.</p>
+                  ) : null}
+                </Disclosure>
+              </>
             )}
-            {column.entries.length > 10 ? (
-              <p className="dv4-note">and {column.entries.length - 10} more.</p>
-            ) : null}
           </div>
         ))}
       </div>
