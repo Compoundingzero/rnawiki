@@ -79,11 +79,11 @@ export const publicMedicineFilter = and(
  */
 export const publicMedicineDiscoveryFilter = and(
   publicMedicineFilter,
-  sql<boolean>`not exists (
+  sql<boolean>`(${drugs.slug} = 'magnesium-glycinate' or not exists (
     select 1
     from ${medicineSlugRedirects}
     where ${medicineSlugRedirects.oldSlug} = ${drugs.slug}
-  )`,
+  ))`,
 )
 
 export type DossierDepth = DrugRow['dossierDepth']
@@ -255,6 +255,18 @@ async function resolveDirectMedicineRoute(
   normalized: string,
   requestedSlug: string,
 ): Promise<DirectMedicineRouteResolution> {
+  // The legacy identity ledger incorrectly merged magnesium glycinate into glycine. Preserve the
+  // exact, still-stored medicine record while the source corpus is separated and re-reviewed.
+  if (normalized === 'magnesium-glycinate') {
+    const protectedRows = await db
+      .select({ slug: drugs.slug })
+      .from(drugs)
+      .where(and(publicMedicineFilter, eq(drugs.slug, normalized)))
+      .limit(1)
+    if (protectedRows[0]) {
+      return { kind: 'resolved', resolution: { canonicalSlug: normalized, matchedBy: 'canonical' } }
+    }
+  }
   // Ledger existence is authoritative even when its target has since become nonpublic. Query the
   // mapping first, without a target visibility filter; otherwise a hidden target makes the join
   // disappear and the retained old row can incorrectly win the direct-slug fallback.

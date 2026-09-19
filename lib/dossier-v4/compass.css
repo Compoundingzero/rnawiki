@@ -143,8 +143,186 @@
 }
 
 .dv4-strip h1 {
-  font-size: 1.5rem;
+  flex-basis: 100%;
+  font-size: clamp(2rem, 4vw, 2.85rem);
   margin-right: 0.25rem;
+}
+
+/* The reader first sees an answer; the standing contents rail follows it in DOM order on phones. */
+.dv4-simple-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem auto 0;
+  max-width: 76rem;
+}
+
+.dv4-simple-answer,
+.dv4-simple-body {
+  min-width: 0;
+  max-width: 48rem;
+}
+
+.dv4-simple-answer h2,
+.dv4-simple-section h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.75rem;
+}
+
+.dv4-simple-answer h3 {
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 0.2rem;
+}
+
+.dv4-simple-lead {
+  display: grid;
+  gap: 1rem;
+}
+
+.dv4-simple-lead p {
+  font-size: clamp(1.07rem, 2vw, 1.22rem);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.dv4-simple-detail,
+.dv4-simple-result,
+.dv4-simple-noresult {
+  margin-top: 1rem !important;
+}
+
+.dv4-simple-result {
+  border-left: 3px solid var(--dv4-accent);
+  padding-left: 1rem;
+}
+
+.dv4-simple-result p,
+.dv4-simple-noresult {
+  max-width: 44rem;
+}
+
+.dv4-simple-scope,
+.dv4-simple-note {
+  color: var(--dv4-ink-muted);
+  font-size: 0.94rem;
+}
+
+.dv4-simple-nav {
+  padding: 0;
+}
+
+.dv4-simple-nav ol {
+  list-style: none;
+  padding: 0;
+}
+
+.dv4-simple-nav a {
+  display: block;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.4rem;
+}
+
+.dv4-simple-body > * + * {
+  border-top: 1px solid var(--dv4-hairline);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.dv4-simple-section,
+.dv4-simple-answer {
+  scroll-margin-top: 5.5rem;
+}
+
+.dv4-simple-section p,
+.dv4-simple-section li {
+  max-width: 48rem;
+}
+
+.dv4-simple-warning {
+  border-left: 3px solid var(--dv4-caution);
+  color: var(--dv4-ink);
+  padding: 0.25rem 0 0.25rem 1rem;
+}
+
+.dv4-simple-list,
+.dv4-simple-safety-list {
+  padding-left: 1.2rem;
+}
+
+.dv4-simple-list li,
+.dv4-simple-safety-list li {
+  margin: 0 0 0.8rem;
+}
+
+.dv4-editorial-status {
+  color: var(--dv4-ink-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dv4-editorial-line {
+  margin-bottom: 1.1rem;
+}
+
+.dv4-editorial-line p {
+  font-size: 1.08rem;
+  margin-bottom: 0.2rem;
+}
+
+.dv4-editorial-line a,
+.dv4-editorial-bottom + a {
+  display: inline-block;
+  font-size: 0.84rem;
+  min-height: 2rem;
+}
+
+.dv4-editorial-bottom {
+  border-left: 3px solid var(--dv4-accent);
+  font-size: 1.18rem;
+  margin-top: 1.2rem !important;
+  padding-left: 0.9rem;
+}
+
+.dv4-editorial-study + .dv4-editorial-study {
+  border-top: 1px solid var(--dv4-hairline);
+  margin-top: 1.3rem;
+  padding-top: 1.3rem;
+}
+
+.dv4-editorial-study h3 {
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+@media (min-width: 56rem) {
+  .dv4-simple-grid {
+    gap: 0 3rem;
+    grid-template-columns: 13rem minmax(0, 48rem);
+  }
+
+  .dv4-simple-answer {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .dv4-simple-nav {
+    align-self: start;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 5.5rem;
+  }
+
+  .dv4-simple-body {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 .dv4-strip-facts {
@@ -1448,4 +1626,36 @@
 
 .dv4-publication[data-publication-state='preliminary'] {
   border-left-color: var(--dv4-accent);
+}
+/* Final overrides: the legacy compass navigator was a sticky chip strip above the answer. */
+.dv4-root .dv4-simple-nav {
+  background: transparent;
+  border-bottom: 1px solid var(--dv4-hairline);
+  margin: 0;
+  padding: 0 0 0.75rem;
+  position: static;
+}
+
+.dv4-root .dv4-simple-nav ol {
+  display: grid;
+  gap: 0;
+  overflow: visible;
+  padding: 0;
+}
+
+.dv4-root .dv4-simple-nav a {
+  border: 0;
+  border-radius: 0;
+  font-size: 0.92rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.2rem;
+  white-space: normal;
+}
+
+@media (min-width: 56rem) {
+  .dv4-root .dv4-simple-nav {
+    border-bottom: 0;
+    position: sticky;
+    top: 5.5rem;
+  }
 }

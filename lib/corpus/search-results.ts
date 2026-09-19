@@ -31,7 +31,15 @@ export interface CorpusSearchResultRow {
   indexable?: boolean
 }
 
+export interface GuideSearchResultRow {
+  slug: string
+  name: string
+  hint: string
+  href: string
+}
+
 export type SearchResultRow =
+  | { kind: 'guide'; slug: string; tier: -1; hit: GuideSearchResultRow }
   | { kind: 'legacy'; slug: string; tier: number; hit: SearchHit }
   | { kind: 'corpus'; slug: string; tier: number; hit: CorpusSearchResultRow }
 
@@ -54,6 +62,7 @@ export function searchResultTierLabel(tier: number): string {
 
 /** `4 of 8 fields recorded` — shown on a Tier 3 row so a reader sees how thin it is first. */
 export function searchResultFieldCountLabel(row: SearchResultRow): string | null {
+  if (row.kind === 'guide') return null
   if (row.tier !== 3) return null
   const present = row.hit.presentFieldCount
   if (typeof present !== 'number' || !Number.isFinite(present)) return null
@@ -76,9 +85,18 @@ function tierOf(value: unknown): number {
 export function mergeSearchResults(
   results: readonly SearchHit[],
   corpusResults: readonly CorpusSearchResultRow[] = [],
+  guideResults: readonly GuideSearchResultRow[] = [],
 ): SearchResultRow[] {
   const seen = new Set<string>()
   const rows: Array<{ row: SearchResultRow; kindRank: number; index: number }> = []
+
+  for (const hit of guideResults) {
+    rows.push({
+      row: { kind: 'guide', slug: hit.slug, tier: -1, hit },
+      kindRank: -1,
+      index: rows.length,
+    })
+  }
 
   for (const hit of results) {
     if (seen.has(hit.slug)) continue

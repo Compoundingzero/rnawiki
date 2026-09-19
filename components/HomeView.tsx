@@ -11,6 +11,7 @@ import { FacetNav } from '@/app/browse/facet-view'
 
 import { HomeSearch } from './HomeSearch'
 import { USER_GOALS } from '@/lib/dossier-v3/taxonomy'
+import type { UserGoal } from '@/lib/dossier-v3/taxonomy'
 import { OrganismLadderLegend } from './corpus/OrganismLadderLegend'
 import { HomepageContributorSpotlight } from './home/HomepageContributorSpotlight'
 import type { SearchHit } from '@/lib/api-client'
@@ -24,6 +25,7 @@ export interface CorpusStats {
 }
 
 export interface HomeViewProps {
+  availableGoals: UserGoal[]
   contributorSpotlight: HomepageContributorSpotlightView
   popular: SearchHit[]
   corpusStats: CorpusStats
@@ -32,8 +34,14 @@ export interface HomeViewProps {
 const LADDER_HEADING_ID = 'home-organism-ladder'
 const GOAL_HEADING_ID = 'home-goal-entry'
 
-export function HomeView({ contributorSpotlight, popular, corpusStats }: HomeViewProps) {
+export function HomeView({
+  availableGoals,
+  contributorSpotlight,
+  popular,
+  corpusStats,
+}: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
+  const visibleGoals = USER_GOALS.filter((goal) => availableGoals.includes(goal.code))
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-16 sm:space-y-24 animate-fade-in">
@@ -57,32 +65,34 @@ export function HomeView({ contributorSpotlight, popular, corpusStats }: HomeVie
           fact, never a statement that a substance helps with the goal. The search bar above is
           untouched.
         */}
-        <nav aria-labelledby={GOAL_HEADING_ID} className="space-y-3 text-left">
-          <h2
-            id={GOAL_HEADING_ID}
-            className="text-base font-semibold tracking-tight text-center"
-            style={{ fontFamily: 'var(--corpus-serif)', color: 'var(--corpus-ink-0)' }}
-          >
-            What are you trying to understand or improve?
-          </h2>
-          <ul className="flex flex-wrap justify-center gap-2">
-            {USER_GOALS.map((goal) => (
-              <li key={goal.code}>
-                <Link
-                  href={`/goals/${goal.code}`}
-                  className="inline-block rounded-full border px-3 py-1 text-sm hover:bg-[#0071E3]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0071E3]"
-                  style={{ borderColor: 'var(--corpus-hairline)', color: 'var(--corpus-ink-1)' }}
-                >
-                  {goal.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="text-xs text-center" style={{ color: 'var(--corpus-ink-2)' }}>
-            A goal lists records with registered studies in that area. It is not a ranking, and a
-            registered study is not evidence of benefit.
-          </p>
-        </nav>
+        {visibleGoals.length > 0 ? (
+          <nav aria-labelledby={GOAL_HEADING_ID} className="space-y-3 text-left">
+            <h2
+              id={GOAL_HEADING_ID}
+              className="text-base font-semibold tracking-tight text-center"
+              style={{ fontFamily: 'var(--corpus-serif)', color: 'var(--corpus-ink-0)' }}
+            >
+              What are you trying to understand or improve?
+            </h2>
+            <ul className="flex flex-wrap justify-center gap-2">
+              {visibleGoals.map((goal) => (
+                <li key={goal.code}>
+                  <Link
+                    href={`/goals/${goal.code}`}
+                    className="inline-block rounded-full border px-3 py-1 text-sm hover:bg-[#0071E3]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0071E3]"
+                    style={{ borderColor: 'var(--corpus-hairline)', color: 'var(--corpus-ink-1)' }}
+                  >
+                    {goal.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-center" style={{ color: 'var(--corpus-ink-2)' }}>
+              A goal lists records with registered studies in that area. It is not a ranking, and a
+              registered study is not evidence of benefit.
+            </p>
+          </nav>
+        ) : null}
       </section>
 
       <div className="space-y-10">

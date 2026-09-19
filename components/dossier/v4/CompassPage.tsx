@@ -1,235 +1,371 @@
-/**
- * The Substance Compass page shell.
- *
- * One continuous document, a standing navigator in the left rail at desktop, and the sections in
- * the learning order: purpose, what it does, what happened in people, how far that carries, what it
- * would be like to take, what is unknown, and then the technical layer.
- *
- * The old dossier is not deleted. Everything the v3 surface and the corpus record hold is still on
- * the page, moved below the receipts into a labelled technical disclosure, so an expert loses
- * nothing and a beginner is not made to start there.
- */
+/** A short, source-aware reader layer shared by every medicine dossier. */
+/* eslint-disable @next/next/no-html-link-for-pages -- This route renders a plain HTML document outside the App Router client tree. */
 import type { ReactNode } from 'react'
 
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import type { DossierV4ViewModel } from '@/lib/dossier-v4/view-model'
-import { truthLaneLabel, type TruthLane } from '@/lib/dossier-v4/taxonomy'
+import {
+  draftBriefForSlug,
+  type BriefLine,
+  type DossierEditorialBrief,
+} from '@/lib/editorial/dossier-briefs'
 
 import { ExactRecord } from '@/components/dossier/corpus/ExactRecord'
-import { HubRows } from '@/components/dossier/corpus/HubRows'
-import { QuestionBlock } from '@/components/dossier/corpus/QuestionBlock'
 import { RegistrationBlock } from '@/components/dossier/corpus/RegistrationBlock'
 import { RelationsRows } from '@/components/dossier/corpus/RelationsRows'
 import { SourceList } from '@/components/dossier/corpus/SourceList'
 
-import {
-  AlternativesLadder,
-  ChangeHistory,
-  ClaimDecoder,
-  DrugStory,
-  EvidenceReceipts,
-  NextQuestionRail,
-  UnknownMap,
-  WhatIsMissing,
-} from './Closing'
-import {
-  BodyJourney,
-  EffectFingerprint,
-  EvidenceStaircase,
-  FeltMeasuredMeaningful,
-  HumanResults,
-  SignalTimeline,
-} from './Evidence'
-import {
-  ApplicabilityMirror,
-  FormRealityCheck,
-  MeasurementCoach,
-  NoResponseMap,
-  PracticalReality,
-  SafetyMap,
-  StackCollisionMap,
-} from './Personal'
-import {
-  ConceptPrimer,
-  MissingRecordNotice,
-  PublicationBanner,
-  PublicationNote,
-  PurposeRail,
-  SubstanceActionHero,
-  SubstanceIdentityStrip,
-} from './Orientation'
-import { Disclosure } from './Primitives'
+import { MissingRecordNotice, PublicationBanner, SubstanceIdentityStrip } from './Orientation'
+import { Disclosure, Sources } from './Primitives'
 
-const LADDER_BLOCKS = new Set(['ladder', 'ladder-single', 'human-data-none'])
-
-function Navigator({ model }: { model: DossierV4ViewModel }): ReactNode {
-  const lanes: TruthLane[] = [
-    'body_action',
-    'human_result',
-    'personal_reality',
-    'uncertainty',
-    'community_experience',
-  ]
+function ReaderNav({ hasForms, hasInteractions }: { hasForms: boolean; hasInteractions: boolean }) {
+  const links = [
+    ['#answer', 'The short answer'],
+    ['#safety', 'Safety'],
+    ['#human-results', 'What happened in people'],
+    ...(hasInteractions ? ([['#interactions', 'Interactions']] as const) : []),
+    ...(hasForms ? ([['#forms', 'Forms and related names']] as const) : []),
+    ['#sources', 'Sources and record'],
+  ] as const
   return (
-    <nav aria-labelledby="compass-nav-h" className="dv4-nav">
-      <p className="dv4-nav-title" id="compass-nav-h">
-        On this page
-      </p>
+    <nav aria-label="On this medicine page" className="dv4-nav dv4-simple-nav">
+      <p className="dv4-nav-title">On this page</p>
       <ol>
-        {lanes.flatMap((lane) => {
-          const sections = model.sections.filter(
-            (section) => section.lane === lane && section.inNavigator,
-          )
-          if (sections.length === 0) return []
-          return [
-            <li key={`lane-${lane}`}>
-              <p className="dv4-nav-lane">{truthLaneLabel(lane)}</p>
-            </li>,
-            ...sections.map((section) => (
-              <li key={section.id}>
-                <a data-section-state={section.state} href={`#${section.id}`}>
-                  {section.short}
-                </a>
-              </li>
-            )),
-          ]
-        })}
+        {links.map(([href, label]) => (
+          <li key={href}>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
       </ol>
     </nav>
   )
 }
 
-/**
- * The technical layer. This is where the corpus record's generated question blocks, identifiers,
- * relations and source rows live on a v4 page: below the receipts, behind a disclosure, and
- * explicitly labelled as the place raw vocabulary is allowed.
- */
-function TechnicalRecord({
-  corpus,
-  model,
-}: {
-  corpus: CorpusDossier
-  model: DossierV4ViewModel
-}): ReactNode {
-  const blocks = corpus.blocks.filter((block) => block.block !== 'supervision')
+function ShortAnswer({ model }: { model: DossierV4ViewModel }) {
+  const { hero } = model
+  const hasUse = hero.whyPeopleCare.origin !== 'absent'
+  const reviewedResult =
+    hero.strongestGoalResult.origin === 'reviewed_claim' &&
+    hero.principalUncertainty.origin === 'reviewed_claim' &&
+    hero.resultScope !== null
   return (
-    <section
-      aria-labelledby="technical-record-h"
-      className="dv4-technical"
-      data-compass-lane="human_result"
-      id="technical-record"
-    >
-      <p className="dv4-eyebrow">
-        <span>The record as stored</span>
-      </p>
-      <h2 id="technical-record-h">The full record, for auditing</h2>
-      <p className="dv4-lede">
-        Everything above is built from what is below. This layer keeps the technical vocabulary,
-        record identifiers and every stored row, so a reader who wants to check the page can.
-      </p>
-
-      {model.recordedVerdict ? (
-        <Disclosure summary="The older medicine-wide conclusion held in this record">
-          <p className="dv4-note">
-            Written for a clinical reader, and about the medicine as a whole rather than about one
-            indication, population and set of trials. RNAWiki does not treat it as a programme
-            conclusion and no reviewer has signed it off in that form. It is here word for word
-            because it is what the record holds.
+    <section aria-labelledby="answer-heading" className="dv4-simple-answer" id="answer">
+      <h2 id="answer-heading">The short answer</h2>
+      <div className="dv4-simple-lead">
+        {hasUse ? (
+          <div>
+            <h3>What people use it for</h3>
+            <p>{hero.whyPeopleCare.text}</p>
+          </div>
+        ) : null}
+        <div>
+          <h3>{hasUse ? 'How it works' : 'What this record says'}</h3>
+          <p>{hero.simpleAction.text}</p>
+        </div>
+      </div>
+      {reviewedResult ? (
+        <div className="dv4-simple-result">
+          <h3>What a human study found</h3>
+          <p>{hero.strongestGoalResult.text}</p>
+          <p className="dv4-simple-limit">
+            <strong>Important limit.</strong> {hero.principalUncertainty.text}
           </p>
-          <blockquote>
-            <p>{model.recordedVerdict}</p>
-          </blockquote>
-        </Disclosure>
-      ) : null}
-
-      <Disclosure summary={`Recorded evidence blocks (${blocks.length})`}>
-        <div className="cd-root">
-          {blocks.map((block) => (
-            <QuestionBlock
-              block={block}
-              headingLevel="h3"
-              key={block.id}
-              name={corpus.displayName}
-              {...(LADDER_BLOCKS.has(block.block) ? { ladder: corpus.ladder } : {})}
-            />
-          ))}
+          <p className="dv4-simple-scope">
+            For {hero.resultScope!.goal}, in {hero.resultScope!.population}, compared with{' '}
+            {hero.resultScope!.comparator}, over {hero.resultScope!.duration}.
+          </p>
+          <Disclosure summary="Source for this result">
+            <Sources sources={hero.strongestGoalResult.sources} />
+          </Disclosure>
         </div>
-      </Disclosure>
-
-      <Disclosure summary="Where it is registered">
-        <RegistrationBlock
-          events={corpus.registerEvents}
-          registration={corpus.registration}
-          schedules={corpus.controlledSchedules}
-        />
-      </Disclosure>
-
-      <Disclosure summary="Identifiers, relations and other names">
-        <div className="cd-root">
-          <ExactRecord identifiers={corpus.identifiers} />
-          <RelationsRows notes={corpus.relationNotes} relations={corpus.relations} />
-          <HubRows hubs={corpus.hubs} />
-          <dl>
-            {corpus.synonyms.map((group) => (
-              <div key={group.kind}>
-                <dt>{group.label}</dt>
-                <dd>{group.names.join(', ')}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </Disclosure>
-
-      <Disclosure summary={`Sources (${corpus.sources.length})`}>
-        <div className="cd-root">
-          <SourceList licenceNotes={corpus.licenceNotes} sources={corpus.sources} />
-        </div>
-      </Disclosure>
-
-      <Disclosure summary="Index-quality checks">
-        <ul>
-          {model.v3.indexQuality.map((check) => (
-            <li data-passed={check.passed ? 'true' : 'false'} key={check.check}>
-              <span aria-hidden="true">{check.passed ? '✓' : '✗'}</span>{' '}
-              {check.check.replace(/_/g, ' ')}: {check.detail}
-            </li>
-          ))}
-        </ul>
+      ) : (
+        <p className="dv4-simple-noresult">
+          No result has passed RNAWiki’s source and human-review checks for this use. A registered
+          study alone does not tell us whether it helped.
+        </p>
+      )}
+      <Disclosure summary="Where the opening explanation came from">
+        <p>{hero.simpleAction.basis}</p>
+        <Sources sources={hero.simpleAction.sources} />
       </Disclosure>
     </section>
   )
 }
 
-/**
- * The words a page uses, explained before the words that depend on them.
- *
- * Shared by both page shapes. `tests/e2e/public-inclisiran-journey.spec.ts` asserts
- * `#concept-primer` on a phone, so it is part of the skeleton every medicine page carries, not
- * decoration a bare record can drop.
- */
-function ConceptPrimerSection({
-  concepts,
-}: {
-  concepts: DossierV4ViewModel['concepts']
-}): ReactNode {
-  if (concepts.length === 0) return null
+function SafetyFirst({ corpus, model }: { corpus: CorpusDossier; model: DossierV4ViewModel }) {
+  const entries = model.safety.entries.slice(0, 6)
+  return (
+    <section aria-labelledby="safety-heading" className="dv4-simple-section" id="safety">
+      <h2 id="safety-heading">What can go wrong?</h2>
+      {corpus.withdrawn ? (
+        <p className="dv4-simple-warning">
+          A recorded register marks this substance as withdrawn. Do not read an older account of its
+          effects as a reason to use it.
+        </p>
+      ) : null}
+      {corpus.controlled ? (
+        <p className="dv4-simple-warning">
+          A recorded schedule controls this substance in at least one jurisdiction. This page gives
+          no instructions for taking or combining it.
+        </p>
+      ) : null}
+      {entries.length > 0 ? (
+        <ul className="dv4-simple-safety-list">
+          {entries.map((entry, index) => (
+            <li key={`${entry.text}-${index}`}>
+              <strong>{entry.actionLabel}.</strong> {entry.text}
+              <Disclosure summary="Source for this warning">
+                <Sources sources={entry.sources} />
+              </Disclosure>
+            </li>
+          ))}
+        </ul>
+      ) : model.safety.unverifiedLegacySafety ? (
+        <p className="dv4-simple-warning">
+          The older record contains harm notes, but no warning has been checked against an exact
+          source for this summary. That is an unresolved safety gap, not evidence of safety.
+        </p>
+      ) : (
+        <p>
+          This record has no source-bound safety statement to show. That does not mean the substance
+          is safe.
+        </p>
+      )}
+    </section>
+  )
+}
+
+function HumanEvidence({ model }: { model: DossierV4ViewModel }) {
+  const result = model.hero.strongestGoalResult
+  const reviewed = result.origin === 'reviewed_claim' && model.hero.resultScope !== null
+  const tested = model.v3.doesItWork.registry?.tested ?? 0
   return (
     <section
-      aria-labelledby="concept-primer-h"
-      className="dv4-section"
-      data-compass-lane="body_action"
-      data-lane="body_action"
-      id="concept-primer"
+      aria-labelledby="human-results-heading"
+      className="dv4-simple-section"
+      id="human-results"
     >
-      <p className="dv4-eyebrow">
-        <span>Words this page uses</span>
-      </p>
-      <h2 id="concept-primer-h">Four words worth knowing first</h2>
-      <p className="dv4-lede">
-        Chosen from what this page shows, with each one explained before the word it depends on.
-      </p>
-      <ConceptPrimer concepts={concepts} />
+      <h2 id="human-results-heading">What happened in people?</h2>
+      {reviewed ? (
+        <p>The reviewed result and its exact scope are in the short answer above.</p>
+      ) : (
+        <p>
+          RNAWiki has not published a reviewed human result for this use.{' '}
+          {tested > 0
+            ? `${tested} registered ${tested === 1 ? 'study is' : 'studies are'} classified as testing this substance, but registration is not a result.`
+            : 'No registered study has been classified here as testing this substance.'}
+        </p>
+      )}
+      {model.v3.doesItWork.registry?.sources.length ? (
+        <Disclosure summary="Registry source and study counts">
+          <p>{model.v3.doesItWork.registry.text}</p>
+          <Sources sources={model.v3.doesItWork.registry.sources} />
+        </Disclosure>
+      ) : null}
     </section>
+  )
+}
+
+function Interactions({ model }: { model: DossierV4ViewModel }) {
+  const entries = model.stack.entries.filter((entry) => entry.sources.length > 0).slice(0, 4)
+  if (entries.length === 0) return null
+  return (
+    <section
+      aria-labelledby="interactions-heading"
+      className="dv4-simple-section"
+      id="interactions"
+    >
+      <h2 id="interactions-heading">What might it clash with?</h2>
+      <ul className="dv4-simple-list">
+        {entries.map((entry, index) => (
+          <li key={`${entry.entityB}-${index}`}>
+            <strong>{entry.entityB}:</strong> {entry.consequence}{' '}
+            {entry.state === 'plausible_mechanistic'
+              ? 'This is a prediction, not a human result.'
+              : null}
+            <Disclosure summary={`Source for ${entry.entityB} interaction`}>
+              <Sources sources={entry.sources} />
+            </Disclosure>
+          </li>
+        ))}
+      </ul>
+      <p className="dv4-simple-note">
+        Not finding a pair in these sources does not establish that the pair is safe.
+      </p>
+    </section>
+  )
+}
+
+function Forms({ corpus, model }: { corpus: CorpusDossier; model: DossierV4ViewModel }) {
+  const related = model.formCheck.entries.slice(0, 6)
+  const brands = (corpus.synonyms.find((group) => group.kind === 'brand')?.names ?? [])
+    .filter((name) => !/component of|\s\/\s|\b\d+\s*(?:mg|mcg|ml|iu)\b/i.test(name))
+    .slice(0, 6)
+  if (related.length === 0 && brands.length === 0) return null
+  return (
+    <section aria-labelledby="forms-heading" className="dv4-simple-section" id="forms">
+      <h2 id="forms-heading">Names and forms</h2>
+      {brands.length > 0 ? (
+        <p>
+          <strong>Brand names recorded:</strong> {brands.join(', ')}.
+        </p>
+      ) : null}
+      {related.length > 0 ? (
+        <>
+          <p>
+            These are related records, not interchangeable results. A salt, mixture or look-alike
+            name may behave differently.
+          </p>
+          <ul className="dv4-simple-list">
+            {related.map((entry, index) => (
+              <li key={`${entry.counterpart}-${index}`}>
+                {entry.counterpartSlug ? (
+                  <a href={`/d/${entry.counterpartSlug}`}>{entry.counterpart}</a>
+                ) : (
+                  entry.counterpart
+                )}{' '}
+                <span className="dv4-simple-note">({entry.relationLabel.toLowerCase()})</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+    </section>
+  )
+}
+
+function RecordAndSources({ corpus, model }: { corpus: CorpusDossier; model: DossierV4ViewModel }) {
+  return (
+    <section aria-labelledby="sources-heading" className="dv4-simple-section" id="sources">
+      <h2 id="sources-heading">Check the record</h2>
+      <p>
+        Sources and identities are kept here so you can verify which substance this page describes.
+      </p>
+      <Disclosure summary={`Sources (${corpus.sources.length})`}>
+        <div className="cd-root">
+          <SourceList licenceNotes={corpus.licenceNotes} sources={corpus.sources} />
+        </div>
+      </Disclosure>
+      <Disclosure summary="Registration and controlled status">
+        <div className="cd-root">
+          <RegistrationBlock
+            events={corpus.registerEvents}
+            registration={corpus.registration}
+            schedules={corpus.controlledSchedules}
+          />
+        </div>
+      </Disclosure>
+      <Disclosure summary="Identifiers and related substances">
+        <div className="cd-root">
+          <ExactRecord identifiers={corpus.identifiers} />
+          <RelationsRows notes={corpus.relationNotes} relations={corpus.relations} />
+        </div>
+      </Disclosure>
+      {model.identity.lastSubstantiveReview ? (
+        <p className="dv4-simple-note">
+          Sources last checked {model.identity.lastSubstantiveReview}.
+        </p>
+      ) : null}
+    </section>
+  )
+}
+
+function SourcedLine({ line }: { line: BriefLine }) {
+  return (
+    <div className="dv4-editorial-line">
+      <p>{line.text}</p>
+      <a href={line.source.url} rel="noopener noreferrer">
+        Source: {line.source.label}
+      </a>
+      {line.secondarySource ? (
+        <>
+          {' · '}
+          <a href={line.secondarySource.url} rel="noopener noreferrer">
+            {line.secondarySource.label}
+          </a>
+        </>
+      ) : null}
+    </div>
+  )
+}
+
+function EditorialDossier({
+  brief,
+  corpus,
+  model,
+}: {
+  brief: DossierEditorialBrief
+  corpus: CorpusDossier
+  model: DossierV4ViewModel
+}) {
+  return (
+    <div className="dv4-simple-grid" data-editorial-status="awaiting-clinical-review">
+      <section aria-labelledby="answer-heading" className="dv4-simple-answer" id="answer">
+        <p className="dv4-editorial-status">
+          Source-checked editorial draft · clinical review pending
+        </p>
+        <h2 id="answer-heading">The short answer</h2>
+        <h3>What it is</h3>
+        <SourcedLine line={brief.identity} />
+        <h3>Why people look at it</h3>
+        <SourcedLine line={brief.whyPeopleLook} />
+        <h3>How it works</h3>
+        <SourcedLine line={brief.mechanism} />
+        <p className="dv4-editorial-bottom">{brief.bottomLine.text}</p>
+        <a href={brief.bottomLine.source.url} rel="noopener noreferrer">
+          Source for this boundary: {brief.bottomLine.source.label}
+        </a>
+        {brief.productChecks[0] ? (
+          <>
+            <h3>Before comparing products</h3>
+            <SourcedLine line={brief.productChecks[0]} />
+          </>
+        ) : null}
+      </section>
+      <ReaderNav hasForms hasInteractions />
+      <div className="dv4-simple-body">
+        <section aria-labelledby="safety-heading" className="dv4-simple-section" id="safety">
+          <h2 id="safety-heading">What can go wrong?</h2>
+          {brief.safety.map((line) => (
+            <SourcedLine key={line.text} line={line} />
+          ))}
+        </section>
+        <section
+          aria-labelledby="human-results-heading"
+          className="dv4-simple-section"
+          id="human-results"
+        >
+          <h2 id="human-results-heading">What happened in people?</h2>
+          {brief.studies.map((study) => (
+            <div className="dv4-editorial-study" key={study.question}>
+              <h3>{study.question}</h3>
+              <SourcedLine line={study.finding} />
+              <p className="dv4-simple-note">Who or what this does not cover: {study.boundary}</p>
+            </div>
+          ))}
+        </section>
+        <section
+          aria-labelledby="interactions-heading"
+          className="dv4-simple-section"
+          id="interactions"
+        >
+          <h2 id="interactions-heading">What might it clash with?</h2>
+          {brief.interactions.map((line) => (
+            <SourcedLine key={line.text} line={line} />
+          ))}
+        </section>
+        <section aria-labelledby="forms-heading" className="dv4-simple-section" id="forms">
+          <h2 id="forms-heading">Check the product label</h2>
+          {brief.productChecks.slice(1).map((line) => (
+            <SourcedLine key={line.text} line={line} />
+          ))}
+          <p>
+            <a href="/guides/magnesium-lysinate-glycinate">Compare the lysinate-glycinate name</a>
+          </p>
+        </section>
+        <RecordAndSources corpus={corpus} model={model} />
+      </div>
+    </div>
   )
 }
 
@@ -240,128 +376,50 @@ export function CompassPage({
   corpus: CorpusDossier
   model: DossierV4ViewModel
 }): ReactNode {
-  const stages = model.journey.nodes.map((node) => node.stage)
-  /*
-   * A record that holds nothing gets a short page.
-   *
-   * Measured on the live site, `1-2-hexanediol` — a cosmetic preservative this corpus classes as a
-   * prescription medicine — served a sixteen-section dossier: a nineteen-item "On this page" list,
-   * five purpose chips whose every target was empty, a primer teaching placebo and comparator to a
-   * reader with no study to read, and the same absence written six different ways. 2,436 records are
-   * in that state, and 1,682 of them will never have content to fill it.
-   *
-   * The hero stays. On a bare record it carries the point of the page — what the registers do record,
-   * and an honest statement of what was searched and not found — which is also why
-   * `tests/e2e/public-inclisiran-journey.spec.ts` asserts `#substance-action` on every medicine page.
-   * What goes is the furniture that advertises sections with nothing in them.
-   */
-  const holdsNothing = model.substance.empty
-  /*
-   * The names a reader would recognise on the box.
-   *
-   * MedlinePlus makes "Brand names" a top-level section, and it is the first thing a reader needs
-   * when they are holding a product: is this the substance the page is about? `page_synonyms` holds
-   * 29,339 brand rows and not one of them reached a reader. On the live metformin page "Glucophage"
-   * appeared eleven times and every occurrence was inside the audit layer, behind two folds.
-   *
-   * The rows are selected by kind, not by guessing at capitalisation. The "also called" group beside
-   * them mixes in mixture products and dose strings ("eucreas", "liquid metformin 100 mg/ml"), which
-   * is exactly the noise this page is trying not to add.
-   */
-  const brands = (corpus.synonyms.find((group) => group.kind === 'brand')?.names ?? [])
-    /*
-     * The brand rows carry combination products as well as brands: semaglutide's group holds
-     * "Semaglutide component of cagrisema" and "Ozempic / Wegovy / Rybelsus" beside Ozempic and
-     * Wegovy. A reader holding a box is looking for a product name, and neither a descriptor nor a
-     * slash-joined list of three products is one, so both go. Found by rendering the page rather
-     * than by assuming the group was clean.
-     */
-    .filter((name) => !/component of|\s\/\s/iu.test(name))
-    .slice(0, 6)
+  const held =
+    model.publication.state === 'correction_hold' || model.publication.state === 'pipeline_failure'
+  const editorialDraft =
+    process.env.RNAWIKI_PREVIEW_EDITORIAL === '1' ? draftBriefForSlug(corpus.slug) : null
+  const hasForms =
+    model.formCheck.entries.length > 0 ||
+    (corpus.synonyms.find((group) => group.kind === 'brand')?.names ?? []).some(
+      (name) => !/component of|\s\/\s|\b\d+\s*(?:mg|mcg|ml|iu)\b/i.test(name),
+    )
+  const hasInteractions = model.stack.entries.some((entry) => entry.sources.length > 0)
   return (
     <div
-      className="dv4-root"
+      className="dv4-root dv4-simple"
       data-dossier-version="4"
       data-publication-state={model.publication.state}
     >
-      <SubstanceIdentityStrip identity={model.identity} promise={model.pagePromise}>
-        {/* Review lives at /review-queue. A reader sees the medicine, not the machinery. */}
-        <PublicationNote publication={model.publication} />
-      </SubstanceIdentityStrip>
-      {brands.length > 0 ? (
-        <p className="dv4-note" style={{ margin: '0.35rem 0 0' }}>
-          <strong>Sold as.</strong> {brands.join(', ')}. A brand name is the same substance in a
-          particular product, not a different one.
-        </p>
-      ) : null}
-      {/* Only an identity hold, a pipeline failure, or an empty record opens with a block. */}
-      <PublicationBanner publication={model.publication} />
-      <MissingRecordNotice searched={model.searchedRegisters} substance={model.substance} />
-      {holdsNothing ? (
-        <div className="dv4-flow">
-          <SubstanceActionHero
-            hero={model.hero}
-            name={model.name}
-            recordedIdentity={model.recordedIdentity}
-            stages={stages}
-          />
-          <ConceptPrimerSection concepts={model.concepts} />
-          <SafetyMap safety={model.safety} />
-          {/*
-           * `lib/dossier-v4/section-visibility.ts` names two sections that print even when they
-           * hold nothing, because their emptiness is itself a fact the reader needs: safety, and the
-           * source trail. The second is this one. Dropping it here was caught by
-           * `tests/e2e/public-inclisiran-journey.spec.ts`, which asserts `#evidence-receipts` on a
-           * medicine page: a bare record with no visible source trail looks like a record nobody
-           * checked.
-           */}
-          <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
-          <TechnicalRecord corpus={corpus} model={model} />
-          <p className="dv4-foot">
-            {model.notAdvice} {model.notForChildren}
-          </p>
+      <SubstanceIdentityStrip
+        identity={model.identity}
+        promise="A plain answer first. Exact sources and record details below."
+      />
+      {editorialDraft ? null : <PublicationBanner publication={model.publication} />}
+      {editorialDraft ? null : (
+        <MissingRecordNotice searched={model.searchedRegisters} substance={model.substance} />
+      )}
+      {editorialDraft ? (
+        <EditorialDossier brief={editorialDraft} corpus={corpus} model={model} />
+      ) : held ? null : model.substance.empty ? (
+        <div className="dv4-simple-grid">
+          <div className="dv4-simple-body dv4-simple-empty">
+            <RecordAndSources corpus={corpus} model={model} />
+          </div>
         </div>
       ) : (
-        <>
-          <PurposeRail />
-          <div className="dv4-canvas">
-            <Navigator model={model} />
-            <div className="dv4-flow">
-              <SubstanceActionHero
-                hero={model.hero}
-                name={model.name}
-                recordedIdentity={model.recordedIdentity}
-                stages={stages}
-              />
-              <ConceptPrimerSection concepts={model.concepts} />
-              <EffectFingerprint fingerprint={model.fingerprint} />
-              <HumanResults results={model.humanResults} />
-              <EvidenceStaircase staircase={model.staircase} />
-              <BodyJourney journey={model.journey} />
-              <FeltMeasuredMeaningful experience={model.experience} />
-              <SignalTimeline timeline={model.timeline} />
-              <ApplicabilityMirror applicability={model.applicability} />
-              <NoResponseMap noResponse={model.noResponse} />
-              <PracticalReality practical={model.practical} />
-              <SafetyMap safety={model.safety} />
-              <StackCollisionMap stack={model.stack} />
-              <FormRealityCheck formCheck={model.formCheck} />
-              <MeasurementCoach measurement={model.measurement} />
-              <AlternativesLadder alternatives={model.alternatives} />
-              <ClaimDecoder decoder={model.claimDecoder} />
-              <UnknownMap unknowns={model.unknowns} />
-              <EvidenceReceipts gates={model.gates} receipts={model.receipts} />
-              <DrugStory story={model.story} />
-              <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
-              <NextQuestionRail questions={model.nextQuestions} />
-              <WhatIsMissing sections={model.sections} />
-              <TechnicalRecord corpus={corpus} model={model} />
-              <p className="dv4-foot">
-                {model.notAdvice} {model.notForChildren}
-              </p>
-            </div>
+        <div className="dv4-simple-grid">
+          <ShortAnswer model={model} />
+          <ReaderNav hasForms={hasForms} hasInteractions={hasInteractions} />
+          <div className="dv4-simple-body">
+            <SafetyFirst corpus={corpus} model={model} />
+            <HumanEvidence model={model} />
+            {hasInteractions ? <Interactions model={model} /> : null}
+            {hasForms ? <Forms corpus={corpus} model={model} /> : null}
+            <RecordAndSources corpus={corpus} model={model} />
           </div>
-        </>
+        </div>
       )}
     </div>
   )

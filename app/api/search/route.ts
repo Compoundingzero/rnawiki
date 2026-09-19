@@ -9,6 +9,7 @@ import { corpusRanksForSlugs, rankHitsByCorpusTier, searchCorpusPages } from '@/
 import { searchDrugs } from '@/lib/queries/drugs'
 import { PUBLIC_API } from '@/lib/rate-limit'
 import { ok, rateLimited, rateLimitKey, withHandler } from '@/lib/api-response'
+import { exactSubstanceGuideQuery, searchSubstanceGuides } from '@/lib/guides/substance-guides'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -52,6 +53,18 @@ export const GET = withHandler(async (req: Request) => {
   if (limited) return limited
 
   const limit = parsed.limit ?? DEFAULT_LIMIT
+  const guideResults = (
+    process.env.RNAWIKI_PREVIEW_EDITORIAL === '1' ? searchSubstanceGuides(query) : []
+  ).map((guide) => ({
+    slug: guide.slug,
+    name: guide.searchLabel,
+    hint: guide.searchHint,
+    href: `/guides/${guide.slug}`,
+  }))
+  // Exact programme and ingredient names must not bring back unrelated label-text matches.
+  if (guideResults.length > 0 && exactSubstanceGuideQuery(query)) {
+    return ok({ results: [], corpusResults: [], guideResults })
+  }
   // Corpus records rank Tier 1, then Tier 2, then Tier 3, and a Tier 3 row carries its present-field
   // count so a reader can see how thin the record is before opening it (docs/specs/browse.md).
   // Corpus records with no legacy row are returned separately: the legacy hit shape has fields
@@ -67,5 +80,5 @@ export const GET = withHandler(async (req: Request) => {
   })
   const legacySlugs = new Set(legacyHits.map((hit) => hit.slug))
   const corpusResults = corpusHits.filter((hit) => !legacySlugs.has(hit.slug))
-  return ok({ results, corpusResults })
+  return ok({ results, corpusResults, guideResults })
 })

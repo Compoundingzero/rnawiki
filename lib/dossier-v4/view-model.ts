@@ -16,7 +16,9 @@
  * cannot drift apart on the things that matter most.
  */
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
+import { PUBLIC_IDENTITY_PROTECTIONS } from '@/lib/inventory/public-identity-protections'
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
+import { trialRoleSupportsTestedClaim } from '@/lib/dossier-v3/taxonomy'
 import {
   buildDossierV3,
   type DossierV3Inputs,
@@ -390,6 +392,7 @@ export interface ActionHero {
   whyPeopleCare: Statement
   analogy: { text: string; limit: string } | null
   strongestGoalResult: Statement
+  resultScope: { goal: string; population: string; comparator: string; duration: string } | null
   outcomeType: string
   principalUncertainty: Statement
   supervision: string
@@ -687,6 +690,8 @@ export interface DossierV4ViewModel {
   safety: {
     state: SectionState
     entries: SafetyEntry[]
+    /** Older free-text harm prose exists but has no claim-level source binding. */
+    unverifiedLegacySafety: boolean
     spontaneous: DossierV3ViewModel['safety']['spontaneous']
     longTerm: string
     underrepresented: string
@@ -877,6 +882,10 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
     routes: legacy?.deliverySystem?.type ? [legacy.deliverySystem.type] : [],
   })
   const identityCheck = v3.indexQuality.find((check) => check.check === 'identity_passed')
+  const knownIdentityConflict = Object.prototype.hasOwnProperty.call(
+    PUBLIC_IDENTITY_PROTECTIONS,
+    corpus.slug,
+  )
   return {
     canonicalName: v3.name,
     substanceType: classification.typeLabel,
@@ -887,10 +896,15 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
     availabilityBasis: classification.availabilityBasis,
     supervision: classification.supervision,
     jurisdictions: classification.jurisdictions,
-    identityVerified: identityCheck?.passed ?? false,
-    identityLabel: identityCheck?.passed ? 'Identity checked' : 'Identity not confirmed',
-    identityBasis:
-      identityCheck?.detail ?? 'RNAWiki has not run the identity check on this record.',
+    identityVerified: knownIdentityConflict ? false : (identityCheck?.passed ?? false),
+    identityLabel: knownIdentityConflict
+      ? 'Identity correction in progress'
+      : identityCheck?.passed
+        ? 'Identity checked'
+        : 'Identity not confirmed',
+    identityBasis: knownIdentityConflict
+      ? 'An earlier identity merge mapped this compound to a different substance. The record is not verified while that error is being corrected.'
+      : (identityCheck?.detail ?? 'RNAWiki has not run the identity check on this record.'),
     // Only a value that looks like a date is shown as one.
     lastSubstantiveReview: readableCheckDate(v3.lastEvidenceCheck),
   }
@@ -1263,45 +1277,47 @@ function buildHero(
    * label that says exactly that. The third tier is the contract sentence. The point of the tiers
    * is that they are visibly different to a reader, not that they are interchangeable.
    */
-  const measured = legacy?.measuredVsInferredSummary
-  const strongestGoalResult = bound?.copy.whatStudiesFound
+  const reviewedEffect = inputs.claims.find(
+    (claim) =>
+      claim.kind === 'effect' &&
+      claim.reviewerState === 'reviewed' &&
+      claim.sourceSnapshotIds.length > 0 &&
+      claim.plainLanguageVersion.trim() &&
+      claim.applicablePopulation.trim() &&
+      claim.indicationOrGoal.trim() &&
+      claim.comparator?.trim() &&
+      claim.duration?.trim() &&
+      claim.uncertaintyReasons.some((reason) => reason.trim()),
+  )
+  const reviewedSources: SourceCitation[] =
+    reviewedEffect?.sourceSnapshotIds.map((id) => ({
+      label: `Stored source ${id}`,
+      id,
+      binding: 'snapshot' as const,
+    })) ?? []
+  const strongestGoalResult = reviewedEffect
     ? statement(
-        bound.copy.whatStudiesFound,
-        'approved_first_read',
+        readerText(reviewedEffect.plainLanguageVersion),
+        'reviewed_claim',
         'reviewed_content',
-        'A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet.',
+        'A reviewed result for the goal, people, comparison and duration named here.',
+        reviewedSources,
       )
-    : strongestMeasuredFinding(measured?.strictlyMeasured ?? [])
-      ? statement(
-          readerText(strongestMeasuredFinding(measured?.strictlyMeasured ?? []) as string),
-          'authored_record',
-          'source_checked_draft',
-          'The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval.',
-          provenance.slice(0, 3),
-        )
-      : statement(
-          v3.contract.noReviewedConclusionSentence,
-          'contract_sentence',
-          'awaiting_review',
-          'No reviewed claim names a result for any goal on this record.',
-        )
-
-  const principalUncertainty = bound?.copy.biggestLimit
+    : statement(
+        v3.contract.noReviewedConclusionSentence,
+        'contract_sentence',
+        'awaiting_review',
+        'No source-bound reviewed effect claim with its population, comparison and duration exists here.',
+      )
+  const principalUncertainty = reviewedEffect
     ? statement(
-        bound.copy.biggestLimit,
-        'approved_first_read',
+        readerText(reviewedEffect.uncertaintyReasons[0]!),
+        'reviewed_claim',
         'reviewed_content',
-        'The limit a reviewer approved as the one that matters most here.',
+        'The limitation stored on the same reviewed claim as the result.',
+        reviewedSources,
       )
-    : selectPrincipalLimit(measured)
-      ? statement(
-          readerText(selectPrincipalLimit(measured) as string),
-          'authored_record',
-          'source_checked_draft',
-          'A limit recorded against this substance. Not signed off as a reviewed claim.',
-          provenance.slice(0, 3),
-        )
-      : absentStatement('No statement of the main limit is recorded.', 'awaiting_review')
+    : absentStatement('No reviewed result exists to qualify.', 'awaiting_review')
 
   // v3 calls the boundary "breaks"; v4 renders it as "where this stops being true". An analogy
   // without its boundary is never carried across.
@@ -1345,6 +1361,14 @@ function buildHero(
     whyPeopleCare: reasonPeopleTakeIt,
     analogy,
     strongestGoalResult: headlineResult,
+    resultScope: reviewedEffect
+      ? {
+          goal: readerText(reviewedEffect.indicationOrGoal),
+          population: readerText(reviewedEffect.applicablePopulation),
+          comparator: readerText(reviewedEffect.comparator ?? ''),
+          duration: readerText(reviewedEffect.duration ?? ''),
+        }
+      : null,
     // What kind of thing the headline result is. A reviewed claim names its own outcome class; with
     // none, the kind is read from the strongest result's own words, and stays unknown if they do
     // not say. It is never assumed to be the kind a reader would most want.
@@ -1521,26 +1545,28 @@ function buildHumanResults(
   namedTrial: RecordedFact[],
 ): DossierV4ViewModel['humanResults'] {
   const legacy = inputs.legacyRecord
-  const provenance = citationsFromProvenance(legacy?.sourceProvenance)
+  const roles = new Map(inputs.roleAggregate?.rows.map((row) => [row.nctId, row.role]) ?? [])
   const cards: HumanResultCard[] = (legacy?.trials ?? [])
-    .filter(
-      (trial: ClinicalTrialRecord) => Boolean(trial.primaryEndpoint) && Boolean(trial.trialId),
-    )
+    .filter((trial: ClinicalTrialRecord) => {
+      const nct = /NCT\d{8}/.exec(trial.trialId)?.[0]
+      const role = nct ? roles.get(nct) : undefined
+      return Boolean(trial.primaryEndpoint && nct && role && trialRoleSupportsTestedClaim(role))
+    })
+    .slice(0, 6)
     .map((trial, index) => {
       const verdict: HumanResultCard['verdict'] =
-        trial.endpointStatus ?? (trial.endpointMet ? 'met' : 'not_met')
+        trial.endpointStatus === 'met' || trial.endpointStatus === 'not_met'
+          ? trial.endpointStatus
+          : 'not_reported'
       const nct = /NCT\d{8}/.exec(trial.trialId)?.[0]
-      const role = nct ? inputs.roleAggregate?.rows.find((row) => row.nctId === nct) : undefined
       return {
         id: `result-${index + 1}`,
         question: readerText(trial.primaryEndpoint),
-        population: readerText(trial.trialId),
+        population: 'Not recorded in this summary',
         intervention: legacy?.name ?? v3.name,
-        formulation: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
-        route: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
-        comparator: /placebo/i.test(trial.phase)
-          ? 'A dummy treatment'
-          : 'Not recorded for this study',
+        formulation: 'Not recorded for this study',
+        route: 'Not recorded for this study',
+        comparator: 'Not recorded for this study',
         outcome: readerText(trial.primaryEndpoint),
         outcomeClassLabel: /surviv|death|mortalit/i.test(trial.primaryEndpoint)
           ? 'Living longer, or avoiding a major event'
@@ -1549,10 +1575,8 @@ function buildHumanResults(
             : /strength|mass|power|repetition/i.test(trial.primaryEndpoint)
               ? 'Measured performance'
               : 'A number that stands in for health',
-        duration:
-          /\b(\d+)\s*(year|month|week)s?\b/i.exec(trial.primaryEndpoint)?.[0] ??
-          'Not recorded in this summary',
-        absoluteResult: readerText(trial.statisticalPValue),
+        duration: 'Not recorded in this summary',
+        absoluteResult: 'An outcome value is not verified against a study result here.',
         relativeResult: 'Not recorded in this summary',
         confidenceInterval:
           /95%\s*C[LI][^.]*/i.exec(trial.statisticalPValue)?.[0] ?? 'Not recorded in this summary',
@@ -1561,19 +1585,29 @@ function buildHumanResults(
         primaryLimitation: trial.unreportedAdverseSignals
           ? readerText(trial.unreportedAdverseSignals)
           : 'No limitation is recorded for this study.',
-        applicabilityLimitation: role
-          ? `RNAWiki classified this registered study as ${role.role === 'experimental_intervention' ? 'testing this substance' : 'not clearly testing this substance'}.`
-          : 'This study is recorded from the curated record, not from the registry match.',
+        applicabilityLimitation:
+          'This registry match tests the substance, but the population and result need source review.',
         doesNotProve:
           verdict === 'met'
             ? 'Meeting one endpoint in one population does not carry to other goals or other people.'
-            : 'A study that did not show an effect does not show that no effect exists anywhere.',
+            : verdict === 'not_met'
+              ? 'One result that missed its endpoint does not show that no effect exists anywhere.'
+              : 'This record does not establish whether the study met its endpoint.',
         participants: trial.sampleSize ?? null,
         verdict,
         verdictLabel: VERDICT_LABELS[verdict],
         origin: 'authored_record' as StatementOrigin,
         state: 'source_checked_draft' as SectionState,
-        sources: provenance.slice(0, 4),
+        sources: nct
+          ? [
+              {
+                label: `ClinicalTrials.gov ${nct}`,
+                id: nct,
+                url: `https://clinicaltrials.gov/study/${nct}`,
+                binding: 'record' as const,
+              },
+            ]
+          : [],
       }
     })
   return {
@@ -1590,7 +1624,7 @@ function buildHumanResults(
       know: cards.length
         ? `RNAWiki holds ${cards.length} written-up human studies for this substance, each with the question it asked.`
         : 'RNAWiki holds no written-up human study for this substance.',
-      how: 'Each card names the study, the number of people and what the study set out to measure.',
+      how: 'Each card names a registered study and what it set out to measure. A result needs separate review.',
       notProve:
         'These summaries were written by a person and have not been signed off as reviewed claims.',
       matters: 'A study that failed is as informative as one that worked, and both are here.',
@@ -2115,7 +2149,7 @@ function buildPractical(
   const delivery = inputs.legacyRecord?.deliverySystem
   const regulatory = fieldValue(inputs, 'regulatory')
   return {
-    titration,
+    titration: [],
     state: delivery || titration.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     availability: statement(
       identity.availability,
@@ -2124,14 +2158,15 @@ function buildPractical(
       'Read from the recorded approval status.',
       v3.substanceType.sources,
     ),
-    route: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The form and route recorded on this substance.',
-        )
-      : absentStatement('No form or route is recorded.'),
+    route:
+      delivery?.type && !DOSE_LANGUAGE.test(delivery.type)
+        ? statement(
+            delivery.type,
+            'authored_record',
+            'source_checked_draft',
+            'The form and route recorded on this substance.',
+          )
+        : absentStatement('No form or route is recorded.'),
     burden: statement(
       v3.supervision.text,
       'stored_source',
@@ -2139,19 +2174,7 @@ function buildPractical(
       v3.supervision.basis,
       v3.supervision.sources,
     ),
-    productQuality: delivery?.description
-      ? (() => {
-          const split = splitForReader(delivery.description)
-          return statement(
-            readerText(split.lead),
-            'authored_record',
-            'source_checked_draft',
-            split.rest
-              ? `Recorded notes on how this is sold. The rest of the recorded wording: ${readerText(split.rest)}`
-              : 'Recorded notes on how this is sold and what that means for what is in the pack.',
-          )
-        })()
-      : absentStatement('Nothing is recorded about product quality.'),
+    productQuality: absentStatement('No source-bound product-quality comparison is recorded.'),
     regulatory: regulatory
       ? statement(
           'Regulatory records are listed in the technical disclosure at the foot of this page.',
@@ -2172,35 +2195,27 @@ function buildSafety(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
 ): DossierV4ViewModel['safety'] {
-  const delivery = inputs.legacyRecord?.deliverySystem
-  const entries: SafetyEntry[] = v3.safety.items.map((item) => ({
-    text: item.text,
-    evidenceSource: item.layer,
-    evidenceSourcePlain: item.layerLabel,
-    action: item.layer === 'regulatory_label' ? 'professional_discussion' : 'common_nonurgent',
-    actionLabel:
-      item.layer === 'regulatory_label'
-        ? 'Worth asking a clinician about'
-        : 'Common, not an emergency',
-    urgent: false,
-    denominatorKnown: item.denominatorKnown,
-    sources: item.sources,
-  }))
-  if (delivery?.safetyProfile) {
-    entries.unshift({
-      text: readerText(delivery.safetyProfile),
-      evidenceSource: 'authored_record',
-      evidenceSourcePlain: 'Written into the record from the studies named on this page',
-      action: 'professional_discussion',
-      actionLabel: 'Worth asking a clinician about',
-      urgent: false,
-      denominatorKnown: false,
-      sources: citationsFromProvenance(inputs.legacyRecord?.sourceProvenance).slice(0, 3),
-    })
-  }
+  const entries: SafetyEntry[] = v3.safety.items
+    .filter((item) => item.sources.length > 0)
+    .map((item) => ({
+      text: item.text,
+      evidenceSource: item.layer,
+      evidenceSourcePlain: item.layerLabel,
+      action: item.kind === 'serious_warning' ? 'urgent_warning' : 'professional_discussion',
+      actionLabel:
+        item.kind === 'serious_warning'
+          ? 'Serious warning'
+          : item.kind === 'contraindication'
+            ? 'Who the label says should not use it'
+            : 'Recorded safety information',
+      urgent: item.kind === 'serious_warning',
+      denominatorKnown: item.denominatorKnown,
+      sources: item.sources,
+    }))
   return {
     state: entries.length ? 'source_checked_draft' : 'no_qualifying_evidence',
     entries,
+    unverifiedLegacySafety: Boolean(inputs.legacyRecord?.deliverySystem?.safetyProfile?.trim()),
     spontaneous: v3.safety.spontaneous,
     longTerm: v3.safety.longTerm,
     underrepresented: v3.safety.underrepresented,
@@ -2354,52 +2369,11 @@ function buildFormCheck(
       entries.length || corrections.length || supply.length
         ? 'source_checked_draft'
         : 'no_qualifying_evidence',
-    exactFormStudied: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The form used in the studies cited on this page.',
-        )
-      : absentStatement('The exact form studied is not recorded.'),
-    exactRouteStudied: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The route recorded for this substance.',
-        )
-      : absentStatement('The route studied is not recorded.'),
+    exactFormStudied: absentStatement('No studied form is bound to a reviewed result.'),
+    exactRouteStudied: absentStatement('No studied route is bound to a reviewed result.'),
     // Not the first sentences again: "What taking it involves" already shows those, and printing
     // the same paragraph twice on one page wastes the reader's attention and doubles its length.
-    marketedForms: (() => {
-      // Not the sentences "What taking it involves" already showed, and never a long sentence in
-      // the reader layer: the lead is what fits, and the recorded remainder sits in the basis.
-      const tail = remainderAfter(delivery?.description, 1)
-      if (!tail) return absentStatement('Nothing further is recorded about which forms are sold.')
-      const split = splitForReader(tail)
-      /*
-       * When the next recorded sentence is itself over the limit there is nothing to lead with, and
-       * a truncated medical sentence would be worse than a long one. The reader layer says a note
-       * exists and where to find it; the note is kept word for word in the disclosure below.
-       */
-      if (split.overLimit) {
-        return statement(
-          'A recorded note compares this form with the others that are sold. It is kept below, word for word.',
-          'contract_sentence',
-          'source_checked_draft',
-          `The recorded note, unchanged: ${readerText(tail)}`,
-        )
-      }
-      return statement(
-        readerText(split.lead || tail),
-        'authored_record',
-        'source_checked_draft',
-        split.rest
-          ? `Recorded notes on which forms are sold. The rest of the recorded wording: ${readerText(split.rest)}`
-          : 'Recorded notes on which forms are sold and how they compare.',
-      )
-    })(),
+    marketedForms: absentStatement('No source-bound comparison of marketed forms is recorded.'),
     equivalenceEvidence: statement(
       COMPASS_COPY.identityMatters,
       'contract_sentence',

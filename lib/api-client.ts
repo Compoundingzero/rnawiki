@@ -10,7 +10,7 @@ import type {
   Revision,
 } from '@/lib/types'
 import type { PublicSearchSummaryBinding } from '@/lib/queries/public-search-hit-projection'
-import type { CorpusSearchResultRow } from '@/lib/corpus/search-results'
+import type { CorpusSearchResultRow, GuideSearchResultRow } from '@/lib/corpus/search-results'
 import type {
   DossierAccessMetadata,
   LegacyMedicineEvidenceBoundary,
@@ -77,7 +77,7 @@ export const api = {
   // The route answers with two lists: written records, and corpus records that have no written
   // record. `lib/corpus/search-results.ts` merges them into the one list a reader sees.
   search: (q: string, limit = 10) =>
-    request<{ results: SearchHit[]; corpusResults?: CorpusSearchResultRow[] }>(
+    request<{ results: SearchHit[]; corpusResults?: CorpusSearchResultRow[]; guideResults?: GuideSearchResultRow[] }>(
       `/api/search?q=${encodeURIComponent(q)}&limit=${limit}`,
     ),
 

@@ -306,7 +306,7 @@ describe('every reader statement carries its origin', () => {
     const model = buildDossierV4(inputs())
     expect(model.hero.simpleAction.origin).toBe('authored_record')
     expect(model.hero.simpleAction.state).toBe('source_checked_draft')
-    expect(model.hero.strongestGoalResult.origin).toBe('authored_record')
+    expect(model.hero.strongestGoalResult.origin).toBe('contract_sentence')
   })
 
   it('marks an approved first-read answer as reviewed, and only then', () => {
@@ -326,8 +326,8 @@ describe('every reader statement carries its origin', () => {
         },
       }),
     )
-    expect(model.hero.strongestGoalResult.origin).toBe('approved_first_read')
-    expect(model.hero.strongestGoalResult.state).toBe('reviewed_content')
+    // A fingerprint-approved summary is not an independently reviewed effect claim.
+    expect(model.hero.strongestGoalResult.origin).toBe('contract_sentence')
   })
 
   it('falls back to the contract sentence when the record holds no measured finding', () => {
@@ -354,13 +354,11 @@ describe('every reader statement carries its origin', () => {
   })
 })
 
-describe('the strongest result is the one closest to a person', () => {
-  it('prefers a strength result over a cell measurement recorded first', () => {
-    // The defect this guards: taking the first recorded finding led the page with a biopsy while a
-    // twelve-week randomised strength result sat below it in the same list.
+describe('a human result needs an exact reviewed claim', () => {
+  it('does not promote a legacy strength sentence into a reviewed result', () => {
     const model = buildDossierV4(inputs())
-    expect(model.hero.strongestGoalResult.text).toContain('Fixture strength rose')
-    expect(model.hero.outcomeType).toBe('Measured performance')
+    expect(model.hero.strongestGoalResult.text).toBe(NO_REVIEWED_CONCLUSION_SENTENCE)
+    expect(model.hero.resultScope).toBeNull()
   })
 
   it('reports the kind of result as unrecorded rather than guessing', () => {
@@ -376,7 +374,7 @@ describe('the strongest result is the one closest to a person', () => {
         }),
       }),
     )
-    expect(model.hero.outcomeType).toBe('The kind of result is not recorded')
+    expect(model.hero.outcomeType).toBe('No result is published, so no kind of result applies yet')
   })
 })
 
@@ -594,6 +592,14 @@ describe('absences are rendered, not dropped', () => {
 })
 
 describe('identity decides whether evidence carries', () => {
+  it('does not call a known incorrect substance merge identity-checked', () => {
+    const model = buildDossierV4(
+      inputs({ corpus: corpus({ slug: 'magnesium-glycinate', displayName: 'Magnesium glycinate' }) }),
+    )
+    expect(model.identity.identityVerified).toBe(false)
+    expect(model.identity.identityLabel).toBe('Identity correction in progress')
+  })
+
   it('marks a mirror form as not carrying the evidence on this page', () => {
     const model = buildDossierV4(inputs())
     const isomer = model.formCheck.entries.find((entry) => entry.relation === 'isomer_of')
@@ -694,10 +700,10 @@ describe('the next question is ranked by what prevents a misunderstanding', () =
     expect(model.nextQuestions[0]?.objective).toBe('Prevent a misunderstanding')
   })
 
-  it('surfaces a failed study before safety', () => {
+  it('does not link to an unverified result card', () => {
     const model = buildDossierV4(inputs())
     const targets = model.nextQuestions.map((question) => question.target)
-    expect(targets.indexOf('#human-results')).toBeLessThan(targets.indexOf('#safety'))
+    expect(targets).not.toContain('#human-results')
   })
 
   it('every question points at a section that exists', () => {

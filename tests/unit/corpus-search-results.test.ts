@@ -49,6 +49,7 @@ function search(rows: DrugSearch['rows'], patch: Partial<DrugSearch> = {}): Drug
     setQuery: () => {},
     results: [],
     corpusResults: [],
+    guideResults: [],
     rows,
     isSearching: false,
     isOpen: true,
