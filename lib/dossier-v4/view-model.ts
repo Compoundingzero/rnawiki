@@ -16,6 +16,7 @@
  * cannot drift apart on the things that matter most.
  */
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
+import { PUBLIC_IDENTITY_PROTECTIONS } from '@/lib/inventory/public-identity-protections'
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
 import {
   buildDossierV3,
@@ -877,6 +878,10 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
     routes: legacy?.deliverySystem?.type ? [legacy.deliverySystem.type] : [],
   })
   const identityCheck = v3.indexQuality.find((check) => check.check === 'identity_passed')
+  const knownIdentityConflict = Object.prototype.hasOwnProperty.call(
+    PUBLIC_IDENTITY_PROTECTIONS,
+    corpus.slug,
+  )
   return {
     canonicalName: v3.name,
     substanceType: classification.typeLabel,
@@ -887,10 +892,15 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
     availabilityBasis: classification.availabilityBasis,
     supervision: classification.supervision,
     jurisdictions: classification.jurisdictions,
-    identityVerified: identityCheck?.passed ?? false,
-    identityLabel: identityCheck?.passed ? 'Identity checked' : 'Identity not confirmed',
-    identityBasis:
-      identityCheck?.detail ?? 'RNAWiki has not run the identity check on this record.',
+    identityVerified: knownIdentityConflict ? false : (identityCheck?.passed ?? false),
+    identityLabel: knownIdentityConflict
+      ? 'Identity correction in progress'
+      : identityCheck?.passed
+        ? 'Identity checked'
+        : 'Identity not confirmed',
+    identityBasis: knownIdentityConflict
+      ? 'An earlier identity merge mapped this compound to a different substance. The record is not verified while that error is being corrected.'
+      : (identityCheck?.detail ?? 'RNAWiki has not run the identity check on this record.'),
     // Only a value that looks like a date is shown as one.
     lastSubstantiveReview: readableCheckDate(v3.lastEvidenceCheck),
   }
