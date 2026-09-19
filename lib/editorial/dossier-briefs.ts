@@ -63,15 +63,15 @@ const BALCHEM: BriefSource = {
 export const MAGNESIUM_GLYCINATE_DRAFT: DossierEditorialBrief = {
   slug: 'magnesium-glycinate',
   identity: {
-    text: 'Magnesium glycinate is a supplement form that joins magnesium to glycine. Magnesium is a mineral your body needs; the name of the form is not proof that it helps sleep or cramps.',
+    text: 'Magnesium glycinate is magnesium joined to glycine, a building block of protein. Your body needs magnesium; this form’s name does not prove it helps sleep or cramps.',
     source: PUBCHEM,
   },
   whyPeopleLook: {
-    text: 'Magnesium has become popular for sleep. This form can supply magnesium, but the name on a bottle does not tell you whether it improves insomnia.',
+    text: 'People often look for this form to sleep better. It supplies magnesium, but the name on the bottle does not tell you whether it will improve sleep trouble.',
     source: NCCIH_SLEEP,
   },
   mechanism: {
-    text: 'Think of magnesium as a helper that lets nerve cells, muscles and many enzymes do their jobs. The gut absorbs it and the kidneys help control how much stays in the body.',
+    text: 'Magnesium helps nerves and muscles work. It also helps tiny chemical workers inside cells do their jobs. Your gut takes it in; your kidneys help clear what your body does not need.',
     source: ODS,
   },
   bottomLine: {
