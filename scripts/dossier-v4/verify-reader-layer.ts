@@ -128,6 +128,13 @@ async function main(): Promise<void> {
     process.stdout.write(
       `  machinery in reader layer     : ${leaks.length === 0 ? 'none' : leaks.join(' | ')}\n`,
     )
+    /*
+     * The dose question is only honest when the record does not already state an amount. On the live
+     * creatine page it was asked and answered "the sources hold nothing" while the page printed
+     * "a single 5 g dose" two sections earlier, so this reports whether it is still being asked.
+     */
+    const asksDose = reader.includes('How much did people take in the studies?')
+    process.stdout.write(`  asks the dose question        : ${asksDose ? 'yes' : 'no'}\n`)
     process.stdout.write('\n')
   }
 
