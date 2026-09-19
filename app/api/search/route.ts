@@ -9,6 +9,10 @@ import { corpusRanksForSlugs, rankHitsByCorpusTier, searchCorpusPages } from '@/
 import { searchDrugs } from '@/lib/queries/drugs'
 import { PUBLIC_API } from '@/lib/rate-limit'
 import { ok, rateLimited, rateLimitKey, withHandler } from '@/lib/api-response'
+import {
+  protectedIdentityForQuery,
+  PUBLIC_IDENTITY_PROTECTIONS,
+} from '@/lib/inventory/public-identity-protections'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -60,12 +64,17 @@ export const GET = withHandler(async (req: Request) => {
     searchDrugs(query, limit),
     searchCorpusPages(query, limit),
   ])
-  const ranks = await corpusRanksForSlugs(legacyHits.map((hit) => hit.slug))
-  const results = rankHitsByCorpusTier(legacyHits, ranks).map((hit) => {
+  const protectedIdentity = protectedIdentityForQuery(query)
+  const validLegacyHits = legacyHits.filter(
+    (hit) =>
+      !protectedIdentity || hit.slug !== PUBLIC_IDENTITY_PROTECTIONS[protectedIdentity].wrongTarget,
+  )
+  const ranks = await corpusRanksForSlugs(validLegacyHits.map((hit) => hit.slug))
+  const results = rankHitsByCorpusTier(validLegacyHits, ranks).map((hit) => {
     const rank = ranks.get(hit.slug)
     return rank ? { ...hit, tier: rank.tier, presentFieldCount: rank.presentFieldCount } : hit
   })
-  const legacySlugs = new Set(legacyHits.map((hit) => hit.slug))
+  const legacySlugs = new Set(validLegacyHits.map((hit) => hit.slug))
   const corpusResults = corpusHits.filter((hit) => !legacySlugs.has(hit.slug))
   return ok({ results, corpusResults })
 })

@@ -13,6 +13,10 @@ import { inArray, sql } from 'drizzle-orm'
 
 import { db } from '@/db'
 import { corpusPages } from '@/db/schema'
+import {
+  protectedIdentityForQuery,
+  PUBLIC_IDENTITY_PROTECTIONS,
+} from '@/lib/inventory/public-identity-protections'
 
 export interface CorpusSearchHit {
   slug: string
@@ -95,15 +99,22 @@ export async function searchCorpusPages(query: string, limit: number): Promise<C
     limit ${capped}
   `)
 
-  return result.rows.map((row) => ({
-    slug: row.slug,
-    name: row.display_name,
-    tier: Number(row.tier),
-    model: row.model,
-    presentFieldCount: Number(row.present_field_count),
-    applicableFieldCount: Number(row.applicable_field_count),
-    indexable: Boolean(row.indexable),
-  }))
+  const protectedIdentity = protectedIdentityForQuery(trimmed)
+  return result.rows
+    .filter(
+      (row) =>
+        !protectedIdentity ||
+        row.slug !== PUBLIC_IDENTITY_PROTECTIONS[protectedIdentity].wrongTarget,
+    )
+    .map((row) => ({
+      slug: row.slug,
+      name: row.display_name,
+      tier: Number(row.tier),
+      model: row.model,
+      presentFieldCount: Number(row.present_field_count),
+      applicableFieldCount: Number(row.applicable_field_count),
+      indexable: Boolean(row.indexable),
+    }))
 }
 
 /** The tier and field counts of the corpus records behind a set of legacy slugs. */
