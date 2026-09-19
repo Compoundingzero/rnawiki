@@ -39,21 +39,34 @@ const PUBCHEM: BriefSource = {
   label: 'PubChem CID 84645: magnesium glycinate identity',
   url: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
 }
-const NCCIH_SLEEP: BriefSource = {
-  label: 'NIH NCCIH: magnesium supplements and sleep',
-  url: 'https://www.nccih.nih.gov/health/in-the-news-magnesium-supplements-for-sleep-disorders',
-}
 const SCHUETTE: BriefSource = {
   label: 'Schuette et al., 1994, randomized crossover study',
   url: 'https://pubmed.ncbi.nlm.nih.gov/7815675/',
 }
+const SCHUSTER_SLEEP: BriefSource = {
+  label: 'Schuster et al., 2025, magnesium bisglycinate sleep trial',
+  url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12412596/',
+}
+/** One source-bound worked example shared by the dossier draft and /life-test. */
+export const MAGNESIUM_SLEEP_STUDY = {
+  source: SCHUSTER_SLEEP,
+  registryUrl: 'https://drks.de/search/en/trial/DRKS00031494',
+  claim: 'Magnesium bisglycinate helps people sleep better.',
+  randomized: 155,
+  primaryAnalysis: 153,
+  ages: '18–65',
+  durationWeeks: 4,
+  measure: 'Insomnia Severity Index, a seven-question score about sleep problems and their impact',
+  scoreDropMagnesium: 3.9,
+  scoreDropPlacebo: 2.3,
+  extraScoreDrop: 1.6,
+  effectSize: 0.2,
+  measuredByDevice: false,
+  showedClearOtherQuestionnaireBenefit: false,
+} as const
 const COCHRANE: BriefSource = {
   label: 'Cochrane review: magnesium for muscle cramps',
   url: 'https://www.cochrane.org/evidence/CD009402_magnesium-muscle-cramps',
-}
-const ABBASI: BriefSource = {
-  label: 'Abbasi et al., 2012, insomnia trial',
-  url: 'https://pubmed.ncbi.nlm.nih.gov/23853635/',
 }
 const BALCHEM: BriefSource = {
   label: 'Balchem: magnesium lysinate glycinate chelate identity',
@@ -67,16 +80,16 @@ export const MAGNESIUM_GLYCINATE_DRAFT: DossierEditorialBrief = {
     source: PUBCHEM,
   },
   whyPeopleLook: {
-    text: 'People often look for this form to sleep better. It supplies magnesium, but the name on the bottle does not tell you whether it will improve sleep trouble.',
-    source: NCCIH_SLEEP,
+    text: 'People buy this form hoping it helps sleep. A 2025 trial tested magnesium bisglycinate against a look-alike pill in adults reporting poor sleep.',
+    source: SCHUSTER_SLEEP,
   },
   mechanism: {
     text: 'Magnesium helps nerves and muscles work. It also helps tiny chemical workers inside cells do their jobs. Your gut takes it in; your kidneys help clear what your body does not need.',
     source: ODS,
   },
   bottomLine: {
-    text: 'The direct form comparison measured absorption in 12 people with intestinal surgery. It did not test whether magnesium glycinate improves sleep or cramps.',
-    source: SCHUETTE,
+    text: `In one ${MAGNESIUM_SLEEP_STUDY.durationWeeks}-week study, people taking magnesium bisglycinate reported a small extra drop in insomnia symptoms versus a look-alike pill. The study did not establish better sleep by an objective measure or better everyday functioning.`,
+    source: SCHUSTER_SLEEP,
   },
   safety: [
     {
@@ -89,6 +102,15 @@ export const MAGNESIUM_GLYCINATE_DRAFT: DossierEditorialBrief = {
     },
   ],
   studies: [
+    {
+      question: 'Does magnesium bisglycinate help with poor sleep?',
+      finding: {
+        text: `Researchers randomly assigned ${MAGNESIUM_SLEEP_STUDY.randomized} adults aged ${MAGNESIUM_SLEEP_STUDY.ages} who reported poor sleep to magnesium bisglycinate or a look-alike pill for ${MAGNESIUM_SLEEP_STUDY.durationWeeks} weeks. The insomnia questionnaire score fell by ${MAGNESIUM_SLEEP_STUDY.scoreDropMagnesium} points in the magnesium group and ${MAGNESIUM_SLEEP_STUDY.scoreDropPlacebo} points in the other group: a small ${MAGNESIUM_SLEEP_STUDY.extraScoreDrop}-point average difference. The main analysis included ${MAGNESIUM_SLEEP_STUDY.primaryAnalysis} people.`,
+        source: SCHUSTER_SLEEP,
+      },
+      boundary:
+        'This was a self-reported symptom score, not a sleep-monitor result. Other sleep and daytime questionnaires did not show a clear difference between groups. The study does not establish lasting benefit or that a reader will feel noticeably better.',
+    },
     {
       question: 'Is glycinate absorbed better than magnesium oxide?',
       finding: {
@@ -106,15 +128,6 @@ export const MAGNESIUM_GLYCINATE_DRAFT: DossierEditorialBrief = {
       },
       boundary:
         'The review pooled magnesium forms. It did not establish a separate benefit for glycinate, and it found no trials of exercise cramps.',
-    },
-    {
-      question: 'Does it help sleep?',
-      finding: {
-        text: 'One small trial in 46 older people with insomnia tested magnesium oxide, not glycinate. Some sleep questionnaire measures improved against placebo, but that does not answer whether glycinate helps a younger healthy person.',
-        source: ABBASI,
-      },
-      boundary:
-        'The form and people differ from many supplement buyers. A small result in a different product is a question to investigate, not a glycinate verdict.',
     },
   ],
   interactions: [

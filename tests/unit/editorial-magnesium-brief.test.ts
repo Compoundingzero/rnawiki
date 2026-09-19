@@ -24,10 +24,13 @@ describe('the magnesium glycinate editorial quality gate', () => {
     }
   })
 
-  it('does not transfer magnesium oxide or diglycinate results to the glycinate product', () => {
+  it('leads with the direct bisglycinate trial and bounds older form comparisons', () => {
     const sleep = brief.studies.find((study) => study.question.includes('sleep'))
     const absorption = brief.studies.find((study) => study.question.includes('absorbed'))
-    expect(sleep?.finding.text).toContain('magnesium oxide, not glycinate')
+    expect(sleep?.finding.source.url).toContain('PMC12412596')
+    expect(sleep?.finding.text).toContain('155 adults')
+    expect(sleep?.finding.text).toContain('1.6-point')
+    expect(sleep?.boundary).toContain('not a sleep-monitor result')
     expect(absorption?.boundary).toContain('not sleep or cramps')
     expect(absorption?.boundary).toContain('lysinate glycinate')
   })

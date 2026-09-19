@@ -18,11 +18,19 @@ import { SourceList } from '@/components/dossier/corpus/SourceList'
 import { MissingRecordNotice, PublicationBanner, SubstanceIdentityStrip } from './Orientation'
 import { Disclosure, Sources } from './Primitives'
 
-function ReaderNav({ hasForms, hasInteractions }: { hasForms: boolean; hasInteractions: boolean }) {
+function ReaderNav({
+  hasForms,
+  hasInteractions,
+  hasHumanResults = true,
+}: {
+  hasForms: boolean
+  hasInteractions: boolean
+  hasHumanResults?: boolean
+}) {
   const links = [
     ['#answer', 'The short answer'],
     ['#safety', 'Safety'],
-    ['#human-results', 'What happened in people'],
+    ...(hasHumanResults ? ([['#human-results', 'What happened in people']] as const) : []),
     ...(hasInteractions ? ([['#interactions', 'Interactions']] as const) : []),
     ...(hasForms ? ([['#forms', 'Forms and related names']] as const) : []),
     ['#sources', 'Sources and record'],
@@ -44,6 +52,10 @@ function ReaderNav({ hasForms, hasInteractions }: { hasForms: boolean; hasIntera
 function ShortAnswer({ model }: { model: DossierV4ViewModel }) {
   const { hero } = model
   const hasUse = hero.whyPeopleCare.origin !== 'absent'
+  const openingRepeatsUse =
+    hasUse &&
+    hero.simpleAction.text.trim().replace(/\s+/g, ' ').toLowerCase() ===
+      hero.whyPeopleCare.text.trim().replace(/\s+/g, ' ').toLowerCase()
   const reviewedResult =
     hero.strongestGoalResult.origin === 'reviewed_claim' &&
     hero.principalUncertainty.origin === 'reviewed_claim' &&
@@ -58,10 +70,12 @@ function ShortAnswer({ model }: { model: DossierV4ViewModel }) {
             <p>{hero.whyPeopleCare.text}</p>
           </div>
         ) : null}
-        <div>
-          <h3>{hasUse ? 'How it works' : 'What this record says'}</h3>
-          <p>{hero.simpleAction.text}</p>
-        </div>
+        {!openingRepeatsUse ? (
+          <div>
+            <h3>What this record says</h3>
+            <p>{hero.simpleAction.text}</p>
+          </div>
+        ) : null}
       </div>
       {reviewedResult ? (
         <div className="dv4-simple-result">
@@ -84,10 +98,11 @@ function ShortAnswer({ model }: { model: DossierV4ViewModel }) {
           study alone does not tell us whether it helped.
         </p>
       )}
-      <Disclosure summary="Where the opening explanation came from">
-        <p>{hero.simpleAction.basis}</p>
-        <Sources sources={hero.simpleAction.sources} />
-      </Disclosure>
+      {hero.simpleAction.sources.length > 0 || hero.whyPeopleCare.sources.length > 0 ? (
+        <Disclosure summary="Source for the opening">
+          <Sources sources={[...hero.simpleAction.sources, ...hero.whyPeopleCare.sources]} />
+        </Disclosure>
+      ) : null}
     </section>
   )
 }
@@ -386,6 +401,10 @@ export function CompassPage({
       (name) => !/component of|\s\/\s|\b\d+\s*(?:mg|mcg|ml|iu)\b/i.test(name),
     )
   const hasInteractions = model.stack.entries.some((entry) => entry.sources.length > 0)
+  const hasHumanResults =
+    (model.hero.strongestGoalResult.origin === 'reviewed_claim' &&
+      model.hero.resultScope !== null) ||
+    (model.v3.doesItWork.registry?.tested ?? 0) > 0
   return (
     <div
       className="dv4-root dv4-simple"
@@ -411,10 +430,14 @@ export function CompassPage({
       ) : (
         <div className="dv4-simple-grid">
           <ShortAnswer model={model} />
-          <ReaderNav hasForms={hasForms} hasInteractions={hasInteractions} />
+          <ReaderNav
+            hasForms={hasForms}
+            hasInteractions={hasInteractions}
+            hasHumanResults={hasHumanResults}
+          />
           <div className="dv4-simple-body">
             <SafetyFirst corpus={corpus} model={model} />
-            <HumanEvidence model={model} />
+            {hasHumanResults ? <HumanEvidence model={model} /> : null}
             {hasInteractions ? <Interactions model={model} /> : null}
             {hasForms ? <Forms corpus={corpus} model={model} /> : null}
             <RecordAndSources corpus={corpus} model={model} />
