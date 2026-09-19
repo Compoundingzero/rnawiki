@@ -32,7 +32,14 @@ export function ApplicabilityMirror({
       id="applicability"
       label="Were people like you studied?"
       lane="uncertainty"
-      lede="RNAWiki cannot tell whether a study fits you. It can show who was in it, and where the result stops carrying."
+      /*
+       * The lede used to read "RNAWiki cannot tell whether a study fits you. It can show who was in
+       * it, and where the result stops carrying." — the same sentence the callout at the foot of this
+       * section renders, minus its last clause. A reader met it twice in one section. The callout
+       * keeps the honesty statement, where it lands after the reader has seen the data; the lede now
+       * says what the section shows instead of repeating it.
+       */
+      lede="Who a study included, who it left out, and where the result stops carrying."
       state={applicability.state}
     >
       <div className="dv4-two">
