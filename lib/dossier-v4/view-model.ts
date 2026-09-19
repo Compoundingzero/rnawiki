@@ -2477,11 +2477,18 @@ function buildMeasurement(
       },
       {
         label: 'Pick one thing to watch',
+        /*
+         * This used to print three raw registry terms - "brachial artery flow mediated dilation;
+         * glycated hemoglobin; blood arsenic concentrations" on the creatine page. They are the same
+         * strings the felt-measured section used to dump, and on a page about one substance they
+         * mostly belong to other substances' trials. Found by re-checking the live page after the
+         * first fix, not by assuming one renderer was the only one.
+         *
+         * The names still exist, one click away, under "The registered names" in the section that
+         * exists to distinguish them. This sentence now points there instead of repeating them.
+         */
         text: measurable.length
-          ? `Registered studies measured things like: ${measurable
-              .map((entry) => entry.term)
-              .slice(0, 3)
-              .join('; ')}.`
+          ? 'Registered studies measured things a test or a scale shows. Pick one of those names from the list under felt, measured or meaningful.'
           : 'No registered study lists a measure RNAWiki could read for this.',
       },
       {
