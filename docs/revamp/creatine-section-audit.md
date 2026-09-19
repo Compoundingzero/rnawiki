@@ -35,9 +35,9 @@ destroy real value and would risk inventing facts on a medical page.
 | `no-response` (Seems to do nothing) | 49 | **Acceptable.** One closed disclosure carries the 11 non-applying reasons with the count in its summary. |
 | `what-is-missing` | 9 | **Good.** |
 | **`felt-measured-meaningful`** (Felt or measured) | 54 | **SLOP. The worst block on the page.** |
-| **`drug-story`** (Its story) | 7 | **SLOP. A heading, a justification, nothing to show.** |
+| **`drug-story`** (Its story) | 7 | **Half slop.** It does carry a real fact — "The earliest marketing start date recorded for a listed product is 19840815", sourced to the FDA National Drug Code directory — but it opens with a lede that justifies its own size instead of being small. |
 
-## The three bad blocks, verbatim
+## The bad blocks, verbatim
 
 **1. `felt-measured-meaningful` prints raw registry outcome-measure names from other substances'
 trials.** Under "Things only a test, a scale or a device shows" a reader is given:
@@ -65,10 +65,9 @@ registry strings: lowercase, unpunctuated, and carrying typos (`clincal`, `child
 slop.** The section's *idea* is good — felt, measured and meaningful are three different things and
 confusing them is how a blood test becomes a health claim — but the *content* is a dump.
 
-**2. `drug-story` shows nothing.** Seven lines: a heading, "Kept near the foot of the page. A
-historical event moves up only when it changes something about this substance today", and "What the
-approval register records". It explains why it is small instead of being small. A section that
-justifies its own existence is furniture.
+**2. `drug-story` justifies its own size.** It does carry a real fact — "The earliest marketing start date recorded for a listed product is 19840815", sourced to the FDA National Drug Code directory — but it opens with "Kept near the foot of the page. A historical event moves up only when it changes something about this substance today." A section that explains why it is small instead of being small is furniture.
+
+**Correction.** An earlier revision of this note called this section empty and said it showed nothing. It does not. The read behind that claim was truncated at seven lines, and the fact is on the eighth. The section's state is also honest: `buildStory` sets `source_checked_draft` only when it has entries or regulatory facts, so it is not a state bug either.
 
 **3. Duplicated meta-commentary.** `applicability` says the same thing twice in consecutive
 sentences: "This is a scope explorer, not a diagnosis engine. It shows who was studied so you can see
@@ -98,8 +97,7 @@ already on disk under CC0 for the records that have them
    substance. Anything that fits none of the three either gets a plain-language gloss or moves behind
    the existing "receipts" fold. No lowercase registry strings in the reader layer, and the typo
    class (`clincal`, `children s`, `hamd`) is itself a bug to fix at the source.
-2. **`drug-story`: delete when it holds nothing.** Let `what-is-missing` name it, as the design
-   already does for other empty sections.
+2. **`drug-story`: drop the self-justifying lede.** The section holds a real fact and its state is honest, so it should not be deleted. The lede is the slop, not the section.
 3. **Answer-first order.** A beginner arrives with five questions: what does it do, how much, when,
    how long until I notice, what could go wrong. The page currently answers 1 and 5 well and 2, 3
    and 4 not at all. Put the answers that exist in the first screen; keep provenance behind folds.
