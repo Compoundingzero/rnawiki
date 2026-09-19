@@ -2616,6 +2616,28 @@ function buildUnknowns(
   const fieldGaps = Object.entries(inputs.fields)
     .filter(([, value]) => value.state === 'absent')
     .map(([field]) => field)
+  /*
+   * The dose question is only honest when the record does not already state an amount.
+   *
+   * Measured on the live creatine page: this section asked "How much did people take in the
+   * studies?" and answered "The sources RNAWiki checked hold nothing for this field", while
+   * `body-journey` two sections earlier printed "a single 5 g dose in subjects of 76 to 87 kg". The
+   * structured `doseStudied` field is genuinely empty; the record's own prose is not, and it lives in
+   * the curated mechanism steps. A page that shows an amount and then says it holds none reads as
+   * broken, and for a beginner biohacker "how much" is the first question after "what does it do".
+   *
+   * The check is deliberately conservative: it suppresses the question only when the record's own
+   * text states a quantity with a unit. A record that says nothing about an amount still gets the
+   * question, which is the honest outcome for it.
+   */
+  const DOSE_STATED = /\b\d+(?:[.,]\d+)?\s?(?:g|mg|µg|mcg|kg|grams?|milligrams?|micrograms?|iu)\b/iu
+  const recordStatesAnAmount = (inputs.legacyRecord?.mechanismSteps ?? []).some(
+    (step) =>
+      DOSE_STATED.test(step.molecularDetail ?? '') || DOSE_STATED.test(step.laymanDesc ?? ''),
+  )
+  const gaps = recordStatesAnAmount
+    ? fieldGaps.filter((field) => field !== 'doseStudied')
+    : fieldGaps
   const readable: Record<string, { question: string; matters: string }> = {
     contraindications: {
       question: 'Who should not take this?',
@@ -2642,7 +2664,7 @@ function buildUnknowns(
       matters: 'It sets whether a realistic amount could do anything at all.',
     },
   }
-  const entries: UnknownEntry[] = fieldGaps
+  const entries: UnknownEntry[] = gaps
     .filter((field) => field in readable)
     .map((field) => ({
       question: readable[field]?.question ?? '',
