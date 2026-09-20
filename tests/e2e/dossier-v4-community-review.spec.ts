@@ -18,11 +18,8 @@ import {
  * signatures on a sentence. Review now lives only at /review-queue, reached from the footer link
  * every page carries.
  *
- * So the first job of this file is to prove the page carries neither the banner nor the control,
- * and that the review machinery leaves no trace on it at all. The second is the part that is easy
- * to lose: the approved V4 design and the approved wording are not this task's to change, so the
- * layout, the left rail, the purpose controls and the section order are asserted here as a
- * regression guard rather than trusted to review.
+ * This also protects the current reader layout: a short answer, safety, optional evidence and
+ * forms, and sources. The page must remain useful without making the review process its headline.
  */
 
 test.describe.configure({ mode: 'serial' })
@@ -95,13 +92,11 @@ test('nothing replaced the banner, and the reader content moved up', async ({ pa
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
   const strip = await page.locator('.dv4-strip').boundingBox()
-  const purpose = await page.locator('.dv4-purpose').boundingBox()
-  const headline = await page.locator('.dv4-hero-action').boundingBox()
+  const answer = await page.locator('#answer').boundingBox()
 
-  // The identity strip runs straight into the purpose controls. The old banner was over 130 px
-  // tall and sat between them; the control that briefly replaced it was about 44.
-  expect((purpose?.y ?? 0) - ((strip?.y ?? 0) + (strip?.height ?? 0))).toBeLessThan(60)
-  expect(headline?.y ?? 0).toBeLessThan(700)
+  // The identity strip runs into the answer without an interstitial review status panel.
+  expect((answer?.y ?? 0) - ((strip?.y ?? 0) + (strip?.height ?? 0))).toBeLessThan(80)
+  expect(answer?.y ?? 0).toBeLessThan(700)
 })
 
 /* --------------------------------------- no review surface on a reader page */
@@ -164,66 +159,54 @@ test('a signed-out reader is not asked to sign in to read, or to review', async 
 
 /* ------------------------------------------- the repeated status paragraph */
 
-test('a statement carries a short origin line, not a repeated paragraph', async ({ page }) => {
+test('the answer keeps its source reachable without a repeated review paragraph', async ({
+  page,
+}) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
   const text = await readerText(page)
 
-  // The long explanation is still available, one click away, inside the provenance disclosure.
   expect(text).not.toContain(
     'A person wrote this into the record with the study named beside it. No reviewer has signed it off.',
   )
-  const origins = page.locator('.dv4-origin')
-  expect(await origins.count()).toBeGreaterThan(0)
-  await expect(origins.first()).toContainText(/Source-linked record|Reviewed|Quoted|fixed RNAWiki/)
-  // Every origin line is short enough that a reader does not learn to skip it.
-  for (const line of await origins.allTextContents()) {
-    expect(line.trim().length).toBeLessThan(70)
-  }
+  const source = page.locator('#answer details').filter({ hasText: 'Source for the opening' })
+  await expect(source).toHaveCount(1)
+  await source.locator('summary').click()
+  await expect(source).toContainText('US prescribing information')
 })
 
 /* --------------------------------------------- the approved design is intact */
 
-test('the approved compass layout survived the change', async ({ page }) => {
+test('the reader layout retains answer, safety, sources and working navigation', async ({
+  page,
+}) => {
   const { slug, name } = requireFixture()
   await page.goto(`/d/${slug}`)
 
-  // Identity strip, promise, purpose controls, left rail, hero, both right-hand components.
+  // Identity, answer, safety, a rail whose destinations exist, and source access.
   await expect(page.locator('.dv4-strip h1')).toHaveText(name)
   await expect(page.locator('.dv4-strip-facts li').first()).toBeVisible()
-  await expect(page.locator('.dv4-purpose')).toContainText('What brought you here?')
   await expect(page.locator('.dv4-nav')).toContainText('On this page')
-  await expect(page.locator('.dv4-hero-action')).toBeVisible()
-  await expect(page.locator('[data-block="strongest-result"]')).toContainText(
-    'What happened in people',
-  )
-  await expect(page.locator('[data-block="principal-uncertainty"]')).toContainText(
-    'The limit that matters most',
-  )
-  await expect(page.locator('.dv4-hero-aside')).toContainText('The path this takes')
-  await expect(page.locator('.dv4-hero-aside')).toContainText('The change it makes')
-  await expect(page.locator('#technical-record')).toBeVisible()
+  await expect(page.locator('#answer')).toBeVisible()
+  await expect(page.locator('#safety')).toBeVisible()
+  await expect(page.locator('#sources')).toBeVisible()
   await expect(page.locator('main')).toHaveCount(1)
 
-  // Section order is unchanged: the technical record stays below the reader layer.
-  const hero = await page.locator('#substance-action').boundingBox()
-  const technical = await page.locator('#technical-record').boundingBox()
-  expect(hero?.y ?? 0).toBeLessThan(technical?.y ?? 0)
+  for (const href of await page
+    .locator('.dv4-nav a[href^="#"]')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href') ?? ''))) {
+    await expect(page.locator(href)).toHaveCount(1)
+  }
+  const answer = await page.locator('#answer').boundingBox()
+  const sources = await page.locator('#sources').boundingBox()
+  expect(answer?.y ?? 0).toBeLessThan(sources?.y ?? 0)
 })
 
-test('the order of the compass sections did not change', async ({ page }) => {
+test('the reader sections follow the question before the record', async ({ page }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
   const ids = await page.locator('section[id]').evaluateAll((nodes) => nodes.map((node) => node.id))
-  const expected = [
-    'substance-action',
-    'goal-fingerprint',
-    'human-results',
-    'evidence-staircase',
-    'body-journey',
-  ]
-  const seen = ids.filter((id) => expected.includes(id))
-  expect(seen).toEqual(expected)
+  expect(ids).toEqual(['answer', 'safety', 'forms', 'sources', 'change-history'])
 })
 
 /* -------------------------------------------------- narrow and accessible */
@@ -235,7 +218,8 @@ for (const width of [1440, 1024, 768, 390, 320]) {
     await page.goto(`/d/${slug}`)
 
     await expect(page.locator('.dv4-strip h1')).toBeVisible()
-    await expect(page.locator('.dv4-purpose')).toBeVisible()
+    await expect(page.locator('#answer')).toBeVisible()
+    await expect(page.locator(width < 896 ? '.dv4-mobile-contents' : '.dv4-nav')).toBeVisible()
 
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,

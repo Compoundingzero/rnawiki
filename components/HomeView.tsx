@@ -48,16 +48,26 @@ export function HomeView({
       <section className="text-center space-y-6 sm:space-y-8">
         <div className="space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1D1D1F] leading-tight">
-            Understand any drug <br />
-            in <span className="text-[#0071E3]">10 seconds</span>.
+            Will this health claim help with what you actually want to keep doing?
           </h1>
 
           <p className="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto leading-relaxed">
-            See what it changes in the body, what human studies found, and what is still unknown.
+            Check who was studied, what changed, what remains unknown, and the original source.
           </p>
         </div>
 
         <HomeSearch popular={popular} />
+
+        <p className="text-sm text-[#4A5260]">
+          New to evidence checks?{' '}
+          <Link
+            href="/life-test"
+            className="font-semibold text-[#075AB2] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075AB2]"
+          >
+            Walk through one sleep claim
+          </Link>
+          . Drug records vary in what their sources can establish.
+        </p>
 
         {/*
           The goal-first entry (docs/dossier-information-architecture.md). Each link opens the

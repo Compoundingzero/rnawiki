@@ -77,9 +77,11 @@ export const api = {
   // The route answers with two lists: written records, and corpus records that have no written
   // record. `lib/corpus/search-results.ts` merges them into the one list a reader sees.
   search: (q: string, limit = 10) =>
-    request<{ results: SearchHit[]; corpusResults?: CorpusSearchResultRow[]; guideResults?: GuideSearchResultRow[] }>(
-      `/api/search?q=${encodeURIComponent(q)}&limit=${limit}`,
-    ),
+    request<{
+      results: SearchHit[]
+      corpusResults?: CorpusSearchResultRow[]
+      guideResults?: GuideSearchResultRow[]
+    }>(`/api/search?q=${encodeURIComponent(q)}&limit=${limit}`),
 
   getDrug: (slug: string) =>
     request<{

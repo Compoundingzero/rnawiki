@@ -146,9 +146,10 @@
   flex-basis: 100%;
   font-size: clamp(2rem, 4vw, 2.85rem);
   margin-right: 0.25rem;
+  overflow-wrap: anywhere;
 }
 
-/* The reader first sees an answer; the standing contents rail follows it in DOM order on phones. */
+/* The compact contents control precedes the medicine name on small screens. */
 .dv4-simple-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -210,6 +211,11 @@
   font-size: 0.94rem;
 }
 
+.dv4-simple-note a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .dv4-simple-nav {
   padding: 0;
 }
@@ -225,10 +231,37 @@
   padding: 0.55rem 0.4rem;
 }
 
+.dv4-simple-nav a:focus-visible,
+.dv4-simple-section h2:focus-visible,
+.dv4-simple-answer h2:focus-visible {
+  outline: 3px solid var(--dv4-accent);
+  outline-offset: 3px;
+}
+
 .dv4-simple-body > * + * {
   border-top: 1px solid var(--dv4-hairline);
   margin-top: 2rem;
   padding-top: 2rem;
+}
+
+.dv4-simple-path {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.dv4-simple-path li {
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 0.6rem;
+  padding: 0.85rem;
+}
+
+.dv4-simple-path li > strong {
+  display: block;
+  margin-bottom: 0.35rem;
 }
 
 .dv4-simple-section,
@@ -257,34 +290,42 @@
   margin: 0 0 0.8rem;
 }
 
-.dv4-editorial-status {
-  color: var(--dv4-ink-muted);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.dv4-safety-interactions {
+  border-top: 1px solid var(--dv4-hairline);
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+}
+
+.dv4-safety-interactions h3 {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
 }
 
 .dv4-editorial-line {
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.75rem;
 }
 
 .dv4-editorial-line p {
   font-size: 1.08rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0;
 }
 
-.dv4-editorial-line a,
-.dv4-editorial-bottom + a {
+.dv4-editorial-cite {
   display: inline-block;
-  font-size: 0.84rem;
-  min-height: 2rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  min-height: 1.7rem;
+  min-width: 1.7rem;
+  padding-inline: 0.2rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15rem;
 }
 
-.dv4-editorial-bottom {
-  border-left: 3px solid var(--dv4-accent);
-  font-size: 1.18rem;
-  margin-top: 1.2rem !important;
-  padding-left: 0.9rem;
+.dv4-editorial-references {
+  font-size: 0.95rem;
+  margin-top: 0.5rem !important;
 }
 
 .dv4-editorial-study + .dv4-editorial-study {
@@ -298,6 +339,244 @@
   font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 0.45rem;
+}
+
+/* A study is readable as who / measure / result / limit, with the source kept beside it. */
+.dv4-study-snapshots {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.dv4-study-snapshot {
+  background: var(--dv4-surface);
+  border: 1px solid var(--dv4-hairline);
+  border-radius: 0.65rem;
+  padding: 0.9rem 1rem;
+}
+
+.dv4-study-snapshot h3 {
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  overflow-wrap: anywhere;
+}
+
+.dv4-study-snapshot dl {
+  display: grid;
+  gap: 0 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.dv4-study-snapshot dl > div {
+  border-top: 1px solid var(--dv4-hairline);
+  min-width: 0;
+  padding: 0.65rem 0;
+}
+
+.dv4-study-snapshot dl > div:nth-child(n + 3) {
+  grid-column: 1 / -1;
+}
+
+.dv4-study-snapshot dt {
+  color: var(--dv4-ink-muted);
+  font-size: 0.87rem;
+  font-weight: 700;
+}
+
+.dv4-study-snapshot dd {
+  margin: 0.15rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.dv4-study-snapshot .dv4-simple-note {
+  margin: 0.4rem 0 0;
+}
+
+@media (max-width: 38rem) {
+  .dv4-study-snapshot dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dv4-editorial-questions {
+  margin: 0;
+}
+
+.dv4-editorial-questions > div {
+  border-top: 1px solid var(--dv4-hairline);
+  padding: 0.75rem 0 0.25rem;
+}
+
+.dv4-editorial-questions dt {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.dv4-editorial-questions dd {
+  margin: 0.3rem 0 0;
+}
+
+.dv4-editorial-questions .dv4-editorial-line p {
+  font-size: 1.02rem;
+}
+
+.dv4-population-boundary {
+  border-block: 1px solid var(--dv4-hairline);
+  margin: 0 0 0.8rem;
+  padding: 0.8rem 0;
+}
+
+.dv4-population-boundary figcaption {
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.dv4-population-boundary-groups {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.6rem;
+}
+
+.dv4-population-boundary-groups > div {
+  border-left: 3px solid var(--dv4-accent);
+  padding-left: 0.7rem;
+}
+
+.dv4-population-boundary-groups > div + div {
+  border-left-color: var(--dv4-caution);
+}
+
+.dv4-population-boundary h3 {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.dv4-population-boundary ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.dv4-population-boundary p {
+  font-size: 0.94rem;
+  margin: 0.7rem 0 0;
+}
+
+.dv4-population-boundary p a {
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+@media (max-width: 32rem) {
+  .dv4-population-boundary-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dv4-simple-section > h3 {
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.5rem;
+}
+
+/* One reusable, directly labelled comparison for a study with actual arm-level numbers. */
+.ev-change {
+  border-block: 1px solid #d5d9df;
+  margin: 1rem 0;
+  max-width: 42rem;
+  padding: 1rem 0;
+}
+
+.ev-change figcaption {
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.ev-change p {
+  margin: 0.2rem 0 0.8rem;
+}
+
+.ev-change-rows {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.ev-change-row {
+  align-items: center;
+  display: grid;
+  gap: 0.4rem 0.8rem;
+  grid-template-columns: minmax(9rem, 12rem) minmax(5rem, 1fr) 7rem;
+}
+
+.ev-change-row > span,
+.ev-change-row > strong {
+  font-size: 0.94rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.ev-change-row > strong {
+  text-align: right;
+}
+
+.ev-change-track {
+  background: #dfe5ec;
+  height: 0.8rem;
+  position: relative;
+}
+
+.ev-change-track > span {
+  background: #175f9e;
+  display: block;
+  height: 100%;
+}
+
+.ev-change-row + .ev-change-row .ev-change-track > span {
+  background: #565e69;
+}
+
+.ev-change-axis {
+  color: #555d68;
+  display: flex;
+  font-size: 0.8rem;
+  justify-content: space-between;
+  margin: 0.2rem 7rem 0 12.8rem;
+}
+
+.ev-change-takeaway {
+  margin-top: 0.9rem !important;
+}
+
+.ev-change-footnote {
+  color: #4b5361;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 56rem) {
+  .ev-change-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .ev-change-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .ev-change-row > strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ev-change-axis {
+    margin: 0.2rem 0 0;
+  }
 }
 
 @media (min-width: 56rem) {
@@ -1652,9 +1931,120 @@
   white-space: normal;
 }
 
+.dv4-root .dv4-simple-nav a[aria-current='location'] {
+  border-left: 3px solid currentColor;
+  font-weight: 700;
+  padding-left: 0.65rem;
+}
+
+.dv4-root .dv4-mobile-contents {
+  display: none;
+}
+
+@media (max-width: 55.999rem) {
+  .dv4-root .dv4-simple-nav {
+    display: none;
+  }
+
+  .dv4-root .dv4-mobile-contents {
+    align-self: start;
+    background: #fff;
+    border: 1px solid var(--dv4-hairline);
+    border-radius: 0.65rem;
+    display: block;
+    margin: 0.5rem auto 0;
+    max-width: var(--dv4-canvas);
+    position: static;
+    top: 3.65rem;
+    width: 100%;
+    z-index: 30;
+  }
+  html.reader-nav-enhanced .dv4-root .dv4-mobile-contents {
+    position: sticky;
+  }
+
+  .dv4-root .dv4-mobile-contents summary {
+    cursor: pointer;
+    font-weight: 700;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .dv4-root .dv4-mobile-contents summary:focus-visible,
+  .dv4-root .dv4-mobile-contents a:focus-visible {
+    outline: 3px solid var(--dv4-accent);
+    outline-offset: 2px;
+  }
+
+  .dv4-root .dv4-mobile-contents nav {
+    border-top: 1px solid var(--dv4-hairline);
+    max-height: min(50dvh, 25rem);
+    overflow-y: auto;
+    padding: 0.2rem 0.5rem 0.5rem;
+  }
+
+  .dv4-root .dv4-mobile-contents ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dv4-root .dv4-mobile-contents a {
+    display: block;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.4rem;
+  }
+
+  .dv4-root .dv4-mobile-contents a[aria-current='location'] {
+    border-left: 3px solid currentColor;
+    font-weight: 700;
+    padding-left: 0.65rem;
+  }
+
+  .dv4-root .dv4-simple-section,
+  .dv4-root .dv4-simple-answer,
+  .dv4-root .dv4-section {
+    /* Without the enhancement the disclosure stays in flow; no sticky offset is needed. */
+    scroll-margin-top: 2rem;
+  }
+
+  html.reader-nav-enhanced .dv4-root .dv4-simple-section,
+  html.reader-nav-enhanced .dv4-root .dv4-simple-answer,
+  html.reader-nav-enhanced .dv4-root .dv4-section {
+    /* Header + closed Contents + breathing room. Avoid a dead zone above the heading. */
+    scroll-margin-top: calc(3.65rem + 2.75rem + 0.75rem);
+  }
+}
+
+@media (min-width: 40rem) and (max-width: 55.999rem) {
+  .dv4-root .dv4-mobile-contents {
+    top: 4.15rem;
+  }
+
+  html.reader-nav-enhanced .dv4-root .dv4-simple-section,
+  html.reader-nav-enhanced .dv4-root .dv4-simple-answer,
+  html.reader-nav-enhanced .dv4-root .dv4-section {
+    scroll-margin-top: calc(4.15rem + 2.75rem + 0.75rem);
+  }
+}
+
+@media (max-height: 36rem) {
+  html.reader-nav-enhanced .dv4-root .dv4-mobile-contents {
+    position: static;
+  }
+
+  html.reader-nav-enhanced .dv4-root .dv4-simple-section,
+  html.reader-nav-enhanced .dv4-root .dv4-simple-answer,
+  html.reader-nav-enhanced .dv4-root .dv4-section {
+    scroll-margin-top: 2rem;
+  }
+}
+
 @media (min-width: 56rem) {
   .dv4-root .dv4-simple-nav {
     border-bottom: 0;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
     position: sticky;
     top: 5.5rem;
   }

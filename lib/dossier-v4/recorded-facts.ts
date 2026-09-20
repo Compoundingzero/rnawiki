@@ -23,13 +23,56 @@
  */
 import { ANATOMY_REGIONS } from '@/lib/background/anatomy-regions'
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
-import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
+import type {
+  BackgroundSource,
+  MedicineRecordedBackground,
+  RecordedPivotalResult,
+} from '@/lib/background/types'
+import { resolveRecordedSourceLocator, resolveSafeSourceLocator } from '@/lib/source-locator'
 
 export interface RecordedFact {
   text: string
   citation: SourceCitation
   /** `derived_count` for a number RNAWiki counted, `stored_source` for text a document printed. */
   origin: 'derived_count' | 'stored_source'
+}
+
+/** One published result with only the study context the same stored record can actually support. */
+export interface RecordedTrialSnapshot {
+  trialIdentifier: string
+  condition: string
+  testedIntervention: string
+  formulationAndRoute: string
+  population: string | null
+  included: string[]
+  excluded: string[]
+  endpoint: string
+  activeResult: string
+  comparatorResult: string | null
+  difference: string | null
+  uncertainty: string | null
+  timepoint: string
+  citation: SourceCitation
+  contextCitation: SourceCitation
+  populationCitation: SourceCitation | null
+}
+
+/**
+ * A future curated, source-bound extension to one trial result. The current background corpus has
+ * none: changing its shared envelope contract would also invalidate the unrelated 126 MB dataset
+ * agent package. Until the corpus and its derivatives can be regenerated and clinically checked
+ * together, this page reads the optional extension conservatively and shows no unscoped numbers.
+ */
+export interface ScopedTrialContext {
+  trialIdentifier: string
+  studiedConditionAsRecorded: string
+  testedInterventionAsRecorded: string
+  formulationAndRouteAsRecorded: string
+  source: BackgroundSource
+}
+
+export type ContextualPivotalResult = RecordedPivotalResult & {
+  trialContext?: ScopedTrialContext
 }
 
 const SOURCE_LABELS: Record<string, string> = {
@@ -53,9 +96,13 @@ function citationFor(source: BackgroundSource | undefined): SourceCitation {
   const kind = String((source as { kind?: string } | undefined)?.kind ?? '')
   const identifier = String((source as { identifier?: string } | undefined)?.identifier ?? '')
   const retrievedAt = (source as { retrievedAt?: string } | undefined)?.retrievedAt
+  const url =
+    resolveRecordedSourceLocator(kind, identifier)?.href ??
+    (source?.locator ? resolveSafeSourceLocator(source.locator)?.href : null)
   return {
     label: SOURCE_LABELS[kind] ?? 'Recorded source',
     ...(identifier ? { id: identifier } : {}),
+    ...(url ? { url } : {}),
     ...(retrievedAt ? { date: retrievedAt } : {}),
     binding: 'record',
   }
@@ -94,6 +141,8 @@ export interface RecordedFacts {
    * names, with its published numbers.
    */
   namedTrial: RecordedFact[]
+  /** Structured context for a reported result; never a reviewed treatment conclusion. */
+  trialSnapshots: RecordedTrialSnapshot[]
   /** Who a named study included and excluded, as recorded. */
   studyPopulation: RecordedFact[]
   /** What is sold that contains it, and in what shape. */
@@ -114,6 +163,7 @@ export const EMPTY_RECORDED_FACTS: RecordedFacts = {
   anatomy: [],
   titration: [],
   namedTrial: [],
+  trialSnapshots: [],
   studyPopulation: [],
   supply: [],
   regulatory: [],
@@ -541,6 +591,75 @@ function namedTrialFacts(envelope: Envelope): RecordedFact[] {
   })
 }
 
+function trialSnapshots(envelope: Envelope): RecordedTrialSnapshot[] {
+  return (envelope.pivotalResults ?? []).flatMap((result) => {
+    const trialId = result.trialIdentifier.trim().toUpperCase()
+    const context = (result as ContextualPivotalResult).trialContext
+    // A result cannot be interpreted as evidence for the whole molecule. The exact trial,
+    // condition, tested arm, and formulation/route must be bound to the same source as its number.
+    if (
+      !/^NCT\d{8}$/.test(trialId) ||
+      !context ||
+      typeof context.trialIdentifier !== 'string' ||
+      context.trialIdentifier.trim().toUpperCase() !== trialId ||
+      typeof context.studiedConditionAsRecorded !== 'string' ||
+      !context.studiedConditionAsRecorded.trim() ||
+      typeof context.testedInterventionAsRecorded !== 'string' ||
+      !context.testedInterventionAsRecorded.trim() ||
+      typeof context.formulationAndRouteAsRecorded !== 'string' ||
+      !context.formulationAndRouteAsRecorded.trim() ||
+      !context.source ||
+      context.source.kind !== result.source.kind ||
+      typeof context.source.identifier !== 'string' ||
+      context.source.identifier.trim().toUpperCase() !==
+        result.source.identifier.trim().toUpperCase()
+    ) {
+      return []
+    }
+    if (
+      result.source.kind === 'CLINICALTRIALS' &&
+      result.source.identifier.trim().toUpperCase() !== trialId
+    ) {
+      return []
+    }
+    const citation = citationFor(result.source)
+    const contextCitation = citationFor(context.source)
+    // A stored number without an inspectable source is not an evidence checkpoint.
+    if (!citation.url || !contextCitation.url || citation.url !== contextCitation.url) return []
+    const candidate =
+      envelope.applicability?.trialIdentifier.trim().toUpperCase() === trialId
+        ? envelope.applicability
+        : null
+    const applicability =
+      /^NCT\d{8}$/.test(trialId) &&
+      candidate?.source.kind === 'CLINICALTRIALS' &&
+      candidate.source.identifier.trim().toUpperCase() !== trialId
+        ? null
+        : candidate
+    const populationCitation = applicability ? citationFor(applicability.source) : null
+    return [
+      {
+        trialIdentifier: result.trialIdentifier,
+        condition: context.studiedConditionAsRecorded.trim(),
+        testedIntervention: context.testedInterventionAsRecorded.trim(),
+        formulationAndRoute: context.formulationAndRouteAsRecorded.trim(),
+        population: applicability?.studiedGroupAsRecorded?.trim() || null,
+        included: applicability?.includedAsRecorded ?? [],
+        excluded: applicability?.excludedAsRecorded ?? [],
+        endpoint: result.endpointAsRecorded,
+        activeResult: result.activeResultAsRecorded,
+        comparatorResult: result.comparatorResultAsRecorded ?? null,
+        difference: result.differenceAsRecorded ?? null,
+        uncertainty: result.uncertaintyAsRecorded ?? null,
+        timepoint: result.timepointAsRecorded,
+        citation,
+        contextCitation,
+        populationCitation: populationCitation?.url ? populationCitation : null,
+      },
+    ]
+  })
+}
+
 function studyPopulationFacts(envelope: Envelope): RecordedFact[] {
   const applicability = envelope.applicability
   if (!applicability) return []
@@ -608,6 +727,7 @@ export function recordedFactsFor(
     anatomy: anatomyFacts(background),
     titration: titrationFacts(background),
     namedTrial: namedTrialFacts(background),
+    trialSnapshots: trialSnapshots(background),
     studyPopulation: studyPopulationFacts(background),
     supply: supplyFacts(background),
     regulatory: regulatoryFacts(background),

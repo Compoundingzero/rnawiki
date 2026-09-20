@@ -1,0 +1,13 @@
+# Worked draft — one metformin hydrochloride tablet label
+
+Editorial draft only. Not published, clinical advice, or a claim about every metformin product.
+
+> This U.S. label says these metformin hydrochloride tablets are used with diet and exercise to improve blood sugar control in adults and children aged 10 or older with type 2 diabetes.
+
+Source-bound meaning: the draft above paraphrases only the first indications sentence on SPL set ID `fb296500-55cb-45ce-be0c-59aa2e3d4624`, effective `2026-08-26`. It begins “Metformin hydrochloride tablets are indicated as an adjunct to diet and exercise to improve glycemic control”; the same source sentence specifies adults and pediatric patients aged 10 or older with type 2 diabetes mellitus. The preceding `1 INDICATIONS AND USAGE` heading is part of the same stored section block.
+
+Exact local locator: `data/sources/openfda-label/mapped.parquet`, row where `key=K1:9100L32L2N`, `source_record_id=fb296500-55cb-45ce-be0c-59aa2e3d4624`, `source_date=2026-08-26`, `field=indications_and_usage`, and SHA-256 of the row's raw `value` string is `0e07aa80d23e6efe6a83788080a7597663bdcd645d80ed8283a4699edfc8c257`. Parse that JSON array, take block `0`, characters `[0, 222)` for the heading-plus-sentence. The [DailyMed set-ID page](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fb296500-55cb-45ce-be0c-59aa2e3d4624) is the external label link.
+
+Product boundary: the [exact-set-ID openFDA record](https://api.fda.gov/drug/label.json?search=set_id%3Afb296500-55cb-45ce-be0c-59aa2e3d4624&limit=1), checked 2026-09-19, reports SPL document ID `f068e7b8-5ddc-4b75-92da-4ba1928768e4`, version `2`, effective time `20260826`, `openfda.route=["ORAL"]`, one `openfda.substance_name` (“METFORMIN HYDROCHLORIDE”), and application `ANDA077095`. Its `dosage_forms_and_strengths` section explicitly names “Metformin Hydrochloride Tablets USP” at 500 mg, 850 mg, and 1000 mg; thus this worked draft is about an oral tablet label, not metformin as a whole. The current mapped parquet does **not** itself retain route, dosage form, SPL document ID, version, or application. Those fields were verified separately in the live exact-set-ID record and are **not** silently supplied by the extractor. The matching effective date supports, but does not prove, a byte-identical entire document.
+
+Before publication, an editor should check the full current label for qualifications, product identity and safety context. openFDA states that label content submitted by companies is reformatted but not verified by FDA, and that a listed label may not be the one on a currently distributed product.

@@ -8,6 +8,9 @@ export const PUBLIC_IDENTITY_PROTECTIONS = {
     wrongTarget: 'glycine',
     reason:
       'Magnesium glycinate contains magnesium and glycine; glycine alone is not the same substance.',
+    readerNotice:
+      'Magnesium glycinate and glycine are different substances. An older record link sends this name to glycine, so we are not using that link to make health claims here.',
+    identitySourceUrl: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
   },
 } as const
 

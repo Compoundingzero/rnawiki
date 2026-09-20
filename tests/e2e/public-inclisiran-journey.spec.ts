@@ -446,7 +446,10 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
 
   await expect(page.locator('main')).toHaveCount(1)
   await expect(
-    page.getByRole('heading', { level: 1, name: /understand any drug in 10 seconds/i }),
+    page.getByRole('heading', {
+      level: 1,
+      name: /will this health claim help with what you actually want to keep doing/i,
+    }),
   ).toBeVisible()
 
   const search = page.getByRole('combobox', {
@@ -487,92 +490,30 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
     `/d/${INCLISIRAN_SLUG}?programme=${encodeURIComponent(fixture.programmeSlug)}`,
   )
   await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-  /*
-   * From here down this test used to read the old medicine layout: `ten-second-used-for`,
-   * `ten-second-finding`, `ten-second-limit`, the advanced-evidence disclosure, the
-   * medicine-background disclosure, study cards and source-claim bindings. All of it belonged to a
-   * layout this release deleted, and none of those test ids exists any more.
-   *
-   * What the test was protecting is not the markup. It is that a reviewed conclusion reaches a
-   * reader in plain language, that the exact source behind it is named and openable, that the
-   * technical vocabulary stays in the technical layer, and that the whole thing is usable by
-   * keyboard and screen reader. Those are asserted below against the compass, which is where they
-   * live now.
-   */
-  const hero = page.locator('#substance-action')
-  await expect(hero).toBeVisible()
-
-  // The strongest recorded result, on the first screen, with the kind of result it is named.
-  const result = page.locator('[data-block="strongest-result"]')
-  await expect(result).toContainText('What happened in people')
-
-  // And the limit on it, which the page never lets a result appear without.
-  await expect(page.locator('[data-block="principal-uncertainty"]')).toContainText(
-    'The limit that matters most',
+  // The selected programme's published answer is visible without turning it into a claim about
+  // every use of inclisiran. Each statement cites only its own saved claim/source dependencies.
+  const result = page.locator('#answer[data-evidence-scope="programme"]')
+  await expect(result).toBeVisible()
+  await expect(result).toContainText(
+    'After about 17 months, inclisiran lowered LDL (“bad”) cholesterol by about half compared with a dummy treatment.',
   )
-
-  /*
-   * A KNOWN GAP, recorded here rather than quietly dropped.
-   *
-   * The reviewed conclusion for the selected programme does not reach the medicine page. The
-   * compass loads by slug and has no programme-scoped read path: `loadDossierV4Inputs` takes a slug
-   * and nothing else, so `?programme=` survives the redirect, reaches the route, and changes
-   * nothing about what is rendered. The conclusion is still published, still reachable at
-   * /d/<slug>/programme/<programme>/history, and still in the API.
-   *
-   * It is not a live regression: `programme_current_publications` and `development_programmes` are
-   * both empty in production, so no medicine page has ever had one to show. It becomes one the day
-   * the first programme is published, which is why the case below is marked rather than deleted.
-   */
-  await expect(page.locator('main')).not.toContainText(
-    'Inclisiran lowered LDL cholesterol in this reviewed study',
+  await expect(result).toContainText(
+    'The study measured LDL cholesterol, not whether people had fewer heart attacks or strokes.',
   )
-
-  /*
-   * The detailed reviewed reason belongs to the programme conclusion, and reaches the medicine page
-   * for the same reason the conclusion does not: there is no programme-scoped read path here. The
-   * gap is recorded once, in the marked case below, rather than asserted differently in three
-   * places. What matters for this test is that it is not shown as though it were the record's.
-   */
-  const detailedReason = page.getByText(
-    'This test record shows how one reviewed study result connects to a public conclusion and its source.',
-  )
-  for (const copy of await detailedReason.all()) await expect(copy).toBeHidden()
-
-  // Internal codes never reach reader text. The technical layer is where vocabulary like this is
-  // allowed, and it is below the reader layer and behind a disclosure.
-  const readerFlow = page.locator('.dv4-flow')
-  for (const storedCode of ['SUPPORTS', 'CONFIRMED', 'programme_current_publications']) {
-    const visible = await readerFlow.evaluate((node, code) => {
-      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
-      while (walker.nextNode()) {
-        const element = walker.currentNode.parentElement
-        if (!element) continue
-        if (element.closest('#technical-record')) continue
-        if (element.closest('details:not([open])') && !element.closest('summary')) continue
-        if ((walker.currentNode.textContent ?? '').includes(code)) return true
-      }
-      return false
-    }, storedCode)
-    expect(visible, `${storedCode} reached the reader layer`).toBe(false)
-  }
-
-  // The receipts section is where a reader checks the page against its sources.
-  await expect(page.locator('#evidence-receipts')).toBeVisible()
+  await expect(result).toContainText('Who was studied')
+  await expect(result).toContainText('What was measured')
+  await expect(
+    result.getByRole('link', { name: /clinicaltrials|ORION|study/i }).first(),
+  ).toHaveAttribute('href', fixture.sourceHref)
+  await expect(page.locator('#sources')).toBeVisible()
 
   await expectOneMainAndOrderedHeadings(page)
   await expectNoSeriousWcagViolations(page, 'Inclisiran compass page')
   await expectNoHorizontalOverflow(page, 'Inclisiran compass page')
 
-  /*
-   * The link to the conclusion history is part of the same missing programme path: the medicine
-   * page does not know which programme is selected, so it cannot offer a link scoped to one. The
-   * history page itself is unchanged and is exercised below by going to it directly, which is what
-   * the link would have done.
-   */
   await expect(
-    page.locator('main').getByRole('link', { name: 'See what changed on this page' }),
-  ).toHaveCount(0)
+    result.getByRole('link', { name: 'See its reviewed scope and publication history.' }),
+  ).toHaveAttribute('href', `/d/${INCLISIRAN_SLUG}/programme/${fixture.programmeSlug}/history`)
 
   await page.goto(`/d/${INCLISIRAN_SLUG}/programme/${fixture.programmeSlug}/history`)
   await expect(page).toHaveURL(`/d/${INCLISIRAN_SLUG}/programme/${fixture.programmeSlug}/history`)
@@ -620,22 +561,17 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expectNoHorizontalOverflow(page, 'Inclisiran public history')
 })
 
-test.fixme('a published programme conclusion reaches the medicine page', async ({ page }) => {
-  /*
-   * The capability the case above records as missing. The compass renders the medicine's own
-   * record and has no read path for `programme_current_publications`, so a published programme
-   * conclusion is invisible on /d/<slug> whether or not `?programme=` names it.
-   *
-   * Marked rather than deleted because the conclusion is the site's central output and this is
-   * the test that will catch it being wired up wrongly. Both tables are empty in production
-   * today, so nothing a reader can reach is affected yet.
-   */
+test('a published programme conclusion reaches the medicine page only for that programme', async ({
+  page,
+}) => {
   await requireInclisiranFixture(page)
   const fixture = requireNormalizedFixture()
   await page.goto(`/d/${INCLISIRAN_SLUG}?programme=${encodeURIComponent(fixture.programmeSlug)}`)
-  await expect(page.locator('main')).toContainText(
-    'Inclisiran lowered LDL cholesterol in this reviewed study',
+  await expect(page.locator('#answer[data-evidence-scope="programme"]')).toContainText(
+    'After about 17 months, inclisiran lowered LDL (“bad”) cholesterol by about half compared with a dummy treatment.',
   )
+  const invalid = await page.request.get(`/d/${INCLISIRAN_SLUG}?programme=not-this-programme`)
+  expect(invalid.status()).toBe(404)
 })
 
 /*
@@ -759,7 +695,9 @@ test('keeps native disclosures keyboard-operable', async ({ page }) => {
   const disclosures = page.locator('main details')
   expect(await disclosures.count()).toBeGreaterThan(3)
 
-  const first = disclosures.first()
+  // The mobile-only Contents dropdown is deliberately hidden at this desktop viewport. Exercise
+  // the first visible evidence disclosure instead of trying to focus a hidden summary.
+  const first = page.locator('main details:visible').first()
   const summary = first.locator('> summary')
   await expect(first).not.toHaveAttribute('open', '')
 
@@ -862,24 +800,22 @@ test('keeps the static first read clear and contained in a touch-sized view', as
     await requireInclisiranFixture(page)
     await page.goto(normalizedDossierUrl(fixture))
 
-    /*
-     * The old layout's first read was one testid — `ten-second-finding` — with a glossary of tapped
-     * definitions beside it and two disclosures under it. The compass's first read is the hero, and
-     * the words worth knowing are explained in a primer rather than behind per-word controls.
-     *
-     * What has to hold on a phone is the same: the opening is readable without scrolling sideways,
-     * every touch target is big enough to hit, and opening the detail does not break either.
-     */
-    const opening = page.locator('.dv4-hero-action')
+    // The mobile first read presents the exact reviewed use, result, boundary and source before
+    // the technical record. The Contents control must remain available above the medicine name.
+    const contents = page.locator('.dv4-mobile-contents')
+    await expect(contents).toBeVisible()
+    const opening = page.locator('#answer')
     await expect(opening).toBeVisible()
+    await expect(opening).toContainText('Who was studied')
+    await expect(opening).toContainText('Important limit')
+    await expect(
+      opening.getByRole('link', { name: 'ClinicalTrials.gov record for ORION-10' }).first(),
+    ).toBeVisible()
     const openingBox = await opening.boundingBox()
     expect(openingBox).not.toBeNull()
     expect(openingBox!.x).toBeGreaterThanOrEqual(0)
     expect(openingBox!.x + openingBox!.width).toBeLessThanOrEqual(375)
     await expectNoHorizontalOverflow(page, 'Static mobile first read')
-
-    // The words the page uses are explained on the page, not behind a control per word.
-    await expect(page.locator('#concept-primer')).toBeVisible()
 
     // Every disclosure is a touch-sized target.
     for (const summary of await page.locator('main details > summary').all()) {
@@ -888,10 +824,15 @@ test('keeps the static first read clear and contained in a touch-sized view', as
       expect(box.height, 'a disclosure control is under 44 px tall').toBeGreaterThanOrEqual(44)
     }
 
-    // Opening the technical layer by touch keeps the page inside the viewport.
-    const technicalSummary = page.locator('#technical-record summary').first()
-    await technicalSummary.tap()
-    await expectNoHorizontalOverflow(page, 'Touch-opened technical record')
+    // Opening both the navigation and exact source record by touch stays within the viewport.
+    await contents.locator('summary').tap()
+    await expect(contents).toHaveAttribute('open', '')
+    await expectNoHorizontalOverflow(page, 'Touch-opened mobile contents')
+    await contents.locator('summary').tap()
+    const sourceDetails = page.locator('#sources details').first()
+    await sourceDetails.locator('summary').tap()
+    await expect(sourceDetails).toHaveAttribute('open', '')
+    await expectNoHorizontalOverflow(page, 'Touch-opened source record')
   } finally {
     await context.close()
   }

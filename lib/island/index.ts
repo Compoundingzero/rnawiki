@@ -9,6 +9,7 @@
  * `scripts/build-island.mjs` bundles it to `public/island/rnawiki-document.js` before every build.
  */
 import { startAnalytics } from './analytics'
+import { startDossierNav } from './dossier-nav'
 import { startContentsRail } from './rail'
 import { startSearch } from './search'
 
@@ -18,6 +19,7 @@ function start(): void {
   const meta = document.querySelector('meta[name="rnawiki-analytics"]')
   startSearch()
   startContentsRail()
+  startDossierNav()
   startAnalytics(meta instanceof HTMLMetaElement ? meta.content : null)
 }
 

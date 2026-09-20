@@ -347,7 +347,11 @@ export function ChangeHistory({
       label="What changed on this page"
       lane="uncertainty"
       lede="Every correction is recorded, including the ones that did not change what the page concludes."
-      state={changes.state}
+      state={
+        changes.entries.length === 0 && wordingHistory.length > 0
+          ? 'source_checked_draft'
+          : changes.state
+      }
     >
       {changes.entries.length === 0 && wordingHistory.length === 0 ? (
         <Absence reason="Nothing has been corrected on this record." state={changes.state} />

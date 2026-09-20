@@ -7,23 +7,7 @@ import {
   type NavigatorCoverageFixture,
 } from './fixtures/navigator-coverage'
 
-/**
- * Seeing which parts of a medicine page hold something, before spending a click on them.
- *
- * The reader's problem here has not changed: a long page of headings, most of them empty, teaches
- * a reader that scrolling is not worth it. What has changed is the answer.
- *
- * There used to be a floating "Sections & feedback" button that opened a dialog listing every
- * module with a "Recorded" or "Not documented here" badge beside it — a client component, in a
- * layout where everything worth reading sat two clicks deep behind closed disclosures. That layout
- * is gone and so is the button. The compass answers the same question in the page itself: it does
- * not render a section it has nothing for, it names every section it left out in one block near the
- * foot, and the standing navigator in the left rail lists only what is there, each entry carrying
- * the state of the section it points at.
- *
- * So the journey tested here is still the reader's — arrive, see what is real, jump to it, find it
- * open — and it now runs with no JavaScript at all.
- */
+/** Sparse medicine records must not offer dead destinations or disguise missing human results. */
 
 test.use({ colorScheme: 'light' })
 test.describe.configure({ mode: 'serial' })
@@ -47,7 +31,7 @@ function requireFixture(): NavigatorCoverageFixture {
   return fixture
 }
 
-test('the rail lists the sections that hold content, and each carries its state', async ({
+test('the desktop rail lists only sections this sparse record actually renders', async ({
   page,
 }) => {
   const { slug } = requireFixture()
@@ -56,15 +40,10 @@ test('the rail lists the sections that hold content, and each carries its state'
   const rail = page.locator('.dv4-nav')
   await expect(rail).toContainText('On this page')
 
-  const links = rail.locator('a[href^="#"]')
-  expect(await links.count()).toBeGreaterThan(3)
-
-  // Every entry says what state the section it points at is in, before the reader goes there.
-  for (const state of await links.evaluateAll((nodes) =>
-    nodes.map((node) => node.getAttribute('data-section-state')),
-  )) {
-    expect(state, 'a rail entry with no section state').toBeTruthy()
-  }
+  const hrefs = await rail
+    .locator('a[href^="#"]')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href')))
+  expect(hrefs).toEqual(['#answer', '#safety', '#sources'])
 })
 
 test('every rail entry lands on a section that exists', async ({ page }) => {
@@ -82,52 +61,27 @@ test('every rail entry lands on a section that exists', async ({ page }) => {
   }
 })
 
-test('a section the record has nothing for is named as missing rather than left blank', async ({
+test('a missing human result is said plainly, without an empty result section', async ({
   page,
 }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
 
-  const missing = page.locator('#what-is-missing')
-  await expect(missing).toBeVisible()
-  await expect(missing).toContainText('could not answer')
-
-  // Each one names the question and why there is no answer, in ordinary words.
-  const rows = missing.locator('li')
-  expect(await rows.count()).toBeGreaterThan(0)
-  for (const text of await rows.allTextContents()) {
-    expect(text).toMatch(
-      /found nothing in the sources checked|does not apply to this substance|is not something RNAWiki collects yet/u,
-    )
-  }
-
-  // And a section named as missing is genuinely not rendered, rather than rendered and hidden.
-  const missingIds = await rows.evaluateAll((nodes) =>
-    nodes.map((node) => node.getAttribute('data-section')),
+  await expect(page.locator('#answer .dv4-simple-noresult')).toContainText(
+    /(?:no (?:sufficiently scoped )?human result|a study result is recorded, but this page (?:has not yet linked|cannot yet link) its numbers to the exact condition and form tested)/i,
   )
-  for (const id of missingIds) {
-    await expect(page.locator(`#${id}`)).toHaveCount(0)
-  }
+  await expect(page.locator('#safety')).toContainText('no source-bound safety statement')
+  await expect(page.locator('#human-results')).toHaveCount(0)
+  await expect(page.locator('#body-path')).toHaveCount(0)
+  await expect(page.locator('#forms')).toHaveCount(0)
 })
 
-test('the rail and the missing list agree, and neither is a subset of the other', async ({
-  page,
-}) => {
+test('the rail has no link to an absent section', async ({ page }) => {
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
 
-  const railTargets = new Set(
-    await page
-      .locator('.dv4-nav a[href^="#"]')
-      .evaluateAll((nodes) => nodes.map((node) => (node as HTMLAnchorElement).hash.slice(1))),
-  )
-  const missingIds = await page
-    .locator('#what-is-missing li')
-    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('data-section') ?? ''))
-
-  // A section cannot be both offered in the rail and listed as absent.
-  for (const id of missingIds) {
-    expect(railTargets.has(id), `${id} is both in the rail and listed as missing`).toBe(false)
+  for (const absent of ['human-results', 'body-path', 'forms']) {
+    await expect(page.locator(`.dv4-nav a[href="#${absent}"]`)).toHaveCount(0)
   }
 })
 
@@ -139,16 +93,24 @@ test('none of it needs JavaScript', async ({ browser }) => {
 
   await expect(page.locator('.dv4-nav')).toContainText('On this page')
   const first = page.locator('.dv4-nav a[href^="#"]').first()
-  const target = (await first.getAttribute('href')) ?? '#substance-action'
+  const target = (await first.getAttribute('href')) ?? '#answer'
   await first.click()
   await expect(page.locator(target)).toBeVisible()
   await context.close()
 })
 
-test('the rail works at a 320 pixel viewport without horizontal overflow', async ({ page }) => {
+test('mobile contents works at a 320 pixel viewport without horizontal overflow', async ({
+  page,
+}) => {
   const { slug } = requireFixture()
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto(`/d/${slug}`)
+
+  const contents = page.locator('.dv4-mobile-contents')
+  await expect(contents).toBeVisible()
+  await contents.locator('summary').click()
+  await contents.getByRole('link', { name: 'Safety', exact: true }).click()
+  await expect(page.locator('#safety h2')).toBeFocused()
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -156,7 +118,7 @@ test('the rail works at a 320 pixel viewport without horizontal overflow', async
   expect(overflow).toBe(false)
 
   const results = await new AxeBuilder({ page })
-    .include('.dv4-canvas')
+    .include('.dv4-root')
     .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
     .analyze()
   expect(results.violations).toEqual([])

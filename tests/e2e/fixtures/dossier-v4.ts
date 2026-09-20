@@ -333,6 +333,27 @@ export async function installDossierV4Fixture(
     },
     commonQuestions: [],
     sourceProvenance: ['Fixture source 2026 (10.0000/fixture)'],
+    // A sentence-bound, entirely fictional source is required to exercise the public wording
+    // workflow. A bibliography entry alone must never make authored medicine prose publishable.
+    recordedBackground: {
+      version: 'medicine-background/v1',
+      authoredAt: '2026-08-28',
+      provenanceTier: 'extracted',
+      recordedUses: {
+        statements: [
+          {
+            textAsRecorded: 'Taken in this fixture to test the compass, and for nothing else.',
+            source: {
+              kind: 'FDA_LABEL',
+              identifier: '00000000-0000-4000-8000-00000000e2e4',
+              label: 'Fictional fixture label',
+              retrievedAt: '2026-08-28',
+              excerpt: 'Taken in this fixture to test the compass, and for nothing else.',
+            },
+          },
+        ],
+      },
+    },
   })
 
   return { key, slug, name, drugId, isomerKey, rivalKey }

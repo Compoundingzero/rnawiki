@@ -117,7 +117,7 @@ describe('the frozen home search bar', () => {
     expect(homeView).toContain('<HomeSearch popular={popular} />')
 
     // The bar sits in the headline section, and nothing is inserted between the two.
-    const headline = homeView.indexOf('Understand any drug')
+    const headline = homeView.indexOf('Will this health claim help')
     const bar = homeView.indexOf('<HomeSearch popular={popular} />')
     expect(headline).toBeGreaterThan(-1)
     expect(bar).toBeGreaterThan(headline)

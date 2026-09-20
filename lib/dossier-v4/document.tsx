@@ -14,7 +14,8 @@ import { documentResponse } from '@/lib/document/render'
 import { googleAnalyticsMeasurementId } from '@/lib/google-analytics'
 import { corpusDossierJsonLdGraph } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin } from '@/lib/seo/deployment'
-import { draftBriefForSlug } from '@/lib/editorial/dossier-briefs'
+import { eligibleDraftBriefForSlug } from '@/lib/editorial/dossier-briefs'
+import type { ProgrammeEvidenceReadModel } from '@/lib/evidence/types'
 
 import { decideMedicinePageIndexing } from './indexability'
 import type { DossierV4ViewModel } from './view-model'
@@ -22,6 +23,7 @@ import type { DossierV4ViewModel } from './view-model'
 export function dossierV4DocumentResponse(
   corpus: CorpusDossier,
   model: DossierV4ViewModel,
+  programmeEvidence: ProgrammeEvidenceReadModel | null = null,
 ): Promise<Response> {
   const path: `/${string}` = `/d/${corpus.slug}`
   const held =
@@ -34,7 +36,11 @@ export function dossierV4DocumentResponse(
    */
   const indexing = decideMedicinePageIndexing(model)
   const draftPreview =
-    process.env.RNAWIKI_PREVIEW_EDITORIAL === '1' && draftBriefForSlug(corpus.slug) !== null
+    eligibleDraftBriefForSlug(
+      corpus.slug,
+      model.publication.state,
+      process.env.RNAWIKI_PREVIEW_EDITORIAL === '1',
+    ) !== null
   const index = corpus.indexable && indexing.index && !held && !draftPreview
   const description = held
     ? `The record for ${corpus.displayName} is under review. No medicine conclusion is published on this page.`
@@ -58,7 +64,7 @@ export function dossierV4DocumentResponse(
       robots={{ index, follow: true }}
       title={`${corpus.displayName} | RNAWiki`}
     >
-      <CompassPage corpus={corpus} model={model} />
+      <CompassPage corpus={corpus} model={model} programmeEvidence={programmeEvidence} />
     </DocumentShell>,
     { headers: { 'x-rnawiki-dossier': 'v4' } },
   )

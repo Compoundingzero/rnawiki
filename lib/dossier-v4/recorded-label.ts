@@ -18,6 +18,7 @@
  */
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
 import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
+import { resolveRecordedSourceLocator, resolveSafeSourceLocator } from '@/lib/source-locator'
 
 export interface LabelSentence {
   text: string
@@ -45,9 +46,13 @@ function citationFor(source: BackgroundSource): SourceCitation {
   const kind = String((source as { kind?: string }).kind ?? '')
   const identifier = String((source as { identifier?: string }).identifier ?? '')
   const retrievedAt = (source as { retrievedAt?: string }).retrievedAt
+  const url =
+    resolveRecordedSourceLocator(kind, identifier)?.href ??
+    (source.locator ? resolveSafeSourceLocator(source.locator)?.href : null)
   return {
     label: SOURCE_LABELS[kind] ?? 'Recorded source',
     ...(identifier ? { id: identifier } : {}),
+    ...(url ? { url } : {}),
     ...(retrievedAt ? { date: retrievedAt } : {}),
     binding: 'record',
   }

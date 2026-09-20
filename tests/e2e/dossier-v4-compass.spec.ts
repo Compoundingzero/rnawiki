@@ -31,15 +31,18 @@ test('one clear answer leads the page, followed by safety and evidence', async (
   await expect(page.locator('#answer')).toContainText('Taken in this fixture')
   // A delivery-only sentence is not passed off as a useful mechanism.
   await expect(page.locator('#answer')).not.toContainText('reaches the fixture tissue')
-  const headings = await page.locator('.dv4-simple-answer > h2, .dv4-simple-section > h2').allTextContents()
+  const headings = await page
+    .locator('.dv4-simple-answer > h2, .dv4-simple-section > h2')
+    .allTextContents()
   expect(headings).toEqual([
     'The short answer',
     'What can go wrong?',
-    'What happened in people?',
-    'Names and forms',
+    'Products and forms in the sources',
     'Check the record',
   ])
-  await expect(page.locator('#answer')).toContainText('No result has passed')
+  await expect(page.locator('#answer')).toContainText(
+    'It does not report a matched human benefit here',
+  )
   await expect(page.locator('#answer')).not.toContainText('Fixture strength rose')
 })
 
@@ -64,12 +67,25 @@ test('source details stay reachable without repeating empty cards', async ({ pag
   await expect(page.locator('#no-response')).toHaveCount(0)
   await expect(page.locator('#next-question')).toHaveCount(0)
   await expect(page.locator('#body-journey')).toHaveCount(0)
+  const readerText = await page.locator('.dv4-root').innerText()
+  for (const filler of [
+    'A picture of it, and where the picture fails',
+    'Why it might seem to do nothing',
+    'Recorded by the evidence model as a gap',
+    'Pick one goal',
+    'Checks this page had to pass',
+    'What to learn next',
+  ]) {
+    expect(readerText).not.toContain(filler)
+  }
 })
 
 test('a registered study is not rendered as an efficacy result', async ({ page }) => {
   await page.goto(`/d/${record().slug}`)
-  await expect(page.locator('#human-results')).toContainText('registration is not a result')
-  await expect(page.locator('#human-results')).not.toContainText('Fixture strength rose')
+  await expect(page.locator('#human-results')).toHaveCount(0)
+  await expect(page.locator('#answer')).toContainText(
+    'It does not report a matched human benefit here',
+  )
   await expect(page.locator('main')).not.toContainText('Measured performance')
 })
 
@@ -123,14 +139,14 @@ for (const width of [320, 390, 768, 960, 1024, 1440]) {
   })
 }
 
-test('mobile shows the answer before the contents rail', async ({ browser }) => {
+test('mobile shows the sticky contents before the medicine title', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
   try {
     const page = await context.newPage()
     await page.goto(`/d/${record().slug}`)
-    const answer = await page.locator('#answer').boundingBox()
-    const nav = await page.locator('.dv4-simple-nav').boundingBox()
-    expect(answer?.y ?? 0).toBeLessThan(nav?.y ?? 0)
+    const title = await page.locator('.dv4-strip h1').boundingBox()
+    const nav = await page.locator('.dv4-mobile-contents').boundingBox()
+    expect(nav?.y ?? Number.POSITIVE_INFINITY).toBeLessThan(title?.y ?? 0)
   } finally {
     await context.close()
   }

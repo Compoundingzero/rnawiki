@@ -51,8 +51,7 @@ export const PUBLICATION_STATES = [
   {
     code: 'correction_hold',
     label: 'Held for an identity check',
-    plain:
-      'RNAWiki is not certain this record describes one substance, so it makes no claims about it.',
+    plain: 'Medical conclusions are withheld until the record points to the right substance.',
     indexable: false,
   },
   {
@@ -82,6 +81,8 @@ export interface PublicationInputs {
   hasSourceLinkedContent: boolean
   /** The identity check on this record. */
   identityPassed: boolean
+  /** A concrete, reader-facing explanation of a known identity mismatch, when one exists. */
+  identityIssue?: string
   /** A contamination or cross-family merge the corpus flagged as critical. */
   criticalIdentityConflict: boolean
   /** The loader or the view model failed. */
@@ -125,7 +126,10 @@ export function decidePublicationState(inputs: PublicationInputs): PublicationDe
   })
 
   if (inputs.pipelineFailed) {
-    return make('pipeline_failure', 'A step failed while preparing this page.')
+    return make(
+      'pipeline_failure',
+      'This page could not load its source record. Please try again later.',
+    )
   }
   if (inputs.criticalIdentityConflict) {
     return make(
@@ -134,7 +138,11 @@ export function decidePublicationState(inputs: PublicationInputs): PublicationDe
     )
   }
   if (!inputs.identityPassed) {
-    return make('correction_hold', 'The identity check on this record did not pass.')
+    return make(
+      'correction_hold',
+      inputs.identityIssue ??
+        'We cannot confirm that the evidence on this record belongs to this substance.',
+    )
   }
   if (inputs.reviewedClaimCount > 0) {
     return make(
