@@ -14,6 +14,8 @@ import { documentResponse } from '@/lib/document/render'
 import { googleAnalyticsMeasurementId } from '@/lib/google-analytics'
 import { corpusDossierJsonLdGraph } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin } from '@/lib/seo/deployment'
+import { eligibleDraftBriefForSlug } from '@/lib/editorial/dossier-briefs'
+import type { ProgrammeEvidenceReadModel } from '@/lib/evidence/types'
 
 import { decideMedicinePageIndexing } from './indexability'
 import type { DossierV4ViewModel } from './view-model'
@@ -21,13 +23,11 @@ import type { DossierV4ViewModel } from './view-model'
 export function dossierV4DocumentResponse(
   corpus: CorpusDossier,
   model: DossierV4ViewModel,
+  programmeEvidence: ProgrammeEvidenceReadModel | null = null,
 ): Promise<Response> {
   const path: `/${string}` = `/d/${corpus.slug}`
-  const description = corpusMetaDescription(corpus)
-  const jsonLd = corpusDossierJsonLdGraph(corpus, {
-    siteUrl: configuredSiteOrigin(),
-    url: configuredPublicUrl(path),
-  })
+  const held =
+    model.publication.state === 'correction_hold' || model.publication.state === 'pipeline_failure'
   /*
    * One indexing rule for every medicine page, in lib/dossier-v4/indexability.ts. A page that fails
    * its checks, cannot resolve its identity, or holds none of the four things a reader came for is
@@ -35,6 +35,22 @@ export function dossierV4DocumentResponse(
    * so the sentence a reader sees and the instruction a crawler reads cannot disagree.
    */
   const indexing = decideMedicinePageIndexing(model)
+  const draftPreview =
+    eligibleDraftBriefForSlug(
+      corpus.slug,
+      model.publication.state,
+      process.env.RNAWIKI_PREVIEW_EDITORIAL === '1',
+    ) !== null
+  const index = corpus.indexable && indexing.index && !held && !draftPreview
+  const description = held
+    ? `The record for ${corpus.displayName} is under review. No medicine conclusion is published on this page.`
+    : corpusMetaDescription(corpus)
+  const jsonLd = index
+    ? corpusDossierJsonLdGraph(corpus, {
+        siteUrl: configuredSiteOrigin(),
+        url: configuredPublicUrl(path),
+      })
+    : null
   return documentResponse(
     <DocumentShell
       analyticsMeasurementId={googleAnalyticsMeasurementId(
@@ -45,10 +61,10 @@ export function dossierV4DocumentResponse(
       jsonLd={jsonLd}
       ogImagePath={`${path}/opengraph-image`}
       ogType="article"
-      robots={{ index: indexing.index, follow: true }}
+      robots={{ index, follow: true }}
       title={`${corpus.displayName} | RNAWiki`}
     >
-      <CompassPage corpus={corpus} model={model} />
+      <CompassPage corpus={corpus} model={model} programmeEvidence={programmeEvidence} />
     </DocumentShell>,
     { headers: { 'x-rnawiki-dossier': 'v4' } },
   )

@@ -11,6 +11,7 @@ import {
   searchResultFieldCountLabel,
   searchResultTierLabel,
   type CorpusSearchResultRow,
+  type GuideSearchResultRow,
   type SearchResultRow,
 } from '@/lib/corpus/search-results'
 import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
@@ -19,7 +20,8 @@ import { useOptionalApp } from './app-context'
 const DEBOUNCE_MS = 180
 
 /** What picking a row navigates to. A corpus row carries no programme binding, and says so. */
-export type SearchPickTarget = Pick<SearchHit, 'slug' | 'summaryBinding'>
+export type SearchPickTarget =
+  Pick<SearchHit, 'slug' | 'summaryBinding'> | { slug: string; guideHref: string }
 
 export interface DrugSearch {
   query: string
@@ -28,6 +30,7 @@ export interface DrugSearch {
   results: SearchHit[]
   /** Corpus records with no written record. Empty unless the caller asked for them. */
   corpusResults: CorpusSearchResultRow[]
+  guideResults: GuideSearchResultRow[]
   /** The one list a reader sees and arrows through: `results` and `corpusResults`, merged. */
   rows: SearchResultRow[]
   /** True while a request for the current query is in flight and nothing has come back yet. */
@@ -62,6 +65,7 @@ export function useDrugSearch(
   const [query, setQueryState] = useState('')
   const [results, setResults] = useState<SearchHit[]>([])
   const [corpusResults, setCorpusResults] = useState<CorpusSearchResultRow[]>([])
+  const [guideResults, setGuideResults] = useState<GuideSearchResultRow[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
@@ -82,6 +86,7 @@ export function useDrugSearch(
     if (trimmed.length === 0) {
       setResults([])
       setCorpusResults([])
+      setGuideResults([])
       setIsSearching(false)
       return
     }
@@ -97,6 +102,7 @@ export function useDrugSearch(
           if (controller.signal.aborted) return
           setResults(data.results)
           setCorpusResults(data.corpusResults ?? [])
+          setGuideResults(data.guideResults ?? [])
           setActiveIndex(-1)
           setIsSearching(false)
         })
@@ -104,6 +110,7 @@ export function useDrugSearch(
           if (controller.signal.aborted) return
           setResults([])
           setCorpusResults([])
+          setGuideResults([])
           setIsSearching(false)
         })
     }, DEBOUNCE_MS)
@@ -149,6 +156,7 @@ export function useDrugSearch(
     setQueryState('')
     setResults([])
     setCorpusResults([])
+    setGuideResults([])
     setIsSearching(false)
     setIsOpen(false)
     setActiveIndex(-1)
@@ -157,8 +165,8 @@ export function useDrugSearch(
   // The rendered list. Keyboard positions, option ids and Enter all read this one array, so a
   // reader arrows through exactly the rows on screen.
   const rows = useMemo(
-    () => mergeSearchResults(results, includeCorpusResults ? corpusResults : []),
-    [results, corpusResults, includeCorpusResults],
+    () => mergeSearchResults(results, includeCorpusResults ? corpusResults : [], guideResults),
+    [results, corpusResults, guideResults, includeCorpusResults],
   )
 
   const onKeyDown = useCallback(
@@ -185,7 +193,9 @@ export function useDrugSearch(
         const row = activeIndex >= 0 ? rows[activeIndex] : rows[0]
         if (!row) return
         event.preventDefault()
-        onPickRef.current(row.hit)
+        onPickRef.current(
+          row.kind === 'guide' ? { slug: row.slug, guideHref: row.hit.href } : row.hit,
+        )
       }
     },
     [activeIndex, rows],
@@ -196,6 +206,7 @@ export function useDrugSearch(
     setQuery,
     results,
     corpusResults,
+    guideResults,
     rows,
     isSearching,
     isOpen,
@@ -224,7 +235,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
   const search = useDrugSearch(
     (hit) => {
       search.reset()
-      router.push(searchHitHref(hit))
+      router.push('guideHref' in hit ? hit.guideHref : searchHitHref(hit))
     },
     10,
     { includeCorpusResults: true },
@@ -363,7 +374,9 @@ export function HomeSearchResults({ search }: { search: DrugSearch }) {
   return (
     <>
       {search.rows.map((row, index) =>
-        row.kind === 'legacy' ? (
+        row.kind === 'guide' ? (
+          <HomeSearchGuideRow key={`guide-${row.slug}`} row={row} index={index} search={search} />
+        ) : row.kind === 'legacy' ? (
           <HomeSearchMedicineRow
             key={row.slug}
             drug={row.hit}
@@ -381,6 +394,34 @@ export function HomeSearchResults({ search }: { search: DrugSearch }) {
 
 const ROW_CLASS =
   'w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2'
+
+function HomeSearchGuideRow({
+  row,
+  index,
+  search,
+}: {
+  row: Extract<SearchResultRow, { kind: 'guide' }>
+  index: number
+  search: DrugSearch
+}) {
+  return (
+    <Link
+      href={row.hit.href}
+      id={search.optionId(index)}
+      role="option"
+      aria-selected={index === search.activeIndex}
+      onMouseEnter={() => search.setActiveIndex(index)}
+      onClick={search.reset}
+      className={`${ROW_CLASS} ${index === search.activeIndex ? 'bg-[#F5F5F7]' : ''}`}
+    >
+      <div>
+        <span className="text-sm font-semibold text-[#1D1D1F]">{row.hit.name}</span>
+        <span className="block text-xs text-[#6E6E73]">{row.hit.hint}</span>
+      </div>
+      <span className="text-xs text-[#0063c8]">Identity guide</span>
+    </Link>
+  )
+}
 
 function TierNote({ row }: { row: SearchResultRow }) {
   const fields = searchResultFieldCountLabel(row)

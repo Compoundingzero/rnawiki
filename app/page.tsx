@@ -6,6 +6,7 @@ import { listHomepageContributorSpotlight } from '@/lib/queries/homepage-contrib
 import { serialiseJsonLd, siteJsonLdGraph } from '@/lib/json-ld'
 import { configuredPublicUrl } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
+import { goalIndex } from '@/lib/dossier-v3/goal-pages'
 import '@/lib/corpus/tokens.css'
 
 // Railway's build container cannot resolve `postgres.railway.internal` — that hostname exists only
@@ -21,12 +22,13 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [user, popular, total, programmeCounts, contributorSpotlight] = await Promise.all([
+  const [user, popular, total, programmeCounts, contributorSpotlight, goals] = await Promise.all([
     getCurrentUser(),
     getPopularDrugs(POPULAR_LIMIT),
     countDrugs(),
     countProgrammeEvidence(),
     listHomepageContributorSpotlight(),
+    goalIndex(),
   ])
   const jsonLd = siteJsonLdGraph({ siteUrl })
 
@@ -39,6 +41,9 @@ export default async function HomePage() {
       <AppShell initialUser={user}>
         <HomeView
           contributorSpotlight={contributorSpotlight}
+          availableGoals={[...goals.byGoal.entries()]
+            .filter(([, rows]) => rows.length > 0)
+            .map(([code]) => code)}
           popular={popular}
           corpusStats={{
             total,

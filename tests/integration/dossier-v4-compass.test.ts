@@ -96,14 +96,14 @@ describe.skipIf(!runsInDisposableDatabase)('the compass loads from the database'
       .where(eq(pageRegistryRoleAggregates.key, key))
   })
 
-  it('renders both a study that met its endpoint and one that did not', async () => {
+  it('does not present an unidentifiable study as an exact human result', async () => {
     const { slug } = await install()
     const inputs = await loadDossierV4Inputs(slug)
     if (!inputs) throw new Error('fixture did not load')
     const model = buildDossierV4(inputs)
     const verdicts = model.humanResults.cards.map((card) => card.verdict)
     expect(verdicts).toContain('met')
-    expect(verdicts).toContain('not_met')
+    expect(verdicts).not.toContain('not_met')
     // A card without an exact question is never rendered.
     for (const card of model.humanResults.cards) expect(card.question.length).toBeGreaterThan(5)
   })

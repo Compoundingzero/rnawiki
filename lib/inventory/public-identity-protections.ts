@@ -1,9 +1,16 @@
-/** Evidence-backed exceptions to a known incorrect legacy identity merge. */
+/**
+ * A public identity that the old redirect ledger merged into a different molecule.
+ * Keep this small and evidence-backed. The corpus identity pipeline still needs correction;
+ * these exceptions stop a known wrong medical redirect while that repair is prepared.
+ */
 export const PUBLIC_IDENTITY_PROTECTIONS = {
   'magnesium-glycinate': {
     wrongTarget: 'glycine',
     reason:
-      'Magnesium glycinate contains magnesium and glycine; glycine alone is not the compound.',
+      'Magnesium glycinate contains magnesium and glycine; glycine alone is not the same substance.',
+    readerNotice:
+      'Magnesium glycinate and glycine are different substances. An older record link sends this name to glycine, so we are not using that link to make health claims here.',
+    identitySourceUrl: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
   },
 } as const
 

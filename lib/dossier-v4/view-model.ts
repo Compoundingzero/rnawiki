@@ -18,6 +18,8 @@
 import type { CorpusDossier } from '@/lib/corpus/dossier-page'
 import { PUBLIC_IDENTITY_PROTECTIONS } from '@/lib/inventory/public-identity-protections'
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
+import { resolveSafeSourceLocator } from '@/lib/source-locator'
+import { trialRoleSupportsTestedClaim } from '@/lib/dossier-v3/taxonomy'
 import {
   buildDossierV3,
   type DossierV3Inputs,
@@ -33,8 +35,18 @@ import {
 } from '@/lib/page-statements/overlay'
 import type { PageStatementKey } from '@/lib/page-statements/types'
 import { assessRecordSubstance, type RecordSubstance } from './indexability'
-import { recordedFactsFor, type RecordedFact, type RecordedFacts } from './recorded-facts'
+import {
+  recordedFactsFor,
+  type RecordedFact,
+  type RecordedFacts,
+  type RecordedTrialSnapshot,
+} from './recorded-facts'
 import { recordedLabelFor, type LabelSentence, type RecordedLabel } from './recorded-label'
+import {
+  buildSourceBoundCheckpoint,
+  type CheckpointLine,
+  type SourceBoundCheckpoint,
+} from './source-bound-checkpoint'
 import type { BoundLegacyTenSecondAnswer } from '@/lib/ten-second-answer-overrides'
 import type { AuditPoint, ClinicalTrialRecord, DrugDossier, MechanismStep } from '@/lib/types'
 
@@ -391,6 +403,7 @@ export interface ActionHero {
   whyPeopleCare: Statement
   analogy: { text: string; limit: string } | null
   strongestGoalResult: Statement
+  resultScope: { goal: string; population: string; comparator: string; duration: string } | null
   outcomeType: string
   principalUncertainty: Statement
   supervision: string
@@ -621,6 +634,8 @@ export interface DossierV4ViewModel {
   /** Wordings members replaced, newest first, for the public "What changed" section. */
   wordingHistory: PageStatementHistoryEntry[]
   hero: ActionHero
+  /** One source-scoped answer; incomplete fields stay absent instead of becoming filler. */
+  checkpoint: SourceBoundCheckpoint
   concepts: Concept[]
   fingerprint: {
     state: SectionState
@@ -633,6 +648,8 @@ export interface DossierV4ViewModel {
   humanResults: {
     /** Results from the one trial this record names, quoted as published. */
     namedTrial: RecordedFact[]
+    /** Exact fields from a source-linked result, not a reviewed treatment conclusion. */
+    trialSnapshots: RecordedTrialSnapshot[]
     state: SectionState
     cards: HumanResultCard[]
     registry: DossierV3ViewModel['doesItWork']['registry']
@@ -673,7 +690,13 @@ export interface DossierV4ViewModel {
     /** What a label states about a named group of people, quoted. */
     populations: RecordedFact[]
   }
-  noResponse: { state: SectionState; entries: NoResponseEntry[]; note: string }
+  noResponse: {
+    state: SectionState
+    entries: NoResponseEntry[]
+    note: string
+    /** Exact outcome when a contextual human result is linked; not a non-response theory. */
+    measuredOutcome: CheckpointLine | null
+  }
   practical: {
     state: SectionState
     /** How the amount was stepped in a protocol or on a label. Never advice. */
@@ -684,10 +707,14 @@ export interface DossierV4ViewModel {
     productQuality: Statement
     regulatory: Statement
     discontinuation: Statement
+    /** Ingredient/product directory entries with direct sources; listing is not approval. */
+    sourceBoundSupply: RecordedFact[]
   }
   safety: {
     state: SectionState
     entries: SafetyEntry[]
+    /** Older free-text harm prose exists but has no claim-level source binding. */
+    unverifiedLegacySafety: boolean
     spontaneous: DossierV3ViewModel['safety']['spontaneous']
     longTerm: string
     underrepresented: string
@@ -722,10 +749,17 @@ export interface DossierV4ViewModel {
     warningSigns: Array<{ text: string; sources: SourceCitation[] }>
     boundary: string
     noDoseLine: string
+    /** What one contextual human study measured, not a home-test protocol. */
+    studyMeasure: CheckpointLine | null
   }
   alternatives: { state: SectionState; entries: AlternativeEntry[]; note: string }
   claimDecoder: { state: SectionState; claims: DecodedClaim[]; absence: string }
-  unknowns: { state: SectionState; entries: UnknownEntry[] }
+  unknowns: {
+    state: SectionState
+    entries: UnknownEntry[]
+    /** Exact exclusion from a linked study, when recorded. */
+    sourceBoundBoundary: CheckpointLine | null
+  }
   receipts: {
     state: SectionState
     entries: ReceiptEntry[]
@@ -894,7 +928,7 @@ function buildIdentity(inputs: DossierV4Inputs, v3: DossierV3ViewModel): Identit
     jurisdictions: classification.jurisdictions,
     identityVerified: knownIdentityConflict ? false : (identityCheck?.passed ?? false),
     identityLabel: knownIdentityConflict
-      ? 'Identity correction in progress'
+      ? 'Record link mismatch'
       : identityCheck?.passed
         ? 'Identity checked'
         : 'Identity not confirmed',
@@ -1094,10 +1128,10 @@ function strongestMeasuredFinding(findings: readonly string[]): string | undefin
 }
 
 /**
- * A sentence the label printed, as a page statement.
+ * A sentence copied from the recorded source, as a page statement.
  *
  * `stored_source` is the page's existing origin for text copied out of a source RNAWiki holds, and
- * it is what separates a quoted label sentence from a sentence a person wrote into the record. The
+ * it is what separates a quoted source sentence from a sentence a person wrote into the record. The
  * citation travels with it so the reader can see which document printed it.
  */
 function labelStatement(sentence: LabelSentence, basis: string): Statement {
@@ -1112,206 +1146,117 @@ function buildHero(
   identity: IdentityStrip,
   label: RecordedLabel,
 ): ActionHero {
-  const legacy = inputs.legacyRecord
-  const bound = inputs.boundAnswer
-  const steps = legacy?.mechanismSteps ?? []
-  const provenance = citationsFromProvenance(legacy?.sourceProvenance)
-
-  // What it changes in the body. The authored explanation is the only thing that answers this in
-  // reader language; where it is absent the hero says so rather than reaching for an abstract.
-  const chosen = selectActionSentence(legacy?.laymanHowItWorks)
-  const whyText = bound?.copy.usedFor ?? legacy?.patientFriendlyIndication ?? ''
-
-  /*
-   * The opening line. A recorded sentence that earns the position, or the reason people take it,
-   * or an honest absence. The transporter sentence no longer wins by being first.
-   */
-  const simpleAction = chosen.text
-    ? statement(
-        readerText(chosen.text),
-        'authored_record',
-        'source_checked_draft',
-        'A person wrote this explanation into the record, with the studies named in the path below.',
-        provenance.slice(0, 3),
+  const recordedUse = label.uses.find((item) => Boolean(item.citation.url))
+  const recordedMechanism = label.mechanism.find((item) => Boolean(item.citation.url))
+  // A DOI somewhere in the legacy bibliography does not bind a particular authored sentence to
+  // that paper. Only a directly linked recorded sentence may describe a use or mechanism in the
+  // opening; a reviewed effect claim is selected separately below.
+  const useSplit = splitForReader(recordedUse?.text)
+  const simpleAction = recordedUse
+    ? labelStatement(
+        { text: useSplit.lead || recordedUse.text, citation: recordedUse.citation },
+        'The use stated by the cited source. This is not a reviewed benefit claim.',
       )
-    : whyText
-      ? statement(
-          readerText(whyText),
-          bound?.copy.usedFor ? 'approved_first_read' : 'authored_record',
-          bound?.copy.usedFor ? 'reviewed_content' : 'source_checked_draft',
-          `${chosen.reason} The page opens with what it is taken for instead, and the recorded explanation follows below.`,
-        )
-      : label.uses[0]
-        ? labelStatement(
-            // The house split: whole sentences up to the reader limit, never a truncated medical
-            // sentence. An indication that runs to three sentences opens on the first, and the rest
-            // is kept word for word in the explanation below.
-            {
-              text: splitForReader(label.uses[0].text).lead || label.uses[0].text,
-              citation: label.uses[0].citation,
-            },
-            'The use the label states, quoted from it. No plain-language version of this sentence has been written.',
-          )
-        : label.mechanism[0]
-          ? labelStatement(
-              label.mechanism[0],
-              'What the label states this substance does, quoted from it. No plain-language version of this sentence has been written.',
-            )
-          : // A display line reading "Not recorded." looks like a broken page rather than an honest one.
-            statement(
-              'RNAWiki has not recorded what this substance changes in the body.',
-              'contract_sentence',
-              'awaiting_review',
-              chosen.reason,
-            )
-
-  /*
-   * Everything the recorded explanation says, under the opening line. Where the opening line came
-   * from the explanation itself, its own sentence is not repeated.
-   */
-  const full = legacy?.laymanHowItWorks?.trim() ?? ''
-  const withoutOpening = chosen.text ? full.replace(chosen.text, '').trim() : full
-  /*
-   * The same rule the opening line follows applies to the paragraph under it: RNAWiki does not name
-   * an amount in its own voice, anywhere in the hero. Five records carry label wording such as "at
-   * the recommended dose levels" inside the recorded explanation. Those sentences are dropped from
-   * the hero and remain, word for word, in the technical detail on the body path below.
-   */
-  const detailSentences =
-    withoutOpening.match(/[^.!?]+[.!?]+(\s|$)/g) ?? (withoutOpening ? [withoutOpening] : [])
-  const keptSentences = detailSentences.filter((sentence) => !DOSE_LANGUAGE.test(sentence))
-  const movedForDose = detailSentences.length - keptSentences.length
-  const detailText = keptSentences.join('').trim()
-  const actionDetail = detailText
-    ? statement(
-        readerText(detailText),
-        'authored_record',
-        'source_checked_draft',
-        movedForDose > 0
-          ? `The rest of the recorded explanation. ${movedForDose} ${movedForDose === 1 ? 'sentence names' : 'sentences name'} an amount and ${movedForDose === 1 ? 'is' : 'are'} kept in the technical detail instead.`
-          : 'The rest of the recorded explanation of what happens in the body.',
-        provenance.slice(0, 3),
-      )
-    : label.mechanism.length > 0 || splitForReader(label.uses[0]?.text).rest
+    : recordedMechanism
       ? labelStatement(
-          {
-            text: [
-              splitForReader(label.uses[0]?.text).rest,
-              ...label.mechanism.map((sentence) => sentence.text),
-            ]
-              .filter(Boolean)
-              .join(' '),
-            citation: (label.mechanism[0] ?? label.uses[0])!.citation,
-          },
-          `What the label states about how this substance acts, quoted from it${
-            label.targets.length > 0 ? `. Targets it names: ${label.targets.join(', ')}` : ''
-          }.`,
-        )
-      : absentStatement('No further explanation is recorded.', 'no_qualifying_evidence')
-
-  const bodyLocation = legacy?.anatomicalSite
-    ? statement(
-        readerText(legacy.anatomicalSite),
-        'authored_record',
-        'source_checked_draft',
-        'The site of action recorded on this substance.',
-      )
-    : absentStatement('No site of action is recorded.')
-
-  const firstStep =
-    steps.find((step) => step.visualStage === 'target_binding') ?? steps[1] ?? steps[0]
-  const immediateChange = firstStep
-    ? statement(
-        readerText(firstStep.laymanDesc),
-        'authored_record',
-        'source_checked_draft',
-        `Step ${firstStep.step} of the recorded path through the body.`,
-        provenance.slice(0, 2),
-      )
-    : label.mechanism[0]
-      ? labelStatement(
-          label.mechanism[0],
-          'The first thing the label states this substance does. No step-by-step path through the body is recorded.',
-        )
-      : absentStatement('No step-by-step path through the body is recorded.')
-
-  const whyPeopleCare =
-    !chosen.text && whyText
-      ? // It became the opening line; the hero renders it once.
-        absentStatement('Shown as the opening line on this page.', 'not_applicable')
-      : bound?.copy.usedFor
-        ? statement(
-            bound.copy.usedFor,
-            'approved_first_read',
-            'reviewed_content',
-            'A reviewer approved this sentence against this exact record and its sources.',
-          )
-        : legacy?.patientFriendlyIndication
-          ? statement(
-              readerText(legacy.patientFriendlyIndication),
-              'authored_record',
-              'source_checked_draft',
-              'The recorded use, written for a reader without medical training. Not signed off.',
-            )
-          : label.uses[0]
-            ? labelStatement(
-                label.uses[0],
-                'The use the label states, quoted from it. It is written for a clinician, not for a reader without medical training.',
-              )
-            : absentStatement('No recorded use is stored in reader language.')
-
-  /*
-   * The strongest result, and the limit beside it.
-   *
-   * Three tiers, in falling order of how much review each has had. The approved first-read answer
-   * is best: a reviewer signed the exact pairing of that sentence with this record's source
-   * surface. It resolves only while the fingerprint still matches, and on this branch two of the
-   * four gold records have changed since approval, so their answers correctly stop resolving.
-   *
-   * Rather than dropping to the contract sentence and leaving the first screen saying only that
-   * nothing is reviewed, the second tier reaches for what a person wrote into the record, under a
-   * label that says exactly that. The third tier is the contract sentence. The point of the tiers
-   * is that they are visibly different to a reader, not that they are interchangeable.
-   */
-  const measured = legacy?.measuredVsInferredSummary
-  const strongestGoalResult = bound?.copy.whatStudiesFound
-    ? statement(
-        bound.copy.whatStudiesFound,
-        'approved_first_read',
-        'reviewed_content',
-        'A reviewer approved this against this record. The reviewed-claim record carrying the exact population and effect size does not exist yet.',
-      )
-    : strongestMeasuredFinding(measured?.strictlyMeasured ?? [])
-      ? statement(
-          readerText(strongestMeasuredFinding(measured?.strictlyMeasured ?? []) as string),
-          'authored_record',
-          'source_checked_draft',
-          'The recorded finding that sits closest to something a person would notice. Written into the record, not signed off, and it carries no population or interval.',
-          provenance.slice(0, 3),
+          recordedMechanism,
+          'The action described by the cited source. This is not a human benefit result.',
         )
       : statement(
-          v3.contract.noReviewedConclusionSentence,
+          'No use or body action is tied to an inspectable source in this record.',
           'contract_sentence',
           'awaiting_review',
-          'No reviewed claim names a result for any goal on this record.',
+          'Legacy authored prose and its bibliography have no sentence-level source binding.',
         )
 
-  const principalUncertainty = bound?.copy.biggestLimit
-    ? statement(
-        bound.copy.biggestLimit,
-        'approved_first_read',
-        'reviewed_content',
-        'The limit a reviewer approved as the one that matters most here.',
-      )
-    : selectPrincipalLimit(measured)
-      ? statement(
-          readerText(selectPrincipalLimit(measured) as string),
-          'authored_record',
-          'source_checked_draft',
-          'A limit recorded against this substance. Not signed off as a reviewed claim.',
-          provenance.slice(0, 3),
+  // Do not concatenate sentences from different documents under one citation.
+  const actionDetail =
+    recordedMechanism && recordedMechanism.text !== simpleAction.text
+      ? labelStatement(
+          recordedMechanism,
+          'The mechanism described by the cited source, not a measured human benefit.',
         )
-      : absentStatement('No statement of the main limit is recorded.', 'awaiting_review')
+      : useSplit.rest && recordedUse
+        ? labelStatement(
+            { text: useSplit.rest, citation: recordedUse.citation },
+            'The rest of the use stated by the same cited source.',
+          )
+        : absentStatement(
+            'No further source-bound explanation is recorded.',
+            'no_qualifying_evidence',
+          )
+
+  const bodyLocation = absentStatement('No source-bound site of action is recorded.')
+  const immediateChange = recordedMechanism
+    ? labelStatement(
+        recordedMechanism,
+        'A mechanism statement in the cited source, not a step proven to improve health.',
+      )
+    : absentStatement('No source-bound first body step is recorded.')
+  const whyPeopleCare = recordedUse
+    ? labelStatement(
+        recordedUse,
+        'The use stated by the cited source, not a reviewed benefit claim.',
+      )
+    : absentStatement('No use is tied to an inspectable source in this record.')
+
+  // A human-benefit headline needs a reviewed claim with its own source, people, comparison,
+  // duration and uncertainty. A legacy fingerprint or a registered study is not that claim.
+  const reviewedEffect = inputs.claims.find(
+    (claim) =>
+      claim.kind === 'effect' &&
+      claim.reviewerState === 'reviewed' &&
+      claim.sourceSnapshotIds.length > 0 &&
+      claim.sourceLocators.some(
+        (source) =>
+          claim.sourceSnapshotIds.includes(source.snapshotId) &&
+          Boolean(resolveSafeSourceLocator(source.locator)?.href),
+      ) &&
+      claim.plainLanguageVersion.trim() &&
+      claim.applicablePopulation.trim() &&
+      claim.indicationOrGoal.trim() &&
+      claim.comparator?.trim() &&
+      claim.duration?.trim() &&
+      claim.uncertaintyReasons.some((reason) => reason.trim()),
+  )
+  const reviewedSources: SourceCitation[] =
+    reviewedEffect?.sourceLocators.flatMap((source) => {
+      if (!reviewedEffect.sourceSnapshotIds.includes(source.snapshotId)) return []
+      const url = resolveSafeSourceLocator(source.locator)?.href
+      return url
+        ? [
+            {
+              label: 'Source for the reviewed result',
+              id: source.snapshotId,
+              url,
+              binding: 'snapshot' as const,
+            },
+          ]
+        : []
+    }) ?? []
+  const strongestGoalResult = reviewedEffect
+    ? statement(
+        readerText(reviewedEffect.plainLanguageVersion),
+        'reviewed_claim',
+        'reviewed_content',
+        'A reviewed result for the goal, people, comparison and duration named here.',
+        reviewedSources,
+      )
+    : statement(
+        v3.contract.noReviewedConclusionSentence,
+        'contract_sentence',
+        'awaiting_review',
+        'No source-bound reviewed effect claim with its population, comparison and duration exists here.',
+      )
+  const principalUncertainty = reviewedEffect
+    ? statement(
+        readerText(reviewedEffect.uncertaintyReasons[0]!),
+        'reviewed_claim',
+        'reviewed_content',
+        'The limitation stored on the same reviewed claim as the result.',
+        reviewedSources,
+      )
+    : absentStatement('No reviewed result exists to qualify.', 'awaiting_review')
 
   // v3 calls the boundary "breaks"; v4 renders it as "where this stops being true". An analogy
   // without its boundary is never carried across.
@@ -1327,7 +1272,9 @@ function buildHero(
    */
   const approved = inputs.statementOverlay?.active
   const withOverlay = (key: PageStatementKey, base: Statement): Statement =>
-    withApprovedWording(base, approved?.get(key))
+    base.sources.some((source) => Boolean(source.url))
+      ? withApprovedWording(base, approved?.get(key))
+      : base
 
   const openingLine = withOverlay('hero.opening', simpleAction)
   const explanation = withOverlay('hero.explanation', actionDetail)
@@ -1355,6 +1302,14 @@ function buildHero(
     whyPeopleCare: reasonPeopleTakeIt,
     analogy,
     strongestGoalResult: headlineResult,
+    resultScope: reviewedEffect
+      ? {
+          goal: readerText(reviewedEffect.indicationOrGoal),
+          population: readerText(reviewedEffect.applicablePopulation),
+          comparator: readerText(reviewedEffect.comparator ?? ''),
+          duration: readerText(reviewedEffect.duration ?? ''),
+        }
+      : null,
     // What kind of thing the headline result is. A reviewed claim names its own outcome class; with
     // none, the kind is read from the strongest result's own words, and stays unknown if they do
     // not say. It is never assumed to be the kind a reader would most want.
@@ -1529,28 +1484,31 @@ function buildHumanResults(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
   namedTrial: RecordedFact[],
+  trialSnapshots: RecordedTrialSnapshot[],
 ): DossierV4ViewModel['humanResults'] {
   const legacy = inputs.legacyRecord
-  const provenance = citationsFromProvenance(legacy?.sourceProvenance)
+  const roles = new Map(inputs.roleAggregate?.rows.map((row) => [row.nctId, row.role]) ?? [])
   const cards: HumanResultCard[] = (legacy?.trials ?? [])
-    .filter(
-      (trial: ClinicalTrialRecord) => Boolean(trial.primaryEndpoint) && Boolean(trial.trialId),
-    )
+    .filter((trial: ClinicalTrialRecord) => {
+      const nct = /NCT\d{8}/.exec(trial.trialId)?.[0]
+      const role = nct ? roles.get(nct) : undefined
+      return Boolean(trial.primaryEndpoint && nct && role && trialRoleSupportsTestedClaim(role))
+    })
+    .slice(0, 6)
     .map((trial, index) => {
       const verdict: HumanResultCard['verdict'] =
-        trial.endpointStatus ?? (trial.endpointMet ? 'met' : 'not_met')
+        trial.endpointStatus === 'met' || trial.endpointStatus === 'not_met'
+          ? trial.endpointStatus
+          : 'not_reported'
       const nct = /NCT\d{8}/.exec(trial.trialId)?.[0]
-      const role = nct ? inputs.roleAggregate?.rows.find((row) => row.nctId === nct) : undefined
       return {
         id: `result-${index + 1}`,
         question: readerText(trial.primaryEndpoint),
-        population: readerText(trial.trialId),
+        population: 'Not recorded in this summary',
         intervention: legacy?.name ?? v3.name,
-        formulation: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
-        route: legacy?.deliverySystem?.type ?? 'Not recorded for this study',
-        comparator: /placebo/i.test(trial.phase)
-          ? 'A dummy treatment'
-          : 'Not recorded for this study',
+        formulation: 'Not recorded for this study',
+        route: 'Not recorded for this study',
+        comparator: 'Not recorded for this study',
         outcome: readerText(trial.primaryEndpoint),
         outcomeClassLabel: /surviv|death|mortalit/i.test(trial.primaryEndpoint)
           ? 'Living longer, or avoiding a major event'
@@ -1559,10 +1517,8 @@ function buildHumanResults(
             : /strength|mass|power|repetition/i.test(trial.primaryEndpoint)
               ? 'Measured performance'
               : 'A number that stands in for health',
-        duration:
-          /\b(\d+)\s*(year|month|week)s?\b/i.exec(trial.primaryEndpoint)?.[0] ??
-          'Not recorded in this summary',
-        absoluteResult: readerText(trial.statisticalPValue),
+        duration: 'Not recorded in this summary',
+        absoluteResult: 'An outcome value is not verified against a study result here.',
         relativeResult: 'Not recorded in this summary',
         confidenceInterval:
           /95%\s*C[LI][^.]*/i.exec(trial.statisticalPValue)?.[0] ?? 'Not recorded in this summary',
@@ -1571,23 +1527,34 @@ function buildHumanResults(
         primaryLimitation: trial.unreportedAdverseSignals
           ? readerText(trial.unreportedAdverseSignals)
           : 'No limitation is recorded for this study.',
-        applicabilityLimitation: role
-          ? `RNAWiki classified this registered study as ${role.role === 'experimental_intervention' ? 'testing this substance' : 'not clearly testing this substance'}.`
-          : 'This study is recorded from the curated record, not from the registry match.',
+        applicabilityLimitation:
+          'This registry match tests the substance, but the population and result need source review.',
         doesNotProve:
           verdict === 'met'
             ? 'Meeting one endpoint in one population does not carry to other goals or other people.'
-            : 'A study that did not show an effect does not show that no effect exists anywhere.',
+            : verdict === 'not_met'
+              ? 'One result that missed its endpoint does not show that no effect exists anywhere.'
+              : 'This record does not establish whether the study met its endpoint.',
         participants: trial.sampleSize ?? null,
         verdict,
         verdictLabel: VERDICT_LABELS[verdict],
         origin: 'authored_record' as StatementOrigin,
         state: 'source_checked_draft' as SectionState,
-        sources: provenance.slice(0, 4),
+        sources: nct
+          ? [
+              {
+                label: `ClinicalTrials.gov ${nct}`,
+                id: nct,
+                url: `https://clinicaltrials.gov/study/${nct}`,
+                binding: 'record' as const,
+              },
+            ]
+          : [],
       }
     })
   return {
     namedTrial,
+    trialSnapshots,
     state:
       cards.length > 0 || namedTrial.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     cards,
@@ -1600,7 +1567,7 @@ function buildHumanResults(
       know: cards.length
         ? `RNAWiki holds ${cards.length} written-up human studies for this substance, each with the question it asked.`
         : 'RNAWiki holds no written-up human study for this substance.',
-      how: 'Each card names the study, the number of people and what the study set out to measure.',
+      how: 'Each card names a registered study and what it set out to measure. A result needs separate review.',
       notProve:
         'These summaries were written by a person and have not been signed off as reviewed claims.',
       matters: 'A study that failed is as informative as one that worked, and both are here.',
@@ -2048,6 +2015,7 @@ function buildNoResponse(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
   classified: ClassifiedOutcome[],
+  measuredOutcome: CheckpointLine | null,
 ): DossierV4ViewModel['noResponse'] {
   const summary = inputs.legacyRecord?.measuredVsInferredSummary
   const realWorld = summary?.realWorldOutcome ?? []
@@ -2111,6 +2079,7 @@ function buildNoResponse(
     state: fromThisRecord.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     entries,
     note: 'None of these is a reason to take more. Taking more is not a step this page ever suggests.',
+    measuredOutcome,
   }
 }
 
@@ -2121,11 +2090,12 @@ function buildPractical(
   v3: DossierV3ViewModel,
   identity: IdentityStrip,
   titration: RecordedFact[],
+  sourceBoundSupply: RecordedFact[],
 ): DossierV4ViewModel['practical'] {
   const delivery = inputs.legacyRecord?.deliverySystem
   const regulatory = fieldValue(inputs, 'regulatory')
   return {
-    titration,
+    titration: [],
     state: delivery || titration.length > 0 ? 'source_checked_draft' : 'no_qualifying_evidence',
     availability: statement(
       identity.availability,
@@ -2134,14 +2104,15 @@ function buildPractical(
       'Read from the recorded approval status.',
       v3.substanceType.sources,
     ),
-    route: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The form and route recorded on this substance.',
-        )
-      : absentStatement('No form or route is recorded.'),
+    route:
+      delivery?.type && !DOSE_LANGUAGE.test(delivery.type)
+        ? statement(
+            delivery.type,
+            'authored_record',
+            'source_checked_draft',
+            'The form and route recorded on this substance.',
+          )
+        : absentStatement('No form or route is recorded.'),
     burden: statement(
       v3.supervision.text,
       'stored_source',
@@ -2149,19 +2120,7 @@ function buildPractical(
       v3.supervision.basis,
       v3.supervision.sources,
     ),
-    productQuality: delivery?.description
-      ? (() => {
-          const split = splitForReader(delivery.description)
-          return statement(
-            readerText(split.lead),
-            'authored_record',
-            'source_checked_draft',
-            split.rest
-              ? `Recorded notes on how this is sold. The rest of the recorded wording: ${readerText(split.rest)}`
-              : 'Recorded notes on how this is sold and what that means for what is in the pack.',
-          )
-        })()
-      : absentStatement('Nothing is recorded about product quality.'),
+    productQuality: absentStatement('No source-bound product-quality comparison is recorded.'),
     regulatory: regulatory
       ? statement(
           'Regulatory records are listed in the technical disclosure at the foot of this page.',
@@ -2173,44 +2132,98 @@ function buildPractical(
     discontinuation: absentStatement(
       'No record of why people stopped taking it is stored for this substance.',
     ),
+    sourceBoundSupply: sourceBoundSupply.filter((fact) => Boolean(fact.citation.url)),
   }
 }
 
 /* ---------------------------------------------------------------- safety */
 
-function buildSafety(
+function labelSafetyEntry(
+  text: string,
+  citation: SourceCitation,
+  category: 'boxed' | 'contraindication' | 'warning' | 'interaction' | 'reaction',
+): SafetyEntry {
+  const labels = {
+    boxed: 'Boxed warning on a recorded product label',
+    contraindication: 'Who the recorded product label says should not use it',
+    warning: 'Warning on a recorded product label',
+    interaction: 'Interaction noted on a recorded product label',
+    reaction: 'Adverse reaction listed on a recorded product label',
+  } as const
+  return {
+    // This is the source's wording, not a new RNAWiki instruction or a substance-wide claim.
+    text: text.trim(),
+    evidenceSource: 'product_label',
+    evidenceSourcePlain: 'Recorded in the cited product label.',
+    // A boxed label warning is prominent, but it does not automatically mean emergency care.
+    action: 'professional_discussion',
+    actionLabel: labels[category],
+    urgent: false,
+    denominatorKnown: false,
+    sources: [citation],
+  }
+}
+
+function dedupeSafetyEntries(entries: SafetyEntry[]): SafetyEntry[] {
+  const seen = new Set<string>()
+  return entries.filter((entry) => {
+    const key = entry.text.trim().replace(/\s+/g, ' ').toLowerCase()
+    if (!key || seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+export function buildSafety(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  label: RecordedLabel,
 ): DossierV4ViewModel['safety'] {
-  const delivery = inputs.legacyRecord?.deliverySystem
-  const entries: SafetyEntry[] = v3.safety.items.map((item) => ({
-    text: item.text,
-    evidenceSource: item.layer,
-    evidenceSourcePlain: item.layerLabel,
-    action: item.layer === 'regulatory_label' ? 'professional_discussion' : 'common_nonurgent',
-    actionLabel:
-      item.layer === 'regulatory_label'
-        ? 'Worth asking a clinician about'
-        : 'Common, not an emergency',
-    urgent: false,
-    denominatorKnown: item.denominatorKnown,
-    sources: item.sources,
-  }))
-  if (delivery?.safetyProfile) {
-    entries.unshift({
-      text: readerText(delivery.safetyProfile),
-      evidenceSource: 'authored_record',
-      evidenceSourcePlain: 'Written into the record from the studies named on this page',
-      action: 'professional_discussion',
-      actionLabel: 'Worth asking a clinician about',
-      urgent: false,
-      denominatorKnown: false,
-      sources: citationsFromProvenance(inputs.legacyRecord?.sourceProvenance).slice(0, 3),
-    })
-  }
+  const recordEntries: SafetyEntry[] = v3.safety.items
+    .filter((item) => item.sources.length > 0)
+    .map((item) => ({
+      text: item.text,
+      evidenceSource: item.layer,
+      evidenceSourcePlain: item.layerLabel,
+      action: item.kind === 'serious_warning' ? 'urgent_warning' : 'professional_discussion',
+      actionLabel:
+        item.kind === 'serious_warning'
+          ? 'Serious warning'
+          : item.kind === 'contraindication'
+            ? 'Who the label says should not use it'
+            : 'Recorded safety information',
+      urgent: item.kind === 'serious_warning',
+      denominatorKnown: item.denominatorKnown,
+      sources: item.sources,
+    }))
+  const boxed = label.boxedWarning
+    ? [labelSafetyEntry(label.boxedWarning.text, label.boxedWarning.citation, 'boxed')]
+    : []
+  const contraindications = label.contraindications.map((item) =>
+    labelSafetyEntry(item.text, item.citation, 'contraindication'),
+  )
+  const warnings = label.safety.map((item) => labelSafetyEntry(item.text, item.citation, 'warning'))
+  const interactions = label.interactions.map((item) =>
+    labelSafetyEntry(item.text, item.citation, 'interaction'),
+  )
+  const reactions = label.adverseReactions.map((item) =>
+    labelSafetyEntry(item.text, item.citation, 'reaction'),
+  )
+  // Label statements are product-specific quotations. Keep a boxed warning visible first, then
+  // source-bound serious warnings. Do not turn other label lines into a general drug verdict.
+  const entries = dedupeSafetyEntries([
+    ...boxed,
+    ...recordEntries.filter((entry) => entry.urgent),
+    ...contraindications,
+    ...warnings,
+    ...recordEntries.filter((entry) => !entry.urgent),
+    ...interactions,
+    ...reactions,
+  ])
   return {
     state: entries.length ? 'source_checked_draft' : 'no_qualifying_evidence',
     entries,
+    unverifiedLegacySafety: Boolean(inputs.legacyRecord?.deliverySystem?.safetyProfile?.trim()),
     spontaneous: v3.safety.spontaneous,
     longTerm: v3.safety.longTerm,
     underrepresented: v3.safety.underrepresented,
@@ -2364,52 +2377,11 @@ function buildFormCheck(
       entries.length || corrections.length || supply.length
         ? 'source_checked_draft'
         : 'no_qualifying_evidence',
-    exactFormStudied: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The form used in the studies cited on this page.',
-        )
-      : absentStatement('The exact form studied is not recorded.'),
-    exactRouteStudied: delivery?.type
-      ? statement(
-          delivery.type,
-          'authored_record',
-          'source_checked_draft',
-          'The route recorded for this substance.',
-        )
-      : absentStatement('The route studied is not recorded.'),
+    exactFormStudied: absentStatement('No studied form is bound to a reviewed result.'),
+    exactRouteStudied: absentStatement('No studied route is bound to a reviewed result.'),
     // Not the first sentences again: "What taking it involves" already shows those, and printing
     // the same paragraph twice on one page wastes the reader's attention and doubles its length.
-    marketedForms: (() => {
-      // Not the sentences "What taking it involves" already showed, and never a long sentence in
-      // the reader layer: the lead is what fits, and the recorded remainder sits in the basis.
-      const tail = remainderAfter(delivery?.description, 1)
-      if (!tail) return absentStatement('Nothing further is recorded about which forms are sold.')
-      const split = splitForReader(tail)
-      /*
-       * When the next recorded sentence is itself over the limit there is nothing to lead with, and
-       * a truncated medical sentence would be worse than a long one. The reader layer says a note
-       * exists and where to find it; the note is kept word for word in the disclosure below.
-       */
-      if (split.overLimit) {
-        return statement(
-          'A recorded note compares this form with the others that are sold. It is kept below, word for word.',
-          'contract_sentence',
-          'source_checked_draft',
-          `The recorded note, unchanged: ${readerText(tail)}`,
-        )
-      }
-      return statement(
-        readerText(split.lead || tail),
-        'authored_record',
-        'source_checked_draft',
-        split.rest
-          ? `Recorded notes on which forms are sold. The rest of the recorded wording: ${readerText(split.rest)}`
-          : 'Recorded notes on which forms are sold and how they compare.',
-      )
-    })(),
+    marketedForms: absentStatement('No source-bound comparison of marketed forms is recorded.'),
     equivalenceEvidence: statement(
       COMPASS_COPY.identityMatters,
       'contract_sentence',
@@ -2428,6 +2400,7 @@ function buildMeasurement(
   v3: DossierV3ViewModel,
   identity: IdentityStrip,
   classified: ClassifiedOutcome[],
+  studyMeasure: CheckpointLine | null,
 ): DossierV4ViewModel['measurement'] {
   /*
    * The planner gate. Safety-critical, so it is a conjunction of explicit conditions rather than a
@@ -2471,6 +2444,7 @@ function buildMeasurement(
       warningSigns: v3.measure.warningSigns,
       boundary: COMPASS_COPY.measurementBoundary,
       noDoseLine: v3.measure.closing,
+      studyMeasure,
     }
   }
   const measurable = classified.filter((entry) => entry.experience === 'measured').slice(0, 6)
@@ -2545,6 +2519,7 @@ function buildMeasurement(
     warningSigns: v3.measure.warningSigns,
     boundary: COMPASS_COPY.measurementBoundary,
     noDoseLine: COMPASS_COPY.measurementNoDose,
+    studyMeasure,
   }
 }
 
@@ -2621,6 +2596,7 @@ function buildClaimDecoder(
 function buildUnknowns(
   inputs: DossierV4Inputs,
   v3: DossierV3ViewModel,
+  sourceBoundBoundary: CheckpointLine | null,
 ): DossierV4ViewModel['unknowns'] {
   const checked = v3.lastEvidenceCheck ?? 'not recorded'
   const fieldGaps = Object.entries(inputs.fields)
@@ -2698,7 +2674,11 @@ function buildUnknowns(
       state: 'no_qualifying_evidence',
     })
   }
-  return { state: entries.length ? 'source_checked_draft' : 'not_applicable', entries }
+  return {
+    state: entries.length || sourceBoundBoundary ? 'source_checked_draft' : 'not_applicable',
+    entries,
+    sourceBoundBoundary,
+  }
 }
 
 /* -------------------------------------------------------------- receipts */
@@ -2871,16 +2851,10 @@ function buildGates(
     {
       code: 'claim_provenance_present',
       label: 'Every public sentence names a source',
-      // A contract sentence is RNAWiki's own wording, not a source. An opening that falls back to
-      // one means the record carries neither an explanation nor a recorded purpose.
-      passed:
-        model.hero.simpleAction.origin !== 'absent' &&
-        model.hero.simpleAction.origin !== 'contract_sentence',
-      detail:
-        model.hero.simpleAction.origin === 'absent' ||
-        model.hero.simpleAction.origin === 'contract_sentence'
-          ? 'The opening statement carries no source: the record holds neither an explanation nor a recorded use.'
-          : `The opening statement carries the origin: ${ORIGIN_LABELS[model.hero.simpleAction.origin]}.`,
+      passed: model.hero.simpleAction.sources.some((source) => Boolean(source.url)),
+      detail: model.hero.simpleAction.sources.some((source) => Boolean(source.url))
+        ? `The opening statement carries the origin: ${ORIGIN_LABELS[model.hero.simpleAction.origin]}.`
+        : 'The opening statement has no inspectable source for a use or body action.',
     },
     {
       code: 'trial_roles_valid',
@@ -2930,6 +2904,14 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
    * answer to how it is supplied, not a fact about records.
    */
   const facts = recordedFactsFor(inputs.legacyRecord?.recordedBackground ?? null)
+  const exactSupply = facts.supply.filter((fact) =>
+    (inputs.legacyRecord?.recordedBackground?.productVariants ?? []).some(
+      (variant) =>
+        fact.text.startsWith(`${variant.brandName} is `) &&
+        fact.citation.id === variant.source.identifier &&
+        Boolean(fact.citation.url),
+    ),
+  )
   const hero = buildHero(inputs, v3, identity, label)
 
   const biomarkerTerms = ((fieldValue(inputs, 'biomarkers') as { terms?: string[] } | undefined)
@@ -2937,21 +2919,26 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
   const classified = classifyOutcomeTerms(biomarkerTerms)
 
   const fingerprint = buildFingerprint(inputs, v3, classified)
-  const humanResults = buildHumanResults(inputs, v3, facts.namedTrial)
+  const humanResults = buildHumanResults(inputs, v3, facts.namedTrial, facts.trialSnapshots)
+  const checkpoint = buildSourceBoundCheckpoint({
+    label,
+    trialSnapshots: facts.trialSnapshots,
+    exactSupply,
+  })
   const staircase = buildStaircase(inputs, v3, classified)
   const journey = buildJourney(inputs, v3, facts.anatomy)
   const experience = buildExperience(classified)
   const timeline = buildTimeline(inputs, v3)
   const applicability = buildApplicability(inputs, v3, facts.populations, facts.studyPopulation)
-  const noResponse = buildNoResponse(inputs, v3, classified)
-  const practical = buildPractical(inputs, v3, identity, facts.titration)
-  const safety = buildSafety(inputs, v3)
+  const noResponse = buildNoResponse(inputs, v3, classified, checkpoint.measured)
+  const practical = buildPractical(inputs, v3, identity, facts.titration, exactSupply)
+  const safety = buildSafety(inputs, v3, label)
   const stack = buildStack(inputs, v3)
   const formCheck = buildFormCheck(inputs, v3, facts.supply)
-  const measurement = buildMeasurement(inputs, v3, identity, classified)
+  const measurement = buildMeasurement(inputs, v3, identity, classified, checkpoint.measured)
   const alternatives = buildAlternatives(inputs, v3)
   const claimDecoder = buildClaimDecoder(inputs, v3)
-  const unknowns = buildUnknowns(inputs, v3)
+  const unknowns = buildUnknowns(inputs, v3, checkpoint.boundary)
   const receipts = buildReceipts(inputs, v3, facts)
   const story = buildStory(inputs, facts.regulatory)
 
@@ -2974,13 +2961,28 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
    */
   const publication = decidePublicationState({
     reviewedClaimCount: inputs.claims.filter((claim) => claim.reviewerState === 'reviewed').length,
-    hasApprovedFirstRead: Boolean(inputs.boundAnswer),
+    // The legacy approval fingerprint does not bind a public claim-level source and its copy is
+    // not used in this reader layer. It cannot by itself make a page preliminary.
+    hasApprovedFirstRead: false,
     hasSourceLinkedContent:
-      hero.simpleAction.origin === 'authored_record' ||
-      hero.strongestGoalResult.origin === 'authored_record' ||
-      humanResults.cards.length > 0 ||
-      journey.nodes.length > 0,
+      [hero.simpleAction, hero.actionDetail, hero.whyPeopleCare, hero.immediateChange].some(
+        (entry) =>
+          entry.origin === 'stored_source' && entry.sources.some((source) => Boolean(source.url)),
+      ) ||
+      humanResults.trialSnapshots.some((entry) => Boolean(entry.citation.url)) ||
+      safety.entries.some(
+        (entry) =>
+          entry.evidenceSource === 'product_label' &&
+          entry.sources.some((source) => Boolean(source.url)),
+      ),
     identityPassed: identity.identityVerified,
+    identityIssue: Object.prototype.hasOwnProperty.call(
+      PUBLIC_IDENTITY_PROTECTIONS,
+      inputs.corpus.slug,
+    )
+      ? PUBLIC_IDENTITY_PROTECTIONS[inputs.corpus.slug as keyof typeof PUBLIC_IDENTITY_PROTECTIONS]
+          .readerNotice
+      : undefined,
     criticalIdentityConflict: v3.indexQuality.some(
       (check) => check.check === 'no_critical_contamination' && !check.passed,
     ),
@@ -3008,6 +3010,7 @@ export function buildDossierV4(inputs: DossierV4Inputs): DossierV4ViewModel {
     approvedWordings: [...(inputs.statementOverlay?.active.values() ?? [])],
     wordingHistory: inputs.statementOverlay?.history ?? [],
     hero,
+    checkpoint,
     concepts,
     fingerprint,
     humanResults,

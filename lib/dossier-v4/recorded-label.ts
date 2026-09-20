@@ -18,6 +18,7 @@
  */
 import type { SourceCitation } from '@/lib/dossier-v3/fields'
 import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
+import { resolveRecordedSourceLocator, resolveSafeSourceLocator } from '@/lib/source-locator'
 
 export interface LabelSentence {
   text: string
@@ -30,7 +31,7 @@ const SOURCE_LABELS: Record<string, string> = {
   FDA_LABEL: 'US prescribing information',
   DAILYMED: 'DailyMed label',
   EMA_SMPC: 'EMA product information',
-  PUBMED: 'Peer-reviewed publication',
+  PUBMED: 'PubMed record',
   CLINICALTRIALS: 'ClinicalTrials.gov record',
   PUBCHEM: 'PubChem record',
   RXNORM: 'RxNorm record',
@@ -45,9 +46,13 @@ function citationFor(source: BackgroundSource): SourceCitation {
   const kind = String((source as { kind?: string }).kind ?? '')
   const identifier = String((source as { identifier?: string }).identifier ?? '')
   const retrievedAt = (source as { retrievedAt?: string }).retrievedAt
+  const url =
+    resolveRecordedSourceLocator(kind, identifier)?.href ??
+    (source.locator ? resolveSafeSourceLocator(source.locator)?.href : null)
   return {
     label: SOURCE_LABELS[kind] ?? 'Recorded source',
     ...(identifier ? { id: identifier } : {}),
+    ...(url ? { url } : {}),
     ...(retrievedAt ? { date: retrievedAt } : {}),
     binding: 'record',
   }
@@ -80,6 +85,8 @@ export interface RecordedLabel {
   targets: string[]
   /** What the label warns about. */
   safety: LabelSentence[]
+  /** Every source-recorded reason the named product should not be used. Never cap this list. */
+  contraindications: LabelSentence[]
   /** What the label records about exposure over time. */
   pharmacokinetics: LabelSentence[]
   /** Reactions the label lists as common. */
@@ -97,6 +104,7 @@ export const EMPTY_RECORDED_LABEL: RecordedLabel = {
   mechanism: [],
   targets: [],
   safety: [],
+  contraindications: [],
   pharmacokinetics: [],
   adverseReactions: [],
   interactions: [],
@@ -139,6 +147,14 @@ export function recordedLabelFor(
     mechanism,
     targets: rawTargets ?? [],
     safety: sentencesFrom(statementsOf(envelope, 'safety'), 4),
+    contraindications: sentencesFrom(
+      (
+        envelope['safety'] as
+          | { contraindications?: Array<{ textAsRecorded: string; source: BackgroundSource }> }
+          | undefined
+      )?.contraindications,
+      Number.POSITIVE_INFINITY,
+    ),
     pharmacokinetics: sentencesFrom(statementsOf(envelope, 'pharmacokinetics'), 4),
     adverseReactions: sentencesFrom(statementsOf(envelope, 'commonAdverseReactions'), 4),
     interactions: sentencesFrom(statementsOf(envelope, 'interactionSignals'), 4),
@@ -161,6 +177,7 @@ export function recordedLabelFor(
     label.uses.length === 0 &&
     label.mechanism.length === 0 &&
     label.safety.length === 0 &&
+    label.contraindications.length === 0 &&
     label.pharmacokinetics.length === 0 &&
     label.adverseReactions.length === 0 &&
     label.interactions.length === 0 &&

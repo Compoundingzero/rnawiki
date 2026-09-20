@@ -72,10 +72,12 @@ const GENERATED_COPY_WORDS = [
 ] as const
 
 describe('public copy style', () => {
-  it('keeps the simple home-page promise unchanged', () => {
+  it('frames the homepage as an evidence check without promising a verdict for every drug', () => {
     const source = readFileSync(join(process.cwd(), 'components/HomeView.tsx'), 'utf8')
-    expect(source).toContain('Understand any drug')
-    expect(source).toContain('10 seconds')
+    expect(source).toContain('Check what the sources can—and cannot—say about a health claim')
+    expect(source).toContain('Other records may have less evidence.')
+    expect(source).toContain('Drug records vary in what their sources can establish.')
+    expect(source).not.toContain('Understand any drug')
   })
 
   it('describes exact registry-delta limits without implying medical safety', () => {

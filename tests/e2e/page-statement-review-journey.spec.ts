@@ -186,7 +186,7 @@ test('the first approval moves the count to one of three', async ({ browser }) =
   // because one approval out of three has changed nothing about the medicine.
   await page.goto(`/d/${slug}`)
   await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
-  expect((await page.locator('#substance-action').textContent()) ?? '').not.toContain(PROPOSED)
+  expect((await page.locator('#answer').textContent()) ?? '').not.toContain(PROPOSED)
   await context.close()
 })
 
@@ -221,7 +221,7 @@ test('the second approval moves the count to two of three', async ({ browser }) 
   await expect(page.locator('main')).toContainText('2 of 3 approvals', { timeout: 15_000 })
   await page.goto(`/d/${slug}`)
   await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
-  expect((await page.locator('#substance-action').textContent()) ?? '').not.toContain(PROPOSED)
+  expect((await page.locator('#answer').textContent()) ?? '').not.toContain(PROPOSED)
   await context.close()
 })
 
@@ -284,12 +284,10 @@ test('approval changed the wording and not the evidence state', async ({ page })
    */
   await expect(page.locator('[data-origin="community_reviewed"]')).toHaveCount(0)
   await expect(page.locator('main')).not.toContainText('Community approved')
-  // It is still visible to anyone who opens the provenance, word for word.
-  await expect(page.locator('#substance-action')).toContainText('3 members approved this wording')
-  // And the page still describes the evidence exactly as it did before the rewording.
-  await expect(page.locator('[data-block="strongest-result"] [data-state]')).not.toHaveAttribute(
-    'data-state',
-    'reviewed_content',
+  // The wording history is public, while the short answer still describes the evidence limit.
+  await expect(page.locator('#change-history')).toContainText('Approved by 3 members')
+  await expect(page.locator('#answer')).toContainText(
+    'It does not report a matched human benefit here',
   )
 })
 
@@ -338,7 +336,7 @@ test('a steward can roll the wording back, and the earlier wording returns', asy
 
   await page.goto(`/d/${slug}`)
   // The reader's answer returns to what the record says.
-  const hero = (await page.locator('#substance-action').textContent()) ?? ''
+  const hero = (await page.locator('#answer').textContent()) ?? ''
   expect(hero).not.toContain(PROPOSED)
   await expect(page.locator('.dv4-review-pill')).toHaveCount(0)
   // And the wording that was rolled back stays readable, with the fact that it was rolled back.

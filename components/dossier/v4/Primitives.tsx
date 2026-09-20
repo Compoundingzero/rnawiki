@@ -140,7 +140,13 @@ export function RecordedFactList({
           <li data-origin={fact.origin} key={`${fact.text.slice(0, 40)}-${index}`}>
             <p>{fact.text}</p>
             <p className="dv4-register-cite">
-              {fact.citation.label}
+              {fact.citation.url ? (
+                <a href={fact.citation.url} rel="noopener noreferrer">
+                  {fact.citation.label}
+                </a>
+              ) : (
+                fact.citation.label
+              )}
               {fact.citation.id ? ` · ${fact.citation.id}` : null}
               {fact.citation.date ? ` · read ${fact.citation.date}` : null}
             </p>

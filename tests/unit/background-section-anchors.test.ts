@@ -12,31 +12,44 @@ import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
  * background at all, so the rows that collided do not render there, and two ids collided with
  * sections that already existed while the full gate passed.
  *
- * The file this used to read — `components/MedicineRecordContextSections.tsx` — belonged to the
- * medicine layout this release deleted. The collision it guards against did not go with it: the
- * compass writes one document, and every section, panel and disclosure in it shares one id space.
+ * The regular and editorial reader layers are mutually exclusive. Check their static section IDs
+ * separately; counting both branches in one source-file search reports collisions that cannot
+ * appear in the document. The shared record section belongs in both checks.
  */
 
-async function compassIds(): Promise<string[]> {
-  const { readFileSync, readdirSync } = await import('node:fs')
-  return readdirSync('components/dossier/v4')
-    .filter((file) => file.endsWith('.tsx'))
-    .flatMap((file) =>
-      [
-        ...readFileSync(`components/dossier/v4/${file}`, 'utf8').matchAll(/id="([a-z0-9-]+)"/gu),
-      ].map((match) => match[1]!),
-    )
+async function compassIds(): Promise<{ regular: string[]; editorial: string[] }> {
+  const { readFileSync } = await import('node:fs')
+  const page = readFileSync('components/dossier/v4/CompassPage.tsx', 'utf8')
+  const editorialStart = page.indexOf('function EditorialDossier(')
+  const exportStart = page.indexOf('export function CompassPage(')
+  const sharedStart = page.indexOf('function RecordAndSources(')
+  if (editorialStart < 0 || exportStart < 0 || sharedStart < 0) {
+    throw new Error('The medicine page branch boundaries changed; update the anchor audit.')
+  }
+  const orientation = readFileSync('components/dossier/v4/Orientation.tsx', 'utf8')
+  const ids = (source: string) =>
+    [...source.matchAll(/id="([a-z0-9-]+)"/gu)].map((match) => match[1]!)
+  const shared = page.slice(sharedStart, editorialStart) + orientation
+  return {
+    regular: ids(page.slice(0, sharedStart) + shared),
+    editorial: ids(page.slice(editorialStart, exportStart) + shared),
+  }
 }
 
 describe('medicine page anchors', () => {
   it('finds the ids to check', async () => {
-    expect((await compassIds()).length).toBeGreaterThan(15)
+    const ids = await compassIds()
+    expect(ids.regular.length).toBeGreaterThan(12)
+    expect(ids.editorial.length).toBeGreaterThan(15)
   })
 
   it('gives every anchor an id that is unique across the page', async () => {
-    const ids = await compassIds()
-    const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index)
-    expect(duplicates, `ids written more than once: ${duplicates.join(', ')}`).toEqual([])
+    for (const [branch, ids] of Object.entries(await compassIds())) {
+      const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index)
+      expect(duplicates, `${branch} ids written more than once: ${duplicates.join(', ')}`).toEqual(
+        [],
+      )
+    }
   })
 })
 

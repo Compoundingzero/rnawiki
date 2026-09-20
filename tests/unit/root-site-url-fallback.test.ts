@@ -11,6 +11,7 @@ const homeQueries = vi.hoisted(() => ({
   getCurrentUser: vi.fn(),
   getProgrammeEvidenceByMedicineSlug: vi.fn(),
   listHomepageContributorSpotlight: vi.fn(),
+  goalIndex: vi.fn(),
 }))
 
 vi.mock('next/font/google', () => ({
@@ -31,6 +32,7 @@ vi.mock('@/lib/queries/programme-evidence', () => ({
 vi.mock('@/lib/queries/homepage-contributor-spotlight', () => ({
   listHomepageContributorSpotlight: homeQueries.listHomepageContributorSpotlight,
 }))
+vi.mock('@/lib/dossier-v3/goal-pages', () => ({ goalIndex: homeQueries.goalIndex }))
 vi.mock('@/lib/session', () => ({ getCurrentUser: homeQueries.getCurrentUser }))
 
 afterEach(() => {
@@ -57,6 +59,7 @@ describe('root URL fallback', () => {
       },
       entries: [],
     })
+    homeQueries.goalIndex.mockResolvedValue({ byGoal: new Map() })
 
     const [{ metadata }, { default: HomePage }] = await Promise.all([
       import('@/app/layout'),

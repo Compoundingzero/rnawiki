@@ -14,6 +14,7 @@ import type { RecordSubstance } from '@/lib/dossier-v4/indexability'
 import type { RecordedFact } from '@/lib/dossier-v4/recorded-facts'
 import { PURPOSES } from '@/lib/dossier-v4/taxonomy'
 import type { ActionHero, DossierV4ViewModel, IdentityStrip } from '@/lib/dossier-v4/view-model'
+import { PUBLIC_IDENTITY_PROTECTIONS } from '@/lib/inventory/public-identity-protections'
 
 import {
   BodyPathFigure,
@@ -47,6 +48,8 @@ export function PublicationBanner({
   publication: DossierV4ViewModel['publication']
 }): ReactNode {
   if (!CRITICAL_STATES.has(publication.state)) return null
+  const knownMagnesiumMismatch =
+    publication.reason === PUBLIC_IDENTITY_PROTECTIONS['magnesium-glycinate'].readerNotice
   return (
     <aside
       aria-labelledby="publication-state-h"
@@ -54,12 +57,22 @@ export function PublicationBanner({
       data-publication-state={publication.state}
     >
       <p className="dv4-publication-label" id="publication-state-h">
-        {publication.label}
+        {knownMagnesiumMismatch
+          ? 'Magnesium glycinate is not glycine'
+          : publication.state === 'correction_hold'
+            ? 'The ingredient identity is unclear'
+            : 'This record could not load'}
       </p>
-      <p>{publication.plain}</p>
-      <p className="dv4-note" style={{ marginBottom: 0 }}>
-        {publication.reason}
-      </p>
+      <p>{publication.reason}</p>
+      {knownMagnesiumMismatch ? (
+        <p className="dv4-note" style={{ marginBottom: 0 }}>
+          <a href={PUBLIC_IDENTITY_PROTECTIONS['magnesium-glycinate'].identitySourceUrl}>
+            Compare the ingredient in PubChem
+          </a>
+          {' · '}
+          <a href="/life-test">Check the separate bisglycinate sleep-study example</a>
+        </p>
+      ) : null}
     </aside>
   )
 }
@@ -94,7 +107,7 @@ export function PublicationNote({
  */
 export function MissingRecordNotice({
   substance,
-  searched,
+  searched: _searched,
 }: {
   substance: RecordSubstance
   /** The registers and databases this record was looked for in, named for the reader. */
@@ -104,15 +117,15 @@ export function MissingRecordNotice({
   return (
     <aside aria-labelledby="missing-record-h" className="dv4-publication" data-record="empty">
       <p className="dv4-publication-label" id="missing-record-h">
-        RNAWiki has not found information about this substance
+        No source-linked answer for this substance
       </p>
       <p>
-        There is no recorded explanation of what it does, no result measured in people, and no
-        recorded path through the body. Rather than leave the page looking finished, it says so.
+        This record cannot yet connect a use, a measured human result or a path through the body to
+        an inspectable source. Other identity and safety records may still appear below.
       </p>
       <p className="dv4-note" style={{ marginBottom: 0 }}>
-        Looked for in {searched.join(', ')}. If you know of a published source for this substance,
-        the review queue is where to say so.
+        Open “Check the record” for the source inventory. An empty answer here does not establish
+        that no research exists.
       </p>
     </aside>
   )

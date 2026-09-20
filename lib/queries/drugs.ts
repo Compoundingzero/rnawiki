@@ -255,8 +255,8 @@ async function resolveDirectMedicineRoute(
   normalized: string,
   requestedSlug: string,
 ): Promise<DirectMedicineRouteResolution> {
-  // This exact legacy slug was incorrectly merged into glycine. Keep its existing record distinct
-  // while the corpus identity and source review are repaired; do not generalize to other aliases.
+  // The legacy identity ledger incorrectly merged magnesium glycinate into glycine. Preserve the
+  // exact, still-stored medicine record while the source corpus is separated and re-reviewed.
   if (normalized === 'magnesium-glycinate') {
     const protectedRows = await db
       .select({ slug: drugs.slug })

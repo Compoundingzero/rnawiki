@@ -302,14 +302,125 @@ function inputs(overrides: Partial<DossierV4Inputs> = {}): DossierV4Inputs {
 }
 
 describe('every reader statement carries its origin', () => {
-  it('marks an unreviewed authored sentence as written into the record', () => {
-    const model = buildDossierV4(inputs())
-    expect(model.hero.simpleAction.origin).toBe('authored_record')
-    expect(model.hero.simpleAction.state).toBe('source_checked_draft')
-    expect(model.hero.strongestGoalResult.origin).toBe('authored_record')
+  it('passes exact linked study and listing facts to the reader-facing sections', () => {
+    const registrySource = {
+      kind: 'CLINICALTRIALS' as const,
+      identifier: 'NCT00000001',
+      label: 'Fixture registry result',
+      retrievedAt: '2026-09-19',
+    }
+    const listingSource = {
+      kind: 'FDA_NDC' as const,
+      identifier: '00000-001',
+      label: 'Fixture directory',
+      locator: 'https://api.fda.gov/drug/ndc.json?search=product_ndc%3A%2200000-001%22',
+      retrievedAt: '2026-09-19',
+    }
+    const model = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          recordedBackground: {
+            version: 'medicine-background/v1',
+            authoredAt: '2026-09-19',
+            provenanceTier: 'curated',
+            pivotalResults: [
+              {
+                trialIdentifier: 'NCT00000001',
+                endpointAsRecorded: 'Fixture test result',
+                activeResultAsRecorded: '12 of 100',
+                comparatorResultAsRecorded: '20 of 100',
+                timepointAsRecorded: '12 weeks',
+                source: registrySource,
+                trialContext: {
+                  trialIdentifier: 'NCT00000001',
+                  studiedConditionAsRecorded: 'fixture condition',
+                  testedInterventionAsRecorded: 'fixture compound',
+                  formulationAndRouteAsRecorded: 'oral capsule',
+                  source: registrySource,
+                },
+              },
+            ],
+            applicability: {
+              trialIdentifier: 'NCT00000001',
+              studiedGroupAsRecorded: 'adults with the fixture condition',
+              includedAsRecorded: [],
+              excludedAsRecorded: ['children'],
+              source: registrySource,
+            },
+            productListing: {
+              productCount: 2,
+              singleIngredientProductCount: 1,
+              dosageFormsAsRecorded: ['CAPSULE'],
+              routesAsRecorded: ['ORAL'],
+              marketingCategoriesAsRecorded: ['NDA'],
+              pharmacologicClassesAsRecorded: [],
+              sampleProductNdcs: ['00000-001'],
+              source: listingSource,
+            },
+            productVariants: [
+              {
+                brandName: 'Fixture capsule',
+                formAsRecorded: 'Capsule',
+                strengthsAsRecorded: 'fixture strength',
+                approvedUseAsRecorded: 'fixture condition',
+                jurisdiction: 'US_FDA',
+                statusAsRecorded: 'listed',
+                source: listingSource,
+              },
+            ],
+          } as unknown as DrugDossier['recordedBackground'],
+        }),
+      }),
+    )
+    expect(model.checkpoint.kind).toBe('human_result')
+    expect(model.noResponse.measuredOutcome?.text).toContain('Fixture test result')
+    expect(model.measurement.studyMeasure?.sources[0]?.url).toContain('NCT00000001')
+    expect(model.unknowns.sourceBoundBoundary?.text).toContain('children')
+    expect(model.practical.sourceBoundSupply[0]?.text).toContain('Fixture capsule is capsule')
+    expect(model.practical.sourceBoundSupply.some((fact) => fact.text.includes('2 products'))).toBe(
+      false,
+    )
   })
 
-  it('marks an approved first-read answer as reviewed, and only then', () => {
+  it('does not lead with an uncited authored use when a directly linked label use exists', () => {
+    const source = {
+      kind: 'DAILYMED' as const,
+      identifier: 'adec4fd2-6858-4c99-91d4-531f5f2a2d79',
+      label: 'Fixture product label',
+      retrievedAt: '2026-09-19',
+    }
+    const record = legacyRecord({
+      sourceProvenance: ['An uncited note'],
+      recordedBackground: {
+        recordedUses: {
+          statements: [
+            {
+              textAsRecorded: 'For a specific fixture indication.',
+              source,
+            },
+          ],
+        },
+      } as DrugDossier['recordedBackground'],
+    })
+    const model = buildDossierV4(inputs({ legacyRecord: record }))
+    expect(model.hero.simpleAction.text).toBe('For a specific fixture indication.')
+    expect(model.hero.simpleAction.origin).toBe('stored_source')
+    expect(model.hero.simpleAction.sources[0]?.url).toContain('dailymed.nlm.nih.gov')
+    expect(model.hero.simpleAction.text).not.toContain('fixture step')
+  })
+
+  it('does not promote legacy prose merely because its bibliography contains a DOI', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.hero.simpleAction.origin).toBe('contract_sentence')
+    expect(model.hero.simpleAction.state).toBe('awaiting_review')
+    expect(model.hero.simpleAction.sources).toEqual([])
+    expect(model.hero.whyPeopleCare.origin).toBe('absent')
+    expect(model.hero.actionDetail.origin).toBe('absent')
+    expect(model.hero.immediateChange.origin).toBe('absent')
+    expect(model.hero.strongestGoalResult.origin).toBe('contract_sentence')
+  })
+
+  it('does not let a fingerprint-approved first-read note stand in for a source-linked result', () => {
     const model = buildDossierV4(
       inputs({
         boundAnswer: {
@@ -326,8 +437,49 @@ describe('every reader statement carries its origin', () => {
         },
       }),
     )
-    expect(model.hero.strongestGoalResult.origin).toBe('approved_first_read')
-    expect(model.hero.strongestGoalResult.state).toBe('reviewed_content')
+    // A fingerprint-approved summary is not an independently reviewed effect claim.
+    expect(model.hero.strongestGoalResult.origin).toBe('contract_sentence')
+    expect(model.hero.simpleAction.origin).toBe('contract_sentence')
+    expect(model.hero.simpleAction.text).not.toContain('fixture goal')
+    expect(model.publication.state).toBe('limited')
+  })
+
+  it('keeps use and mechanism tied to their respective label documents', () => {
+    const useSource = {
+      kind: 'DAILYMED' as const,
+      identifier: 'adec4fd2-6858-4c99-91d4-531f5f2a2d79',
+      label: 'Fixture use label',
+      retrievedAt: '2026-09-19',
+    }
+    const mechanismSource = {
+      kind: 'DAILYMED' as const,
+      identifier: '42bdd912-2393-44c4-b7e0-47672ca28991',
+      label: 'Fixture mechanism label',
+      retrievedAt: '2026-09-19',
+    }
+    const model = buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          recordedBackground: {
+            recordedUses: {
+              statements: [{ textAsRecorded: 'For the fixture condition.', source: useSource }],
+            },
+            mechanism: {
+              statements: [
+                { textAsRecorded: 'Acts on the fixture target.', source: mechanismSource },
+              ],
+            },
+          } as DrugDossier['recordedBackground'],
+        }),
+      }),
+    )
+    expect(model.hero.simpleAction.origin).toBe('stored_source')
+    expect(model.hero.whyPeopleCare.origin).toBe('stored_source')
+    expect(model.hero.actionDetail.origin).toBe('stored_source')
+    expect(model.hero.simpleAction.sources[0]?.url).toContain(useSource.identifier)
+    expect(model.hero.actionDetail.sources[0]?.url).toContain(mechanismSource.identifier)
+    expect(model.hero.actionDetail.sources[0]?.url).not.toContain(useSource.identifier)
+    expect(model.hero.actionDetail.text).not.toContain('fixture step')
   })
 
   it('falls back to the contract sentence when the record holds no measured finding', () => {
@@ -354,13 +506,11 @@ describe('every reader statement carries its origin', () => {
   })
 })
 
-describe('the strongest result is the one closest to a person', () => {
-  it('prefers a strength result over a cell measurement recorded first', () => {
-    // The defect this guards: taking the first recorded finding led the page with a biopsy while a
-    // twelve-week randomised strength result sat below it in the same list.
+describe('a human result needs an exact reviewed claim', () => {
+  it('does not promote a legacy strength sentence into a reviewed result', () => {
     const model = buildDossierV4(inputs())
-    expect(model.hero.strongestGoalResult.text).toContain('Fixture strength rose')
-    expect(model.hero.outcomeType).toBe('Measured performance')
+    expect(model.hero.strongestGoalResult.text).toBe(NO_REVIEWED_CONCLUSION_SENTENCE)
+    expect(model.hero.resultScope).toBeNull()
   })
 
   it('reports the kind of result as unrecorded rather than guessing', () => {
@@ -376,7 +526,7 @@ describe('the strongest result is the one closest to a person', () => {
         }),
       }),
     )
-    expect(model.hero.outcomeType).toBe('The kind of result is not recorded')
+    expect(model.hero.outcomeType).toBe('No result is published, so no kind of result applies yet')
   })
 })
 
@@ -594,6 +744,19 @@ describe('absences are rendered, not dropped', () => {
 })
 
 describe('identity decides whether evidence carries', () => {
+  it('does not call a known incorrect substance merge identity-checked', () => {
+    const model = buildDossierV4(
+      inputs({
+        corpus: corpus({ slug: 'magnesium-glycinate', displayName: 'Magnesium glycinate' }),
+      }),
+    )
+    expect(model.identity.identityVerified).toBe(false)
+    expect(model.identity.identityLabel).toBe('Record link mismatch')
+    expect(model.publication.state).toBe('correction_hold')
+    expect(model.publication.mayShowConclusions).toBe(false)
+    expect(model.publication.reason).toMatch(/different substances/)
+  })
+
   it('marks a mirror form as not carrying the evidence on this page', () => {
     const model = buildDossierV4(inputs())
     const isomer = model.formCheck.entries.find((entry) => entry.relation === 'isomer_of')
@@ -694,10 +857,10 @@ describe('the next question is ranked by what prevents a misunderstanding', () =
     expect(model.nextQuestions[0]?.objective).toBe('Prevent a misunderstanding')
   })
 
-  it('surfaces a failed study before safety', () => {
+  it('does not link to an unverified result card', () => {
     const model = buildDossierV4(inputs())
     const targets = model.nextQuestions.map((question) => question.target)
-    expect(targets.indexOf('#human-results')).toBeLessThan(targets.indexOf('#safety'))
+    expect(targets).not.toContain('#human-results')
   })
 
   it('every question points at a section that exists', () => {
@@ -708,10 +871,10 @@ describe('the next question is ranked by what prevents a misunderstanding', () =
 })
 
 describe('the gates decide whether a slug may be served', () => {
-  it('passes a record with identity, provenance and a tested study', () => {
+  it('requires an exact source for the opening even when a bibliography and tested study exist', () => {
     const model = buildDossierV4(inputs())
     const failed = model.gates.filter((gate) => !gate.passed).map((gate) => gate.code)
-    expect(failed).toEqual([])
+    expect(failed).toEqual(['claim_provenance_present'])
   })
 
   it('fails the trial-role gate when no study is classified as testing the substance', () => {
@@ -722,12 +885,10 @@ describe('the gates decide whether a slug may be served', () => {
     expect(roles?.passed).toBe(false)
   })
 
-  it('still has a sourced opening when the explanation is missing but the purpose is not', () => {
-    // The hero falls back to what people take it for, which is recorded and sourced, so the gate
-    // passes. Leading with the purpose is the behaviour the benefit-first rule asks for.
+  it('does not mistake an authored purpose for a label-bound use', () => {
     const model = buildDossierV4(inputs({ legacyRecord: legacyRecord({ laymanHowItWorks: '' }) }))
-    expect(model.hero.simpleAction.origin).toBe('authored_record')
-    expect(model.gates.find((gate) => gate.code === 'claim_provenance_present')?.passed).toBe(true)
+    expect(model.hero.simpleAction.origin).toBe('contract_sentence')
+    expect(model.gates.find((gate) => gate.code === 'claim_provenance_present')?.passed).toBe(false)
   })
 
   it('fails the provenance gate when neither an explanation nor a purpose is recorded', () => {
@@ -898,8 +1059,32 @@ describe('indexing blocks on wrongness, not on incompleteness', () => {
     'canonical_metadata_valid',
   ] as const
 
+  function sourceBoundModel(): DossierV4ViewModel {
+    return buildDossierV4(
+      inputs({
+        legacyRecord: legacyRecord({
+          recordedBackground: {
+            recordedUses: {
+              statements: [
+                {
+                  textAsRecorded: 'For a specific fixture indication.',
+                  source: {
+                    kind: 'DAILYMED',
+                    identifier: 'adec4fd2-6858-4c99-91d4-531f5f2a2d79',
+                    label: 'Fixture label',
+                    retrievedAt: '2026-09-19',
+                  },
+                },
+              ],
+            },
+          } as DrugDossier['recordedBackground'],
+        }),
+      }),
+    )
+  }
+
   function withFailingGate(code: string): DossierV4ViewModel {
-    const model = buildDossierV4(inputs())
+    const model = sourceBoundModel()
     return {
       ...model,
       identity: { ...model.identity, identityVerified: true },
@@ -908,7 +1093,7 @@ describe('indexing blocks on wrongness, not on incompleteness', () => {
   }
 
   function withEveryGatePassing(): DossierV4ViewModel {
-    const model = buildDossierV4(inputs())
+    const model = sourceBoundModel()
     return {
       ...model,
       identity: { ...model.identity, identityVerified: true },
@@ -920,6 +1105,15 @@ describe('indexing blocks on wrongness, not on incompleteness', () => {
     const model = withEveryGatePassing()
     expect(model.substance.empty).toBe(false)
     expect(decideMedicinePageIndexing(model)).toMatchObject({ index: true, reason: 'indexable' })
+  })
+
+  it('does not index a legacy bibliography with no source-bound reader answer', () => {
+    const model = buildDossierV4(inputs())
+    expect(model.substance.empty).toBe(true)
+    expect(decideMedicinePageIndexing(model)).toMatchObject({
+      index: false,
+      reason: 'record_empty',
+    })
   })
 
   for (const code of COMPLETENESS_GATES) {

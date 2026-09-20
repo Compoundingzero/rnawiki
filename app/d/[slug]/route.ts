@@ -35,6 +35,10 @@ import { permanentRedirect } from 'next/navigation'
 import { dossierV4DocumentResponse } from '@/lib/dossier-v4/document'
 import { loadDossierV4Inputs } from '@/lib/dossier-v4/load'
 import { buildDossierV4 } from '@/lib/dossier-v4/view-model'
+import {
+  getProgrammeEvidenceByMedicineSlug,
+  programmeReferenceExists,
+} from '@/lib/queries/programme-evidence'
 import { incrementViewCount, resolvePublicMedicineRoute } from '@/lib/queries/drugs'
 
 // Railway's build environment cannot resolve the private database host during page collection.
@@ -52,20 +56,35 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> },
 ): Promise<Response> {
   const { slug } = await params
+  const requestedProgramme = new URL(request.url).searchParams.get('programme')
+  const programmeRef = requestedProgramme?.trim() ?? null
+  if (requestedProgramme !== null && (!programmeRef || programmeRef.length > 128)) {
+    return notFound()
+  }
 
   const route = await resolvePublicMedicineRoute(slug)
   if (!route) return notFound()
   if (route.canonicalSlug !== slug) {
     // A programme reference is shareable UI state, so it survives the canonical hop.
-    const programme = new URL(request.url).searchParams.get('programme')
-    const query = programme ? `?programme=${encodeURIComponent(programme)}` : ''
+    const query = programmeRef ? `?programme=${encodeURIComponent(programmeRef)}` : ''
     permanentRedirect(`/d/${encodeURIComponent(route.canonicalSlug)}${query}`)
   }
 
-  const inputs = await loadDossierV4Inputs(route.canonicalSlug)
+  const [inputs, programmeEvidence] = await Promise.all([
+    loadDossierV4Inputs(route.canonicalSlug),
+    getProgrammeEvidenceByMedicineSlug(route.canonicalSlug, programmeRef),
+  ])
   if (!inputs) return notFound()
+  if (
+    programmeRef &&
+    (!programmeEvidence ||
+      !programmeReferenceExists(programmeEvidence, programmeRef) ||
+      !programmeEvidence.selectedProgramme?.verdict)
+  ) {
+    return notFound()
+  }
 
   if (inputs.legacyRecord) void incrementViewCount(inputs.legacyRecord.id)
 
-  return dossierV4DocumentResponse(inputs.corpus, buildDossierV4(inputs))
+  return dossierV4DocumentResponse(inputs.corpus, buildDossierV4(inputs), programmeEvidence)
 }
