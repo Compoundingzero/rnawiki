@@ -111,8 +111,21 @@ test('the example reflows at phone, tablet, desktop and enlarged text', async ({
       const sizes = await page.evaluate(() => ({
         scroll: document.documentElement.scrollWidth,
         client: document.documentElement.clientWidth,
+        overflowing: [...document.querySelectorAll('body *')]
+          .filter((element) => {
+            const box = element.getBoundingClientRect()
+            return box.right > document.documentElement.clientWidth + 0.5 || box.left < -0.5
+          })
+          .slice(0, 8)
+          .map(
+            (element) =>
+              `${element.tagName.toLowerCase()}.${element.className}: ${element.getBoundingClientRect().left.toFixed(1)}–${element.getBoundingClientRect().right.toFixed(1)}`,
+          ),
       }))
-      expect(sizes.scroll, `overflow at ${width}px`).toBeLessThanOrEqual(sizes.client)
+      expect(
+        sizes.scroll,
+        `overflow at ${width}px: ${sizes.overflowing.join('; ')}`,
+      ).toBeLessThanOrEqual(sizes.client)
       await expect(
         page.getByRole('heading', { level: 2, name: 'What remains unknown?' }),
       ).toBeVisible()

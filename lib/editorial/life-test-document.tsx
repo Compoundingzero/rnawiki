@@ -279,7 +279,8 @@ export function lifeTestDocumentResponse(): Promise<Response> {
         </footer>
       </article>
       <style>{`
-        .lt-root { color: #22252b; max-width: 80rem; margin: 0 auto; padding: 2rem 1.3rem 3rem; font: 1.075rem/1.58 system-ui, sans-serif; display: grid; grid-template-columns: 12.5rem minmax(0, 48rem); column-gap: 3rem; justify-content: center; align-items: start; }
+        .lt-root { color: #22252b; max-width: 80rem; margin: 0 auto; padding: 2rem 1.3rem 3rem; font: 1.075rem/1.58 system-ui, sans-serif; display: grid; grid-template-columns: 12.5rem minmax(0, 48rem); column-gap: 3rem; justify-content: center; align-items: start; overflow-wrap: anywhere; }
+        .lt-root > *, .lt-root section, .lt-root figure, .lt-root details { min-width: 0; }
         .lt-header { grid-column: 2; }
         .lt-contents-desktop { grid-column: 1; grid-row: 2 / span 3; align-self: start; position: sticky; top: 5.5rem; max-height: calc(100dvh - 6rem); overflow-y: auto; border-right: 1px solid #d5d9df; padding-right: .7rem; }
         .lt-contents-desktop p { color: #4b5361; font-size: .9rem; font-weight: 700; }
@@ -325,7 +326,7 @@ export function lifeTestDocumentResponse(): Promise<Response> {
         .lt-root a { color: #075ab2; text-decoration: underline; text-underline-offset: .18em; }
         .lt-root a:focus-visible { outline: 3px solid #075ab2; outline-offset: 4px; }
         @media (max-width: 56rem) {
-          .lt-root { display: block; max-width: 48rem; padding-top: .5rem; }
+          .lt-root { display: block; width: 100%; max-width: 48rem; padding-top: .5rem; }
           .lt-contents-desktop { display: none; }
           .lt-contents-mobile { display: block; position: static; top: 3.65rem; z-index: 30; background: #fff; border: 1px solid #d5d9df; border-radius: .6rem; margin: 0 0 1.15rem; }
           html.reader-nav-enhanced .lt-contents-mobile { position: sticky; }
