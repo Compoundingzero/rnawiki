@@ -254,7 +254,14 @@ export function DrugStory({ story }: { story: DossierV4ViewModel['story'] }): Re
       id="drug-story"
       label="How this medicine reached us"
       lane="uncertainty"
-      lede="Kept near the foot of the page. A historical event moves up only when it changes something about this substance today."
+      /*
+       * The lede used to read "Kept near the foot of the page. A historical event moves up only when
+       * it changes something about this substance today." That explains why the section is small
+       * instead of being small, and a reader learns nothing from it. It now says what the section
+       * shows. Found in the section-by-section audit of the creatine page
+       * (docs/revamp/creatine-section-audit.md).
+       */
+      lede="When this substance reached the market, as the registers record it."
       state={story.state}
     >
       {story.entries.length === 0 && story.regulatory.length === 0 ? (
