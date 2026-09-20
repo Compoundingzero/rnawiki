@@ -2141,10 +2141,11 @@ function buildPractical(
 function labelSafetyEntry(
   text: string,
   citation: SourceCitation,
-  category: 'boxed' | 'warning' | 'interaction' | 'reaction',
+  category: 'boxed' | 'contraindication' | 'warning' | 'interaction' | 'reaction',
 ): SafetyEntry {
   const labels = {
     boxed: 'Boxed warning on a recorded product label',
+    contraindication: 'Who the recorded product label says should not use it',
     warning: 'Warning on a recorded product label',
     interaction: 'Interaction noted on a recorded product label',
     reaction: 'Adverse reaction listed on a recorded product label',
@@ -2198,6 +2199,9 @@ export function buildSafety(
   const boxed = label.boxedWarning
     ? [labelSafetyEntry(label.boxedWarning.text, label.boxedWarning.citation, 'boxed')]
     : []
+  const contraindications = label.contraindications.map((item) =>
+    labelSafetyEntry(item.text, item.citation, 'contraindication'),
+  )
   const warnings = label.safety.map((item) => labelSafetyEntry(item.text, item.citation, 'warning'))
   const interactions = label.interactions.map((item) =>
     labelSafetyEntry(item.text, item.citation, 'interaction'),
@@ -2210,6 +2214,7 @@ export function buildSafety(
   const entries = dedupeSafetyEntries([
     ...boxed,
     ...recordEntries.filter((entry) => entry.urgent),
+    ...contraindications,
     ...warnings,
     ...recordEntries.filter((entry) => !entry.urgent),
     ...interactions,

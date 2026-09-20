@@ -48,11 +48,12 @@ export function HomeView({
       <section className="text-center space-y-6 sm:space-y-8">
         <div className="space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1D1D1F] leading-tight">
-            Will this health claim help with what you actually want to keep doing?
+            Check what the sources can—and cannot—say about a health claim
           </h1>
 
           <p className="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto leading-relaxed">
-            Check who was studied, what changed, what remains unknown, and the original source.
+            Start with one worked example: who was studied, what changed, what remains unknown, and
+            the original source. Other records may have less evidence.
           </p>
         </div>
 

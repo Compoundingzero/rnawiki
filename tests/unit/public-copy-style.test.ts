@@ -74,9 +74,8 @@ const GENERATED_COPY_WORDS = [
 describe('public copy style', () => {
   it('frames the homepage as an evidence check without promising a verdict for every drug', () => {
     const source = readFileSync(join(process.cwd(), 'components/HomeView.tsx'), 'utf8')
-    expect(source).toContain(
-      'Will this health claim help with what you actually want to keep doing?',
-    )
+    expect(source).toContain('Check what the sources can—and cannot—say about a health claim')
+    expect(source).toContain('Other records may have less evidence.')
     expect(source).toContain('Drug records vary in what their sources can establish.')
     expect(source).not.toContain('Understand any drug')
   })

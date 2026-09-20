@@ -169,10 +169,9 @@ test('the answer keeps its source reachable without a repeated review paragraph'
   expect(text).not.toContain(
     'A person wrote this into the record with the study named beside it. No reviewer has signed it off.',
   )
-  const source = page.locator('#answer details').filter({ hasText: 'Source for the opening' })
+  const source = page.locator('#answer a').filter({ hasText: 'US prescribing information' })
   await expect(source).toHaveCount(1)
-  await source.locator('summary').click()
-  await expect(source).toContainText('US prescribing information')
+  await expect(source).toHaveAttribute('href', /dailymed|example/)
 })
 
 /* --------------------------------------------- the approved design is intact */

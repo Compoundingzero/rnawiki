@@ -24,6 +24,7 @@ function label(uses: string): RecordedLabel {
     mechanism: [],
     targets: [],
     safety: [],
+    contraindications: [],
     pharmacokinetics: [],
     adverseReactions: [],
     interactions: [],

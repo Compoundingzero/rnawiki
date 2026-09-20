@@ -448,7 +448,7 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expect(
     page.getByRole('heading', {
       level: 1,
-      name: /will this health claim help with what you actually want to keep doing/i,
+      name: /check what the sources can.and cannot.say about a health claim/i,
     }),
   ).toBeVisible()
 

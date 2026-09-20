@@ -287,7 +287,7 @@ test('approval changed the wording and not the evidence state', async ({ page })
   // The wording history is public, while the short answer still describes the evidence limit.
   await expect(page.locator('#change-history')).toContainText('Approved by 3 members')
   await expect(page.locator('#answer')).toContainText(
-    'This record has no human result with enough detail to tie it to this use',
+    'It does not report a matched human benefit here',
   )
 })
 

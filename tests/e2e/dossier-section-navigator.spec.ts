@@ -67,8 +67,8 @@ test('a missing human result is said plainly, without an empty result section', 
   const { slug } = requireFixture()
   await page.goto(`/d/${slug}`)
 
-  await expect(page.locator('#answer .dv4-simple-noresult')).toContainText(
-    /(?:no (?:sufficiently scoped )?human result|a study result is recorded, but this page (?:has not yet linked|cannot yet link) its numbers to the exact condition and form tested)/i,
+  await expect(page.locator('#answer .dv4-simple-limit')).toContainText(
+    'It does not report a matched human benefit here',
   )
   await expect(page.locator('#safety')).toContainText('no source-bound safety statement')
   await expect(page.locator('#human-results')).toHaveCount(0)

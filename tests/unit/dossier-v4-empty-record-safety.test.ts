@@ -171,7 +171,7 @@ describe('empty-record safety and page audit', () => {
       claim: {
         label: 'What one source says about use',
         text: 'A source describes one recorded use.',
-        sources: [{ label: 'Source document', url: 'https://example.org/use' }],
+        sources: [{ label: 'Source document', url: 'https://example.org/use', binding: 'record' }],
       },
       tested: null,
       studied: null,
@@ -184,7 +184,11 @@ describe('empty-record safety and page audit', () => {
         {
           text: 'Example brand is a tablet, recorded as marketed in the United States.',
           origin: 'derived_count',
-          citation: { label: 'Named product record', url: 'https://example.org/product' },
+          citation: {
+            label: 'Named product record',
+            url: 'https://example.org/product',
+            binding: 'record',
+          },
         },
       ],
     } as unknown as DossierV4ViewModel['practical']
@@ -192,7 +196,11 @@ describe('empty-record safety and page audit', () => {
       {
         text: 'Two directory listings name this ingredient.',
         origin: 'derived_count',
-        citation: { label: 'Product directory', url: 'https://example.org/directory' },
+        citation: {
+          label: 'Product directory',
+          url: 'https://example.org/directory',
+          binding: 'record',
+        },
       },
     ]
     model.story = {
@@ -200,7 +208,7 @@ describe('empty-record safety and page audit', () => {
         {
           text: 'The register records a marketing start date for one listed product.',
           origin: 'derived_count',
-          citation: { label: 'Register', url: 'https://example.org/register' },
+          citation: { label: 'Register', url: 'https://example.org/register', binding: 'record' },
         },
       ],
     } as unknown as DossierV4ViewModel['story']
