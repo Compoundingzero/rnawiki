@@ -74,6 +74,7 @@ async function main(): Promise<void> {
       const index = cursor++
       if (index >= rows.length) return
       const row = rows[index]
+      if (!row) continue
       try {
         const inputs = await loadDossierV4Inputs(row.slug)
         if (!inputs) continue
