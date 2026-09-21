@@ -167,6 +167,24 @@ export async function installDossierV4Fixture(
     sourceDate: '2026-08-28',
   })
 
+  /*
+   * A recorded harm signal, because the self-experiment plan is gated on one.
+   *
+   * Without this row the fixture is a non-prescription supplement whose record holds nothing about
+   * harm, and the page correctly refuses to offer a protocol to run on yourself. The fixture's
+   * `deliverySystem.safetyProfile` string is not a source the safety builder reads, which is how
+   * this fixture previously produced a plan with an empty safety section.
+   */
+  await db.insert(pageFields).values({
+    key,
+    field: 'faers',
+    ordinal: 1,
+    state: 'present',
+    value: { terms: [{ term: 'fixture stomach upset', count: 3 }] },
+    sourceKind: 'fixture-registry',
+    sourceDate: '2026-08-28',
+  })
+
   await db.insert(pageRegistryRoleAggregates).values({
     key,
     classifierVersion: 'trial-role-classifier/v1',

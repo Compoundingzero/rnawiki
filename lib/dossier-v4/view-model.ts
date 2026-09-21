@@ -2411,12 +2411,28 @@ function buildMeasurement(
    * differently in different places, and that is not a reason to withhold a measurement plan. Every
    * supervised, controlled, withheld or withdrawn state blocks it outright.
    */
+  /*
+   * A recorded safety entry is required as well, and this is the condition that was missing.
+   *
+   * Without it the plan was offered on the strength of availability, which is a legal and market
+   * fact rather than a safety one. Measured on the corpus, 5,951 pages carried a self-experiment
+   * plan with no recorded safety entry at all, and 2,661 of those had no human result either.
+   * Availability without a prescription is not evidence of low risk, and `varies_by_jurisdiction`
+   * means the record does not know.
+   *
+   * Failing closed here means a substance whose sources recorded nothing about harm gets the
+   * clinician-question framing instead of a protocol to run on themselves. That is the honest
+   * outcome: RNAWiki cannot say a substance is safe to try on yourself when it holds no harm
+   * information about it.
+   */
+  const hasRecordedSafety = v3.safety.items.length > 0 || Boolean(v3.safety.spontaneous)
   const lowRisk =
     planningEligibleType(identity.substanceTypeCode) &&
     (identity.availabilityCode === 'sold_without_prescription' ||
       identity.availabilityCode === 'varies_by_jurisdiction') &&
     identity.supervision !== 'required' &&
     v3.supervision.level !== 'required' &&
+    hasRecordedSafety &&
     !inputs.corpus.suppressed &&
     !inputs.corpus.controlled &&
     !inputs.corpus.withdrawn

@@ -584,18 +584,39 @@ describe('time facets are never read off one another', () => {
 })
 
 describe('the measurement section follows the risk of the substance', () => {
-  it('offers a self-experiment plan for a non-prescription supplement, with no amount', () => {
+  it('offers a self-experiment plan for a non-prescription supplement that holds a recorded safety entry, with no amount', () => {
+    const base = inputs({
+      corpus: nonPrescriptionCorpus(),
+      legacyRecord: legacyRecord({ modality: 'Nutraceutical / Botanical' }),
+    })
+    /*
+     * Recorded safety is now part of the gate. Availability without a prescription is a legal and
+     * market fact rather than evidence of low risk, so before this page offers a reader a protocol
+     * to run on themselves, the record has to hold something about harm.
+     */
+    const model = buildDossierV4({
+      ...base,
+      fields: {
+        ...base.fields,
+        faers: { state: 'present', value: { terms: [{ term: 'headache', count: 3 }] } },
+      },
+    })
+    expect(model.measurement.mode).toBe('self_experiment')
+    const planText = model.measurement.plan.map((step) => step.text).join(' ')
+    expect(planText).not.toMatch(/\b\d+\s?(mg|g|mcg|ml|iu)\b/i)
+    expect(model.measurement.whatNotToMeasure.length).toBeGreaterThan(2)
+    expect(model.measurement.stopRules.length).toBeGreaterThan(1)
+  })
+
+  it('refuses the plan on a non-prescription supplement with no recorded safety', () => {
     const model = buildDossierV4(
       inputs({
         corpus: nonPrescriptionCorpus(),
         legacyRecord: legacyRecord({ modality: 'Nutraceutical / Botanical' }),
       }),
     )
-    expect(model.measurement.mode).toBe('self_experiment')
-    const planText = model.measurement.plan.map((step) => step.text).join(' ')
-    expect(planText).not.toMatch(/\b\d+\s?(mg|g|mcg|ml|iu)\b/i)
-    expect(model.measurement.whatNotToMeasure.length).toBeGreaterThan(2)
-    expect(model.measurement.stopRules.length).toBeGreaterThan(1)
+    expect(model.measurement.mode).toBe('clinician_questions')
+    expect(model.measurement.plan).toEqual([])
   })
 
   it('replaces the plan with clinician questions on a supervised medicine', () => {
