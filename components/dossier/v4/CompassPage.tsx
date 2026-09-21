@@ -24,6 +24,7 @@ import { SourceList } from '@/components/dossier/corpus/SourceList'
 
 import { MissingRecordNotice, PublicationBanner, SubstanceIdentityStrip } from './Orientation'
 import { ChangeHistory } from './Closing'
+import { LabelSays } from './LabelSays'
 import { Disclosure, RecordedFactList, Sources } from './Primitives'
 import { PublishedProgrammeResult } from './PublishedProgrammeResult'
 import { ReaderNav } from './ReaderNav'
@@ -704,7 +705,7 @@ function EditorialDossier({
             <SourcedQuestions items={brief.nextQuestions} />
           </Disclosure>
         </section>
-        <RecordAndSources corpus={corpus} editorialSources={briefSources(brief)} model={model} />
+        <LabelSays slug={corpus.slug} />
         {hasChangeHistory ? (
           <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
         ) : null}
@@ -786,6 +787,7 @@ export function CompassPage({
         <div className="dv4-simple-grid">
           <div className="dv4-simple-body dv4-simple-empty">
             {hasSourceBoundSafety ? <SafetyFirst corpus={corpus} model={model} /> : null}
+            <LabelSays slug={corpus.slug} />
             <RecordAndSources corpus={corpus} model={model} />
             {hasChangeHistory ? (
               <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
@@ -812,6 +814,7 @@ export function CompassPage({
             {hasHumanResults ? <HumanEvidence model={model} /> : null}
             {hasBodyPath ? <BodyPath model={model} /> : null}
             {hasForms ? <Forms model={model} /> : null}
+            <LabelSays slug={corpus.slug} />
             <RecordAndSources corpus={corpus} model={model} />
             {hasChangeHistory ? (
               <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
