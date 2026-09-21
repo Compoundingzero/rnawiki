@@ -102,6 +102,9 @@ async function main(): Promise<void> {
     process.stdout.write(
       `  body-journey on the page      : ${count(rendered, 'id="body-journey"')} (reader text ${reader.length} chars)\n`,
     )
+    process.stdout.write(
+      `  label-says on the page        : ${count(rendered, 'id="label-says"')} (blocked headings ${count(rendered, 'Who must not take it') + count(rendered, 'quoted')})\n`,
+    )
     process.stdout.write(`  in-page nav links             : ${count(rendered, 'href="#')}\n`)
     process.stdout.write(`  reader-facing sentences       : ${readerSentences(reader)}\n`)
     /*
