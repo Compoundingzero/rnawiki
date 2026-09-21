@@ -99,6 +99,9 @@ async function main(): Promise<void> {
     process.stdout.write(`  record empty (substance.empty) : ${model.substance.empty}\n`)
     process.stdout.write(`  publication state             : ${model.publication.state}\n`)
     process.stdout.write(`  sections in the served page   : ${count(rendered, '<section')}\n`)
+    process.stdout.write(
+      `  body-journey on the page      : ${count(rendered, 'id="body-journey"')} (reader text ${reader.length} chars)\n`,
+    )
     process.stdout.write(`  in-page nav links             : ${count(rendered, 'href="#')}\n`)
     process.stdout.write(`  reader-facing sentences       : ${readerSentences(reader)}\n`)
     /*
