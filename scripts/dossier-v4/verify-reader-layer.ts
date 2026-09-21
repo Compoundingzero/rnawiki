@@ -144,6 +144,38 @@ async function main(): Promise<void> {
     process.stdout.write(
       `  measurement mode              : ${model.measurement.mode} (safety entries ${safetyCount}, spontaneous reports ${spontaneous})\n`,
     )
+    /*
+     * Why a page says "No source-linked answer". `assessRecordSubstance` counts a statement only when
+     * `sourceBound` accepts it, which requires origin 'stored_source' AND a source carrying a URL. So
+     * this reports the hero's four statements with their origin and how many of their sources have a
+     * URL, which is the difference between "the record holds no answer" and "the answer is not
+     * quoted verbatim".
+     */
+    const heroStatements: Array<[string, { origin: string; sources: Array<{ url?: string }> }]> = [
+      ['simpleAction', model.hero.simpleAction],
+      ['whyPeopleCare', model.hero.whyPeopleCare],
+      ['actionDetail', model.hero.actionDetail],
+      ['bodyLocation', model.hero.bodyLocation],
+    ]
+    const heroReport = heroStatements
+      .map(([name, s]) => `${name}:${s.origin}/${s.sources.filter((x) => x.url).length}url`)
+      .join(' ')
+    process.stdout.write(`  hero statements               : ${heroReport}\n`)
+    process.stdout.write(
+      `  substance.empty               : ${model.substance.empty} (score ${model.substance.score})\n`,
+    )
+    /*
+     * What human evidence the record holds. `assessRecordSubstance` counts only registry
+     * trialSnapshots and reviewed claims, so this reports the curated cards too, and how many of
+     * them carry a source with a URL.
+     */
+    const cards = model.humanResults.cards
+    const cardsWithUrl = cards.filter((card) =>
+      card.sources.some((source) => Boolean(source.url)),
+    ).length
+    process.stdout.write(
+      `  human evidence                : ${cards.length} curated cards (${cardsWithUrl} with a source URL), ${model.humanResults.trialSnapshots.length} registry snapshots\n`,
+    )
     process.stdout.write('\n')
   }
 
