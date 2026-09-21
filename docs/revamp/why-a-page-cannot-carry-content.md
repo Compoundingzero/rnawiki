@@ -81,7 +81,7 @@ That produces the asymmetry the user has been feeling:
 
 ## What is genuinely available, in order of value per unit of work
 
-### 1. A citation field on the trial model — unlocks the largest population
+### 1. A citation field on the trial model — reaches the most records
 
 Add `citation?: { label: string; url: string }` to `ClinicalTrialRecord`, populate it from the
 bibliography the curated seed data already carries per study, then let the card builder accept a
