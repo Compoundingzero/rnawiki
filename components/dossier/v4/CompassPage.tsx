@@ -25,6 +25,7 @@ import { SourceList } from '@/components/dossier/corpus/SourceList'
 import { MissingRecordNotice, PublicationBanner, SubstanceIdentityStrip } from './Orientation'
 import { ChangeHistory } from './Closing'
 import { LabelSays } from './LabelSays'
+import { FederalFactSheet } from './FederalFactSheet'
 import { Disclosure, RecordedFactList, Sources } from './Primitives'
 import { PublishedProgrammeResult } from './PublishedProgrammeResult'
 import { ReaderNav } from './ReaderNav'
@@ -706,6 +707,7 @@ function EditorialDossier({
           </Disclosure>
         </section>
         <LabelSays slug={corpus.slug} />
+        <FederalFactSheet slug={corpus.slug} />
         {hasChangeHistory ? (
           <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
         ) : null}
@@ -788,6 +790,7 @@ export function CompassPage({
           <div className="dv4-simple-body dv4-simple-empty">
             {hasSourceBoundSafety ? <SafetyFirst corpus={corpus} model={model} /> : null}
             <LabelSays slug={corpus.slug} />
+            <FederalFactSheet slug={corpus.slug} />
             <RecordAndSources corpus={corpus} model={model} />
             {hasChangeHistory ? (
               <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />
@@ -815,6 +818,7 @@ export function CompassPage({
             {hasBodyPath ? <BodyPath model={model} /> : null}
             {hasForms ? <Forms model={model} /> : null}
             <LabelSays slug={corpus.slug} />
+            <FederalFactSheet slug={corpus.slug} />
             <RecordAndSources corpus={corpus} model={model} />
             {hasChangeHistory ? (
               <ChangeHistory changes={model.changes} wordingHistory={model.wordingHistory} />

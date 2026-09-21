@@ -105,6 +105,9 @@ async function main(): Promise<void> {
     process.stdout.write(
       `  label-says on the page        : ${count(rendered, 'id="label-says"')} (blocked headings ${count(rendered, 'Who must not take it') + count(rendered, 'quoted')})\n`,
     )
+    process.stdout.write(
+      `  federal-summary on the page   : ${count(rendered, 'id="federal-summary"')} (nccih links ${count(rendered, 'nccih.nih.gov')})\n`,
+    )
     process.stdout.write(`  in-page nav links             : ${count(rendered, 'href="#')}\n`)
     process.stdout.write(`  reader-facing sentences       : ${readerSentences(reader)}\n`)
     /*
