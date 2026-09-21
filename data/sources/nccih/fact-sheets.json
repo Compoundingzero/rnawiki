@@ -1,0 +1,332 @@
+{
+  "factSheets": {
+    "acai": {
+      "name": "Acai",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Acai: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/acai"
+    },
+    "aloe-vera": {
+      "name": "Aloe Vera",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Aloe Vera: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/aloe-vera"
+    },
+    "ashwagandha": {
+      "name": "Ashwagandha",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Ashwagandha: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha"
+    },
+    "asian-ginseng": {
+      "name": "Asian Ginseng",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Asian Ginseng: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/asian-ginseng"
+    },
+    "astragalus": {
+      "name": "Astragalus",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Astragalus: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/astragalus"
+    },
+    "bilberry": {
+      "name": "Bilberry",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Bilberry: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/bilberry"
+    },
+    "bitter-orange": {
+      "name": "Bitter Orange",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Bitter Orange: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/bitter-orange"
+    },
+    "black-cohosh": {
+      "name": "Black Cohosh",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Black Cohosh: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/black-cohosh"
+    },
+    "boswellia": {
+      "name": "Boswellia",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Boswellia: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/boswellia"
+    },
+    "bromelain": {
+      "name": "Bromelain",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Bromelain: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/bromelain"
+    },
+    "butterbur": {
+      "name": "Butterbur",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Butterbur: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/butterbur"
+    },
+    "cats-claw": {
+      "name": "Cat's Claw",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Cat's Claw: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/cats-claw"
+    },
+    "chamomile": {
+      "name": "Chamomile",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Chamomile: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/chamomile"
+    },
+    "cinnamon": {
+      "name": "Cinnamon",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Cinnamon: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/cinnamon"
+    },
+    "cranberry": {
+      "name": "Cranberry",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Cranberry: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/cranberry"
+    },
+    "dandelion": {
+      "name": "Dandelion",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Dandelion: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/dandelion"
+    },
+    "echinacea": {
+      "name": "Echinacea",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Echinacea: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/echinacea"
+    },
+    "elderberry": {
+      "name": "Elderberry",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Elderberry: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/elderberry"
+    },
+    "ephedra": {
+      "name": "Ephedra",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Ephedra: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/ephedra"
+    },
+    "european-mistletoe": {
+      "name": "European Mistletoe",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "European Mistletoe: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/european-mistletoe"
+    },
+    "evening-primrose-oil": {
+      "name": "Evening Primrose Oil",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Evening Primrose Oil: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/evening-primrose-oil"
+    },
+    "fenugreek": {
+      "name": "Fenugreek",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Fenugreek: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/fenugreek"
+    },
+    "feverfew": {
+      "name": "Feverfew",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Feverfew: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/feverfew"
+    },
+    "garcinia-gummi-gutta-fruit": {
+      "name": "Garcinia Cambogia",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Garcinia Cambogia: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/garcinia-cambogia"
+    },
+    "garlic": {
+      "name": "Garlic",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Garlic: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/garlic"
+    },
+    "ginger": {
+      "name": "Ginger",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Ginger: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/ginger"
+    },
+    "ginkgo": {
+      "name": "Ginkgo",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Ginkgo: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/ginkgo"
+    },
+    "goldenseal": {
+      "name": "Goldenseal",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Goldenseal: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/goldenseal"
+    },
+    "green-tea": {
+      "name": "Green Tea",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Green Tea: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/green-tea"
+    },
+    "hawthorn": {
+      "name": "Hawthorn",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Hawthorn: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/hawthorn"
+    },
+    "hoodia": {
+      "name": "Hoodia",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Hoodia: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/hoodia"
+    },
+    "horse-chestnut": {
+      "name": "Horse Chestnut",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Horse Chestnut: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/horse-chestnut"
+    },
+    "lavender": {
+      "name": "Lavender",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Lavender: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/lavender"
+    },
+    "milk-thistle": {
+      "name": "Milk Thistle",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Milk Thistle: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/milk-thistle"
+    },
+    "mugwort": {
+      "name": "Mugwort",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Mugwort: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/mugwort"
+    },
+    "noni": {
+      "name": "Noni",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Noni: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/noni"
+    },
+    "passionflower": {
+      "name": "Passionflower",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Passionflower: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/passionflower"
+    },
+    "peppermint-oil": {
+      "name": "Peppermint Oil",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Peppermint Oil: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/peppermint-oil"
+    },
+    "piper-methysticum-root": {
+      "name": "Kava",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Kava: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/kava"
+    },
+    "pomegranate": {
+      "name": "Pomegranate",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Pomegranate: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/pomegranate"
+    },
+    "red-clover": {
+      "name": "Red Clover",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Red Clover: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/red-clover"
+    },
+    "rhodiola": {
+      "name": "Rhodiola",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Rhodiola: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/rhodiola"
+    },
+    "sage": {
+      "name": "Sage",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Sage: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/sage"
+    },
+    "saw-palmetto": {
+      "name": "Saw Palmetto",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Saw Palmetto: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/saw-palmetto"
+    },
+    "soy": {
+      "name": "Soy",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Soy: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/soy"
+    },
+    "st-johns-wort": {
+      "name": "St. John's Wort",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "St. John's Wort: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/st-johns-wort"
+    },
+    "tea-tree-oil": {
+      "name": "Tea Tree Oil",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Tea Tree Oil: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/tea-tree-oil"
+    },
+    "turmeric": {
+      "name": "Turmeric",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Turmeric: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/turmeric"
+    },
+    "valerian": {
+      "name": "Valerian",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Valerian: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/valerian"
+    },
+    "yohimbe": {
+      "name": "Yohimbe",
+      "source": "National Center for Complementary and Integrative Health",
+      "title": "Yohimbe: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/yohimbe"
+    }
+  },
+  "inventorySource": "https://www.nccih.nih.gov/page-data/sq/d/1180509848.json",
+  "nccihHerbsWithNoCorpusPage": [
+    {
+      "name": "Chasteberry",
+      "url": "https://www.nccih.nih.gov/health/chasteberry"
+    },
+    {
+      "name": "Flaxseed and Flaxseed Oil",
+      "url": "https://www.nccih.nih.gov/health/flaxseed-and-flaxseed-oil"
+    },
+    {
+      "name": "Grape Seed Extract",
+      "url": "https://www.nccih.nih.gov/health/grape-seed-extract"
+    },
+    {
+      "name": "Licorice Root",
+      "url": "https://www.nccih.nih.gov/health/licorice-root"
+    },
+    {
+      "name": "Thunder God Vine",
+      "url": "https://www.nccih.nih.gov/health/thunder-god-vine"
+    },
+    {
+      "name": "White Mulberry Leaf",
+      "url": "https://www.nccih.nih.gov/health/white-mulberry-leaf"
+    }
+  ],
+  "note": "Links only. No NCCIH text is stored here, because docs/research/competitive-dataset-reader-audit-2026.md defers structured fact-sheet ingestion pending content-level rights, versioning and claim-scope review, and directs this source to be linked. NCCIH states its text is in the public domain and asks to be credited as the source, which the link text does. No NCCIH image is referenced: their images are copyrighted."
+}
