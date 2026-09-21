@@ -135,6 +135,15 @@ async function main(): Promise<void> {
      */
     const asksDose = reader.includes('How much did people take in the studies?')
     process.stdout.write(`  asks the dose question        : ${asksDose ? 'yes' : 'no'}\n`)
+    /*
+     * The self-experiment gate. A plan to run on yourself must not be offered on the strength of
+     * availability alone, so this reports the mode beside the safety material the record holds.
+     */
+    const safetyCount = model.safety.entries.length
+    const spontaneous = model.safety.spontaneous ? 'yes' : 'no'
+    process.stdout.write(
+      `  measurement mode              : ${model.measurement.mode} (safety entries ${safetyCount}, spontaneous reports ${spontaneous})\n`,
+    )
     process.stdout.write('\n')
   }
 
