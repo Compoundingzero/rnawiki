@@ -1,0 +1,264 @@
+{
+  "slug": "nelfinavir",
+  "oneLineAnswer": "An HIV medicine that blocks a viral enzyme, used only together with other HIV drugs.",
+  "whatItIs": "Nelfinavir is an antiviral medicine sold under the brand name Viracept. It belongs to a group called protease inhibitors. HIV needs an enzyme called protease to copy itself. Nelfinavir blocks that enzyme.",
+  "whatItDoes": [
+    "Nelfinavir is approved to treat HIV-1 infection.",
+    "It is not a cure. The label approves it only alongside other HIV medicines.",
+    "Blocking protease stops HIV from making working copies of itself.",
+    "That lowers the amount of virus in the body.",
+    "Researchers have also tested it in cancer, including a completed phase 3 trial in cervical cancer."
+  ],
+  "howPeopleUseIt": [
+    "People take it by mouth as one part of a multi-drug HIV regimen.",
+    "Labeling says it is taken with food, which raises how much drug the body absorbs.",
+    "Some trials tested ways to prevent or treat the diarrhea it causes."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea is the most frequently reported problem, usually mild to moderate.",
+      "Nausea, rash and flatulence (gas) were also common in adults and teenagers.",
+      "In children, common problems included diarrhea, low white blood cells, rash, appetite loss and belly pain."
+    ],
+    "seriousSigns": [
+      "Liver injury is rare but reported, from raised liver enzymes to acute liver injury.",
+      "New or worsening diabetes and high blood sugar have been reported with protease inhibitors.",
+      "People with hemophilia have had extra bleeding, including sudden bruising and joint bleeds.",
+      "Some people developed an inflammatory response to old, quiet infections after starting HIV treatment.",
+      "Body fat can build up or shift in unusual places during HIV treatment.",
+      "Allergic reactions were also reported."
+    ],
+    "whoShouldAvoid": [
+      "People with moderate or severe liver impairment should not use it.",
+      "The oral powder contains phenylalanine, which can harm people with phenylketonuria.",
+      "It should not be combined with the medicines the label lists as contraindicated.",
+      "The label advises considering other HIV drugs during pregnancy."
+    ]
+  },
+  "interactions": [
+    "Nelfinavir blocks a liver enzyme called CYP3A, so some other drugs build up in the body.",
+    "Rifampin and St John's wort lower nelfinavir levels, which can let HIV become resistant.",
+    "Lovastatin and simvastatin can cause serious muscle injury when combined with it.",
+    "Triazolam and oral midazolam can cause prolonged or dangerous sedation.",
+    "Sildenafil used for pulmonary arterial hypertension is contraindicated with it.",
+    "Omeprazole lowers nelfinavir levels and may weaken the HIV response.",
+    "Hormonal contraceptives may stop working as well, so the label advises extra protection.",
+    "Quetiapine levels rise, so the label says to consider switching the HIV regimen.",
+    "It should be taken at a different time from didanosine."
+  ],
+  "pregnancyAndChildren": "The label says to consider other HIV drugs during pregnancy, because liver problems were reported in pregnant patients. Registry data suggested slightly more birth defects after first-trimester exposure, but a second reference group showed no rise. The label calls that finding uncertain. In children under 2, researchers studied safety but could not establish a reliably effective dose. Safety and activity in children 2 to 13 were studied in two trials.",
+  "whatWeDoNotKnow": [
+    "Whether nelfinavir helps treat cancer is unproven. A phase 3 cervical cancer trial finished, but this record holds no results.",
+    "How often serious liver injury happens is unknown, because such reports are rare and voluntary.",
+    "The pharmacokinetics of nelfinavir have not been studied in people over 65.",
+    "The label says the clinical relevance of the pregnancy registry signal is uncertain.",
+    "Nelfinavir is an older HIV drug; this record does not compare it with current options."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Nelfinavir is approved to treat HIV-1 infection, and only in combination with other antiretroviral drugs.",
+      "quote": "VIRACEPT in combination with other antiretroviral agents is indicated for the treatment of HIV-1 infection."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Nelfinavir is a protease inhibitor, which is the enzyme it blocks.",
+      "quote": "Nelfinavir is an inhibitor of the HIV-1 protease"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "The most common moderate to severe side effects in adults and teenagers are diarrhea, nausea, rash and gas.",
+      "quote": "Most common adverse reactions (≥2%) of moderate or severe intensity in adults and adolescents (13 years and older) are diarrhea, nausea, rash, and flatulence"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Diarrhea was the single most frequently reported side effect, and it was usually mild to moderate.",
+      "quote": "The most frequently reported adverse event among patients receiving VIRACEPT was diarrhea"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Children more often had diarrhea, low white blood cells, rash, poor appetite and belly pain.",
+      "quote": "Most common adverse reactions in pediatric patients (2 to less than 13 years) are diarrhea, leukopenia/neutropenia, rash, anorexia, and abdominal pain."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "People with moderate or severe liver impairment should not use the drug.",
+      "quote": "VIRACEPT should not be used in patients with either moderate or severe hepatic impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Some medicines must never be combined with nelfinavir because they depend on the CYP3A enzyme.",
+      "quote": "Coadministration of VIRACEPT is contraindicated with drugs that are highly dependent on CYP3A for clearance"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Nelfinavir blocks CYP3A, which explains why so many drug interactions exist.",
+      "quote": "Nelfinavir is an inhibitor of CYP3A."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "St John's wort and rifampin lower nelfinavir levels, risking loss of effect and resistance.",
+      "quote": "Plasma concentrations of nelfinavir can be reduced by concomitant use of rifampin."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Hormonal birth control may work less well while taking nelfinavir.",
+      "quote": "Use of VIRACEPT may reduce the efficacy of estrogen-based oral contraceptives."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "New or worsening diabetes and high blood sugar have been reported with protease inhibitors.",
+      "quote": "New onset diabetes mellitus, exacerbation of pre-existing diabetes mellitus and hyperglycemia have been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "People with hemophilia have had increased bleeding on protease inhibitors.",
+      "quote": "increased bleeding, including spontaneous skin hematomas and hemarthrosis, in patients with hemophilia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Some patients develop an inflammatory reaction to old infections after starting HIV treatment.",
+      "quote": "Patients may develop an inflammatory response to indolent or residual opportunistic infections"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Liver problems, including liver failure, were reported in pregnant patients taking nelfinavir.",
+      "quote": "Published reports of hepatic adverse events ranging from elevated liver enzymes to hepatic failure in pregnant patients exposed to nelfinavir"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "The label tells prescribers to consider other HIV drugs during pregnancy.",
+      "quote": "consider alternative antiretroviral drugs during pregnancy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Below age 2, safety was studied but no reliably effective dose was established.",
+      "quote": "a reliably effective dose could not be established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "Food increases how much nelfinavir the body absorbs and makes levels steadier.",
+      "quote": "Food increases nelfinavir exposure and decreases nelfinavir pharmacokinetic variability relative to the fasted state."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "The label spaces nelfinavir apart from didanosine.",
+      "quote": "VIRACEPT should be given with food one hour after or more than 2 hours before didanosine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label for VIRACEPT)",
+      "claim": "The oral powder contains phenylalanine, a problem for people with phenylketonuria.",
+      "quote": "Each gram of VIRACEPT powder contains 11.2 mg phenylalanine."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "PubChem describes nelfinavir as an antiretroviral protease inhibitor used for HIV infection.",
+      "quote": "Nelfinavir is an antiretroviral protease inhibitor used in the therapy and prevention of human immunodeficiency virus (HIV) infection"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "Nelfinavir often raises liver enzyme levels slightly and is rarely a cause of acute liver injury.",
+      "quote": "Nelfinavir can cause transient and usually asymptomatic elevations in serum aminotransferase levels and is a rare cause of clinically apparent, acute liver injury."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "Nelfinavir is used with other antiviral drugs to treat HIV in adults and children.",
+      "quote": "Used in combination with other antiviral drugs in the treatment of HIV in both adults and children."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "Nelfinavir is classed among HIV protease inhibitors.",
+      "quote": "Anti-HIV Agents; Anti-Retroviral Agents; HIV Protease Inhibitors"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "The drug is taken with food because food raises exposure and lowers variability.",
+      "quote": "Take with food. Food increases exposure and decreases pharmacokinetic variability."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nelfinavir/property/MolecularFormula,MolecularWeight/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "Nelfinavir has the molecular formula C32H45N3O4S and a molecular weight of 567.8.",
+      "quote": "\"MolecularFormula\": \"C32H45N3O4S\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/64143/synonyms/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (CID 64143)",
+      "claim": "Viracept is a brand name for nelfinavir.",
+      "quote": "\"Viracept\""
+    },
+    {
+      "url": "https://medlineplus.gov/hivmedicines.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Protease inhibitors work by blocking the protease enzyme.",
+      "quote": "Protease inhibitors (PIs) block an enzyme called protease"
+    },
+    {
+      "url": "https://medlineplus.gov/hivmedicines.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "HIV medicines reduce the amount of virus in the body by stopping HIV from copying itself.",
+      "quote": "This prevents HIV from copying itself, which reduces the amount of HIV in the body."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Nelfinavir&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (NCT03256916, NELCER)",
+      "claim": "A phase 3 trial tested nelfinavir with standard treatment in advanced cervical cancer.",
+      "quote": "to study the impact of nelfinavir on 3 year disease free survival in patients with advanced carcinoma of cervix"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Nelfinavir&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A trial tested calcium carbonate to prevent the diarrhea linked to nelfinavir.",
+      "quote": "determine the efficacy and safety of calcium carbonate for the prevention of nelfinavir-associated diarrhea"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Nelfinavir%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nelfinavir/property/MolecularFormula,MolecularWeight/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nelfinavir/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nelfinavir/property/MolecularFormula,MolecularWeight,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/64143/synonyms/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/64143/JSON?heading=Drug%20and%20Medication%20Information",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/64143",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Nelfinavir&pageSize=5",
+    "https://medlineplus.gov/hivmedicines.html",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=nelfinavir",
+    "https://www.nccih.nih.gov/health/nelfinavir",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548311/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548311/?report=classic"
+  ],
+  "gaps": [
+    "NCCIH has no nelfinavir page; the URL returned 404.",
+    "A LiverTox (NIDDK) monograph for nelfinavir exists, but NCBI Bookshelf blocked fetching with a bot check, so it is not cited as evidence.",
+    "The DailyMed label viewer could not be opened by direct link; only the DailyMed search results page loaded, so all label facts come from the openFDA label API instead.",
+    "No results data were captured from the completed phase 3 cervical cancer trial.",
+    "The PubChem endpoint that returns a compound description rejected the request, so the PubMed-sourced review literature was not used.",
+    "Doses are deliberately omitted from this record."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what nelfinavir is, how it works against HIV, its common and serious side effects, its large drug-interaction burden, and what remains unknown, all drawn from the FDA label and PubChem."
+}

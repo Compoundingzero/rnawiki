@@ -1,0 +1,267 @@
+{
+  "slug": "bosutinib",
+  "oneLineAnswer": "A prescription tablet for a type of leukemia called Ph+ CML; it blocks the BCR-ABL enzyme driving it.",
+  "whatItIs": "Bosutinib is a kinase inhibitor. A kinase is an enzyme that can push cells to grow, and blocking one can slow a cancer. Bosutinib is a small molecule that comes as a tablet you swallow. It is sold under the brand name Bosulif and as generic bosutinib tablets. Its chemical formula is C26H29Cl2N5O3, and its molecular weight is about 530.",
+  "whatItDoes": [
+    "Bosutinib blocks BCR-ABL, an abnormal enzyme that drives chronic myelogenous leukemia (CML).",
+    "It also blocks Src-family enzymes, so it is described as a dual kinase inhibitor.",
+    "It is approved for adults with Philadelphia chromosome-positive CML, in chronic, accelerated or blast phase.",
+    "It did not block two resistant forms of BCR-ABL called T315I and V299L.",
+    "Researchers have tested it in other cancers too, including a phase 2 trial in recurrent glioblastoma."
+  ],
+  "howPeopleUseIt": [
+    "It is a tablet. The label says to swallow it whole, once a day with food.",
+    "The label tells people to keep taking it until the leukemia gets worse or side effects become intolerable.",
+    "The label tells patients not to change or stop their dose unless their doctor says so.",
+    "Doctors may add antidiarrheal or anti-nausea medicines, plus fluids, to manage side effects.",
+    "It has been studied both as a first leukemia treatment and after other drugs stopped working."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea is the most common side effect. In one study of 814 adults it affected 80% of them.",
+      "Other common effects include nausea, vomiting, belly pain, rash, tiredness, headache and fever.",
+      "Blood tests often show low blood cell counts and raised liver enzymes.",
+      "In one study of 546 adults, diarrhea usually started about two days in and lasted about two days per episode.",
+      "Sixty percent of people in that study had a rise in either ALT or AST, two liver enzymes."
+    ],
+    "seriousSigns": [
+      "The label warns bosutinib can cause heart failure, weakened heart pumping and reduced blood flow to the heart.",
+      "Fluid can collect around the lungs or heart, or in the legs and feet, causing swelling and breathlessness.",
+      "Liver damage is possible. In trials, 2 of 1,711 people had a pattern consistent with drug-induced liver injury.",
+      "Low blood counts can lead to infections, bleeding and easy bruising.",
+      "Kidney function can fall during treatment, so kidney tests are part of monitoring.",
+      "Rare reports after approval include thrombotic microangiopathy and Stevens-Johnson syndrome.",
+      "Severe allergic reactions, including anaphylaxis, have happened.",
+      "The label lists jaundice, shortness of breath, weight gain, swelling, fever and unusual bleeding as symptoms people should report."
+    ],
+    "whoShouldAvoid": [
+      "Anyone who has had an allergic reaction to bosutinib, including anaphylaxis, should not take it.",
+      "It can harm a fetus, and there is no human pregnancy data to measure that risk.",
+      "The label advises women not to breastfeed during treatment.",
+      "People taking strong or moderate CYP3A inhibitors, or strong CYP3A inducers, should avoid combining them with bosutinib.",
+      "Proton pump inhibitors lower how much bosutinib the body absorbs. The label suggests short-acting antacids or H2 blockers instead.",
+      "LiverTox adds that other medicines which can harm the liver should be avoided."
+    ]
+  },
+  "interactions": [
+    "Bosutinib is broken down by a liver enzyme called CYP3A4.",
+    "Strong or moderate CYP3A inhibitors can raise bosutinib levels in the blood and increase side effects.",
+    "Strong CYP3A inducers can lower bosutinib levels and may make it work less well.",
+    "Proton pump inhibitors reduce absorption, so the label recommends a different kind of acid reducer.",
+    "The label advises spacing short-acting antacids or H2 blockers apart from the bosutinib tablet."
+  ],
+  "pregnancyAndChildren": "Bosutinib can harm a fetus. Animal studies found structural abnormalities, pregnancy loss and slowed growth. There are no human pregnancy data, so the human risk is not measured. The label advises a pregnancy test before treatment. It also advises effective contraception during treatment and for two weeks after the last dose. Women are advised not to breastfeed. The generic tablet label carries no pediatric information, pointing instead to the brand product where that information is approved. The label states that safety and effectiveness are not established for children under one year. The same applies to children with accelerated or blast phase disease.",
+  "whatWeDoNotKnow": [
+    "Nobody has measured bosutinib's risk in human pregnancy. Animal studies are the only evidence so far.",
+    "The label notes that postmarketing reports are voluntary, so their frequency cannot be reliably estimated.",
+    "Effects on fertility in people have not been studied, though animal studies suggest they are possible.",
+    "LiverTox says how often bosutinib causes obvious liver injury, and what that injury looks like, is not well defined.",
+    "The generic tablet label leaves out pediatric information because of marketing exclusivity on the brand product."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Bosutinib is indicated for adults with chronic phase Philadelphia chromosome-positive CML who are resistant or intolerant to prior therapy.",
+      "quote": "adult patients with chronic phase Ph+ chronic myelogenous leukemia (CML), resistant or intolerant to prior therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Bosutinib works by inhibiting the BCR-ABL kinase and also Src-family kinases.",
+      "quote": "Bosutinib inhibits the BCR-ABLkinase that promotes CML; it is also an inhibitor of Src-family kinases"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The labeled product is taken by mouth once daily with food, and tablets are swallowed whole.",
+      "quote": "The recommended dosage is taken orally once daily with food. Swallow tablets whole."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The most frequent side effects in a study of 814 adults were diarrhea, rash, nausea, abdominal pain, vomiting, fatigue and liver test changes.",
+      "quote": "diarrhea (80%), rash (44%), nausea (44%), abdominal pain (43%), vomiting (33%), fatigue (33%), hepatic dysfunction (33%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Bosutinib can cause heart failure, left ventricular dysfunction and cardiac ischemic events.",
+      "quote": "Bosutinib can cause cardiovascular toxicity including cardiac failure, left ventricular dysfunction, and cardiac ischemic events."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Fluid retention can appear as effusions around the heart or lungs, lung fluid or limb swelling.",
+      "quote": "Fluid retention occurs with bosutinib tablets and may manifest as pericardial effusion, pleural effusion, pulmonary edema, and/or peripheral edema."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Two of 1,711 trial patients had findings consistent with drug-induced liver injury.",
+      "quote": "This represented 2 out of 1711 patients in bosutinib tablets clinical trials."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Postmarketing reports include thrombotic microangiopathy and Stevens-Johnson syndrome.",
+      "quote": "Thrombotic microangiopathy Skin and Subcutaneous Tissue Disorders : Stevens-Johnson syndrome"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Hypersensitivity to bosutinib, including anaphylaxis, is a contraindication.",
+      "quote": "Bosutinib tablet is contraindicated in patients with a history of hypersensitivity to bosutinib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Strong or moderate CYP3A inhibitors should not be taken with bosutinib.",
+      "quote": "Avoid the concomitant use of strong or moderate CYP3A inhibitors with bosutinib tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Short-acting antacids or H2 blockers are suggested as an alternative to proton pump inhibitors.",
+      "quote": "Use short-acting antacids or H2 blockers as an alternative to proton pump inhibitors."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Bosutinib can harm a developing fetus.",
+      "quote": "bosutinib tablets can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "There are no human pregnancy data to estimate the drug-associated risk.",
+      "quote": "There are no available data in pregnant women to inform the drug-associated risk."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Effective contraception is advised for females of reproductive potential.",
+      "quote": "Advise females of reproductive potential to use effective contraception"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label advises women not to breastfeed while taking bosutinib.",
+      "quote": "Lactation: Advise women not to breastfeed."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The generic tablet label does not carry pediatric use information, which sits with the brand product.",
+      "quote": "Pediatric use information is approved for PF PRISM CV’s BOSULIF® (bosutinib) tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Postmarketing report frequencies cannot be reliably estimated because reporting is voluntary.",
+      "quote": "it is not always possible to reliably estimate their frequency or establish a causal relationship to drug exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Bosutinib did not inhibit the T315I and V299L mutant forms of BCR-ABL.",
+      "quote": "Bosutinib did not inhibit the T315I and V299L mutant cells."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label tells patients not to change or stop their dose on their own.",
+      "quote": "not to change their dose or to stop taking bosutinib tablets unless they are told to do so by their doctor"
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "Bosutinib is a dual kinase inhibitor of BCR-ABL and Src tyrosine kinases, used in Philadelphia chromosome-positive CML.",
+      "quote": "Bosutinib is a dual kinase inhibitor of both the BCR-ABL and Src tyrosine kinases"
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "In large trials, liver enzyme rises were common, affecting up to 58% of bosutinib-treated patients.",
+      "quote": "elevations in serum aminotransferase levels were common, occurring in up to 58% of bosutinib treated patients"
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "LiverTox rates bosutinib as a possible but uncommon cause of noticeable liver injury.",
+      "quote": "D (possible uncommon cause of clinically apparent liver injury)"
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "Bosutinib was approved for use in the United States in 2012.",
+      "quote": "Bosutinib received approval for use in the United States in 2012."
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "How often bosutinib causes clear liver injury, and its clinical features, remain poorly defined.",
+      "quote": "the frequency of this outcome and the clinical features of the injury have not been well defined"
+    },
+    {
+      "url": "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain, Internet Archive snapshot of the NCBI Bookshelf page)",
+      "claim": "LiverTox says other potentially liver-toxic medicines should be avoided with bosutinib.",
+      "quote": "In using this medication, other potentially hepatotoxic agents should be avoided."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cb7a8d1d-07c0-462d-960f-214d44705e76",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "The first U.S. approval for bosutinib was in 2012.",
+      "quote": "BOSUTINIB tablets, for oral use Initial U.S. Approval: 2012"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cb7a8d1d-07c0-462d-960f-214d44705e76",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "The label also covers adults with newly diagnosed chronic phase Philadelphia chromosome-positive CML.",
+      "quote": "adult patients with chronic phase Ph+ chronic myelogenous leukemia (CML), newly-diagnosed or resistant or intolerant to prior therapy"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bosutinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "PubChem records bosutinib as CID 5328940, formula C26H29Cl2N5O3, molecular weight 530.4.",
+      "quote": "\"CID\": 5328940, \"MolecularFormula\": \"C26H29Cl2N5O3\", \"MolecularWeight\": \"530.4\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT02130557?fields=protocolSection.identificationModule,protocolSection.statusModule,protocolSection.designModule,protocolSection.conditionsModule",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "A phase 3 trial compared bosutinib with imatinib in adults with newly diagnosed chronic phase CML.",
+      "quote": "A Multicenter Phase 3, Open-Label Study of Bosutinib Versus Imatinib in Adult Patients With Newly Diagnosed Chronic Phase Chronic Myelogenous Leukemia"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Bosutinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "Bosutinib has also been studied in recurrent glioblastoma in a phase 2 trial.",
+      "quote": "An Open Label, Phase 2 Trial of Orally Administered Bosutinib (SKI-606) in Adult Patients With Recurrent Glioblastoma (GBM)"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosutinib%22&limit=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cb7a8d1d-07c0-462d-960f-214d44705e76",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bosutinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bosutinib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT02130557?fields=protocolSection.identificationModule,protocolSection.statusModule,protocolSection.designModule,protocolSection.conditionsModule",
+    "https://www.nccih.nih.gov/health/bosutinib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547951/?report=reader",
+    "https://livertox.nih.gov/Bosutinib.htm",
+    "https://www.livertox.nih.gov/",
+    "https://web.archive.org/web/2024/https://www.ncbi.nlm.nih.gov/books/NBK547951/",
+    "https://web.archive.org/web/20250202052006/https://www.ncbi.nlm.nih.gov/books/NBK547951/"
+  ],
+  "gaps": [
+    "NCCIH has no bosutinib page. The URL https://www.nccih.nih.gov/health/bosutinib returned HTTP 404, so no NCCIH content is cited.",
+    "LiverTox on the NCBI Bookshelf blocked automated access with a reCAPTCHA, so the readable copy came from an Internet Archive snapshot taken 2025-02-02 of a page last updated 2017-09-30. That LiverTox text may lag newer label changes.",
+    "openFDA and DailyMed host the same manufacturer-authored label text, so label-based claims there are not fully independent of each other. LiverTox, PubChem and ClinicalTrials.gov are separate sources.",
+    "No source was found covering human pregnancy outcomes, transfer of bosutinib into breast milk, fertility effects in people, or pediatric use details for the generic product.",
+    "MedlinePlus drug monographs were deliberately not fetched or cited because NLM states that content is copyrighted American Society of Health-System Pharmacists material."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what bosutinib is, how it blocks BCR-ABL in Philadelphia chromosome-positive CML, its label-recorded side effects, interactions and liver risk, plus the pregnancy, breastfeeding and pediatric cautions."
+}

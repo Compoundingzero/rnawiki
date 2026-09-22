@@ -1,0 +1,226 @@
+{
+  "slug": "buspirone",
+  "oneLineAnswer": "A daily anti-anxiety medicine for generalized anxiety disorder. It is not a sedative and takes weeks to work.",
+  "whatItIs": "Buspirone is a prescription anti-anxiety medicine, also called an anxiolytic. US labeling states it is not chemically or pharmacologically related to benzodiazepines, barbiturates, or other sedative drugs. Its exact mechanism is unknown. Laboratory studies show it binds serotonin 5-HT1A receptors with high affinity and brain dopamine D2 receptors with moderate affinity. A receptor is a docking point on a cell where a chemical messenger attaches.",
+  "whatItDoes": [
+    "US labeling says buspirone is indicated to manage anxiety disorders or give short-term relief of anxiety symptoms.",
+    "That approval rests on controlled trials of outpatients whose diagnosis was close to generalized anxiety disorder, or GAD.",
+    "GAD means worry that is hard to control and lasts for months.",
+    "The label notes that stress and tension of everyday life usually do not call for an anti-anxiety medicine.",
+    "NIMH says buspirone must be taken daily for 3 to 4 weeks before it becomes fully effective."
+  ],
+  "howPeopleUseIt": [
+    "It comes as a tablet you swallow, sold in several strengths.",
+    "Labels describe taking it in two or three smaller amounts spread across the day.",
+    "The label tells patients to keep food consistent, so always with food or always without it.",
+    "In US law buspirone is not a controlled substance.",
+    "NIMH notes it is not used only when anxiety flares, unlike benzodiazepines."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In placebo-controlled trials, dizziness, nausea, headache, nervousness, lightheadedness, and excitement were reported more often than with placebo.",
+      "Drowsiness, trouble sleeping, dry mouth, fatigue, and blurred vision were also reported.",
+      "About 10 percent of 2,200 people in the early efficacy trials stopped treatment because of a side effect.",
+      "A feeling of restlessness appearing soon after treatment starts has been reported in a small share of people.",
+      "The label says buspirone is less sedating than other anxiolytics, but its effects on any one person are not predictable."
+    ],
+    "seriousSigns": [
+      "A rare, potentially life-threatening condition called serotonin syndrome has been reported with buspirone, particularly alongside other serotonin-raising drugs.",
+      "Labeled signs include agitation, confusion, hallucinations, fast pulse, unstable blood pressure, sweating, fever, tremor, rigid muscles, twitching, clumsiness, and seizures.",
+      "Blood pressure has risen when buspirone was added for patients already taking an MAOI antidepressant.",
+      "The label says buspirone has no established antipsychotic activity, so it should not stand in for antipsychotic treatment.",
+      "The label directs patients to avoid driving or using dangerous machinery until they know how the medicine affects them."
+    ],
+    "whoShouldAvoid": [
+      "The label says buspirone is contraindicated in people hypersensitive to it.",
+      "It is contraindicated together with MAOI antidepressants, and within 14 days of stopping one.",
+      "It is also contraindicated with the antibiotic linezolid or intravenous methylene blue.",
+      "The label says nursing women should avoid it if clinically possible, because human milk transfer is unknown.",
+      "The label advises gradual withdrawal of any prior sedative or hypnotic drug before buspirone is started."
+    ]
+  },
+  "interactions": [
+    "MAOI antidepressants carry the strongest warning: using buspirone with them is contraindicated because of serotonin syndrome and elevated blood pressure risk.",
+    "Triptans, used for migraine, need careful observation during treatment start and dose changes.",
+    "Serotonin precursors such as tryptophan are not recommended alongside buspirone.",
+    "Buspirone is metabolized mainly by the liver enzyme CYP3A4, so other drugs that affect this enzyme can change buspirone levels.",
+    "Patient instructions say to avoid drinking large amounts of grapefruit juice during treatment.",
+    "Formal studies found buspirone did not increase alcohol-related impairment, but the label still calls it prudent to avoid the combination.",
+    "Antipsychotics and other drugs that block dopamine are also listed among medicines to watch."
+  ],
+  "pregnancyAndChildren": "The label rates buspirone as pregnancy category B. Animal reproduction studies in rats and rabbits at high doses found no fetal damage or fertility loss. No adequate, well-controlled studies have been done in pregnant people, so the label says to use it during pregnancy only if clearly needed. Whether buspirone or its breakdown products pass into human milk is not known, though in rats they do appear in milk. In two 6-week placebo-controlled trials of 559 children aged 6 to 17 with GAD, buspirone did not differ significantly from placebo, and there are no long-term safety or effectiveness data in children.",
+  "whatWeDoNotKnow": [
+    "How buspirone actually reduces anxiety is unknown; the label states this directly.",
+    "Effectiveness beyond about 3 to 4 weeks of use has not been demonstrated in controlled trials.",
+    "No body of evidence settles what the appropriate duration of treatment should be.",
+    "How much buspirone reaches human breast milk is unmeasured, and long-term effects in children are unstudied.",
+    "A registered trial is testing a long-acting buspirone tablet for vertigo with autonomic dysfunction, and no results are posted yet."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The approved US label states buspirone is indicated for managing anxiety disorders or short-term relief of anxiety symptoms.",
+      "quote": "indicated for the management of anxiety disorders or the short-term relief of the symptoms of anxiety"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label states that how buspirone works is not known.",
+      "quote": "The mechanism of action of buspirone is unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Preclinical lab work recorded in the label shows strong binding at serotonin 5-HT1A receptors.",
+      "quote": "buspirone has a high affinity for serotonin (5-HT 1A ) receptors"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label names dizziness, nausea, headache, nervousness, lightheadedness, and excitement as effects seen more often than with placebo.",
+      "quote": "dizziness, nausea, headache, nervousness, lightheadedness, and excitement"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "About 10 percent of 2,200 patients in premarketing efficacy trials stopped treatment because of an adverse event.",
+      "quote": "Approximately 10% of the 2200 anxious patients who participated in the buspirone hydrochloride tablets premarketing clinical efficacy trials"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Combining buspirone with an MAOI antidepressant, or using it within 14 days of stopping one, is contraindicated.",
+      "quote": "The use of monoamine oxidase inhibitors (MAOIs) intended to treat depression with buspirone or within 14 days"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label reports that serotonin syndrome can occur with buspirone, especially with other serotonergic or antidopaminergic drugs.",
+      "quote": "Serotonin Syndrome The development of a potentially life-threatening serotonin syndrome has been reported with SNRIs SSRIs, and other serotonergic drugs, including buspirone"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Buspirone is cleared mainly by the CYP3A4 liver enzyme, which creates interaction potential.",
+      "quote": "Buspirone is metabolized primarily by oxidation, which in vitro has been shown to be mediated by cytochrome P450 3A4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Patient instructions tell people taking buspirone to avoid large amounts of grapefruit juice.",
+      "quote": "During your treatment with buspirone hydrochloride tablets, avoid drinking large amounts of grapefruit juice."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Despite formal alcohol interaction studies, the label advises against combining alcohol and buspirone.",
+      "quote": "it is prudent to avoid concomitant use of alcohol and buspirone"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "A restlessness syndrome appearing soon after starting buspirone has been reported in a small fraction of patients.",
+      "quote": "a syndrome of restlessness, appearing shortly after initiation of treatment, has been reported in some small fraction of buspirone-treated patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label states that controlled trials have not shown benefit beyond 3 to 4 weeks of use.",
+      "quote": "in long-term use, that is, for more than 3 to 4 weeks, has not been demonstrated in controlled trials"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label states buspirone is not a controlled substance.",
+      "quote": "Buspirone hydrochloride is not a controlled substance."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "In two pediatric GAD trials, buspirone did not separate from placebo on GAD symptoms.",
+      "quote": "There were no significant differences between buspirone and placebo with regard to the symptoms of GAD"
+    },
+    {
+      "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+      "publisher": "National Institute of Mental Health (public domain)",
+      "claim": "NIMH states buspirone needs 3 to 4 weeks of daily use to be fully effective for GAD.",
+      "quote": "Buspirone needs to be taken for 3\u20134 weeks for it to be fully effective."
+    },
+    {
+      "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+      "publisher": "National Institute of Mental Health (public domain)",
+      "claim": "NIMH describes buspirone as not a sedative and having less addictive potential than benzodiazepines.",
+      "quote": "Unlike benzodiazepines, buspirone is not a sedative and has less potential to be addictive."
+    },
+    {
+      "url": "https://www.nimh.nih.gov/health/topics/mental-health-medications",
+      "publisher": "National Institute of Mental Health (public domain)",
+      "claim": "NIMH says buspirone suits longer-term anxiety treatment but does not work when taken only as needed.",
+      "quote": "it is not effective for treating anxiety on an as-needed basis"
+    },
+    {
+      "url": "https://www.nimh.nih.gov/health/topics/mental-health-medications",
+      "publisher": "National Institute of Mental Health (public domain)",
+      "claim": "NIMH classifies buspirone as a different type of anti-anxiety medication usable over longer periods.",
+      "quote": "Buspirone is a different type of anti-anxiety medication that can be used to treat anxiety over longer periods."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=427ad27e-6664-afee-e063-6394a90a1890",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "The label states that how much buspirone passes into human milk is unknown, while rats do excrete it in milk.",
+      "quote": "The extent of the excretion in human milk of buspirone or its metabolites is not known."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=427ad27e-6664-afee-e063-6394a90a1890",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "The label uses the older pregnancy category B and says buspirone should be used in pregnancy only if clearly needed.",
+      "quote": "this drug should be used during pregnancy only if clearly needed"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/buspirone/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records buspirone's chemical identity as C21H31N5O2 with a molecular weight of 385.5.",
+      "quote": "8-[4-(4-pyrimidin-2-ylpiperazin-1-yl)butyl]-8-azaspiro[4.5]decane-7,9-dione"
+    },
+    {
+      "url": "https://medlineplus.gov/anxiety.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine (public domain)",
+      "claim": "MedlinePlus defines generalized anxiety disorder as excessive worry about ordinary matters nearly every day for six months or more.",
+      "quote": "their worries are excessive, and they have them almost every day for at least 6 months"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Buspirone&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Registered buspirone research extends beyond anxiety, including a recruiting trial of a prolonged-release form for vertigo.",
+      "quote": "Prolonged-release Tablets, in Patients With Autonomic Dysfunction Syndrome Accompanied by Functional Vertigo"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Buspirone%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=buspirone",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=427ad27e-6664-afee-e063-6394a90a1890",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/buspirone/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Buspirone&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Buspirone&filter.overallStatus=COMPLETED&query.cond=Generalized%20Anxiety%20Disorder&pageSize=5",
+    "https://www.nimh.nih.gov/health/topics/mental-health-medications",
+    "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+    "https://medlineplus.gov/anxiety.html",
+    "https://medlineplus.gov/generalizedanxietydisorder.html",
+    "https://www.nccih.nih.gov/health/buspirone",
+    "https://www.nccih.nih.gov/health/anxiety-disorders-in-depth",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547966/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547966/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547966/pdf/Bookshelf_NBK547966.pdf"
+  ],
+  "gaps": [
+    "NCCIH has no buspirone page: both attempted NCCIH URLs returned HTTP 404, so no NCCIH content is cited.",
+    "LiverTox (NIDDK) does have a buspirone entry, but all three fetch attempts were stopped by a browser check page, so no liver-injury claim appears in this record.",
+    "MedlinePlus drug monograph pages were deliberately not fetched or cited, because NLM states they are copyrighted ASHP content.",
+    "The label text used here still carries the retired pregnancy category B letter, and no fetched source explains how buspirone is handled under newer pregnancy labeling.",
+    "No fetched source compares buspirone's effectiveness against other anxiety medicines.",
+    "No fetched source covers buspirone for uses outside anxiety or covers long-term data beyond the label's statements."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what buspirone is, the anxiety uses its US label and NIMH describe, how it is taken daily, its common and serious side effects, key interactions, and the pregnancy, breastfeeding, and child evidence gaps."
+}

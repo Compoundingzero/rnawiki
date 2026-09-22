@@ -1,0 +1,241 @@
+{
+  "slug": "alprazolam",
+  "oneLineAnswer": "A prescription benzodiazepine for short-term anxiety and panic that can cause dependence.",
+  "whatItIs": "Alprazolam belongs to the benzodiazepine family, a group of medicines that slow brain activity. It is taken by mouth as a tablet. Alprazolam has been approved for use in the United States since 1981. It is a Schedule IV controlled substance, a category for drugs with a potential for dependence. Its chemical formula is C17H13ClN4.",
+  "whatItDoes": [
+    "FDA-approved labels list two adult uses: short-term treatment of generalized anxiety disorder, and panic disorder with or without agoraphobia.",
+    "Benzodiazepines attach to GABA receptors in the brain, which slows brain activity and brings on drowsiness or calm.",
+    "Alprazolam was the benzodiazepine most often dispensed from US pharmacies in 2019, at 38 in 100 of those prescriptions.",
+    "Drowsiness tops the label's panic disorder trial list, reported by more people on alprazolam than on placebo.",
+    "A completed study in the trial registry used brain scans to compare alprazolam with placebo in generalized anxiety disorder."
+  ],
+  "howPeopleUseIt": [
+    "Alprazolam is a prescription medicine that comes as a tablet you swallow.",
+    "Benzodiazepines are usually recommended for weeks or months, not years.",
+    "Labels tell prescribers to use the lowest effective amount and to check often whether it is still needed.",
+    "Some people take benzodiazepines without a prescription for the calm or high they produce, which labels call abuse and misuse.",
+    "One registered study tested an inhaled form of alprazolam for its abuse liability."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Drowsiness, light-headedness and dizziness are the most frequent complaints in anxiety trials.",
+      "The label names impaired coordination, low blood pressure, slurred speech and increased libido as common trial reactions.",
+      "Other reported effects include dry mouth, constipation, memory problems, irritability, rash, appetite change, weight change and sexual problems.",
+      "FDA lists drowsiness, dizziness, weakness and slowed breathing as common side effects of the whole benzodiazepine class."
+    ],
+    "seriousSigns": [
+      "Taking a benzodiazepine with an opioid pain medicine can cause deep sedation, breathing failure, coma and death.",
+      "Stopping suddenly or cutting the amount too fast can set off withdrawal reactions, including seizures, which can be life-threatening.",
+      "Physical dependence can develop after steady use of days to weeks, even at amounts a prescriber ordered.",
+      "Use carries risks of abuse, misuse and addiction that can lead to overdose or death.",
+      "Rarely the reverse of calming happens: agitation, rage, hallucinations or aggressive behavior.",
+      "Some withdrawal symptoms last past 4 to 6 weeks."
+    ],
+    "whoShouldAvoid": [
+      "People allergic to alprazolam or other benzodiazepines should not take it. Swelling under the skin has been reported.",
+      "Strong CYP3A inhibitors such as ketoconazole, itraconazole and clarithromycin are not to be combined with it, except ritonavir.",
+      "Breastfeeding is not recommended during treatment.",
+      "Tell your prescriber if you have liver or kidney problems, lung or breathing problems, depression, or thoughts of harming yourself.",
+      "It is not for children. Safety and effectiveness have not been established in pediatric patients.",
+      "Older adults clear the medicine more slowly, so labels call for reduced amounts in that group."
+    ]
+  },
+  "interactions": [
+    "Opioids: together with alprazolam they can cause profound sedation and dangerous breathing depression.",
+    "Other brain-slowing medicines add to the sedation. These include alcohol, antihistamines, seizure medicines and psychiatric medicines.",
+    "FDA tells patients not to drink alcohol with a benzodiazepine, because it can increase serious and life-threatening effects.",
+    "Strong CYP3A inhibitors such as ketoconazole, itraconazole and clarithromycin are contraindicated because they sharply raise alprazolam levels.",
+    "Moderate or weak CYP3A inhibitors including cimetidine, erythromycin, fluvoxamine and nefazodone also push alprazolam levels up.",
+    "CYP3A inducers such as carbamazepine and phenytoin can speed alprazolam breakdown and reduce its effect.",
+    "Digoxin levels have risen when alprazolam was given, especially in people over 65.",
+    "Ritonavir is time-dependent: short-term use raises alprazolam exposure, while longer use offsets that rise."
+  ],
+  "pregnancyAndChildren": "Use late in pregnancy has been linked to sedation and withdrawal in newborns, including breathing problems, low muscle tone, jitteriness and feeding trouble. Published observational data do not show a clear link between benzodiazepines and major birth defects, though the background risk is not known for this group. A national pregnancy registry tracks outcomes for women who take psychiatric medicines, including alprazolam. Breastfeeding is not recommended, because alprazolam passes into breast milk and infants exposed have shown sedation and poor feeding. Safety and effectiveness in children have not been established. Older adults have higher blood levels of the drug than younger adults on the same amount, and labels recommend lower amounts for them.",
+  "whatWeDoNotKnow": [
+    "The exact risk of addiction from benzodiazepine use is uncertain, FDA says.",
+    "FDA notes it can be hard to tell withdrawal symptoms apart from the anxiety the medicine was treating coming back.",
+    "Reported withdrawal symptoms have lasted from weeks to years. How often a long course happens, or who will have one, is not known.",
+    "No single tapering plan suits everyone, so stopping is worked out person by person.",
+    "The material we read does not compare alprazolam head to head with other treatments for anxiety or panic.",
+    "We could not open the NIDDK LiverTox chapter on alprazolam, so its liver findings are not reported here."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "FDA-approved labeling lists generalized anxiety disorder and panic disorder as the two adult uses.",
+      "quote": "Alprazolam is a benzodiazepine indicated for the: Acute treatment of generalized anxiety disorder in adults."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alprazolam carries a boxed warning about abuse, misuse and addiction.",
+      "quote": "The use of benzodiazepines, including alprazolam, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Stopping alprazolam suddenly or reducing it fast can cause life-threatening withdrawal.",
+      "quote": "Abrupt discontinuation or rapid dosage reduction of alprazolam after continued use may precipitate acute withdrawal reactions, which can be life-threatening."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alprazolam is a Schedule IV controlled substance.",
+      "quote": "Alprazolam tablets contain alprazolam, which is a Schedule IV controlled substance."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label names impaired coordination, low blood pressure, slurred speech and increased libido as the most common trial reactions.",
+      "quote": "include: impaired coordination, hypotension, dysarthria, and increased libido."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Anxiety-trial side effect figures in the label are counts for people on alprazolam compared with people on placebo.",
+      "quote": "Adverse Reactions Occurring in ≥1% in Alprazolam-treated Patients and Greater than Placebo-treated Patients in Placebo-Controlled Trials for Generalized Anxiety"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Drowsiness is listed first among the nervous system reactions in the label's anxiety trial table.",
+      "quote": "Alprazolam n=565 Placebo n=505 Nervous system disorders Drowsiness"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "A separate label table covers panic disorder trials of up to ten weeks and ranks drowsiness first.",
+      "quote": "Adverse Reactions Occuring in ≥1% in Alprazolam-treated Patients and Greater than Placebo-treated Patients in Placebo-Controlled Trials (Up to 10 Weeks) for Panic Disorder"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alprazolam is contraindicated with strong CYP3A inhibitors except ritonavir, and in people allergic to benzodiazepines.",
+      "quote": "Alprazolam tablets are contraindicated in patients: with known hypersensitivity to alprazolam or other benzodiazepines."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "8.4 Pediatric Use Safety and effectiveness of alprazolam have not been established in pediatric patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Breastfeeding is not recommended during treatment.",
+      "quote": "advise patients that breastfeeding is not recommended during treatment with alprazolam"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Digoxin levels can rise when alprazolam is given, especially in older adults.",
+      "quote": "Increased digoxin concentrations have been reported when alprazolam was given, especially in geriatric patients (>65 years of age)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Older adults have higher alprazolam blood levels than younger adults on the same amount.",
+      "quote": "Alprazolam-treated geriatric patients had higher plasma concentrations of alprazolam (due to reduced clearance) compared to younger adult patients receiving the same doses."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "Benzodiazepines slow brain activity by acting on GABA receptors.",
+      "quote": "they all work to slow brain activity by binding to gamma-aminobutyric acid (GABA) receptors in the brain"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "Alprazolam accounted for the largest share of US benzodiazepine prescriptions in 2019.",
+      "quote": "with alprazolam (38%) being the most common followed by clonazepam (24%) and lorazepam (20%)"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "Physical dependence can begin within days to weeks of steady use, even as prescribed.",
+      "quote": "Physical dependence can occur when benzodiazepines are taken steadily for several days to weeks, even as prescribed."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "Some withdrawal symptoms persist longer than a month, and FDA found cases lasting much longer.",
+      "quote": "Protracted withdrawal syndrome persists beyond 4 to 6 weeks after initial benzodiazepine withdrawal."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "No single tapering plan fits every patient, and FDA says tapering should be tailored.",
+      "quote": "There are no standard benzodiazepine tapering schedules suitable for all patients. A patient-specific plan should be used to taper the dosage of the benzodiazepine gradually."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "FDA states the exact risk of addiction from benzodiazepine use is uncertain.",
+      "quote": "The exact risk of addiction associated with benzodiazepine use is uncertain"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "FDA found it hard to separate withdrawal symptoms from the return of the condition being treated.",
+      "quote": "difficulty in differentiating withdrawal symptoms from potential re-emergence or continuation of symptoms for which the benzodiazepine was being used"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+      "publisher": "U.S. Food and Drug Administration (Drug Safety Communication, 2020)",
+      "claim": "FDA lists drowsiness, dizziness, weakness and slowed breathing as common benzodiazepine side effects.",
+      "quote": "Common side effects of benzodiazepines include drowsiness, dizziness, weakness, and slowed breathing."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Alprazolam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A completed registered study tested an inhaled form of alprazolam for abuse liability.",
+      "quote": "briefTitle\":\"Staccato Alprazolam Abuse Liability"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Alprazolam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A completed registered study compared alprazolam with placebo in generalized anxiety disorder using imaging.",
+      "quote": "briefTitle\":\"Drug Treatment Validation of Functional Magnetic Resonance Imaging in Generalized Anxiety Disorder"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alprazolam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Alprazolam's chemical formula is C17H13ClN4.",
+      "quote": "\"MolecularFormula\": \"C17H13ClN4\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/13930c94-d83a-414f-be35-b1fef35f738d.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The product label gives 1981 as alprazolam's initial U.S. approval year and describes it as an oral tablet in schedule CIV.",
+      "quote": "ALPRAZOLAM tablets, for oral use, CIV <br/> </content> <content styleCode=\"bold\"> <content styleCode=\"bold\">Initial U.S. Approval: 1981"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alprazolam%22&limit=1",
+    "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Alprazolam&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Alprazolam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alprazolam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alprazolam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=alprazolam&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/13930c94-d83a-414f-be35-b1fef35f738d.xml",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/a23063c0-099a-4256-b95f-3a857bbf704b.xml",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=13930c94-d83a-414f-be35-b1fef35f738d",
+    "https://www.nccih.nih.gov/health/alprazolam",
+    "https://www.nccih.nih.gov/health/anxiety-at-a-glance",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548178/"
+  ],
+  "gaps": [
+    "NCCIH has no alprazolam page: https://www.nccih.nih.gov/health/alprazolam returned HTTP 404, so no NCCIH grounding is included.",
+    "The NCCIH anxiety page loads its text with JavaScript. Both fetch attempts returned site styling only, with no readable content, so it is not cited.",
+    "The NIDDK LiverTox chapter on alprazolam (https://www.ncbi.nlm.nih.gov/books/NBK548178/) was blocked by an anti-bot browser check on three attempts. Its liver-injury findings could not be verified here and are omitted.",
+    "The first PubChem query, which asked for a free-text Description field, was rejected with HTTP 400. Only formula, molecular weight and names were obtained from PubChem.",
+    "Every trial percentage in the label was seen, but the fetched tables render symptom names and figures in separate blocks, so only the ordering and the study sizes are stated in this record rather than exact rates.",
+    "No dose information is given anywhere in this record, by design. Label dosage ranges were seen but are not reproduced.",
+    "No source we could fetch compared alprazolam with other anxiety or panic treatments head to head.",
+    "The benzodiazepine fact sheet and labeling come from US federal sources. How these findings translate to other health systems is not addressed."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what alprazolam is, the two adult uses its FDA label lists, its common and serious side effects, dependence and withdrawal risks, key drug interactions, and pregnancy and children limits, grounded in the FDA label and an FDA benzodiazepine safety communication."
+}

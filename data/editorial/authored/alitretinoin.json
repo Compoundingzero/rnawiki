@@ -1,0 +1,146 @@
+{
+  "slug": "alitretinoin",
+  "oneLineAnswer": "A vitamin A related drug: a skin gel for AIDS-related Kaposi's sarcoma lesions, and capsules for hand eczema.",
+  "whatItIs": "Alitretinoin belongs to the retinoid family, a group of drugs related to vitamin A. Its chemical name is 9-cis-retinoic acid, and reference lists also file it as 9-cis retinoic acid. A retinoid acts on cell receptors, which are proteins that control how cells grow and mature. In the United States it is a prescription skin gel. In Europe the same substance has also been sold as an oral capsule.",
+  "whatItDoes": [
+    "Inside cells, alitretinoin attaches to retinoid receptors and switches certain genes on or off.",
+    "That gene switching changes how cells grow and divide.",
+    "Kaposi's sarcoma is a cancer that shows up as patches on the skin. The US gel form is approved for treating those skin lesions in adults with AIDS.",
+    "The label does not cover cancer that needs whole-body treatment rather than a product used on the skin.",
+    "An oral form has been tested in late-stage trials for severe hand eczema that steroid creams did not settle."
+  ],
+  "howPeopleUseIt": [
+    "The gel goes only on lesions, not on normal skin. It stays away from the eyes, mouth, nose and other openings.",
+    "The label describes starting with less frequent use and increasing it as your skin allows.",
+    "It also describes lowering how often you apply the gel, or pausing, when the skin becomes irritated.",
+    "Hands get washed afterwards, unless the lesions being treated are on the hands.",
+    "You wait for the gel to dry before clothing goes over it."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Skin reactions where the gel is applied are the usual problem.",
+      "In trials, the common ones were rash, pain, tingling, itching, flaking skin and swelling.",
+      "Severe redness and swelling at the treated spot happened in a minority of patients.",
+      "Sun sensitivity is another listed effect, with treated areas reacting more to sunlight and sunlamps.",
+      "Some trial patients stopped treatment because of skin irritation."
+    ],
+    "seriousSigns": [
+      "Severe local skin reactions: redness and swelling where the gel is applied, sometimes with blistering.",
+      "An allergic reaction to retinoids or to any ingredient in the gel is a listed reason not to use it.",
+      "Retinoids as a drug family have been linked to photosensitivity, meaning skin that reacts badly to light."
+    ],
+    "whoShouldAvoid": [
+      "Anyone allergic to retinoids or to any ingredient in the gel.",
+      "Pregnant women. The label says the gel can harm a fetus, based on animal studies and how the drug works.",
+      "The label advises women able to become pregnant to test for pregnancy first and use effective contraception through treatment.",
+      "Men with female partners who could become pregnant get the same contraception advice for a week after the last use.",
+      "Children, because safety and effectiveness are not established.",
+      "People who cannot keep the gel away from mucosal surfaces, the moist lining of the mouth, nose and genitals."
+    ]
+  },
+  "interactions": [
+    "Avoid DEET, the ingredient in many insect repellents, while using the gel.",
+    "Animal toxicology studies found more DEET toxicity when DEET was part of the same formulation.",
+    "Occlusive dressings, which seal skin from air, should not cover the gel.",
+    "No formal studies have looked at how the gel interacts with HIV medicines, so that question stays open.",
+    "Sunlight and sunlamps are best avoided on treated areas."
+  ],
+  "pregnancyAndChildren": "Alitretinoin can harm a fetus. The US label bases that warning on animal studies and on how the drug works. It notes there are no data from pregnant women. A pregnancy test before starting is advised for women who could become pregnant. It also advises effective contraception during treatment and for a week after. Men with female partners who could become pregnant get the same one-week contraception advice. Breastfeeding is not recommended during treatment or for a week after the last use. It is not known whether the drug passes into breast milk. For children, safety and effectiveness have not been established. Trials of the gel did not include enough people aged 65 and over to show whether they respond differently.",
+  "whatWeDoNotKnow": [
+    "No study has measured blood levels of the drug before and after using the gel. How much is absorbed is therefore unclear, though the label calls absorption limited.",
+    "There are no pregnancy data from women. The fetal harm warning comes from animal studies.",
+    "No formal interaction studies exist between the gel and HIV medicines.",
+    "The gel only affects lesions it touches. It cannot reach Kaposi's sarcoma inside the body, and new lesions can still appear on untreated skin.",
+    "How oral alitretinoin compares with other hand eczema treatments is not settled. One later trial used it as the comparison treatment instead.",
+    "This record does not state which countries approve the oral capsule. The regulatory pages checked did not load usable text."
+  ],
+  "evidence": [
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=49c16717-7d86-4257-80c9-baa1417e5555",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The US label for the gel describes it as a retinoid used topically for skin lesions of AIDS-related Kaposi's sarcoma in adults.",
+      "quote": "PANRETIN GEL is a retinoid indicated for the topical treatment of cutaneous lesions in adults with AIDS-related Kaposi's sarcoma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The most common application-site side effects in the two controlled gel trials were skin reactions such as rash, pain, itching and flaking.",
+      "quote": "the most common adverse reactions in ≥ 5% of patients were rash, pain, paresthesia, pruritis, exfoliative dermatitis, edema, and skin disorder"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The drug attaches to every known retinoid receptor subtype, and those receptors then regulate genes that govern cell growth and maturation.",
+      "quote": "binds to and activates all known intracellular retinoid receptor subtypes (RARα, RARβ, RARγ, RXRα, RXRβ and RXRγ)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label warns that the gel can harm a fetus, based on animal findings and the drug's mechanism, and states there are no data from pregnant women.",
+      "quote": "PANRETIN GEL can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Animal toxicology showed greater DEET toxicity when DEET was in the formulation, so the label tells patients not to combine the gel with DEET products.",
+      "quote": "Animal toxicology studies showed increased DEET toxicity when DEET was included as part of the formulation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "No study has directly measured blood levels of the drug before and after topical use of the gel.",
+      "quote": "No studies have examined plasma 9-cis-retinoic acid concentrations before and after treatment with Panretin®gel."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=alitretinoin&limit=3",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The product description states that alitretinoin is chemically related to vitamin A and gives its chemical name.",
+      "quote": "Chemically, alitretinoin is related to vitamin A."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/449171/JSON?heading=Depositor-Supplied+Synonyms",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem's compound record carries alitretinoin, the CAS number 5300-03-8 and the brand names Panretin and Toctino as names for the same substance.",
+      "quote": "\"Alitretinoin\", \"5300-03-8\", \"Panretin\", \"9-cis-Tretinoin\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00309621?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,BriefSummary",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed phase 3 trial studied oral alitretinoin in people whose severe chronic hand dermatitis had not responded to topical treatment, including topical steroids.",
+      "quote": "Patients with severe chronic hand dermatitis, that has not responded to topical treatment, including topical steroids"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=alitretinoin&query.cond=hand+eczema&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A later phase 3 trial in severe chronic hand eczema used once-daily alitretinoin capsules as the comparison treatment.",
+      "quote": "Alitretinoin Capsules Once-daily in Adult Participants With Severe Chronic Hand Eczema"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alitretinoin%22&limit=5",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Toctino%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=alitretinoin&limit=3",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=49c16717-7d86-4257-80c9-baa1417e5555",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=Alitretinoin",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Alitretinoin&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=alitretinoin&query.cond=hand+eczema&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://clinicaltrials.gov/api/v2/studies/NCT00309621?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,BriefSummary",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/449171/JSON?heading=Depositor-Supplied+Synonyms",
+    "https://www.nccih.nih.gov/health/alitretinoin",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548929/",
+    "https://www.geneesmiddeleninformatiebank.nl/pars/h100957.pdf",
+    "https://ec.europa.eu/health/documents/community-register/html/ho26703.htm"
+  ],
+  "gaps": [
+    "NCCIH has no alitretinoin page; the URL returned a 404, so no NCCIH content is used.",
+    "LiverTox could not be read: the NCBI Bookshelf page returned an access check instead of content, so no liver-specific information is included.",
+    "The Dutch medicines agency assessment report for the oral product fetched as unreadable text, so no European approval claim is made from it. The oral form is grounded only in ClinicalTrials.gov trial records.",
+    "The EU Union Register page returned only page furniture with no drug text, so it grounds nothing.",
+    "No trial reports effects on how long people live or on internal Kaposi's sarcoma, because the gel label states the product is not a whole-body therapy.",
+    "MedlinePlus drug monographs were excluded as copyrighted third-party content; no MedlinePlus drug monograph was fetched or used.",
+    "The record makes no statement about dose or how much of the product anyone should use."
+  ],
+  "confidence": "medium",
+  "summary": "This record covers alitretinoin's identity as a vitamin A related retinoid, the US-approved topical gel for AIDS-related Kaposi's sarcoma skin lesions, the studied oral form for severe hand eczema, and its side effects, pregnancy cautions and interaction warnings from the FDA label and trial registry."
+}

@@ -1,0 +1,257 @@
+{
+  "slug": "linezolid",
+  "oneLineAnswer": "Linezolid is a prescription antibiotic for serious Gram-positive infections, given by mouth or into a vein.",
+  "whatItIs": "Linezolid is a synthetic antibacterial drug in the oxazolidinone class. Synthetic means it is made in a lab rather than found in nature. PubChem describes it as structurally unrelated to other anti-infectives sold in the US. The FDA label calls it an oxazolidinone-class antibacterial for adults and children. It comes as tablets, as a powder mixed into an oral liquid, and as a solution given into a vein. Its chemical formula is C16H20FN3O4 and its molecular weight is 337.35.",
+  "whatItDoes": [
+    "Linezolid stops bacteria from making the proteins they need to multiply.",
+    "It attaches to the bacterial ribosome, the cell's protein factory, at a spot called the 50S subunit.",
+    "That blocks a step called the 70S initiation complex, which bacteria cannot divide without.",
+    "In lab tests it mostly holds staph and enterococci in check, but it kills most streptococci.",
+    "It does not work against Gram-negative bacteria, a separate large group of germs."
+  ],
+  "howPeopleUseIt": [
+    "Linezolid is a prescription medicine, given only under a doctor's supervision.",
+    "The label covers hospital-acquired pneumonia and pneumonia caught in the community.",
+    "It also covers complicated skin infections, including diabetic foot infections without bone infection.",
+    "It treats infections caused by vancomycin-resistant Enterococcus faecium, a germ that resists the antibiotic vancomycin.",
+    "The label says it should be used only when a bacterial infection is proven or strongly suspected.",
+    "Researchers have also tested it in trials for drug-resistant tuberculosis."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In trials, the most common reactions were diarrhea, vomiting, headache, nausea, and anemia.",
+      "Anemia means a low red blood cell count.",
+      "Low platelet counts were also reported; platelets are the cell fragments that help blood clot.",
+      "Trials in children also listed abdominal pain, loose stools, itching, and dizziness."
+    ],
+    "seriousSigns": [
+      "Myelosuppression: the bone marrow slows down and makes fewer blood cells.",
+      "It can appear as anemia, low white cells, low platelets, or a drop in all three.",
+      "The label says complete blood counts should be monitored weekly during treatment.",
+      "Peripheral neuropathy: nerve damage that can cause numbness, tingling, or weakness in the hands and feet.",
+      "Optic neuropathy: damage to the nerve behind the eye, which can blur or dim vision.",
+      "The label says these nerve problems appeared mainly in people treated longer than 28 days.",
+      "Serotonin syndrome: too much serotonin, a chemical that nerves use to signal each other.",
+      "Signs listed in the label include fever, sweating, agitation, fast reflexes, muscle stiffness, and tremor.",
+      "Clostridioides difficile diarrhea: a severe gut infection that can follow antibiotic use.",
+      "Lactic acidosis: a harmful buildup of acid in the blood.",
+      "Other reported problems include seizures, muscle breakdown, low blood sugar, and low blood sodium.",
+      "Blood pressure can rise when linezolid is combined with certain other medicines.",
+      "In one study of seriously ill patients with catheter-related bloodstream infections, more deaths occurred in those given linezolid.",
+      "The label says a cause was not established and linezolid is not approved for that infection."
+    ],
+    "whoShouldAvoid": [
+      "Anyone allergic to linezolid or to another ingredient in the product.",
+      "Anyone taking a monoamine oxidase inhibitor, an older type of antidepressant.",
+      "Also anyone who stopped an MAOI within the past two weeks.",
+      "People with severe kidney problems are reported to get low platelets more often.",
+      "So are people with moderate to severe liver problems.",
+      "The oral liquid contains phenylalanine, which is harmful in phenylketonuria, a rare inherited condition.",
+      "Low blood sugar has been reported in people who take insulin or diabetes pills."
+    ]
+  },
+  "interactions": [
+    "MAOIs: linezolid is itself a reversible, non-selective inhibitor of monoamine oxidase.",
+    "Serotonergic medicines raise serotonin syndrome risk: SSRIs, SNRIs, tricyclic antidepressants, buspirone, triptans, and opioids including meperidine.",
+    "Adrenergic medicines can push blood pressure up when combined with linezolid.",
+    "Insulin and oral diabetes drugs: low blood sugar has been reported in people taking both."
+  ],
+  "pregnancyAndChildren": "Reports from pregnancy have not linked linezolid to major birth defects, miscarriage, or poor outcomes for mother or baby. Animal studies found no malformations, though some mouse fetuses died at high exposures. Linezolid passes into breast milk. The label estimates a breastfed baby would receive about 6% to 9% of a therapeutic infant amount. It says the effects on the baby and on milk production are unknown. In children, support comes from adult studies plus pediatric data. It covers hospital-acquired pneumonia, complicated skin infections, community-acquired pneumonia, and vancomycin-resistant Enterococcus faecium infections. One pediatric study found linezolid levels in spinal fluid were inconsistent. The label therefore does not recommend it for central nervous system infections.",
+  "whatWeDoNotKnow": [
+    "Nobody knows what linezolid does to a breastfed baby, or to milk production.",
+    "The label says safety and effectiveness beyond 28 days have not been tested in controlled trials.",
+    "The exact route the body uses to break linezolid down is not fully understood.",
+    "Why linezolid harms nerves and mitochondria, the cell's energy plants, is not fully explained.",
+    "In one study more deaths occurred with linezolid, but no cause was established.",
+    "Its value in drug-resistant tuberculosis is still being studied in trials.",
+    "Linezolid resistance has been documented, but how often it emerges in routine practice is not known.",
+    "Linezolid is not approved for catheter-related bloodstream infections, and no study has shown it helps there."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Linezolid is an oxazolidinone-class antibacterial approved for adults and children.",
+      "quote": "Linezolid for Oral Suspension is an oxazolidinone-class antibacterial indicated in adults and children"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The most common side effects reported in trials were diarrhea, vomiting, headache, nausea, and anemia.",
+      "quote": "Most common adverse reactions (>5% of adult and/or pediatric patients treated with linezolid) include diarrhea, vomiting, headache, nausea, and anemia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "People taking a monoamine oxidase inhibitor should not take linezolid.",
+      "quote": "Linezolid should not be used in patients taking any medicinal product which inhibits monoamine oxidases A or B"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Linezolid is not for Gram-negative infections.",
+      "quote": "Linezolid is not indicated for the treatment of Gram-negative infections"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Safety and effectiveness beyond 28 days of treatment are not established in controlled trials.",
+      "quote": "The safety and efficacy of linezolid formulations given for longer than 28 days have not been evaluated in controlled clinical trials"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pregnancy case reports have not linked linezolid to major birth defects.",
+      "quote": "Available data from published and postmarketing case reports with linezolid use in pregnant women have not identified a drug-associated risk of major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label says the effects of linezolid on a breastfed infant are unknown.",
+      "quote": "There is no information on the effects of linezolid on the breastfed infant"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A breastfed infant would receive roughly 6% to 9% of a therapeutic infant amount of linezolid.",
+      "quote": "the daily dose of linezolid that the infant would receive from breastmilk would be approximately 6% to 9%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Linezolid is not recommended for central nervous system infections in children.",
+      "quote": "the use of linezolid for the empiric treatment of pediatric patients with central nervous system infections is not recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Blood counts should be checked weekly during linezolid treatment.",
+      "quote": "Complete blood counts should be monitored weekly in patients who receive linezolid"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Low platelets are reported more often in people with severe kidney impairment.",
+      "quote": "Thrombocytopenia has been reported more often in patients with severe renal impairment, whether or not on dialysis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Low blood sugar has been reported in people with diabetes taking insulin or diabetes pills.",
+      "quote": "Postmarketing cases of symptomatic hypoglycemia have been reported in patients with diabetes mellitus receiving insulin or oral hypoglycemic agents"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The oral liquid contains phenylalanine, which is harmful in phenylketonuria.",
+      "quote": "Linezolid for Oral Suspension contains phenylalanine which can be harmful to patients with phenylketonuria"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Labeled uses include complicated skin infections such as diabetic foot infections without bone infection.",
+      "quote": "Complicated skin and skin structure infections, including diabetic foot infections, without concomitant osteomyelitis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyvox%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Fatal cases of serotonin syndrome have been reported when linezolid is combined with serotonergic drugs.",
+      "quote": "Spontaneous reports of serotonin syndrome including fatal cases associated with the concomitant use of ZYVOX and serotonergic agents have been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyvox%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Linezolid is not approved for catheter-related bloodstream infections.",
+      "quote": "Linezolid is not approved and should not be used for the treatment of patients with catheter-related bloodstream infections"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyvox%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "More deaths occurred in one trial of seriously ill patients with catheter-related infections.",
+      "quote": "An imbalance in mortality was seen in patients treated with linezolid relative to vancomycin/dicloxacillin/oxacillin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyvox%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Nerve damage in the hands, feet, and eyes has been reported with linezolid.",
+      "quote": "Peripheral and optic neuropathies have been reported in patients treated with ZYVOX"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Mechanism+of+Action",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Linezolid blocks bacterial protein production by binding the 50S ribosomal subunit.",
+      "quote": "binds to a site on the bacterial 23S ribosomal RNA of the 50S subunit and prevents the formation of a functional 70S initiation complex"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Mechanism+of+Action",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Mutations in the bacterial 23S rRNA can make bacteria resistant to linezolid.",
+      "quote": "Point mutations in the bacterial 23S rRNA can lead to linezolid resistance"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Mechanism+of+Action",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Why linezolid harms nerves is not explained.",
+      "quote": "Optic and/or peripheral neuropathy and lactic acidosis are reported side effects, but the underlying pathophysiological mechanism has not been unravelled"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Linezolid holds staph and enterococci in check but kills most streptococci.",
+      "quote": "It appears to be bacteriostatic against both staphylococci and enterococci and bactericidal against most isolates of streptococci"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Linezolid itself blocks the enzyme monoamine oxidase, which explains the MAOI interaction.",
+      "quote": "Linezolid is a reversible and non-selective inhibitor of monoamine oxidase (MAO) enzymes"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Linezolid should not be used for catheter-related bloodstream or catheter-site infections.",
+      "quote": "Linezolid should not be used for the treatment of catheter-related bloodstream infections or catheter-site infections"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/linezolid/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "The chemical formula and molecular weight of linezolid.",
+      "quote": "\"MolecularFormula\": \"C16H20FN3O4\", \"MolecularWeight\": \"337.35\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Linezolid&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Linezolid has been studied in registered trials for tuberculosis.",
+      "quote": "Evaluation of the Early Bactericidal Activity of Tedizolid and Linezolide Against Mycobacterium Tuberculosis"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Linezolid%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyvox%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=linezolid",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6e70e63b-bfd5-478d-a8ee-8ba22c9efabd",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/linezolid/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Mechanism+of+Action",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441401/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/441401",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Linezolid&pageSize=5",
+    "https://www.nccih.nih.gov/health/linezolid",
+    "https://www.livertox.nih.gov/Linezolid.htm",
+    "https://livertox.nih.gov/Linezolid.htm",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548874/",
+    "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fda-drug-safety-communication-serious-cns-reactions-associated-linezolid-zyvox",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/021130s050lbl.pdf",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/206473s010lbl.pdf"
+  ],
+  "gaps": [
+    "NCCIH has no linezolid page: https://www.nccih.nih.gov/health/linezolid returned HTTP 404.",
+    "LiverTox could not be read: livertox.nih.gov redirected to a browser check that blocked automated access, and the NCBI Bookshelf record did the same. No liver-specific content is included.",
+    "The FDA drug safety communication page for linezolid CNS reactions returned HTTP 404.",
+    "The accessdata.fda.gov label PDFs downloaded as binary streams and could not be read as text, so they are not cited.",
+    "No dose, timing, or personal protocol is included by design.",
+    "How often linezolid resistance emerges in routine practice was not found in any fetchable source.",
+    "The 28-day treatment limit is reported from the label; no independent source was fetched for it."
+  ],
+  "confidence": "high",
+  "summary": "Covers what linezolid is, how it stops bacterial protein production, its labeled uses, side effects, interactions, pregnancy and pediatric notes, and what remains unknown."
+}

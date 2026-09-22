@@ -1,0 +1,247 @@
+{
+  "slug": "mycophenolate-mofetil",
+  "oneLineAnswer": "A prescription immunosuppressant given after an organ transplant to stop the body rejecting a donated kidney, heart or liver.",
+  "whatItIs": "Mycophenolate mofetil is a prescription medicine sold as capsules, tablets, an oral liquid and an injection. Regulators call it an antimetabolite immunosuppressant. An immunosuppressant is a medicine that lowers the activity of the immune system. An antimetabolite disrupts substances that cells use to grow and multiply. In the United States the approved use is organ transplant patients, and it is not a supplement.",
+  "whatItDoes": [
+    "Your immune system normally attacks anything it sees as foreign, and a donated organ looks foreign.",
+    "Mycophenolate mofetil damps that response so a transplanted kidney, heart or liver is less likely to be rejected.",
+    "The label says it is given together with other immunosuppressant medicines, not by itself.",
+    "The label describes it as an antimetabolite, meaning it interferes with building blocks that multiplying immune cells rely on.",
+    "Rejection is the immune system attacking the new organ."
+  ],
+  "howPeopleUseIt": [
+    "In the label's trials, patients took it by mouth or by vein after a kidney, heart or liver transplant.",
+    "The label says it should be managed by a doctor with experience in immunosuppressive therapy.",
+    "Trial records list studies of it in lupus nephritis, an immune-related kidney disease.",
+    "Other trial records compare different tablet versions in healthy volunteers.",
+    "The label notes the oral capsules and tablets are not interchangeable with a delayed-release tablet form sold as mycophenolic acid."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Trials reported diarrhea, low white blood cell counts, infection and vomiting in 20 percent or more of patients.",
+      "Some of those infections were opportunistic, meaning they take advantage of a weakened immune system.",
+      "The same trials also recorded low red blood cells, low platelets, stomach upset, headache and dizziness."
+    ],
+    "seriousSigns": [
+      "A boxed warning means the strongest safety warning a United States label can carry.",
+      "The boxed warning names three serious risks: harm to a fetus, lymphoma and other cancers, and serious infections.",
+      "Skin cancers are the cancers the label flags most often.",
+      "Blood problems listed include shortages of white cells, platelets and red cells.",
+      "Gut problems listed include bleeding, ulcers and a perforation, which is a hole forming in the bowel wall.",
+      "The label also lists a rare inflammatory reaction that works against expectations.",
+      "It warns that the medicine may affect your ability to drive or run machines."
+    ],
+    "whoShouldAvoid": [
+      "Anyone allergic to mycophenolate mofetil or to mycophenolic acid should not use it.",
+      "The label says to avoid it in pregnancy when a safer treatment is available.",
+      "People with a rare inherited enzyme problem called HGPRT deficiency should avoid it.",
+      "People taking it are told not to donate blood during treatment or for 6 weeks afterward.",
+      "Sperm donation is not advised during treatment or for 90 days after it ends."
+    ]
+  },
+  "interactions": [
+    "Antacids that contain magnesium or aluminum lower how much of the medicine your body absorbs.",
+    "Stomach acid reducers called proton pump inhibitors, such as lansoprazole and pantoprazole, can do the same.",
+    "Cholestyramine, rifampin and several antibiotic families can also lower drug levels in the body.",
+    "Telmisartan lowers those levels, while the antifungal isavuconazole raises them.",
+    "The label says the medicine may reduce how well oral contraceptives work, so an added barrier method is recommended.",
+    "Drugs cleared through the kidneys, such as acyclovir and ganciclovir, may build up in the body.",
+    "Live vaccines are to be avoided during treatment."
+  ],
+  "pregnancyAndChildren": "Mycophenolate mofetil is not safe in pregnancy. The boxed warning links it to pregnancy loss in the first trimester and to birth defects. Registry data cited in the label put first trimester loss at 45 to 49 percent. Birth defects were reported in 23 to 27 percent of live births in those registries. Reported problems include cleft lip and palate, ear and eye differences, and heart, kidney and limb defects. The label says to avoid the drug in pregnancy when a safer option exists. Men taking it are advised to use effective birth control during treatment and for 90 days after. There is no data on how much passes into human milk. The label covers children from 3 months old for kidney, heart and liver transplants.",
+  "whatWeDoNotKnow": [
+    "There is no human data on whether mycophenolate enters breast milk or changes milk production.",
+    "The label's main transplant trials ran about 12 months, so effects beyond that are less certain.",
+    "It is unclear how much of the cancer and infection risk comes from this drug itself.",
+    "Studies of the drug outside transplant have been small, unfinished or stopped early.",
+    "The label gives no way to predict who will develop the rare gut or liver complications."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The approved use is preventing rejection of a transplanted kidney, heart or liver, given with other immunosuppressants.",
+      "quote": "is indicated for the prophylaxis of organ rejection, in adult and pediatric recipients 3 months of age and older of allogeneic kidney"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The label classes the drug as an antimetabolite immunosuppressant.",
+      "quote": "Mycophenolate mofetil is an antimetabolite immunosuppressant indicated for the prophylaxis of organ rejection"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Pregnancy use is linked to first trimester loss and birth defects.",
+      "quote": "Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The drug raises the risk of lymphoma and other cancers, especially skin cancers.",
+      "quote": "Increased risk of development of lymphoma and other malignancies, particularly of the skin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The drug raises susceptibility to many kinds of infection, including opportunistic infections.",
+      "quote": "Increased susceptibility to bacterial, viral, fungal and protozoal infections, including opportunistic infections"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The most frequent side effects in trials were diarrhea, leukopenia, infection and vomiting.",
+      "quote": "The most common adverse reactions in clinical trials (20 % or greater) include diarrhea, leukopenia, infection, vomiting"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Allergy to mycophenolate mofetil or mycophenolic acid is a contraindication.",
+      "quote": "mycophenolate mofetil is contraindicated in patients with a hypersensitivity to mycophenolate mofetil (MMF), mycophenolic acid (MPA)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "People with HGPRT deficiency are told to avoid the drug.",
+      "quote": "Hypoxanthine-Guanine Phosphoribosyl-Transferase Deficiency: Avoid use of mycophenolate mofetil."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The drug can make oral contraceptives less effective.",
+      "quote": "Mycophenolate mofetil may reduce effectiveness of oral contraceptives."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Magnesium or aluminum antacids lower the body's exposure to the active drug.",
+      "quote": "Concomitant use with an antacid containing magnesium or aluminum hydroxide decreases MPA systemic exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Human milk data do not exist for this drug.",
+      "quote": "There are no data on the presence of mycophenolate in human milk, or the effects on milk production."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Live attenuated vaccines should be avoided.",
+      "quote": "Immunizations: Avoid live attenuated vaccines."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Registry data report first trimester pregnancy loss in roughly 45 to 49 percent of exposed pregnancies.",
+      "quote": "the risk of first trimester pregnancy loss has been reported at 45 to 49% following MMF exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Congenital malformations were reported in 23 to 27 percent of live births in registry data.",
+      "quote": "A spectrum of congenital malformations (including multiple malformations in individual newborns) has been reported in 23 to 27% of live births"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Male patients are advised to use effective contraception during treatment and for at least 90 days after.",
+      "quote": "recommended to use effective contraception during treatment of the male patient and for at least 90 days after cessation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Cancer risk is tied to how much immune suppression a person receives overall, not to one specific drug.",
+      "quote": "The risk appears to be related to the intensity and duration of immunosuppression rather than to the use of any specific agent."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The main safety and efficacy trials were 12 months long.",
+      "quote": "five randomized, active-controlled double-blind 12-month trials of mycophenolate mofetil in de novo kidney (3) heart (1) and liver (1) transplant patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Gastrointestinal bleeding, ulceration and perforation are listed complications that get monitored.",
+      "quote": "Monitor for complications such as bleeding, ulceration and perforations, particularly in patients with underlying gastrointestinal disorders."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Blood donation is restricted during treatment and for 6 weeks after.",
+      "quote": "Blood Donation: Avoid during therapy and for 6 weeks thereafter."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The drug may impair driving or machine use.",
+      "quote": "Mycophenolate mofetil may affect ability to drive or operate machinery."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Mycophenolate+Mofetil&pageSize=10&fields=NCTId,BriefTitle,Condition,OverallStatus,Phase",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "Researchers have run trials of this drug in lupus nephritis, an immune-related kidney disease.",
+      "quote": "Fixed-dose Versus Concentration-controlled Mycophenolate Mofetil for the Treatment of Active Lupus Nephritis"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Mycophenolate+Mofetil&pageSize=10&fields=NCTId,BriefTitle,Condition,OverallStatus,Phase",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "Healthy volunteer studies have compared different tablet forms of the drug.",
+      "quote": "Study to Compare the Pharmacokinetics of Mycophenolate Mofetil Metabolites From Four Tablet Formulations in Healthy Participants"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Mycophenolate+Mofetil&pageSize=10&fields=NCTId,BriefTitle,Condition,OverallStatus,Phase",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "It has been studied in people waiting for a kidney transplant, alongside another drug.",
+      "quote": "Effects of Rituximab and Mycophenolate Mofetil (MMF) on Highly Sensitized Patients Awaiting Renal Transplant"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/mycophenolate%20mofetil/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "Chemical identity: the molecular formula is C23H31NO7.",
+      "quote": "\"MolecularFormula\": \"C23H31NO7\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/mycophenolate%20mofetil/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "The molecular weight is reported as about 433.5.",
+      "quote": "\"MolecularWeight\": \"433.5\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=mycophenolate%20mofetil",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "The drug is marketed under brand names, including CellCept.",
+      "quote": "CELLCEPT (MYCOPHENOLATE MOFETIL) TABLET, FILM COATED CELLCEPT (MYCOPHENOLATE MOFETIL) CAPSULE"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=mycophenolate%20mofetil",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "A liquid suspension brand version also exists.",
+      "quote": "MYHIBBIN (MYCOPHENOLATE MOFETIL) SUSPENSION"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mycophenolate%20Mofetil%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Mycophenolate%20Mofetil&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Mycophenolate+Mofetil&pageSize=10&fields=NCTId,BriefTitle,Condition,OverallStatus,Phase",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/mycophenolate%20mofetil/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5281078/JSON?heading=Description",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=mycophenolate%20mofetil",
+    "https://www.nccih.nih.gov/health/mycophenolate-mofetil",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548945/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548945/?report=reader",
+    "https://livertox.nih.gov/Mycophenolate.htm",
+    "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548945/"
+  ],
+  "gaps": [
+    "LiverTox, the NIDDK liver-injury reference at ncbi.nlm.nih.gov/books/NBK548945/, returned an NCBI browser check on two attempts and could not be read, so its liver-injury detail and its off-label autoimmune content are not used here.",
+    "The NCCIH page at nccih.nih.gov/health/mycophenolate-mofetil returned HTTP 404, so NCCIH has no entry for this substance.",
+    "The Internet Archive was temporarily offline when an archived copy of the LiverTox page was requested.",
+    "PubChem PUG-View returned HTTP 400 for the description heading, so only the PUG-REST identity fields were used.",
+    "No peer-reviewed journal articles were fetched, so the record rests only on United States government sources.",
+    "No dose, dosing schedule or personal protocol is included, by dataset rule.",
+    "No supplement-style data exists for this substance because it is a prescription medicine."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what mycophenolate mofetil is, why it is used after organ transplant, the side effects and serious risks the FDA label records, its known interactions, and pregnancy and children information, drawn from the FDA drug label and public clinical trial registry data."
+}

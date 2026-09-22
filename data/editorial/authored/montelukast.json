@@ -1,0 +1,272 @@
+{
+  "slug": "montelukast",
+  "oneLineAnswer": "A prescription medicine that blocks leukotrienes, chemicals behind asthma and allergy symptoms. It has a boxed warning.",
+  "whatItIs": "Montelukast is a prescription medicine sold as Singulair and as generics. It belongs to a group called leukotriene receptor antagonists. That means it blocks leukotrienes, which are body chemicals that tighten the airways and drive allergy symptoms. The US Food and Drug Administration (FDA) first approved it in 1998. It comes as tablets, chewable tablets, and oral granules. PubChem lists its molecular formula as C35H36ClNO3S and a molecular weight near 586.",
+  "whatItDoes": [
+    "It is approved for long-term asthma treatment and asthma prevention in adults and children 1 year and older.",
+    "It is also approved to prevent exercise-induced asthma in people 6 years and older.",
+    "For hay fever, it is approved to control sneezing, a stuffy or runny nose, and an itchy nose.",
+    "US regulators say it should not be a first choice for hay fever.",
+    "Many other allergy medicines are widely available and have long safety records.",
+    "It is not a rescue medicine. The label says it does not reverse an asthma attack that is already happening."
+  ],
+  "howPeopleUseIt": [
+    "It is a widely used medicine.",
+    "In 2018, about 9.3 million US patients filled a montelukast prescription at retail pharmacies.",
+    "About 2.3 million of those patients were children younger than 17.",
+    "The label describes it as a once-daily medicine for asthma, taken in the evening.",
+    "For exercise-related breathing problems, the label describes a single dose before exercise rather than an extra daily dose.",
+    "It is sold as tablets, chewable tablets, and oral granules.",
+    "Some people are prescribed it after other allergy medicines did not work well enough or caused problems."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Headache is the most frequently reported effect, but trial rates were nearly the same as placebo.",
+      "Sore throat, cough, runny nose, and sinus infection.",
+      "Stomach pain, indigestion, diarrhea, and dental pain.",
+      "Fever, flu-like illness, and upper respiratory infection.",
+      "Ear infection, dizziness, and tiredness.",
+      "Mild rises in liver enzymes showed up on blood tests in trials, at rates close to placebo."
+    ],
+    "seriousSigns": [
+      "Mood and behavior changes are the main serious concern.",
+      "The US label carries a boxed warning about them.",
+      "Reported events include agitation, aggression, hostility, depression, anxiety, and sleep problems.",
+      "Suicidal thoughts and behavior, including suicide, have been reported.",
+      "Other reported events include hallucinations, confusion, bad or vivid dreams, memory problems, restlessness, sleepwalking, stuttering, tremor, and uncontrolled muscle movements.",
+      "These events have been reported in people with and without any previous mental health history.",
+      "The label and the FDA notice say patients should stop the medicine and contact a clinician if these appear.",
+      "Some people reported mood or behavior symptoms only after stopping the medicine, and some symptoms lasted after stopping.",
+      "Rarely, serious allergic reactions including anaphylaxis have been reported.",
+      "Rare liver injury has been reported, including cholestatic hepatitis, where bile flow is blocked, and other liver-inflammation patterns.",
+      "A rare condition with high eosinophils, a type of white blood cell, and blood-vessel inflammation has been reported."
+    ],
+    "whoShouldAvoid": [
+      "Anyone allergic to any ingredient in the product. This is the label's only listed contraindication.",
+      "People with phenylketonuria (PKU), who cannot process phenylalanine, because two chewable strengths contain it.",
+      "For hay fever, regulators reserve it for people who cannot tolerate or are not helped by other allergy medicines.",
+      "People with aspirin sensitivity should keep avoiding aspirin and similar anti-inflammatory drugs while taking it."
+    ]
+  },
+  "interactions": [
+    "The label says no dose adjustment is needed with theophylline, prednisone, oral contraceptives, warfarin, digoxin, and gemfibrozil.",
+    "It also covers itraconazole, thyroid hormones, benzodiazepines, decongestants, and anti-inflammatory drugs.",
+    "It also lists cytochrome P450 enzyme inducers, drugs that speed up liver breakdown, as needing no dose adjustment.",
+    "The label says people with aspirin sensitivity should keep avoiding aspirin and similar drugs.",
+    "Montelukast has not been shown to block that reaction."
+  ],
+  "pregnancyAndChildren": "Published studies of pregnant women have not established a link between montelukast and major birth defects. The label notes those studies had limits, such as small size and inconsistent comparison groups. Montelukast passes into human breast milk. The label says available data do not suggest a significant risk to a breastfed infant. In children, safety and effectiveness are not established below 12 months for asthma. The same is true below 6 months for year-round allergies and below 6 years for exercise-related breathing problems. A 56-week study in children aged 6 to 8 found growth rates were similar on montelukast and placebo.",
+  "whatWeDoNotKnow": [
+    "Why montelukast causes mood and behavior effects is not well understood.",
+    "Animal studies show the drug reaches the brain in rats, which may be relevant but does not explain the symptoms.",
+    "Researchers cannot identify who is most at risk or say how likely these effects are.",
+    "A large FDA study found no higher rate of mental health side effects than inhaled corticosteroids.",
+    "That study had limits, including relying on health billing records.",
+    "Reported cases are voluntary, so the true frequency of rare events such as liver injury cannot be reliably estimated.",
+    "It is unclear why some people develop symptoms after stopping the medicine.",
+    "No fetched source compared montelukast directly against other allergy medicines for how well it works in everyday use."
+  ],
+  "evidence": [
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10cd5ca5-6f8b-417c-af11-a2054a2dde34",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "Montelukast is a leukotriene receptor antagonist that blocks the CysLT1 receptor.",
+      "quote": "a selective and orally active leukotriene receptor antagonist that inhibits the cysteinyl leukotriene CysLT 1 receptor"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10cd5ca5-6f8b-417c-af11-a2054a2dde34",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "Leukotrienes are tied to the biology of asthma and allergic rhinitis.",
+      "quote": "CysLTs have been correlated with the pathophysiology of asthma and allergic rhinitis."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "Montelukast is a prescription medicine approved to prevent asthma attacks and for long-term asthma treatment in adults and children 1 year and older.",
+      "quote": "It is a prescription medicine approved to prevent asthma attacks and for long-term treatment of asthma in adults and children 1 year and older"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "Montelukast works by blocking leukotrienes.",
+      "quote": "Montelukast blocks substances in the body called leukotrienes to help improve symptoms of asthma and allergic rhinitis"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "It is sold under the brand name Singulair and as generic versions, in tablets, chewable tablets, and oral granules.",
+      "quote": "It is marketed under the brand name Singulair and as generics. It is available as tablets, chewable tablets, and oral granules."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA first approved montelukast in 1998.",
+      "quote": "Montelukast was first approved by FDA in 1998."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA says montelukast should be reserved for hay fever patients who are not helped by or cannot tolerate other allergy medicines.",
+      "quote": "we have determined that montelukast should be reserved for those who are not treated effectively with or cannot tolerate other allergy medicines"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "About 9.3 million US patients filled a montelukast prescription in 2018, including 2.3 million children under 17.",
+      "quote": "In 2018, approximately 9.3 million patients of any age received a dispensed prescription for montelukast from U.S. outpatient retail pharmacies."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "Mood and behavior side effects have occurred in people with no prior mental illness.",
+      "quote": "Serious mental health side effects have occurred in patients with and without a history of mental illness."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "An FDA Sentinel study did not find more mental health side effects with montelukast than with inhaled corticosteroids, and it had limitations such as relying on claims data.",
+      "quote": "did not find an increased risk of mental health side effects with montelukast compared to inhaled corticosteroids"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "Animal studies show orally given montelukast reaches the rat brain.",
+      "quote": "we also reviewed animal studies, which showed that montelukast given orally reaches the brain in rats"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label carries a boxed warning for serious neuropsychiatric events.",
+      "quote": "Serious neuropsychiatric events have been reported in patients taking montelukast sodium"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Boxed-warning events include agitation, aggression, depression, sleep disturbances, and suicidal thoughts.",
+      "quote": "The types of events reported were highly variable, and included, but were not limited to, agitation, aggression, depression, sleep disturbances, suicidal thoughts"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It is approved for asthma prevention and chronic treatment, exercise-induced bronchoconstriction, and allergic rhinitis.",
+      "quote": "Prophylaxis and chronic treatment of asthma in patients 2 years of age and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The most common trial side effects include upper respiratory infection, fever, headache, sore throat, cough, stomach pain, and diarrhea.",
+      "quote": "upper respiratory infection, fever, headache, pharyngitis, cough, abdominal pain, diarrhea, otitis media, influenza, rhinorrhea"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It is not meant to reverse an asthma attack that is already underway.",
+      "quote": "Montelukast sodium is not indicated for use in the reversal of bronchospasm in acute asthma attacks"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pregnancy studies have not established a link to major birth defects.",
+      "quote": "have not established a drug-associated risk of major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Montelukast is present in human breast milk.",
+      "quote": "A published clinical lactation study reports the presence of montelukast in human milk."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Safety and effectiveness in children under 12 months with asthma have not been established.",
+      "quote": "in pediatric patients below the age of 12 months with asthma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A 56-week study in children aged 6 to 8 compared growth rates on montelukast, placebo, and an inhaled steroid.",
+      "quote": "difference in growth rates between montelukast sodium and placebo groups"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The only listed contraindication is allergy to a product ingredient.",
+      "quote": "Hypersensitivity to any component of this product."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The 4 mg and 5 mg chewable tablets contain phenylalanine, which matters for people with phenylketonuria.",
+      "quote": "Phenylketonuric patients should be informed that the 4-mg and 5-mg chewable tablets contain phenylalanine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "No dose adjustment is needed with several common medicines, including theophylline.",
+      "quote": "No dose adjustment is needed when montelukast sodium is co-administered with theophylline"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A rare eosinophil and vasculitis condition resembling Churg-Strauss syndrome has been reported.",
+      "quote": "Systemic eosinophilia, sometimes presenting with clinical features of vasculitis consistent with Churg-Strauss syndrome, has been reported."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Liver injury patterns have been reported after approval.",
+      "quote": "Cases of cholestatic hepatitis, hepatocellular liver-injury, and mixed-pattern liver injury have been reported in patients treated with montelukast sodium."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Voluntary reports mean the frequency of rare events cannot be reliably estimated.",
+      "quote": "it is not always possible to reliably estimate their frequency or establish a causal relationship to drug exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The reason montelukast causes neuropsychiatric effects is not well understood.",
+      "quote": "the mechanisms underlying montelukast sodium-associated NP events are currently not well understood"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Risk factors for these effects cannot yet be identified or quantified.",
+      "quote": "it is difficult to identify risk factors for or quantify the risk of NP events with montelukast sodium use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Animal studies show montelukast distributes into the brain in rats.",
+      "quote": "Animal studies showed that montelukast distributes into the brain in rats"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/montelukast/property/MolecularFormula,MolecularWeight/JSON",
+      "publisher": "PubChem / U.S. National Library of Medicine",
+      "claim": "PubChem lists montelukast's molecular formula as C35H36ClNO3S.",
+      "quote": "\"MolecularFormula\": \"C35H36ClNO3S\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Montelukast%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10cd5ca5-6f8b-417c-af11-a2054a2dde34",
+    "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-boxed-warning-about-serious-mental-health-side-effects-asthma-and-allergy-drug",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/montelukast/property/MolecularFormula,MolecularWeight/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/montelukast/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES,Description/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Montelukast&pageSize=5",
+    "https://www.nccih.nih.gov/health/montelukast",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548264/"
+  ],
+  "gaps": [
+    "NCCIH has no montelukast page. The URL https://www.nccih.nih.gov/health/montelukast returned a 404, so NCCIH is not cited.",
+    "The LiverTox entry for montelukast on the NCBI Bookshelf (NBK548264) was attempted but the page served a browser check instead of content, so it could not be fetched and is not cited.",
+    "ClinicalTrials.gov was queried and returned studies, but no fetched trial record gave a simple usable claim about what montelukast does, so it is not cited.",
+    "MedlinePlus drug monographs were not fetched or used. NLM states they are American Society of Health-System Pharmacists content and copyrighted.",
+    "Copyrighted sources named in the brief (Examine.com, Labdoor, MSKCC About Herbs, ConsumerLab, WebMD, Healthline, Drugs.com, RxList) were not fetched, cited, or used.",
+    "No numeric dose information is included by design, so the record does not cover how much any age group is directed to take.",
+    "DailyMed hosts several montelukast labels that differ by manufacturer and revision date; only one was fetched in full."
+  ],
+  "confidence": "high",
+  "summary": "This record covers montelukast's approved uses, its boxed warning for mood and behavior effects, other side effects, and the questions the evidence still cannot settle."
+}

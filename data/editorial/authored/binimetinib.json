@@ -1,0 +1,181 @@
+{
+  "slug": "binimetinib",
+  "oneLineAnswer": "A prescription tablet for advanced melanoma and lung cancer with a specific BRAF gene change, used only with encorafenib.",
+  "whatItIs": "Binimetinib is a kinase inhibitor: a medicine that blocks proteins called kinases, which cells use to send growth signals. Its brand name is Mektovi, and it is sold as a yellow tablet swallowed by mouth. The US label gives its chemical formula as C17H15BrF2N4O3 and its molecular weight as 441.2. It is a prescription cancer medicine, not a supplement sold for general health.",
+  "whatItDoes": [
+    "It blocks MEK1 and MEK2, two proteins in a growth-signalling chain called the RAS/RAF/MEK/ERK pathway.",
+    "That chain can be stuck on in some cancers because of a change in a gene called BRAF.",
+    "Blocking MEK may slow how fast those cancer cells divide.",
+    "Binimetinib is approved only for use with encorafenib, which blocks BRAF at an earlier point in the chain.",
+    "In mice, giving both drugs together delayed the cancer becoming resistant, compared with either drug alone."
+  ],
+  "howPeopleUseIt": [
+    "It is a prescription cancer medicine. The label lists it for people whose advanced melanoma or lung cancer has a BRAF V600 change.",
+    "The label records a tablet taken by mouth twice a day, always together with encorafenib.",
+    "The label says treatment continues until the cancer grows or side effects become unacceptable.",
+    "ClinicalTrials.gov lists 149 studies mentioning binimetinib, so it is also studied in research settings."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In melanoma trials, at least 1 in 4 people had fatigue, nausea, diarrhea, vomiting and abdominal pain.",
+      "In the lung cancer trial, common problems also included muscle or bone pain, constipation, cough, rash, shortness of breath and trouble seeing.",
+      "Serous retinopathy, a build-up of fluid under the retina, occurred in 20% of people in the largest melanoma trial.",
+      "Levels of creatine kinase, a muscle enzyme, rose in 58% of people in that same trial.",
+      "In that trial, 7% of people showed evidence of heart muscle weakness, also called cardiomyopathy."
+    ],
+    "seriousSigns": [
+      "The label warns of heart muscle weakness, which can happen with no symptoms at all.",
+      "Blood clots in veins, including in the lungs, occurred in 6% of people in one trial.",
+      "A blocked retinal vein is rare, about 1 in 1,000 people, and the label treats it as a reason to stop treatment permanently.",
+      "Other serious risks listed are lung inflammation, muscle breakdown, major bleeding, liver injury and new cancers.",
+      "Serious bleeding occurred in 19% of people in one melanoma trial."
+    ],
+    "whoShouldAvoid": [
+      "The label says safety has not been established for people whose heart pump function is already below 50%.",
+      "Safety is also not established for people with a past retinal vein blockage or uncontrolled glaucoma.",
+      "People with moderate or severe liver problems are given a lower dose by the label.",
+      "It is not established for children.",
+      "It can harm an unborn baby, so the label advises a pregnancy test before treatment and contraception during it."
+    ]
+  },
+  "interactions": [
+    "The label states that no clinically important drug interactions have been observed with binimetinib.",
+    "Most binimetinib is processed by a route called glucuronidation, with the enzyme UGT1A1 doing up to 61% of the work.",
+    "The label says a person's UGT1A1 gene type and smoking do not change binimetinib levels in a clinically important way.",
+    "It did not change the levels of midazolam, a drug used to test the CYP3A4 enzyme.",
+    "A stomach acid reducer called rabeprazole did not change how much binimetinib the body took in.",
+    "Binimetinib is a target of P-glycoprotein, a pump that moves drugs out of cells."
+  ],
+  "pregnancyAndChildren": "Binimetinib can harm an unborn baby, according to the US label. There are no clinical data on its use in pregnancy. In pregnant rabbits and rats, doses given during organ development harmed the fetus. It is not known whether binimetinib passes into breast milk. The label advises against breastfeeding during treatment and for 3 days after the last dose. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "There are no human data on what binimetinib does during pregnancy.",
+    "It is not known whether binimetinib or its active metabolite passes into breast milk.",
+    "The effect of race or ethnicity on binimetinib levels in the body is unknown.",
+    "Most safety numbers come from people who also took encorafenib, so binimetinib's own share of those effects is hard to separate.",
+    "Whether binimetinib helps when used alone in these cancers is not established by the label."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Binimetinib is approved with encorafenib for BRAF V600E or V600K melanoma that cannot be removed by surgery or has spread.",
+      "quote": "in combination with encorafenib, for the treatment of patients with unresectable or metastatic melanoma with a BRAF V600E or V600K mutation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "It is also approved with encorafenib for metastatic non-small cell lung cancer carrying a BRAF V600E mutation.",
+      "quote": "for the treatment of adult patients with metastatic non-small cell lung cancer (NSCLC) with a BRAF V600E mutation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Binimetinib reversibly blocks the proteins MEK1 and MEK2.",
+      "quote": "Binimetinib is a reversible inhibitor of mitogen-activated extracellular signal regulated kinase 1 (MEK1) and MEK2 activity."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "The most common side effects in melanoma trials were fatigue, nausea, diarrhea, vomiting and abdominal pain.",
+      "quote": "are fatigue, nausea, diarrhea, vomiting, and abdominal pain"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "The label records that no clinically important drug interactions have been seen.",
+      "quote": "No clinically important drug interactions have been observed with MEKTOVI."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Binimetinib can harm a developing fetus.",
+      "quote": "MEKTOVI can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "The safety and effectiveness of MEKTOVI have not been established in pediatric patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Serous retinopathy, fluid under the retina, affected about one in five people in the COLUMBUS melanoma trial.",
+      "quote": "serous retinopathy occurred in 20% of patients treated with MEKTOVI in combination with encorafenib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Evidence of heart muscle weakness appeared in 7% of people in the COLUMBUS melanoma trial.",
+      "quote": "occurred in 7% of patients receiving MEKTOVI plus encorafenib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "Bleeding of any grade occurred in 19% of people in the COLUMBUS trial.",
+      "quote": "hemorrhage occurred in 19% of patients receiving MEKTOVI in combination with encorafenib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "The label records a twice-daily oral tablet schedule used together with encorafenib.",
+      "quote": "the recommended dosage of MEKTOVI is 45 mg orally taken twice daily, approximately 12 hours apart, in combination with encorafenib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "The effect of race or ethnicity on how the body handles binimetinib is unknown.",
+      "quote": "The effect of race or ethnicity on the pharmacokinetics of binimetinib is unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+      "publisher": "US Food and Drug Administration (openFDA), MEKTOVI prescribing information",
+      "claim": "There are no data on whether binimetinib reaches human breast milk.",
+      "quote": "There are no data on the presence of binimetinib or its active metabolite in human milk"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=binimetinib",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "DailyMed lists a single US label for binimetinib, a film-coated tablet sold as MEKTOVI.",
+      "quote": "MEKTOVI (BINIMETINIB) TABLET, FILM COATED [ARRAY BIOPHARMA INC.]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/binimetinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem records binimetinib as compound CID 10288191 with formula C17H15BrF2N4O3 and molecular weight 441.2.",
+      "quote": "\"CID\": 10288191, \"MolecularFormula\": \"C17H15BrF2N4O3\", \"MolecularWeight\": \"441.2\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Binimetinib&countTotal=true&pageSize=1",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "ClinicalTrials.gov lists 149 studies mentioning binimetinib.",
+      "quote": "\"totalCount\": 149"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Binimetinib%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=binimetinib",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6c3408ac-d401-4925-8a03-26591afbc240",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Binimetinib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Binimetinib&countTotal=true&pageSize=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/binimetinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/binimetinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/10288191/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/binimetinib",
+    "https://www.nccih.nih.gov/health/binimetinib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548500/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547988/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547988/?report=reader"
+  ],
+  "gaps": [
+    "NCCIH has no binimetinib page; https://www.nccih.nih.gov/health/binimetinib returns 404, so no public-domain supplement-registry source exists for this drug.",
+    "NCBI Bookshelf, including LiverTox and PDQ, refused automated access with a browser check, so those pages were attempted but not cited.",
+    "DailyMed's drug information page renders only through JavaScript, so the DailyMed SPL service API was used instead.",
+    "No second fetched source confirms the trial side-effect percentages; those figures rest on the US product label alone.",
+    "Dose amounts are deliberately left out of the reader-facing sections and appear only inside an evidence quote.",
+    "MedlinePlus drug monographs are excluded by instruction because NLM states they are copyrighted, so they were not checked for this record.",
+    "The label's race and ethnicity statement means no source-grounded answer exists for how ancestry affects binimetinib handling."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what binimetinib is, the advanced BRAF-mutant cancers it is approved to treat alongside encorafenib, its recorded side effects, warnings and interactions, and the questions that remain unanswered."
+}

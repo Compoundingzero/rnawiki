@@ -1,0 +1,147 @@
+{
+  "slug": "arformoterol",
+  "oneLineAnswer": "A long-acting inhaled bronchodilator for COPD, taken as a nebulizer mist twice daily to keep airways open.",
+  "whatItIs": "Arformoterol is a prescription medicine you breathe in as a mist. It is a bronchodilator, which means it relaxes the muscles around your airways. Arformoterol is one mirror-image form of formoterol, an older inhaled drug. The medicine is a clear liquid in single-use plastic vials. A vial goes into a nebulizer, a machine that turns the liquid into a mist. The label groups it with the long-acting beta2-agonists, called LABAs. In the United States it was first approved in 2006.",
+  "whatItDoes": [
+    "It acts on the muscle in your airway walls, helping that muscle relax so more air can pass.",
+    "The effect lasts for hours, which is why it is called long-acting.",
+    "US regulators approved it for maintenance treatment of COPD, a long-term lung disease that includes chronic bronchitis and emphysema.",
+    "It is not approved for asthma.",
+    "It is not a rescue medicine, so it is not used for sudden attacks of breathlessness."
+  ],
+  "howPeopleUseIt": [
+    "The label describes it as a twice-daily medicine, morning and evening, used long term.",
+    "It is breathed in through a standard jet nebulizer with a mouthpiece or a face mask.",
+    "The label says a fast-acting inhaler should be prescribed alongside it for sudden symptoms.",
+    "The label says not to mix it with other medicines in the nebulizer, and not to swallow or inject it.",
+    "Unopened foil pouches are kept in the refrigerator. They can also sit at room temperature for up to six weeks."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In two 12-week COPD studies, more people on arformoterol than on placebo reported pain, chest pain, back pain, diarrhea, sinusitis, leg cramps, rash, flu-like symptoms and swollen ankles or legs.",
+      "Shaky hands, a pounding or fast heartbeat, headache, nervousness, muscle cramps, dry mouth and trouble sleeping are known effects of this drug class.",
+      "Blood potassium levels can drop and blood sugar can rise.",
+      "Shortness of breath and lung congestion were also reported more often than with placebo."
+    ],
+    "seriousSigns": [
+      "Breathing can suddenly get worse right after a dose. The label calls this paradoxical bronchospasm and says it can be life-threatening.",
+      "Taking too much, or combining it with another long-acting beta2-agonist, can cause serious heart effects and can be fatal.",
+      "The label also lists fast or irregular heartbeats and severe allergic reactions among its warnings."
+    ],
+    "whoShouldAvoid": [
+      "Anyone who has had an allergic reaction to arformoterol, to formoterol, or to another ingredient in the product.",
+      "The label says people with asthma should not use a LABA like this one without an inhaled corticosteroid.",
+      "The label advises caution in people with heart disease, seizure disorders, an overactive thyroid, or sensitivity to stimulant-type drugs.",
+      "The label advises caution in people with liver problems, because drug levels rise in the body.",
+      "The medicine is not for children. COPD does not occur in children, and safety and effectiveness have not been established in them."
+    ]
+  },
+  "interactions": [
+    "Other adrenergic drugs, which act like stimulants, can add to its effects.",
+    "Water pills (diuretics), steroids and theophylline-type drugs can worsen the drop in blood potassium.",
+    "MAO inhibitors, tricyclic antidepressants and drugs that lengthen the QT interval on an ECG need extreme caution, because heart effects can add up.",
+    "Beta-blockers can block the bronchodilator effect and may cause severe bronchospasm in people with COPD.",
+    "Using it together with another long-acting beta2-agonist is not recommended."
+  ],
+  "pregnancyAndChildren": "There are no adequate, well-controlled studies in pregnant women. The label says the medicine should be used in pregnancy only if the expected benefit to the woman outweighs the possible risk to the fetus. Animal studies in rats and rabbits given arformoterol by mouth found birth defects and other harm at exposures many times higher than the inhaled human exposure. No human data exist on whether arformoterol passes into breast milk; in rats, it was found in milk. The medicine is not approved for children, because COPD does not occur in children.",
+  "whatWeDoNotKnow": [
+    "No study has been large enough to show whether arformoterol changes the risk of asthma-related death.",
+    "The relevance to people of the lab and animal findings about mast cells and airway inflammation is not known.",
+    "The label's main safety data come from 12-week and 52-week studies, so effects over many years are not described.",
+    "ClinicalTrials.gov searches run for this record returned no registered study that listed arformoterol itself as the intervention.",
+    "It is not known how the medicine affects labor and delivery."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "US labeling limits arformoterol to long-term, twice-daily maintenance treatment of bronchoconstriction in COPD.",
+      "quote": "Long-term, twice daily (morning and evening) administration in the maintenance treatment of bronchoconstriction in patients with"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Arformoterol is the (R,R) mirror-image form of formoterol and is described as a selective beta2-adrenergic bronchodilator.",
+      "quote": "the (R,R)-enantiomer of formoterol. Arformoterol is a selective beta 2 -adrenergic bronchodilator"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=26e06ee1-f9d6-5167-e063-6394a90a6d32",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain)",
+      "claim": "The label states the medicine is used only as a mist from a nebulizer.",
+      "quote": "Arformoterol Tartrate Inhalation Solution is for use by nebulization only."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=26e06ee1-f9d6-5167-e063-6394a90a6d32",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain)",
+      "claim": "The label records first US approval in 2006.",
+      "quote": "Initial U.S. Approval: 2006"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The most common reported side effects in the 12-week trials were pain, chest pain, back pain, diarrhea and sinusitis.",
+      "quote": "Most common adverse reactions (\u22652% incidence and more common than placebo) are pain, chest pain, back pain, diarrhea, sinusitis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label says arformoterol is not indicated for asthma.",
+      "quote": "Arformoterol Tartrate Inhalation Solution is not indicated for the treatment of asthma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Beta-blockers can interfere with this drug and may cause severe bronchospasm in people with COPD.",
+      "quote": "Beta-blockers not only block the therapeutic effects of beta-agonists, but may produce severe bronchospasm in COPD patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Unopened foil pouches are stored refrigerated, protected from light and excessive heat.",
+      "quote": "Store Arformoterol Tartrate Inhalation Solution in the protective foil pouch under refrigeration at 36\u00b0-46\u00b0F"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label reports no adequate, well-controlled studies in pregnant women.",
+      "quote": "There are no adequate and well-controlled studies in pregnant women"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/arformoterol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "Arformoterol has the molecular formula C19H24N2O4 and a molecular weight of 344.4.",
+      "quote": "\"MolecularFormula\": \"C19H24N2O4\", \"MolecularWeight\": \"344.4\""
+    },
+    {
+      "url": "https://medlineplus.gov/copd.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine (public domain, health topic)",
+      "claim": "COPD is a long-term lung disease, and bronchodilators relax airway muscles so air moves more easily.",
+      "quote": "Bronchodilators, which relax the muscles around your airways"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Arformoterol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Brovana%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:brovana&limit=1",
+    "https://www.nccih.nih.gov/health/arformoterol",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/arformoterol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/arformoterol/synonyms/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Arformoterol&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=arformoterol&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure,EnrollmentCount,StartDate",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=%22arformoterol%22&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,EnrollmentCount,StartDate",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=arformoterol",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=26e06ee1-f9d6-5167-e063-6394a90a6d32",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0e2eb8e7-8f19-4b1e-9b21-4a54c0b9c44e",
+    "https://medlineplus.gov/copd.html"
+  ],
+  "gaps": [
+    "NCCIH has no arformoterol page. The URL https://www.nccih.nih.gov/health/arformoterol returned HTTP 404.",
+    "ClinicalTrials.gov results for arformoterol named only formoterol or other LABA products, so trial-level evidence for arformoterol itself could not be cited.",
+    "MedlinePlus drug monographs were not fetched or cited. NLM states those pages are copyrighted ASHP content.",
+    "openFDA holds 15 label records under the generic name arformoterol; only one record was read in full, and brand-name queries returned no results.",
+    "Label dose details exist but are deliberately not reproduced here, so the record contains no amounts and no dosing schedule advice.",
+    "No public-domain comparison of arformoterol against other COPD maintenance medicines was found in the sources checked."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what arformoterol is, how it is breathed in through a nebulizer for COPD maintenance, its labeled side effects and warnings, drug interactions, pregnancy and children data, and the gaps in public evidence."
+}

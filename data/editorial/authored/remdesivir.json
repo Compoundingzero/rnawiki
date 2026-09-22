@@ -1,0 +1,343 @@
+{
+  "slug": "remdesivir",
+  "oneLineAnswer": "Remdesivir is an intravenous antiviral medicine a healthcare provider gives for COVID-19, mostly in hospital or infusion settings.",
+  "whatItIs": "Remdesivir is an antiviral medicine sold under the brand name Veklury. It is a prescription product, not a supplement, and the approved product is given only through a vein. The label calls it an adenosine nucleotide prodrug, meaning the body turns it into the working molecule. It ships as a powder that is mixed with sterile water and then saline before infusion. Its molecular formula is C27H35N6O8P and its molecular weight is about 602.6.",
+  "whatItDoes": [
+    "It blocks an enzyme the coronavirus needs to copy its RNA, its genetic material.",
+    "Inside cells it turns into an active form that mimics a natural RNA building block.",
+    "That mimic gets built into the growing viral chain, which stalls the copying.",
+    "In a trial of hospitalized adults, median time to recovery was 10 days with remdesivir and 15 days with placebo.",
+    "The same trial reported 29-day mortality of 11% with remdesivir and 15% with placebo."
+  ],
+  "howPeopleUseIt": [
+    "A healthcare provider gives it by intravenous infusion, and the label says never by another route.",
+    "It is given where staff can act on a severe reaction right away, not by you at home.",
+    "The label records a 3-day course for some non-hospitalized patients.",
+    "For hospitalized patients on a ventilator, the label records up to 10 days.",
+    "The label records an infusion time of 30 to 120 minutes."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nausea is the reaction the label lists most often.",
+      "Blood tests may show higher liver enzymes, reported as ALT increased and AST increased.",
+      "The label says nausea, ALT increased and AST increased were seen in at least 5% of treated people."
+    ],
+    "seriousSigns": [
+      "Allergic reactions can start during or after the infusion, and the label says most happened within one hour.",
+      "Other listed signs include blood pressure changes, abnormal heart rate, low blood oxygen, fever, wheezing, swelling, rash and shivering.",
+      "The label says to consider stopping treatment if liver enzymes rise above 10 times the normal upper limit.",
+      "One seizure and a few cases of acute kidney injury appear in the label's tables of trial events."
+    ],
+    "whoShouldAvoid": [
+      "The label rules it out after a serious allergic reaction to the drug or an ingredient."
+    ]
+  },
+  "interactions": [
+    "Chloroquine phosphate and hydroxychloroquine sulfate should not be given with remdesivir, the label says.",
+    "The reason is lab evidence that chloroquine may work against remdesivir's activation inside cells.",
+    "The label expects no important interaction with the liver enzyme CYP3A4 or with several drug transporters it studied.",
+    "Remdesivir is described as a weak inhibitor of the liver enzyme CYP3A.",
+    "The label tells patients to report all prescription drugs, nonprescription drugs and herbal products they take."
+  ],
+  "pregnancyAndChildren": "Available data have not linked it to birth defects, miscarriage, or poor outcomes in the second and third trimesters. The label says there are not enough data to judge first-trimester exposure. It also says no dose change is recommended in pregnancy. Untreated COVID-19 in pregnancy carries risks of its own for the mother and baby. One published case report found remdesivir and its active metabolite in human milk. Reports on 11 breastfed infants did not indicate harm from exposure through milk. There are no data on whether it affects milk production. Use is established for children from birth to under 18 years who weigh at least 1.5 kg. No data are available on safety in children with severe kidney impairment.",
+  "whatWeDoNotKnow": [
+    "Whether the results still apply the same way now: the label notes the main trial's subjects were unvaccinated.",
+    "The label says the drug's share of a liver enzyme rise versus COVID-19 is hard to tell.",
+    "The label does not describe effects beyond the treatment period.",
+    "Liver-injury detail from the NIDDK LiverTox page is missing; that page blocked our fetch with a browser check.",
+    "Later treatment recommendations from bodies other than the FDA are outside the sources checked here.",
+    "The label gives different enrollment numbers for the same trial in different sections; we did not try to reconcile them.",
+    "No fetched source compares remdesivir head to head with other COVID-19 treatments."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The approved use is COVID-19 in adults and children.",
+      "quote": "VEKLURY is indicated for the treatment of coronavirus disease 2019 (COVID-19) in adults and pediatric patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The only approved route is intravenous infusion.",
+      "quote": "by intravenous infusion only. Do not administer by any other route."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It is a prescription drug, not an over-the-counter product.",
+      "quote": "HUMAN PRESCRIPTION DRUG"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It works by blocking the viral RNA polymerase needed for replication.",
+      "quote": "Remdesivir is an inhibitor of the SARS-CoV-2 RNA-dependent RNA polymerase (RdRp), which is essential for viral replication."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It is a prodrug that cells convert into a nucleoside monophosphate intermediate.",
+      "quote": "Remdesivir is an adenosine nucleotide prodrug that distributes into cells where it is metabolized to a nucleoside monophosphate intermediate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It ships as a powder reconstituted with sterile water and diluted in saline.",
+      "quote": "VEKLURY for injection must be reconstituted with Sterile Water for Injection prior to diluting with 0.9% sodium chloride injection."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "It may only be given where a severe infusion or allergic reaction can be treated at once.",
+      "quote": "VEKLURY may only be administered in settings in which healthcare providers have immediate access to medications"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Nausea and raised ALT and AST are the reactions seen in at least 5% of treated people.",
+      "quote": "The most common adverse reactions ... are nausea, ALT increased, and AST increased"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A history of clinically significant hypersensitivity is a contraindication.",
+      "quote": "VEKLURY is contraindicated in patients with a history of clinically significant hypersensitivity reactions to VEKLURY or any components"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Allergic reaction signs include blood pressure and heart rate changes, low oxygen, fever, wheezing, swelling and rash.",
+      "quote": "Signs and symptoms may include hypotension, hypertension, tachycardia, bradycardia, hypoxia, fever, dyspnea, wheezing, angioedema, rash, nausea, diaphoresis, and shivering"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Treatment may be considered for stopping when ALT rises above 10 times the normal upper limit.",
+      "quote": "Consider discontinuing VEKLURY if ALT levels increase to greater than 10 times the upper limit of normal."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A seizure appears among the adverse reactions in the main trial table.",
+      "quote": "Seizure (n=1), infusion-related reaction (n=1)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Acute kidney injury and a drop in filtration rate appear among the main trial's listed events.",
+      "quote": "GFR decreased (n=2), acute kidney injury (n=3)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Chloroquine and hydroxychloroquine are not recommended with remdesivir.",
+      "quote": "concomitant use of VEKLURY with chloroquine phosphate or hydroxychloroquine sulfate is not recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Cell culture data suggested an antagonistic effect of chloroquine on remdesivir's activation.",
+      "quote": "a potential antagonistic effect of chloroquine on the intracellular metabolic activation and antiviral activity of VEKLURY"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "No clinically significant interactions are expected with CYP3A4 inducers or OATP1B1/1B3 and P-gp inhibitors.",
+      "quote": "no clinically significant drug interactions are expected with inducers of cytochrome P450 (CYP) 3A4 or inhibitors of Organic Anion Transporting Polypeptides"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Remdesivir is a weak CYP3A inhibitor.",
+      "quote": "it is a weak inhibitor of CYP3A and does not inhibit OATP1B1/1B3"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label tells patients to report other prescription, nonprescription and herbal products.",
+      "quote": "Advise patients to report to their healthcare provider the use of any other prescription or nonprescription medication or herbal products"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Infusion is given over 30 to 120 minutes.",
+      "quote": "Administer VEKLURY via intravenous (IV) infusion over 30 to 120 minutes."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label records a 3-day course for non-hospitalized patients at high risk.",
+      "quote": "For non-hospitalized patients diagnosed with mild-to-moderate COVID-19 ... the recommended total treatment duration is 3 days"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "For ventilated or ECMO patients the label records a 10-day course.",
+      "quote": "For hospitalized patients requiring invasive mechanical ventilation and/or ECMO, the recommended total treatment duration is 10 days."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "In the main trial, median time to recovery was 10 days with remdesivir and 15 days with placebo.",
+      "quote": "The median time to recovery was 10 days in the VEKLURY group compared to 15 days in the placebo group"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "29-day mortality was 11% with remdesivir and 15% with placebo, with a confidence interval that includes no difference.",
+      "quote": "29-day mortality was 11% for the VEKLURY group vs 15% for the placebo group (hazard ratio 0.73 [95% CI 0.52 to 1.03])"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Subjects in the main trial were unvaccinated.",
+      "quote": "Subjects in this trial were unvaccinated."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pregnancy data have not identified a drug-associated risk of birth defects, miscarriage, or poor maternal or fetal outcomes.",
+      "quote": "have not identified a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "First-trimester pregnancy data are insufficient to judge risk.",
+      "quote": "there are insufficient pregnancy data available to evaluate the risk of remdesivir exposure during the first trimester"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "No dose adjustment is recommended in pregnancy.",
+      "quote": "No dose adjustments are recommended in patients who receive VEKLURY during pregnancy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Untreated COVID-19 in pregnancy carries maternal and fetal risks.",
+      "quote": "There are maternal and fetal risks associated with untreated COVID-19 in pregnancy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pediatric use is established from birth to under 18 years for children weighing at least 1.5 kg.",
+      "quote": "have been established in pediatric patients from birth to less than 18 years of age and weighing at least 1.5 kg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "There are no safety data for children with severe kidney impairment.",
+      "quote": "No data are available regarding the safety of VEKLURY in pediatric patients with severe renal impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "A published case report found remdesivir and its active metabolite in human milk.",
+      "quote": "A published case report describes the presence of remdesivir and active metabolite GS-441524 in human milk."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pharmacovigilance reports on 11 infants did not indicate harm from milk exposure.",
+      "quote": "Available data (n=11) from pharmacovigilance reports do not indicate adverse effects on breastfed infants from exposure to remdesivir and its metabolite through breastmilk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "There are no data on milk production.",
+      "quote": "There are no available data on the effects of remdesivir on milk production."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label says it is hard to separate drug-caused liver enzyme rises from those caused by COVID-19.",
+      "quote": "discerning the contribution of VEKLURY to transaminase elevations in patients with COVID-19 can be challenging"
+    },
+    {
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-treatment-covid-19",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA approved Veklury on October 22, 2020, initially for patients 12 and older weighing at least 40 kg.",
+      "quote": "the FDA approved the antiviral drug Veklury (remdesivir) for use in adult and pediatric patients 12 years of age and older"
+    },
+    {
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-treatment-covid-19",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "It was the first COVID-19 treatment to receive FDA approval.",
+      "quote": "Veklury is the first treatment for COVID-19 to receive FDA approval."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0978fa8-53ff-4ca2-82a7-567fd3e958ca",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "DailyMed carries the Veklury (remdesivir) injection label with initial U.S. approval in 2020.",
+      "quote": "Initial U.S. Approval: 2020"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=remdesivir&pagesize=5",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "DailyMed lists a single remdesivir label, the Veklury injection product from Gilead Sciences.",
+      "quote": "VEKLURY (REMDESIVIR) INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION [GILEAD SCIENCES, INC.]"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT04280705",
+      "publisher": "ClinicalTrials.gov / National Library of Medicine",
+      "claim": "The main trial behind the recovery result is NCT04280705, the Adaptive COVID-19 Treatment Trial.",
+      "quote": "\"nctId\":\"NCT04280705\",\"briefTitle\":\"Adaptive COVID-19 Treatment Trial (ACTT)\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT04280705",
+      "publisher": "ClinicalTrials.gov / National Library of Medicine",
+      "claim": "That trial was phase 3 and enrolled 1062 people.",
+      "quote": "\"phases\":[\"PHASE3\"],\"enrollmentInfo\":{\"count\":1062,\"type\":\"ACTUAL\"}"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Remdesivir&countTotal=true&pageSize=1",
+      "publisher": "ClinicalTrials.gov / National Library of Medicine",
+      "claim": "A remdesivir search on ClinicalTrials.gov returns 171 studies.",
+      "quote": "\"totalCount\":171"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/121304016/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem / U.S. National Library of Medicine",
+      "claim": "PubChem lists the molecular formula C27H35N6O8P and molecular weight 602.6.",
+      "quote": "\"MolecularFormula\": \"C27H35N6O8P\", \"MolecularWeight\": \"602.6\""
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The label reports activity against many SARS-CoV-2 variants in cell culture, including Omicron lineages.",
+      "quote": "remdesivir retained similar antiviral activity against clinical isolates of SARS-CoV-2 variants compared to an earlier lineage SARS-CoV-2 (lineage A) isolate"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Remdesivir%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=remdesivir&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0978fa8-53ff-4ca2-82a7-567fd3e958ca",
+    "https://www.fda.gov/news-events/press-announcements/fda-approves-first-treatment-covid-19",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/121304016/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/121304016/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Remdesivir&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Remdesivir&countTotal=true&pageSize=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=remdesivir&filter.overallStatus=COMPLETED&pageSize=3",
+    "https://clinicaltrials.gov/api/v2/studies/NCT04280705",
+    "https://www.nccih.nih.gov/health/remdesivir",
+    "https://www.nccih.nih.gov/health/covid-19-and-alternative-treatments-what-you-need-to-know",
+    "https://medlineplus.gov/covid19.html",
+    "https://medlineplus.gov/covid19drugs.html",
+    "https://medlineplus.gov/coronavirusinfections.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK564049/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK564049/?report=printable",
+    "https://www.ncbi.nlm.nih.gov/books/NBK570917/"
+  ],
+  "gaps": [
+    "NCCIH has no remdesivir page: the URL supplied for this task returned HTTP 404, and the NCCIH COVID-19 complementary-approaches page yielded no remdesivir facts we could cite.",
+    "NCBI Bookshelf (LiverTox, NIDDK) served a browser check on three attempts, so no liver-injury detail from that public-domain source is cited.",
+    "MedlinePlus had no drug or condition page naming remdesivir at the URLs tried; its coronavirus infections topic page links to treatment pages but does not name this drug.",
+    "No permitted source we could fetch compares remdesivir with other COVID-19 treatments, so no comparative claim is made.",
+    "The label reports both 532 and 541 as the treated arm size in its own description of the main trial; we cite the trial registry figure of 1062 total participants instead of picking a label number.",
+    "No dose, schedule or personal protocol is stated here by design; only what the label and trials recorded is reported, attributed.",
+    "No fetched source describes long-term effects after a short course, and the label does not cover them."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what remdesivir (Veklury) is, how it is given, what the FDA label and its main trial reported about benefit and risk in COVID-19, and where the fetched sources stay silent."
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "crisaborole",
+  "oneLineAnswer": "A prescription ointment that blocks PDE-4 in the skin, approved for mild to moderate atopic dermatitis (eczema).",
+  "whatItIs": "Crisaborole is the active ingredient in a prescription skin ointment. In the United States it is sold as Eucrisa, and generic versions exist. It is a phosphodiesterase 4 (PDE-4) inhibitor, which means it blocks an enzyme called phosphodiesterase 4. The ointment contains 20 mg of crisaborole per gram, or 2%. The FDA first approved it in 2016.",
+  "whatItDoes": [
+    "Crisaborole treats mild to moderate atopic dermatitis, the itchy skin condition most people call eczema.",
+    "It belongs to a drug class called phosphodiesterase 4 (PDE-4) inhibitors, which block that enzyme.",
+    "Blocking PDE-4 raises levels of cyclic adenosine monophosphate (cAMP) inside cells, the label explains.",
+    "In two 28-day trials, 32.8% and 31.4% of crisaborole users reached clear or almost clear skin.",
+    "Vehicle users in those same trials scored 25.4% and 18.0% on the same measure."
+  ],
+  "howPeopleUseIt": [
+    "It is a prescription ointment you apply to affected skin, not a pill or an over-the-counter cream.",
+    "The label describes a thin layer applied twice daily to affected areas.",
+    "Once clinical effect appears, the label says reducing to once daily may be considered.",
+    "The label states it is for topical use only, not for the eyes, mouth, or vagina.",
+    "A 52-week trial also studied once-daily use in people who first improved on twice-daily use."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Application site pain was the most common reaction in the trials.",
+      "The label explains this covers skin sensations such as burning or stinging.",
+      "About 4% of crisaborole users reported it, against about 1% of vehicle users.",
+      "Contact urticaria (hives) occurred in fewer than 1% of treated subjects."
+    ],
+    "seriousSigns": [
+      "Hypersensitivity reactions, including contact urticaria, have occurred with crisaborole, the label says.",
+      "The label names severe itching, swelling, and redness at the application site or elsewhere.",
+      "Allergic contact dermatitis has been reported after approval through voluntary reports, the label notes."
+    ],
+    "whoShouldAvoid": [
+      "The label lists known hypersensitivity to crisaborole or any ingredient of the ointment as a contraindication.",
+      "Safety and effectiveness below 3 months of age have not been established."
+    ]
+  },
+  "interactions": [
+    "Crisaborole and one of its metabolites are not expected to inhibit several cytochrome P450 enzymes under clinical conditions.",
+    "Lab tests found a second metabolite weakly inhibited CYP1A2 and CYP2B6 and moderately inhibited CYP2C8 and CYP2C9.",
+    "A clinical trial using warfarin, which CYP2C9 processes, showed no drug interaction potential, the label says."
+  ],
+  "pregnancyAndChildren": "Human pregnancy data come only from case reports, which the label calls insufficient to judge risk. Animal studies found no fetal harm at 3 times the human dose in rats and 2 times in rabbits. No one knows whether crisaborole passes into human milk, and the label notes the drug is absorbed systemically. In children, safety and effectiveness are established from 3 months of age and older. Clinical studies did not include enough people aged 65 and over to show a different response.",
+  "whatWeDoNotKnow": [
+    "The label says the exact way crisaborole helps atopic dermatitis is not well defined.",
+    "Whether crisaborole reaches breast milk, or affects a breastfed baby, is unknown.",
+    "Human data in pregnancy are too thin to estimate risk of birth defects or miscarriage.",
+    "Effects in people aged 65 and older are not well described, because the studies enrolled too few.",
+    "Efficacy data in the label rest on 28-day and 52-week periods, so longer use is not described.",
+    "The label reports no head-to-head comparison against other prescription eczema treatments."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Crisaborole ointment is approved for topical treatment of mild to moderate atopic dermatitis from 3 months of age.",
+      "quote": "EUCRISA is indicated for topical treatment of mild to moderate atopic dermatitis in adult and pediatric patients 3 months of age and older."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Crisaborole is a PDE-4 inhibitor and raises cAMP inside cells.",
+      "quote": "Crisaborole is a phosphodiesterase 4 (PDE-4) inhibitor. PDE-4 inhibition results in increased intracellular cyclic adenosine monophosphate (cAMP) levels."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Application site pain is the most common adverse reaction.",
+      "quote": "The most common adverse reaction occurring in ≥1% in subjects is application site pain."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Hypersensitivity may show as severe itching, swelling, and redness at the application site or elsewhere.",
+      "quote": "Hypersensitivity should be suspected in the event of severe pruritus, swelling and erythema at the application site or at a distant site."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Two vehicle-controlled trials randomized subjects 2:1 to crisaborole or vehicle twice daily for 28 days.",
+      "quote": "subjects were randomized 2:1 to receive EUCRISA or vehicle applied twice daily for 28 days"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=609b77de-1ca3-4783-b8f5-01a9c0f1d77d",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Trial success rates were 32.8% and 31.4% for crisaborole against 25.4% and 18.0% for vehicle.",
+      "quote": "Success in ISGA * 32.8% 25.4% 31.4% 18.0%"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=609b77de-1ca3-4783-b8f5-01a9c0f1d77d",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Known hypersensitivity to crisaborole or any ingredient is a contraindication.",
+      "quote": "EUCRISA is contraindicated in patients with known hypersensitivity to crisaborole or any component of the formulation."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=609b77de-1ca3-4783-b8f5-01a9c0f1d77d",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The 2% strength is 20 mg of crisaborole per gram of ointment.",
+      "quote": "Ointment: 20 mg of crisaborole per gram (2%) of white to off-white ointment."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/crisaborole/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "PubChem records crisaborole as CID 44591583, formula C14H10BNO3, with a benzoxaborole structure.",
+      "quote": "\"MolecularFormula\": \"C14H10BNO3\""
+    },
+    {
+      "url": "https://medlineplus.gov/eczema.html",
+      "publisher": "MedlinePlus (U.S. National Library of Medicine)",
+      "claim": "Atopic dermatitis is the most common form of eczema and affects babies and children most often.",
+      "quote": "The most common type of eczema is atopic dermatitis. It is most common in babies and children, but adults can have it too."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Crisaborole%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Eucrisa%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Crisaborole&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/crisaborole/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=609b77de-1ca3-4783-b8f5-01a9c0f1d77d",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=609b77de-1ca3-4783-b8f5-01a9c0f1d77d",
+    "https://medlineplus.gov/eczema.html",
+    "https://medlineplus.gov/atopicdermatitis.html",
+    "https://www.nccih.nih.gov/health/crisaborole",
+    "https://www.nccih.nih.gov/health/eczema-atopic-dermatitis",
+    "https://www.ncbi.nlm.nih.gov/books/n/livertox/"
+  ],
+  "gaps": [
+    "NCCIH has no crisaborole page and its eczema page also returned 404, so no NCCIH content is cited.",
+    "LiverTox returned no crisaborole entry, so liver-specific information is not covered.",
+    "DailyMed's drugInfo.cfm view served a JavaScript shell with no readable text; the label was read from the DailyMed fdaDrugXsl.cfm render instead.",
+    "The openFDA record holds a single label document, so openFDA and DailyMed evidence traces back to the same prescribing information.",
+    "MedlinePlus drug monographs were excluded by instruction because NLM licenses them from a copyrighted publisher.",
+    "No dose or personal-use guidance is given here by design; only what the label records is reported, attributed.",
+    "ClinicalTrials.gov records confirm registered crisaborole studies exist but no trial result detail was used as a claim."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what crisaborole is, the skin condition the label approves it for, and what the label reports about side effects, warnings, interactions, and gaps."
+}

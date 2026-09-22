@@ -1,0 +1,256 @@
+{
+  "slug": "azelastine",
+  "oneLineAnswer": "Azelastine is an antihistamine nose spray and eye drop that eases sneezing, runny nose and itchy eyes from allergies.",
+  "whatItIs": "Azelastine is an antihistamine medicine. Histamine is the chemical your body releases during an allergic reaction. Azelastine blocks the histamine receptor called H1, so labels call it an H1-receptor antagonist. In the United States it comes as a nose spray and as eye drops. Some nose sprays need a prescription, and one spray is sold over the counter.",
+  "whatItDoes": [
+    "The prescription nose spray is approved for seasonal allergic rhinitis, the hay fever pattern of sneezing and a runny nose.",
+    "It is also approved for vasomotor rhinitis, a runny nose that is not caused by allergy.",
+    "The eye drops are approved for itchy eyes from allergic conjunctivitis, the eye reaction that comes with allergies.",
+    "Labels describe the drug as blocking histamine and calming mast cells, the cells that release histamine.",
+    "In a challenge study, the drops began easing itch within about 3 minutes and worked for about 8 hours."
+  ],
+  "howPeopleUseIt": [
+    "The nose spray is only for the nose, and labels say not to spray it in the eyes or mouth.",
+    "Labels record a set number of sprays or drops per day, taken in one or two sessions.",
+    "Some people spray with the head tilted down, because the label says this helps with the bitter taste.",
+    "Soft contact lens wearers are told to wait about 10 minutes after the drops before reinserting lenses.",
+    "Labels say not to share the nose spray bottle, to avoid spreading germs."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Bitter taste is the most common complaint with the nose spray, reported by about 1 in 5 people at the higher dose.",
+      "Headache was next, at roughly 15% of people in the same trials.",
+      "Sleepiness was reported by about 12% of people at that dose.",
+      "Nose burning, nosebleeds, sore throat and dry mouth were also reported, each in a few people out of 100.",
+      "With the eye drops, burning or stinging on use was the most common complaint, at about 30%."
+    ],
+    "seriousSigns": [
+      "The prescription label warns that sleepiness can happen, so driving or running machines needs care.",
+      "The over-the-counter label says to stop use and ask a doctor if a skin rash or other allergic reaction appears.",
+      "The same label says to stop and ask a doctor about severe or frequent nosebleeds.",
+      "The eye drops are for the eyes only and must not be swallowed or injected."
+    ],
+    "whoShouldAvoid": [
+      "Do not use the nose spray if you have ever had an allergic reaction to it or to any ingredient in it.",
+      "The eye drops are not for anyone with a known or suspected allergy to their ingredients.",
+      "Ask a doctor first if you have had recent nose ulcers or nose surgery, or a nose injury that has not healed.",
+      "The over-the-counter spray is not for children under 6 years.",
+      "Avoid alcohol and other sedating medicines while using the nose spray, because alertness can drop further."
+    ]
+  },
+  "interactions": [
+    "The nose spray label says to avoid alcohol and other central nervous system depressants, because alertness and thinking can suffer more.",
+    "The over-the-counter label names alcohol, sedatives and tranquilizers as things that can increase drowsiness."
+  ],
+  "pregnancyAndChildren": "The nose spray label says decades of use in pregnancy have not shown risks of miscarriage or birth defects. It describes that data as limited. Animal studies at very high oral doses did show fetal harm. The label says there are no data on azelastine in human milk. It suggests watching a breastfed baby for signs of milk rejection, because the drug tastes bitter. The prescription nose spray is approved for seasonal allergic rhinitis from age 5. It is approved for vasomotor rhinitis from age 12. The eye drops are for age 3 and older. The over-the-counter spray says not for children under 6. Its label says to ask a health professional first if you are pregnant or breastfeeding.",
+  "whatWeDoNotKnow": [
+    "There are no published data on how much azelastine reaches human milk.",
+    "Labels note that side-effect rates from one drug's trials cannot be compared with another drug's.",
+    "The exact liver enzymes that break azelastine down are not known.",
+    "The effect of race on how the body handles azelastine has not been studied.",
+    "Trial safety data in the labels cover days to weeks, so long-term effects are less clear.",
+    "This record does not cover how much anyone should use."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The prescription nose spray treats seasonal allergic rhinitis in adults and children aged 5 and older.",
+      "quote": "indicated for the treatment of the symptoms of seasonal allergic rhinitis in adults and pediatric patients 5 years and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The same nose spray also treats vasomotor rhinitis from age 12.",
+      "quote": "for the treatment of the symptoms of vasomotor rhinitis in adults and adolescent patients 12 years and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Azelastine is a phthalazinone derivative that blocks the histamine H1 receptor.",
+      "quote": "Azelastine hydrochloride, a phthalazinone derivative, exhibits histamine H1-receptor antagonist activity in isolated tissues, animal models, and humans."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Bitter taste, headache, sleepiness, altered sensation and nasal burning are the most common nose spray side effects.",
+      "quote": "bitter taste, headache, somnolence, dysesthesia, rhinitis, nasal burning, pharyngitis, epistaxis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "In trials of the twice-daily higher dose, bitter taste was about 20%, headache about 15% and sleepiness about 12%.",
+      "quote": "Bitter Taste 77 (19.7%) 2 (0.6%) Headache 58 (14.8%) 45 (12.7%) Somnolence 45 (11.5%) 19 (5.4%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The label warns against driving or using machinery when sleepiness could be a problem.",
+      "quote": "cautioned against engaging in hazardous occupations requiring complete mental alertness and motor coordination such as operating machinery or driving a motor vehicle"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Alcohol and other central nervous system depressants should not be combined with the nose spray.",
+      "quote": "Concurrent use of azelastine hydrochloride nasal spray with alcohol or other central nervous system depressants should be avoided"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Pregnancy data are described as limited, with no identified risk of miscarriage from the nose spray.",
+      "quote": "postmarketing experience over decades of use with azelastine hydrochloride nasal spray in pregnant women have not identified any drug associated risks of miscarriage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "There are no data on how much azelastine passes into human milk.",
+      "quote": "There are no data on the presence of azelastine hydrochloride in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The 0.05% eye drops treat itchy eyes from allergic conjunctivitis.",
+      "quote": "is indicated for the treatment of itching of the eye associated with allergic conjunctivitis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The drops block histamine and also reduce histamine release from mast cells.",
+      "quote": "Azelastine hydrochloride is a relatively selective histamine H1 antagonist and an inhibitor of the release of histamine and other mediators from cells"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Eye burning or stinging was the most frequent complaint with the drops, at about 30%.",
+      "quote": "the most frequently reported adverse reactions were transient eye burning/stinging (approximately 30%), headaches (approximately 15%) and bitter taste (approximately 10%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "In a challenge study, the drops eased itch within 3 minutes and lasted about 8 hours.",
+      "quote": "had a rapid (within 3 minutes) onset of effect and a duration of effect of approximately 8 hours for the prevention of itching"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The drops are unsuitable for people allergic to any of their ingredients.",
+      "quote": "is contraindicated in persons with known or suspected hypersensitivity to any of its components"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The drops are for the eye only, not for swallowing or injection.",
+      "quote": "for ocular use only and not for injection or oral use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Soft contact lens wearers should wait at least ten minutes after the drops before inserting lenses.",
+      "quote": "wait at least ten minutes after instilling azelastine hydrochloride before they insert their contact lenses"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "An over-the-counter nose spray form exists for hay fever symptoms such as congestion, runny nose and sneezing.",
+      "quote": "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: nasal congestion runny nose sneezing itchy nose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The over-the-counter label says not to use it after an allergic reaction to it or its ingredients.",
+      "quote": "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Stop use and ask a doctor if a rash or other allergic reaction appears.",
+      "quote": "Stop use and ask a doctor if an allergic reaction, such as a skin rash, to this product occurs"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Stop use and ask a doctor about severe or frequent nosebleeds.",
+      "quote": "you have severe or frequent nosebleeds"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Alcohol, sedatives and tranquilizers can increase drowsiness from this product.",
+      "quote": "alcohol, sedatives, and tranquilizers may increase drowsiness"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Ask a doctor first after recent nose ulcers or nose surgery.",
+      "quote": "Ask a doctor before use if you have had recent nose ulcers or nose surgery"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The over-the-counter nose spray is not for children under 6.",
+      "quote": "children under 6 years do not use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The over-the-counter label says to ask a health professional first if pregnant or breastfeeding.",
+      "quote": "If pregnant or breast-feeding, ask a health professional before use."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The label says to tilt the head down while spraying to reduce bitter taste, and not to share the bottle.",
+      "quote": "you may get a bitter taste in your mouth. To help avoid this, tilt your head downward while spraying."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The over-the-counter product is for the nose only.",
+      "quote": "Only for use in the nose. Do not spray in eyes or mouth."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=azelastine&pagesize=5",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "DailyMed indexes azelastine products as a metered nasal spray and as solution/drops.",
+      "quote": "AZELASTINE HYDROCHLORIDE SPRAY, METERED [APOTEX CORP. ]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/azelastine/property/MolecularFormula,MolecularWeight/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Azelastine has the formula C22H24ClN3O and a molecular weight near 382.",
+      "quote": "\"MolecularFormula\": \"C22H24ClN3O\", \"MolecularWeight\": \"381.9\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Azelastine&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Researchers have run randomised trials of azelastine eye drops in allergic conjunctivitis.",
+      "quote": "azelastine hydrochloride eye drops in patients with allergic conjunctivitis associated with tear film dysfunction"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azelastine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Astepro%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=azelastine&pagesize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/azelastine/property/MolecularFormula,MolecularWeight/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/azelastine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Azelastine&pageSize=5",
+    "https://www.nccih.nih.gov/health/azelastine",
+    "https://www.nccih.nih.gov/health/allergies",
+    "https://medlineplus.gov/allergy.html",
+    "https://dailymed.nlm.nih.gov"
+  ],
+  "gaps": [
+    "NCCIH has no azelastine page: https://www.nccih.nih.gov/health/azelastine returned 404, so no NCCIH citation appears here.",
+    "MedlinePlus drug monograph pages are copyrighted (American Society of Health-System Pharmacists) and were neither fetched nor cited. The MedlinePlus allergy health topic was used only to confirm the drug monograph rule, not as evidence.",
+    "The PubChem endpoint that combines physchem properties with a Description returned HTTP 400 Bad Request, so identity facts come from the property endpoint alone.",
+    "NCCIH's allergy page rendered as stylesheet text on fetch, so it contributed no usable sentence for evidence.",
+    "The label facts rest on openFDA label records, with DailyMed, PubChem and ClinicalTrials.gov as separate confirming publishers. Several of these are U.S. federal sources.",
+    "No human milk quantity data, no head-to-head comparison against other antihistamines, and no long-term safety data beyond weeks were found.",
+    "No product-specific dose amounts were recorded here on purpose, even though labels state them.",
+    "Nothing in the fetched sources covers azelastine use in children below the approved ages for each form."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what azelastine is, its nasal spray and eye drop forms, the label-recorded benefits and side effects, its warnings and interactions, pregnancy and child age limits, and the gaps in the sources checked."
+}

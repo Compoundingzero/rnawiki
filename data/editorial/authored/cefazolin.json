@@ -1,0 +1,250 @@
+{
+  "slug": "cefazolin",
+  "oneLineAnswer": "An injectable cephalosporin antibiotic used to treat certain bacterial infections and to prevent infection after some surgeries.",
+  "whatItIs": "Cefazolin is an antibiotic that belongs to the cephalosporin family. The drug label calls it semi-synthetic, meaning it is built from a natural compound that chemists then change. It reaches you as an injection into a muscle or a vein, not as a pill. It works by blocking bacteria from building their cell wall, which kills them. It does not treat viral infections such as the common cold.",
+  "whatItDoes": [
+    "Doctors give it to treat infections that are proven or strongly suspected to be caused by bacteria.",
+    "Label uses include infections of the lungs, urinary tract, skin, bile ducts, bones, joints, blood and heart valves.",
+    "It is also given around the time of some operations to lower the chance of infection afterward.",
+    "Methicillin-resistant staphylococci are uniformly resistant to cefazolin, so it does not work against them.",
+    "Some other bacteria, such as Pseudomonas and Enterobacter, are usually resistant as well."
+  ],
+  "howPeopleUseIt": [
+    "In a hospital or clinic, a health professional gives it through an intravenous line or into a muscle.",
+    "When it is used around surgery, the label says the preventive course should usually stop within 24 hours after the operation.",
+    "The label warns that using it when no bacterial infection is proven is unlikely to help and can push bacteria toward resistance.",
+    "The label tells patients that skipping doses or stopping early can reduce how well treatment works and can help bacteria become resistant."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea and nausea are among the reported stomach and gut effects.",
+      "Other recorded reactions include vomiting, stomach cramps and loss of appetite.",
+      "Oral thrush, a yeast overgrowth in the mouth, has been reported.",
+      "Pain or a hard lump at the injection site can follow a shot into a muscle.",
+      "Blood tests can show a brief rise in liver enzymes, and the label notes that hepatitis has been reported with cephalosporins.",
+      "Blood cell counts can shift; the label lists low white cells, low platelets and high platelets among reported effects."
+    ],
+    "seriousSigns": [
+      "A severe allergic reaction is possible, including anaphylaxis.",
+      "Serious skin reactions such as Stevens-Johnson syndrome have been reported.",
+      "A dangerous colon condition called pseudomembranous colitis can cause diarrhea that starts during or after treatment.",
+      "Seizures have occurred when too much was given to people whose kidneys clear the drug poorly.",
+      "Liver injury from cephalosporins is uncommon but reported. Cefazolin has been linked to cholestatic jaundice, where bile flow is blocked and the skin turns yellow."
+    ],
+    "whoShouldAvoid": [
+      "Anyone with a known allergy to the cephalosporin group of antibiotics.",
+      "People with a penicillin allergy, because reactions between these related antibiotic groups are documented and can happen in up to 10 percent of them.",
+      "People whose kidneys work poorly, who need smaller amounts because the drug leaves the body through the kidneys.",
+      "People with a history of gut disease, especially colitis, whom the label says to treat with caution.",
+      "Premature infants and newborns, because safety and effectiveness have not been established for them."
+    ]
+  },
+  "interactions": [
+    "Probenecid, a gout medicine, can slow the kidneys' removal of cephalosporins and raise the amount left in the blood.",
+    "Cephalosporins may be tied to a fall in prothrombin activity, a clotting measure, so people on blood thinners may need monitoring.",
+    "Urine glucose tests that use Benedict's solution, Fehling's solution or CLINITEST tablets can give a false positive result.",
+    "A Coombs blood test can turn positive, and this can also happen in newborns whose mothers received cephalosporins before delivery."
+  ],
+  "pregnancyAndChildren": "Animal studies in rats, mice and rabbits found no harm to the fetus at doses up to 25 times the human dose, but the label states there are no adequate, well-controlled studies in pregnant women. Cefazolin crosses the placenta, and after a caesarean section the amount in cord blood was about one quarter to one third of the mother's level. It appears in very low amounts in breast milk. For babies, safety and effectiveness in premature infants and newborns have not been established, and the label addresses use only in children older than one month.",
+  "whatWeDoNotKnow": [
+    "No one knows exactly how cefazolin sometimes injures the liver. The leading idea is an immune reaction.",
+    "Whether a person who reacts to one cephalosporin will react to another is unclear.",
+    "Long-term animal studies for cancer risk have not been done.",
+    "We do not know how often liver injury follows cefazolin in the general population, only that it is uncommon.",
+    "Most safety information here comes from FDA labeling and a government liver-injury reference, not from head-to-head human trials."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Cefazolin is a semi-synthetic cephalosporin that is given by injection rather than by mouth.",
+      "quote": "Cefazolin for Injection, USP is a semi-synthetic cephalosporin for parenteral administration."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "The label says cefazolin kills bacteria by stopping them from building their cell wall.",
+      "quote": "Cefazolin is a bactericidal agent that acts by inhibition of bacterial cell wall synthesis."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "The label limits use to infections proven or strongly suspected to be bacterial.",
+      "quote": "should be used only to treat or prevent infections that are proven or strongly suspected to be caused by bacteria"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "The label lists serious infections of many body sites as labeled uses.",
+      "quote": "Cefazolin for Injection, USP is indicated for the treatment of the following serious infections when due to susceptible organisms."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "It is given around surgery to reduce the number of certain postoperative infections.",
+      "quote": "The prophylactic administration of Cefazolin for Injection preoperatively, intraoperatively, and postoperatively may reduce the incidence of certain postoperative infections in patients undergoing surgical procedures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Surgical preventive use is usually stopped within a day of the operation.",
+      "quote": "The prophylactic administration of Cefazolin for Injection should usually be discontinued within a 24-hour period after the surgical procedure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "It is not for viral infections.",
+      "quote": "They do not treat viral infections (e.g., the common cold)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "MRSA-type staph are resistant, so cefazolin does not work against them.",
+      "quote": "Methicillin-resistant staphylococci are uniformly resistant to cefazolin."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "A known cephalosporin allergy rules the drug out.",
+      "quote": "CEFAZOLIN FOR INJECTION IS CONTRAINDICATED IN PATIENTS WITH KNOWN ALLERGY TO THE CEPHALOSPORIN GROUP OF ANTIBIOTICS."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Cross-reactions with penicillin allergy are documented and may affect up to 10 percent of penicillin-allergic people.",
+      "quote": "CROSS-HYPERSENSITIVITY AMONG BETA-LACTAM ANTIBIOTICS HAS BEEN CLEARLY DOCUMENTED AND MAY OCCUR IN UP TO 10% OF PATIENTS WITH A HISTORY OF PENICILLIN ALLERGY"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "A serious colon condition, pseudomembranous colitis, is a reported risk of this and similar antibiotics.",
+      "quote": "Onset of pseudomembranous colitis symptoms may occur during or after antibiotic treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Probenecid can raise cephalosporin blood levels.",
+      "quote": "Probenecid may decrease renal tubular secretion of cephalosporins when used concurrently"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Some urine glucose tests can read falsely positive.",
+      "quote": "A false positive reaction for glucose in the urine may occur"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Human pregnancy data are limited; animal studies at high doses showed no fetal harm.",
+      "quote": "There are, however, no adequate and well-controlled studies in pregnant women."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Only very small amounts pass into breast milk.",
+      "quote": "Cefazolin for Injection is present in very low concentrations in the milk of nursing mothers."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Safety and effectiveness have not been established for premature infants and newborns.",
+      "quote": "Safety and effectiveness for use in premature infants and neonates have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Reported reactions include common gut upset such as diarrhea and nausea.",
+      "quote": "Diarrhea, oral candidiasis (oral thrush), vomiting, nausea, stomach cramps, anorexia, and pseudomembranous colitis."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration drug label (public domain)",
+      "claim": "Cephalosporins are linked to a drop in clotting activity.",
+      "quote": "Cephalosporins may be associated with a fall in prothrombin activity."
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "Cefazolin is a first-generation cephalosporin given by injection.",
+      "quote": "Parenterally administered cephalosporins include cefazolin (Ancef: 1st generation)"
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "Cefazolin is the cephalosporin most often tied to cholestatic jaundice, a bile-flow liver problem.",
+      "quote": "Cefazolin has been most frequently linked to cholestatic jaundice"
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "Liver problems tend to appear one to four weeks after the drug.",
+      "quote": "The typical latency period is 1 to 4 weeks with an abrupt onset of liver injury."
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "A common gene variant, HLA-A*02:01, has been linked to cefazolin liver injury.",
+      "quote": "Cases of cholestatic liver injury attributed to cefazolin have been linked to HLA-A*02:01"
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "The reason cefazolin harms the liver is not known; an immune reaction is suspected.",
+      "quote": "The mechanism of hepatic injury due to cephalosporins is unknown, but believed to be hypersensitivity"
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "Milder side effects of injected cephalosporins include diarrhea, nausea, stomach pain and headache.",
+      "quote": "adverse events can include diarrhea, nausea, abdominal pain, dyspepsia, headache, and rash"
+    },
+    {
+      "url": "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (public domain)",
+      "claim": "People with penicillin allergy react to cephalosporins more often.",
+      "quote": "patients with a history of penicillin allergy have a higher rate of hypersensitivity reactions to cephalosporins"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cefazolin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "PubChem records cefazolin's chemical formula and molecular weight, identifying it as a specific compound.",
+      "quote": "\"MolecularFormula\": \"C14H14N8O4S3\", \"MolecularWeight\": \"454.5\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=cefazolin",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain)",
+      "claim": "Cefazolin injection is made by many different manufacturers.",
+      "quote": "\"title\": \"CEFAZOLIN (CEFAZOLIN SODIUM) INJECTION, SOLUTION [BAXTER HEALTHCARE CORPORATION]\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Cefazolin&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "Cefazolin has been tested in randomized trials as a preventive antibiotic around surgery, including against placebo.",
+      "quote": "\"Study participants will be randomized to a prophylactic IV antibiotic treatment arm (Vancomycin or Cefazolin) or a placebo IV saline solution.\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cefazolin%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cefazolin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Cefazolin&pageSize=5",
+    "https://www.nccih.nih.gov/health/cefazolin",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=cefazolin",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=cefazolin",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00dd6da7-50a8-44c9-b2dc-7948973df392",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548666/",
+    "https://web.archive.org/web/2024/https://www.ncbi.nlm.nih.gov/books/NBK547862/",
+    "https://web.archive.org/web/20250123192835/https://www.ncbi.nlm.nih.gov/books/NBK547862/"
+  ],
+  "gaps": [
+    "NCCIH has no cefazolin page; https://www.nccih.nih.gov/health/cefazolin returned a 404.",
+    "The NCBI Bookshelf blocked direct fetches with a browser check, so the LiverTox page was read through an archived copy of the same text.",
+    "No dose amounts or personal instructions appear here by policy, even though the label records them.",
+    "No human trials of cefazolin against placebo for treatment of infection were retrieved; the safety and use claims rest on FDA labeling and LiverTox.",
+    "MedlinePlus drug monographs were not fetched or cited because that content is copyrighted.",
+    "openFDA and DailyMed both publish the same FDA product labeling, so those two are not fully independent of each other; LiverTox is separate.",
+    "How often liver injury follows cefazolin in the general population is not stated in any source checked."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what injectable cefazolin is, the infections and surgical prevention it is used for, its recorded side effects and serious risks, its interactions, and what is known about pregnancy and children."
+}

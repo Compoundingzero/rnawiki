@@ -1,0 +1,178 @@
+{
+  "slug": "cabazitaxel",
+  "oneLineAnswer": "A chemotherapy drug given into a vein for advanced prostate cancer that has stopped responding to hormone treatment.",
+  "whatItIs": "Cabazitaxel is a prescription cancer medicine. Its brand name is Jevtana. It belongs to a group of drugs called taxanes. Taxanes were first obtained from yew trees, and cabazitaxel is made in a laboratory from a yew-needle starting material. It is a sterile yellow liquid that is diluted and then given into a vein. It is not a pill or capsule.",
+  "whatItDoes": [
+    "Cabazitaxel is a microtubule inhibitor. Microtubules are tiny tubes inside a cell that the cell needs in order to divide.",
+    "The drug attaches to a protein called tubulin. It holds microtubules together and blocks them from coming apart.",
+    "With its microtubules held in place, a cancer cell cannot divide. The cell then dies.",
+    "Its approved use is prostate cancer that has spread, has kept growing while testosterone is lowered, and has already been treated with docetaxel.",
+    "It is given together with prednisone, a steroid medicine, and was first approved in the United States in 2010."
+  ],
+  "howPeopleUseIt": [
+    "A nurse or doctor gives cabazitaxel as an intravenous infusion, meaning a slow drip into a vein. You do not take it at home.",
+    "Treatments are usually spaced three weeks apart. The treating team works out the amount using your body size.",
+    "The label records that an antihistamine, a steroid, and an H2 blocker are given before each dose to lower the chance of an allergic reaction.",
+    "Prednisone pills are taken every day throughout the treatment period.",
+    "Blood counts are checked often, and doses are delayed, lowered, or stopped depending on how the body responds."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Low white blood cell counts, which make infections more likely",
+      "Low red blood cell counts (anemia), which cause tiredness",
+      "Low platelet counts, which make bruising and bleeding easier",
+      "Diarrhea, which can be severe",
+      "Nausea and vomiting",
+      "Constipation",
+      "Tiredness and weakness",
+      "Hair loss",
+      "Numbness, tingling, or pain in the hands and feet",
+      "Blood in the urine",
+      "Back pain, joint pain, and muscle aches",
+      "A changed or metallic sense of taste",
+      "Fever",
+      "Shortness of breath or cough",
+      "Loss of appetite and weight loss"
+    ],
+    "seriousSigns": [
+      "Fever, chills, or feeling suddenly very unwell. The label carries a boxed warning because deaths from low white blood cell counts have been reported.",
+      "Severe or non-stop diarrhea, which has been linked to deaths and to dangerous salt imbalances.",
+      "A severe allergic reaction during or soon after the infusion: a widespread rash, a sudden drop in blood pressure, or wheezing and trouble breathing.",
+      "Blood in the urine or pain when passing urine, especially after past radiation to the pelvis.",
+      "New or worsening shortness of breath or cough, which can point to lung inflammation.",
+      "Passing little or no urine, or swollen legs, which can point to kidney problems.",
+      "Ongoing belly pain, vomiting, a swollen belly, or black and bloody stools, which can point to a gut injury."
+    ],
+    "whoShouldAvoid": [
+      "People whose neutrophil count is 1,500 cells/mm3 or lower. Neutrophils are a type of white blood cell that fights infection.",
+      "People who have had a severe allergic reaction to cabazitaxel, or to other injected drugs made with polysorbate 80.",
+      "People with severe liver problems. The label sets this as a total bilirubin above three times the upper limit of normal; bilirubin is a yellow pigment the liver clears.",
+      "Women, because safety and effectiveness have not been established in females and there are no human pregnancy data.",
+      "Children, because safety and effectiveness have not been established in children.",
+      "Older adults, who need closer watching. In trials, people aged 65 and over had more low white blood cell counts and more deaths from causes other than the cancer."
+    ]
+  },
+  "interactions": [
+    "Cabazitaxel is broken down mainly by a liver enzyme called CYP3A. Other medicines can block that enzyme and raise the level of cabazitaxel in the body.",
+    "The label names strong CYP3A blockers to avoid: ketoconazole, itraconazole, clarithromycin, atazanavir, indinavir, nefazodone, nelfinavir, ritonavir, saquinavir, telithromycin, and voriconazole.",
+    "The label records that if a strong CYP3A blocker cannot be avoided, the treating team may consider lowering the cabazitaxel dose by 25 percent.",
+    "The label says the risk of gut bleeding, a tear in the gut, or a bowel blockage may be higher with NSAID painkillers, blood thinners, or antiplatelet medicines.",
+    "That same gut risk is also described as higher in people who have had radiation to the pelvis.",
+    "LiverTox notes that cabazitaxel is susceptible to drug interactions because of the way the liver handles it.",
+    "The infusion itself is not mixed with any other drug."
+  ],
+  "pregnancyAndChildren": "There is no human data on cabazitaxel in pregnancy, and its safety and effectiveness in females have not been established. In animal studies, giving cabazitaxel to pregnant rats caused the death of embryos and fetuses. The label advises men who have a female partner who could become pregnant to use effective contraception during treatment and for four months after the last dose. The label also says cabazitaxel may harm male fertility, based on animal studies. In children, safety and effectiveness have not been established. A study of 39 children aged 3 to 18 with solid tumors recorded no tumor shrinkage in 11 children with high-grade glioma or diffuse intrinsic pontine glioma. One child out of 9 with ependymoma had a partial response.",
+  "whatWeDoNotKnow": [
+    "Nobody has published human data on cabazitaxel in pregnancy, or on whether it passes into breast milk, because the drug has not been studied in females.",
+    "Most of what is known about how well it works comes from three trials in advanced prostate cancer (TROPIC, PROSELICA, and CARD). How it performs in other groups and over longer periods is less certain.",
+    "The label states that the effectiveness of the lower dose used in moderate liver impairment is unknown.",
+    "LiverTox rates cabazitaxel as an unproven but suspected rare cause of visible liver injury. It has not been convincingly tied to jaundice or clear liver damage.",
+    "Pediatric evidence is thin. One small study found no response in children with two types of brain tumor and a single partial response in ependymoma.",
+    "Whether adding carboplatin to cabazitaxel helps is still being tested. A phase 3 trial began in 2024 and does not expect its main results until 2029.",
+    "There is no trial showing cabazitaxel beats every other later-line prostate cancer option in every situation."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cabazitaxel%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling API)",
+      "claim": "Cabazitaxel is a microtubule inhibitor. It binds tubulin, holds microtubules together, and blocks their disassembly, which stops cancer cells dividing.",
+      "quote": "Cabazitaxel is a microtubule inhibitor. Cabazitaxel binds to tubulin and promotes its assembly into microtubules while simultaneously inhibiting disassembly."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cabazitaxel%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling API)",
+      "claim": "The label opens with a boxed warning about neutropenia, and deaths from low white blood cell counts have been reported.",
+      "quote": "Neutropenic deaths have been reported. Obtain frequent blood counts to monitor for neutropenia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cabazitaxel%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling API)",
+      "claim": "A severe allergic reaction is a labelled risk and can include a widespread rash, a blood pressure drop, and narrowed airways.",
+      "quote": "Severe hypersensitivity can occur and may include generalized rash/erythema, hypotension and bronchospasm."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ec6892c8-01e1-6a8b-e053-2995a90a956f",
+      "publisher": "National Library of Medicine, DailyMed",
+      "claim": "Cabazitaxel injection is approved for metastatic castration-resistant prostate cancer and is given with prednisone.",
+      "quote": "Cabazitaxel Injection is indicated in combination with prednisone for the treatment of patients with metastatic castration-resistant prostate cancer"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ec6892c8-01e1-6a8b-e053-2995a90a956f",
+      "publisher": "National Library of Medicine, DailyMed",
+      "claim": "The approved use is limited to people who have already had a docetaxel-containing regimen.",
+      "quote": "previously treated with a docetaxel-containing treatment regimen"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ec6892c8-01e1-6a8b-e053-2995a90a956f",
+      "publisher": "National Library of Medicine, DailyMed",
+      "claim": "The injection was first approved in the United States in 2010.",
+      "quote": "Initial U.S. Approval: 2010"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548533/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+      "claim": "Cabazitaxel is a taxane used for castration-resistant metastatic prostate cancer after docetaxel has failed.",
+      "quote": "Cabazitaxel is a taxane and antineoplastic agent which is currently used in the therapy of castration-resistant metastatic prostate cancer after failure of docetaxel."
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548533/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+      "claim": "The liver clears cabazitaxel mainly through CYP 3A, which leaves room for drug interactions.",
+      "quote": "Cabazitaxel is primarily metabolized in the liver through CYP 3A and is susceptible to drug-drug interactions"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548533/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+      "claim": "Cabazitaxel has not been convincingly tied to visible acute liver injury, though the evidence is limited.",
+      "quote": "has not been linked to cases of clinically apparent acute liver injury"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Cabazitaxel&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (study NCT06470243)",
+      "claim": "An ongoing phase 3 trial describes cabazitaxel as a standard-of-care chemotherapy drug for this cancer.",
+      "quote": "the standard of care chemotherapy drug cabazitaxel versus cabazitaxel alone in treating prostate cancer"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cabazitaxel/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, National Library of Medicine",
+      "claim": "Cabazitaxel has the molecular formula C45H57NO14 and a molecular weight of about 836.",
+      "quote": "\"MolecularFormula\": \"C45H57NO14\", \"MolecularWeight\": \"835.9\""
+    },
+    {
+      "url": "https://medlineplus.gov/prostatecancer.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Chemotherapy is described as medicines that kill cancer cells, slow their growth, or stop them spreading.",
+      "quote": "Chemotherapy uses medicines to kill cancer cells, slow their growth, or stop them from spreading."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cabazitaxel%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ec6892c8-01e1-6a8b-e053-2995a90a956f",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de3d9c26-572b-4ea4-9b2d-dd58a2b3e8fa",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1e1b3ea2-3f0e-4b1f-a4e5-a1a1f1a5c1a5",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548533/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548533/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548533/?report=classic",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548533/?report=printable",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548506/",
+    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=books&id=NBK548533&retmode=text",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Cabazitaxel&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cabazitaxel/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/9854073",
+    "https://medlineplus.gov/prostatecancer.html",
+    "https://www.nccih.nih.gov/health/cabazitaxel"
+  ],
+  "gaps": [
+    "NCCIH has no cabazitaxel page: https://www.nccih.nih.gov/health/cabazitaxel returns HTTP 404, so the supplement clearinghouse added nothing here.",
+    "LiverTox blocks plain HTTP fetches with a browser check. The monograph was read through Proto's in-app browser instead, so it is cited but not reproducible with a simple fetch.",
+    "No MedlinePlus drug monograph was used. NLM states those pages are American Society of Health-System Pharmacists content and are copyrighted, so they are excluded.",
+    "MedlinePlus had no cabazitaxel-specific health topic, so it is cited only for the general definition of chemotherapy.",
+    "There is no human pregnancy, breastfeeding, or fertility data, because the drug has not been studied in females.",
+    "The effectiveness of the reduced dose used in moderate liver impairment is stated as unknown in the label.",
+    "Whether cabazitaxel can cause clinically apparent liver injury is unresolved; LiverTox scores it E* (unproven but suspected rare cause).",
+    "Pediatric response data come from one small study and are too thin to draw conclusions from.",
+    "No source found gives a full comparison of cabazitaxel against every other later-line prostate cancer treatment."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what cabazitaxel is, how it is given, its approved use in docetaxel-treated metastatic castration-resistant prostate cancer, and the side effects, serious risks, interactions, and open questions a beginner should know."
+}

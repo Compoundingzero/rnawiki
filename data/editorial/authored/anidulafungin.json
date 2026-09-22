@@ -1,0 +1,219 @@
+{
+  "slug": "anidulafungin",
+  "oneLineAnswer": "A hospital antifungal given by vein for serious Candida yeast infections in the blood or abdomen.",
+  "whatItIs": "Anidulafungin is an antifungal medicine. It is sold under the brand name Eraxis. It belongs to the echinocandin family of antifungals. The molecule is made in a laboratory from a fermentation product of the mold Aspergillus nidulans. It comes as a powder that a pharmacist dissolves into a liquid. A nurse or doctor then gives it through a vein, so you cannot take it as a pill.",
+  "whatItDoes": [
+    "It blocks an enzyme, a protein that speeds up a chemical reaction inside a cell.",
+    "Fungi use that enzyme to build 1,3-\u03b2-D-glucan, a sugar that strengthens their outer wall.",
+    "With a weakened wall the fungal cell swells and bursts.",
+    "It treats candidemia, meaning Candida yeast growing in the bloodstream, plus some Candida infections in the abdomen.",
+    "Adults with Candida infection of the food pipe are also treated, but the label records frequent relapses there."
+  ],
+  "howPeopleUseIt": [
+    "It is a hospital medicine, given through a vein as a slow drip.",
+    "Each dose usually runs over about an hour, since the label caps how fast it can go in.",
+    "The U.S. label records a 200 mg first-day dose, then 100 mg once daily, for candidemia in adults.",
+    "In the main trials, treatment continued for at least 14 days.",
+    "Your care team may watch your liver tests and blood counts while you are treated."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In adult candidemia trials, the most common reactions were low blood potassium, nausea, diarrhea and vomiting.",
+      "Fever, trouble sleeping and low blood pressure were also common there.",
+      "In adults treated for the food-pipe infection, diarrhea, fever, anemia, headache and indigestion were common.",
+      "Children often had diarrhea, vomiting, fever, belly pain, low platelets and raised liver enzymes.",
+      "LiverTox reports short-lived liver enzyme rises in roughly 2 to 15 out of every 100 people given an echinocandin.",
+      "Vein irritation where the drip goes in, known as phlebitis, is a common echinocandin side effect."
+    ],
+    "seriousSigns": [
+      "Anaphylaxis, a sudden and life-threatening allergic reaction, has been reported.",
+      "The label also notes infusion reactions that may involve the chemical histamine.",
+      "Those reactions can include rash, hives, flushing, itching, wheezing and a fall in blood pressure.",
+      "Abnormal liver tests, hepatitis and liver failure have been reported in some patients.",
+      "The label states that a direct link to the drug has not been established."
+    ],
+    "whoShouldAvoid": [
+      "The label rules it out for anyone allergic to anidulafungin, another echinocandin, or any ingredient.",
+      "It is also ruled out for anyone with known or suspected hereditary fructose intolerance.",
+      "That condition is an inherited inability to process fructose, a simple sugar, and it can turn dangerous.",
+      "The product contains fructose, so the label warns of a metabolic crisis when that condition is present.",
+      "It is not approved for babies younger than one month."
+    ]
+  },
+  "interactions": [
+    "Studies gave it with cyclosporine, voriconazole, tacrolimus and rifampin without needing a dose change.",
+    "Liposomal amphotericin B was tested the same way, with the same result.",
+    "The label says the liver does not break anidulafungin down.",
+    "Specifically, it is not a substrate, inducer or inhibitor of the cytochrome P450 enzymes.",
+    "Cytochrome P450 is a large family of liver enzymes that process many medicines."
+  ],
+  "pregnancyAndChildren": "Animal studies found harm to rabbit fetuses. No human pregnancy data exist to judge the risk in people. For children, use for candidemia is supported from one month of age and older. Use for the food-pipe infection in children is not established, and babies under one month are not covered either.",
+  "whatWeDoNotKnow": [
+    "There are no human data on use during pregnancy, so the fetal risk in people is unknown.",
+    "The label we checked gives no guidance on breastfeeding.",
+    "A link between the drug and the reported cases of liver failure has not been established.",
+    "It has not been studied for Candida infection of the heart valves, bone or the membranes around the brain.",
+    "The right amount to use when Candida has spread to the brain or the eye is not established.",
+    "Relapse is frequent when it is used for Candida infection of the food pipe.",
+    "LiverTox notes that most liver-related experience is with caspofungin, so the signal for anidulafungin is less clear."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Anidulafungin, brand name Eraxis, is an echinocandin antifungal approved to treat candidemia and other Candida infections.",
+      "quote": "ERAXIS is an echinocandin antifungal indicated for the treatment of the following infections"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "It works by blocking build of 1,3-beta-D-glucan, a fungal cell wall component.",
+      "quote": "Anidulafungin is an echinocandin, a class of antifungal drugs that inhibits the synthesis of 1,3-\u03b2-D-glucan"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "The most common adult candidemia side effects were low potassium, nausea, diarrhea, vomiting, fever, insomnia and low blood pressure.",
+      "quote": "Most common adverse reactions (\u226515%) are hypokalemia, nausea, diarrhea, vomiting, pyrexia, insomnia, hypotension."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "The label rules out the drug for people with inherited fructose intolerance because the product contains fructose.",
+      "quote": "Hereditary Fructose Intolerance (HFI) : ERAXIS contains fructose."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "There is no human pregnancy data on the drug.",
+      "quote": "There are no available human data on the use of ERAXIS in pregnant women"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Animal studies in pregnant rabbits showed fetal harm, and the label tells prescribers to inform pregnant women of the fetal risk.",
+      "quote": "Based on findings from animal studies, ERAXIS can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "The label rules the drug out for people hypersensitive to anidulafungin, any product ingredient, or other echinocandins.",
+      "quote": "Patients with known hypersensitivity to anidulafungin, any component of ERAXIS, or other echinocandins"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Infusion-related reactions, possibly mediated by histamine, have been reported.",
+      "quote": "Infusion-related adverse reactions, possibly histamine-mediated, have been reported with ERAXIS, including rash, urticaria, flushing, pruritus, bronchospasm, dyspnea, and hypotension"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Anaphylactic reactions including shock have been reported with the drug.",
+      "quote": "Anaphylactic reactions, including shock were reported with the use of ERAXIS."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Studies combining anidulafungin with cyclosporine found no significant change in how either drug behaves in the body.",
+      "quote": "Administration of multiple doses of anidulafungin and cyclosporine to healthy subjects resulted in no significant alteration in the steady state pharmacokinetics"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Anidulafungin is not broken down by the liver.",
+      "quote": "Hepatic metabolism of anidulafungin has not been observed."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "Use in babies younger than one month is not established for candidemia or invasive candidiasis.",
+      "quote": "The safety and effectiveness of ERAXIS in patients younger than 1 month of age with candidemia/invasive candidiasis has not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "The drug is linked to frequent relapse when used for esophageal candidiasis.",
+      "quote": "ERAXIS is associated with high relapse rates in esophageal candidiasis."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+      "publisher": "U.S. Food and Drug Administration (openFDA)",
+      "claim": "In a pediatric trial the common reactions were diarrhea, vomiting, fever, belly pain, anemia, low platelets, raised ALT and AST, low blood sugar, nosebleeds and rash.",
+      "quote": "thrombocytopenia, alanine aminotransferase (ALT) and aspartate aminotransferase (AST) increased, hypoglycemia, epistaxis, and rash"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a88d9010-55fb-4a02-baff-042cd27688ea",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The infusion rate for the drug is limited to 1.1 mg per minute.",
+      "quote": "The rate of infusion should not exceed 1.1 mg/minute"
+    },
+    {
+      "url": "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+      "publisher": "LiverTox, NIDDK / U.S. National Library of Medicine (Internet Archive snapshot)",
+      "claim": "Common echinocandin side effects include vein inflammation at the infusion site and histamine-like reactions.",
+      "quote": "Common side effects include phlebitis and the histamine-like reaction marked by rash, urticaria, flushing"
+    },
+    {
+      "url": "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+      "publisher": "LiverTox, NIDDK / U.S. National Library of Medicine (Internet Archive snapshot)",
+      "claim": "Brief liver enzyme rises occur in a minority of people treated with an echinocandin.",
+      "quote": "Transient elevations in liver enzymes have occurred in 2% to 15% of patients treated with the echinocandins"
+    },
+    {
+      "url": "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+      "publisher": "LiverTox, NIDDK / U.S. National Library of Medicine (Internet Archive snapshot)",
+      "claim": "Blocking the enzyme weakens the fungal membrane, and the Candida cell then swells and breaks apart.",
+      "quote": "alteration in the fungal membrane integrity, followed by cell ballooning and, for Candida cells, lysis"
+    },
+    {
+      "url": "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+      "publisher": "LiverTox, NIDDK / U.S. National Library of Medicine (Internet Archive snapshot)",
+      "claim": "Anidulafungin is given intravenously and the brand name is Eraxis.",
+      "quote": "Anidulafungin is available under the brand name of Eraxis in intravenous formulations"
+    },
+    {
+      "url": "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+      "publisher": "LiverTox, NIDDK / U.S. National Library of Medicine (Internet Archive snapshot)",
+      "claim": "Echinocandins are given slowly into a vein, over about an hour.",
+      "quote": "The echinocandins are administered intravenously in a slow infusion over one hour"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/anidulafungin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Anidulafungin is a large molecule with chemical formula C58H73N7O17 and a molecular weight near 1140.",
+      "quote": "\"MolecularFormula\": \"C58H73N7O17\", \"MolecularWeight\": \"1140.2\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Anidulafungin&pageSize=20&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,EnrollmentCount",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Registered trials have compared anidulafungin with fluconazole for candidemia and studied it in intensive care patients.",
+      "quote": "Anidulafungin Versus Fluconazole in the Treatment of Candidemia"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anidulafungin%22&limit=2",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Anidulafungin&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Anidulafungin&pageSize=20&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,EnrollmentCount",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/anidulafungin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://www.nccih.nih.gov/health/anidulafungin",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=anidulafungin",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a88d9010-55fb-4a02-baff-042cd27688ea",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548299/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548441/",
+    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=books&id=NBK548299&retmode=text",
+    "https://web.archive.org/web/2024id_/https://www.ncbi.nlm.nih.gov/books/NBK548299/"
+  ],
+  "gaps": [
+    "NCCIH has no page for this substance: https://www.nccih.nih.gov/health/anidulafungin returned HTTP 404, so no NCCIH material was used.",
+    "The live NCBI Bookshelf pages for LiverTox (NBK548299 and NBK548441) were blocked by a browser check when fetched directly, so the Echinocandins chapter was read from an Internet Archive snapshot of the same NIDDK page.",
+    "openFDA and DailyMed serve the same U.S. prescribing information document, so those two sources are not independent of each other.",
+    "No MedlinePlus drug monograph was used, because NLM states those monographs carry ASHP copyright, which the brief excludes.",
+    "The label contains no breastfeeding section, so lactation guidance could not be grounded.",
+    "No randomised trial directly comparing anidulafungin with the other echinocandins turned up in the public sources checked, so any difference in liver risk between them could not be grounded.",
+    "The record gives no dose or personal guidance by design; the only numbers present are quoted as what the label recorded."
+  ],
+  "confidence": "high",
+  "summary": "A beginner-level record on anidulafungin, a hospital-only echinocandin antifungal for serious Candida infections, covering what it is, what it treats, side effects, who should avoid it and what remains unknown."
+}

@@ -1,0 +1,253 @@
+{
+  "slug": "apremilast",
+  "oneLineAnswer": "A prescription tablet for psoriasis, psoriatic arthritis and Behcet's mouth ulcers that calms part of the immune response.",
+  "whatItIs": "Apremilast is a prescription medicine sold as Otezla and Otezla XR. You take it by mouth as a tablet. It is a small molecule that blocks an enzyme called phosphodiesterase 4, or PDE4 for short. An enzyme is a protein that speeds up chemical reactions in your body. Apremilast is not a steroid and not a biologic drug.",
+  "whatItDoes": [
+    "It is approved for active psoriatic arthritis in adults. That is joint inflammation that often comes with the skin condition psoriasis.",
+    "It is approved for plaque psoriasis in adults who could use light treatment or a systemic therapy.",
+    "A systemic therapy is a medicine that works through the whole body rather than on the skin alone.",
+    "It is approved for mouth ulcers, also called oral ulcers, that come with Behcet's disease.",
+    "Blocking PDE4 raises a signalling molecule called cAMP inside cells, which dampens some inflammation.",
+    "The label states that the exact way this produces a benefit is not well defined."
+  ],
+  "howPeopleUseIt": [
+    "You take it by mouth as a tablet, with or without food, and you swallow the tablets whole.",
+    "The label says not to crush, split or chew the tablets before swallowing.",
+    "The label describes starting at a lower amount and stepping up over the first days of treatment.",
+    "Otezla XR is a longer-acting version taken once a day.",
+    "It is used for long-term inflammatory conditions rather than for short courses.",
+    "Researchers have also tested it in other conditions. One example is a small Phase 1 study in adults with alcohol use disorder.",
+    "A pregnancy exposure registry follows pregnancies where the mother took apremilast."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In psoriatic arthritis trials, the most common side effects reported were diarrhea, nausea and headache.",
+      "In plaque psoriasis trials they were diarrhea, nausea, upper respiratory tract infection and tension headache.",
+      "In the Behcet's disease trial, diarrhea, nausea, headache and upper respiratory tract infection were the most common.",
+      "Vomiting, stomach pain, tiredness, indigestion, appetite loss, back pain and trouble sleeping were also reported.",
+      "Weight loss is common. In one psoriasis trial, about 12 in 100 people lost 5 to 10 percent of body weight.",
+      "Most of these problems appeared in the first two weeks and tended to ease as treatment continued."
+    ],
+    "seriousSigns": [
+      "The label tells patients and families to watch for new or worsening depression, suicidal thoughts or other mood changes.",
+      "In psoriatic arthritis trials, suicidal ideation or behavior was reported in 0.2 percent of people taking the drug.",
+      "Severe diarrhea, nausea and vomiting has been reported, and the label notes that some patients needed hospital care.",
+      "The label reports rare cases of angioedema and anaphylaxis, which are severe allergic reactions, seen after marketing began.",
+      "Psoriasis can flare severely after the drug is stopped. The label records this in 0.3 percent of people who discontinued.",
+      "The label says people aged 65 and older may be at higher risk. The risk is complications from severe diarrhea, nausea or vomiting."
+    ],
+    "whoShouldAvoid": [
+      "Anyone with a known allergy to apremilast or to the other ingredients in the tablet. This is the label's contraindication.",
+      "The label does not recommend using it with strong liver-enzyme inducers, because the drug may stop working.",
+      "People with a history of depression or suicidal thoughts. The label says risks and benefits should be weighed carefully.",
+      "Severe kidney impairment raises the amount of drug in the body, and the label handles those patients differently."
+    ]
+  },
+  "interactions": [
+    "Strong CYP450 enzyme inducers lower the amount of apremilast in the blood. The label says this may cause loss of efficacy.",
+    "The label names rifampin as an example, and also lists phenobarbital, carbamazepine and phenytoin as inducers.",
+    "Apremilast is broken down mostly by a liver enzyme called CYP3A4. Other medicines that change this enzyme may matter.",
+    "Strong CYP450 inducers are the only interaction the current label describes in detail."
+  ],
+  "pregnancyAndChildren": "Human pregnancy information is very limited. A registry compared 15 pregnancies exposed to apremilast with 106 unexposed pregnancies. It found no major birth defects in liveborn infants and no miscarriages. It recorded one stillbirth. The label notes those data are limited by the small sample size. Animal studies found more pregnancy loss in monkeys at higher exposures. The label says apremilast may increase the risk of fetal loss. There are no data on whether it passes into human breast milk. It was found in the milk of mice. It is approved for children aged 6 and older with psoriatic arthritis. It is also approved for moderate to severe plaque psoriasis in that age group. In those uses, the label sets a minimum weight of 20 kg. Use has not been established for children under 6 or under 20 kg. Use has not been established for Behcet's mouth ulcers at any age. The label says growth in height and weight should be watched closely in children taking it.",
+  "whatWeDoNotKnow": [
+    "The label itself says the exact mechanism by which apremilast helps is not well defined.",
+    "The clinical meaning of the measured changes in inflammatory cytokines is stated as unclear.",
+    "Whether apremilast enters human breast milk is unknown.",
+    "Pregnancy safety is not settled, because the human registry included only 15 exposed pregnancies.",
+    "The NIDDK LiverTox record for apremilast could not be reached, so this page does not assess drug-induced liver injury.",
+    "NCCIH has no apremilast page, so no independent complementary-medicine review was available.",
+    "Whether apremilast helps conditions outside its approved uses, such as alcohol use disorder, is still being tested.",
+    "Trial safety figures cannot be compared directly between drugs, because trial conditions differ."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Apremilast is an inhibitor of phosphodiesterase 4 (PDE4) and is an approved medicine.",
+      "quote": "OTEZLA/OTEZLA XR, an inhibitor of phosphodiesterase 4 (PDE4), is indicated for the treatment of:"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Approved uses include plaque psoriasis for people eligible for light or systemic therapy.",
+      "quote": "Plaque psoriasis who are candidates for phototherapy or systemic therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Apremilast blocks PDE4 and acts on cyclic adenosine monophosphate.",
+      "quote": "Apremilast is an oral small molecule inhibitor of phosphodiesterase 4 (PDE4) specific for cyclic adenosine monophosphate (cAMP)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The exact mechanism of benefit is not well defined.",
+      "quote": "The specific mechanism(s) by which apremilast exerts its therapeutic action is not well defined."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Diarrhea, nausea and headache are the most common side effects in psoriatic arthritis.",
+      "quote": "The most common adverse reactions (≥ 5%) are diarrhea, nausea, and headache"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Psoriasis trials also list upper respiratory tract infection and tension headache.",
+      "quote": "diarrhea, nausea, upper respiratory tract infection, and headache, including tension headache"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Treatment is linked to more depression.",
+      "quote": "Treatment with apremilast is associated with an increased incidence of depression."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Suicidal ideation or behavior was reported in 0.2 percent of trial participants.",
+      "quote": "Instances of suicidal ideation and behavior have been observed in 0.2% (3/1441) of subjects while receiving OTEZLA"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Severe allergic reactions were reported after the drug reached the market.",
+      "quote": "Cases of angioedema and anaphylaxis have been reported during post marketing surveillance."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Severe digestive side effects have been reported, some needing hospital care.",
+      "quote": "There have been reports of severe diarrhea, nausea, and vomiting associated with the use of OTEZLA."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Weight loss of 5 to 10 percent of body weight occurred in 10 percent of treated subjects.",
+      "quote": "weight decrease between 5%-10% of body weight was reported in 10% (49/497) of subjects treated with OTEZLA"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Strong CYP450 inducers reduce drug exposure and may cause loss of efficacy.",
+      "quote": "Co-administration with strong CYP450 inducers (such as rifampin) decreases apremilast exposure and may result in loss of efficacy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Known hypersensitivity is the stated contraindication.",
+      "quote": "OTEZLA/OTEZLA XR is contraindicated in patients with a known hypersensitivity to apremilast or to any of the excipients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Animal reproduction studies suggest a risk of fetal loss.",
+      "quote": "Based on findings from animal reproduction studies, OTEZLA/OTEZLA XR may increase the risk for fetal loss"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The human pregnancy registry was too small to be conclusive.",
+      "quote": "These data are limited by the small sample size of apremilast-exposed pregnancies."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "No human milk data exist.",
+      "quote": "There are no data on the presence of apremilast in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Psoriasis can worsen severely after treatment stops.",
+      "quote": "Severe worsening of psoriasis (rebound) occurred in 0.3% (4/1184) subjects following discontinuation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The drug is approved for children aged 6 and older above a weight threshold.",
+      "quote": "The safety and effectiveness of OTEZLA have been established in pediatric patients 6 years of age and older and weighing at least 20 kg"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f6b1f516-4972-4d82-bced-113e47b41cc5.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Pediatric use below age 6 or below 20 kg is not established.",
+      "quote": "The safety and effectiveness of OTEZLA have not been established in pediatric patients below the age of 6 years or weighing less than 20 kg"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f6b1f516-4972-4d82-bced-113e47b41cc5.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The label tells patients it may be taken with or without food.",
+      "quote": "Advise patients to take OTEZLA/OTEZLA XR with or without food."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f6b1f516-4972-4d82-bced-113e47b41cc5.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Older adults may face more complications from severe digestive side effects.",
+      "quote": "patients 65 years of age or older may be at a higher risk of complications"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f6b1f516-4972-4d82-bced-113e47b41cc5.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Apremilast is metabolized mainly through the CYP3A4 enzyme.",
+      "quote": "CYP metabolism of apremilast is primarily mediated by CYP3A4"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/apremilast/description/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine), ChEBI record",
+      "claim": "Apremilast is classed as a PDE4 inhibitor and a non-steroidal anti-inflammatory.",
+      "quote": "It has a role as a non-steroidal anti-inflammatory drug and a phosphodiesterase IV inhibitor."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Apremilast&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A Phase 1 study is testing apremilast in adults with alcohol use disorder.",
+      "quote": "the investigators plan to collect pilot data to evaluate apremilast (60mg/day) in adults with Alcohol Use Disorders (AUD)"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT02775500",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A pregnancy exposure registry follows pregnancies exposed to apremilast.",
+      "quote": "to monitor planned and unplanned pregnancies exposed to apremilast and to evaluate the safety of this medication relative to specified pregnancy outcomes"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT04804553",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A Phase 3 pediatric study is testing apremilast in juvenile psoriatic arthritis.",
+      "quote": "The study will aim to estimate the efficacy of apremilast compared with placebo in the treatment of juvenile psoriatic arthritis (JPsA)"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apremilast%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=apremilast",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f6b1f516-4972-4d82-bced-113e47b41cc5.xml",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=f6b1f516-4972-4d82-bced-113e47b41cc5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/apremilast/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/apremilast/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Apremilast",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Apremilast&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT02775500",
+    "https://clinicaltrials.gov/api/v2/studies/NCT06324435",
+    "https://clinicaltrials.gov/api/v2/studies/NCT04804553",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547974/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547974/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548438/",
+    "https://www.nccih.nih.gov/health/apremilast",
+    "https://archive.org/wayback/available?url=ncbi.nlm.nih.gov/books/NBK547974/",
+    "https://web.archive.org/cdx/search/cdx?url=ncbi.nlm.nih.gov/books/NBK547974*&output=json&limit=5"
+  ],
+  "gaps": [
+    "LiverTox (NIDDK) record NBK547974 could not be fetched. NCBI returned a browser or reCAPTCHA challenge on every attempt, including the reader view.",
+    "An Internet Archive copy of the LiverTox page was not available, because archive.org was reporting itself temporarily offline.",
+    "No liver-injury assessment is included here, because the only routine source for it could not be read.",
+    "NCCIH has no apremilast page, so the suggested NCCIH source returned 404 and contributed nothing.",
+    "The DailyMed lookup page is a JavaScript shell and returned no readable text. The SPL XML endpoint was used instead.",
+    "The PubChem compound web page requires JavaScript, so only the PubChem REST description endpoint could be read.",
+    "Trial dosage figures are deliberately not stated here as usage guidance. This page is for beginners.",
+    "No source was found that reports long-term safety beyond the trial periods covered by the label.",
+    "Tuberculosis reactivation, serious infection and malignancy risk appear in third-party summaries only. They could not be confirmed against a fetched label or public-domain source, so they are excluded."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what apremilast is, its approved uses, side effects, interactions, pregnancy and children."
+}

@@ -1,0 +1,248 @@
+{
+  "slug": "acyclovir",
+  "oneLineAnswer": "An antiviral medicine that can shorten and ease some herpes virus infections.",
+  "whatItIs": "Acyclovir is an antiviral medicine. It is a synthetic nucleoside analogue, a lab-made molecule that resembles one of the natural building blocks of DNA. It is active against herpes viruses, including herpes simplex types 1 and 2 and varicella-zoster virus. The same medicine is also spelled aciclovir. Products listed in the sources include tablets, capsules, an oral liquid, skin creams and ointments, and an injection.",
+  "whatItDoes": [
+    "Acyclovir is selective. A viral enzyme called thymidine kinase switches it on mainly inside infected cells.",
+    "The active form stops the virus from copying its DNA, so the infection spreads more slowly.",
+    "This eases and shortens outbreaks. It does not cure these infections, which stay in the body for life.",
+    "The oral forms are approved for shingles, genital herpes and chickenpox.",
+    "A prescription cream is approved for cold sores on the lips and face in people aged 12 and older."
+  ],
+  "howPeopleUseIt": [
+    "The oral forms are taken at home. Some people take a short course for one episode.",
+    "Others take acyclovir continuously for months or years to reduce repeat outbreaks.",
+    "Labels stress starting as soon as symptoms appear. Nothing covers treatment begun later than 72 hours.",
+    "Creams and ointments stay on the skin. The cold sore cream is only for the lips and face.",
+    "Acyclovir also comes as an injection.",
+    "The oral labels reviewed are marked as prescription only."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In genital herpes treatment trials, nausea and vomiting were the most frequent side effects reported.",
+      "In a year-long trial of continuous oral acyclovir, nausea and diarrhea were the most frequent reported side effects.",
+      "In shingles trials, malaise, a general feeling of being unwell, was the most frequent side effect reported.",
+      "In chickenpox trials, diarrhea was the most frequent side effect reported.",
+      "With the cold sore cream, local skin reactions at the application site were reported by 5% of people in trials."
+    ],
+    "seriousSigns": [
+      "The oral label lists kidney failure, in some cases fatal, as having been observed with acyclovir therapy.",
+      "A clotting and blood disorder called thrombotic thrombocytopenic purpura has occurred, with deaths, in people with weakened immune systems.",
+      "Reported nervous system effects include confusion, hallucinations, tremor, seizures and coma.",
+      "The label says these effects may be more marked in older adults and people with kidney problems.",
+      "Severe skin reactions, including Stevens-Johnson syndrome and toxic epidermal necrolysis, have been reported.",
+      "Allergic reactions including angioedema and anaphylaxis have been reported."
+    ],
+    "whoShouldAvoid": [
+      "People who have had a hypersensitivity reaction to acyclovir or valacyclovir should not use it, the oral label states.",
+      "The cold sore cream is only for the lips and face. It should not go in the eye or inside the mouth or nose.",
+      "The label says the dose must be adjusted for people with reduced kidney function.",
+      "Safety and effectiveness of the oral forms in children under 2 years have not been established.",
+      "The cream is not established in children under 12, or in people with weakened immune systems."
+    ]
+  },
+  "interactions": [
+    "Probenecid, given with intravenous acyclovir, raises acyclovir levels in the body.",
+    "It also lengthens acyclovir's half-life, the time for half of it to leave the body.",
+    "The label advises caution with other medicines that can harm the kidneys.",
+    "That combination may raise the risk of kidney problems or short-lived nervous system symptoms."
+  ],
+  "pregnancyAndChildren": "Acyclovir cream is barely absorbed through the skin. That label says it is not expected to reach a fetus. The same label says decades of use in pregnancy have not shown a raised risk of birth defects or miscarriage. Swallowed acyclovir does reach breast milk, and the older oral label advises caution during nursing. The oral forms are not established for children under 2. The cream is approved from age 12, and safety below 12 is not established.",
+  "whatWeDoNotKnow": [
+    "Most of this record comes from product labels, not from independent reviews written for the general public.",
+    "The label records no data on whether acyclovir stops genital herpes from passing to a partner.",
+    "For shingles, the label records no data on treatment started more than 72 hours after the rash appears.",
+    "For chickenpox, the trials treated people within 24 hours of the rash. Later treatment was not studied.",
+    "The label states that the link between laboratory susceptibility results and a person's actual response is not established.",
+    "The cream's effect in people with weakened immune systems has not been established.",
+    "No source we fetched summarised in plain language how much acyclovir helps an individual outbreak.",
+    "We found no NCCIH page for acyclovir, and the LiverTox monograph was not reachable from this environment."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Acyclovir is a lab-made nucleoside analogue that acts against herpes viruses.",
+      "quote": "Acyclovir is a synthetic nucleoside analogue active against herpesviruses."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Shingles is one of the approved uses of the oral forms.",
+      "quote": "Acyclovir is indicated for the acute treatment of herpes zoster (shingles)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Genital herpes is another approved use, covering first episodes and later ones.",
+      "quote": "Genital Herpes : Acyclovir is indicated for the treatment of initial episodes and the management of recurrent episodes of genital herpes."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Acyclovir is activated by a viral enzyme, which is why it works mainly in infected cells.",
+      "quote": "The inhibitory activity of acyclovir is highly selective due to its affinity for the enzyme thymidine kinase (TK) encoded by HSV and VZV."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The active form halts copying of viral DNA.",
+      "quote": "acyclovir triphosphate stops replication of herpes viral DNA"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "In genital herpes treatment trials, nausea and vomiting were the most frequent side effects reported.",
+      "quote": "were nausea and/or vomiting in 8 of 298 patient treatments (2.7%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Kidney failure, sometimes fatal, is a listed serious risk of acyclovir therapy.",
+      "quote": "Renal failure, in some cases resulting in death, has been observed with acyclovir therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "A blood disorder with deaths has occurred in people with weakened immune systems.",
+      "quote": "Thrombotic thrombocytopenic purpura/hemolytic uremic syndrome (TTP/HUS), which has resulted in death, has occurred in immunocompromised patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Probenecid raises acyclovir levels and lengthens its half-life.",
+      "quote": "Coadministration of probenecid with intravenous acyclovir has been shown to increase the mean acyclovir half-life"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The label says the dose must be changed for people with reduced kidney function.",
+      "quote": "A dosage adjustment is recommended for patients with reduced renal function"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "There are no data on treating shingles more than 72 hours after the rash starts.",
+      "quote": "There are no data on treatment initiated more than 72 hours after onset of the zoster rash."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The oral label advises caution for nursing mothers.",
+      "quote": "Acyclovir should be administered to a nursing mother with caution and only when indicated."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Oral acyclovir reaches breast milk.",
+      "quote": "Acyclovir concentrations have been documented in breast milk in 2 women following oral administration of acyclovir"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Pediatric safety of the oral forms below age 2 is not established.",
+      "quote": "Safety and effectiveness of oral formulations of acyclovir in pediatric patients younger than 2 years of age have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "A prescription acyclovir cream is approved for recurrent cold sores in people 12 and older.",
+      "quote": "indicated for the treatment of recurrent herpes labialis (cold sores) in immunocompetent adults and adolescents 12 years of age and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "In cream trials, local application site reactions were reported by about 5% of users.",
+      "quote": "Local application site reactions were reported by 5% of patients receiving ZOVIRAX Cream and 4% of patients receiving placebo."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The cream is not to be put in the eye or inside the mouth or nose.",
+      "quote": "ZOVIRAX Cream is intended for cutaneous use only and should not be used in the eye or inside the mouth or nose."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Decades of topical use in pregnancy have not shown a raised risk of birth defects or miscarriage.",
+      "quote": "has not identified a drug-associated risk of major birth defects, miscarriage or adverse maternal or fetal outcomes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "Very little of the cream is absorbed through the skin.",
+      "quote": "Acyclovir is minimally absorbed systemically following topical route of administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label, public domain)",
+      "claim": "The cream is not established for children under 12 or for people with weakened immune systems.",
+      "quote": "Safety and effectiveness in pediatric patients less than 12 years of age have not been established."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/acyclovir/property/Title,IUPACName,MolecularFormula,MolecularWeight,CanonicalSMILES/JSON",
+      "publisher": "PubChem, National Library of Medicine",
+      "claim": "PubChem records aciclovir under the molecular formula C8H11N5O3.",
+      "quote": "\"MolecularFormula\": \"C8H11N5O3\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=acyclovir",
+      "publisher": "DailyMed, National Library of Medicine",
+      "claim": "Marketed acyclovir products include ointments, tablets, capsules, creams, suspensions and an injection.",
+      "quote": "ACYCLOVIR SODIUM INJECTION, SOLUTION [PROPHARMA DISTRIBUTION]"
+    },
+    {
+      "url": "https://medlineplus.gov/genitalherpes.html",
+      "publisher": "MedlinePlus health topic, National Library of Medicine (public domain)",
+      "claim": "Genital herpes has no cure and medicines ease symptoms and outbreaks.",
+      "quote": "There is no cure. However, medicines can help lessen symptoms, decrease outbreaks, and lower the risk of passing the virus to others."
+    },
+    {
+      "url": "https://medlineplus.gov/genitalherpes.html",
+      "publisher": "MedlinePlus health topic, National Library of Medicine (public domain)",
+      "claim": "The herpes virus stays in the body permanently.",
+      "quote": "The virus stays in your body for life."
+    },
+    {
+      "url": "https://medlineplus.gov/shingles.html",
+      "publisher": "MedlinePlus health topic, National Library of Medicine (public domain)",
+      "claim": "Shingles antivirals work best when started within three days of the rash.",
+      "quote": "The medicines are most effective if you can take them within 3 days after the rash appears."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Aciclovir&pageSize=5",
+      "publisher": "ClinicalTrials.gov, National Library of Medicine",
+      "claim": "Registered research includes bioequivalence work on topical acyclovir formulations.",
+      "quote": "Bioequivalence of Topical Acyclovir in Healthy Volunteers"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aciclovir%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zovirax%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acyclovir%22+AND+openfda.route:%22TOPICAL%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=acyclovir",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/acyclovir/property/Title,IUPACName,MolecularFormula,MolecularWeight,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Acyclovir",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/135398513",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Aciclovir&pageSize=5",
+    "https://medlineplus.gov/genitalherpes.html",
+    "https://medlineplus.gov/shingles.html",
+    "https://medlineplus.gov/chickenpox.html",
+    "https://www.nccih.nih.gov/health/acyclovir",
+    "https://www.nccih.nih.gov/health/herpes-simplex-virus-hsv",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548562/",
+    "https://livertox.nih.gov/Acyclovir.htm",
+    "https://www.niddk.nih.gov/health-information/liver-disease/drug-induced-liver-injury"
+  ],
+  "gaps": [
+    "Only the titles and identifiers of the ClinicalTrials.gov records were read, so no trial result or outcome is reported here.",
+    "The LiverTox monograph for acyclovir could not be fetched: the NIDDK and NCBI book pages returned a bot check or a 404.",
+    "NCCIH has no acyclovir page, and its herpes simplex page returned a 404, so no NCCIH material is cited.",
+    "No allowed source gave a patient-friendly estimate of how much acyclovir shortens a typical outbreak.",
+    "The evidence comes almost entirely from labels from one regulator, so the record is not independently corroborated outside the United States.",
+    "The cold sore cream evidence refers to the brand-name label (Zovirax) and its generic equivalent; results for other topical products were not reviewed."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what acyclovir is, what the labels say it does, how people use it, its recorded side effects and cautions, and the gaps the fetched sources leave open."
+}

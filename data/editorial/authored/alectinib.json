@@ -1,0 +1,295 @@
+{
+  "slug": "alectinib",
+  "oneLineAnswer": "Alectinib is a prescription capsule for ALK-positive lung cancer, not a supplement for general use.",
+  "whatItIs": "Alectinib is a prescription medicine taken by mouth as a capsule. Its brand name is Alecensa. Doctors group it with cancer drugs called kinase inhibitors. A kinase is an enzyme that switches other proteins on or off. It was first approved in the United States in 2015. It is approved only for lung cancers that test positive for a change in the ALK gene.",
+  "whatItDoes": [
+    "Alectinib blocks the activity of two proteins, ALK and RET.",
+    "In laboratory studies it lowered the survival of tumour cells with abnormal ALK.",
+    "It also interrupted signals ALK sends inside cells, such as STAT3 and AKT.",
+    "The body turns part of it into M4, a breakdown product that acts in a similar way."
+  ],
+  "howPeopleUseIt": [
+    "The label says to take the capsule with food and to swallow it whole.",
+    "After surgery for earlier disease, the label describes a planned course of about two years.",
+    "For cancer that has spread, treatment continues while it helps and is tolerated.",
+    "The label sets out steps for lowering the dose or stopping it if side effects are serious.",
+    "It is taken at home as a capsule rather than given as an injection."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Liver blood test changes were the most common problem in the pooled safety studies.",
+      "Constipation, tiredness, muscle aches, swelling, rash and cough each appeared in a fifth or more of treated patients.",
+      "Blood tests often showed raised creatine phosphokinase, an enzyme released by muscle.",
+      "Nausea, vomiting, diarrhoea, headache, weight gain and taste changes were also reported.",
+      "Some people became sensitive to sunlight and were advised to use sunscreen."
+    ],
+    "seriousSigns": [
+      "Severe liver injury, including drug-induced liver injury, occurred in some treated patients.",
+      "Lung inflammation, called interstitial lung disease or pneumonitis, occurred in 1.3% of patients in the pooled data.",
+      "Kidney problems occurred in 12% of patients, including severe cases, and a few were fatal.",
+      "A slow heart rate occurred in 11%; one fifth of monitored patients had post-dose rates below 50 beats per minute.",
+      "A red blood cell disorder called hemolytic anemia appeared in 3.1% of patients in one trial.",
+      "Very high blood triglycerides were reported after approval, sometimes with life-threatening pancreatitis."
+    ],
+    "whoShouldAvoid": [
+      "People who are pregnant should not take it, because the label says it can harm a fetus.",
+      "Breastfeeding is stopped during treatment and for one week after the last dose.",
+      "Women who could become pregnant are advised to use effective contraception during treatment and for five weeks after.",
+      "Men with partners who could become pregnant are advised to use contraception for three months after treatment.",
+      "It is not for children; its safety and effectiveness in children have not been established.",
+      "The label lists no condition that rules out alectinib completely."
+    ]
+  },
+  "interactions": [
+    "Alectinib is broken down by the liver enzyme CYP3A4, and the body then makes M4.",
+    "Studies found no meaningful change in alectinib levels when it was taken with posaconazole, rifampin or esomeprazole.",
+    "Lab tests suggested alectinib does not block CYP1A2, 2B6, 2C9, 2C19 or 2D6.",
+    "Lab tests also suggested alectinib and M4 can inhibit the transporters P-gp and BCRP.",
+    "A high-fat meal raised combined exposure to alectinib and M4 about threefold in one study."
+  ],
+  "pregnancyAndChildren": "Alectinib can harm a fetus. The label says no data exist on its use in pregnant women, so the risk rests on animal studies. In animals, the drug caused fetal toxicity and abortion at doses that also harmed the mother. Women who could become pregnant are advised to use effective contraception during treatment and for five weeks after. Men with partners who could become pregnant are advised to use contraception for three months after. There are no data on alectinib in human milk. The label says not to breastfeed during treatment or for a week after. Its safety and effectiveness in children have not been established. Animal studies in young rats found changes in growing teeth and bone at higher exposures.",
+  "whatWeDoNotKnow": [
+    "There are no human pregnancy data, so the fetal risk comes only from animal studies.",
+    "No study has measured how much alectinib passes into human breast milk.",
+    "No one has tested alectinib in children, so nothing is known about its effects there.",
+    "It has not been studied in people with severe kidney disease or end-stage kidney failure.",
+    "Carcinogenicity studies have not been done, and animal fertility studies have not been performed.",
+    "This record gives no numbers for how well alectinib works; the clinical studies sections were not reviewed.",
+    "The LiverTox review notes that the pattern of alectinib liver injury is still being described."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Alectinib is approved for ALK-positive non-small cell lung cancer, both after tumour surgery and for disease that has spread.",
+      "quote": "adjuvant treatment in adult patients following tumor resection of anaplastic lymphoma kinase (ALK)-positive non-small cell lung cancer"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "It is a kinase inhibitor whose targets are ALK and RET.",
+      "quote": "Alectinib is a tyrosine kinase inhibitor that targets ALK and RET."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "In nonclinical work it interrupted ALK signalling through STAT3 and AKT.",
+      "quote": "inhibited ALK phosphorylation and ALK-mediated activation of the downstream signaling proteins STAT3 and AKT"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "M4, the main active breakdown product, behaves similarly in vitro.",
+      "quote": "The major active metabolite of alectinib, M4, showed similar in vitro potency and activity."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "The most frequently reported side effects were liver test changes, constipation, tiredness, muscle aches, swelling, rash and cough.",
+      "quote": "The most common adverse reactions (incidence \u226520%) were hepatotoxicity, constipation, fatigue, myalgia, edema, rash and cough."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Liver problems affected a large share of patients in the pooled safety group and were severe in some.",
+      "quote": "hepatotoxicity occurred in 41% of patients and the incidence of Grade \u2265 3 hepatotoxicity was 8%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Lung inflammation (interstitial lung disease or pneumonitis) was uncommon but sometimes severe.",
+      "quote": "ILD/pneumonitis occurred in 1.3% of patients treated with ALECENSA with 0.4% of patients experiencing Grade 3 ILD/pneumonitis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Kidney problems were reported in about one in eight patients, with rare fatal outcomes.",
+      "quote": "renal impairment occurred in 12% of patients treated with ALECENSA, including Grade \u2265 3 in 1.7% of patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Heart rate can fall; a fifth of patients with serial electrocardiograms had post-dose rates under 50 beats per minute.",
+      "quote": "had post-dose heart rates of less than 50 beats per minute (bpm)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Hemolytic anemia was recorded in the ALINA trial.",
+      "quote": "hemolytic anemia was observed in 3.1% of patients treated with ALECENSA"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Very high blood triglycerides after approval were sometimes linked to life-threatening pancreatitis.",
+      "quote": "Hypertriglyceridemia, including severe cases associated with life-threatening acute pancreatitis, has been reported in patients treated with ALECENSA in the postmarketing setting."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "The label instructs patients to swallow the capsule whole rather than opening it.",
+      "quote": "Swallow capsules whole, do not open or dissolve the contents of the capsule."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Alectinib can cause fetal harm.",
+      "quote": "ALECENSA can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "There is no human milk data, and breastfeeding is not advised during treatment or for a week after.",
+      "quote": "advise a lactating woman not to breastfeed during treatment with ALECENSA and for 1 week after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Women who could become pregnant are advised to use contraception during treatment and for five weeks after.",
+      "quote": "Advise females of reproductive potential to use effective contraception during treatment with ALECENSA and for 5 weeks after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Men with partners who could become pregnant are advised to use contraception for three months after the last dose.",
+      "quote": "advise males with female partners of reproductive potential to use effective contraception during treatment with ALECENSA and for 3 months following the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Its safety and effectiveness in children are not established.",
+      "quote": "The safety and effectiveness of ALECENSA in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "The label lists no contraindications.",
+      "quote": "CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Co-administration with posaconazole, rifampin or esomeprazole did not meaningfully change total alectinib exposure.",
+      "quote": "No clinically meaningful effect on the combined exposure of alectinib plus M4 was observed in clinical studies following co-administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Alectinib is metabolised by CYP3A4 into its major active metabolite M4.",
+      "quote": "Alectinib is metabolized by CYP3A4 to its major active metabolite M4."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Lab tests suggest alectinib and M4 inhibit the transporters P-gp and BCRP.",
+      "quote": "In vitro studies suggest that alectinib and M4 inhibit P-gp and BCRP."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "A high-fat, high-calorie meal raised combined exposure to alectinib and M4 about threefold.",
+      "quote": "A high-fat, high-calorie meal increased the combined exposure (AUC 0-inf ) of alectinib plus M4 by 3.1-fold"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Patients were told to avoid sun exposure and use broad-spectrum sunscreen after photosensitivity was reported.",
+      "quote": "Patients were advised to avoid sun exposure and to use broad-spectrum sunscreen."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Carcinogenicity studies have not been conducted.",
+      "quote": "Carcinogenicity studies with alectinib have not been conducted."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "No animal studies have examined alectinib's effect on fertility.",
+      "quote": "No studies in animals have been performed to evaluate the effect of alectinib on fertility."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Its behaviour in people with severe kidney impairment has not been studied.",
+      "quote": "The pharmacokinetics of alectinib have not been studied in patients with severe renal impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "Animal studies in young rats reported changes in growing teeth and bones.",
+      "quote": "changes in the growing teeth and bones"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42c49deb-713b-427a-9670-08af08adcffb",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Alectinib was first approved in the United States in 2015, and the label lists no contraindications.",
+      "quote": "Initial U.S. Approval: 2015"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alectinib/description/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (ChEBI description)",
+      "claim": "Alectinib is used as its hydrochloride salt for ALK-positive metastatic non-small cell lung cancer.",
+      "quote": "Used (as the hydrochloride salt) for the treatment of patients with anaplastic lymphoma kinase-positive, metastatic non-small cell lung cancer."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ALECENSA prescribing information)",
+      "claim": "The label describes alectinib as C30H34N4O2 in its hydrochloride salt form.",
+      "quote": "The molecular formula for alectinib is C 30 H 34 N 4 O 2 \u2022 HCl."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/49806720/JSON?heading=Hepatotoxicity",
+      "publisher": "PubChem, U.S. National Library of Medicine, citing LiverTox (NIDDK/NLM)",
+      "claim": "A LiverTox review rates alectinib a probable cause of clinically apparent liver injury.",
+      "quote": "Likelihood score: C (probable cause of clinically apparent liver injury)."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/49806720/JSON?heading=Hepatotoxicity",
+      "publisher": "PubChem, U.S. National Library of Medicine, citing LiverTox (NIDDK/NLM)",
+      "claim": "Published liver injury cases usually appeared within one to three months of starting alectinib.",
+      "quote": "Injury typically arose within 1 to 3 months of starting, and enzyme patterns ranged from hepatocellular to cholestatic."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Alectinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Alecensa has been studied in people with ALK-positive non-small cell lung cancer, including treatment patterns after it is used.",
+      "quote": "patient profiles, treatment patterns, and clinical outcomes among ALK-positive NSCLC patients treated with alectinib"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Alectinib%20adjuvant%20ALK-positive&pageSize=3",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A newer study follows adults who take alectinib after surgery for earlier stage ALK-positive lung cancer.",
+      "quote": "resected stage II-IIIB anaplastic lymphoma kinase (ALK)-positive non-small-cell lung cancer (NSCLC) adult patients treated with Alectinib as adjuvant therapy"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alectinib%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=alectinib",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42c49deb-713b-427a-9670-08af08adcffb",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alectinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alectinib/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/49806720/JSON?heading=Hepatotoxicity",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Alectinib",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Alectinib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Alectinib%20adjuvant%20ALK-positive&pageSize=3",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548060/",
+    "https://livertox.nlm.nih.gov/Alectinib.htm",
+    "https://www.nccih.nih.gov/health/alectinib"
+  ],
+  "gaps": [
+    "NCCIH has no alectinib page: https://www.nccih.nih.gov/health/alectinib returned HTTP 404, so no NCCIH material could be used.",
+    "The LiverTox chapter on NCBI Bookshelf (https://www.ncbi.nlm.nih.gov/books/NBK548060/) was blocked by a bot check, and the legacy livertox.nlm.nih.gov URL did not load. The same LiverTox content was read through PubChem's PUG-View record instead.",
+    "PubChem's compound summary page is script-rendered, so its data was read through PubChem REST endpoints rather than the HTML page.",
+    "MedlinePlus drug monographs were excluded because NLM treats that content as copyrighted, so this record has no patient-facing monograph source.",
+    "No MedlinePlus health topic or medical test summary for alectinib was located.",
+    "No human pregnancy or breastfeeding data exist, so those statements rest on the label and animal studies.",
+    "No effectiveness numbers (response rates, survival) are reported here because the label's clinical studies sections were not reviewed for this record.",
+    "Pediatric use is unestablished, and no pediatric trial results are cited.",
+    "Whether alectinib causes cancer in humans or affects human fertility is unstudied.",
+    "Dose amounts are deliberately omitted; the record reports only what the label states about administration, duration and dose adjustment.",
+    "The 10 recorded corpus fields for this slug were not available to this run, so no field-by-field reconciliation was possible."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what alectinib is, what it does in ALK-positive lung cancer, its common and serious side effects, its interactions, and its pregnancy and children cautions, drawing on the U.S. prescribing information plus PubChem and ClinicalTrials.gov."
+}

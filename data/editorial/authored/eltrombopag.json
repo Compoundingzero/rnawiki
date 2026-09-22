@@ -1,0 +1,207 @@
+{
+  "slug": "eltrombopag",
+  "oneLineAnswer": "A prescription tablet that raises low platelet counts, used for immune thrombocytopenia and a few other conditions.",
+  "whatItIs": "Eltrombopag is a prescription medicine taken by mouth as a tablet. Its chemical formula is C25H22N4O4, and its molecular weight is about 442.5. Doctors group it with drugs called thrombopoietin receptor agonists, and the label notes it acts on that receptor. It was first approved in the United States in 2008. More than one drugmaker sells its own version.",
+  "whatItDoes": [
+    "The U.S. label calls eltrombopag a thrombopoietin receptor agonist.",
+    "It treats thrombocytopenia, which is a shortage of platelets in the blood.",
+    "Platelets are blood cells that help your blood clot.",
+    "The label says platelet counts usually start rising within the first one to two weeks.",
+    "In immune thrombocytopenia, the aim is a count high enough to lower bleeding risk."
+  ],
+  "howPeopleUseIt": [
+    "People take it by mouth, usually once a day.",
+    "The label says to take it without a meal, or with a meal low in calcium.",
+    "Antacids, dairy foods and mineral supplements are kept 2 hours before or 4 hours after it.",
+    "In severe aplastic anemia it is given along with standard immunosuppressive therapy.",
+    "The label says not to use it to push platelet counts all the way to normal."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Label trials list anemia, nausea, fever, cough, fatigue, headache and diarrhea as the most common problems.",
+      "Anemia means a low red blood cell count.",
+      "In adults with immune thrombocytopenia, nausea and diarrhea were each recorded in about 9 percent on the drug.",
+      "A liver enzyme called ALT rose on blood tests in some people.",
+      "Rash and skin darkening were reported in an aplastic anemia treatment group."
+    ],
+    "seriousSigns": [
+      "The label's boxed warning, its most serious kind, covers harm to the liver.",
+      "It says that liver injury can be severe and may threaten life.",
+      "During hepatitis C treatment, adding eltrombopag to interferon and ribavirin may worsen liver function.",
+      "Blood clots have been reported, including clots in the vein that serves the liver.",
+      "In one myelodysplastic syndrome trial, deaths and progression to leukemia were higher on the drug.",
+      "Bleeding was the most common serious problem in the immune thrombocytopenia trials.",
+      "Cataracts, a clouding of the eye lens, developed or worsened in 7 percent of adults in those trials.",
+      "In one liver-disease trial, most clot events occurred at platelet counts above 200 x 10 9 per liter."
+    ],
+    "whoShouldAvoid": [
+      "The label says eltrombopag is not for people who have myelodysplastic syndrome.",
+      "It has not been shown safe or effective with hepatitis C antivirals used without interferon.",
+      "The label notes lower starting amounts for people with liver impairment.",
+      "It also notes lower starting amounts for people of East or Southeast Asian ancestry.",
+      "Animal studies suggest the drug can harm a developing baby.",
+      "The label asks women who could become pregnant to use effective birth control.",
+      "That applies during treatment and for 7 days after the last dose.",
+      "The label advises against breastfeeding while taking it.",
+      "The label raises clot concerns for people who already have risk factors, such as chronic liver disease."
+    ]
+  },
+  "interactions": [
+    "Antacids, dairy foods and mineral supplements can bind eltrombopag and lower how much is absorbed.",
+    "The minerals involved include iron, calcium, aluminum, magnesium, selenium and zinc.",
+      "Some other medicines can build up in the body.",
+      "The label says to watch those people for signs of excess exposure.",
+    "For one statin, rosuvastatin, a 50 percent dose cut was suggested during trials.",
+    "Eltrombopag has a strong color and can interfere with lab tests for bilirubin and creatinine.",
+    "Interactions with most HIV and hepatitis C protease inhibitors have not been evaluated."
+  ],
+  "pregnancyAndChildren": "Human pregnancy data are too few to judge the risk of birth defects or miscarriage. Animal studies showed harm at high exposures. The label advises against breastfeeding during treatment. Children 1 year and older with immune thrombocytopenia can be treated. Children 2 years and older with severe aplastic anemia may get it with standard immunosuppressive therapy. Safety is not established below age 1 for immune thrombocytopenia. It is also not established for children with hepatitis C thrombocytopenia, or for refractory aplastic anemia.",
+  "whatWeDoNotKnow": [
+    "Every clinical fact in this record comes from the drug's U.S. label, so anything the label leaves out is not covered here.",
+    "The label says human pregnancy data are too few to judge birth defect or miscarriage risk.",
+    "Interactions with most protease inhibitors for HIV and hepatitis C are untested.",
+    "The label records one myelodysplastic syndrome trial that stopped early over deaths and leukemia progression.",
+    "The label I read has no mechanism section, so how the receptor effect raises platelet counts is not explained.",
+    "The government liver-injury reference LiverTox could not be read, because its page blocked automated access.",
+    "Nothing here predicts how much your own platelet count would change.",
+    "Cost, storage, and what to do about a missed tablet are not covered by the sources read."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Eltrombopag is a thrombopoietin receptor agonist, and its first labeled use is low platelet counts in immune thrombocytopenia.",
+      "quote": "Eltrombopag is a thrombopoietin receptor agonist indicated: for the treatment of thrombocytopenia in adult and pediatric patients 1 year and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The product carries a boxed warning for potentially life-threatening liver injury.",
+      "quote": "Eltrombopag may increase the risk of severe and potentially life-threatening hepatotoxicity. Monitor hepatic function and discontinue dosing as recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The most common side effects across labeled uses are anemia, nausea, fever, raised ALT, cough, fatigue, headache and diarrhea.",
+      "quote": "the most common adverse reactions (≥ 20% in any indication) were: anemia, nausea, pyrexia, alanine aminotransferase increased, cough, fatigue, headache, and diarrhea"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Antacids, dairy and mineral supplements must be spaced away from a dose because they block absorption.",
+      "quote": "Take eltrombopag tablets at least 2 hours before or 4 hours after any medications or products containing polyvalent cations"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The drug binds polyvalent cations such as iron, calcium, magnesium and zinc.",
+      "quote": "Eltrombopag chelates polyvalent cations (such as iron, calcium, aluminum, magnesium, selenium, and zinc)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Human pregnancy data are insufficient to judge risk.",
+      "quote": "Available data from a small number of published case reports and post-marketing experience with eltrombopag use in pregnant women are insufficient"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "In one myelodysplastic syndrome trial, the death rate was higher on eltrombopag than on placebo.",
+      "quote": "The incidence of death (overall survival) was 32% (57/179) in the eltrombopag arm versus 29% (51/177) in the placebo arm"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Cataracts developed or worsened in 7 percent of adults with immune thrombocytopenia on the 50 mg dose.",
+      "quote": "cataracts developed or worsened in 15 (7%) patients who received 50 mg of eltrombopag daily"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "A clot in the liver's vein has been reported in people with chronic liver disease taking the drug.",
+      "quote": "Portal vein thrombosis has been reported in patients with chronic liver disease receiving eltrombopag"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain drug label)",
+      "claim": "The first U.S. approval for eltrombopag was in 2008.",
+      "quote": "ELTROMBOPAG tablets, for oral use Initial U.S. Approval: 2008"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain drug label)",
+      "claim": "Eltrombopag is not indicated for myelodysplastic syndrome.",
+      "quote": "Eltrombopag tablets are not indicated for the treatment of patients with myelodysplastic syndrome (MDS)."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain drug label)",
+      "claim": "The label tells people to take the tablet without a meal or with a low-calcium meal.",
+      "quote": "Take eltrombopag tablets without a meal or with a meal low in calcium"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain drug label)",
+      "claim": "Safety and effectiveness with hepatitis C antivirals used without interferon are not established.",
+      "quote": "Safety and efficacy have not been established in combination with direct-acting antiviral agents used without interferon"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain drug label)",
+      "claim": "It is approved with standard immunosuppressive therapy as first-line treatment for severe aplastic anemia from age 2.",
+      "quote": "in combination with standard immunosuppressive therapy for the first- line treatment of adult and pediatric patients 2 years and older with severe aplastic anemia"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/135449332/property/MolecularFormula,MolecularWeight/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "Eltrombopag has the formula C25H22N4O4 and a molecular weight of about 442.5.",
+      "quote": "\"MolecularFormula\": \"C25H22N4O4\", \"MolecularWeight\": \"442.5\""
+    },
+    {
+      "url": "https://medlineplus.gov/plateletdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine (public domain health topic)",
+      "claim": "A low platelet count is called thrombocytopenia.",
+      "quote": "If your blood has a low number of platelets , it is called thrombocytopenia."
+    },
+    {
+      "url": "https://medlineplus.gov/plateletdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine (public domain health topic)",
+      "claim": "Platelets are involved in clotting blood.",
+      "quote": "Platelets play a major role in blood clotting."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Eltrombopag&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "Researchers continue to run studies of eltrombopag, including in immune thrombocytopenia.",
+      "quote": "A Study of Eltrombopag and Recombinant Human Thrombopoietin In Primary Immune Thrombocytopenia"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eltrombopag%22+AND+_exists_:mechanism_of_action&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Eltrombopag&pageSize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e5fd3114-56b8-3ae3-fb03-9820a26ca4c6",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Eltrombopag",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/135449332",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/eltrombopag/cids/TXT",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/135449332/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/135449332/JSON?heading=MeSH+Pharmacological+Action",
+    "https://medlineplus.gov/plateletdisorders.html",
+    "https://medlineplus.gov/immunethrombocytopenia.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548101/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548101/?report=reader",
+    "https://www.nccih.nih.gov/health/eltrombopag"
+  ],
+  "gaps": [
+    "LiverTox on the NCBI Bookshelf (NBK548101) blocked automated access, so its liver-injury assessment is not quoted here.",
+    "NCCIH has no eltrombopag page; that URL returned 404.",
+    "MedlinePlus drug monographs are copyrighted and were not used; only the public-domain MedlinePlus platelet disorders health topic was read.",
+    "The openFDA and DailyMed records read are abbreviated labels with no mechanism-of-action or clinical pharmacology section, so the platelet-raising mechanism is grounded only in the term thrombopoietin receptor agonist.",
+    "No grounded source was fetched for brand-name identity, because the PubChem compound page rendered only its title.",
+    "The MedlinePlus immune thrombocytopenia page returned 404, so no health-topic description of that condition was cited.",
+    "No source read covers cost, storage, or missed doses.",
+    "No source read gives expected effects for an individual reader."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what eltrombopag is, how it is taken, its labeled uses for low platelet counts, and the liver, clot and other safety signals recorded in U.S. labeling, with gaps noted where sources could not be read."
+}

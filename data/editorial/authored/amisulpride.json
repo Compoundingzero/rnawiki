@@ -1,0 +1,200 @@
+{
+  "slug": "amisulpride",
+  "oneLineAnswer": "A dopamine-blocking medicine given in the United States as a single intravenous dose for nausea after surgery.",
+  "whatItIs": "Amisulpride is a medicine that blocks two dopamine receptor types, called D2 and D3. Dopamine is a chemical messenger your body uses for movement, mood, and nausea. In the United States the approved form, sold as Barhemsys, is a clear, colorless liquid given into a vein. Its chemical formula is C17H27N3O4S and its molecular weight is 369.48. The same drug is sold in Europe as an oral antipsychotic tablet. That tablet form is not approved in the United States.",
+  "whatItDoes": [
+    "Amisulpride blocks dopamine signals in the part of the brain that triggers vomiting.",
+    "The US label approves it to prevent and to treat nausea and vomiting after surgery in adults.",
+    "It can be given alone or alongside a different class of anti-nausea medicine.",
+    "The label reports no meaningful activity at receptor types other than D2 and D3.",
+    "Outside the United States, oral amisulpride is used to treat schizophrenia, a condition with delusions and hallucinations."
+  ],
+  "howPeopleUseIt": [
+    "In the United States a clinician gives it around surgery time, not for you to take at home.",
+    "The label describes a single dose infused into a vein over one to two minutes.",
+    "Outside the United States, people take oral amisulpride every day for weeks or months at a time.",
+    "Researchers have also studied amisulpride for excessive drooling caused by the antipsychotic clozapine.",
+    "Some trials have tested it combined with olanzapine in people with acute schizophrenia."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In trials, more people who received it had raised blood prolactin, a hormone, than those given a placebo.",
+      "Chills, low blood potassium, and a drop in blood pressure during the procedure were also reported.",
+      "Abdominal bloating was reported more often than with placebo.",
+      "When it was used to treat existing nausea, pain at the infusion site was the main complaint.",
+      "With long-term oral use abroad, drowsiness, insomnia, restlessness, and anxiety have been reported.",
+      "The label reports no clinical consequences from the raised prolactin levels seen in trials."
+    ],
+    "seriousSigns": [
+      "Amisulpride stretches the QT interval, a timing measure on the heart's electrical trace.",
+      "That effect grows with higher doses and higher drug levels in the blood, the label says.",
+      "Long-term oral use has been linked to torsades de pointes and ventricular tachycardia, two dangerous heart rhythms.",
+      "Neuroleptic malignant syndrome, a severe reaction with fever and stiff muscles, has been reported.",
+      "Agranulocytosis, a sharp fall in infection-fighting white blood cells, has been reported with long-term oral use.",
+      "Allergic reactions including angioedema, hives, and hypersensitivity have been reported.",
+      "Movement problems such as dystonia and extrapyramidal disorder, plus seizures, have been reported.",
+      "Slow heart rate, low blood pressure, confusion, and raised liver enzymes are also listed."
+    ],
+    "whoShouldAvoid": [
+      "The label says not to give it to anyone with a known allergy to amisulpride.",
+      "It should be avoided in people born with a heart rhythm condition called congenital long QT syndrome.",
+      "The label says to avoid using it together with droperidol, another anti-nausea drug.",
+      "Extra heart monitoring is advised for people with existing arrhythmias or conduction problems.",
+      "The same applies to low potassium or magnesium, heart failure, or other QT-prolonging medicines.",
+      "Levodopa should not be used with amisulpride because the two work against each other."
+    ]
+  },
+  "interactions": [
+    "Dopamine agonists such as levodopa oppose amisulpride, so the label says to avoid the pair.",
+    "Other medicines that prolong the QT interval, such as ondansetron, can add to that effect.",
+    "The label says to avoid droperidol with amisulpride for the same reason.",
+    "The label recommends heart monitoring when amisulpride is given with other QT-prolonging drugs."
+  ],
+  "pregnancyAndChildren": "Data on amisulpride in pregnancy are too limited to show a risk of birth defects or miscarriage. In animal studies, oral amisulpride given to pregnant rats and rabbits produced no harm to the developing fetus. Amisulpride passes into breast milk. One report found milk levels 11 to 20 times higher than blood levels in people taking oral doses. The label suggests a breastfeeding mother may pump and discard milk for two days after a dose. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "The US label covers only single intravenous doses, so long-term oral effects rest on voluntary reports.",
+    "No one has established whether amisulpride is safe or effective in children.",
+    "Whether the raised prolactin levels matter over time is unclear; trials reported no clinical consequences.",
+    "Data in pregnancy are too limited to establish a risk to a developing baby.",
+    "The single-dose form has never been compared head to head with every other anti-nausea medicine."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Amisulpride is a selective dopamine-2 and dopamine-3 receptor antagonist.",
+      "quote": "Amisulpride is a selective dopamine-2 (D 2 ) and dopamine-3 (D 3 ) receptor antagonist."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "The US-approved use is prevention and treatment of postoperative nausea and vomiting in adults.",
+      "quote": "BARHEMSYS ® is indicated in adults for: prevention of postoperative nausea and vomiting (PONV), either alone or in combination with an antiemetic"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "The drug comes as a single-dose vial injection of 2.5 mg/mL.",
+      "quote": "Injection: 5 mg/2 mL (2.5 mg/mL) or 10 mg/4 mL (2.5 mg/mL) in a single-dose vial."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "QT prolongation is dose and concentration dependent, and the label says to avoid the drug in congenital long QT syndrome and with droperidol.",
+      "quote": "QT Prolongation : Occurs in a dose- and concentration-dependent manner. Avoid use in patients with congenital long QT syndrome and in patients taking droperidol."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Known hypersensitivity to amisulpride is the listed contraindication.",
+      "quote": "BARHEMSYS is contraindicated in patients with known hypersensitivity to amisulpride"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "The most common side effects in trials were raised prolactin, chills, low potassium, procedural hypotension, and abdominal distension.",
+      "quote": "Most common adverse reactions (≥ 2%) are: Prevention of PONV : increased blood prolactin concentrations, chills, hypokalemia, procedural hypotension, and abdominal distension."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Serious reactions such as agranulocytosis and neuroleptic malignant syndrome come from voluntary reports of chronic oral use outside the United States.",
+      "quote": "The following adverse reactions have been identified during post-approval chronic oral use of amisulpride outside of the United States"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Levodopa should be avoided, and other QT-prolonging drugs need heart monitoring.",
+      "quote": "Reciprocal antagonism of effects occurs between dopamine agonists (e.g., levodopa) and BARHEMSYS. Avoid using levodopa with BARHEMSYS."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Pregnancy data are too limited to establish a risk of birth defects, miscarriage, or poor maternal or fetal outcomes.",
+      "quote": "Available data with amisulpride use in pregnant women are insufficient to establish a drug associated risk of major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Amisulpride passes into human milk at levels higher than plasma, and a mother may pump and discard milk for 48 hours.",
+      "quote": "A lactating woman may pump and discard breast milk for 48 hours after BARHEMSYS administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "Safety and effectiveness in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration (BARHEMSYS label, Acacia Pharma)",
+      "claim": "The chemical formula is C17H27N3O4S with a molecular weight of 369.48.",
+      "quote": "The empirical formula is C 17 H 27 N 3 O 4 S representing a molecular weight of 369.48."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amisulpride",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Only one amisulpride label is published in DailyMed, an injectable product under the trade name Barhemsys.",
+      "quote": "BARHEMSYS (AMISULPRIDE) INJECTION, SOLUTION [ACACIA PHARMA LTD]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amisulpride/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem records the same formula C17H27N3O4S and a molecular weight close to 369.5, CID 2159.",
+      "quote": "\"CID\": 2159, \"MolecularFormula\": \"C17H27N3O4S\", \"MolecularWeight\": \"369.5\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2159/JSON?heading=Drug+Indication",
+      "publisher": "PubChem, US National Library of Medicine (DrugBank-sourced indication entry)",
+      "claim": "Oral amisulpride is indicated abroad for acute and chronic schizophrenia, while the intravenous form is for postoperative nausea and vomiting.",
+      "quote": "Oral amisulpride is indicated for the treatment of acute and chronic schizophrenic disorders"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2159/JSON?heading=LiverTox+Summary",
+      "publisher": "PubChem, US National Library of Medicine (LiverTox summary, NIDDK)",
+      "claim": "LiverTox reports that single intravenous doses have not been linked to liver enzyme rises or apparent liver injury.",
+      "quote": "Amisulpride when given in single doses intravenously has not been associated with serum aminotransferase elevations"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Amisulpride&pageSize=5",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "A registered randomized trial tested adding amisulpride to olanzapine in acutely ill schizophrenia patients.",
+      "quote": "A Randomized Double-blind Controlled Trial to Assess the Benefits of Olanzapine and Amisulpride Combination Treatment in Acutely Ill Schizophrenia Patients"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Amisulpride&pageSize=5",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "A separate registered trial compared amisulpride with other benzamides for clozapine-induced hypersalivation.",
+      "quote": "Comparison of Benzamide Derivates (Amisulpride, Moclobemide and Tiapride) as Treatment of Clozapine-induced Hypersalivation"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amisulpride%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22BARHEMSYS%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22amisulpride%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amisulpride",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=amisulpride",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amisulpride/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2159/JSON?heading=Drug+Indication",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2159/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2159/JSON?heading=LiverTox+Summary",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Amisulpride&pageSize=5",
+    "https://www.nccih.nih.gov/health/amisulpride",
+    "https://medlineplus.gov/amisulpride.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK605694/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK605694/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/?term=amisulpride"
+  ],
+  "gaps": [
+    "NCCIH has no amisulpride page; that URL returned 404, so no NCCIH content is cited.",
+    "MedlinePlus has no amisulpride health topic page; that URL returned 404. MedlinePlus drug monographs were excluded on licence grounds and are not cited.",
+    "The LiverTox amisulpride chapter on NCBI Bookshelf was blocked by a bot check, so its liver summary was read through PubChem's served copy instead.",
+    "DailyMed publishes only one amisulpride label, the injectable US product, so every US label fact here traces to a single product and source family.",
+    "No dose amounts appear in this record by design; it reports what labeling and trials recorded rather than a personal protocol.",
+    "Frequency figures for the serious reactions are not available, because they come from voluntary postmarketing reports of uncertain size.",
+    "No head-to-head comparison of amisulpride against every other anti-nausea medicine could be grounded from the fetched sources.",
+    "European oral labeling was not fetched, so the oral schizophrenia indication rests on PubChem's DrugBank and LiverTox-derived entries rather than a primary regulator label."
+  ],
+  "confidence": "high",
+  "summary": "Grounds amisulpride's identity and dopamine D2/D3 mechanism, its US-approved single-dose use for postoperative nausea and vomiting, its oral antipsychotic use abroad, and its side-effect, interaction, pregnancy, and children data in openFDA and DailyMed labeling plus PubChem and ClinicalTrials.gov."
+}

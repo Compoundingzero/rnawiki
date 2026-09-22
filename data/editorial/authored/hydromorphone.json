@@ -1,0 +1,313 @@
+{
+  "slug": "hydromorphone",
+  "oneLineAnswer": "A strong prescription opioid, available as tablets, liquid or injections, for severe pain other medicines have not controlled.",
+  "whatItIs": "Hydromorphone is a prescription opioid, a medicine that attaches to opioid receptors in the body. A receptor is a docking point on a cell that a chemical can switch on. The drug label describes it as a hydrogenated ketone of morphine, which means it is a modified form of morphine. The United States approved it in 1984. It is a controlled medicine, and labels sold in the United States mark it CII. Labels warn that it can be abused and misused, which can lead to overdose and death.",
+  "whatItDoes": [
+    "It eases pain by switching on opioid receptors, mainly the mu-opioid receptor.",
+    "Doctors call it a full opioid agonist, which means it fully activates those receptors.",
+    "The label says its main therapeutic action is analgesia, the relief of pain.",
+    "It is meant only for pain severe enough to need an opioid."
+  ],
+  "howPeopleUseIt": [
+    "Doctors prescribe it when pain is severe enough to need an opioid and other treatments have not worked or were not tolerated.",
+    "It comes as tablets and as an oral liquid that you swallow.",
+    "Hospitals also give it as an injection into a vein, a muscle, or under the skin.",
+    "The label notes that many acute pain conditions need no more than a few days of an opioid.",
+    "Studies in the public trial registry have tested it for pain after heart surgery and chest surgery."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The label lists lightheadedness, dizziness, sedation, nausea, vomiting, sweating, flushing, dry mouth, and itching as the most common effects.",
+      "Euphoria and dysphoria, a low or uneasy mood, are also listed.",
+      "Less frequent effects include constipation, headache, blurred or double vision, and trouble passing urine.",
+      "The medication guide tells patients about constipation, nausea, sleepiness, vomiting, tiredness, headache, dizziness, and belly pain."
+    ],
+    "seriousSigns": [
+      "Slow or shallow breathing is the main danger; the label calls this respiratory depression.",
+      "The label lists respiratory arrest, circulatory depression, shock, and cardiac arrest as serious reactions.",
+      "Combining it with alcohol, benzodiazepines, or other depressants can cause deep sedation, coma, and death.",
+      "A medication guide flags trouble breathing, chest pain, and swelling of the face, tongue, or throat.",
+      "Serotonin syndrome, a serious reaction, has been reported when opioids are taken with other serotonin-raising drugs.",
+      "Adrenal insufficiency and severe allergic reactions called anaphylaxis have been reported after the drug reached the market.",
+      "Long-term opioid use has been linked to lower sex hormones and to increased pain sensitivity (hyperalgesia)."
+    ],
+    "whoShouldAvoid": [
+      "People whose breathing is already seriously slowed.",
+      "People with acute or severe asthma that is not being monitored or lacks resuscitation equipment.",
+      "Anyone with a known or suspected bowel blockage, including paralytic ileus.",
+      "Anyone allergic to hydromorphone or to medicines that contain sulfites.",
+      "People taking an MAOI antidepressant, or who stopped one in the past 14 days.",
+      "Older adults, who may be more sensitive to the drug.",
+      "People with liver or kidney problems, whose bodies handle the drug differently.",
+      "Children, because the safety and effectiveness have not been established."
+    ]
+  },
+  "interactions": [
+    "Alcohol, benzodiazepines, and other central nervous system depressants: risk of profound sedation, breathing problems, coma, and death.",
+    "Serotonergic drugs, including some antidepressants: serotonin syndrome has been reported with combined use.",
+    "MAOIs, such as phenelzine, tranylcypromine, and linezolid: combined use is not recommended.",
+    "Mixed agonist or partial agonist opioids, such as buprenorphine, nalbuphine, pentazocine, and butorphanol: these may blunt the pain relief or trigger withdrawal.",
+    "Muscle relaxants: hydromorphone can add to their effect and increase breathing depression.",
+    "Diuretics: opioids can make these medicines work less well.",
+    "Anticholinergic drugs: combined use may raise the risk of urine retention and severe constipation.",
+    "Prescription or over-the-counter medicines, vitamins, and herbal supplements can also interact, so the medication guide asks patients to tell their provider about all of them."
+  ],
+  "pregnancyAndChildren": "The label says there are no available human data on whether hydromorphone raises the chance of major birth defects or miscarriage. Animal studies at high doses did show harm, and the label advises pregnant women about a possible risk to the fetus. Long use during pregnancy can cause withdrawal symptoms in a newborn, a condition that can be life-threatening if it is not recognized and treated. Some hydromorphone passes into breast milk, and the label says to watch a breastfed baby for extra sleepiness and slow breathing. Opioids used for a long time may lower fertility in women and men, and it is unknown whether that reverses. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "No human studies show whether hydromorphone raises the risk of birth defects or miscarriage.",
+    "Safety and effectiveness in children have not been established.",
+    "It is not known whether opioid-related fertility problems go away after the medicine is stopped.",
+    "The label warns that side-effect rates from one trial cannot be compared with rates for another drug, so the true rates for hydromorphone are uncertain.",
+    "The sources fetched for this record contain no head-to-head test of hydromorphone against other opioids for safety.",
+    "The label does not describe long-term outcomes for people who take it for months or years."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label identifies hydromorphone hydrochloride as a modified form of morphine and an opioid agonist.",
+      "quote": "Hydromorphone hydrochloride, a hydrogenated ketone of morphine, is an opioid agonist."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The approved use is pain severe enough to require an opioid, when other treatments are inadequate.",
+      "quote": "are indicated for the management of pain severe enough to require an opioid analgesic and for which alternative treatments are inadequate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Hydromorphone is a full opioid agonist that mainly targets the mu-opioid receptor.",
+      "quote": "Hydromorphone is a full opioid agonist and is relatively selective for the mu-opioid receptor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The main medical effect of the drug is pain relief.",
+      "quote": "The principal therapeutic action of hydromorphone is analgesia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The boxed warning states the drug carries risks of addiction, abuse, and misuse that can be fatal.",
+      "quote": "exposes users to risks of addiction, abuse, and misuse, which can lead to overdose and death"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Dangerous slowing of breathing can happen, especially when treatment starts or the dose is raised.",
+      "quote": "Serious, life-threatening, or fatal respiratory depression may occur, especially upon initiation or following a dosage increase."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Mixing opioids with alcohol or other depressants of the central nervous system can be deadly.",
+      "quote": "Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The most common side effects are listed by the label.",
+      "quote": "The most common adverse effects are lightheadedness, dizziness, sedation, nausea, vomiting, sweating, flushing, dysphoria, euphoria, dry mouth, and pruritus."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Serious reactions include breathing stops, circulatory collapse, shock, and cardiac arrest.",
+      "quote": "include respiratory depression and apnea and, to a lesser degree, circulatory depression, respiratory arrest, shock, and cardiac arrest"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "A blocked or suspected blocked bowel is listed as a reason not to use the drug.",
+      "quote": "Known or suspected gastrointestinal obstruction, including paralytic ileus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label states there are no human pregnancy data on birth defects or miscarriage risk.",
+      "quote": "There are no available data with hydromorphone hydrochloride in pregnant women to inform a drug-associated risk for major birth defects and miscarriage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "The safety and effectiveness of hydromorphone hydrochloride in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Long-term opioid use may reduce fertility in both women and men.",
+      "quote": "Use of opioids for an extended period of time may cause reduced fertility in females and males of reproductive potential."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Stopping the drug suddenly in a dependent person can cause serious withdrawal, uncontrolled pain, and suicide.",
+      "quote": "rapid discontinuation of opioid analgesics has resulted in serious withdrawal symptoms, uncontrolled pain, and suicide"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Combining the drug with an MAOI antidepressant is not recommended, including within 14 days after stopping one.",
+      "quote": "not recommended for patients taking MAOIs or within 14 days of stopping such treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Combined use with other serotonin-raising drugs may cause serotonin syndrome.",
+      "quote": "Concomitant use may result in serotonin syndrome."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Muscle relaxants can add to the breathing risk of hydromorphone.",
+      "quote": "Hydromorphone may enhance the neuromuscular blocking action of skeletal muscle relaxants and produce an increased degree of respiratory depression."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Anticholinergic medicines raise the chance of urine retention and severe constipation.",
+      "quote": "The concomitant use of anticholinergic drugs may increase risk of urinary retention and/or severe constipation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Opioids can weaken the effect of diuretics.",
+      "quote": "Opioids can reduce the efficacy of diuretics by inducing the release of antidiuretic hormone."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Adults aged 65 and over may be more sensitive to the drug's effects.",
+      "quote": "Elderly patients (aged 65 years or older) may have increased sensitivity to hydromorphone."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Many short-term pain problems need only a few days of opioid treatment.",
+      "quote": "require no more than a few days of an opioid analgesic"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Adrenal insufficiency has been reported with opioid use, often after more than a month.",
+      "quote": "Cases of adrenal insufficiency have been reported with opioid use, more often following greater than one month of use."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Severe allergic reactions have been reported with products containing hydromorphone.",
+      "quote": "Anaphylaxis has been reported with ingredients contained in hydromorphone hydrochloride oral solution or hydromorphone hydrochloride tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Increased pain sensitivity has been reported with opioid therapy of any length.",
+      "quote": "Cases of hyperalgesia and allodynia have been reported with opioid therapy of any duration"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9eebd88a-5632-460f-b7b6-26c8a180540d",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "A separate injectable product exists and is given into a vein, a muscle, or under the skin; it dates to January 1984 and is labelled CII.",
+      "quote": "(hydromorphone hydrochloride) for intravenous, intramuscular, or subcutaneous use, CII Initial U.S. Approval: January 1984"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9eebd88a-5632-460f-b7b6-26c8a180540d",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The injectable label gives the same approved use as the oral products.",
+      "quote": "DILAUDID INJECTION is indicated for the management of pain severe enough to require an opioid analgesic and for which alternate treatments are inadequate."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "The oral tablets and oral liquid are labelled for oral use, marked CII, with initial United States approval in 1984.",
+      "quote": "HYDROMORPHONE HYDROCHLORIDE tablets and HYDROMORPHONE HYDROCHLORIDE oral solution, for oral use CII"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "The patient-facing guide lists constipation, nausea, sleepiness, vomiting, tiredness, headache, dizziness, and belly pain.",
+      "quote": "constipation, nausea, sleepiness, vomiting, tiredness, headache, dizziness, abdominal pain"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "The guide tells people not to take the medicine if they have severe asthma or other lung problems.",
+      "quote": "severe asthma, trouble breathing, or other lung problems"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "The guide also names bowel blockage or narrowing of the stomach or intestines as a reason not to take it.",
+      "quote": "a bowel blockage or have narrowing of the stomach or intestines"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "The guide lists breathing trouble, chest pain, and face or throat swelling among warning signs.",
+      "quote": "trouble breathing, shortness of breath, fast heartbeat, chest pain, swelling of your face, tongue, or throat"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+      "publisher": "DailyMed, U.S. National Library of Medicine (FDA-approved Medication Guide)",
+      "claim": "Hydromorphone passes into breast milk and may harm a breastfed baby.",
+      "quote": "pass into breast milk and may harm your baby"
+    },
+    {
+      "url": "https://medlineplus.gov/safeopioiduse.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "People who take opioids are at risk of opioid use disorder and overdose.",
+      "quote": "people who take opioids are at risk for opioid use disorder (OUD) and overdose"
+    },
+    {
+      "url": "https://medlineplus.gov/safeopioiduse.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Opioids cause drowsiness and make driving or using machinery unsafe.",
+      "quote": "Opioids can cause drowsiness. Do not drive or use any machinery that may injure you"
+    },
+    {
+      "url": "https://medlineplus.gov/painrelievers.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Opioids, also called narcotics, are the most powerful pain relievers and are used for moderate to severe pain.",
+      "quote": "The most powerful pain relievers are opioids, sometimes called narcotics."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Hydromorphone&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Registered studies have compared hydromorphone with morphine for pain after surgery.",
+      "quote": "Postoperative Pain Therapy With Hydromorphone TCI-PCA vs. Morphine PCA"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydromorphone/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records the molecular formula C17H19NO3 and a molecular weight of 285.34 for hydromorphone.",
+      "quote": "MolecularFormula\": \"C17H19NO3\", \"MolecularWeight\": \"285.34"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Hydromorphone%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Hydromorphone&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydromorphone/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=hydromorphone&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9eebd88a-5632-460f-b7b6-26c8a180540d",
+    "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=2f1449bd-2b80-4383-9336-df9940e87a50",
+    "https://medlineplus.gov/safeopioiduse.html",
+    "https://medlineplus.gov/painrelievers.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548775/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548775/?report=classic",
+    "https://www.nccih.nih.gov/health/hydromorphone",
+    "https://medlineplus.gov/opioidpainrelievers.html"
+  ],
+  "gaps": [
+    "The LiverTox entry on hydromorphone (https://www.ncbi.nlm.nih.gov/books/NBK548775/) was blocked by a browser check on two attempts, so this record makes no claim about liver injury risk.",
+    "Attempts to reach an archived copy of the LiverTox page failed because the Internet Archive search service returned an error.",
+    "NCCIH has no hydromorphone page (https://www.nccih.nih.gov/health/hydromorphone returned 404).",
+    "The MedlinePlus drug monograph for hydromorphone was not fetched or used, because NLM states those monographs are copyrighted. The general MedlinePlus URL tried for opioid pain relievers returned 404.",
+    "Extended-release tablets and suppository forms are mentioned in some third-party pages but could not be grounded in a fetched source here.",
+    "No dose information is included by design; the record reports only what labels state about the drug's use and risks.",
+    "Only one registered-study title was used for the trial-registry evidence, so it shows that research exists, not what the trials found."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what hydromorphone is, how it is used for severe pain, its common and serious side effects, who should avoid it, its main interactions, and open questions, drawn from United States drug labeling and public health sources."
+}

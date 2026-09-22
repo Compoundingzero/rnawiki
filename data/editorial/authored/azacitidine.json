@@ -1,0 +1,195 @@
+{
+  "slug": "azacitidine",
+  "oneLineAnswer": "A prescription cancer drug, given as an injection or a tablet, for bone marrow and blood cancers.",
+  "whatItIs": "Azacitidine is a prescription medicine for certain cancers of the blood and bone marrow. Drug labels place it in a group called nucleoside metabolic inhibitors. It is not a supplement and you cannot buy it over the counter. It comes two ways. One is a powder that a clinic mixes and gives as a shot under the skin or as a drip into a vein. The other is a tablet you swallow. The two forms are not interchangeable, because they are used for different conditions.",
+  "whatItDoes": [
+    "Doctors use the injected form to treat myelodysplastic syndromes, a group of disorders where the bone marrow makes faulty blood cells.",
+    "Doctors use the tablet form after treatment for acute myeloid leukemia, a cancer of white blood cells, when the first remission is reached.",
+    "Azacitidine is thought to work by removing small chemical tags from DNA, which may switch silenced genes back on.",
+    "It also damages cells that divide quickly, including some cancer cells, while resting cells are less affected.",
+    "Treatment usually continues as long as your doctor sees a benefit from it."
+  ],
+  "howPeopleUseIt": [
+    "The injected form is given by a nurse, often in a clinic, on a repeating cycle of treatment days followed by rest days.",
+    "The tablet form is swallowed at home once a day for part of each 28-day cycle.",
+    "Blood counts are checked regularly during treatment, because azacitidine can lower them.",
+    "Azacitidine is used alongside other care, not as something you manage on your own."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nausea and vomiting are among the most frequently reported problems.",
+      "Low red blood cells, called anemia, which can leave you tired and short of breath.",
+      "Low platelets, which are the cell fragments that help blood clot, so you may bruise or bleed more easily.",
+      "Low white blood cells, the cells that fight infection.",
+      "Diarrhea or constipation.",
+      "Fever.",
+      "Loss of appetite.",
+      "The injected form often leaves redness, bruising or soreness where the needle went in.",
+      "Dizziness, headache or joint aches.",
+      "Mouth sores or a dry mouth."
+    ],
+    "seriousSigns": [
+      "Very low blood counts, which raise the risk of serious infection and bleeding.",
+      "Fever while white blood cells are low can point to a dangerous infection and needs medical attention.",
+      "Tumor lysis syndrome, where waste from dying cancer cells builds up faster than the body can clear it.",
+      "Liver injury, with the risk higher in people who already have liver disease.",
+      "Kidney problems, because azacitidine and its breakdown products leave the body through the kidneys.",
+      "Infections such as pneumonia, which were reported in trials.",
+      "Harm to a developing baby if taken during pregnancy."
+    ],
+    "whoShouldAvoid": [
+      "People with advanced malignant tumors of the liver, because the label lists this as a contraindication.",
+      "Anyone with a known allergy to azacitidine or to mannitol, a filler used in the injected product.",
+      "Pregnant women, because azacitidine can harm a fetus.",
+      "People who are breastfeeding, because labels advise stopping during treatment and for one week after the last dose.",
+      "Nobody should swap the tablet form for the injected form or the reverse, because the dosing and schedules differ."
+    ]
+  },
+  "interactions": [
+    "No formal clinical studies of azacitidine interacting with other medicines have been done.",
+    "Laboratory tests suggest azacitidine does not block the liver enzymes that clear many other drugs.",
+    "The same tests suggest it does not switch on those liver enzymes either.",
+    "In cell studies azacitidine was neither moved nor blocked by P-glycoprotein, a pump that ejects some drugs from cells.",
+    "Because formal interaction studies are missing, your pharmacist or doctor is the right person to check your other medicines."
+  ],
+  "pregnancyAndChildren": "Azacitidine can harm a developing baby. Labels state that there are no data on its use in pregnant women, but animal studies found birth defects and pregnancy loss. Labels advise pregnant women about the risk. Women and men are told to use effective contraception during treatment and for some months after. Pregnancy status is checked before treatment starts. People should not breastfeed during treatment or for one week after the last dose. Safety and effectiveness in children with myelodysplastic syndromes have not been established.",
+  "whatWeDoNotKnow": [
+    "No human data exist on azacitidine use during pregnancy, so the real-world risk to a fetus is unknown.",
+    "It is not known whether azacitidine passes into breast milk, or what it would do to a nursing infant.",
+    "The precise way azacitidine helps in myelodysplastic syndromes is described in labels as believed rather than proven.",
+    "No formal studies have looked for interactions between azacitidine and other medicines in people.",
+    "Animal data hint that azacitidine could affect fertility in men or women, but human effects are not established.",
+    "The public labels do not report patient-reported quality of life or effects beyond the trial periods.",
+    "Public-domain sources have no beginner-level guidance on what to expect emotionally during treatment."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The injected product contains azacitidine and belongs to the nucleoside metabolic inhibitor class.",
+      "quote": "Azacitidine for injection contains azacitidine, which is a nucleoside metabolic inhibitor."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The finished injected product is supplied for either subcutaneous injection or intravenous infusion.",
+      "quote": "supplied in a sterile form for reconstitution as a suspension for subcutaneous injection or reconstitution as a solution with further dilution for intravenous infusion"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The injected form treats several myelodysplastic syndrome subtypes in adults.",
+      "quote": "indicated for treatment of adult patients with the following French-American-British (FAB) myelodysplastic syndrome subtypes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Azacitidine is thought to work by hypomethylating DNA and directly killing abnormal marrow cells.",
+      "quote": "believed to exert its antineoplastic effects by causing hypomethylation of DNA and direct cytotoxicity on abnormal hematopoietic cells in the bone marrow"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The most commonly reported adverse reactions in MDS trials include nausea, anemia, vomiting and injection site redness.",
+      "quote": "nausea, anemia, thrombocytopenia, vomiting, pyrexia, leukopenia, diarrhea, injection site erythema, constipation, neutropenia, ecchymosis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Advanced malignant liver tumors are listed as a contraindication to azacitidine.",
+      "quote": "Azacitidine is contraindicated in patients with advanced malignant hepatic tumors"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "No formal clinical drug interaction studies have been conducted for azacitidine.",
+      "quote": "No formal clinical drug interaction studies with azacitidine have been conducted."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Labels advise against breastfeeding during treatment and for one week after the last dose.",
+      "quote": "advise patients not to breastfeed during treatment with Azacitidine and for 1 week after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Onureg%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The tablets are used as continued treatment for adults with acute myeloid leukemia in first remission.",
+      "quote": "indicated for continued treatment of adult patients with acute myeloid leukemia who achieved first complete remission"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Onureg%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Common tablet side effects include nausea, vomiting, diarrhea, fatigue and constipation.",
+      "quote": "most common (≥ 10%) adverse reactions were nausea, vomiting, diarrhea, fatigue/asthenia, constipation, upper respiratory tract infection, pneumonia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Onureg%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Swapping between the oral and injected forms is dangerous because doses and schedules differ.",
+      "quote": "Do not substitute ONUREG for intravenous or subcutaneous azacitidine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Onureg%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "New or worsening severe neutropenia and thrombocytopenia occurred in a substantial share of tablet-treated patients.",
+      "quote": "New or worsening Grade 3 or 4 neutropenia and thrombocytopenia occurred in 49% and 22% of patients"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/azacitidine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, National Library of Medicine",
+      "claim": "PubChem records azacitidine with the molecular formula C8H12N4O5.",
+      "quote": "\"MolecularFormula\": \"C8H12N4O5\""
+    },
+    {
+      "url": "https://medlineplus.gov/myelodysplasticsyndromes.html",
+      "publisher": "MedlinePlus, National Library of Medicine",
+      "claim": "In myelodysplastic syndromes the bone marrow stem cells fail to mature, so healthy blood cells run short.",
+      "quote": "the stem cells do not mature into healthy blood cells. Many of them die in the bone marrow"
+    },
+    {
+      "url": "https://medlineplus.gov/myelodysplasticsyndromes.html",
+      "publisher": "MedlinePlus, National Library of Medicine",
+      "claim": "Having too few healthy blood cells can lead to infection, anemia or easy bleeding.",
+      "quote": "you do not have enough healthy cells, which can lead to infection, anemia, or easy bleeding"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Azacitidine&query.cond=myelodysplastic&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,PrimaryCompletionDate",
+      "publisher": "ClinicalTrials.gov, National Library of Medicine",
+      "claim": "Azacitidine is studied in combination with other drugs in people with high risk myelodysplastic syndromes.",
+      "quote": "A Safety and Efficacy Study of Pracinostat and Azacitidine in Patients With High Risk Myelodysplastic Syndromes"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=azacitidine",
+      "publisher": "DailyMed, National Library of Medicine",
+      "claim": "Many manufacturers market injectable azacitidine products under the same generic name.",
+      "quote": "SEARCH RESULTS for: azacitidine (27 results)"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Azacitidine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Onureg%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=azacitidine",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Azacitidine",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/azacitidine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Azacitidine&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Azacitidine&query.cond=myelodysplastic&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,PrimaryCompletionDate",
+    "https://medlineplus.gov/myelodysplasticsyndromes.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548363/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548851/",
+    "https://www.nccih.nih.gov/health/azacitidine"
+  ],
+  "gaps": [
+    "NCCIH has no azacitidine page; the URL returned a 404, so no NCCIH content is cited.",
+    "LiverTox on the NCBI Bookshelf was attempted at two URLs and blocked by a browser verification check, so its liver-injury content is not cited even though the page exists.",
+    "No dose, schedule or personal protocol is included, by design, because this is a beginner reference rather than advice.",
+    "No human pregnancy data exist, so the fetal risk in people cannot be stated as a number.",
+    "Whether azacitidine enters breast milk is unstated in the public labels.",
+    "No formal human drug interaction studies exist, so the interaction section reports only laboratory findings.",
+    "Pediatric safety and effectiveness for myelodysplastic syndromes are not established, so no child-specific guidance can be given.",
+    "Public-domain sources do not cover cost, access, or patient experience, so those are absent.",
+    "MedlinePlus drug monographs were excluded on purpose because NLM states they are copyrighted third-party content."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what azacitidine is, how its two forms are used, its side effects and its data gaps."
+}

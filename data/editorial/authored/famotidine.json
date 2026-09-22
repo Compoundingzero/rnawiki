@@ -1,0 +1,201 @@
+{
+  "slug": "famotidine",
+  "oneLineAnswer": "Famotidine is an acid reducer sold by prescription and over the counter for heartburn, ulcers and reflux.",
+  "whatItIs": "Famotidine is an acid reducer. It is sold both by prescription and over the counter. It belongs to a drug group called histamine-2 receptor antagonists, often shortened to H2 blockers. The label lists its chemical formula as C8H15N7O2S3 and its molecular weight as 337.45.",
+  "whatItDoes": [
+    "It lowers how much acid your stomach makes.",
+    "It blocks histamine-2 receptors, which cuts both the strength and the volume of stomach acid.",
+    "Prescription forms are approved for stomach ulcers, duodenal ulcers, reflux disease, and rare acid-overproduction conditions.",
+    "Over-the-counter tablets are meant for heartburn caused by acid indigestion and sour stomach.",
+    "The over-the-counter label says a tablet taken before trigger foods or drinks can prevent heartburn."
+  ],
+  "howPeopleUseIt": [
+    "Many people take one occasionally for heartburn after a heavy, spicy or fatty meal, or after alcohol.",
+    "Others take it on a schedule, prescribed by a clinician, while an ulcer or reflux disease is being treated.",
+    "The over-the-counter label caps adults at two tablets in 24 hours and says children under 12 should ask a doctor.",
+    "Prescription tablets are approved for people weighing 40 kg or more, including children in that weight range.",
+    "People who took ranitidine before 2020 often moved to famotidine after the FDA pulled ranitidine from the market."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In trials, the most common reactions were headache, dizziness, constipation and diarrhea.",
+      "Headache, dizziness and constipation each showed up in at least 1% of people given famotidine.",
+      "Less common trial reports included nausea, vomiting, fatigue, dry mouth and muscle aches.",
+      "Approved labels also list rare reports of liver enzyme rises, low platelets and skin itching, gathered after the drug reached the market."
+    ],
+    "seriousSigns": [
+      "The label warns that confusion, hallucinations, agitation and seizures have been reported, mainly in older adults and people with kidney problems.",
+      "Rare postmarketing reports include a severe allergic reaction called anaphylaxis, plus swelling of the face and hives.",
+      "Very rare skin reactions such as toxic epidermal necrolysis and Stevens-Johnson syndrome have been reported after approval.",
+      "Heart rhythm problems, including a longer QT interval on an ECG, have been reported rarely.",
+      "The over-the-counter label says to stop and see a doctor if heartburn continues or gets worse, or if you need the product for more than 14 days.",
+      "The over-the-counter label lists trouble or pain swallowing food, vomiting blood, or bloody or black stools as signs of a serious condition worth a doctor visit."
+    ],
+    "whoShouldAvoid": [
+      "Do not use famotidine if you have had a serious allergic reaction to it or to another H2 blocker.",
+      "The over-the-counter label says not to combine it with other acid reducers.",
+      "The over-the-counter label says to ask a doctor first if you have kidney disease, or heartburn lasting more than 3 months.",
+      "Older adults and people with kidney impairment are at higher risk of nervous-system effects, and labels note that dose adjustment is recommended.",
+      "The over-the-counter label says pregnant or breastfeeding people should ask a health professional before use.",
+      "Labels flag chest pain, shoulder pain, shortness of breath, sweating or unexplained weight loss alongside heartburn as reasons to see a doctor rather than self-treat."
+    ]
+  },
+  "interactions": [
+    "Because famotidine reduces stomach acid, it can lower absorption of some other drugs and make them work less well.",
+    "The label says not to take it with dasatinib, delavirdine mesylate, cefditoren or fosamprenavir.",
+    "Other acid-sensitive drugs named in the label include atazanavir, erlotinib, ketoconazole, itraconazole, ledipasvir/sofosbuvir, nilotinib and rilpivirine.",
+    "Famotidine is considered a weak inhibitor of the liver enzyme CYP1A2 and may raise blood levels of tizanidine.",
+    "High tizanidine levels can cause low blood pressure, a slow heart rate or heavy drowsiness, so the label says to avoid the pair.",
+    "The over-the-counter label says to ask a doctor or pharmacist first if you take any prescription drug."
+  ],
+  "pregnancyAndChildren": "Human pregnancy data are too limited to set a risk level. Animal studies found no clear harm at very high multiples of the human dose. The label says to use it during pregnancy only if clearly needed. Small amounts pass into rat milk, and human milk data are limited but showed no effects on the breastfed infant. There are no data on whether it affects milk production. Safety and effectiveness are established for ulcers and reflux in children. The 20 mg and 40 mg tablets are not recommended for children weighing under 40 kg.",
+  "whatWeDoNotKnow": [
+    "The label states that available pregnancy data are insufficient to establish a drug-related risk of birth defects, miscarriage or other outcomes.",
+    "There are no human data on whether famotidine changes milk production.",
+    "The LiverTox page on drug-induced liver injury could not be loaded, so this record makes no claim about rare liver injury.",
+    "No source we reached gives long-term safety data for healthy people who take famotidine regularly for heartburn.",
+    "ClinicalTrials.gov shows ongoing research into other possible uses, such as burn scar itch, but no results are posted for those.",
+    "We did not find a fetched source describing how many people use famotidine for any unapproved purpose."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Famotidine works by blocking histamine-2 receptors and inhibiting gastric secretion.",
+      "quote": "Famotidine is a competitive inhibitor of histamine-2 (H 2 ) receptors. The primary clinically important pharmacologic activity of famotidine is inhibition of gastric secretion."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Headache, dizziness and constipation were the common trial side effects.",
+      "quote": "The following adverse reactions occurred in greater than or equal to 1% of famotidine-treated patients: headache, dizziness and constipation."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Famotidine is contraindicated after a serious allergic reaction to it or another H2 blocker.",
+      "quote": "contraindicated in patients with a history of serious hypersensitivity reactions (e.g., anaphylaxis) to famotidine or other histamine-2 (H 2 ) receptor antagonists"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Famotidine can reduce absorption of other drugs by lowering stomach acid.",
+      "quote": "Famotidine can reduce the absorption of other drugs, due to its effect on reducing intragastric acidity"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Combining famotidine with tizanidine should be avoided.",
+      "quote": "Avoid concomitant use with famotidine. If concomitant use is necessary, monitor for hypotension, bradycardia or excessive drowsiness."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Nervous-system reactions have been reported in older adults and people with kidney impairment.",
+      "quote": "have been reported in elderly patients and patients with moderate and severe renal impairment treated with famotidine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Pregnancy data are insufficient to establish a drug-related risk.",
+      "quote": "Available data with H 2 -receptor antagonists, including famotidine, in pregnant women are insufficient to establish a drug-associated risk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The 20 mg and 40 mg tablets are not for children under 40 kg.",
+      "quote": "Famotidine 20 and 40 mg tablets are not recommended for use in pediatric patients weighing less than 40 kg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PEPCID%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "Over-the-counter famotidine relieves and prevents heartburn from acid indigestion.",
+      "quote": "relieves heartburn associated with acid indigestion and sour stomach prevents heartburn associated with acid indigestion and sour stomach"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration",
+      "claim": "The over-the-counter label tells people with long-lasting heartburn to see a doctor.",
+      "quote": "Ask a doctor before use if you have had heartburn over 3 months."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/famotidine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem / National Library of Medicine",
+      "claim": "PubChem records famotidine's molecular formula, weight and IUPAC name.",
+      "quote": "\"MolecularFormula\": \"C8H15N7O2S3\", \"MolecularWeight\": \"337.5\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=famotidine&pagesize=3",
+      "publisher": "DailyMed / National Library of Medicine",
+      "claim": "Many manufacturers market famotidine tablets, listed as 437 total label records.",
+      "quote": "\"title\": \"FAMOTIDINE TABLET, FILM COATED [NUCARE PHARMACEUTICALS, INC.]\""
+    },
+    {
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults",
+      "publisher": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "claim": "GERD is defined as a longer-lasting reflux condition.",
+      "quote": "Gastroesophageal reflux disease (GERD) is a more severe and long-lasting condition in which GER causes repeated symptoms or leads to complications over time."
+    },
+    {
+      "url": "https://medlineplus.gov/gerd.html",
+      "publisher": "MedlinePlus / National Library of Medicine",
+      "claim": "Occasional reflux is common; repeated symptoms may be GERD.",
+      "quote": "Having reflux occasionally is common."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-ndma-impurities-ranitidine-commonly-known-zantac",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA testing did not find NDMA in famotidine products.",
+      "quote": "To date, FDA’s testing has not found NDMA in products used for similar treatment like famotidine (Pepcid)"
+    },
+    {
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-requests-removal-all-ranitidine-products-zantac-market",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA asked manufacturers to withdraw all ranitidine products in April 2020.",
+      "quote": "it is requesting manufacturers withdraw all prescription and over-the-counter (OTC) ranitidine drugs from the market immediately"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Famotidine&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov / National Library of Medicine",
+      "claim": "Researchers are testing famotidine for uses beyond acid control, such as burn scar itch.",
+      "quote": "\"briefTitle\": \"Novel Strategies for Reducing Burn Scar Itch\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Famotidine&pageSize=5",
+      "publisher": "ClinicalTrials.gov / National Library of Medicine",
+      "claim": "A completed trial compared famotidine with pantoprazole for kidney outcomes after heart surgery.",
+      "quote": "will improve kidney function parameters following cardiac surgery with cardiopulmonary bypass compared to famotidine"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PEPCID%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Famotidine%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=famotidine&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2cdd1a75-5d68-7f9d-e063-6294a90aeee3",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/famotidine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5702160/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Famotidine",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Famotidine&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Famotidine&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://medlineplus.gov/gerd.html",
+    "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548228/",
+    "https://www.nccih.nih.gov/health/famotidine",
+    "https://newsinhealth.nih.gov/2018/11/feeling-burn",
+    "https://www.fda.gov/news-events/press-announcements/fda-requests-removal-all-ranitidine-products-zantac-market",
+    "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-ndma-impurities-ranitidine-commonly-known-zantac"
+  ],
+  "gaps": [
+    "NCCIH has no famotidine page: the URL given for this task returned HTTP 404.",
+    "NCBI Bookshelf (LiverTox, StatPearls) served a browser check on three attempts, so no liver-injury or clinical-overview claim is included from those sources.",
+    "NIH News in Health returned HTTP 403, so no NIH consumer article is cited.",
+    "The PubChem compound web page returned an empty JavaScript shell; only its REST endpoints yielded data.",
+    "No dose, schedule or personal protocol is stated here, by design; only what labels and studies recorded is reported, attributed.",
+    "No fetched source quantifies how many people take famotidine for unapproved uses.",
+    "No fetched source gives long-term safety data for healthy people using over-the-counter famotidine regularly.",
+    "Human breast-milk data are described by the label as limited, and milk-production effects are unstudied."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what famotidine is, how it blocks stomach acid, its prescription and over-the-counter uses, its trial and postmarketing side effects, its labeled drug interactions, and the pregnancy, breastfeeding and pediatric gaps the label itself flags."
+}

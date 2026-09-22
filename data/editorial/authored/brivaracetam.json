@@ -1,0 +1,388 @@
+{
+  "slug": "brivaracetam",
+  "oneLineAnswer": "A prescription seizure medicine for partial-onset seizures, used alone or with other epilepsy drugs.",
+  "whatItIs": "Brivaracetam is a prescription medicine that treats seizures. Its brand name is Briviact. US law classifies it as a schedule V controlled substance. The medication guide explains why: it can be abused or lead to dependence. The label records a first US approval in 2016. It comes as tablets, an oral liquid, and an injection. Its molecule has the formula C 11 H 20 N 2 O 2 and weighs 212.29.",
+  "whatItDoes": [
+    "In the US, the label approves it for partial-onset seizures in people 1 month and older.",
+    "A partial seizure, also called a focal seizure, happens in just one part of the brain.",
+    "Epilepsy is a brain disorder that causes people to have recurring seizures.",
+    "The label allows it alone or added to other seizure medicines.",
+    "In three dummy-pill trials, it lowered seizure frequency more than the dummy pill did."
+  ],
+  "howPeopleUseIt": [
+    "The label records it taken twice a day, by mouth or by injection.",
+    "The label says it may be taken with or without food.",
+    "Tablets are swallowed whole with liquid, not chewed or crushed.",
+    "Doctors can prescribe it alone or with other seizure medicines.",
+    "The label warns against stopping suddenly, which can increase seizures.",
+    "ClinicalTrials.gov lists studies in focal onset seizures and in childhood absence epilepsy."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Sleepiness and sedation: 16% of people taking it, versus 8% on a dummy pill.",
+      "Dizziness: 12%, versus 7% on a dummy pill.",
+      "Tiredness: 9%, versus 4% on a dummy pill.",
+      "Nausea and vomiting: 5%, versus 3% on a dummy pill.",
+      "Constipation: 2%, versus 0% on a dummy pill.",
+      "Irritability: 3%, versus 1% on a dummy pill.",
+      "Trouble with balance and coordination: 3%, versus 1% on a dummy pill.",
+      "Children in trials also ate less than usual.",
+      "Some people had a clinically significant drop in white blood cells."
+    ],
+    "seriousSigns": [
+      "Thoughts of suicide or self-harm. The medication guide puts this at about 1 in 500 people.",
+      "New or worse depression, anxiety, panic attacks, agitation, or trouble sleeping.",
+      "Feeling aggressive, angry, or unusually restless.",
+      "An extreme rise in activity and talking, called mania.",
+      "Psychotic symptoms such as hallucinations and paranoia.",
+      "Severe sleepiness or dizziness, or trouble walking and balancing.",
+      "Trouble breathing (bronchospasm) or swelling under the skin (angioedema).",
+      "Serious skin reactions, including Stevens-Johnson syndrome, seen 3 to 45 days after starting.",
+      "Seizures that will not stop after the medicine is stopped suddenly."
+    ],
+    "whoShouldAvoid": [
+      "Anyone allergic to brivaracetam or to the inactive ingredients in the tablet.",
+      "People who had bronchospasm or angioedema on brivaracetam before.",
+      "People with liver problems; the label advises adjusting the amount at every stage.",
+      "People with end-stage kidney disease who need dialysis; use is not recommended.",
+      "Children under 1 month old, where safety has not been established.",
+      "Pregnancy; based on animal data the label says it may harm a fetus.",
+      "Breastfeeding; it passes into breast milk and effects on the baby are unknown."
+    ]
+  },
+  "interactions": [
+    "Rifampin lowers brivaracetam blood levels by about 45%; the label says to raise the brivaracetam amount by up to double.",
+    "Carbamazepine lowers brivaracetam blood levels by 26%.",
+    "Brivaracetam raises a carbamazepine byproduct up to 198%; the label says consider lowering carbamazepine if side effects appear.",
+    "Phenytoin levels can rise up to 20%, so the label says to monitor them.",
+    "Phenobarbital lowers brivaracetam blood levels by 19%.",
+    "Levetiracetam gave no extra benefit when taken with brivaracetam.",
+    "Alcohol hits harder with brivaracetam: a study found worse attention, memory, and movement control.",
+    "No level changes were seen with lamotrigine, levetiracetam, or oxcarbazepine.",
+    "A high brivaracetam amount lowered birth-control hormone levels slightly, without affecting ovulation."
+  ],
+  "pregnancyAndChildren": "Pregnancy data on brivaracetam are limited. A registry tracks pregnancy outcomes in people taking seizure medicines. Animal studies found developmental harm at exposures higher than human ones. Based on those animal data, the label says it may harm a fetus. It passes into breast milk, and effects on the baby are not known. In children, safety and effectiveness are established from 1 month to under 16 years. Use below 1 month of age is not established. In young animals, high doses reduced brain size and growth. Only 38 people aged 65 or older were in the controlled epilepsy trials.",
+  "whatWeDoNotKnow": [
+    "How brivaracetam stops seizures is not known; it binds the brain protein SV2A, which may matter.",
+    "Whether it works in people 65 and older is unclear: only 38 were in the controlled trials.",
+    "The risk of suicidal thoughts past 24 weeks of treatment was not measured.",
+    "Effects on a breastfed baby, and on milk production, are not known.",
+    "It has not been studied in people on dialysis, and removal that way is not established.",
+    "Whether adding it helps people already taking levetiracetam is unclear."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label's approved use is partial-onset seizures from 1 month of age.",
+      "quote": "Brivaracetam tablets are indicated for the treatment of partial-onset seizures in patients 1 month of age and older."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The exact mechanism of action is unknown.",
+      "quote": "The precise mechanism by which brivaracetam exerts its anticonvulsant activity is not known."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It binds tightly and selectively to the brain protein SV2A.",
+      "quote": "Brivaracetam displays a high and selective affinity for synaptic vesicle protein 2A (SV2A) in the brain"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It is a schedule V controlled substance in the United States.",
+      "quote": "Brivaracetam tablets contains brivaracetam and is listed as a Schedule V controlled substance."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Its chemical formula is C11H20N2O2 and its molecular weight is 212.29.",
+      "quote": "Its molecular formula is C 11 H 20 N 2 O 2 and its molecular weight is 212.29."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The most common side effects and their rates in trials.",
+      "quote": "somnolence and sedation (16%), dizziness (12%), fatigue (9%), and nausea and vomiting symptoms (5%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Effectiveness was shown in three controlled studies totalling 1550 patients.",
+      "quote": "placebo-controlled, multicenter studies (Studies 1, 2, and 3), which included 1550 patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The trials measured seizure reduction compared with dummy pills.",
+      "quote": "Percent Reduction in Partial-Onset Seizure Frequency over Placebo"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The medication guide reports a suicide-related risk of about 1 in 500.",
+      "quote": "Like other antiepileptic drugs, brivaracetam tablets may cause suicidal thoughts or actions in a very small number of people"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Psychiatric reactions were more common on the drug than on placebo.",
+      "quote": "psychiatric adverse reactions were reported in approximately 13% of patients who received brivaracetam (at least 50 mg/day) compared to 8%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Serious skin reactions have been reported, with onset 3 to 45 days after starting.",
+      "quote": "Time to onset of the serious dermatologic reaction ranged from 3 to 45 days after brivaracetam initiation in reported cases."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Serious skin reactions include Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "quote": "Serious dermatologic reactions, including Stevens-Johnson syndrome (SJS) and toxic epidermal necrolysis (TEN), have been reported in patients treated with brivaracetam."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Rifampin lowers brivaracetam levels by 45%.",
+      "quote": "Co-administration with rifampin decreases brivaracetam plasma concentrations by 45%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Carbamazepine raises the carbamazepine-epoxide metabolite.",
+      "quote": "Co-administration with carbamazepine may increase exposure to carbamazepine-epoxide, the active metabolite of carbamazepine."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Phenytoin levels should be monitored when the two are combined.",
+      "quote": "Because brivaracetam can increase plasma concentrations of phenytoin, phenytoin levels should be monitored"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Levetiracetam added no extra benefit when combined.",
+      "quote": "Brivaracetam provided no added therapeutic benefit to levetiracetam when the two drugs were co-administered"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alcohol effects on thinking and movement were worse when combined.",
+      "quote": "increased the effects of alcohol on psychomotor function, attention, and memory"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "A different amount is recommended for every stage of liver impairment.",
+      "quote": "Because of increases in brivaracetam exposure, dosage adjustment is recommended for all stages of hepatic impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Use is not recommended in people on dialysis for end-stage kidney disease.",
+      "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of brivaracetam is not recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Safety below 1 month of age is not established.",
+      "quote": "Safety and effectiveness in pediatric patients below the age of 1 month have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Only 38 patients aged 65 or older were in the controlled trials.",
+      "quote": "insufficient numbers of patients 65 years of age and older in the double-blind, placebo-controlled epilepsy trials (n=38) to allow adequate assessment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Information about effects on a breastfed infant is insufficient.",
+      "quote": "There is insufficient information on the effects of brivaracetam on the breastfed infant or on milk production."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Pregnancy outcomes are tracked in a registry.",
+      "quote": "There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antiepileptic drugs (AEDs), such as brivaracetam, during pregnancy."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label says it may harm a fetus based on animal data.",
+      "quote": "Based on animal data, may cause fetal harm."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Juvenile animal studies found reduced brain size at every dose tested.",
+      "quote": "decreased brain size and weight at all doses"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It can be taken with or without food.",
+      "quote": "Brivaracetam tablets may be taken with or without food."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Tablets are swallowed whole and not chewed or crushed.",
+      "quote": "Brivaracetam tablets should be swallowed whole with liquid."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Stopping abruptly can increase seizure frequency and cause status epilepticus.",
+      "quote": "Avoid abrupt withdrawal from brivaracetam tablets in order to minimize the risk of increased seizure frequency and status epilepticus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It can be used alone or alongside other seizure medicines.",
+      "quote": "The recommended starting dosage for monotherapy or adjunctive therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Children in trials also showed reduced appetite.",
+      "quote": "Decreased appetite was also observed in these pediatric trials."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Some treated patients had a clinically significant drop in white blood cells.",
+      "quote": "1.8% of brivaracetam-treated patients and 1.1% of placebo-treated patients had at least one clinically significant decreased white blood cell count"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Briviact%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Briviact is the brand name, from UCB.",
+      "quote": "BRIVIACT \u00ae is a registered trademark of the UCB Group of Companies."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5115c5b4-7a23-89f2-e063-6294a90a222a&version=1",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The label records a first US approval in 2016.",
+      "quote": "Initial U.S. Approval: 2016"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5115c5b4-7a23-89f2-e063-6294a90a222a&version=1",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Tablets come in five strengths, described by colour and marking.",
+      "quote": "10 mg, 25 mg, 50 mg, 75 mg, and 100 mg"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brivaracetam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "PubChem records the molecular formula as C11H20N2O2.",
+      "quote": "\"MolecularFormula\": \"C11H20N2O2\""
+    },
+    {
+      "url": "https://medlineplus.gov/seizures.html",
+      "publisher": "MedlinePlus (U.S. National Library of Medicine)",
+      "claim": "Focal and partial seizures are the same thing, limited to one part of the brain.",
+      "quote": "Focal seizures, also called partial seizures, happen in just one part of the brain."
+    },
+    {
+      "url": "https://medlineplus.gov/epilepsy.html",
+      "publisher": "MedlinePlus (U.S. National Library of Medicine)",
+      "claim": "Epilepsy is a brain disorder causing recurring seizures.",
+      "quote": "Epilepsy is a brain disorder that causes people to have recurring seizures."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Brivaracetam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Trials have studied it in childhood and juvenile absence epilepsy.",
+      "quote": "Childhood Absence Epilepsy or Juvenile Absence Epilepsy"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Brivaracetam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Registered trials also cover focal onset seizures.",
+      "quote": "Focal Onset Seizures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The medication guide gives abuse or dependence as the reason for the controlled-substance listing.",
+      "quote": "is a federally controlled substance (CV) because it can be abused or lead to dependence"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Tablets, oral solution, and injection can be used interchangeably.",
+      "quote": "Brivaracetam tablets, oral solution, and injection can be used interchangeably."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "In the clinical trials it was given in two divided doses each day.",
+      "quote": "Brivaracetam was administered in equally divided twice daily doses."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Table 4 lists the side-effect rates, including constipation and irritability.",
+      "quote": "Nausea/vomiting symptoms 5 3 Constipation 2 0"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Table 4 also lists sleepiness, dizziness, and tiredness with their rates.",
+      "quote": "Somnolence and sedation 16 8 Dizziness 12 7 Fatigue 9 4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label states that brivaracetam is present in human milk.",
+      "quote": "Data from published literature indicate that brivaracetam is present in human milk."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "A high amount lowered oral-contraceptive hormone exposure without affecting ovulation.",
+      "quote": "reduced estrogen and progestin AUCs by 27% and 23%, respectively, without impact on suppression of ovulation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Phenobarbital lowers brivaracetam levels by 19%.",
+      "quote": "Phenobarbital 19% decrease in plasma concentration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Several other seizure medicines showed no level changes in either direction.",
+      "quote": "Lamotrigine None None Levetiracetam None None Oxcarbazepine None None"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brivaracetam%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Briviact%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=brivaracetam",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5115c5b4-7a23-89f2-e063-6294a90a222a&version=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brivaracetam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Brivaracetam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://medlineplus.gov/epilepsy.html",
+    "https://medlineplus.gov/seizures.html",
+    "https://medlineplus.gov/ency/article/000697.htm",
+    "https://www.nccih.nih.gov/health/brivaracetam",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548532/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548532/?report=classic",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548796/"
+  ],
+  "gaps": [
+    "NCCIH has no brivaracetam page; the URL returned HTTP 404, so no NCCIH content appears here.",
+    "NCBI Bookshelf blocked automated fetching with a browser check, so the LiverTox brivaracetam record could not be read or cited.",
+    "No dose or dosing schedule is given here; only a prescriber can set an amount for a person.",
+    "The openFDA and DailyMed labels are the same manufacturer prescribing information, so they are not fully independent of each other for label-based claims.",
+    "The MedlinePlus medical encyclopedia page for focal seizure was attempted but not cited, because the encyclopedia is not a health topic or medical test summary.",
+    "No liver-injury likelihood rating is included, since the only source for it (LiverTox) could not be fetched."
+  ],
+  "confidence": "high",
+  "summary": "What brivaracetam is, its approved use in partial-onset seizures, and its recorded safety profile."
+}

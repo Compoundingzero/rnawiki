@@ -1,0 +1,451 @@
+{
+  "slug": "ticagrelor",
+  "oneLineAnswer": "Ticagrelor is an antiplatelet tablet that lowers the risk of heart attack and stroke in some heart patients.",
+  "whatItIs": "Ticagrelor is an antiplatelet medicine you take by mouth as a tablet. Antiplatelet means it makes platelets, the tiny cell pieces that clump together into clots, less likely to stick. It blocks a docking point on platelets called P2Y12, which is where a signal molecule named ADP normally attaches. Its chemical formula is C23H28F2N6O4S. It is sold under the brand name Brilinta and was first approved in the United States in 2011.",
+  "whatItDoes": [
+    "It blocks P2Y12, so platelets clump together less and clots form less easily.",
+    "In large trials it lowered the combined risk of heart-related death, heart attack and stroke.",
+    "The label lists three groups it is for.",
+    "The first is people after acute coronary syndrome, which means sudden reduced blood flow to the heart.",
+    "The others are people with coronary artery disease and no past heart attack or stroke, and people after a small stroke or a warning stroke called a TIA."
+  ],
+  "howPeopleUseIt": [
+    "The label describes using it together with low-dose aspirin.",
+    "One trial analysis found better results when daily aspirin stayed at 100 mg or less.",
+    "The same analysis suggested higher aspirin doses reduce how well ticagrelor works.",
+    "People on it are often told not to stop on their own, because stopping raises the risk of heart attack and stroke.",
+    "It has been studied in people who also have diabetes and coronary artery disease.",
+    "It is also used around procedures such as stent placement, where the label notes it lowers the risk of a clot in the stent."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Bleeding is the most common problem, and it was the most frequent side effect in the trials.",
+      "Shortness of breath, called dyspnea, is the other common one.",
+      "Different trials put dyspnea at about 14 to 21 in every 100 people taking ticagrelor.",
+      "It is usually mild and often settles while the medicine continues.",
+      "A small number of people find it bad enough to stop the medicine.",
+      "LiverTox also lists headache, nausea, diarrhea, low blood pressure and allergic reactions.",
+      "Blood uric acid can rise, and gout was reported more often than with aspirin alone.",
+      "A rash has been reported since the medicine came to market."
+    ],
+    "seriousSigns": [
+      "The label carries a boxed warning: bleeding can be serious and sometimes fatal.",
+      "Bleeding that is heavy, will not stop, or shows up in vomit, stool or urine is a warning sign.",
+      "Bleeding inside the skull is the most serious kind.",
+      "In one stroke trial there were 21 bleeds inside the skull on ticagrelor, against 6 on placebo.",
+      "Slow heartbeats and heart block, a problem with the heart's electrical signals, have been reported.",
+      "A rare blood disorder called thrombotic thrombocytopenic purpura (TTP) has been reported, and it needs prompt treatment.",
+      "Allergic reactions can include swelling of the face, lips or throat, called angioedema.",
+      "Pauses in breathing during sleep, called central sleep apnea, have been reported.",
+      "A rare serious problem is rhabdomyolysis, where muscle tissue breaks down."
+    ],
+    "whoShouldAvoid": [
+      "Anyone who has had bleeding inside the skull.",
+      "Anyone who is bleeding now, for example from a stomach ulcer.",
+      "Anyone who has reacted to ticagrelor with swelling such as angioedema.",
+      "It is not started in people who need urgent coronary artery bypass surgery, a heart operation.",
+      "The label says it is not recommended for larger strokes, scored above 5 on the NIH Stroke Scale.",
+      "It is not recommended for people given clot-dissolving treatment for a stroke.",
+      "People with severe liver disease should avoid it.",
+      "It is not recommended while breastfeeding.",
+      "Strong CYP3A inhibitors and inducers should be avoided with it."
+    ]
+  },
+  "interactions": [
+    "CYP3A is a family of liver enzymes that break medicines down.",
+    "Strong CYP3A inhibitors raise ticagrelor levels, which adds to breathlessness and bleeding risk.",
+    "Examples include ketoconazole, itraconazole, clarithromycin and ritonavir.",
+    "Strong CYP3A inducers lower ticagrelor levels and can make it work less well.",
+    "Examples include rifampin, phenytoin, carbamazepine and phenobarbital.",
+    "Opioid painkillers such as morphine slow the stomach and reduce how much ticagrelor is absorbed.",
+    "Ticagrelor raises blood levels of the statins simvastatin, lovastatin and rosuvastatin.",
+    "The label sets lower limits for those statin doses.",
+    "The label says digoxin levels should be monitored when ticagrelor is started or changed.",
+    "Ticagrelor can give a false negative result on a lab test for heparin-induced thrombocytopenia."
+  ],
+  "pregnancyAndChildren": "Pregnancy information for ticagrelor comes only from case reports. Those have not shown a clear link to birth defects, miscarriage or harm to the mother. Animal studies at high doses did cause problems in the offspring. No one knows whether ticagrelor passes into human breast milk. Breastfeeding is not recommended while taking it. The label says its safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "Nobody knows how bleeding risk and clot risk line up with the measured platelet inhibition.",
+    "There are no studies of ticagrelor in people with severe liver disease.",
+    "Rare side effects found after approval have no reliable frequency, because reporting is voluntary.",
+    "How often ticagrelor injures the liver is unclear; LiverTox rates it a possible rare cause.",
+    "One trial analysis found the benefit looked smaller in North America than elsewhere, and the reason is debated.",
+    "Pregnancy safety rests on case reports rather than controlled studies.",
+    "This record does not cover doses, how to reverse bleeding, or what happens if a dose is missed."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "The label says ticagrelor is a P2Y12 platelet inhibitor that lowers the risk of cardiovascular death, heart attack and stroke after acute coronary syndrome or a previous heart attack.",
+      "quote": "Ticagrelor is a P2Y 12 platelet inhibitor indicated to reduce the risk of cardiovascular (CV) death, myocardial infarction (MI), and stroke"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A boxed warning states that ticagrelor can cause bleeding that is significant and sometimes fatal.",
+      "quote": "Ticagrelor, like other antiplatelet agents, can cause significant, sometimes fatal bleeding"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Ticagrelor and its main metabolite attach to the platelet P2Y12 ADP receptor reversibly, blocking platelet activation.",
+      "quote": "reversibly interact with the platelet P2Y 12 ADP-receptor to prevent signal transduction and platelet activation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "One labelled use is lowering stroke risk after a small ischemic stroke.",
+      "quote": "Ticagrelor tablets are indicated to reduce the risk of stroke in patients with acute ischemic stroke"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Another labelled use is lowering the risk of a first heart attack or stroke in people with coronary artery disease who have not had one.",
+      "quote": "reduce the risk of a first MI or stroke in patients with coronary artery disease (CAD) at high risk for such events"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "It also lowers the risk of a clot forming in a coronary stent placed during treatment of acute coronary syndrome.",
+      "quote": "reduces the risk of stent thrombosis in patients who have been stented for treatment of ACS"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Between about 14 and 21 percent of people taking ticagrelor in different trials developed shortness of breath.",
+      "quote": "about 14% (PLATO and PEGASUS) to 21% (THEMIS) of patients treated with ticagrelor developed dyspnea"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "The shortness of breath is usually mild and often goes away while treatment continues.",
+      "quote": "Dyspnea was usually mild to moderate in intensity and often resolved during continued treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A small share of people stopped the medicine because of shortness of breath, with rates differing by trial.",
+      "quote": "led to study drug discontinuation in 1.0% (THALES), 4.3% (PEGASUS), and 6.9% (THEMIS) of patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Stopping ticagrelor raises the risk of heart attack, stroke and death in people treated for coronary artery disease.",
+      "quote": "Discontinuation of ticagrelor tablets will increase the risk of myocardial infarction, stroke, and death"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A trial analysis found better results when daily aspirin was kept at 100 mg or below.",
+      "quote": "Overall results favored ticagrelor when used with low maintenance doses (\u2264100 mg) of aspirin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "The same analysis suggested higher aspirin doses may weaken ticagrelor's effect.",
+      "quote": "there is a strong suggestion that use of such doses reduces the effectiveness of ticagrelor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A past bleed inside the skull is a contraindication because the risk of another one is high.",
+      "quote": "contraindicated in patients with a history of intracranial hemorrhage (ICH) because of a high risk of recurrent ICH in this population"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Ongoing pathological bleeding, such as a bleeding stomach ulcer, is also a contraindication.",
+      "quote": "contraindicated in patients with active pathological bleeding such as peptic ulcer or intracranial hemorrhage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A previous allergic reaction such as angioedema to the drug or its ingredients rules it out.",
+      "quote": "contraindicated in patients with hypersensitivity (e.g., angioedema) to ticagrelor or any component of the product"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "It is not started before urgent coronary artery bypass surgery.",
+      "quote": "Do not start ticagrelor tablets in patients undergoing urgent coronary artery bypass graft surgery (CABG)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "In a stroke trial, people with larger strokes or who received clot-dissolving treatment were left out, and use is not recommended for them.",
+      "quote": "Patients at NIHSS >5 and patients receiving thrombolysis were excluded from THALES and use of ticagrelor tablets in such patients is not recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Severe liver disease has never been studied with ticagrelor.",
+      "quote": "There are no studies of ticagrelor patients with severe hepatic impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Heart rhythm problems including heart block have been reported after the drug reached the market.",
+      "quote": "Bradyarrhythmias including AV block have been reported in the postmarketing setting"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "A rare blood disorder, thrombotic thrombocytopenic purpura, has been reported and needs prompt treatment.",
+      "quote": "TTP is a serious condition which can occur after a brief exposure (<2 weeks) and requires prompt treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Pauses in breathing during sleep have been reported with ticagrelor.",
+      "quote": "Central sleep apnea (CSA) including Cheyne-Stokes respiration (CSR) has been reported in the post-marketing setting in patients taking ticagrelor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "In one stroke trial, bleeding inside the skull was far more frequent with ticagrelor than with placebo.",
+      "quote": "In total, there were 21 intracranial hemorrhages (ICHs) for ticagrelor and 6 ICHs for placebo"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Gout was reported more often on ticagrelor than on aspirin alone in one large trial.",
+      "quote": "Gout occurred more commonly in patients on ticagrelor than in patients on aspirin alone"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Uric acid levels in the blood rise on ticagrelor, which is why gout can appear.",
+      "quote": "serum uric acid levels increased approximately 0.6 mg/dL from baseline on ticagrelor 90 mg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Rash is listed among the reactions reported after approval.",
+      "quote": "Skin and subcutaneous tissue disorders : Rash"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Strong CYP3A inhibitors raise ticagrelor exposure and with it the risk of breathlessness, bleeding and other problems.",
+      "quote": "Strong CYP3A inhibitors substantially increase ticagrelor exposure and so increase the risk of dyspnea, bleeding, and other adverse events"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Strong CYP3A inducers lower ticagrelor exposure and can reduce how well it works.",
+      "quote": "Strong CYP3A inducers substantially reduce ticagrelor exposure and so decrease the efficacy of ticagrelor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Opioid painkillers delay and reduce the body's absorption of ticagrelor.",
+      "quote": "co-administration of opioid agonists delay and reduce the absorption of ticagrelor and its active metabolite"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Ticagrelor raises the blood levels of two statins because they are broken down by CYP3A4.",
+      "quote": "Ticagrelor increases serum concentrations of simvastatin and lovastatin because these drugs are metabolized by CYP3A4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Rosuvastatin levels also rise on ticagrelor, so the label sets a lower limit for it.",
+      "quote": "Ticagrelor increases serum concentration of rosuvastatin because rosuvastatin is a BCRP substrate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "The label asks for digoxin levels to be monitored when ticagrelor is started or changed.",
+      "quote": "monitor digoxin levels with initiation of or any change in ticagrelor therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Ticagrelor can cause false negative platelet function tests for heparin-induced thrombocytopenia.",
+      "quote": "Ticagrelor has been reported to cause false negative results in platelet functional tests"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Human pregnancy information comes from case reports, which have not identified a drug-linked risk of major birth defects.",
+      "quote": "Available data from case reports with ticagrelor use in pregnant women have not identified a drug-associated risk of major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "In pregnant animals given ticagrelor, offspring developed structural abnormalities.",
+      "quote": "Ticagrelor given to pregnant rats and pregnant rabbits during organogenesis caused structural abnormalities in the offspring"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "There is no information on whether ticagrelor appears in human breast milk.",
+      "quote": "There are no data on the presence of ticagrelor or its metabolites in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Breastfeeding is not recommended during treatment.",
+      "quote": "Breastfeeding is not recommended during treatment with ticagrelor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "The drug's safety and effectiveness in children have not been established.",
+      "quote": "The safety and effectiveness of ticagrelor tablets have not been established in pediatric patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "It is not known how bleeding or clotting risk relate to the measured platelet inhibition.",
+      "quote": "It is not known how either bleeding risk or thrombotic risk track with IPA, for either ticagrelor or clopidogrel"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "In one large trial the effect appeared smaller in North America than in the rest of the world.",
+      "quote": "show a smaller effect in North America, numerically inferior to the control and driven by the U.S. subset"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (drug label)",
+      "claim": "Older and younger trial patients did not show overall differences in safety or effectiveness.",
+      "quote": "No overall differences in safety or effectiveness were observed between elderly and younger patients"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "LiverTox describes ticagrelor as a non-thienopyridine, reversible inhibitor of ADP receptors (P2Y12) on platelets.",
+      "quote": "is a non-thienopyridine, reversible inhibitor of adenosine diphosphate (ADP) receptors (P2Y 12) on platelets"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "LiverTox says it is used with low-dose aspirin to lower the risk of heart attack and stroke in acute coronary syndromes.",
+      "quote": "used with low dose aspirin to decrease the risk of myocardial infarction and stroke in patients with acute coronary syndromes"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Ticagrelor was approved for use in the United States in 2011.",
+      "quote": "Ticagrelor was approved for use in the United States in 2011"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Ticagrelor does not need metabolic activation to work, unlike clopidogrel.",
+      "quote": "Ticagrelor, unlike clopidogrel, does not require metabolic activation for its antiplatelet effects"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "LiverTox lists bleeding, shortness of breath, headache, nausea, diarrhea, low blood pressure and allergic reactions as side effects.",
+      "quote": "Side effects are not common, but can include bleeding (12%), dyspnea (14%), headaches, nausea, diarrhea, hypotension and hypersensitivity reactions"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Rare but severe reactions listed by LiverTox include severe bleeding, rhabdomyolysis, angioedema and drug-interaction complications.",
+      "quote": "Rare but potentially severe adverse reactions include severe bleeding, rhabdomyolysis, complications of drug-drug interactions, angioedema and hypersensitivity reactions"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Large trials did not find liver enzyme rises or clear liver injury from ticagrelor.",
+      "quote": "ticagrelor was not associated with serum enzyme elevations during therapy and no instances of clinically apparent liver injury were reported"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "LiverTox still rates ticagrelor as a possible rare cause of liver injury.",
+      "quote": "Likelihood score: D (possible rare cause of liver injury due to complications of severe allergic reactions or drug-drug interactions)"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Ticagrelor is broken down in the liver mainly by the CYP3A4 enzyme.",
+      "quote": "Ticagrelor is metabolized in the liver predominantly via CYP 3A4"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NCBI Bookshelf)",
+      "claim": "Ticagrelor is sold under the commercial name Brilinta.",
+      "quote": "available in 90 mg tablets under the commercial name Brilinta"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ticagrelor&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed University of Florida trial studied ticagrelor in people with diabetes and coronary artery disease.",
+      "quote": "Impact of Chronic Kidney Disease on the Effects of Ticagrelor in Patients With Diabetes and Coronary Artery Disease"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ticagrelor&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A trial description calls ticagrelor an oral, reversible, non-competitive P2Y12 receptor inhibitor with stronger platelet inhibition than clopidogrel.",
+      "quote": "Ticagrelor is an oral, reversible, non-competitive P2Y12 receptor inhibitor with more potent and consistent platelet inhibition than clopidogrel"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ticagrelor&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Researchers have also tested ticagrelor in people who have raised troponin levels after major non-heart surgery.",
+      "quote": "to evaluate the efficacy and safety of FDA approved study drug (ticagrelor) compared to aspirin in these patients"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ticagrelor/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records the chemical formula as C23H28F2N6O4S and the molecular weight as about 522.6.",
+      "quote": "\"MolecularFormula\": \"C23H28F2N6O4S\", \"MolecularWeight\": \"522.6\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/9871419/description/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (ChEBI description)",
+      "claim": "PubChem's description says ticagrelor is a platelet aggregation inhibitor used to prevent thromboembolic events in acute coronary syndrome.",
+      "quote": "A platelet aggregation inhibitor which is used for prevention of thromboembolic events in patients with acute coronary syndrome"
+    },
+    {
+      "url": "https://medlineplus.gov/coronaryarterydisease.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Coronary artery disease is the most common type of heart disease in the United States.",
+      "quote": "Coronary artery disease (CAD) is the most common type of heart disease in the United States"
+    },
+    {
+      "url": "https://medlineplus.gov/coronaryarterydisease.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "In coronary artery disease, plaque builds up inside the arteries that supply the heart.",
+      "quote": "Plaque is a waxy, sticky substance made of fat, cholesterol, calcium, and other materials found in your blood"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ticagrelor%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Brilinta%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Ticagrelor&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ticagrelor/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/9871419/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/9871419",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=ticagrelor",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f7b3f443-e83d-4bf2-0e96-023448fed9a8",
+    "https://www.nccih.nih.gov/health/ticagrelor",
+    "https://medlineplus.gov/antiplateletdrugs.html",
+    "https://medlineplus.gov/coronaryarterydisease.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548529/",
+    "https://ncbi.nlm.nih.gov/books/NBK548529/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548529/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548529/?format=pubmed"
+  ],
+  "gaps": [
+    "NCCIH does not cover this substance. https://www.nccih.nih.gov/health/ticagrelor returned HTTP 404, so no NCCIH page is cited.",
+    "NCBI Bookshelf blocked four direct HTTP attempts at the LiverTox ticagrelor page with a browser check. The page was then loaded in the in-app browser at https://www.ncbi.nlm.nih.gov/books/NBK548529/ and read there, and it is cited from that fetch.",
+    "DailyMed drugInfo pages build their label text with JavaScript, so the direct fetcher returned only an empty shell. Label text was read from the openFDA label API instead, which serves the same SPL content.",
+    "DailyMed spls.json returned titles and set ids only, with no label text.",
+    "The PubChem compound web page requires JavaScript, so PubChem's REST API was used for identity and description.",
+    "MedlinePlus drug monographs were deliberately not fetched because NLM states they are copyrighted ASHP content. Only MedlinePlus health topic pages were used.",
+    "No public-domain source described a reversal agent, a monitoring schedule for bleeding, or outcomes past the trial follow-up periods.",
+    "No public-domain source was found on how ticagrelor affects people who are pregnant beyond case-report data, or on long-term use beyond the labelled conditions.",
+    "A MedlinePlus health topic on antiplatelet drugs was not available at the guessed URL https://medlineplus.gov/antiplateletdrugs.html (HTTP 404); the coronary artery disease topic was used instead for context on the condition.",
+    "This record intentionally contains no dosing, no reversal instructions and no advice about what to do if a dose is missed."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what ticagrelor is, how it lowers clot risk after acute coronary syndrome, heart attack or stroke, its bleeding, breathing and interaction risks, and what remains unknown about it."
+}

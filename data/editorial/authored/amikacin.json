@@ -1,0 +1,157 @@
+{
+  "slug": "amikacin",
+  "oneLineAnswer": "Amikacin is a prescription antibiotic given by injection for serious bacterial infections; it can damage hearing and kidneys.",
+  "whatItIs": "Amikacin is an antibiotic that belongs to the aminoglycoside family. Its label describes amikacin sulfate as a semi-synthetic antibiotic made from kanamycin, another aminoglycoside. In the United States the main form is a sterile solution given by injection into a muscle or a vein. A second form is a liquid breathed in through a nebulizer, sold under the brand name ARIKAYCE.",
+  "whatItDoes": [
+    "Amikacin kills bacteria by attaching to their ribosomes, the machinery that builds proteins.",
+    "The label lists serious Gram-negative infections, including some that resist gentamicin and tobramycin.",
+    "Named uses include bloodstream infection, meningitis, pneumonia, infected burns and complicated urinary infections.",
+    "The inhaled form treats only Mycobacterium avium complex lung disease that has not cleared after other treatment.",
+    "Antibiotics like amikacin do not treat viruses such as the common cold."
+  ],
+  "howPeopleUseIt": [
+    "The injectable goes into a muscle or a vein, so a clinician gives it rather than you.",
+    "While it is given, the label advises checking kidney function, drug levels in blood and hearing.",
+    "For the inhaled form, the label suggests some people use a bronchodilator first, then breathe the mist through a specific nebulizer.",
+    "The label states that safety has not been established for treatment lasting longer than 14 days."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nausea and vomiting, headache, skin rash and drug fever have been reported.",
+      "Less common reports include tingling or numbness, tremor, joint pain, low blood pressure and low magnesium."
+    ],
+    "seriousSigns": [
+      "Hearing loss is the main harm. High-frequency deafness usually comes first and may only show on a hearing test.",
+      "Hearing damage is often irreversible, and it can begin without any symptom you would notice.",
+      "Vertigo or feeling off balance can be a sign of injury to the balance part of the inner ear.",
+      "Kidney changes include rising creatinine, protein in urine and lower urine output. The label says they usually reverse when the drug stops.",
+      "Muscle weakness, paralysis or trouble breathing can follow the injection, especially with anesthesia or muscle relaxants.",
+      "Diarrhea with blood, sometimes weeks or months after antibiotics, can mean a C. difficile infection.",
+      "The inhaled form carries its own warning: coughing up blood, bronchospasm and allergic lung inflammation have led to hospital stays."
+    ],
+    "whoShouldAvoid": [
+      "Anyone who has had an allergic reaction to amikacin or to another aminoglycoside.",
+      "People with kidney problems, because the risk of hearing and kidney damage is higher when kidneys work poorly.",
+      "People with certain mitochondrial gene variants, such as m.1555A>G, who face a higher risk of hearing loss.",
+      "People sensitive to sulfites, since the injection contains sodium metabisulfite."
+    ]
+  },
+  "interactions": [
+    "Taking another medicine that harms hearing or kidneys at the same time can add to the damage.",
+    "Anesthetics and muscle-relaxing drugs raise the risk of paralysis and breathing failure.",
+    "Large transfusions of blood treated with citrate are listed as another risk for muscle weakness."
+  ],
+  "pregnancyAndChildren": "The label says aminoglycosides cross the placenta and can harm a fetus, and it mentions reports of permanent deafness in children whose mothers received streptomycin. Amikacin itself caused no fetal harm in rat and mouse studies, but the label says there are no well-controlled studies in pregnant women. The label also says it is not known whether amikacin passes into human breast milk, so a choice has to be made between nursing and the drug. Premature and newborn babies need caution, because immature kidneys make the drug stay in the body longer.",
+  "whatWeDoNotKnow": [
+    "No source we could fetch says how often hearing loss or kidney injury happens among people given amikacin.",
+    "Whether amikacin passes into human breast milk is unknown.",
+    "The inhaled form was approved based on sputum cultures turning negative; the label says clinical benefit is not yet established.",
+    "Public-domain consumer pages on amikacin are scarce, so most details here come from FDA-approved labeling written for clinicians."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The amikacin sulfate injection label says it is for short-term treatment of serious Gram-negative infections.",
+      "quote": "indicated in the short-term treatment of serious infections due to susceptible strains of Gram-negative bacteria"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Amikacin works by binding to the bacterial ribosome and stopping protein synthesis.",
+      "quote": "binds to the prokaryotic ribosome, inhibiting protein synthesis in susceptible bacteria"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The boxed warning is about hearing and kidney toxicity from injected aminoglycosides.",
+      "quote": "Patients treated with parenteral aminoglycosides should be under close clinical observation because of the potential ototoxicity and nephrotoxicity"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Amikacin sulfate is a semi-synthetic antibiotic derived from kanamycin.",
+      "quote": "Amikacin sulfate is semi-synthetic aminoglycoside antibiotic derived from kanamycin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Some people carry mitochondrial variants that make aminoglycoside hearing damage more likely.",
+      "quote": "Cases of ototoxicity with aminoglycosides have been observed in patients with certain variants in the mitochondrially encoded 12S rRNA gene"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The label states no established safety beyond 14 days of treatment.",
+      "quote": "Safety for treatment periods which are longer than 14 days has not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "It is unknown whether amikacin shows up in human breast milk.",
+      "quote": "It is not known whether amikacin is excreted in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "Premature and newborn infants need caution because their kidneys are immature.",
+      "quote": "Aminoglycosides should be used with caution in premature and neonatal infants because of the renal immaturity of these patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22ARIKAYCE%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug labeling, public domain)",
+      "claim": "The inhaled amikacin product carries a boxed warning about respiratory reactions.",
+      "quote": "hypersensitivity pneumonitis, hemoptysis, bronchospasm, exacerbation of underlying pulmonary disease that have led to hospitalizations in some cases"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=499ab990-2b21-474f-aaba-d86388965f40",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The inhaled form is labeled for Mycobacterium avium complex lung disease as part of a combination regimen.",
+      "quote": "for the treatment of Mycobacterium avium complex (MAC) lung disease as part of a combination antibacterial drug regimen"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f260ff2a-76a0-4672-9516-91c344b67890",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "A past hypersensitivity reaction to amikacin rules out its use.",
+      "quote": "A history of hypersensitivity to amikacin is a contraindication for its use"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amikacin",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Both an inhaled amikacin product and generic amikacin sulfate injections are marketed in the United States.",
+      "quote": "ARIKAYCE (AMIKACIN) SUSPENSION [INSMED INCORPORATED], AMIKACIN SULFATE INJECTION, SOLUTION [SAGENT PHARMACEUTICALS]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amikacin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records amikacin's chemical formula and molecular weight.",
+      "quote": "\"CID\": 37768, \"MolecularFormula\": \"C22H43N5O13\", \"MolecularWeight\": \"585.6\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Amikacin&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Researchers have studied aerosolized amikacin in ventilated patients with Gram-negative pneumonia.",
+      "quote": "Aerosolized Amikacin and Fosfomycin in Mechanically Ventilated Patients With Gram-negative Pneumonia"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amikacin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22ARIKAYCE%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amikacin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Amikacin&pageSize=5",
+    "https://www.nccih.nih.gov/health/amikacin",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amikacin",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=499ab990-2b21-474f-aaba-d86388965f40",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f260ff2a-76a0-4672-9516-91c344b67890",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548695/"
+  ],
+  "gaps": [
+    "NCCIH has no amikacin page: https://www.nccih.nih.gov/health/amikacin returned a 404 error.",
+    "The LiverTox record for amikacin (https://www.ncbi.nlm.nih.gov/books/NBK548695/) blocked automated fetching with a browser check, so nothing from it is cited here even though NIDDK publishes it as public domain.",
+    "No fetched source reports how often hearing loss or kidney injury occurs per patient treated.",
+    "MedlinePlus drug monographs were deliberately not used, because that content is copyrighted.",
+    "There is no public-domain consumer page on amikacin, so every safety statement traces to FDA-approved product labeling written for prescribers."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what amikacin is, the uses and warnings in its FDA labeling for both the injection and the inhaled form, its side effects and interactions, what is known about pregnancy and children, and the open questions a reader should carry."
+}

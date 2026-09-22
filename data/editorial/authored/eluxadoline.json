@@ -1,0 +1,419 @@
+{
+  "slug": "eluxadoline",
+  "oneLineAnswer": "A prescription tablet for diarrhea-predominant irritable bowel syndrome in adults; it eases pain and loose stools, with rare serious risks.",
+  "whatItIs": "Eluxadoline is a prescription-only medicine sold under the brand name Viberzi. It comes as tablets of 75 mg and 100 mg. In the United States it is a Schedule IV controlled substance, a legal category for medicines the government tracks because they can be misused. It was first approved in the United States in 2015 for adults with irritable bowel syndrome that causes diarrhea. Irritable bowel syndrome is a long-term gut condition with recurring belly pain and changed bowel habits.",
+  "whatItDoes": [
+    "It works on opioid receptors in the wall of the gut. Opioid receptors are docking points that normally respond to the body's own pain-relief chemicals.",
+    "It switches on the mu and kappa receptors while blocking the delta receptor. That combination is meant to slow the bowel and settle pain.",
+    "The FDA review notes that only a small share of a swallowed dose reaches the bloodstream, so the drug is thought to act mainly inside the gut.",
+    "In the two trials that supported approval, people taking it reached a combined target of less belly pain and firmer stools more often than people on placebo.",
+    "The FDA reviewers wrote that its clearest measured effect was on stool firmness rather than on pain."
+  ],
+  "howPeopleUseIt": [
+    "It is a tablet taken by mouth, and the label says to take it with food.",
+    "In the trials that supported approval, adults took it twice daily, for between three months and a year.",
+    "Two tablet strengths exist. The label lists the lower strength for people who cannot tolerate the higher one, and for people whose bodies clear the drug more slowly."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Constipation is the most common complaint. The label calls it the most frequently reported side effect in the trials.",
+      "Nausea and belly pain are also common, and both showed up more often than they did on placebo.",
+      "Vomiting, bloating, gas, dizziness and rash each appeared in a few percent of people in the trials.",
+      "A mild rise in a liver enzyme reading (ALT) occurred in about 3% of people on the higher strength, against about 1% on placebo.",
+      "A small number of people in trials reported feeling drunk or unusually elated."
+    ],
+    "seriousSigns": [
+      "Inflammation of the pancreas, called pancreatitis, has been reported. It happened mostly in people who no longer have a gallbladder. Some of those cases were fatal.",
+      "The sphincter of Oddi is a valve that controls the flow of bile and pancreatic juice into the first part of the small intestine. That valve can go into spasm, which causes severe pain and can also inflame the pancreas.",
+      "Serious allergic reactions have been reported, including anaphylaxis, which is a sudden whole-body reaction. Reported signs were swelling of the face and throat, breathing trouble and chest tightness.",
+      "Severe constipation after approval was in some cases followed by a blocked bowel, a hole in the bowel wall, or a hard stool mass that needed treatment.",
+      "Most of the serious pancreas and valve-spasm cases in the trials began within the first week of treatment, and some after only one or two doses."
+    ],
+    "whoShouldAvoid": [
+      "People who no longer have a gallbladder. The label treats this as a hard stop.",
+      "People with a known or suspected blockage of the bile ducts, or with disease or poor function of the sphincter of Oddi.",
+      "People with alcohol abuse or addiction, or who drink more than three alcoholic drinks a day.",
+      "People with past pancreatitis, or with structural disease of the pancreas such as a suspected blockage of the pancreatic duct.",
+      "People who have had an allergic reaction to this medicine before.",
+      "People with severe liver disease, graded as Child-Pugh class C. This is a staging system for how well the liver is working. Blood levels of the drug rose about 16-fold in that group.",
+      "People with a history of long-lasting or severe constipation, or with a known or suspected physical blockage of the gut.",
+      "The label notes that older adults in the trials had more side effects and more serious side effects than younger participants."
+    ]
+  },
+  "interactions": [
+    "The body clears eluxadoline partly through a liver transporter protein called OATP1B1. Medicines that block that protein, such as cyclosporine, gemfibrozil, rifampin, eltrombopag and some HIV drugs, raise eluxadoline blood levels.",
+    "The label warns against pairing it with other medicines that slow the bowel, including opioid painkillers, anticholinergic drugs and alosetron.",
+    "Eluxadoline can push up blood levels of rosuvastatin, a cholesterol medicine. The label flags a raised risk of muscle injury from that combination.",
+    "Loperamide, a common anti-diarrheal, is listed as something to use only now and then alongside it, not long term."
+  ],
+  "pregnancyAndChildren": "There are no studies of eluxadoline in pregnant women, so the risk during pregnancy is not known. Animal studies in rats and rabbits found no harm to the developing young at high doses. It is not known whether the drug passes into human breast milk, though it does appear in rat milk. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "Whether it helps other forms of irritable bowel syndrome. It is only approved for the type that causes diarrhea.",
+    "How long it stays safe and useful. The trials ran for about three months to a year.",
+    "How it compares with other treatments. The trials compared it only with placebo.",
+    "The exact share of a swallowed dose that reaches the bloodstream. The label states that absolute bioavailability has not been determined.",
+    "Whether it helps children. No pediatric study established that.",
+    "Whether it reaches human breast milk.",
+    "The true rate of rare harms. Postmarketing reports are voluntary, so counts of reports cannot be turned into a reliable risk rate.",
+    "Whether the benefit at six months holds for the lower strength. In one of the two trials the 75 mg result at 26 weeks was not clearly separated from placebo."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Eluxadoline is approved in adults for irritable bowel syndrome with diarrhea.",
+      "quote": "VIBERZI is indicated in adults for the treatment of irritable bowel syndrome with diarrhea (IBS-D)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "It activates mu and kappa opioid receptors and blocks the delta receptor.",
+      "quote": "Eluxadoline is a mu-opioid receptor agonist; eluxadoline is also a delta opioid receptor antagonist and a kappa opioid receptor agonist."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "It is a Schedule IV controlled substance in the United States.",
+      "quote": "Eluxadoline is listed in Schedule IV of the Controlled Substances Act."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The most common side effects are constipation, nausea and belly pain.",
+      "quote": "Most common adverse reactions (>5%) are constipation, nausea and abdominal pain."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "People who drink more than three alcoholic drinks a day should not take it.",
+      "quote": "alcoholism, alcohol abuse, alcohol addiction, or drink more than 3 alcoholic beverages/day ( 4 )"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Serious allergic reactions including anaphylaxis were reported after approval.",
+      "quote": "serious hypersensitivity reactions (including anaphylaxis) have been reported following VIBERZI administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Severe constipation was sometimes followed by bowel obstruction, perforation or fecal impaction.",
+      "quote": "severe cases with development of intestinal obstruction, intestinal perforation, and fecal impaction, requiring intervention, have also been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Sphincter of Oddi spasm was more frequent on the higher strength in trials.",
+      "quote": "sphincter of Oddi spasm occurred in 0.2% (2/807) of patients receiving 75 mg and 0.8% (8/1032) of patients receiving 100 mg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Pancreatitis occurred in roughly 0.3% of trial participants on the higher strength.",
+      "quote": "reported in 2/807 (0.2%) of patients receiving 75 mg and 3/1032 (0.3%) of patients receiving 100 mg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Its blood half-life is about four to six hours.",
+      "quote": "The mean plasma elimination half-life of eluxadoline ranged from 3.7 hours to 6 hours."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "There are no human pregnancy studies.",
+      "quote": "There are no studies with VIBERZI in pregnant women that inform any drug-associated risks."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "No human milk data exist.",
+      "quote": "No data are available regarding the presence of eluxadoline in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Safety and effectiveness in children are not established.",
+      "quote": "Safety and effectiveness in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Older trial participants had more side effects than younger ones.",
+      "quote": "a higher proportion of elderly patients than younger patients experienced adverse reactions (66% vs 59%)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Cyclosporine raises eluxadoline blood levels.",
+      "quote": "Increased exposure to eluxadoline when coadministered with cyclosporine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Combining it with other constipation-causing drugs raises constipation risk.",
+      "quote": "Increased risk for constipation related adverse reactions and potential for constipation related serious adverse reactions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "It raises rosuvastatin levels, with a risk of muscle injury.",
+      "quote": "Increased exposure to rosuvastatin when co-administered with VIBERZI with a potential for increased risk of myopathy/rhabdomyolysis"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "It is sold under the brand name Viberzi.",
+      "quote": "VIBERZI (eluxadoline) tablets, for oral use"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "It was first approved in the United States in 2015.",
+      "quote": "Initial U.S. Approval: 2015"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Tablets come in 75 mg and 100 mg strengths.",
+      "quote": "Tablets: 75 mg and 100 mg (3)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The sphincter of Oddi is a valve governing the flow of bile and pancreatic juice into the small intestine.",
+      "quote": "The sphincter of Oddi is a muscular valve that controls the flow of digestive juices (bile and pancreatic juice)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Pancreatitis has caused death in some people who lack a gallbladder.",
+      "quote": "Pancreatitis has led to death in some people who do not have a gallbladder."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "Two randomized placebo-controlled trials supported approval.",
+      "quote": "Two randomized, placebo-controlled trials support the NDA."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "The composite target required a simultaneous 30% pain improvement and a stool score below 5.",
+      "quote": "Simultaneous improvement of Worst Abdominal Pain (WAP) by \u226530% and Bristol Stool Score (BSS) < 5 on the same day"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "The clearest measured effect was on stool consistency.",
+      "quote": "major treatment impact is in improving stool consistency (BSS)"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "At 26 weeks the lower strength was not clearly separated from placebo in one trial.",
+      "quote": "the confidence intervals for the difference in composite response includes zero in the comparison of 75 mg to placebo"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "Blood levels were about 35% higher in women than in men.",
+      "quote": "Eluxadoline exposure was 35 % higher in females than in males."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/eluxadoline/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Its molecular formula is C32H35N5O5 and its molecular weight is about 570.",
+      "quote": "\"MolecularFormula\": \"C32H35N5O5\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/eluxadoline/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Its molecular weight is about 570.",
+      "quote": "\"MolecularWeight\": \"569.6\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/11250029/JSON?heading=LiverTox+Summary",
+      "publisher": "PubChem, U.S. National Library of Medicine (LiverTox summary)",
+      "claim": "LiverTox describes it as a mixed opioid agonist and antagonist used for diarrhea-predominant irritable bowel disease.",
+      "quote": "Eluxadoline is a mixed opioid receptor agonist (mu) and antagonist (delta) that is used to treat diarrhea-predominant irritable bowel disease."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT01553591",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "The first pivotal trial enrolled 1282 adults.",
+      "quote": "\"enrollmentInfo\":{\"count\":1282,\"type\":\"ACTUAL\"}"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT01553747?fields=NCTId,BriefTitle,Phase,EnrollmentCount,OverallStatus,Condition,LeadSponsorName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "The second pivotal trial was phase 3 and enrolled 1146 adults.",
+      "quote": "\"phases\": [\n        \"PHASE3\"\n      ],\n      \"enrollmentInfo\": {\n        \"count\": 1146"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "The drug's oral bioavailability is low, so its effects are thought to be local to the gut.",
+      "quote": "Given the low oral bioavailability, the applicant proposes the therapeutic effects occur via local effects on opioid receptors within the GI tract."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research",
+      "claim": "More people on the drug than on placebo met the combined target at 12 weeks.",
+      "quote": "Responder rates 25% 24% 17% 30% 29% 16%"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label says the tablets are taken with food.",
+      "quote": "The recommended dosage in adults is 100 mg twice daily taken with food."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The lower strength is listed for people who cannot tolerate the higher one.",
+      "quote": "unable to tolerate the 100 mg dose"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The lower strength is also listed for people with mild or moderate liver impairment.",
+      "quote": "with mild (Child-Pugh Class A) or moderate (Child-Pugh Class B) hepatic impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "People in the trials were exposed for three months to a year.",
+      "quote": "1391 exposed for 3 months, 1001 exposed for 6 months and 488 exposed for one year"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Vomiting, bloating, gas, dizziness and rash were each reported in a few percent of trial participants.",
+      "quote": "Abdominal Distention 3 3 2 Bronchitis 3 3 2 Dizziness 3 3 2 Flatulence 3 3 2 Rash"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "A raised ALT reading was more common on the drug than on placebo.",
+      "quote": "Increased ALT 3 2 1"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Feeling drunk and elation were reported in trials of the approved strengths.",
+      "quote": "Adverse reactions of euphoria and feeling drunk were reported in clinical trials"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Most serious pancreatitis reports began within a week of starting the drug.",
+      "quote": "Most of the reported cases of serious pancreatitis occurred within a week of starting treatment with VIBERZI"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Having no gallbladder is a listed contraindication.",
+      "quote": "VIBERZI is contraindicated in patients without a gallbladder"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Bile duct blockage and sphincter of Oddi disease are contraindications.",
+      "quote": "With known or suspected biliary duct obstruction; or sphincter of Oddi disease or dysfunction."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Past pancreatitis and structural pancreatic disease are contraindications.",
+      "quote": "With a history of pancreatitis; or structural diseases of the pancreas"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "A prior allergic reaction to the drug is a contraindication.",
+      "quote": "With a known hypersensitivity reaction to VIBERZI"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "In severe liver disease the drug's blood levels rose about 16-fold.",
+      "quote": "severe hepatic impairment (Child-Pugh Class C) as plasma concentrations of eluxadoline increase significantly (16-fold)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "A history of severe constipation or a gut blockage is a contraindication.",
+      "quote": "With a history of chronic or severe constipation or sequelae from constipation, or known or suspected mechanical gastrointestinal obstruction."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label names the OATP1B1-blocking drugs to watch for.",
+      "quote": "cyclosporine, gemfibrozil, antiretrovirals (atazanavir, lopinavir, ritonavir, saquinavir, tipranavir), rifampin, eltrombopag"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label groups other bowel-slowing medicines as a constipation risk.",
+      "quote": "alosetron, anticholinergics, opioids"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Loperamide is listed for occasional, not long-term, use.",
+      "quote": "loperamide may be used occasionally for acute management of severe diarrhea but avoid chronic use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Animal reproduction studies found no harm to the developing fetus.",
+      "quote": "demonstrated no teratogenic effects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label says absolute bioavailability has not been determined.",
+      "quote": "Absolute bioavailability of eluxadoline has not been determined."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Postmarketing reports are voluntary, so rates cannot be reliably estimated.",
+      "quote": "reported voluntarily from a population of uncertain size, it is not always possible to reliably estimate their frequency"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Eluxadoline%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+    "https://dailymed.nlm.nih.gov/dailymed/medguide.cfm?setid=7821bd40-4c84-4984-951b-6436ae20421a",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2015/206940Orig1s000SumR.pdf",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/eluxadoline/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/11250029/JSON?heading=LiverTox+Summary",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/11250029",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Eluxadoline&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=eluxadoline&filter.advanced=AREA%5BPhase%5DPHASE3&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT01553591",
+    "https://clinicaltrials.gov/api/v2/studies/NCT01553591?fields=ResultsSection.outcomeMeasuresModule.outcomeMeasures[0].title,ResultsSection.outcomeMeasuresModule.outcomeMeasures[0].description,ResultsSection.outcomeMeasuresModule.outcomeMeasures[0].groups,ResultsSection.outcomeMeasuresModule.outcomeMeasures[0].classes",
+    "https://clinicaltrials.gov/api/v2/studies/NCT01553747?fields=NCTId,BriefTitle,Phase,EnrollmentCount,OverallStatus,Condition,LeadSponsorName",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Eluxadoline&query.phase=PHASE3&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,PrimaryOutcomeMeasure,StartDate,CompletionDate",
+    "https://www.nccih.nih.gov/health/eluxadoline",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548868/",
+    "https://www.ncbi.nlm.nih.gov/books/n/livertox/Eluxadoline/",
+    "https://ncbi.nlm.nih.gov/books/NBK548868/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548868/?report=classic"
+  ],
+  "gaps": [
+    "NCCIH has no eluxadoline page; https://www.nccih.nih.gov/health/eluxadoline returned a 404, so no NCCIH content is used.",
+    "The LiverTox chapter on ncbi.nlm.nih.gov sits behind a bot check and could not be fetched directly. Its summary text was reached only through the PubChem mirror, so no LiverTox-only figures are included.",
+    "Two ClinicalTrials.gov API calls returned 400 Bad Request (a phase-filtered query and a nested results-field query). The underlying records were retrieved with simpler queries instead.",
+    "MedlinePlus drug monographs were not used because NLM states that content is licensed from the American Society of Health-System Pharmacists and is copyrighted. No MedlinePlus health topic page for eluxadoline was found.",
+    "No head-to-head trial against another IBS-D treatment was found, so no comparison of effectiveness can be stated.",
+    "Absolute bioavailability is not stated in the label, so how much of a swallowed dose reaches the bloodstream is unknown.",
+    "No human data on pregnancy or breast milk exist, and no pediatric data exist.",
+    "Independent postmarketing case counts for pancreatitis could not be confirmed from a source that could be fetched, so no such count appears here.",
+    "Nothing was found on cost, availability outside the United States, or how long people typically stay on treatment in practice."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what eluxadoline is, how it acts on gut opioid receptors, what the two pivotal trials measured, its common and serious side effects, who the label excludes, its drug interactions, and the honest gaps around pregnancy, children and rare postmarketing harms."
+}

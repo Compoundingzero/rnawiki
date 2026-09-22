@@ -1,0 +1,186 @@
+{
+  "slug": "almotriptan",
+  "oneLineAnswer": "A prescription triptan tablet for acute migraine attacks; it does not prevent migraines.",
+  "whatItIs": "Almotriptan is a prescription tablet used for migraine attacks. It belongs to the triptan class, which acts on serotonin receptors. A receptor is a docking site that a chemical signal fits into. The tablet contains almotriptan malate, a salt form of the drug. Generic versions exist, and the original brand name was Axert. The label describes it as a 5-HT1B/1D receptor agonist.",
+  "whatItDoes": [
+    "It is taken to stop a migraine attack that has already started.",
+    "The label states it is approved for adults and for young people aged 12 to 17.",
+    "It is not meant to prevent migraines, and it is not for cluster headache.",
+    "Almotriptan binds strongly to three receptor types: 5-HT1B, 5-HT1D and 5-HT1F.",
+    "Those receptors line blood vessels and nerve endings, so acting on them narrows brain vessels and eases pain signalling."
+  ],
+  "howPeopleUseIt": [
+    "The label records two tablet strengths, 6.25 mg and 12.5 mg.",
+    "The label records a single 6.25 mg or 12.5 mg dose for adults and ages 12 to 17.",
+    "The label allows the dose to be repeated after 2 hours if the headache returns.",
+    "The label records a daily maximum of 25 mg for these groups.",
+    "For liver or severe kidney problems, the label records a 6.25 mg start and 12.5 mg daily maximum."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In adult trials the most common effects were nausea, dry mouth and tingling skin (paresthesia).",
+      "Adolescent trials recorded dizziness, drowsiness, headache, tingling, nausea and vomiting.",
+      "Some people get what is called a triptan sensation: tightness or pressure in the chest, throat, neck and jaw.",
+      "In the adolescent trial, drowsiness was reported more often at 12.5 mg than at 6.25 mg."
+    ],
+    "seriousSigns": [
+      "Serious heart events, including heart attack and dangerous heart rhythms, have been reported rarely.",
+      "These appeared within a few hours of a dose, and most were in people with heart risk factors.",
+      "Stroke and bleeding in the brain have been reported with triptans, and some of these were fatal.",
+      "Serotonin syndrome is a rare, life-threatening overload of serotonin signalling.",
+      "Reported serotonin syndrome signs include agitation, hallucinations, fast heartbeat, fever, muscle twitching and diarrhoea.",
+      "Triptans can narrow vessels outside the heart, causing cold painful fingers or bowel pain with bloody diarrhoea.",
+      "Very rare reports describe short-term or lasting vision loss with triptans.",
+      "Using acute migraine drugs on 10 or more days a month can cause medication overuse headache.",
+      "Blood pressure can rise on almotriptan, and rare rises have been linked to serious events.",
+      "Allergic reactions have been reported, including rash, itching and difficulty breathing."
+    ],
+    "whoShouldAvoid": [
+      "People with ischemic heart disease, coronary vasospasm or other significant heart disease.",
+      "People who have had a stroke or a transient ischemic attack.",
+      "People with peripheral vascular disease, including ischemic bowel disease.",
+      "People whose high blood pressure is not controlled.",
+      "People with hemiplegic or basilar migraine, two uncommon migraine types.",
+      "Anyone allergic to almotriptan or to the tablet's other ingredients.",
+      "People who have taken an ergot medicine or another triptan in the past 24 hours.",
+      "The label advises caution for people with a known sulfonamide allergy."
+    ]
+  },
+  "interactions": [
+    "Ergot-type medicines such as dihydroergotamine, ergotamine and methysergide: the label forbids use within 24 hours of each other.",
+    "Other triptans: the label forbids use within 24 hours of each other.",
+    "SSRI or SNRI antidepressants: combined use has been linked to serotonin syndrome.",
+    "Ketoconazole: the label advises a single 6.25 mg almotriptan dose and a 12.5 mg daily maximum.",
+    "Moclobemide, an MAO inhibitor: almotriptan clearance fell 27%, and the label calls for no dose change.",
+    "Propranolol: the label reports no significant change in almotriptan levels.",
+    "Almotriptan is broken down mainly by the MAO-A enzyme and by the CYP3A4 and CYP2D6 enzymes."
+  ],
+  "pregnancyAndChildren": "The label places almotriptan in pregnancy category C. Animal studies found developmental harm, but only at doses higher than those used in people. The label states there are no adequate, well-controlled studies in pregnant women. Effects on labour and delivery in humans are unknown. It is not known whether almotriptan passes into human milk. In rats, milk levels reached up to seven times the levels in rat blood. LactMed reports minimal published experience during breastfeeding and one low milk measurement. LactMed adds that another drug may be preferred while nursing a newborn or preterm infant. Almotriptan is approved for adolescents aged 12 to 17 for migraine headache pain. In that age group its effect on nausea, light sensitivity and sound sensitivity was not established. Safety and effectiveness below age 12 have not been established.",
+  "whatWeDoNotKnow": [
+    "Whether treating more than an average of four migraines in 30 days is safe has not been established.",
+    "The benefit of a second dose for people who do not respond to the first has not been established.",
+    "The label does not establish whether almotriptan passes into human milk.",
+    "Effects on human labour and delivery are unknown.",
+    "Animal studies found almotriptan can bind melanin in the eye and caused corneal clouding in dogs. Long-term effects on human eyes were not systematically studied.",
+    "Cross-reaction in people allergic to sulfonamides has not been systematically tested.",
+    "Whether it helps migraine-related nausea and sensitivity in adolescents was not established.",
+    "The label notes no studies establishing safety above four treated migraines per 30 days."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "Almotriptan is approved for the acute treatment of migraine attacks in adults.",
+      "quote": "Acute treatment of migraine attacks in adults with a history of migraine with or without aura"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "The label also approves almotriptan for migraine headache pain in adolescents aged 12 to 17.",
+      "quote": "Acute treatment of migraine headache pain in adolescents age 12 to 17 years"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "Almotriptan works by binding strongly to the 5-HT1D, 5-HT1B and 5-HT1F receptors.",
+      "quote": "Almotriptan binds with high affinity to 5-HT 1D , 5-HT 1B , and 5-HT 1F receptors."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "The most common side effects recorded in adult trials were nausea, dry mouth and tingling skin.",
+      "quote": "In adults: nausea, dry mouth and paresthesia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "Almotriptan must not be used by people whose high blood pressure is uncontrolled.",
+      "quote": "Do not use almotriptan tablets in patients with uncontrolled hypertension"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "Serious cardiac events including heart attack have been reported soon after taking almotriptan.",
+      "quote": "Serious adverse cardiac events, including acute myocardial infarction, have been reported within a few hours following administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label data)",
+      "claim": "There are no adequate, well-controlled studies of almotriptan in pregnant women.",
+      "quote": "There are no adequate and well-controlled studies in pregnant women"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/123606/JSON/?heading=Pharmacology+and+Biochemistry",
+      "publisher": "National Library of Medicine (PubChem)",
+      "claim": "Almotriptan is not intended to prevent migraine attacks.",
+      "quote": "Almotriptan is not intended for the prophylactic therapy of migraine"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/123606/JSON/?heading=Biological+Half-Life",
+      "publisher": "National Library of Medicine (PubChem)",
+      "claim": "PubChem records the biological half-life of almotriptan as 3 to 4 hours.",
+      "quote": "3-4 hours"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548713/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+      "claim": "LiverTox treats the triptans other than zolmitriptan and rizatriptan as unlikely causes of visible liver injury.",
+      "quote": "Likelihood score, other triptans: E (unlikely cause of clinically apparent liver injury)"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548713/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+      "claim": "Triptans are used briefly at low doses and have not been linked to liver enzyme rises in large trials.",
+      "quote": "The triptans are generally used in low doses for a limited period of time and have not been associated with serum enzyme elevations"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK501459/",
+      "publisher": "Drugs and Lactation Database (LactMed), National Library of Medicine",
+      "claim": "Published experience with almotriptan during breastfeeding is minimal, though the amount in milk seems low.",
+      "quote": "There is minimal published experience with almotriptan during breastfeeding, although the dose in milk appears to be low."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Almotriptan&pageSize=5",
+      "publisher": "ClinicalTrials.gov, National Library of Medicine",
+      "claim": "Researchers have studied triptan safety in pregnancy and in people with raised cardiovascular risk.",
+      "quote": "Researchers are evaluating the safety of triptan treatment of migraine in individuals with elevated cardiovascular risk and in pregnant women."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=almotriptan",
+      "publisher": "DailyMed, National Library of Medicine",
+      "claim": "DailyMed lists several almotriptan tablet products, including generics and the brand Axert.",
+      "quote": "ALMOTRIPTAN TABLET, FILM COATED [AJANTA PHARMA USA INC.]"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Almotriptan%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Axert%22&limit=1",
+    "https://www.nccih.nih.gov/health/almotriptan",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=almotriptan",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fa380c4-c885-4743-85bf-88819ae68645",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Almotriptan&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/almotriptan/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/123606/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/123606/JSON/?heading=Pharmacology+and+Biochemistry",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/123606/JSON/?heading=Drug+and+Medication+Information",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/123606/JSON/?heading=Biological+Half-Life",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6917766/JSON/",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/9576089/JSON/?heading=Pharmacology+and+Biochemistry",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548713/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548201/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK501459/"
+  ],
+  "gaps": [
+    "NCCIH has no almotriptan page; the URL returned 404.",
+    "openFDA returned no records for a brand-name search on Axert, so all label facts come from the generic-name label record.",
+    "The LiverTox class chapter 'Migraine Headache Agents' (NBK548201) could not be fetched because NCBI served a bot check; the LiverTox triptans chapter was used instead.",
+    "Human data on how much almotriptan enters breast milk is limited to one published measurement; the label says excretion into human milk is not known.",
+    "No source found establishing safety of treating more than an average of four migraines per 30 days.",
+    "No source found establishing benefit of a second dose after a failed first dose.",
+    "Long-term ophthalmologic effects in humans are not systematically studied.",
+    "MedlinePlus drug monographs were excluded as copyrighted content and were not fetched.",
+    "No licensed sources such as Examine.com or Drugs.com were used."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what almotriptan is, how it works in acute migraine, its recorded side effects and serious risks, who the label says should avoid it, its interactions, and its pregnancy, breastfeeding and adolescent-use status, drawn from the FDA label, NLM sources and LiverTox."
+}

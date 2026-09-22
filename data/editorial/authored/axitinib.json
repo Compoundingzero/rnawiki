@@ -1,0 +1,177 @@
+{
+  "slug": "axitinib",
+  "oneLineAnswer": "A prescription oral cancer drug that blocks blood-vessel growth signals in tumors, used mainly for advanced kidney cancer.",
+  "whatItIs": "Axitinib is a kinase inhibitor, which means it blocks enzymes called kinases that pass growth signals inside cells. Its brand name is Inlyta, and it is a prescription cancer medicine, not a supplement. It comes as tablets you swallow whole. PubChem lists its molecular formula as C22H18N4OS, with a molecular weight near 386.5.",
+  "whatItDoes": [
+    "Axitinib blocks three receptor proteins on cells, called VEGFR-1, VEGFR-2 and VEGFR-3. Receptors are docking points that receive chemical signals from outside a cell.",
+    "Those receptors respond to VEGF, a signal that tells tumors to build new blood vessels.",
+    "Blocking them slows that new-vessel growth, which the label links to slower tumor growth and spread.",
+    "The FDA approved axitinib for advanced kidney cancer, also called renal cell carcinoma.",
+    "It is used alone after one earlier treatment, or with avelumab or pembrolizumab as a first treatment."
+  ],
+  "howPeopleUseIt": [
+    "The label records axitinib as a tablet taken by mouth twice a day, about 12 hours apart.",
+    "It is swallowed whole with water, with or without food.",
+    "In first-line use it is given with an immunotherapy drug delivered as an intravenous infusion.",
+    "Treatment continues while the drug is still helping and side effects stay manageable.",
+    "The label records dose reductions or pauses for high blood pressure, diarrhea and liver changes."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Bowel problems are common: diarrhea, nausea, vomiting and constipation.",
+      "High blood pressure is one of the most frequent effects, reported in 40% of people taking axitinib alone.",
+      "Tiredness, poor appetite and weight loss are common.",
+      "A hoarse or changed voice, called dysphonia, was reported in about 31% of people taking it alone.",
+      "Hand-foot syndrome is common: the label reports sore, red or peeling skin on palms and soles.",
+      "An underactive thyroid, called hypothyroidism, showed up in about 19% of people on axitinib alone.",
+      "Rash, dry skin, mouth sores, headache, joint pain and protein in the urine also occur."
+    ],
+    "seriousSigns": [
+      "Bleeding is a leading concern; 16% of people taking axitinib alone had a bleeding event.",
+      "Blood clots in arteries or veins were reported in about 1% to 3% of people, some of them fatal.",
+      "Heart failure was reported in about 2% of people taking axitinib alone, including two deaths.",
+      "A hole in the stomach or bowel wall is rare, but the label reports five cases and one death.",
+      "A rare brain swelling called RPLS can cause headache, seizures, confusion or loss of vision.",
+      "Liver injury, protein in the urine and thyroid changes are also listed as serious risks.",
+      "Slow wound healing is a risk, and the label records pausing the drug around surgery.",
+      "Arterial clots and hypertensive crisis are among the reasons the label records permanent discontinuation."
+    ],
+    "whoShouldAvoid": [
+      "The label says axitinib can harm a fetus, based on animal studies; human pregnancy data are absent.",
+      "It advises against breastfeeding during treatment and for two weeks after the last dose.",
+      "The label says it should not be used in people with untreated cancer spread to the brain.",
+      "The same applies to recent active bleeding in the stomach or bowel.",
+      "It has not been studied in people who had an artery clot within the past year.",
+      "It has not been studied in people who had a vein clot within the past six months.",
+      "Severe liver impairment has not been studied; moderate impairment needs a lower starting dose.",
+      "Children have not been studied, so safety and effectiveness in children are unknown.",
+      "The label lists no outright contraindication, meaning no group is barred from the drug completely."
+    ]
+  },
+  "interactions": [
+    "CYP3A4 and CYP3A5 are liver enzymes that break down many drugs, including axitinib.",
+    "Strong blockers of those enzymes, such as ketoconazole, itraconazole, clarithromycin or ritonavir, raise axitinib levels.",
+    "The label says to avoid those blockers, and records halving the axitinib dose if one is unavoidable.",
+    "Strong enzyme inducers, such as rifampin, phenytoin, carbamazepine, dexamethasone and St. John's wort, lower axitinib levels.",
+    "The label says to avoid those inducers, and also moderate ones such as efavirenz and modafinil.",
+    "Grapefruit and grapefruit juice can raise axitinib levels, and the label says to avoid them.",
+    "When axitinib is combined with avelumab or pembrolizumab, immune-related reactions can occur; those drugs' own labels cover them."
+  ],
+  "pregnancyAndChildren": "The label states there are no human data on axitinib in pregnancy. It says the drug can harm a fetus, based on animal studies where mice developed birth defects. The label advises effective contraception during treatment and for one week after. That applies to women and to men with female partners. Breastfeeding is advised against during treatment and for two weeks after the last dose. Axitinib may pass into milk and harm a breastfed baby, though no human milk data exist. Safety and effectiveness in children have not been studied. The label records bone and tooth problems in young animals given axitinib.",
+  "whatWeDoNotKnow": [
+    "There are no human data on what axitinib does in pregnancy.",
+    "No data exist on how much axitinib passes into human milk, or its effect on a breastfed baby.",
+    "Safety and effectiveness in children have not been studied.",
+    "Not studied: severe liver impairment, untreated brain tumors, recent stomach or bowel bleeding, and recent blood clots.",
+    "Whether axitinib harms human fertility is unknown, though animal studies suggest it may.",
+    "The avelumab trial excluded people with most autoimmune diseases, so results may not apply to them.",
+    "Liver injury risk is uncertain. The LiverTox page could not be read, so no independent hepatotoxicity source is cited here.",
+    "How axitinib compares with other kidney cancer treatments in plain terms was not established from the sources read."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Axitinib%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration drug label API)",
+      "claim": "The FDA label approves axitinib with avelumab for first-line treatment of advanced renal cell carcinoma.",
+      "quote": "in combination with avelumab, for the first-line treatment of patients with advanced renal cell carcinoma (RCC)."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "Axitinib inhibits the VEGFR-1, VEGFR-2 and VEGFR-3 receptor kinases, which are involved in angiogenesis and tumor growth.",
+      "quote": "inhibit receptor tyrosine kinases including vascular endothelial growth factor receptors (VEGFR)-1, VEGFR-2, and VEGFR-3 at therapeutic plasma concentrations"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "The most common side effects of axitinib used alone include diarrhea, high blood pressure, fatigue, appetite loss, nausea and voice changes.",
+      "quote": "The most common (\u226520%) adverse reactions observed following treatment with INLYTA were diarrhea, hypertension, fatigue, decreased appetite, nausea, dysphonia"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "High blood pressure is common on axitinib monotherapy, reported in 40% of patients in a controlled study.",
+      "quote": "hypertension was reported in 145/359 patients (40%) receiving INLYTA"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "The label advises people not to breastfeed during axitinib treatment and for two weeks after the last dose.",
+      "quote": "advise lactating women not to breastfeed during treatment and for 2 weeks after the last dose"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "The label says axitinib can cause fetal harm, and that there are no human data on pregnancy risk.",
+      "quote": "INLYTA can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "There are no data on axitinib in human milk.",
+      "quote": "There are no data on the presence of axitinib in human milk"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "Axitinib has not been studied in children, so pediatric safety and effectiveness are unknown.",
+      "quote": "The safety and efficacy of INLYTA in pediatric patients have not been studied."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "Grapefruit and grapefruit juice can raise axitinib blood levels and the label says to avoid them.",
+      "quote": "Grapefruit or grapefruit juice may also increase axitinib plasma concentrations and should be avoided."
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA prescribing information PDF)",
+      "claim": "Axitinib has not been studied in people with severe liver impairment.",
+      "quote": "has not been studied in patients with severe hepatic impairment (Child-Pugh class C)"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Axitinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine, study record NCT01806064)",
+      "claim": "A registered trial record describes axitinib as an oral inhibitor of VEGFR-1, VEGFR-2 and VEGFR-3, approved for advanced renal cell carcinoma after one prior therapy.",
+      "quote": "Axitinib is an oral inhibitor of multiple receptor tyrosine kinases including vascular endothelial growth factor receptor VEGFR-1, VEGFR-2, and VEGFR-3"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/axitinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine, CID 6450551)",
+      "claim": "PubChem records axitinib's molecular formula as C22H18N4OS and its molecular weight as 386.5.",
+      "quote": "\"MolecularFormula\": \"C22H18N4OS\", \"MolecularWeight\": \"386.5\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=84137882-e000-47da-bd5b-fa76ab3c76f9",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The label approves axitinib as a single agent for advanced renal cell carcinoma after one prior systemic therapy.",
+      "quote": "INLYTA as a single agent is indicated for the treatment of advanced renal cell carcinoma (RCC) after failure of one prior systemic therapy."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Axitinib%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22INLYTA%22+AND+_exists_:pregnancy&limit=1",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/202324Orig1s014CorrectedLbl.pdf",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=84137882-e000-47da-bd5b-fa76ab3c76f9",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/axitinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/axitinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Axitinib&pageSize=5",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548139/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548139/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548139/pdf/Bookshelf_NBK548139.pdf",
+    "https://www.nccih.nih.gov/health/axitinib"
+  ],
+  "gaps": [
+    "BLOCKED SOURCE: the LiverTox (NIDDK) axitinib page at https://www.ncbi.nlm.nih.gov/books/NBK548139/ returned a reCAPTCHA browser check on every attempt, including its printable and PDF forms. No LiverTox content is cited in this record, and no independent hepatotoxicity assessment is included.",
+    "NOT ATTEMPTED BY POLICY: MedlinePlus drug monographs, Examine.com, MSKCC About Herbs, ConsumerLab, WebMD, Healthline, Drugs.com and RxList were excluded because their content is copyrighted.",
+    "The 2022 Drugs@FDA PDF used for the mechanism, side-effect and pregnancy quotes is a corrected version of the label. The openFDA record (last updated 2026-09-18) is the more current text, and it also covers the avelumab and pembrolizumab combinations. Both were read.",
+    "The openFDA, DailyMed and Drugs@FDA PDF texts carry the same manufacturer label wording, so they are not independent of each other. The separately published corroboration for the oral kinase-inhibitor identity comes from the ClinicalTrials.gov record and PubChem.",
+    "The openFDA label response exceeded the readable size, so sections were read from the Drugs@FDA PDF instead. Sections 7 (drug interactions) and 8 (specific populations) were verified in the PDF text.",
+    "No plain-language survival or cure claim is stated here. The fetched sources report trial endpoints in statistical form only.",
+    "No cost, availability, access or treatment-selection information was groundable from the allowed sources.",
+    "NCCIH has no axitinib-specific page; the attempted URL returned 404, so no NCCIH content is cited.",
+    "Nothing in this record is medical advice. The dose figures and dose-reduction notes are reported only as records of the manufacturer's label."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what axitinib is, how it blocks VEGFR receptors in advanced kidney cancer, its label-recorded side effects and serious risks, drug interactions, pregnancy and pediatric gaps, and the sources that could not be used."
+}

@@ -1,0 +1,188 @@
+{
+  "slug": "albuterol",
+  "oneLineAnswer": "A quick-relief inhaled medicine that relaxes tight airway muscles so breathing gets easier during asthma symptoms.",
+  "whatItIs": "Salbutamol and albuterol are two names for the same medicine. Chemically it is a small molecule with the formula C13H21NO3. It is a bronchodilator, meaning a medicine that widens the breathing tubes. It belongs to the drug family called beta-adrenergic agonists.",
+  "whatItDoes": [
+    "It relaxes the smooth muscle wrapped around your airways, so narrowed breathing tubes open up.",
+    "The drug switches on beta-2 adrenergic receptors, docking sites on airway muscle, and that signal ends in relaxation.",
+    "Labels approve it for treating or preventing bronchospasm, the sudden tightening of airway muscles, in people aged 4 and older.",
+    "It is also approved to prevent the airway tightening that exercise can set off.",
+    "It is a rescue medicine: it opens airways during symptoms and does not calm inflamed airways."
+  ],
+  "howPeopleUseIt": [
+    "Most people inhale it, as a metered-dose inhaler, a dry powder inhaler, or a solution used in a nebulizer.",
+    "Quick-relief medicine like this is normally carried all the time, so it is at hand when symptoms start.",
+    "Some inhalers pair albuterol with a second drug, such as ipratropium or the steroid budesonide.",
+    "Because asthma differs between people, a clinician decides whether this medicine fits, and starting asthma medicine without that advice is not recommended."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In trials, the most common complaints were throat irritation, viral respiratory infections, upper airway inflammation, cough, and muscle pain.",
+      "A shaky feeling in the hands, called tremor, is a known effect of this drug family.",
+      "Palpitations, a fast heartbeat, dizziness, headache, restlessness and trouble sleeping have been reported.",
+      "Potassium in the blood can drop, and blood sugar can change."
+    ],
+    "seriousSigns": [
+      "Rarely the medicine does the opposite of its job. Labels call this paradoxical bronchospasm, breathing that gets worse right after a dose.",
+      "Immediate allergic reactions are possible, including rash, swelling, low blood pressure, and the severe whole-body reaction called anaphylaxis.",
+      "Very large amounts have been linked to deaths in people with asthma.",
+      "Heart effects appear in some people: pulse or blood pressure changes, chest pain, and irregular rhythms.",
+      "Needing the inhaler more often than usual can be a marker of asthma that is getting worse."
+    ],
+    "whoShouldAvoid": [
+      "Anyone with a known allergy to an ingredient in the product should not use it.",
+      "Labels advise care in people with underlying heart disease, especially poor coronary blood flow, irregular heartbeats, or high blood pressure.",
+      "Care is also advised with seizure disorders, an overactive thyroid, or diabetes.",
+      "People with asthma are normally not given beta-blockers, a different drug class that can set off severe airway tightening.",
+      "Use in children younger than 4 years is not established."
+    ]
+  },
+  "interactions": [
+    "Beta-blockers can cancel the airway-opening effect and can trigger severe bronchospasm in asthma.",
+    "Water pills that are not potassium-sparing can worsen heart-rhythm changes and low potassium when combined with this drug.",
+    "In one small study of healthy volunteers, albuterol lowered blood digoxin levels by roughly 16 to 22 percent.",
+    "Monoamine oxidase inhibitors and tricyclic antidepressants call for extreme caution, because the effect on blood vessels can be increased.",
+    "Other short-acting inhaled bronchodilators of the same type are not meant to be used alongside it."
+  ],
+  "pregnancyAndChildren": "Nobody has run a randomized trial of albuterol in pregnancy. Observational studies and case reports have not consistently linked inhaled albuterol to birth defects or miscarriage, but those studies have design limits. In animals, high doses caused cleft palate in mice and delayed bone formation in rabbits. Asthma that is poorly controlled in pregnancy carries its own risks to mother and baby, so labels say pregnant women with asthma should be closely monitored. The medicine is not approved for stopping preterm labor. It has not been measured in breast milk, and trials in children under 4 did not show it worked, so its use in that age group is not established.",
+  "whatWeDoNotKnow": [
+    "There are no randomized studies of albuterol in pregnancy, so the pregnancy picture rests on weaker observational evidence.",
+    "No data exist on how much albuterol passes into breast milk.",
+    "Labels state that the clinical relevance of the heart-rhythm changes seen on ECG is unknown.",
+    "It is unclear whether the fall in digoxin levels matters for people who take both drugs long term.",
+    "Whether this drug alone controls asthma is unsettled; labels note a single bronchodilator may not be adequate for many people.",
+    "This record says nothing about liver injury, because the LiverTox chapter could not be retrieved."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The approved uses are treating or preventing bronchospasm and preventing exercise-induced bronchospasm in patients aged 4 and older.",
+      "quote": "Treatment or prevention of bronchospasm in adult and pediatric patients aged 4 years and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The most frequent adverse reactions in trials, each at 3 percent or more, are listed on the label.",
+      "quote": "Most common adverse reactions (incidence \u22653%) are throat irritation, viral respiratory infections, upper respiratory inflammation, cough, and musculoskeletal pain"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label warns that the drug can rarely cause life-threatening paradoxical bronchospasm.",
+      "quote": "Albuterol Sulfate HFA can produce paradoxical bronchospasm, which may be life threatening."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Excessive use of inhaled sympathomimetic drugs has been associated with reported deaths in asthma patients.",
+      "quote": "Fatalities have been reported in association with excessive use of inhaled sympathomimetic drugs in patients with asthma."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Beta-blockers interact with albuterol by blocking its lung effect and by risking severe bronchospasm.",
+      "quote": "Beta-blockers not only block the pulmonary effect of beta-agonists, such as albuterol sulfate HFA, but may also produce severe bronchospasm in patients with asthma."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The drug works by relaxing smooth muscle throughout the airways.",
+      "quote": "Albuterol relaxes the smooth muscles of all airways, from the trachea to the terminal bronchioles."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label states there are no randomized clinical studies of albuterol use during pregnancy.",
+      "quote": "There are no randomized clinical studies of use of albuterol sulfate during pregnancy."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Safety and effectiveness below age 4 are not established.",
+      "quote": "The safety and effectiveness of albuterol sulfate HFA in pediatric patients younger than 4 years have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label notes a bronchodilator used alone may not control asthma in many patients.",
+      "quote": "The use of beta-adrenergic agonist bronchodilators alone may not be adequate to control asthma in many patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Postmarketing reports include tremor, stimulation, hyperactivity, sleeplessness, headache and muscle cramps.",
+      "quote": "tremor, central nervous system stimulation, hyperactivity, sleeplessness, headache, muscle cramps"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/albuterol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem gives the molecular formula of albuterol as C13H21NO3.",
+      "quote": "\"MolecularFormula\": \"C13H21NO3\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2083/description/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (description from ChEBI)",
+      "claim": "PubChem classifies albuterol as a beta-adrenergic agonist bronchodilator used for asthma and COPD.",
+      "quote": "It acts as a beta-adrenergic agonist used in the treatment of asthma and chronic obstructive pulmonary disease (COPD)."
+    },
+    {
+      "url": "https://www.fda.gov/consumers/consumer-updates/manage-your-asthma-know-your-triggers-and-treatment-options",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA describes albuterol as an example of a quick-relief rescue medicine that opens the airways.",
+      "quote": "Quick-relief or rescue medicines control the symptoms of an asthma attack by opening up the airways in the lungs."
+    },
+    {
+      "url": "https://medlineplus.gov/asthma.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Quick-relief medicines relieve or prevent symptoms during an attack, and the inhaler is carried at all times.",
+      "quote": "Short-term relief medicines, also called quick-relief medicines. They help prevent symptoms or relieve symptoms during an asthma attack."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=albuterol&pagesize=5",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Albuterol is marketed in inhaled metered and powder forms and combined with other drugs.",
+      "quote": "PROAIR DIGIHALER (ALBUTEROL SULFATE) POWDER, METERED"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=albuterol&pagesize=5",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "A combination solution containing ipratropium bromide and albuterol sulfate is listed as a marketed product.",
+      "quote": "IPRATROPIUM BROMIDE AND ALBUTEROL SULFATE SOLUTION"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=albuterol%20exercise-induced%20bronchospasm&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed trial compared two albuterol inhaler devices against placebo in adolescents and adults with exercise-induced asthma.",
+      "quote": "Comparison of Two Bronchodilator Inhalers in Adolescents and Adults With Exercise-Induced Asthma"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Salbutamol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22albuterol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22albuterol%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VENTOLIN%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=albuterol&pagesize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/albuterol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2083/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/2083",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Salbutamol&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=albuterol%20exercise-induced%20bronchospasm&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+    "https://medlineplus.gov/asthma.html",
+    "https://www.fda.gov/consumers/consumer-updates/manage-your-asthma-know-your-triggers-and-treatment-options",
+    "https://www.nccih.nih.gov/health/albuterol",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548313/"
+  ],
+  "gaps": [
+    "The openFDA query on the name Salbutamol returned HTTP 404. The english generic_name and substance_name fields use albuterol, so every label section came from the albuterol queries instead.",
+    "NCCIH has no albuterol page: https://www.nccih.nih.gov/health/albuterol returned HTTP 404, so no NCCIH content is used here.",
+    "The LiverTox chapter (NCBI Bookshelf NBK548313) was blocked by a reCAPTCHA check and could not be read, so no liver-injury information appears in this record.",
+    "The PubChem web page returned only the title line, so identity data came from the PubChem REST API (PUG View) rather than the rendered page.",
+    "No dose, timing, or personal protocol is given here; that is a deliberate editorial rule, not a data gap.",
+    "No human milk transfer data were found in any fetched source.",
+    "Nothing was retrieved on long-term daily use of albuterol by people who do not have asthma, or on non-medical use, so no claim is made about either.",
+    "MedlinePlus drug monographs, Examine, Labdoor, MSKCC, ConsumerLab, WebMD, Healthline, Drugs.com and RxList were not fetched or cited."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what salbutamol (albuterol) is, how it opens airways as a quick-relief beta-agonist bronchodilator, its common and serious effects, its drug interactions, and what the label does and does not say about pregnancy, breastfeeding and young children."
+}

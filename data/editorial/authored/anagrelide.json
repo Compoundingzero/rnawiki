@@ -1,0 +1,244 @@
+{
+  "slug": "anagrelide",
+  "oneLineAnswer": "Anagrelide is a prescription capsule that lowers a high platelet count caused by certain bone marrow disorders.",
+  "whatItIs": "Anagrelide is a prescription medicine that comes as a capsule you swallow. Regulators describe it as a platelet-reducing agent, which means it lowers how many platelets your blood carries. The United States approved it in 1997. The capsules come in two strengths, 0.5 mg and 1 mg. It is sold as a generic and under the brand name Agrylin.",
+  "whatItDoes": [
+    "It is approved for people whose bone marrow makes too many platelets, a condition called thrombocythemia.",
+    "The aim is to lower the platelet count and reduce the risk of blood clots.",
+    "It may also ease symptoms caused by bleeding and clotting problems.",
+    "Lab tests suggest it blocks the marrow cells that build platelets, though how it works is not fully known.",
+    "Anagrelide also blocks PDE3, an enzyme that affects blood vessels and heart rate."
+  ],
+  "howPeopleUseIt": [
+    "It is prescription-only, and people taking it need regular monitoring.",
+    "Monitoring includes blood counts plus checks of liver, kidney, and electrolyte levels.",
+    "Platelet counts are checked often early on, then less often once they settle.",
+    "The label's approach holds the starting dose for at least a week before adjusting it.",
+    "In the label's trials, average platelet counts fell from about 1.1 million to about 457,000 per microliter over four years.",
+    "Some people take it with aspirin, a combination the label links to more major bleeding.",
+    "A phase 3 trial in Japan followed adults with essential thrombocythemia for long-term safety."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Headache is the most frequent complaint, reported by 44% of patients in the label's trials.",
+      "Palpitations and diarrhea each affected about a quarter of the 942 patients studied.",
+      "Other common effects include nausea, belly pain, dizziness, swelling, and shortness of breath.",
+      "About 17% of those patients stopped treatment because of side effects or abnormal lab results."
+    ],
+    "seriousSigns": [
+      "The label flags heart rhythm problems, including QT prolongation and ventricular tachycardia.",
+      "A rare lung condition, pulmonary hypertension, has been reported in people taking it.",
+      "Bleeding can be serious, especially when aspirin or blood thinners are also used.",
+      "Interstitial lung disease, which inflames and scars lung tissue, appeared after marketing.",
+      "Serious heart events in trials included heart failure, heart attack, stroke, and pericardial effusion."
+    ],
+    "whoShouldAvoid": [
+      "The label lists no absolute contraindications, but it names several situations to avoid.",
+      "Avoid it if you already have a condition that lengthens the QT interval on an ECG.",
+      "Avoid it in severe liver impairment, because that use has not been studied.",
+      "Avoid combining it with other PDE3 inhibitors or with medicines that prolong QT.",
+      "The label advises against breastfeeding during treatment and for a week after."
+    ]
+  },
+  "interactions": [
+    "Aspirin: the pair raised the rate of major bleeding events in a postmarketing study.",
+    "Other PDE3 inhibitors, such as cilostazol and milrinone, should be avoided with it.",
+    "Medicines that prolong QT, such as amiodarone, methadone, or moxifloxacin, should be avoided.",
+    "Anticoagulants, NSAIDs, antiplatelet drugs, and SSRIs add to bleeding risk.",
+    "Anagrelide is broken down by the liver enzyme CYP1A2. Fluvoxamine and ciprofloxacin block that enzyme and can raise exposure.",
+    "In human studies, anagrelide did not change how digoxin or warfarin behaved."
+  ],
+  "pregnancyAndChildren": "Case reports in pregnant women have not shown a clear risk of birth defects or miscarriage. In rats, much higher doses delayed fetal growth and bone development. Thrombocythemia itself raises the risk of miscarriage, stillbirth, and preeclampsia during pregnancy. The label says it is not known whether anagrelide passes into human milk. It advises against breastfeeding during treatment and for a week after. Anagrelide is approved for children aged 7 and older. There are no data for children younger than 7. Animal studies suggest it may impair female fertility, but human data are lacking.",
+  "whatWeDoNotKnow": [
+    "The exact way anagrelide lowers platelet counts is still unknown.",
+    "It is not known whether anagrelide passes into human breast milk.",
+    "Trial safety data cover 942 adults followed for about 65 weeks on average, so longer follow-up is limited.",
+    "The four-year platelet figures come from a shrinking group, only 55 patients at that point.",
+    "The label's adult studies were single-arm, so they cannot show how anagrelide compares with another treatment.",
+    "Whether anagrelide harms human fertility is unclear, since the signal comes only from animal studies."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Anagrelide is approved to lower elevated platelet counts in people with thrombocythemia caused by myeloproliferative neoplasms, and to reduce clotting risk and related symptoms.",
+      "quote": "Anagrelide is a platelet reducing agent indicated for the treatment of thrombocythemia, secondary to myeloproliferative neoplasms"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label states that the precise mechanism of platelet reduction is unknown and that cell-culture work pointed to suppression of transcription factors needed by platelet-producing cells.",
+      "quote": "The precise mechanism by which anagrelide reduces blood platelet count is unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "In the 942-patient safety table, headache was reported by 44%, dizziness by 15% and paresthesia by 6%.",
+      "quote": "Nervous System Disorders Headache 44% Dizziness 15% Paresthesia 6%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "About 17% of the 942 patients in the adult trials stopped treatment because of adverse reactions or abnormal laboratory results.",
+      "quote": "Of the 942 patients treated with anagrelide, 161 (17%) were discontinued from the study because of adverse reactions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The most frequently reported adverse reactions appeared in at least 5% of the 942 patients with myeloproliferative neoplasms.",
+      "quote": "The most frequently reported adverse reactions to anagrelide (in 5% or greater of 942 patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Anagrelide inhibits the enzyme PDE3, which is linked to blood vessel widening, fast heart rate, palpitations and heart failure.",
+      "quote": "Anagrelide is a phosphodiesterase 3 (PDE3) inhibitor and may cause vasodilation, tachycardia, palpitations, and congestive heart failure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label's contraindications section lists none, even though the warnings describe situations where the drug should be avoided.",
+      "quote": "CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label states there is no information on whether anagrelide passes into human breast milk, and advises against breastfeeding during and shortly after treatment.",
+      "quote": "There is no information regarding the presence of anagrelide in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Animal findings suggest anagrelide may impair female fertility, and the label does not report human fertility data.",
+      "quote": "Based on findings from animal studies, anagrelide may impair female fertility"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The adult safety and efficacy data come from three single-arm studies rather than randomized head-to-head comparisons.",
+      "quote": "In three single-arm clinical studies, 942 patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Anagrelide should not be used in people who already have risk factors for QT interval prolongation, such as congenital long QT syndrome.",
+      "quote": "Do not use anagrelide in patients with known risk factors for QT interval prolongation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Use of anagrelide in severe liver impairment has not been studied and the label says to avoid it.",
+      "quote": "Use of anagrelide in patients with severe hepatic impairment has not been studied."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Taking anagrelide together with aspirin was linked to more major bleeding events in a postmarketing study.",
+      "quote": "Use of concomitant anagrelide and aspirin increased major hemorrhagic events in a postmarketing study."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Anagrelide and its active metabolite are cleared mainly by the liver enzyme CYP1A2, so drugs that inhibit CYP1A2 can raise anagrelide exposure.",
+      "quote": "Drugs that inhibit CYP1A2 (e.g., fluvoxamine, ciprofloxacin) could increase the exposure of anagrelide."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Human interaction studies found that anagrelide and warfarin, or anagrelide and digoxin, did not change each other's behavior in the body.",
+      "quote": "anagrelide does not affect the pharmacokinetic properties of digoxin or warfarin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Anagrelide's safety and effectiveness are established for children aged 7 and older, with no data below that age.",
+      "quote": "The safety and effectiveness of anagrelide have been established in pediatric patients 7 years of age and older."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "In the trial results table, mean platelet counts fell from 1,131,000 per microliter at baseline to 457,000 after four years, across a shrinking number of measured patients.",
+      "quote": "Mean* 1131 683 575 526 484 460 437 457 N 923"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Among trial participants, 23% received anagrelide for two years, which is the main basis for the long-term safety picture.",
+      "quote": "23% of patients received treatment for 2 years"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Agrylin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The brand-name label for Agrylin carries the same approved use as the generic anagrelide label.",
+      "quote": "AGRYLIN is indicated for the treatment of patients with thrombocythemia, secondary to myeloproliferative neoplasms"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=614b45a3-7f2e-4348-9e20-ecf8dc440314",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The DailyMed label heading records the initial United States approval year as 1997.",
+      "quote": "Initial U.S. Approval: 1997"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=614b45a3-7f2e-4348-9e20-ecf8dc440314",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label directs a cardiovascular examination, including an ECG, before treatment starts, because of heart rhythm effects.",
+      "quote": "Obtain a pre-treatment cardiovascular examination including an ECG in all patients."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=anagrelide",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "DailyMed lists several anagrelide capsule products plus the brand Agrylin capsules.",
+      "quote": "AGRYLIN (anagrelide hydrochloride) capsule"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Anagrelide&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed phase 3 trial registered with ClinicalTrials.gov studied long-term anagrelide safety in Japanese adults with essential thrombocythemia.",
+      "quote": "Long-term Safety of SPD422 in Japanese Adults With Essential Thrombocythaemia"
+    },
+    {
+      "url": "https://medlineplus.gov/plateletdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Having too many platelets is associated with a higher risk of blood clots, which is the problem anagrelide is used to reduce.",
+      "quote": "If your blood has too many platelets, you may have a higher risk of blood clots."
+    },
+    {
+      "url": "https://medlineplus.gov/plateletdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "A high platelet count with no known cause is called thrombocythemia, the term used in anagrelide's approved indication.",
+      "quote": "When the cause is unknown, this is called thrombocythemia."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/anagrelide/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records anagrelide's molecular formula as C10H7Cl2N3O and its chemical name as 6,7-dichloro-3,5-dihydro-1H-imidazo[2,1-b]quinazolin-2-one.",
+      "quote": "C10H7Cl2N3O"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Anagrelide%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Agrylin%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=anagrelide",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=614b45a3-7f2e-4348-9e20-ecf8dc440314",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Anagrelide&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/anagrelide/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://medlineplus.gov/plateletdisorders.html",
+    "https://medlineplus.gov/lab-tests/platelet-count/",
+    "https://www.nccih.nih.gov/health/anagrelide",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548467/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548467/?report=printable",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548467/?report=classic",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548679/",
+    "https://pubmed.ncbi.nlm.nih.gov/31643786/"
+  ],
+  "gaps": [
+    "NCCIH has no anagrelide page; https://www.nccih.nih.gov/health/anagrelide returns a 404.",
+    "The LiverTox anagrelide monograph (NCBI Bookshelf NBK548467) exists, but NCBI Bookshelf and PubMed both blocked automated fetches, so it is recorded as attempted and is not cited in evidence.",
+    "The MedlinePlus lab-test page for platelet count (https://medlineplus.gov/lab-tests/platelet-count/) returned a 404; the MedlinePlus Platelet Disorders health topic was fetched instead.",
+    "MedlinePlus drug monographs were deliberately not used, because NLM identifies them as copyrighted ASHP content.",
+    "No dose amount or personal protocol is given by design; this record reports only what the label and trial registry recorded, attributed to them.",
+    "No fetched source compared anagrelide head-to-head with another platelet-lowering medicine, so relative effectiveness is not covered here."
+  ],
+  "confidence": "high",
+  "summary": "This record covers anagrelide's identity, its label-recorded uses, side effects, interactions, and remaining gaps."
+}

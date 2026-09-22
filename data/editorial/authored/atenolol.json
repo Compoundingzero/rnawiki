@@ -1,0 +1,276 @@
+{
+  "slug": "atenolol",
+  "oneLineAnswer": "Atenolol is a prescription beta blocker that slows the heart and lowers blood pressure.",
+  "whatItIs": "Atenolol is a beta blocker, a medicine that blocks the docking sites adrenaline uses to speed the heart. Those docking sites are called beta receptors. Atenolol mainly blocks beta-1 receptors, which sit in heart muscle. At higher doses it also blocks beta-2 receptors, found in the airways and blood vessels. Its chemical formula is C14H22N2O3 and its molecular weight is 266.34. The body clears most of it unchanged through the kidneys, with little work by the liver.",
+  "whatItDoes": [
+    "Atenolol blocks beta-1 receptors, so the heart beats slower and moves less blood each minute.",
+    "Label studies recorded lower systolic (top number) and diastolic (bottom number) blood pressure at rest and during exercise.",
+    "In controlled trials, one oral dose a day held blood pressure down for a full 24 hours.",
+    "The label states that lowering blood pressure cuts the risk of strokes and heart attacks.",
+    "By easing the heart's workload, atenolol is used long term for angina, the chest pain caused by narrowed heart arteries."
+  ],
+  "howPeopleUseIt": [
+    "Providers prescribe it for high blood pressure, and it can be taken with other blood pressure medicines.",
+    "A public health explainer says beta blockers are usually a backup option, not a first choice.",
+    "It is used for long-term management of angina, the chest pain that comes from narrowed heart arteries.",
+    "It is given after a suspected heart attack in stable patients, to reduce the risk of dying.",
+    "A registered trial compared atenolol with losartan in adults with Marfan syndrome, a connective tissue disorder.",
+    "It comes as generic tablets and under the brand name Tenormin."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The label says most reported side effects are mild and short-lived.",
+      "A slower pulse and cold hands and feet.",
+      "Tiredness, weakness, or a heavy feeling.",
+      "Dizziness or light-headedness on standing.",
+      "Nausea, diarrhea, or stomach upset.",
+      "Low mood or depression, and in some people unusual dreams.",
+      "Postmarketing reports include erectile problems, dry mouth, and hair thinning."
+    ],
+    "seriousSigns": [
+      "A very slow pulse, or a pulse that feels irregular.",
+      "Fainting or severe dizziness from a sharp drop in blood pressure.",
+      "Wheezing or trouble breathing, especially in people with asthma or other lung disease.",
+      "The label warns that continued use can lead to heart failure in some people.",
+      "Labeling advises against stopping suddenly, because severe angina, heart attack, and dangerous heart rhythms have been reported after abrupt discontinuation.",
+      "In diabetes, low blood sugar may be harder to notice because early warning signs are masked.",
+      "A severe allergic reaction may be worse and may not respond to the usual epinephrine dose."
+    ],
+    "whoShouldAvoid": [
+      "People with sinus bradycardia, a very slow resting heart rate, should not take it.",
+      "The same applies to heart block worse than first degree, cardiogenic shock, and overt heart failure.",
+      "Anyone who has had an allergic reaction to atenolol or the other ingredients in the tablet.",
+      "People with untreated pheochromocytoma, a tumor that releases adrenaline-like hormones.",
+      "The label says people with bronchospastic disease, such as asthma, should generally not receive beta blockers.",
+      "People with kidney problems need close attention because the drug builds up when kidney function falls.",
+      "Pregnant and breastfeeding people are advised to use caution, since the drug reaches the fetus and breast milk."
+    ]
+  },
+  "interactions": [
+    "Catecholamine-depleting drugs such as reserpine can add to atenolol's effect.",
+    "That raises the chance of very low blood pressure or a very slow pulse.",
+    "Calcium channel blockers such as verapamil or diltiazem can slow the heart rate.",
+    "Heart block is also possible when they are combined with beta blockers.",
+    "Disopyramide has been linked to severe slow heart rate, heart stoppage, and heart failure when given with beta blockers.",
+    "Amiodarone also slows heart rhythm and its effect can add to atenolol's.",
+    "Beta blockers can worsen the rebound high blood pressure that follows clonidine withdrawal.",
+    "Anti-inflammatory pain relievers such as indomethacin may reduce the blood pressure effect.",
+    "Digitalis medicines also slow heart conduction, so the risk of a slow pulse rises.",
+    "Aspirin data is limited; two large heart attack studies did not suggest an interaction."
+  ],
+  "pregnancyAndChildren": "FDA labeling says atenolol can harm a fetus and that it crosses the placenta into cord blood. Babies exposed from the second trimester have been born smaller than expected for their pregnancy length. No first-trimester studies have been done. The drug passes into breast milk, and slow heart rate has been reported in breastfed infants. Newborns may also face low blood sugar. For children, safety and effectiveness have not been established. Label studies did not include enough people aged 65 and over to show a different response.",
+  "whatWeDoNotKnow": [
+    "How beta blockers actually lower blood pressure is not established, though several explanations have been proposed.",
+    "The large heart attack trial could not identify which patient groups gain the most from early treatment.",
+    "The label notes that patients with borderline systolic pressure, especially over age 60, seemed less likely to benefit.",
+    "Whether atenolol beats other first-choice blood pressure medicines over many years is not settled here.",
+    "There are no pediatric data, so effects in children are unknown.",
+    "The label says the blood pressure effect does not line up with blood level.",
+    "Rare liver injury reports exist, but the LiverTox page would not load for us."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Atenolol is a beta-1 selective (cardioselective) beta-adrenergic receptor blocker.",
+      "quote": "Atenolol is a beta 1 -selective (cardioselective) beta-adrenergic receptor blocking agent"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "The label lists hypertension, angina, and acute heart attack among its uses.",
+      "quote": "Atenolol tablets are indicated for the treatment of hypertension, to lower blood pressure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Lowering blood pressure is what reduces cardiovascular risk, not the drug's other properties.",
+      "quote": "Lowering blood pressure lowers the risk of fatal and non-fatal cardiovascular events, primarily strokes and myocardial infarctions."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "At higher doses the drug also blocks beta-2 receptors in airways and blood vessels.",
+      "quote": "at higher doses, atenolol inhibits beta 2 -adrenoreceptors, chiefly located in the bronchial and vascular musculature"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "One daily oral dose kept blood pressure lowered around the clock in trials.",
+      "quote": "atenolol, given as a single daily oral dose, was an effective antihypertensive agent providing 24 hour reduction of blood pressure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Several heart conditions are listed as contraindications.",
+      "quote": "Atenolol tablets are contraindicated in sinus bradycardia, heart block greater than first degree, cardiogenic shock, and overt cardiac failure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Stopping the drug suddenly is hazardous for people with coronary artery disease.",
+      "quote": "Patients with coronary artery disease, who are being treated with atenolol, should be advised against abrupt discontinuation of therapy."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "The label warns the drug can harm a fetus and crosses the placenta.",
+      "quote": "Atenolol can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Slow heart rate has been reported in breastfed infants.",
+      "quote": "Clinically significant bradycardia has been reported in breastfed infants."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "The drug has no established pediatric use.",
+      "quote": "Safety and effectiveness in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "No one knows exactly how beta blockers lower blood pressure.",
+      "quote": "The mechanisms of the antihypertensive effects of beta-blocking agents have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tenormin%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Tenormin is a brand name for atenolol.",
+      "quote": "TENORMIN \u00ae (atenolol), a synthetic, beta 1 -selective (cardioselective) adrenoreceptor blocking agent"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8104a825-a0f1-4383-acbd-83670caee197",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "Almost none of the drug is broken down by the liver; the kidneys remove it.",
+      "quote": "atenolol undergoes little or no metabolism by the liver, and the absorbed portion is eliminated primarily by renal excretion"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/atenolol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Atenolol has PubChem identifier 2249, formula C14H22N2O3 and molecular weight 266.34.",
+      "quote": "\"CID\": 2249, \"MolecularFormula\": \"C14H22N2O3\", \"MolecularWeight\": \"266.34\""
+    },
+    {
+      "url": "https://medlineplus.gov/bloodpressuremedicines.html",
+      "publisher": "MedlinePlus health topic, U.S. National Library of Medicine",
+      "claim": "Beta blockers slow the heartbeat and make it pump with less force.",
+      "quote": "Beta blockers help your heart beat slower and with less force."
+    },
+    {
+      "url": "https://medlineplus.gov/bloodpressuremedicines.html",
+      "publisher": "MedlinePlus health topic, U.S. National Library of Medicine",
+      "claim": "Beta blockers are usually a backup blood pressure option rather than a first choice.",
+      "quote": "Beta blockers are typically used only as a backup option or if you also have certain other conditions."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Atenolol&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed registered trial compared atenolol with losartan in Marfan syndrome.",
+      "quote": "\"nctId\":\"NCT00723801\",\"briefTitle\":\"Effects of Losartan Versus Atenolol on Aortic and Cardiac Muscle Stiffness in Adults With Marfan Syndrome\""
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Reported side effects are usually mild and do not last.",
+      "quote": "Most adverse effects have been mild and transient."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "People with poor kidney function need extra care with this drug.",
+      "quote": "The drug should be used with caution in patients with impaired renal function."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Other blood pressure drugs that drain catecholamines add to atenolol's effect.",
+      "quote": "Catecholamine-depleting drugs (e.g., reserpine) may have an additive effect when given with beta-blocking agents."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Combining disopyramide with beta blockers has caused dangerous heart effects.",
+      "quote": "Disopyramide has been associated with severe bradycardia, asystole and heart failure when administered with beta-blockers."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Beta blockers can worsen the high blood pressure rebound after clonidine stops.",
+      "quote": "Beta-blockers may exacerbate the rebound hypertension which can follow the withdrawal of clonidine."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Common pain relievers of the indomethacin type may blunt the blood pressure effect.",
+      "quote": "Concomitant use of prostaglandin synthase inhibiting drugs, e.g., indomethacin, may decrease the hypotensive effects of beta-blockers."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Digitalis heart medicines also slow conduction, so a slow pulse becomes more likely.",
+      "quote": "Both digitalis glycosides and beta-blockers slow atrioventricular conduction and decrease heart rate."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Low blood sugar warning signs may be hidden during treatment.",
+      "quote": "Beta-blockers may prevent early warning signs of hypoglycemia, such as tachycardia, and increase the risk for severe or prolonged hypoglycemia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "Long-term beta blockade can sometimes push the heart into failure.",
+      "quote": "Continued depression of the myocardium with beta-blocking agents over a period of time can, in some cases, lead to cardiac failure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "People with diseases that narrow the airways are generally not given beta blockers.",
+      "quote": "PATIENTS WITH BRONCHOSPASTIC DISEASE SHOULD, IN GENERAL, NOT RECEIVE BETA-BLOCKERS."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "It should not be used in untreated pheochromocytoma.",
+      "quote": "Atenolol should not be given to patients with untreated pheochromocytoma."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration drug label",
+      "claim": "A severe allergic reaction may be stronger and respond poorly to epinephrine.",
+      "quote": "While taking beta-blockers, patients with a history of anaphylactic reaction to a variety of allergens may have a more severe reaction on repeated challenge"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atenolol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tenormin%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=atenolol&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/8104a825-a0f1-4383-acbd-83670caee197.json",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8104a825-a0f1-4383-acbd-83670caee197",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/atenolol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Atenolol",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Atenolol&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Atenolol&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+    "https://medlineplus.gov/highbloodpressure.html",
+    "https://medlineplus.gov/bloodpressuremedicines.html",
+    "https://medlineplus.gov/lab-tests/measuring-blood-pressure/",
+    "https://www.nccih.nih.gov/health/atenolol",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548379/"
+  ],
+  "gaps": [
+    "The LiverTox entry sits behind a browser check on NCBI Bookshelf.",
+    "We could not fetch it, so its rare liver-injury account is not cited here.",
+    "NCCIH has no atenolol page; that URL returns 404.",
+    "The DailyMed JSON services endpoint returned an unsupported media type error.",
+    "DailyMed facts come from the HTML label page instead.",
+    "No fetched source compares atenolol with other blood pressure medicines over years.",
+    "No fetched source describes the patient experience of starting or stopping this drug.",
+    "So howPeopleUseIt reports only what labels and trial registries record.",
+    "We did not fetch any copyrighted drug monograph, so no facts here come from those."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what atenolol is, what it does, its recorded safety information, and the gaps we could not ground."
+}

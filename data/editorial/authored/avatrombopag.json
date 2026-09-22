@@ -1,0 +1,254 @@
+{
+  "slug": "avatrombopag",
+  "oneLineAnswer": "A prescription tablet that raises a low platelet count before a procedure or in immune thrombocytopenia.",
+  "whatItIs": "Avatrombopag is a prescription-only medicine sold in the United States under the brand name DOPTELET. It comes as 20 mg film-coated tablets and as 10 mg granules inside a capsule. The granule form is made for young children. It belongs to a drug group called thrombopoietin receptor agonists. Thrombopoietin is your body's own chemical signal for making platelets. Avatrombopag imitates that signal. The US regulator first approved it in 2018. It is a small synthetic molecule, not a biologic or a blood product.",
+  "whatItDoes": [
+    "It tells bone marrow cells called megakaryocytes to multiply and mature, so your body makes more platelets.",
+    "In the label's studies, platelet counts began rising in 3 to 5 days and peaked at 10 to 13 days.",
+    "It is approved for adults with chronic liver disease who are scheduled for a procedure.",
+    "It is also approved for adults and children with immune thrombocytopenia who responded poorly to earlier treatment.",
+    "The label describes adjusting how much and how often to hold platelet counts above the prescriber's target."
+  ],
+  "howPeopleUseIt": [
+    "This is a specialist medicine, given by a doctor, not something you buy on your own.",
+    "The label says to take it with food.",
+    "For chronic liver disease, treatment is short: a few days before the planned procedure.",
+    "Then it stops.",
+    "For immune thrombocytopenia, treatment usually continues, and blood tests guide any change.",
+    "Tablets and granules are not interchangeable at the same milligram amount.",
+    "The granules are mixed into soft food or liquid and taken right away.",
+    "In the United States only one brand exists, DOPTELET.",
+    "There is no supplement or over-the-counter version."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In chronic liver disease trials, the most frequent problems were fever, belly pain, nausea, headache, tiredness, and leg swelling.",
+      "In adult immune thrombocytopenia, headache and tiredness were common.",
+      "So were bruising, nosebleeds, upper respiratory infection, joint pain, and gum bleeding.",
+      "Tiny red skin spots and cold-like symptoms also occurred.",
+      "In children with immune thrombocytopenia, common problems were viral infection, cold-like symptoms, cough, fever, and sore throat."
+    ],
+    "seriousSigns": [
+      "Blood clots are the main serious concern.",
+      "The label warns that this drug class has been linked to clots in arteries and veins.",
+      "Among adults treated for immune thrombocytopenia, arterial or venous clots occurred in 9 of 128 people, or 7%.",
+      "Among people with chronic liver disease, a portal vein clot occurred in 1 of 274, or 0.4%.",
+      "The label warns against giving it only to bring platelet counts back to normal.",
+      "Taking too much can push platelet counts too high and raise clot risk.",
+      "The label states that no antidote is known."
+    ],
+    "whoShouldAvoid": [
+      "The label lists no absolute contraindication, so no group is barred outright.",
+      "The label says it may harm a fetus, based on animal studies.",
+      "Human pregnancy data are too thin to measure the risk.",
+      "Breastfeeding is not recommended during treatment and for two weeks after the last dose.",
+      "People with known clot risk factors, such as Factor V Leiden, need that added risk weighed.",
+      "Children younger than 1 year fall outside the labeled age range.",
+      "Use in that group has not been established."
+    ]
+  },
+  "interactions": [
+    "Medicines that strongly block the liver enzymes CYP2C9 and CYP3A4 can raise avatrombopag levels in your body.",
+    "Medicines that strongly speed up those same two enzymes can lower avatrombopag levels and may weaken it.",
+    "For persistent or chronic immune thrombocytopenia, the label recommends changing the dose when either type is used together.",
+    "For chronic liver disease, the label recommends no dose change with these medicines.",
+    "Avatrombopag is broken down mainly by CYP2C9 and CYP3A4.",
+    "Anything affecting those enzymes can change how long it stays active."
+  ],
+  "pregnancyAndChildren": "In animal studies, avatrombopag harmed developing offspring in rabbits and rats. Those animals received exposures higher than patients do. Human pregnancy data are too limited to measure the risk of birth defects or miscarriage. The label states it may cause fetal harm. Breastfeeding is not recommended during treatment and for two weeks after the last dose. Nobody knows whether the drug passes into human milk. It was found in the milk of rats. For children, the tablet is approved from age 6 and the granules from age 1. Both are for persistent or chronic immune thrombocytopenia after a poor response to earlier treatment. The label does not establish use in children younger than 1 year.",
+  "whatWeDoNotKnow": [
+    "Nobody knows whether avatrombopag gets into human breast milk.",
+    "How it might affect a breastfed baby is unknown.",
+    "How it might affect milk supply is unknown.",
+    "Human pregnancy data are too thin to measure the risk of birth defects or miscarriage.",
+    "The label says the effect of severe kidney impairment is unknown, including in people on dialysis.",
+    "Clinical studies did not include enough people aged 65 and older to show a difference.",
+    "A trial for low platelets in people with cancer and liver disease was withdrawn because too few people joined.",
+    "Long-term effects in children are not well described.",
+    "Young rats given high doses for ten weeks developed changes in the stomach lining.",
+    "The fetched sources do not show whether raising platelet counts changes bleeding events or survival."
+  ],
+  "evidence": [
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The US approval year for avatrombopag is 2018.",
+      "quote": "Initial U.S. Approval: 2018"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "One approved use is low platelets in adults with chronic liver disease who are scheduled for a procedure.",
+      "quote": "Thrombocytopenia in adult patients with chronic liver disease who are scheduled to undergo a procedure."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The product is made as a 20 mg tablet and as 10 mg oral granules.",
+      "quote": "Tablet: 20 mg (3) Oral Granules: 10 mg (3)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label directs that the medicine be taken with food.",
+      "quote": "Administer DOPTELET tablets and DOPTELET SPRINKLE with food. (2.1, 2.3, 2.5)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The tablet and the granule form cannot be swapped at the same milligram amount.",
+      "quote": "DOPTELET tablets and DOPTELET SPRINKLE are not substitutable on a mg-to-mg basis."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label states the drug may harm a fetus.",
+      "quote": "Pregnancy: May cause fetal harm (8.1)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Dose changes are recommended when strong dual inducers or inhibitors of CYP2C9 and CYP3A4 are taken with it for persistent or chronic immune thrombocytopenia.",
+      "quote": "Moderate or Strong Dual CYP2C9 and CYP3A4 Inducers or Inhibitors: Dose adjustments are recommended for patients with persistent or chronic immune thrombocytopenia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Avatrombopag works by pushing bone marrow cells to multiply and mature into platelet-producing cells.",
+      "quote": "Avatrombopag is an orally bioavailable, small molecule TPO receptor agonist that stimulates proliferation and differentiation of megakaryocytes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Platelet counts start to climb within 3 to 5 days of starting treatment.",
+      "quote": "onset of the platelet count increase was observed within 3 to 5 days of the start of treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The most frequent side effects in chronic liver disease trials were fever, belly pain, nausea, headache, tiredness and leg swelling.",
+      "quote": "the most common adverse reactions (≥3%) were pyrexia, abdominal pain, nausea, headache, fatigue, and edema peripheral"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Clots in arteries or veins occurred in 7% of adults treated for immune thrombocytopenia, which was 9 of 128 patients.",
+      "quote": "In adult patients with chronic immune thrombocytopenia, thromboembolic events (arterial or venous) occurred in 7% (9/128) of patients receiving DOPTELET."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "A portal vein clot occurred in 1 of 274 patients with chronic liver disease who received the drug.",
+      "quote": "In patients with chronic liver disease, thromboembolic events (portal vein thrombosis) occurred in 0.4% (1/274) of patients receiving DOPTELET."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label warns that the drug should not be used just to bring platelet counts to normal in these two conditions.",
+      "quote": "DOPTELET should not be administered to patients with chronic liver disease or immune thrombocytopenia in an attempt to normalize platelet counts."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "No antidote is known for an overdose.",
+      "quote": "No antidote for DOPTELET overdose is known."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "There is no human milk data for avatrombopag.",
+      "quote": "There is no information regarding the presence of avatrombopag in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The tablet form is established for children aged 6 and older with persistent or chronic immune thrombocytopenia.",
+      "quote": "The safety and effectiveness of DOPTELET tablet for the treatment of persistent or chronic ITP"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The effect of severe kidney impairment, including in people needing dialysis, is unknown.",
+      "quote": "including patients requiring hemodialysis, on avatrombopag pharmacokinetics is unknown"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Clinical studies did not enroll enough people aged 65 and older to show a difference in response.",
+      "quote": "Clinical studies of DOPTELET did not include sufficient numbers of subjects aged 65 and over to determine whether they respond differently"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Two liver enzymes, CYP2C9 and CYP3A4, are the main route for breaking avatrombopag down.",
+      "quote": "Avatrombopag is primarily metabolized by cytochrome P450 CYP2C9 and CYP3A4."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Animal reproduction studies showed harm to developing offspring in rabbits.",
+      "quote": "Oral administration of avatrombopag resulted in adverse developmental outcomes when administered during organogenesis in rabbits"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The granules were found in rat milk.",
+      "quote": "Avatrombopag was present in the milk of lactating rats."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=avatrombopag%20chronic%20liver%20disease%20thrombocytopenia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure,BriefSummary,EnrollmentCount",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A registered phase 3 study tested avatrombopag before an elective procedure in people with low platelets from liver disease.",
+      "quote": "evaluate avatrombopag in the treatment of thrombocytopenia associated with liver disease prior to an elective procedure"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Avatrombopag&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A planned study of avatrombopag for low platelets in people with cancer and liver disease was withdrawn for lack of accrual.",
+      "quote": "This study will test whether avatrombopag is an effective treatment for thrombocytopenia in people who have both cancer and a liver disease"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/avatrombopag/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Avatrombopag is a small molecule with the formula C29H34Cl2N6O3S2 and a molecular weight of 649.7.",
+      "quote": "\"MolecularFormula\": \"C29H34Cl2N6O3S2\", \"MolecularWeight\": \"649.7\""
+    },
+    {
+      "url": "https://medlineplus.gov/plateletdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Platelets are blood cells, and a low platelet count is called thrombocytopenia.",
+      "quote": "Platelets, also known as thrombocytes, are blood cells."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Avatrombopag%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=avatrombopag",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e2d5960d-6c18-46cc-86bd-089222b09852",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/210238s010lbl.pdf",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Avatrombopag&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=avatrombopag&query.cond=immune%20thrombocytopenia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure,BriefSummary",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=avatrombopag%20chronic%20liver%20disease%20thrombocytopenia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure,BriefSummary,EnrollmentCount",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/avatrombopag/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/avatrombopag/cids/JSON",
+    "https://www.nccih.nih.gov/health/avatrombopag",
+    "https://www.nccih.nih.gov/health/herbsataglance",
+    "https://medlineplus.gov/plateletdisorders.html",
+    "https://medlineplus.gov/thrombocytopenia.html",
+    "https://www.fda.gov/drugs/drug-approvals-and-databases/drug-trials-snapshots-doptelet",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548560/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548101/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548101/?report=reader"
+  ],
+  "gaps": [
+    "NCCIH returned no avatrombopag page, so no NCCIH content could be cited.",
+    "MedlinePlus drug monographs were excluded as copyrighted ASHP content, so no MedlinePlus drug page appears here; only a public-domain MedlinePlus health topic was used.",
+    "NCBI Bookshelf was blocked by a bot check on every attempt, so no LiverTox facts are included even though it covers this drug class.",
+    "The FDA Drug Trials Snapshots page for DOPTELET returned 404.",
+    "The full FDA label PDF was retrieved but the text search returned no matching passage, so label claims are cited through the DailyMed and openFDA versions instead.",
+    "Whether raising platelet counts changes bleeding events, transfusions, or survival rather than only the lab number is not grounded in the fetched sources.",
+    "Cost, coverage, availability, and how widely the drug is used were not grounded; no source in the allowed set supplied them.",
+    "Compounded or trial-only forms and any non-US approvals were not grounded."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what avatrombopag is, how it raises platelet counts, its three labeled uses, its common and serious effects, its main drug interaction, and what stays unknown about pregnancy, breastfeeding, children, and older adults."
+}
