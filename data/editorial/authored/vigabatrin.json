@@ -1,0 +1,390 @@
+{
+  "slug": "vigabatrin",
+  "oneLineAnswer": "A prescription anti-seizure medicine for epilepsy that has not responded to other drugs, and for infantile spasms in babies.",
+  "whatItIs": "Vigabatrin is a prescription anti-seizure medicine, also called an antiepileptic drug. You take it by mouth, as a tablet or as a powder stirred into water. Brand names include Sabril, Vigadrone and Vigafyde. It is also called gamma-vinyl GABA.\n\nNerves pass messages using chemicals called neurotransmitters. GABA is the main calming neurotransmitter in the brain. Vigabatrin is shaped like GABA. It attaches to and permanently disables GABA transaminase, or GABA-T, the enzyme that normally clears GABA away. With GABA-T disabled, GABA builds up in the central nervous system.\n\nChemically, vigabatrin is 4-amino-5-hexenoic acid. Its formula is C6H11NO2, and its molecular weight is about 129. It was first sold as an epilepsy drug in the United Kingdom in 1989. The United States approved it in 2009, under tight restrictions because of an eye risk.",
+  "whatItDoes": [
+    "It raises the level of GABA, a signal that damps down overactive nerve firing.",
+    "Blocking GABA-T is thought to explain its anti-seizure effect.",
+    "The exact way it stops seizures is not known.",
+    "It is used as an add-on for hard-to-treat partial seizures in people aged 2 and older.",
+    "It is used alone for infantile spasms, a seizure disorder that begins in babies."
+  ],
+  "howPeopleUseIt": [
+    "In the United States it is approved for only two situations.",
+    "The first is refractory complex partial seizures in people aged 2 and older. The label means seizures that did not improve after several other treatments.",
+    "For that use it is added to other treatment, and it is not a first-choice drug.",
+    "The second is infantile spasms, a seizure disorder that starts in babies. It is used alone in babies aged 1 month to 2 years.",
+    "For infantile spasms, a doctor must judge that the likely benefit outweighs the risk of vision loss.",
+    "It is sold as a 500 mg tablet and as a powder for oral solution.",
+    "In the United States it comes only through the Vigabatrin REMS Program. Prescribers and pharmacies must enroll, and each patient is enrolled too.",
+    "Eyes are checked before or soon after starting, then at least every 3 months, and once more after stopping.",
+    "Doctors are told to stop it if it is not clearly helping.",
+    "That review comes at about 3 months for partial seizures, and at 2 to 4 weeks for infantile spasms.",
+    "Researchers have also tested it in other conditions.",
+    "Those include status epilepticus after oxygen loss, cocaine dependence and autoimmune encephalitis.",
+    "Those studies do not show that it works for those uses."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Headache, sleepiness and tiredness are common.",
+      "Dizziness, shaky hands called tremor, and clumsy coordination are common.",
+      "Blurred vision and double vision are common.",
+      "Nausea, diarrhea and weight gain are common.",
+      "Memory trouble, insomnia and irritability are common.",
+      "Colds, sore throat and other upper respiratory infections are common.",
+      "Depression and a rash are reported.",
+      "In babies treated for infantile spasms, the common problems were sleepiness, bronchitis, ear infection and acute otitis media.",
+      "Anemia, meaning too few red blood cells, is also listed.",
+      "So are peripheral neuropathy, meaning nerve damage in the hands and feet, and edema, meaning swelling."
+    ],
+    "seriousSigns": [
+      "The main serious risk is permanent loss of side vision. Side vision is what you see out of the corner of your eye.",
+      "Both eyes narrow their field of view. Severe cases leave only a small central tunnel, which can disable a person.",
+      "Sometimes the central retina is damaged too, so sharpness of sight falls.",
+      "Adult studies suggest 30 percent or more of patients develop this narrowing.",
+      "The timing is unpredictable. It can begin within weeks, or only after months or years.",
+      "Higher doses and longer exposure raise the risk. No dose or exposure is known to be free of risk.",
+      "People often do not notice the loss until it is severe.",
+      "The loss does not reverse when the drug is stopped.",
+      "Some infants develop abnormal MRI signal changes in the brain. Whether those changes cause harm is unresolved.",
+      "Like other anti-seizure drugs, it can raise the risk of suicidal thoughts and behavior.",
+      "It can cause sleepiness and fatigue that make driving or using machines unsafe.",
+      "Stopping it suddenly can cause withdrawal seizures, so it is reduced gradually.",
+      "Rarely, serious liver injury has been reported. A firm link has not been proven."
+    ],
+    "whoShouldAvoid": [
+      "The label lists no contraindications, meaning no group is barred outright.",
+      "People who already have other permanent vision loss should not use it.",
+      "That also covers people at high risk of such loss.",
+      "The exception is when the benefit clearly outweighs the risk.",
+      "It should not be combined with other drugs that can badly damage the eye.",
+      "Examples are drugs that cause retinopathy or glaucoma.",
+      "Again, unless the benefit clearly outweighs the risk.",
+      "It is not a first-choice drug for complex partial seizures. It is for people who have already failed several treatments.",
+      "It is not established for complex partial seizures in children under 2.",
+      "It is also not established for infantile spasms in babies under 1 month.",
+      "Pregnant women need a careful risk discussion. See the pregnancy section.",
+      "Do not drive or use machinery until you know how it affects you."
+    ]
+  },
+  "interactions": [
+    "Phenytoin: vigabatrin may moderately lower total phenytoin blood levels, so the phenytoin dose may need adjusting.",
+    "Clonazepam: vigabatrin may moderately raise peak clonazepam levels, which can increase clonazepam side effects.",
+    "Rufinamide: its blood levels may drop slightly to moderately. Whether that matters clinically is not settled.",
+    "Phenobarbital and sodium valproate: no clinically significant interaction with vigabatrin was found.",
+    "Carbamazepine, clorazepate, primidone and sodium valproate appear not to change vigabatrin blood levels.",
+    "Steroid oral contraceptives: vigabatrin is unlikely to reduce their effectiveness.",
+    "Liver blood tests: vigabatrin lowers the enzymes ALT and AST in up to 90 percent of patients.",
+    "Levels can even become undetectable.",
+    "This can hide early liver injury from a routine liver test.",
+    "Urine tests: vigabatrin can raise urine amino acids and cause a false positive for some rare inherited metabolic disorders.",
+    "Vigabatrin induces the liver enzyme CYP2C9, which can affect how some other drugs are handled."
+  ],
+  "pregnancyAndChildren": "There are no adequate human data on the risk of vigabatrin in pregnancy. Case reports and cohort studies have not shown a clear rise in birth defects or miscarriage. However, animal studies at clinically relevant doses found fetal harm. Rabbits had more malformations, mainly cleft palate, and more fetal deaths. Rats had lower fetal weights and more anatomical variations. A pregnancy registry tracks outcomes for women who take anti-seizure drugs. For children, effectiveness is established for add-on treatment of refractory complex partial seizures from age 2 to 16. It is also established for infantile spasms from 1 month to 2 years. It is not established below those ages. Eye testing is hard in babies, so vision damage may be found late. One analysis of a Canadian study suggested that 6 months of treatment is enough for infantile spasms. Prescribers still judge each case. Limited data suggest that maternal doses up to 2000 mg daily put only small amounts into breast milk. That is far less than the dose given to infants. No effects in a breastfed baby would be expected.",
+  "whatWeDoNotKnow": [
+    "The exact way vigabatrin stops seizures is not known.",
+    "No dose and no length of treatment has been shown to be free of the vision risk.",
+    "How often and how severely babies and children lose vision is poorly measured, because testing their eyes is hard.",
+    "Whether the abnormal MRI scans seen in some infants mean real harm is unresolved.",
+    "There are no adequate human data on vigabatrin use in pregnancy.",
+    "The FDA review said it had no definitive evidence that the required eye monitoring prevents vision damage.",
+    "The FDA review also said the three main infantile spasms efficacy studies did not meet the agency's usual standards.",
+    "Whether rare cases of serious liver injury are truly caused by vigabatrin has not been convincingly established."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin is approved as add-on therapy for refractory complex partial seizures in people aged 2 and older who have not responded to several other treatments.",
+      "quote": "Refractory Complex Partial Seizures as adjunctive therapy in patients 2 years of age and older who have responded inadequately to several alternative treatments"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin is approved alone for infantile spasms in babies 1 month to 2 years old, when the likely benefit is judged to outweigh the risk of vision loss.",
+      "quote": "monotherapy in infants 1 month to 2 years of age for whom the potential benefits outweigh the potential risk of vision loss"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin is not a first-choice drug for complex partial seizures.",
+      "quote": "VIGADRONE is not indicated as a first line agent for complex partial seizures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin can cause permanent narrowing of side vision in both eyes, which can lead to disability.",
+      "quote": "VIGADRONE can cause permanent bilateral concentric visual field constriction, including tunnel vision that can result in disability"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Adult studies suggest 30 percent or more of patients develop the visual field narrowing.",
+      "quote": "Based upon adult studies, 30 percent or more of patients can be affected with bilateral concentric visual field constriction"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "No dose or exposure level is known to be free of the risk of vision loss.",
+      "quote": "there is no dose or exposure known to be free of risk of vision loss"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vision testing is recommended before or shortly after starting treatment and at least every 3 months during treatment.",
+      "quote": "vision assessment is recommended at baseline (no later than 4 weeks after starting VIGADRONE), at least every 3 months"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "The exact anti-seizure mechanism is unknown, but it is thought to involve irreversible inhibition of an enzyme.",
+      "quote": "The precise mechanism of vigabatrin's anti-seizure effect is unknown, but it is believed to be the result of its action as an irreversible inhibitor"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "It is dispensed only through a restricted program with enrolled pharmacies.",
+      "quote": "VIGADRONE is only available through pharmacies that are enrolled in the Vigabatrin REMS Program"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Treatment is stopped if a clear benefit is not seen within about 3 months for refractory complex partial seizures.",
+      "quote": "VIGADRONE should be withdrawn if a substantial clinical benefit is not observed within 3 months of initiating treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin is 4-amino-5-hexenoic acid, with molecular formula C6H11NO2 and molecular weight 129.16.",
+      "quote": "The chemical name of vigabatrin, a racemate consisting of two enantiomers, is (±) 4-amino-5-hexenoic acid"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "The label lists headache, sleepiness, fatigue, dizziness, weight gain, nausea, diarrhea, memory impairment, insomnia, irritability, tremor, depression and rash among the most common reactions.",
+      "quote": "headache, somnolence, fatigue, dizziness, convulsion, nasopharyngitis, weight gain, upper respiratory tract infection, visual field defect, depression, tremor, nystagmus, nausea, diarrhea, memory impairment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "In adults in the controlled add-on trials, blurred vision, sleepiness, dizziness, poor coordination, tremor and fatigue were the most common reactions.",
+      "quote": "blurred vision, somnolence, dizziness, abnormal coordination, tremor, and fatigue"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "In infants with infantile spasms, the most common reactions were sleepiness, bronchitis, ear infection and acute otitis media.",
+      "quote": "Somnolence, bronchitis, ear infection, and acute otitis media"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "The label also lists anemia, sleepiness with fatigue, peripheral neuropathy, weight gain and edema as important reactions.",
+      "quote": "Anemia Somnolence and Fatigue Peripheral Neuropathy Weight Gain Edema"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "The label lists no contraindications.",
+      "quote": "CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Anti-seizure drugs including vigabatrin raise the risk of suicidal thoughts and behavior.",
+      "quote": "Antiepileptic drugs, including VIGADRONE, increase the risk of suicidal thoughts and behavior"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "The dose is tapered to avoid withdrawal seizures when the drug is stopped.",
+      "quote": "Withdrawal of AEDs: Taper dose to avoid withdrawal seizures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin may moderately reduce total phenytoin blood levels.",
+      "quote": "VIGADRONE may cause a moderate reduction in total phenytoin plasma levels"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin may moderately raise peak clonazepam levels, increasing clonazepam side effects.",
+      "quote": "VIGADRONE may moderately increase the C max of clonazepam resulting in an increase of clonazepam-associated adverse reactions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "No clinically significant interaction was found with phenobarbital or sodium valproate.",
+      "quote": "There are no clinically significant pharmacokinetic interactions between vigabatrin and either phenobarbital or sodium valproate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin is unlikely to reduce the effectiveness of steroid oral contraceptives.",
+      "quote": "VIGADRONE is unlikely to affect the efficacy of steroid oral contraceptives"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin lowers ALT and AST in up to 90 percent of patients, which can hide early liver injury.",
+      "quote": "VIGADRONE decreases alanine transaminase (ALT) and aspartate transaminase (AST) plasma activity in up to 90% of patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin can raise urine amino acids and cause a false positive on some rare metabolic disease tests.",
+      "quote": "VIGADRONE may increase the amount of amino acids in the urine, possibly leading to a false positive test"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vigabatrin induces the liver enzyme CYP2C9 but not other cytochrome P450 enzymes.",
+      "quote": "Vigabatrin induces CYP2C9 but does not induce other hepatic cytochrome P450 enzyme systems"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "There are no adequate human data on developmental risk from vigabatrin in pregnancy.",
+      "quote": "There are no adequate data on the developmental risk associated with the use of VIGADRONE in pregnant women"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Animal studies at clinically relevant doses caused developmental toxicity and fetal malformations.",
+      "quote": "vigabatrin produced developmental toxicity, including an increase in fetal malformations and offspring neurobehavioral and neurohistopathological effects, at clinically relevant doses"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Effectiveness is established for infantile spasms in children from 1 month to 2 years of age.",
+      "quote": "The safety and effectiveness of vigabatrin as monotherapy for pediatric patients with infantile spasms (1 month to 2 years of age) have been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Effectiveness is not established for infantile spasms in babies under 1 month old.",
+      "quote": "as monotherapy for the treatment of infantile spasms in pediatric patients below the age of 1 month have not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "A Canadian study analysis suggested 6 months of vigabatrin therapy is adequate for infantile spasms.",
+      "quote": "a total duration of 6 months of vigabatrin therapy is adequate for the treatment of infantile spasms"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label, public domain)",
+      "claim": "Vision testing is difficult in infants, so vision loss may not be detected until it is severe.",
+      "quote": "Because vision testing in infants is difficult, vision loss may not be detected until it is severe"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Vigabatrin is a GABA analog that irreversibly inhibits the enzyme that breaks GABA down, raising GABA levels.",
+      "quote": "It irreversibly inhibits the enzyme responsible for GABA metabolism, thereby increasing levels of circulating GABA"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Vigabatrin was first introduced as an antiepileptic in the United Kingdom in 1989.",
+      "quote": "first introduced as an antiepileptic agent in the United Kingdom in 1989"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Peripheral visual field defects appear concentrically in both eyes as early as 9 to 11 months after starting treatment.",
+      "quote": "Peripheral visual field defect (VFD) concentrically occurs in both eyes as early as 9 months and 11 months after initiating treatment"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (LiverTox summary section)",
+      "claim": "Vigabatrin has not been convincingly linked to clinically apparent liver injury.",
+      "quote": "Vigabatrin has not been convincingly linked to cases of clinically apparent liver injury"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Rufinamide blood levels may fall slightly to moderately when taken with vigabatrin.",
+      "quote": "appears to be associated with a slight to moderate decrease in mean steady-state plasma concentrations of rufinamide"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Limited information suggests maternal doses up to 2000 mg daily produce low levels in breast milk.",
+      "quote": "Limited information indicates that maternal doses of vigabatrin up to 2000 mg daily produce low levels in milk"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2009/022006s000_MedR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research (public domain)",
+      "claim": "The FDA review described the retinal toxicity as a permanent, progressive loss of peripheral vision that could lead to total blindness.",
+      "quote": "produces a permanent progressive peripheral field deficit that cannot be adequately assessed in the IS patient population and could result in total blindness"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2009/022006s000_MedR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research (public domain)",
+      "claim": "About 20 percent of infants under age 3 developed vigabatrin-induced MRI signal changes.",
+      "quote": "vigabatrin-induced MRI signal changes occurring in about 20% of infants less than age 3 years"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2009/022006s000_MedR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research (public domain)",
+      "claim": "FDA said it had no definitive evidence that the required eye monitoring prevents vision damage.",
+      "quote": "we do not have definitive evidence that the monitoring to be imposed under the REMS will definitely prevent toxicity"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2009/022006s000_MedR.pdf",
+      "publisher": "U.S. Food and Drug Administration, Center for Drug Evaluation and Research (public domain)",
+      "claim": "The three main infantile spasms efficacy studies did not meet the agency's usual standards for proving a drug works.",
+      "quote": "The design and results of the three primary efficacy studies submitted in support of this application do not meet the usual Agency standards"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT02220114",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed study tested a new pediatric formulation of vigabatrin in infants and children with infantile spasms.",
+      "quote": "Acceptability Study of a New Paediatric Form of Vigabatrin in Infants and Children With Infantile Spasms"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=vigabatrin&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A completed phase 2 study tested vigabatrin in post-anoxic status epilepticus.",
+      "quote": "VIGABatrin in Post-anoxic STATus Epilepticus - Phase IIa"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=vigabatrin&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A terminated phase 2 study examined vigabatrin and cocaine self-administration, and a withdrawn study planned to test it in autoimmune encephalitis.",
+      "quote": "Effect of Vigabatrin in Refractory Autoimmune Encephalitis Patients"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Vigabatrin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Sabril%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/vigabatrin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5665/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/5665",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=vigabatrin&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT02220114",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2009/022006s000_MedR.pdf",
+    "https://www.nccih.nih.gov/health/vigabatrin",
+    "https://www.ninds.nih.gov/health-information/disorders/infantile-spasms",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548253/",
+    "https://www.ncbi.nlm.nih.gov/books/?term=vigabatrin",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548315/",
+    "https://www.fda.gov/news-events/press-announcements/fda-approves-first-drug-infantile-spasms-rare-disorder-affecting-infants-and-young-children"
+  ],
+  "gaps": [
+    "The LiverTox vigabatrin record (NCBI Bookshelf NBK548253) could not be fetched directly: every attempt returned a reCAPTCHA browser check. Its overview text was reached through the LiverTox summary section inside PubChem's record for vigabatrin and is cited with the PubChem URL.",
+    "NCCIH has no vigabatrin page; the URL returned HTTP 404, so no NCCIH citation appears here.",
+    "The NINDS infantile spasms page redirected to a general NINDS epilepsy page that does not mention vigabatrin, so it could not support any claim.",
+    "A guessed FDA press release URL for the 2009 Sabril approval returned HTTP 404. FDA approval documents under accessdata.fda.gov were used instead.",
+    "MedlinePlus drug monographs were excluded as copyrighted third-party content. No MedlinePlus health topic or medical test summary specific to vigabatrin was found.",
+    "NCBI Bookshelf search results were also blocked by the same reCAPTCHA check, so no Bookshelf page other than through PubChem was used.",
+    "No dosage or personal protocol information is given anywhere in this record, by design.",
+    "Exact rates for individual side effects differ between the adult add-on studies and the infantile spasms studies; per-reaction percentages are not reported here.",
+    "The brand-name Sabril label was retrieved for cross-checking but every claim cited comes from the generic-name vigabatrin label record or the sources listed.",
+    "No source fetched here states how common vigabatrin use is, or how often vision loss leads to disability in practice."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what vigabatrin is, the two seizure conditions it is approved for, its permanent vision-loss risk, its interactions, and the questions that remain open."
+}

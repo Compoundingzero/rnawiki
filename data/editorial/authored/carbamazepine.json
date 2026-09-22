@@ -1,0 +1,313 @@
+{
+  "slug": "carbamazepine",
+  "oneLineAnswer": "A prescription anticonvulsant for some seizures, facial nerve pain and bipolar mania, with rare serious skin and blood risks.",
+  "whatItIs": "Carbamazepine is a prescription-only anticonvulsant medicine, sold under names such as Tegretol, Carbatrol and Equetro. Its chemical name is 5H-dibenz[b,f]azepine-5-carboxamide, and its formula is C15H12N2O with a molecular weight of 236.27. The drug substance is a white to off-white powder that barely dissolves in water.",
+  "whatItDoes": [
+    "Carbamazepine is an anticonvulsant, meaning a medicine used to calm the abnormal brain activity behind seizures.",
+    "Its label lists it for complex partial seizures, generalized tonic-clonic seizures, and mixed patterns combining them.",
+    "The label says it does not appear to control absence seizures, a different seizure type.",
+    "It is also used for the stabbing facial pain of true trigeminal neuralgia, a nerve pain condition.",
+    "For trigeminal neuralgia, NINDS describes anticonvulsant medicines as able to reduce how often attacks happen."
+  ],
+  "howPeopleUseIt": [
+    "It comes as tablets, chewable tablets, long-acting tablets and capsules, and a liquid suspension.",
+    "It is taken by mouth for long stretches of time, often as the only medicine or alongside others.",
+    "The label warns that stopping an anticonvulsant suddenly can bring seizures back.",
+    "Before starting, doctors usually check blood counts, and some people are offered a gene test for HLA-B*1502.",
+    "The label states this drug is not a simple painkiller and should not be used for everyday aches."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The most frequently reported problems are dizziness, drowsiness, unsteadiness, nausea, and vomiting.",
+      "Those effects tend to be worst in the first weeks of treatment, according to the label.",
+      "Blurred vision, double vision, headache, and tiredness are also listed.",
+      "Dry mouth, constipation, or diarrhea can occur.",
+      "Low blood sodium, called hyponatremia, is listed among reported side effects."
+    ],
+    "seriousSigns": [
+      "A rash can be the first sign of Stevens-Johnson syndrome or toxic epidermal necrolysis, two dangerous skin reactions.",
+      "The label says to stop the drug at the first sign of a rash unless a doctor says it is unrelated.",
+      "Those skin reactions are rare but can be fatal, and most appear within the first months of use.",
+      "Fever, sore throat, mouth ulcers, or easy bruising can point to a fall in blood cells.",
+      "Aplastic anemia (bone marrow making too few blood cells) and agranulocytosis (very low infection-fighting white cells) are linked to the drug.",
+      "Fever with a widespread rash and swollen lymph nodes may be DRESS, a whole-body reaction that can be life-threatening.",
+      "The label tells patients to report swelling of the face, eyes, lips, or tongue, or trouble swallowing or breathing, right away.",
+      "Antiseizure medicines including this one may raise the risk of suicidal thoughts and behavior.",
+      "Yellowing of the skin or eyes, or dark urine, can signal liver injury; hepatitis and rare liver failure are listed."
+    ],
+    "whoShouldAvoid": [
+      "People who have had bone marrow depression, meaning their bone marrow struggled to make blood cells.",
+      "People allergic to carbamazepine or sensitive to tricyclic drugs such as amitriptyline and imipramine.",
+      "People who test positive for the inherited gene variant HLA-B*1502, unless the benefit clearly outweighs the risk.",
+      "People taking nefazodone or delavirdine, two drugs the labels say must not be combined with carbamazepine.",
+      "People taking an MAO inhibitor, which the label says should be stopped at least 14 days before carbamazepine starts."
+    ]
+  },
+  "interactions": [
+    "Carbamazepine is a strong inducer of the liver enzyme CYP3A4, so it can push levels of many other medicines down.",
+    "Some antibiotics and antifungals, such as erythromycin and ketoconazole, can raise carbamazepine levels in the body.",
+    "Grapefruit juice is named in the label as something that can increase carbamazepine levels.",
+    "Some seizure and tuberculosis medicines, including phenytoin, phenobarbital and rifampin, can lower carbamazepine levels.",
+    "Valproic acid and certain antipsychotics need extra level checks when used with carbamazepine.",
+    "The labels single out nefazodone and delavirdine as combinations that must be avoided.",
+    "Because levels shift, the label says doctors should monitor blood levels closely and adjust doses of the other medicines."
+  ],
+  "pregnancyAndChildren": "Labels state that carbamazepine can harm a fetus. They report that data suggest a link between use in pregnancy and congenital malformations, including spina bifida, and that craniofacial defects, heart malformations, other anomalies, and developmental delays have also been reported. The manufacturer says the decision to use it during pregnancy should weigh benefits against risks, and that a patient who becomes pregnant should be told about the potential hazard. The liquid form contains propylene glycol, which the label carries its own warning about. Child-friendly forms, including chewable tablets and a suspension, exist for people who cannot swallow tablets.",
+  "whatWeDoNotKnow": [
+    "No one knows exactly how carbamazepine works; the label itself states the mechanism of action remains unknown.",
+    "Whether the main breakdown product of the drug adds meaningful benefit or risk has not been established.",
+    "The true rate of mild drops in blood cells is unknown, and the label says data cannot estimate it accurately.",
+    "The label says the role of dose, other medicines, other illnesses and monitoring in serious skin reactions has not been studied.",
+    "The pregnancy findings are described as associations in data, not proven cause and effect.",
+    "ClinicalTrials.gov lists 262 studies that mention carbamazepine, but that count says nothing about how well it works.",
+    "Trigeminal neuralgia itself can be hard to diagnose, and in some cases no cause is found."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label states carbamazepine is used for the pain of true trigeminal neuralgia.",
+      "quote": "Carbamazepine is indicated in the treatment of the pain associated with true trigeminal neuralgia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label states carbamazepine is an anticonvulsant, used for certain seizure types.",
+      "quote": "Carbamazepine is indicated for use as an anticonvulsant drug."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label says absence seizures are not controlled by this drug.",
+      "quote": "Absence seizures (petit mal) do not appear to be controlled by carbamazepine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label states the drug is not meant for ordinary aches and pains.",
+      "quote": "This drug is not a simple analgesic and should not be used for the relief of trivial aches or pains."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label says how carbamazepine works is not known.",
+      "quote": "The mechanism of action remains unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label gives an estimate for how often the serious skin reactions occur in mainly Caucasian populations.",
+      "quote": "THESE REACTIONS ARE ESTIMATED TO OCCUR IN 1 TO 6 PER 10,000 NEW USERS IN COUNTRIES WITH MAINLY CAUCASIAN POPULATIONS"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The boxed warning ties the serious skin reactions to an inherited gene variant.",
+      "quote": "STUDIES IN PATIENTS OF CHINESE ANCESTRY HAVE FOUND A STRONG ASSOCIATION BETWEEN THE RISK OF DEVELOPING SJS/TEN AND THE PRESENCE OF HLA-B*1502"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label says HLA-B*1502 is almost only found in people with ancestry from broad areas of Asia.",
+      "quote": "HLA-B*1502 IS FOUND ALMOST EXCLUSIVELY IN PATIENTS WITH ANCESTRY ACROSS BROAD AREAS OF ASIA."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The boxed warning gives how much higher the blood reaction risk is compared with the general population.",
+      "quote": "THE RISK OF DEVELOPING THESE REACTIONS IS 5 TO 8 TIMES GREATER THAN IN THE GENERAL POPULATION"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label lists which side effects show up most often.",
+      "quote": "The most frequently observed adverse reactions, particularly during the initial phases of therapy, are dizziness, drowsiness, unsteadiness, nausea, and vomiting."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Low blood sodium is listed among the reported side effects.",
+      "quote": "Metabolism : Fever and chills. Hyponatremia (see WARNINGS, General)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Liver problems, including rare liver failure, appear in the label's side effect list.",
+      "quote": "Liver : Abnormalities in liver function tests, cholestatic and hepatocellular jaundice, hepatitis, very rare cases of hepatic failure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label warns that stopping an anticonvulsant suddenly can trigger seizures.",
+      "quote": "abrupt discontinuation of any anticonvulsant drug in a responsive epileptic patient may lead to seizures or even status epilepticus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label describes carbamazepine as a strong inducer of a liver enzyme, which explains many interactions.",
+      "quote": "Carbamazepine is a potent inducer of hepatic 3A4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Certain medicines can push carbamazepine levels up.",
+      "quote": "Drugs that have been shown, or would be expected, to increase plasma carbamazepine levels include aprepitant, cimetidine, ciprofloxacin, danazol, diltiazem, macrolides"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Other medicines can push carbamazepine levels down.",
+      "quote": "Drugs that have been shown, or that would be expected, to decrease plasma carbamazepine levels include cisplatin, doxorubicin HCl, felbamate, fosphenytoin, rifampin, phenobarbital"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label states who should not take carbamazepine.",
+      "quote": "Carbamazepine should not be used in patients with a history of previous bone marrow depression, hypersensitivity to the drug"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label gives a waiting period before carbamazepine can follow an MAO inhibitor.",
+      "quote": "Before administration of carbamazepine, MAO inhibitors should be discontinued for a minimum of 14 days"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Combining carbamazepine with nefazodone is listed as contraindicated.",
+      "quote": "Coadministration of carbamazepine with nefazodone is contraindicated."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The prescribing information says carbamazepine can harm a developing fetus.",
+      "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label reports a suggested link between pregnancy use and birth defects such as spina bifida.",
+      "quote": "Epidemiological data suggest that there may be an association between the use of carbamazepine during pregnancy and congenital malformations, including spina bifida."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label directs patients to report warning signs immediately, even when mild.",
+      "quote": "because these signs and symptoms may signal a serious reaction, that they must report any occurrence immediately to a physician."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The liquid form contains propylene glycol, which the label warns about.",
+      "quote": "The amount of propylene glycol in Tegretol suspension is 25 mg per mL"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e91f9de3-3fdd-0a6b-71ce-53a2cc142816",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Prescribing information for an extended-release form says antiseizure drugs may raise suicidal thoughts and behavior risk.",
+      "quote": "AEDs, including carbamazepine, may increase the risk of suicidal thoughts and behavior"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e91f9de3-3fdd-0a6b-71ce-53a2cc142816",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label tells patients to report swelling that suggests angioedema.",
+      "quote": "Advise patients to immediately report signs and symptoms suggesting angioedema (swelling of the face, eyes, lips, or tongue"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=bc03e499-5bac-4293-bff4-6864153a624d",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "One label version names delavirdine as a drug that must not be combined with carbamazepine.",
+      "quote": "Coadministration of Carbatrol is contraindicated with delavirdine"
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/trigeminal-neuralgia",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS), NIH",
+      "claim": "NINDS says medicines are usually the first treatment for trigeminal neuralgia.",
+      "quote": "Generally, the first line of treatment for people living with TN is medication."
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/trigeminal-neuralgia",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS), NIH",
+      "claim": "NINDS lists carbamazepine among anticonvulsants that can reduce attack frequency in trigeminal neuralgia.",
+      "quote": "which are used to block pain signals, can reduce the frequency of attacks"
+    },
+    {
+      "url": "https://medlineplus.gov/trigeminalneuralgia.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "MedlinePlus describes trigeminal neuralgia as extreme, sudden facial pain usually on one side.",
+      "quote": "It causes extreme, sudden burning or shock-like pain. It usually affects one side of the face."
+    },
+    {
+      "url": "https://medlineplus.gov/trigeminalneuralgia.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "MedlinePlus says trigeminal neuralgia usually affects older adults, especially women.",
+      "quote": "TN usually affects people over 50, especially women."
+    },
+    {
+      "url": "https://medlineplus.gov/trigeminalneuralgia.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "There is no single test that confirms trigeminal neuralgia.",
+      "quote": "There is no specific test for TN."
+    },
+    {
+      "url": "https://medlineplus.gov/epilepsy.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "MedlinePlus says epilepsy has no cure but medicines control seizures for most people.",
+      "quote": "There is no cure for epilepsy, but medicines can control seizures for most people."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/carbamazepine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records the chemical formula and molecular weight of carbamazepine.",
+      "quote": "\"MolecularFormula\": \"C15H12N2O\", \"MolecularWeight\": \"236.27\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Carbamazepine&countTotal=true&pageSize=1&fields=NCTId",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A registry search returns 262 studies that mention carbamazepine.",
+      "quote": "\"totalCount\":262"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Carbamazepine&pageSize=3&fields=NCTId%7CBriefTitle%7COverallStatus%7CPhase%7CCondition",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A registered study tests whether gene screening lowers antiepileptic skin reaction risk.",
+      "quote": "\"briefTitle\":\"HLA Screening in Reducing the Risk of Antiepileptic Drug-induced Cutaneous Adverse Reactions\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Carbamazepine%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e91f9de3-3fdd-0a6b-71ce-53a2cc142816",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=bc03e499-5bac-4293-bff4-6864153a624d",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0526a054-3eda-49b4-b390-7d5d16e30af8",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=carbamazepine",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8cd5a2b3-1b3d-4d2f-bdfe-000000000000",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/carbamazepine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Carbamazepine&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Carbamazepine&countTotal=true&pageSize=1&fields=NCTId",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Carbamazepine&pageSize=3&fields=NCTId%7CBriefTitle%7COverallStatus%7CPhase%7CCondition",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=intervention%3ACarbamazepine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://www.ninds.nih.gov/health-information/disorders/trigeminal-neuralgia",
+    "https://medlineplus.gov/trigeminalneuralgia.html",
+    "https://medlineplus.gov/epilepsy.html",
+    "https://medlineplus.gov/druginfo/meds/a682237.html",
+    "https://www.nccih.nih.gov/health/carbamazepine",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548097/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548097/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548161/",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/020234s57lbl.pdf"
+  ],
+  "gaps": [
+    "The NCCIH carbamazepine page returned a 404, so no NCCIH content was used.",
+    "The LiverTox carbamazepine chapter on NCBI Bookshelf (NBK548097) was blocked by a reCAPTCHA wall, so no detailed drug-induced liver injury profile was included; the liver facts above come only from the product labels.",
+    "A second Bookshelf fetch and an accessdata FDA PDF fetch failed to yield readable text (the PDF came back as raw binary), so neither was cited.",
+    "MedlinePlus drug monograph pages (medlineplus.gov/druginfo/meds/*) are excluded as ASHP-copyrighted content. One such page was loaded during source checking; no claim in this record comes from it.",
+    "One attempted DailyMed URL used a setid that does not exist and returned no content.",
+    "No grounded breastfeeding or lactation guidance appeared in the fetched labels, so it is omitted.",
+    "No grounded information was found on how carbamazepine affects children differently from adults, beyond available child-friendly dose forms.",
+    "No dose, amount, or personal schedule is recorded here by design; only label and study observations are reported.",
+    "The ClinicalTrials.gov figure is a registry count of studies mentioning the drug, not a measure of benefit."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what carbamazepine is, what its labels say it is used for, its common and serious risks, its drug interactions, and its pregnancy cautions."
+}

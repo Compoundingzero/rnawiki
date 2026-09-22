@@ -1,0 +1,248 @@
+{
+  "slug": "abacavir",
+  "oneLineAnswer": "Abacavir is a prescription HIV medicine, taken with other drugs, that stops the virus copying itself.",
+  "whatItIs": "Abacavir is an antiviral medicine used to treat HIV-1, the virus that causes AIDS. It is a nucleoside reverse transcriptase inhibitor, or NRTI. That class interferes with reverse transcriptase, an enzyme HIV needs in order to copy its genetic material. Abacavir is never taken by itself. It is always one part of a combination of HIV medicines. It was first approved in the United States in 1998. It comes as tablets, as an oral liquid, and inside some fixed-dose combination pills that also contain other HIV drugs.",
+  "whatItDoes": [
+    "Once inside your cells, abacavir is converted by those cells into an active form called carbovir triphosphate.",
+    "Carbovir triphosphate competes with a natural DNA building block and gets built into the DNA chain the virus is making.",
+    "The built-in piece lacks the attachment point needed for the next link, so the chain stops growing.",
+    "Stopping that step stops HIV from producing new copies of itself.",
+    "Used with other HIV medicines, this lowers how much virus is in the body."
+  ],
+  "howPeopleUseIt": [
+    "People with HIV-1 take abacavir as one component of a combination HIV regimen, alongside other HIV medicines.",
+    "It is available as a tablet you swallow and as an oral solution.",
+    "Some people take abacavir as a single medicine; others take it inside a fixed-dose combination tablet, such as one containing abacavir, dolutegravir and lamivudine.",
+    "A genetic test for the HLA-B*5701 variant is done before anyone starts abacavir.",
+    "After a hypersensitivity reaction to abacavir, the label says the person must never take it or any other abacavir-containing product again.",
+    "The label also tells people to carry a warning card and to read the medication guide supplied with each new supply."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In adult trials, the most often reported side effects of at least moderate intensity were nausea, headache, a general unwell or tired feeling, vomiting, and sleep problems or unusual dreams.",
+      "Each of those reached at least 10 percent of people in the adult trials.",
+      "In children, trials reported fever and chills, vomiting, skin rashes, and ear, nose or throat infections most often, at 5 percent or more.",
+      "The label notes that trial side-effect rates cannot be compared directly between drugs or assumed to match everyday practice."
+    ],
+    "seriousSigns": [
+      "The main serious risk is a hypersensitivity reaction, a whole-body reaction that can involve several organs at once.",
+      "It has been fatal. Reported outcomes include multi-organ failure, anaphylaxis, liver failure, kidney failure, a severe drop in blood pressure and death.",
+      "It typically starts within the first six weeks of treatment, with a median onset of about nine days, though it has appeared at any point during treatment.",
+      "Almost every case includes fever, a rash, or both.",
+      "Other reported features include vomiting, diarrhoea, stomach pain, aching, headache, cough, sore throat, breathlessness, mouth ulcers and swollen glands.",
+      "In trials of 2,670 people where HLA-B*5701 screening was not done, about 8 percent had a hypersensitivity reaction; when carriers of the variant were excluded, suspected reactions fell to about 1 percent.",
+      "The label says abacavir must be stopped as soon as a hypersensitivity reaction is suspected, even if other explanations seem possible, and never restarted afterwards.",
+      "A second listed risk is lactic acidosis, a build-up of acid in the blood, together with severe liver enlargement and fat deposits. Some cases were fatal, and most were in women.",
+      "Immune reconstitution syndrome is also listed: as the immune system recovers on treatment, it may react to old or hidden infections.",
+      "Heart attack is another listed warning and precaution."
+    ],
+    "whoShouldAvoid": [
+      "People who carry the HLA-B*5701 gene variant should not take abacavir, according to the label.",
+      "Anyone who has already had a hypersensitivity reaction to abacavir should never take it again, because a repeat exposure can be worse within hours.",
+      "The label also lists moderate or severe liver impairment as a reason not to use abacavir.",
+      "The label advises mothers receiving abacavir not to breastfeed."
+    ]
+  },
+  "interactions": [
+    "Methadone: a small study at a higher-than-usual abacavir exposure found faster methadone clearance. Most people needed no change, but the label says a few may need a higher methadone dose.",
+    "Riociguat, a medicine for pulmonary arterial hypertension: taking it with the fixed-dose abacavir, dolutegravir and lamivudine combination raised riociguat levels, which could increase its side effects. The label says its dose may need to be reduced.",
+    "Abacavir is not broken down to any significant extent by cytochrome P450 enzymes, the family of liver enzymes behind many drug interactions.",
+    "Most of an abacavir dose is handled by other pathways, mainly alcohol dehydrogenase and glucuronidation, and the resulting metabolites have no antiviral activity.",
+    "Only a small share of unchanged abacavir leaves the body in urine, so kidney excretion is a minor route."
+  ],
+  "pregnancyAndChildren": "Abacavir has been studied in pregnancy. A pregnancy registry that tracks outcomes reported no difference in the overall risk of birth defects compared with a background rate of about 2.7 percent, although the registry does not record miscarriages. Drug levels were measured in 25 women during the third trimester and were similar to levels after delivery, and levels in cord blood at birth matched the mother's. Because HIV can pass to a baby through milk, and because the infant could develop viral resistance or side effects, the label tells mothers receiving abacavir not to breastfeed. Safety and effectiveness in children have been established from age 3 months and older.",
+  "whatWeDoNotKnow": [
+    "Outside clinical trials, the label does not say how often each side effect happens in ordinary practice.",
+    "The label states that the background risk of major birth defects and miscarriage in the specific population that uses abacavir is unknown.",
+    "The registry that tracks pregnancy outcomes covers a limited geographic area and excludes births before 20 weeks, so its picture is incomplete.",
+    "It is not known whether abacavir can be removed from the body by dialysis after an overdose.",
+    "The label lists heart attack as a warning but does not quantify how much abacavir raises that risk.",
+    "Liver injury detail from LiverTox could not be read during this review, so its estimates are not included here.",
+    "Nothing on this page states a dose or a personal plan for taking abacavir, and that was a deliberate choice."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Abacavir is indicated for HIV-1 infection and is used together with other antiretroviral medicines.",
+      "quote": "indicated in combination with other antiretroviral agents for the treatment of HIV-1 infection"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Hypersensitivity reactions to abacavir can affect several organs and can be fatal.",
+      "quote": "Serious and sometimes fatal hypersensitivity reactions, with multiple organ involvement, have occurred with abacavir"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "When a hypersensitivity reaction is suspected, abacavir is to be stopped at once, whatever the person's HLA-B*5701 result.",
+      "quote": "Discontinue abacavir immediately if a hypersensitivity reaction is suspected, regardless of HLA-B*5701 status"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "The most frequent adult side effects in trials were nausea, headache, unwellness and tiredness, vomiting, and sleep problems.",
+      "quote": "nausea, headache, malaise and fatigue, nausea and vomiting, and dreams/sleep disorders"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "HLA-B*5701 positivity, a past abacavir hypersensitivity reaction, and moderate or severe liver impairment are listed as contraindications.",
+      "quote": "Presence of HLA-B*5701 allele. (4) Prior hypersensitivity reaction to abacavir. (4) Moderate or severe hepatic impairment. (4)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Lactic acidosis with severe liver enlargement and fat deposits, sometimes fatal, is reported with nucleoside analogues including abacavir.",
+      "quote": "Lactic acidosis and severe hepatomegaly with steatosis, including fatal cases, have been reported with the use of nucleoside analogues"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Fever or rash appears in nearly all abacavir hypersensitivity reactions.",
+      "quote": "Almost all abacavir hypersensitivity reactions include fever and/or rash as part of the syndrome"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Immune reconstitution syndrome has been reported with combination antiretroviral therapy including abacavir.",
+      "quote": "Immune reconstitution syndrome has been reported in patients treated with combination antiretroviral therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "An overdose of abacavir has no known specific antidote.",
+      "quote": "There is no known specific treatment for overdose with abacavir"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Most people on methadone maintenance need no change, but a few may need a higher methadone dose when taking abacavir.",
+      "quote": "Methadone: An increased methadone dose may be required in a small number of patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Riociguat levels rise when it is taken with the abacavir, dolutegravir and lamivudine combination.",
+      "quote": "Coadministration with fixed-dose abacavir/dolutegravir/lamivudine resulted in increased riociguat exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "A pregnancy registry found no difference in the overall rate of birth defects for abacavir compared with the background rate.",
+      "quote": "no difference in the overall risk of birth defects for abacavir compared with the background rate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API",
+      "claim": "Abacavir safety and effectiveness are established in children from 3 months of age.",
+      "quote": "The safety and effectiveness of abacavir have been established in pediatric patients aged 3 months and older"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=80c1702a-973c-436a-90f8-69b29674dca0&type=display",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "Abacavir was first approved in the United States in 1998.",
+      "quote": "ABACAVIR tablets, for oral use Initial U.S. Approval: 1998"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=80c1702a-973c-436a-90f8-69b29674dca0&type=display",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "The label instructs mothers receiving abacavir not to breastfeed.",
+      "quote": "instruct mothers not to breastfeed if they are receiving abacavir"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=80c1702a-973c-436a-90f8-69b29674dca0&type=display",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "Carrying the HLA-B*5701 allele raises the risk of a hypersensitivity reaction to abacavir.",
+      "quote": "Patients who carry the HLA-B*5701 allele are at a higher risk of experiencing a hypersensitivity reaction to abacavir"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=80c1702a-973c-436a-90f8-69b29674dca0&type=display",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "Abacavir is also supplied as an oral solution as well as tablets.",
+      "quote": "The recommended dosage of abacavir oral solution in HIV-1"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "Abacavir belongs to the nucleoside reverse transcriptase inhibitor class and is active against HIV-1.",
+      "quote": "Abacavir is a nucleoside reverse transcriptase inhibitor (NRTI) with activity against Human Immunodeficiency Virus Type 1 (HIV-1)"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "The body converts abacavir into the active metabolite carbovir triphosphate.",
+      "quote": "abacavir is converted by cellular enzymes to the active metabolite carbovir triphosphate"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "Abacavir's biological half-life is roughly one and a half hours.",
+      "quote": "1.54 ± 0.63 hours"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "Abacavir is not broken down to any significant degree by cytochrome P450 enzymes.",
+      "quote": "Abacavir is not significantly metabolized by cytochrome P450 enzymes"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "About half of abacavir in blood is bound to plasma proteins, and that binding does not change with concentration.",
+      "quote": "Moderate (approximately 50%)"
+    },
+    {
+      "url": "https://www.fda.gov/medical-devices/precision-medicine/table-pharmacogenetic-associations",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "FDA places abacavir with the HLA-B*57:01 allele in the group where genetic data support changing treatment decisions.",
+      "quote": "Do not use abacavir in patients positive for HLA-B*57:01"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Abacavir&pageSize=1&countTotal=true",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "ClinicalTrials.gov records 296 registered studies matching abacavir.",
+      "quote": "\"totalCount\":296"
+    },
+    {
+      "url": "https://medlineplus.gov/hiv.html",
+      "publisher": "U.S. National Library of Medicine, MedlinePlus health topic",
+      "claim": "HIV infection cannot be cured but is managed with medicine, called antiretroviral therapy.",
+      "quote": "There is no cure for HIV infection, but it can be treated with medicines."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Abacavir%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Ziagen%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22Abacavir%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22Abacavir%22+AND+_exists_:interactions&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=abacavir",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=abacavir&pagesize=20",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=80c1702a-973c-436a-90f8-69b29674dca0&type=display",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6b0d8d4e-4a1e-4b0f-9a2f-000000000000",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/abacavir/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/441300/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Abacavir&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Abacavir&pageSize=1&countTotal=true",
+    "https://www.fda.gov/medical-devices/precision-medicine/table-pharmacogenetic-associations",
+    "https://medlineplus.gov/hiv.html",
+    "https://www.nccih.nih.gov/health/abacavir",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548225/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548834/"
+  ],
+  "gaps": [
+    "MedlinePlus drug monographs were excluded on purpose because NLM states they are American Society of Health-System Pharmacists content, so MedlinePlus use here is limited to its public domain HIV health topic page.",
+    "NCCIH has no abacavir page: https://www.nccih.nih.gov/health/abacavir returns HTTP 404, so no NCCIH content appears.",
+    "LiverTox and another NCBI Bookshelf page (NBK548225, NBK548834) were blocked by a browser and captcha check on every attempt, so LiverTox's liver injury findings, including its likelihood score and its list of trade names, are not cited.",
+    "One DailyMed set id was entered as a placeholder and returned the generic DailyMed news page rather than a label; the label used here is the Mylan Institutional abacavir tablet label.",
+    "An openFDA query that combined substance name with an interactions field filter returned HTTP 404; the interaction facts come from the generic name label instead.",
+    "OpenFDA and DailyMed both carry FDA authored label text, so they are separate publishers but not fully independent sources for label content. PubChem and the FDA pharmacogenetic table are independent of the label.",
+    "The label reports side effect rates only from clinical trials and warns those rates may not match ordinary practice.",
+    "No fetched source quantifies how much abacavir raises heart attack risk, and the label lists it only as a warning and precaution.",
+    "No fetched source covers use in people older than 65 or in pregnancy beyond the registry data summarised on the label.",
+    "Dose amounts, how to take abacavir, and any personal plan were left out of this record deliberately and are not a gap in sourcing."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what abacavir is and how it blocks HIV-1, how people take it inside combination therapy, the HLA-B*5701 linked hypersensitivity risk and other safety concerns, its known interactions, and the questions the fetched sources leave open."
+}

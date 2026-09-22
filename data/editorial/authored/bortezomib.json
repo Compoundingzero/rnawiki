@@ -1,0 +1,262 @@
+{
+  "slug": "bortezomib",
+  "oneLineAnswer": "A prescription proteasome inhibitor given by injection to treat adults with multiple myeloma and mantle cell lymphoma.",
+  "whatItIs": "Bortezomib is a prescription cancer medicine. It is sold as Velcade and also as generic injections from several manufacturers. It belongs to a drug group called proteasome inhibitors. A proteasome is a cell structure that breaks down proteins. The medicine ships as a powder that a clinic mixes into a liquid before use. United States regulators first approved it in 2003.",
+  "whatItDoes": [
+    "Cells tag used or damaged proteins, and a barrel-shaped structure called the proteasome chops them up.",
+    "Bortezomib blocks one cutting site inside the proteasome. The drug label describes this as a reversible block of the proteasome's chymotrypsin-like activity.",
+    "With that disposal route slowed, signals inside the cell get scrambled, and the cell can die.",
+    "The label says the drug killed many kinds of cancer cells in laboratory tests and slowed tumor growth in animals."
+  ],
+  "howPeopleUseIt": [
+    "A clinic gives bortezomib as a quick injection into a vein or as a shot under the skin. The label says no other route is allowed.",
+    "You would not take it at home as a pill.",
+    "The label notes that the two injection routes need different mixing strengths, so the volume must be measured carefully.",
+    "Treatment runs in repeating cycles with rest days between doses.",
+    "The label lists it for adults with multiple myeloma and for adults with mantle cell lymphoma, often alongside other cancer drugs."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nausea, vomiting, diarrhea or constipation.",
+      "Low platelet counts, the cells that help blood clot.",
+      "Low white blood cell counts, such as neutropenia and leukopenia, which leave you less able to fight infection.",
+      "Low red blood cell counts, called anemia, which can cause tiredness.",
+      "Numbness, tingling, burning or pain in the hands and feet, called peripheral neuropathy.",
+      "Fatigue, fever, rash, loss of appetite and loss of lymphocytes."
+    ],
+    "seriousSigns": [
+      "New or worsening numbness, tingling, burning, pain or weakness in your hands or feet. The label lists these nerve symptoms as things to report.",
+      "Feeling lightheaded or faint when you stand up. The label recorded low blood pressure in 8% of patients.",
+      "New or worsening trouble breathing, swelling, or chest symptoms. The label links these to heart failure and to lung conditions such as pneumonitis.",
+      "Confusion, severe headache, seizures or vision changes. The label warns about a brain condition called posterior reversible encephalopathy syndrome.",
+      "Fever or other signs of infection while your blood counts are low.",
+      "Bleeding or bruising that is unusual for you, or yellowing of the skin and eyes. The label reports bleeding, liver injury and a clotting disorder called thrombotic microangiopathy.",
+      "Symptoms of tumor lysis syndrome, which the label flags in people who start treatment with a large tumor burden."
+    ],
+    "whoShouldAvoid": [
+      "People who have had a serious allergic reaction to bortezomib, boron, or mannitol. Mannitol is an inactive ingredient in the vial.",
+      "The medicine must never be injected into the spinal fluid. The label says fatal events have followed that route.",
+      "People who already have severe nerve damage. The label says they should be treated only after a careful risk-benefit review.",
+      "People who are pregnant, and anyone who could become pregnant or father a child during treatment, because the label says the drug can harm a fetus.",
+      "People who faint easily, take blood pressure medicine, or are dehydrated need extra care, because the label ties those factors to low blood pressure on this drug."
+    ]
+  },
+  "interactions": [
+    "Strong CYP3A4 inducers. CYP3A4 is a liver enzyme that clears many drugs. The label says to avoid these combinations because they lower bortezomib levels and may weaken its effect.",
+    "Strong CYP3A4 inhibitors. The label says these raise bortezomib levels and may increase side effects, so monitoring and possibly a lower dose are needed.",
+    "The label reports no clinically significant interactions with dexamethasone, omeprazole, or melphalan given with prednisone.",
+    "Blood pressure medicines. The label notes that people taking drugs that lower blood pressure are at greater risk of low blood pressure.",
+    "Diabetes medicines. The label says people with diabetes may need closer blood sugar monitoring and changes to their diabetes drugs."
+  ],
+  "pregnancyAndChildren": "The label says bortezomib can harm a fetus, based on how the drug works and on animal findings. There are no studies of it in pregnant women. The label advises women who could become pregnant to use effective birth control during treatment and for seven months after, and men with a partner who could become pregnant to do the same for four months after. For breastfeeding, the label says there is no data on whether bortezomib reaches human milk, and advises against nursing during treatment and for two months afterward. In children, the label states that safety and effectiveness have not been established. A pediatric and young adult trial in lymphoid cancers found no evidence that adding bortezomib improved the complete remission rate.",
+  "whatWeDoNotKnow": [
+    "The label does not name which specific strong CYP3A4 inhibitors or inducers to avoid.",
+    "No one has tested whether bortezomib causes cancer. The label states that carcinogenicity studies were not conducted.",
+    "Fertility studies were not performed in animals, though rat studies showed degenerative changes in the ovary and testes.",
+    "There are no studies of bortezomib in pregnant women, so the human risk in pregnancy is not measured.",
+    "It is not known whether bortezomib passes into breast milk or how it would affect a breastfed baby.",
+    "It is not known whether restarting bortezomib is safe after a person has had posterior reversible encephalopathy syndrome or thrombotic microangiopathy.",
+    "The long-term outcome of nerve damage has not been studied in mantle cell lymphoma.",
+    "Whether the drug helps children with cancer is unsettled. A pediatric trial showed no improvement in remission rate, and safety in children is not established."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Bortezomib is approved to treat adults with multiple myeloma and adults with mantle cell lymphoma.",
+      "quote": "VELCADE is a proteasome inhibitor indicated for: treatment of adult patients with multiple myeloma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Bortezomib reversibly blocks the chymotrypsin-like cutting activity of the proteasome.",
+      "quote": "Bortezomib is a reversible inhibitor of the chymotrypsin-like activity of the 26S proteasome in mammalian cells."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The most common side effects seen in trials, each in at least 20% of patients, include nausea, diarrhea, low platelets, low neutrophils, nerve damage and fatigue.",
+      "quote": "Most commonly reported adverse reactions (incidence ≥20%) in clinical studies include nausea, diarrhea, thrombocytopenia, neutropenia, peripheral neuropathy, fatigue"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "People with a serious allergy to bortezomib, boron or mannitol should not receive the drug.",
+      "quote": "Bortezomib is contraindicated in patients with hypersensitivity (not including local reactions) to bortezomib, boron, or mannitol."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The drug must not be injected into the spinal fluid because that route has caused deaths.",
+      "quote": "Bortezomib is contraindicated for intrathecal administration. Fatal events have occurred with intrathecal administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The label says bortezomib is for intravenous or subcutaneous use only.",
+      "quote": "VELCADE is for intravenous or subcutaneous use only. Do not administer VELCADE by any other route."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Strong CYP3A4 inducers lower bortezomib exposure and should be avoided.",
+      "quote": "Coadministration with a strong CYP3A4 inducer decreases the exposure of bortezomib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Strong CYP3A4 inhibitors raise bortezomib exposure and may increase side effects.",
+      "quote": "Coadministration with a strong CYP3A4 inhibitor increases the exposure of bortezomib"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The label reports no significant interactions with dexamethasone, omeprazole, or melphalan plus prednisone.",
+      "quote": "No clinically significant drug interactions have been observed when VELCADE was coadministered with dexamethasone, omeprazole, or melphalan in combination with prednisone"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Bortezomib caused lost pregnancies and fewer live fetuses in rabbits at doses below the clinical dose.",
+      "quote": "Bortezomib caused embryo-fetal lethality in rabbits at doses lower than the clinical dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The label advises nursing women not to breastfeed during treatment and for two months afterward.",
+      "quote": "advise nursing women not to breastfeed during treatment with VELCADE and for two months after treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "No safety and effectiveness data exist for children.",
+      "quote": "Safety and effectiveness have not been established in pediatric patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "A pediatric trial found no evidence that adding bortezomib improved complete remission rates.",
+      "quote": "There was no evidence that the addition of VELCADE had any impact on the CR rate."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Low blood pressure occurred in 8% of patients in the label's data.",
+      "quote": "The incidence of hypotension (postural, orthostatic, and hypotension NOS) was 8%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Nerve damage was less common with the under-the-skin route than with the vein route in a phase 3 trial.",
+      "quote": "the incidence of Grade ≥2 peripheral neuropathy was 24% for subcutaneous and 39% for intravenous"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Long-term nerve outcomes have not been studied in mantle cell lymphoma.",
+      "quote": "The long-term outcome of peripheral neuropathy has not been studied in mantle cell lymphoma."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "It is unknown whether restarting the drug is safe after posterior reversible encephalopathy syndrome.",
+      "quote": "The safety of reinitiating VELCADE therapy in patients previously experiencing PRES is not known."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "No animal study has tested whether bortezomib causes cancer.",
+      "quote": "Carcinogenicity studies have not been conducted with bortezomib."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Fertility studies with bortezomib were never carried out, though rat tissue changes were seen.",
+      "quote": "Fertility studies with bortezomib were not performed"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "Lung conditions including pneumonitis have been reported with the drug.",
+      "quote": "Acute Respiratory Distress Syndrome (ARDS) and acute diffuse infiltrative pulmonary disease of unknown etiology such as pneumonitis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "People with diabetes may need closer blood sugar monitoring on this drug.",
+      "quote": "Patients with diabetes may require close monitoring of blood glucose and adjustment of antidiabetic medication."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (VELCADE prescribing information)",
+      "claim": "The vial contains bortezomib as a powder with mannitol as an inactive ingredient.",
+      "quote": "Each single-dose vial contains 3.5 mg of bortezomib as a sterile lyophilized powder."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bortezomib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (generic bortezomib label)",
+      "claim": "A generic version carries the same two approved adult uses.",
+      "quote": "Bortezomib for injection is a proteasome inhibitor indicated for: • treatment of adult patients with multiple myeloma"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1521d321-e724-4ffc-adad-34bf4f44fac7",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Velcade is a brand name for bortezomib, given by injection, first approved in the United States in 2003.",
+      "quote": "(bortezomib) for injection, for subcutaneous or intravenous use Initial U.S. Approval: 2003"
+    },
+    {
+      "url": "https://www.cancer.gov/about-cancer/treatment/drugs/bortezomib",
+      "publisher": "National Cancer Institute",
+      "claim": "NCI lists the approved adult uses as multiple myeloma and mantle cell lymphoma after at least one prior treatment, and names Velcade as the US brand.",
+      "quote": "Bortezomib is approved to treat adults with: Mantle cell lymphoma in patients who have received at least one other type of treatment"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bortezomib/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records bortezomib's formula as C19H25BN4O4 with a molecular weight near 384.2, and notes it is a boronic acid compound.",
+      "quote": "\"MolecularFormula\": \"C19H25BN4O4\", \"MolecularWeight\": \"384.2\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Bortezomib&pageSize=3",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Bortezomib has been tested in registered trials in combination with other myeloma drugs.",
+      "quote": "A Phase II Study of the Efficacy and Safety of Lenalidomide, Subcutaneous Bortezomib, and Dexamethasone Combination Therapy"
+    },
+    {
+      "url": "https://medlineplus.gov/multiplemyeloma.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Multiple myeloma is a cancer that starts in plasma cells in the bone marrow, and targeted therapy is one treatment approach.",
+      "quote": "Targeted therapy uses drugs or other substances that attack specific cancer cells with less harm to normal cells."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bortezomib%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22VELCADE%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=bortezomib",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1521d321-e724-4ffc-adad-34bf4f44fac7",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b605b541-4bfd-db3e-9710-11c27f6dee6c",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/1521d321-e724-4ffc-adad-34bf4f44fac7.xml",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bortezomib/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bortezomib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName,Description/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bortezomib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bortezomib&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,LeadSponsorName,EnrollmentCount",
+    "https://www.cancer.gov/about-cancer/treatment/drugs/bortezomib",
+    "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/bortezomib",
+    "https://www.nccih.nih.gov/health/bortezomib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548757/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548754/",
+    "https://medlineplus.gov/multiplemyeloma.html"
+  ],
+  "gaps": [
+    "NCCIH has no bortezomib page; that URL returned 404, so this record has no dietary-supplement angle.",
+    "LiverTox, the NIDDK liver-injury reference on the NCBI Bookshelf, blocked automated access behind a bot check, so its bortezomib entry could not be read or cited.",
+    "NCI's cancer drug dictionary page is JavaScript-rendered and returned no readable drug text; the NCI about-cancer drug page was used instead.",
+    "MedlinePlus drug monographs were excluded by the project rules; only the MedlinePlus multiple myeloma health topic was read.",
+    "The label does not name specific strong CYP3A4 inhibitors or inducers, so no examples are listed.",
+    "The main safety detail rests on one label family, FDA-approved prescribing information; NCI and PubChem corroborate identity, chemistry and approved uses, so confidence is set to medium.",
+    "openFDA states its data should be treated as unvalidated.",
+    "No dose, schedule instruction or personal protocol is given in this record by design."
+  ],
+  "confidence": "medium",
+  "summary": "This record covers what bortezomib is, how it blocks the proteasome, its two approved adult cancer uses, its side effects and serious warnings, its main drug interactions, and what remains unknown about pregnancy, breastfeeding and children."
+}

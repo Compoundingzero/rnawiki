@@ -1,0 +1,169 @@
+{
+  "slug": "cabotegravir",
+  "oneLineAnswer": "An HIV medicine given as injections: it prevents HIV in people at risk and treats HIV alongside another drug.",
+  "whatItIs": "Cabotegravir is a prescription antiviral medicine used against HIV, the virus that causes AIDS. It belongs to a group called integrase strand transfer inhibitors, or INSTIs. An integrase inhibitor blocks integrase, an enzyme HIV needs in order to insert its genetic material into human cells. Cabotegravir is sold as tablets under the name Vocabria, as long-acting injections under the name Apretude, and paired with rilpivirine in an injectable kit called Cabenuva. It is not an over-the-counter product and it is not a supplement.",
+  "whatItDoes": [
+    "It blocks integrase, an HIV enzyme that the virus needs to insert its genes into your cells.",
+    "Blocking that step stops HIV from copying itself inside the body.",
+    "The FDA approved it in 2021 for two different jobs: preventing HIV and treating HIV.",
+    "For treatment, it is used with a second HIV drug called rilpivirine.",
+    "For prevention, it is used alone, either as long-acting injections or as short-term tablets."
+  ],
+  "howPeopleUseIt": [
+    "The injections are given by a health care professional, not taken at home.",
+    "The label records an initial series of injections that is closer together, then injections about every two months.",
+    "A short course of tablets can come first, to check that the drug suits you.",
+    "Tablets can also stand in when a planned injection is missed.",
+    "For prevention, the label requires a negative HIV test before starting and before each injection.",
+    "The label also advises condoms and regular testing for other sexually transmitted infections."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Reactions where the injection goes in, such as pain or swelling, are the most common problem.",
+      "Diarrhea, headache, fever, tiredness, nausea, dizziness, gas and stomach pain are also reported.",
+      "Sleep problems, unusual dreams and anxiety appear in reports of this medicine.",
+      "Rash, muscle aches, back pain and cold-like symptoms can occur too."
+    ],
+    "seriousSigns": [
+      "Serious allergic reactions have been reported, including a severe skin reaction with blisters or peeling.",
+      "Label warnings list rash with fever, mouth blisters, swollen face, eye redness and breathing trouble.",
+      "Liver injury has been reported, and blood tests for the liver may be monitored.",
+      "Depression and low mood have been reported.",
+      "A rare reaction within minutes of an injection has been reported for the two-drug kit.",
+      "If HIV is already present but undiagnosed, the virus can become resistant to this drug."
+    ],
+    "whoShouldAvoid": [
+      "People who are HIV positive, or whose HIV status is unknown.",
+      "Anyone who has had an allergic reaction to cabotegravir before.",
+      "People taking carbamazepine, oxcarbazepine, phenobarbital, phenytoin, rifampin or rifapentine.",
+      "People who weigh less than 35 kilograms, which is about 77 pounds.",
+      "The two-drug injectable kit also lists St John's wort and repeated dexamethasone."
+    ]
+  },
+  "interactions": [
+    "Cabotegravir is cleared by a liver enzyme called UGT1A1.",
+    "Drugs that strongly speed up that enzyme lower cabotegravir levels in the blood.",
+    "Seizure medicines such as carbamazepine, oxcarbazepine, phenobarbital and phenytoin are listed as unsuitable to combine.",
+    "Tuberculosis medicines rifampin and rifapentine are also listed as unsuitable to combine.",
+    "Rifabutin lowers cabotegravir levels, and the label records a different schedule when it is used.",
+    "Cabotegravir does not appear to change how the liver handles most other medicines.",
+    "The label lists etravirine, midazolam, hormonal contraceptives and rilpivirine as acceptable to use with it.",
+    "Because the drug leaves the body slowly, an interaction can persist for months after the last injection."
+  ],
+  "pregnancyAndChildren": "There are not enough human data to judge whether cabotegravir is safe in pregnancy. The label says to use it in pregnancy only when the expected benefit justifies the possible risk. A registry tracks pregnancy outcomes for people exposed to this medicine. Cabotegravir can stay in the body for 12 months or longer after the last injection. A pregnancy that starts later may therefore still be exposed to it. No one knows whether cabotegravir passes into human breast milk. Animal studies found it in animal milk, so exposure through human milk is possible. The prevention injection is approved for adolescents who weigh at least 35 kilograms. The treatment versions are approved from age 12 at that same weight. It is not recommended for anyone below that weight.",
+  "whatWeDoNotKnow": [
+    "How long it takes from the first injection to full protection is not known.",
+    "No one knows whether cabotegravir reaches human breast milk, or what it would do to a breastfed baby.",
+    "There are no adequate human pregnancy safety data.",
+    "The prevention studies had no data on people also infected with hepatitis B or C.",
+    "Severe liver impairment has not been studied.",
+    "Data on people aged 65 and older are limited.",
+    "How often HIV resistance emerges in ordinary clinics, rather than in trials, is not settled."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "The injectable prevention product Apretude is approved for people at risk of HIV through sex, including adolescents, at a minimum weight.",
+      "quote": "to reduce the risk of sexually acquired HIV-1 infection in adults and adolescents weighing at least 35 kg"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "Injection site reactions and several general symptoms are the most common side effects recorded for the prevention injection.",
+      "quote": "injection site reactions, diarrhea, headache, pyrexia, fatigue, sleep disorders, nausea, dizziness, flatulence, abdominal pain, vomiting, myalgia, rash"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "The label carries a boxed warning that starting the prevention injection with an undiagnosed HIV infection can breed resistant virus.",
+      "quote": "Drug-resistant HIV-1 variants have been identified with use of APRETUDE by individuals with undiagnosed HIV-1 infection."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "Cabotegravir lingers in the body long after the last injection.",
+      "quote": "Residual concentrations of cabotegravir may remain in the systemic circulation of individuals up to 12 months or longer."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "Human pregnancy data are inadequate to assess the risk of birth defects or miscarriage.",
+      "quote": "There are insufficient human data on the use of APRETUDE during pregnancy to adequately assess a drug-associated risk of birth defects and miscarriage."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "Unknown or positive HIV status is a stated reason not to use the prevention injection.",
+      "quote": "with unknown or positive HIV-1 status"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+      "publisher": "openFDA (FDA drug label, public domain)",
+      "claim": "Drugs that induce the UGT1A1 enzyme are expected to lower cabotegravir levels, and several are contraindicated.",
+      "quote": "Drugs that are strong inducers of UGT1A1 or 1A9 are expected to decrease cabotegravir plasma concentrations"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+      "publisher": "DailyMed (US National Library of Medicine)",
+      "claim": "Oral cabotegravir is used short-term for HIV treatment alongside rilpivirine, mainly as a lead-in before injections.",
+      "quote": "VOCABRIA is indicated in combination with EDURANT (rilpivirine) tablets for short-term treatment of HIV-1 infection in adults and adolescents"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1698baf3-f895-4c42-a1b1-e9ee3f20da36",
+      "publisher": "DailyMed (US National Library of Medicine)",
+      "claim": "The two-drug injectable kit Cabenuva is approved to replace an existing HIV regimen in suppressed patients.",
+      "quote": "is indicated as a complete regimen for the treatment of HIV-1 infection in adults and adolescents 12 years of age and older"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1698baf3-f895-4c42-a1b1-e9ee3f20da36",
+      "publisher": "DailyMed (US National Library of Medicine)",
+      "claim": "Serious hypersensitivity reactions, including a severe blistering skin reaction, have been reported with cabotegravir-containing regimens.",
+      "quote": "Serious or severe hypersensitivity reactions have been reported with cabotegravir- and rilpivirine-containing regimens."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/54713659/JSON?heading=Drug+and+Medication+Information",
+      "publisher": "PubChem (NIH)",
+      "claim": "Cabotegravir is classified in the integrase strand transfer inhibitor group.",
+      "quote": "Integrase Strand Transfer Inhibitor (INSTIs)"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Cabotegravir&pageSize=5",
+      "publisher": "ClinicalTrials.gov (US National Library of Medicine)",
+      "claim": "Two large trials, HPTN 083 and HPTN 084, supported the FDA approval of injectable cabotegravir for HIV prevention.",
+      "quote": "Data from 083 and 084 supported the US Food and Drug Administration regulatory approval of CAB-LA for HIV prevention on December 20, 2021."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Cabotegravir&pageSize=5",
+      "publisher": "ClinicalTrials.gov (US National Library of Medicine)",
+      "claim": "HPTN 084 compared long-acting injectable cabotegravir with daily oral pills for prevention in women.",
+      "quote": "long-acting injectable integrase inhibitor cabotegravir (CAB LA) compared to daily oral tenofovir disoproxil fumarate/emtricitabine (TDF/FTC) for pre-exposure prophylaxis"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Cabotegravir%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Apretude%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Cabotegravir&pageSize=5",
+    "https://clinicaltrials.gov/study/NCT03164564",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=66d450fb-cca4-476c-b0c7-c0730e3e4cf3",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1698baf3-f895-4c42-a1b1-e9ee3f20da36",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/54713659",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/54713659/JSON?heading=Drug+and+Medication+Information",
+    "https://www.ncbi.nlm.nih.gov/books/NBK592772/",
+    "https://www.nccih.nih.gov/health/cabotegravir",
+    "https://medlineplus.gov/hivprep.html",
+    "https://clinicalinfo.hiv.gov/en/drugs/cabotegravir-1/patient"
+  ],
+  "gaps": [
+    "The LiverTox page for cabotegravir blocked automated access with a browser check, so it is not cited directly; its drug-class and side-effect content was only available as text mirrored on PubChem.",
+    "NCCIH has no cabotegravir page; the URL returned 404.",
+    "The MedlinePlus health topic URL tried returned 404, and MedlinePlus drug monographs are copyrighted and were not used.",
+    "The NIH Clinicalinfo patient page returned 403 and is not cited.",
+    "The ClinicalTrials.gov study web page loaded without its content, so only the ClinicalTrials.gov API response is cited.",
+    "No statement here describes how much of this medicine anyone should take, or how to take it personally.",
+    "No source read for this record explained what happens if the injections are stopped abruptly."
+  ],
+  "confidence": "high",
+  "summary": "This record explains what cabotegravir is, its two approved uses against HIV, how the injections are scheduled, its recorded side effects and interactions, and the pregnancy and pediatric gaps in the label data."
+}

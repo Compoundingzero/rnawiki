@@ -1,0 +1,213 @@
+{
+  "slug": "mirtazapine",
+  "oneLineAnswer": "A prescription antidepressant for adults with major depressive disorder, usually taken in the evening.",
+  "whatItIs": "Mirtazapine is a prescription antidepressant, which means a medicine used to treat depression. It is sold as Remeron and as many generic tablets, plus a tablet that dissolves on the tongue. Its chemical structure is tetracyclic, meaning it has four joined rings. The label places it in the piperazino-azepine group of compounds. Its formula is C17H19N3 and its molecular weight is 265.35.",
+  "whatItDoes": [
+    "In the United States it is approved to treat major depressive disorder in adults.",
+    "That approval rests on four six-week trials in which it beat an inactive pill, called a placebo.",
+    "It also beat placebo on the sleep disturbance and anxiety parts of the rating scales.",
+    "The label says the way it improves mood is unclear.",
+    "It blocks alpha-2 receptors and two serotonin receptors, which may raise noradrenaline and serotonin activity.",
+    "Serotonin and noradrenaline are chemical messengers in the brain, and receptors are the docking sites they attach to."
+  ],
+  "howPeopleUseIt": [
+    "The label describes one dose a day, taken by mouth, usually in the evening before sleep.",
+    "It says the dose should be reduced gradually rather than stopped abruptly.",
+    "One form dissolves on the tongue and must be used right after its blister is opened.",
+    "Researchers have also tested mirtazapine for insomnia in older adults, which is not its approved use."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In six-week trials the most common effects were drowsiness, increased appetite, weight gain, and dizziness.",
+      "Drowsiness was reported by 54% of people taking mirtazapine, against 18% on placebo.",
+      "Increased appetite was reported by 17%, weight gain by 12%, and dizziness by 7%.",
+      "About 16% of people in those trials stopped treatment because of a side effect, against 7% on placebo.",
+      "The label calls the drowsiness prominent and says it can impair judgment, thinking, and motor skills."
+    ],
+    "seriousSigns": [
+      "A boxed warning says antidepressants raised suicidal thoughts and behaviors in people aged 24 and younger.",
+      "The label reports 14 extra young people per 1000 treated under age 18. It reports 5 extra per 1000 aged 18 to 24.",
+      "Serotonin syndrome, a dangerous surplus of serotonin signaling, can occur even when mirtazapine is used alone.",
+      "A rare blood condition called agranulocytosis can appear as fever, chills, sore throat, or mouth ulcers.",
+      "Rare severe skin reactions have been reported, including DRESS, Stevens-Johnson syndrome, and toxic epidermal necrolysis.",
+      "Other listed warnings include seizures, activation of mania, low blood sodium, and high cholesterol or triglycerides.",
+      "QT prolongation, a change in the heart's electrical signal, is listed along with a risk of dangerous heart rhythms.",
+      "Antidepressants have caused angle-closure glaucoma, a sudden rise in eye pressure, in people with narrow eye drainage angles.",
+      "The label states that clinically significant liver enzyme elevations have occurred with this drug."
+    ],
+    "whoShouldAvoid": [
+      "People taking a monoamine oxidase inhibitor, or MAOI, an older antidepressant class, must not take mirtazapine.",
+      "At least 14 days must pass between stopping an MAOI and starting mirtazapine, and the other way around.",
+      "People allergic to mirtazapine or to the tablet's inactive ingredients should not take it.",
+      "The label says mirtazapine is not approved for children.",
+      "Labels advise caution in older adults and in people with liver or kidney disease, seizures, or heart rhythm risk.",
+      "People with untreated narrow eye drainage angles face a risk of angle-closure glaucoma."
+    ]
+  },
+  "interactions": [
+    "MAOIs are contraindicated, including the antibiotic linezolid and injected methylene blue.",
+    "Other serotonin-raising drugs add risk.",
+    "They include SSRIs, SNRIs, triptans, tricyclic antidepressants, fentanyl, lithium, tramadol, tryptophan, buspirone, amphetamines, and St John's wort.",
+    "Alcohol should be avoided while taking mirtazapine, according to the label.",
+    "Carbamazepine, phenytoin, and rifampin speed up the liver enzyme CYP3A4, which clears mirtazapine, so blood levels fall.",
+    "Ketoconazole, clarithromycin, and cimetidine slow that enzyme, so mirtazapine levels in the blood rise.",
+    "The label says clotting tests should be watched in people who also take the blood thinner warfarin."
+  ],
+  "pregnancyAndChildren": "There are no adequate, well-controlled studies of mirtazapine in pregnant women. The label says to use it in pregnancy only if clearly needed. Animal studies found no evidence of birth defects. However, rat pups died more often in the first days of nursing at high doses. The label says mirtazapine may pass into breast milk and advises caution in nursing women. Mirtazapine is not approved for children. Two placebo-controlled trials in 258 children with depression did not establish that it works. In one child trial, 49% of those taking mirtazapine gained at least 7% of body weight. The rate on placebo was 5.7%.",
+  "whatWeDoNotKnow": [
+    "The exact way mirtazapine improves mood is not known.",
+    "The label does not compare mirtazapine with other antidepressants head to head.",
+    "The main depression trials lasted six weeks, so longer-term effects are not described in the sources used here.",
+    "Rare side effects are counted from reports after marketing, so their true frequency is unknown.",
+    "Whether mirtazapine helps people who do not have major depressive disorder is not settled here."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Mirtazapine is approved in the United States for major depressive disorder in adults.",
+      "quote": "Mirtazapine tablets are indicated for the treatment of major depressive disorder (MDD) in adults"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Mirtazapine has a tetracyclic structure and belongs to the piperazino-azepine group.",
+      "quote": "Mirtazapine has a tetracyclic chemical structure and belongs to the piperazino-azepine group of compounds."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "A boxed warning covers suicidal thoughts and behaviors in young people.",
+      "quote": "Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The approval rests on four six-week trials where mirtazapine beat placebo.",
+      "quote": "these studies demonstrated mirtazapine to be superior to placebo on at least 3 of the following 4 measures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The most common side effects are drowsiness, increased appetite, weight gain, and dizziness.",
+      "quote": "Most common adverse reactions (\u22655% or greater and twice placebo) were somnolence, increased appetite, weight gain, and dizziness."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "In six-week trials 54% of mirtazapine patients had drowsiness and 18% of placebo patients did.",
+      "quote": "Somnolence 54% 18% Increased Appetite"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "About 16% of mirtazapine trial participants stopped because of a side effect, against 7% on placebo.",
+      "quote": "Approximately 16% of the 453 patients who received mirtazapine in U.S. 6-week placebo-controlled clinical trials discontinued treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The label reports the mechanism of action as unclear.",
+      "quote": "The mechanism of action of mirtazapine for the treatment of major depressive disorder, is unclear."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "MAOIs are contraindicated, and 14 days must separate them from mirtazapine.",
+      "quote": "Taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The boxed warning reports 14 extra young patients per 1000 under 18 and 5 extra aged 18 to 24.",
+      "quote": "18 to 24 years old 5 additional patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "In one pediatric trial 49% of mirtazapine patients gained at least 7% of body weight, against 5.7% on placebo.",
+      "quote": "49% of mirtazapine-treated patients had a weight gain of at least 7%, compared to 5.7% of placebo-treated patients"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "publisher": "DailyMed, US National Library of Medicine (REMERON label, Organon LLC)",
+      "claim": "Mirtazapine is not approved for children.",
+      "quote": "REMERON/REMERONSolTab is not approved for use in pediatric patients"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "publisher": "DailyMed, US National Library of Medicine (REMERON label, Organon LLC)",
+      "claim": "The label states there are no adequate, well-controlled pregnancy studies.",
+      "quote": "There are no adequate and well-controlled studies in pregnant women."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "publisher": "DailyMed, US National Library of Medicine (REMERON label, Organon LLC)",
+      "claim": "Label directions describe once-daily use, usually in the evening before sleep.",
+      "quote": "Administer orally once daily, preferably in the evening prior to sleep."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "publisher": "DailyMed, US National Library of Medicine (REMERON label, Organon LLC)",
+      "claim": "Alcohol is to be avoided while taking mirtazapine.",
+      "quote": "Advise patients to avoid alcohol while taking mirtazapine"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "publisher": "DailyMed, US National Library of Medicine (REMERON label, Organon LLC)",
+      "claim": "Stopping mirtazapine should be gradual rather than abrupt.",
+      "quote": "Gradually reduce the dosage of REMERON/REMERONSolTab rather than stopping abruptly whenever possible."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/mirtazapine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "The chemical formula is C17H19N3 and the molecular weight is 265.35.",
+      "quote": "\"CID\": 4205, \"MolecularFormula\": \"C17H19N3\", \"MolecularWeight\": \"265.35\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/4205/synonyms/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "Remeron is a brand name for mirtazapine.",
+      "quote": "\"mirtazapine\", \"85650-52-8\", \"Remeron\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Mirtazapine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "A registered trial tested mirtazapine for chronic insomnia in older adults.",
+      "quote": "\"briefTitle\":\"Mirtazapine for Chronic Insomnia in Older Adults\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=mirtazapine",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Many companies make generic mirtazapine tablets, including film-coated and orally disintegrating forms.",
+      "quote": "\"title\": \"MIRTAZAPINE TABLET, ORALLY DISINTEGRATING [BRYANT RANCH PREPACK]\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Mirtazapine%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=mirtazapine",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/mirtazapine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/4205/synonyms/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Mirtazapine",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Mirtazapine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase",
+    "https://www.nccih.nih.gov/health/mirtazapine",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548216/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548216/?report=printable",
+    "https://ncbi.nlm.nih.gov/books/NBK548216/?report=printable",
+    "https://www.livertox.nih.gov/Mirtazapine.htm",
+    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=books&id=NBK548216&retmode=text"
+  ],
+  "gaps": [
+    "NCCIH has no mirtazapine page; the URL returned 404, so no NCCIH content is cited.",
+    "LiverTox (NIDDK) has a mirtazapine entry, but the NCBI Bookshelf page was blocked by a bot check and the LiverTox host did not respond, so no liver content is cited from it.",
+    "MedlinePlus drug monographs were excluded on licence grounds and are not cited.",
+    "The liver warning here comes only from the drug label's transaminase section, since LiverTox could not be fetched.",
+    "No dose figures appear in this record by design; it reports what US labeling states rather than a personal protocol.",
+    "The two label sources are separate publications from different manufacturers and publishers, but both trace to US FDA-approved labeling, so clinical claims rest on one source family.",
+    "No head-to-head comparison with other antidepressants could be grounded from the fetched sources.",
+    "None of the fetched sources quantify how often the rare serious reactions occur."
+  ],
+  "confidence": "high",
+  "summary": "Grounds mirtazapine's identity, its approved use in adult depression, common and serious side effects, interactions, and pregnancy and children data in US drug labeling from openFDA and DailyMed, with PubChem and ClinicalTrials.gov as supporting public-domain sources."
+}

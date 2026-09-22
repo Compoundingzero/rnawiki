@@ -1,0 +1,198 @@
+{
+  "slug": "aripiprazole",
+  "oneLineAnswer": "A prescription antipsychotic medicine used mainly for schizophrenia, bipolar mania, and irritability linked to autism.",
+  "whatItIs": "Aripiprazole is an atypical antipsychotic medicine. Atypical means it belongs to the newer group of antipsychotics rather than the older first-generation ones. It is sold both as a generic and under the brand name Abilify. It comes as tablets, a liquid, a tablet that melts in the mouth, and a long-acting injection given by a clinician.",
+  "whatItDoes": [
+    "Delusions are false beliefs, and hallucinations are false perceptions that are not really there.",
+    "Antipsychotic medicines can help control symptoms like these, usually alongside other kinds of care.",
+    "The FDA label lists aripiprazole for schizophrenia, irritability with autism, and Tourette's disorder.",
+    "Drug references also list bipolar mania and major depressive disorder, where it is added to another antidepressant.",
+    "The label says its mechanism is unclear; a partial agonist switches a receptor on only partly."
+  ],
+  "howPeopleUseIt": [
+    "It is a prescription medicine, so a clinician decides whether someone uses it and how.",
+    "The label describes the oral forms as taken once daily, with or without food.",
+    "A long-acting injectable version is given by a clinician on a repeating schedule instead of daily.",
+    "The label notes that some people clear the drug more slowly and need a different dose, which a prescriber sets.",
+    "Treatment usually sits alongside therapy, family education, rehabilitation, and skills training."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In adult trials, common effects were nausea, vomiting, constipation, headache, dizziness, and restlessness.",
+      "Akathisia was also common in adults; it means psychomotor restlessness, an urge to keep moving.",
+      "Anxiety and insomnia were common in adult trials.",
+      "In children, common effects included sleepiness, headache, vomiting, fatigue, and increased appetite.",
+      "Extrapyramidal symptoms are movement problems; references list resting tremor and shuffling gait as examples."
+    ],
+    "seriousSigns": [
+      "The boxed warning says elderly people with dementia-related psychosis face a higher risk of death on antipsychotics.",
+      "Aripiprazole is not approved for dementia-related psychosis in older adults, the label states.",
+      "The same warning covers a higher risk of suicidal thoughts in children, teenagers, and young adults taking antidepressants.",
+      "Neuroleptic malignant syndrome is a rare reaction the label describes with symptoms such as fever and muscle rigidity.",
+      "Tardive dyskinesia is a movement disorder that can follow antipsychotic use and may not go away.",
+      "The label warns of metabolic changes: high blood sugar, altered blood fats, and weight gain.",
+      "It also warns about compulsive behaviors such as gambling, about falls, and about low white blood cell counts."
+    ],
+    "whoShouldAvoid": [
+      "The label contraindicates aripiprazole for anyone with a past hypersensitivity reaction to it.",
+      "Those reactions have ranged from itching and hives up to anaphylaxis, a severe whole-body allergic reaction.",
+      "Older adults with dementia-related psychosis are outside the approved use.",
+      "People with a history of seizures, low white blood cell counts, or low blood pressure are flagged for caution."
+    ]
+  },
+  "interactions": [
+    "CYP enzymes are liver enzymes that break down many medicines, including aripiprazole.",
+    "Medicines that block those enzymes, such as itraconazole or fluoxetine, raise aripiprazole levels in the body.",
+    "The label says the aripiprazole dose is reduced when a strong blocker is used at the same time.",
+    "Medicines that speed those enzymes up, such as carbamazepine or rifampin, lower aripiprazole levels.",
+    "In that case the label says the aripiprazole dose may be increased.",
+    "Blood pressure medicines can add to aripiprazole's own blood-pressure-lowering effect, the label notes.",
+    "With lorazepam, sedation and the drop in blood pressure on standing were greater than with aripiprazole alone.",
+    "The label lists no dose change needed with famotidine, valproate, or lithium based on pharmacokinetic studies."
+  ],
+  "pregnancyAndChildren": "Newborns exposed to antipsychotics such as aripiprazole in the third trimester of pregnancy can have movement or withdrawal symptoms after delivery, the label says. Available human studies have not established a clear link to birth defects, miscarriage, or harm to the baby. A pregnancy registry exists that tracks outcomes for people taking atypical antipsychotics. Untreated schizophrenia or bipolar disorder also carries risks during pregnancy, the label notes. In children, the label reports that effectiveness for schizophrenia was shown in a six-week trial of 202 patients aged 13 to 17, and for irritability with autism in two eight-week trials of 212 patients aged 6 to 17. The label also warns that antidepressants raise the risk of suicidal thinking and behavior in children, teenagers, and young adults. Whether maintenance treatment keeps working in children has not been systematically evaluated.",
+  "whatWeDoNotKnow": [
+    "The label states plainly that the mechanism of aripiprazole in schizophrenia is unclear.",
+    "The label says no systematically collected data address switching someone from another antipsychotic to aripiprazole.",
+    "Long-term maintenance benefit in children has not been systematically evaluated, according to the label.",
+    "Serious liver injury looks very rare; drug references say aripiprazole has rarely been tied to liver injury with jaundice.",
+    "Most trials ran for weeks or months, so effects from many years of use are not well described.",
+    "We found no public-domain source comparing aripiprazole with other antipsychotics for an individual person."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Aripiprazole is an atypical antipsychotic medicine supplied as tablets.",
+      "quote": "Aripiprazole is an atypical antipsychotic drug that is available as Aripiprazole Tablets, USP."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The FDA label lists three approved uses for the oral forms.",
+      "quote": "Aripiprazole is indicated for the treatment of: • Schizophrenia • Irritability Associated with Autistic Disorder • Treatment of Tourette's Disorder"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The most common side effects in adults come from trial data.",
+      "quote": "The most common adverse reactions in adult patients in clinical trials (≥10%) were nausea, vomiting, constipation, headache, dizziness, akathisia, anxiety, insomnia, and restlessness."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "A boxed warning covers older adults with dementia-related psychosis.",
+      "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "A past allergic reaction to aripiprazole is a contraindication.",
+      "quote": "Aripiprazole is contraindicated in patients with a history of a hypersensitivity reaction to aripiprazole."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Combining aripiprazole with lorazepam increased sedation.",
+      "quote": "The intensity of sedation was greater with the combination of oral aripiprazole and lorazepam as compared to that observed with aripiprazole alone."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Enzyme-blocking drugs change the aripiprazole dose.",
+      "quote": "With concomitant use of aripiprazole with a strong CYP3A4 inhibitor or CYP2D6 inhibitor, reduce the aripiprazole dosage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Third-trimester exposure can affect the newborn.",
+      "quote": "Neonates exposed to antipsychotic drugs, including aripiprazole, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Childhood schizophrenia effectiveness came from a trial in teenagers.",
+      "quote": "Safety and effectiveness in pediatric patients with schizophrenia were established in a 6 week, placebo-controlled clinical trial in 202 pediatric patients"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+      "publisher": "National Library of Medicine, PubChem (CID 60795)",
+      "claim": "PubChem classifies aripiprazole as an antipsychotic used for schizophrenia and mood disorders.",
+      "quote": "It is an antipsychotic drug used for the treatment of Schizophrenia, and other mood disorders."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+      "publisher": "National Library of Medicine, PubChem (CID 60795)",
+      "claim": "PubChem's record lists additional uses beyond the three on this label.",
+      "quote": "Aripiprazole is an atypical antipsychotic orally indicated for the treatment of schizophrenia, bipolar I, major depressive disorder, irritability associated with autism, and Tourette's."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+      "publisher": "National Library of Medicine, PubChem (CID 60795)",
+      "claim": "Aripiprazole has not been consistently linked to liver enzyme rises.",
+      "quote": "Aripiprazole therapy has not been associated consistently with serum aminotransferase elevations and has yet to be linked to cases of clinically apparent liver injury."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+      "publisher": "National Library of Medicine, PubChem (CID 60795)",
+      "claim": "Weight gain appears less pronounced than with other atypical antipsychotics.",
+      "quote": "Weight gain is less prominent with aripiprazole than other atypical antipsychotic medications"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+      "publisher": "National Library of Medicine, PubChem (CID 60795)",
+      "claim": "Its receptor profile is described as partial agonism plus antagonism.",
+      "quote": "the drug demonstrates partial agonist activity at D2 and 5-HT1A receptors and antagonist activity at 5-HT2A receptors"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Aripiprazole&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Registered studies of aripiprazole include bipolar disorder research.",
+      "quote": "CAE Plus LAI in Individuals With Bipolar Disorder at Risk for Treatment Non-adherence"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=aripiprazole",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "DailyMed product records include aripiprazole as an oral solution.",
+      "quote": "ARIPIPRAZOLE (aripiprazole oral) solution"
+    },
+    {
+      "url": "https://medlineplus.gov/psychoticdisorders.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Psychosis is defined and treated partly with symptom-controlling drugs.",
+      "quote": "Treatment depends on the cause of the psychosis. It might involve drugs to control symptoms and talk therapy."
+    },
+    {
+      "url": "https://medlineplus.gov/schizophrenia.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Schizophrenia care includes non-drug supports alongside medicine.",
+      "quote": "Additional treatments can help you deal with your illness from day to day. These include therapy, family education, rehabilitation, and skills training."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aripiprazole%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Aripiprazole",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/60795/JSON?heading=Drug+and+Medication+Information",
+    "https://www.nccih.nih.gov/health/aripiprazole",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Aripiprazole&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547858/",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=aripiprazole",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=aripiprazole&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b72c0cff-9f4d-42e2-b884-d06dea3e6378",
+    "https://medlineplus.gov/schizophrenia.html",
+    "https://medlineplus.gov/psychoticdisorders.html",
+    "https://medlineplus.gov/mentalhealthmedicines.html"
+  ],
+  "gaps": [
+    "NCCIH has no aripiprazole page; https://www.nccih.nih.gov/health/aripiprazole returned 404, so no NCCIH content appears here.",
+    "Direct fetches of the NCBI Bookshelf LiverTox page for aripiprazole were blocked by a browser challenge, so its liver content was read through the PubChem record instead and cited to PubChem.",
+    "MedlinePlus drug monographs were not fetched or used, because NLM states they are American Society of Health-System Pharmacists content under copyright.",
+    "PubMed abstracts, Examine.com, WebMD, Healthline, Drugs.com, RxList, MSKCC About Herbs, Labdoor and ConsumerLab were not used for the same copyright reasons.",
+    "No head-to-head comparison of aripiprazole against other antipsychotics was grounded, so the record does not rank it.",
+    "Numerical dosing, personal dosing schedules, and any recommendation about taking aripiprazole were deliberately left out.",
+    "This record does not cover every marketed formulation, including long-acting injectable products, in detail."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what aripiprazole is, what the FDA label and other drug references say it treats, its common and serious side effects, its drug interactions, and pregnancy and pediatric notes."
+}

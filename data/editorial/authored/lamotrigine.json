@@ -1,0 +1,202 @@
+{
+  "slug": "lamotrigine",
+  "oneLineAnswer": "A prescription medicine for some seizure types and for delaying mood episodes in bipolar I disorder.",
+  "whatItIs": "Lamotrigine is a prescription medicine sold under brand names such as Lamictal. It belongs to a group called antiepileptic drugs, or AEDs, which are medicines that treat seizures. The label calls it a phenyltriazine, a chemical family unrelated to older seizure drugs. Its chemical formula is C9H7Cl2N5 and its molecular weight is 256.09. The exact way it works is described on the label as unknown.",
+  "whatItDoes": [
+    "As an add-on treatment, lamotrigine is approved for three seizure types from age 2 upward.",
+    "Those are partial-onset seizures, primary generalized tonic-clonic seizures, and the generalized seizures of Lennox-Gastaut syndrome.",
+    "From age 16, it can replace a single older seizure drug, a switch called conversion to monotherapy.",
+    "In bipolar I disorder it is approved as maintenance treatment, aiming to delay new mood episodes.",
+    "The label does not recommend it for an acute manic or mixed episode, where benefit is unproven."
+  ],
+  "howPeopleUseIt": [
+    "It is taken by mouth, as regular tablets, orally disintegrating tablets, or extended-release tablets.",
+    "The label ties the starting amount and each increase to the other medicines you take.",
+    "Those medicines change how fast your body clears lamotrigine.",
+    "The label keeps the starting amount and each increase low on purpose, because going higher raises rash risk.",
+    "Patient kits cover the first five weeks, when serious rashes mostly appear.",
+    "Stopping is described as a slow taper over at least two weeks, not a sudden stop.",
+    "Restarting after a stop caused by rash is discouraged unless benefits clearly outweigh the risks."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In epilepsy trials, common effects included dizziness, nausea, headache, and blurred vision.",
+      "Adults also reported sleepiness, unsteady walking (ataxia), double vision, runny nose, sore throat, and rash.",
+      "Children in those trials also reported vomiting, fever, infection, accidental injury, diarrhea, stomach pain, and tremor.",
+      "In bipolar trials, common effects were nausea, drowsiness, insomnia, tiredness, back pain, and dry mouth."
+    ],
+    "seriousSigns": [
+      "A serious skin rash is the main warning, and some cases need hospital care.",
+      "The label says to stop lamotrigine at the first sign of rash unless the rash clearly is not caused by the drug.",
+      "The label lists serious rash rates near 0.3% to 0.8% in children and 0.08% to 0.3% in adults.",
+      "Rare cases of toxic epidermal necrolysis, where skin peels away, have been reported.",
+      "Nearly all life-threatening rashes appear within 2 to 8 weeks of starting, though some appear later.",
+      "DRESS is a whole-body drug reaction that can bring fever, rash, swollen glands, and organ failure.",
+      "Another rare reaction, hemophagocytic lymphohistiocytosis, is runaway immune activation with fever, rash, and blood problems.",
+      "Headache, fever, nausea, vomiting, and a stiff neck can signal aseptic meningitis, a meningitis-like reaction without infection.",
+      "The label also warns about suicidal thoughts and behavior with antiepileptic drugs.",
+      "It lists heart rhythm changes, blood cell shortages, and worsening seizures as other concerns."
+    ],
+    "whoShouldAvoid": [
+      "The label says not to use lamotrigine after a hypersensitivity reaction to it.",
+      "Those reactions include rash, swelling, hives, intense itching, or mouth ulcers.",
+      "People with certain heart rhythm or heart structure problems are warned about serious arrhythmias.",
+      "In some Asian study groups, carriers of the HLA-B*1502 gene variant had about two to three times the risk.",
+      "That higher risk was for Stevens-Johnson syndrome and toxic epidermal necrolysis, both severe skin reactions.",
+      "The label notes many carriers never react, and reactions also occur in people without the variant.",
+      "Approved epilepsy use starts at age 2, so younger children are outside the studied range."
+    ]
+  },
+  "interactions": [
+    "Valproate more than doubles lamotrigine levels and raises the risk of serious rash.",
+    "Carbamazepine, phenytoin, phenobarbital, primidone, and rifampin lower lamotrigine levels by about 40%.",
+    "Estrogen-containing contraceptives lower lamotrigine levels by about half.",
+    "The HIV medicines lopinavir/ritonavir and atazanavir/ritonavir also lower lamotrigine levels, by roughly half and a third.",
+    "Starting or stopping those products can mean the maintenance amount needs adjusting.",
+    "Lamotrigine blocks a kidney transporter called OCT2, so it can raise levels of drugs cleared that way.",
+    "The label does not recommend combining lamotrigine with dofetilide, a heart drug cleared by OCT2.",
+    "Lamotrigine is cleared mainly by a liver process called glucuronidation, so drugs that speed or slow it change lamotrigine levels."
+  ],
+  "pregnancyAndChildren": "Several pregnancy registries did not find more major birth defects than in the general population. The International Lamotrigine Pregnancy Registry reported malformations in 2.2% of 1,558 first-trimester exposures. A North American registry reported 2% of 1,562 infants, and EURAP reported 2.9% of 2,514. One registry saw about three times the usual rate of isolated oral clefts. An oral cleft is a gap in the lip or roof of the mouth. Other large registries did not confirm that finding. Most pregnancy data come from women with epilepsy. Lamotrigine passes into breast milk, and infant blood levels have reached up to half of the mother's. Reported infant effects include drowsiness, poor feeding, and poor weight gain, though the label says the cause is unknown. There are no data on how lamotrigine affects milk production. In children, add-on epilepsy use is approved from age 2. A small trial in children aged 1 to 24 months found no benefit and more infections and breathing problems. Bipolar maintenance was not established in children aged 10 to 17.",
+  "whatWeDoNotKnow": [
+    "How lamotrigine stops seizures is not known.",
+    "The sodium channel idea comes from laboratory work and is not proven in people.",
+    "The label says no target blood level range has been set for lamotrigine.",
+    "No data exist on whether lamotrigine changes milk production.",
+    "Hormonal contraceptives other than combined pills, and hormone replacement therapy, have not been systematically tested.",
+    "Most pregnancy data come from women with epilepsy, so other uses are less studied.",
+    "A gene test for HLA-B*1502 cannot predict who will react, so it does not replace clinical judgment."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The US label approves lamotrigine as add-on epilepsy therapy from age 2 for partial-onset seizures, primary generalized tonic-clonic seizures, and Lennox-Gastaut syndrome seizures.",
+      "quote": "Epilepsy—adjunctive therapy in patients aged 2 years and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Lamotrigine is approved as maintenance treatment in bipolar I disorder, to delay new mood episodes after standard treatment of an acute episode.",
+      "quote": "Maintenance treatment of bipolar I disorder to delay the time to occurrence of mood episodes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The boxed warning is about serious skin rashes that can require hospital care and discontinuation of the drug.",
+      "quote": "Lamotrigine can cause serious rashes requiring hospitalization and discontinuation of treatment."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The label lists the most common side effects reported by adults in epilepsy trials.",
+      "quote": "Most common adverse reactions (incidence ≥10%) in adults were dizziness, headache, diplopia, ataxia, nausea, blurred vision, somnolence, rhinitis, pharyngitis, and rash"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "A history of hypersensitivity to lamotrigine is a contraindication.",
+      "quote": "Lamotrigine is contraindicated in patients who have demonstrated hypersensitivity (e.g., rash, angioedema, acute urticaria, extensive pruritus, mucosal ulceration) to the drug"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The label states that the exact mechanism of lamotrigine's anticonvulsant action is unknown.",
+      "quote": "The precise mechanism(s) by which lamotrigine exerts its anticonvulsant action are unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Valproate more than doubles lamotrigine concentrations in the body.",
+      "quote": "Valproate increases lamotrigine concentrations more than 2-fold."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Estrogen-containing oral contraceptives cut lamotrigine concentrations by about half.",
+      "quote": "Estrogen-containing oral contraceptives decrease lamotrigine concentrations by approximately 50%."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "The International Lamotrigine Pregnancy Registry found major congenital malformations in 2.2% of 1,558 first-trimester monotherapy exposures.",
+      "quote": "The International Lamotrigine Pregnancy Registry reported major congenital malformations in 2.2% (95% CI: 1.6%, 3.1%) of 1,558 infants exposed to lamotrigine monotherapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "One registry observed roughly a three-fold rise in isolated oral clefts, a finding other registries did not confirm.",
+      "quote": "the risk of oral clefts was 3.2 per 1,000 (95% CI: 1.4, 6.3), a 3-fold increased risk versus unexposed healthy controls"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+      "publisher": "openFDA drug label API, US Food and Drug Administration",
+      "claim": "Lamotrigine is present in the milk of women who take it.",
+      "quote": "Lamotrigine is present in milk from lactating women taking lamotrigine"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=dc6e6735-d49a-44d8-936d-7c33437bc59e",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "An independent DailyMed label for lamotrigine tablets lists the same approved epilepsy uses.",
+      "quote": "Lamotrigine is indicated for: Epilepsy—adjunctive therapy in patients aged 2 years and older"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=lamotrigine&pagesize=3",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Marketed lamotrigine products include immediate-release tablets and extended-release tablets.",
+      "quote": "LAMOTRIGINE (LAMOTRIGINE EXTENDED-RELEASE) TABLET, FILM COATED, EXTENDED RELEASE [REMEDYREPACK INC.]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/lamotrigine/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem records lamotrigine as CID 3878, formula C9H7Cl2N5, with the systematic name 6-(2,3-dichlorophenyl)-1,2,4-triazine-3,5-diamine.",
+      "quote": "6-(2,3-dichlorophenyl)-1,2,4-triazine-3,5-diamine"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/lamotrigine/synonyms/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem lists Lamictal and the CAS number 84057-84-1 among lamotrigine's synonyms.",
+      "quote": "lamotrigine, 84057-84-1, 6-(2,3-Dichlorophenyl)-1,2,4-triazine-3,5-diamine, Lamictal"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Lamotrigine&pageSize=5",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "A registered trial tested lamotrigine for nerve protection in secondary progressive multiple sclerosis.",
+      "quote": "A Randomised Controlled Trial of Neuroprotection With Lamotrigine in Secondary Progressive Multiple Sclerosis"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Lamotrigine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,Phase,EnrollmentCount,StartDate",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "Another registered trial studied lamotrigine for binge eating disorder with obesity.",
+      "quote": "Lamotrigine in the Treatment of Binge Eating Disorder Associated With Obesity"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Lamotrigine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22Lamotrigine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Lamictal%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Lamictal%22+AND+openfda.product_type:%22HUMAN+PRESCRIPTION+DRUG%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=dc6e6735-d49a-44d8-936d-7c33437bc59e",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=lamotrigine&pagesize=3",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Lamotrigine",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/lamotrigine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/lamotrigine/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/lamotrigine/synonyms/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Lamotrigine&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Lamotrigine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,Phase,EnrollmentCount,StartDate",
+    "https://www.nccih.nih.gov/health/lamotrigine (404 Not Found)",
+    "https://www.nccih.nih.gov/health/lamotrigine/ (404 Not Found)",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548425/ (LiverTox, NIDDK; blocked by bot check)"
+  ],
+  "gaps": [
+    "NCCIH has no lamotrigine page; both NCCIH URLs returned 404, so no NCCIH content is cited.",
+    "LiverTox (NIDDK) on the NCBI Bookshelf was attempted twice and blocked by a bot check, so no liver-injury content is included here.",
+    "MedlinePlus drug monographs were excluded on licence grounds, and MedlinePlus has no health topic page for this substance.",
+    "No dose figures appear in this record by design; it reports what the US label states, not a personal protocol.",
+    "The label holds no human data on how lamotrigine affects milk production.",
+    "Whether the rare infant symptoms reported during breastfeeding were caused by lamotrigine is unresolved.",
+    "No head-to-head comparison with other antiepileptic drugs could be grounded from the fetched sources."
+  ],
+  "confidence": "high",
+  "summary": "Grounds lamotrigine's identity, approved epilepsy and bipolar uses, common and serious side effects, interactions, and pregnancy and breastfeeding data in the US drug label and DailyMed, with PubChem and ClinicalTrials.gov as supporting public-domain sources."
+}

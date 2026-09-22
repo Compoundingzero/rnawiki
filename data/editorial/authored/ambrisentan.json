@@ -1,0 +1,244 @@
+{
+  "slug": "ambrisentan",
+  "oneLineAnswer": "A prescription tablet for pulmonary arterial hypertension; it aims to improve exercise ability and delay worsening.",
+  "whatItIs": "Ambrisentan is a prescription medicine taken by mouth as a tablet. It belongs to a drug group called endothelin receptor antagonists. Endothelin is a protein your body makes that tightens blood vessels. Ambrisentan docks at the ET-A receptor, one of the sites that protein uses, and blocks it. The brand name is Letairis, and generic tablets are also sold. US regulators approved it in 2007 as a new molecular entity. Chemically, it is a small man-made molecule, formula C22H22N2O4, weight near 378.",
+  "whatItDoes": [
+    "Pulmonary arterial hypertension (PAH) is high blood pressure in the arteries that carry blood to your lungs.",
+    "One trial listing describes it as increased pressure in the right side of the heart.",
+    "Ambrisentan blocks endothelin-1 from docking at the ET-A receptor, which widens narrowed lung vessels.",
+    "The label lists two goals in adults with PAH: improve exercise ability and delay clinical worsening.",
+    "The label also approves it with tadalafil, another PAH drug, to lower disease progression and hospital stays."
+  ],
+  "howPeopleUseIt": [
+    "It comes as 5 mg and 10 mg film-coated tablets that the label describes as taken once daily.",
+    "The label says the tablets are not meant to be split, crushed, or chewed.",
+    "Some people start it together with tadalafil; trial listings describe that pairing as first-line therapy.",
+    "Researchers have also studied it in scleroderma, for blood flow in the hands and Raynaud's flares.",
+    "That scleroderma use is experimental, not an approved use."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Peripheral edema means swelling, usually in the ankles and legs. It was the most common reaction.",
+      "In 12-week trials, 17% of people on ambrisentan had that swelling against 11% on placebo.",
+      "Nasal congestion, sinusitis (sinus inflammation), and flushing were also more common than on placebo.",
+      "With tadalafil added, common reactions included headache, cough, anemia, indigestion, and bronchitis.",
+      "Most reactions were mild to moderate, and only nasal congestion rose with a higher dose.",
+      "Hemoglobin, the oxygen-carrying part of red blood cells, fell about 0.8 g/dL on average in those trials."
+    ],
+    "seriousSigns": [
+      "Fluid retention has needed a diuretic or hospital care for worsening heart failure in some people.",
+      "Anemia severe enough to need a blood transfusion has been reported after approval.",
+      "Swelling of the face, lips, or throat, called angioedema, and rash have been reported.",
+      "Low blood pressure with symptoms has been reported after approval.",
+      "Sudden fluid in the lungs soon after starting can point to a rare vein disease, PVOD.",
+      "Sperm counts fell in animal studies, and the label says sperm production may be affected.",
+      "Serious birth defects are possible if the drug is used during pregnancy.",
+      "Liver enzyme rises have been reported, and the label says other causes were often found."
+    ],
+    "whoShouldAvoid": [
+      "Pregnancy is a listed contraindication, meaning the drug should not be used at all.",
+      "People with idiopathic pulmonary fibrosis should not take it, including those with WHO Group 3 PAH.",
+      "The label does not recommend it for people with moderate or severe liver impairment.",
+      "While breastfeeding, the label says to choose either the drug or breastfeeding.",
+      "Starting it is not recommended if you already have significant anemia.",
+      "Safety and effectiveness in children have not been established."
+    ]
+  },
+  "interactions": [
+    "Cyclosporine, an immune-suppressing drug, raised ambrisentan blood levels about two-fold in healthy volunteers.",
+    "When cyclosporine is taken at the same time, the label limits ambrisentan to 5 mg once daily.",
+    "The label's interaction section names cyclosporine; tadalafil appears as a partner drug, not an interaction risk."
+  ],
+  "pregnancyAndChildren": "Ambrisentan can cause serious birth defects and must not be used during pregnancy. That warning sits in a boxed warning, the strongest kind the FDA uses. Labels call for a negative pregnancy test before starting if you can become pregnant. Effective birth control is called for during treatment and for one month after stopping. It is not known whether the drug passes into breast milk. The label says to stop either breastfeeding or the medicine. Safety and effectiveness in children are not established. In juvenile rats given high doses, brain weight dropped slightly, with no changes seen in behaviour or tissue.",
+  "whatWeDoNotKnow": [
+    "Whether the drug's strong preference for ET-A over ET-B receptors matters to patients is not known.",
+    "It is not known whether ambrisentan gets into human breast milk.",
+    "Human pregnancy data are thin, and the label says they cannot give a reliable risk estimate.",
+    "Why hemoglobin falls on this drug is unknown, and it does not appear to come from bleeding.",
+    "Liver enzyme rises have been reported without a clear explanation, and other causes were often present.",
+    "The label reports treatment exposure up to 4 years, so longer-term effects are not well described.",
+    "It is not approved for scleroderma or Raynaud's, and no benefit there is established."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Ambrisentan is approved to treat pulmonary arterial hypertension in adults, to improve exercise ability and delay worsening.",
+      "quote": "Letairis is indicated for the treatment of pulmonary arterial hypertension (PAH) (WHO Group 1) in adult patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Pregnancy is a contraindication, and the label carries a boxed warning about harm to a developing fetus.",
+      "quote": "Letairis is contraindicated for use during pregnancy because it may cause major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Ambrisentan blocks the ET-A receptor for endothelin, a body protein that narrows blood vessels.",
+      "quote": "Ambrisentan is a high-affinity (K i =0.011 nM) ET A receptor antagonist"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "The most common side effects in trials were swelling of the limbs, stuffy nose, sinus infection and flushing.",
+      "quote": "Most common adverse reactions (>3% compared to placebo) are peripheral edema, nasal congestion, sinusitis, and flushing"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "In the 12-week trials, ankle and leg swelling was recorded in 17% of people on ambrisentan and 11% on placebo.",
+      "quote": "Peripheral edema 14 (11) 45 (17) 6 Nasal congestion 2 (2) 15 (6) 4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Fluid retention has been serious for some people, who needed a diuretic or hospital care for heart failure.",
+      "quote": "Patients required intervention with a diuretic, fluid management, or, in some cases, hospitalization for decompensating heart failure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Hemoglobin falls within the first few weeks of treatment.",
+      "quote": "Decreases in hemoglobin have been observed within the first few weeks"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "The drug must not be used by people who have idiopathic pulmonary fibrosis.",
+      "quote": "Letairis is contraindicated in patients with Idiopathic Pulmonary Fibrosis (IPF)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Cyclosporine roughly doubles ambrisentan exposure and the label limits the ambrisentan dose in that case.",
+      "quote": "limit the dose of ambrisentan to 5 mg once daily when coadministered with cyclosporine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "The clinical meaning of the drug's selectivity for ET-A over ET-B is not established.",
+      "quote": "The clinical impact of high selectivity for ET A is not known."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ambrisentan%22&limit=1&skip=9",
+      "publisher": "openFDA, U.S. Food and Drug Administration (generic ambrisentan prescribing information, public domain)",
+      "claim": "An April 2025 labeling change removed the ambrisentan Risk Evaluation and Mitigation Strategy section.",
+      "quote": "Ambrisentan Risk Evaluation and Mitigation Strategy (REMS) ( 5.2 ) (removed) 04/2025"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a4978a54-1799-43d6-85dd-05fa9de0a5d7&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine (generic ambrisentan drug label, public domain)",
+      "claim": "Generic ambrisentan tablets are sold by other companies, including Sun Pharmaceutical Industries.",
+      "quote": "contact Sun Pharmaceutical Industries, Inc. at 1-800-818-4555"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a4978a54-1799-43d6-85dd-05fa9de0a5d7&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "A second label source states the same approved use and calls ambrisentan an endothelin receptor antagonist.",
+      "quote": "Ambrisentan is an endothelin receptor antagonist indicated for the treatment of pulmonary arterial hypertension (PAH) (WHO Group 1) in adult patients"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a4978a54-1799-43d6-85dd-05fa9de0a5d7&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "Fluid retention has been reported after approval, appearing within weeks of starting the drug.",
+      "quote": "there have been postmarketing reports of fluid retention in patients with pulmonary hypertension, occurring within weeks after starting ambrisentan"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a4978a54-1799-43d6-85dd-05fa9de0a5d7&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine (drug label, public domain)",
+      "claim": "Liver enzyme rises have been reported, and other causes of the liver problem could often be identified.",
+      "quote": "Elevations of liver aminotransferases (ALT, AST) have been reported with ambrisentan use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA Drugs@FDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The original US approval for ambrisentan, application NDA022081, carries the status date June 15, 2007 and got priority review.",
+      "quote": "\"submission_status_date\": \"20070615\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ambrisentan/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "Ambrisentan is a small molecule with the chemical formula C22H22N2O4.",
+      "quote": "\"MolecularFormula\": \"C22H22N2O4\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ambrisentan/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "Its molecular weight is near 378.",
+      "quote": "\"MolecularWeight\": \"378.4\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=ARIES%20ambrisentan&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "A phase 3 trial called ARIES tested ambrisentan in people with moderate to severe pulmonary arterial hypertension.",
+      "quote": "ARIES - Ambrisentan in Patients With Moderate to Severe Pulmonary Arterial Hypertension (PAH)"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=AMBITION%20ambrisentan%20tadalafil&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "A separate phase 3 trial tested ambrisentan plus tadalafil as first-line combination therapy.",
+      "quote": "A Study of First-Line Ambrisentan and Tadalafil Combination Therapy in Subjects With Pulmonary Arterial Hypertension (PAH)"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ambrisentan&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "Researchers have studied ambrisentan in scleroderma, looking at Raynaud's flares and blood flow to the hands.",
+      "quote": "if this medicine may be beneficial in relieving and/or preventing Raynaud's flares"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ambrisentan&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "One trial listing describes pulmonary hypertension as increased pressure on the right side of the heart.",
+      "quote": "pulmonary hypertension (a condition where there is increased pressure in the right side of the heart)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "The label lists 5 mg and 10 mg film-coated tablets for oral use and says not to split, crush, or chew them.",
+      "quote": "Do not split, crush, or chew tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Safety and effectiveness in children have not been established, and juvenile rats showed lower brain weight at high doses.",
+      "quote": "Safety and effectiveness of Letairis in pediatric patients have not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (prescribing information, public domain)",
+      "claim": "Sperm production may be affected, based on animal fertility studies and another drug in the same class.",
+      "quote": "Letairis may have an adverse effect on spermatogenesis."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ambrisentan%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Letairis%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ambrisentan%22&limit=5&skip=5",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ambrisentan%22&limit=1&skip=9",
+    "https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22Letairis%22&limit=1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ambrisentan/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Ambrisentan&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=ARIES%20ambrisentan&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=AMBITION%20ambrisentan%20tadalafil&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a4978a54-1799-43d6-85dd-05fa9de0a5d7&type=display",
+    "https://dailymed.nlm.nih.gov",
+    "https://www.nccih.nih.gov/health/ambrisentan",
+    "https://www.medlineplus.gov/ambrisentan.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548675/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548675/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548675/?report=printable",
+    "https://livertox.nih.gov/Ambrisentan.htm"
+  ],
+  "gaps": [
+    "NCCIH has no ambrisentan page; the health-topic URL returns 404.",
+    "MedlinePlus has no ambrisentan health topic page; that URL also returns 404.",
+    "LiverTox does appear to have an ambrisentan record, but NCBI Bookshelf blocked automated access with a bot check, so it is not cited here.",
+    "MedlinePlus drug monographs were excluded on copyright grounds, and the other commonly cited consumer drug sites are copyrighted and were not used.",
+    "No fetched source covered cost, availability outside the US, or use in people who are older or have kidney disease.",
+    "The label's drug interaction section names cyclosporine only, so other possible interactions are not covered by these sources."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what ambrisentan is, its approved use, recorded side effects, interactions and pregnancy concerns, plus evidence gaps."
+}

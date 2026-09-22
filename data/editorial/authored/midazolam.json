@@ -1,0 +1,253 @@
+{
+  "slug": "midazolam",
+  "oneLineAnswer": "A short-acting prescription sedative given by a clinician before procedures, and a nasal spray for seizure clusters.",
+  "whatItIs": "Midazolam belongs to the benzodiazepine family. These medicines depress the central nervous system, which means they slow brain activity and cause sleepiness. Midazolam acts quickly and wears off quickly. Midazolam comes as an injection, as a nasal spray, and as an oral liquid. The nasal spray is sold under the brand name Nayzilam. Midazolam has been approved for use in the United States since 1985. It is a Schedule IV controlled substance, a category for drugs with a potential for abuse. Its chemical formula is C18H13ClFN3.",
+  "whatItDoes": [
+    "Midazolam makes you drowsy and calm. It can also make you forget what happened.",
+    "It is given before or during procedures, and sometimes to keep patients comfortable on breathing machines.",
+    "Sedation begins within about 3 to 5 minutes when the medicine is injected into a vein.",
+    "In one label study, many patients could not recall pictures shown 30 minutes after an injection into a muscle.",
+    "The nasal spray is used to stop clusters of seizures in people with epilepsy."
+  ],
+  "howPeopleUseIt": [
+    "A doctor or nurse gives midazolam. It is not a medicine you take on your own.",
+    "Labels say the injection should be used only where breathing and heart function are monitored continuously.",
+    "A caregiver can be trained to give the nasal spray when a seizure cluster starts.",
+    "An oral liquid form has been studied in children before surgery.",
+    "Labels recommend having a reversal medicine called flumazenil ready when the injection is used."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Breathing changes were the most frequent findings in label data.",
+      "Breathing depth or rate dropped in about 23 in 100 people after an injection into a vein.",
+      "After an injection into a muscle it dropped in about 11 in 100.",
+      "In children, low oxygen levels were recorded in about 5 in 100.",
+      "Brief breathing pauses and low blood pressure each occurred in about 3 in 100.",
+      "Some people had pain, hardness, redness or muscle stiffness where the injection went in.",
+      "Headache was reported in about 1 in 100 people after a muscle injection.",
+      "Rarely the opposite of calming happens. This is called a paradoxical reaction. It can look like agitation, irritability or confusion."
+    ],
+    "seriousSigns": [
+      "The main danger is serious breathing depression, where breathing becomes slow, shallow or stops.",
+      "These events are reported most often when other brain-slowing medicines are given at the same time.",
+      "Mixing a benzodiazepine with an opioid pain medicine can cause deep sedation, breathing failure, coma and death.",
+      "A severe overdose can cause breathing failure and coma.",
+      "Stopping the medicine suddenly after heavy or long use can cause withdrawal.",
+      "The worst withdrawal symptoms have followed excessive doses over a long period."
+    ],
+    "whoShouldAvoid": [
+      "Anyone with a known allergy to midazolam should not receive it.",
+      "People with acute narrow-angle glaucoma, a sudden rise in pressure inside the eye, should not receive it.",
+      "The injection contains benzyl alcohol, so labels rule it out for premature infants.",
+      "Labels say older adults aged 60 and over, and frail or debilitated people, need lower doses.",
+      "Labels say the injection must not be given as a rapid injection to newborns."
+    ]
+  },
+  "interactions": [
+    "Opioid pain medicines are the most serious combination, because together they can cause profound sedation and stop breathing.",
+    "Benzodiazepines act at GABA A sites in the brain. Opioids act mainly at mu receptors, so the breathing effects add up.",
+    "Alcohol and any other medicine that slows the brain makes the sedative effect stronger.",
+    "A liver enzyme called CYP3A4 breaks midazolam down. Drugs that block this enzyme can raise its level in your body.",
+    "The label names cimetidine, erythromycin, diltiazem, verapamil, ketoconazole and itraconazole as medicines to be cautious with."
+  ],
+  "pregnancyAndChildren": "Studies of pregnant women exposed to benzodiazepines have not shown a clear link to major birth defects. Those studies are observational, so they cannot prove the drug is safe or measure a small risk. Midazolam crosses the placenta, the organ that links a baby to its mother. It can cause breathing problems, floppy muscle tone and sedation in newborns. Labels advise watching exposed newborns for sedation and withdrawal. Midazolam passes into breast milk at low levels. One label says a breastfeeding woman may consider discarding milk for at least 4 to 8 hours. There is no data on whether midazolam affects milk production. In children, sedation use has been established in pediatric and neonatal patients. The nasal spray is approved for people with epilepsy aged 12 years and older.",
+  "whatWeDoNotKnow": [
+    "The pregnancy data are observational, so they cannot rule out a small increase in birth defect risk.",
+    "Labels ask clinicians to assess the risk of abuse and addiction. They give no frequency for how often it happens.",
+    "Animal studies raise questions about brain development in young animals. The label says the human meaning is not clear.",
+    "There is no data on how midazolam affects milk production.",
+    "Most safety numbers in the label come from monitored medical settings, so they may not describe use elsewhere."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Midazolam is a short-acting benzodiazepine that depresses the central nervous system.",
+      "quote": "Midazolam is a short-acting benzodiazepine central nervous system (CNS) depressant."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The injection is approved for preoperative sedation, anxiety relief and prevention of memory of the event.",
+      "quote": "Midazolam injection is indicated: intramuscularly or intravenously for preoperative sedation/anxiolysis/amnesia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "It is also given as a continuous infusion to sedate patients who are intubated and on breathing machines.",
+      "quote": "continuous intravenous infusion for sedation of intubated and mechanically ventilated patients as a component of anesthesia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Sedation starts within 3 to 5 minutes after an injection into a vein.",
+      "quote": "Sedation in adult and pediatric patients is achieved within 3 to 5 minutes after intravenous (IV) injection"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "In one study, most patients had no memory of items shown 30 minutes after an injection into a muscle.",
+      "quote": "73% of the patients who received midazolam hydrochloride intramuscularly had no recall of memory cards shown 30 minutes following drug administration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Combining benzodiazepines with opioids can cause profound sedation, breathing depression, coma and death.",
+      "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Breathing changes were the most frequent findings after injection. Depth or rate fell in about 23 percent after an intravenous dose.",
+      "quote": "decreased tidal volume and/or respiratory rate decrease (23.3% of patients following IV and 10.8% of patients following IM administration)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "In children, reported rates include low oxygen at 4.6 percent, breathing pauses at 2.8 percent, low blood pressure at 2.7 percent and paradoxical reactions at 2.0 percent.",
+      "quote": "desaturation 4.6%, apnea 2.8%, hypotension 2.7%, paradoxical reactions 2.0%, hiccough 1.2%, seizure-like activity 1.1% and nystagmus 1.1%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The injection is contraindicated in premature infants because the formulation contains benzyl alcohol.",
+      "quote": "Midazolam injection is contraindicated for use in premature infants because the formulation contains benzyl alcohol"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Benzodiazepines are contraindicated in acute narrow-angle glaucoma.",
+      "quote": "Benzodiazepines are contraindicated in patients with acute narrow-angle glaucoma."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Older adults and debilitated patients need lower doses.",
+      "quote": "Lower doses are necessary for older (over 60 years) or debilitated patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Midazolam is a Schedule IV controlled substance.",
+      "quote": "Midazolam is subject to Schedule IV control under the Controlled Substances Act of 1970."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The liver enzyme CYP3A4 is what breaks midazolam down.",
+      "quote": "the biotransformation of midazolam is mediated by cytochrome P450-3A4"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Benzodiazepines cross the placenta and can cause breathing depression, floppy muscle tone and sedation in newborns.",
+      "quote": "Benzodiazepines cross the placenta and may produce respiratory depression, hypotonia, and sedation in neonates."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Midazolam is present in breast milk at low levels.",
+      "quote": "midazolam is present in human milk in low levels"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "There is no data on how midazolam affects milk production.",
+      "quote": "There are no data on the effects of midazolam on milk production."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Observational studies have not shown a clear association between benzodiazepines and major birth defects.",
+      "quote": "do not report a clear association with benzodiazepines and major birth defects"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The nasal spray is approved to treat seizure clusters in people with epilepsy.",
+      "quote": "NAYZILAM is indicated for the acute treatment of intermittent, stereotypic episodes of frequent seizure activity (i.e., seizure clusters, acute repetitive seizures)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Benzodiazepines carry risks of abuse, misuse and addiction that can lead to overdose or death.",
+      "quote": "The use of benzodiazepines, including NAYZILAM, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Midazolam's first U.S. approval was in 1985.",
+      "quote": "Initial U.S. Approval: 1985"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The nasal spray is contraindicated in people allergic to midazolam.",
+      "quote": "Known hypersensitivity to midazolam"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The nasal spray is for people with epilepsy aged 12 years and older.",
+      "quote": "in patients with epilepsy 12 years of age and older"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Labels expect the person giving the nasal spray to be taught how to recognize seizure clusters and give the product.",
+      "quote": "instruct the individual administering NAYZILAM on how to identify seizure clusters and use the product appropriately"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00176670",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A registered trial describes midazolam as proven to reduce anxiety before surgery in children.",
+      "quote": "Midazolam has been proven to reduce preoperative anxiety in children"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00176670",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "The trial record says side effects of oral midazolam in healthy children are minimal and that flumazenil can reverse the drug.",
+      "quote": "Side effects related to oral midazolam administered to healthy children are minimal and the drug can be reversed with flumazenil"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/midazolam/property/MolecularFormula,MolecularWeight/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem records midazolam as CID 4192 with molecular formula C18H13ClFN3.",
+      "quote": "\"MolecularFormula\": \"C18H13ClFN3\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=midazolam",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "DailyMed lists midazolam products including injection solutions, an oral syrup and a nasal spray.",
+      "quote": "MIDAZOLAM HYDROCHLORIDE SYRUP [PRECISION DOSE INC.]"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Midazolam%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=midazolam",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2b29422e-54d5-4a49-8522-e9cf752368c3",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Midazolam&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT00176670",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/midazolam/property/MolecularFormula,MolecularWeight/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/midazolam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Midazolam",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/4192",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548691/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548691/?report=reader",
+    "https://www.nccih.nih.gov/health/providers/digest/anxiety-and-complementary-health-approaches-science",
+    "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+    "https://www.nccih.nlm.nih.gov/health/midazolam"
+  ],
+  "gaps": [
+    "NCCIH has no midazolam page, so no NCCIH material is cited here. Its anxiety and melatonin digests mention midazolam only in search snippets.",
+    "The NIDDK LiverTox record for midazolam exists. NCBI Bookshelf returned a browser and reCAPTCHA check instead of content on two attempts.",
+    "The LiverTox record is not cited, and this record makes no liver claims.",
+    "MedlinePlus drug monographs for midazolam appeared in search results. They are excluded by policy, so none of that content is used.",
+    "The PubChem compound pages would not render extractable text, so only PubChem's structured property data is cited.",
+    "No fetched source gives a frequency for abuse, misuse or addiction from short supervised medical use.",
+    "No fetched source describes use of midazolam outside monitored medical settings.",
+    "No fetched source covers cost, availability, or how many people receive midazolam."
+  ],
+  "confidence": "high",
+  "summary": "What midazolam is, what it does in procedures and seizure clusters, its side effects, interactions and cautions."
+}

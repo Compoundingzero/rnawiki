@@ -1,0 +1,226 @@
+{
+  "slug": "aprepitant",
+  "oneLineAnswer": "Aprepitant is a prescription medicine that helps prevent nausea and vomiting from chemotherapy or surgery.",
+  "whatItIs": "Aprepitant is an antiemetic, meaning a medicine that prevents vomiting. It is a substance P/neurokinin 1 (NK1) receptor antagonist, or blocker. That receptor sits in the brain and helps trigger the vomiting reflex when substance P attaches to it. FDA labels call aprepitant a selective, high-affinity blocker of that receptor. It has little or no effect on the serotonin, dopamine or corticosteroid receptors that older antinausea medicines target. Brands include Emend, Cinvanti and Aponvie. It comes as capsules, an oral liquid, and an injection given into a vein.",
+  "whatItDoes": [
+    "It blocks NK1 receptors in the brain, which blunts the vomiting reflex.",
+    "Labels say it is given together with other antinausea medicines.",
+    "It is approved to prevent nausea and vomiting from chemotherapy likely to cause vomiting, including delayed nausea days later.",
+    "It is approved in adults to prevent nausea and vomiting after surgery.",
+    "Labels note it is not for nausea and vomiting that has already started."
+  ],
+  "howPeopleUseIt": [
+    "It is swallowed or injected shortly before chemotherapy or before surgery.",
+    "For chemotherapy, capsules are used for several days around each treatment cycle.",
+    "The oral liquid is an option for people who cannot swallow capsules.",
+    "For surgery, it is given as one dose before anesthesia begins.",
+    "It is paired with other antinausea medicines, such as dexamethasone and a serotonin-blocking drug.",
+    "Labels advise against long-term continuous use, which has not been studied."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Adults on chemotherapy: fatigue, diarrhea, upset stomach, belly pain and hiccups.",
+      "Blood tests sometimes show fewer white blood cells or higher liver enzyme levels.",
+      "Children on chemotherapy: headache, diarrhea, lower appetite and hiccups.",
+      "Adults after surgery: constipation and low blood pressure.",
+      "An injection study also reported constipation, fatigue and headache.",
+      "Dizziness and hives were less common after surgery."
+    ],
+    "seriousSigns": [
+      "Serious allergic reactions, called anaphylaxis, can happen during or soon after a dose.",
+      "Warning signs in one label include hives, rash, itching, skin peeling, and trouble breathing or swallowing.",
+      "Dizziness, a fast or weak heartbeat, or feeling faint may also signal a reaction.",
+      "Swelling under the skin (angioedema) and a severe skin reaction (Stevens-Johnson syndrome) were reported.",
+      "Nervous system harm was reported in people given aprepitant with the chemotherapy drug ifosfamide."
+    ],
+    "whoShouldAvoid": [
+      "People who have had an allergic reaction to aprepitant or to an ingredient in the product.",
+      "People taking pimozide, an antipsychotic; the combination can raise pimozide levels and affect heart rhythm.",
+      "Pregnant women should avoid the injectable form, which contains alcohol, per one label.",
+      "The injectable form is not established as safe or effective in children."
+    ]
+  },
+  "interactions": [
+    "Aprepitant is processed by a liver enzyme called CYP3A4, and it also changes that enzyme's activity.",
+    "Strong CYP3A4 blockers such as ketoconazole can raise aprepitant levels in the body.",
+    "Strong CYP3A4 inducers such as rifampin can lower aprepitant levels and may weaken its effect.",
+    "Warfarin can become less effective, so labels say the INR clotting test is checked for two weeks.",
+    "Hormonal birth control may work less well, including pills, patches, implants and some IUDs.",
+    "That reduced protection can last 28 days after the last aprepitant dose.",
+    "Some chemotherapy drugs handled by CYP3A4, such as docetaxel and paclitaxel, may be affected.",
+    "Pimozide must not be combined with aprepitant.",
+    "Exposure to 5-HT3 antinausea drugs and to corticosteroids changed little."
+  ],
+  "pregnancyAndChildren": "Labels say there is not enough information about aprepitant use in pregnancy. So it is unknown whether it raises the risk of birth defects or miscarriage. One label says aprepitant may cause fetal harm. The injectable form contains alcohol, and its label says pregnant women should avoid it for that reason. In animal studies, no developmental problems appeared in rats or rabbits at high exposures. No one has measured whether aprepitant passes into human breast milk. It does appear in rat milk. For chemotherapy nausea, capsules are approved from age 12 and the oral liquid from 6 months. The injectable form is not established as safe or effective in children.",
+  "whatWeDoNotKnow": [
+    "Whether aprepitant helps once nausea and vomiting have already started; labels say it was not studied for that.",
+    "How aprepitant affects human pregnancy, because the available data are described as insufficient.",
+    "Whether aprepitant passes into human breast milk, which has not been measured.",
+    "Whether long-term, continuous use is safe; that has not been studied.",
+    "Whether the injectable form works in children; that has not been established.",
+    "How well aprepitant works for nausea from causes other than chemotherapy or surgery."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Aprepitant works by blocking the substance P/neurokinin 1 receptor.",
+      "quote": "Aprepitant is a substance P/neurokinin 1 (NK1) receptor antagonist."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "The capsule is approved with other antinausea medicines to prevent acute and delayed nausea and vomiting from emetogenic chemotherapy.",
+      "quote": "acute and delayed nausea and vomiting associated with initial and repeat courses of highly emetogenic cancer chemotherapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "The capsule is also approved to prevent nausea and vomiting after surgery in adults.",
+      "quote": "for prevention of postoperative nausea and vomiting (PONV) in adults"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Labels say aprepitant was not studied to treat nausea and vomiting that has already begun.",
+      "quote": "Aprepitant has not been studied for treatment of established nausea and vomiting."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Common side effects in adults using it for chemotherapy include fatigue, diarrhea, upset stomach, belly pain and hiccups.",
+      "quote": "Adults: fatigue, diarrhea, asthenia, dyspepsia, abdominal pain, hiccups, white blood cell count decreased"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Common side effects in adults using it for surgery are constipation and low blood pressure.",
+      "quote": "PONV • Adults: constipation and hypotension."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Aprepitant is not used together with the antipsychotic pimozide.",
+      "quote": "Concurrent use with pimozide."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Hormonal birth control may be less effective during aprepitant use and for 28 days after the last dose.",
+      "quote": "Efficacy of contraceptives may be reduced during administration of and for 28 days following the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), aprepitant capsules label",
+      "claim": "Aprepitant can lower the INR clotting test in people taking warfarin.",
+      "quote": "Coadministration of aprepitant with warfarin, a CYP2C9 substrate, may result in a clinically significant decrease in International Normalized Ratio"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "Aprepitant crosses into the brain and occupies NK1 receptors there.",
+      "quote": "Animal and human Positron Emission Tomography (PET) studies with aprepitant have shown that it crosses the blood brain barrier and occupies brain NK 1 receptors."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "There is not enough data on aprepitant in pregnancy to identify a risk of birth defects or miscarriage.",
+      "quote": "There are insufficient data on aprepitant use in pregnant women to identify a drug-associated risk of major birth defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "No data exist on aprepitant in human milk or its effects on a breastfed baby.",
+      "quote": "There are no data on the presence of aprepitant in human milk, the effects on the breastfed infant"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "The injectable form's safety and effectiveness in children have not been established.",
+      "quote": "The safety and effectiveness of APONVIE have not been established in pediatric patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "Serious allergic reactions including anaphylaxis have occurred during or soon after aprepitant dosing.",
+      "quote": "Serious hypersensitivity reactions, including anaphylaxis, during or soon after administration of aprepitant have occurred."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "Nervous system toxicity was reported when aprepitant was given with the chemotherapy drug ifosfamide.",
+      "quote": "ifosfamide-induced neurotoxicity reported after aprepitant and ifosfamide coadministration"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration), APONVIE (aprepitant) injectable emulsion label",
+      "claim": "Exposure to 5-HT3 antinausea drugs and to corticosteroids did not change meaningfully.",
+      "quote": "No change in the exposure of the 5-HT 3 antagonist"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=696f9e80-9cae-403b-de9e-078343ce4713",
+      "publisher": "DailyMed (U.S. National Library of Medicine), EMEND label",
+      "claim": "The oral liquid form is approved from 6 months of age for chemotherapy nausea.",
+      "quote": "EMEND for oral suspension is indicated in combination with other antiemetic agents, in patients 6 months of age and older"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=696f9e80-9cae-403b-de9e-078343ce4713",
+      "publisher": "DailyMed (U.S. National Library of Medicine), EMEND label",
+      "claim": "Labels do not recommend long-term continuous use of aprepitant.",
+      "quote": "Chronic continuous administration of EMEND is not recommended because it has not been studied, and because the drug interaction profile may change"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c218d3a-a508-4abc-9ed8-a6e8e191d1b4",
+      "publisher": "DailyMed (U.S. National Library of Medicine), CINVANTI label",
+      "claim": "One aprepitant label states it may cause fetal harm in pregnancy.",
+      "quote": "Pregnancy : May cause fetal harm. (8.1)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c218d3a-a508-4abc-9ed8-a6e8e191d1b4",
+      "publisher": "DailyMed (U.S. National Library of Medicine), CINVANTI label",
+      "claim": "An intravenous form of aprepitant exists for adults.",
+      "quote": "CINVANTI ® (aprepitant) injectable emulsion, for intravenous use"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/aprepitant/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Aprepitant's chemical formula is C23H21F7N4O3 and its molecular weight is about 534.",
+      "quote": "\"MolecularFormula\": \"C23H21F7N4O3\", \"MolecularWeight\": \"534.4\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Aprepitant&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Trials have tested adding aprepitant to an existing antinausea regimen when that regimen failed.",
+      "quote": "where aprepitant on days 1, 2 and 3 will be added to their antiemetic regimen"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Aprepitant%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22EMEND%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22CINVANTI%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APONVIE%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=aprepitant",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=696f9e80-9cae-403b-de9e-078343ce4713",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=696f9e80-9cae-403b-de9e-078343ce4713",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/696f9e80-9cae-403b-de9e-078343ce4713.xml",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c218d3a-a508-4abc-9ed8-a6e8e191d1b4",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Aprepitant",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/aprepitant/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Aprepitant&pageSize=5",
+    "https://www.nccih.nih.gov/health/aprepitant",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548897/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548897/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK611180/",
+    "https://www.ncbi.nlm.nih.gov/books/n/livertox/Aprepitant/"
+  ],
+  "gaps": [
+    "NCCIH has no aprepitant page; the URL https://www.nccih.nih.gov/health/aprepitant returned 404 Not Found.",
+    "MedlinePlus drug monographs are written by the American Society of Health-System Pharmacists and were excluded as copyrighted, so no MedlinePlus drug page is cited.",
+    "NCBI Bookshelf blocked automated access, so the liver-injury record (LiverTox, NIDDK) and the lactation database (LactMed) could not be fetched and are not quoted.",
+    "No independent, non-label narrative review of aprepitant could be fetched, so every claim here traces to FDA labeling, DailyMed, PubChem or ClinicalTrials.gov.",
+    "The full capsule label exceeded the fetch size limit, so it was read only through its drug-interaction section.",
+    "No dose amounts or schedules are given in this record by design."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what aprepitant is, how it prevents chemotherapy- and surgery-related nausea and vomiting, its side effects and drug interactions, and what remains unknown about pregnancy, breastfeeding and long-term use."
+}

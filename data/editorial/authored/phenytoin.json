@@ -1,0 +1,314 @@
+{
+  "slug": "phenytoin",
+  "oneLineAnswer": "Phenytoin is a prescription anti-seizure drug for epilepsy, taken long term, and it needs blood-level monitoring.",
+  "whatItIs": "Phenytoin is an anti-seizure medicine, also called an antiepileptic. Chemically it sits close to the barbiturates, but it has a five-membered ring instead of their shape. Its chemical name is 5,5-diphenyl-2,4-imidazolidinedione. The formula is C15H12N2O2 and the molecular weight is 252.27. It is sold as capsules, tablets, a chewable tablet and a liquid. A version also goes into a vein.",
+  "whatItDoes": [
+    "It is used for two seizure patterns: generalized tonic-clonic seizures and complex partial seizures.",
+    "It is also given to prevent and treat seizures around brain surgery.",
+    "A vein version is used for a long, unbroken seizure called status epilepticus.",
+    "Nobody knows exactly how it works. The leading idea is that it blocks sodium channels, the tiny gates nerve cells use to fire.",
+    "Blocking those gates calms the fast, repeated firing that a seizure depends on.",
+    "The helpful range and the harmful range sit close together, so blood tests are used to follow the level."
+  ],
+  "howPeopleUseIt": [
+    "Most people swallow it as a capsule, tablet, chewable tablet or liquid.",
+    "Slow-release capsules are absorbed gradually, so blood levels peak about 4 to 12 hours after a swallow.",
+    "It is usually a long-term medicine rather than a short course.",
+    "Periodic blood tests check the drug level, and sometimes liver and blood counts too.",
+    "Labels say any change in amount should be gradual. Stopping suddenly can set off seizures.",
+    "The label also suggests brushing, flossing and dental visits, because the drug can overgrow the gums.",
+    "Some people stay on it for years while a clinician adjusts the amount."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The most frequent problems involve the nervous system, and they track how much drug is in the blood.",
+      "They include flickering eye movements (nystagmus), poor balance and walking (ataxia), slurred speech, clumsiness, drowsiness and confusion.",
+      "Gums can thicken and overgrow. This is called gingival hyperplasia.",
+      "Nausea, vomiting, constipation and skin rash are also reported.",
+      "Dizziness, headache, trouble sleeping, twitching and a metallic taste show up as well."
+    ],
+    "seriousSigns": [
+      "Skin reactions can turn severe. Examples are Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "A whole-body allergic reaction called DRESS can involve skin, liver, kidneys, blood, heart or lungs.",
+      "Labels ask patients to report fever, rash, swollen glands, face swelling or mouth sores.",
+      "Easy bruising, or yellowing of skin and eyes, are other things they are told to report.",
+      "The liver can be injured, which may show up as jaundice and dark urine.",
+      "Blood counts can fall, raising the chance of infection, bruising and bleeding.",
+      "The heart can beat too slowly, and rare cardiac arrest has been reported.",
+      "Labels carry a warning about suicidal thoughts and behavior.",
+      "Long-term use has been tied to weaker bones and to nerve damage in the hands and feet.",
+      "Blood sugar can rise, because the drug can reduce insulin release.",
+      "A balance centre in the brain, the cerebellum, can shrink. This has been reported with phenytoin."
+    ],
+    "whoShouldAvoid": [
+      "Anyone who has reacted badly to phenytoin or to another hydantoin drug.",
+      "Anyone whose liver was injured by phenytoin in the past.",
+      "Anyone taking delavirdine, because phenytoin can stop it working.",
+      "Caution is advised with liver or kidney disease, the blood disorder porphyria, high blood sugar, or regular alcohol use.",
+      "Labels say the drug can harm an unborn baby. People who could become pregnant are told to discuss alternatives with a clinician."
+    ]
+  },
+  "interactions": [
+    "Phenytoin sticks to proteins in the blood and is broken down by liver enzymes named CYP2C9 and CYP2C19.",
+    "That breakdown becomes saturated at high levels. Even a small change in amount can then push blood levels up sharply.",
+    "Phenytoin also speeds up many liver enzymes, so it can weaken other medicines.",
+    "Drugs that can raise phenytoin levels include fluconazole, ketoconazole, omeprazole, cimetidine, fluoxetine, sertraline, sulfamethoxazole-trimethoprim, amiodarone, isoniazid and warfarin.",
+    "Things that can lower phenytoin levels include antacids, rifampin, diazepam and carbamazepine.",
+    "Folic acid, St John's wort and heavy long-term drinking also lower the level.",
+    "Antacids are a special case. Labels say not to take them at the same time of day.",
+    "Alcohol cuts both ways. A single drink can raise the level, while long-term drinking can lower it.",
+    "Phenytoin can make hormonal contraception work less well.",
+    "It can change warfarin's effect in either direction.",
+    "Valproate shifts phenytoin levels unpredictably, and the pair is linked to a rise in blood ammonia.",
+    "Phenytoin can weaken many other drugs, including some antifungals, HIV medicines, statins, calcium channel blockers, vitamin D and corticosteroids.",
+    "Tube feeding and liquid nutrition can cut how much phenytoin is absorbed."
+  ],
+  "pregnancyAndChildren": "During pregnancy phenytoin may raise the risk of birth defects, including cleft lip or palate and heart defects. A pattern of abnormalities called fetal hydantoin syndrome has also been reported. Pregnancy can lower drug levels in the blood, so seizures may become harder to control. Babies exposed before birth can have a bleeding problem. It comes from low levels of vitamin K-dependent clotting factors. The label says vitamin K can prevent it. A pregnancy registry tracks outcomes for people who take anti-seizure drugs. Children may be given chewable tablets or oral liquid. Older adults clear the drug more slowly, and the label says this can change dosing.",
+  "whatWeDoNotKnow": [
+    "How often each side effect happens is not known. Labels collect voluntary reports, so they cannot give reliable frequencies.",
+    "The exact way phenytoin stops seizures has never been established.",
+    "The labels do not put a number on how often serious liver injury occurs.",
+    "Whether testing for CYP2C9 gene variants improves outcomes is not settled by these sources.",
+    "Effects on memory and thinking across many years are not fully described in the labels.",
+    "How phenytoin compares with newer anti-seizure drugs is outside what these sources cover."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The injectable form is approved for status epilepticus and for seizures during neurosurgery.",
+      "quote": "indicated for the treatment of generalized tonic-clonic status epilepticus, and prevention and treatment of seizures occurring during neurosurgery"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Oral phenytoin is approved for generalized tonic-clonic and complex partial seizures.",
+      "quote": "Phenytoin chewable tablets are indicated for the treatment of generalized tonic-clonic (grand mal) and complex partial (psychomotor, temporal lobe) seizures"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The exact mechanism of action is not established.",
+      "quote": "The precise mechanism by which phenytoin exerts its therapeutic effect has not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "It is thought to block voltage-dependent sodium channels, damping high-frequency nerve firing.",
+      "quote": "thought to involve the voltage-dependent blockade of membrane sodium channels resulting in a reduction in sustained high-frequency neuronal discharges"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The most common side effects are nervous system effects and are related to dose.",
+      "quote": "The most common adverse reactions encountered with phenytoin therapy are nervous system reactions and are usually dose-related"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Gum overgrowth and digestive upset are reported side effects.",
+      "quote": "nausea, vomiting, constipation, enlargement of the lips, and gingival hyperplasia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Phenytoin strongly induces liver enzymes, which drives many of its interactions.",
+      "quote": "Phenytoin is a potent inducer of hepatic drug-metabolizing enzymes"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Antacids can reduce absorption and should be separated from the drug.",
+      "quote": "Phenytoin and antacids should not be taken at the same time of day"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Hormonal contraception may become less effective.",
+      "quote": "there is a potential for decreased hormonal contraceptive efficacy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Prior liver injury caused by phenytoin is a contraindication.",
+      "quote": "A history of prior acute hepatotoxicity attributable to phenytoin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Combining phenytoin with delavirdine is contraindicated.",
+      "quote": "Coadministration with delavirdine because of the potential for loss of virologic response and possible resistance to delavirdine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Pregnancy exposure is linked to major malformations including oral clefts and heart defects.",
+      "quote": "Prenatal phenytoin exposure is associated with an increased incidence of major malformations, including orofacial clefts and cardiac defects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "A fetal syndrome with skull, face, nail, digit and growth abnormalities has been reported.",
+      "quote": "the fetal hydantoin syndrome, a pattern of abnormalities including dysmorphic skull and facial features, nail and digit hypoplasia, growth abnormalities (including microcephaly), and cognitive deficits"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Newborns exposed in the womb can have a bleeding disorder tied to vitamin K-dependent clotting factors.",
+      "quote": "A potentially life-threatening bleeding disorder related to decreased levels of vitamin K-dependent clotting factors may occur in newborns exposed to phenytoin in utero"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Changes in amount should be gradual, because stopping suddenly can trigger seizures.",
+      "quote": "Dose reductions or discontinuation should be done gradually"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Blood sugar can rise because the drug reduces insulin release.",
+      "quote": "Hyperglycemia, resulting from the drug's inhibitory effects on insulin release, has been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Cerebellar shrinkage has been reported with phenytoin.",
+      "quote": "Cerebellar atrophy has been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Long-term use has been linked to sensory nerve damage in the limbs.",
+      "quote": "A predominantly sensory peripheral polyneuropathy has been observed in patients receiving long-term phenytoin therapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Severe skin reactions include Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "quote": "acute generalized exanthematous pustulosis, Stevens-Johnson syndrome, and toxic epidermal necrolysis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "A serious allergic reaction can involve several organs at once.",
+      "quote": "a type of serious allergic reaction that may affect different parts of the body such as your liver, kidneys, blood, heart, skin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Rapid intravenous infusion carries a boxed warning for severely low blood pressure and heart rhythm problems.",
+      "quote": "because of the risk of severe hypotension and cardiac arrhythmias"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Phenytoin is described as an antiepileptic useful in epilepsy.",
+      "quote": "Phenytoin is an antiepileptic drug which can be useful in the treatment of epilepsy"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Its main site of action appears to be the motor cortex.",
+      "quote": "The primary site of action appears to be the motor cortex where spread of seizure activity is inhibited"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Oral half-life averages about 22 hours, with a wide range.",
+      "quote": "The plasma half-life in man after oral administration of phenytoin averages 22 hours, with a range of 7 to 42 hours"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Long-term use is linked to bone loss and fractures.",
+      "quote": "The chronic use of phenytoin in patients with epilepsy has been associated with decreased bone mineral density (osteopenia, osteoporosis and osteomalacia) and bone fractures"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Alcohol raises levels after a single drink and lowers them with chronic use.",
+      "quote": "Acute alcoholic intake may increase phenytoin serum levels, while chronic alcohol use may decrease serum levels"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Porphyria can be worsened, so caution is advised in that condition.",
+      "quote": "In view of isolated reports associating phenytoin with exacerbation of porphyria, caution should be exercised in using this medication in patients suffering from this disease"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Metabolism is saturable at high plasma levels, so increases can be steep.",
+      "quote": "an enzyme system which is saturable at high plasma levels"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "CYP2C9 and CYP2C19 are the main liver enzymes that break phenytoin down.",
+      "quote": "Phenytoin is metabolized by hepatic cytochrome P450 enzymes CYP2C9 and CYP2C19"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Level checks are especially useful when a drug interaction is suspected.",
+      "quote": "Serum level determinations for phenytoin are especially helpful when possible drug interactions are suspected"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/phenytoin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Identity data: formula C15H12N2O2, molecular weight 252.27, IUPAC name 5,5-diphenylimidazolidine-2,4-dione.",
+      "quote": "\"MolecularFormula\": \"C15H12N2O2\", \"MolecularWeight\": \"252.27\", \"IUPACName\": \"5,5-diphenylimidazolidine-2,4-dione\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Phenytoin&query.cond=Epilepsy&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A registered phase 3 trial compared topiramate with phenytoin in new-onset epilepsy.",
+      "quote": "A Comparison of the Effectiveness and Safety of Topiramate and Phenytoin in Patients With New Onset Epilepsy"
+    },
+    {
+      "url": "https://medlineplus.gov/epilepsy.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Epilepsy has no cure, but medicines control seizures for most people.",
+      "quote": "There is no cure for epilepsy, but medicines can control seizures for most people"
+    },
+    {
+      "url": "https://medlineplus.gov/lab-tests/pharmacogenetic-tests/",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Genes affect how the body uses and breaks down medicines.",
+      "quote": "Some genes also affect how your body uses and breaks down medicines"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Phenytoin%22+AND+openfda.route:%22ORAL%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=df0bf42b-ce9a-42c3-8c24-46f1ea3bd214&type=display",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=phenytoin&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=phenytoin",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/df0bf42b-ce9a-42c3-8c24-46f1ea3bd214.json",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Phenytoin",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/phenytoin/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Phenytoin&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Phenytoin&query.cond=Epilepsy&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,PrimaryOutcomeMeasure",
+    "https://medlineplus.gov/epilepsy.html",
+    "https://medlineplus.gov/lab-tests/pharmacogenetic-tests/",
+    "https://www.nccih.nih.gov/health/phenytoin",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548577/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548889/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548889/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK551520/"
+  ],
+  "gaps": [
+    "LiverTox (NIDDK) has a phenytoin record at https://www.ncbi.nlm.nih.gov/books/NBK548889/. The NCBI Bookshelf refused every fetch with a reCAPTCHA bot check. No LiverTox fact is cited, so the record carries no liver-injury frequency estimate.",
+    "https://www.nccih.nih.gov/health/phenytoin returned HTTP 404. NCCIH appears to publish no phenytoin page, so no NCCIH content is cited.",
+    "MedlinePlus drug monographs were excluded on purpose. NLM states they are copyrighted American Society of Health-System Pharmacists content.",
+    "The two label sources (openFDA and DailyMed) publish the same underlying FDA prescribing information. They are different publishers and pages, but not fully independent of each other for safety detail.",
+    "Liver-injury frequency is missing. LiverTox would have supplied it, and the labels do not state a rate.",
+    "Relative benefit versus newer anti-seizure drugs is not covered. No systematic review or head-to-head outcome data was fetched.",
+    "Side-effect frequencies are absent. The labels state that voluntary reports come from a population of uncertain size, so rates cannot be calculated.",
+    "Approval history is not covered. Sources found for the 1946 US approval and yearly prescription counts were in the unfetchable LiverTox record.",
+    "Product-level differences were not compared. That includes inactive ingredients in specific capsules and tablets. openFDA returns about 40 oral and 49 injectable label records.",
+    "No pediatric dosing detail is given. Chewable and liquid forms exist for children. Dose content is out of scope for this record."
+  ],
+  "confidence": "high",
+  "summary": "This record covers phenytoin's identity, approved uses, monitoring, risks, interactions and remaining gaps."
+}

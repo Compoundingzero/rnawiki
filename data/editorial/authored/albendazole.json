@@ -1,0 +1,174 @@
+{
+  "slug": "albendazole",
+  "oneLineAnswer": "A prescription antiparasitic tablet that kills worm infections such as hydatid cysts and pork tapeworm in the brain.",
+  "whatItIs": "Albendazole is a medicine that kills parasitic worms. In the United States it is a prescription tablet, sold both as a generic and under the brand name Albenza. It belongs to the benzimidazole family, a group of chemicals that includes a few other worm medicines. The FDA first approved it in 1996.",
+  "whatItDoes": [
+    "The drug attaches to a worm protein called tubulin.",
+    "That blocks the worm from building microtubules, the tiny internal supports its cells need.",
+    "Unable to absorb glucose, the sugar a worm uses for fuel, the parasite dies.",
+    "The body converts albendazole quickly into a related compound, albendazole sulfoxide, which carries most of the antiparasitic activity.",
+    "The label lists two approved uses: neurocysticercosis from pork tapeworm larvae in the brain, and hydatid disease, which is cysts from dog tapeworm larvae in the liver, lung or abdomen."
+  ],
+  "howPeopleUseIt": [
+    "It is a prescription medicine, most often prescribed for the two conditions on the label.",
+    "Public health programs also hand it out in mass deworming campaigns where these worms are common.",
+    "The label says the tablets are taken with food, and notes that a fatty meal increases how much the body absorbs.",
+    "For neurocysticercosis the label directs that patients also receive steroid and anticonvulsant therapy, because dying parasites in the brain cause inflammation.",
+    "Blood counts and liver enzyme tests are checked before treatment starts and regularly while it continues.",
+    "It has also been studied in a three-drug combination with ivermectin and diethylcarbamazine for onchocerciasis, a worm infection that can cause river blindness."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Reported side effects in hydatid disease trials include abdominal pain, nausea, vomiting, headache, dizziness, fever and reversible hair loss.",
+      "In neurocysticercosis trials, common reactions were headache, nausea or vomiting, raised pressure inside the skull, and meningeal signs.",
+      "The label says these symptoms were usually mild and cleared without treatment.",
+      "Liver enzyme rises showed up in about 16 percent of people treated for hydatid disease.",
+      "Rash, hives and drops in white blood cells were reported less often."
+    ],
+    "seriousSigns": [
+      "The labeling reports deaths from granulocytopenia and pancytopenia, which are severe drops in blood cells.",
+      "Bone marrow suppression, aplastic anemia and agranulocytosis are also listed.",
+      "Liver problems ranging from enzyme rises to hepatitis and acute liver failure have been reported.",
+      "When parasites die inside the brain, seizures, raised pressure inside the skull, or focal neurologic problems can follow.",
+      "The label warns the drug can damage the retina if cysticercosis involves the eye.",
+      "Severe skin reactions, including Stevens-Johnson syndrome and erythema multiforme, appear in after-market reports.",
+      "Other after-market reports include kidney failure, muscle breakdown and convulsions."
+    ],
+    "whoShouldAvoid": [
+      "The label rules out anyone with a known allergy to albendazole or to other benzimidazole drugs.",
+      "It should not be used in pregnancy unless no other management option is appropriate.",
+      "People with liver disease or liver cysts face more bone marrow risk and need closer blood monitoring.",
+      "Safety in children under six years old is not certain; studies in one-year-olds suggest it is safe.",
+      "There is not enough data to say whether people 65 and older respond differently.",
+      "The drug has not been studied in people with poor kidney function."
+    ]
+  },
+  "interactions": [
+    "Dexamethasone, a steroid, raised steady blood levels of albendazole sulfoxide by about 56 percent in a small study.",
+    "Praziquantel, another antiparasitic, raised exposure to albendazole sulfoxide by about 50 percent in fed volunteers.",
+    "Cimetidine, an acid reducer, roughly doubled albendazole sulfoxide in bile and cyst fluid in hydatid patients.",
+    "Albendazole can induce a liver enzyme called cytochrome P450 1A, so theophylline levels may need monitoring."
+  ],
+  "pregnancyAndChildren": "Human data on albendazole in pregnancy are limited. The current label says published reports of single-dose use have not identified a drug-associated risk of major birth defects or miscarriage. Animal studies did find embryo toxicity and skeletal malformations in rats and rabbits. The label calls for a pregnancy test before treatment in women who could become pregnant. It advises effective birth control during treatment and for a period afterward. Labels differ on how long that period is, so no single number is given here. For breastfeeding, the label reports low concentrations of albendazole and its active metabolite in human milk. CDC notes that WHO concluded a single oral dose can be given to breastfeeding women. In neurocysticercosis, the label states that efficacy in children looks similar to that in adults. Hydatid disease is uncommon in infants and young children.",
+  "whatWeDoNotKnow": [
+    "It is unclear how often the rare blood and liver injuries occur, because after-market reports come from an uncounted population.",
+    "There are no studies of albendazole in people with reduced kidney function.",
+    "Whether older adults handle the drug differently is not established; the label cites insufficient data.",
+    "Animal studies found fetal harm, but the human pregnancy evidence rests on single-dose exposures rather than long courses.",
+    "This record gives no dose amounts. Dosing is set by a prescriber and varies with the condition and the person's weight.",
+    "The long-term effects of repeated treatment cycles beyond those on the label are not described in the sources used here."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Albendazole%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Albendazole is a synthetic antiparasitic drug of the benzimidazole class.",
+      "quote": "Albendazole is a synthetic, antihelminthic drug of the class benzimidazole"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Albenza%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Albenza is the brand name version of the same drug.",
+      "quote": "ALBENZA (albendazole) is a synthetic, antihelminthic drug of the class benzimidazole"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Albendazole%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "Serious blood disorders have caused deaths.",
+      "quote": "Fatalities have been reported due to bone marrow suppression"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Albendazole%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration",
+      "claim": "The label advises pregnancy testing and birth control for women who could become pregnant.",
+      "quote": "Advise women of reproductive potential to use effective birth control for the duration of albendazole therapy"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "One approved use is cystic hydatid disease of the liver, lung and peritoneum.",
+      "quote": "Treatment of cystic hydatid disease of the liver, lung, and peritoneum, caused by the larval form of the dog tapeworm"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The drug kills worms by blocking tubulin assembly.",
+      "quote": "Albendazole binds to the colchicine-sensitive site of \u03b2-tubulin inhibiting their polymerization into microtubules"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Blocking tubulin stops the worm absorbing glucose, so it dies.",
+      "quote": "decreases their absorptive function, especially the uptake of glucose by the adult and larval forms of the parasites"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "These are the side effects seen in 1 percent or more of hydatid disease patients.",
+      "quote": "Adverse reactions 1% or greater in hydatid disease: abnormal liver function tests, abdominal pain, nausea/vomiting, reversible alopecia, headache, dizziness/vertigo, fever."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "A fatty meal increases how much albendazole sulfoxide the body takes up.",
+      "quote": "Oral bioavailability appears to be enhanced when albendazole is coadministered with a fatty meal"
+    },
+    {
+      "url": "https://www.cdc.gov/sth/hcp/clinical-care/index.html",
+      "publisher": "U.S. Centers for Disease Control and Prevention",
+      "claim": "FDA approval does not cover ascariasis or hookworm infection.",
+      "quote": "The FDA has not approved albendazole as a treatment for ascariasis nor hookworm infection."
+    },
+    {
+      "url": "https://www.cdc.gov/sth/hcp/clinical-care/index.html",
+      "publisher": "U.S. Centers for Disease Control and Prevention",
+      "claim": "WHO concluded that a single oral dose can be given to breastfeeding women.",
+      "quote": "WHO has concluded that a single oral dose of albendazole can be given to lactating women."
+    },
+    {
+      "url": "https://www.cdc.gov/sth/hcp/clinical-care/index.html",
+      "publisher": "U.S. Centers for Disease Control and Prevention",
+      "claim": "Safety in the youngest children is not settled.",
+      "quote": "The safety of albendazole in children less than 6 years old is not certain."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2082/description/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Albendazole is a carbamate used against parasitic worm infestations.",
+      "quote": "It is commonly used in the treatment of parasitic worm infestations."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Albendazole&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Albendazole has been studied in a three-drug combination for onchocerciasis.",
+      "quote": "Safety and Efficacy of Combination Therapy With Ivermectin, Diethylcarbamazine, and Albendazole (IDA) for Individuals With Onchocerciasis"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Albendazole%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Albenza%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=albendazole&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=594f7aab-b336-4d6d-b702-a33346c69645",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/albendazole/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2082/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/2082",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Albendazole&pageSize=5",
+    "https://www.cdc.gov/sth/hcp/clinical-care/index.html",
+    "https://www.cdc.gov/parasites/lymphaticfilariasis/treatment.html",
+    "https://www.nccih.nih.gov/health/albendazole",
+    "https://www.nccih.nih.gov/health/deworming",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548360/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548360/?report=reader"
+  ],
+  "gaps": [
+    "NCCIH has no albendazole page. Both NCCIH URLs tried returned 404, so no NCCIH facts appear here.",
+    "The LiverTox entry on albendazole could not be fetched; NCBI returned a bot check on both attempts. No LiverTox facts are used.",
+    "MedlinePlus drug monographs are copyrighted American Society of Health-System Pharmacists content and were not used. Its medical encyclopedia pages were also left out to avoid licensed A.D.A.M. text.",
+    "Labels disagree on how long contraception should continue after treatment, one month in one label and three days in another, so no single figure is stated.",
+    "Labels disagree on breast milk. One says there are no data on albendazole in human milk, a newer one says concentrations are low, and CDC says it is minimally excreted.",
+    "No dose or schedule is given in this record by design. Dosing is recorded in the labels and varies by indication and body weight.",
+    "Nothing in the sources fetched shows albendazole sold as a supplement or available over the counter in the United States."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what albendazole is, how it kills parasitic worms, its two FDA-approved uses, reported side effects and serious risks, drug interactions, and its status in pregnancy and in children, with gaps noted where sources were blocked or disagreed."
+}

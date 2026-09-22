@@ -1,0 +1,173 @@
+{
+  "slug": "capmatinib",
+  "oneLineAnswer": "An oral prescription drug for advanced lung cancer that carries a specific MET mutation.",
+  "whatItIs": "Capmatinib is an oral medicine for one specific kind of advanced lung cancer. It belongs to a group of drugs called kinase inhibitors. A kinase is an enzyme that adds chemical tags to proteins, which switches cell signals on or off. Capmatinib blocks a kinase called MET, a protein that helps control how fast cells grow and divide. It is sold as tablets under the brand name Tabrecta.",
+  "whatItDoes": [
+    "It is approved for adults with metastatic non-small cell lung cancer, meaning a lung cancer that has spread.",
+    "Their tumor must carry a mutation that causes MET exon 14 skipping, confirmed by an FDA-approved test.",
+    "That mutation removes a regulatory part of the MET protein, so its growth signal stays switched on.",
+    "Capmatinib attaches to the mutant MET protein and slows tumors that depend on it.",
+    "In one trial, tumors shrank in about 68% of untreated patients and 44% of patients treated earlier."
+  ],
+  "howPeopleUseIt": [
+    "It is used only in adults whose tumor tested positive for the MET exon 14 skipping mutation.",
+    "It comes as a tablet taken by mouth, under the care of a cancer doctor.",
+    "Treatment continues for as long as it appears to help and side effects stay manageable.",
+    "Doctors check the liver, pancreas and lungs before and during treatment, because problems often start quietly."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Swelling, also called edema, was the most common effect, seen in about 59% of patients in the main trial.",
+      "Nausea, vomiting, muscle and joint pain, tiredness, and a poor appetite are also common.",
+      "Some people get a cough, shortness of breath, constipation, diarrhea, fever, a rash or dizziness.",
+      "Blood tests often show changes in liver, pancreas and kidney markers before you feel anything."
+    ],
+    "seriousSigns": [
+      "New or worsening breathing trouble, cough or fever can mean lung inflammation, which can be fatal.",
+      "That happened in about 4.8% of patients in the main trial.",
+      "Liver injury appears as raised liver enzymes; about 15% of patients had higher ALT or AST.",
+      "Pancreas irritation appears as raised amylase or lipase, in about 14% of patients.",
+      "Serious allergic reactions have occurred, with fever, chills, itching, rash, low blood pressure, nausea and vomiting.",
+      "The label directs doctors to watch for these with tests, since early signs can be easy to miss."
+    ],
+    "whoShouldAvoid": [
+      "People who are pregnant, because animal studies found birth defects and the label says it can harm a fetus.",
+      "People who are breastfeeding; the label advises against it during treatment and for one week after.",
+      "Anyone taking a strong or moderate CYP3A inducer, a medicine that speeds up how the body clears this drug.",
+      "Anyone taking a strong CYP3A inhibitor without close monitoring, since it raises the amount in the body.",
+      "The label lists no absolute contraindications, so suitability is a decision for the treating cancer doctor."
+    ]
+  },
+  "interactions": [
+    "Strong CYP3A inhibitors raise the amount of capmatinib in your body, which can worsen side effects.",
+    "Strong and moderate CYP3A inducers lower that amount and may reduce how well the drug works.",
+    "A CYP3A inducer or inhibitor is any medicine that changes how fast an enzyme called CYP3A clears drugs.",
+    "Capmatinib can also raise levels of some other medicines, including CYP1A2, P-gp and BCRP substrates.",
+    "It may raise levels of MATE1 and MATE2K substrates as well.",
+    "When those combinations cannot be avoided, the label says to lower the other medicine instead."
+  ],
+  "pregnancyAndChildren": "Animal studies found birth defects in rats and rabbits, and the label says capmatinib can harm a fetus. There are no human pregnancy data. It advises women and men with female partners to use effective contraception during treatment and for one week after the last dose. The label also advises against breastfeeding during treatment and for one week after. Whether the drug passes into breast milk is unknown. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "No human data exist on capmatinib in pregnancy; the fetal risk comes from animal studies.",
+    "It is unknown whether capmatinib passes into breast milk, in humans or animals.",
+    "The drug has not been studied in people with severe kidney impairment.",
+    "The main label trial was not randomized, so it does not prove a survival advantage over other treatments.",
+    "Side-effect rates here come from one trial of 373 patients and may differ in wider use."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Capmatinib is approved for adults with metastatic non-small cell lung cancer whose tumors have a mutation causing MET exon 14 skipping, found by an FDA-approved test.",
+      "quote": "TABRECTA is a kinase inhibitor indicated for the treatment of adult patients with metastatic non-small cell lung cancer"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Capmatinib targets the MET kinase, including the mutant form produced by exon 14 skipping.",
+      "quote": "Capmatinib is a kinase inhibitor that targets MET, including the mutant variant produced by exon 14 skipping."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The most common side effects, each occurring in at least 20% of patients, are edema, nausea, musculoskeletal pain, fatigue, vomiting, dyspnea, cough and decreased appetite.",
+      "quote": "The most common adverse reactions (≥ 20%) are edema, nausea, musculoskeletal pain, fatigue, vomiting, dyspnea, cough, and decreased appetite."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Interstitial lung disease or pneumonitis occurred in 4.8% of treated patients and can be fatal.",
+      "quote": "ILD/pneumonitis, which can be fatal, occurred in patients treated with TABRECTA"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Raised ALT or AST occurred in 15% of patients in the GEOMETRY mono-1 trial.",
+      "quote": "Increased alanine aminotransferase (ALT)/aspartate aminotransferase (AST) occurred in 15% of patients treated with TABRECTA in GEOMETRY mono-1."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Raised amylase or lipase occurred in 14% of patients in the GEOMETRY mono-1 trial.",
+      "quote": "Increased amylase/lipase occurred in 14% of patients treated with TABRECTA in GEOMETRY mono-1."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Combining capmatinib with strong or moderate CYP3A inducers should be avoided because they lower capmatinib exposure.",
+      "quote": "Avoid coadministration of TABRECTA with strong and moderate CYP3A inducers."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Capmatinib can harm a fetus, based on animal findings and its mechanism of action.",
+      "quote": "TABRECTA can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "Safety and effectiveness of TABRECTA in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The label lists no contraindications for capmatinib.",
+      "quote": "4 CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The efficacy trial behind the label, GEOMETRY mono-1, was a non-randomized, open-label study.",
+      "quote": "The efficacy of TABRECTA was evaluated in GEOMETRY mono-1, a multicenter, non-randomized, open-label, multi-cohort study"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain, CC0)",
+      "claim": "The overall response rate was 68% in untreated patients and 44% in previously treated patients.",
+      "quote": "68% (55, 80) 44% (34, 54)"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/capmatinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (public domain)",
+      "claim": "PubChem records capmatinib as a small molecule with the chemical name 2-fluoro-N-methyl-4-[7-(quinolin-6-ylmethyl)imidazo[1,2-b][1,2,4]triazin-2-yl]benzamide, formula C23H17FN6O and molecular weight 412.4, matching the FDA label.",
+      "quote": "2-fluoro-N-methyl-4-[7-(quinolin-6-ylmethyl)imidazo[1,2-b][1,2,4]triazin-2-yl]benzamide"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Capmatinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine (public domain)",
+      "claim": "Capmatinib has been studied in registered trials, including a phase II randomized trial combining it with spartalizumab against docetaxel in advanced non-small cell lung cancer.",
+      "quote": "Study of Capmatinib and Spartalizumab Combination Therapy vs Docetaxel in Non-small Cell Lung Cancer"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=capmatinib",
+      "publisher": "DailyMed, U.S. National Library of Medicine (public domain)",
+      "claim": "DailyMed holds a current structured product label for TABRECTA (capmatinib) tablets from Novartis.",
+      "quote": "TABRECTA (CAPMATINIB) TABLET, FILM COATED [NOVARTIS PHARMACEUTICALS CORPORATION]"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capmatinib%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Capmatinib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Capmatinib&filter.overallStatus=RECRUITING&pageSize=3",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/capmatinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/71730995/JSON?heading=Drug+and+Medicine+Information",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/25145656/JSON?heading=Drug+and+Medicine+Information",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=capmatinib",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=455892c3-d144-4ba8-9ab4-79cabff9876d",
+    "https://www.nccih.nih.gov/health/capmatinib",
+    "https://www.ncbi.nlm.nih.gov/books/?term=capmatinib+LiverTox"
+  ],
+  "gaps": [
+    "NCCIH has no capmatinib page; the URL returned 404, so no NCCIH content is used.",
+    "LiverTox returned no capmatinib entry at the PubMed Bookshelf search URL tried.",
+    "PubChem PUG-View descriptor headings were not retrievable (HTTP 400), so only PubChem REST compound properties were used.",
+    "The DailyMed label page is script-rendered and returned no readable label text; only the DailyMed SPL metadata API returned usable content.",
+    "Numeric safety and efficacy rates come from a single FDA label trial (GEOMETRY mono-1, 373 patients); no second independent clinical dataset was fetched.",
+    "No randomized controlled comparison of capmatinib against another treatment was found in the label, which reports one non-randomized study.",
+    "MedlinePlus drug monographs are excluded from this record by licensing policy (ASHP copyright), so they were not fetched or used.",
+    "Dose information was deliberately excluded; the record reports no amounts and no personal protocol."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what capmatinib is, the MET exon 14 skipping advanced lung cancer it treats, its common and serious side effects, drug interactions, and pregnancy and children guidance, grounded in the FDA label plus PubChem and ClinicalTrials.gov."
+}

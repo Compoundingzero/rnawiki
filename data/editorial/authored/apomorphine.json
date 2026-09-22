@@ -1,0 +1,172 @@
+{
+  "slug": "apomorphine",
+  "oneLineAnswer": "A prescription drug given under the skin to shorten OFF episodes in advanced Parkinson's disease.",
+  "whatItIs": "Apomorphine is a prescription medicine, not a supplement. It is a non-ergoline dopamine agonist, which means it acts like dopamine, a chemical your brain uses to control movement. Chemically it is a small molecule with the formula C17H17NO2. The approved products are given under the skin, and they are used only in people with advanced Parkinson's disease.",
+  "whatItDoes": [
+    "It is meant to shorten OFF episodes, the stretches when Parkinson's movement symptoms come back between doses of levodopa.",
+    "It is added to other Parkinson's medicines, mainly levodopa, rather than replacing them.",
+    "It works by stimulating dopamine receptors in the brain, although the label says the exact reason it helps is not known.",
+    "In one 12 week trial, people using an apomorphine infusion cut their daily OFF time more than people given a placebo.",
+    "It is not sold or studied as a general wellness product for people without Parkinson's disease."
+  ],
+  "howPeopleUseIt": [
+    "One approved form is a continuous infusion under the skin through a small pump, running through the waking day, with extra doses for OFF episodes as needed.",
+    "An earlier injected form was given as a single dose under the skin when an OFF episode started.",
+    "A clinician sets the dose and is the only one who changes it.",
+    "Many people also take an antiemetic, a medicine that eases nausea and vomiting, when they first start."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "A lump or nodule where the infusion goes in. The main trial recorded this in about 44 of every 100 people using the pump.",
+      "Redness at the infusion site, recorded in about 17 of every 100 people in that trial.",
+      "Nausea and vomiting, which can be severe.",
+      "Sleepiness during the day.",
+      "Dyskinesia, meaning sudden movements you cannot control.",
+      "Headache and trouble falling or staying asleep.",
+      "Dizziness, low blood pressure, weakness, fatigue, and constipation."
+    ],
+    "seriousSigns": [
+      "Falling asleep without warning while eating, talking, or driving.",
+      "Fainting, or dizziness when you stand up, caused by low blood pressure.",
+      "Falls, including serious ones with broken bones.",
+      "An infection at the infusion site, such as cellulitis.",
+      "Hallucinations, that is seeing or hearing things that are not there, plus confusion or agitation.",
+      "New or much stronger urges to gamble, spend money, or have sex that you cannot control.",
+      "Chest pain, shortness of breath, or a fast or irregular heartbeat. Heart attacks and sudden death have been reported with apomorphine injections.",
+      "Signs of low red blood cells (hemolytic anemia) such as looking pale, unusual tiredness, yellow skin or eyes, or dark urine.",
+      "An allergic reaction: hives, rash, swelling of the eyes, tongue, lips, or mouth, or trouble breathing. The injection contains a sulfite, which can trigger reactions in some people, especially those with asthma.",
+      "An erection that lasts more than 4 hours (priapism).",
+      "Blood clots if the liquid is accidentally put into a vein instead of under the skin."
+    ],
+    "whoShouldAvoid": [
+      "Anyone taking an anti-nausea drug of the 5HT3 type, such as ondansetron. Very low blood pressure and blackouts have been reported with that combination, so it is not allowed.",
+      "Anyone allergic to apomorphine or to sulfites. The injection contains sodium metabisulfite.",
+      "Children. The label says safety and effectiveness have not been established in children.",
+      "People with a major psychotic disorder, because the drug can make psychosis worse, need to discuss it with a clinician first.",
+      "People with low blood pressure, fainting spells, daytime sleepiness, heart problems, kidney or liver problems, or asthma are told to raise these with a clinician before starting."
+    ]
+  },
+  "interactions": [
+    "5HT3 anti-nausea drugs (ondansetron, granisetron, dolasetron, palonosetron) and alosetron must not be taken with apomorphine.",
+    "Blood pressure medicines and vasodilators, which are drugs that widen blood vessels, raise the risk of low blood pressure, falls, and injuries.",
+    "Nitroglycerin taken under the tongue causes a larger drop in blood pressure.",
+    "Alcohol causes a larger drop in blood pressure, and the label tells people not to drink while using apomorphine.",
+    "Antipsychotic drugs and metoclopramide can make apomorphine work less well.",
+    "Trimethobenzamide, often given for nausea, adds to sleepiness, dizziness, and falls.",
+    "Other medicines that affect the heart's electrical rhythm need caution, because apomorphine can stretch the QT interval.",
+    "Levodopa levels in the body are not changed when apomorphine is given at the same time."
+  ],
+  "pregnancyAndChildren": "There are no adequate human data on apomorphine use in pregnancy. Animal studies found harm to developing animals, and the label says the drug may harm a fetus. It is not known whether apomorphine passes into breast milk or how it would affect a breastfed baby. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "No source we checked says apomorphine changes the course of Parkinson's disease, rather than easing OFF episodes.",
+    "Whether apomorphine passes into human breast milk, or affects a breastfed baby, is unknown.",
+    "The pregnancy findings come from animals. No human studies confirm or rule out the same risk in people.",
+    "Studies have not been done in people with severe kidney problems or severe liver problems.",
+    "Whether this type of dopamine agonist can cause the tissue changes in the pelvis, lungs, and heart valves seen with older ergot-derived drugs is unknown.",
+    "The meaning of the retinal damage seen in albino rats given apomorphine has not been established for people.",
+    "We found no public source describing a supplement use, a natural health use, or a use in people without Parkinson's disease."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "Apomorphine is approved to treat motor fluctuations in adults with advanced Parkinson's disease.",
+      "quote": "ONAPGO is indicated for the treatment of motor fluctuations in adults with advanced Parkinson's disease."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "It acts on dopamine receptors, but the label states the exact mechanism is unknown.",
+      "quote": "The precise mechanism of action of ONAPGO as a treatment for Parkinson's disease is unknown"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "The most common side effects in the trial were infusion site nodule, nausea, somnolence, infusion site erythema, dyskinesia, headache, and insomnia.",
+      "quote": "were infusion site nodule, nausea, somnolence, infusion site erythema, dyskinesia, headache, and insomnia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "Combining apomorphine with 5HT3 anti-nausea drugs is contraindicated.",
+      "quote": "Using concomitant 5HT 3 antagonists, including antiemetics (e.g., ondansetron, granisetron, dolasetron, palonosetron) and alosetron"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "A 12 week trial found a statistically significant drop in daily OFF time versus placebo.",
+      "quote": "There was a statistically significant reduction in the amount of daily OFF time in patients treated with ONAPGO compared to placebo"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "Animal studies showed developmental harm, so the label warns of possible fetal harm.",
+      "quote": "In animal reproduction studies, apomorphine had adverse developmental effects in rats (increased neonatal deaths) and rabbits (increased incidence of malformation)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ONAPGO label)",
+      "claim": "Safety and effectiveness in children are not established.",
+      "quote": "Safety and effectiveness in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=apomorphine%20AND%20openfda.route:%22SUBCUTANEOUS%22&limit=3",
+      "publisher": "openFDA, U.S. Food and Drug Administration (apomorphine hydrochloride injection label)",
+      "claim": "An earlier injectable apomorphine product was approved for intermittent treatment of OFF episodes alongside other Parkinson's medicines.",
+      "quote": "indicated for the acute, intermittent treatment of hypomobility"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6005/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (NIH)",
+      "claim": "PubChem records the same indication: acute, intermittent treatment of OFF episodes in advanced Parkinson's disease.",
+      "quote": "Apomorphine is indicated to treat acute, intermittent treatment of hypomobility, off episodes associated with advanced Parkinson's disease."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6005/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine (NIH), quoting LiverTox",
+      "claim": "A LiverTox summary carried by PubChem says apomorphine has not been linked to liver injury.",
+      "quote": "it has not been associated with serum enzyme elevations during treatment nor has it been implicated in cases of acute liver injury"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/apomorphine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine (NIH)",
+      "claim": "Apomorphine is a small molecule with formula C17H17NO2 and molecular weight 267.32.",
+      "quote": "\"CID\": 6005,\n        \"MolecularFormula\": \"C17H17NO2\",\n        \"MolecularWeight\": \"267.32\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=apomorphine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,Phase,EnrollmentCount",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A phase 3 long-term safety study of apomorphine infusion is registered.",
+      "quote": "Infusion of Apomorphine: Long-term Safety Study"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Apomorphine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22APOMORPHINE%20HYDROCHLORIDE%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=apomorphine&limit=10",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22APOKYN%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22KYNMOBI%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%223235535d-9ef9-4657-8b2a-176a807d091c%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:%22f3552b6e-5ae7-4993-aa1a-e399c4a7080a%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=apomorphine%20AND%20openfda.route:%22SUBCUTANEOUS%22&limit=3",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=apomorphine&pagesize=20",
+    "https://www.nccih.nih.gov/health/apomorphine",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/apomorphine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6005/JSON?heading=Drug%20and%20Medication%20Information",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6005/JSON?heading=Depositor-Supplied%20Synonyms",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/6005/JSON?heading=Description",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Apomorphine&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=apomorphine&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,Phase,EnrollmentCount"
+  ],
+  "gaps": [
+    "NCCIH has no apomorphine page. The URL https://www.nccih.nih.gov/health/apomorphine returned 404, so no NCCIH content was used.",
+    "MedlinePlus drug monographs were excluded on purpose. NLM states they are American Society of Health-System Pharmacists content and copyrighted.",
+    "openFDA searches by brand name for APOKYN and KYNMOBI returned no label records. The current DailyMed name search lists ONAPGO and an older APOKYN entry, and does not list a sublingual film product, so no current sublingual apomorphine product is described here.",
+    "No LiverTox page was fetched directly. The LiverTox summary is reported only through its excerpt on the PubChem record that was fetched.",
+    "No human pregnancy data, no breast-milk data, and no pediatric data were found in any fetched source.",
+    "No fetched source describes a use in healthy people, a wellness use, or a supplement use.",
+    "The general openFDA apomorphine search returned mostly homeopathic products that list apomorphine as a trace ingredient. Those are unrelated to the prescription drug described here."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what apomorphine is, how its approved under-the-skin forms are used for OFF episodes in advanced Parkinson's disease, its recorded side effects and drug interactions, and the gaps in what is known."
+}

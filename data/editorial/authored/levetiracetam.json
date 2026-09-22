@@ -1,0 +1,197 @@
+{
+  "slug": "levetiracetam",
+  "oneLineAnswer": "A prescription epilepsy medicine. It lowers seizure activity in certain seizure types and is often added to other treatment.",
+  "whatItIs": "Levetiracetam is a prescription medicine for epilepsy, a brain condition that causes seizures. A seizure is a sudden surge of abnormal electrical activity in the brain. The drug is a single mirror-image form of its molecule, and it is chemically unrelated to older epilepsy medicines. Its chemical formula is C8H14N2O2 and its molecular weight is 170.21.",
+  "whatItDoes": [
+    "It is approved to treat partial-onset seizures, which begin in one area of the brain. That approval covers people from 1 month of age.",
+    "It is also approved as add-on therapy for two other seizure types. Those are myoclonic seizures and primary generalized tonic-clonic seizures.",
+    "How it stops seizures is not fully understood. It attaches to a brain protein called SV2A, which helps brain cells release signaling chemicals.",
+    "Blood levels peak about an hour after a dose. Roughly two thirds of a dose leaves the body unchanged in urine."
+  ],
+  "howPeopleUseIt": [
+    "It comes as tablets, extended-release tablets, an oral liquid, and an injection given by a health professional.",
+    "Product labels describe twice-daily use. The amount depends on age, body weight and how well the kidneys work.",
+    "It is often added to an existing epilepsy medicine rather than used on its own.",
+    "Steady blood levels are reached after about two days of regular dosing.",
+    "Food does not change how much is absorbed, though it can lower and delay the peak slightly."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Sleepiness and weakness are the most common effects in adults.",
+      "In adult studies, about 15 percent on the drug reported sleepiness versus 8 percent on placebo.",
+      "Dizziness and infections were also more common than with placebo.",
+      "In children, the common ones were tiredness, aggression and a stuffy nose.",
+      "Sleepiness and weakness usually appear in the first four weeks of treatment.",
+      "Irritability was reported in 12 percent of the youngest children studied, and in none on placebo."
+    ],
+    "seriousSigns": [
+      "A serious allergic reaction called anaphylaxis can happen after a first dose or at any time. Angioedema means swelling under the skin.",
+      "Reported swelling has involved the face, lips, mouth, eyes, tongue, throat and feet.",
+      "Rare blistering skin reactions have been reported, including Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "Antiepileptic drugs, including this one, raise the risk of suicidal thoughts and behavior.",
+      "DRESS is a rare reaction that can harm several organs at once. It brings fever, rash and swollen lymph nodes.",
+      "Coordination problems such as unsteady walking were reported in about 3 percent of adults studied.",
+      "The drug can lower white blood cell, red blood cell and platelet counts. Platelets help blood to clot.",
+      "The label says it is generally withdrawn gradually, because seizures can increase when it stops suddenly."
+    ],
+    "whoShouldAvoid": [
+      "The label rules it out for anyone with a prior hypersensitivity reaction to levetiracetam.",
+      "Kidney function matters. The body clears the drug more slowly when the kidneys filter poorly.",
+      "The label calls for adjusted dosing when kidney function is reduced, and extra doses after dialysis.",
+      "Older adults are more likely to have reduced kidney function, so the label says care is needed in choosing a dose.",
+      "Severe liver disease cut total body clearance by half in one study."
+    ]
+  },
+  "interactions": [
+    "Levetiracetam is unlikely to interact with other drugs, because it barely uses liver enzymes.",
+    "Studies found no effect on phenytoin, valproate, warfarin, digoxin or oral contraceptives.",
+    "In children with epilepsy, enzyme-inducing epilepsy drugs such as carbamazepine raised levetiracetam clearance by about 22 percent.",
+    "Other epilepsy medicines did not change levetiracetam levels, and it did not change theirs."
+  ],
+  "pregnancyAndChildren": "Pregnancy registries and published studies have not shown a clear link between levetiracetam and major birth defects or miscarriage, but they cannot rule out a risk. Blood levels of the drug often drop during pregnancy, most in the third trimester, so the label says levels may need monitoring. Animal studies at doses near human levels caused developmental harm. The drug passes into breast milk. The label says there is no data on effects on a breastfed baby or on milk production. In children, use is established for partial-onset seizures from age 1 month. Myoclonic seizures are covered from age 12, and primary generalized tonic-clonic seizures from age 6. Children's dosing is based on body weight.",
+  "whatWeDoNotKnow": [
+    "Nobody knows exactly how levetiracetam stops seizures.",
+    "There is no data on how the drug affects a breastfed baby or milk supply.",
+    "The label does not address alcohol, so we cannot say how the two combine.",
+    "Suicide-risk data came from trials that mostly ran 24 weeks or less, so longer-term risk is unknown.",
+    "Side-effect rates come from short placebo-controlled epilepsy studies and may differ in other groups.",
+    "We found no public source for how many people take levetiracetam, or what it costs.",
+    "We could not read one independent liver-safety reference, so this record makes no claims about liver effects."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The approved uses are partial-onset seizures from age 1 month, plus add-on therapy for myoclonic seizures and primary generalized tonic-clonic seizures.",
+      "quote": "indicated for the treatment of partial-onset seizures in patients 1 month of age and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The most common adult side effects, each at least 5 percent above placebo, are sleepiness, weakness, infection and dizziness.",
+      "quote": "Adult patients: somnolence, asthenia, infection and dizziness"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "In the adult epilepsy trials, sleepiness was reported by 15 percent on the drug and 8 percent on placebo.",
+      "quote": "15% of levetiracetam-treated patients reported somnolence, compared to 8% of placebo-treated patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Antiepileptic drugs as a group, including levetiracetam, carry an increased risk of suicidal thoughts and behavior.",
+      "quote": "increase the risk of suicidal thoughts or behavior in patients taking these drugs for any indication"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Serious allergic reactions, anaphylaxis and angioedema, can occur after a first dose or at any time.",
+      "quote": "Levetiracetam can cause anaphylaxis or angioedema after the first dose or at any time during treatment."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "A prior hypersensitivity reaction to levetiracetam is a contraindication.",
+      "quote": "Levetiracetam tablets are contraindicated in patients with a hypersensitivity to levetiracetam."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Drug interaction risk is low because the drug is not handled by the liver's cytochrome P450 enzymes.",
+      "quote": "levetiracetam is unlikely to produce, or be subject to, pharmacokinetic interactions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The label states the precise antiepileptic mechanism is unknown, and names SV2A as a described binding site.",
+      "quote": "this binding site is the synaptic vesicle protein SV2A, thought to be involved in the regulation of vesicle exocytosis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Published literature and pregnancy registries have not established a link to major birth defects or miscarriage, though they cannot prove absence of risk.",
+      "quote": "data from the published literature and pregnancy registries have not established an association with levetiracetam use during pregnancy and major birth defects or miscarriage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The drug passes into breast milk, and the label states there are no data on effects on a breastfed infant.",
+      "quote": "Levetiracetam is excreted in human milk. There are no data on the effects of levetiracetam on the breastfed infant"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Lower kidney function changes how the drug is handled, and the label calls for adjusted dosing.",
+      "quote": "Dose adjustment is recommended for patients with impaired renal function"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The drug is generally withdrawn gradually, because stopping it quickly can increase seizures.",
+      "quote": "levetiracetam should generally be withdrawn gradually because of the risk of increased seizure frequency and status epilepticus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "The drug is chemically unrelated to older antiepileptic drugs.",
+      "quote": "Levetiracetam is chemically unrelated to existing antiepileptic drugs"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Food does not change the total amount absorbed, but it lowers the peak concentration and delays it.",
+      "quote": "Food does not affect the extent of absorption of levetiracetam but it decreases C max by 20%"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Behavioral effects such as irritability are reported more often in the youngest children than on placebo.",
+      "quote": "irritability was reported in 12% of the levetiracetam-treated patients compared to 0% of placebo-treated patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (public domain)",
+      "claim": "Steady blood levels are reached after about two days of twice-daily dosing.",
+      "quote": "Steady state is achieved after 2 days of multiple twice-daily dosing."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/levetiracetam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem, National Library of Medicine",
+      "claim": "PubChem records the compound as CID 5284583 with formula C8H14N2O2, molecular weight 170.21, and the systematic name (2S)-2-(2-oxopyrrolidin-1-yl)butanamide.",
+      "quote": "\"MolecularFormula\": \"C8H14N2O2\", \"MolecularWeight\": \"170.21\", \"IUPACName\": \"(2S)-2-(2-oxopyrrolidin-1-yl)butanamide\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=levetiracetam&pagesize=3",
+      "publisher": "DailyMed, National Library of Medicine",
+      "claim": "DailyMed lists many levetiracetam products, including extended-release tablets and an injectable solution.",
+      "quote": "LEVETIRACETAM TABLET, FILM COATED, EXTENDED RELEASE [APOTEX CORP.]"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Levetiracetam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Registered studies of levetiracetam include trials in epilepsy, in children with epilepsy, and in status epilepticus.",
+      "quote": "Effectiveness of Combined Levetiracetam and Midazolam in Generalized Convulsive Status Epilepticus in Children"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Levetiracetam%22&limit=1",
+    "https://www.nccih.nih.gov/health/levetiracetam",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/levetiracetam/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/levetiracetam/property/MolecularFormula,MolecularWeight/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Levetiracetam&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=levetiracetam&pagesize=3",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548785/",
+    "https://ncbi.nlm.nih.gov/books/NBK548785/"
+  ],
+  "gaps": [
+    "NCCIH has no levetiracetam page. The URL tried returned HTTP 404, so no NCCIH content was used.",
+    "The NCBI Bookshelf LiverTox levetiracetam chapter (NBK548785) was blocked twice by a browser check, so it could not be fetched and is not cited.",
+    "MedlinePlus drug monographs were excluded by policy, so no MedlinePlus drug content appears here.",
+    "No fetched source covers how many people take levetiracetam, its cost, its use in conditions other than epilepsy, or any alcohol interaction.",
+    "Side-effect percentages come from short placebo-controlled epilepsy trials and are not general-population rates.",
+    "Long-term safety beyond roughly 24 weeks of treatment is not established by the sources read."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what levetiracetam is, which seizure types it is approved to treat, its common and serious side effects, its interactions, and the pregnancy, breastfeeding and long-term questions the sources leave open."
+}

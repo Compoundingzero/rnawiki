@@ -1,0 +1,301 @@
+{
+  "slug": "brigatinib",
+  "oneLineAnswer": "A daily prescription tablet that blocks ALK to treat advanced ALK-positive lung cancer in adults.",
+  "whatItIs": "Brigatinib is a prescription cancer medicine sold in the United States as Alunbrig. It comes as tablets that you swallow. The FDA first approved it in 2017. It is a kinase inhibitor, which means it blocks enzymes called kinases. Kinases help cells send growth signals. Blocking one can slow a cancer that depends on it. Brigatinib is a small molecule; PubChem lists its formula as C29H39ClN7O2P. Tests look for an ALK rearrangement, a change in the ALK gene, before it is used.",
+  "whatItDoes": [
+    "Brigatinib blocks the activity of ALK, a protein that some lung cancers depend on.",
+    "It is approved for adults whose non-small cell lung cancer is ALK-positive and has spread.",
+    "The label says an FDA-approved test must confirm ALK positivity first.",
+    "In lab work it also blocked ROS1, IGF-1R and FLT-3, which are other kinases.",
+    "The label gives brigatinib a blood half-life of about 25 hours."
+  ],
+  "howPeopleUseIt": [
+    "Brigatinib is prescription-only, so a cancer doctor decides whether it fits your tumor type.",
+    "It comes as tablets to swallow whole; the label says not to crush or chew them.",
+    "The label says the tablets can be taken with or without food.",
+    "The label says treatment continues until the cancer grows or side effects become too hard to tolerate.",
+    "The label directs doctors to check blood pressure and run regular blood tests during treatment."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea, which was the most common side effect in the main trial.",
+      "Tiredness and fatigue.",
+      "Nausea and vomiting.",
+      "Rash and itching.",
+      "Cough and shortness of breath.",
+      "Muscle aches and muscle spasms.",
+      "Headache and dizziness.",
+      "High blood pressure.",
+      "Blood test changes that often cause no symptoms. These include raised creatine phosphokinase, liver enzymes, lipase and amylase."
+    ],
+    "seriousSigns": [
+      "New or worsening trouble breathing, shortness of breath or cough. The label ties these to lung inflammation, which mostly appeared in the first week.",
+      "High blood pressure. In one trial 32% of people taking brigatinib had it, and 13% had a severe grade.",
+      "A slow heart rate. In one trial, 8.1% of people had a heart rate below 50 beats a minute.",
+      "Vision changes such as blurred vision, light sensitivity or flashing lights.",
+      "Unexplained muscle pain, tenderness or weakness, which the label links to a muscle enzyme rise.",
+      "Signs of liver strain, which the label follows with blood tests for AST, ALT and bilirubin.",
+      "New or worse high blood sugar; 56% of people in one trial had it.",
+      "Sunburn-type skin reactions. The label says to limit sun exposure during treatment and for at least 5 days after.",
+      "Raised pancreatic enzymes, which blood tests show but a person usually cannot feel.",
+      "Serious reactions were reported in 33% of people in one trial, and 13% stopped treatment because of side effects."
+    ],
+    "whoShouldAvoid": [
+      "People who are pregnant. Animal studies showed harm to the fetus, and the label advises avoiding pregnancy during treatment.",
+      "People who are breastfeeding. The label advises not to breastfeed during treatment and for 1 week after the last dose.",
+      "Children. The label says safety and effectiveness in children are not established.",
+      "People with severe liver impairment. The label directs a lower dose for this group.",
+      "People with severe kidney impairment. The label also directs a lower dose for this group.",
+      "Men whose partner can become pregnant. The label advises contraception during treatment and for 3 months after.",
+      "The label lists no contraindications, so it does not name a group who must never take brigatinib."
+    ]
+  },
+  "interactions": [
+    "CYP3A is a liver enzyme family that breaks brigatinib down.",
+    "Other drugs can change how well CYP3A works, and so change brigatinib levels.",
+    "Strong or moderate CYP3A inhibitors raise brigatinib levels in the blood, which can make side effects more likely. The label says to avoid them.",
+    "One study found itraconazole, a strong CYP3A inhibitor, roughly doubled brigatinib exposure.",
+    "Strong or moderate CYP3A inducers lower brigatinib levels, which may make it work less well. The label says to avoid them too.",
+    "The label says to use caution with blood pressure medicines that also slow the heart rate.",
+    "This record lists only the interactions the label names, not every medicine that could matter."
+  ],
+  "pregnancyAndChildren": "Animal studies gave brigatinib to pregnant rats and saw skeletal changes, pregnancy loss and lower fetal weight. The label says brigatinib can harm a fetus. It also states there are no clinical data on use in pregnant women. The label advises contraception for women who can become pregnant, during treatment and for 4 months afterward. Men whose partner can become pregnant are advised to use contraception for 3 months after the last dose too. The label says not to breastfeed during treatment and for 1 week after the final dose. There are no data on brigatinib in human milk. Safety and effectiveness in children have not been established. Animal findings also suggest brigatinib may reduce fertility in males.",
+  "whatWeDoNotKnow": [
+    "The label states there are no clinical data on brigatinib in pregnant women. Human fetal risk is not measured.",
+    "There are no data on how much brigatinib passes into breast milk, or how it affects a breastfed baby.",
+    "Safety and effectiveness in children have not been established.",
+    "The label sections fetched did not include the clinical studies section. This record gives no survival or response-rate figures.",
+    "Fertility effects in people are not established; the fertility caution comes from animal studies.",
+    "Nothing here shows brigatinib helps tumors that are not ALK-positive, and the label requires a positive test first.",
+    "The label sections read here may not list every interaction or side effect found after approval.",
+    "How brigatinib compares with other ALK-targeted medicines over the long term is not settled by the sources fetched."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Brigatinib is approved for adults with ALK-positive metastatic non-small cell lung cancer.",
+      "quote": "ALUNBRIG is indicated for the treatment of adult patients with anaplastic lymphoma kinase (ALK)-positive metastatic non-small cell lung cancer (NSCLC)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Brigatinib is a kinase inhibitor that acts on ALK and other kinases.",
+      "quote": "Brigatinib is a tyrosine kinase inhibitor (TKI) with in vitro activity at clinically achievable concentrations against multiple kinases including ALK, ROS1"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The most common side effects reported were diarrhea, fatigue, nausea, rash, cough, muscle aches, headache, high blood pressure, vomiting and breathlessness.",
+      "quote": "The most common adverse reactions (≥25%) with ALUNBRIG were diarrhea, fatigue, nausea, rash, cough, myalgia, headache, hypertension, vomiting, and dyspnea."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Serious and fatal lung inflammation has occurred with brigatinib.",
+      "quote": "Severe, life-threatening, and fatal pulmonary adverse reactions consistent with interstitial lung disease (ILD)/pneumonitis have occurred with ALUNBRIG."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Serious side effects affected about a third of people in one trial.",
+      "quote": "Serious adverse reactions occurred in 33% of patients receiving ALUNBRIG."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "High blood pressure and severe high blood pressure were measured in one trial.",
+      "quote": "In ALTA 1L, hypertension was reported in 32% of patients receiving ALUNBRIG; Grade 3 hypertension occurred in 13% of patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Low heart rate was recorded in one trial.",
+      "quote": "In ALTA 1L, heart rates less than 50 beats per minute (bpm) occurred in 8.1% of patients receiving ALUNBRIG."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label tells patients to limit sun exposure during and shortly after treatment.",
+      "quote": "Advise patients to limit sun exposure while taking brigatinib, and for at least 5 days after discontinuation of treatment."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label asks patients to report unexplained muscle pain, tenderness or weakness.",
+      "quote": "Advise patients to report any unexplained muscle pain, tenderness, or weakness."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Liver blood tests are monitored during treatment, especially in the first months.",
+      "quote": "Monitor AST, ALT and total bilirubin during treatment with ALUNBRIG, especially during first 3 months."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "High blood sugar was common in one trial.",
+      "quote": "In ALTA 1L, 56% of patients who received ALUNBRIG experienced new or worsening hyperglycemia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "CYP3A inhibitors raise brigatinib blood levels and are to be avoided.",
+      "quote": "Coadministration of ALUNBRIG with a strong or moderate CYP3A inhibitor increased brigatinib plasma concentrations, which may increase the incidence of adverse reactions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Brigatinib is broken down by CYP2C8 and CYP3A4.",
+      "quote": "Brigatinib is primarily metabolized by CYP2C8 and CYP3A4 in vitro"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Caution is advised with blood pressure drugs that also slow heart rate.",
+      "quote": "Use caution when administering ALUNBRIG in combination with antihypertensive agents that cause bradycardia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Animal data show fetal harm and no human pregnancy data exist.",
+      "quote": "Based on its mechanism of action and findings in animals, ALUNBRIG can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "There are no human pregnancy data for brigatinib.",
+      "quote": "There are no clinical data on the use of ALUNBRIG in pregnant women."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Breastfeeding is to be avoided during treatment and for one week after.",
+      "quote": "advise lactating women not to breastfeed during treatment with ALUNBRIG and for 1 week following the final dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "There are no human milk data for brigatinib.",
+      "quote": "There are no data regarding the secretion of brigatinib in human milk or its effects on the breastfed infant or milk production."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Use in children is not established.",
+      "quote": "The safety and effectiveness of ALUNBRIG in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label lists no contraindications.",
+      "quote": "CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Tablets can be taken with or without food.",
+      "quote": "ALUNBRIG may be taken with or without food."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Tablets must be swallowed whole.",
+      "quote": "Instruct patients to swallow tablets whole. Do not crush or chew tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Treatment continues until the cancer progresses or side effects become unacceptable.",
+      "quote": "Administer ALUNBRIG until disease progression or unacceptable toxicity."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Brigatinib stays in the body for about a day.",
+      "quote": "the mean plasma elimination half-life is 25 hours"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Contraception is advised for male patients with a partner who could become pregnant.",
+      "quote": "advise males with female partners of reproductive potential to use effective contraception during treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Animal findings suggest reduced fertility in males.",
+      "quote": "Based on findings in male reproductive organs in animals, ALUNBRIG may cause reduced fertility in males"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Severe liver impairment calls for a lower dose.",
+      "quote": "Reduce the dose of ALUNBRIG for patients with severe hepatic impairment."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0fe9ff20-d402-41f3-bc1e-7002ea7007db",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The product is an oral tablet first approved in the United States in 2017.",
+      "quote": "ALUNBRIG ® (brigatinib) tablets, for oral use Initial U.S. Approval: 2017"
+    },
+    {
+      "url": "https://www.cancer.gov/about-cancer/treatment/drugs/brigatinib",
+      "publisher": "U.S. National Cancer Institute",
+      "claim": "NCI states the approved use is ALK-positive non-small cell lung cancer that has spread, in adults.",
+      "quote": "Brigatinib is approved to treat: Non-small cell lung cancer that is ALK positive and has metastasized"
+    },
+    {
+      "url": "https://www.cancer.gov/about-cancer/treatment/drugs/brigatinib",
+      "publisher": "U.S. National Cancer Institute",
+      "claim": "NCI lists Alunbrig as the US brand name and confirms FDA approval.",
+      "quote": "US Brand Name(s) Alunbrig FDA Approved Yes"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Brigatinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Registered trials study brigatinib in people with ALK-positive NSCLC.",
+      "quote": "The purpose of this study is to evaluate efficacy and safety of brigatinib in Japanese participants with anaplastic lymphoma kinase (ALK)-positive NSCLC."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Brigatinib&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Some trials compare how brigatinib is absorbed when taken in different oral forms.",
+      "quote": "The main aim of this study is to compare the amount of brigatinib in the blood of healthy adults"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brigatinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Chemical identity of brigatinib recorded by PubChem.",
+      "quote": "5-chloro-4-N-(2-dimethylphosphorylphenyl)-2-N-[2-methoxy-4-[4-(4-methylpiperazin-1-yl)piperidin-1-yl]phenyl]pyrimidine-2,4-diamine"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brigatinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem lists a molecular formula and molecular weight for brigatinib.",
+      "quote": "C29H39ClN7O2P"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brigatinib%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0fe9ff20-d402-41f3-bc1e-7002ea7007db",
+    "https://www.cancer.gov/about-cancer/treatment/drugs/brigatinib",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Brigatinib&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brigatinib/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/16666599/JSON",
+    "https://www.nccih.nih.gov/health/brigatinib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548523/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548903/"
+  ],
+  "gaps": [
+    "NCCIH has no brigatinib page: https://www.nccih.nih.gov/health/brigatinib returned HTTP 404.",
+    "LiverTox (NIDDK) has a brigatinib entry, but the NCBI Bookshelf URLs tried (NBK548523 and NBK548903) were stopped by a browser check, so LiverTox is not cited or quoted here.",
+    "Both label sources (openFDA and DailyMed) publish the same prescribing information, so they are not fully independent for safety detail. NCI, ClinicalTrials.gov and PubChem are separate publishers and corroborate identity and approved use.",
+    "No dose amount, schedule or personal protocol appears in this record. Where the label ties a dose change to liver or kidney impairment, that is reported as what the label directs, not as guidance.",
+    "The label sections retrieved did not include the clinical studies section, so no survival, response-rate or head-to-head comparison figures are given.",
+    "A PubChem PUG-View record for compound 16666599 was fetched but returned a related chemical name rather than the properties used, so the PubChem property endpoint for CID 68165256 is the citation used.",
+    "No head-to-head trial result comparing brigatinib with other ALK-targeted medicines was found in the sources fetched, so no superiority claim is made."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what brigatinib (Alunbrig) is, the ALK-positive metastatic lung cancer it is approved to treat, its trial-reported side effects and monitoring, its CYP3A and CYP2C8 interactions, and the pregnancy, breastfeeding, pediatric and organ-impairment cautions stated in the US label."
+}

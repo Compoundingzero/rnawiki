@@ -1,0 +1,155 @@
+{
+  "slug": "bupropion",
+  "oneLineAnswer": "Bupropion is a prescription antidepressant that also helps adults stop smoking; it is not a supplement.",
+  "whatItIs": "Bupropion is a prescription medicine, not a supplement. The FDA labels it an aminoketone antidepressant. Its chemical formula is C13H18ClNO, and its molecular weight, the mass of one molecule, is 239.74. It has been sold under brand names such as Wellbutrin for depression and Zyban for quitting smoking. It comes as tablets, in immediate-release and slow-release forms.",
+  "whatItDoes": [
+    "Bupropion blocks reuptake, the process that normally clears dopamine and norepinephrine from between brain cells.",
+    "One FDA label is indicated for major depressive disorder and for preventing seasonal affective disorder.",
+    "That seasonal use is for people whose depression follows an autumn and winter pattern.",
+    "A different bupropion label is indicated as an aid to smoking cessation treatment.",
+    "The label says its chemical family is the aminoketones, and it was first approved in 1985."
+  ],
+  "howPeopleUseIt": [
+    "This is a medicine you swallow as a tablet, not something you add to food or drink.",
+    "The label says extended-release tablets should be swallowed whole and not crushed, divided, or chewed.",
+    "The extended-release label says it should be given in the morning.",
+    "Slow-release forms are given twice a day, at least 8 hours apart.",
+    "For quitting smoking, treatment starts before your planned quit day, while you are still smoking.",
+    "The reason for that timing is that steady blood levels take about one week to reach.",
+    "The label says patients should keep receiving counseling and support during and after treatment."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Dry mouth and insomnia were the two side effects most consistently tied to the slow-release form.",
+      "Depression trials of bupropion also reported nausea, dizziness, sweating, tremor, and rash.",
+      "Smoking-cessation trials reported anxiety, constipation, and joint pain alongside those.",
+      "Some people stopped treatment because of nervous system effects such as tremor, or skin effects such as rash."
+    ],
+    "seriousSigns": [
+      "Seizure is the risk most tied to this drug, and the label says that risk is dose-related.",
+      "The label carries a boxed warning about suicidal thoughts and behavior in children, adolescents, and young adults.",
+      "Blood pressure can rise, so the label calls for checking it before and during treatment.",
+      "Mania or hypomania, episodes of unusually high energy and mood, can be activated in some people.",
+      "Psychosis, hallucinations, paranoia, and delusions have been reported after marketing began.",
+      "Serious allergic reactions have been reported, including anaphylaxis and a skin reaction called Stevens-Johnson syndrome.",
+      "Angle-closure glaucoma, a sudden rise in eye pressure, has occurred in people with untreated narrow eye angles."
+    ],
+    "whoShouldAvoid": [
+      "People with a seizure disorder should not take it.",
+      "People with a current or past eating disorder, bulimia or anorexia nervosa, should not take it.",
+      "It should not be combined with an MAOI, a type of antidepressant, or started within two weeks of stopping one.",
+      "It should not be started in someone being treated with linezolid or intravenous methylene blue.",
+      "Anyone allergic to bupropion or to the other ingredients in the tablet should not take it.",
+      "It is also avoided during abrupt withdrawal from alcohol, benzodiazepines, barbiturates, or seizure medicines."
+    ]
+  },
+  "interactions": [
+    "Bupropion blocks a liver enzyme called CYP2D6, so levels of some other medicines can rise.",
+    "Those affected include certain antidepressants, antipsychotics, the beta-blocker metoprolol, and some heart-rhythm drugs.",
+    "Combining it with an MAOI antidepressant raises the risk of a hypertensive reaction, a sharp rise in blood pressure.",
+    "Other drugs that lower the seizure threshold add to the seizure risk.",
+    "The Parkinson's drugs levodopa and amantadine can cause central nervous system toxicity with bupropion.",
+    "The label says bupropion may lower digoxin levels, so those levels may need monitoring.",
+    "It can cause a false-positive urine screen for amphetamines, sometimes even after stopping.",
+    "The label advises minimizing or avoiding alcohol during treatment."
+  ],
+  "pregnancyAndChildren": "A pregnancy registry followed 675 first-trimester exposures and found no overall increase in birth defects. A separate database study of 1,213 first-trimester exposures reached the same conclusion. The label notes that untreated depression carries its own risks for the mother. Animal studies in rabbits showed fetal malformations and skeletal changes at higher doses. Bupropion passes into breast milk, and a small study measured infant exposure at about 2% of the mother's weight-adjusted dose. Reports after marketing described seizures in breastfed infants, but the label says the link is unclear. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "The sources used here do not say why some people respond to bupropion and others do not.",
+    "They do not compare bupropion head-to-head against other depression medicines.",
+    "The label does not settle how long treatment should continue for smoking cessation beyond 12 weeks.",
+    "Whether bupropion is safe or helpful during breastfeeding is described as unclear, including the infant seizure reports.",
+    "The relationship between bupropion and rare liver injury reports is not established by the sources fetched here."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "One bupropion label is indicated for major depressive disorder and for preventing seasonal affective disorder, and it is classed as an aminoketone antidepressant.",
+      "quote": "Bupropion hydrochloride extended-release tablets (XL) are an aminoketone antidepressant, indicated for: treatment of major depressive disorder (MDD)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label carries a boxed warning about suicidal thoughts and behavior in younger patients.",
+      "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term trials."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The most common side effects reported in trials include dry mouth, nausea, insomnia, dizziness, and sweating.",
+      "quote": "dry mouth, nausea, insomnia, dizziness, pharyngitis, abdominal pain, agitation, anxiety, tremor, palpitation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Seizure is the risk most tied to this drug, and the label says that risk rises with dose.",
+      "quote": "Seizure Risk: The risk is dose-related."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Bupropion blocks the liver enzyme CYP2D6 and can raise the levels of other medicines broken down by it.",
+      "quote": "Bupropion and its metabolites (erythrohydrobupropion, threohydrobupropion, hydroxybupropion) are CYP2D6 inhibitors."
+    },
+    {
+      "url": "https://www.dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8069c521-c49a-4b6d-baa8-4b0be897d585",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "A bupropion extended-release form is approved as an aid to smoking cessation treatment.",
+      "quote": "Bupropion hydrochloride extended-release tablets, USP (SR) are indicated as an aid to smoking cessation treatment."
+    },
+    {
+      "url": "https://www.dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8069c521-c49a-4b6d-baa8-4b0be897d585",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The smoking-cessation form is started before the quit date because steady blood levels take about a week.",
+      "quote": "it takes approximately 1 week of treatment to achieve steady-state blood levels of bupropion"
+    },
+    {
+      "url": "https://www.dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8069c521-c49a-4b6d-baa8-4b0be897d585",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Bupropion is contraindicated in people with a current or prior diagnosis of bulimia or anorexia nervosa.",
+      "quote": "contraindicated in patients with a current or prior diagnosis of bulimia or anorexia nervosa"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bupropion/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Bupropion's molecular formula is C13H18ClNO and its molecular weight is 239.74.",
+      "quote": "\"MolecularFormula\": \"C13H18ClNO\", \"MolecularWeight\": \"239.74\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Bupropion&pageSize=1&countTotal=true&fields=NCTId,BriefTitle,OverallStatus",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "ClinicalTrials.gov lists 568 registered studies matching the term Bupropion.",
+      "quote": "\"totalCount\":568"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bupropion%22+AND+_exists_:boxed_warning&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22bupropion%22+AND+indications_and_usage:%22smoking+cessation%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Zyban%22&limit=1",
+    "https://www.dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8069c521-c49a-4b6d-baa8-4b0be897d585",
+    "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=15c4e95a-d203-4caf-b6c7-44792355cb76&type=display",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bupropion/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bupropion&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bupropion&pageSize=1&countTotal=true&fields=NCTId,BriefTitle,OverallStatus",
+    "https://www.nccih.nih.gov/health/bupropion",
+    "https://www.nccih.nih.gov/health/quitting-smoking",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548836/",
+    "https://ncbi.nlm.nih.gov/books/NBK548836/",
+    "https://medlineplus.gov/smokingcessation.html"
+  ],
+  "gaps": [
+    "NCCIH has no bupropion page. https://www.nccih.nih.gov/health/bupropion returned 404, so no NCCIH content was used.",
+    "The NCCIH Quitting Smoking page was fetched and does not name bupropion, so it grounds nothing here.",
+    "openFDA returned no results for the brand name Zyban, so the smoking-cessation content came from the generic SR label on DailyMed instead.",
+    "The LiverTox bupropion record (NCBI Bookshelf NBK548836) could not be fetched directly. The site returned a browser check on every attempt, so it is not cited in evidence.",
+    "MedlinePlus drug monographs were excluded by the brief. The MedlinePlus Quitting Smoking health topic page was fetched and does not name bupropion.",
+    "No fetched source compares bupropion with other antidepressants for effectiveness.",
+    "No fetched source explains why individual responses to bupropion differ.",
+    "Rare liver injury reports attributed to bupropion appear in LiverTox, which could not be fetched, so this record does not assert them.",
+    "No dose amount from the labels is repeated in the prose sections, and none is offered as guidance."
+  ],
+  "confidence": "high",
+  "summary": "This record describes what bupropion is, its two labeled uses (depression and smoking cessation), its common and serious safety issues, its drug interactions, and what the fetched sources leave unresolved."
+}

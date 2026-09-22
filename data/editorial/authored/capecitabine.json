@@ -1,0 +1,239 @@
+{
+  "slug": "capecitabine",
+  "oneLineAnswer": "Capecitabine is an oral chemotherapy tablet that your body turns into fluorouracil to slow cancer growth.",
+  "whatItIs": "Capecitabine is a prescription chemotherapy medicine taken as tablets you swallow. It is a prodrug, which means your body changes it into the active drug, fluorouracil. The drug label calls it a nucleoside metabolic inhibitor. That means it interferes with how cells build DNA and RNA. Its brand name is Xeloda. In chemistry terms it has the formula C15H22FN3O6 and a molecular weight of 359.35. Tablets come in 150 mg and 500 mg strengths.",
+  "whatItDoes": [
+    "Capecitabine becomes active only after your body converts it.",
+    "Enzymes in the liver and in tumor cells change it into fluorouracil, the active medicine.",
+    "Fluorouracil competes with the building blocks cells normally use to make DNA, RNA, and proteins.",
+    "That interference stops fast-dividing cancer cells from multiplying, which is why capecitabine treats cancer.",
+    "Approved uses include colon and rectal cancer, breast cancer that has spread, stomach and food-pipe cancer, and pancreatic cancer."
+  ],
+  "howPeopleUseIt": [
+    "It is a tablet, not an intravenous drip, so most treatment happens at home.",
+    "The label says to swallow tablets whole with water within 30 minutes after a meal.",
+    "The label also says not to chew, cut, or crush them.",
+    "Most label regimens use 14 days of tablets followed by a rest period, repeated in 21-day cycles.",
+    "The label describes capecitabine as a hazardous drug with special handling and disposal rules.",
+    "It is heavily researched: a September 2026 ClinicalTrials.gov search found 2,871 registered studies mentioning it."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea, nausea, and vomiting are common, and diarrhea can be severe.",
+      "Hand-foot syndrome is common: the palms and soles turn red, sore, swollen, or peeling.",
+      "Mouth sores, stomach pain, tiredness, and loss of appetite are also reported.",
+      "Blood counts can drop, so the label recommends checking blood counts before each cycle.",
+      "The label reports raised bilirubin, a liver blood test, in many people taking capecitabine."
+    ],
+    "seriousSigns": [
+      "The label's boxed warning says people born with complete DPD deficiency can have severe or fatal reactions.",
+      "DPD is an enzyme that breaks down fluorouracil, and some people have too little of it.",
+      "The label notes serious reactions can still happen even when no DPYD variant is found.",
+      "Heart problems including heart attack, chest pain, rhythm changes, and heart failure have been reported.",
+      "Serious skin reactions called Stevens-Johnson syndrome and toxic epidermal necrolysis can occur and may be fatal.",
+      "Serious or fatal kidney failure has been reported, sometimes after dehydration from vomiting or diarrhea.",
+      "Myelosuppression, meaning the bone marrow makes fewer blood cells, can occur during treatment.",
+      "Bleeding, including death, is reported when capecitabine is combined with warfarin-type blood thinners."
+    ],
+    "whoShouldAvoid": [
+      "The label says not to use it after a severe allergic reaction to fluorouracil or capecitabine.",
+      "It should also be avoided in people with DPYD variants that cause complete DPD deficiency.",
+      "The label advises women not to breastfeed during treatment and for one week after the last dose.",
+      "The label says capecitabine can harm a fetus and advises using effective contraception during treatment.",
+      "A safe dose has not been established for people with severely reduced kidney function.",
+      "It is not established for children; the label reports studies in 56 children with gliomas that did not show benefit."
+    ]
+  },
+  "interactions": [
+    "Warfarin and other vitamin K antagonist blood thinners raise bleeding risk, so the label says to check INR often.",
+    "Allopurinol: the label says to avoid combining it, because it may reduce capecitabine's active breakdown products.",
+    "Leucovorin, folic acid, and folate products raise fluorouracil levels and toxicity, according to the label.",
+    "Phenytoin levels may rise, so the label says to monitor them and adjust the phenytoin dose.",
+    "Drugs processed by the liver enzyme CYP2C9, such as some blood thinners and diabetes drugs, reach higher levels.",
+    "Kidney-toxic drugs such as platinum chemotherapy, irinotecan, methotrexate, and IV bisphosphonates may add kidney risk.",
+    "An aluminum or magnesium antacid slightly raised capecitabine blood levels in a label study."
+  ],
+  "pregnancyAndChildren": "Animal studies found capecitabine caused death and malformation in developing fetuses. The label says it can harm a human fetus, but human pregnancy data is limited. The label advises against breastfeeding during treatment and for one week after the last dose. Capecitabine is not approved for children. The label says safety and effectiveness have not been established, and lab abnormalities were more common in the children studied than in adults.",
+  "whatWeDoNotKnow": [
+    "No source I read compares how people feel on capecitabine versus intravenous fluorouracil.",
+    "The label says tests for DPYD variants vary in accuracy and design, and that no FDA-authorized test existed when it was written.",
+    "The label says the effect of severe liver impairment on capecitabine is unknown.",
+    "It is unknown whether capecitabine passes into human breast milk.",
+    "The LiverTox chapter on capecitabine could not be read, so liver-injury detail here comes only from the drug label.",
+    "Nothing here covers cost, availability, or what a treatment course is like day to day."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label lists approved uses in colorectal cancer, breast cancer, stomach and food-pipe cancer, and pancreatic cancer, alone or with other chemotherapy.",
+      "quote": "treatment of patients with unresectable or metastatic colorectal cancer as a single agent or as a component of a combination chemotherapy regimen"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The boxed warning says to test for DPYD variants before starting unless treatment is urgent, because complete DPD deficiency brings serious or fatal reactions.",
+      "quote": "Test patients for genetic variants of DPYD prior to initiating capecitabine tablets unless immediate treatment is necessary."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "In metastatic colorectal cancer the label's most common side effects include anemia, diarrhea, hand-foot syndrome, high bilirubin, nausea, fatigue, and stomach pain.",
+      "quote": "were anemia, diarrhea, palmar-plantar erythrodysesthesia syndrome, hyperbilirubinemia, nausea, fatigue, and abdominal pain"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Dizziness, insomnia, and taste disturbance appear among less common reported reactions.",
+      "quote": "dizziness (excluding vertigo), insomnia, taste disturbance"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label says not to use capecitabine after a severe allergic reaction to fluorouracil or capecitabine.",
+      "quote": "Capecitabine tablets are contraindicated in patients with history of severe hypersensitivity reaction to fluorouracil or capecitabine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label says capecitabine can harm a fetus in pregnancy.",
+      "quote": "capecitabine tablets can cause fetal harm when administered to a pregnant woman"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Animal studies found the drug caused death and malformation in developing fetuses.",
+      "quote": "administration of capecitabine to pregnant animals during the period of organogenesis caused embryolethality and teratogenicity in mice"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label advises against breastfeeding during treatment and for one week after the last dose.",
+      "quote": "advise women not to breastfeed during treatment with capecitabine tablets and for 1 week after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label says allopurinol should not be combined with capecitabine.",
+      "quote": "Avoid concomitant use of allopurinol with capecitabine tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Heart problems have been reported, including heart attack and abnormal heart rhythms.",
+      "quote": "Myocardial infarction/ischemia, angina, dysrhythmias, cardiac arrest, cardiac failure, sudden death, electrocardiographic changes, and cardiomyopathy have been reported"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Severe skin reactions including Stevens-Johnson syndrome and toxic epidermal necrolysis can occur and may be fatal.",
+      "quote": "Severe cutaneous adverse reactions (SCARs), including Stevens-Johnson Syndrome and toxic epidermal necrolysis (TEN), which can be fatal, can occur"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Serious kidney failure, sometimes fatal, has been reported.",
+      "quote": "Serious renal failure, sometimes fatal, can occur with capecitabine tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Myelosuppression, meaning fewer blood cells are made, can occur.",
+      "quote": "Myelosuppression can occur with capecitabine tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "The label tells patients not to take folic acid or folate products unless a provider directs it.",
+      "quote": "Instruct patients not to take products containing folic acid or folate analog products unless directed to do so by their healthcare provider."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Phenytoin levels should be tracked and the phenytoin dose adjusted when the two are used together.",
+      "quote": "Closely monitor phenytoin levels in patients taking capecitabine tablets concomitantly with phenytoin and adjust the phenytoin dose as appropriate."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Capecitabine raises exposure to drugs processed by the CYP2C9 enzyme.",
+      "quote": "Capecitabine tablets increased exposure of CYP2C9 substrates"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "Other drugs that harm the kidneys can add to capecitabine's kidney risk.",
+      "quote": "concomitant use of capecitabine tablets with other drugs known to cause renal toxicity may increase the risk of renal toxicity"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label API)",
+      "claim": "An aluminum and magnesium antacid raised capecitabine blood levels by 16% and 35% in a label study.",
+      "quote": "AUC and Cmax increased by 16% and 35%, respectively, for capecitabine"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a732b303-9bbd-42ba-a7c5-61c21629ba93",
+      "publisher": "U.S. National Library of Medicine, DailyMed (XELODA label)",
+      "claim": "Capecitabine is an oral prodrug that the body converts into fluorouracil.",
+      "quote": "It is an orally administered systemic prodrug of 5'-deoxy-5-fluorouridine (5'-DFUR) which is converted to 5-fluorouracil."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a732b303-9bbd-42ba-a7c5-61c21629ba93",
+      "publisher": "U.S. National Library of Medicine, DailyMed (XELODA label)",
+      "claim": "An important interaction between capecitabine and warfarin was shown in a clinical pharmacology trial.",
+      "quote": "A clinically important XELODA-Warfarin drug interaction was demonstrated in a clinical pharmacology trial"
+    },
+    {
+      "url": "https://www.cancer.gov/about-cancer/treatment/drugs/capecitabine",
+      "publisher": "National Cancer Institute",
+      "claim": "NCI explains that capecitabine is broken down into fluorouracil, which competes with the substances cells use to make DNA, RNA, and proteins.",
+      "quote": "capecitabine gets broken down into fluorouracil, which competes with substances that are normally used to make DNA, RNA, and proteins"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/capecitabine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "PubChem lists capecitabine's molecular formula as C15H22FN3O6 and its molecular weight as 359.35.",
+      "quote": "\"MolecularFormula\": \"C15H22FN3O6\", \"MolecularWeight\": \"359.35\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Capecitabine&pageSize=1&countTotal=true&fields=NCTId",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "A September 2026 ClinicalTrials.gov query counted 2,871 registered studies mentioning capecitabine.",
+      "quote": "\"totalCount\": 2871"
+    },
+    {
+      "url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "MedlinePlus explains that chemotherapy can also harm healthy cells, which is what causes side effects.",
+      "quote": "Chemotherapy does not just destroy cancer cells. It can also harm some healthy cells, which causes side effects."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Capecitabine%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a732b303-9bbd-42ba-a7c5-61c21629ba93",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=capecitabine",
+    "https://www.cancer.gov/about-cancer/treatment/drugs/capecitabine",
+    "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/capecitabine",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/capecitabine/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/60953",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Capecitabine&pageSize=3",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Capecitabine&pageSize=1&countTotal=true&fields=NCTId",
+    "https://medlineplus.gov/cancerchemotherapy.html",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547986/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547986/?report=reader",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547986/?report=classic",
+    "https://www.nccih.nih.gov/health/capecitabine"
+  ],
+  "gaps": [
+    "NCCIH has no page for capecitabine: the requested URL returned a 404 not-found error, so NCCIH contributed nothing.",
+    "The LiverTox capecitabine chapter (NIDDK) was unreachable. Three URL forms were tried and all were stopped by a browser-verification page, so no independent liver-injury assessment could be grounded.",
+    "The PubChem human-readable compound page requires JavaScript and returned no content; only PubChem's structured data service was usable.",
+    "The NCI Drug Dictionary definition page rendered as an empty shell, so the NCI drug summary page was used instead.",
+    "MedlinePlus drug monographs were deliberately not fetched, cited, or used, because that content is copyrighted by ASHP.",
+    "No source read here compares capecitabine with intravenous fluorouracil for quality of life or convenience.",
+    "No grounded information was found on cost, supply, or the everyday experience of a treatment course.",
+    "The label's own statement is that the effect of severe hepatic impairment on capecitabine is unknown; that gap is reported rather than filled."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what capecitabine is, how the body turns it into fluorouracil, its approved cancer uses, its common and serious side effects, its key interactions, and its pregnancy and children status, all grounded in the FDA label plus NCI, DailyMed, PubChem, and ClinicalTrials.gov."
+}

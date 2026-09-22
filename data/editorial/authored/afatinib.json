@@ -1,0 +1,249 @@
+{
+  "slug": "afatinib",
+  "oneLineAnswer": "A prescription tablet for certain advanced lung cancers that blocks a growth signal driving the tumor.",
+  "whatItIs": "Afatinib is a prescription cancer medicine, sold as Gilotrif and as generic tablets. It belongs to a group of drugs called kinase inhibitors. A kinase is an enzyme that tags other proteins and can switch growth signals on. Afatinib targets EGFR, HER2 and HER4, three kinases that sit on cell surfaces. Some lung cancers carry a changed, or mutated, EGFR gene that keeps those signals switched on. Metastatic means the cancer has spread beyond where it started. The tablets contain afatinib dimaleate, a salt form of the drug. PubChem lists the molecular formula of afatinib itself as C24H25ClFN5O3.",
+  "whatItDoes": [
+    "Afatinib binds to EGFR, HER2 and HER4 and blocks the signals that drive tumor growth.",
+    "In controlled trials, it lengthened the time before the cancer grew again (LiverTox).",
+    "The US label approves it for two groups of people with advanced lung cancer.",
+    "One group has metastatic non-small cell lung cancer with certain EGFR mutations, treated first.",
+    "The other has squamous lung cancer that worsened after platinum-based chemotherapy."
+  ],
+  "howPeopleUseIt": [
+    "It is a tablet you swallow, taken on a daily schedule set by your cancer team.",
+    "LiverTox describes treatment as continuing until the cancer progresses or side effects become intolerable.",
+    "The label describes pausing or reducing treatment when certain side effects appear.",
+    "People on afatinib have regular checkups, including blood tests for liver function (label).",
+    "Researchers are studying afatinib combined with other cancer drugs (ClinicalTrials.gov).",
+    "Those trials include cancers of the esophagus, bile ducts and other advanced solid tumors."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Diarrhea is the most common problem; the label reports it in 96% of patients in one trial.",
+      "A rash or acne-like rash is common, often on the face or upper body.",
+      "Mouth sores, dry skin, itching and nail-fold infections also happen often.",
+      "Loss of appetite, nausea and vomiting are common.",
+      "The label reports that side effects led to a lower dose for 57% of patients in one trial."
+    ],
+    "seriousSigns": [
+      "Severe or long-lasting diarrhea can dehydrate you and harm your kidneys; some cases were fatal.",
+      "Blistering, peeling or spreading skin reactions need prompt medical attention (label).",
+      "Rare severe skin reactions include Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "Lung inflammation, called interstitial lung disease, occurred in 1.6% of patients in trials.",
+      "The label reports fatal liver failure in 0.2% of patients.",
+      "A hole in the stomach or intestine, called gastrointestinal perforation, occurred in 0.2%.",
+      "Eye inflammation, called keratitis, occurred in 0.7% of patients.",
+      "The label tells patients to report new trouble breathing, cough or fever.",
+      "LiverTox links afatinib to hepatitis B virus becoming active again during treatment."
+    ],
+    "whoShouldAvoid": [
+      "The label lists no contraindication, meaning no group is barred from the drug outright.",
+      "Pregnancy is a reason to avoid it: animal studies show harm to the developing fetus.",
+      "Breastfeeding is not advised during treatment or for two weeks after the last tablet.",
+      "Children are not an approved group; safety and effectiveness are not established.",
+      "People with severe kidney impairment have higher levels of the drug in the body (label).",
+      "LiverTox says hepatitis B should be checked before treatment, because the virus can reactivate."
+    ]
+  },
+  "interactions": [
+    "P-gp is a pump protein that moves some drugs out of cells.",
+    "P-gp inhibitors raise afatinib levels. The label names ritonavir, cyclosporine, ketoconazole, itraconazole and erythromycin.",
+    "That label list continues with verapamil, quinidine, tacrolimus, nelfinavir, saquinavir and amiodarone.",
+    "P-gp inducers lower afatinib levels. The label names rifampicin, carbamazepine, phenytoin, phenobarbital and St. John's wort.",
+    "For both kinds of interaction, the label describes adjusting the afatinib dose."
+  ],
+  "pregnancyAndChildren": "Afatinib can harm a developing fetus. Rabbit studies found embryo loss and, in mothers showing toxicity, late abortion. Rat studies found delayed bone formation and lower fetal weight. There are no human pregnancy data. The label advises contraception during treatment and for at least two weeks after the last dose. Breastfeeding is not advised during treatment and for two weeks after it ends, because afatinib passed into rat milk. In children, safety and effectiveness are not established. One trial treated 37 children aged 2 to under 17 who had solid tumors. Their drug levels resembled adult levels and no new safety signals appeared. Animal data suggest afatinib may reduce fertility in females and males, and reversibility is unknown.",
+  "whatWeDoNotKnow": [
+    "No human data exist on afatinib in pregnancy; the fetal risk comes from animal studies and its mechanism.",
+    "Whether fertility changes reverse after treatment ends is unknown (label).",
+    "LiverTox says the timing and pattern of afatinib liver injury have not been published.",
+    "The label notes trial side-effect rates cannot be compared directly between medicines.",
+    "The main first-line trial enrolled too few people aged 65 and older to compare responses (label).",
+    "Most combination trials are still recruiting or of unknown status, so their results are pending.",
+    "No source found here reports how often hepatitis B reactivates on afatinib outside trial settings."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Afatinib attaches to the kinase domains of EGFR, HER2 and HER4 and blocks their signaling.",
+      "quote": "Afatinib covalently binds to the kinase domains of EGFR (ErbB1), HER2 (ErbB2), and HER4 (ErbB4) and irreversibly inhibits tyrosine kinase autophosphorylation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "The first approved use is first-line treatment for metastatic non-small cell lung cancer with non-resistant EGFR mutations.",
+      "quote": "First-line treatment of patients with metastatic non-small cell lung cancer (NSCLC) whose tumors have non-resistant epidermal growth factor receptor (EGFR) mutations"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "A second approved use is metastatic squamous lung cancer that progressed after platinum-based chemotherapy.",
+      "quote": "Treatment of patients with metastatic, squamous NSCLC progressing after platinum-based chemotherapy"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "The most common side effects, each in at least 20% of patients, include diarrhea, rash, mouth sores, nail-fold infection, dry skin, appetite loss, nausea, vomiting and itching.",
+      "quote": "Most common adverse reactions (≥20%) were diarrhea, rash/acneiform dermatitis, stomatitis, paronychia, dry skin, decreased appetite, nausea, vomiting, pruritus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Diarrhea was reported in almost all patients in one pivotal trial.",
+      "quote": "diarrhea occurred in 96% of patients treated with GILOTRIF (n=229)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Interstitial lung disease, a form of lung inflammation, occurred in 1.6% of patients.",
+      "quote": "Interstitial lung disease (ILD) : Occurs in 1.6% of patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Liver toxicity was fatal in 0.2% of patients.",
+      "quote": "Fatal hepatic impairment occurs in 0.2% of patients."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "The label lists no contraindications.",
+      "quote": "4 CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Drugs that inhibit the P-gp pump raise afatinib levels in the body.",
+      "quote": "Co-administration of P-gp inhibitors can increase afatinib exposure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Drugs that induce the P-gp pump lower afatinib levels in the body.",
+      "quote": "Co-administration of chronic P-gp inducers orally can decrease afatinib exposure."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Afatinib can harm a fetus, so pregnancy is a reason to avoid it.",
+      "quote": "GILOTRIF can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Breastfeeding is not advised during treatment or for two weeks after the last dose.",
+      "quote": "advise women not to breastfeed during treatment with GILOTRIF and for 2 weeks after the final dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Safety and effectiveness in children are not established.",
+      "quote": "Safety and effectiveness of GILOTRIF in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration, openFDA drug label API (Gilotrif label)",
+      "claim": "Animal data suggest afatinib may lower fertility, and reversal is unknown.",
+      "quote": "It is not known if the effects on fertility are reversible"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NCBI Bookshelf",
+      "claim": "Afatinib is a tyrosine kinase receptor inhibitor used for selected metastatic non-small cell lung cancers.",
+      "quote": "Afatinib is a tyrosine kinase receptor inhibitor that is used in the therapy of selected forms of metastatic non-small cell lung cancer."
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NCBI Bookshelf",
+      "claim": "Controlled trials showed improved progression-free survival in people with mutated EGFR.",
+      "quote": "afatinib was shown to improve progression-free survival in patients with non-small cell lung cancer (NSCLC) with mutated EGFR"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NCBI Bookshelf",
+      "claim": "Hepatic failure was reported in 0.2% of patients, with several deaths.",
+      "quote": "Hepatic failure was said to have occurred in 0.2% of patients and to have resulted in several fatalities."
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NCBI Bookshelf",
+      "claim": "Hepatitis B virus reactivation is linked to afatinib treatment.",
+      "quote": "Afatinib, like other tyrosine kinase inhibitors of the EGFR, has been linked to reactivation of hepatitis B"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+      "publisher": "LiverTox, National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NCBI Bookshelf",
+      "claim": "Afatinib was approved in the United States in 2013 and is sold as Gilotrif tablets.",
+      "quote": "Afatinib received approval for use in the United States in 2013."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=afatinib",
+      "publisher": "U.S. National Library of Medicine, DailyMed",
+      "claim": "DailyMed lists both a generic afatinib tablet label and the Gilotrif brand label.",
+      "quote": "AFATINIB (AFATINIB) TABLET, FILM COATED [CAMBER PHARMACEUTICALS, INC.]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/10184653/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "PubChem records afatinib as a kinase inhibitor, the drug class used by the FDA label.",
+      "quote": "Afatinib is a Kinase Inhibitor. The mechanism of action of afatinib is as a Protein Kinase Inhibitor."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/10184653/JSON?heading=Pharmacology+and+Biochemistry",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "PubChem describes afatinib as an irreversible blocker of the ErbB family of receptors.",
+      "quote": "Afatinib is a potent and selective, irreversible ErbB family blocker."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/afatinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "U.S. National Library of Medicine, PubChem",
+      "claim": "PubChem lists afatinib's molecular formula as C24H25ClFN5O3 with a molecular weight of 485.9.",
+      "quote": "\"MolecularFormula\": \"C24H25ClFN5O3\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Afatinib&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "Afatinib is being tested in combination with other cancer drugs in solid tumors.",
+      "quote": "Pemigatinib + Afatinib in Advanced Refractory Solid Tumors"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Afatinib&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "U.S. National Library of Medicine, ClinicalTrials.gov",
+      "claim": "One registered trial combines afatinib with another drug for squamous esophageal cancer.",
+      "quote": "Palbociclib Combined With Afatinib for Advanced Squamous Carcinoma of Esophagus or Gastroesophageal Junction"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Afatinib%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Afatinib%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GILOTRIF%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Afatinib%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=afatinib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548772/",
+    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=books&id=NBK548772&retmode=text",
+    "https://ftp.ncbi.nlm.nih.gov/pub/livertox/",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/afatinib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/afatinib/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/10184653/synonyms/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/10184653/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Afatinib&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Afatinib&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/afatinib",
+    "https://www.nccih.nih.gov/health/afatinib"
+  ],
+  "gaps": [
+    "NCCIH has no afatinib page: https://www.nccih.nih.gov/health/afatinib returned HTTP 404, so no NCCIH content appears here.",
+    "NCBI Bookshelf refused plain fetches of the LiverTox chapter with a browser and captcha check; the chapter was read in the in-app browser instead, and its seven quotes come from that page.",
+    "The NCI drug dictionary page returned only a navigation shell with no drug text, so NCI is not cited.",
+    "MedlinePlus drug monographs were excluded on purpose, because NLM states they are American Society of Health-System Pharmacists content. No MedlinePlus page is cited.",
+    "OpenFDA and DailyMed both carry FDA-authored label text, so they are separate publishers but not independent sources for label content. LiverTox, PubChem and ClinicalTrials.gov are independent of the label.",
+    "No dose amounts, schedules or personal plans are written here by design, so that is not a sourcing gap.",
+    "No human pregnancy or breastfeeding data were found in the fetched sources; both are described only from animal findings.",
+    "The ClinicalTrials.gov records were read as titles, statuses and phases only, so no results or outcome data from those trials are reported.",
+    "No source found here states how often hepatitis B reactivates during afatinib treatment in routine practice.",
+    "Side-effect rates come from trial populations, and the label warns those rates may not match ordinary practice."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what afatinib is and how it blocks EGFR-family signaling, its two approved lung cancer uses, its common and serious risks, its P-gp interactions, and the questions the fetched sources leave open."
+}

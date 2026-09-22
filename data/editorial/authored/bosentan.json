@@ -1,0 +1,200 @@
+{
+  "slug": "bosentan",
+  "oneLineAnswer": "A prescription medicine that treats high blood pressure in the lungs, given only under strict liver and pregnancy monitoring.",
+  "whatItIs": "Bosentan is an endothelin receptor antagonist, meaning it blocks the receptors that the protein endothelin docks into. The FDA label calls it a highly substituted pyrimidine derivative with no chiral centers. The label describes the drug substance as bosentan monohydrate, and its tablet ingredient list names bosentan anhydrous, which is the same molecule without an attached water unit. PubChem records bosentan's formula as C27H29N5O6S with a weight of 551.6, while the label's monohydrate form weighs 569.64.",
+  "whatItDoes": [
+    "The FDA label says bosentan treats pulmonary arterial hypertension (PAH), which is high blood pressure in the arteries of the lungs.",
+    "In adults, the label says it aims to improve exercise ability and to reduce clinical worsening.",
+    "In children aged 3 and older, the label says it aims to improve pulmonary vascular resistance.",
+    "The label states bosentan works by blocking endothelin receptor types A and B, and notes that endothelin-1 levels are raised in the lungs of people with PAH.",
+    "The label records that it comes as tablets taken by mouth, or as tablets that dissolve in water for children."
+  ],
+  "howPeopleUseIt": [
+    "On the label it is a prescription medicine for people already diagnosed with PAH, not a general blood pressure treatment.",
+    "The label says it is dispensed only through a restricted program called the Bosentan REMS, and that prescribers, patients and pharmacies must all enroll.",
+    "The label requires liver enzyme blood tests before treatment starts and then once a month, because the medicine carries a liver risk.",
+    "ClinicalTrials.gov lists bosentan studies in other conditions, such as skin fibrosis in systemic sclerosis; those are research settings, not labeled uses."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In trials, the most common effects were respiratory tract infections, headache and swelling called edema.",
+      "The label also lists chest pain, fainting, flushing, low blood pressure, sinusitis, joint pain, a pounding heartbeat and anemia.",
+      "Rises in liver enzymes above three times normal were seen in about 11% of treated patients versus 2% on placebo.",
+      "Hemoglobin and red blood cell counts can fall, so the label asks for checks after 1 and 3 months and then every 3 months."
+    ],
+    "seriousSigns": [
+      "The label carries a boxed warning for liver injury, and says liver failure has been reported.",
+      "The label tells patients to stop and get help for nausea, vomiting, fever, stomach pain, yellowing of the skin or eyes, or unusual tiredness.",
+      "Fluid retention can develop, and the label says some patients needed a diuretic, fluid management, or hospital care for heart failure.",
+      "Rare allergic reactions include DRESS, anaphylaxis, rash and swelling of the lips.",
+      "The label says hemoglobin falls that are large enough to need a transfusion have been reported after the drug reached the market.",
+      "In one small safety study, sperm counts dropped by at least half in about a quarter of the men taking part."
+    ],
+    "whoShouldAvoid": [
+      "The label says do not use bosentan if you are pregnant.",
+      "Do not use it with cyclosporine A, or with the diabetes medicine glyburide; the label lists both combinations as contraindicated.",
+      "Do not use it if you are allergic to bosentan, including past DRESS, anaphylaxis, rash or lip swelling.",
+      "The label says it should generally be avoided in people whose liver enzymes are already above three times normal.",
+      "Women who could become pregnant must use reliable contraception and add a second method, because hormonal birth control alone may not be dependable on this medicine.",
+      "The label advises women not to breastfeed while taking it."
+    ]
+  },
+  "interactions": [
+    "Hormonal birth control may not work reliably; the label reports average drops of 31% in ethinyl estradiol and 14% in norethindrone, and falls as large as 66% in individual users.",
+    "Cyclosporine A sharply raises bosentan levels in the blood, and the label makes that combination a contraindication.",
+    "The label does not recommend pairing bosentan with a CYP2C9 inhibitor such as fluconazole together with a strong or moderate CYP3A inhibitor such as ketoconazole, itraconazole, erythromycin or diltiazem.",
+    "Bosentan speeds up two liver enzymes, CYP3A and CYP2C9, so it lowers levels of other drugs broken down by them; the label names statins such as simvastatin, warfarin and rifampin.",
+    "The label gives special handling instructions for people taking ritonavir, an HIV medicine.",
+    "Ketoconazole raised bosentan blood levels by roughly 100% in healthy volunteers, according to the label."
+  ],
+  "pregnancyAndChildren": "The label makes pregnancy a contraindication, because animal reproduction studies found fetal harm. In rats, a dose twice the maximum recommended human dose on a body-surface basis caused malformations of the head, mouth, face and large blood vessels. The label says human data from similar drugs have not shown a clear increase in major birth defects, but those reports are limited and lack control groups. The label advises women who could become pregnant to test for pregnancy first, use effective contraception during treatment, and keep using it for one month after the last dose. Bosentan passes into breast milk, and the label advises choosing between breastfeeding and the medicine. For children, the label covers patients aged 3 and older with idiopathic or congenital PAH, and says the safety profile in 119 children resembled that in adults.",
+  "whatWeDoNotKnow": [
+    "The label says the available human data cannot confirm or rule out a link between bosentan and major birth defects, because the reports lack control groups and details on dose and timing.",
+    "The label states that the clinical impact of blocking both endothelin receptor types is unknown.",
+    "Effects in severe liver impairment have not been evaluated, per the label.",
+    "There is little information on bosentan's effect on milk production, or on how it affects a breastfed baby.",
+    "Trial safety data covered exposures of up to about 4.1 years, so longer-term outcomes are less well described.",
+    "No public-domain source was found for how many people take bosentan, or for its cost or availability outside the United States."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "Bosentan is labeled to treat pulmonary arterial hypertension in adults and in children aged 3 and older.",
+      "quote": "TRACLEER is an endothelin receptor antagonist indicated for the treatment of pulmonary arterial hypertension (PAH) (WHO Group 1)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "Liver enzyme rises above three times normal occurred in about 11% of treated patients in clinical studies.",
+      "quote": "caused at least 3-fold upper limit of normal (ULN) elevation of liver aminotransferases (ALT and AST) in about 11% of patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "The label requires liver enzyme testing before treatment and then every month.",
+      "quote": "Measure liver aminotransferases prior to initiation of treatment and then monthly"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "Pregnancy is a contraindication for bosentan.",
+      "quote": "Use of TRACLEER is contraindicated in females who are pregnant"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "The tablet ingredient listing names bosentan anhydrous as the active ingredient.",
+      "quote": "Tracleer bosentan BOSENTAN BOSENTAN ANHYDROUS SODIUM STARCH GLYCOLATE TYPE A POTATO"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "The label describes the drug substance as the monohydrate, with a higher molecular weight than the water-free form.",
+      "quote": "Bosentan has a molecular weight of 569.64 and a molecular formula of C 27 H 29 N 5 O 6 S\u2219H 2 O."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "Cyclosporine A is contraindicated with bosentan because it sharply raises bosentan blood levels.",
+      "quote": "Co-administration of cyclosporine A and bosentan resulted in markedly increased plasma concentrations of bosentan."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+      "publisher": "US Food and Drug Administration, openFDA drug label API",
+      "claim": "Hemoglobin and hematocrit can fall during bosentan treatment.",
+      "quote": "Treatment with TRACLEER can cause a dose-related decrease in hemoglobin and hematocrit."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Bosentan is dispensed only through a restricted distribution program because of liver risk.",
+      "quote": "TRACLEER is available only through a restricted distribution program called the Bosentan Risk Evaluation and Mitigation Strategy (REMS) because of the risk of hepatotoxicity"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Bosentan blocks endothelin receptor types A and B.",
+      "quote": "Bosentan is a specific and competitive antagonist at endothelin receptor types ET A and ET B"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Hormonal contraceptives may not be reliable during bosentan treatment.",
+      "quote": "Hormonal contraceptives, including oral, injectable, transdermal, and implantable forms, may not be reliable when TRACLEER is co-administered"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "The most common trial side effects for the tablet were respiratory tract infection and anemia.",
+      "quote": "Common adverse reactions (\u22653% more than placebo) for the film-coated tablet are respiratory tract infection and anemia"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "The label advises against breastfeeding during treatment.",
+      "quote": "advise women not to breastfeed during treatment with TRACLEER"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Pediatric use on the label covers children aged 3 and older.",
+      "quote": "in pediatric patients aged 3 years and older with idiopathic or congenital PAH to improve pulmonary vascular resistance (PVR)"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Sperm counts fell by at least half in about a quarter of men in one small study.",
+      "quote": "There was a decline in sperm count of at least 50% in 25% of the patients after 3 or 6 months of treatment"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bosentan/property/MolecularFormula,MolecularWeight,CanonicalSMILES/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem records water-free bosentan as C27H29N5O6S with a molecular weight of 551.6.",
+      "quote": "\"MolecularFormula\": \"C27H29N5O6S\", \"MolecularWeight\": \"551.6\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Bosentan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,InterventionName,LeadSponsorName",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "A registry record independent of the label lists bosentan as a treatment studied for pulmonary arterial hypertension.",
+      "quote": "\"briefTitle\":\"Pulmonary Arterial Hypertension Secondary to Idiopathic Pulmonary Fibrosis and Treatment With Bosentan\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Bosentan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,InterventionName,LeadSponsorName",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "Bosentan has also been studied in systemic sclerosis skin fibrosis, which is outside its labeled use.",
+      "quote": "\"briefTitle\":\"Effect of Bosentan on Skin Fibrosis in Patients With Systemic Sclerosis\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=bosentan",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Multiple companies market bosentan tablets and tablets for suspension in the United States.",
+      "quote": "\"title\": \"BOSENTAN TABLET, COATED [ZYDUS PHARMACEUTICALS USA INC.]\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Bosentan%20Anhydrous%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22BOSENTAN+ANHYDROUS%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tracleer%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=749e42fb-2fe0-45dd-9268-b43bb3f4081c",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=bosentan",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/749e42fb-2fe0-45dd-9268-b43bb3f4081c.json",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bosentan/property/MolecularFormula,MolecularWeight,IUPACName,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/bosentan/property/MolecularFormula,MolecularWeight,CanonicalSMILES/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Bosentan%20Anhydrous&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Bosentan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,InterventionName,LeadSponsorName",
+    "https://www.nccih.nih.gov/health/bosentan",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547999/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547999/?report=reader"
+  ],
+  "gaps": [
+    "NCCIH has no bosentan page; https://www.nccih.nih.gov/health/bosentan returned 404, so no supplement-style source exists for this substance.",
+    "LiverTox (https://www.ncbi.nlm.nih.gov/books/NBK547999/) blocked automated access behind a browser check, so no independent liver-injury reference is cited here.",
+    "openFDA has no label indexed under the generic name Bosentan Anhydrous; searches by that name returned no results. The anhydrous substance appears inside the Tracleer label's ingredient listing and in PubChem.",
+    "The DailyMed single-label JSON endpoint rejected the request, so label content was taken from the DailyMed HTML page and the openFDA label record instead.",
+    "No public-domain source covered how many people take bosentan, its price, or its availability outside the United States.",
+    "MedlinePlus drug monographs for bosentan were deliberately not used because they are licensed, copyrighted content."
+  ],
+  "confidence": "high",
+  "summary": "Covers what bosentan is, the pulmonary arterial hypertension it is labeled to treat, its liver and pregnancy risks, common side effects, interactions, and the limits of what the label establishes."
+}

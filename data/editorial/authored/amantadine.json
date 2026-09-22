@@ -1,0 +1,232 @@
+{
+  "slug": "amantadine",
+  "oneLineAnswer": "A prescription antiviral and Parkinson's medicine that the US label approves for influenza A and movement symptoms.",
+  "whatItIs": "Amantadine is a prescription medicine, not a supplement. It is a small molecule built on an adamantane framework, and its chemical name is 1-adamantanamine. The US label calls it both an antiviral drug and an anti-Parkinson drug. It is sold as capsules, tablets and a liquid that people swallow. The label describes amantadine hydrochloride as a white crystalline powder that dissolves easily in water.",
+  "whatItDoes": [
+    "The US label approves it for two problems: influenza A infection and parkinsonism.",
+    "It is used to prevent and to treat illness caused by influenza A viruses.",
+    "For Parkinson's disease, NINDS says it can ease tremor, stiffness and uncontrolled movements.",
+    "It also treats movement problems that other medicines cause.",
+    "NINDS reports that in about half of people it may stop helping stiff, slow movements after several months."
+  ],
+  "howPeopleUseIt": [
+    "People take amantadine by mouth as a capsule, tablet or liquid.",
+    "NINDS says people can take it alone soon after Parkinson's symptoms appear.",
+    "It is often combined with other Parkinson's medicines, like levodopa.",
+    "The label describes influenza use as short courses rather than long-term treatment.",
+    "Registered trials have also tested it for other conditions, such as cocaine dependence."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The label says nausea, dizziness and trouble sleeping are reported most often.",
+      "Dry mouth, constipation, headache and tiredness are also reported.",
+      "Some people feel confused, anxious, depressed or see things that are not there.",
+      "Swelling in the legs and a lace-like purple pattern on the skin have been reported.",
+      "NINDS lists trouble sleeping, patchy colored skin, swelling, restlessness and hallucinations."
+    ],
+    "seriousSigns": [
+      "The label links sudden blurry vision or worsening eyesight to corneal swelling.",
+      "The label warns that suicide attempts and suicidal thoughts have been reported, sometimes after short courses.",
+      "Deaths have been reported after amantadine overdose, and the label gives one gram as the lowest reported lethal dose.",
+      "Rare reports describe seizures, psychosis, heart failure and a life-threatening reaction called neuroleptic malignant syndrome.",
+      "The label says stopping amantadine suddenly can cause serious worsening in people with Parkinson's disease.",
+      "The label describes new strong urges to gamble, spend money or have sex while taking it."
+    ],
+    "whoShouldAvoid": [
+      "The label says not to use it if you are allergic to amantadine or to the other ingredients.",
+      "It should not be given to people with untreated angle closure glaucoma.",
+      "People with kidney disease need close attention, because the drug builds up when kidneys work poorly.",
+      "The label does not recommend it for people who are breastfeeding.",
+      "In pregnancy, the label allows it only when the possible benefit justifies the risk to the baby.",
+      "The label says people with epilepsy, heart failure or past psychiatric illness need closer watching."
+    ]
+  },
+  "interactions": [
+    "The label says care is needed when amantadine is taken with stimulants or other drugs that act on the brain.",
+    "Medicines that dry the mouth or slow the gut can add to amantadine's own drying effects.",
+    "Quinine and quinidine were shown to slow the body's removal of amantadine by about 30 percent.",
+    "One report describes higher amantadine blood levels with a combination of triamterene and hydrochlorothiazide.",
+    "The label says thioridazine worsened tremor in older people with Parkinson's disease.",
+    "The label says the live nasal flu vaccine has timing rules around amantadine.",
+    "The injected flu vaccine can be given at any time, according to the label."
+  ],
+  "pregnancyAndChildren": "The label says there are no adequate, well-controlled studies of amantadine in pregnant women. Animal studies found birth defects at high doses, and human data is scarce. The label says amantadine passes into breast milk and is not recommended for nursing mothers. Its safety and effectiveness in babies under one year old have not been established.",
+  "whatWeDoNotKnow": [
+    "The label says the way amantadine works against influenza A is not clearly understood.",
+    "The label says the way it helps Parkinson's disease is not known, though it weakly blocks NMDA receptors.",
+    "NINDS says researchers are not sure how it helps, but they think it raises dopamine's effects.",
+    "The label says amantadine's effect on fertility has not been adequately tested.",
+    "The label warns that influenza viruses change, and resistance can reduce how well it works.",
+    "Registered trials exist for other uses, but the registry does not show whether it helped.",
+    "Rare rises in liver enzymes have been reported, but the label says a link to the drug is not established.",
+    "The label does not say whether other drugs behave like the combination that raised amantadine levels."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "The US label approves amantadine for influenza A prevention and treatment and for parkinsonism.",
+      "quote": "indicated for the prophylaxis and treatment of signs and symptoms of infection caused by various strains of influenza A virus"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Nausea, dizziness and insomnia are the side effects reported most often.",
+      "quote": "The adverse reactions reported most frequently at the recommended dose of amantadine (5 to 10%) are: nausea, dizziness (lightheadedness), and insomnia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Vision changes can signal corneal swelling.",
+      "quote": "Corneal edema has been reported in patients taking amantadine. Symptoms include sudden onset of blurry vision, or progressive vision loss"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Deaths have been reported after overdose.",
+      "quote": "Deaths have been reported from overdose with amantadine. The lowest reported acute lethal dose was 1 gram."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Amantadine is not to be given to people with untreated angle closure glaucoma.",
+      "quote": "it should not be given to patients with untreated angle closure glaucoma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Quinine and quinidine slow the body's removal of amantadine.",
+      "quote": "Coadministration of quinine or quinidine with amantadine was shown to reduce the renal clearance of amantadine by about 30%."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "The live nasal flu vaccine has timing rules around amantadine.",
+      "quote": "LAIV should not be administered within 2 weeks before or 48 hours after administration of amantadine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Allergy to amantadine or the capsule ingredients is a contraindication.",
+      "quote": "contraindicated in patients with known hypersensitivity to amantadine hydrochloride or to any of the other ingredients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "The label says the Parkinson's mechanism of action is unknown, and describes amantadine as a weak NMDA receptor blocker.",
+      "quote": "The mechanism of action of amantadine in the treatment of Parkinson's disease and drug-induced extrapyramidal reactions is not known."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+      "publisher": "openFDA, US Food and Drug Administration drug label",
+      "claim": "Safety and effectiveness in babies under one year are not established.",
+      "quote": "The safety and efficacy of amantadine in newborn infants and infants below the age of 1 year have not been established."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Pregnancy data in humans is limited.",
+      "quote": "There are no adequate and well-controlled studies in pregnant women."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Amantadine passes into breast milk and is not recommended while nursing.",
+      "quote": "Amantadine is excreted in human milk. Use is not recommended in nursing mothers."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Stopping the drug suddenly is warned against in Parkinson's disease.",
+      "quote": "Amantadine should not be discontinued abruptly in patients with Parkinson's disease"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "New strong urges have been reported with Parkinson's medicines.",
+      "quote": "patients treated with anti-Parkinson medications can experience intense urges to gamble, increased sexual urges, intense urges to spend money uncontrollably"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "Fertility effects have not been adequately tested.",
+      "quote": "The effect of amantadine on fertility has not been adequately tested"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+      "publisher": "DailyMed, US National Library of Medicine",
+      "claim": "The drug builds up when kidneys work poorly, so lower doses are used in kidney impairment and in people 65 or older.",
+      "quote": "the dose of amantadine should be reduced in patients with renal impairment and in individuals who are 65 years of age or older"
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS)",
+      "claim": "NINDS lists amantadine among Parkinson's medicines and describes what it helps with.",
+      "quote": "This medicine can help with PD symptoms (tremors, stiffness, and uncontrolled movements) because it affects levels of dopamine and other brain chemicals."
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS)",
+      "claim": "It also reduces involuntary movements caused by other Parkinson's medicines.",
+      "quote": "Amantadine can also help reduce involuntary movements caused by other PD medicines."
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS)",
+      "claim": "In about half of users, some Parkinson's benefits may fade after a few months.",
+      "quote": "In about half of the people who take it, amantadine may stop treating some PD symptoms like stiff and slow movements after several months."
+    },
+    {
+      "url": "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+      "publisher": "National Institute of Neurological Disorders and Stroke (NINDS)",
+      "claim": "Researchers are unsure how it helps Parkinson's symptoms.",
+      "quote": "Researchers don't know for sure, but they think amantadine increases dopamine's effects."
+    },
+    {
+      "url": "https://www.nia.nih.gov/health/parkinsons-disease/parkinsons-disease-causes-symptoms-and-treatments",
+      "publisher": "National Institute on Aging (NIA)",
+      "claim": "NIA lists amantadine as a medicine a doctor may prescribe for involuntary movements.",
+      "quote": "Amantadine to help reduce involuntary movements"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Amantadine&pageSize=5",
+      "publisher": "ClinicalTrials.gov, US National Library of Medicine",
+      "claim": "Registered trials have tested amantadine outside its approved uses.",
+      "quote": "Amantadine, a medication that improves muscle control, and propranolol, a medication that lowers blood pressure"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amantadine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, US National Library of Medicine",
+      "claim": "PubChem lists amantadine as compound CID 2130, formula C10H17N, chemical name adamantan-1-amine.",
+      "quote": "adamantan-1-amine"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amantadine%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Symmetrel%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8e578f11-6112-4a1f-8de4-a76870bb62c7",
+    "https://www.nccih.nih.gov/health/amantadine",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547954/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK547954/?report=classic",
+    "https://ncbi.nlm.nih.gov/books/NBK547954/",
+    "https://www.ncbi.nlm.nih.gov/books/n/livertox/",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amantadine/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Amantadine&pageSize=5",
+    "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+    "https://www.nia.nih.gov/health/parkinsons-disease/parkinsons-disease-causes-symptoms-and-treatments",
+    "https://medlineplus.gov/parkinsonsdisease.html"
+  ],
+  "gaps": [
+    "NCCIH has no amantadine page; https://www.nccih.nih.gov/health/amantadine returned 404, so no NCCIH citation appears here.",
+    "The LiverTox amantadine monograph could not be fetched: NCBI Bookshelf returned a reCAPTCHA browser check on three attempts, so liver-injury content is limited to the FDA label.",
+    "The openFDA brand-name search for Symmetrel returned 404, so no Symmetrel-specific record was fetched.",
+    "The MedlinePlus drug monograph for amantadine was excluded by instruction because NLM states that content is copyrighted, even though search results surfaced it.",
+    "No fetched source states when amantadine was first approved, its extended-release brand forms, or its regulatory history.",
+    "No fetched source gives reliable human pregnancy outcome data beyond the label's warning language.",
+    "Dosing, tapering and personal protocol content is deliberately left out of this record.",
+    "ClinicalTrials.gov shows that trials exist, but the registry entries fetched do not report whether amantadine worked.",
+    "Public health guidance that amantadine is no longer recommended for influenza A could not be confirmed from the sources fetched, so it is not stated."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what amantadine is, its two approved uses, how people take it, its reported side effects and warnings, its interactions, and the questions that remain open."
+}

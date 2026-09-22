@@ -1,0 +1,191 @@
+{
+  "slug": "atropine",
+  "oneLineAnswer": "A prescription antimuscarinic drug that dries secretions, speeds the heart, and dilates the pupil; not a supplement.",
+  "whatItIs": "Atropine sulfate is a prescription medicine built from atropine, a belladonna alkaloid found in plants. Atropine is a mixture of two mirror-image forms, and almost all of its activity comes from one of them. It belongs to a drug group called antimuscarinics. Muscarinic receptors are docking points on glands, smooth muscle, and the heart. Acetylcholine, a body signaling chemical, normally docks there to give instructions. Atropine blocks those docking points.",
+  "whatItDoes": [
+    "Atropine blocks acetylcholine at muscarinic receptors instead of letting it act.",
+    "When those signals are blocked, saliva and other secretions dry up, the heart speeds up, and the pupil widens.",
+    "It also weakens the ciliary muscle, the small muscle that lets the eye focus on near objects.",
+    "US labeling lists injected atropine for blocking severe or life-threatening muscarinic effects, including poisoning by organophosphates or some mushrooms.",
+    "The eye-drop form is labeled to widen the pupil. It also paralyzes focusing and can blur one eye in lazy-eye treatment."
+  ],
+  "howPeopleUseIt": [
+    "Injected atropine is a hospital medicine, handled by clinicians in emergencies such as a dangerously slow heart rhythm.",
+    "It is also on emergency carts as an antidote for certain pesticide and mushroom poisonings.",
+    "Atropine eye drops are given in clinics to widen the pupil before an eye exam or eye surgery.",
+    "Researchers have tested weak atropine eye drops, from 0.01% to 0.05%, in children to slow worsening of nearsightedness.",
+    "US label registries also list tablets that combine atropine sulfate with diphenoxylate."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Dry mouth is expected, because saliva flow drops.",
+      "Blurred vision and sensitivity to light, called photophobia, are common, especially with the eye drops.",
+      "The heart rate climbs, and the label lists tachycardia (a fast heartbeat) as a common reaction.",
+      "Less sweating can make you feel overheated, which the label calls heat intolerance.",
+      "Constipation and trouble passing urine show up more often in older adults.",
+      "Eye drops sting when they go in, and the pupil can stay wide for up to two weeks.",
+      "Some people get a rash, and the label notes that a few of those rashes became severe."
+    ],
+    "seriousSigns": [
+      "The label warns atropine may set off acute glaucoma, a sudden rise in pressure inside the eye.",
+      "It can turn a partly blocked stomach outlet into a complete blockage.",
+      "In men with an enlarged prostate, it may lead to complete urinary retention. That means the bladder will not empty.",
+      "In chronic lung disease, it can thicken mucus and form plugs in the airways.",
+      "After eye drops, absorbed drug has caused restlessness, confusion or delirium, flushed skin, and higher blood pressure.",
+      "The label describes overdose as moving through restlessness and excitement to hallucinations, delirium, and coma.",
+      "The label states that in children 10 mg or less may be fatal.",
+      "PubChem lists chemical hazard statements for atropine sulfate powder. They say fatal if swallowed or inhaled. That is a handling classification, not a medicine label."
+    ],
+    "whoShouldAvoid": [
+      "The eye-drop label rules out people who have shown an allergy to any ingredient in the product.",
+      "Labels flag glaucoma as a reason for caution, because atropine can trigger an acute attack.",
+      "Labels flag an enlarged prostate or a partly blocked stomach outlet, which atropine can make worse.",
+      "Labels flag chronic lung disease with heavy mucus, because airway plugs can form.",
+      "The eye-drop label says use in children under 3 months is not recommended.",
+      "That label warns the drug is absorbed into the body in young children. It says use between 3 months and 3 years should stay limited."
+    ]
+  },
+  "interactions": [
+    "The injection label records that atropine slows how fast mexiletine, a heart-rhythm drug, is absorbed.",
+    "The eye-drop label says combining atropine with a monoamine oxidase inhibitor (MAOI), an older antidepressant, is generally not recommended.",
+    "The stated reason is the potential for a hypertensive crisis, a dangerous spike in blood pressure.",
+    "Organophosphate pesticides block the breakdown of atropine in the body, so the drug lingers longer in poisoning cases."
+  ],
+  "pregnancyAndChildren": "The injection label says the studies in pregnant women are too weak to judge risk. It cannot say whether atropine raises the chance of birth defects, miscarriage, or harm to the baby. Atropine crosses the placenta, the organ that links a pregnant woman to the fetus. One study of hundreds of pregnancies found no rise in birth defects. A surveillance study saw 18 major defects where 16 were expected, with no clear pattern. The eye-drop label says to use the drops in pregnancy only when the benefit justifies the risk. Traces of atropine have shown up in human milk after it was taken by mouth. Nothing is known about milk levels after an injection or an eye drop. How that affects a nursing baby is also unknown. Atropine leaves the body more slowly in children under 2 and in adults over 65. The injection label notes that pediatric dosing has not been well studied. The eye-drop label covers children from 3 months of age upward.",
+  "whatWeDoNotKnow": [
+    "No well-controlled study has measured atropine's risk in pregnancy, so birth-defect risk stays uncertain.",
+    "We do not know how much atropine reaches breast milk after an injection or eye drop. Its effect on a nursing infant is unknown.",
+    "No animal studies have tested whether atropine causes cancer, damages genes, or harms fertility.",
+    "The registered child myopia trials cover the eye-drop form only, so they say nothing about injected atropine.",
+    "There is no public-domain beginner source that describes what starting atropine feels like from the patient's side."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Injected atropine is labeled to block severe or life-threatening muscarinic effects.",
+      "quote": "Atropine Sulfate Injection, USP, is indicated for temporary blockade of severe or life threatening muscarinic effects"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Atropine works by blocking acetylcholine at muscarinic receptors.",
+      "quote": "Atropine is an antimuscarinic agent since it antagonizes the muscarine-like actions of acetylcholine and other choline esters"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Atropine is a belladonna alkaloid supplied as a mix of two mirror-image forms.",
+      "quote": "Atropine, a naturally occurring belladonna alkaloid, is a racemic mixture of equal parts of d- and 1-hyocyamine"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Dry mouth, blurred vision, light sensitivity, and a fast heart rate are the common reactions.",
+      "quote": "Dryness of the mouth, blurred vision, photophobia and tachycardia commonly occur"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Atropine slows the absorption of the heart-rhythm drug mexiletine.",
+      "quote": "Atropine Sulfate Injection decreased the rate of mexiletine absorption without altering the relative oral bioavailability"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Pregnancy data are too thin to judge the risk of birth defects.",
+      "quote": "Available data from published observational studies on atropine use in pregnant women are insufficient to evaluate for a drug-associated risk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Atropine leaves the body more slowly in children under 2 and in older adults.",
+      "quote": "The elimination half-life of atropine is more than doubled in children under two years and the elderly"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Injection label)",
+      "claim": "Cancer, gene damage, and fertility effects have not been studied in animals.",
+      "quote": "Studies have not been performed to evaluate the carcinogenic or mutagenic potential of atropine or its potential to affect fertility adversely"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Ophthalmic Solution 1% label)",
+      "claim": "The eye drop widens the pupil and can keep it wide for up to two weeks.",
+      "quote": "The effect can last for up to 2 weeks in a normal eye"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Ophthalmic Solution 1% label)",
+      "claim": "The drop relaxes the focusing muscle, so near vision blurs.",
+      "quote": "Atropine also weakens the contraction of the ciliary muscle, or cycloplegia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Ophthalmic Solution 1% label)",
+      "claim": "Eye drops sting on contact, and absorbed drug can affect the whole body.",
+      "quote": "Eye pain and stinging occurs upon instillation"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Ophthalmic Solution 1% label)",
+      "claim": "Mixing atropine with an MAO inhibitor is generally not recommended because blood pressure can spike.",
+      "quote": "The use of atropine and monoamine oxidase inhibitors (MAOI) is generally not recommended because of the potential to precipitate hypertensive crisis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+      "publisher": "openFDA / U.S. Food and Drug Administration (Atropine Sulfate Ophthalmic Solution 1% label)",
+      "claim": "The eye-drop form is not recommended for babies under 3 months.",
+      "quote": "Use in pediatric patients younger than 3 months of age is not recommended"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/174174/JSON?heading=Safety+and+Hazards",
+      "publisher": "National Library of Medicine, PubChem",
+      "claim": "PubChem's hazard data for the atropine sulfate substance includes a fatal-if-swallowed acute toxicity classification.",
+      "quote": "H300 (97.3%): Fatal if swallowed [Danger Acute toxicity, oral]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/atropine%20sulfate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "National Library of Medicine, PubChem",
+      "claim": "PubChem lists the formula of the atropine sulfate hydrate salt as C34H50N2O11S.",
+      "quote": "C34H50N2O11S"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=low-dose%20atropine%20myopia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,Phase,EnrollmentCount",
+      "publisher": "ClinicalTrials.gov / U.S. National Library of Medicine",
+      "claim": "Registered trials test low-concentration atropine eye drops to slow myopia in children.",
+      "quote": "The Effectiveness and Safety of Two Low-concentration Atropine Sulfate Eye Drops (0.01%/0.02%) for Delaying the Pediatric Myopia Progression"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=atropine&pagesize=5",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "claim": "US label registries list a tablet that pairs atropine sulfate with diphenoxylate.",
+      "quote": "DIPHENOXYLATE HYDROCHLORIDE AND ATROPINE SULFATE TABLET"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Atropine%20Sulfate%22+AND+openfda.route:%22OPHTHALMIC%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22ATROPINE%22+AND+openfda.product_type:%22HUMAN+OTC+DRUG%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=atropine&pagesize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Atropine-Sulfate",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/174174",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/atropine%20sulfate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/174174/JSON?heading=Safety+and+Hazards",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Atropine%20Sulfate&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=low-dose%20atropine%20myopia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,Phase,EnrollmentCount",
+    "https://www.nccih.nih.gov/health/atropine",
+    "https://www.nccih.nih.gov/health/belladonna",
+    "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/nearsightedness-myopia"
+  ],
+  "gaps": [
+    "NCCIH has no atropine page and no belladonna page; both returned 404, so no complementary-health source was available for this record.",
+    "The National Eye Institute myopia page does not mention atropine, so the myopia use rests on registered trial titles rather than an eye-agency explainer.",
+    "MedlinePlus drug monographs were deliberately not fetched or cited, because NLM states that content belongs to the American Society of Health-System Pharmacists and is copyrighted.",
+    "No usable source stated a personal dose for any use, and this record contains no dose guidance on purpose.",
+    "The FDA registry also lists homeopathic products containing atropine sulfate at a 12X dilution, which is a different kind of product from the medicines described here.",
+    "PubChem's fatal-if-swallowed or inhaled statements are chemical handling classifications for atropine sulfate as a substance, not patient-facing drug label warnings."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what atropine sulfate is, how it blocks muscarinic receptors, its labeled hospital and eye-drop uses, common and serious effects, interactions, and the pregnancy, breastfeeding, and childhood gaps in the evidence."
+}

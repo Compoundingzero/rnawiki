@@ -1,0 +1,181 @@
+{
+  "slug": "adefovir-dipivoxil",
+  "oneLineAnswer": "A prescription antiviral tablet for chronic hepatitis B in people aged 12 and older.",
+  "whatItIs": "Adefovir dipivoxil is a nucleotide analogue. That means it is a lab-made version of a nucleotide, a building block of DNA. It is an antiviral medicine that comes as tablets. The brand name is Hepsera, and generic versions are sold too. Your body converts it into adefovir, the form that acts on the virus. Its chemical formula is C20H32N5O8P and its molecular weight is about 501.5.",
+  "whatItDoes": [
+    "It treats chronic hepatitis B, a long-lasting infection of the liver.",
+    "Your body converts it into adefovir diphosphate, the active form.",
+    "That active form blocks an enzyme the virus needs to copy its DNA.",
+    "The label records it for people aged 12 and older with active viral replication.",
+    "It is taken long term, and the best treatment length is unknown."
+  ],
+  "howPeopleUseIt": [
+    "The label records one 10 mg tablet once a day, with or without food.",
+    "Kidney function is measured before treatment starts.",
+    "If kidneys work poorly, the label says to stretch out the dosing interval.",
+    "During treatment, blood tests track virus levels, liver enzymes and kidney function.",
+    "After the medicine stops, liver tests are followed closely for several months.",
+    "In trials, some people kept taking it for up to 240 weeks, about four and a half years."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "In 48-week trials, side effects were about as common as with placebo.",
+      "The most frequent were asthenia (low energy), headache, belly pain and nausea.",
+      "Others reported include diarrhea, indigestion (dyspepsia) and gas (flatulence)."
+    ],
+    "seriousSigns": [
+      "Hepatitis can flare after the medicine is stopped, sometimes severely.",
+      "In trials, up to 25 percent of people had liver enzyme rises above ten times normal after stopping.",
+      "Severe flares, including deaths, have been reported after discontinuation.",
+      "The medicine can harm the kidneys, usually slowly over months.",
+      "Kidney strain shows up as rising creatinine and falling phosphorus on blood tests.",
+      "Nucleoside-type medicines have caused lactic acidosis, a dangerous acid buildup in the blood.",
+      "Severe fat buildup in the liver with an enlarged liver has also occurred, with fatal cases.",
+      "Rare reports after approval include pancreatitis, muscle damage, bone pain and a kidney tubule problem called Fanconi syndrome.",
+      "Some hepatitis B medicines also act on HIV.",
+      "Taking one while HIV infection is unrecognized can let HIV become resistant."
+    ],
+    "whoShouldAvoid": [
+      "The label rules it out for anyone allergic to the medicine or the tablet ingredients.",
+      "It is not recommended for children under 12.",
+      "The label says not to combine it with tenofovir products.",
+      "People with kidney disease need careful checks and sometimes a different schedule.",
+      "HIV testing is offered before treatment starts, because missed HIV can develop resistance."
+    ]
+  },
+  "interactions": [
+    "Adefovir leaves the body through the kidneys, so other kidney-harming drugs matter.",
+    "The label names cyclosporine, tacrolimus, aminoglycosides, vancomycin and anti-inflammatory painkillers as examples.",
+    "The label says not to combine it with tenofovir disoproxil fumarate or tenofovir alafenamide.",
+    "Drugs competing for the same kidney pathway can raise levels of either medicine.",
+    "Studies have given it with lamivudine, acetaminophen, ibuprofen and didanosine to check blood levels.",
+    "Adefovir did not block common liver enzymes, so those interactions look unlikely."
+  ],
+  "pregnancyAndChildren": "Pregnancy data on adefovir are too limited to judge the risk of birth defects or miscarriage. A pregnancy registry tracks outcomes for women who take it while pregnant. It is not known whether adefovir passes into breast milk. Among children aged 12 to under 18, 23 percent reached low virus levels with normal liver tests. None on placebo reached that goal at 48 weeks. The label does not recommend it for children under 12, where it worked no better than placebo.",
+  "whatWeDoNotKnow": [
+    "The label states that the optimal duration of treatment is unknown.",
+    "It is not known whether adefovir is present in human breast milk.",
+    "Whether adefovir can make the body's drug-processing enzymes increase is unknown.",
+    "We found no source describing effects on cirrhosis, liver cancer or death rates.",
+    "Trials did not include enough people aged 65 and over to show a different response.",
+    "The label carries no safety or dosing data for adolescents with kidney problems."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label says the medicine treats chronic hepatitis B in people 12 years and older.",
+      "quote": "indicated for the treatment of chronic hepatitis B in patients 12 years of age and older"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Stopping the medicine can cause a severe hepatitis flare.",
+      "quote": "Severe acute exacerbations of hepatitis have been reported in patients who have discontinued anti-Hepatitis B therapy including adefovir dipivoxil tablets."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Long-term use can damage the kidneys.",
+      "quote": "Chronic administration of adefovir dipivoxil (10 mg once daily) may result in delayed nephrotoxicity."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The most common side effects are low energy, headache, belly pain and nausea.",
+      "quote": "The most common adverse reaction (incidence greater than 5%) in compensated liver disease patients were asthenia, headache, abdominal pain and nausea."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The labeled adult form is a 10 mg tablet taken once daily.",
+      "quote": "One tablet containing 10 mg adefovir dipivoxil once daily orally with or without food."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label says the best length of treatment is not known.",
+      "quote": "The optimal duration of treatment is unknown."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The active form blocks the viral enzyme that copies hepatitis B DNA.",
+      "quote": "Adefovir diphosphate inhibits HBV DNA polymerase (reverse transcriptase) by competing with the natural substrate deoxyadenosine triphosphate"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It must not be combined with tenofovir products.",
+      "quote": "Adefovir dipivoxil should not be used concurrently with products containing tenofovir disoproxil fumarate or tenofovir alafenamide."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label does not recommend it for children under 12.",
+      "quote": "Adefovir dipivoxil tablets are not recommended for use in children less than 12 years of age."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Pregnancy data are not enough to judge the risk of birth defects.",
+      "quote": "Prospective pregnancy data from the APR are not sufficient to adequately assess the risk of birth defects, miscarriage or adverse maternal or fetal outcomes."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "It is unknown whether adefovir passes into breast milk.",
+      "quote": "It is not known whether adefovir is present in human breast milk, affects human milk production, or has effects on the breastfed infant."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/adefovir%20dipivoxil/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Adefovir dipivoxil has the formula C20H32N5O8P and a molecular weight near 501.5.",
+      "quote": "\"MolecularFormula\": \"C20H32N5O8P\", \"MolecularWeight\": \"501.5\""
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=adefovir",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "DailyMed lists adefovir dipivoxil tablets, including the brand Hepsera and generics.",
+      "quote": "HEPSERA (adefovir dipivoxil) tablet"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Adefovir%20Dipivoxil&pageSize=5",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A phase 4 trial used adefovir dipivoxil as a comparator in HBeAg-negative chronic hepatitis B.",
+      "quote": "Comparing the Safety and Antiviral Activity of 48-week Clevudine and Adefovir Dipivoxil in HBeAg(-) Chronic Hepatitis B"
+    },
+    {
+      "url": "https://medlineplus.gov/hepatitisb.html",
+      "publisher": "MedlinePlus (U.S. National Library of Medicine)",
+      "claim": "Chronic hepatitis B that is damaging the liver may need antiviral medicine.",
+      "quote": "if you have a chronic infection and blood tests show that hepatitis B could be damaging your liver, you may need to take antiviral medicines"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Adefovir+Dipivoxil%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22adefovir+dipivoxil%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Hepsera%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=adefovir",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=46014-0501-1",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/adefovir%20dipivoxil/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/60871",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Adefovir%20Dipivoxil&pageSize=5",
+    "https://www.nccih.nih.gov/health/adefovir-dipivoxil",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548803/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548803/?report=reader",
+    "https://medlineplus.gov/hepatitisb.html"
+  ],
+  "gaps": [
+    "NCCIH has no page for this substance: https://www.nccih.nih.gov/health/adefovir-dipivoxil returned HTTP 404.",
+    "LiverTox (NCBI Bookshelf NBK548803) was unreachable twice and stopped by a browser check, so its hepatitis B drug content is not reflected here.",
+    "The openFDA brand-name query for Hepsera returned HTTP 404, so the brand name is grounded from the DailyMed search listing instead.",
+    "The DailyMed page for the Hepsera setid served only NLM boilerplate text, so no DailyMed label wording is quoted beyond the product listing.",
+    "Most safety detail rests on one label family, the FDA-approved adefovir dipivoxil labeling. Only identity, purpose and trial existence have a second independent source.",
+    "No fetched source describes effects on cirrhosis, liver cancer or mortality, so no such claim is made.",
+    "Uses outside chronic hepatitis B, plus pricing and availability, were not grounded and are omitted.",
+    "The pediatric 23 percent response figure comes from one placebo-controlled study in the label and is not confirmed by a second fetched source."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what adefovir dipivoxil is, what the FDA label says it treats, how it is taken and monitored, its recorded side effects and kidney, liver and HIV risks, its interactions, and open questions about pregnancy, children and long-term outcomes."
+}

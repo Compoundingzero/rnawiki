@@ -1,0 +1,161 @@
+{
+  "slug": "pantoprazole",
+  "oneLineAnswer": "A prescription acid blocker called a proton pump inhibitor, used to heal acid damage in the food pipe.",
+  "whatItIs": "Pantoprazole belongs to a medicine group called proton pump inhibitors, or PPIs. A proton pump is the acid pump inside the cells that line your stomach. This medicine switches that pump off, so your stomach makes less acid. You can get it as a tablet coated to dissolve later in your gut, or as a powder that is mixed and given through a vein. The brand name is Protonix, and generic versions exist.",
+  "whatItDoes": [
+    "Pantoprazole lowers how much acid your stomach releases.",
+    "A drug label says it blocks the last step in acid production by latching onto the acid pump on stomach cells.",
+    "That block outlasts one dose: the label records an acid-blocking effect lasting longer than 24 hours.",
+    "Acid secretion returned to normal within about a week after the last dose, with no rebound surge, per the same label."
+  ],
+  "howPeopleUseIt": [
+    "It is used for reflux and heartburn, and to heal acid damage in the food pipe, called erosive esophagitis.",
+    "A label lists three main uses: short-term healing of that damage, keeping it healed, and long-term care for conditions where the stomach makes far too much acid.",
+    "Zollinger-Ellison syndrome is one named condition in that last group.",
+    "The injection form is for people who cannot take a tablet yet, per the label.",
+    "PubChem notes it is widely used in hospitals and outpatient settings."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "A label's trials listed headache, diarrhea, nausea, stomach pain, vomiting, gas, dizziness and joint pain above 2%.",
+      "In children, the label lists fever, rash, and upper respiratory infection as more common.",
+      "Some of those rates were close to the placebo rates in the same trials.",
+      "Less common reports include constipation, dry mouth, rash, itching, depression, and blurred vision."
+    ],
+    "seriousSigns": [
+      "Kidney inflammation, called acute tubulointerstitial nephritis, can appear at any point during treatment.",
+      "Ongoing diarrhea may be from a Clostridioides difficile infection, which a label links to PPI use.",
+      "Long-term or high-dose use is tied to a higher risk of broken bones in the hip, wrist, or spine.",
+      "Severe skin reactions have been reported, including Stevens-Johnson syndrome and toxic epidermal necrolysis.",
+      "A lupus-like illness has appeared during PPI treatment, mostly as a skin rash.",
+      "Low magnesium in the blood is reported rarely, mostly after a year, and can cause muscle spasms, irregular heartbeats, or seizures.",
+      "Low vitamin B12 and small growths in the stomach lining, called fundic gland polyps, are listed with longer use.",
+      "Severe allergic reactions, including anaphylaxis, are listed as possible.",
+      "Giving the medicine into a vein can inflame the vein, a problem called thrombophlebitis."
+    ],
+    "whoShouldAvoid": [
+      "A label says not to use it if you have had an allergic reaction to it or to related benzimidazole medicines.",
+      "It is also off-limits for people taking rilpivirine, an HIV medicine.",
+      "Label warnings single out people who already have low magnesium or low calcium, or a high risk of either."
+    ]
+  },
+  "interactions": [
+    "Rilpivirine, an HIV medicine, must not be combined with pantoprazole, per a label.",
+    "Nelfinavir, another HIV medicine, should be avoided with it.",
+    "Some HIV drugs may be absorbed less, and one of them, saquinavir, may build up more in the body.",
+    "Warfarin, a blood thinner, can raise a clotting measure called INR, which may lead to abnormal bleeding.",
+    "Clopidogrel showed no clinically important interaction in healthy people, the label reports.",
+    "High-dose methotrexate may stay in the body longer when a PPI is used too.",
+    "Drugs that need stomach acid to dissolve may be absorbed less, such as iron salts, ketoconazole, and erlotinib.",
+    "Pantoprazole can cause a false positive urine test for THC, or a false positive tumor marker test called chromogranin A.",
+    "PubChem notes it is broken down mainly by liver enzymes CYP2C19 and CYP3A4, so drugs sharing those pathways may interact."
+  ],
+  "pregnancyAndChildren": "Human pregnancy data have not shown a link to birth defects, but they are not complete. A label states that published observational studies did not show an association with major malformations, while adding that such studies cannot fully rule a risk in or out. The same label carries a warning, based on animal data, that pantoprazole may harm a fetus, because young rats exposed before and after birth had shorter and lighter thigh bones. In pregnant animals given very high multiples of the human dose during organ formation, no harm to the fetus was seen. After one oral dose in a nursing mother, pantoprazole was found in her breast milk at low levels, with no reported effects on her infant. There are no data on how it affects milk production. For children, the label says short-term treatment of erosive esophagitis with GERD is established from age 1, and the medicine is indicated from age 5 and up because no suitable formulation exists for younger children. A study in infants 1 to 11 months old found it was no better than placebo for their reflux, so it is not indicated in that age group.",
+  "whatWeDoNotKnow": [
+    "Human pregnancy data cannot fully prove or rule out a risk from the medicine, the label says.",
+    "The label says the meaning of mild, passing liver enzyme rises in a large group of people is unknown.",
+    "There are no data on how pantoprazole affects how much milk a person makes.",
+    "Feeling better on the medicine does not rule out stomach cancer, the label notes.",
+    "For children, only erosive esophagitis is established, not benefit for reflux symptoms in general.",
+    "Long-term effects on bone in people are described only as associations, not proven causes."
+  ],
+  "evidence": [
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=08098cb2-c048-4640-f387-6beec4a38936",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label lists short-term treatment of erosive esophagitis linked to GERD as an approved use.",
+      "quote": "Short-Term Treatment of Erosive Esophagitis Associated with Gastroesophageal Reflux Disease (GERD)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PROTONIX%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Pantoprazole blocks the final step of stomach acid production at the acid pump on stomach cells.",
+      "quote": "Pantoprazole is a PPI that suppresses the final step in gastric acid production"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Pantoprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "The most frequent side effects in the label's GERD trials were headache, diarrhea, nausea, stomach pain, vomiting, gas, dizziness, and joint pain.",
+      "quote": "Most common adverse reactions (> 2%) are: headache, diarrhea, nausea, abdominal pain, vomiting, flatulence, dizziness, and arthralgia."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Pantoprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Rilpivirine-containing HIV products must not be used with pantoprazole.",
+      "quote": "Proton pump inhibitors (PPIs), including pantoprazole sodium, are contraindicated in patients receiving rilpivirine-containing products"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PROTONIX%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Published observational human data have not linked pantoprazole to major birth defects.",
+      "quote": "Available data from published observational studies did not demonstrate an association of major malformations or other adverse pregnancy outcomes with pantoprazole"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PROTONIX%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Combining a PPI with warfarin can raise a clotting measure and bleeding risk.",
+      "quote": "Increased INR and prothrombin time in patients receiving PPIs, including pantoprazole, and warfarin concomitantly"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Pantoprazole%22&limit=1",
+      "publisher": "U.S. Food and Drug Administration (openFDA drug label)",
+      "claim": "Low magnesium is reported rarely, and mostly after months of PPI treatment.",
+      "quote": "Hypomagnesemia, symptomatic and asymptomatic, has been reported rarely in patients treated with PPIs for at least three months"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/4679/JSON?heading=Drug%20and%20Medication%20Information",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Pantoprazole is widely used for gastroesophageal reflux and peptic ulcer disease, and clinically apparent liver injury from it is rare.",
+      "quote": "a potent inhibitor of gastric acidity which is widely used in the therapy of gastroesophageal reflux and peptic ulcer disease"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Pantoprazole&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Registered studies include a completed drug-interaction trial of pantoprazole with rosuvastatin.",
+      "quote": "Drug-drug Interaction Study in Healthy Male Volunteers Following the Administration of Pantoprazole and Rosuvastatin"
+    },
+    {
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults",
+      "publisher": "National Institute of Diabetes and Digestive and Kidney Diseases",
+      "claim": "GERD is the longer-lasting form of reflux, with repeated symptoms or complications.",
+      "quote": "GERD is a more severe and long-lasting condition in which GER causes repeated symptoms"
+    },
+    {
+      "url": "https://medlineplus.gov/gerd.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "Reflux means stomach contents flow back up and can irritate the food pipe.",
+      "quote": "Stomach contents can then move back up and irritate the esophagus."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Pantoprazole%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PROTONIX%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=spl_set_id:%2208098cb2-c048-4640-f387-6beec4a38936%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=08098cb2-c048-4640-f387-6beec4a38936",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=pantoprazole",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/08098cb2-c048-4640-f387-6beec4a38936.json",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/pantoprazole/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/4679/JSON?heading=Drug%20and%20Medication%20Information",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/4679/JSON?heading=Description",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Pantoprazole&pageSize=5",
+    "https://www.nccih.nih.gov/health/pantoprazole",
+    "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults",
+    "https://medlineplus.gov/gerd.html",
+    "https://medlineplus.gov/lab-tests/helicobacter-pylori-tests/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548461/",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548461/?report=classic",
+    "https://www.ncbi.nlm.nih.gov/books/n/livertox/Pantoprazole/"
+  ],
+  "gaps": [
+    "NCCIH has no pantoprazole page: https://www.nccih.nih.gov/health/pantoprazole returned 404, so no NCCIH content is cited.",
+    "LiverTox pages on the NCBI Bookshelf (NIDDK) were behind a bot check on every attempt, so no LiverTox claim appears in this record even though the topic is relevant to liver injury.",
+    "MedlinePlus drug monographs were excluded on copyright grounds, so none of their patient-instruction wording was used.",
+    "An openFDA search by spl_set_id returned 404 and the DailyMed SPL JSON endpoint returned 415, so label text came through the working openFDA and DailyMed page routes instead.",
+    "PubChem's Description heading returned 400; identity facts came from PubChem's compound property and drug information endpoints.",
+    "The MedlinePlus H. pylori test page returned 404.",
+    "No fetched source gave a long-term human answer on whether the medicine changes bone strength, only observational associations.",
+    "Hepatitis appears in the label's less common side effect list, but no liver-injury reference we were allowed to fetch could be opened to explain it."
+  ],
+  "confidence": "high",
+  "summary": "Covers what pantoprazole is, how it lowers stomach acid, its label uses for reflux and erosive esophagitis, its side effects and warnings, drug interactions, and pregnancy and child use."
+}

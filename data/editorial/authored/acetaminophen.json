@@ -1,0 +1,327 @@
+{
+  "slug": "acetaminophen",
+  "oneLineAnswer": "A common medicine for everyday pain and fever; too much at once harms the liver.",
+  "whatItIs": "Paracetamol is the name used in many countries for the medicine known in the United States as acetaminophen. It is a pain reliever and fever reducer that you take by mouth. It comes as tablets, capsules, liquids, powders and suppositories. It is a different medicine from anti-inflammatory painkillers called NSAIDs, such as ibuprofen.",
+  "whatItDoes": [
+    "It eases everyday pain, such as headaches, sore muscles, toothache and period cramps.",
+    "It also lowers fever for a while.",
+    "Labels sum it up as a pain reliever and fever reducer.",
+    "The exact way it works is not established, a US label says.",
+    "It seems to act mainly in the brain and spinal cord."
+  ],
+  "howPeopleUseIt": [
+    "People take it for common problems such as headaches, colds, backache and muscle aches.",
+    "It is sold as tablets, capsules, liquids, powders and suppositories.",
+    "It is also an ingredient in hundreds of combination medicines, including cold, cough, allergy and sleep products.",
+    "Brand names differ by country; well known ones include Tylenol and Panadol.",
+    "FDA warns that using two products that both contain it can add up to an accidental overdose."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "The most common side effects recorded in trials of injected acetaminophen were nausea, vomiting, headache and insomnia.",
+      "Those trials used an injected form, so they do not describe what tablets or liquids feel like."
+    ],
+    "seriousSigns": [
+      "Too much can damage the liver; FDA says this can lead to liver failure and death.",
+      "Your liver processes the drug, and a large amount at once overloads that process, FDA says.",
+      "Signs of liver disease FDA lists include yellow skin and eyes, dark urine, pale stools, nausea and vomiting.",
+      "Rare but serious skin reactions can happen, with reddening, rash, blisters or peeling of the upper skin.",
+      "FDA says a serious skin reaction can appear even if earlier use caused no problem."
+    ],
+    "whoShouldAvoid": [
+      "FDA says to ask a health professional before use if you have liver disease.",
+      "A US prescription label lists severe liver disease as a reason not to use the medicine.",
+      "Ask a doctor first if you are allergic to acetaminophen or to an ingredient in the product.",
+      "FDA says people who had a serious skin reaction to it should not take it again.",
+      "FDA warns that three or more alcoholic drinks a day raises the risk of liver damage.",
+      "FDA says not to give an adult product to a child under 12."
+    ]
+  },
+  "interactions": [
+    "FDA says to avoid using more than one product that contains acetaminophen at the same time.",
+    "FDA also states the 24-hour total from all sources should not go above 4,000 mg.",
+    "That limit is for adults and children 12 and older.",
+    "Labels say to ask a doctor or pharmacist before use if you take warfarin, a blood-thinning drug.",
+    "Short forms such as APAP, acetamin and acetam can hide acetaminophen on a prescription label."
+  ],
+  "pregnancyAndChildren": "FDA says it has not found clear evidence that appropriate use in pregnancy causes problems for the baby. It still advises talking to a health professional first. For children, FDA says to read the label. It also says to use the measuring device sold with a liquid product, not a kitchen spoon. FDA says never to give an adult product to a child under 12.",
+  "whatWeDoNotKnow": [
+    "This record gives no dosing instructions and is not medical advice.",
+    "The exact way paracetamol eases pain and fever is still not established, a US label says.",
+    "Everyday side effects for tablets and liquids are not described on the public pages fetched.",
+    "The side effect list here comes from trials of an injected form.",
+    "FDA says it continues to watch pain medicine use in pregnancy, so that evidence is not settled.",
+    "How often serious harm happens in ordinary use is not stated on the pages fetched."
+  ],
+  "evidence": [
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA lists acetaminophen as a drug used to relieve pain and reduce fever.",
+      "quote": "Acetaminophen is a drug that is used to: Temporarily relieve pain Temporarily reduce fever"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA states a 24-hour maximum of 4,000 mg for adults and children 12 and older.",
+      "quote": "should not be more than 4,000 mg for adults and children 12 years of age and older"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says severe liver damage can occur with three or more alcoholic drinks a day while using it.",
+      "quote": "severe liver damage may occur if you have three or more alcoholic drinks per day while using acetaminophen"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA has not found clear evidence that appropriate use in pregnancy causes adverse outcomes.",
+      "quote": "FDA has not found clear evidence that appropriate use of acetaminophen during pregnancy causes adverse pregnancy, birth, neurobehavioral, or developmental outcomes"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says acetaminophen is an ingredient in hundreds of prescription and over-the-counter drugs.",
+      "quote": "Acetaminophen is found in hundreds of over-the-counter and prescription drugs"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "Outside the United States the same medicine is commonly called paracetamol.",
+      "quote": "Outside of the United States, acetaminophen is commonly known as paracetamol"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA lists tablets, capsules, liquids, powders and suppositories as forms of the medicine.",
+      "quote": "Tablets, including extended-release (long-acting) or chewable tablets Capsules Liquids Powders Suppositories (for rectal use)"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says taking too much acetaminophen can cause liver failure and death.",
+      "quote": "Taking too much acetaminophen can cause liver failure and death"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says using more than one acetaminophen product at a time risks accidental overdose.",
+      "quote": "You could accidentally take too much if you use more than one product containing acetaminophen at a time"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA advises asking a health professional before use if you have liver disease.",
+      "quote": "Ask your health care professional before use if you have liver disease"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says not to give adult products to children under 12.",
+      "quote": "Do not use a product intended for adults if the child is less than 12 years of age"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says to use the dosing device supplied with a liquid product, not a kitchen spoon.",
+      "quote": "Do not use a kitchen spoon or a dosing device from a different product"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says it continues to monitor pain medicine use, including acetaminophen, in pregnancy.",
+      "quote": "FDA continues to monitor and evaluate the use of pain medicine, including acetaminophen, during pregnancy"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA lists reddening, rash, blisters and skin detachment as symptoms of severe skin reactions.",
+      "quote": "Symptoms of severe skin reactions may include skin reddening, rash, blisters, and detachment of the upper surface of the skin"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "Short forms such as APAP may appear on prescription labels in place of the full word.",
+      "quote": "abbreviations for acetaminophen – such as APAP, Acetaminoph, Acetaminop, Acetamin and Acetam – may be used on prescription labels"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-fda-warns-rare-serious-skin-reactions-pain-relieverfever-reducer-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "Serious skin reactions linked to acetaminophen include SJS, TEN and AGEP, and can be fatal.",
+      "quote": "These skin reactions, known as Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), and acute generalized exanthematous pustulosis (AGEP), can be fatal"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-fda-warns-rare-serious-skin-reactions-pain-relieverfever-reducer-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "A serious skin reaction can happen at any time, even after earlier use without problems.",
+      "quote": "a serious skin reaction can occur at any time while taking acetaminophen even if you have taken the medicine before without any problems"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-fda-warns-rare-serious-skin-reactions-pain-relieverfever-reducer-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "People who had a serious skin reaction to acetaminophen should not take it again.",
+      "quote": "You should not take acetaminophen again if you have previously experienced a serious skin reaction with the medicine"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-fda-warns-rare-serious-skin-reactions-pain-relieverfever-reducer-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "NSAIDs such as ibuprofen and naproxen are separate medicines that carry their own skin-reaction risk.",
+      "quote": "non-steroidal anti-inflammatory drugs, or NSAIDS, such as ibuprofen and naproxen"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/health-bulletin-use-caution-pain-relievers-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA says too much acetaminophen overloads the liver's ability to process the drug.",
+      "quote": "Too much acetaminophen overloads the liver's ability to process the drug safely"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/health-bulletin-use-caution-pain-relievers-acetaminophen",
+      "publisher": "U.S. Food and Drug Administration (FDA)",
+      "claim": "FDA lists yellow skin and eyes, dark urine, light-colored stools, nausea and vomiting as signs of liver disease.",
+      "quote": "The signs of liver disease include abnormally yellow skin and eyes, dark urine, light-colored stools, nausea, vomiting and loss of appetite"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Over-the-counter labels say the product temporarily relieves minor aches and pains.",
+      "quote": "temporarily relieves minor aches and pains due to: headache the common cold backache minor pain of arthritis"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Labels state the purpose as pain reliever and fever reducer.",
+      "quote": "Purpose Pain reliever/fever reducer"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Labels tell users not to combine it with another product that contains acetaminophen.",
+      "quote": "Do not use with any other drug containing acetaminophen (prescription or nonprescription)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Labels tell pregnant or breastfeeding people to ask a health professional first.",
+      "quote": "If pregnant or breast-feeding, ask a health professional before use."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Labels advise asking a doctor or pharmacist before use if taking the blood thinner warfarin.",
+      "quote": "Ask a doctor or pharmacist before use if you are taking the blood thinning drug warfarin"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Labels carry an allergy alert about severe skin reactions with reddening, blisters or rash.",
+      "quote": "Acetaminophen may cause severe skin reactions. Symptoms may include: skin reddening blisters rash"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "As of September 2026 openFDA held 3,501 label records matching the generic name acetaminophen.",
+      "quote": "\"total\": 3501"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.route:%22INTRAVENOUS%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "A boxed warning links acetaminophen to acute liver failure, liver transplant and death.",
+      "quote": "Acetaminophen has been associated with cases of acute liver failure, at times resulting in liver transplant and death"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.route:%22INTRAVENOUS%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "The label says the exact mechanism of the pain and fever effects is not established and is thought to be mainly central.",
+      "quote": "The precise mechanism of the analgesic and antipyretic properties of acetaminophen is not established but is thought to primarily involve central actions"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.route:%22INTRAVENOUS%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Adult trials of injected acetaminophen recorded nausea, vomiting, headache and insomnia most often.",
+      "quote": "The most common adverse reactions in patients treated with acetaminophen injection were nausea, vomiting, headache, and insomnia in adult patients"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.route:%22INTRAVENOUS%22&limit=1",
+      "publisher": "openFDA drug label API (U.S. Food and Drug Administration)",
+      "claim": "Severe liver disease is listed as a contraindication on a US prescription label.",
+      "quote": "in patients with severe hepatic impairment or severe active liver disease"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/paracetamol/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, National Library of Medicine (NIH)",
+      "claim": "PubChem records the compound as CID 1983 with the formula C8H9NO2 and a molecular weight of 151.16.",
+      "quote": "\"CID\": 1983, \"MolecularFormula\": \"C8H9NO2\", \"MolecularWeight\": \"151.16\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/paracetamol/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "publisher": "PubChem, National Library of Medicine (NIH)",
+      "claim": "PubChem gives the systematic chemical name as N-(4-hydroxyphenyl)acetamide.",
+      "quote": "\"IUPACName\": \"N-(4-hydroxyphenyl)acetamide\""
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983/synonyms/JSON?limit=15",
+      "publisher": "PubChem, National Library of Medicine (NIH)",
+      "claim": "PubChem lists paracetamol, Tylenol, APAP and Panadol as other names for the same compound.",
+      "quote": "\"Tylenol\", \"APAP\", \"4'-Hydroxyacetanilide\", \"Datril\", \"Panadol\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=Paracetamol&pageSize=1&countTotal=true&fields=NCTId,BriefTitle",
+      "publisher": "ClinicalTrials.gov (NIH / National Library of Medicine)",
+      "claim": "As of September 2026 ClinicalTrials.gov listed 2,707 registered studies using paracetamol as an intervention.",
+      "quote": "\"totalCount\": 2707"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=acetaminophen&pagesize=2",
+      "publisher": "DailyMed (NIH / National Library of Medicine)",
+      "claim": "DailyMed's acetaminophen product listing runs to 4,780 labels.",
+      "quote": "\"total_elements\": 4780"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=acetaminophen&pagesize=2",
+      "publisher": "DailyMed (NIH / National Library of Medicine)",
+      "claim": "DailyMed lists acetaminophen inside combination products such as a cold tablet with chlorpheniramine and phenylephrine.",
+      "quote": "COLTALIN (ACETAMINOPHEN, CHLORPHENIRAMINE MALEATE, PHENYLEPHRINE HYDROCHLORIDE) TABLET"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Paracetamol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22PARACETAMOL%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Tylenol%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.product_type:%22HUMAN+PRESCRIPTION+DRUG%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ACETAMINOPHEN%22+AND+openfda.route:%22INTRAVENOUS%22&limit=1",
+    "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen",
+    "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/health-bulletin-use-caution-pain-relievers-acetaminophen",
+    "https://www.fda.gov/drugs/drug-safety-and-availability/questions-and-answers-fda-warns-rare-serious-skin-reactions-pain-relieverfever-reducer-acetaminophen",
+    "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/acetaminophen-information",
+    "https://www.nccih.nih.gov/health/acetaminophen",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548162/",
+    "http://archive.org/wayback/available?url=ncbi.nlm.nih.gov/books/NBK548162/",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=acetaminophen&pagesize=2",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/015a6179-bacb-452d-b594-4de628ddc11d.json",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/paracetamol/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983/synonyms/JSON?limit=15",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/1983/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/1983/JSON?heading=Description",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Paracetamol&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Paracetamol&pageSize=1&countTotal=true&fields=NCTId,BriefTitle"
+  ],
+  "gaps": [
+    "NCCIH has no acetaminophen page: https://www.nccih.nih.gov/health/acetaminophen returned 404.",
+    "The openFDA substance-name search for \"Paracetamol\" returned no records.",
+    "Only US labels filed under the name ACETAMINOPHEN are cited for label content.",
+    "LiverTox (NCBI Bookshelf record NBK548162) could not be fetched.",
+    "Every attempt hit a reCAPTCHA check and no Wayback snapshot exists, so its liver enzyme detail is not cited.",
+    "MedlinePlus drug monographs were excluded as licensed ASHP content under the source rules, so nothing from them appears here.",
+    "A DailyMed label-file download returned HTTP 415, so DailyMed is cited only for its product listing, not label text.",
+    "Everyday side effects for oral paracetamol could not be grounded.",
+    "The fetchable public-domain pages describe warnings rather than common side effects.",
+    "The only trial side-effect list found is for an injected form.",
+    "No grounded material was found on how well it works for a particular kind of pain.",
+    "How often serious harm occurs in ordinary use is also not stated on the pages fetched.",
+    "FDA's older \"acetaminophen information\" safety page returned 404; the current FDA consumer page was used instead.",
+    "PubChem is used only for chemical identity and synonyms; its description endpoint returned HTTP 400."
+  ],
+  "confidence": "high",
+  "summary": "A beginner summary of paracetamol: what it is, what it eases, how people use it, and its main warnings."
+}

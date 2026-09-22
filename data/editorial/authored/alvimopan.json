@@ -1,0 +1,193 @@
+{
+  "slug": "alvimopan",
+  "oneLineAnswer": "A hospital-only drug that helps the gut start working again after bowel surgery.",
+  "whatItIs": "Alvimopan is an opioid antagonist. That means it blocks opioid drugs at the receptor those drugs act on. It comes as a capsule that is swallowed. The label describes 12 mg capsules. In the United States it is approved only for short-term use inside a hospital. You cannot fill a prescription for it and take it home.",
+  "whatItDoes": [
+    "After some bowel operations, the gut slows down or stops moving. Doctors call this postoperative ileus.",
+    "Alvimopan binds to opioid receptors in the gut wall and blocks them.",
+    "Because it acts mostly outside the brain, it does not cancel the pain relief opioids provide.",
+    "The label reports that in six studies it shortened the time to gut recovery after bowel resection surgery.",
+    "Those studies enrolled adults having bowel resection or bladder surgery that reuses a piece of bowel."
+  ],
+  "howPeopleUseIt": [
+    "A hospital gives the first dose before surgery, then doses twice a day afterward.",
+    "The label describes 12 mg each time, for no more than 7 days and 15 doses.",
+    "Only hospitals enrolled in a restricted program, the Alvimopan REMS Program, may use it.",
+    "It is not given after a patient leaves the hospital.",
+    "Researchers also ran trials of alvimopan for constipation caused by prescription pain medicine, which is separate from surgery."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Dyspepsia, meaning indigestion or an upset stomach, was the most common side effect in the trials. It occurred in 1.5% of people on alvimopan and 0.8% on placebo.",
+      "People who had recently taken opioids may react more strongly. Reported gut effects include belly pain, nausea, vomiting and diarrhea."
+    ],
+    "seriousSigns": [
+      "A boxed warning reports more heart attacks in a 12-month study of people taking opioids long term. The label says a causal link has not been proven.",
+      "That heart attack signal is why the drug is limited to a short hospital course rather than long-term use.",
+      "The label does not recommend alvimopan for people with severe liver problems or end-stage kidney disease, because drug levels in the body can rise.",
+      "The label also does not recommend it for complete bowel obstruction or for pancreatic and gastric anastomosis surgery. No studies were done in those groups."
+    ],
+    "whoShouldAvoid": [
+      "People who took therapeutic doses of opioids for more than 7 days right before alvimopan. The label lists this as a contraindication.",
+      "People with severe liver impairment.",
+      "People with end-stage kidney disease.",
+      "People having surgery for complete bowel obstruction, or pancreatic or gastric anastomosis surgery.",
+      "People who had a total abdominal hysterectomy, because the label says effectiveness was not established for that operation."
+    ]
+  },
+  "interactions": [
+    "Alvimopan does not appear to change how the body handles morphine given into a vein. The label states no morphine dose change is needed.",
+    "Acid-blocking medicines such as proton pump inhibitors and H2 blockers did not appear to change alvimopan levels.",
+    "Antibiotics did not appear to change alvimopan levels either.",
+    "Opioids taken during the week before surgery may make gut side effects more likely."
+  ],
+  "pregnancyAndChildren": "The label says human pregnancy data on alvimopan are limited and cannot show whether it raises the risk of birth defects or miscarriage. Animal studies at much higher doses showed no harm to the fetus. There is no information on alvimopan in human breast milk. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "Whether alvimopan causes heart attacks. The label reports more heart attacks in one long-term study but says the link is unproven.",
+    "Whether the drug helps with constipation from prescription pain medicine. Trials were run, but the approved use is surgery only.",
+    "Whether it helps people with complete bowel obstruction or pancreatic and gastric anastomosis, because no studies were done.",
+    "Whether it is safe or useful beyond a short hospital course.",
+    "How it behaves in human pregnancy, breastfeeding and children."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alvimopan is an opioid antagonist approved to speed up upper and lower gastrointestinal recovery after surgeries that include partial bowel resection with primary anastomosis.",
+      "quote": "Alvimopan capsules are an opioid antagonist indicated to accelerate the time to upper and lower gastrointestinal recovery"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alvimopan blocks opioid receptors in the gut without undoing opioid pain relief in the brain.",
+      "quote": "Alvimopan achieves this selective gastrointestinal opioid antagonism without reversing the central analgesic effects of µ-opioid agonists"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Six placebo-controlled studies found that alvimopan shortened the time to recovery of gastrointestinal function.",
+      "quote": "In each of the 6 studies, alvimopan accelerated the time to recovery of gastrointestinal function"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Dyspepsia was the most common adverse reaction reported at a higher rate than placebo in bowel resection patients.",
+      "quote": "the most common adverse reaction (incidence ≥1.5%) occurring with a higher frequency than placebo was dyspepsia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label contraindicates alvimopan for people who took therapeutic opioid doses for more than 7 consecutive days immediately before treatment.",
+      "quote": "contraindicated in patients who have taken therapeutic doses of opioids for more than 7 consecutive days immediately prior"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Long-term use is restricted because of a potential heart attack risk, and the drug is available only through a restricted short-term program.",
+      "quote": "Because of the potential risk of myocardial infarction with long-term use, alvimopan is available only through a restricted program for short-term use"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Alvimopan is not recommended in severe hepatic impairment because blood concentrations are higher and serious reactions become more likely.",
+      "quote": "Increased risk of serious adverse reactions due to higher plasma concentrations; use is not recommended"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "No studies cover complete gastrointestinal obstruction, so alvimopan is not recommended in that group.",
+      "quote": "No studies have been conducted in patients with complete gastrointestinal obstruction"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Effectiveness after total abdominal hysterectomy was not established, so the drug is not indicated for that operation.",
+      "quote": "The efficacy of alvimopan following total abdominal hysterectomy has not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "There are no data on alvimopan passing into human breast milk.",
+      "quote": "There are no data on the presence of alvimopan in human milk, the effects on the breastfed infant"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Safety and effectiveness in children have not been established.",
+      "quote": "Pediatric Use Safety and effectiveness in pediatric patients have not been established"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Capsule strength is measured on an anhydrous basis.",
+      "quote": "Alvimopan capsules for oral administration contain 12 mg of alvimopan on an anhydrous basis"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2a0645b4-daf8-421f-b987-a4e478843c5d",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Use is limited to short-term hospital treatment with a cap of 15 doses, and patients do not receive the drug after discharge.",
+      "quote": "patients will not receive more than 15 doses of alvimopan capsules"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2a0645b4-daf8-421f-b987-a4e478843c5d",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "The label states that alvimopan use is restricted to enrolled hospitals under a risk management program.",
+      "quote": "Alvimopan capsules are available only through a program called the Alvimopan REMS Program that restricts use to enrolled hospitals"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5488548/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "PubChem lists alvimopan with the molecular formula C25H32N2O4 and a molecular weight of 424.5.",
+      "quote": "\"MolecularFormula\": \"C25H32N2O4\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00388401?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,InterventionDescription,PrimaryOutcomeMeasure,EnrollmentCount,StudyType,StartDate,CompletionDate",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "A completed phase 3 study of alvimopan for postoperative ileus enrolled 510 participants and used acceleration of gastrointestinal recovery as its primary outcome.",
+      "quote": "\"measure\":\"acceleration of gastrointestinal recovery\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=alvimopan&filter.overallStatus=COMPLETED&pageSize=10&countTotal=true&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "The registry lists completed phase 3 trials of alvimopan for postoperative ileus.",
+      "quote": "\"briefTitle\":\"Study of Alvimopan for the Management of Opioid-induced Postoperative Bowel Dysfunction/Postoperative Ileus\""
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=alvimopan&filter.overallStatus=COMPLETED&pageSize=10&countTotal=true&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Seventeen completed studies of alvimopan are registered.",
+      "quote": "\"totalCount\":17"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Alvimopan%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Entereg%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=alvimopan",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2a0645b4-daf8-421f-b987-a4e478843c5d",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Alvimopan/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/alvimopan/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5488548/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5488548/description/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=alvimopan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://clinicaltrials.gov/api/v2/studies/NCT00388401?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,InterventionDescription,PrimaryOutcomeMeasure,EnrollmentCount,StudyType,StartDate,CompletionDate",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=alvimopan&filter.overallStatus=COMPLETED&pageSize=10&countTotal=true&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://www.nccih.nih.gov/health/alvimopan",
+    "https://medlineplus.gov/ileus.html",
+    "https://www.ncbi.nlm.nih.gov/books/?term=alvimopan+LiverTox"
+  ],
+  "gaps": [
+    "NCCIH has no alvimopan page. The tried URL returns HTTP 404.",
+    "openFDA returns no label record under the brand name Entereg, so the brand-name query yielded nothing.",
+    "NCBI Bookshelf, the host for LiverTox, blocked automated access with a reCAPTCHA challenge, so no liver-injury information could be checked there.",
+    "No LiverTox chapter for alvimopan was located in the browsable agent list, so drug-induced liver injury could not be grounded either way.",
+    "MedlinePlus drug monographs are copyrighted and were excluded by design, so no MedlinePlus consumer drug page appears in this record.",
+    "The MedlinePlus health topic URL for ileus does not exist and returns HTTP 404, so the plain-language description of postoperative ileus came from the label instead.",
+    "The combined PubChem endpoint for several properties plus description returned HTTP 400, so identity facts were read from separate PubChem endpoints.",
+    "The label describes alvimopan as a dihydrate and states capsule strength on an anhydrous basis, while PubChem CID 5488548 is the anhydrous free base. This record uses the anhydrous formula for identity and the label for clinical facts.",
+    "The corpus held no source-linked text for this slug, so nothing from the corpus could be reused or cross-checked.",
+    "No dose, schedule or personal guidance is offered here. The regimen figures are reported only as what the label states.",
+    "All clinical and safety detail traces to one label family plus United States government registries. No independent non-government source was usable for this substance."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what alvimopan is, how it works after bowel surgery, its hospital-only restricted use, the side effects and contraindications the label reports, and the open questions a reader should know."
+}

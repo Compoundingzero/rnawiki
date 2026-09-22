@@ -1,0 +1,224 @@
+{
+  "slug": "amiodarone",
+  "oneLineAnswer": "Amiodarone is a prescription rhythm drug for dangerous irregular heartbeats, and it carries serious risks.",
+  "whatItIs": "Amiodarone is a prescription medicine used to steady dangerous heart rhythms. It belongs to a chemical group called benzofurans and holds a large amount of iodine, a mineral your thyroid uses. The United States first approved it in 1985. It is sold as tablets and as an injection given in hospital.",
+  "whatItDoes": [
+    "Amiodarone is a class III antiarrhythmic, meaning a drug that calms the heart's electrical rhythm.",
+    "The label says it also acts like the other three antiarrhythmic classes.",
+    "It slows the heart rate and lengthens the heart's electrical reset time.",
+    "In the United States it is approved only for two dangerous ventricular rhythms that other drugs have not controlled.",
+    "Its full rhythm effect can take days to weeks to appear."
+  ],
+  "howPeopleUseIt": [
+    "Most people take amiodarone as a tablet, though it is also given by injection in hospital.",
+    "Doctors also prescribe it for atrial fibrillation, a common fast irregular rhythm. That use is not on the label.",
+    "Researchers have studied it after the surgery that treats atrial fibrillation.",
+    "The drug leaves the body slowly, so effects can last for weeks after you stop taking it."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nausea and vomiting are common, along with constipation and loss of appetite.",
+      "Many people feel tired, shaky, unsteady or dizzy.",
+      "Eyes can become sensitive to light, and vision can blur.",
+      "The thyroid gland can become overactive or underactive.",
+      "Most adults who take it develop tiny deposits in the cornea, the clear front of the eye."
+    ],
+    "seriousSigns": [
+      "A new or worsening cough with breathlessness can signal lung damage.",
+      "The label calls liver injury from this drug potentially life-threatening.",
+      "Skin can turn blue-gray, or become very sensitive to sunlight, with long use.",
+      "Damage to the eye nerve has caused permanent blindness, the label warns.",
+      "The drug can worsen the original arrhythmia or trigger a new dangerous rhythm.",
+      "Nerve damage in the hands and feet may appear and may not go away.",
+      "Serious reactions and interactions can continue for weeks after you stop the drug."
+    ],
+    "whoShouldAvoid": [
+      "The label lists cardiogenic shock, when the heart cannot pump enough blood.",
+      "Sick sinus syndrome, certain heart blocks, and fainting from a slow heartbeat also rule it out. A working pacemaker can change that.",
+      "A known allergy to the drug or to iodine rules it out.",
+      "The label states that safety and effectiveness in children have not been established."
+    ]
+  },
+  "interactions": [
+    "The label says not to combine it with other drugs that stretch the heart's electrical recovery time. Doctors call that window the QT interval.",
+    "Digoxin, beta blockers, verapamil, diltiazem and clonidine can slow the heart too much when taken with it.",
+    "Warfarin's blood-thinning effect grows stronger, and the label warns of serious or fatal bleeding.",
+    "Cholesterol drugs such as simvastatin and lovastatin build up in the blood. The label tells prescribers to lower those doses.",
+    "Grapefruit juice and some antibiotic, antifungal and heart-rhythm drugs raise amiodarone levels in the body.",
+    "St John's wort, a herbal supplement sold for low mood, lowers amiodarone levels.",
+    "Amiodarone blocks liver enzymes that break down medicines, plus a cell pump called P-glycoprotein. Other drugs can then reach higher levels."
+  ],
+  "pregnancyAndChildren": "Amiodarone can harm a developing baby. The label says it crosses the placenta and has been linked to thyroid problems, slow heart rate, growth restriction and developmental delays in newborns. Breastfeeding is not recommended while taking it. Safety and effectiveness in children have not been established.",
+  "whatWeDoNotKnow": [
+    "The label states there is no well-established link between amiodarone blood levels and how well it works.",
+    "No source found for how many people take amiodarone overall. Nothing found compares it with other rhythm drugs over many years.",
+    "LiverTox, a public-domain liver-injury reference, has an amiodarone chapter, but the page would not load for this record.",
+    "MedlinePlus drug monographs cover amiodarone but are copyrighted, so this record does not use them.",
+    "NCCIH, the United States center for complementary health information, has no amiodarone page.",
+    "Reported side-effect rates in the label come from studies of a few hundred patients, not from large modern trials."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "In the United States, amiodarone is approved only for two life-threatening ventricular rhythms that other drugs have not controlled.",
+      "quote": "Pacerone is indicated for the treatment of documented, life-threatening recurrent ventricular fibrillation and life-threatening recurrent hemodynamically unstable tachycardia in adults"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Amiodarone is called a class III antiarrhythmic, but it also acts like the other three classes.",
+      "quote": "Amiodarone is considered a class III antiarrhythmic drug, but it possesses electrophysiologic characteristics of all four Vaughan Williams classes."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Amiodarone stays in the body for a very long time, so effects outlast the last tablet.",
+      "quote": "Because of the long half-life of amiodarone (15 to 142 days) and its active metabolite desethylamiodarone (14 to 75 days)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Nausea, vomiting, constipation and appetite loss are listed side effects.",
+      "quote": "Gastrointestinal Very common: Nausea, vomiting. Common: Constipation, anorexia, abdominal pain."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The label lists cardiogenic shock and certain heart rhythm conditions as reasons not to use amiodarone.",
+      "quote": "Cardiogenic shock. Sick sinus syndrome, second- or third-degree atrioventricular block, bradycardia leading to syncope without a functioning pacemaker."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "An allergy to iodine rules out amiodarone.",
+      "quote": "Known hypersensitivity to the drug or to any of its components, including iodine."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Amiodarone raises the blood levels of many other medicines.",
+      "quote": "Amiodarone inhibits P-glycoprotein and CYP1A2, CYP2C9, CYP2D6, and CYP3A, increasing exposure to other drugs."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Combining amiodarone with other drugs that stretch the QT interval raises the risk of a dangerous rhythm.",
+      "quote": "Increased risk of Torsade de Pointes. Avoid concomitant use."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Amiodarone strengthens warfarin, and the label warns that bleeding can be fatal.",
+      "quote": "Potentiates anticoagulant response and can result in serious or fatal bleeding."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "The drug's safety and effectiveness in children have not been established.",
+      "quote": "The safety and effectiveness of Pacerone in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Amiodarone reaches the fetus during pregnancy.",
+      "quote": "Amiodarone and its metabolite have been shown to cross the placenta."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Breastfeeding is not recommended during amiodarone treatment.",
+      "quote": "Lactation: Breastfeeding not recommended."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Eye nerve damage from amiodarone has sometimes caused permanent blindness.",
+      "quote": "Cases of optic neuropathy and optic neuritis, usually resulting in visual impairment and sometimes permanent blindness"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+      "publisher": "openFDA (U.S. Food and Drug Administration)",
+      "claim": "Blood levels of the drug do not reliably predict how well it works.",
+      "quote": "There is no well-established relationship between plasma concentration and effectiveness"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/4c149392-a4f0-4e2d-a13f-2b94810005de.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Amiodarone can cause lung damage that shows up as a cough with worsening breathlessness.",
+      "quote": "Amiodarone hydrochloride may cause a clinical syndrome of cough and progressive dyspnea"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/4c149392-a4f0-4e2d-a13f-2b94810005de.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "About one in ten patients becomes photosensitive to sunlight.",
+      "quote": "Amiodarone hydrochloride induces photosensitization in about 10% of patients"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/4c149392-a4f0-4e2d-a13f-2b94810005de.xml",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Amiodarone was first approved in the United States in 1985.",
+      "quote": "Initial U.S. Approval: 1985"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amiodarone&pagesize=3",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "claim": "Amiodarone tablets are sold under many separate product listings.",
+      "quote": "AMIODARONE HYDROCHLORIDE TABLET [REMEDYREPACK INC.]"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2157/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Amiodarone is an iodine-rich compound with rhythm-controlling and blood-vessel-widening activity.",
+      "quote": "Amiodarone is an iodine-rich benzofuran derivative with antiarrhythmic and vasodilatory activities."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2157/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Amiodarone is commonly used for atrial fibrillation even though that use sits outside the approved label.",
+      "quote": "it is also used off-label in the outpatient and inpatient setting for atrial fibrillation"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2157/JSON",
+      "publisher": "PubChem (U.S. National Library of Medicine)",
+      "claim": "Amiodarone has been linked to several distinct forms of drug-induced liver disease.",
+      "quote": "Amiodarone is a potent arrhythmia suppressing agent that has been clearly linked to several distinct forms of drug induced liver disease."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=amiodarone%20atrial%20fibrillation&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+      "publisher": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+      "claim": "Researchers have studied whether amiodarone is needed after surgery that treats atrial fibrillation.",
+      "quote": "Necessity of Anti-Arrhythmic Medication After Surgical Ablation for Atrial Fibrillation"
+    },
+    {
+      "url": "https://medlineplus.gov/arrhythmia.html",
+      "publisher": "MedlinePlus (U.S. National Library of Medicine)",
+      "claim": "An arrhythmia is a problem with the rate or rhythm of the heartbeat.",
+      "quote": "An arrhythmia is a problem with the rate or rhythm of your heartbeat."
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Amiodarone%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/4c149392-a4f0-4e2d-a13f-2b94810005de.xml",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=amiodarone&pagesize=3",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=amiodarone",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2157/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/2157/JSON?heading=Toxicity",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Amiodarone&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=amiodarone%20atrial%20fibrillation&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName",
+    "https://medlineplus.gov/arrhythmia.html",
+    "https://www.nccih.nih.gov/health/amiodarone",
+    "https://www.ncbi.nlm.nih.gov/books/NBK548219/"
+  ],
+  "gaps": [
+    "NCCIH has no page at https://www.nccih.nih.gov/health/amiodarone; the request returned HTTP 404.",
+    "The LiverTox amiodarone chapter at https://www.ncbi.nlm.nih.gov/books/NBK548219/ could not be read; the site returned a browser check instead of content, so liver facts here come from PubChem and the drug label.",
+    "MedlinePlus drug monographs for amiodarone were deliberately not fetched, cited, or quoted because NLM states that content is copyrighted (American Society of Health-System Pharmacists).",
+    "No fetched source gave the number of people who take amiodarone, so howPeopleUseIt reports settings rather than counts.",
+    "No fetched source compared amiodarone's long-term outcomes against other antiarrhythmic drugs, so no such claim is made.",
+    "No dose, loading schedule, or personal protocol appears anywhere in this record, by design.",
+    "The label's side-effect rates come from limited studies, so the record does not present frequency estimates as general population figures."
+  ],
+  "confidence": "high",
+  "summary": "This record explains what amiodarone is, why it is prescribed only for dangerous ventricular rhythms, how long it stays in the body, and the lung, liver, thyroid, eye and interaction risks the labels warn about."
+}

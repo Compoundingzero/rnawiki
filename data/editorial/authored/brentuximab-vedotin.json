@@ -1,0 +1,390 @@
+{
+  "slug": "brentuximab-vedotin",
+  "oneLineAnswer": "Brentuximab vedotin is a prescription cancer drug given into a vein, not a supplement.",
+  "whatItIs": "Brentuximab vedotin is a prescription cancer medicine sold under the brand name Adcetris. It belongs to a group called antibody-drug conjugates. In this design, a lab-made antibody carries a cell-killing chemical to cancer cells. The antibody part is built to stick to CD30, a protein found on the surface of certain lymphoma cells. The chemical part, MMAE, is a microtubule inhibitor. Microtubules are rope-like structures that cells need in order to divide. A linker joins the two parts and releases the chemical once the drug is inside a cell. The product is a powder that is mixed into a liquid and given into a vein. It was first approved in the United States in 2011.",
+  "whatItDoes": [
+    "The antibody part binds CD30, the cell pulls the pair inside, and the linker releases MMAE.",
+    "MMAE attaches to tubulin and breaks up the microtubule network, which stops cells dividing and kills them.",
+    "CD30 is common on Hodgkin lymphoma cells and on many anaplastic large cell lymphoma cells.",
+    "Approved uses include Hodgkin lymphoma, several T-cell lymphomas, mycosis fungoides and some large B-cell lymphomas.",
+    "In one trial in relapsed large B-cell lymphoma, adding it to two other drugs was linked to longer survival than those drugs alone."
+  ],
+  "howPeopleUseIt": [
+    "The label describes it as a 30-minute infusion into a vein, given in a clinic or hospital.",
+    "Schedules in the label repeat the infusion every three weeks for a planned number of cycles.",
+    "It is often combined with chemotherapy drugs, and some approved uses are as a single drug.",
+    "Trials have tested it alone and alongside other cancer treatments, such as lenalidomide and rituximab.",
+    "People receiving it may also be given G-CSF, a medicine that supports white blood cell counts."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Nerve damage, called peripheral neuropathy, is the most common problem; it usually shows as numbness or tingling in the hands or feet.",
+      "Fatigue, nausea, diarrhoea, constipation, vomiting, fever, muscle or joint pain, mouth sores, abdominal pain and rash each occurred in at least one in five people.",
+      "Upper respiratory infections and cough were also common.",
+      "Blood tests often showed low neutrophils, low haemoglobin, low lymphocytes, raised glucose, raised creatinine and raised liver enzymes.",
+      "In the large B-cell lymphoma trial, pneumonia and COVID-19 infection were among the common side effects."
+    ],
+    "seriousSigns": [
+      "The label carries a boxed warning for PML, a rare brain infection caused by the JC virus that has been fatal.",
+      "PML can show up as mood or behaviour changes, confusion, memory loss, or changes in vision, speech or walking.",
+      "Infusion reactions, including a severe allergic reaction called anaphylaxis, can happen during or shortly after an infusion.",
+      "The label tells people to report fever, chills, rash or breathing problems within 24 hours of an infusion.",
+      "Serious infections such as pneumonia, bloodstream infection and sepsis, including fatal cases, have been reported.",
+      "Tumour lysis syndrome can occur in people whose tumours are fast-growing or bulky.",
+      "Liver injury, lung inflammation, severe skin reactions, pancreatitis and high blood sugar were also reported."
+    ],
+    "whoShouldAvoid": [
+      "It must not be given with bleomycin, because that combination can damage the lungs.",
+      "The label says to avoid it in people with severe kidney impairment.",
+      "It is also avoided in moderate or severe liver impairment, with a lower dose if liver impairment is mild.",
+      "It can harm a fetus, so it is not used during pregnancy.",
+      "Breastfeeding is not recommended while it is being given.",
+      "In children, its use is established only for those aged 2 and older with a certain high-risk Hodgkin lymphoma."
+    ]
+  },
+  "interactions": [
+    "CYP3A4 is a liver enzyme that breaks down many medicines, including the MMAE part of this drug.",
+    "Ketoconazole, a strong CYP3A4 inhibitor, raised exposure to MMAE when the two were given together.",
+    "The label says to watch closely for side effects when a strong CYP3A4 inhibitor is used at the same time.",
+    "Strong CYP3A4 inducers may also change MMAE levels, though the label gives no separate instructions for them.",
+    "It should not be mixed with, or infused at the same time as, other medicines.",
+    "Bleomycin is the one medicine the label rules out completely."
+  ],
+  "pregnancyAndChildren": "In pregnant rats, brentuximab vedotin caused harm to the developing fetus, including malformations, at exposures similar to the human dose. The label says the human pregnancy data come only from case reports and are not enough to judge risk, so it advises a pregnant woman of a possible risk to the fetus. Women who could become pregnant are asked to use effective contraception during treatment and for two months after the last dose. Men with female partners who could become pregnant are asked to use contraception during treatment and for four months after, because the drug may damage sperm and testicular tissue. There is no information on whether it passes into human milk, and breastfeeding is not recommended during treatment. In children, safety and effectiveness are established only for those aged 2 and older with previously untreated high-risk Hodgkin lymphoma, given with chemotherapy. It is not established for younger children or for other uses.",
+  "whatWeDoNotKnow": [
+    "There are no human data on whether brentuximab vedotin passes into breast milk.",
+    "Pregnancy information rests on case reports, which the label calls insufficient to judge risk.",
+    "Carcinogenicity studies have not been done for the drug or for the MMAE chemical.",
+    "No fertility studies exist for the drug or for MMAE, so human effects on fertility are unknown.",
+    "Effects in children younger than 2 have not been established, and no results are cited for that age group.",
+    "PubChem holds substance entries for brentuximab vedotin but no single compound record, because it is a conjugate rather than one small molecule.",
+    "The label's interaction section covers only CYP3A4 inhibitors and the bleomycin contraindication, so other drug combinations are not described.",
+    "No dose amounts appear in this record by design; it reports only what the label states about how the medicine is given.",
+    "Only one effectiveness trial is summarised here, from the FDA notice for relapsed large B-cell lymphoma; other clinical study sections were not reviewed in full.",
+    "The 10 recorded corpus fields for this slug were not available to this run, so no field-by-field reconciliation was possible."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Brentuximab vedotin is approved to treat several lymphomas and is described as a CD30-directed antibody and microtubule inhibitor conjugate.",
+      "quote": "ADCETRIS is a CD30-directed antibody and microtubule inhibitor conjugate indicated for treatment of"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Hodgkin lymphoma is one of the approved uses.",
+      "quote": "Adult patients with previously untreated Stage III or IV classical Hodgkin lymphoma (cHL)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Approved uses also cover cutaneous anaplastic large cell lymphoma and CD30-expressing mycosis fungoides.",
+      "quote": "Adult patients with primary cutaneous anaplastic large cell lymphoma (pcALCL) or CD30-expressing mycosis fungoides (MF)"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "CD30, the drug's target, sits on the surface of anaplastic large cell lymphoma cells.",
+      "quote": "CD30 is a member of the tumor necrosis factor receptor family and is expressed on the surface of sALCL cells"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "It is an antibody-drug conjugate whose antibody is aimed at CD30.",
+      "quote": "Brentuximab vedotin is an antibody-drug conjugate (ADC). The antibody is a chimeric IgG1 directed against CD30."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "A linker holds the microtubule-disrupting chemical MMAE onto the antibody.",
+      "quote": "MMAE is covalently attached to the antibody via a linker."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "After the drug binds CD30 the cell takes it in, and enzymes inside release MMAE.",
+      "quote": "followed by internalization of the ADC-CD30 complex, and the release of MMAE via proteolytic cleavage"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "MMAE attaches to tubulin and disrupts the cell's microtubule network.",
+      "quote": "Binding of MMAE to tubulin disrupts the microtubule network within the cell"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=brentuximab%20vedotin&pagesize=5",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The brand name is Adcetris and the label holder is Seagen.",
+      "quote": "ADCETRIS (BRENTUXIMAB VEDOTIN) INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION [SEAGEN INC.]"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "publisher": "DailyMed, U.S. National Library of Medicine (ADCETRIS label, revised 2/2025)",
+      "claim": "It is given only as an intravenous infusion, over about half an hour.",
+      "quote": "Administer only as an intravenous infusion over 30 minutes"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "publisher": "DailyMed, U.S. National Library of Medicine (ADCETRIS label, revised 2/2025)",
+      "claim": "Brentuximab vedotin was first approved in the United States in 2011.",
+      "quote": "Initial U.S. approval: 2011"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "It is supplied as a powder that must be mixed into a solution before use.",
+      "quote": "a sterile, white to off-white lyophilized, preservative-free cake or powder"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "publisher": "DailyMed, U.S. National Library of Medicine (ADCETRIS label, revised 2/2025)",
+      "claim": "Some treatment schedules repeat the infusion every three weeks.",
+      "quote": "Administer every 3 weeks until disease progression or unacceptable toxicity"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "It is given into a vein and must not be administered in any other way.",
+      "quote": "Administer ADCETRIS as an intravenous infusion only."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Supportive treatment with a white blood cell growth factor starts with the first cycle in several combination regimens.",
+      "quote": "administer G-CSF beginning with Cycle 1"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Peripheral neuropathy, nausea, fatigue, muscle and joint pain, constipation, diarrhoea, vomiting and fever are the most common side effects.",
+      "quote": "The most common adverse reactions (\u226520%) are peripheral neuropathy, nausea, fatigue, musculoskeletal pain, constipation, diarrhea, vomiting, pyrexia"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Blood count and blood chemistry changes were also among the most common laboratory findings.",
+      "quote": "decreased neutrophils, increased creatinine, decreased hemoglobin, decreased lymphocytes, increased glucose, increased alanine aminotransferase"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Most people treated with the drug alone developed some degree of nerve damage.",
+      "quote": "In studies of ADCETRIS as monotherapy, 62% of patients experienced any grade of peripheral neuropathy."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "The boxed warning concerns a brain infection that has caused death.",
+      "quote": "JC virus infection resulting in PML and death can occur in patients receiving ADCETRIS"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "PML can appear as memory, thinking and vision problems.",
+      "quote": "confusion, thinking problems, loss of memory"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Symptoms that may signal an infusion reaction are listed, with a time window for reporting them.",
+      "quote": "fever, chills, rash, or breathing problems within 24 hours of infusion"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Severe infections, including some that only occur in people with weakened immunity, have been reported.",
+      "quote": "Serious infections and opportunistic infections such as pneumonia, bacteremia, and sepsis or septic shock"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "People with large or fast-growing tumours may be at higher risk of tumour lysis syndrome.",
+      "quote": "Patients with rapidly proliferating tumor and high tumor burden may be at increased risk of tumor lysis syndrome."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Bleomycin must not be given at the same time because of lung damage.",
+      "quote": "ADCETRIS is contraindicated with concomitant bleomycin due to pulmonary toxicity"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "publisher": "DailyMed, U.S. National Library of Medicine (ADCETRIS label, revised 2/2025)",
+      "claim": "It is avoided in severe kidney impairment.",
+      "quote": "Avoid use in patients with severe renal impairment (2.2)."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "publisher": "DailyMed, U.S. National Library of Medicine (ADCETRIS label, revised 2/2025)",
+      "claim": "It is avoided in moderate or severe liver impairment, with a lower dose if liver impairment is mild.",
+      "quote": "Reduce dose in patients with mild hepatic impairment; avoid use in patients with moderate or severe hepatic impairment (2.3)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Animal studies and its mechanism of action suggest it can harm a fetus.",
+      "quote": "ADCETRIS can cause fetal harm based on the findings from animal studies"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Women who could become pregnant are advised to use contraception during treatment and for two months after.",
+      "quote": "use effective contraception during ADCETRIS treatment and for 2 months after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Men with female partners who could become pregnant are advised to use contraception during treatment and for four months after.",
+      "quote": "should use effective contraception during ADCETRIS treatment and for 4 months after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "The drug may damage sperm and testicular tissue.",
+      "quote": "ADCETRIS may damage spermatozoa and testicular tissue"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Breastfeeding is not recommended while the drug is being given.",
+      "quote": "breastfeeding is not recommended during ADCETRIS treatment"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "No data exist on how much of the drug appears in human milk.",
+      "quote": "There is no information regarding the presence of brentuximab vedotin in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Human pregnancy information is limited to case reports, which the label calls insufficient.",
+      "quote": "data from case reports on ADCETRIS use in pregnant women are insufficient to inform a drug-associated risk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "In children, the only established use is in those aged 2 and older with high-risk Hodgkin lymphoma.",
+      "quote": "established in pediatric patients age 2 years and older with previously untreated high risk classical Hodgkin lymphoma"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Ketoconazole, a strong CYP3A4 inhibitor, increased exposure to the MMAE part of the drug.",
+      "quote": "Co-administration of ADCETRIS with ketoconazole, a potent CYP3A4 inhibitor, increased exposure to MMAE"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "Strong CYP3A4 inhibitors and inducers can change MMAE levels.",
+      "quote": "Concomitant use of strong CYP3A4 inhibitors or inducers has the potential to affect the exposure"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "It is not to be mixed or infused together with other medicines.",
+      "quote": "Do not mix ADCETRIS with, or administer as an infusion with, other medicinal products."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "No studies have tested whether the drug or MMAE can cause cancer.",
+      "quote": "Carcinogenicity studies with brentuximab vedotin or the small molecule (MMAE) have not been conducted."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+      "publisher": "openFDA, U.S. Food and Drug Administration (ADCETRIS prescribing information)",
+      "claim": "No fertility studies have been carried out for the drug or for MMAE.",
+      "quote": "Fertility studies with brentuximab vedotin or MMAE have not been conducted."
+    },
+    {
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-brentuximab-vedotin-lenalidomide-and-rituximab-relapsed-or-refractory-large-b-cell",
+      "publisher": "U.S. Food and Drug Administration, Oncology Center of Excellence",
+      "claim": "In a trial in relapsed or refractory large B-cell lymphoma, the combination produced a statistically significant improvement in overall survival.",
+      "quote": "The trial demonstrated a statistically significant OS improvement with a median OS of 13.8 months"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-brentuximab-vedotin-lenalidomide-and-rituximab-relapsed-or-refractory-large-b-cell",
+      "publisher": "U.S. Food and Drug Administration, Oncology Center of Excellence",
+      "claim": "In that trial, fatigue, diarrhoea, nerve damage, rash, pneumonia and COVID-19 infection were the most common side effects.",
+      "quote": "were fatigue, diarrhea, peripheral neuropathy, rash, pneumonia, and COVID-19 infection"
+    },
+    {
+      "url": "https://www.fda.gov/media/164316/download?attachment=",
+      "publisher": "U.S. Food and Drug Administration (BLA 125388/S-106 multi-disciplinary review)",
+      "claim": "FDA reviewers describe the drug as an antibody-drug conjugate that pairs a CD30 antibody with the microtubule-disrupting agent MMAE.",
+      "quote": "Brentuximab vedotin is a CD30-directed antibody-drug conjugate, comprised of a chimeric IgG1 directed against CD30 conjugated to the microtubule disrupting agent monomethyl auristatin (MMAE)"
+    },
+    {
+      "url": "https://www.fda.gov/media/164316/download?attachment=",
+      "publisher": "U.S. Food and Drug Administration (BLA 125388/S-106 multi-disciplinary review)",
+      "claim": "The first United States approval came in 2011.",
+      "quote": "Adcetris received initial US approval in 2011"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT04404283?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,InterventionDescription,EnrollmentCount,LeadSponsorName,BriefSummary",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "A phase 3 trial tested it with two other drugs against those drugs alone in diffuse large B-cell lymphoma.",
+      "quote": "The trial will study whether brentuximab vedotin plus two drugs works better to treat this type of cancer than the two drugs alone."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=%22brentuximab%20vedotin%22&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,EnrollmentCount,LeadSponsorName",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "It has been studied with multi-drug chemotherapy in CD30-positive T-cell and natural killer cell lymphomas.",
+      "quote": "Brentuximab Vedotin Given Sequentially and Combined With Multi-Agent Chemotherapy for CD30-Positive Mature T-Cell and NK-Cell Neoplasms"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/substance/131277422/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "PubChem indexes brentuximab vedotin as a substance record rather than a single compound.",
+      "quote": "Brentuximab vedotin"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/11542188/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "The MMAE payload is a defined small molecule, with the formula C39H67N5O7.",
+      "quote": "C39H67N5O7"
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Brentuximab%20vedotin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Adcetris%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=brentuximab+vedotin",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=brentuximab%20vedotin&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/3904f8dd-1aef-3490-e48f-bd55f32ed67f.json",
+    "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-brentuximab-vedotin-lenalidomide-and-rituximab-relapsed-or-refractory-large-b-cell",
+    "https://www.fda.gov/media/164316/download?attachment=",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Brentuximab+vedotin&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=%22brentuximab%20vedotin%22&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition,InterventionName,EnrollmentCount,LeadSponsorName",
+    "https://clinicaltrials.gov/api/v2/studies/NCT04404283?fields=NCTId,BriefTitle,OfficialTitle,OverallStatus,Phase,Condition,InterventionName,InterventionDescription,EnrollmentCount,LeadSponsorName,BriefSummary",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/brentuximab%20vedotin/json?limit=10",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brentuximab/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/brentuximab%20vedotin/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/name/brentuximab%20vedotin/sids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/substance/131277422/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/11542188/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/11542188/JSON?heading=MeSH+Pharmacological+Action",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/124490528/JSON",
+    "https://www.cancer.gov/publications/dictionaries/cancer-drug/def/brentuximab-vedotin",
+    "https://www.nccih.nih.gov/health/brentuximab-vedotin",
+    "https://www.nccih.nih.gov/health/brentuximab",
+    "https://medlineplus.gov/brentuximabvedotin.html",
+    "https://www.ncbi.nlm.nih.gov/books/?term=brentuximab"
+  ],
+  "gaps": [
+    "NCCIH has no brentuximab vedotin page: https://www.nccih.nih.gov/health/brentuximab-vedotin and https://www.nccih.nih.gov/health/brentuximab both returned HTTP 404, so no NCCIH material could be used.",
+    "MedlinePlus health topics were checked at https://medlineplus.gov/brentuximabvedotin.html and returned HTTP 404. MedlinePlus drug monographs were excluded because NLM treats that content as copyrighted.",
+    "The LiverTox search at https://www.ncbi.nlm.nih.gov/books/?term=brentuximab returned a bot-check page rather than results, and no LiverTox chapter for brentuximab vedotin was located.",
+    "PubChem has no compound record for brentuximab vedotin; a name lookup returns 'no CID found' and the entry exists only as substance records. Facts were taken from substance and MMAE compound endpoints instead.",
+    "The NCI Drug Dictionary page for brentuximab vedotin is rendered by JavaScript, so its definition text could not be read and it is not cited.",
+    "DailyMed's SPL JSON endpoint for the ADCETRIS set id returned HTTP 415, so the label was read from the DailyMed label page and the openFDA label record instead.",
+    "The label's clinical studies sections were not reviewed in full, so no response rates or survival figures are reported except the single FDA-noted trial in large B-cell lymphoma.",
+    "No dose amounts are reported anywhere in this record by design; only the label's statements about the route, schedule and laboratory monitoring are described.",
+    "No human milk, human fertility or carcinogenicity data exist, so those points are stated as gaps rather than findings.",
+    "The 10 recorded corpus fields for this slug were not available to this run, so no field-by-field reconciliation was possible."
+  ],
+  "confidence": "high",
+  "summary": "This record covers what brentuximab vedotin is, how the CD30 antibody-drug conjugate works, which lymphomas it is approved for, its common and serious side effects, its interactions, and its pregnancy and children cautions, drawing on the U.S. prescribing information plus FDA approval documents, DailyMed, ClinicalTrials.gov and PubChem."
+}

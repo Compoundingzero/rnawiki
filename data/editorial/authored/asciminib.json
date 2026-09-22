@@ -1,0 +1,245 @@
+{
+  "slug": "asciminib",
+  "oneLineAnswer": "A prescription tablet for adults with chronic myeloid leukemia that blocks the protein driving it.",
+  "whatItIs": "Asciminib is a prescription cancer medicine sold under the brand name Scemblix. It comes as film-coated tablets that you swallow whole. Only adults are approved to use it. It treats chronic myeloid leukemia, or CML, a cancer of the bone marrow and blood. CML usually moves slowly rather than fast. Asciminib belongs to a group of medicines called kinase inhibitors. These block specific proteins inside cells.",
+  "whatItDoes": [
+    "CML starts when a piece of DNA moves from one chromosome to another. That creates an abnormal gene called BCR-ABL1.",
+    "That gene tells the bone marrow to make an abnormal protein, which pushes leukemia cells to keep growing.",
+    "Asciminib attaches to a pocket on that protein, called the myristoyl pocket, and shuts its signal down.",
+    "It is approved for adults in three situations. These are newly diagnosed CML in chronic phase, CML already treated, and CML with the T315I mutation.",
+    "One trial followed 405 people with newly diagnosed CML. At 48 weeks, 68% on asciminib had a major molecular response, against 49% on other targeted drugs. BCR-ABL1 blood tests measure how much of the abnormal gene remains. A major molecular response is one category used to report those results."
+  ],
+  "howPeopleUseIt": [
+    "A cancer specialist prescribes it. It is not something you buy or start on your own.",
+    "You take it as a tablet by mouth. The label says to take it away from food and to swallow the tablets whole. Do not break or crush them.",
+    "In the trials, people kept taking it until the leukemia got worse or side effects became too much.",
+    "Treatment is open-ended. People on it have regular blood tests for blood counts and pancreas enzymes. Blood pressure is checked too."
+  ],
+  "safety": {
+    "commonSideEffects": [
+      "Aching in muscles, joints or bones. This was the most frequent complaint, reported by 29% of people on asciminib in one trial.",
+      "Rash, reported by about 20%.",
+      "Tiredness, reported by about 19%.",
+      "Colds and similar upper respiratory infections, reported by about 18%.",
+      "Headache, reported by about 17%.",
+      "Belly pain, reported by about 17%.",
+      "Loose stools or diarrhea, reported by about 18%.",
+      "Blood test changes. These include lower white cell, platelet and red cell counts, and higher pancreas, cholesterol, uric acid and liver values."
+    ],
+    "seriousSigns": [
+      "Low blood counts, called myelosuppression. In a pooled group of 556 people, low platelets occurred in 28%. Low neutrophils occurred in 22%. Some cases were severe.",
+      "Pancreas problems. Pancreatitis was reported in 2% of that group, and raised pancreas enzymes in 20%. The label asks for monthly checks of those enzymes.",
+      "High blood pressure. It occurred in 18%, and was severe in 10%.",
+      "Allergic-type reactions, reported in 31%. These included rash, swelling and bronchospasm, which is narrowing of the airways.",
+      "Heart and blood vessel problems were reported in 12% of that group. Cardiac failure was reported in 2.3%. Five deaths (0.9%) occurred.",
+      "Harm to a fetus if the medicine is taken during pregnancy."
+    ],
+    "whoShouldAvoid": [
+      "People who are pregnant or who could become pregnant. The label says the medicine can harm a fetus. It asks for a pregnancy test before starting. Effective contraception is advised during treatment and for 1 week after the last dose.",
+      "People who are breastfeeding. The label advises not to breastfeed during treatment and for 1 week after the last dose.",
+      "Children. Safety and effectiveness below adult age have not been established.",
+      "The label lists no absolute contraindications, so it does not name any group that must never use this medicine."
+    ]
+  },
+  "interactions": [
+    "CYP3A4 is a liver enzyme that clears many medicines out of the body. Strong blockers of CYP3A4 raise asciminib levels and the chance of side effects.",
+    "Itraconazole taken as an oral solution, an antifungal medicine, lowers asciminib levels and should not be combined with it.",
+    "Strong CYP3A4 inducers lower asciminib levels, which may make it work less well.",
+    "Asciminib also blocks CYP3A4, CYP2C9, P-gp and BCRP. That can raise the levels of other medicines these enzymes and pumps clear.",
+    "The label says to avoid combining asciminib with rosuvastatin, a cholesterol medicine.",
+    "Because of these effects, a prescriber needs a full list of your other medicines and supplements."
+  ],
+  "pregnancyAndChildren": "Asciminib is not for use in pregnancy. The label says it can cause fetal harm, based on animal studies and on how the drug works. There are no human pregnancy data to judge the real risk. People who could become pregnant are asked to confirm they are not pregnant before starting. Effective contraception is advised during treatment and for 1 week after the last dose. Breastfeeding is also advised against during treatment and for 1 week after the last dose. That is because nobody knows whether asciminib passes into breast milk or how it might affect a breastfed child. Safety and effectiveness in children have not been established. Animal findings suggest the drug may impair fertility in females. Whether that reverses is not known.",
+  "whatWeDoNotKnow": [
+    "No one has human data on asciminib use in pregnancy, so the pregnancy warning rests on animal studies.",
+    "There is no information on whether asciminib passes into breast milk or affects a breastfed child.",
+    "Whether the fertility effect seen in animals reverses is unknown.",
+    "The approval for newly diagnosed CML is accelerated. It rests on response rates, and continued approval depends on a later trial confirming real clinical benefit.",
+    "Most safety numbers here come from one pooled group of 556 people in three trials. The label warns that rates from different trials cannot be compared directly.",
+    "This record leaves out dosing on purpose. Amounts differ by situation, and only your cancer team can set yours."
+  ],
+  "evidence": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Asciminib works by binding a pocket on the abnormal BCR::ABL1 protein and blocking its kinase activity.",
+      "quote": "Asciminib inhibits the ABL1 kinase activity of the BCR::ABL1 fusion protein, by binding to the ABL myristoyl pocket."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "The approved use is limited to adults with Philadelphia chromosome-positive CML in chronic phase.",
+      "quote": "Newly diagnosed Philadelphia chromosome-positive chronic myeloid leukemia (Ph+ CML) in chronic phase (CP)."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "The label names the most common side effects, each seen in at least 20% of patients.",
+      "quote": "Most common adverse reactions (≥ 20%) are musculoskeletal pain, rash, fatigue, upper respiratory tract infection, headache, abdominal pain, arthralgia, and diarrhea."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Falling platelet counts affected 28% of a pooled group of 556 patients.",
+      "quote": "Thrombocytopenia occurred in 156 of 556 (28%) patients receiving SCEMBLIX"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Raised blood pressure was reported in 18% of the pooled group.",
+      "quote": "Hypertension occurred in 98 of 556 (18%) patients receiving SCEMBLIX"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Pancreas inflammation was reported in 2% of the pooled group.",
+      "quote": "Pancreatitis occurred in 11 of 556 (2%) patients receiving SCEMBLIX"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Heart and blood vessel toxicity and cardiac failure were reported in 12% and 2.3% of the pooled group.",
+      "quote": "and cardiac failure occurred in 65 (12%) and in 13 (2.3%) of 556 patients receiving SCEMBLIX"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Hypersensitivity reactions were reported in 31% of the pooled group.",
+      "quote": "Hypersensitivity occurred in 172 of 556 (31%) patients receiving SCEMBLIX"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "A strong CYP3A4 inhibitor can raise asciminib exposure and the risk of side effects.",
+      "quote": "Concomitant use of SCEMBLIX with a strong CYP3A4 inhibitor increases both the asciminib C max and AUC"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Asciminib is not established for children.",
+      "quote": "The safety and efficacy of SCEMBLIX in pediatric patients have not been established."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "The label advises against breastfeeding during treatment and for a week afterwards.",
+      "quote": "advise women not to breastfeed during treatment with SCEMBLIX and for 1 week after the last dose"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "There is no human milk data for asciminib.",
+      "quote": "There are no data on the presence of asciminib or its metabolites in human milk"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "There are no human pregnancy data to judge the risk.",
+      "quote": "There are no available data on SCEMBLIX use in pregnant women to evaluate a drug-associated risk."
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+      "publisher": "openFDA drug label API, U.S. Food and Drug Administration",
+      "claim": "Whether the fertility effect in animals reverses is not known.",
+      "quote": "The reversibility of the effect on fertility is unknown."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e33001e7-3650-42b1-ae56-cddb5c43aa2b",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Scemblix is an oral tablet first approved in the United States in 2021.",
+      "quote": "SCEMBLIX ® (asciminib) tablets, for oral use Initial U.S. Approval: 2021"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e33001e7-3650-42b1-ae56-cddb5c43aa2b",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The label lists no contraindications.",
+      "quote": "CONTRAINDICATIONS None."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e33001e7-3650-42b1-ae56-cddb5c43aa2b",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "Asciminib can harm a fetus, according to the label.",
+      "quote": "SCEMBLIX can cause fetal harm when administered to a pregnant woman."
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e33001e7-3650-42b1-ae56-cddb5c43aa2b",
+      "publisher": "DailyMed, U.S. National Library of Medicine",
+      "claim": "The newly diagnosed indication is an accelerated approval that may depend on a later confirmatory trial.",
+      "quote": "Continued approval for this indication may be contingent upon verification of clinical benefit"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-asciminib-newly-diagnosed-chronic-myeloid-leukemia",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "In a 405-person trial, the 48-week major molecular response rate was 68% on asciminib and 49% on comparator drugs.",
+      "quote": "The MMR rate at 48 weeks was 68% (95% CI: 61, 74) in the asciminib arm and 49%"
+    },
+    {
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-asciminib-newly-diagnosed-chronic-myeloid-leukemia",
+      "publisher": "U.S. Food and Drug Administration",
+      "claim": "The most common side effects in the pooled population were the same list reported in the label.",
+      "quote": "the most common adverse reactions (≥20%) were musculoskeletal pain, rash, fatigue, upper respiratory tract infection, headache, abdominal pain, and diarrhea"
+    },
+    {
+      "url": "https://medlineplus.gov/chronicmyeloidleukemia.html",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "claim": "CML is the slow-growing form of leukemia.",
+      "quote": "\"Chronic\" means that the leukemia usually gets worse slowly."
+    },
+    {
+      "url": "https://medlineplus.gov/genetics/condition/chronic-myeloid-leukemia/",
+      "publisher": "MedlinePlus Genetics, U.S. National Library of Medicine",
+      "claim": "The BCR-ABL1 gene makes the bone marrow produce an abnormal protein that drives the leukemia.",
+      "quote": "This gene causes your bone marrow to make an abnormal protein."
+    },
+    {
+      "url": "https://medlineplus.gov/lab-tests/bcr-abl-genetic-test/",
+      "publisher": "MedlinePlus Medical Test, U.S. National Library of Medicine",
+      "claim": "A falling BCR-ABL1 level on a blood or bone marrow test means treatment is working.",
+      "quote": "it means your treatment is working to some degree"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Asciminib&pageSize=5",
+      "publisher": "ClinicalTrials.gov, U.S. National Library of Medicine",
+      "claim": "Trials of asciminib in CML are still running, including a phase 2 study in newly diagnosed patients.",
+      "quote": "To learn if asciminib can help to control CML."
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/asciminib/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "publisher": "PubChem, U.S. National Library of Medicine",
+      "claim": "Asciminib is a small molecule with the chemical formula C20H18ClF2N5O3.",
+      "quote": "\"MolecularFormula\": \"C20H18ClF2N5O3\""
+    }
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Asciminib%22&limit=1",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Asciminib&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Asciminib/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES,Description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/asciminib/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/72165228",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e33001e7-3650-42b1-ae56-cddb5c43aa2b",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=human&query=Asciminib",
+    "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-asciminib-newly-diagnosed-chronic-myeloid-leukemia",
+    "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-disco-burst-edition-fda-approval-scemblix-asciminib-patients-philadelphia-chromosome-positive",
+    "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-asciminib-philadelphia-chromosome-positive-chronic-myeloid-leukemia",
+    "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-asciminib-newly-diagnosed-philadelphia-chromosome-positive-chronic-myeloid-leukemia",
+    "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/215358s012lbl.pdf",
+    "https://www.nccih.nih.gov/health/asciminib",
+    "https://www.ncbi.nlm.nih.gov/books/NBK597219/",
+    "https://ncbi.nlm.nih.gov/books/NBK597219/",
+    "https://medlineplus.gov/chronicmyeloidleukemia.html",
+    "https://medlineplus.gov/leukemia.html",
+    "https://medlineplus.gov/genetics/condition/chronic-myeloid-leukemia/",
+    "https://medlineplus.gov/lab-tests/bcr-abl-genetic-test/"
+  ],
+  "gaps": [
+    "MedlinePlus drug monographs were not used. NLM states they are licensed from the American Society of Health-System Pharmacists. Only MedlinePlus health topic, genetics and medical test pages appear here.",
+    "NCCIH was checked and has no asciminib page. The address https://www.nccih.nih.gov/health/asciminib returns 404. There is no NCCIH summary of this substance to draw on.",
+    "LiverTox is a public-domain NIDDK source and does have an asciminib page at https://www.ncbi.nlm.nih.gov/books/NBK597219/. Two fetch attempts returned a browser-verification page instead of content. No LiverTox claim is used here, so its statement about liver injury in asciminib users does not appear.",
+    "Several guessed FDA page addresses returned 404. One was the FDA D.I.S.C.O. burst page on the 2021 Scemblix approval. Only the two FDA approval-summary pages cited in evidence were reachable.",
+    "No reachable source states how many people with CML take asciminib in routine practice. Real-world use cannot be described.",
+    "The sources checked do not show whether asciminib improves long-term survival compared with other CML drugs. The newly diagnosed indication is still an accelerated approval.",
+    "Dosing is deliberately absent. The label records different amounts for different situations. Reporting them would read as a personal protocol, which this record does not give."
+  ],
+  "confidence": "high",
+  "summary": "Covers what asciminib is, which adults with Philadelphia chromosome-positive CML it is approved for, its trial response rates, its side effects and interactions, and the pregnancy, child and unknown-answer limits."
+}
