@@ -1,0 +1,169 @@
+{
+  "slug": "5-htp",
+  "substance": "5-HTP (5-hydroxytryptophan)",
+  "corpusSnapshot": {
+    "className": "SUPPLEMENT_INGREDIENT",
+    "tier": 3,
+    "recordedFieldCount": 3,
+    "note": "The corpus recorded the slug, class and tier. The three existing field values were not visible to me, so no field names are asserted here."
+  },
+  "aliases": ["5-HTP", "5-hydroxytryptophan", "oxitriptan", "oxitriptan (INN)", "oxytryptophan"],
+  "oneLineAnswer": "An amino acid the body turns into serotonin, sold as a supplement; evidence for its effects is limited.",
+  "whatItDoes": [
+    "Your body makes 5-HTP from tryptophan, an amino acid you get from food.",
+    "Enzymes convert 5-HTP into serotonin, and vitamin B6 is needed for that step.",
+    "Taken as a supplement, 5-HTP reaches the brain and raises serotonin production there.",
+    "Supplement 5-HTP is usually extracted from the seeds of Griffonia simplicifolia, an African plant.",
+    "NCCIH describes 5-HTP supplements as having sedative effects, but says how they work is unclear."
+  ],
+  "whatWeDoNotKnow": [
+    "NCCIH says there is very limited data on 5-HTP's effects on insomnia, and that how it works is unclear.",
+    "PubChem's summary calls the antidepressant mechanism a hypothesis, not an established finding.",
+    "I read registry listings, not published outcomes, so this page cannot say whether any trial found a benefit for anyone. The studies I found were small: 33 healthy volunteers in one, 175 people with inflammatory bowel disease in another.",
+    "No source I fetched reported long-term safety data for 5-HTP.",
+    "No source I fetched gave 5-HTP-specific information about combining it with medicines that raise serotonin. NCCIH does warn that L-tryptophan supplements may cause life-threatening serotonin toxicity with medicines that affect serotonin metabolism, and that warning names L-tryptophan, not 5-HTP.",
+    "Nothing I fetched shows 5-HTP is an FDA-approved medicine. The only 5-HTP products in the FDA label database are homeopathic over-the-counter remedies, and their own labels say their claims are not FDA evaluated."
+  ],
+  "evidence": [
+    {
+      "claim": "5-HTP is a tryptophan derivative carrying a hydroxy group at position 5, and has a role as a neurotransmitter and a human metabolite.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Record+Description",
+      "quote": "5-hydroxytryptophan is a tryptophan derivative that is tryptophan substituted by a hydroxy group at position 5."
+    },
+    {
+      "claim": "The body produces 5-HTP from the essential amino acid L-tryptophan, and 5-HTP is the immediate precursor of serotonin.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/439280/JSON?heading=Record+Description",
+      "quote": "5-Hydroxy-L-tryptophan is an aromatic amino acid naturally produced by the body from the essential amino acid l-tryptophan."
+    },
+    {
+      "claim": "An enzyme called aromatic-L-amino-acid decarboxylase converts 5-HTP to serotonin, and vitamin B6 is required for that conversion.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Pharmacology+and+Biochemistry",
+      "quote": "by the enzyme aromatic-L-amino-acid decarboxylase with the help of vitamin B6"
+    },
+    {
+      "claim": "5-HTP passes the blood-brain barrier and is converted to serotonin inside brain cells.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Pharmacology+and+Biochemistry",
+      "quote": "5-HTP readily crosses the blood-brain barrier, and is converted to serotonin in brain cells."
+    },
+    {
+      "claim": "The therapeutic form of 5-HTP used in products is isolated from the seeds of the African plant Griffonia simplicifolia.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/439280/JSON?heading=Record+Description",
+      "quote": "The exogenous therapeutic form is isolated from the seeds of the African plant Griffonia simplicifolia."
+    },
+    {
+      "claim": "PubChem summarises 5-HTP as an aromatic amino acid with antidepressant activity, acting by conversion to serotonin or by binding serotonin receptors in the central nervous system.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/439280/JSON?heading=Record+Description",
+      "quote": "Oxitriptan is an aromatic amino acid with antidepressant activity."
+    },
+    {
+      "claim": "A PubChem summary reports that absorption of 5-HTP is roughly 47 percent to 84 percent, and that absorption happens by an active transport process.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Pharmacology+and+Biochemistry",
+      "quote": "The efficiency of absorption of 5HTP, as well as its decarboxylation product serotonin, is approximately 47% to 84%."
+    },
+    {
+      "claim": "PubChem records the molecular formula of 5-hydroxytryptophan as C11H12N2O3 with a molecular weight of 220.22.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/5-hydroxytryptophan/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "quote": "\"MolecularFormula\": \"C11H12N2O3\", \"MolecularWeight\": \"220.22\""
+    },
+    {
+      "claim": "NCCIH states that 5-HTP supplements have sedative effects, that how they work is unclear, and that there is very limited data on their effects on insomnia.",
+      "url": "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+      "quote": "have sedative effects, but it is unclear how they work and there is very limited data on their effects on insomnia"
+    },
+    {
+      "claim": "NCCIH has kept watch on 5-HTP for safety because of its chemical and biochemical relationship to L-tryptophan.",
+      "url": "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+      "quote": "Because of its chemical and biochemical relationship to L-tryptophan, 5-HTP has been under close watch for its safety."
+    },
+    {
+      "claim": "NCCIH reports that extensive analyses of several sources of 5-HTP found no toxic contaminants similar to those associated with L-tryptophan, and no other significant impurities.",
+      "url": "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+      "quote": "Extensive analyses of several sources of 5-HTP have shown no toxic contaminants similar to those associated with L-tryptophan"
+    },
+    {
+      "claim": "NCCIH states that L-tryptophan supplement use stopped in 1989 after an outbreak of eosinophilia-myalgia syndrome traced to contaminated synthetic L-tryptophan from a single manufacturer.",
+      "url": "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+      "quote": "The use of L-tryptophan as a dietary supplement was discontinued in 1989 because of an outbreak of eosinophilia-myalgia syndrome (EMS)"
+    },
+    {
+      "claim": "NCCIH classes L-tryptophan supplements as a serious safety concern, saying they may cause life-threatening serotonin toxicity when used with medicines that affect serotonin metabolism. The warning names L-tryptophan, not 5-HTP.",
+      "url": "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+      "quote": "L-tryptophan supplements (which may cause life-threatening serotonin toxicity when used with medicines that affect serotonin metabolism)"
+    },
+    {
+      "claim": "The FDA drug label database contains four label records that list oxitriptan, the international nonproprietary name for 5-HTP, and all four are human over-the-counter products rather than approved prescription medicines.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22OXITRIPTAN%22&limit=1&count=openfda.product_type.exact",
+      "quote": "\"term\": \"HUMAN OTC DRUG\", \"count\": 4"
+    },
+    {
+      "claim": "A homeopathic 5-HTP product listed in the FDA label database states that its claims rest on traditional homeopathic practice, are not accepted medical evidence, and are not FDA evaluated.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%225-HTP%20PHENOLIC%22&limit=1",
+      "quote": "Claims based on traditional homeopathic practice, not accepted medical evidence. Not FDA evaluated."
+    },
+    {
+      "claim": "ClinicalTrials.gov lists a completed Phase 2 trial testing oral 5-HTP against placebo in 175 people with inflammatory bowel disease in clinical and biological remission, with fatigue score as the outcome. The record does not report trial results.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03574948?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName,PrimaryOutcomeMeasure",
+      "quote": "placebo cross-over trial aims to study the effect of the oral intake of an essential amino-acid 5-OH tryptophan"
+    },
+    {
+      "claim": "ClinicalTrials.gov lists a completed study of sub-chronic effects of 5-hydroxytryptophan on mood and emotional processing, enrolling 33 healthy volunteers.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=5-hydroxytryptophan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName",
+      "quote": "Sub-chronic Effects of 5-hydroxytryptophan on Mood and Emotional Processing in Healthy Volunteers"
+    },
+    {
+      "claim": "DailyMed, the NLM label repository, indexes two products whose names contain 5-hydroxytryptophan, both homeopathic liquid preparations.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=5-hydroxytryptophan",
+      "quote": "5-HTP PHENOLIC (5-HYDROXYTRYPTOPHAN) LIQUID [ENERGIQUE, INC.]"
+    }
+  ],
+  "confidence": "high",
+  "confidenceBasis": "The main claims are each supported by two or more independent fetched sources: PubChem (two CID records), NCCIH, openFDA/DailyMed, and ClinicalTrials.gov. Confidence here covers factual grounding, not strength of evidence for any health effect, which the sources themselves describe as limited.",
+  "gaps": [
+    "No dedicated NCCIH 5-HTP fact sheet exists at https://www.nccih.nih.gov/health/5-htp or https://www.nccih.nih.gov/health/highlights/5-htp; both returned HTTP 404. 5-HTP appears only inside NCCIH's sleep disorders material.",
+    "The Internet Archive Wayback index returned HTTP 503 (service offline), so older archived versions of any retired NCCIH 5-HTP page could not be inspected.",
+    "The DailyMed SPL detail endpoint returned HTTP 415 Unsupported Media Type for the Energique record, so that specific label was verified through the openFDA mirror of the same label instead.",
+    "No MedlinePlus health topic or medical test summary mentioning 5-HTP was found. The MedlinePlus health topic search service returned zero results for the term 5-HTP. MedlinePlus drug monographs were excluded from this work by instruction.",
+    "The ClinicalTrials.gov records fetched do not report outcome data, so no claim is made here that 5-HTP did or did not help participants in any study.",
+    "No source I fetched addressed pregnancy, breastfeeding or children beyond a generic homeopathic-label warning, and none addressed 5-HTP-specific interactions with serotonergic medicines.",
+    "I could not ground any claim about the quality, purity or actual 5-HTP content of currently sold 5-HTP supplement products.",
+    "I could not ground a claim that 5-HTP is an approved medicine anywhere; the only regulatory records found are human over-the-counter homeopathic products.",
+    "The 1989 eosinophilia-myalgia event is documented by NCCIH only in relation to L-tryptophan, not 5-HTP, and that distinction is preserved in the text above.",
+    "Nothing on this page is individualised dosing, diagnosis or treatment advice, so no such section was written and none is available from these sources."
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%225-HTP%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%225-HTP%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22HYDROXYTRYPTOPHAN%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22OXITRIPTAN%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22OXITRIPTAN%22&limit=1&count=openfda.product_type.exact",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%225-HTP%20PHENOLIC%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=set_id:%225c0ff0d8-2db4-42c0-9b6d-572f9ad0c98b%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=5-hydroxytryptophan",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/811a53ad-290e-447b-a3b5-bd9ac72b0689.json",
+    "https://www.nccih.nih.gov/health/5-htp",
+    "https://www.nccih.nih.gov/health/highlights/5-htp",
+    "https://www.nccih.nih.gov/health/sleep-disorders-and-complementary-health-approaches",
+    "https://www.nccih.nih.gov/health/sleep-disorders-what-you-need-to-know",
+    "https://www.nccih.nih.gov/health/sleep-disorders-complementary-health-approaches",
+    "https://files.nccih.nih.gov/s3fs-public/Sleep_Disorders_12-01-2015.pdf",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/144",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/5-hydroxytryptophan/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/5-hydroxytryptophan/synonyms/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Record+Description",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/144/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/439280/JSON?heading=Record+Description",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=5-HTP&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=5-HTP&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,Phase,EnrollmentCount",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=5-hydroxytryptophan&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03574948?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName,PrimaryOutcomeMeasure",
+    "https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&term=5-HTP&retmax=5",
+    "https://web.archive.org/web/*/nccih.nih.gov/health/5-htp*"
+  ],
+  "sourceLicensingNotes": {
+    "pubchem": "PubChem aggregate records are used for facts only; the bioactivity and pharmacokinetic summaries are drawn from US federal sources (HSDB via NLM, NCI Thesaurus, MeSH) whose reuse terms permit this. No source sentence is reproduced beyond a short quoted fragment for verification.",
+    "nccih": "NCCIH material is a US federal publication stating it is not copyrighted and in the public domain. Facts were taken and the prose rewritten.",
+    "openfda_dailymed": "openFDA and DailyMed are US federal label repositories. Label facts were taken and the prose rewritten.",
+    "clinicaltrials": "ClinicalTrials.gov registry records are US federal data. Only registry facts were taken.",
+    "excluded": "MedlinePlus drug monographs (ASHP-copyrighted) and the copyrighted commercial supplement sites named in the brief were not fetched or cited."
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "slug": "valerian",
+  "name": "Valerian",
+  "substanceClass": "SUPPLEMENT_INGREDIENT",
+  "tier": 1,
+  "identity": {
+    "commonNames": ["valerian", "all-heal", "garden heliotrope"],
+    "latinName": "Valeriana officinalis",
+    "partsUsed": "root and underground stem (rhizome)",
+    "whatItIs": "An herb sold as a dietary supplement, usually as dried root, capsules, tea, or tincture."
+  },
+  "oneLineAnswer": "Valerian is a plant root sold for sleep and calm, but proof that it works is weak.",
+  "whatItDoes": [
+    "Valerian is an herb: the root and underground stem of the plant Valeriana officinalis.",
+    "People have used it since ancient Greece and Rome, for poor sleep, headaches, tiredness, and stomach cramps.",
+    "Sellers today mainly promote it for sleep, nervousness, stress, and low mood.",
+    "Trials have tested it in adults with poor sleep and in children facing dental work.",
+    "NCCIH, a US government health agency, says the evidence does not yet show it helps any condition."
+  ],
+  "whatWeDoNotKnow": [
+    "Nobody has clearly shown that valerian works for any health problem.",
+    "Sleep studies disagree with each other.",
+    "A 2017 US sleep-medicine guideline advised against valerian for long-term insomnia in adults.",
+    "Three small studies hint it may ease menopause symptoms, but that is thin evidence.",
+    "For anxiety, depression, premenstrual syndrome, menstrual cramps, and stress, there is not enough evidence for any conclusion.",
+    "Whether long-term use is safe, and whether it is safe while pregnant or breastfeeding, is not known."
+  ],
+  "safetyNotes": [
+    "NCCIH reports that most adults have used valerian short term without apparent harm, in studies lasting up to six weeks.",
+    "Reported side effects include headache, upset stomach, mental dullness, excitability, uneasiness, and vivid dreams.",
+    "Stopping suddenly after long use has been linked to anxiety, irritability, heart rhythm changes, insomnia, and, rarely, hallucinations.",
+    "Rare liver injury has been reported, usually in people who also took other herbal products.",
+    "Because a sleep-inducing effect is possible but unproven, NCCIH says valerian should not be mixed with alcohol or sedatives.",
+    "US labels for products containing valerian often tell you to ask a health professional first if pregnant or breastfeeding, and to keep the product away from children.",
+    "Some products that list valerian are homeopathic remedies; their labels say the uses come from traditional practice and were not reviewed by the FDA.",
+    "In the US, supplements are not approved by the FDA before sale, unlike medicines."
+  ],
+  "confidence": "high",
+  "gaps": [
+    "The claim that the evidence does not yet show valerian helps any condition rests on the NCCIH article; ClinicalTrials.gov independently confirms only that valerian has been studied in trials, not the verdict on those trials.",
+    "openFDA drug labels for valerian come almost entirely from homeopathic products, so they document how valerian is marketed rather than whether it works.",
+    "No public-domain labeled human trial outcomes (result numbers, effect sizes) were found in the sources fetched; the ClinicalTrials.gov records give study design, phase, enrollment, and status only.",
+    "No grounded explanation of how valerian might act in the body was found; the fetched sources say only that a sleep-inducing effect is possible though not proven.",
+    "Nothing was grounded on interactions with named medicines, effects during pregnancy, or children's safety beyond general label warnings.",
+    "MedlinePlus has no health topic or medical-test summary that names valerian; the Insomnia topic page does not mention it.",
+    "PubChem has no compound record for valerian as a substance; it carries only the plant taxonomy record and unrelated compounds whose names come from valerian.",
+    "The NCCIH article could not be read by plain fetch (it served stylesheet code only); its text was read from the rendered page instead.",
+    "The NCCIH at-a-glance subpage returned a 404 and was not used."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/valerian",
+    "https://www.nccih.nih.gov/health/valerian/at-a-glance",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Valerian%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=valerian&limit=5",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22VALERIAN%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=set_id:%220944a425-3e44-4a0c-9923-c506a80c8cba%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=valerian",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian%20insomnia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,EnrollmentCount,StudyType,Phase",
+    "https://pubchem.ncbi.nlm.nih.gov/taxonomy/Valeriana-officinalis",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/valerian/json",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/taxonomy/valeriana/json",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/7991",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Valerian/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Valerian/cids/JSON",
+    "https://medlineplus.gov/insomnia.html",
+    "https://medlineplus.gov/sleepdisorders.html"
+  ],
+  "evidence": [
+    {
+      "claim": "Valerian is a plant that is native to Europe and Asia and also grows in North America.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Valerian is a plant native to Europe and Asia; it also grows in North America."
+    },
+    {
+      "claim": "The root and the underground stem, called a rhizome, are the medicinal parts.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "The roots and rhizomes (underground stems) of valerian are used for medicinal purposes."
+    },
+    {
+      "claim": "Its use as a medicine goes back to ancient Greece and Rome.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Valerian has been used medicinally since the times of early Greece and Rome."
+    },
+    {
+      "claim": "Historical uses included insomnia, migraine, fatigue, and stomach cramps.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Historically, valerian was used to treat insomnia, migraine, fatigue, and stomach cramps."
+    },
+    {
+      "claim": "Today it is promoted for insomnia, anxiety, stress, and depression.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Today, valerian is promoted for insomnia, anxiety, stress, and depression."
+    },
+    {
+      "claim": "There is not enough evidence to say valerian helps any health condition.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "There is not enough evidence to determine whether valerian is useful for any health conditions."
+    },
+    {
+      "claim": "A 2017 guideline from the American Academy of Sleep Medicine advised against valerian for chronic insomnia in adults.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "the American Academy of Sleep Medicine recommended against using valerian for chronic insomnia in adults"
+    },
+    {
+      "claim": "Three small studies suggest valerian might help menopause symptoms.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Three small studies suggest that valerian might be helpful for menopause symptoms"
+    },
+    {
+      "claim": "No conclusions can be drawn for anxiety, depression, premenstrual syndrome, menstrual cramps, or stress.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "not enough evidence to allow any conclusions about whether valerian is helpful for anxiety, depression, premenstrual syndrome, dysmenorrhea (menstrual cramps), stress"
+    },
+    {
+      "claim": "NCCIH reports valerian is generally safe for short-term use by most adults.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Research suggests that valerian is generally safe for short-term use by most adults."
+    },
+    {
+      "claim": "It has been used with apparent safety in studies of up to six weeks, at amounts recorded as 300 to 600 milligrams daily.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "It has been used with apparent safety in doses of 300 to 600 milligrams daily for up to 6 weeks."
+    },
+    {
+      "claim": "Safety of long-term use is unknown.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "The safety of long-term use of valerian is unknown."
+    },
+    {
+      "claim": "Reported side effects include headache, stomach upset, mental dullness, excitability, uneasiness, and vivid dreams.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Side effects of valerian include headache, stomach upset, mental dullness, excitability, uneasiness, and vivid dreams."
+    },
+    {
+      "claim": "Stopping abruptly after chronic use has been linked to withdrawal symptoms including anxiety, irritability, heart disturbances, insomnia, and rarely hallucinations.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Some may experience withdrawal symptoms, including anxiety, irritability, heart disturbances, insomnia, and in rare cases, hallucinations, if stopped abruptly after chronic use."
+    },
+    {
+      "claim": "Very rare liver injury has been reported, most often alongside other herbal products.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "In very rare cases, liver injury was reported when taking valerian, most often in combination with other herbals"
+    },
+    {
+      "claim": "NCCIH says valerian should not be taken with alcohol or sedatives.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "it should not be taken along with alcohol or sedatives"
+    },
+    {
+      "claim": "Little is known about safety during pregnancy or breastfeeding.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Little is known about whether it’s safe to use valerian during pregnancy or while breastfeeding."
+    },
+    {
+      "claim": "In the US, dietary supplements are not approved by the FDA before they are sold.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "Unlike drugs, dietary supplements are not approved by the U.S. Food and Drug Administration (FDA) before they are sold to the public."
+    },
+    {
+      "claim": "The NCCIH article is public domain and is dated May 2025.",
+      "sourceUrl": "https://www.nccih.nih.gov/health/valerian",
+      "quote": "This publication is not copyrighted and is in the public domain. Duplication is encouraged."
+    },
+    {
+      "claim": "A marketed homeopathic product that lists valerian carries a sleeplessness claim on its label.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Valerian%22&limit=1",
+      "quote": "Indication Helps relieve occasional sleeplessness by soothing the mind, and easing you into a natural sleep."
+    },
+    {
+      "claim": "That label also states the uses rest on traditional homeopathic practice and were not FDA-reviewed.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Valerian%22&limit=1",
+      "quote": "These uses are based upon traditional homeopathic practice. They have not been reviewed by the Food and Drug Administration."
+    },
+    {
+      "claim": "Another marketed product lists Valeriana officinalis 12C with the stated purpose of sleeplessness.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=set_id:%220944a425-3e44-4a0c-9923-c506a80c8cba%22&limit=1",
+      "quote": "Valeriana officinalis 12C Remedy for Sleeplessness"
+    },
+    {
+      "claim": "Labels of products containing valerian include pregnancy, breastfeeding, and child-safety warnings.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=set_id:%220944a425-3e44-4a0c-9923-c506a80c8cba%22&limit=1",
+      "quote": "If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children."
+    },
+    {
+      "claim": "A US government-funded trial tested valerian for sleep in people with Parkinson's disease.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian&pageSize=5",
+      "quote": "The purpose of this trial is to test the short-term effectiveness of valerian, a medicinal herb, to improve sleep in patients with Parkinson's disease (PD)."
+    },
+    {
+      "claim": "That Parkinson's sleep trial was Phase 2 and listed 80 participants.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian%20insomnia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,EnrollmentCount,StudyType,Phase",
+      "quote": "\"phases\":[\"PHASE2\"],\"enrollmentInfo\":{\"count\":80}"
+    },
+    {
+      "claim": "A trial tested a valerian root extract and lavender oil combination in people with sleep complaints.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian%20insomnia&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,EnrollmentCount,StudyType,Phase",
+      "quote": "Efficacy and Safety of Valerian Root Extract and Lavender Essential Oil Combination, Over 4 Weeks in Subjects With Sleep Complaints"
+    },
+    {
+      "claim": "A completed trial compared valerian extract with chamomile and placebo for dental anxiety in children aged 6 to 10.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=Valerian&pageSize=5",
+      "quote": "evaluate and compare the effectiveness of chamomile extract and valerian extract in reducing dental anxiety in healthy pediatric patients"
+    },
+    {
+      "claim": "PubChem lists the plant under the scientific name Valeriana officinalis with common name garden heliotrope.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/taxonomy/Valeriana-officinalis",
+      "quote": "Valeriana officinalis (garden heliotrope)"
+    },
+    {
+      "claim": "PubChem assigns the plant taxonomy ID 19953.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/taxonomy/Valeriana-officinalis",
+      "quote": "Taxonomy 19953"
+    },
+    {
+      "claim": "DailyMed carries many US product labels that name valerian or Valeriana officinalis as an ingredient.",
+      "sourceUrl": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=valerian",
+      "quote": "DEEP REST SLEEP PROBLEMS (COFFEA CRUDA 9C, CRATAEGUS 3C, IGNATIA AMARA 9C, PASSIFLORA INCARNATA 3C, TILIA EUROPAEA 3C, VALERIANA OFFICINALIS 3C) SPRAY [SEVENE USA]"
+    }
+  ]
+}

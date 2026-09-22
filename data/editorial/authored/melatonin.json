@@ -1,0 +1,223 @@
+{
+  "slug": "melatonin",
+  "name": "Melatonin",
+  "substanceClass": "SUPPLEMENT_INGREDIENT",
+  "tier": 1,
+  "oneLineAnswer": "A hormone your body makes in the dark to time sleep; supplements are sold for jet lag and body-clock problems.",
+  "whatItDoes": [
+    "Melatonin is a hormone your brain releases in the dark.",
+    "It helps set the timing of your circadian rhythm, the body clock that runs your day.",
+    "Your body builds it from the amino acid L-tryptophan.",
+    "Light at night can block your body's melatonin production.",
+    "Researchers think it has other jobs in the body beyond sleep, but those jobs are not well understood."
+  ],
+  "whatWeDoNotKnow": [
+    "Whether melatonin helps chronic insomnia is unclear. Guidelines cited by NCCIH say the evidence is too weak to recommend it.",
+    "Long-term safety is unknown, because NCCIH says information on long-term use of melatonin supplements is lacking.",
+    "There has been very little research on melatonin use during pregnancy or breastfeeding.",
+    "The long-term effects of melatonin in children are not well studied.",
+    "Evidence about shift workers is weak; the reviews NCCIH cites were small or inconclusive.",
+    "Studies of melatonin for cancer symptoms were small and produced mixed results.",
+    "The other roles melatonin plays in the body are not fully understood.",
+    "Whether melatonin helps with COVID-19 cannot be judged yet, according to NCCIH."
+  ],
+  "safetyNotes": [
+    "Melatonin can make you drowsy. One melatonin product label tells people not to drive or use heavy machinery after taking it.",
+    "NCCIH says people with epilepsy, and people taking blood thinner medicines, need medical supervision when using melatonin supplements.",
+    "Sleep medicine guidelines from 2015 advise against melatonin use by people with dementia, per NCCIH.",
+    "Melatonin may stay active longer in older people than in younger people and cause daytime drowsiness.",
+    "Supplement labels can be wrong. NCCIH reports a 2017 study where 26 percent of tested melatonin supplements also contained serotonin."
+  ],
+  "identifiers": {
+    "pubchemCid": 896,
+    "unii": "JL5DK93RCL",
+    "molecularFormula": "C13H16N2O2",
+    "molecularWeightGramsPerMole": 232.28
+  },
+  "evidence": [
+    {
+      "claim": "Melatonin is a hormone the brain produces in response to darkness.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Melatonin is a hormone that your brain produces in response to darkness."
+    },
+    {
+      "claim": "Melatonin helps with the timing of circadian rhythms and with sleep.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "It helps with the timing of your circadian rhythms (24-hour internal clock) and with sleep."
+    },
+    {
+      "claim": "Light exposure at night can block melatonin production.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Being exposed to light at night can block melatonin production."
+    },
+    {
+      "claim": "NCCIH states that melatonin's roles beyond sleep are not fully understood.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Research suggests that melatonin plays other important roles in the body beyond sleep. However, these effects are not fully understood."
+    },
+    {
+      "claim": "Melatonin supplements can be made from animals or microorganisms, but are usually synthetic.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Melatonin dietary supplements can be made from animals or microorganisms, but most often they’re made synthetically."
+    },
+    {
+      "claim": "NCCIH names jet lag and delayed sleep-wake phase disorder among conditions melatonin supplements may help with.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Melatonin supplements may help with certain conditions, such as jet lag, delayed sleep-wake phase disorder"
+    },
+    {
+      "claim": "Guidelines cited by NCCIH do not recommend melatonin for chronic insomnia because evidence is not strong enough.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "there’s not enough strong evidence on the effectiveness or safety of melatonin supplementation for chronic insomnia to recommend its use"
+    },
+    {
+      "claim": "Short-term melatonin use appears safe for most people, while long-term safety information is lacking.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Short-term use of melatonin supplements appears to be safe for most people, but information on the long-term safety of supplementing with melatonin is lacking."
+    },
+    {
+      "claim": "In the United States melatonin is regulated less strictly than a prescription or over-the-counter drug.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "it’s regulated less strictly by the Food and Drug Administration (FDA) than a prescription or over-the-counter drug would be"
+    },
+    {
+      "claim": "In several other countries melatonin is sold only with a prescription and treated as a drug.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "In several other countries, melatonin is available only with a prescription and is considered a drug."
+    },
+    {
+      "claim": "The amount of melatonin in a product often does not match the product label.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "For most of the supplements, the amount of melatonin in the product didn’t match what was listed on the product label."
+    },
+    {
+      "claim": "NCCIH reports that 26 percent of supplements in a 2017 study also contained serotonin.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "26 percent of the supplements contained serotonin, a hormone that can have harmful effects even at relatively low levels."
+    },
+    {
+      "claim": "A 2015 safety review found only mild side effects reported in short-term studies of adults, surgical patients and critically ill patients.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "A 2015 review on the safety of melatonin supplements indicated that only mild side effects were reported in various short-term studies"
+    },
+    {
+      "claim": "Studies of melatonin for shift workers were small or inconclusive.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "studies on whether melatonin supplements help shift workers were generally small or inconclusive"
+    },
+    {
+      "claim": "Studies of melatonin for cancer symptoms were small and had mixed results.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Studies of the effect of melatonin supplements on cancer symptoms or treatment-related side effects have been small and have had mixed results."
+    },
+    {
+      "claim": "NCCIH says it is too soon to conclude whether melatonin helps with COVID-19.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "At this point, it is too soon to reach conclusions on whether melatonin is helpful for COVID-19."
+    },
+    {
+      "claim": "People with epilepsy and people taking blood thinners need medical supervision when using melatonin supplements.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "people with epilepsy and those taking blood thinner medications need to be under medical supervision when taking melatonin supplements"
+    },
+    {
+      "claim": "There is little information on the long-term effects of melatonin in children.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "there’s little information on the long-term effects of melatonin use in children"
+    },
+    {
+      "claim": "NCCIH notes a lack of research on melatonin safety in pregnant or breastfeeding women.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "There’s been a lack of research on the safety of melatonin use in pregnant or breastfeeding women."
+    },
+    {
+      "claim": "Melatonin may stay active longer in older people and cause daytime drowsiness.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "Melatonin may stay active in older people longer than in younger people and cause daytime drowsiness."
+    },
+    {
+      "claim": "The 2015 American Academy of Sleep Medicine guidelines recommend against melatonin use by people with dementia.",
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+      "quote": "The 2015 guidelines by the American Academy of Sleep Medicine recommend against melatonin use by people with dementia."
+    },
+    {
+      "claim": "PubChem's compound description calls melatonin a hormone secreted by the pineal gland in humans.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/896/description/JSON",
+      "quote": "It is a hormone secreted by the pineal gland in humans."
+    },
+    {
+      "claim": "PubChem's pharmacology section says melatonin is produced in the pineal gland, released into the blood, and that darkness stimulates its production while light inhibits it.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/896/JSON?heading=Pharmacology%20and%20Biochemistry",
+      "quote": "It helps regulate sleep-wake cycles or the circadian rhythm. Production of melatonin is stimulated by darkness and inhibited by light."
+    },
+    {
+      "claim": "PubChem's pharmacology section says the amino acid L-tryptophan is a precursor in melatonin synthesis.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/896/JSON?heading=Pharmacology%20and%20Biochemistry",
+      "quote": "The essential amino acid L-tryptophan is a precursor in the synthesis of melatonin."
+    },
+    {
+      "claim": "PubChem records melatonin's molecular formula as C13H16N2O2 and its molecular weight as 232.28.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/melatonin/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "quote": "\"MolecularFormula\": \"C13H16N2O2\", \"MolecularWeight\": \"232.28\""
+    },
+    {
+      "claim": "An openFDA label for a product listing melatonin warns that long-term use has not been studied and that it may cause drowsiness.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Melatonin%20Pro%22&limit=1",
+      "quote": "Long-term use of melatonin has not been studied. May cause drowsiness. Do not use before or while operating a motor vehicle or heavy machinery."
+    },
+    {
+      "claim": "That same melatonin label states its claims rest on homeopathic practice and were not accepted as medical evidence or evaluated by the FDA.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Melatonin%20Pro%22&limit=1",
+      "quote": "Claims based on traditional homeopathic practice, not accepted medical evidence. Not FDA evaluated."
+    },
+    {
+      "claim": "openFDA labels record the UNII code JL5DK93RCL for the substance melatonin.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22melatonin%22&limit=3",
+      "quote": "\"unii\": [ \"JL5DK93RCL\" ]"
+    },
+    {
+      "claim": "A DailyMed label search for melatonin returned 60 records, and the first page consisted of multi-ingredient products that include melatonin.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=melatonin&pagesize=5",
+      "quote": "\"total_elements\": 60"
+    },
+    {
+      "claim": "ClinicalTrials.gov lists 1,089 registered studies matching the term Melatonin.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Melatonin&pageSize=1&countTotal=true&fields=NCTId",
+      "quote": "\"totalCount\": 1089"
+    },
+    {
+      "claim": "Registered trials on ClinicalTrials.gov include studies of melatonin and light treatment for jet lag and sleep disorders.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=melatonin%20jet%20lag&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,StartDate",
+      "quote": "Effectiveness of Combining Light and Non-Light Treatments for Jet Lag and Sleep Disorders"
+    }
+  ],
+  "confidence": "high",
+  "gaps": [
+    "The NCCIH page could not be read by a plain HTTP fetch: it returns a JavaScript shell made mostly of stylesheet code. I read the rendered page in a browser tab instead, so the NCCIH quotes come from the rendered text of the same URL.",
+    "openFDA labels naming melatonin are homeopathic or multi-ingredient products. I could not ground FDA-approved indications, standard product strengths, or prescription status for plain melatonin from labels.",
+    "No MedlinePlus health topic page dedicated to melatonin was found. MedlinePlus drug monographs are copyrighted and were deliberately not fetched, so no facts come from them. I did fetch the MedlinePlus Insomnia health topic, which does not mention melatonin, so it supports no melatonin claim.",
+    "The Internet Archive was offline when I tried it, so no archived snapshot of the NCCIH page could be used as a fallback.",
+    "PubChem's pharmacology text aggregates third-party sources rather than a public-domain label, so the receptor and pharmacokinetic details were not used beyond the pineal gland, darkness and tryptophan facts.",
+    "I could not ground amounts used in food, natural blood levels, or any no-effect level from the sources I fetched, so the record reports no numbers for those."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/melatonin",
+    "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Melatonin%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22melatonin%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Melatonin%20Pro%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=melatonin&pagesize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/melatonin/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/896/description/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/896/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/896/JSON?heading=Description",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/896/JSON?heading=Pharmacology%20and%20Biochemistry",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/896",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Melatonin&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,Condition",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Melatonin&pageSize=1&countTotal=true&fields=NCTId",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=melatonin%20jet%20lag&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,StartDate",
+    "https://medlineplus.gov/insomnia.html",
+    "https://web.archive.org/web/2024id_/https://www.nccih.nih.gov/health/melatonin",
+    "https://web.archive.org/web/20200501000000/https://www.nccih.nih.gov/health/melatonin"
+  ]
+}

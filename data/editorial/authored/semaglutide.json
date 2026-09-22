@@ -1,0 +1,258 @@
+{
+  "slug": "semaglutide",
+  "name": "Semaglutide",
+  "substanceClass": "APPROVED_BIOLOGIC",
+  "tier": 1,
+  "oneLineAnswer": "Semaglutide is a prescription GLP-1 medicine, given by injection or by mouth, that lowers blood sugar and body weight.",
+  "whatItIs": [
+    "Semaglutide is a lab-made version of GLP-1, a hormone your gut releases after you eat.",
+    "It matches human GLP-1 in 94% of its amino acid sequence.",
+    "Small chemical changes at three positions help it resist breakdown and bind to albumin, a blood protein.",
+    "That albumin binding is why it leaves the body slowly, with a half-life near one week."
+  ],
+  "whatItDoes": [
+    "It switches on the GLP-1 receptor, the same docking site your own GLP-1 hormone uses.",
+    "It prompts the pancreas to release insulin when blood sugar is high, and to release less glucagon.",
+    "It slows the stomach and reduces appetite, so people in studies ate fewer calories.",
+    "Labels say the weight lost is mostly fat mass rather than lean mass.",
+    "Adults with type 2 diabetes use it for blood sugar control. Others use it for weight reduction or lower heart risk."
+  ],
+  "formsAndNames": [
+    "It comes as an injected liquid and as tablets swallowed by mouth.",
+    "Tablet forms include salcaprozate sodium, called SNAC, which helps the peptide get absorbed. Injections do not contain it.",
+    "DailyMed lists semaglutide products under the brand names Ozempic, Rybelsus and Wegovy.",
+    "Labels say not to combine it with another semaglutide product or any other GLP-1 medicine."
+  ],
+  "commonSideEffects": [
+    "Labels list the most common side effects as nausea, abdominal pain, diarrhea, decreased appetite, vomiting and constipation.",
+    "Each of those was reported by at least 5% of people in the tablet trials behind the label.",
+    "Labels describe some gastrointestinal reactions as severe."
+  ],
+  "seriousRisksTheLabelsDescribe": [
+    "Rodents given semaglutide grew thyroid C-cell tumors. Labels say it is unknown whether people would.",
+    "Labels say the medicine is not for people with a personal or family history of medullary thyroid carcinoma, or with MEN 2.",
+    "Warnings also cover pancreatitis, gallbladder disease, kidney injury from dehydration, diabetic eye complications, and low blood sugar when taken with insulin or sulfonylureas."
+  ],
+  "whatWeDoNotKnow": [
+    "Whether the rodent thyroid tumors have any human equivalent. Labels state the human relevance has not been determined.",
+    "How the heart benefit actually happens. Labels state the exact mechanism of cardiovascular risk reduction has not been established.",
+    "Long-run outcomes beyond trial length. Registry trials ran from months to a few years, with one heart trial following people up to about 240 weeks."
+  ],
+  "confidence": "high",
+  "gaps": [
+    "NCCIH has no semaglutide page. Both https://www.nccih.nih.gov/health/semaglutide and a weight-management NCCIH path returned 404, so no NCCIH grounding is possible for this substance.",
+    "No MedlinePlus health topic or medical test summary covered semaglutide. MedlinePlus drug monographs were deliberately not fetched or used.",
+    "Numeric trial effect sizes (for example mean percent weight change) were not extracted. Outcome value tables in the ClinicalTrials.gov payload were not read, so no effect size is claimed.",
+    "Effects of stopping the medicine, weight regain after stopping, and long-term safety beyond trial follow-up were not grounded in any fetched source.",
+    "Cost, insurance coverage, supply shortages, and compounded versions were not grounded and are not described.",
+    "Head-to-head comparisons with other GLP-1 medicines were not grounded in any fetched source."
+  ],
+  "sourcesChecked": [
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=semaglutide",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Semaglutide&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03548935?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.designModule.phases,protocolSection.outcomesModule.primaryOutcomes,resultsSection.outcomeMeasuresModule.outcomeMeasures.title,resultsSection.outcomeMeasuresModule.outcomeMeasures.unitOfMeasure,resultsSection.outcomeMeasuresModule.outcomeMeasures.classes",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03574597?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.outcomesModule.primaryOutcomes,resultsSection.outcomeMeasuresModule.outcomeMeasures.title,resultsSection.outcomeMeasuresModule.outcomeMeasures.description",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/semaglutide/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://www.nccih.nih.gov/health/semaglutide",
+    "https://www.nccih.nih.gov/health/weight-management-and-complementary-health-approaches"
+  ],
+  "evidence": [
+    {
+      "claim": "Semaglutide is a GLP-1 receptor agonist that selectively binds and activates the GLP-1 receptor.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "Semaglutide acts as a GLP-1 receptor agonist that selectively binds to and activates the GLP-1 receptor"
+    },
+    {
+      "claim": "Semaglutide's amino acid sequence is 94% identical to human GLP-1.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "Semaglutide is a GLP-1 analogue with 94% sequence homology to human GLP-1."
+    },
+    {
+      "claim": "Binding to albumin is the main reason semaglutide lasts so long in the body.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "The principal mechanism of protraction resulting in the long half-life of semaglutide is albumin binding"
+    },
+    {
+      "claim": "Semaglutide also resists breakdown by the DPP-4 enzyme.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "semaglutide is stabilized against degradation by the DPP-4 enzyme"
+    },
+    {
+      "claim": "It lowers blood sugar by raising insulin release and cutting glucagon release, both tied to glucose level.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "it stimulates insulin secretion and lowers glucagon secretion, both in a glucose-dependent manner"
+    },
+    {
+      "claim": "A minor delay in stomach emptying is part of how it lowers blood sugar.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "The mechanism of blood glucose lowering also involves a minor delay in gastric emptying"
+    },
+    {
+      "claim": "Its elimination half-life is about one week.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "Semaglutide elimination half-life is approximately one week"
+    },
+    {
+      "claim": "GLP-1 is a natural regulator of appetite and calorie intake.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "GLP-1 is a physiological regulator of appetite and caloric intake"
+    },
+    {
+      "claim": "The GLP-1 receptor sits in brain areas involved in appetite regulation.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "the GLP-1 receptor is present in several areas of the brain involved in appetite regulation"
+    },
+    {
+      "claim": "Semaglutide lowers calorie intake, and the effect is probably driven by appetite.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "Semaglutide decreases calorie intake. The effects are likely mediated by affecting appetite."
+    },
+    {
+      "claim": "Weight loss from semaglutide is greater in fat mass than in lean mass.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "Semaglutide lowers body weight with greater fat mass loss than lean mass loss."
+    },
+    {
+      "claim": "Semaglutide delays stomach emptying.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "Semaglutide delays gastric emptying."
+    },
+    {
+      "claim": "After the last 2.4 mg dose, semaglutide stays in the bloodstream for roughly five to seven weeks.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "With an elimination half-life of approximately 1 week, semaglutide will be present in the circulation for about 5 to 7 weeks"
+    },
+    {
+      "claim": "The mechanism behind the cardiovascular benefit is not established.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "The exact mechanism of cardiovascular risk reduction has not been established."
+    },
+    {
+      "claim": "Rodent studies found thyroid C-cell tumors, and human relevance is undetermined.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "In rodents, semaglutide causes thyroid C-cell tumors. It is unknown whether WEGOVY causes thyroid C-cell tumors"
+    },
+    {
+      "claim": "The labels rule out use in people with a personal or family history of medullary thyroid carcinoma or MEN 2.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "WEGOVY is contraindicated in patients with a personal or family history of MTC or in patients with Multiple Endocrine Neoplasia syndrome type 2"
+    },
+    {
+      "claim": "Wegovy is for weight reduction alongside a reduced calorie diet and more physical activity.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "in combination with a reduced calorie diet and increased physical activity"
+    },
+    {
+      "claim": "The labels advise against combining semaglutide with another semaglutide product or any other GLP-1 medicine.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22WEGOVY%22&limit=1",
+      "quote": "Coadministration with other semaglutide-containing products or with any other GLP-1 receptor agonist is not recommended"
+    },
+    {
+      "claim": "The most common side effects are digestive, plus decreased appetite, each in at least 5% of trial participants.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "Most common adverse reactions (incidence \u22655%) are nausea, abdominal pain, diarrhea, decreased appetite, vomiting and constipation."
+    },
+    {
+      "claim": "Some gastrointestinal reactions from the tablets were severe.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "has been associated with gastrointestinal adverse reactions, sometimes severe"
+    },
+    {
+      "claim": "Labels list thyroid C-cell tumor risk and acute pancreatitis among the serious adverse reactions.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "Risk of Thyroid C-cell Tumors [see Warnings and Precautions ( 5.1 )] \u2022 Acute Pancreatitis [see Warnings and Precautions ( 5.2 )]"
+    },
+    {
+      "claim": "Semaglutide is indicated as an add-on to diet and exercise for blood sugar control in adults with type 2 diabetes.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus"
+    },
+    {
+      "claim": "A labeled use is lowering the risk of cardiovascular death, non-fatal heart attack or non-fatal stroke.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "to reduce the risk of major adverse cardiovascular events (cardiovascular death, non-fatal myocardial infarction, or non-fatal stroke)"
+    },
+    {
+      "claim": "That cardiovascular use is limited to adults with type 2 diabetes who are at high risk for these events.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "in adults with type 2 diabetes mellitus who are at high risk for these events"
+    },
+    {
+      "claim": "Tablet forms are oral products containing semaglutide as a GLP-1 receptor agonist.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "RYBELSUS and OZEMPIC tablets, for oral use, contain semaglutide, a GLP-1 receptor agonist"
+    },
+    {
+      "claim": "SNAC (salcaprozate sodium) is listed among the inactive ingredients of the tablet forms.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "the following inactive ingredients: magnesium stearate, microcrystalline cellulose, povidone and salcaprozate sodium (SNAC)"
+    },
+    {
+      "claim": "Position 8 of the peptide is modified so the DPP-4 enzyme cannot degrade it easily.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "modified in position 8 to provide stabilization against degradation by the enzyme dipeptidyl-peptidase 4 (DPP-4)"
+    },
+    {
+      "claim": "A fatty di-acid chain attached at position 26 is what keeps the molecule circulating.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "modification of position 26 lysine with a hydrophilic spacer and a C18 fatty di-acid"
+    },
+    {
+      "claim": "The label gives the molecular formula as C187H291N45O59 and the molecular weight as 4113.58 g/mol.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Semaglutide%22&limit=1",
+      "quote": "The molecular formula is C 187 H 291 N 45 O 59 and the molecular weight is 4113.58 g/mol"
+    },
+    {
+      "claim": "An independent chemistry database gives the same formula with a molecular weight of 4114 and compound ID 56843331.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/semaglutide/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "quote": "\"CID\": 56843331, \"MolecularFormula\": \"C187H291N45O59\", \"MolecularWeight\": \"4114\""
+    },
+    {
+      "claim": "DailyMed lists multiple semaglutide products, including oral tablet labels.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=semaglutide",
+      "quote": "OZEMPIC (ORAL SEMAGLUTIDE) TABLET RYBELSUS (ORAL SEMAGLUTIDE) TABLET [NOVO NORDISK PHARMACEUTICAL INDUSTRIES, LP]"
+    },
+    {
+      "claim": "DailyMed also lists injected semaglutide products under Wegovy and Ozempic, plus tablet forms.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=semaglutide",
+      "quote": "WEGOVY (SEMAGLUTIDE) INJECTION, SOLUTION WEGOVY (SEMAGLUTIDE) TABLET"
+    },
+    {
+      "claim": "A phase 3 trial called STEP 1 studied semaglutide in adults with overweight or obesity.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03548935?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.designModule.phases,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "STEP 1: Research Study Investigating How Well Semaglutide Works in People Suffering From Overweight or Obesity"
+    },
+    {
+      "claim": "STEP 1 enrolled 1,961 participants.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03548935?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.designModule.phases,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "\"enrollmentInfo\": { \"count\": 1961"
+    },
+    {
+      "claim": "The STEP 1 primary outcome was percent change in body weight measured out to week 68.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03548935?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.designModule.phases,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "Change in body weight from baseline (week 0) to week 68 is presented."
+    },
+    {
+      "claim": "A separate trial tested semaglutide in people with overweight or obesity plus heart disease.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03574597?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "Semaglutide Effects on Heart Disease and Stroke in Patients With Overweight or Obesity"
+    },
+    {
+      "claim": "That heart trial enrolled 17,604 participants.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03574597?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "\"enrollmentInfo\": { \"count\": 17604"
+    },
+    {
+      "claim": "Its main endpoint combined cardiovascular death, non-fatal heart attack and non-fatal stroke as a first-event outcome.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03574597?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "Cardiovascular (CV) Death, Non-fatal Myocardial Infarction (MI), or Non-fatal Stroke"
+    },
+    {
+      "claim": "That heart trial followed participants for up to about 240 weeks.",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03574597?fields=protocolSection.identificationModule.briefTitle,protocolSection.designModule.enrollmentInfo,protocolSection.outcomesModule.primaryOutcomes",
+      "quote": "From randomisation (week 0) up to 240 weeks"
+    }
+  ]
+}

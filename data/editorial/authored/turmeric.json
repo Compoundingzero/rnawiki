@@ -1,0 +1,214 @@
+{
+  "slug": "turmeric",
+  "name": "Turmeric",
+  "aliases": [
+    "turmeric root",
+    "Indian saffron",
+    "Curcuma longa",
+    "Curcuma domestica",
+    "Curcuma aromatica"
+  ],
+  "corpus": {
+    "classification": "APPROVED_MEDICINE",
+    "tier": 2,
+    "recordedFields": 3
+  },
+  "oneLineAnswer": "Turmeric is a yellow spice. Its curcumin is studied for joint pain, but proof is not settled.",
+  "whatItDoes": [
+    "Turmeric is the underground stem of a plant in the ginger family, grown in India and Southeast Asia.",
+    "Curcumin gives turmeric its yellow color, and it belongs to a group of compounds called curcuminoids.",
+    "Manufacturers often add piperine from black pepper so your body absorbs more curcumin.",
+    "Sellers promote oral turmeric for osteoarthritis, depression, allergies, itching, and high cholesterol.",
+    "For knee osteoarthritis, reviewers call early results positive but say better trials are needed."
+  ],
+  "whatWeDoNotKnow": [
+    "NCCIH says we do not yet know whether turmeric or curcumin helps with any health purpose.",
+    "Curcumin studies are hard to compare, because products differ in curcumin content and in added plant ingredients.",
+    "Whether curcumin ointment applied to the skin eases knee osteoarthritis pain is unclear.",
+    "Early research suggests turmeric might change some fatty liver measures, but which ones is not clear.",
+    "Early research on mouth sores from cancer treatment looks encouraging, but it is not settled."
+  ],
+  "safetyNotes": [
+    "NCCIH calls ordinary oral turmeric or curcumin likely safe for up to two or three months.",
+    "Oral turmeric can cause stomach upset, nausea, reflux, diarrhea, or constipation.",
+    "Products modified for better absorption have been tied to liver damage, and NCCIH warns they may harm your liver.",
+    "Turmeric supplements may be unsafe if you are pregnant.",
+    "Little is known about use above food amounts while breastfeeding.",
+    "In the United States, supplements are not approved by the FDA before they are sold.",
+    "Some herbs and medicines interact in harmful ways, so NCCIH advises telling your provider what you take.",
+    "Turmeric supplement labels carry the line that the FDA has not evaluated their statements."
+  ],
+  "evidence": [
+    {
+      "claim": "Turmeric is a plant in the ginger family, grown commercially in Southeast Asia and India.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Turmeric, a plant in the ginger family, is grown commercially in Southeast Asia and India."
+    },
+    {
+      "claim": "The part of the plant that is used is the rhizome, an underground stem.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Its rhizome (underground stem) has been used for culinary and cosmetic purposes, among others."
+    },
+    {
+      "claim": "Curcumin, a major component of turmeric, gives the spice its yellow color.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Curcumin, a major component of turmeric, gives the spice its yellow color."
+    },
+    {
+      "claim": "The health effects people claim for turmeric are attributed to curcuminoids, the group that includes curcumin.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "The health activities of turmeric are commonly attributed to curcuminoids, which include curcumin."
+    },
+    {
+      "claim": "Turmeric has a history of use in Chinese, Indian (Ayurvedic), Islamic, and Thai traditional medicine.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Historically, turmeric has been used in Chinese, Indian (e.g., Ayurvedic), Islamic, and Thai traditional medicine systems"
+    },
+    {
+      "claim": "Oral turmeric is promoted as a dietary supplement for osteoarthritis, depression, allergies, itching, and high cholesterol.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Today, oral (taken by mouth) turmeric is promoted as a dietary supplement for a variety of conditions, including osteoarthritis"
+    },
+    {
+      "claim": "NCCIH states that we do not know enough to conclude whether turmeric or curcumin is beneficial for any health purpose.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "We don’t know enough to definitively conclude if turmeric or curcumin is beneficial for any health purposes."
+    },
+    {
+      "claim": "Highly bioavailable curcumin formulations may harm the liver.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Highly bioavailable formulations of curcumin, which enhance the body’s ability to absorb the curcumin, may harm your liver."
+    },
+    {
+      "claim": "Oral curcumin products vary in how much curcumin they contain and often include other plant substances.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Oral curcumin products vary in how much curcumin they actually contain, and they often contain substances from other plants"
+    },
+    {
+      "claim": "Combining curcumin with piperine, a substance from black pepper, is one way to improve bioavailability.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Combining curcumin with piperine is one way to improve the bioavailability of curcumin."
+    },
+    {
+      "claim": "For osteoarthritis measures, NCCIH reports initial positive evidence and calls for higher-quality evidence.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "The initial evidence is positive; higher-quality evidence is needed to reach definitive conclusions"
+    },
+    {
+      "claim": "It is unclear whether topical curcumin ointment affects pain from knee osteoarthritis.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "It’s unclear whether topical curcumin ointment has an effect on pain related to knee osteoarthritis."
+    },
+    {
+      "claim": "Initial research suggests oral turmeric or curcumin might improve some measures in nonalcoholic fatty liver disease.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Initial research suggests that oral turmeric or curcumin might improve some NAFLD measures"
+    },
+    {
+      "claim": "Initial research suggests turmeric or curcumin might improve symptoms of oral mucositis from cancer treatment.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Initial research suggests that turmeric or curcumin in an oral or mouthwash formulation might improve symptoms of oral mucositis"
+    },
+    {
+      "claim": "Conventionally formulated oral turmeric or curcumin is likely safe in recommended amounts for up to 2 or 3 months.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Conventionally formulated oral turmeric or curcumin (not modified to enhance bioavailability) is likely safe in the recommended amounts for up to 2 or 3 months."
+    },
+    {
+      "claim": "Oral turmeric can cause nausea, vomiting, acid reflux, stomach upset, diarrhea, or constipation.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Oral turmeric can cause adverse effects such as nausea and vomiting, acid reflux, stomach upset, diarrhea, or constipation."
+    },
+    {
+      "claim": "Liver damage has been reported in some people who consumed bioavailable curcumin formulations.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "liver damage has been reported in some people who have consumed these bioavailable formulations"
+    },
+    {
+      "claim": "The use of turmeric supplements during pregnancy may be unsafe.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "The use of turmeric supplements during pregnancy may be unsafe."
+    },
+    {
+      "claim": "Little is known about whether amounts above those commonly found in food are safe while breastfeeding.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Little is known about whether it’s safe to use turmeric in amounts greater than those commonly found in food while breastfeeding."
+    },
+    {
+      "claim": "Dietary supplements are not approved by the FDA before they are sold to the public.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "Unlike drugs, dietary supplements are not approved by the U.S. Food and Drug Administration (FDA) before they are sold to the public."
+    },
+    {
+      "claim": "NCCIH advises talking with a health care provider before using an herbal product, because some herbs and medicines interact harmfully.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "some herbs and medicines interact in harmful ways"
+    },
+    {
+      "claim": "NCCIH's turmeric publication is public domain and not copyrighted, which is why its facts may be reused.",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "quote": "This publication is not copyrighted and is in the public domain. Duplication is encouraged."
+    },
+    {
+      "claim": "A US label listing turmeric root extract states its identity as a dietary supplement.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22TURMERIC%22&limit=4",
+      "quote": "Identity Dietary supplement"
+    },
+    {
+      "claim": "Turmeric supplement labels carry the FDA disclaimer that their statements have not been evaluated.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22TURMERIC%22&limit=4",
+      "quote": "These statements have not been evaluated by the Food & Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+    },
+    {
+      "claim": "Some US over-the-counter drug labels list turmeric root as a homeopathic active ingredient.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22TURMERIC%22+AND+openfda.product_type:%22HUMAN+OTC+DRUG%22&limit=3",
+      "quote": "Active Ingredient Turmeric Root 2X HPUS Curcuma longa 4X HPUS"
+    },
+    {
+      "claim": "PubChem records curcumin as compound CID 969516, formula C21H20O6, molecular weight 368.4.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/969516/property/Title,MolecularFormula,MolecularWeight,IUPACName,InChIKey/JSON",
+      "quote": "\"Title\": \"Curcumin\", \"CID\": 969516, \"MolecularFormula\": \"C21H20O6\", \"MolecularWeight\": \"368.4\""
+    },
+    {
+      "claim": "ClinicalTrials.gov matched 295 studies for the search term Turmeric on the fetch date.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Turmeric&pageSize=1&countTotal=true&fields=NCTId",
+      "quote": "\"totalCount\": 295"
+    },
+    {
+      "claim": "A registered trial that has completed studied oral turmeric and curcumin for skin sebum production.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Turmeric&pageSize=5",
+      "quote": "\"briefTitle\":\"Turmeric and Curcumin on Sebum Production\""
+    },
+    {
+      "claim": "DailyMed's turmeric search returns 145 product label records, most of them combination products.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=turmeric&pagesize=5",
+      "quote": "\"total_elements\": 145"
+    }
+  ],
+  "confidence": "medium",
+  "confidenceRationale": "Identity, chemistry, and regulatory placement are supported by independent fetched sources (NCCIH plus openFDA labels, DailyMed, PubChem, and ClinicalTrials.gov). The usefulness and safety statements come mainly from NCCIH, a single synthesizing source, so confidence is not high.",
+  "gaps": [
+    "MedlinePlus is not represented: its drug monographs are excluded by policy, and no MedlinePlus health topic or medical test page for turmeric was fetched.",
+    "PubChem has no compound record for turmeric itself; the name lookup returned HTTP 404 PUGREST.NotFound. Only curcumin (CID 969516) could be grounded in PubChem.",
+    "The DailyMed SPL detail endpoint returned HTTP 415, so only DailyMed's product list index could be read, not full label text.",
+    "The corpus classes turmeric as APPROVED_MEDICINE. No source fetched shows FDA approval of turmeric as a drug; openFDA labels show it as a dietary supplement ingredient or a homeopathic component of OTC products.",
+    "No fetched source covered interactions between turmeric and named prescription medicines; NCCIH gives only a general warning about herbs and medicines.",
+    "No fetched source stated safety beyond about two or three months of oral use, or long-term safety of bioavailable formulations.",
+    "No source fetched reported rates or numbers of liver injury cases; NCCIH and openFDA describe the signal without counts.",
+    "No individual dosing appears anywhere in this record, by design. The brief forbids reader-directed dosing, so label and trial amounts were left out.",
+    "Effectiveness claims could not be grounded in a second independent source; NCCIH was the only source that summarized trial evidence."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/turmeric",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Turmeric%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22TURMERIC%22&limit=4",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22TURMERIC%22+AND+openfda.product_type:%22HUMAN+OTC+DRUG%22&limit=3",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=turmeric&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/777f8bef-2f03-4266-8b80-06489484282a.json",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/curcumin/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/turmeric/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/969516/property/Title,MolecularFormula,MolecularWeight,IUPACName,InChIKey/JSON",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Turmeric&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Turmeric&pageSize=1&countTotal=true&fields=NCTId"
+  ]
+}

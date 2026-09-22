@@ -1,0 +1,410 @@
+{
+  "slug": "ashwagandha",
+  "name": "Ashwagandha",
+  "substanceClass": "BOTANICAL_OR_ORGANISM_PREPARATION",
+  "tier": 1,
+  "authoredAt": "2026-09-21",
+  "identity": {
+    "commonNames": ["ashwagandha", "Indian ginseng"],
+    "latinName": "Withania somnifera",
+    "whatItIs": "An evergreen shrub from parts of India, Africa and the Middle East, sold as root and leaf supplements."
+  },
+  "oneLineAnswer": "An Ayurvedic shrub root sold as a stress and sleep supplement; trials are small but some show real effects.",
+  "whatItDoes": [
+    "Ashwagandha is an evergreen shrub from India, Africa and the Middle East, sold as root or leaf supplements.",
+    "Those plant parts contain withanolides, a compound group studied for anti-inflammatory and antioxidant activity.",
+    "US federal reviewers at NCCIH report that some ashwagandha preparations may help with insomnia and stress.",
+    "The same review calls the evidence on anxiety unclear, and says most other uses remain unproven.",
+    "It also reports limited evidence that two to four months of use may raise testosterone and sperm quality."
+  ],
+  "whatWeDoNotKnow": [
+    "No one knows what ashwagandha does to the body over the long term.",
+    "NCCIH says there is not enough information to judge safety beyond about three months.",
+    "Results for one product may not carry over to another.",
+    "Trials have used different root, leaf and extract preparations, often in small groups of people.",
+    "The sources do not give a liver-injury rate for ashwagandha users, so the risk size is unknown.",
+    "It is still unproven for asthma, athletic performance, thinking and memory, diabetes, menopause and female infertility.",
+    "Claims that it treats COVID-19 are not supported by high-quality evidence.",
+    "Registered trials cover stress, sleep, stress-hormone activity, weight and sexual health.",
+    "No posted results were read for those trials, so no effect sizes are reported here."
+  ],
+  "safetyNotes": [
+    {
+      "text": "NCCIH states short-term use, up to about three months, may be safe, but long-term safety is not established.",
+      "evidenceIds": ["E15", "E16"]
+    },
+    {
+      "text": "Reported effects in some people include drowsiness, stomach upset, diarrhea and vomiting.",
+      "evidenceIds": ["E17"]
+    },
+    {
+      "text": "NCCIH notes that rare case reports have linked liver injury to ashwagandha supplements.",
+      "evidenceIds": ["E18"]
+    },
+    {
+      "text": "NCCIH says ashwagandha should be avoided during pregnancy and while breastfeeding.",
+      "evidenceIds": ["E19"]
+    },
+    {
+      "text": "NCCIH does not recommend it before surgery, or for people with autoimmune or thyroid disorders.",
+      "evidenceIds": ["E20"]
+    },
+    {
+      "text": "NCCIH lists possible interactions with diabetes and blood pressure medicines, immunosuppressants, sedatives, anti-seizure medicines and thyroid hormones.",
+      "evidenceIds": ["E21"]
+    },
+    {
+      "text": "NCCIH says people with hormone-sensitive prostate cancer should avoid it, because it may raise testosterone.",
+      "evidenceIds": ["E22"]
+    },
+    {
+      "text": "A prescription label warns that ashwagandha may increase the effects of sedatives and several other medicines. It names blood pressure, diabetes, thyroid and immunosuppressive medicines.",
+      "evidenceIds": ["E24"]
+    },
+    {
+      "text": "Some over-the-counter products carrying ashwagandha are homeopathic combination liquids. Their labels say the claims rest on traditional homeopathic practice, not accepted medical evidence.",
+      "evidenceIds": ["E26"]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "Ashwagandha is an evergreen shrub native to parts of India, Africa and the Middle East.",
+      "quote": "Ashwagandha is an evergreen shrub found in parts of India, Africa, and the Middle East.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "National Center for Complementary and Integrative Health (NCCIH)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E2",
+      "claim": "Ashwagandha is also called Indian ginseng, and its Latin name is Withania somnifera.",
+      "quote": "Common Names: ashwagandha, Indian ginseng Latin Names: Withania somnifera",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E3",
+      "claim": "Ashwagandha contains bioactive compounds, including withanolides.",
+      "quote": "It contains several bioactive compounds, including a group of substances known as withanolides.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E4",
+      "claim": "Withanolides have been linked to anti-inflammatory and antioxidant effects.",
+      "quote": "Withanolides have been associated with anti-inflammatory and antioxidant effects.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E5",
+      "claim": "Ashwagandha has a long history of use as a medicinal plant, especially in Ayurvedic medicine.",
+      "quote": "Ashwagandha has been in use as a medicinal plant for thousands of years, especially in traditional Ayurvedic medicine.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E6",
+      "claim": "Ashwagandha supplements are commonly marketed for stress, anxiety, sleep, male infertility and athletic performance.",
+      "quote": "Currently, ashwagandha supplements are often promoted for stress and anxiety, sleep, male infertility, and athletic performance.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E7",
+      "claim": "Products are typically made from ashwagandha root, leaf, or a root and leaf extract.",
+      "quote": "These supplements typically contain ashwagandha root, leaf, or root/leaf extracts.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E8",
+      "claim": "Many human trials have studied ashwagandha for various health conditions.",
+      "quote": "Many clinical trials (studies in people) have looked at the use of ashwagandha for a variety of health conditions.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E9",
+      "claim": "Those trials were often small and used different ashwagandha preparations.",
+      "quote": "However, many of the studies have had small sample sizes and have used a variety of ashwagandha preparations.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E10",
+      "claim": "Some ashwagandha preparations may be effective for insomnia and stress.",
+      "quote": "Research shows that some ashwagandha preparations may be effective for insomnia and stress.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E11",
+      "claim": "Evidence about ashwagandha's effect on anxiety is unclear.",
+      "quote": "However, evidence is unclear about its effects on anxiety.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E12",
+      "claim": "Limited evidence suggests two to four months of use may raise testosterone levels and sperm quality.",
+      "quote": "There is some limited evidence that suggests that taking ashwagandha for 2 to 4 months may increase testosterone levels and sperm quality.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E13",
+      "claim": "Evidence is insufficient for other conditions such as asthma, athletic performance, cognition, diabetes, menopause and female infertility.",
+      "quote": "There isn't enough evidence to determine if ashwagandha is helpful for any other health conditions",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E14",
+      "claim": "Ashwagandha is not supported by high-quality evidence as a COVID-19 treatment.",
+      "quote": "There is not enough high-quality evidence suggesting that ashwagandha is helpful in treating COVID-19.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E15",
+      "claim": "Short-term use, up to about three months, may be safe.",
+      "quote": "Ashwagandha may be safe when taken in the short term (up to 3 months).",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E16",
+      "claim": "Long-term safety cannot yet be judged from available information.",
+      "quote": "There is not enough information to allow conclusions about its long-term safety to be reached.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E17",
+      "claim": "Some people experience drowsiness, stomach upset, diarrhea or vomiting.",
+      "quote": "In some individuals, ashwagandha preparations may cause drowsiness, stomach upset, diarrhea, and vomiting.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E18",
+      "claim": "Rare case reports have linked liver injury to ashwagandha supplements.",
+      "quote": "Although it is rare, there have been a number of cases that link liver injury to ashwagandha supplements.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E19",
+      "claim": "Ashwagandha should be avoided in pregnancy and while breastfeeding.",
+      "quote": "Ashwagandha should be avoided during pregnancy and should not be used while breastfeeding.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E20",
+      "claim": "It is not recommended before surgery or for people with autoimmune or thyroid disorders.",
+      "quote": "Ashwagandha is not recommended for people who are about to have surgery, or for those who have autoimmune or thyroid disorders.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E21",
+      "claim": "Ashwagandha may interact with diabetes and blood pressure medicines and other drug classes.",
+      "quote": "There is evidence that ashwagandha might interact with some medications, including those for diabetes and high blood pressure,",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E22",
+      "claim": "People with hormone-sensitive prostate cancer should avoid ashwagandha because it may raise testosterone.",
+      "quote": "Because ashwagandha may increase testosterone levels, people with hormone-sensitive prostate cancer should avoid its use.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E23",
+      "claim": "The NCCIH ashwagandha page is uncopyrighted public domain material.",
+      "quote": "This publication is not copyrighted and is in the public domain. Duplication is encouraged.",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "publisher": "NCCIH",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E24",
+      "claim": "An FDA label warns ashwagandha may intensify the effects of sedatives, blood pressure, diabetes, thyroid and immunosuppressive medicines.",
+      "quote": "Use with caution in patients receiving sedatives, antihypertensive agents, antidiabetic medications, thyroid hormone therapy, or immunosuppressive therapy, as ashwagandha may potentiate pharmacologic effects.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Ashwagandha%22&limit=3",
+      "publisher": "openFDA / DailyMed SPL for Boostervite (PureTek Corporation), NDC 59088-022",
+      "license": "openFDA data, public domain / CC0"
+    },
+    {
+      "id": "E25",
+      "claim": "That prescription product lists ashwagandha root powder as a labelled ingredient.",
+      "quote": "Withania somnifera (Ashwagandha) Root Powder",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Ashwagandha%22&limit=3",
+      "publisher": "openFDA / DailyMed SPL for Boostervite (PureTek Corporation)",
+      "license": "openFDA data, public domain / CC0"
+    },
+    {
+      "id": "E26",
+      "claim": "Over-the-counter ashwagandha products include homeopathic combinations whose claims are not accepted medical evidence.",
+      "quote": "Claims based on traditional homeopathic practice, not accepted medical evidence. Not FDA evaluated.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ashwagandha%22&limit=1",
+      "publisher": "openFDA / DailyMed SPL for Adrenal and DHEA (ProBLEN), NDC 43853-0020",
+      "license": "openFDA data, public domain / CC0"
+    },
+    {
+      "id": "E27",
+      "claim": "That homeopathic combination product states it is not for use on children.",
+      "quote": "Not for use on children.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ashwagandha%22&limit=1",
+      "publisher": "openFDA / DailyMed SPL for Adrenal and DHEA (ProBLEN)",
+      "license": "openFDA data, public domain / CC0"
+    },
+    {
+      "id": "E28",
+      "claim": "A registered trial compared KSM-66 ashwagandha with placebo in adults reporting high stress or anxiety.",
+      "quote": "Primary objective is to compare the efficacy of KSM-66 Ashwagandha (Withania somnifera) versus placebo in adults experiencing high stress and/or anxiety.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT05684991)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E29",
+      "claim": "A registered trial measured ashwagandha root against the hypothalamic-pituitary-adrenal stress axis and related symptoms.",
+      "quote": "on the Modulation of the Hypothalamic-pituitary-adrenal Axis (HPA Axis) and Related Symptoms",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT05602389, Vedic Lifesciences)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E30",
+      "claim": "A registered trial studied ashwagandha root and leaf extract for non-restorative sleep.",
+      "quote": "Sleep Promoting Properties of a Botanical Extract in a Population Complaining From Non-Restorative Sleep (NRS)",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT07085819, Kerry Group P.L.C.)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E31",
+      "claim": "A registered trial studied a 300 mg KSM-66 ashwagandha capsule for sexual health in healthy women.",
+      "quote": "Effects of Ashwagandha Extract (Capsule KSM-66 300 mg) on Sexual Health in Healthy Women",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT07182253)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E32",
+      "claim": "One stress and anxiety trial used the clinician-rated Hamilton Anxiety Rating Scale as its main measure.",
+      "quote": "Hamilton Anxiety Rating Scale (HAM-A)",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT05684991)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E33",
+      "claim": "One registered stress trial recorded 186 enrolled participants.",
+      "quote": "{\"count\":186,\"type\":\"ACTUAL\"}",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+      "publisher": "ClinicalTrials.gov (NCT05602389)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E34",
+      "claim": "Withaferin A is a withanolide, the compound family found in ashwagandha.",
+      "quote": "Withaferin A is a withanolide that is 5,6:22,26-diepoxyergosta-2,24-diene-1,26-dione",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/265237/JSON",
+      "publisher": "PubChem (NIH), compound record CID 265237",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E35",
+      "claim": "Withaferin A has been isolated from Withania somnifera leaves and studied for anticancer activity in the laboratory.",
+      "quote": "an antiestrogen and phytogenic antineoplastic agent isolated from leaves of Withania somnifera Dun.; structure",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/265237/JSON",
+      "publisher": "PubChem (NIH), compound record CID 265237",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E36",
+      "claim": "PubChem records withaferin A as formula C28H38O6 with a molecular weight of 470.6.",
+      "quote": "\"MolecularFormula\": \"C28H38O6\", \"MolecularWeight\": \"470.6\"",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/withaferin%20A/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+      "publisher": "PubChem (NIH) PUG REST",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E37",
+      "claim": "DailyMed lists six marketed products whose names contain ashwagandha.",
+      "quote": "\"total_elements\": 6",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=ashwagandha&pagesize=3",
+      "publisher": "DailyMed (US National Library of Medicine)",
+      "license": "US federal public domain"
+    },
+    {
+      "id": "E38",
+      "claim": "Marketed ashwagandha-labelled products include capsules of ashwagandha with black maca extract.",
+      "quote": "DEBAOSHENG (ASHWAGANDHA BLACK MACA EXTRACT POWDE) CAPSULE [SHENZHEN DEYINTANG BIOTECHNOLOGY CO., LTD.]",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=ashwagandha&pagesize=3",
+      "publisher": "DailyMed (US National Library of Medicine)",
+      "license": "US federal public domain"
+    }
+  ],
+  "confidence": "medium",
+  "confidenceRationale": "Two independent fetched sources (NCCIH and ClinicalTrials.gov) support the descriptive and research-activity claims, and a third (openFDA labels) independently supports the medicine-interaction caution. Confidence is not set to high because the efficacy direction for stress and sleep rests on the single NCCIH review, no trial result data was read, and no second narrative review was available inside the permitted source list.",
+  "gaps": [
+    "ClinicalTrials.gov registrations show trials exist, but posted results were not fetched, so no effect sizes, p-values or between-group differences are reported here.",
+    "The NCCIH summary is the only narrative review available in the permitted source list. Its page carries a March 2023 last-updated date.",
+    "MedlinePlus has no ashwagandha health topic page; https://medlineplus.gov/ashwagandha.html returned HTTP 404, and https://medlineplus.gov/herbalmedicine.html does not mention ashwagandha. MedlinePlus therefore grounded nothing. No MedlinePlus drug monograph URLs were fetched.",
+    "PubChem has no ashwagandha monograph page. The withanolide chemistry claim is grounded through the Withaferin A compound record instead.",
+    "openFDA returned only multi-ingredient labels containing ashwagandha (homeopathic combination liquids and one prescription multivitamin), not an ashwagandha drug monograph, so label-based claims are product-specific.",
+    "The openFDA query for brand_name \"Ashwagandha\" returned no results.",
+    "No incidence rate, dose-response or product-comparison data for the reported liver injury signal was available in the sources checked.",
+    "No general dosing content is included. The sources checked give only manufacturer-specific product directions, which is not a basis for advice.",
+    "Whether ashwagandha helps with asthma, athletic performance, cognition, diabetes, menopause, female infertility or obesity remains ungrounded beyond statements that evidence is insufficient.",
+    "Verbatim quotes were trimmed only where a source sentence exceeded 25 words; one clinical trial JSON quote preserves raw API punctuation."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/ashwagandha",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ashwagandha%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22WITHANIA+SOMNIFERA+ROOT%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22WITHANIA+SOMNIFERA%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Ashwagandha%22&limit=3",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Ashwagandha&pageSize=5",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Withaferin-A",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/withaferin%20A/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/withaferin%20a/synonyms/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/265237/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/265237/JSON?heading=Depositor-Supplied+Synonyms",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/withania%20somnifera/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/withanolide/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/161671/property/Title,MolecularFormula/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/53477765/property/Title,MolecularFormula/JSON",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=ashwagandha&pagesize=3",
+    "https://medlineplus.gov/ashwagandha.html",
+    "https://medlineplus.gov/herbalmedicine.html"
+  ],
+  "editorialPolicy": "Original prose written by rnawiki from facts observed in public-domain and CC0 sources. No source sentence was reproduced as page text; every factual claim carries a bounded verbatim quote for verification. No individualised dosing, diagnosis or treatment advice is included. Copyrighted sources (MedlinePlus drug monographs, Examine.com, Labdoor, MSKCC About Herbs, ConsumerLab, WebMD, Healthline, Drugs.com, RxList) were neither fetched nor used."
+}
