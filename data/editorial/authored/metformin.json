@@ -1,0 +1,389 @@
+{
+  "slug": "metformin",
+  "name": "Metformin",
+  "substanceClass": "APPROVED_MEDICINE",
+  "tier": 1,
+  "corpusFieldCount": 16,
+  "oneLineAnswer": "A prescription pill for type 2 diabetes. It lowers blood sugar by cutting glucose release from your liver.",
+  "whatItDoes": [
+    "Metformin is a biguanide, a drug class used for type 2 diabetes, where blood sugar stays too high.",
+    "Metformin tells your liver to release less glucose, the sugar your body burns for fuel.",
+    "It also cuts how much glucose your gut absorbs from food.",
+    "It helps muscle pull glucose from the blood and respond better to insulin.",
+    "It does not make your pancreas release more insulin, and your kidneys clear it unchanged."
+  ],
+  "whoTheLabelsCover": [
+    "U.S. tablet labels describe adults who have type 2 diabetes.",
+    "The immediate-release tablet label also covers children aged 10 and older.",
+    "Metformin comes as tablets, including extended-release tablets, and as a liquid.",
+    "Metformin is a medicine rather than a dietary supplement, so the usual supplement sources do not cover it."
+  ],
+  "whatRecordsShow": [
+    "In U.S. label trials, the common side effects were diarrhea, nausea or vomiting, gas, indigestion, stomach discomfort, and headache.",
+    "The label says metformin can push vitamin B12 below normal. About 7 percent of patients in 29-week trials fell below normal.",
+    "NIDDK says most people with type 2 diabetes start with metformin pills.",
+    "NIDDK also says the drug may help a person lose a small amount of weight.",
+    "Type 2 diabetes treatment can need more than one medicine over time."
+  ],
+  "safetyFactsRecordedInLabels": [
+    "The U.S. label carries a boxed warning for lactic acidosis, a rare buildup of acid in the blood.",
+    "That warning says cases reported after the drug reached the market included deaths.",
+    "The label links kidney impairment, certain other medicines, age 65 or older, and heavy alcohol use to that risk.",
+    "Liver disease also appears on the label among conditions tied to those acid cases.",
+    "The label rules out people with severe kidney impairment, described as an eGFR below 30.",
+    "The label flags a higher chance of low blood sugar when metformin is combined with insulin or a sulfonylurea.",
+    "The label reports no conclusive evidence that metformin lowers heart attack or stroke risk.",
+    "Metformin passes into breast milk, and the label says the effects on a breastfed infant are unknown."
+  ],
+  "whatWeDoNotKnow": [
+    "Whether metformin lowers the risk of heart attack or stroke is not settled.",
+    "In one large U.S. trial, metformin cut the chance of developing type 2 diabetes by 31 percent.",
+    "Everyone in that trial also got diet and activity advice, so the pill's own share is hard to separate.",
+    "No source fetched here reports how much weight or blood sugar change one person would see.",
+    "The label found too few older adults in trials to tell whether they respond differently.",
+    "Vitamin B12 fell below normal in about 7 percent of patients over 29 weeks. What that means across many years is not established here.",
+    "The label says pregnancy data are too limited to settle the risk of birth defects or miscarriage.",
+    "Uses outside type 2 diabetes are not covered here. That includes polycystic ovary syndrome and healthy aging claims."
+  ],
+  "evidenceFor": {
+    "oneLineAnswer": ["e01", "e03", "e06"],
+    "whatItDoes": ["e01", "e03", "e04", "e05", "e27"],
+    "whoTheLabelsCover": ["e01", "e02", "e32", "e33"],
+    "whatRecordsShow": ["e08", "e12", "e17", "e18", "e26"],
+    "safetyFactsRecordedInLabels": ["e07", "e09", "e10", "e11", "e13", "e14", "e15", "e16", "e30"],
+    "whatWeDoNotKnow": ["e13", "e19", "e20", "e21", "e28", "e29", "e31"]
+  },
+  "evidence": [
+    {
+      "id": "e01",
+      "claim": "Metformin is a biguanide labeled for type 2 diabetes, used with diet and exercise, in adults and in children aged 10 and older.",
+      "quote": "Metformin is a biguanide indicated as an adjunct to diet and exercise to improve glycemic control in adults",
+      "quoteWordCount": 18,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), indications section of a metformin hydrochloride tablet label"
+    },
+    {
+      "id": "e02",
+      "claim": "The extended-release tablet label describes adults only, not children.",
+      "quote": "Metformin hydrochloride extended-release tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), same label"
+    },
+    {
+      "id": "e03",
+      "claim": "Metformin acts in three named ways: it lowers liver glucose output, lowers glucose absorbed from the gut, and improves insulin sensitivity.",
+      "quote": "Metformin decreases hepatic glucose production, decreases intestinal absorption of glucose, and improves insulin sensitivity",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical pharmacology section"
+    },
+    {
+      "id": "e04",
+      "claim": "Metformin does not change how much insulin the pancreas secretes, though fasting insulin levels may fall.",
+      "quote": "With metformin therapy, insulin secretion remains unchanged while fasting insulin levels and day-long plasma insulin response may decrease.",
+      "quoteWordCount": 19,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical pharmacology section"
+    },
+    {
+      "id": "e05",
+      "claim": "NIDDK states the same action in plain words: less glucose from the liver and better insulin use.",
+      "quote": "Metformin helps your liver make less glucose and helps your body use insulin better.",
+      "quoteWordCount": 14,
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source": "NIDDK health information, Insulin, Medicines, & Other Diabetes Treatments"
+    },
+    {
+      "id": "e06",
+      "claim": "Metformin is not broken down by the liver and leaves the body in urine unchanged.",
+      "quote": "metformin is excreted unchanged in the urine and does not undergo hepatic metabolism",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Metformin%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacokinetics section of a sitagliptin-metformin label"
+    },
+    {
+      "id": "e07",
+      "claim": "The kidney clears metformin, and the label ties kidney impairment to drug accumulation and acid buildup.",
+      "quote": "Metformin is substantially excreted by the kidney, and the risk of metformin accumulation and lactic acidosis increases with the degree of renal impairment.",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e08",
+      "claim": "The label lists the most common side effects seen above 5 percent in trials.",
+      "quote": "the most common adverse reactions (>5.0%) are diarrhea, nausea/vomiting, flatulence, asthenia, indigestion, abdominal discomfort, and headache",
+      "quoteWordCount": 16,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section"
+    },
+    {
+      "id": "e09",
+      "claim": "The boxed warning describes cases of metformin-associated lactic acidosis reported after marketing that included deaths.",
+      "quote": "Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), boxed warning"
+    },
+    {
+      "id": "e10",
+      "claim": "The label lists kidney impairment, certain other medicines, and age 65 or older among risk factors for that acid buildup.",
+      "quote": "Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), boxed warning"
+    },
+    {
+      "id": "e11",
+      "claim": "Severe kidney impairment, given as an eGFR below 30, is a listed contraindication.",
+      "quote": "contraindicated in patients with: Severe renal impairment (eGFR below 30 mL/min/1.73 m2)",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), contraindications section"
+    },
+    {
+      "id": "e12",
+      "claim": "About 7 percent of patients in 29-week trials fell to subnormal vitamin B12 levels.",
+      "quote": "a decrease to subnormal levels of previously normal serum vitamin B 12 levels was observed in approximately 7% of patients",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e13",
+      "claim": "The label states there is no conclusive evidence that metformin reduces heart attack or stroke risk.",
+      "quote": "There have been no clinical studies establishing conclusive evidence of macrovascular risk reduction",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e14",
+      "claim": "The label raises low blood sugar as a concern when metformin is combined with insulin or an insulin secretagogue such as a sulfonylurea.",
+      "quote": "may increase the risk of hypoglycemia when combined with insulin and/or an insulin secretagogue",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e15",
+      "claim": "Alcohol strengthens the effect of metformin on lactate metabolism.",
+      "quote": "Alcohol potentiates the effect of metformin on lactate metabolism.",
+      "quoteWordCount": 9,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e16",
+      "claim": "The label associates liver impairment with some cases of lactic acidosis.",
+      "quote": "Use of metformin in patients with hepatic impairment has been associated with some cases of lactic acidosis.",
+      "quoteWordCount": 15,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e17",
+      "claim": "NIDDK says most people with type 2 diabetes begin treatment with metformin pills.",
+      "quote": "Most people with type 2 diabetes start with metformin pills.",
+      "quoteWordCount": 9,
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source": "NIDDK health information, Insulin, Medicines, & Other Diabetes Treatments"
+    },
+    {
+      "id": "e18",
+      "claim": "NIDDK says metformin may help a person lose a small amount of weight.",
+      "quote": "This drug may help you lose a small amount of weight.",
+      "quoteWordCount": 11,
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source": "NIDDK health information, Insulin, Medicines, & Other Diabetes Treatments"
+    },
+    {
+      "id": "e19",
+      "claim": "In the Diabetes Prevention Program, metformin lowered the chance of developing type 2 diabetes by 31 percent compared with placebo.",
+      "quote": "Participants who took metformin lowered their chances of developing type 2 diabetes by 31 percent compared with participants who took a placebo.",
+      "quoteWordCount": 21,
+      "url": "https://www.niddk.nih.gov/about-niddk/research-areas/diabetes/diabetes-prevention-program-dpp",
+      "source": "NIDDK, Diabetes Prevention Program (DPP)"
+    },
+    {
+      "id": "e20",
+      "claim": "That result came from a randomized controlled trial at 27 U.S. centers between 1996 and 2001.",
+      "quote": "The DPP was a randomized, controlled clinical trial conducted at 27 clinical centers around the United States from 1996 to 2001.",
+      "quoteWordCount": 23,
+      "url": "https://www.niddk.nih.gov/about-niddk/research-areas/diabetes/diabetes-prevention-program-dpp",
+      "source": "NIDDK, Diabetes Prevention Program (DPP)"
+    },
+    {
+      "id": "e21",
+      "claim": "The metformin group in that trial also received standard diet and physical activity advice.",
+      "quote": "were provided standard advice about diet and physical activity",
+      "quoteWordCount": 9,
+      "url": "https://www.niddk.nih.gov/about-niddk/research-areas/diabetes/diabetes-prevention-program-dpp",
+      "source": "NIDDK, Diabetes Prevention Program (DPP), study design"
+    },
+    {
+      "id": "e22",
+      "claim": "PubChem records metformin as compound CID 4091, formula C4H11N5, molecular weight 129.16.",
+      "quote": "\"CID\": 4091, \"MolecularFormula\": \"C4H11N5\", \"MolecularWeight\": \"129.16\"",
+      "quoteWordCount": 8,
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/metformin/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "source": "PubChem (public domain), compound property table"
+    },
+    {
+      "id": "e23",
+      "claim": "A registered trial studies metformin alongside muscle strength, muscle mass, and physical function in older adults with type 2 diabetes.",
+      "quote": "Metformin in Elderly Patients With Type 2 Diabetes and Muscle Strength, Muscle Mass, and Physical Function",
+      "quoteWordCount": 17,
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=metformin%20prediabetes&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName",
+      "source": "ClinicalTrials.gov API v2, study NCT07788378"
+    },
+    {
+      "id": "e24",
+      "claim": "Insulin is the hormone that moves glucose into cells.",
+      "quote": "A hormone called insulin helps the glucose get into your cells.",
+      "quoteWordCount": 12,
+      "url": "https://medlineplus.gov/diabetesmedicines.html",
+      "source": "MedlinePlus health topic: Diabetes Medicines (public domain)"
+    },
+    {
+      "id": "e25",
+      "claim": "In type 2 diabetes the body does not make or use insulin well.",
+      "quote": "With type 2 diabetes, your body does not make or use insulin well.",
+      "quoteWordCount": 12,
+      "url": "https://medlineplus.gov/diabetesmedicines.html",
+      "source": "MedlinePlus health topic: Diabetes Medicines (public domain)"
+    },
+    {
+      "id": "e26",
+      "claim": "Managing type 2 diabetes can come to need more than one medicine over time.",
+      "quote": "Over time, you may need more than one diabetes medicine to manage your blood sugar.",
+      "quoteWordCount": 15,
+      "url": "https://medlineplus.gov/diabetesmedicines.html",
+      "source": "MedlinePlus health topic: Diabetes Medicines (public domain)"
+    },
+    {
+      "id": "e27",
+      "claim": "Glucose comes from food and is the fuel body cells use.",
+      "quote": "Glucose comes from the foods you eat. The cells of your body need glucose for energy.",
+      "quoteWordCount": 16,
+      "url": "https://medlineplus.gov/diabetesmedicines.html",
+      "source": "MedlinePlus health topic: Diabetes Medicines (public domain)"
+    },
+    {
+      "id": "e28",
+      "claim": "Pregnancy data on metformin are too limited to establish a risk of birth defects or miscarriage.",
+      "quote": "in pregnant women are not sufficient to determine a drug-associated risk for major birth defects or miscarriage",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e29",
+      "claim": "The label says there is not enough information to know the effects of metformin on a breastfed infant.",
+      "quote": "there is insufficient information to determine the effects of metformin on the breastfed infant",
+      "quoteWordCount": 15,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e30",
+      "claim": "Metformin is present in human milk.",
+      "quote": "metformin is present in human milk",
+      "quoteWordCount": 7,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e31",
+      "claim": "Trials of these tablets did not include enough older adults to tell whether they respond differently from younger people.",
+      "quote": "did not include sufficient numbers of elderly patients to determine whether they respond differently from younger patients",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e32",
+      "claim": "Extended-release metformin tablets are made by more than one manufacturer, as indexed in DailyMed.",
+      "quote": "\"title\": \"METFORMIN HYDROCHLORIDE TABLET, EXTENDED RELEASE [MACLEODS PHARMACEUTICALS LIMITED]\"",
+      "quoteWordCount": 9,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=metformin&pagesize=3",
+      "source": "DailyMed services API index (public domain)"
+    },
+    {
+      "id": "e33",
+      "claim": "Metformin also comes as a liquid.",
+      "quote": "Metformin also comes as a liquid.",
+      "quoteWordCount": 7,
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source": "NIDDK health information, Insulin, Medicines, & Other Diabetes Treatments"
+    }
+  ],
+  "gaps": [
+    "NCCIH has no metformin page. The URL https://www.nccih.nih.gov/health/metformin returned HTTP 404, and NCCIH covers dietary supplements rather than prescription drugs, so no NCCIH facts appear here.",
+    "A brand-name query for Glucophage on openFDA returned HTTP 404, so no brand-specific label was retrieved. Label facts come from generic metformin hydrochloride tablet labeling plus one sitagliptin-metformin combination label.",
+    "Prescription-only status was not quoted from a fetched page. The openFDA record's openfda product-type block was not present in the retrieved text, so that claim is left out rather than assumed.",
+    "No numeric blood sugar effect was extracted. The label has a clinical studies section with HbA1c data, but those results were not pulled, so no effect size is stated.",
+    "MedlinePlus drug monographs were deliberately excluded as copyrighted. Only the MedlinePlus health topic page was used.",
+    "No source fetched here covers metformin in pregnancy for treatment decisions, in polycystic ovary syndrome, or for lifespan and healthy-aging claims. Those uses are ungrounded and are reported only as absent.",
+    "The dose used in the Diabetes Prevention Program is on the NIDDK page, but it is not reported here because this page does not report amounts to take."
+  ],
+  "confidence": "high",
+  "confidenceRationale": "Two independent fetched sources, an FDA prescription-drug label and NIDDK health information, agree on the main claims: the drug class, the type 2 diabetes use, the liver and insulin actions, and the kidney route of removal. A third independent source, MedlinePlus, supports the plain-language background on type 2 diabetes and insulin.",
+  "sourcesChecked": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Metformin%22&limit=1",
+      "outcome": "fetched; returned a sitagliptin-metformin combination label, used for pharmacokinetics"
+    },
+    {
+      "url": "https://www.nccih.nih.gov/health/metformin",
+      "outcome": "failed; HTTP 404, no such page"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Metformin&pageSize=5",
+      "outcome": "fetched; results were mostly trials of other drugs added to metformin"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/metformin/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "outcome": "fetched; compound identity for CID 4091"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22METFORMIN%20HYDROCHLORIDE%22+AND+openfda.product_type:%22HUMAN%20PRESCRIPTION%20DRUG%22&limit=1",
+      "outcome": "fetched; returned the same combination label, not a single-ingredient label"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=metformin&pagesize=3",
+      "outcome": "fetched; 558 metformin product listings indexed"
+    },
+    {
+      "url": "https://medlineplus.gov/diabetesmedicines.html",
+      "outcome": "fetched; MedlinePlus health topic page, not a drug monograph, used as allowed"
+    },
+    {
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "outcome": "fetched; used for the plain-language action and first-choice statement"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=metformin%20prediabetes&pageSize=3&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName",
+      "outcome": "fetched; used for the registered trial on muscle function in older adults"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GLUCOPHAGE%22&limit=1",
+      "outcome": "failed; HTTP 404, no current label under that brand name"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22METFORMIN+HYDROCHLORIDE+TABLETS%22&limit=1",
+      "outcome": "fetched; single-ingredient metformin hydrochloride tablet label, primary source"
+    },
+    {
+      "url": "https://www.niddk.nih.gov/about-niddk/research-areas/diabetes/diabetes-prevention-program-dpp",
+      "outcome": "fetched; used for the Diabetes Prevention Program result"
+    }
+  ],
+  "authorship": {
+    "writtenFor": "rnawiki beginner readers who want to know what metformin is and what it does",
+    "method": "Facts taken from public-domain U.S. government sources listed above. Every sentence here was written from scratch for rnawiki. No source sentence, table, list order, or heading set was reused.",
+    "limits": "Reference content only. It reports what labels and public health pages recorded, and it gives no dosing, no diagnosis, and no treatment advice.",
+    "authoredDate": "2026-09-21"
+  }
+}

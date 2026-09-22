@@ -1,0 +1,686 @@
+{
+  "slug": "losartan",
+  "name": "Losartan",
+  "substanceClass": "APPROVED_MEDICINE",
+  "tier": 1,
+  "corpusFieldCount": 14,
+  "aliases": [
+    "losartan potassium",
+    "Cozaar"
+  ],
+  "oneLineAnswer": "A tablet medicine for high blood pressure. It blocks a signal that narrows blood vessels.",
+  "whatItDoes": [
+    "Losartan belongs to a drug class called angiotensin II receptor blockers, or ARBs.",
+    "Angiotensin II is a hormone that squeezes blood vessels tighter.",
+    "Losartan and its active metabolite sit on the AT1 receptor, the docking site this hormone uses.",
+    "With that site occupied, vessels stay wider and aldosterone falls.",
+    "Losartan does not block the ACE enzyme, which is one way it differs from ACE inhibitors."
+  ],
+  "whoTheLabelsCover": [
+    "U.S. labels describe adults with high blood pressure, and children older than 6.",
+    "Labels also cover two narrower groups.",
+    "The first is high blood pressure with a thickened heart wall.",
+    "The second is kidney damage from type 2 diabetes.",
+    "That kidney use means protein in the urine and a raised creatinine level.",
+    "Losartan comes as film-coated tablets.",
+    "Labels give a way to make a liquid from the tablets for children.",
+    "Many companies make losartan tablets, and DailyMed indexes a few hundred listings."
+  ],
+  "whatRecordsShow": [
+    "In label trials, adult doses lowered systolic pressure more than placebo.",
+    "The recorded range was about 5 to 11 mmHg systolic and 3 to 8 mmHg diastolic.",
+    "Adding a low thiazide diuretic gave a larger recorded drop of about 15.5/9.2 mmHg.",
+    "The label notes the effect is largely present within one week.",
+    "Some studies saw the largest effect at 3 to 6 weeks.",
+    "The label records no rebound rise in blood pressure when the drug stops.",
+    "Dizziness was recorded in 3 percent on losartan against 2 percent on placebo.",
+    "Fewer people stopped losartan for side effects than stopped placebo."
+  ],
+  "safetyFactsRecordedInLabels": [
+    "The U.S. label carries a boxed warning for harm to a fetus.",
+    "It tells prescribers to stop the drug once pregnancy is found.",
+    "Second and third trimester exposure lowers fetal kidney function.",
+    "It also raises illness and death in the fetus and newborn.",
+    "Low blood pressure can appear at the start in people low on fluid or salt.",
+    "Kidney function can worsen in people whose kidneys lean on this hormone system.",
+    "Potassium can climb too high, so labels call for periodic potassium checks.",
+    "Labels list other potassium-raising drugs, lithium, and anti-inflammatory painkillers as concerns.",
+    "Stacking two blockers of this hormone system raises the risk of fainting and kidney problems.",
+    "Cough has been reported after the drug reached the market.",
+    "Some of those cough cases were confirmed when the drug was restarted.",
+    "Deep swelling of the face, lips, throat, or intestine appears in postmarketing reports.",
+    "Whether losartan passes into human milk is unknown, though it reached rat milk.",
+    "In the LIFE study, Black patients with a thickened heart wall had more heart events on losartan.",
+    "The comparison drug in that study was atenolol."
+  ],
+  "whatWeDoNotKnow": [
+    "No source fetched here says how much your own blood pressure would change.",
+    "Whether the Black-subgroup difference in the LIFE study was real or chance is unknowable.",
+    "Whether losartan reaches human breast milk has not been established.",
+    "Losartan has not been studied in people with severe liver impairment.",
+    "Effects in children under 6 are not established.",
+    "Effects in children with very low kidney filtration are also not established.",
+    "The two cough trials were small, with 97 and 135 patients.",
+    "Their cough rates are therefore rough.",
+    "The label says the heart and stroke benefit comes from lower pressure, not from losartan itself.",
+    "Uses outside the label, such as healthy aging, are not covered here."
+  ],
+  "evidenceFor": {
+    "oneLineAnswer": [
+      "e01",
+      "e09",
+      "e11"
+    ],
+    "whatItDoes": [
+      "e05",
+      "e06",
+      "e07",
+      "e08",
+      "e09"
+    ],
+    "whoTheLabelsCover": [
+      "e01",
+      "e02",
+      "e04",
+      "e44",
+      "e50"
+    ],
+    "whatRecordsShow": [
+      "e11",
+      "e12",
+      "e13",
+      "e14",
+      "e15",
+      "e17",
+      "e18"
+    ],
+    "safetyFactsRecordedInLabels": [
+      "e19",
+      "e20",
+      "e21",
+      "e22",
+      "e23",
+      "e24",
+      "e25",
+      "e26",
+      "e27",
+      "e28",
+      "e29",
+      "e31",
+      "e32",
+      "e34"
+    ],
+    "whatWeDoNotKnow": [
+      "e30",
+      "e32",
+      "e33",
+      "e35",
+      "e47",
+      "e51",
+      "e53"
+    ],
+    "whatItIs": [
+      "e01",
+      "e06",
+      "e44",
+      "e50",
+      "e43"
+    ],
+    "howPeopleUseIt": [
+      "e01",
+      "e02",
+      "e04"
+    ],
+    "safetyNotes": [
+      "e19",
+      "e20",
+      "e21",
+      "e22",
+      "e23",
+      "e24",
+      "e25",
+      "e26",
+      "e27",
+      "e28",
+      "e29",
+      "e31",
+      "e32",
+      "e34"
+    ],
+    "interactions": [
+      "e25",
+      "e26",
+      "e27",
+      "e28"
+    ],
+    "pregnancyAndChildren": [
+      "e19",
+      "e20",
+      "e21",
+      "e32",
+      "e50",
+      "e51"
+    ]
+  },
+  "evidence": [
+    {
+      "id": "e01",
+      "claim": "Losartan is an angiotensin II receptor blocker labeled to lower blood pressure in adults and in children older than 6.",
+      "quote": "Treatment of hypertension, to lower blood pressure in adults and children greater than 6 years old.",
+      "quoteWordCount": 16,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar (losartan potassium) label, indications section"
+    },
+    {
+      "id": "e02",
+      "claim": "The label also covers cutting stroke risk in people who have high blood pressure plus a thickened heart wall.",
+      "quote": "Reduction of the risk of stroke in patients with hypertension and left ventricular hypertrophy.",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e03",
+      "claim": "The label states the stroke benefit in that thickened-heart-wall group may not apply to Black patients.",
+      "quote": "There is evidence that this benefit does not apply to Black patients.",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e04",
+      "claim": "The kidney use is defined as diabetic nephropathy with protein in the urine and a raised creatinine, in type 2 diabetes with high blood pressure.",
+      "quote": "Treatment of diabetic nephropathy with an elevated serum creatinine and proteinuria in patients with type 2 diabetes",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e05",
+      "claim": "Angiotensin II is a hormone that tightens blood vessels and is central to the renin-angiotensin system.",
+      "quote": "is a potent vasoconstrictor, the primary vasoactive hormone of the renin-angiotensin system",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical pharmacology section of a losartan potassium tablet label"
+    },
+    {
+      "id": "e06",
+      "claim": "Losartan and its active metabolite block angiotensin II from docking at the AT1 receptor in many tissues.",
+      "quote": "selectively blocking the binding of angiotensin II to the AT 1 receptor found in many tissues",
+      "quoteWordCount": 16,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), mechanism of action section"
+    },
+    {
+      "id": "e07",
+      "claim": "Losartan does not block the ACE enzyme, which separates it from ACE inhibitors.",
+      "quote": "Neither losartan nor its active metabolite inhibits ACE",
+      "quoteWordCount": 8,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), mechanism of action section"
+    },
+    {
+      "id": "e08",
+      "claim": "Aldosterone levels in blood fall after losartan is given.",
+      "quote": "Aldosterone plasma concentrations fall following losartan administration.",
+      "quoteWordCount": 7,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacodynamics section"
+    },
+    {
+      "id": "e09",
+      "claim": "MedlinePlus states that this drug class keeps blood vessels from narrowing as much, so blood moves through them at lower pressure.",
+      "quote": "angiotensin II receptor blockers (ARBs) keep your blood vessels from narrowing as much",
+      "quoteWordCount": 13,
+      "url": "https://medlineplus.gov/bloodpressuremedicines.html",
+      "source": "MedlinePlus health topic: Blood Pressure Medicines (public domain), not a drug monograph"
+    },
+    {
+      "id": "e10",
+      "claim": "High blood pressure usually produces no symptoms, so it is found by measurement rather than by how a person feels.",
+      "quote": "High blood pressure usually has no symptoms.",
+      "quoteWordCount": 7,
+      "url": "https://medlineplus.gov/highbloodpressure.html",
+      "source": "MedlinePlus health topic: High Blood Pressure (public domain)"
+    },
+    {
+      "id": "e11",
+      "claim": "Label trials of losartan in adult hypertension ran 6 to 12 weeks with placebo controls.",
+      "quote": "demonstrated principally in 4 placebo-controlled, 6- to 12 week trials of dosages from 10 to 150 mg per day",
+      "quoteWordCount": 19,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical studies section"
+    },
+    {
+      "id": "e12",
+      "claim": "In those trials the average blood pressure fall against placebo sat in a recorded range.",
+      "quote": "gave statistically significant systolic/diastolic mean decreases in blood pressure, compared to placebo in the range of 5.5-10.5/3.5-7.5 mmHg",
+      "quoteWordCount": 18,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical studies section"
+    },
+    {
+      "id": "e13",
+      "claim": "Adding a low hydrochlorothiazide dose to losartan produced a larger placebo-adjusted reduction.",
+      "quote": "resulted in placebo-adjusted blood pressure reductions of 15.5/9.2 mmHg",
+      "quoteWordCount": 9,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical studies section"
+    },
+    {
+      "id": "e14",
+      "claim": "The blood pressure effect is largely present within a week, and in some studies the largest effect came at 3 to 6 weeks.",
+      "quote": "The effect of losartan is substantially present within one week but in some studies the maximal effect occurred in 3 to 6 weeks.",
+      "quoteWordCount": 23,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacodynamics section"
+    },
+    {
+      "id": "e15",
+      "claim": "The label records no rebound rise in blood pressure after the drug is stopped suddenly.",
+      "quote": "There is no apparent rebound effect after abrupt withdrawal of losartan.",
+      "quoteWordCount": 11,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacodynamics section"
+    },
+    {
+      "id": "e16",
+      "claim": "Losartan produced essentially no change in average heart rate in controlled trials.",
+      "quote": "There was essentially no change in average heart rate in losartan-treated patients in controlled trials.",
+      "quoteWordCount": 15,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacodynamics section"
+    },
+    {
+      "id": "e17",
+      "claim": "The side effects recorded above placebo rates in four trials were dizziness, upper respiratory infection, nasal congestion, and back pain.",
+      "quote": "dizziness (3% vs. 2%), upper respiratory infection (8% vs. 7%), nasal congestion (2% vs. 1%), and back pain (2% vs. 1%)",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section"
+    },
+    {
+      "id": "e18",
+      "claim": "Fewer patients stopped losartan for side effects than stopped placebo.",
+      "quote": "discontinuation of therapy for adverse events occurred in 2.3% of patients treated with losartan potassium and 3.7% of patients given placebo",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section"
+    },
+    {
+      "id": "e19",
+      "claim": "The boxed warning is for fetal toxicity and tells prescribers to stop the drug once pregnancy is detected.",
+      "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue COZAAR as soon as possible.",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, boxed warning"
+    },
+    {
+      "id": "e20",
+      "claim": "Drugs acting on the renin-angiotensin system can injure or kill a developing fetus.",
+      "quote": "Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, boxed warning"
+    },
+    {
+      "id": "e21",
+      "claim": "Second and third trimester exposure lowers fetal kidney function and raises illness and death in the fetus and newborn.",
+      "quote": "Use of drugs that act on the renin-angiotensin system during the second and third trimesters of pregnancy reduces fetal renal function",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e22",
+      "claim": "Low blood pressure at the start is expected in people already low on fluid or salt, including those on high diuretic doses.",
+      "quote": "such as volume- or salt-depleted patients (e.g., those being treated with high doses of diuretics), symptomatic hypotension may occur after initiation of treatment",
+      "quoteWordCount": 23,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e23",
+      "claim": "People whose kidney function depends partly on this hormone system are at particular risk of acute kidney failure on losartan.",
+      "quote": "may be at particular risk of developing acute renal failure on losartan potassium",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e24",
+      "claim": "The label calls for potassium to be measured periodically because it can rise too high.",
+      "quote": "Hyperkalemia Monitor serum potassium periodically and treat appropriately.",
+      "quoteWordCount": 8,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), warnings and precautions section"
+    },
+    {
+      "id": "e25",
+      "claim": "Other drugs that raise potassium, taken with losartan, can push potassium levels higher.",
+      "quote": "Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia.",
+      "quoteWordCount": 15,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), drug interactions section"
+    },
+    {
+      "id": "e26",
+      "claim": "Lithium levels can rise and cause toxicity when lithium is taken with this class of drug.",
+      "quote": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists.",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), drug interactions section"
+    },
+    {
+      "id": "e27",
+      "claim": "Anti-inflammatory painkillers can worsen kidney function in some people taking this class, and that effect usually reverses.",
+      "quote": "may result in deterioration of renal function, including possible acute renal failure",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), drug interactions section"
+    },
+    {
+      "id": "e28",
+      "claim": "Blocking the renin-angiotensin system twice, with an ARB plus an ACE inhibitor or aliskiren, raises the risk of low blood pressure and fainting.",
+      "quote": "Dual blockade of the RAS with angiotensin receptor blockers, ACE inhibitors, or aliskiren is associated with increased risks of hypotension, syncope",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), drug interactions section"
+    },
+    {
+      "id": "e29",
+      "claim": "Cough has been reported after the drug reached the market, including cases confirmed when the drug was restarted.",
+      "quote": "Cases of cough, including positive re-challenges, have been reported with the use of losartan in postmarketing experience.",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section"
+    },
+    {
+      "id": "e30",
+      "claim": "In two small trials of people who had coughed on an ACE inhibitor, cough on losartan matched the rates seen on a diuretic or placebo.",
+      "quote": "is similar to that associated with hydrochlorothiazide or placebo therapy",
+      "quoteWordCount": 10,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section; trial sizes of 97 and 135 appear in the same passage"
+    },
+    {
+      "id": "e31",
+      "claim": "Deep swelling of the face, lips, throat, or intestine appears among postmarketing reports.",
+      "quote": "Angioedema, including swelling of the larynx and glottis, causing airway obstruction",
+      "quoteWordCount": 11,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), postmarketing experience section"
+    },
+    {
+      "id": "e32",
+      "claim": "Whether losartan passes into human milk is unknown, though the drug reached rat milk.",
+      "quote": "It is not known whether losartan is excreted in human milk",
+      "quoteWordCount": 11,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e33",
+      "claim": "Losartan has not been studied in people with severe liver impairment.",
+      "quote": "Losartan potassium has not been studied in patients with severe hepatic impairment",
+      "quoteWordCount": 12,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e34",
+      "claim": "In the LIFE study, Black patients on losartan recorded more primary heart events than Black patients on the comparison drug atenolol.",
+      "quote": "46 primary endpoints among 270 patients (17%, 42 per 1000 patient-years) on losartan potassium",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e35",
+      "claim": "The label states it cannot be known whether that subgroup difference was real or the result of chance.",
+      "quote": "it cannot be known whether the observed difference is the result of chance",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e36",
+      "claim": "The LIFE study compared losartan with atenolol in 9193 hypertensive patients who had a thickened heart wall on an ECG.",
+      "quote": "comparing losartan potassium and atenolol in 9193 hypertensive patients with ECG-documented left ventricular hypertrophy",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical studies section"
+    },
+    {
+      "id": "e37",
+      "claim": "The RENAAL study followed 1513 people with type 2 diabetes and kidney disease for about 3.4 years on average.",
+      "quote": "conducted worldwide in 1513 patients with type 2 diabetes with nephropathy",
+      "quoteWordCount": 11,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), clinical studies section"
+    },
+    {
+      "id": "e38",
+      "claim": "About 14 percent of an oral dose is converted into the active metabolite that does most of the receptor blocking.",
+      "quote": "About 14% of an orally-administered dose of losartan is converted to the active metabolite.",
+      "quoteWordCount": 14,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacokinetics section"
+    },
+    {
+      "id": "e39",
+      "claim": "Losartan leaves the body with a half-life of about 2 hours, and its active metabolite with 6 to 9 hours.",
+      "quote": "The terminal half-life of losartan is about 2 hours and of the metabolite is about 6 to 9 hours.",
+      "quoteWordCount": 19,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), pharmacokinetics section"
+    },
+    {
+      "id": "e40",
+      "claim": "PubChem records losartan as compound CID 3961 with molecular formula C22H23ClN6O and molecular weight 422.9.",
+      "quote": "\"CID\": 3961, \"MolecularFormula\": \"C22H23ClN6O\", \"MolecularWeight\": \"422.9\"",
+      "quoteWordCount": 6,
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/losartan/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "source": "PubChem (public domain), compound property table"
+    },
+    {
+      "id": "e41",
+      "claim": "A registered phase 3 trial compared losartan with olmesartan in people who had essential hypertension.",
+      "quote": "Olmesartan Medoxomil Versus Losartan in Patients With Hypertension",
+      "quoteWordCount": 8,
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=losartan%20hypertension&filter.overallStatus=COMPLETED&pageSize=3&fields=NCTId,BriefTitle,Condition,InterventionName,Phase,EnrollmentCount,PrimaryOutcomeMeasure",
+      "source": "ClinicalTrials.gov API v2, study NCT00857285"
+    },
+    {
+      "id": "e42",
+      "claim": "A registered trial studies losartan in people whose kidney disease comes from diabetes.",
+      "quote": "Improving Outcomes in Patients With Kidney Disease Due to Diabetes",
+      "quoteWordCount": 10,
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=losartan%20hypertension&filter.overallStatus=COMPLETED&pageSize=3&fields=NCTId,BriefTitle,Condition,InterventionName,Phase,EnrollmentCount,PrimaryOutcomeMeasure",
+      "source": "ClinicalTrials.gov API v2, study NCT00381134"
+    },
+    {
+      "id": "e43",
+      "claim": "DailyMed indexes 310 losartan product listings.",
+      "quote": "\"total_elements\": 310",
+      "quoteWordCount": 2,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=losartan&pagesize=3",
+      "source": "DailyMed services API index (public domain)"
+    },
+    {
+      "id": "e44",
+      "claim": "Losartan tablets are made by many companies under many separate labels.",
+      "quote": "\"title\": \"LOSARTAN POTASSIUM 50 MG (LOSARTAN POTASSIUM) TABLET, FILM COATED [PD-RX PHARMACEUTICALS, INC.]\"",
+      "quoteWordCount": 13,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=losartan&pagesize=3",
+      "source": "DailyMed services API index (public domain)"
+    },
+    {
+      "id": "e45",
+      "claim": "More than 1200 patients in the safety database were treated for over 6 months, and over 800 for more than a year.",
+      "quote": "Over 1200 patients were treated for over 6 months and more than 800 for over one year.",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), adverse reactions section"
+    },
+    {
+      "id": "e47",
+      "claim": "The label states that lowering blood pressure itself, not a special property of losartan, is largely responsible for the heart and stroke benefit.",
+      "quote": "it is blood pressure reduction, and not some other pharmacologic property of the drugs, that is largely responsible for those benefits",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e48",
+      "claim": "Falling stroke risk is the largest and most consistent heart benefit seen across blood pressure drugs.",
+      "quote": "The largest and most consistent cardiovascular outcome benefit has been a reduction in the risk of stroke",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e49",
+      "claim": "The label notes some blood pressure drugs have smaller effects on their own in Black patients.",
+      "quote": "Some antihypertensive drugs have smaller blood pressure effects (as monotherapy) in Black patients",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "source": "openFDA drug labeling (public domain), Cozaar label, indications section"
+    },
+    {
+      "id": "e50",
+      "claim": "The blood pressure effect in children was established in hypertensive patients aged 6 to 16.",
+      "quote": "Antihypertensive effects of losartan potassium have been established in hypertensive pediatric patients aged 6 to 16 years.",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e51",
+      "claim": "The label does not recommend losartan for children under 6.",
+      "quote": "not recommended in pediatric patients less than 6 years of age",
+      "quoteWordCount": 11,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e52",
+      "claim": "In hypertension trials, 391 losartan patients (19 percent) were 65 or over, and 37 (2 percent) were 75 or over.",
+      "quote": "391 patients (19%) were 65 years and over, while 37 patients (2%) were 75 years and over",
+      "quoteWordCount": 17,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e53",
+      "claim": "The label reports no overall effectiveness or safety difference between older and younger patients, but cannot rule out greater sensitivity in some older people.",
+      "quote": "No overall differences in effectiveness or safety were observed between these patients and younger patients",
+      "quoteWordCount": 15,
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "source": "openFDA drug labeling (public domain), use in specific populations section"
+    },
+    {
+      "id": "e54",
+      "claim": "A registered trial compared two combined amlodipine-losartan tablet formulations in people with hypertension.",
+      "quote": "Study to Determine the Bioequivalence of Two Fixed Dose Combination (FDC) Tablet Formulations of Amlodipine and Losartan",
+      "quoteWordCount": 17,
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Losartan&pageSize=5",
+      "source": "ClinicalTrials.gov API v2, study NCT01797926"
+    }
+  ],
+  "gaps": [
+    "NCCIH has no losartan page. The URL https://www.nccih.nih.gov/health/losartan returned HTTP 404, and NCCIH covers dietary supplements rather than prescription drugs, so no NCCIH facts appear here.",
+    "MedlinePlus drug monographs were deliberately excluded. NLM states they are American Society of Health-System Pharmacists copyright. Only MedlinePlus health topic pages were used.",
+    "No brand-free prescription-only status was quoted from a fetched page. The openFDA record's product-type block did not appear in the retrieved text, so that claim is left out rather than assumed.",
+    "An openFDA query restricted to openfda.substance_name with a fields filter returned HTTP 400, so substance-name-only retrieval was not obtained. The generic-name and brand-name label queries succeeded instead.",
+    "Dose amounts appear on the label and in the trial descriptions, but they are not reported as amounts to take. This page gives no dosing.",
+    "No source fetched here covers losartan for uses outside its label. Anything about athletic performance, altitude, anxiety, or healthy aging is ungrounded and is reported only as absent.",
+    "The label's clinical studies section records blood pressure averages for groups, not for individuals. No source fetched here predicts what one person would see.",
+    "Combination products containing losartan were only partly explored. Trials NCT01797926 and NCT01149486 involve amlodipine with losartan and hydrochlorothiazide with losartan, but those fixed-dose products are not described here."
+  ],
+  "confidence": "high",
+  "confidenceRationale": "Two independently published FDA labels, the generic losartan potassium tablet label and the originator Cozaar label, agree on every main claim: the drug class, the three labeled uses, the AT1 receptor mechanism, the pregnancy boxed warning, and the potassium and kidney cautions. A third independent source, a MedlinePlus health topic page, supports the plain-language description of how this drug class lowers pressure. PubChem, DailyMed, and ClinicalTrials.gov add identity and registry facts.",
+  "sourcesChecked": [
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Losartan%22&limit=1",
+      "outcome": "fetched; 216 matching labels; primary source for mechanism, pharmacodynamics, pharmacokinetics, safety, and clinical studies"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22COZAAR%22&limit=1",
+      "outcome": "fetched; the originator brand label, used as the independent second label"
+    },
+    {
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22LOSARTAN%22&limit=1&fields=openfda",
+      "outcome": "failed; HTTP 400 Bad Request"
+    },
+    {
+      "url": "https://www.nccih.nih.gov/health/losartan",
+      "outcome": "failed; HTTP 404, no such page"
+    },
+    {
+      "url": "https://medlineplus.gov/bloodpressuremedicines.html",
+      "outcome": "fetched; MedlinePlus health topic page, not a drug monograph, used as allowed"
+    },
+    {
+      "url": "https://medlineplus.gov/highbloodpressure.html",
+      "outcome": "fetched; MedlinePlus health topic page, used for the no-symptoms background fact"
+    },
+    {
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/losartan/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "outcome": "fetched; compound identity for CID 3961"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Losartan&pageSize=5",
+      "outcome": "fetched; results were mostly bioequivalence trials of losartan combination tablets"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=losartan%20hypertension&filter.overallStatus=COMPLETED&pageSize=3&fields=NCTId,BriefTitle,Condition,InterventionName,Phase,EnrollmentCount,PrimaryOutcomeMeasure",
+      "outcome": "fetched; used for the registered hypertension and diabetic kidney disease trials"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=losartan&pagesize=3",
+      "outcome": "fetched; 310 losartan product listings indexed"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=losartan",
+      "outcome": "fetched; search results page confirming multiple marketed losartan tablet strengths"
+    }
+  ],
+  "authorship": {
+    "writtenFor": "rnawiki beginner readers who want to know what losartan is and what it does",
+    "method": "Facts taken from public-domain U.S. government sources listed above. Every sentence here was written from scratch for rnawiki. No source sentence, table, list order, or heading set was reused.",
+    "limits": "Reference content only. It reports what labels and public health pages recorded, and it gives no dosing, no diagnosis, and no treatment advice.",
+    "authoredDate": "2026-09-21"
+  },
+  "whatItIs": "Losartan is an angiotensin II receptor blocker, a class of blood pressure medicine. It comes as a film-coated tablet. Labels describe a liquid made from the tablets for children. It is a medicine rather than a dietary supplement, so supplement sources do not cover it.",
+  "howPeopleUseIt": [
+    "Labels describe losartan for high blood pressure in adults and children older than 6.",
+    "Labels also describe it for stroke risk in high blood pressure with a thickened heart wall.",
+    "Labels describe it for kidney damage from type 2 diabetes.",
+    "These are label uses, not a plan for any one person."
+  ],
+  "interactions": [
+    "Other drugs that raise potassium can push potassium too high with losartan.",
+    "Lithium levels can rise into a toxic range on this class of drug.",
+    "Anti-inflammatory painkillers can blunt the pressure effect and stress the kidneys.",
+    "Taking an ACE inhibitor or aliskiren alongside raises the risk of fainting and kidney problems."
+  ],
+  "pregnancyAndChildren": "Labels put a boxed warning on losartan for harm to a fetus. They tell prescribers to stop it once pregnancy is found. Exposure in the second and third trimester lowers fetal kidney function. It also raises illness and death in the newborn. Whether losartan reaches human milk is unknown, though it was found in rat milk. The blood pressure effect in children was established from age 6 to 16. Labels do not recommend it for children under 6.",
+  "safetyNotes": [
+    "The U.S. label carries a boxed warning for harm to a fetus.",
+    "It tells prescribers to stop the drug once pregnancy is found.",
+    "Second and third trimester exposure lowers fetal kidney function.",
+    "It also raises illness and death in the fetus and newborn.",
+    "Low blood pressure can appear at the start in people low on fluid or salt.",
+    "Kidney function can worsen in people whose kidneys lean on this hormone system.",
+    "Potassium can climb too high, so labels call for periodic potassium checks.",
+    "Labels list other potassium-raising drugs, lithium, and anti-inflammatory painkillers as concerns.",
+    "Stacking two blockers of this hormone system raises the risk of fainting and kidney problems.",
+    "Cough has been reported after the drug reached the market.",
+    "Some of those cough cases were confirmed when the drug was restarted.",
+    "Deep swelling of the face, lips, throat, or intestine appears in postmarketing reports.",
+    "Whether losartan passes into human milk is unknown, though it reached rat milk.",
+    "In the LIFE study, Black patients with a thickened heart wall had more heart events on losartan.",
+    "The comparison drug in that study was atenolol."
+  ]
+}

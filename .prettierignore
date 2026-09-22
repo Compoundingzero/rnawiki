@@ -76,3 +76,8 @@ data/dossier-v3/benchmark/
 # Dossier v4 benchmark captures, written wholesale by scripts/dossier-v4/capture.ts, for the same
 # reason as the v3 captures above: the bytes are the measurement.
 data/dossier-v4/benchmark/
+# Authored substance records, written wholesale by the authoring fan-out, one JSON per substance.
+# The bytes are the dataset. Prettier-checking thousands of generated files while a run is still
+# writing them makes the gate depend on which rows happened to have finished, and the records' shape
+# is validated where it is read, in components/dossier/v4/AuthoredReference.tsx.
+data/editorial/authored/

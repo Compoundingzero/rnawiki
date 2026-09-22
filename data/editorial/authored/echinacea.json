@@ -1,0 +1,382 @@
+{
+  "slug": "echinacea",
+  "name": "Echinacea",
+  "substanceClass": "SUPPLEMENT_INGREDIENT",
+  "tier": 2,
+  "corpusFieldCount": 5,
+  "authorship": {
+    "writtenFor": "rnawiki beginner readers who want to know what echinacea is and what it might do",
+    "method": "Facts taken from public-domain U.S. government sources listed below. Every sentence here was written from scratch for rnawiki. No source sentence, table, list order, or heading set was reused.",
+    "limits": "Reference content only. It reports what a government health page and drug labels recorded. It gives no dosing, no diagnosis, and no treatment advice.",
+    "authoredDate": "2026-09-21"
+  },
+  "identity": {
+    "commonNames": ["echinacea", "purple coneflower", "coneflower", "American coneflower"],
+    "latinName": "Echinacea purpurea, Echinacea angustifolia, Echinacea pallida",
+    "whatItIs": "A group of perennial plants from North America, sold mainly as dietary supplements for colds and other respiratory infections."
+  },
+  "oneLineAnswer": "Echinacea is a North American plant sold for colds. It may slightly lower your chance of catching one.",
+  "whatItDoes": [
+    "Echinacea is not one plant. The name covers several perennials related to daisies and ragweed.",
+    "Native Americans used Echinacea purpurea for breathing infections, tooth pain, and snakebite.",
+    "Products sold today mostly aim at the common cold and other respiratory infections.",
+    "Sellers base that use on the idea that some echinacea species may stimulate the immune system.",
+    "NCCIH, a US government health agency, reports that taking echinacea may slightly lower your chance of catching a cold."
+  ],
+  "whatWeDoNotKnow": [
+    "NCCIH says it is still unclear whether echinacea shortens a cold you already have.",
+    "It is unclear whether echinacea helps other conditions, including eczema.",
+    "One study suggested children taking echinacea had fewer respiratory infections and complications. NCCIH says that is not enough evidence for a clear connection.",
+    "NCCIH-funded research found that soil conditions change the plant's bacterial community, and that this changes how echinacea extracts behave.",
+    "No fetched source names which species, plant part, or preparation works best, or shows any of them clearly works.",
+    "Little is known about whether echinacea is safe while breastfeeding.",
+    "Whether echinacea changes how the body handles medicines broken down by the liver is disputed. Interactions with immunosuppressants or caffeine are only suspected."
+  ],
+  "safetyNotes": [
+    "NCCIH says echinacea extracts of E. purpurea, and some E. purpurea with E. angustifolia mixtures, are likely safe for most adults for short periods.",
+    "Some people have allergic reactions to echinacea, and NCCIH says those reactions can be severe.",
+    "An FDA drug label warns against echinacea if you are allergic to other daisy family plants, called Compositae.",
+    "The side effects reported most often are gut symptoms: belly pain, nausea, or stomach pain.",
+    "NCCIH says E. purpurea extract is possibly safe for children for short periods. In one trial, some children developed rashes that may have been allergic reactions.",
+    "For pregnancy, NCCIH reports some studies where extracts were possibly safe for up to 7 days in the first trimester. Safety while breastfeeding is largely unknown.",
+    "NCCIH says evidence about interactions with liver-processed drugs conflicts, and calls interactions with immunosuppressants or caffeine theoretical.",
+    "In the US, supplements are not approved by the FDA before sale, and supplement rules are looser than drug rules.",
+    "Homeopathic products that list echinacea say their uses come from traditional practice and were not FDA evaluated.",
+    "NCCIH says to talk with a child's health care provider before giving a child an echinacea product."
+  ],
+  "confidence": "medium",
+  "confidenceRationale": "The plant description, the cold findings, and most of the safety picture come from one fetched source, the NCCIH Echinacea page, which is a US federal publication in the public domain. An independent FDA drug label fetched through openFDA supports the daisy-family allergy caution, and a DailyMed listing shows echinacea sits in ordinary cough and throat products. No second fetched source covers the botanical or cold-outcome claims, so confidence is medium rather than high.",
+  "gaps": [
+    "No second fetched source covers the botanical claims (species, range, daisy-family relation) or the cold-outcome claims; those rest on the NCCIH page alone.",
+    "The NCCIH page would not load through a plain text fetch, which returned stylesheet code instead of the article. Its text was read from the rendered page, and each quote used here was checked against that rendered text.",
+    "NCCIH's at-a-glance subpage returned a 404 and was not used.",
+    "PubChem has no compound record for echinacea. Name and substance lookups returned 404, and the compound page is script-rendered, so only the autocomplete term Echinacoside Ethanolate could be read.",
+    "MedlinePlus has no echinacea page (404), and its Common Cold health topic does not mention echinacea.",
+    "The DailyMed label-detail request returned HTTP 415. The echinacea labels found there and in openFDA are homeopathic or multi-ingredient products, so they document how echinacea is marketed rather than whether it works.",
+    "No fetched source gives trial outcome numbers or effect sizes, so this page reports only whether a finding was called unclear, slight, or unsupported.",
+    "The fetched NCCIH page does not say which plant parts are used, so the identity block records no partsUsed value.",
+    "Nothing here covers dosing on purpose. Product labels state doses, but this page reports no amount to take.",
+    "MedlinePlus drug monographs and herb monographs were deliberately not fetched or cited, because NLM licenses that content."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/echinacea",
+    "https://www.nccih.nih.gov/health/echinacea/at-a-glance",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Echinacea%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22ECHINACEA+PURPUREA%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=warnings:%22echinacea%22&limit=2",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=echinacea",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=echinacea&pagesize=5",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/337cbfbc-bd18-4976-aedd-e80da8cbb570.json",
+    "https://pubchem.ncbi.nlm.nih.gov/compound/Echinacea",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/echinacea/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/name/echinacea/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/echinacea/json?limit=10",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/echinacoside/cids/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5281771/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/5281771/JSON?heading=Echinacoside",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Echinacea&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=Echinacea&query.cond=common+cold&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount",
+    "https://clinicaltrials.gov/api/v2/studies/NCT00032500?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Phase,EnrollmentCount,PrimaryOutcomeMeasure",
+    "https://clinicaltrials.gov/study/NCT00029211",
+    "https://medlineplus.gov/echinacea.html",
+    "https://medlineplus.gov/commoncold.html"
+  ],
+  "evidence": [
+    {
+      "id": "e01",
+      "claim": "Echinacea is a group of species, including Echinacea purpurea, Echinacea angustifolia, and Echinacea pallida.",
+      "quote": "Latin Names: Echinacea purpurea, Echinacea angustifolia, Echinacea pallida",
+      "quoteWordCount": 8,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain, last updated November 2024)"
+    },
+    {
+      "id": "e02",
+      "claim": "Echinacea also goes by purple coneflower, coneflower, and American coneflower.",
+      "quote": "Common Names: echinacea, purple coneflower, coneflower, American coneflower",
+      "quoteWordCount": 8,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e03",
+      "claim": "Echinacea plants are perennials in the same plant family as sunflowers, daisies, and ragweed.",
+      "quote": "Echinacea species are perennials that are closely related to sunflowers, daisies, and ragweed.",
+      "quoteWordCount": 13,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e04",
+      "claim": "Echinacea is native to the area east of the Rocky Mountains in the United States, though it is widely grown elsewhere today.",
+      "quote": "echinacea species are native to areas east of the Rocky Mountains in the United States",
+      "quoteWordCount": 15,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e05",
+      "claim": "Native Americans used Echinacea purpurea as a medicine for respiratory tract infections, tooth pain, and snakebite.",
+      "quote": "who used the plant medicinally for respiratory tract infections, tooth pain, and snakebite",
+      "quoteWordCount": 13,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e06",
+      "claim": "Echinacea products today are mainly marketed as dietary supplements for the common cold and other respiratory tract infections.",
+      "quote": "products are primarily promoted as a dietary supplement for the common cold and other respiratory tract infections",
+      "quoteWordCount": 17,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e07",
+      "claim": "The reason given for using echinacea is an idea that some species may stimulate the immune system, not a settled mechanism.",
+      "quote": "based on the idea that certain species of echinacea may stimulate the immune system",
+      "quoteWordCount": 14,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e08",
+      "claim": "Some echinacea products are marketed for putting on the skin for problems such as eczema.",
+      "quote": "Some echinacea products may be promoted for topical use (application to the skin) for various skin problems, like eczema.",
+      "quoteWordCount": 19,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e09",
+      "claim": "NCCIH reports that taking echinacea may slightly reduce a person's chances of catching a cold.",
+      "quote": "Taking echinacea may slightly reduce your chances of catching a cold.",
+      "quoteWordCount": 11,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e10",
+      "claim": "Whether echinacea shortens a cold that has already started is still unclear to NCCIH.",
+      "quote": "It’s still unclear whether echinacea can shorten the length of a cold.",
+      "quoteWordCount": 12,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e11",
+      "claim": "One study suggested echinacea might lower the chance of respiratory tract infection and related complications in children.",
+      "quote": "One recent study found that echinacea might reduce the chance of respiratory tract infection and associated complications in children",
+      "quoteWordCount": 19,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e12",
+      "claim": "NCCIH says the overall evidence in children is not enough to support a clear connection.",
+      "quote": "there isn’t enough evidence to support a clear connection",
+      "quoteWordCount": 9,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e13",
+      "claim": "NCCIH tells parents to consult a child's health care provider before giving a child echinacea.",
+      "quote": "Before giving a child an echinacea product, talk with the child’s health care provider.",
+      "quoteWordCount": 14,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e14",
+      "claim": "It is unclear whether echinacea helps other conditions, including eczema.",
+      "quote": "It’s unclear whether echinacea is helpful for other health conditions, including eczema.",
+      "quoteWordCount": 12,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e15",
+      "claim": "NCCIH-funded research found that soil conditions change the plant's bacterial community and the activity of its extracts.",
+      "quote": "the activity of echinacea extracts is influenced by soil conditions that affect the plant’s bacterial community",
+      "quoteWordCount": 16,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e16",
+      "claim": "NCCIH calls E. purpurea extracts likely safe for most adults to take for short periods.",
+      "quote": "It’s likely safe for most adults to consume products with extracts of E. purpurea",
+      "quoteWordCount": 14,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e17",
+      "claim": "Some people have allergic reactions to echinacea, and those reactions may be severe.",
+      "quote": "some people have allergic reactions to echinacea, which may be severe",
+      "quoteWordCount": 11,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e18",
+      "claim": "NCCIH lists digestive tract symptoms as the most common side effects of echinacea.",
+      "quote": "The most common side effects of echinacea are digestive tract symptoms, such as abdominal pain, nausea, or stomach pain.",
+      "quoteWordCount": 19,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e19",
+      "claim": "NCCIH calls E. purpurea extract possibly safe for children for short periods.",
+      "quote": "possibly safe for children to consume E. purpurea extract for short periods of time",
+      "quoteWordCount": 14,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e20",
+      "claim": "In one clinical trial, some children taking echinacea developed rashes that may have been allergic reactions.",
+      "quote": "some children participating in a clinical trial of echinacea developed rashes, which may have been caused by an allergic reaction",
+      "quoteWordCount": 20,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e21",
+      "claim": "NCCIH reports studies where echinacea extracts were possibly safe for up to 7 days in the first trimester of pregnancy.",
+      "quote": "possibly safe for up to 7 days during the first trimester of pregnancy",
+      "quoteWordCount": 13,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e22",
+      "claim": "Little is known about whether echinacea is safe to use while breastfeeding.",
+      "quote": "Little is known about whether it’s safe to use echinacea while breastfeeding.",
+      "quoteWordCount": 12,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e23",
+      "claim": "Evidence conflicts on whether echinacea interacts with drugs that the liver breaks down.",
+      "quote": "There is conflicting evidence about whether echinacea interacts with some drugs metabolized by the liver",
+      "quoteWordCount": 15,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e24",
+      "claim": "Possible interactions with immunosuppressants or caffeine are described as theoretical, not demonstrated.",
+      "quote": "theoretical reasons to suspect that echinacea might interact with immunosuppressants or caffeine",
+      "quoteWordCount": 12,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e25",
+      "claim": "Rules for making and selling dietary supplements are less strict than the rules for drugs.",
+      "quote": "The rules for making and distributing dietary supplements are less strict than those for drugs.",
+      "quoteWordCount": 15,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e26",
+      "claim": "The FDA does not approve dietary supplements before they are sold to the public.",
+      "quote": "dietary supplements are not approved by the U.S. Food and Drug Administration (FDA) before they are sold to the public",
+      "quoteWordCount": 20,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e27",
+      "claim": "Many human studies of echinacea exist for the common cold and other respiratory tract infections.",
+      "quote": "Many studies have been done in people on echinacea for the common cold and other respiratory tract infections.",
+      "quoteWordCount": 18,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e28",
+      "claim": "Far less research exists on echinacea for other health purposes.",
+      "quote": "Much less research has been done on the use of echinacea for other health purposes.",
+      "quoteWordCount": 15,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e29",
+      "claim": "The NCCIH page states that its own text is not copyrighted.",
+      "quote": "This publication is not copyrighted and is in the public domain.",
+      "quoteWordCount": 11,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e30",
+      "claim": "The NCCIH echinacea page carries a date of November 2024.",
+      "quote": "Last Updated: November 2024",
+      "quoteWordCount": 4,
+      "url": "https://www.nccih.nih.gov/health/echinacea",
+      "source": "NCCIH, Echinacea: Usefulness and Safety (public domain)"
+    },
+    {
+      "id": "e31",
+      "claim": "An FDA drug label tells people not to use echinacea if they are allergic to daisy family plants, which it names Compositae.",
+      "quote": "Do not use if you are allergic to bee venom or to Echinacea or other plants from the daisy family (Compositae)",
+      "quoteWordCount": 21,
+      "url": "https://api.fda.gov/drug/label.json?search=warnings:%22echinacea%22&limit=2",
+      "source": "openFDA drug labeling (public domain, CC0), warnings section of the Hevert Sinus Relief label"
+    },
+    {
+      "id": "e32",
+      "claim": "Some products listing echinacea are homeopathic, and their labels say the uses come from traditional practice and were not FDA evaluated.",
+      "quote": "Claims based on traditional homeopathic practice, not accepted medical evidence. Not FDA evaluated.",
+      "quoteWordCount": 13,
+      "url": "https://api.fda.gov/drug/label.json?search=warnings:%22echinacea%22&limit=2",
+      "source": "openFDA drug labeling (public domain, CC0), indications section of the Hevert Sinus Relief label"
+    },
+    {
+      "id": "e33",
+      "claim": "Echinacea appears as an ingredient in ordinary over-the-counter cough and throat products.",
+      "quote": "NATURAL HONEY LEMON WITH ECHINACEA COUGH SUPPRESSANT THROAT DROPS (MENTHOL) LOZENGE",
+      "quoteWordCount": 11,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=echinacea&pagesize=5",
+      "source": "DailyMed SPL listing service (public domain), product title, published September 18, 2026"
+    },
+    {
+      "id": "e34",
+      "claim": "ClinicalTrials.gov records a completed, phase 3, interventional trial with enrollment of 600.",
+      "quote": "Enrollment 600 Study Type Interventional Phase Phase 3",
+      "quoteWordCount": 8,
+      "url": "https://clinicaltrials.gov/study/NCT00029211",
+      "source": "ClinicalTrials.gov study NCT00029211, A Trial of Echinacea in Children (public domain)"
+    },
+    {
+      "id": "e35",
+      "claim": "That trial was set up to test whether echinacea shortens or eases colds in children.",
+      "quote": "a randomized trial to determine if echinacea is effective in shortening the length and/or lessening the severity of colds in children",
+      "quoteWordCount": 21,
+      "url": "https://clinicaltrials.gov/study/NCT00029211",
+      "source": "ClinicalTrials.gov study NCT00029211, brief summary (public domain)"
+    },
+    {
+      "id": "e36",
+      "claim": "A separate registered trial tested three echinacea preparations for preventing or treating the common cold.",
+      "quote": "three Echinacea preparations with different chemical compositions are effective for prevention or treatment of the common cold",
+      "quoteWordCount": 17,
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00032500?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Phase,EnrollmentCount,PrimaryOutcomeMeasure",
+      "source": "ClinicalTrials.gov API v2, study NCT00032500, Evaluation of Echinacea for the Common Cold (public domain)"
+    },
+    {
+      "id": "e37",
+      "claim": "PubChem's compound dictionary offers only the related compound name Echinacoside Ethanolate for a search on echinacea.",
+      "quote": "Echinacoside Ethanolate",
+      "quoteWordCount": 2,
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/echinacea/json?limit=10",
+      "source": "PubChem autocomplete service for compound names"
+    }
+  ]
+}

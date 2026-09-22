@@ -1,0 +1,228 @@
+{
+  "slug": "creatine-monohydrate",
+  "name": "Creatine monohydrate",
+  "substanceClass": "SUPPLEMENT_INGREDIENT",
+  "tier": 1,
+  "identity": {
+    "commonNames": ["creatine monohydrate", "creatine hydrate", "Creapure", "creatine supplement"],
+    "chemicalName": "2-[carbamimidoyl(methyl)amino]acetic acid; hydrate",
+    "chemicalFormula": "C4H11N3O3",
+    "molecularWeight": "149.15",
+    "casNumber": "6020-87-7",
+    "unii": "9603LN7R2Q",
+    "whatItIs": "A dietary supplement sold as a powder, capsule, or drink. It is the water-containing form of creatine, a molecule your body builds and uses for energy."
+  },
+  "oneLineAnswer": "Creatine monohydrate is a supplement form of creatine, a molecule your muscles use for energy.",
+  "whatItDoes": [
+    "Your body makes creatine on its own from three amino acids, which are protein building blocks.",
+    "Without enough creatine, the body cannot store or use energy the way it should.",
+    "Cells pull creatine in through a pump protein built from the SLC6A8 gene.",
+    "Muscles need it to contract, and the nervous system depends on it too.",
+    "When creatine runs low, the brain and other high-energy tissues suffer most."
+  ],
+  "whatWeDoNotKnow": [
+    "No source we could read says whether taking creatine monohydrate improves strength, sport performance, or any symptom.",
+    "Trials of creatine monohydrate are registered, but no results were read. No benefit and no harm are claimed here.",
+    "How much supplemental creatine reaches your muscles is not grounded in any source that was read.",
+    "No side effects of creatine monohydrate as a supplement were found in any source that could be read.",
+    "Long-term safety is not grounded, and neither is safety in children, pregnancy, or breastfeeding.",
+    "Whether creatine monohydrate helps in any disease is unknown from the sources that were read."
+  ],
+  "safetyNotes": [
+    "A US homeopathic product that lists creatine monohydrate carries a pregnancy warning. It says to ask a health professional first if pregnant or breastfeeding.",
+    "That label also says to keep the product away from children. It says its uses rest on traditional homeopathic practice and were not FDA evaluated."
+  ],
+  "confidence": "medium",
+  "gaps": [
+    "NCCIH has no working creatine page. https://www.nccih.nih.gov/health/creatine-monohydrate returned 404. Its surviving page, https://www.nccih.nih.gov/health/bodybuilding-and-performance-enhancement-supplements, returned stylesheet code and image markup on fetch and its article text was cut off before the creatine section, so no NCCIH statement is cited. Wayback Machine lookups for the NCCIH creatine path returned 503.",
+    "The NIH Office of Dietary Supplements fact sheet on exercise and athletic performance returned 403 on both the health-professional and consumer URLs. Archived copies fetched from the Wayback Machine rendered without their creatine sections, so no ODS statement is cited.",
+    "The Dietary Supplement Label Database at https://dsld.od.nih.gov/ingredient/Creatine returned an empty body, so no product-level ingredient data from it is cited.",
+    "MedlinePlus medical encyclopedia pages were deliberately not cited. They carry the clearest statement that creatine supplies energy mainly to muscles, but the encyclopedia is A.D.A.M.-sourced content rather than an NLM health topic or medical test summary, so it was left out.",
+    "No grounded explanation of how creatine monohydrate acts inside muscle at the level of ATP or phosphocreatine was found. Trial outcome names mention intramuscular creatine, phosphocreatine, and ATP, but that is a measurement plan, not a finding.",
+    "openFDA and DailyMed labels that mention creatine come from homeopathic or multi-ingredient liquid products. They document what those labels list and claim, not whether the supplement works.",
+    "No trial result numbers, effect sizes, or adverse-event rates were read from ClinicalTrials.gov. Only design, status, enrollment, and outcome measures were retrieved.",
+    "No dose is given, by design, and no source read records a dose that rnawiki could report.",
+    "The general fact that US dietary supplements are not approved before sale could not be grounded, because the MedlinePlus Dietary Supplements topic page returned only a banner line when fetched.",
+    "The claim that the body builds its own creatine is grounded in MedlinePlus Genetics pages. Those describe normal human biology, not the effect of taking the supplement."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/creatine-monohydrate",
+    "https://www.nccih.nih.gov/health/bodybuilding-and-performance-enhancement-supplements",
+    "https://www.nccih.nih.gov/health/bodybuilding-and-performance-enhancement-supplements/",
+    "https://www.nccih.nih.gov/health/bodybuilding-and-performance-enhancement-supplements?cachebust=1",
+    "https://www.nccih.nih.gov/research/research-results/latest-findings-from-creste-trial-dont-support-using-the-dietary-supplement-creatine-to-treat-huntingtons-disease",
+    "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/",
+    "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+    "https://dsld.od.nih.gov/ingredient/Creatine",
+    "https://web.archive.org/web/20180301173721/https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+    "https://web.archive.org/web/20180221042248/https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+    "https://medlineplus.gov/dietarysupplements.html",
+    "https://medlineplus.gov/ency/article/003475.htm",
+    "https://medlineplus.gov/lab-tests/creatinine-test/",
+    "https://medlineplus.gov/genetics/condition/x-linked-creatine-deficiency/",
+    "https://medlineplus.gov/genetics/gene/gamt/",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/creatine%20monohydrate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Chemical+and+Physical+Properties",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Pharmacology+and+Biochemistry",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Creatine%20monohydrate%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=20",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22%20AND%20openfda.product_type:%22HUMAN%20PRESCRIPTION%20DRUG%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%22&limit=5",
+    "https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Creatine%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=indications_and_usage:%22creatine%22&limit=2",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=creatine&pagesize=10",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/20e20965-61db-44a3-82bf-f1ca18e6b6bc.json",
+    "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/20e20965-61db-44a3-82bf-f1ca18e6b6bc.xml",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Creatine%20monohydrate&pageSize=5",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=%22creatine%20monohydrate%22&pageSize=1&countTotal=true&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,EnrollmentCount",
+    "https://clinicaltrials.gov/api/v2/studies?query.intr=creatine%20monohydrate&query.cond=muscle&filter.overallStatus=COMPLETED&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName,PrimaryOutcomeMeasure,LeadSponsorName",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=creatine%20skeletal%20muscle%20energy&pageSize=4&fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,LeadSponsorName",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=creatine%20transporter%20deficiency&pageSize=4&fields=NCTId,BriefTitle,BriefSummary,OverallStatus,InterventionName,EnrollmentCount,LeadSponsorName,Condition",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03003988?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,PrimaryOutcomeMeasure,LeadSponsorName,StartDate",
+    "https://clinicaltrials.gov/api/v2/studies/NCT05745870?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,PrimaryOutcomeMeasure,LeadSponsorName,StartDate"
+  ],
+  "evidence": [
+    {
+      "claim": "The human body builds its own creatine in a two-step process from three amino acids.",
+      "sourceUrl": "https://medlineplus.gov/genetics/gene/gamt/",
+      "quote": "the two-step production (synthesis) of the compound creatine from the protein building blocks (amino acids) glycine, arginine, and methionine"
+    },
+    {
+      "claim": "One of the two production steps happens mainly in the liver.",
+      "sourceUrl": "https://medlineplus.gov/genetics/gene/gamt/",
+      "quote": "which is active (expressed) mainly in the liver"
+    },
+    {
+      "claim": "Creatine is needed for the body to store and use energy properly.",
+      "sourceUrl": "https://medlineplus.gov/genetics/gene/gamt/",
+      "quote": "Creatine is needed for the body to store and use energy properly."
+    },
+    {
+      "claim": "Creatine takes part in supplying energy for muscle contraction and also matters to the nervous system.",
+      "sourceUrl": "https://medlineplus.gov/genetics/gene/gamt/",
+      "quote": "It is involved in providing energy for muscle contraction, and is also important in nervous system functioning."
+    },
+    {
+      "claim": "A protein made from the SLC6A8 gene carries creatine into cells.",
+      "sourceUrl": "https://medlineplus.gov/genetics/condition/x-linked-creatine-deficiency/",
+      "quote": "The SLC6A8 gene provides instructions for making a protein that transports a compound called creatine into cells."
+    },
+    {
+      "claim": "Tissues that use the most energy, especially the brain, are hit hardest when creatine is in short supply.",
+      "sourceUrl": "https://medlineplus.gov/genetics/condition/x-linked-creatine-deficiency/",
+      "quote": "The effects of creatine deficiency are most severe in organs and tissues that require large amounts of energy, especially the brain."
+    },
+    {
+      "claim": "Creatinine is a normal waste product, and the body makes it when muscles are used and muscle tissue breaks down.",
+      "sourceUrl": "https://medlineplus.gov/lab-tests/creatinine-test/",
+      "quote": "Creatinine is a normal waste product in your body. It's made when you use your muscles and some of the muscle tissue breaks down."
+    },
+    {
+      "claim": "The kidneys filter creatinine out of the blood and remove it in urine.",
+      "sourceUrl": "https://medlineplus.gov/lab-tests/creatinine-test/",
+      "quote": "Normally, your kidneys filter creatinine from your blood and remove it from your body in your urine."
+    },
+    {
+      "claim": "Creatine monohydrate is the hydrate form of creatine, meaning each creatine unit is paired with water.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/creatine%20monohydrate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "quote": "\"IUPACName\": \"2-[carbamimidoyl(methyl)amino]acetic acid;hydrate\""
+    },
+    {
+      "claim": "PubChem files creatine monohydrate as compound record 80116.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+      "quote": "\"RecordNumber\": 80116,"
+    },
+    {
+      "claim": "Its chemical formula is C4H11N3O3.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/creatine%20monohydrate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "quote": "\"MolecularFormula\": \"C4H11N3O3\""
+    },
+    {
+      "claim": "Its molecular weight is 149.15.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/creatine%20monohydrate/property/MolecularFormula,MolecularWeight,CanonicalSMILES,IUPACName/JSON",
+      "quote": "\"MolecularWeight\": \"149.15\""
+    },
+    {
+      "claim": "The CAS registry number listed for creatine monohydrate is 6020-87-7.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+      "quote": "\"String\": \"6020-87-7\""
+    },
+    {
+      "claim": "The FDA ingredient identifier UNII 9603LN7R2Q is listed on the record.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+      "quote": "\"String\": \"UNII-9603LN7R2Q\""
+    },
+    {
+      "claim": "Creapure appears among the listed names for creatine monohydrate.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+      "quote": "\"String\": \"Creapure\""
+    },
+    {
+      "claim": "Creatine Supplement appears as one of the recorded names for the substance, and PubChem titles the record Creatine Monohydrate.",
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/80116/JSON?heading=Depositor-Supplied+Synonyms",
+      "quote": "\"String\": \"Creatine Supplement\""
+    },
+    {
+      "claim": "As of the September 2026 registry snapshot, ClinicalTrials.gov listed 2,562 studies matching a search for creatine monohydrate.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=%22creatine%20monohydrate%22&pageSize=1&countTotal=true&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName,EnrollmentCount",
+      "quote": "\"totalCount\": 2562,"
+    },
+    {
+      "claim": "A completed Texas A&M University study gave creatine monohydrate, creatine nitrate, or a placebo to 48 active males.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies/NCT03003988?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,PrimaryOutcomeMeasure,LeadSponsorName,StartDate",
+      "quote": "This study was designed to examine how different forms of creatine impact active males."
+    },
+    {
+      "claim": "That study planned to measure creatine, phosphocreatine, and ATP inside muscle, plus strength and endurance, over 28 days.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies/NCT03003988?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,PrimaryOutcomeMeasure,LeadSponsorName,StartDate",
+      "quote": "Effects of 28 Days of Different Forms of Creatine Supplementation on intramuscular phosphocreatine"
+    },
+    {
+      "claim": "A completed University of Idaho study tested creatine monohydrate alongside resistance training in 27 untrained premenopausal women.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05745870?fields=NCTId,BriefTitle,BriefSummary,OverallStatus,Condition,InterventionName,EnrollmentCount,PrimaryOutcomeMeasure,LeadSponsorName,StartDate",
+      "quote": "to determine the effects of creatine monohydrate and resistance training on lean mass, sleep, muscular strength"
+    },
+    {
+      "claim": "A completed phase 2 and 3 study tested creatine monohydrate with glutamine in 48 people with Duchenne muscular dystrophy.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.intr=creatine%20monohydrate&query.cond=muscle&filter.overallStatus=COMPLETED&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName,PrimaryOutcomeMeasure,LeadSponsorName",
+      "quote": "Creatine and Glutamine in Steroid-Naive Duchenne Muscular Dystrophy"
+    },
+    {
+      "claim": "A completed University of Florida study used a labeled form of creatine to track muscle changes in 21 people with sarcopenia.",
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.intr=creatine%20monohydrate&query.cond=muscle&filter.overallStatus=COMPLETED&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Phase,EnrollmentCount,Condition,InterventionName,PrimaryOutcomeMeasure,LeadSponsorName",
+      "quote": "Time Course Adaptations Using Deuterated Creatine (D3Cr) Method"
+    },
+    {
+      "claim": "In the September 2026 DailyMed snapshot, four current US labels named creatine, and they were multi-ingredient liquid products.",
+      "sourceUrl": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=creatine&pagesize=10",
+      "quote": "CREATINE, CREATININE, INDOLUM, SKATOLUM, PROTEUS (MIRABILIS), MORGAN GAERTNER) LIQUID [BIOACTIVE NUTRITIONAL, INC.]"
+    },
+    {
+      "claim": "All four of those DailyMed labels sit under the drug name creatine.",
+      "sourceUrl": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=creatine&pagesize=10",
+      "quote": "\"total_elements\": 4"
+    },
+    {
+      "claim": "A US over-the-counter homeopathic label lists creatine monohydrate 6X as an active ingredient.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=2",
+      "quote": "Creatine monohydrate 6X"
+    },
+    {
+      "claim": "That label states its uses come from traditional homeopathic practice and were not accepted as medical evidence.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=2",
+      "quote": "Claims based on traditional homeopathic practice, not accepted medical evidence. Not FDA evaluated."
+    },
+    {
+      "claim": "The same label tells people who are pregnant or breastfeeding to ask a health professional first.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=2",
+      "quote": "If pregnant or breastfeeding, ask a healthcare professional before use."
+    },
+    {
+      "claim": "The same label says to keep the product out of reach of children.",
+      "sourceUrl": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22CREATINE%20MONOHYDRATE%22&limit=2",
+      "quote": "Keep out of the reach of children."
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "slug": "ginger",
+  "name": "Ginger",
+  "classification": "APPROVED_MEDICINE",
+  "tier": 1,
+  "corpusFieldCount": 12,
+  "oneLineAnswer": "A common spice and supplement, studied mostly for nausea, with results that vary by cause.",
+  "whatItDoes": [
+    "Ginger is the underground stem, called a rhizome, of the plant Zingiber officinale.",
+    "The plant comes from warm parts of Asia and is now grown in Africa and South America too.",
+    "People have used it as a folk remedy since ancient times, often for stomach problems and flu.",
+    "Today it is sold mostly for nausea and vomiting, menstrual cramps, and knee arthritis.",
+    "Studies suggest it may help pregnancy nausea, but most studies found no help for motion sickness."
+  ],
+  "whatWeDoNotKnow": [
+    "Whether ginger adds anything to standard treatment for chemotherapy or surgery nausea is still uncertain.",
+    "Knee arthritis trials exist, but much of that research was poor quality, so its results are hard to trust.",
+    "No one knows whether ginger is safe to use while breastfeeding.",
+    "The sources read here do not explain how ginger might work in the body.",
+    "Ginger labels in the FDA database are mostly mixtures or skin products, not evidence of benefit."
+  ],
+  "confidence": "medium",
+  "gaps": [
+    "No FDA-approved drug label for ginger as a single-ingredient medicine was found. Every ginger-containing label returned by openFDA was a homeopathic combination (A-29, HAD) or a topical cosmetic-type product (nail and scalp oils), so none of them states a ginger indication.",
+    "NCCIH's page describes what has been studied but not a mechanism, so this record explains no biology of action beyond the plant part used.",
+    "The NCCIH page renders through JavaScript. A plain fetch returned only page code, so the page text was read through a browser render instead. Two subsequent plain fetches returned no matching passages.",
+    "A DailyMed search for ginger returned only product titles with no descriptive text, and a PubChem lookup for 'ginger oil' returned HTTP 404.",
+    "No long-term safety information was found. NCCIH reports safe use within research studies but gives no duration.",
+    "No information was found on how much of any ginger compound reaches the bloodstream, or on which compound would matter. This record therefore states no dose and no personal protocol."
+  ],
+  "sourcesChecked": [
+    "https://www.nccih.nih.gov/health/ginger",
+    "https://medlineplus.gov/nauseaandvomiting.html",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=Ginger&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+    "https://clinicaltrials.gov/api/v2/studies?query.term=ginger&pageSize=1&countTotal=true&fields=NCTId",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22Ginger%22&limit=1",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22GINGER%22&limit=5",
+    "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22GINGER%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=3",
+    "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22ZINGIBER%20OFFICINALE%22&limit=2",
+    "https://api.fda.gov/drug/label.json?search=openfda.package_ndc:%2273276-006-25%22&limit=1",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=ginger",
+    "https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=Zingiber+officinale",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/gingerol/property/MolecularFormula,MolecularWeight,IUPACName,CanonicalSMILES/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/6-gingerol/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/zingerone/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/6-shogaol/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ginger%20oil/property/MolecularFormula,Title/JSON"
+  ],
+  "evidence": [
+    {
+      "claim": "Ginger is the rhizome, an underground stem, of the plant Zingiber officinale, used both as food and for health purposes.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Its rhizome (underground stem) is used in food and for health purposes."
+    },
+    {
+      "claim": "Ginger is native to warm parts of Asia and is now grown in South America, Africa, and the Middle East.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger is native to the warm parts of Asia and is now grown in parts of South America, Africa, and the Middle East."
+    },
+    {
+      "claim": "Ginger has been used in folk medicine since ancient times, traditionally for conditions such as asthma, flu, indigestion, and gastrointestinal discomfort.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "It was traditionally used for a variety of conditions such as asthma, flu, indigestion, and gastrointestinal discomfort."
+    },
+    {
+      "claim": "Ginger is currently promoted for nausea and vomiting, osteoarthritis, and menstrual cramps.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger is currently promoted for nausea and vomiting, osteoarthritis, menstrual cramps, and other conditions."
+    },
+    {
+      "claim": "Many human studies of ginger exist, but some were not high quality.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "There have been many studies on the use of ginger for health purposes in people, but some of them have not been of high quality."
+    },
+    {
+      "claim": "Most studies of ginger tested dietary supplements rather than ginger-containing foods.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Most of the studies tested dietary supplements rather than foods."
+    },
+    {
+      "claim": "Research shows ginger may be helpful for nausea and vomiting during pregnancy.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Research shows that ginger may be helpful for nausea and vomiting associated with pregnancy."
+    },
+    {
+      "claim": "Most studies of ginger for motion sickness have not shown it to be helpful.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Most studies of ginger for motion sickness haven’t shown it to be helpful."
+    },
+    {
+      "claim": "It is uncertain whether ginger helps as an addition to standard treatment for chemotherapy-related nausea and vomiting.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "It’s uncertain whether ginger is a helpful addition to standard treatments for nausea and vomiting associated with cancer chemotherapy"
+    },
+    {
+      "claim": "It is also uncertain whether ginger helps with nausea and vomiting after surgery.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "and whether it’s helpful for nausea and vomiting after surgery."
+    },
+    {
+      "claim": "Ginger dietary supplements might help reduce the severity of menstrual cramps.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Research suggests that ginger dietary supplements might be helpful for reducing the severity of menstrual cramps."
+    },
+    {
+      "claim": "Ginger dietary supplements might help knee osteoarthritis symptoms, but much of the research was poor quality.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger dietary supplements might be helpful for symptoms of knee osteoarthritis, but much of the research has been of poor quality."
+    },
+    {
+      "claim": "Ginger applied to the skin has not been shown to help knee osteoarthritis symptoms.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger used topically (applied to the skin) has not been shown to be helpful for knee osteoarthritis symptoms."
+    },
+    {
+      "claim": "Oral ginger has been used safely in many research studies, and ginger products may also be safe for topical use.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger has been used safely in many research studies where it was taken orally (by mouth) as a dietary supplement."
+    },
+    {
+      "claim": "Side effects of oral ginger can include abdominal discomfort, heartburn, diarrhea, and mouth and throat irritation.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Ginger can have side effects such as abdominal discomfort, heartburn, diarrhea, and mouth and throat irritation when taken orally."
+    },
+    {
+      "claim": "NCCIH advises anyone taking any type of medicine to talk with a health care provider before using ginger.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "If you take any type of medicine, talk with your health care provider before using ginger or any other herbal products"
+    },
+    {
+      "claim": "Little is known about whether ginger is safe to use while breastfeeding.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Little is known about whether it’s safe to use ginger while breastfeeding."
+    },
+    {
+      "claim": "Ginger supplements sold as dietary supplements are not approved by the FDA before sale, unlike drugs.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "Unlike drugs, dietary supplements are not approved by the U.S. Food and Drug Administration (FDA) before they are sold to the public."
+    },
+    {
+      "claim": "NCCIH states its ginger publication is not copyrighted and is in the public domain.",
+      "url": "https://www.nccih.nih.gov/health/ginger",
+      "quote": "This publication is not copyrighted and is in the public domain. Duplication is encouraged."
+    },
+    {
+      "claim": "MedlinePlus lists ginger under treatments and therapies on its federal health topic page for nausea and vomiting.",
+      "url": "https://medlineplus.gov/nauseaandvomiting.html",
+      "quote": "Ginger (National Center for Complementary and Integrative Health)"
+    },
+    {
+      "claim": "The ClinicalTrials.gov registry returns 297 studies for the search term ginger.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=ginger&pageSize=1&countTotal=true&fields=NCTId",
+      "quote": "\"totalCount\": 297"
+    },
+    {
+      "claim": "Registered ginger studies include a completed trial of ginger capsules for migraine prevention.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ginger&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "quote": "Ginger Capsules for the Prophylactic Treatment of Migraine"
+    },
+    {
+      "claim": "Registered ginger studies include a completed trial comparing ginger extract with loratadine for allergic rhinitis.",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Ginger&pageSize=5&fields=NCTId,BriefTitle,OverallStatus,Condition,InterventionName",
+      "quote": "Study of Efficacy and Safety of Ginger Extract Compared With Loratadine for Treatment of Allergic Rhinitis"
+    },
+    {
+      "claim": "PubChem records 6-gingerol, a compound found in ginger, with the molecular formula C17H26O4.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/6-gingerol/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "quote": "\"MolecularFormula\": \"C17H26O4\""
+    },
+    {
+      "claim": "PubChem gives 6-gingerol a molecular weight of 294.4.",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/6-gingerol/property/MolecularFormula,MolecularWeight,IUPACName/JSON",
+      "quote": "\"MolecularWeight\": \"294.4\""
+    },
+    {
+      "claim": "A registered homeopathic over-the-counter product label lists Zingiber officinale (Ginger) Rhizome as an active ingredient.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22GINGER%22+AND+openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=3",
+      "quote": "Zingiber officinale (Ginger) Rhizome 2X"
+    },
+    {
+      "claim": "Ginger root oil is a labeled active ingredient in some topical over-the-counter products in the FDA label database.",
+      "url": "https://api.fda.gov/drug/label.json?search=openfda.substance_name:%22ZINGIBER%20OFFICINALE%22&limit=2",
+      "quote": "ZINGIBER OFFICINALE (GINGER) ROOT OIL"
+    }
+  ]
+}

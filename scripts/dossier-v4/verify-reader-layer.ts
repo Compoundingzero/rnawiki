@@ -108,6 +108,9 @@ async function main(): Promise<void> {
     process.stdout.write(
       `  federal-summary on the page   : ${count(rendered, 'id="federal-summary"')} (nccih links ${count(rendered, 'nccih.nih.gov')})\n`,
     )
+    process.stdout.write(
+      `  authored-reference on page    : ${count(rendered, 'id="authored-reference"')} (evidence ${count(rendered, 'Every claim above')})\n`,
+    )
     process.stdout.write(`  in-page nav links             : ${count(rendered, 'href="#')}\n`)
     process.stdout.write(`  reader-facing sentences       : ${readerSentences(reader)}\n`)
     /*
